@@ -1,0 +1,292 @@
+. template 1
+
+. ###################################
+. ### define global macros for both files
+. ###################################
+
+.macro printlicense (cplusplusfilename)
+/**
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation, either version 3 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  *
+  */
+
+/*
+ *  $(printlicense.cplusplusfilename:)
+ *
+ *  @Copyright (C) 2015, SurgiTAIX AG
+ *  Author: besting, roehser
+ */
+ 
+/**
+ * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
+ *
+ * YOUR CHANGES WILL BE OVERWRITTEN!
+ * 
+ * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
+ */
+.endmacro 
+
+.macro printaccessordeclaration (classname, childclass)
+.for classes.class
+.if "$(my.classname:)" = "$(class.name:)"
+.if "$(class.parent:)" <> "NULL" 
+.printaccessordeclaration ("$(class.parent:)", "$(my.childclass:)")
+.endif
+.   for property
+	$(my.childclass:) & set$(property.name:)(const $(property.type:) & value);
+	$(property.type:) get$(property.name:)() const;
+.   if property.optional="true"
+	bool get$(property.name:)($(property.type:) & out) const;
+	bool has$(property.name:)() const;
+.   endif
+
+.   endfor
+.   for propertyList
+	$(my.childclass:) & add$(propertyList.nameSingle:)(const $(propertyList.type:) & value);
+	std::vector<$(propertyList.type:)> get$(propertyList.nameSeveral:)() const;
+	void clear$(propertyList.nameSeveral:)();
+	
+.   endfor
+.   for customMethod
+	$(customMethod)
+
+.   endfor
+.   if defined(class.valuetype)
+	$(class.valuetype:) get() const;
+	$(my.childclass:) & set(const $(class.valuetype:) & value); 
+.   endif
+.endif
+.endfor
+.endmacro
+
+.macro printaccessorimplementation (classname, childclass)
+.for classes.class
+.if "$(my.classname:)" = "$(class.name:)"
+.if "$(class.parent:)" <> "NULL" 
+.printaccessorimplementation ("$(class.parent:)", "$(my.childclass:)")
+.endif
+.   for property
+$(my.childclass:) & $(my.childclass:)::set$(property.name:)(const $(property.type:) & value) {
+	data->$(property.name:)(ConvertToCDM::convert(value));
+	return *this;
+}
+
+.   if property.optional="true"
+bool $(my.childclass:)::get$(property.name:)($(property.type:) & out) const {
+	if (data->$(property.name:)().present()) {
+		out = ConvertFromCDM::convert(data->$(property.name:)().get());
+		return true;
+	}
+	return false;
+}
+.   endif
+
+$(property.type:) $(my.childclass:)::get$(property.name:)() const {
+.   if property.optional="true"
+	return ConvertFromCDM::convert(data->$(property.name:)().get());
+.   else
+	return ConvertFromCDM::convert(data->$(property.name:)());
+.   endif
+}
+	
+.   if property.optional="true"
+bool $(my.childclass:)::has$(property.name:)() const {
+	return data->$(property.name:)().present();
+}
+	
+.   endif
+.   endfor
+.   for propertyList
+$(my.childclass:) & $(my.childclass:)::add$(propertyList.nameSingle:)(const $(propertyList.type:) & value) {
+	data->$(propertyList.nameSingle:)().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<$(propertyList.type:)> $(my.childclass:)::get$(propertyList.nameSeveral:)() const {
+	std::vector<$(propertyList.type:)> result;
+	result.reserve(data->$(propertyList.nameSingle:)().size());
+	for (const auto & value: data->$(propertyList.nameSingle:)()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void $(my.childclass:)::clear$(propertyList.nameSeveral:)() {
+	data->$(propertyList.nameSingle:)().clear();
+}
+
+.   endfor
+.   for customMethodImpl
+	$(customMethodImpl)
+
+.   endfor
+.endif
+.endfor
+.endmacro
+
+.macro printincludes (classname)
+.for classes.class
+.if "$(my.classname:)" = "$(class.name:)"
+.   for include
+#include "$(include.path:)"
+.   endfor
+.if "$(class.parent:)" <> "NULL" 
+. printincludes ("$(class.parent:)")
+.endif
+.endif
+.endfor
+.endmacro
+
+. ###################################
+. ### create header file and insert preamble
+. ###################################
+
+. for class
+. if "$(class.abstract:)" = "true"
+. next class
+. endif
+.   output "$(class.name:).h"
+.   printlicense ("$(class.name:).h")
+
+#ifndef $(class.NAME)_H_
+#define $(class.NAME)_H_
+
+#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/OSCP-fwd.h"
+#include "osdm-fwd.hxx"
+
+namespace OSCLib {
+namespace Data {
+namespace OSCP {
+
+class $(class.name:) {
+private:
+	$(class.name:)(const CDM::$(class.name:) & object);
+	operator CDM::$(class.name:)() const;
+	friend class ConvertFromCDM;
+	friend class ConvertToCDM;
+public:
+	$(class.name:)();
+	$(class.name:)(const $(class.name:) & object);
+	virtual ~$(class.name:)();
+    
+    void copyFrom(const $(class.name:) & object);
+    $(class.name:) & operator=(const $(class.name:) & object);
+    
+    typedef CDM::$(class.name:) WrappedType;
+.   for typedef
+    typedef $(typedef.type:) $(typedef.name:);
+.   endfor 
+
+. printaccessordeclaration("$(class.name:)", "$(class.name:)")
+. if defined("$(class.customImpl:)") & "$(class.customImpl:)" = "true"
+. literal from "$(class.name:)CustomImpl.hxx"
+.endif
+private:
+	std::shared_ptr<CDM::$(class.name:)> data;
+.   close
+.endfor
+. ###################################
+. ### add footer
+. ###################################
+. for class
+. if "$(class.abstract:)" = "true"
+. next class
+. endif
+.   append "$(class.name:).h"
+};
+
+} /* namespace OSCP */
+} /* namespace Data */
+} /* namespace OSCLib */
+#endif /* $(class.NAME)_H_ */
+.   close
+. endfor
+
+. ###################################
+. ### create cpp file
+. ###################################
+
+. for class
+. if "$(class.abstract:)" = "true"
+. next class
+. endif
+.   output "$(class.name:).cpp"
+.   printlicense ("$(class.name:).cpp")
+
+#include "OSCLib/Data/OSCP/MDIB/$(class.name:).h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/Defaults.h"
+
+#include "osdm.hxx"
+
+.printincludes ("$(class.name:)")
+
+namespace OSCLib {
+namespace Data {
+namespace OSCP {
+
+$(class.name:)::$(class.name:)() : data(Defaults::$(class.name:)()) {
+}
+
+$(class.name:)::operator CDM::$(class.name:)() const {
+	return *data;
+}
+
+.   if "$(class.name:)"<>"MDIBObject"
+$(class.name:)::$(class.name:)(const CDM::$(class.name:) & object) : data(new CDM::$(class.name:)(object)) {
+
+}
+
+.   endif
+$(class.name:)::$(class.name:)(const $(class.name:) & object) : data(new CDM::$(class.name:)(*object.data)) {
+
+}
+
+$(class.name:)::~$(class.name:)() {
+
+}
+
+void $(class.name:)::copyFrom(const $(class.name:) & object) {
+	*data = *object.data;
+}
+
+$(class.name:) & $(class.name:):: operator=(const $(class.name:) & object) {
+	copyFrom(object);
+	return *this;
+}
+
+.   if defined(class.valuetype)
+$(class.valuetype:) $(class.name:)::get() const {
+	return *data;
+}
+	
+$(class.name:) & $(class.name:)::set(const $(class.valuetype:) & value) {
+	*data = value;
+	return *this;
+} 
+	
+.   endif
+
+. printaccessorimplementation ("$(class.name:)", "$(class.name:)")
+
+} /* namespace OSCP */
+} /* namespace Data */
+} /* namespace OSCLib */
+
+.   close
+
+. endfor
+. endtemplate

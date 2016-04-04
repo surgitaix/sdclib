@@ -1,0 +1,278 @@
+<classes script = "generate.gsl" >
+
+    <class name = "AbstractMetricValue" parent = "NULL" abstract = "true" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/MeasurementState.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/Timestamp.h" />
+    	<property name = "MeasurementState" type = "MeasurementState" optional = "false" />
+    	<property name = "Start_Time" type = "Timestamp" optional = "true" />
+    	<property name = "Stop_Time" type = "Timestamp" optional = "true" />
+    	<property name = "ObservationTime" type = "Timestamp" optional = "true" />
+    </class>
+    
+    <class name = "AlertConditionReference" parent = "NULL" abstract = "false" customImpl = "true" >
+    </class>
+
+    <class name = "Annotation" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/SampleIndex.h" />
+		<property name = "Code" type = "CodedValue" optional = "false" />
+		<property name = "SampleIndex" type = "SampleIndex" optional = "true" />
+    </class>
+
+    <class name = "Base64Binary" parent = "NULL" abstract = "false" customImpl = "true" >
+    </class>
+    
+   	<class name = "BaseDemographics" parent = "NULL" abstract = "false" >
+   		<property name = "Givenname" type = "std::string" optional = "true" />
+		<propertyList nameSingle = "Middlename" nameSeveral = "Middlenames" type = "std::string" />
+		<property name = "Familyname" type = "std::string" optional = "true" />
+		<property name = "Birthname" type = "std::string" optional = "true" />
+		<property name = "Title" type = "std::string" optional = "true" />
+    </class>
+
+   	<class name = "CalibrationInfo" parent = "NULL" abstract = "false" >
+   		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "true" />
+    </class>
+
+   	<class name = "CauseInfo" parent = "NULL" abstract = "false" >
+   		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+   		<include path = "OSCLib/Data/OSCP/MDIB/RemedyInfo.h" />
+   		<property name = "Remedy" type = "RemedyInfo" optional = "true" />
+		<propertyList nameSingle = "Description" nameSeveral = "Descriptions" type = "LocalizedText" />
+    </class>
+   
+	<class name = "ClinicalInfo" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Measure.h" />
+		<property name = "Type" type = "CodedValue" optional = "false" />
+		<propertyList nameSingle = "RelatedMeasurement" nameSeveral = "RelatedMeasurements" type = "Measure" />
+		<property name = "MeasuredValue" type = "double" optional = "false" />
+    </class>
+	
+    <class name = "CodedValue" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "CodingSystemId" type = "std::string" optional = "true" />
+		<propertyList nameSingle = "CodingSystemName" nameSeveral = "CodingSystemNames" type = "LocalizedText" />
+		<property name = "VersionId" type = "std::string" optional = "true" />
+    	<property name = "CodeId" type = "std::string" optional = "false" />
+    	<propertyList nameSingle = "ConceptDescription" nameSeveral = "ConceptDescriptions" type = "LocalizedText" />
+    </class>
+
+	<class name = "DateTime" parent = "NULL" abstract = "false" >
+    	<property name = "year" type = "int" optional = "false" />
+    	<property name = "month" type = "unsigned short" optional = "false" />
+    	<property name = "day" type = "unsigned short" optional = "false" />
+    	<property name = "hours" type = "unsigned short" optional = "false" />
+    	<property name = "minutes" type = "unsigned short" optional = "false" />
+    	<property name = "seconds" type = "double" optional = "false" />
+    </class>
+
+    <class name = "DICOMNetworkAE" parent = "NULL" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/DICOMTransferCapability.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+    	<propertyList nameSingle = "NetworkConnectionReference" nameSeveral = "NetworkConnectionReferences" type = "std::string" />
+    	<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilities" type = "DICOMTransferCapability" />
+    	<propertyList nameSingle = "ApplicationCluster" nameSeveral = "ApplicationClusters" type = "LocalizedText" />
+    	<propertyList nameSingle = "SupportedCharacterSet" nameSeveral = "SupportedCharacterSets" type = "std::string" />
+    	<property name = "AETitle" type = "std::string" optional = "false" />
+    	<property name = "AssociationInitiator" type = "bool" optional = "false" />
+    	<property name = "AssociationAcceptor" type = "bool" optional = "false" />
+    	<property name = "Description" type = "std::string" optional = "true" />
+    </class>
+    
+	<class name = "DICOMNetworkConnection" parent = "NULL" abstract = "false" >
+    	<property name = "id" type = "std::string" optional = "false" />
+       	<property name = "Hostname" type = "std::string" optional = "false" />
+    	<property name = "Port" type = "unsigned short int" optional = "true" />
+    	<propertyList nameSingle = "TLSCipherSuite" nameSeveral = "TLSCipherSuites" type = "std::string" />
+    </class>
+    
+	<class name = "DICOMTransferCapability" parent = "NULL" abstract = "false" >
+    	<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxes" type = "std::string" />
+    	<property name = "SOPClass" type = "std::string" optional = "false" />
+       	<property name = "TransferRole" type = "DICOMTransferRole" optional = "false" />
+    </class>   
+    
+	<class name = "Duration" parent = "NULL" abstract = "false" >
+    	<property name = "negative" type = "bool" optional = "false" />
+    	<property name = "years" type = "unsigned int" optional = "false" />
+    	<property name = "months" type = "unsigned int" optional = "false" />
+    	<property name = "days" type = "unsigned int" optional = "false" />
+    	<property name = "hours" type = "unsigned int" optional = "false" />
+    	<property name = "minutes" type = "unsigned int" optional = "false" />
+    	<property name = "seconds" type = "double" optional = "false" />
+    </class>
+    
+    <class name = "EnumNomenRef" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/SampleIndex.h" />
+    	<property name = "Code" type = "CodedValue" optional = "false" />
+    	<property name = "EnumIndex" type = "SampleIndex" optional = "true" />
+    </class>
+
+	<class name = "ImagingProcedure" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<property name = "AccessionIdentifier" type = "InstanceIdentifier" optional = "false" />
+		<property name = "RequestedProcedureID" type = "InstanceIdentifier" optional = "false" />
+		<property name = "StudyInstanceUID" type = "InstanceIdentifier" optional = "false" />
+		<property name = "ScheduledProcedureStepID" type = "InstanceIdentifier" optional = "false" />
+		<property name = "Modality" type = "CodedValue" optional = "true" />
+		<property name = "ProtocolCode" type = "CodedValue" optional = "true" />
+    </class>
+    
+    <class name = "InstanceIdentifier" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<propertyList nameSingle = "IdentifierName" nameSeveral = "IdentifierNames" type = "LocalizedText" />
+		<property name = "root" type = "std::string" optional = "false" />
+		<property name = "extension" type = "std::string" optional = "true" />
+    </class>
+    
+	<class name = "Language" parent = "NULL" abstract = "false" valuetype = "std::string">
+    </class>
+    
+    <class name = "LocalizedText" parent = "NULL" abstract = "false" valuetype = "std::string" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/Language.h" />
+    	<property name = "Lang" type = "Language" optional = "true" />
+    </class>
+    
+    <class name = "Measure" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+    	<property name = "MeasurementUnit" type = "CodedValue" optional = "false" />
+    	<property name = "MeasuredValue" type = "double" optional = "true" />
+    </class>
+    
+	<class name = "MeasurementState" parent = "NULL" abstract = "false" >
+		<property name = "Validity" type = "MetricMeasurementValidity" optional = "false" />
+		<property name = "Mode" type = "GenerationMode" optional = "true" />
+		<property name = "QI" type = "double" optional = "true" />
+    </class>
+    
+    <class name = "NumericMetricValue" parent = "AbstractMetricValue" abstract = "false" >
+    	<property name = "Value" type = "double" optional = "true" />
+    </class>
+
+    <class name = "Order" parent = "NULL" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/OrderDetail.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
+    	<property name = "VisitNumber" type = "InstanceIdentifier" optional = "true" />
+    	<property name = "PlacerOrderNumber" type = "InstanceIdentifier" optional = "false" />
+    	<property name = "FillerOrderNumber" type = "InstanceIdentifier" optional = "true" />
+    	<property name = "Patient" type = "PersonReference" optional = "false" />
+    	<property name = "ReferringPhysician" type = "PersonReference" optional = "true" />
+    	<property name = "RequestingPhysician" type = "PersonReference" optional = "true" />
+    	<propertyList nameSingle = "Reason" nameSeveral = "Reasons" type = "ClinicalInfo" />
+    	<propertyList nameSingle = "DangerCode" nameSeveral = "DangerCodes" type = "CodedValue" />
+    	<propertyList nameSingle = "RelevantClinicalInfo" nameSeveral = "RelevantClinicalInfos" type = "ClinicalInfo" />
+    	<propertyList nameSingle = "ImagingProcedure" nameSeveral = "ImagingProcedures" type = "ImagingProcedure" />
+		<property name = "RequestedOrderDetail" type = "OrderDetail" optional = "true" />
+		<property name = "PerformedOrderDetail" type = "OrderDetail" optional = "true" />
+    </class>
+
+   	<class name = "OrderDetail" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/DateTime.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/PersonParticipation.h" />
+		<property name = "Start" type = "DateTime" optional = "true" />
+		<property name = "End" type = "DateTime" optional = "true" />
+		<propertyList nameSingle = "Performer" nameSeveral = "Performers" type = "PersonParticipation" />
+    	<propertyList nameSingle = "Service" nameSeveral = "Services" type = "CodedValue" />
+    </class>
+    
+	<class name = "PatientDemographicsCoreData" parent = "BaseDemographics" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/DateTime.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Measure.h" />
+		<property name = "Sex" type = "Sex" optional = "true" />
+		<property name = "PatientType" type = "PatientType" optional = "true" />
+		<property name = "DateOfBirth" type = "DateTime" optional = "true" />
+		<property name = "Height" type = "Measure" optional = "true" />
+		<property name = "Weight" type = "Measure" optional = "true" />
+		<property name = "Race" type = "CodedValue" optional = "true" />
+    </class>
+    
+	<class name = "PersonParticipation" parent = "PersonReference" abstract = "false" customImpl = "true" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<propertyList nameSingle = "Role" nameSeveral = "Roles" type = "CodedValue" />
+    </class>
+    
+	<class name = "PersonReference" parent = "NULL" abstract = "false" customImpl = "true" >
+		<include path = "OSCLib/Data/OSCP/MDIB/BaseDemographics.h" />
+		<propertyList nameSingle = "Name" nameSeveral = "Names" type = "BaseDemographics" />
+    </class>
+    
+	<class name = "ProductionSpecification" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<property name = "specType" type = "CodedValue" optional = "false" />
+		<property name = "productionSpec" type = "std::string" optional = "false" />
+		<property name = "componentId" type = "InstanceIdentifier" optional = "true" />
+    </class>    
+
+    <class name = "RealTimeSampleArrayValue" parent = "AbstractMetricValue" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/Annotation.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/RTValueType.h" />
+		<property name = "Samples" type = "RTValueType" optional = "true" />
+		<propertyList nameSingle = "Annotation" nameSeveral = "Annotations" type = "Annotation" />
+    </class>
+
+    <class name = "Range" parent = "NULL" abstract = "false" >
+    	<property name = "Lower" type = "double" optional = "true" />
+    	<property name = "Upper" type = "double" optional = "true" />
+    	<property name = "StepWidth" type = "double" optional = "true" />
+    </class>
+
+    <class name = "RemedyInfo" parent = "NULL" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+    	<propertyList nameSingle = "Description" nameSeveral = "Descriptions" type = "LocalizedText" />
+    </class>
+
+    <class name = "ReferencedVersion" parent = "NULL" valuetype = "long long" abstract = "false" >
+    </class>
+
+    <class name = "RTValueType" parent = "NULL" abstract = "false" customImpl = "true" >
+    </class>
+	
+    <class name = "SampleIndex" parent = "NULL" abstract = "false" valuetype = "int">
+    </class>
+    
+    <class name = "StringMetricValue" parent = "AbstractMetricValue" abstract = "false" >
+    	<property name = "Value" type = "std::string" optional = "true" />
+    </class>
+
+    <class name = "SystemContext" parent = "AbstractDescriptor" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h" />
+		<property name = "EnsembleContext" type = "EnsembleContextDescriptor" optional = "true" />
+		<property name = "LocationContext" type = "LocationContextDescriptor" optional = "true" />
+		<property name = "OperatorContext" type = "OperatorContextDescriptor" optional = "true" />
+		<property name = "PatientContext" type = "PatientContextDescriptor" optional = "true" />
+		<property name = "WorkflowContext" type = "WorkflowContextDescriptor" optional = "true" />
+    </class>
+    
+    <class name = "SystemMetaData" parent = "NULL" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+    	<property name = "UDI" type = "std::string" optional = "true" />
+    	<propertyList nameSingle = "Manufacturer" nameSeveral = "Manufacturer" type = "LocalizedText" />
+    	<propertyList nameSingle = "ModelName" nameSeveral = "ModelName" type = "LocalizedText" />
+    	<propertyList nameSingle = "ModelNumber" nameSeveral = "ModelNumber" type = "std::string" />
+    	<propertyList nameSingle = "SerialNumber" nameSeveral = "SerialNumber" type = "std::string" />
+    </class>
+    
+	<class name = "Timestamp" parent = "NULL" valuetype = "long long" abstract = "false" >
+    </class>
+    
+   	<class name = "TimeZone" parent = "NULL" abstract = "false" customImpl = "true" >
+    </class>
+
+    <class name = "VersionCounter" parent = "NULL" valuetype = "long long" abstract = "false" >
+    </class>
+    
+</classes>

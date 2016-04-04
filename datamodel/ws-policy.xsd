@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.w3.org/ns/ws-policy"
+  xmlns:wsstm="http://standardized.namespace.org/ws-streaming"
+	targetNamespace="http://www.w3.org/ns/ws-policy" blockDefault="#all"
+	elementFormDefault="qualified">
+  <xs:import namespace="http://standardized.namespace.org/ws-streaming"
+		schemaLocation="ws-streaming.xsd" />    
+
+  <xs:element name="Policy" >
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="wsstm:StreamSource" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  	
+</xs:schema>

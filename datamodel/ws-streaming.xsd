@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://standardized.namespace.org/ws-streaming"
+  xmlns:wsp="http://www.w3.org/ns/ws-policy"
+	targetNamespace="http://standardized.namespace.org/ws-streaming"
+	elementFormDefault="qualified">
+
+  <xs:complexType name="tStreamType" >
+    <xs:attribute name="actionURI" type="xs:anyURI" />
+    <xs:attribute name="element" type="xs:QName" />
+    <xs:attribute name="id" type="xs:string" />
+    <xs:attribute name="streamType" type="xs:anyURI" />
+  </xs:complexType>
+  
+  <xs:complexType name="tStreamDescriptions" >
+    <xs:sequence>
+      <xs:element name="streamType" type="tns:tStreamType" />
+    </xs:sequence>
+    <xs:attribute name="targetNamespace" type="xs:string" />
+  </xs:complexType>  
+
+  <xs:element name="StreamSource" >
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="StreamDescriptions" type="tns:tStreamDescriptions" />
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other" processContents="lax" />
+    </xs:complexType>
+  </xs:element>
+  	
+</xs:schema>

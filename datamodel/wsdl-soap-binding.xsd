@@ -1,0 +1,63 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://schemas.xmlsoap.org/wsdl/soap12/">
+	<xs:element name="binding" type="soap:bindingType" />
+	<xs:complexType name="bindingType">
+		<xs:attribute name="transport" type="xs:anyURI" use="optional" />
+		<xs:attribute name="style" type="soap:styleChoice" use="optional" />
+	</xs:complexType>
+	<xs:simpleType name="styleChoice">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="rpc" />
+			<xs:enumeration value="document" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="operation" type="soap:operationType" />
+	<xs:complexType name="operationType">
+		<xs:attribute name="soapAction" type="xs:anyURI" use="optional" />
+		<xs:attribute name="style" type="soap:styleChoice" use="optional" />
+	</xs:complexType>
+	<xs:element name="body" type="soap:bodyType" />
+	<xs:complexType name="bodyType">
+		<xs:attribute name="encodingStyle" type="xs:anyURI" use="optional" />
+		<xs:attribute name="parts" type="xs:NMTOKENS" use="optional" />
+		<xs:attribute name="use" type="soap:useChoice" use="optional" />
+		<xs:attribute name="namespace" type="xs:anyURI" use="optional" />
+	</xs:complexType>
+	<xs:simpleType name="useChoice">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="literal" />
+			<xs:enumeration value="encoded" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="fault" type="soap:faultType" />
+	<xs:complexType name="faultType">
+		<xs:complexContent>
+			<xs:restriction base="soap:bodyType">
+				<xs:attribute name="parts" type="xs:NMTOKENS" use="prohibited" />
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="header" type="soap:headerType" />
+	<xs:complexType name="headerType">
+		<xs:all>
+			<xs:element ref="soap:headerfault" />
+		</xs:all>
+		<xs:attribute name="message" type="xs:QName" use="required" />
+		<xs:attribute name="parts" type="xs:NMTOKENS" use="required" />
+		<xs:attribute name="use" type="soap:useChoice" use="required" />
+		<xs:attribute name="encodingStyle" type="xs:anyURI" use="optional" />
+		<xs:attribute name="namespace" type="xs:anyURI" use="optional" />
+	</xs:complexType>
+	<xs:element name="headerfault" type="soap:headerfaultType" />
+	<xs:complexType name="headerfaultType">
+		<xs:attribute name="message" type="xs:QName" use="required" />
+		<xs:attribute name="parts" type="xs:NMTOKENS" use="required" />
+		<xs:attribute name="use" type="soap:useChoice" use="required" />
+		<xs:attribute name="encodingStyle" type="xs:anyURI" use="optional" />
+		<xs:attribute name="namespace" type="xs:anyURI" use="optional" />
+	</xs:complexType>
+	<xs:element name="address" type="soap:addressType" />
+	<xs:complexType name="addressType">
+		<xs:attribute name="location" type="xs:anyURI" use="required" />
+	</xs:complexType>
+</xs:schema>

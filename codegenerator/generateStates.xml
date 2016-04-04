@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<classes script = "generate.gsl" >
+
+    <class name = "AbstractContextState" parent = "AbstractState" abstract = "true" >
+		<include path = "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Timestamp.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h" />
+    	<property name = "ContextAssociation" type = "ContextAssociation" optional = "true"/>
+    	<property name = "BindingMDIBVersion" type = "ReferencedVersion" optional = "false" />
+    	<property name = "UnbindingMDIBVersion" type = "ReferencedVersion" optional = "true" />
+    	<property name = "BindingStartTime" type = "Timestamp" optional = "true" /> 
+    	<property name = "BindingEndTime" type = "Timestamp" optional = "true" />
+    	<propertyList nameSingle = "Validator" nameSeveral = "Validators" type = "InstanceIdentifier" /> 	
+	</class>
+
+    <class name = "AbstractState" parent = "NULL" abstract = "true" >
+   		<include path = "OSCLib/Data/OSCP/MDIB/VersionCounter.h" />
+        <property name = "Handle" type = "std::string" optional = "true"/>
+    	<property name = "DescriptorHandle" type = "std::string" optional = "false" />
+		<property name = "StateVersion" type = "VersionCounter" optional = "true" />
+    </class>
+    
+    <class name = "AbstractAlertState" parent = "AbstractState" abstract = "true" >
+    </class>
+    
+	<class name = "AbstractIdentifiableContextState" parent = "AbstractContextState" abstract = "true" >
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+    	<propertyList nameSingle = "Identification" nameSeveral = "Identifications" type = "InstanceIdentifier" /> 
+    </class>
+    
+    <class name = "AbstractMetricState" parent = "ComponentState" abstract = "true" >
+    </class>    
+    
+    <class name = "AlertConditionState" parent = "AbstractAlertState" abstract = "false" >
+        <include path = "OSCLib/Data/OSCP/MDIB/Timestamp.h" />
+        <typedef name = "DescriptorType" type = "AlertConditionDescriptor" />
+        <typedef name = "ProviderHandlerType" type = "OSCPProviderAlertConditionStateHandler" />
+        <typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertConditionStateHandler" />
+    	<property name = "ActivationState" type = "PausableActivation" optional = "false" />
+    	<property name = "Rank" type = "int" optional = "true" />
+		<property name = "Presence" type = "bool" optional = "false" />
+		<property name = "ObservationTime" type = "Timestamp" optional = "true" />
+    </class>
+    
+    <class name = "AlertSignalState" parent = "AbstractAlertState" abstract = "false" >
+        <typedef name = "DescriptorType" type = "AlertSignalDescriptor" />
+        <typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSignalStateHandler" />
+        <typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSignalStateHandler" />
+    	<property name = "Location" type = "PrimaryAlertSignalLocation" optional = "true" />
+    	<property name = "Slot" type = "int" optional = "true" />
+    	<property name = "ActivationState" type = "PausableActivation" optional = "false" />
+    	<property name = "Presence" type = "SignalPresence" optional = "true" />
+    </class>
+    
+    <class name = "AlertSystemState" parent = "AbstractAlertState" abstract = "false" >
+        <include path = "OSCLib/Data/OSCP/MDIB/AlertConditionReference.h" />
+        <typedef name = "DescriptorType" type = "AlertSystemDescriptor" />
+        <typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSystemStateHandler" />
+        <typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSystemStateHandler" />
+    	<property name = "ActivationState" type = "PausableActivation" optional = "false" />
+    	<property name = "PresentPhysiologicalAlarmConditions" type = "AlertConditionReference" optional = "true" />
+    	<property name = "PresentTechnicalAlarmConditions" type = "AlertConditionReference" optional = "true" />
+    </class>
+    
+    <class name = "ClockState" parent = "AbstractState" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/Timestamp.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/TimeZone.h" />
+    	<typedef name = "DescriptorType" type = "ClockDescriptor" />
+    	<property name = "ActiveSyncProtocol" type = "CodedValue" optional = "true" />
+    	<property name = "DateAndTime" type = "Timestamp" optional = "true" />
+    	<property name = "RemoteSync" type = "bool" optional = "false" />
+    	<property name = "ReferenceSource" type = "std::string" optional = "true" />
+    	<property name = "Accuracy" type = "double" optional = "true" />
+    	<property name = "LastSet" type = "Timestamp" optional = "true" />
+    	<property name = "TimeZone" type = "TimeZone" optional = "true" />
+		<property name = "CriticalUse" type = "bool" optional = "true" />
+    </class>
+    
+    <class name = "ComponentState" parent = "AbstractState" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h" />
+    	<property name = "ComponentActivationState" type = "ComponentActivation" optional = "true" />
+    	<property name = "CalibrationInfo" type = "CalibrationInfo" optional = "true" />
+    	<property name = "OperatingHours" type = "int" optional = "true" />
+    	<property name = "OperatingCycles" type = "int" optional = "true" />
+    </class>
+    
+    <class name = "EnsembleContextState" parent = "AbstractIdentifiableContextState" abstract = "false" >
+    	<typedef name = "DescriptorType" type = "EnsembleContextDescriptor" />
+    </class>
+    
+    <class name = "EnumStringMetricState" parent = "AbstractMetricState" abstract = "false" >
+      	<include path = "OSCLib/Data/OSCP/MDIB/StringMetricValue.h" />
+    	<typedef name = "DescriptorType" type = "EnumStringMetricDescriptor" />
+    	<typedef name = "ProviderHandlerType" type = "OSCPProviderEnumStringMetricStateHandler" />
+    	<typedef name = "ConsumerHandlerType" type = "OSCPConsumerEnumStringMetricStateHandler" />
+    	<property name = "ObservedValue" type = "StringMetricValue" optional = "true" />
+    </class>
+    
+	<class name = "HydraMDSState" parent = "ComponentState" abstract = "false" >
+      	<include path = "OSCLib/Data/OSCP/MDIB/Language.h" />
+    	<typedef name = "DescriptorType" type = "HydraMDSDescriptor" />
+    	<typedef name = "ProviderHandlerType" type = "OSCPProviderHydraMDSStateHandler" />
+    	<property name = "Lang" type = "Language" optional = "true" />
+    </class>
+    
+    <class name = "LimitAlertConditionState" parent = "AlertConditionState" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+    	<typedef name = "DescriptorType" type = "LimitAlertConditionDescriptor" />
+    	<typedef name = "ProviderHandlerType" type = "OSCPProviderLimitAlertConditionStateHandler" />
+    	<typedef name = "ConsumerHandlerType" type = "OSCPConsumerLimitAlertConditionStateHandler" />
+		<property name = "Limits" type = "Range" optional = "true" />
+    	<property name = "MonitoredAlertLimits" type = "MonitoredAlertLimits" optional = "false" />
+		<property name = "AutoLimitActivationState" type = "PausableActivation" optional = "true" />
+    </class>
+
+    <class name = "LocationContextState" parent = "AbstractIdentifiableContextState" abstract = "false" >
+    	<typedef name = "DescriptorType" type = "LocationContextDescriptor" />
+    </class>
+    
+    <class name = "MDState" parent = "NULL" abstract = "false" customImpl = "true" >
+		<include path = "OSCLib/Data/OSCP/MDIB/VersionCounter.h" />
+    	<property name = "StateVersion" type = "VersionCounter" optional = "true" />
+    </class>
+	
+    <class name = "NumericMetricState" parent = "AbstractMetricState" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+    	<typedef name = "DescriptorType" type = "NumericMetricDescriptor" />
+    	<typedef name = "ProviderHandlerType" type = "OSCPProviderNumericMetricStateHandler" />
+    	<typedef name = "ConsumerHandlerType" type = "OSCPConsumerNumericMetricStateHandler" />
+    	<property name = "ObservedValue" type = "NumericMetricValue" optional = "true" />
+    	<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRanges" type = "Range" />
+    </class>
+    
+    <class name = "OperationState" parent = "AbstractState" abstract = "false" >
+    	<property name = "OperatingMode" type = "OperatingMode" optional = "false" />
+    </class>
+    
+    <class name = "OperatorContextState" parent = "AbstractIdentifiableContextState" abstract = "false" >
+    	<typedef name = "DescriptorType" type = "OperatorContextDescriptor" />
+    </class>  
+    
+    <class name = "RealTimeSampleArrayMetricState" parent = "AbstractMetricState" abstract = "false">
+        <include path = "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h" />
+    	<typedef name = "DescriptorType" type = "RealTimeSampleArrayMetricDescriptor" />
+    	<typedef name = "ProviderHandlerType" type = "OSCPProviderRealTimeSampleArrayMetricStateHandler" />
+    	<typedef name = "ConsumerHandlerType" type = "OSCPConsumerRealTimeSampleArrayMetricStateHandler" />
+    	<property name = "ObservedValue" type = "RealTimeSampleArrayValue" optional = "true" />
+    </class>
+    
+    <class name = "StringMetricState" parent = "AbstractMetricState" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/StringMetricValue.h" />
+    	<typedef name = "DescriptorType" type = "StringMetricDescriptor" />
+    	<typedef name = "ProviderHandlerType" type = "OSCPProviderStringMetricStateHandler" />
+    	<typedef name = "ConsumerHandlerType" type = "OSCPConsumerStringMetricStateHandler" />
+    	<property name = "ObservedValue" type = "StringMetricValue" optional = "true" />
+    </class>
+    
+    <class name = "PatientContextState" parent = "AbstractIdentifiableContextState" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/PatientDemographicsCoreData.h" />
+    	<typedef name = "DescriptorType" type = "PatientContextDescriptor" />
+    	<property name = "CoreData" type = "PatientDemographicsCoreData" optional = "true" /> 
+    </class>  
+	
+    <class name = "WorkflowContextState" parent = "AbstractIdentifiableContextState" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/Order.h" />    
+    	<typedef name = "DescriptorType" type = "WorkflowContextDescriptor" />
+    	<property name = "OrderDetail" type = "Order" optional = "true" />
+    </class>  
+</classes>
