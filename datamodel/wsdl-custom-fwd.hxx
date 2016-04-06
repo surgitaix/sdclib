@@ -258,6 +258,8 @@ namespace xml_schema
 
 #include "eventing-fwd.hxx"
 
+#include "ws-policy-fwd.hxx"
+
 // Forward declarations.
 //
 namespace WS

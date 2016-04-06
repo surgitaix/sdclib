@@ -31,8 +31,8 @@
 // in the accompanying FLOSSE file.
 //
 
-#ifndef CXX______DATAMODEL_WS_STREAMING_HXX
-#define CXX______DATAMODEL_WS_STREAMING_HXX
+#ifndef WS_STREAMING_HXX
+#define WS_STREAMING_HXX
 
 #include "ws-streaming-fwd.hxx"
 
@@ -555,4 +555,4 @@ namespace WS
 //
 // End epilogue.
 
-#endif // CXX______DATAMODEL_WS_STREAMING_HXX
+#endif // WS_STREAMING_HXX

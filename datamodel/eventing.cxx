@@ -45,6 +45,24 @@ namespace eventing
   // DeliveryType
   // 
 
+  const DeliveryType::AnySequence& DeliveryType::
+  any () const
+  {
+    return this->any_;
+  }
+
+  DeliveryType::AnySequence& DeliveryType::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void DeliveryType::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
   const DeliveryType::ModeOptional& DeliveryType::
   Mode () const
   {
@@ -73,6 +91,36 @@ namespace eventing
   Mode (::std::unique_ptr< ModeType > x)
   {
     this->Mode_.set (std::move (x));
+  }
+
+  const DeliveryType::AnyAttributeSet& DeliveryType::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  DeliveryType::AnyAttributeSet& DeliveryType::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void DeliveryType::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& DeliveryType::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& DeliveryType::
+  dom_document ()
+  {
+    return *this->dom_document_;
   }
 
 
@@ -106,6 +154,24 @@ namespace eventing
   // FilterType
   // 
 
+  const FilterType::AnySequence& FilterType::
+  any () const
+  {
+    return this->any_;
+  }
+
+  FilterType::AnySequence& FilterType::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void FilterType::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
   const FilterType::DialectOptional& FilterType::
   Dialect () const
   {
@@ -134,6 +200,36 @@ namespace eventing
   Dialect (::std::unique_ptr< DialectType > x)
   {
     this->Dialect_.set (std::move (x));
+  }
+
+  const FilterType::AnyAttributeSet& FilterType::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  FilterType::AnyAttributeSet& FilterType::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void FilterType::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& FilterType::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& FilterType::
+  dom_document ()
+  {
+    return *this->dom_document_;
   }
 
 
@@ -168,6 +264,36 @@ namespace eventing
   lang (::std::unique_ptr< LangType > x)
   {
     this->lang_.set (std::move (x));
+  }
+
+  const LanguageSpecificStringType::AnyAttributeSet& LanguageSpecificStringType::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  LanguageSpecificStringType::AnyAttributeSet& LanguageSpecificStringType::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void LanguageSpecificStringType::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& LanguageSpecificStringType::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& LanguageSpecificStringType::
+  dom_document ()
+  {
+    return *this->dom_document_;
   }
 
 
@@ -329,6 +455,54 @@ namespace eventing
     this->Filter_.set (std::move (x));
   }
 
+  const Subscribe::AnySequence& Subscribe::
+  any () const
+  {
+    return this->any_;
+  }
+
+  Subscribe::AnySequence& Subscribe::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void Subscribe::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
+  const Subscribe::AnyAttributeSet& Subscribe::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  Subscribe::AnyAttributeSet& Subscribe::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void Subscribe::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& Subscribe::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& Subscribe::
+  dom_document ()
+  {
+    return *this->dom_document_;
+  }
+
 
   // SubscribeResponse
   // 
@@ -381,6 +555,54 @@ namespace eventing
     this->Expires_.set (std::move (x));
   }
 
+  const SubscribeResponse::AnySequence& SubscribeResponse::
+  any () const
+  {
+    return this->any_;
+  }
+
+  SubscribeResponse::AnySequence& SubscribeResponse::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void SubscribeResponse::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
+  const SubscribeResponse::AnyAttributeSet& SubscribeResponse::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  SubscribeResponse::AnyAttributeSet& SubscribeResponse::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void SubscribeResponse::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& SubscribeResponse::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& SubscribeResponse::
+  dom_document ()
+  {
+    return *this->dom_document_;
+  }
+
 
   // Renew
   // 
@@ -413,6 +635,54 @@ namespace eventing
   Expires (::std::unique_ptr< ExpiresType > x)
   {
     this->Expires_.set (std::move (x));
+  }
+
+  const Renew::AnySequence& Renew::
+  any () const
+  {
+    return this->any_;
+  }
+
+  Renew::AnySequence& Renew::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void Renew::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
+  const Renew::AnyAttributeSet& Renew::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  Renew::AnyAttributeSet& Renew::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void Renew::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& Renew::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& Renew::
+  dom_document ()
+  {
+    return *this->dom_document_;
   }
 
 
@@ -449,9 +719,105 @@ namespace eventing
     this->Expires_.set (std::move (x));
   }
 
+  const RenewResponse::AnySequence& RenewResponse::
+  any () const
+  {
+    return this->any_;
+  }
+
+  RenewResponse::AnySequence& RenewResponse::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void RenewResponse::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
+  const RenewResponse::AnyAttributeSet& RenewResponse::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  RenewResponse::AnyAttributeSet& RenewResponse::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void RenewResponse::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& RenewResponse::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& RenewResponse::
+  dom_document ()
+  {
+    return *this->dom_document_;
+  }
+
 
   // GetStatus
   // 
+
+  const GetStatus::AnySequence& GetStatus::
+  any () const
+  {
+    return this->any_;
+  }
+
+  GetStatus::AnySequence& GetStatus::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void GetStatus::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
+  const GetStatus::AnyAttributeSet& GetStatus::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  GetStatus::AnyAttributeSet& GetStatus::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void GetStatus::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& GetStatus::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& GetStatus::
+  dom_document ()
+  {
+    return *this->dom_document_;
+  }
 
 
   // GetStatusResponse
@@ -487,9 +853,105 @@ namespace eventing
     this->Expires_.set (std::move (x));
   }
 
+  const GetStatusResponse::AnySequence& GetStatusResponse::
+  any () const
+  {
+    return this->any_;
+  }
+
+  GetStatusResponse::AnySequence& GetStatusResponse::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void GetStatusResponse::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
+  const GetStatusResponse::AnyAttributeSet& GetStatusResponse::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  GetStatusResponse::AnyAttributeSet& GetStatusResponse::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void GetStatusResponse::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& GetStatusResponse::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& GetStatusResponse::
+  dom_document ()
+  {
+    return *this->dom_document_;
+  }
+
 
   // Unsubscribe
   // 
+
+  const Unsubscribe::AnySequence& Unsubscribe::
+  any () const
+  {
+    return this->any_;
+  }
+
+  Unsubscribe::AnySequence& Unsubscribe::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void Unsubscribe::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
+  const Unsubscribe::AnyAttributeSet& Unsubscribe::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  Unsubscribe::AnyAttributeSet& Unsubscribe::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void Unsubscribe::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& Unsubscribe::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& Unsubscribe::
+  dom_document ()
+  {
+    return *this->dom_document_;
+  }
 
 
   // SubscriptionEnd
@@ -560,7 +1022,57 @@ namespace eventing
   {
     this->Reason_ = s;
   }
+
+  const SubscriptionEnd::AnySequence& SubscriptionEnd::
+  any () const
+  {
+    return this->any_;
+  }
+
+  SubscriptionEnd::AnySequence& SubscriptionEnd::
+  any ()
+  {
+    return this->any_;
+  }
+
+  void SubscriptionEnd::
+  any (const AnySequence& s)
+  {
+    this->any_ = s;
+  }
+
+  const SubscriptionEnd::AnyAttributeSet& SubscriptionEnd::
+  any_attribute () const
+  {
+    return this->any_attribute_;
+  }
+
+  SubscriptionEnd::AnyAttributeSet& SubscriptionEnd::
+  any_attribute ()
+  {
+    return this->any_attribute_;
+  }
+
+  void SubscriptionEnd::
+  any_attribute (const AnyAttributeSet& s)
+  {
+    this->any_attribute_ = s;
+  }
+
+  const ::xercesc::DOMDocument& SubscriptionEnd::
+  dom_document () const
+  {
+    return *this->dom_document_;
+  }
+
+  ::xercesc::DOMDocument& SubscriptionEnd::
+  dom_document ()
+  {
+    return *this->dom_document_;
+  }
 }
+
+#include <xsd/cxx/xml/dom/wildcard-source.hxx>
 
 #include <xsd/cxx/xml/dom/parsing-source.hxx>
 
@@ -581,7 +1093,10 @@ namespace eventing
   DeliveryType::
   DeliveryType ()
   : ::xml_schema::Type (),
-    Mode_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (this->dom_document ()),
+    Mode_ (this),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -590,7 +1105,10 @@ namespace eventing
                 ::xml_schema::Flags f,
                 ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
-    Mode_ (x.Mode_, f, this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (x.any_, this->dom_document ()),
+    Mode_ (x.Mode_, f, this),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -599,7 +1117,10 @@ namespace eventing
                 ::xml_schema::Flags f,
                 ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
-    Mode_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (this->dom_document ()),
+    Mode_ (this),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
@@ -618,6 +1139,18 @@ namespace eventing
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
+      // any
+      //
+      if (true)
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
     }
 
@@ -630,6 +1163,21 @@ namespace eventing
       if (n.name () == "Mode" && n.namespace_ ().empty ())
       {
         this->Mode_.set (ModeTraits::create (i, f, this));
+        continue;
+      }
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
         continue;
       }
     }
@@ -648,7 +1196,9 @@ namespace eventing
     if (this != &x)
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
+      this->any_ = x.any_;
       this->Mode_ = x.Mode_;
+      this->any_attribute_ = x.any_attribute_;
     }
 
     return *this;
@@ -772,7 +1322,10 @@ namespace eventing
   FilterType::
   FilterType ()
   : ::xml_schema::Type (),
-    Dialect_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (this->dom_document ()),
+    Dialect_ (this),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -781,7 +1334,10 @@ namespace eventing
               ::xml_schema::Flags f,
               ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
-    Dialect_ (x.Dialect_, f, this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (x.any_, this->dom_document ()),
+    Dialect_ (x.Dialect_, f, this),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -790,7 +1346,10 @@ namespace eventing
               ::xml_schema::Flags f,
               ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
-    Dialect_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (this->dom_document ()),
+    Dialect_ (this),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
@@ -809,6 +1368,18 @@ namespace eventing
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
+      // any
+      //
+      if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing"))
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
     }
 
@@ -821,6 +1392,21 @@ namespace eventing
       if (n.name () == "Dialect" && n.namespace_ ().empty ())
       {
         this->Dialect_.set (DialectTraits::create (i, f, this));
+        continue;
+      }
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
         continue;
       }
     }
@@ -839,7 +1425,9 @@ namespace eventing
     if (this != &x)
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
+      this->any_ = x.any_;
       this->Dialect_ = x.Dialect_;
+      this->any_attribute_ = x.any_attribute_;
     }
 
     return *this;
@@ -862,28 +1450,36 @@ namespace eventing
   LanguageSpecificStringType::
   LanguageSpecificStringType ()
   : ::xml_schema::String (),
-    lang_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    lang_ (this),
+    any_attribute_ (this->dom_document ())
   {
   }
 
   LanguageSpecificStringType::
   LanguageSpecificStringType (const char* _xsd_String_base)
   : ::xml_schema::String (_xsd_String_base),
-    lang_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    lang_ (this),
+    any_attribute_ (this->dom_document ())
   {
   }
 
   LanguageSpecificStringType::
   LanguageSpecificStringType (const ::std::string& _xsd_String_base)
   : ::xml_schema::String (_xsd_String_base),
-    lang_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    lang_ (this),
+    any_attribute_ (this->dom_document ())
   {
   }
 
   LanguageSpecificStringType::
   LanguageSpecificStringType (const ::xml_schema::String& _xsd_String_base)
   : ::xml_schema::String (_xsd_String_base),
-    lang_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    lang_ (this),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -892,7 +1488,9 @@ namespace eventing
                               ::xml_schema::Flags f,
                               ::xml_schema::Container* c)
   : ::xml_schema::String (x, f, c),
-    lang_ (x.lang_, f, this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    lang_ (x.lang_, f, this),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -901,7 +1499,9 @@ namespace eventing
                               ::xml_schema::Flags f,
                               ::xml_schema::Container* c)
   : ::xml_schema::String (e, f | ::xml_schema::Flags::base, c),
-    lang_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    lang_ (this),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
@@ -925,6 +1525,21 @@ namespace eventing
         this->lang_.set (LangTraits::create (i, f, this));
         continue;
       }
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
+        continue;
+      }
     }
   }
 
@@ -942,6 +1557,7 @@ namespace eventing
     {
       static_cast< ::xml_schema::String& > (*this) = x;
       this->lang_ = x.lang_;
+      this->any_attribute_ = x.any_attribute_;
     }
 
     return *this;
@@ -1046,20 +1662,26 @@ namespace eventing
   Subscribe::
   Subscribe (const DeliveryType& Delivery)
   : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     EndTo_ (this),
     Delivery_ (Delivery, this),
     Expires_ (this),
-    Filter_ (this)
+    Filter_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
   Subscribe::
   Subscribe (::std::unique_ptr< DeliveryType > Delivery)
   : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     EndTo_ (this),
     Delivery_ (std::move (Delivery), this),
     Expires_ (this),
-    Filter_ (this)
+    Filter_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1068,10 +1690,13 @@ namespace eventing
              ::xml_schema::Flags f,
              ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     EndTo_ (x.EndTo_, f, this),
     Delivery_ (x.Delivery_, f, this),
     Expires_ (x.Expires_, f, this),
-    Filter_ (x.Filter_, f, this)
+    Filter_ (x.Filter_, f, this),
+    any_ (x.any_, this->dom_document ()),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -1080,14 +1705,17 @@ namespace eventing
              ::xml_schema::Flags f,
              ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     EndTo_ (this),
     Delivery_ (this),
     Expires_ (this),
-    Filter_ (this)
+    Filter_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
       this->parse (p, f);
     }
   }
@@ -1214,6 +1842,18 @@ namespace eventing
         }
       }
 
+      // any
+      //
+      if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing"))
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
     }
 
@@ -1222,6 +1862,28 @@ namespace eventing
       throw ::xsd::cxx::tree::expected_element< char > (
         "Delivery",
         "http://schemas.xmlsoap.org/ws/2004/08/eventing");
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
+        continue;
+      }
     }
   }
 
@@ -1242,6 +1904,8 @@ namespace eventing
       this->Delivery_ = x.Delivery_;
       this->Expires_ = x.Expires_;
       this->Filter_ = x.Filter_;
+      this->any_ = x.any_;
+      this->any_attribute_ = x.any_attribute_;
     }
 
     return *this;
@@ -1259,8 +1923,11 @@ namespace eventing
   SubscribeResponse (const SubscriptionManagerType& SubscriptionManager,
                      const ExpiresType& Expires)
   : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (SubscriptionManager, this),
-    Expires_ (Expires, this)
+    Expires_ (Expires, this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1268,8 +1935,11 @@ namespace eventing
   SubscribeResponse (::std::unique_ptr< SubscriptionManagerType > SubscriptionManager,
                      const ExpiresType& Expires)
   : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (std::move (SubscriptionManager), this),
-    Expires_ (Expires, this)
+    Expires_ (Expires, this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1277,8 +1947,11 @@ namespace eventing
   SubscribeResponse (::std::unique_ptr< SubscriptionManagerType > SubscriptionManager,
                      ::std::unique_ptr< ExpiresType > Expires)
   : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (std::move (SubscriptionManager), this),
-    Expires_ (std::move (Expires), this)
+    Expires_ (std::move (Expires), this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1287,8 +1960,11 @@ namespace eventing
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (x.SubscriptionManager_, f, this),
-    Expires_ (x.Expires_, f, this)
+    Expires_ (x.Expires_, f, this),
+    any_ (x.any_, this->dom_document ()),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -1297,12 +1973,15 @@ namespace eventing
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (this),
-    Expires_ (this)
+    Expires_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
       this->parse (p, f);
     }
   }
@@ -1373,6 +2052,18 @@ namespace eventing
         }
       }
 
+      // any
+      //
+      if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing"))
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
     }
 
@@ -1388,6 +2079,28 @@ namespace eventing
       throw ::xsd::cxx::tree::expected_element< char > (
         "Expires",
         "http://schemas.xmlsoap.org/ws/2004/08/eventing");
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
+        continue;
+      }
     }
   }
 
@@ -1406,6 +2119,8 @@ namespace eventing
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->SubscriptionManager_ = x.SubscriptionManager_;
       this->Expires_ = x.Expires_;
+      this->any_ = x.any_;
+      this->any_attribute_ = x.any_attribute_;
     }
 
     return *this;
@@ -1422,7 +2137,10 @@ namespace eventing
   Renew::
   Renew ()
   : ::xml_schema::Type (),
-    Expires_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    Expires_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1431,7 +2149,10 @@ namespace eventing
          ::xml_schema::Flags f,
          ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
-    Expires_ (x.Expires_, f, this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    Expires_ (x.Expires_, f, this),
+    any_ (x.any_, this->dom_document ()),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -1440,11 +2161,14 @@ namespace eventing
          ::xml_schema::Flags f,
          ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
-    Expires_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    Expires_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
       this->parse (p, f);
     }
   }
@@ -1487,7 +2211,41 @@ namespace eventing
         }
       }
 
+      // any
+      //
+      if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing"))
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
+        continue;
+      }
     }
   }
 
@@ -1505,6 +2263,8 @@ namespace eventing
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->Expires_ = x.Expires_;
+      this->any_ = x.any_;
+      this->any_attribute_ = x.any_attribute_;
     }
 
     return *this;
@@ -1521,7 +2281,10 @@ namespace eventing
   RenewResponse::
   RenewResponse ()
   : ::xml_schema::Type (),
-    Expires_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    Expires_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1530,7 +2293,10 @@ namespace eventing
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
-    Expires_ (x.Expires_, f, this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    Expires_ (x.Expires_, f, this),
+    any_ (x.any_, this->dom_document ()),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -1539,11 +2305,14 @@ namespace eventing
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
-    Expires_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    Expires_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
       this->parse (p, f);
     }
   }
@@ -1586,7 +2355,41 @@ namespace eventing
         }
       }
 
+      // any
+      //
+      if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing"))
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
+        continue;
+      }
     }
   }
 
@@ -1604,6 +2407,8 @@ namespace eventing
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->Expires_ = x.Expires_;
+      this->any_ = x.any_;
+      this->any_attribute_ = x.any_attribute_;
     }
 
     return *this;
@@ -1619,7 +2424,10 @@ namespace eventing
 
   GetStatus::
   GetStatus ()
-  : ::xml_schema::Type ()
+  : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1627,7 +2435,10 @@ namespace eventing
   GetStatus (const GetStatus& x,
              ::xml_schema::Flags f,
              ::xml_schema::Container* c)
-  : ::xml_schema::Type (x, f, c)
+  : ::xml_schema::Type (x, f, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (x.any_, this->dom_document ()),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -1635,11 +2446,14 @@ namespace eventing
   GetStatus (const ::xercesc::DOMElement& e,
              ::xml_schema::Flags f,
              ::xml_schema::Container* c)
-  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c)
+  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
       this->parse (p, f);
     }
   }
@@ -1654,7 +2468,41 @@ namespace eventing
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
+      // any
+      //
+      if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing"))
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
+        continue;
+      }
     }
   }
 
@@ -1663,6 +2511,19 @@ namespace eventing
           ::xml_schema::Container* c) const
   {
     return new class GetStatus (*this, f, c);
+  }
+
+  GetStatus& GetStatus::
+  operator= (const GetStatus& x)
+  {
+    if (this != &x)
+    {
+      static_cast< ::xml_schema::Type& > (*this) = x;
+      this->any_ = x.any_;
+      this->any_attribute_ = x.any_attribute_;
+    }
+
+    return *this;
   }
 
   GetStatus::
@@ -1676,7 +2537,10 @@ namespace eventing
   GetStatusResponse::
   GetStatusResponse ()
   : ::xml_schema::Type (),
-    Expires_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    Expires_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1685,7 +2549,10 @@ namespace eventing
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
-    Expires_ (x.Expires_, f, this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    Expires_ (x.Expires_, f, this),
+    any_ (x.any_, this->dom_document ()),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -1694,11 +2561,14 @@ namespace eventing
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
-    Expires_ (this)
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    Expires_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
       this->parse (p, f);
     }
   }
@@ -1741,7 +2611,41 @@ namespace eventing
         }
       }
 
+      // any
+      //
+      if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing"))
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
+        continue;
+      }
     }
   }
 
@@ -1759,6 +2663,8 @@ namespace eventing
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->Expires_ = x.Expires_;
+      this->any_ = x.any_;
+      this->any_attribute_ = x.any_attribute_;
     }
 
     return *this;
@@ -1774,7 +2680,10 @@ namespace eventing
 
   Unsubscribe::
   Unsubscribe ()
-  : ::xml_schema::Type ()
+  : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1782,7 +2691,10 @@ namespace eventing
   Unsubscribe (const Unsubscribe& x,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::xml_schema::Type (x, f, c)
+  : ::xml_schema::Type (x, f, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (x.any_, this->dom_document ()),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -1790,11 +2702,14 @@ namespace eventing
   Unsubscribe (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c)
+  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
       this->parse (p, f);
     }
   }
@@ -1809,7 +2724,41 @@ namespace eventing
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
+      // any
+      //
+      if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing"))
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
+        continue;
+      }
     }
   }
 
@@ -1818,6 +2767,19 @@ namespace eventing
           ::xml_schema::Container* c) const
   {
     return new class Unsubscribe (*this, f, c);
+  }
+
+  Unsubscribe& Unsubscribe::
+  operator= (const Unsubscribe& x)
+  {
+    if (this != &x)
+    {
+      static_cast< ::xml_schema::Type& > (*this) = x;
+      this->any_ = x.any_;
+      this->any_attribute_ = x.any_attribute_;
+    }
+
+    return *this;
   }
 
   Unsubscribe::
@@ -1832,9 +2794,12 @@ namespace eventing
   SubscriptionEnd (const SubscriptionManagerType& SubscriptionManager,
                    const StatusType& Status)
   : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (SubscriptionManager, this),
     Status_ (Status, this),
-    Reason_ (this)
+    Reason_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1842,9 +2807,12 @@ namespace eventing
   SubscriptionEnd (::std::unique_ptr< SubscriptionManagerType > SubscriptionManager,
                    const StatusType& Status)
   : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (std::move (SubscriptionManager), this),
     Status_ (Status, this),
-    Reason_ (this)
+    Reason_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1852,9 +2820,12 @@ namespace eventing
   SubscriptionEnd (::std::unique_ptr< SubscriptionManagerType > SubscriptionManager,
                    ::std::unique_ptr< StatusType > Status)
   : ::xml_schema::Type (),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (std::move (SubscriptionManager), this),
     Status_ (std::move (Status), this),
-    Reason_ (this)
+    Reason_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
   }
 
@@ -1863,9 +2834,12 @@ namespace eventing
                    ::xml_schema::Flags f,
                    ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (x.SubscriptionManager_, f, this),
     Status_ (x.Status_, f, this),
-    Reason_ (x.Reason_, f, this)
+    Reason_ (x.Reason_, f, this),
+    any_ (x.any_, this->dom_document ()),
+    any_attribute_ (x.any_attribute_, this->dom_document ())
   {
   }
 
@@ -1874,13 +2848,16 @@ namespace eventing
                    ::xml_schema::Flags f,
                    ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
     SubscriptionManager_ (this),
     Status_ (this),
-    Reason_ (this)
+    Reason_ (this),
+    any_ (this->dom_document ()),
+    any_attribute_ (this->dom_document ())
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
       this->parse (p, f);
     }
   }
@@ -1976,6 +2953,18 @@ namespace eventing
         }
       }
 
+      // any
+      //
+      if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing"))
+      {
+        ::xercesc::DOMElement* r (
+          static_cast< ::xercesc::DOMElement* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMElement* > (&i), true)));
+        this->any_.push_back (r);
+        continue;
+      }
+
       break;
     }
 
@@ -1991,6 +2980,28 @@ namespace eventing
       throw ::xsd::cxx::tree::expected_element< char > (
         "Status",
         "http://schemas.xmlsoap.org/ws/2004/08/eventing");
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // any_attribute
+      //
+      if ((!n.namespace_ ().empty () &&
+           n.namespace_ () != "http://schemas.xmlsoap.org/ws/2004/08/eventing" &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+           n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+      {
+        ::xercesc::DOMAttr* r (
+          static_cast< ::xercesc::DOMAttr* > (
+            this->dom_document ().importNode (
+              const_cast< ::xercesc::DOMAttr* > (&i), true)));
+        this->any_attribute_ .insert (r);
+        continue;
+      }
     }
   }
 
@@ -2010,6 +3021,8 @@ namespace eventing
       this->SubscriptionManager_ = x.SubscriptionManager_;
       this->Status_ = x.Status_;
       this->Reason_ = x.Reason_;
+      this->any_ = x.any_;
+      this->any_attribute_ = x.any_attribute_;
     }
 
     return *this;
@@ -5332,6 +6345,34 @@ namespace eventing
   {
     e << static_cast< const ::xml_schema::Type& > (i);
 
+    // any_attribute
+    //
+    for (DeliveryType::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
+
+    // any
+    //
+    for (DeliveryType::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+    }
+
     // Mode
     //
     if (i.Mode ())
@@ -5578,6 +6619,34 @@ namespace eventing
   {
     e << static_cast< const ::xml_schema::Type& > (i);
 
+    // any_attribute
+    //
+    for (FilterType::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
+
+    // any
+    //
+    for (FilterType::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+    }
+
     // Dialect
     //
     if (i.Dialect ())
@@ -5602,6 +6671,23 @@ namespace eventing
   operator<< (::xercesc::DOMElement& e, const LanguageSpecificStringType& i)
   {
     e << static_cast< const ::xml_schema::String& > (i);
+
+    // any_attribute
+    //
+    for (LanguageSpecificStringType::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
 
     // lang
     //
@@ -7371,6 +8457,23 @@ namespace eventing
   {
     e << static_cast< const ::xml_schema::Type& > (i);
 
+    // any_attribute
+    //
+    for (Subscribe::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
+
     // EndTo
     //
     {
@@ -7475,12 +8578,40 @@ namespace eventing
             false, true, e, x);
       }
     }
+
+    // any
+    //
+    for (Subscribe::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+    }
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const SubscribeResponse& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
+
+    // any_attribute
+    //
+    for (SubscribeResponse::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
 
     // SubscriptionManager
     //
@@ -7529,12 +8660,40 @@ namespace eventing
           "http://schemas.xmlsoap.org/ws/2004/08/eventing",
           false, true, e, x);
     }
+
+    // any
+    //
+    for (SubscribeResponse::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+    }
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const Renew& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
+
+    // any_attribute
+    //
+    for (Renew::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
 
     // Expires
     //
@@ -7562,12 +8721,40 @@ namespace eventing
             false, true, e, x);
       }
     }
+
+    // any
+    //
+    for (Renew::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+    }
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const RenewResponse& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
+
+    // any_attribute
+    //
+    for (RenewResponse::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
 
     // Expires
     //
@@ -7595,18 +8782,74 @@ namespace eventing
             false, true, e, x);
       }
     }
+
+    // any
+    //
+    for (RenewResponse::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+    }
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const GetStatus& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
+
+    // any_attribute
+    //
+    for (GetStatus::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
+
+    // any
+    //
+    for (GetStatus::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+    }
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const GetStatusResponse& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
+
+    // any_attribute
+    //
+    for (GetStatusResponse::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
 
     // Expires
     //
@@ -7634,18 +8877,74 @@ namespace eventing
             false, true, e, x);
       }
     }
+
+    // any
+    //
+    for (GetStatusResponse::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+    }
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const Unsubscribe& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
+
+    // any_attribute
+    //
+    for (Unsubscribe::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
+
+    // any
+    //
+    for (Unsubscribe::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+    }
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const SubscriptionEnd& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
+
+    // any_attribute
+    //
+    for (SubscriptionEnd::AnyAttributeConstIterator
+         b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMAttr* a (
+        static_cast< ::xercesc::DOMAttr* > (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+      if (a->getLocalName () == 0)
+        e.setAttributeNode (a);
+      else
+        e.setAttributeNodeNS (a);
+    }
 
     // SubscriptionManager
     //
@@ -7721,6 +9020,17 @@ namespace eventing
             "http://schemas.xmlsoap.org/ws/2004/08/eventing",
             false, true, e, *b);
       }
+    }
+
+    // any
+    //
+    for (SubscriptionEnd::AnyConstIterator
+         b (i.any ().begin ()), n (i.any ().end ());
+         b != n; ++b)
+    {
+      e.appendChild (
+        e.getOwnerDocument ()->importNode (
+          const_cast< ::xercesc::DOMElement* > (&(*b)), true));
     }
   }
 }

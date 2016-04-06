@@ -63,6 +63,8 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
+#include <xsd/cxx/tree/containers-wildcard.hxx>
+
 namespace WS
 {
   namespace ADDRESSING
@@ -129,6 +131,44 @@ namespace WS
       void
       Metadata (::std::unique_ptr< MetadataType > p);
 
+      // any
+      //
+      typedef ::xsd::cxx::tree::element_sequence AnySequence;
+      typedef AnySequence::iterator AnyIterator;
+      typedef AnySequence::const_iterator AnyConstIterator;
+
+      const AnySequence&
+      any () const;
+
+      AnySequence&
+      any ();
+
+      void
+      any (const AnySequence& s);
+
+      // any_attribute
+      //
+      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+      typedef AnyAttributeSet::iterator AnyAttributeIterator;
+      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+      const AnyAttributeSet&
+      any_attribute () const;
+
+      AnyAttributeSet&
+      any_attribute ();
+
+      void
+      any_attribute (const AnyAttributeSet& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       EndpointReferenceType (const AddressType&);
@@ -161,14 +201,56 @@ namespace WS
              ::xml_schema::Flags);
 
       protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
       ::xsd::cxx::tree::one< AddressType > Address_;
       ReferenceParametersOptional ReferenceParameters_;
       MetadataOptional Metadata_;
+      AnySequence any_;
+      AnyAttributeSet any_attribute_;
     };
 
     class ReferenceParametersType: public ::xml_schema::Type
     {
       public:
+      // any
+      //
+      typedef ::xsd::cxx::tree::element_sequence AnySequence;
+      typedef AnySequence::iterator AnyIterator;
+      typedef AnySequence::const_iterator AnyConstIterator;
+
+      const AnySequence&
+      any () const;
+
+      AnySequence&
+      any ();
+
+      void
+      any (const AnySequence& s);
+
+      // any_attribute
+      //
+      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+      typedef AnyAttributeSet::iterator AnyAttributeIterator;
+      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+      const AnyAttributeSet&
+      any_attribute () const;
+
+      AnyAttributeSet&
+      any_attribute ();
+
+      void
+      any_attribute (const AnyAttributeSet& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       ReferenceParametersType ();
@@ -185,6 +267,9 @@ namespace WS
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      ReferenceParametersType&
+      operator= (const ReferenceParametersType& x);
+
       virtual 
       ~ReferenceParametersType ();
 
@@ -196,11 +281,53 @@ namespace WS
              ::xml_schema::Flags);
 
       protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+      AnySequence any_;
+      AnyAttributeSet any_attribute_;
     };
 
     class MetadataType: public ::xml_schema::Type
     {
       public:
+      // any
+      //
+      typedef ::xsd::cxx::tree::element_sequence AnySequence;
+      typedef AnySequence::iterator AnyIterator;
+      typedef AnySequence::const_iterator AnyConstIterator;
+
+      const AnySequence&
+      any () const;
+
+      AnySequence&
+      any ();
+
+      void
+      any (const AnySequence& s);
+
+      // any_attribute
+      //
+      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+      typedef AnyAttributeSet::iterator AnyAttributeIterator;
+      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+      const AnyAttributeSet&
+      any_attribute () const;
+
+      AnyAttributeSet&
+      any_attribute ();
+
+      void
+      any_attribute (const AnyAttributeSet& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       MetadataType ();
@@ -217,6 +344,9 @@ namespace WS
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      MetadataType&
+      operator= (const MetadataType& x);
+
       virtual 
       ~MetadataType ();
 
@@ -228,6 +358,10 @@ namespace WS
              ::xml_schema::Flags);
 
       protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+      AnySequence any_;
+      AnyAttributeSet any_attribute_;
     };
 
     class RelatesToType: public ::xml_schema::Uri
@@ -253,6 +387,29 @@ namespace WS
 
       void
       RelationshipType (::std::unique_ptr< RelationshipTypeType > p);
+
+      // any_attribute
+      //
+      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+      typedef AnyAttributeSet::iterator AnyAttributeIterator;
+      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+      const AnyAttributeSet&
+      any_attribute () const;
+
+      AnyAttributeSet&
+      any_attribute ();
+
+      void
+      any_attribute (const AnyAttributeSet& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
 
       // Constructors.
       //
@@ -284,7 +441,10 @@ namespace WS
              ::xml_schema::Flags);
 
       protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
       RelationshipTypeOptional RelationshipType_;
+      AnyAttributeSet any_attribute_;
     };
 
     class RelationshipTypeOpenEnum: public ::xml_schema::String
@@ -347,6 +507,29 @@ namespace WS
     class AttributedURIType: public ::xml_schema::Uri
     {
       public:
+      // any_attribute
+      //
+      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+      typedef AnyAttributeSet::iterator AnyAttributeIterator;
+      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+      const AnyAttributeSet&
+      any_attribute () const;
+
+      AnyAttributeSet&
+      any_attribute ();
+
+      void
+      any_attribute (const AnyAttributeSet& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       AttributedURIType (const ::xml_schema::Uri&);
@@ -363,8 +546,23 @@ namespace WS
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      AttributedURIType&
+      operator= (const AttributedURIType& x);
+
       virtual 
       ~AttributedURIType ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+      AnyAttributeSet any_attribute_;
     };
 
     class FaultCodesOpenEnumType: public ::xml_schema::String
@@ -427,6 +625,29 @@ namespace WS
     class AttributedUnsignedLongType: public ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType >
     {
       public:
+      // any_attribute
+      //
+      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+      typedef AnyAttributeSet::iterator AnyAttributeIterator;
+      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+      const AnyAttributeSet&
+      any_attribute () const;
+
+      AnyAttributeSet&
+      any_attribute ();
+
+      void
+      any_attribute (const AnyAttributeSet& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       AttributedUnsignedLongType (const ::xml_schema::UnsignedLong&);
@@ -443,13 +664,51 @@ namespace WS
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      AttributedUnsignedLongType&
+      operator= (const AttributedUnsignedLongType& x);
+
       virtual 
       ~AttributedUnsignedLongType ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+      AnyAttributeSet any_attribute_;
     };
 
     class AttributedQNameType: public ::xml_schema::Qname
     {
       public:
+      // any_attribute
+      //
+      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+      typedef AnyAttributeSet::iterator AnyAttributeIterator;
+      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+      const AnyAttributeSet&
+      any_attribute () const;
+
+      AnyAttributeSet&
+      any_attribute ();
+
+      void
+      any_attribute (const AnyAttributeSet& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       AttributedQNameType (const ::xml_schema::Qname&);
@@ -466,8 +725,23 @@ namespace WS
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      AttributedQNameType&
+      operator= (const AttributedQNameType& x);
+
       virtual 
       ~AttributedQNameType ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+      AnyAttributeSet any_attribute_;
     };
 
     class ProblemActionType: public ::xml_schema::Type
@@ -515,6 +789,29 @@ namespace WS
       void
       SoapAction (::std::unique_ptr< SoapActionType > p);
 
+      // any_attribute
+      //
+      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+      typedef AnyAttributeSet::iterator AnyAttributeIterator;
+      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+      const AnyAttributeSet&
+      any_attribute () const;
+
+      AnyAttributeSet&
+      any_attribute ();
+
+      void
+      any_attribute (const AnyAttributeSet& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       ProblemActionType ();
@@ -545,8 +842,11 @@ namespace WS
              ::xml_schema::Flags);
 
       protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
       ActionOptional Action_;
       SoapActionOptional SoapAction_;
+      AnyAttributeSet any_attribute_;
     };
   }
 }

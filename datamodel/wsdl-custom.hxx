@@ -63,11 +63,15 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
+#include <xsd/cxx/tree/containers-wildcard.hxx>
+
 #include "ws-addressing.hxx"
 
 #include "wsdl-soap-binding.hxx"
 
 #include "eventing.hxx"
+
+#include "ws-policy.hxx"
 
 namespace WS
 {
@@ -76,6 +80,29 @@ namespace WS
     class TDocumentation: public ::xml_schema::Type
     {
       public:
+      // any
+      //
+      typedef ::xsd::cxx::tree::element_sequence AnySequence;
+      typedef AnySequence::iterator AnyIterator;
+      typedef AnySequence::const_iterator AnyConstIterator;
+
+      const AnySequence&
+      any () const;
+
+      AnySequence&
+      any ();
+
+      void
+      any (const AnySequence& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       TDocumentation ();
@@ -92,6 +119,9 @@ namespace WS
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      TDocumentation&
+      operator= (const TDocumentation& x);
+
       virtual 
       ~TDocumentation ();
 
@@ -103,6 +133,9 @@ namespace WS
              ::xml_schema::Flags);
 
       protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+      AnySequence any_;
     };
 
     class TDocumented: public ::xml_schema::Type
@@ -165,6 +198,29 @@ namespace WS
     class TExtensibleAttributesDocumented: public ::WS::WSDL::TDocumented
     {
       public:
+      // any_attribute
+      //
+      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+      typedef AnyAttributeSet::iterator AnyAttributeIterator;
+      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+      const AnyAttributeSet&
+      any_attribute () const;
+
+      AnyAttributeSet&
+      any_attribute ();
+
+      void
+      any_attribute (const AnyAttributeSet& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       TExtensibleAttributesDocumented ();
@@ -181,13 +237,51 @@ namespace WS
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      TExtensibleAttributesDocumented&
+      operator= (const TExtensibleAttributesDocumented& x);
+
       virtual 
       ~TExtensibleAttributesDocumented ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+      AnyAttributeSet any_attribute_;
     };
 
     class TExtensibleDocumented: public ::WS::WSDL::TDocumented
     {
       public:
+      // any
+      //
+      typedef ::xsd::cxx::tree::element_sequence AnySequence;
+      typedef AnySequence::iterator AnyIterator;
+      typedef AnySequence::const_iterator AnyConstIterator;
+
+      const AnySequence&
+      any () const;
+
+      AnySequence&
+      any ();
+
+      void
+      any (const AnySequence& s);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
+
       // Constructors.
       //
       TExtensibleDocumented ();
@@ -204,6 +298,9 @@ namespace WS
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      TExtensibleDocumented&
+      operator= (const TExtensibleDocumented& x);
+
       virtual 
       ~TExtensibleDocumented ();
 
@@ -215,6 +312,9 @@ namespace WS
              ::xml_schema::Flags);
 
       protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+      AnySequence any_;
     };
 
     class TDefinitions: public ::WS::WSDL::TExtensibleDocumented
@@ -687,6 +787,27 @@ namespace WS
       void
       operation (const OperationSequence& s);
 
+      // Policy
+      //
+      typedef ::WS::POLICY::Policy PolicyType;
+      typedef ::xsd::cxx::tree::optional< PolicyType > PolicyOptional;
+      typedef ::xsd::cxx::tree::traits< PolicyType, char > PolicyTraits;
+
+      const PolicyOptional&
+      Policy () const;
+
+      PolicyOptional&
+      Policy ();
+
+      void
+      Policy (const PolicyType& x);
+
+      void
+      Policy (const PolicyOptional& x);
+
+      void
+      Policy (::std::unique_ptr< PolicyType > p);
+
       // name
       //
       typedef ::xml_schema::Ncname NameType;
@@ -753,6 +874,7 @@ namespace WS
 
       protected:
       OperationSequence operation_;
+      PolicyOptional Policy_;
       ::xsd::cxx::tree::one< NameType > name_;
       EventSourceOptional EventSource_;
     };
@@ -1100,6 +1222,21 @@ namespace WS
       void
       operation (const OperationSequence& s);
 
+      // any
+      //
+      typedef ::xsd::cxx::tree::element_sequence AnySequence;
+      typedef AnySequence::iterator AnyIterator;
+      typedef AnySequence::const_iterator AnyConstIterator;
+
+      const AnySequence&
+      any () const;
+
+      AnySequence&
+      any ();
+
+      void
+      any (const AnySequence& s);
+
       // name
       //
       typedef ::xml_schema::Ncname NameType;
@@ -1133,6 +1270,14 @@ namespace WS
 
       void
       type (::std::unique_ptr< TypeType > p);
+
+      // DOMDocument for wildcard content.
+      //
+      const ::xercesc::DOMDocument&
+      dom_document () const;
+
+      ::xercesc::DOMDocument&
+      dom_document ();
 
       // Constructors.
       //
@@ -1170,8 +1315,11 @@ namespace WS
              ::xml_schema::Flags);
 
       protected:
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
       ::xsd::cxx::tree::one< BindingType > binding_;
       OperationSequence operation_;
+      AnySequence any_;
       ::xsd::cxx::tree::one< NameType > name_;
       ::xsd::cxx::tree::one< TypeType > type_;
     };

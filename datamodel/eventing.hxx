@@ -63,6 +63,8 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
+#include <xsd/cxx/tree/containers-wildcard.hxx>
+
 #include "ws-addressing.hxx"
 
 namespace eventing
@@ -70,6 +72,21 @@ namespace eventing
   class DeliveryType: public ::xml_schema::Type
   {
     public:
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
     // Mode
     //
     typedef ::xml_schema::Uri ModeType;
@@ -90,6 +107,29 @@ namespace eventing
 
     void
     Mode (::std::unique_ptr< ModeType > p);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
 
     // Constructors.
     //
@@ -121,7 +161,11 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+    AnySequence any_;
     ModeOptional Mode_;
+    AnyAttributeSet any_attribute_;
   };
 
   class NonNegativeDurationType: public ::xml_schema::Duration
@@ -189,6 +233,21 @@ namespace eventing
   class FilterType: public ::xml_schema::Type
   {
     public:
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
     // Dialect
     //
     typedef ::xml_schema::Uri DialectType;
@@ -209,6 +268,29 @@ namespace eventing
 
     void
     Dialect (::std::unique_ptr< DialectType > p);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
 
     // Constructors.
     //
@@ -240,7 +322,11 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+    AnySequence any_;
     DialectOptional Dialect_;
+    AnyAttributeSet any_attribute_;
   };
 
   class LanguageSpecificStringType: public ::xml_schema::String
@@ -266,6 +352,29 @@ namespace eventing
 
     void
     lang (::std::unique_ptr< LangType > p);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
 
     // Constructors.
     //
@@ -303,7 +412,10 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
     LangOptional lang_;
+    AnyAttributeSet any_attribute_;
   };
 
   class SubscriptionEndCodeType: public ::xml_schema::Uri
@@ -446,6 +558,44 @@ namespace eventing
     void
     Filter (::std::unique_ptr< FilterType > p);
 
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
+
     // Constructors.
     //
     Subscribe (const DeliveryType&);
@@ -478,10 +628,14 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
     EndToOptional EndTo_;
     ::xsd::cxx::tree::one< DeliveryType > Delivery_;
     ExpiresOptional Expires_;
     FilterOptional Filter_;
+    AnySequence any_;
+    AnyAttributeSet any_attribute_;
   };
 
   class SubscribeResponse: public ::xml_schema::Type
@@ -521,6 +675,44 @@ namespace eventing
     void
     Expires (::std::unique_ptr< ExpiresType > p);
 
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
+
     // Constructors.
     //
     SubscribeResponse (const SubscriptionManagerType&,
@@ -558,8 +750,12 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
     ::xsd::cxx::tree::one< SubscriptionManagerType > SubscriptionManager_;
     ::xsd::cxx::tree::one< ExpiresType > Expires_;
+    AnySequence any_;
+    AnyAttributeSet any_attribute_;
   };
 
   class Renew: public ::xml_schema::Type
@@ -585,6 +781,44 @@ namespace eventing
 
     void
     Expires (::std::unique_ptr< ExpiresType > p);
+
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
 
     // Constructors.
     //
@@ -616,7 +850,11 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
     ExpiresOptional Expires_;
+    AnySequence any_;
+    AnyAttributeSet any_attribute_;
   };
 
   class RenewResponse: public ::xml_schema::Type
@@ -642,6 +880,44 @@ namespace eventing
 
     void
     Expires (::std::unique_ptr< ExpiresType > p);
+
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
 
     // Constructors.
     //
@@ -673,12 +949,54 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
     ExpiresOptional Expires_;
+    AnySequence any_;
+    AnyAttributeSet any_attribute_;
   };
 
   class GetStatus: public ::xml_schema::Type
   {
     public:
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
+
     // Constructors.
     //
     GetStatus ();
@@ -695,6 +1013,9 @@ namespace eventing
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    GetStatus&
+    operator= (const GetStatus& x);
+
     virtual 
     ~GetStatus ();
 
@@ -706,6 +1027,10 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+    AnySequence any_;
+    AnyAttributeSet any_attribute_;
   };
 
   class GetStatusResponse: public ::xml_schema::Type
@@ -731,6 +1056,44 @@ namespace eventing
 
     void
     Expires (::std::unique_ptr< ExpiresType > p);
+
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
 
     // Constructors.
     //
@@ -762,12 +1125,54 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
     ExpiresOptional Expires_;
+    AnySequence any_;
+    AnyAttributeSet any_attribute_;
   };
 
   class Unsubscribe: public ::xml_schema::Type
   {
     public:
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
+
     // Constructors.
     //
     Unsubscribe ();
@@ -784,6 +1189,9 @@ namespace eventing
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    Unsubscribe&
+    operator= (const Unsubscribe& x);
+
     virtual 
     ~Unsubscribe ();
 
@@ -795,6 +1203,10 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
+    AnySequence any_;
+    AnyAttributeSet any_attribute_;
   };
 
   class SubscriptionEnd: public ::xml_schema::Type
@@ -851,6 +1263,44 @@ namespace eventing
     void
     Reason (const ReasonSequence& s);
 
+    // any
+    //
+    typedef ::xsd::cxx::tree::element_sequence AnySequence;
+    typedef AnySequence::iterator AnyIterator;
+    typedef AnySequence::const_iterator AnyConstIterator;
+
+    const AnySequence&
+    any () const;
+
+    AnySequence&
+    any ();
+
+    void
+    any (const AnySequence& s);
+
+    // any_attribute
+    //
+    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
+    typedef AnyAttributeSet::iterator AnyAttributeIterator;
+    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+
+    const AnyAttributeSet&
+    any_attribute () const;
+
+    AnyAttributeSet&
+    any_attribute ();
+
+    void
+    any_attribute (const AnyAttributeSet& s);
+
+    // DOMDocument for wildcard content.
+    //
+    const ::xercesc::DOMDocument&
+    dom_document () const;
+
+    ::xercesc::DOMDocument&
+    dom_document ();
+
     // Constructors.
     //
     SubscriptionEnd (const SubscriptionManagerType&,
@@ -888,9 +1338,13 @@ namespace eventing
            ::xml_schema::Flags);
 
     protected:
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+
     ::xsd::cxx::tree::one< SubscriptionManagerType > SubscriptionManager_;
     ::xsd::cxx::tree::one< StatusType > Status_;
     ReasonSequence Reason_;
+    AnySequence any_;
+    AnyAttributeSet any_attribute_;
   };
 }
 

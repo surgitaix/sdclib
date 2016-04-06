@@ -63,6 +63,8 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
+#include <xsd/cxx/tree/containers-wildcard.hxx>
+
 namespace WS
 {
   namespace WSDL

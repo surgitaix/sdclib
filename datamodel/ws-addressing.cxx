@@ -131,13 +131,157 @@ namespace WS
       this->Metadata_.set (std::move (x));
     }
 
+    const EndpointReferenceType::AnySequence& EndpointReferenceType::
+    any () const
+    {
+      return this->any_;
+    }
+
+    EndpointReferenceType::AnySequence& EndpointReferenceType::
+    any ()
+    {
+      return this->any_;
+    }
+
+    void EndpointReferenceType::
+    any (const AnySequence& s)
+    {
+      this->any_ = s;
+    }
+
+    const EndpointReferenceType::AnyAttributeSet& EndpointReferenceType::
+    any_attribute () const
+    {
+      return this->any_attribute_;
+    }
+
+    EndpointReferenceType::AnyAttributeSet& EndpointReferenceType::
+    any_attribute ()
+    {
+      return this->any_attribute_;
+    }
+
+    void EndpointReferenceType::
+    any_attribute (const AnyAttributeSet& s)
+    {
+      this->any_attribute_ = s;
+    }
+
+    const ::xercesc::DOMDocument& EndpointReferenceType::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& EndpointReferenceType::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
+
 
     // ReferenceParametersType
     // 
 
+    const ReferenceParametersType::AnySequence& ReferenceParametersType::
+    any () const
+    {
+      return this->any_;
+    }
+
+    ReferenceParametersType::AnySequence& ReferenceParametersType::
+    any ()
+    {
+      return this->any_;
+    }
+
+    void ReferenceParametersType::
+    any (const AnySequence& s)
+    {
+      this->any_ = s;
+    }
+
+    const ReferenceParametersType::AnyAttributeSet& ReferenceParametersType::
+    any_attribute () const
+    {
+      return this->any_attribute_;
+    }
+
+    ReferenceParametersType::AnyAttributeSet& ReferenceParametersType::
+    any_attribute ()
+    {
+      return this->any_attribute_;
+    }
+
+    void ReferenceParametersType::
+    any_attribute (const AnyAttributeSet& s)
+    {
+      this->any_attribute_ = s;
+    }
+
+    const ::xercesc::DOMDocument& ReferenceParametersType::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& ReferenceParametersType::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
+
 
     // MetadataType
     // 
+
+    const MetadataType::AnySequence& MetadataType::
+    any () const
+    {
+      return this->any_;
+    }
+
+    MetadataType::AnySequence& MetadataType::
+    any ()
+    {
+      return this->any_;
+    }
+
+    void MetadataType::
+    any (const AnySequence& s)
+    {
+      this->any_ = s;
+    }
+
+    const MetadataType::AnyAttributeSet& MetadataType::
+    any_attribute () const
+    {
+      return this->any_attribute_;
+    }
+
+    MetadataType::AnyAttributeSet& MetadataType::
+    any_attribute ()
+    {
+      return this->any_attribute_;
+    }
+
+    void MetadataType::
+    any_attribute (const AnyAttributeSet& s)
+    {
+      this->any_attribute_ = s;
+    }
+
+    const ::xercesc::DOMDocument& MetadataType::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& MetadataType::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
 
 
     // RelatesToType
@@ -171,6 +315,36 @@ namespace WS
     RelationshipType (::std::unique_ptr< RelationshipTypeType > x)
     {
       this->RelationshipType_.set (std::move (x));
+    }
+
+    const RelatesToType::AnyAttributeSet& RelatesToType::
+    any_attribute () const
+    {
+      return this->any_attribute_;
+    }
+
+    RelatesToType::AnyAttributeSet& RelatesToType::
+    any_attribute ()
+    {
+      return this->any_attribute_;
+    }
+
+    void RelatesToType::
+    any_attribute (const AnyAttributeSet& s)
+    {
+      this->any_attribute_ = s;
+    }
+
+    const ::xercesc::DOMDocument& RelatesToType::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& RelatesToType::
+    dom_document ()
+    {
+      return *this->dom_document_;
     }
 
 
@@ -218,6 +392,36 @@ namespace WS
     // AttributedURIType
     // 
 
+    const AttributedURIType::AnyAttributeSet& AttributedURIType::
+    any_attribute () const
+    {
+      return this->any_attribute_;
+    }
+
+    AttributedURIType::AnyAttributeSet& AttributedURIType::
+    any_attribute ()
+    {
+      return this->any_attribute_;
+    }
+
+    void AttributedURIType::
+    any_attribute (const AnyAttributeSet& s)
+    {
+      this->any_attribute_ = s;
+    }
+
+    const ::xercesc::DOMDocument& AttributedURIType::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& AttributedURIType::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
+
 
     // FaultCodesOpenEnumType
     //
@@ -263,9 +467,69 @@ namespace WS
     // AttributedUnsignedLongType
     // 
 
+    const AttributedUnsignedLongType::AnyAttributeSet& AttributedUnsignedLongType::
+    any_attribute () const
+    {
+      return this->any_attribute_;
+    }
+
+    AttributedUnsignedLongType::AnyAttributeSet& AttributedUnsignedLongType::
+    any_attribute ()
+    {
+      return this->any_attribute_;
+    }
+
+    void AttributedUnsignedLongType::
+    any_attribute (const AnyAttributeSet& s)
+    {
+      this->any_attribute_ = s;
+    }
+
+    const ::xercesc::DOMDocument& AttributedUnsignedLongType::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& AttributedUnsignedLongType::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
+
 
     // AttributedQNameType
     // 
+
+    const AttributedQNameType::AnyAttributeSet& AttributedQNameType::
+    any_attribute () const
+    {
+      return this->any_attribute_;
+    }
+
+    AttributedQNameType::AnyAttributeSet& AttributedQNameType::
+    any_attribute ()
+    {
+      return this->any_attribute_;
+    }
+
+    void AttributedQNameType::
+    any_attribute (const AnyAttributeSet& s)
+    {
+      this->any_attribute_ = s;
+    }
+
+    const ::xercesc::DOMDocument& AttributedQNameType::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& AttributedQNameType::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
 
 
     // ProblemActionType
@@ -330,8 +594,40 @@ namespace WS
     {
       this->SoapAction_.set (std::move (x));
     }
+
+    const ProblemActionType::AnyAttributeSet& ProblemActionType::
+    any_attribute () const
+    {
+      return this->any_attribute_;
+    }
+
+    ProblemActionType::AnyAttributeSet& ProblemActionType::
+    any_attribute ()
+    {
+      return this->any_attribute_;
+    }
+
+    void ProblemActionType::
+    any_attribute (const AnyAttributeSet& s)
+    {
+      this->any_attribute_ = s;
+    }
+
+    const ::xercesc::DOMDocument& ProblemActionType::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& ProblemActionType::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
   }
 }
+
+#include <xsd/cxx/xml/dom/wildcard-source.hxx>
 
 #include <xsd/cxx/xml/dom/parsing-source.hxx>
 
@@ -354,18 +650,24 @@ namespace WS
     EndpointReferenceType::
     EndpointReferenceType (const AddressType& Address)
     : ::xml_schema::Type (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       Address_ (Address, this),
       ReferenceParameters_ (this),
-      Metadata_ (this)
+      Metadata_ (this),
+      any_ (this->dom_document ()),
+      any_attribute_ (this->dom_document ())
     {
     }
 
     EndpointReferenceType::
     EndpointReferenceType (::std::unique_ptr< AddressType > Address)
     : ::xml_schema::Type (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       Address_ (std::move (Address), this),
       ReferenceParameters_ (this),
-      Metadata_ (this)
+      Metadata_ (this),
+      any_ (this->dom_document ()),
+      any_attribute_ (this->dom_document ())
     {
     }
 
@@ -374,9 +676,12 @@ namespace WS
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
     : ::xml_schema::Type (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       Address_ (x.Address_, f, this),
       ReferenceParameters_ (x.ReferenceParameters_, f, this),
-      Metadata_ (x.Metadata_, f, this)
+      Metadata_ (x.Metadata_, f, this),
+      any_ (x.any_, this->dom_document ()),
+      any_attribute_ (x.any_attribute_, this->dom_document ())
     {
     }
 
@@ -385,13 +690,16 @@ namespace WS
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
     : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       Address_ (this),
       ReferenceParameters_ (this),
-      Metadata_ (this)
+      Metadata_ (this),
+      any_ (this->dom_document ()),
+      any_attribute_ (this->dom_document ())
     {
       if ((f & ::xml_schema::Flags::base) == 0)
       {
-        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
         this->parse (p, f);
       }
     }
@@ -490,6 +798,18 @@ namespace WS
           }
         }
 
+        // any
+        //
+        if ((!n.namespace_ ().empty () && n.namespace_ () != "http://www.w3.org/2005/08/addressing"))
+        {
+          ::xercesc::DOMElement* r (
+            static_cast< ::xercesc::DOMElement* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMElement* > (&i), true)));
+          this->any_.push_back (r);
+          continue;
+        }
+
         break;
       }
 
@@ -498,6 +818,28 @@ namespace WS
         throw ::xsd::cxx::tree::expected_element< char > (
           "Address",
           "http://www.w3.org/2005/08/addressing");
+      }
+
+      while (p.more_attributes ())
+      {
+        const ::xercesc::DOMAttr& i (p.next_attribute ());
+        const ::xsd::cxx::xml::qualified_name< char > n (
+          ::xsd::cxx::xml::dom::name< char > (i));
+
+        // any_attribute
+        //
+        if ((!n.namespace_ ().empty () &&
+             n.namespace_ () != "http://www.w3.org/2005/08/addressing" &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+        {
+          ::xercesc::DOMAttr* r (
+            static_cast< ::xercesc::DOMAttr* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMAttr* > (&i), true)));
+          this->any_attribute_ .insert (r);
+          continue;
+        }
       }
     }
 
@@ -517,6 +859,8 @@ namespace WS
         this->Address_ = x.Address_;
         this->ReferenceParameters_ = x.ReferenceParameters_;
         this->Metadata_ = x.Metadata_;
+        this->any_ = x.any_;
+        this->any_attribute_ = x.any_attribute_;
       }
 
       return *this;
@@ -538,7 +882,10 @@ namespace WS
 
     ReferenceParametersType::
     ReferenceParametersType ()
-    : ::xml_schema::Type ()
+    : ::xml_schema::Type (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (this->dom_document ()),
+      any_attribute_ (this->dom_document ())
     {
     }
 
@@ -546,7 +893,10 @@ namespace WS
     ReferenceParametersType (const ReferenceParametersType& x,
                              ::xml_schema::Flags f,
                              ::xml_schema::Container* c)
-    : ::xml_schema::Type (x, f, c)
+    : ::xml_schema::Type (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (x.any_, this->dom_document ()),
+      any_attribute_ (x.any_attribute_, this->dom_document ())
     {
     }
 
@@ -554,11 +904,14 @@ namespace WS
     ReferenceParametersType (const ::xercesc::DOMElement& e,
                              ::xml_schema::Flags f,
                              ::xml_schema::Container* c)
-    : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c)
+    : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (this->dom_document ()),
+      any_attribute_ (this->dom_document ())
     {
       if ((f & ::xml_schema::Flags::base) == 0)
       {
-        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
         this->parse (p, f);
       }
     }
@@ -573,7 +926,41 @@ namespace WS
         const ::xsd::cxx::xml::qualified_name< char > n (
           ::xsd::cxx::xml::dom::name< char > (i));
 
+        // any
+        //
+        if (true)
+        {
+          ::xercesc::DOMElement* r (
+            static_cast< ::xercesc::DOMElement* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMElement* > (&i), true)));
+          this->any_.push_back (r);
+          continue;
+        }
+
         break;
+      }
+
+      while (p.more_attributes ())
+      {
+        const ::xercesc::DOMAttr& i (p.next_attribute ());
+        const ::xsd::cxx::xml::qualified_name< char > n (
+          ::xsd::cxx::xml::dom::name< char > (i));
+
+        // any_attribute
+        //
+        if ((!n.namespace_ ().empty () &&
+             n.namespace_ () != "http://www.w3.org/2005/08/addressing" &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+        {
+          ::xercesc::DOMAttr* r (
+            static_cast< ::xercesc::DOMAttr* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMAttr* > (&i), true)));
+          this->any_attribute_ .insert (r);
+          continue;
+        }
       }
     }
 
@@ -582,6 +969,19 @@ namespace WS
             ::xml_schema::Container* c) const
     {
       return new class ReferenceParametersType (*this, f, c);
+    }
+
+    ReferenceParametersType& ReferenceParametersType::
+    operator= (const ReferenceParametersType& x)
+    {
+      if (this != &x)
+      {
+        static_cast< ::xml_schema::Type& > (*this) = x;
+        this->any_ = x.any_;
+        this->any_attribute_ = x.any_attribute_;
+      }
+
+      return *this;
     }
 
     ReferenceParametersType::
@@ -600,7 +1000,10 @@ namespace WS
 
     MetadataType::
     MetadataType ()
-    : ::xml_schema::Type ()
+    : ::xml_schema::Type (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (this->dom_document ()),
+      any_attribute_ (this->dom_document ())
     {
     }
 
@@ -608,7 +1011,10 @@ namespace WS
     MetadataType (const MetadataType& x,
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
-    : ::xml_schema::Type (x, f, c)
+    : ::xml_schema::Type (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (x.any_, this->dom_document ()),
+      any_attribute_ (x.any_attribute_, this->dom_document ())
     {
     }
 
@@ -616,11 +1022,14 @@ namespace WS
     MetadataType (const ::xercesc::DOMElement& e,
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
-    : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c)
+    : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (this->dom_document ()),
+      any_attribute_ (this->dom_document ())
     {
       if ((f & ::xml_schema::Flags::base) == 0)
       {
-        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
         this->parse (p, f);
       }
     }
@@ -635,7 +1044,41 @@ namespace WS
         const ::xsd::cxx::xml::qualified_name< char > n (
           ::xsd::cxx::xml::dom::name< char > (i));
 
+        // any
+        //
+        if (true)
+        {
+          ::xercesc::DOMElement* r (
+            static_cast< ::xercesc::DOMElement* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMElement* > (&i), true)));
+          this->any_.push_back (r);
+          continue;
+        }
+
         break;
+      }
+
+      while (p.more_attributes ())
+      {
+        const ::xercesc::DOMAttr& i (p.next_attribute ());
+        const ::xsd::cxx::xml::qualified_name< char > n (
+          ::xsd::cxx::xml::dom::name< char > (i));
+
+        // any_attribute
+        //
+        if ((!n.namespace_ ().empty () &&
+             n.namespace_ () != "http://www.w3.org/2005/08/addressing" &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+        {
+          ::xercesc::DOMAttr* r (
+            static_cast< ::xercesc::DOMAttr* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMAttr* > (&i), true)));
+          this->any_attribute_ .insert (r);
+          continue;
+        }
       }
     }
 
@@ -644,6 +1087,19 @@ namespace WS
             ::xml_schema::Container* c) const
     {
       return new class MetadataType (*this, f, c);
+    }
+
+    MetadataType& MetadataType::
+    operator= (const MetadataType& x)
+    {
+      if (this != &x)
+      {
+        static_cast< ::xml_schema::Type& > (*this) = x;
+        this->any_ = x.any_;
+        this->any_attribute_ = x.any_attribute_;
+      }
+
+      return *this;
     }
 
     MetadataType::
@@ -663,7 +1119,9 @@ namespace WS
     RelatesToType::
     RelatesToType (const ::xml_schema::Uri& _xsd_Uri_base)
     : ::xml_schema::Uri (_xsd_Uri_base),
-      RelationshipType_ (this)
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      RelationshipType_ (this),
+      any_attribute_ (this->dom_document ())
     {
     }
 
@@ -672,7 +1130,9 @@ namespace WS
                    ::xml_schema::Flags f,
                    ::xml_schema::Container* c)
     : ::xml_schema::Uri (x, f, c),
-      RelationshipType_ (x.RelationshipType_, f, this)
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      RelationshipType_ (x.RelationshipType_, f, this),
+      any_attribute_ (x.any_attribute_, this->dom_document ())
     {
     }
 
@@ -681,7 +1141,9 @@ namespace WS
                    ::xml_schema::Flags f,
                    ::xml_schema::Container* c)
     : ::xml_schema::Uri (e, f | ::xml_schema::Flags::base, c),
-      RelationshipType_ (this)
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      RelationshipType_ (this),
+      any_attribute_ (this->dom_document ())
     {
       if ((f & ::xml_schema::Flags::base) == 0)
       {
@@ -705,6 +1167,21 @@ namespace WS
           this->RelationshipType_.set (RelationshipTypeTraits::create (i, f, this));
           continue;
         }
+
+        // any_attribute
+        //
+        if ((!n.namespace_ ().empty () &&
+             n.namespace_ () != "http://www.w3.org/2005/08/addressing" &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+        {
+          ::xercesc::DOMAttr* r (
+            static_cast< ::xercesc::DOMAttr* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMAttr* > (&i), true)));
+          this->any_attribute_ .insert (r);
+          continue;
+        }
       }
     }
 
@@ -722,6 +1199,7 @@ namespace WS
       {
         static_cast< ::xml_schema::Uri& > (*this) = x;
         this->RelationshipType_ = x.RelationshipType_;
+        this->any_attribute_ = x.any_attribute_;
       }
 
       return *this;
@@ -825,7 +1303,9 @@ namespace WS
 
     AttributedURIType::
     AttributedURIType (const ::xml_schema::Uri& _xsd_Uri_base)
-    : ::xml_schema::Uri (_xsd_Uri_base)
+    : ::xml_schema::Uri (_xsd_Uri_base),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (this->dom_document ())
     {
     }
 
@@ -833,7 +1313,9 @@ namespace WS
     AttributedURIType (const AttributedURIType& x,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-    : ::xml_schema::Uri (x, f, c)
+    : ::xml_schema::Uri (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (x.any_attribute_, this->dom_document ())
     {
     }
 
@@ -841,8 +1323,42 @@ namespace WS
     AttributedURIType (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-    : ::xml_schema::Uri (e, f, c)
+    : ::xml_schema::Uri (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (this->dom_document ())
     {
+      if ((f & ::xml_schema::Flags::base) == 0)
+      {
+        ::xsd::cxx::xml::dom::parser< char > p (e, false, false, true);
+        this->parse (p, f);
+      }
+    }
+
+    void AttributedURIType::
+    parse (::xsd::cxx::xml::dom::parser< char >& p,
+           ::xml_schema::Flags)
+    {
+      while (p.more_attributes ())
+      {
+        const ::xercesc::DOMAttr& i (p.next_attribute ());
+        const ::xsd::cxx::xml::qualified_name< char > n (
+          ::xsd::cxx::xml::dom::name< char > (i));
+
+        // any_attribute
+        //
+        if ((!n.namespace_ ().empty () &&
+             n.namespace_ () != "http://www.w3.org/2005/08/addressing" &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+        {
+          ::xercesc::DOMAttr* r (
+            static_cast< ::xercesc::DOMAttr* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMAttr* > (&i), true)));
+          this->any_attribute_ .insert (r);
+          continue;
+        }
+      }
     }
 
     AttributedURIType* AttributedURIType::
@@ -850,6 +1366,18 @@ namespace WS
             ::xml_schema::Container* c) const
     {
       return new class AttributedURIType (*this, f, c);
+    }
+
+    AttributedURIType& AttributedURIType::
+    operator= (const AttributedURIType& x)
+    {
+      if (this != &x)
+      {
+        static_cast< ::xml_schema::Uri& > (*this) = x;
+        this->any_attribute_ = x.any_attribute_;
+      }
+
+      return *this;
     }
 
     AttributedURIType::
@@ -950,7 +1478,9 @@ namespace WS
 
     AttributedUnsignedLongType::
     AttributedUnsignedLongType (const ::xml_schema::UnsignedLong& _xsd_UnsignedLong_base)
-    : ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType > (_xsd_UnsignedLong_base)
+    : ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType > (_xsd_UnsignedLong_base),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (this->dom_document ())
     {
     }
 
@@ -958,7 +1488,9 @@ namespace WS
     AttributedUnsignedLongType (const AttributedUnsignedLongType& x,
                                 ::xml_schema::Flags f,
                                 ::xml_schema::Container* c)
-    : ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType > (x, f, c)
+    : ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType > (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (x.any_attribute_, this->dom_document ())
     {
     }
 
@@ -966,8 +1498,42 @@ namespace WS
     AttributedUnsignedLongType (const ::xercesc::DOMElement& e,
                                 ::xml_schema::Flags f,
                                 ::xml_schema::Container* c)
-    : ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType > (e, f, c)
+    : ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType > (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (this->dom_document ())
     {
+      if ((f & ::xml_schema::Flags::base) == 0)
+      {
+        ::xsd::cxx::xml::dom::parser< char > p (e, false, false, true);
+        this->parse (p, f);
+      }
+    }
+
+    void AttributedUnsignedLongType::
+    parse (::xsd::cxx::xml::dom::parser< char >& p,
+           ::xml_schema::Flags)
+    {
+      while (p.more_attributes ())
+      {
+        const ::xercesc::DOMAttr& i (p.next_attribute ());
+        const ::xsd::cxx::xml::qualified_name< char > n (
+          ::xsd::cxx::xml::dom::name< char > (i));
+
+        // any_attribute
+        //
+        if ((!n.namespace_ ().empty () &&
+             n.namespace_ () != "http://www.w3.org/2005/08/addressing" &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+        {
+          ::xercesc::DOMAttr* r (
+            static_cast< ::xercesc::DOMAttr* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMAttr* > (&i), true)));
+          this->any_attribute_ .insert (r);
+          continue;
+        }
+      }
     }
 
     AttributedUnsignedLongType* AttributedUnsignedLongType::
@@ -975,6 +1541,18 @@ namespace WS
             ::xml_schema::Container* c) const
     {
       return new class AttributedUnsignedLongType (*this, f, c);
+    }
+
+    AttributedUnsignedLongType& AttributedUnsignedLongType::
+    operator= (const AttributedUnsignedLongType& x)
+    {
+      if (this != &x)
+      {
+        static_cast< ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType >& > (*this) = x;
+        this->any_attribute_ = x.any_attribute_;
+      }
+
+      return *this;
     }
 
     AttributedUnsignedLongType::
@@ -993,7 +1571,9 @@ namespace WS
 
     AttributedQNameType::
     AttributedQNameType (const ::xml_schema::Qname& _xsd_Qname_base)
-    : ::xml_schema::Qname (_xsd_Qname_base)
+    : ::xml_schema::Qname (_xsd_Qname_base),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (this->dom_document ())
     {
     }
 
@@ -1001,7 +1581,9 @@ namespace WS
     AttributedQNameType (const AttributedQNameType& x,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-    : ::xml_schema::Qname (x, f, c)
+    : ::xml_schema::Qname (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (x.any_attribute_, this->dom_document ())
     {
     }
 
@@ -1009,8 +1591,42 @@ namespace WS
     AttributedQNameType (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-    : ::xml_schema::Qname (e, f, c)
+    : ::xml_schema::Qname (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (this->dom_document ())
     {
+      if ((f & ::xml_schema::Flags::base) == 0)
+      {
+        ::xsd::cxx::xml::dom::parser< char > p (e, false, false, true);
+        this->parse (p, f);
+      }
+    }
+
+    void AttributedQNameType::
+    parse (::xsd::cxx::xml::dom::parser< char >& p,
+           ::xml_schema::Flags)
+    {
+      while (p.more_attributes ())
+      {
+        const ::xercesc::DOMAttr& i (p.next_attribute ());
+        const ::xsd::cxx::xml::qualified_name< char > n (
+          ::xsd::cxx::xml::dom::name< char > (i));
+
+        // any_attribute
+        //
+        if ((!n.namespace_ ().empty () &&
+             n.namespace_ () != "http://www.w3.org/2005/08/addressing" &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+        {
+          ::xercesc::DOMAttr* r (
+            static_cast< ::xercesc::DOMAttr* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMAttr* > (&i), true)));
+          this->any_attribute_ .insert (r);
+          continue;
+        }
+      }
     }
 
     AttributedQNameType* AttributedQNameType::
@@ -1018,6 +1634,18 @@ namespace WS
             ::xml_schema::Container* c) const
     {
       return new class AttributedQNameType (*this, f, c);
+    }
+
+    AttributedQNameType& AttributedQNameType::
+    operator= (const AttributedQNameType& x)
+    {
+      if (this != &x)
+      {
+        static_cast< ::xml_schema::Qname& > (*this) = x;
+        this->any_attribute_ = x.any_attribute_;
+      }
+
+      return *this;
     }
 
     AttributedQNameType::
@@ -1037,8 +1665,10 @@ namespace WS
     ProblemActionType::
     ProblemActionType ()
     : ::xml_schema::Type (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       Action_ (this),
-      SoapAction_ (this)
+      SoapAction_ (this),
+      any_attribute_ (this->dom_document ())
     {
     }
 
@@ -1047,8 +1677,10 @@ namespace WS
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
     : ::xml_schema::Type (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       Action_ (x.Action_, f, this),
-      SoapAction_ (x.SoapAction_, f, this)
+      SoapAction_ (x.SoapAction_, f, this),
+      any_attribute_ (x.any_attribute_, this->dom_document ())
     {
     }
 
@@ -1057,12 +1689,14 @@ namespace WS
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
     : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       Action_ (this),
-      SoapAction_ (this)
+      SoapAction_ (this),
+      any_attribute_ (this->dom_document ())
     {
       if ((f & ::xml_schema::Flags::base) == 0)
       {
-        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
         this->parse (p, f);
       }
     }
@@ -1135,6 +1769,28 @@ namespace WS
 
         break;
       }
+
+      while (p.more_attributes ())
+      {
+        const ::xercesc::DOMAttr& i (p.next_attribute ());
+        const ::xsd::cxx::xml::qualified_name< char > n (
+          ::xsd::cxx::xml::dom::name< char > (i));
+
+        // any_attribute
+        //
+        if ((!n.namespace_ ().empty () &&
+             n.namespace_ () != "http://www.w3.org/2005/08/addressing" &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+        {
+          ::xercesc::DOMAttr* r (
+            static_cast< ::xercesc::DOMAttr* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMAttr* > (&i), true)));
+          this->any_attribute_ .insert (r);
+          continue;
+        }
+      }
     }
 
     ProblemActionType* ProblemActionType::
@@ -1152,6 +1808,7 @@ namespace WS
         static_cast< ::xml_schema::Type& > (*this) = x;
         this->Action_ = x.Action_;
         this->SoapAction_ = x.SoapAction_;
+        this->any_attribute_ = x.any_attribute_;
       }
 
       return *this;
@@ -5417,6 +6074,23 @@ namespace WS
     {
       e << static_cast< const ::xml_schema::Type& > (i);
 
+      // any_attribute
+      //
+      for (EndpointReferenceType::AnyAttributeConstIterator
+           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+           b != n; ++b)
+      {
+        ::xercesc::DOMAttr* a (
+          static_cast< ::xercesc::DOMAttr* > (
+            e.getOwnerDocument ()->importNode (
+              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+        if (a->getLocalName () == 0)
+          e.setAttributeNode (a);
+        else
+          e.setAttributeNodeNS (a);
+      }
+
       // Address
       //
       {
@@ -5493,6 +6167,17 @@ namespace WS
               "http://www.w3.org/2005/08/addressing",
               true, true, e, x);
         }
+      }
+
+      // any
+      //
+      for (EndpointReferenceType::AnyConstIterator
+           b (i.any ().begin ()), n (i.any ().end ());
+           b != n; ++b)
+      {
+        e.appendChild (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMElement* > (&(*b)), true));
       }
     }
 
@@ -5676,6 +6361,34 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const ReferenceParametersType& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
+
+      // any_attribute
+      //
+      for (ReferenceParametersType::AnyAttributeConstIterator
+           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+           b != n; ++b)
+      {
+        ::xercesc::DOMAttr* a (
+          static_cast< ::xercesc::DOMAttr* > (
+            e.getOwnerDocument ()->importNode (
+              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+        if (a->getLocalName () == 0)
+          e.setAttributeNode (a);
+        else
+          e.setAttributeNodeNS (a);
+      }
+
+      // any
+      //
+      for (ReferenceParametersType::AnyConstIterator
+           b (i.any ().begin ()), n (i.any ().end ());
+           b != n; ++b)
+      {
+        e.appendChild (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+      }
     }
 
     static
@@ -5858,6 +6571,34 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const MetadataType& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
+
+      // any_attribute
+      //
+      for (MetadataType::AnyAttributeConstIterator
+           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+           b != n; ++b)
+      {
+        ::xercesc::DOMAttr* a (
+          static_cast< ::xercesc::DOMAttr* > (
+            e.getOwnerDocument ()->importNode (
+              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+        if (a->getLocalName () == 0)
+          e.setAttributeNode (a);
+        else
+          e.setAttributeNodeNS (a);
+      }
+
+      // any
+      //
+      for (MetadataType::AnyConstIterator
+           b (i.any ().begin ()), n (i.any ().end ());
+           b != n; ++b)
+      {
+        e.appendChild (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+      }
     }
 
     static
@@ -6209,6 +6950,23 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const RelatesToType& i)
     {
       e << static_cast< const ::xml_schema::Uri& > (i);
+
+      // any_attribute
+      //
+      for (RelatesToType::AnyAttributeConstIterator
+           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+           b != n; ++b)
+      {
+        ::xercesc::DOMAttr* a (
+          static_cast< ::xercesc::DOMAttr* > (
+            e.getOwnerDocument ()->importNode (
+              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+        if (a->getLocalName () == 0)
+          e.setAttributeNode (a);
+        else
+          e.setAttributeNodeNS (a);
+      }
 
       // RelationshipType
       //
@@ -7131,6 +7889,23 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const AttributedURIType& i)
     {
       e << static_cast< const ::xml_schema::Uri& > (i);
+
+      // any_attribute
+      //
+      for (AttributedURIType::AnyAttributeConstIterator
+           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+           b != n; ++b)
+      {
+        ::xercesc::DOMAttr* a (
+          static_cast< ::xercesc::DOMAttr* > (
+            e.getOwnerDocument ()->importNode (
+              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+        if (a->getLocalName () == 0)
+          e.setAttributeNode (a);
+        else
+          e.setAttributeNodeNS (a);
+      }
     }
 
     static
@@ -7365,6 +8140,23 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const AttributedUnsignedLongType& i)
     {
       e << static_cast< const ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType >& > (i);
+
+      // any_attribute
+      //
+      for (AttributedUnsignedLongType::AnyAttributeConstIterator
+           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+           b != n; ++b)
+      {
+        ::xercesc::DOMAttr* a (
+          static_cast< ::xercesc::DOMAttr* > (
+            e.getOwnerDocument ()->importNode (
+              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+        if (a->getLocalName () == 0)
+          e.setAttributeNode (a);
+        else
+          e.setAttributeNodeNS (a);
+      }
     }
 
     static
@@ -7547,6 +8339,23 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const AttributedQNameType& i)
     {
       e << static_cast< const ::xml_schema::Qname& > (i);
+
+      // any_attribute
+      //
+      for (AttributedQNameType::AnyAttributeConstIterator
+           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+           b != n; ++b)
+      {
+        ::xercesc::DOMAttr* a (
+          static_cast< ::xercesc::DOMAttr* > (
+            e.getOwnerDocument ()->importNode (
+              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+        if (a->getLocalName () == 0)
+          e.setAttributeNode (a);
+        else
+          e.setAttributeNodeNS (a);
+      }
     }
 
     static
@@ -7898,6 +8707,23 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const ProblemActionType& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
+
+      // any_attribute
+      //
+      for (ProblemActionType::AnyAttributeConstIterator
+           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+           b != n; ++b)
+      {
+        ::xercesc::DOMAttr* a (
+          static_cast< ::xercesc::DOMAttr* > (
+            e.getOwnerDocument ()->importNode (
+              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+        if (a->getLocalName () == 0)
+          e.setAttributeNode (a);
+        else
+          e.setAttributeNodeNS (a);
+      }
 
       // Action
       //

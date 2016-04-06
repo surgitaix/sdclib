@@ -31,8 +31,8 @@
 // in the accompanying FLOSSE file.
 //
 
-#ifndef CXX______DATAMODEL_WS_STREAMING_FWD_HXX
-#define CXX______DATAMODEL_WS_STREAMING_FWD_HXX
+#ifndef WS_STREAMING_FWD_HXX
+#define WS_STREAMING_FWD_HXX
 
 #ifndef XSD_CXX11
 #define XSD_CXX11
@@ -272,4 +272,4 @@ namespace WS
 //
 // End epilogue.
 
-#endif // CXX______DATAMODEL_WS_STREAMING_FWD_HXX
+#endif // WS_STREAMING_FWD_HXX

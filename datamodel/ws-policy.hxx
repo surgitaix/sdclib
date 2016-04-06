@@ -31,8 +31,8 @@
 // in the accompanying FLOSSE file.
 //
 
-#ifndef CXX______DATAMODEL_WS_POLICY_HXX
-#define CXX______DATAMODEL_WS_POLICY_HXX
+#ifndef WS_POLICY_HXX
+#define WS_POLICY_HXX
 
 #include "ws-policy-fwd.hxx"
 
@@ -62,6 +62,8 @@
 #include <xsd/cxx/tree/list.hxx>
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
+
+#include <xsd/cxx/tree/containers-wildcard.hxx>
 
 #include "ws-streaming.hxx"
 
@@ -323,4 +325,4 @@ namespace WS
 //
 // End epilogue.
 
-#endif // CXX______DATAMODEL_WS_POLICY_HXX
+#endif // WS_POLICY_HXX

@@ -47,6 +47,36 @@ namespace WS
     // TDocumentation
     // 
 
+    const TDocumentation::AnySequence& TDocumentation::
+    any () const
+    {
+      return this->any_;
+    }
+
+    TDocumentation::AnySequence& TDocumentation::
+    any ()
+    {
+      return this->any_;
+    }
+
+    void TDocumentation::
+    any (const AnySequence& s)
+    {
+      this->any_ = s;
+    }
+
+    const ::xercesc::DOMDocument& TDocumentation::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& TDocumentation::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
+
 
     // TDocumented
     // 
@@ -85,9 +115,69 @@ namespace WS
     // TExtensibleAttributesDocumented
     // 
 
+    const TExtensibleAttributesDocumented::AnyAttributeSet& TExtensibleAttributesDocumented::
+    any_attribute () const
+    {
+      return this->any_attribute_;
+    }
+
+    TExtensibleAttributesDocumented::AnyAttributeSet& TExtensibleAttributesDocumented::
+    any_attribute ()
+    {
+      return this->any_attribute_;
+    }
+
+    void TExtensibleAttributesDocumented::
+    any_attribute (const AnyAttributeSet& s)
+    {
+      this->any_attribute_ = s;
+    }
+
+    const ::xercesc::DOMDocument& TExtensibleAttributesDocumented::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& TExtensibleAttributesDocumented::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
+
 
     // TExtensibleDocumented
     // 
+
+    const TExtensibleDocumented::AnySequence& TExtensibleDocumented::
+    any () const
+    {
+      return this->any_;
+    }
+
+    TExtensibleDocumented::AnySequence& TExtensibleDocumented::
+    any ()
+    {
+      return this->any_;
+    }
+
+    void TExtensibleDocumented::
+    any (const AnySequence& s)
+    {
+      this->any_ = s;
+    }
+
+    const ::xercesc::DOMDocument& TExtensibleDocumented::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& TExtensibleDocumented::
+    dom_document ()
+    {
+      return *this->dom_document_;
+    }
 
 
     // TDefinitions
@@ -473,6 +563,36 @@ namespace WS
       this->operation_ = s;
     }
 
+    const TPortType::PolicyOptional& TPortType::
+    Policy () const
+    {
+      return this->Policy_;
+    }
+
+    TPortType::PolicyOptional& TPortType::
+    Policy ()
+    {
+      return this->Policy_;
+    }
+
+    void TPortType::
+    Policy (const PolicyType& x)
+    {
+      this->Policy_.set (x);
+    }
+
+    void TPortType::
+    Policy (const PolicyOptional& x)
+    {
+      this->Policy_ = x;
+    }
+
+    void TPortType::
+    Policy (::std::unique_ptr< PolicyType > x)
+    {
+      this->Policy_.set (std::move (x));
+    }
+
     const TPortType::NameType& TPortType::
     name () const
     {
@@ -843,6 +963,24 @@ namespace WS
       this->operation_ = s;
     }
 
+    const TBinding::AnySequence& TBinding::
+    any () const
+    {
+      return this->any_;
+    }
+
+    TBinding::AnySequence& TBinding::
+    any ()
+    {
+      return this->any_;
+    }
+
+    void TBinding::
+    any (const AnySequence& s)
+    {
+      this->any_ = s;
+    }
+
     const TBinding::NameType& TBinding::
     name () const
     {
@@ -889,6 +1027,18 @@ namespace WS
     type (::std::unique_ptr< TypeType > x)
     {
       this->type_.set (std::move (x));
+    }
+
+    const ::xercesc::DOMDocument& TBinding::
+    dom_document () const
+    {
+      return *this->dom_document_;
+    }
+
+    ::xercesc::DOMDocument& TBinding::
+    dom_document ()
+    {
+      return *this->dom_document_;
     }
 
 
@@ -1235,6 +1385,8 @@ namespace WS
   }
 }
 
+#include <xsd/cxx/xml/dom/wildcard-source.hxx>
+
 #include <xsd/cxx/xml/dom/parsing-source.hxx>
 
 #include <xsd/cxx/tree/type-factory-map.hxx>
@@ -1255,7 +1407,9 @@ namespace WS
 
     TDocumentation::
     TDocumentation ()
-    : ::xml_schema::Type ()
+    : ::xml_schema::Type (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (this->dom_document ())
     {
     }
 
@@ -1263,7 +1417,9 @@ namespace WS
     TDocumentation (const TDocumentation& x,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-    : ::xml_schema::Type (x, f, c)
+    : ::xml_schema::Type (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (x.any_, this->dom_document ())
     {
     }
 
@@ -1271,7 +1427,9 @@ namespace WS
     TDocumentation (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-    : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c)
+    : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (this->dom_document ())
     {
       if ((f & ::xml_schema::Flags::base) == 0)
       {
@@ -1290,6 +1448,18 @@ namespace WS
         const ::xsd::cxx::xml::qualified_name< char > n (
           ::xsd::cxx::xml::dom::name< char > (i));
 
+        // any
+        //
+        if (true)
+        {
+          ::xercesc::DOMElement* r (
+            static_cast< ::xercesc::DOMElement* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMElement* > (&i), true)));
+          this->any_.push_back (r);
+          continue;
+        }
+
         break;
       }
     }
@@ -1299,6 +1469,18 @@ namespace WS
             ::xml_schema::Container* c) const
     {
       return new class TDocumentation (*this, f, c);
+    }
+
+    TDocumentation& TDocumentation::
+    operator= (const TDocumentation& x)
+    {
+      if (this != &x)
+      {
+        static_cast< ::xml_schema::Type& > (*this) = x;
+        this->any_ = x.any_;
+      }
+
+      return *this;
     }
 
     TDocumentation::
@@ -1422,7 +1604,9 @@ namespace WS
 
     TExtensibleAttributesDocumented::
     TExtensibleAttributesDocumented ()
-    : ::WS::WSDL::TDocumented ()
+    : ::WS::WSDL::TDocumented (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (this->dom_document ())
     {
     }
 
@@ -1430,7 +1614,9 @@ namespace WS
     TExtensibleAttributesDocumented (const TExtensibleAttributesDocumented& x,
                                      ::xml_schema::Flags f,
                                      ::xml_schema::Container* c)
-    : ::WS::WSDL::TDocumented (x, f, c)
+    : ::WS::WSDL::TDocumented (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (x.any_attribute_, this->dom_document ())
     {
     }
 
@@ -1438,8 +1624,44 @@ namespace WS
     TExtensibleAttributesDocumented (const ::xercesc::DOMElement& e,
                                      ::xml_schema::Flags f,
                                      ::xml_schema::Container* c)
-    : ::WS::WSDL::TDocumented (e, f, c)
+    : ::WS::WSDL::TDocumented (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_attribute_ (this->dom_document ())
     {
+      if ((f & ::xml_schema::Flags::base) == 0)
+      {
+        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
+        this->parse (p, f);
+      }
+    }
+
+    void TExtensibleAttributesDocumented::
+    parse (::xsd::cxx::xml::dom::parser< char >& p,
+           ::xml_schema::Flags f)
+    {
+      this->::WS::WSDL::TDocumented::parse (p, f);
+
+      while (p.more_attributes ())
+      {
+        const ::xercesc::DOMAttr& i (p.next_attribute ());
+        const ::xsd::cxx::xml::qualified_name< char > n (
+          ::xsd::cxx::xml::dom::name< char > (i));
+
+        // any_attribute
+        //
+        if ((!n.namespace_ ().empty () &&
+             n.namespace_ () != "http://schemas.xmlsoap.org/wsdl/" &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
+             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
+        {
+          ::xercesc::DOMAttr* r (
+            static_cast< ::xercesc::DOMAttr* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMAttr* > (&i), true)));
+          this->any_attribute_ .insert (r);
+          continue;
+        }
+      }
     }
 
     TExtensibleAttributesDocumented* TExtensibleAttributesDocumented::
@@ -1447,6 +1669,18 @@ namespace WS
             ::xml_schema::Container* c) const
     {
       return new class TExtensibleAttributesDocumented (*this, f, c);
+    }
+
+    TExtensibleAttributesDocumented& TExtensibleAttributesDocumented::
+    operator= (const TExtensibleAttributesDocumented& x)
+    {
+      if (this != &x)
+      {
+        static_cast< ::WS::WSDL::TDocumented& > (*this) = x;
+        this->any_attribute_ = x.any_attribute_;
+      }
+
+      return *this;
     }
 
     TExtensibleAttributesDocumented::
@@ -1465,7 +1699,9 @@ namespace WS
 
     TExtensibleDocumented::
     TExtensibleDocumented ()
-    : ::WS::WSDL::TDocumented ()
+    : ::WS::WSDL::TDocumented (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (this->dom_document ())
     {
     }
 
@@ -1473,7 +1709,9 @@ namespace WS
     TExtensibleDocumented (const TExtensibleDocumented& x,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-    : ::WS::WSDL::TDocumented (x, f, c)
+    : ::WS::WSDL::TDocumented (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (x.any_, this->dom_document ())
     {
     }
 
@@ -1481,7 +1719,9 @@ namespace WS
     TExtensibleDocumented (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-    : ::WS::WSDL::TDocumented (e, f | ::xml_schema::Flags::base, c)
+    : ::WS::WSDL::TDocumented (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
+      any_ (this->dom_document ())
     {
       if ((f & ::xml_schema::Flags::base) == 0)
       {
@@ -1502,6 +1742,18 @@ namespace WS
         const ::xsd::cxx::xml::qualified_name< char > n (
           ::xsd::cxx::xml::dom::name< char > (i));
 
+        // any
+        //
+        if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/wsdl/"))
+        {
+          ::xercesc::DOMElement* r (
+            static_cast< ::xercesc::DOMElement* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMElement* > (&i), true)));
+          this->any_.push_back (r);
+          continue;
+        }
+
         break;
       }
     }
@@ -1511,6 +1763,18 @@ namespace WS
             ::xml_schema::Container* c) const
     {
       return new class TExtensibleDocumented (*this, f, c);
+    }
+
+    TExtensibleDocumented& TExtensibleDocumented::
+    operator= (const TExtensibleDocumented& x)
+    {
+      if (this != &x)
+      {
+        static_cast< ::WS::WSDL::TDocumented& > (*this) = x;
+        this->any_ = x.any_;
+      }
+
+      return *this;
     }
 
     TExtensibleDocumented::
@@ -1843,6 +2107,8 @@ namespace WS
     {
       this->::WS::WSDL::TExtensibleAttributesDocumented::parse (p, f);
 
+      p.reset_attributes ();
+
       while (p.more_attributes ())
       {
         const ::xercesc::DOMAttr& i (p.next_attribute ());
@@ -2124,6 +2390,8 @@ namespace WS
     {
       this->::WS::WSDL::TExtensibleAttributesDocumented::parse (p, f);
 
+      p.reset_attributes ();
+
       while (p.more_attributes ())
       {
         const ::xercesc::DOMAttr& i (p.next_attribute ());
@@ -2196,6 +2464,7 @@ namespace WS
     TPortType (const NameType& name)
     : ::WS::WSDL::TExtensibleAttributesDocumented (),
       operation_ (this),
+      Policy_ (this),
       name_ (name, this),
       EventSource_ (this)
     {
@@ -2207,6 +2476,7 @@ namespace WS
                ::xml_schema::Container* c)
     : ::WS::WSDL::TExtensibleAttributesDocumented (x, f, c),
       operation_ (x.operation_, f, this),
+      Policy_ (x.Policy_, f, this),
       name_ (x.name_, f, this),
       EventSource_ (x.EventSource_, f, this)
     {
@@ -2218,6 +2488,7 @@ namespace WS
                ::xml_schema::Container* c)
     : ::WS::WSDL::TExtensibleAttributesDocumented (e, f | ::xml_schema::Flags::base, c),
       operation_ (this),
+      Policy_ (this),
       name_ (this),
       EventSource_ (this)
     {
@@ -2265,8 +2536,24 @@ namespace WS
           }
         }
 
+        // Policy
+        //
+        if (n.name () == "Policy" && n.namespace_ () == "http://www.w3.org/ns/ws-policy")
+        {
+          ::std::unique_ptr< PolicyType > r (
+            PolicyTraits::create (i, f, this));
+
+          if (!this->Policy_)
+          {
+            this->Policy_.set (::std::move (r));
+            continue;
+          }
+        }
+
         break;
       }
+
+      p.reset_attributes ();
 
       while (p.more_attributes ())
       {
@@ -2309,6 +2596,7 @@ namespace WS
       {
         static_cast< ::WS::WSDL::TExtensibleAttributesDocumented& > (*this) = x;
         this->operation_ = x.operation_;
+        this->Policy_ = x.Policy_;
         this->name_ = x.name_;
         this->EventSource_ = x.EventSource_;
       }
@@ -2574,6 +2862,8 @@ namespace WS
     {
       this->::WS::WSDL::TExtensibleAttributesDocumented::parse (p, f);
 
+      p.reset_attributes ();
+
       while (p.more_attributes ())
       {
         const ::xercesc::DOMAttr& i (p.next_attribute ());
@@ -2682,6 +2972,8 @@ namespace WS
     {
       this->::WS::WSDL::TExtensibleAttributesDocumented::parse (p, f);
 
+      p.reset_attributes ();
+
       while (p.more_attributes ())
       {
         const ::xercesc::DOMAttr& i (p.next_attribute ());
@@ -2755,8 +3047,10 @@ namespace WS
               const NameType& name,
               const TypeType& type)
     : ::WS::WSDL::TDocumented (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       binding_ (binding, this),
       operation_ (this),
+      any_ (this->dom_document ()),
       name_ (name, this),
       type_ (type, this)
     {
@@ -2767,8 +3061,10 @@ namespace WS
               const NameType& name,
               const TypeType& type)
     : ::WS::WSDL::TDocumented (),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       binding_ (std::move (binding), this),
       operation_ (this),
+      any_ (this->dom_document ()),
       name_ (name, this),
       type_ (type, this)
     {
@@ -2779,8 +3075,10 @@ namespace WS
               ::xml_schema::Flags f,
               ::xml_schema::Container* c)
     : ::WS::WSDL::TDocumented (x, f, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       binding_ (x.binding_, f, this),
       operation_ (x.operation_, f, this),
+      any_ (x.any_, this->dom_document ()),
       name_ (x.name_, f, this),
       type_ (x.type_, f, this)
     {
@@ -2791,8 +3089,10 @@ namespace WS
               ::xml_schema::Flags f,
               ::xml_schema::Container* c)
     : ::WS::WSDL::TDocumented (e, f | ::xml_schema::Flags::base, c),
+      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
       binding_ (this),
       operation_ (this),
+      any_ (this->dom_document ()),
       name_ (this),
       type_ (this)
     {
@@ -2868,6 +3168,18 @@ namespace WS
           }
         }
 
+        // any
+        //
+        if ((!n.namespace_ ().empty () && n.namespace_ () != "http://schemas.xmlsoap.org/wsdl/"))
+        {
+          ::xercesc::DOMElement* r (
+            static_cast< ::xercesc::DOMElement* > (
+              this->dom_document ().importNode (
+                const_cast< ::xercesc::DOMElement* > (&i), true)));
+          this->any_.push_back (r);
+          continue;
+        }
+
         break;
       }
 
@@ -2927,6 +3239,7 @@ namespace WS
         static_cast< ::WS::WSDL::TDocumented& > (*this) = x;
         this->binding_ = x.binding_;
         this->operation_ = x.operation_;
+        this->any_ = x.any_;
         this->name_ = x.name_;
         this->type_ = x.type_;
       }
@@ -4057,6 +4370,17 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const TDocumentation& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
+
+      // any
+      //
+      for (TDocumentation::AnyConstIterator
+           b (i.any ().begin ()), n (i.any ().end ());
+           b != n; ++b)
+      {
+        e.appendChild (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+      }
     }
 
     static
@@ -4110,6 +4434,23 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const TExtensibleAttributesDocumented& i)
     {
       e << static_cast< const ::WS::WSDL::TDocumented& > (i);
+
+      // any_attribute
+      //
+      for (TExtensibleAttributesDocumented::AnyAttributeConstIterator
+           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
+           b != n; ++b)
+      {
+        ::xercesc::DOMAttr* a (
+          static_cast< ::xercesc::DOMAttr* > (
+            e.getOwnerDocument ()->importNode (
+              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
+
+        if (a->getLocalName () == 0)
+          e.setAttributeNode (a);
+        else
+          e.setAttributeNodeNS (a);
+      }
     }
 
     static
@@ -4123,6 +4464,17 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const TExtensibleDocumented& i)
     {
       e << static_cast< const ::WS::WSDL::TDocumented& > (i);
+
+      // any
+      //
+      for (TExtensibleDocumented::AnyConstIterator
+           b (i.any ().begin ()), n (i.any ().end ());
+           b != n; ++b)
+      {
+        e.appendChild (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMElement* > (&(*b)), true));
+      }
     }
 
     static
@@ -4687,6 +5039,19 @@ namespace WS
         }
       }
 
+      // Policy
+      //
+      if (i.Policy ())
+      {
+        ::xercesc::DOMElement& s (
+          ::xsd::cxx::xml::dom::create_element (
+            "Policy",
+            "http://www.w3.org/ns/ws-policy",
+            e));
+
+        s << *i.Policy ();
+      }
+
       // name
       //
       {
@@ -4976,6 +5341,17 @@ namespace WS
               "http://schemas.xmlsoap.org/wsdl/",
               false, true, e, *b);
         }
+      }
+
+      // any
+      //
+      for (TBinding::AnyConstIterator
+           b (i.any ().begin ()), n (i.any ().end ());
+           b != n; ++b)
+      {
+        e.appendChild (
+          e.getOwnerDocument ()->importNode (
+            const_cast< ::xercesc::DOMElement* > (&(*b)), true));
       }
 
       // name
