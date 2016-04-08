@@ -262,6 +262,7 @@ void Client::downloadWSDLs(const Util::StringVector & wsdlAddrs) {
 void Client::initMembers()
 {
 	closed = false;
+    closing = false;
     initialized = false;
     xaddrSearchParam = "";
 }
@@ -539,7 +540,7 @@ void Client::handleAction_WS_ACTION_BYE(Comm::DPWS::DPWS11Message & ) {
 }
 
 std::shared_ptr<Message> Client::udpMulticastCallback(const Message & msg) {
-	if (closed) {
+	if (closed || closing) {
 		return nullptr;
 	}
 	// Call base method to parse message content
@@ -764,9 +765,14 @@ void Client::enableStreaming() {
     }
 }
 
+void Client::setClosing(bool closing) {
+	Poco::Mutex::ScopedLock lock(mutexCallback);
+    this->closing = closing;
+}
 
 std::shared_ptr<Message> Client::unicastCallback(const Message & msg) {
-	if (closed) {
+	Poco::Mutex::ScopedLock lock(mutexCallback);
+	if (closed || closing) {
 		Util::DebugOut(Util::DebugOut::Error, "Client") << "Unicast callback on closed client: " << msg;
         return nullptr;
     }
@@ -774,7 +780,6 @@ std::shared_ptr<Message> Client::unicastCallback(const Message & msg) {
     if ((message = std::dynamic_pointer_cast<DPWS11Message>(DPWS11CommunicationManager::unicastCallback(msg))) != nullptr) {
         return message;
     }
-	Poco::Mutex::ScopedLock lock(mutexCallback);
 
     message.reset(new DPWS11Message());
     message->copyRaw(msg);

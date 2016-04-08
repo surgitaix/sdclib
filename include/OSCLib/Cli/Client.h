@@ -15,7 +15,7 @@
   */
 
 /**
- * @file DPWS11Client.h
+ * @file Client.h
  * @project OSCLib
  * @date 27.02.2012
  * @author Besting
@@ -352,6 +352,12 @@ public:
 
     bool isClosed();
 
+    void setClosing(bool closing);
+
+    bool isClosing() {
+        return this->closing;
+    }
+
     bool isSearchRunning();
     
     bool isAnySearchRunning();
@@ -397,6 +403,7 @@ private:
     std::atomic<bool> searchCompleted;
     SearchMode searchMode;
     std::atomic<bool> closed;
+    std::atomic<bool> closing;
     Poco::Event waitSearch;
 
     Poco::NotificationQueue httpExchangeQueue;

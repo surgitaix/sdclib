@@ -214,9 +214,11 @@ void OSCPConsumer::disconnect() {
 			pingMan.reset();
 		}
 	}
-    removeCDMEventSinks();
-    if (client)
+    if (client) {
+        client->setClosing(true);
+        removeCDMEventSinks();
         client->close();
+    }
     OSCLibrary::getInstance()->unRegisterConsumer(this);
 }
 

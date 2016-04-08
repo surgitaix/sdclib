@@ -122,6 +122,7 @@ std::vector<std::shared_ptr<OSCPConsumer>> OSCPServiceManager::discoverOSCP()
 
     for (size_t td = 0; td < clients.size(); ++td) {
 		std::shared_ptr<OSCPConsumer> oc (new OSCPConsumer(clients[td]));
+		OSCLibrary::getInstance()->registerConsumer(oc.get());
 		if (!oc->requestMDIB()) {
 			oc->disconnect();
 			continue;
