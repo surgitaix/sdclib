@@ -237,18 +237,16 @@ void Device::stop()
             ManagerSet::iterator mIt;
             for (mIt = managers.begin(); mIt != managers.end(); ++mIt)
             {
-                (*mIt)->shutdown();
+                (*mIt)->stopManager();
             }
         }
-	}
-
-	while (OSCLibrary::getInstance()->existsManagerScheduledForShutdown()) {
-		Poco::Thread::sleep(10);
-	}
+        OSCLibrary::getInstance()->unRegisterDevice(this);
+    }
+    else {
+        Util::DebugOut(Util::DebugOut::Error, "Device") << "Shutdown failed: not initialized!";
+    }
 
 	running = false;
-
-	OSCLibrary::getInstance()->unRegisterDevice(this);
 }
 
 bool Device::isRunning() const

@@ -42,10 +42,5 @@ void CommunicationManager::init(Dev::Device * newDevice)
 	startManager();
 }
 
-void CommunicationManager::shutdown()
-{
-	OSCLibrary::getInstance()->scheduleManagerForShutdown(this);
-}
-
 }
 }

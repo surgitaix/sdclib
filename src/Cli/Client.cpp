@@ -679,6 +679,7 @@ void Client::createRemoteDevice(const std::shared_ptr<DPWS11Message> dpws11Msg, 
         for (auto & next : getServiceTypeSearchParams())
             newClient->addServiceTypeSearchParam(next);
         newClient->setServiceIDSearchParam(getServiceIDSearchParam());
+        Poco::Mutex::ScopedLock lock(mutex);
         clients.push_back(newClient);
         newClient->storeBasicDiscoveryInfo(rmDev, *dpws11Msg);
         newClient->discoverRemoteDevice(rmDev, sm);

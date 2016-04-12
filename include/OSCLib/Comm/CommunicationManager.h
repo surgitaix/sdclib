@@ -64,7 +64,6 @@ protected:
 
 private:
 	void init(Dev::Device* device);
-	void shutdown();
 };
 
 }

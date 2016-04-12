@@ -72,7 +72,6 @@ public:
 		{
 			MessageNotification * outNf = dynamic_cast<MessageNotification*>(pNf.get());
 			std::shared_ptr<PendingMessage> pm(outNf->getPendingMessage());
-			OSCLibrary::getInstance()->processAllScheduledForShutdown();
             if (pm->msg.getSource() != nullptr && !dni.isValidUnicastCallback(pm->source)) {
                 DebugOut(DebugOut::Error, "DefaultNetworkInterface (AsyncMessageWriter)") << "Callback invalid, message discarded (out): " << pm->logInfo;
             }
@@ -106,7 +105,6 @@ public:
 		{
 			MessageNotification * outNf = dynamic_cast<MessageNotification*>(pNf.get());
 			std::shared_ptr<PendingMessage> pm = outNf->getPendingMessage();
-			OSCLibrary::getInstance()->processAllScheduledForShutdown();
             if (pm->source != nullptr && dni.isValidUnicastCallback(pm->source)) {
 				const_cast<UnicastCallback *>(pm->source)->unicastCallback(pm->msg);
 			}

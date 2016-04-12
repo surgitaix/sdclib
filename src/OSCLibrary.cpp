@@ -303,25 +303,6 @@ void OSCLibrary::readMessages() {
 	netInterface->processIn();
 }
 
-void OSCLibrary::processAllScheduledForShutdown() {
-    Poco::Mutex::ScopedLock lock(mutex);
-    while (!managersShuttingDown.empty()) {
-		CommunicationManager * currentManager = *managersShuttingDown.begin();
-		currentManager->stopManager();
-		managersShuttingDown.pop_front();
-	}
-}
-
-bool OSCLibrary::existsManagerScheduledForShutdown() {
-	Poco::Mutex::ScopedLock lock(mutex);
-	return !managersShuttingDown.empty();
-}
-
-void OSCLibrary::scheduleManagerForShutdown(CommunicationManager * manager) {
-	Poco::Mutex::ScopedLock lock(mutex);
-	managersShuttingDown.push_back(manager);
-}
-
 void OSCLibrary::scheduleTaskForShutdown(std::shared_ptr<OSCLib::Util::Task> task) {
     shutdownQueue.enqueueNotification(new ShutdownNotification(task));
 }
@@ -332,7 +313,6 @@ ReaderThread::ReaderThread() {
 
 void ReaderThread::runImpl() {
 	OSCLibrary::getInstance()->readMessages();
-    OSCLibrary::getInstance()->processAllScheduledForShutdown();
 	Poco::Thread::sleep(2);
 }
 

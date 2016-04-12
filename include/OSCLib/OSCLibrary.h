@@ -81,10 +81,7 @@ public:
 	OSCLibrary();
 	virtual ~OSCLibrary();
 
-	void scheduleManagerForShutdown(Comm::CommunicationManager * manager);
     void scheduleTaskForShutdown(std::shared_ptr<OSCLib::Util::Task> task);
-	void processAllScheduledForShutdown();
-	bool existsManagerScheduledForShutdown();
 
 	static OSCLibrary * getInstance();
 
