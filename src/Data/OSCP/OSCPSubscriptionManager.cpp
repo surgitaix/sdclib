@@ -56,7 +56,8 @@ OSCPSubscriptionManager::OSCPSubscriptionManager(OSCPConsumer & consumer) :
 		periodicAlertEventSink(nullptr),
 		periodicContextEventSink(nullptr),
 		periodicMetricEventSink(nullptr),
-		initialized(false)
+		initialized(false),
+        error(false)
 {
 
 }
@@ -82,20 +83,32 @@ void OSCPSubscriptionManager::runImpl() {
 		return;
 	}
 
+    bool success = true;
+    if (!isInterrupted())
+        if (!tryRenew(episodicAlertEventSink))
+            success = false;
 	if (!isInterrupted())
-		tryRenew(episodicAlertEventSink);
+        if (!tryRenew(episodicContextEventSink))
+            success = false;
 	if (!isInterrupted())
-		tryRenew(episodicContextEventSink);
+        if (!tryRenew(episodicMetricEventSink))
+            success = false;
 	if (!isInterrupted())
-		tryRenew(episodicMetricEventSink);
+        if (!tryRenew(operationInvokedEventSink))
+            success = false;
 	if (!isInterrupted())
-		tryRenew(operationInvokedEventSink);
-	if (!isInterrupted())
-		tryRenew(periodicAlertEventSink);
-	if (!isInterrupted())
-		tryRenew(periodicContextEventSink);
-	if (!isInterrupted())
-		tryRenew(periodicMetricEventSink);
+        if (!tryRenew(periodicAlertEventSink))
+            success = false;
+    if (!isInterrupted())
+        if (!tryRenew(periodicContextEventSink))
+            success = false;
+    if (!isInterrupted())
+        if (!tryRenew(periodicMetricEventSink))
+            success = false;
+    if (error && success) {
+        Util::DebugOut(Util::DebugOut::Error, "OSCPSubscriptionManager") << "Subscription re-established." << std::endl;
+    }
+    error = !success;
 }
 
 void OSCPSubscriptionManager::init() {
@@ -140,27 +153,32 @@ void OSCPSubscriptionManager::remove() {
 }
 
 template<class SinkType>
-void OSCPSubscriptionManager::tryRenew(std::shared_ptr<SinkType> sink) {
+bool OSCPSubscriptionManager::tryRenew(std::shared_ptr<SinkType> sink) {
+    bool success = true;
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (consumer == nullptr) {
-		return;
+		return false;
 	}
 	if (sink == nullptr) {
 		Util::DebugOut(Util::DebugOut::Error, "OSCPSubscriptionManager") << "No subscription found to renew. Consumer is not initialized correctly!" << std::endl;
-		return;
+        return false;
 	}
 	const std::string action(SinkType::TypeTraits::Action());
     if (initialized && consumer->isValid() && !(consumer->client->renewSync(action, SUBSCRIBE_TIMEOUT, sink, 3000))) {
         Util::DebugOut(Util::DebugOut::Error, "OSCPSubscriptionManager") << "Auto-renew failed! Trying to subscribe again. Action: " << action << std::endl;
-        // Try to subscribe again (unsubscribe is needed because prior renew failed!)
+        success = false;
+    }
+    if (error && initialized && consumer->isValid()) {
         if (!consumer->client->unsubscribeSync(action, sink, 3000)) {
             Util::DebugOut(Util::DebugOut::Error, "OSCPSubscriptionManager") << "Unsubscribe failed." << std::endl;
         }
         if (!consumer->client->subscribeSync(action, SUBSCRIBE_TIMEOUT, sink, nullptr, 3000)) {
             Util::DebugOut(Util::DebugOut::Error, "OSCPSubscriptionManager") << "Resubscribe failed." << std::endl;
             consumer->onSubscriptionLost();
+            success = false;
         }
     }
+    return success;
 }
 
 template<class SinkType>

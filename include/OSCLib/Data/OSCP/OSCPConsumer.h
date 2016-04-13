@@ -68,9 +68,9 @@ private:
 		const InvocationState invocationState;
 	};
 private:
-    OSCPConsumer(const OSCPConsumer & consumer) {}
     virtual OSCPConsumer & operator=(const OSCPConsumer & consumer) { return *this; }
 public:
+    OSCPConsumer(const OSCPConsumer & consumer) { throw std::runtime_error("Not implemented."); }
 	virtual ~OSCPConsumer();
 
     /**

@@ -245,6 +245,8 @@ void OSCPConsumer::setSubscriptionLostHandler(OSCPConsumerSubscriptionLostHandle
 }
 
 void OSCPConsumer::onConnectionLost() {
+	if (subMan)
+		subMan->setError(true);
     if (connectionLostHandler != nullptr) {
         connectionLostHandler->onConnectionLost();
     }

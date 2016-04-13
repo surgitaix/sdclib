@@ -56,6 +56,9 @@ public:
 	void dispatch(std::unique_ptr<PeriodicMetricReportTraits::ReportType> report);
 
 	void detachConsumer();
+    void setError(bool error) {
+        this->error = error;
+    }
 
 private:
 	void runImpl();
@@ -65,7 +68,7 @@ private:
     template<class SinkType>
     void removeSink(std::shared_ptr<SinkType> & sink);
     template<class SinkType>
-    void tryRenew(std::shared_ptr<SinkType> sink);
+    bool tryRenew(std::shared_ptr<SinkType> sink);
 
     void dispatchAlertState(const CDM::AbstractAlertState & alertState);
     void dispatchMetricState(const CDM::AbstractMetricState & metricState);
@@ -81,6 +84,7 @@ private:
     std::shared_ptr<CDMPCREventSink> periodicContextEventSink;
     std::shared_ptr<CDMPMREventSink> periodicMetricEventSink;
     std::atomic<bool> initialized;
+    std::atomic<bool> error;
 };
 
 } /* namespace OSCP */
