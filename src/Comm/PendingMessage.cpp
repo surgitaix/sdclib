@@ -34,12 +34,12 @@ PendingMessage::PendingMessage() : source(nullptr), sourcemc(nullptr) {
 }
 
 PendingMessage::PendingMessage(const UnicastCallback * source, const Message & msg, const std::string & logInfo) :
-	source(source), msg(msg), logInfo(logInfo)	{
+	source(source), sourcemc(nullptr), msg(msg), logInfo(logInfo)	{
 
 }
 
 PendingMessage::PendingMessage(const MulticastCallback * sourcemc, const Message & msg, const std::string & logInfo) :
-sourcemc(sourcemc), msg(msg), logInfo(logInfo)	{
+	source(nullptr), sourcemc(sourcemc), msg(msg), logInfo(logInfo)	{
 
 }
 
