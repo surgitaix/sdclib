@@ -1,8 +1,6 @@
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 PROJECT (OSCLib)
 option(debug "Debug build" ON)
-option(java "Compile java wrapper code" OFF)
-option(python "Compile python wrapper code" OFF)
 option(crossCompile "Cross compile for arm" OFF)
 
 cmake_minimum_required(VERSION 2.8)
@@ -15,7 +13,7 @@ if (crossCompile)
 endif()
 
 # Configure paths for your environment 
-# - CAN be omitted in linux, if all dependencies (except pthread) are installed on the system using 'make install'
+# - CAN be omitted in linux, if all dependencies are installed on the system using 'make install'
 # - MUST be specified for ARM cross-compilation!
 # Includes
 SET(XERCES_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xerces/include" CACHE PATH "Path to XERCES-C includes")
@@ -26,14 +24,7 @@ SET(XSDCXX_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xsd/include" CACHE PATH "Path t
 SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
 SET(XERCES_LIB_DIR "${PROJECT_SOURCE_DIR}/../xerces/lib/" CACHE PATH "Path to XERCES-C libraries.")
 
-# Java JNI headers path (jni.h and jni_md.h, only needed for java wrappers)
-SET(JVM_INCLUDE_DIR_X86 "/usr/lib/jvm/java-8-openjdk-i386/include")
-SET(JVM_INCLUDE_DIR_X64 "/usr/lib/jvm/java-8-openjdk-amd64/include")
-
-# Python headers path (Python.h, only needed for python wrappers)
-SET(PYTHON_INCLUDE_DIR "/usr/include/python2.7")
-
-INCLUDE_DIRECTORIES("include" "datamodel" "swig" ${XSDCXX_INCLUDE_DIR} ${XERCES_INCLUDE_DIR} ${PTHREAD_INCLUDE_DIR} ${JVM_INCLUDE_DIR_X86} "${JVM_INCLUDE_DIR_X86}/linux" ${JVM_INCLUDE_DIR_X64} "${JVM_INCLUDE_DIR_X64}/linux" ${PYTHON_INCLUDE_DIR})
+INCLUDE_DIRECTORIES("include" "datamodel" "swig" ${XSDCXX_INCLUDE_DIR} ${XERCES_INCLUDE_DIR} ${PTHREAD_INCLUDE_DIR})
 LINK_DIRECTORIES(${PTHREAD_LIB_DIR} ${XERCES_LIB_DIR})
 
 # Debug or Release build
@@ -446,14 +437,6 @@ list(APPEND OSCLibSOURCES ./datamodel/MessageModel-Discovery.cxx)
 
 list(APPEND OSCLibSOURCES ${PocoSOURCES})
 
-if (java)
-    list(APPEND OSCLibSOURCES ./swig/OSCLibJava_wrap.cxx)
-endif()
-
-if (python)
-    list(APPEND OSCLibSOURCES ./swig/OSCLibPython_wrap.cxx)
-endif()
-
 add_library(OSCLib SHARED ${OSCLibSOURCES})
 
 add_executable(UnitTests
@@ -531,12 +514,7 @@ add_executable(ClientForUniRostockDevices
 Examples/ClientForUniRostockDevices.cpp
 )
 
-
 SET(ADDITIONAL_LIBS "")
-
-if (python)
-    list(APPEND ADDITIONAL_LIBS ${PYTHON_LIB})
-endif()
 
 target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
