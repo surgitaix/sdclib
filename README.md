@@ -4,6 +4,7 @@
 
 ### Essential requirements
 - GCC, pthread
+- Supported compilers: GCC, LLVM, MSVC++
 
 ### Additional dependecies: 
 - XSD, Xerces
