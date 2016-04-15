@@ -15,7 +15,7 @@
 
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
-#include "MessageModel-Discovery.hxx"
+#include "NormalizedMessageModel.hxx"
 
 const std::string UDP_MULTICAST_IP_V4("239.255.255.250");
 const std::string UDP_MULTICAST_IP_V6("FF02::C");
@@ -44,9 +44,9 @@ public:
 		const std::string socketData(buf.begin(), received);
 
 		std::istringstream stream(socketData);
-		std::unique_ptr<WS::MESSAGEMODEL::DISCOVERY::Envelope> message;
+		std::unique_ptr<MESSAGEMODEL::Envelope> message;
 		try {
-			message = WS::MESSAGEMODEL::DISCOVERY::Envelope_(stream, ::xml_schema::Flags::no_xml_declaration | ::xml_schema::Flags::dont_validate | ::xml_schema::Flags::dont_initialize);
+			message = MESSAGEMODEL::Envelope_(stream, ::xml_schema::Flags::no_xml_declaration | ::xml_schema::Flags::dont_validate | ::xml_schema::Flags::dont_initialize);
 		} catch (const xml_schema::Exception& e) {
 			std::cout << "Parsing failed with error: " << e << std::endl;
 		} catch (const xml_schema::Properties::argument&) {

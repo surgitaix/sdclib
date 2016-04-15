@@ -7,7 +7,6 @@
 
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/OSCPProviderComponentStateHandler.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {

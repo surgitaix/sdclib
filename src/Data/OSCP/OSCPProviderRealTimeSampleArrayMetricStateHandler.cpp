@@ -7,7 +7,6 @@
 
 #include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {
@@ -22,7 +21,7 @@ OSCPProviderRealTimeSampleArrayMetricStateHandler::~OSCPProviderRealTimeSampleAr
 }
 
 InvocationState OSCPProviderRealTimeSampleArrayMetricStateHandler::onStateChangeRequest(const RealTimeSampleArrayMetricState & , const OperationInvocationContext & ) {
-    Util::DebugOut(Util::DebugOut::Error, "OSCPProviderMDStateHandler") << "Method not overridden: onStateChangeRequest(RealTimeSampleArrayMetricState)!";
+	log_error([] { return "Method not overridden: onStateChangeRequest(RealTimeSampleArrayMetricState)!"; });
     return InvocationState::FAILED;
 }
 

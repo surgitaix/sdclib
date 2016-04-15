@@ -31,7 +31,6 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {
@@ -46,7 +45,7 @@ OSCPProviderActivateOperationHandler::~OSCPProviderActivateOperationHandler() {
 }
 
 InvocationState OSCPProviderActivateOperationHandler::onActivateRequest(const MDIBContainer & , const OperationInvocationContext & ) {
-    Util::DebugOut(Util::DebugOut::Error, "OSCPProviderActivateOperationHandler") << "Method not overridden: onActivateRequest()!";
+	log_error([] { return "Method not overridden: onActivateRequest()!"; });
     return InvocationState::FAILED;
 }
 
@@ -80,9 +79,8 @@ void OSCPProviderActivateOperationHandler::updateState(const OSCLib::Data::OSCP:
 
 template<class T> void OSCPProviderActivateOperationHandler::notifyMDIBObjectChangedImpl(const T & object) {
     if (parentProvider == nullptr) {
-        Util::DebugOut(Util::DebugOut::Error, "OSCPProviderMDStateHandler") << "Handler is used without calling OSCPProvider::addMDStateHandler!";
-    }
-    else {
+    	log_error([] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
+    } else {
         parentProvider->updateState(object);
     }
 }

@@ -5,21 +5,21 @@
  *      Author: roehser
  */
 
+#include "Poco/UUIDGenerator.h"
+
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 #include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
-#include "OSCLib/Util/DefaultUUIDGenerator.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
 OSCPProviderContextStateHandler::OSCPProviderContextStateHandler() :
-	handle(Util::DefaultUUIDGenerator::getUUID())
+	handle(Poco::UUIDGenerator::defaultGenerator().create().toString())
 {
 
 }
@@ -39,7 +39,7 @@ InvocationState OSCPProviderContextStateHandler::onStateChangeRequest(
 		const std::vector<PatientContextState> &,
 		const std::vector<WorkflowContextState> &,
 		const OperationInvocationContext &) {
-    Util::DebugOut(Util::DebugOut::Error, "OSCPProviderContextStateHandler") << "Method not overridden: onStateChangeRequest(AlertSignalState)!";
+	log_error([] { return "Method not overridden: onStateChangeRequest(AlertSignalState)!"; });
     return InvocationState::FAILED;
 }
 

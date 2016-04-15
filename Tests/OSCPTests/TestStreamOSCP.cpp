@@ -3,9 +3,8 @@
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
+#include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
@@ -24,8 +23,11 @@
 #include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
 #include "OSCLib/Util/DebugOut.h"
+#include "OSCLib/Util/Task.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "Poco/Runnable.h"
 #include "Poco/Mutex.h"
@@ -76,7 +78,6 @@ private:
     bool verifiedChunks;
     const std::string handle;
 };
-
 
 class StreamProviderStateHandler : public OSCPProviderRealTimeSampleArrayMetricStateHandler {
 public:
@@ -233,7 +234,7 @@ public:
 }
 
 struct FixtureStreamOSCP : Tests::AbstractOSCLibFixture {
-	FixtureStreamOSCP() : AbstractOSCLibFixture("FixtureStreamOSCP", Util::DebugOut::Error, 10000) {}
+	FixtureStreamOSCP() : AbstractOSCLibFixture("FixtureStreamOSCP", OSELib::LogLevel::NOTICE, 10000) {}
 };
 
 SUITE(OSCP) {
@@ -247,7 +248,7 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
         provider.startup();    
 
         // Consumer
-        OSCPServiceManager oscpsm;
+        OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR));
         std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream");
         std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
@@ -271,6 +272,7 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
             c->disconnect();
         }
 
+        Poco::Thread::sleep(2000);
         provider.shutdown();
 	}
 	catch (char const* exc)

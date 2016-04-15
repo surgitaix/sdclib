@@ -19,7 +19,6 @@
 #ifndef Net_TCPServerDispatcher_INCLUDED
 #define Net_TCPServerDispatcher_INCLUDED
 
-#include <atomic>
 
 #include "Poco/Net/Net.h"
 #include "Poco/Net/StreamSocket.h"
@@ -110,7 +109,7 @@ private:
 	int  _currentConnections;
 	int  _maxConcurrentConnections;
 	int  _refusedConnections;
-	std::atomic<bool> _stopped;
+	bool _stopped;
 	Poco::NotificationQueue         _queue;
 	TCPServerConnectionFactory::Ptr _pConnectionFactory;
 	Poco::ThreadPool&               _threadPool;

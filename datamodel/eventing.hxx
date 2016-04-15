@@ -63,1289 +63,953 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include <xsd/cxx/tree/containers-wildcard.hxx>
-
 #include "ws-addressing.hxx"
 
-namespace eventing
+namespace WS
 {
-  class DeliveryType: public ::xml_schema::Type
+  namespace EVENTING
   {
-    public:
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
+    class DeliveryType: public ::xml_schema::Type
+    {
+      public:
+      // NotifyTo
+      //
+      typedef ::WS::ADDRESSING::EndpointReferenceType NotifyToType;
+      typedef ::xsd::cxx::tree::traits< NotifyToType, char > NotifyToTraits;
 
-    const AnySequence&
-    any () const;
+      const NotifyToType&
+      NotifyTo () const;
 
-    AnySequence&
-    any ();
+      NotifyToType&
+      NotifyTo ();
 
-    void
-    any (const AnySequence& s);
+      void
+      NotifyTo (const NotifyToType& x);
 
-    // Mode
-    //
-    typedef ::xml_schema::Uri ModeType;
-    typedef ::xsd::cxx::tree::optional< ModeType > ModeOptional;
-    typedef ::xsd::cxx::tree::traits< ModeType, char > ModeTraits;
+      void
+      NotifyTo (::std::unique_ptr< NotifyToType > p);
 
-    const ModeOptional&
-    Mode () const;
+      // Mode
+      //
+      typedef ::xml_schema::Uri ModeType;
+      typedef ::xsd::cxx::tree::optional< ModeType > ModeOptional;
+      typedef ::xsd::cxx::tree::traits< ModeType, char > ModeTraits;
 
-    ModeOptional&
-    Mode ();
+      const ModeOptional&
+      Mode () const;
 
-    void
-    Mode (const ModeType& x);
+      ModeOptional&
+      Mode ();
 
-    void
-    Mode (const ModeOptional& x);
+      void
+      Mode (const ModeType& x);
 
-    void
-    Mode (::std::unique_ptr< ModeType > p);
+      void
+      Mode (const ModeOptional& x);
 
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+      void
+      Mode (::std::unique_ptr< ModeType > p);
 
-    const AnyAttributeSet&
-    any_attribute () const;
+      // Constructors.
+      //
+      DeliveryType (const NotifyToType&);
 
-    AnyAttributeSet&
-    any_attribute ();
+      DeliveryType (::std::unique_ptr< NotifyToType >);
 
-    void
-    any_attribute (const AnyAttributeSet& s);
+      DeliveryType (const ::xercesc::DOMElement& e,
+                    ::xml_schema::Flags f = 0,
+                    ::xml_schema::Container* c = 0);
 
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
+      DeliveryType (const DeliveryType& x,
+                    ::xml_schema::Flags f = 0,
+                    ::xml_schema::Container* c = 0);
 
-    ::xercesc::DOMDocument&
-    dom_document ();
+      virtual DeliveryType*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
 
-    // Constructors.
-    //
-    DeliveryType ();
+      DeliveryType&
+      operator= (const DeliveryType& x);
 
-    DeliveryType (const ::xercesc::DOMElement& e,
+      virtual 
+      ~DeliveryType ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+      ::xsd::cxx::tree::one< NotifyToType > NotifyTo_;
+      ModeOptional Mode_;
+    };
+
+    class NonNegativeDurationType: public ::xml_schema::Duration
+    {
+      public:
+      // Constructors.
+      //
+      NonNegativeDurationType (const ::xml_schema::Duration&);
+
+      NonNegativeDurationType (const ::xercesc::DOMElement& e,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
+
+      NonNegativeDurationType (const ::xercesc::DOMAttr& a,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
+
+      NonNegativeDurationType (const ::std::string& s,
+                               const ::xercesc::DOMElement* e,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
+
+      NonNegativeDurationType (const NonNegativeDurationType& x,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
+
+      virtual NonNegativeDurationType*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+
+      virtual 
+      ~NonNegativeDurationType ();
+    };
+
+    class ExpirationType: public ::xml_schema::String
+    {
+      public:
+
+      ExpirationType (const char* v);
+
+      ExpirationType (const ::std::string& v);
+
+      ExpirationType (const ::xercesc::DOMElement& e,
+                      ::xml_schema::Flags f = 0,
+                      ::xml_schema::Container* c = 0);
+
+      ExpirationType (const ::xercesc::DOMAttr& a,
+                      ::xml_schema::Flags f = 0,
+                      ::xml_schema::Container* c = 0);
+
+      ExpirationType (const ::std::string& s,
+                      const ::xercesc::DOMElement* e,
+                      ::xml_schema::Flags f = 0,
+                      ::xml_schema::Container* c = 0);
+
+      ExpirationType (const ExpirationType& x,
+                      ::xml_schema::Flags f = 0,
+                      ::xml_schema::Container* c = 0);
+
+      virtual ExpirationType*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+    };
+
+    class ActionList: public ::xml_schema::SimpleType,
+      public ::xsd::cxx::tree::list< ::xml_schema::Uri, char >
+    {
+      public:
+      ActionList ();
+
+      ActionList (size_type n, const ::xml_schema::Uri& x);
+
+      template < typename I >
+      ActionList (const I& begin, const I& end)
+      : ::xsd::cxx::tree::list< ::xml_schema::Uri, char > (begin, end, this)
+      {
+      }
+
+      ActionList (const ::xercesc::DOMElement& e,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
-    DeliveryType (const DeliveryType& x,
+      ActionList (const ::xercesc::DOMAttr& a,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
-    virtual DeliveryType*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    DeliveryType&
-    operator= (const DeliveryType& x);
-
-    virtual 
-    ~DeliveryType ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
-
-    AnySequence any_;
-    ModeOptional Mode_;
-    AnyAttributeSet any_attribute_;
-  };
-
-  class NonNegativeDurationType: public ::xml_schema::Duration
-  {
-    public:
-    // Constructors.
-    //
-    NonNegativeDurationType (const ::xml_schema::Duration&);
-
-    NonNegativeDurationType (const ::xercesc::DOMElement& e,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
-
-    NonNegativeDurationType (const ::xercesc::DOMAttr& a,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
-
-    NonNegativeDurationType (const ::std::string& s,
-                             const ::xercesc::DOMElement* e,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
-
-    NonNegativeDurationType (const NonNegativeDurationType& x,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
-
-    virtual NonNegativeDurationType*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~NonNegativeDurationType ();
-  };
-
-  class ExpirationType: public ::xml_schema::String
-  {
-    public:
-
-    ExpirationType (const char* v);
-
-    ExpirationType (const ::std::string& v);
-
-    ExpirationType (const ::xercesc::DOMElement& e,
-                    ::xml_schema::Flags f = 0,
-                    ::xml_schema::Container* c = 0);
+      ActionList (const ::std::string& s,
+                  const ::xercesc::DOMElement* e,
+                  ::xml_schema::Flags f = 0,
+                  ::xml_schema::Container* c = 0);
 
-    ExpirationType (const ::xercesc::DOMAttr& a,
-                    ::xml_schema::Flags f = 0,
-                    ::xml_schema::Container* c = 0);
+      ActionList (const ActionList& x,
+                  ::xml_schema::Flags f = 0,
+                  ::xml_schema::Container* c = 0);
 
-    ExpirationType (const ::std::string& s,
-                    const ::xercesc::DOMElement* e,
-                    ::xml_schema::Flags f = 0,
-                    ::xml_schema::Container* c = 0);
-
-    ExpirationType (const ExpirationType& x,
-                    ::xml_schema::Flags f = 0,
-                    ::xml_schema::Container* c = 0);
-
-    virtual ExpirationType*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-  };
-
-  class FilterType: public ::xml_schema::Type
-  {
-    public:
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
-
-    const AnySequence&
-    any () const;
-
-    AnySequence&
-    any ();
+      virtual ActionList*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
 
-    void
-    any (const AnySequence& s);
+      virtual 
+      ~ActionList ();
+    };
 
-    // Dialect
-    //
-    typedef ::xml_schema::Uri DialectType;
-    typedef ::xsd::cxx::tree::optional< DialectType > DialectOptional;
-    typedef ::xsd::cxx::tree::traits< DialectType, char > DialectTraits;
+    class FilterType: public ::WS::EVENTING::ActionList
+    {
+      public:
+      // Dialect
+      //
+      typedef ::xml_schema::Uri DialectType;
+      typedef ::xsd::cxx::tree::traits< DialectType, char > DialectTraits;
 
-    const DialectOptional&
-    Dialect () const;
+      const DialectType&
+      Dialect () const;
 
-    DialectOptional&
-    Dialect ();
+      DialectType&
+      Dialect ();
 
-    void
-    Dialect (const DialectType& x);
+      void
+      Dialect (const DialectType& x);
 
-    void
-    Dialect (const DialectOptional& x);
+      void
+      Dialect (::std::unique_ptr< DialectType > p);
 
-    void
-    Dialect (::std::unique_ptr< DialectType > p);
+      static const DialectType&
+      Dialect_default_value ();
 
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+      // Constructors.
+      //
+      FilterType ();
 
-    const AnyAttributeSet&
-    any_attribute () const;
+      FilterType (const ::WS::EVENTING::ActionList&);
 
-    AnyAttributeSet&
-    any_attribute ();
+      FilterType (const ::xercesc::DOMElement& e,
+                  ::xml_schema::Flags f = 0,
+                  ::xml_schema::Container* c = 0);
 
-    void
-    any_attribute (const AnyAttributeSet& s);
+      FilterType (const FilterType& x,
+                  ::xml_schema::Flags f = 0,
+                  ::xml_schema::Container* c = 0);
 
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
+      virtual FilterType*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
 
-    ::xercesc::DOMDocument&
-    dom_document ();
+      FilterType&
+      operator= (const FilterType& x);
 
-    // Constructors.
-    //
-    FilterType ();
+      virtual 
+      ~FilterType ();
 
-    FilterType (const ::xercesc::DOMElement& e,
-                ::xml_schema::Flags f = 0,
-                ::xml_schema::Container* c = 0);
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
 
-    FilterType (const FilterType& x,
-                ::xml_schema::Flags f = 0,
-                ::xml_schema::Container* c = 0);
+      protected:
+      ::xsd::cxx::tree::one< DialectType > Dialect_;
+      static const DialectType Dialect_default_value_;
+    };
 
-    virtual FilterType*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
+    class LanguageSpecificStringType: public ::xml_schema::String
+    {
+      public:
+      // lang
+      //
+      typedef ::xml_schema::String LangType;
+      typedef ::xsd::cxx::tree::optional< LangType > LangOptional;
+      typedef ::xsd::cxx::tree::traits< LangType, char > LangTraits;
 
-    FilterType&
-    operator= (const FilterType& x);
+      const LangOptional&
+      lang () const;
 
-    virtual 
-    ~FilterType ();
+      LangOptional&
+      lang ();
 
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
+      void
+      lang (const LangType& x);
 
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+      void
+      lang (const LangOptional& x);
 
-    AnySequence any_;
-    DialectOptional Dialect_;
-    AnyAttributeSet any_attribute_;
-  };
+      void
+      lang (::std::unique_ptr< LangType > p);
 
-  class LanguageSpecificStringType: public ::xml_schema::String
-  {
-    public:
-    // lang
-    //
-    typedef ::xml_schema::String LangType;
-    typedef ::xsd::cxx::tree::optional< LangType > LangOptional;
-    typedef ::xsd::cxx::tree::traits< LangType, char > LangTraits;
+      // Constructors.
+      //
+      LanguageSpecificStringType ();
+
+      LanguageSpecificStringType (const char*);
+
+      LanguageSpecificStringType (const ::std::string&);
+
+      LanguageSpecificStringType (const ::xml_schema::String&);
+
+      LanguageSpecificStringType (const ::xercesc::DOMElement& e,
+                                  ::xml_schema::Flags f = 0,
+                                  ::xml_schema::Container* c = 0);
+
+      LanguageSpecificStringType (const LanguageSpecificStringType& x,
+                                  ::xml_schema::Flags f = 0,
+                                  ::xml_schema::Container* c = 0);
 
-    const LangOptional&
-    lang () const;
+      virtual LanguageSpecificStringType*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
 
-    LangOptional&
-    lang ();
+      LanguageSpecificStringType&
+      operator= (const LanguageSpecificStringType& x);
 
-    void
-    lang (const LangType& x);
+      virtual 
+      ~LanguageSpecificStringType ();
 
-    void
-    lang (const LangOptional& x);
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
 
-    void
-    lang (::std::unique_ptr< LangType > p);
+      protected:
+      LangOptional lang_;
+    };
 
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+    class SubscriptionEndCodeType: public ::xml_schema::Uri
+    {
+      public:
+      SubscriptionEndCodeType (const ::xml_schema::Uri& v);
 
-    const AnyAttributeSet&
-    any_attribute () const;
+      SubscriptionEndCodeType (const ::xercesc::DOMElement& e,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
 
-    AnyAttributeSet&
-    any_attribute ();
+      SubscriptionEndCodeType (const ::xercesc::DOMAttr& a,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
 
-    void
-    any_attribute (const AnyAttributeSet& s);
+      SubscriptionEndCodeType (const ::std::string& s,
+                               const ::xercesc::DOMElement* e,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
 
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
+      SubscriptionEndCodeType (const SubscriptionEndCodeType& x,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
 
-    ::xercesc::DOMDocument&
-    dom_document ();
+      virtual SubscriptionEndCodeType*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+    };
 
-    // Constructors.
-    //
-    LanguageSpecificStringType ();
+    class OpenSubscriptionEndCodeType: public ::xml_schema::String
+    {
+      public:
 
-    LanguageSpecificStringType (const char*);
+      OpenSubscriptionEndCodeType (const char* v);
 
-    LanguageSpecificStringType (const ::std::string&);
+      OpenSubscriptionEndCodeType (const ::std::string& v);
 
-    LanguageSpecificStringType (const ::xml_schema::String&);
+      OpenSubscriptionEndCodeType (const ::xercesc::DOMElement& e,
+                                   ::xml_schema::Flags f = 0,
+                                   ::xml_schema::Container* c = 0);
 
-    LanguageSpecificStringType (const ::xercesc::DOMElement& e,
-                                ::xml_schema::Flags f = 0,
-                                ::xml_schema::Container* c = 0);
+      OpenSubscriptionEndCodeType (const ::xercesc::DOMAttr& a,
+                                   ::xml_schema::Flags f = 0,
+                                   ::xml_schema::Container* c = 0);
 
-    LanguageSpecificStringType (const LanguageSpecificStringType& x,
-                                ::xml_schema::Flags f = 0,
-                                ::xml_schema::Container* c = 0);
+      OpenSubscriptionEndCodeType (const ::std::string& s,
+                                   const ::xercesc::DOMElement* e,
+                                   ::xml_schema::Flags f = 0,
+                                   ::xml_schema::Container* c = 0);
 
-    virtual LanguageSpecificStringType*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
+      OpenSubscriptionEndCodeType (const OpenSubscriptionEndCodeType& x,
+                                   ::xml_schema::Flags f = 0,
+                                   ::xml_schema::Container* c = 0);
 
-    LanguageSpecificStringType&
-    operator= (const LanguageSpecificStringType& x);
+      virtual OpenSubscriptionEndCodeType*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+    };
 
-    virtual 
-    ~LanguageSpecificStringType ();
+    class Subscribe: public ::xml_schema::Type
+    {
+      public:
+      // EndTo
+      //
+      typedef ::WS::ADDRESSING::EndpointReferenceType EndToType;
+      typedef ::xsd::cxx::tree::optional< EndToType > EndToOptional;
+      typedef ::xsd::cxx::tree::traits< EndToType, char > EndToTraits;
 
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
+      const EndToOptional&
+      EndTo () const;
 
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+      EndToOptional&
+      EndTo ();
 
-    LangOptional lang_;
-    AnyAttributeSet any_attribute_;
-  };
+      void
+      EndTo (const EndToType& x);
 
-  class SubscriptionEndCodeType: public ::xml_schema::Uri
-  {
-    public:
-    SubscriptionEndCodeType (const ::xml_schema::Uri& v);
+      void
+      EndTo (const EndToOptional& x);
 
-    SubscriptionEndCodeType (const ::xercesc::DOMElement& e,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
+      void
+      EndTo (::std::unique_ptr< EndToType > p);
 
-    SubscriptionEndCodeType (const ::xercesc::DOMAttr& a,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
+      // Delivery
+      //
+      typedef ::WS::EVENTING::DeliveryType DeliveryType;
+      typedef ::xsd::cxx::tree::traits< DeliveryType, char > DeliveryTraits;
 
-    SubscriptionEndCodeType (const ::std::string& s,
-                             const ::xercesc::DOMElement* e,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
+      const DeliveryType&
+      Delivery () const;
 
-    SubscriptionEndCodeType (const SubscriptionEndCodeType& x,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
+      DeliveryType&
+      Delivery ();
 
-    virtual SubscriptionEndCodeType*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-  };
+      void
+      Delivery (const DeliveryType& x);
 
-  class OpenSubscriptionEndCodeType: public ::xml_schema::String
-  {
-    public:
+      void
+      Delivery (::std::unique_ptr< DeliveryType > p);
 
-    OpenSubscriptionEndCodeType (const char* v);
+      // Expires
+      //
+      typedef ::WS::EVENTING::ExpirationType ExpiresType;
+      typedef ::xsd::cxx::tree::optional< ExpiresType > ExpiresOptional;
+      typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
 
-    OpenSubscriptionEndCodeType (const ::std::string& v);
+      const ExpiresOptional&
+      Expires () const;
 
-    OpenSubscriptionEndCodeType (const ::xercesc::DOMElement& e,
-                                 ::xml_schema::Flags f = 0,
-                                 ::xml_schema::Container* c = 0);
+      ExpiresOptional&
+      Expires ();
 
-    OpenSubscriptionEndCodeType (const ::xercesc::DOMAttr& a,
-                                 ::xml_schema::Flags f = 0,
-                                 ::xml_schema::Container* c = 0);
+      void
+      Expires (const ExpiresType& x);
 
-    OpenSubscriptionEndCodeType (const ::std::string& s,
-                                 const ::xercesc::DOMElement* e,
-                                 ::xml_schema::Flags f = 0,
-                                 ::xml_schema::Container* c = 0);
+      void
+      Expires (const ExpiresOptional& x);
 
-    OpenSubscriptionEndCodeType (const OpenSubscriptionEndCodeType& x,
-                                 ::xml_schema::Flags f = 0,
-                                 ::xml_schema::Container* c = 0);
+      void
+      Expires (::std::unique_ptr< ExpiresType > p);
 
-    virtual OpenSubscriptionEndCodeType*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-  };
+      // Filter
+      //
+      typedef ::WS::EVENTING::FilterType FilterType;
+      typedef ::xsd::cxx::tree::optional< FilterType > FilterOptional;
+      typedef ::xsd::cxx::tree::traits< FilterType, char > FilterTraits;
 
-  class Subscribe: public ::xml_schema::Type
-  {
-    public:
-    // EndTo
-    //
-    typedef ::WS::ADDRESSING::EndpointReferenceType EndToType;
-    typedef ::xsd::cxx::tree::optional< EndToType > EndToOptional;
-    typedef ::xsd::cxx::tree::traits< EndToType, char > EndToTraits;
+      const FilterOptional&
+      Filter () const;
 
-    const EndToOptional&
-    EndTo () const;
+      FilterOptional&
+      Filter ();
 
-    EndToOptional&
-    EndTo ();
+      void
+      Filter (const FilterType& x);
 
-    void
-    EndTo (const EndToType& x);
+      void
+      Filter (const FilterOptional& x);
 
-    void
-    EndTo (const EndToOptional& x);
+      void
+      Filter (::std::unique_ptr< FilterType > p);
 
-    void
-    EndTo (::std::unique_ptr< EndToType > p);
+      // Constructors.
+      //
+      Subscribe (const DeliveryType&);
 
-    // Delivery
-    //
-    typedef ::eventing::DeliveryType DeliveryType;
-    typedef ::xsd::cxx::tree::traits< DeliveryType, char > DeliveryTraits;
+      Subscribe (::std::unique_ptr< DeliveryType >);
 
-    const DeliveryType&
-    Delivery () const;
-
-    DeliveryType&
-    Delivery ();
-
-    void
-    Delivery (const DeliveryType& x);
-
-    void
-    Delivery (::std::unique_ptr< DeliveryType > p);
-
-    // Expires
-    //
-    typedef ::eventing::ExpirationType ExpiresType;
-    typedef ::xsd::cxx::tree::optional< ExpiresType > ExpiresOptional;
-    typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
-
-    const ExpiresOptional&
-    Expires () const;
-
-    ExpiresOptional&
-    Expires ();
-
-    void
-    Expires (const ExpiresType& x);
-
-    void
-    Expires (const ExpiresOptional& x);
-
-    void
-    Expires (::std::unique_ptr< ExpiresType > p);
-
-    // Filter
-    //
-    typedef ::eventing::FilterType FilterType;
-    typedef ::xsd::cxx::tree::optional< FilterType > FilterOptional;
-    typedef ::xsd::cxx::tree::traits< FilterType, char > FilterTraits;
-
-    const FilterOptional&
-    Filter () const;
-
-    FilterOptional&
-    Filter ();
-
-    void
-    Filter (const FilterType& x);
-
-    void
-    Filter (const FilterOptional& x);
-
-    void
-    Filter (::std::unique_ptr< FilterType > p);
-
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
-
-    const AnySequence&
-    any () const;
-
-    AnySequence&
-    any ();
-
-    void
-    any (const AnySequence& s);
-
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
-
-    const AnyAttributeSet&
-    any_attribute () const;
-
-    AnyAttributeSet&
-    any_attribute ();
-
-    void
-    any_attribute (const AnyAttributeSet& s);
-
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
-
-    ::xercesc::DOMDocument&
-    dom_document ();
-
-    // Constructors.
-    //
-    Subscribe (const DeliveryType&);
-
-    Subscribe (::std::unique_ptr< DeliveryType >);
-
-    Subscribe (const ::xercesc::DOMElement& e,
-               ::xml_schema::Flags f = 0,
-               ::xml_schema::Container* c = 0);
-
-    Subscribe (const Subscribe& x,
-               ::xml_schema::Flags f = 0,
-               ::xml_schema::Container* c = 0);
-
-    virtual Subscribe*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    Subscribe&
-    operator= (const Subscribe& x);
-
-    virtual 
-    ~Subscribe ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
-
-    EndToOptional EndTo_;
-    ::xsd::cxx::tree::one< DeliveryType > Delivery_;
-    ExpiresOptional Expires_;
-    FilterOptional Filter_;
-    AnySequence any_;
-    AnyAttributeSet any_attribute_;
-  };
-
-  class SubscribeResponse: public ::xml_schema::Type
-  {
-    public:
-    // SubscriptionManager
-    //
-    typedef ::WS::ADDRESSING::EndpointReferenceType SubscriptionManagerType;
-    typedef ::xsd::cxx::tree::traits< SubscriptionManagerType, char > SubscriptionManagerTraits;
-
-    const SubscriptionManagerType&
-    SubscriptionManager () const;
-
-    SubscriptionManagerType&
-    SubscriptionManager ();
-
-    void
-    SubscriptionManager (const SubscriptionManagerType& x);
-
-    void
-    SubscriptionManager (::std::unique_ptr< SubscriptionManagerType > p);
-
-    // Expires
-    //
-    typedef ::eventing::ExpirationType ExpiresType;
-    typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
-
-    const ExpiresType&
-    Expires () const;
-
-    ExpiresType&
-    Expires ();
-
-    void
-    Expires (const ExpiresType& x);
-
-    void
-    Expires (::std::unique_ptr< ExpiresType > p);
-
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
-
-    const AnySequence&
-    any () const;
-
-    AnySequence&
-    any ();
-
-    void
-    any (const AnySequence& s);
-
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
-
-    const AnyAttributeSet&
-    any_attribute () const;
-
-    AnyAttributeSet&
-    any_attribute ();
-
-    void
-    any_attribute (const AnyAttributeSet& s);
-
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
-
-    ::xercesc::DOMDocument&
-    dom_document ();
-
-    // Constructors.
-    //
-    SubscribeResponse (const SubscriptionManagerType&,
-                       const ExpiresType&);
-
-    SubscribeResponse (::std::unique_ptr< SubscriptionManagerType >,
-                       const ExpiresType&);
-
-    SubscribeResponse (::std::unique_ptr< SubscriptionManagerType >,
-                       ::std::unique_ptr< ExpiresType >);
-
-    SubscribeResponse (const ::xercesc::DOMElement& e,
-                       ::xml_schema::Flags f = 0,
-                       ::xml_schema::Container* c = 0);
-
-    SubscribeResponse (const SubscribeResponse& x,
-                       ::xml_schema::Flags f = 0,
-                       ::xml_schema::Container* c = 0);
-
-    virtual SubscribeResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    SubscribeResponse&
-    operator= (const SubscribeResponse& x);
-
-    virtual 
-    ~SubscribeResponse ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
-
-    ::xsd::cxx::tree::one< SubscriptionManagerType > SubscriptionManager_;
-    ::xsd::cxx::tree::one< ExpiresType > Expires_;
-    AnySequence any_;
-    AnyAttributeSet any_attribute_;
-  };
-
-  class Renew: public ::xml_schema::Type
-  {
-    public:
-    // Expires
-    //
-    typedef ::eventing::ExpirationType ExpiresType;
-    typedef ::xsd::cxx::tree::optional< ExpiresType > ExpiresOptional;
-    typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
-
-    const ExpiresOptional&
-    Expires () const;
-
-    ExpiresOptional&
-    Expires ();
-
-    void
-    Expires (const ExpiresType& x);
-
-    void
-    Expires (const ExpiresOptional& x);
-
-    void
-    Expires (::std::unique_ptr< ExpiresType > p);
-
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
-
-    const AnySequence&
-    any () const;
-
-    AnySequence&
-    any ();
-
-    void
-    any (const AnySequence& s);
-
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
-
-    const AnyAttributeSet&
-    any_attribute () const;
-
-    AnyAttributeSet&
-    any_attribute ();
-
-    void
-    any_attribute (const AnyAttributeSet& s);
-
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
-
-    ::xercesc::DOMDocument&
-    dom_document ();
-
-    // Constructors.
-    //
-    Renew ();
-
-    Renew (const ::xercesc::DOMElement& e,
-           ::xml_schema::Flags f = 0,
-           ::xml_schema::Container* c = 0);
-
-    Renew (const Renew& x,
-           ::xml_schema::Flags f = 0,
-           ::xml_schema::Container* c = 0);
-
-    virtual Renew*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    Renew&
-    operator= (const Renew& x);
-
-    virtual 
-    ~Renew ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
-
-    ExpiresOptional Expires_;
-    AnySequence any_;
-    AnyAttributeSet any_attribute_;
-  };
-
-  class RenewResponse: public ::xml_schema::Type
-  {
-    public:
-    // Expires
-    //
-    typedef ::eventing::ExpirationType ExpiresType;
-    typedef ::xsd::cxx::tree::optional< ExpiresType > ExpiresOptional;
-    typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
-
-    const ExpiresOptional&
-    Expires () const;
-
-    ExpiresOptional&
-    Expires ();
-
-    void
-    Expires (const ExpiresType& x);
-
-    void
-    Expires (const ExpiresOptional& x);
-
-    void
-    Expires (::std::unique_ptr< ExpiresType > p);
-
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
-
-    const AnySequence&
-    any () const;
-
-    AnySequence&
-    any ();
-
-    void
-    any (const AnySequence& s);
-
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
-
-    const AnyAttributeSet&
-    any_attribute () const;
-
-    AnyAttributeSet&
-    any_attribute ();
-
-    void
-    any_attribute (const AnyAttributeSet& s);
-
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
-
-    ::xercesc::DOMDocument&
-    dom_document ();
-
-    // Constructors.
-    //
-    RenewResponse ();
-
-    RenewResponse (const ::xercesc::DOMElement& e,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    RenewResponse (const RenewResponse& x,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    virtual RenewResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    RenewResponse&
-    operator= (const RenewResponse& x);
-
-    virtual 
-    ~RenewResponse ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
-
-    ExpiresOptional Expires_;
-    AnySequence any_;
-    AnyAttributeSet any_attribute_;
-  };
-
-  class GetStatus: public ::xml_schema::Type
-  {
-    public:
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
-
-    const AnySequence&
-    any () const;
-
-    AnySequence&
-    any ();
-
-    void
-    any (const AnySequence& s);
-
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
-
-    const AnyAttributeSet&
-    any_attribute () const;
-
-    AnyAttributeSet&
-    any_attribute ();
-
-    void
-    any_attribute (const AnyAttributeSet& s);
-
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
-
-    ::xercesc::DOMDocument&
-    dom_document ();
-
-    // Constructors.
-    //
-    GetStatus ();
-
-    GetStatus (const ::xercesc::DOMElement& e,
-               ::xml_schema::Flags f = 0,
-               ::xml_schema::Container* c = 0);
-
-    GetStatus (const GetStatus& x,
-               ::xml_schema::Flags f = 0,
-               ::xml_schema::Container* c = 0);
-
-    virtual GetStatus*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    GetStatus&
-    operator= (const GetStatus& x);
-
-    virtual 
-    ~GetStatus ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
-
-    AnySequence any_;
-    AnyAttributeSet any_attribute_;
-  };
-
-  class GetStatusResponse: public ::xml_schema::Type
-  {
-    public:
-    // Expires
-    //
-    typedef ::eventing::ExpirationType ExpiresType;
-    typedef ::xsd::cxx::tree::optional< ExpiresType > ExpiresOptional;
-    typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
-
-    const ExpiresOptional&
-    Expires () const;
-
-    ExpiresOptional&
-    Expires ();
-
-    void
-    Expires (const ExpiresType& x);
-
-    void
-    Expires (const ExpiresOptional& x);
-
-    void
-    Expires (::std::unique_ptr< ExpiresType > p);
-
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
-
-    const AnySequence&
-    any () const;
-
-    AnySequence&
-    any ();
-
-    void
-    any (const AnySequence& s);
-
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
-
-    const AnyAttributeSet&
-    any_attribute () const;
-
-    AnyAttributeSet&
-    any_attribute ();
-
-    void
-    any_attribute (const AnyAttributeSet& s);
-
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
-
-    ::xercesc::DOMDocument&
-    dom_document ();
-
-    // Constructors.
-    //
-    GetStatusResponse ();
-
-    GetStatusResponse (const ::xercesc::DOMElement& e,
-                       ::xml_schema::Flags f = 0,
-                       ::xml_schema::Container* c = 0);
-
-    GetStatusResponse (const GetStatusResponse& x,
-                       ::xml_schema::Flags f = 0,
-                       ::xml_schema::Container* c = 0);
-
-    virtual GetStatusResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    GetStatusResponse&
-    operator= (const GetStatusResponse& x);
-
-    virtual 
-    ~GetStatusResponse ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
-
-    ExpiresOptional Expires_;
-    AnySequence any_;
-    AnyAttributeSet any_attribute_;
-  };
-
-  class Unsubscribe: public ::xml_schema::Type
-  {
-    public:
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
-
-    const AnySequence&
-    any () const;
-
-    AnySequence&
-    any ();
-
-    void
-    any (const AnySequence& s);
-
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
-
-    const AnyAttributeSet&
-    any_attribute () const;
-
-    AnyAttributeSet&
-    any_attribute ();
-
-    void
-    any_attribute (const AnyAttributeSet& s);
-
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
-
-    ::xercesc::DOMDocument&
-    dom_document ();
-
-    // Constructors.
-    //
-    Unsubscribe ();
-
-    Unsubscribe (const ::xercesc::DOMElement& e,
+      Subscribe (const ::xercesc::DOMElement& e,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
-    Unsubscribe (const Unsubscribe& x,
+      Subscribe (const Subscribe& x,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
-    virtual Unsubscribe*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
+      virtual Subscribe*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
 
-    Unsubscribe&
-    operator= (const Unsubscribe& x);
+      Subscribe&
+      operator= (const Subscribe& x);
 
-    virtual 
-    ~Unsubscribe ();
+      virtual 
+      ~Subscribe ();
 
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
 
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+      protected:
+      EndToOptional EndTo_;
+      ::xsd::cxx::tree::one< DeliveryType > Delivery_;
+      ExpiresOptional Expires_;
+      FilterOptional Filter_;
+    };
 
-    AnySequence any_;
-    AnyAttributeSet any_attribute_;
-  };
+    class Identifier: public ::xml_schema::Uri
+    {
+      public:
+      // IsReferenceParameter
+      //
+      typedef ::xml_schema::Boolean IsReferenceParameterType;
+      typedef ::xsd::cxx::tree::optional< IsReferenceParameterType > IsReferenceParameterOptional;
+      typedef ::xsd::cxx::tree::traits< IsReferenceParameterType, char > IsReferenceParameterTraits;
 
-  class SubscriptionEnd: public ::xml_schema::Type
-  {
-    public:
-    // SubscriptionManager
-    //
-    typedef ::WS::ADDRESSING::EndpointReferenceType SubscriptionManagerType;
-    typedef ::xsd::cxx::tree::traits< SubscriptionManagerType, char > SubscriptionManagerTraits;
+      const IsReferenceParameterOptional&
+      IsReferenceParameter () const;
 
-    const SubscriptionManagerType&
-    SubscriptionManager () const;
+      IsReferenceParameterOptional&
+      IsReferenceParameter ();
 
-    SubscriptionManagerType&
-    SubscriptionManager ();
+      void
+      IsReferenceParameter (const IsReferenceParameterType& x);
 
-    void
-    SubscriptionManager (const SubscriptionManagerType& x);
+      void
+      IsReferenceParameter (const IsReferenceParameterOptional& x);
 
-    void
-    SubscriptionManager (::std::unique_ptr< SubscriptionManagerType > p);
+      // Constructors.
+      //
+      Identifier (const ::xml_schema::Uri&);
 
-    // Status
-    //
-    typedef ::eventing::OpenSubscriptionEndCodeType StatusType;
-    typedef ::xsd::cxx::tree::traits< StatusType, char > StatusTraits;
+      Identifier (const ::xercesc::DOMElement& e,
+                  ::xml_schema::Flags f = 0,
+                  ::xml_schema::Container* c = 0);
 
-    const StatusType&
-    Status () const;
+      Identifier (const Identifier& x,
+                  ::xml_schema::Flags f = 0,
+                  ::xml_schema::Container* c = 0);
 
-    StatusType&
-    Status ();
+      virtual Identifier*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
 
-    void
-    Status (const StatusType& x);
+      Identifier&
+      operator= (const Identifier& x);
 
-    void
-    Status (::std::unique_ptr< StatusType > p);
+      virtual 
+      ~Identifier ();
 
-    // Reason
-    //
-    typedef ::eventing::LanguageSpecificStringType ReasonType;
-    typedef ::xsd::cxx::tree::sequence< ReasonType > ReasonSequence;
-    typedef ReasonSequence::iterator ReasonIterator;
-    typedef ReasonSequence::const_iterator ReasonConstIterator;
-    typedef ::xsd::cxx::tree::traits< ReasonType, char > ReasonTraits;
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
 
-    const ReasonSequence&
-    Reason () const;
+      protected:
+      IsReferenceParameterOptional IsReferenceParameter_;
+    };
 
-    ReasonSequence&
-    Reason ();
+    class SubscribeResponse: public ::xml_schema::Type
+    {
+      public:
+      // SubscriptionManager
+      //
+      typedef ::WS::ADDRESSING::EndpointReferenceType SubscriptionManagerType;
+      typedef ::xsd::cxx::tree::traits< SubscriptionManagerType, char > SubscriptionManagerTraits;
 
-    void
-    Reason (const ReasonSequence& s);
+      const SubscriptionManagerType&
+      SubscriptionManager () const;
 
-    // any
-    //
-    typedef ::xsd::cxx::tree::element_sequence AnySequence;
-    typedef AnySequence::iterator AnyIterator;
-    typedef AnySequence::const_iterator AnyConstIterator;
+      SubscriptionManagerType&
+      SubscriptionManager ();
 
-    const AnySequence&
-    any () const;
+      void
+      SubscriptionManager (const SubscriptionManagerType& x);
 
-    AnySequence&
-    any ();
+      void
+      SubscriptionManager (::std::unique_ptr< SubscriptionManagerType > p);
 
-    void
-    any (const AnySequence& s);
+      // Expires
+      //
+      typedef ::WS::EVENTING::ExpirationType ExpiresType;
+      typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
 
-    // any_attribute
-    //
-    typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-    typedef AnyAttributeSet::iterator AnyAttributeIterator;
-    typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
+      const ExpiresType&
+      Expires () const;
 
-    const AnyAttributeSet&
-    any_attribute () const;
+      ExpiresType&
+      Expires ();
 
-    AnyAttributeSet&
-    any_attribute ();
+      void
+      Expires (const ExpiresType& x);
 
-    void
-    any_attribute (const AnyAttributeSet& s);
+      void
+      Expires (::std::unique_ptr< ExpiresType > p);
 
-    // DOMDocument for wildcard content.
-    //
-    const ::xercesc::DOMDocument&
-    dom_document () const;
+      // Constructors.
+      //
+      SubscribeResponse (const SubscriptionManagerType&,
+                         const ExpiresType&);
 
-    ::xercesc::DOMDocument&
-    dom_document ();
+      SubscribeResponse (::std::unique_ptr< SubscriptionManagerType >,
+                         const ExpiresType&);
 
-    // Constructors.
-    //
-    SubscriptionEnd (const SubscriptionManagerType&,
-                     const StatusType&);
+      SubscribeResponse (::std::unique_ptr< SubscriptionManagerType >,
+                         ::std::unique_ptr< ExpiresType >);
 
-    SubscriptionEnd (::std::unique_ptr< SubscriptionManagerType >,
-                     const StatusType&);
+      SubscribeResponse (const ::xercesc::DOMElement& e,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
 
-    SubscriptionEnd (::std::unique_ptr< SubscriptionManagerType >,
-                     ::std::unique_ptr< StatusType >);
+      SubscribeResponse (const SubscribeResponse& x,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
 
-    SubscriptionEnd (const ::xercesc::DOMElement& e,
+      virtual SubscribeResponse*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+
+      SubscribeResponse&
+      operator= (const SubscribeResponse& x);
+
+      virtual 
+      ~SubscribeResponse ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+      ::xsd::cxx::tree::one< SubscriptionManagerType > SubscriptionManager_;
+      ::xsd::cxx::tree::one< ExpiresType > Expires_;
+    };
+
+    class Renew: public ::xml_schema::Type
+    {
+      public:
+      // Expires
+      //
+      typedef ::WS::EVENTING::ExpirationType ExpiresType;
+      typedef ::xsd::cxx::tree::optional< ExpiresType > ExpiresOptional;
+      typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
+
+      const ExpiresOptional&
+      Expires () const;
+
+      ExpiresOptional&
+      Expires ();
+
+      void
+      Expires (const ExpiresType& x);
+
+      void
+      Expires (const ExpiresOptional& x);
+
+      void
+      Expires (::std::unique_ptr< ExpiresType > p);
+
+      // Constructors.
+      //
+      Renew ();
+
+      Renew (const ::xercesc::DOMElement& e,
+             ::xml_schema::Flags f = 0,
+             ::xml_schema::Container* c = 0);
+
+      Renew (const Renew& x,
+             ::xml_schema::Flags f = 0,
+             ::xml_schema::Container* c = 0);
+
+      virtual Renew*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+
+      Renew&
+      operator= (const Renew& x);
+
+      virtual 
+      ~Renew ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+      ExpiresOptional Expires_;
+    };
+
+    class RenewResponse: public ::xml_schema::Type
+    {
+      public:
+      // Expires
+      //
+      typedef ::WS::EVENTING::ExpirationType ExpiresType;
+      typedef ::xsd::cxx::tree::optional< ExpiresType > ExpiresOptional;
+      typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
+
+      const ExpiresOptional&
+      Expires () const;
+
+      ExpiresOptional&
+      Expires ();
+
+      void
+      Expires (const ExpiresType& x);
+
+      void
+      Expires (const ExpiresOptional& x);
+
+      void
+      Expires (::std::unique_ptr< ExpiresType > p);
+
+      // Constructors.
+      //
+      RenewResponse ();
+
+      RenewResponse (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
-    SubscriptionEnd (const SubscriptionEnd& x,
+      RenewResponse (const RenewResponse& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
-    virtual SubscriptionEnd*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
+      virtual RenewResponse*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
 
-    SubscriptionEnd&
-    operator= (const SubscriptionEnd& x);
+      RenewResponse&
+      operator= (const RenewResponse& x);
 
-    virtual 
-    ~SubscriptionEnd ();
+      virtual 
+      ~RenewResponse ();
 
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
 
-    protected:
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
+      protected:
+      ExpiresOptional Expires_;
+    };
 
-    ::xsd::cxx::tree::one< SubscriptionManagerType > SubscriptionManager_;
-    ::xsd::cxx::tree::one< StatusType > Status_;
-    ReasonSequence Reason_;
-    AnySequence any_;
-    AnyAttributeSet any_attribute_;
-  };
+    class GetStatus: public ::xml_schema::Type
+    {
+      public:
+      // Constructors.
+      //
+      GetStatus ();
+
+      GetStatus (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+      GetStatus (const GetStatus& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+      virtual GetStatus*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+
+      virtual 
+      ~GetStatus ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+    };
+
+    class GetStatusResponse: public ::xml_schema::Type
+    {
+      public:
+      // Expires
+      //
+      typedef ::WS::EVENTING::ExpirationType ExpiresType;
+      typedef ::xsd::cxx::tree::optional< ExpiresType > ExpiresOptional;
+      typedef ::xsd::cxx::tree::traits< ExpiresType, char > ExpiresTraits;
+
+      const ExpiresOptional&
+      Expires () const;
+
+      ExpiresOptional&
+      Expires ();
+
+      void
+      Expires (const ExpiresType& x);
+
+      void
+      Expires (const ExpiresOptional& x);
+
+      void
+      Expires (::std::unique_ptr< ExpiresType > p);
+
+      // Constructors.
+      //
+      GetStatusResponse ();
+
+      GetStatusResponse (const ::xercesc::DOMElement& e,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
+
+      GetStatusResponse (const GetStatusResponse& x,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
+
+      virtual GetStatusResponse*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+
+      GetStatusResponse&
+      operator= (const GetStatusResponse& x);
+
+      virtual 
+      ~GetStatusResponse ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+      ExpiresOptional Expires_;
+    };
+
+    class Unsubscribe: public ::xml_schema::Type
+    {
+      public:
+      // Constructors.
+      //
+      Unsubscribe ();
+
+      Unsubscribe (const ::xercesc::DOMElement& e,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+      Unsubscribe (const Unsubscribe& x,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+      virtual Unsubscribe*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+
+      virtual 
+      ~Unsubscribe ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+    };
+
+    class SubscriptionEnd: public ::xml_schema::Type
+    {
+      public:
+      // SubscriptionManager
+      //
+      typedef ::WS::ADDRESSING::EndpointReferenceType SubscriptionManagerType;
+      typedef ::xsd::cxx::tree::traits< SubscriptionManagerType, char > SubscriptionManagerTraits;
+
+      const SubscriptionManagerType&
+      SubscriptionManager () const;
+
+      SubscriptionManagerType&
+      SubscriptionManager ();
+
+      void
+      SubscriptionManager (const SubscriptionManagerType& x);
+
+      void
+      SubscriptionManager (::std::unique_ptr< SubscriptionManagerType > p);
+
+      // Status
+      //
+      typedef ::WS::EVENTING::OpenSubscriptionEndCodeType StatusType;
+      typedef ::xsd::cxx::tree::traits< StatusType, char > StatusTraits;
+
+      const StatusType&
+      Status () const;
+
+      StatusType&
+      Status ();
+
+      void
+      Status (const StatusType& x);
+
+      void
+      Status (::std::unique_ptr< StatusType > p);
+
+      // Reason
+      //
+      typedef ::WS::EVENTING::LanguageSpecificStringType ReasonType;
+      typedef ::xsd::cxx::tree::sequence< ReasonType > ReasonSequence;
+      typedef ReasonSequence::iterator ReasonIterator;
+      typedef ReasonSequence::const_iterator ReasonConstIterator;
+      typedef ::xsd::cxx::tree::traits< ReasonType, char > ReasonTraits;
+
+      const ReasonSequence&
+      Reason () const;
+
+      ReasonSequence&
+      Reason ();
+
+      void
+      Reason (const ReasonSequence& s);
+
+      // Constructors.
+      //
+      SubscriptionEnd (const SubscriptionManagerType&,
+                       const StatusType&);
+
+      SubscriptionEnd (::std::unique_ptr< SubscriptionManagerType >,
+                       const StatusType&);
+
+      SubscriptionEnd (::std::unique_ptr< SubscriptionManagerType >,
+                       ::std::unique_ptr< StatusType >);
+
+      SubscriptionEnd (const ::xercesc::DOMElement& e,
+                       ::xml_schema::Flags f = 0,
+                       ::xml_schema::Container* c = 0);
+
+      SubscriptionEnd (const SubscriptionEnd& x,
+                       ::xml_schema::Flags f = 0,
+                       ::xml_schema::Container* c = 0);
+
+      virtual SubscriptionEnd*
+      _clone (::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0) const;
+
+      SubscriptionEnd&
+      operator= (const SubscriptionEnd& x);
+
+      virtual 
+      ~SubscriptionEnd ();
+
+      // Implementation.
+      //
+      protected:
+      void
+      parse (::xsd::cxx::xml::dom::parser< char >&,
+             ::xml_schema::Flags);
+
+      protected:
+      ::xsd::cxx::tree::one< SubscriptionManagerType > SubscriptionManager_;
+      ::xsd::cxx::tree::one< StatusType > Status_;
+      ReasonSequence Reason_;
+    };
+  }
 }
 
 #include <iosfwd>
@@ -1354,1123 +1018,1126 @@ namespace eventing
 #include <xercesc/dom/DOMDocument.hpp>
 #include <xercesc/dom/DOMErrorHandler.hpp>
 
-namespace eventing
+namespace WS
 {
-  // Parse a URI or a local file.
-  //
+  namespace EVENTING
+  {
+    // Parse a URI or a local file.
+    //
 
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (const ::std::string& uri,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (const ::std::string& uri,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (const ::std::string& uri,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::std::istream& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::std::istream& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::std::istream& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::std::istream& is,
-            const ::std::string& id,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::xercesc::InputSource& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::xercesc::InputSource& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::xercesc::InputSource& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (const ::xercesc::DOMDocument& d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-  NotifyTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (const ::std::string& uri,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (const ::std::string& uri,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (const ::std::string& uri,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (const ::std::string& uri,
               ::xml_schema::ErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (const ::std::string& uri,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (const ::std::string& uri,
               ::xercesc::DOMErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse std::istream.
-  //
+    // Parse std::istream.
+    //
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::std::istream& is,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::std::istream& is,
               ::xml_schema::ErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::std::istream& is,
               ::xercesc::DOMErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::std::istream& is,
               const ::std::string& id,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::std::istream& is,
               const ::std::string& id,
               ::xml_schema::ErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::std::istream& is,
               const ::std::string& id,
               ::xercesc::DOMErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::InputSource.
-  //
+    // Parse xercesc::InputSource.
+    //
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::xercesc::InputSource& is,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::xercesc::InputSource& is,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::xercesc::InputSource& is,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::xercesc::InputSource& is,
               ::xml_schema::ErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::xercesc::InputSource& is,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::xercesc::InputSource& is,
               ::xercesc::DOMErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::DOMDocument.
-  //
+    // Parse xercesc::DOMDocument.
+    //
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (const ::xercesc::DOMDocument& d,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (const ::xercesc::DOMDocument& d,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Subscribe >
-  Subscribe_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
+    NotifyTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (const ::std::string& uri,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (const ::std::string& uri,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (const ::std::string& uri,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::std::istream& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::std::istream& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::std::istream& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::std::istream& is,
-              const ::std::string& id,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::xercesc::InputSource& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::xercesc::InputSource& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::xercesc::InputSource& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (const ::xercesc::DOMDocument& d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  Identifier (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (const ::std::string& uri,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (const ::std::string& uri,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (const ::std::string& uri,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::std::istream& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::std::istream& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::xercesc::InputSource& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::xercesc::InputSource& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::xercesc::InputSource& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (const ::xercesc::DOMDocument& d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::SubscribeResponse >
-  SubscribeResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (const ::std::string& uri,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (const ::std::string& uri,
-                    ::xml_schema::ErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (const ::std::string& uri,
-                    ::xercesc::DOMErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::std::istream& is,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::std::istream& is,
-                    ::xml_schema::ErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::std::istream& is,
-                    ::xercesc::DOMErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::std::istream& is,
-                    const ::std::string& id,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::std::istream& is,
-                    const ::std::string& id,
-                    ::xml_schema::ErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::std::istream& is,
-                    const ::std::string& id,
-                    ::xercesc::DOMErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::xercesc::InputSource& is,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::xercesc::InputSource& is,
-                    ::xml_schema::ErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::xercesc::InputSource& is,
-                    ::xercesc::DOMErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (const ::xercesc::DOMDocument& d,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDialect (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (const ::std::string& uri,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (const ::std::string& uri,
-                         ::xml_schema::ErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (const ::std::string& uri,
-                         ::xercesc::DOMErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::std::istream& is,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::std::istream& is,
-                         ::xml_schema::ErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::std::istream& is,
-                         ::xercesc::DOMErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::std::istream& is,
-                         const ::std::string& id,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::std::istream& is,
-                         const ::std::string& id,
-                         ::xml_schema::ErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::std::istream& is,
-                         const ::std::string& id,
-                         ::xercesc::DOMErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::xercesc::InputSource& is,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::xercesc::InputSource& is,
-                         ::xml_schema::ErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::xercesc::InputSource& is,
-                         ::xercesc::DOMErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (const ::xercesc::DOMDocument& d,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::xml_schema::Uri >
-  SupportedDeliveryMode (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (const ::std::string& uri,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (const ::std::string& uri,
-          ::xml_schema::ErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (const ::std::string& uri,
-          ::xercesc::DOMErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::std::istream& is,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::std::istream& is,
-          ::xml_schema::ErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::std::istream& is,
-          ::xercesc::DOMErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::std::istream& is,
-          const ::std::string& id,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::std::istream& is,
-          const ::std::string& id,
-          ::xml_schema::ErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::std::istream& is,
-          const ::std::string& id,
-          ::xercesc::DOMErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::xercesc::InputSource& is,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::xercesc::InputSource& is,
-          ::xml_schema::ErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::xercesc::InputSource& is,
-          ::xercesc::DOMErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (const ::xercesc::DOMDocument& d,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::Renew >
-  Renew_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (const ::std::string& uri,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (const ::std::string& uri,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (const ::std::string& uri,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::std::istream& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::std::istream& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::xercesc::InputSource& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::xercesc::InputSource& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::xercesc::InputSource& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (const ::xercesc::DOMDocument& d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::RenewResponse >
-  RenewResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (const ::std::string& uri,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (const ::std::string& uri,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (const ::std::string& uri,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::std::istream& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::std::istream& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::std::istream& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::std::istream& is,
-              const ::std::string& id,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::xercesc::InputSource& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::xercesc::InputSource& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::xercesc::InputSource& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (const ::xercesc::DOMDocument& d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatus >
-  GetStatus_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (const ::std::string& uri,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (const ::std::string& uri,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (const ::std::string& uri,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::std::istream& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::std::istream& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::xercesc::InputSource& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::xercesc::InputSource& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::xercesc::InputSource& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (const ::xercesc::DOMDocument& d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::eventing::GetStatusResponse >
-  GetStatusResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (const ::std::string& uri,
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (const ::std::string& uri,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (const ::std::string& uri,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (const ::std::string& uri,
                 ::xml_schema::ErrorHandler& eh,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (const ::std::string& uri,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (const ::std::string& uri,
                 ::xercesc::DOMErrorHandler& eh,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse std::istream.
-  //
+    // Parse std::istream.
+    //
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::std::istream& is,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::std::istream& is,
                 ::xml_schema::ErrorHandler& eh,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::std::istream& is,
                 ::xercesc::DOMErrorHandler& eh,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::std::istream& is,
                 const ::std::string& id,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::std::istream& is,
                 const ::std::string& id,
                 ::xml_schema::ErrorHandler& eh,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::std::istream& is,
                 const ::std::string& id,
                 ::xercesc::DOMErrorHandler& eh,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::InputSource.
-  //
+    // Parse xercesc::InputSource.
+    //
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::xercesc::InputSource& is,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::xercesc::InputSource& is,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::xercesc::InputSource& is,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::xercesc::InputSource& is,
                 ::xml_schema::ErrorHandler& eh,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::xercesc::InputSource& is,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::xercesc::InputSource& is,
                 ::xercesc::DOMErrorHandler& eh,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::DOMDocument.
-  //
+    // Parse xercesc::DOMDocument.
+    //
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (const ::xercesc::DOMDocument& d,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (const ::xercesc::DOMDocument& d,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::Unsubscribe >
-  Unsubscribe_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
+    Subscribe_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                 ::xml_schema::Flags f = 0,
                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse a URI or a local file.
-  //
+    // Parse a URI or a local file.
+    //
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (const ::std::string& uri,
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (const ::std::string& uri,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (const ::std::string& uri,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (const ::std::string& uri,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse std::istream.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::std::istream& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::std::istream& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::std::istream& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::std::istream& is,
+                 const ::std::string& id,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::InputSource.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::xercesc::InputSource& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::xercesc::InputSource& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::xercesc::InputSource& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::DOMDocument.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (const ::xercesc::DOMDocument& d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Identifier >
+    Identifier_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (const ::std::string& uri,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (const ::std::string& uri,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (const ::std::string& uri,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse std::istream.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::std::istream& is,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::std::istream& is,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::std::istream& is,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::std::istream& is,
+                        const ::std::string& id,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::std::istream& is,
+                        const ::std::string& id,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::std::istream& is,
+                        const ::std::string& id,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::InputSource.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::xercesc::InputSource& is,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::xercesc::InputSource& is,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::xercesc::InputSource& is,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::DOMDocument.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (const ::xercesc::DOMDocument& d,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
+    SubscribeResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (const ::std::string& uri,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (const ::std::string& uri,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (const ::std::string& uri,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse std::istream.
+    //
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::std::istream& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::std::istream& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::std::istream& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::std::istream& is,
+                      const ::std::string& id,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::InputSource.
+    //
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::xercesc::InputSource& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::xercesc::InputSource& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::xercesc::InputSource& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::DOMDocument.
+    //
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (const ::xercesc::DOMDocument& d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDialect (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (const ::std::string& uri,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (const ::std::string& uri,
+                           ::xml_schema::ErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (const ::std::string& uri,
+                           ::xercesc::DOMErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse std::istream.
+    //
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::std::istream& is,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::std::istream& is,
+                           ::xml_schema::ErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::std::istream& is,
+                           ::xercesc::DOMErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::std::istream& is,
+                           const ::std::string& id,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::std::istream& is,
+                           const ::std::string& id,
+                           ::xml_schema::ErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::std::istream& is,
+                           const ::std::string& id,
+                           ::xercesc::DOMErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::InputSource.
+    //
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::xercesc::InputSource& is,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::xercesc::InputSource& is,
+                           ::xml_schema::ErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::xercesc::InputSource& is,
+                           ::xercesc::DOMErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::DOMDocument.
+    //
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (const ::xercesc::DOMDocument& d,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::xml_schema::Uri >
+    SupportedDeliveryMode (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (const ::std::string& uri,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (const ::std::string& uri,
+            ::xml_schema::ErrorHandler& eh,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (const ::std::string& uri,
+            ::xercesc::DOMErrorHandler& eh,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse std::istream.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::std::istream& is,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::std::istream& is,
+            ::xml_schema::ErrorHandler& eh,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::std::istream& is,
+            ::xercesc::DOMErrorHandler& eh,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::std::istream& is,
+            const ::std::string& id,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::std::istream& is,
+            const ::std::string& id,
+            ::xml_schema::ErrorHandler& eh,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::std::istream& is,
+            const ::std::string& id,
+            ::xercesc::DOMErrorHandler& eh,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::InputSource.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::xercesc::InputSource& is,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::xercesc::InputSource& is,
+            ::xml_schema::ErrorHandler& eh,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::xercesc::InputSource& is,
+            ::xercesc::DOMErrorHandler& eh,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::DOMDocument.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (const ::xercesc::DOMDocument& d,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Renew >
+    Renew_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+            ::xml_schema::Flags f = 0,
+            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (const ::std::string& uri,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (const ::std::string& uri,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (const ::std::string& uri,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (const ::std::string& uri,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (const ::std::string& uri,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse std::istream.
-  //
+    // Parse std::istream.
+    //
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::std::istream& is,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::std::istream& is,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::std::istream& is,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::std::istream& is,
                     const ::std::string& id,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::std::istream& is,
                     const ::std::string& id,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::std::istream& is,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::std::istream& is,
                     const ::std::string& id,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::InputSource.
-  //
+    // Parse xercesc::InputSource.
+    //
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::xercesc::InputSource& is,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::xercesc::InputSource& is,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::xercesc::InputSource& is,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::xercesc::InputSource& is,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::xercesc::InputSource& is,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::xercesc::InputSource& is,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::DOMDocument.
-  //
+    // Parse xercesc::DOMDocument.
+    //
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (const ::xercesc::DOMDocument& d,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (const ::xercesc::DOMDocument& d,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::eventing::SubscriptionEnd >
-  SubscriptionEnd_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
+    RenewResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (const ::std::string& uri,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (const ::std::string& uri,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (const ::std::string& uri,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse std::istream.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::std::istream& is,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::std::istream& is,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::std::istream& is,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::std::istream& is,
+                const ::std::string& id,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::std::istream& is,
+                const ::std::string& id,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::std::istream& is,
+                const ::std::string& id,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::InputSource.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::xercesc::InputSource& is,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::xercesc::InputSource& is,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::xercesc::InputSource& is,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::DOMDocument.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (const ::xercesc::DOMDocument& d,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
+    GetStatus_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (const ::std::string& uri,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (const ::std::string& uri,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (const ::std::string& uri,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse std::istream.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::std::istream& is,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::std::istream& is,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::std::istream& is,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::std::istream& is,
+                        const ::std::string& id,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::std::istream& is,
+                        const ::std::string& id,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::std::istream& is,
+                        const ::std::string& id,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::InputSource.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::xercesc::InputSource& is,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::xercesc::InputSource& is,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::xercesc::InputSource& is,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::DOMDocument.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (const ::xercesc::DOMDocument& d,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
+    GetStatusResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (const ::std::string& uri,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (const ::std::string& uri,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (const ::std::string& uri,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse std::istream.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::std::istream& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::std::istream& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::std::istream& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::std::istream& is,
+                  const ::std::string& id,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::InputSource.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::xercesc::InputSource& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::xercesc::InputSource& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::xercesc::InputSource& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::DOMDocument.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (const ::xercesc::DOMDocument& d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
+    Unsubscribe_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse a URI or a local file.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (const ::std::string& uri,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (const ::std::string& uri,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (const ::std::string& uri,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse std::istream.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::std::istream& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::std::istream& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::std::istream& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::std::istream& is,
+                      const ::std::string& id,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::InputSource.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::xercesc::InputSource& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::xercesc::InputSource& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::xercesc::InputSource& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    // Parse xercesc::DOMDocument.
+    //
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (const ::xercesc::DOMDocument& d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
+    SubscriptionEnd_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  }
 }
 
 #include <iosfwd>
@@ -2481,896 +2148,912 @@ namespace eventing
 
 #include <xsd/cxx/xml/dom/auto-ptr.hxx>
 
-namespace eventing
+namespace WS
 {
-  void
-  operator<< (::xercesc::DOMElement&, const DeliveryType&);
+  namespace EVENTING
+  {
+    void
+    operator<< (::xercesc::DOMElement&, const DeliveryType&);
 
-  // Serialize to std::ostream.
-  //
+    // Serialize to std::ostream.
+    //
 
-  void
-  NotifyTo (::std::ostream& os,
-            const ::WS::ADDRESSING::EndpointReferenceType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-  void
-  NotifyTo (::std::ostream& os,
-            const ::WS::ADDRESSING::EndpointReferenceType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-  void
-  NotifyTo (::std::ostream& os,
-            const ::WS::ADDRESSING::EndpointReferenceType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  NotifyTo (::xercesc::XMLFormatTarget& ft,
-            const ::WS::ADDRESSING::EndpointReferenceType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-  void
-  NotifyTo (::xercesc::XMLFormatTarget& ft,
-            const ::WS::ADDRESSING::EndpointReferenceType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-  void
-  NotifyTo (::xercesc::XMLFormatTarget& ft,
-            const ::WS::ADDRESSING::EndpointReferenceType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  NotifyTo (::xercesc::DOMDocument& d,
-            const ::WS::ADDRESSING::EndpointReferenceType& x,
-            ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  NotifyTo (const ::WS::ADDRESSING::EndpointReferenceType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const NonNegativeDurationType&);
-
-  void
-  operator<< (::xercesc::DOMAttr&, const NonNegativeDurationType&);
-
-  void
-  operator<< (::xml_schema::ListStream&,
-              const NonNegativeDurationType&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const ExpirationType&);
-
-  void
-  operator<< (::xercesc::DOMAttr&, const ExpirationType&);
-
-  void
-  operator<< (::xml_schema::ListStream&,
-              const ExpirationType&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const FilterType&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const LanguageSpecificStringType&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  Subscribe_ (::std::ostream& os,
-              const ::eventing::Subscribe& x, 
+    void
+    NotifyTo (::std::ostream& os,
+              const ::WS::ADDRESSING::EndpointReferenceType& x, 
               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
               const ::std::string& e = "UTF-8",
               ::xml_schema::Flags f = 0);
 
-  void
-  Subscribe_ (::std::ostream& os,
-              const ::eventing::Subscribe& x, 
+    void
+    NotifyTo (::std::ostream& os,
+              const ::WS::ADDRESSING::EndpointReferenceType& x, 
               ::xml_schema::ErrorHandler& eh,
               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
               const ::std::string& e = "UTF-8",
               ::xml_schema::Flags f = 0);
 
-  void
-  Subscribe_ (::std::ostream& os,
-              const ::eventing::Subscribe& x, 
+    void
+    NotifyTo (::std::ostream& os,
+              const ::WS::ADDRESSING::EndpointReferenceType& x, 
               ::xercesc::DOMErrorHandler& eh,
               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
               const ::std::string& e = "UTF-8",
               ::xml_schema::Flags f = 0);
 
-  // Serialize to xercesc::XMLFormatTarget.
-  //
+    // Serialize to xercesc::XMLFormatTarget.
+    //
 
-  void
-  Subscribe_ (::xercesc::XMLFormatTarget& ft,
-              const ::eventing::Subscribe& x, 
+    void
+    NotifyTo (::xercesc::XMLFormatTarget& ft,
+              const ::WS::ADDRESSING::EndpointReferenceType& x, 
               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
               const ::std::string& e = "UTF-8",
               ::xml_schema::Flags f = 0);
 
-  void
-  Subscribe_ (::xercesc::XMLFormatTarget& ft,
-              const ::eventing::Subscribe& x, 
+    void
+    NotifyTo (::xercesc::XMLFormatTarget& ft,
+              const ::WS::ADDRESSING::EndpointReferenceType& x, 
               ::xml_schema::ErrorHandler& eh,
               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
               const ::std::string& e = "UTF-8",
               ::xml_schema::Flags f = 0);
 
-  void
-  Subscribe_ (::xercesc::XMLFormatTarget& ft,
-              const ::eventing::Subscribe& x, 
+    void
+    NotifyTo (::xercesc::XMLFormatTarget& ft,
+              const ::WS::ADDRESSING::EndpointReferenceType& x, 
               ::xercesc::DOMErrorHandler& eh,
               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
               const ::std::string& e = "UTF-8",
               ::xml_schema::Flags f = 0);
 
-  // Serialize to an existing xercesc::DOMDocument.
-  //
+    // Serialize to an existing xercesc::DOMDocument.
+    //
 
-  void
-  Subscribe_ (::xercesc::DOMDocument& d,
-              const ::eventing::Subscribe& x,
+    void
+    NotifyTo (::xercesc::DOMDocument& d,
+              const ::WS::ADDRESSING::EndpointReferenceType& x,
               ::xml_schema::Flags f = 0);
 
-  // Serialize to a new xercesc::DOMDocument.
-  //
+    // Serialize to a new xercesc::DOMDocument.
+    //
 
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Subscribe_ (const ::eventing::Subscribe& x, 
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    NotifyTo (const ::WS::ADDRESSING::EndpointReferenceType& x, 
               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
               ::xml_schema::Flags f = 0);
 
-  // Serialize to std::ostream.
-  //
+    void
+    operator<< (::xercesc::DOMElement&, const NonNegativeDurationType&);
 
-  void
-  Identifier (::std::ostream& os,
-              const ::xml_schema::Uri& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    void
+    operator<< (::xercesc::DOMAttr&, const NonNegativeDurationType&);
 
-  void
-  Identifier (::std::ostream& os,
-              const ::xml_schema::Uri& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    void
+    operator<< (::xml_schema::ListStream&,
+                const NonNegativeDurationType&);
 
-  void
-  Identifier (::std::ostream& os,
-              const ::xml_schema::Uri& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    void
+    operator<< (::xercesc::DOMElement&, const ExpirationType&);
 
-  // Serialize to xercesc::XMLFormatTarget.
-  //
+    void
+    operator<< (::xercesc::DOMAttr&, const ExpirationType&);
 
-  void
-  Identifier (::xercesc::XMLFormatTarget& ft,
-              const ::xml_schema::Uri& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    void
+    operator<< (::xml_schema::ListStream&,
+                const ExpirationType&);
 
-  void
-  Identifier (::xercesc::XMLFormatTarget& ft,
-              const ::xml_schema::Uri& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    void
+    operator<< (::xercesc::DOMElement&, const ActionList&);
 
-  void
-  Identifier (::xercesc::XMLFormatTarget& ft,
-              const ::xml_schema::Uri& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    void
+    operator<< (::xercesc::DOMAttr&, const ActionList&);
 
-  // Serialize to an existing xercesc::DOMDocument.
-  //
+    void
+    operator<< (::xml_schema::ListStream&,
+                const ActionList&);
 
-  void
-  Identifier (::xercesc::DOMDocument& d,
-              const ::xml_schema::Uri& x,
-              ::xml_schema::Flags f = 0);
+    void
+    operator<< (::xercesc::DOMElement&, const FilterType&);
 
-  // Serialize to a new xercesc::DOMDocument.
-  //
+    void
+    operator<< (::xercesc::DOMElement&, const LanguageSpecificStringType&);
 
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Identifier (const ::xml_schema::Uri& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              ::xml_schema::Flags f = 0);
+    // Serialize to std::ostream.
+    //
 
-  // Serialize to std::ostream.
-  //
-
-  void
-  SubscribeResponse_ (::std::ostream& os,
-                      const ::eventing::SubscribeResponse& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SubscribeResponse_ (::std::ostream& os,
-                      const ::eventing::SubscribeResponse& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SubscribeResponse_ (::std::ostream& os,
-                      const ::eventing::SubscribeResponse& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SubscribeResponse_ (::xercesc::XMLFormatTarget& ft,
-                      const ::eventing::SubscribeResponse& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SubscribeResponse_ (::xercesc::XMLFormatTarget& ft,
-                      const ::eventing::SubscribeResponse& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SubscribeResponse_ (::xercesc::XMLFormatTarget& ft,
-                      const ::eventing::SubscribeResponse& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SubscribeResponse_ (::xercesc::DOMDocument& d,
-                      const ::eventing::SubscribeResponse& x,
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SubscribeResponse_ (const ::eventing::SubscribeResponse& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SupportedDialect (::std::ostream& os,
-                    const ::xml_schema::Uri& x, 
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  void
-  SupportedDialect (::std::ostream& os,
-                    const ::xml_schema::Uri& x, 
-                    ::xml_schema::ErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  void
-  SupportedDialect (::std::ostream& os,
-                    const ::xml_schema::Uri& x, 
-                    ::xercesc::DOMErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SupportedDialect (::xercesc::XMLFormatTarget& ft,
-                    const ::xml_schema::Uri& x, 
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  void
-  SupportedDialect (::xercesc::XMLFormatTarget& ft,
-                    const ::xml_schema::Uri& x, 
-                    ::xml_schema::ErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  void
-  SupportedDialect (::xercesc::XMLFormatTarget& ft,
-                    const ::xml_schema::Uri& x, 
-                    ::xercesc::DOMErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SupportedDialect (::xercesc::DOMDocument& d,
-                    const ::xml_schema::Uri& x,
-                    ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SupportedDialect (const ::xml_schema::Uri& x, 
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SupportedDeliveryMode (::std::ostream& os,
-                         const ::xml_schema::Uri& x, 
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  SupportedDeliveryMode (::std::ostream& os,
-                         const ::xml_schema::Uri& x, 
-                         ::xml_schema::ErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  SupportedDeliveryMode (::std::ostream& os,
-                         const ::xml_schema::Uri& x, 
-                         ::xercesc::DOMErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SupportedDeliveryMode (::xercesc::XMLFormatTarget& ft,
-                         const ::xml_schema::Uri& x, 
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  SupportedDeliveryMode (::xercesc::XMLFormatTarget& ft,
-                         const ::xml_schema::Uri& x, 
-                         ::xml_schema::ErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  SupportedDeliveryMode (::xercesc::XMLFormatTarget& ft,
-                         const ::xml_schema::Uri& x, 
-                         ::xercesc::DOMErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SupportedDeliveryMode (::xercesc::DOMDocument& d,
-                         const ::xml_schema::Uri& x,
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SupportedDeliveryMode (const ::xml_schema::Uri& x, 
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  Renew_ (::std::ostream& os,
-          const ::eventing::Renew& x, 
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-  void
-  Renew_ (::std::ostream& os,
-          const ::eventing::Renew& x, 
-          ::xml_schema::ErrorHandler& eh,
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-  void
-  Renew_ (::std::ostream& os,
-          const ::eventing::Renew& x, 
-          ::xercesc::DOMErrorHandler& eh,
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  Renew_ (::xercesc::XMLFormatTarget& ft,
-          const ::eventing::Renew& x, 
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-  void
-  Renew_ (::xercesc::XMLFormatTarget& ft,
-          const ::eventing::Renew& x, 
-          ::xml_schema::ErrorHandler& eh,
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-  void
-  Renew_ (::xercesc::XMLFormatTarget& ft,
-          const ::eventing::Renew& x, 
-          ::xercesc::DOMErrorHandler& eh,
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  Renew_ (::xercesc::DOMDocument& d,
-          const ::eventing::Renew& x,
-          ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Renew_ (const ::eventing::Renew& x, 
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  RenewResponse_ (::std::ostream& os,
-                  const ::eventing::RenewResponse& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  void
-  RenewResponse_ (::std::ostream& os,
-                  const ::eventing::RenewResponse& x, 
-                  ::xml_schema::ErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  void
-  RenewResponse_ (::std::ostream& os,
-                  const ::eventing::RenewResponse& x, 
-                  ::xercesc::DOMErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  RenewResponse_ (::xercesc::XMLFormatTarget& ft,
-                  const ::eventing::RenewResponse& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  void
-  RenewResponse_ (::xercesc::XMLFormatTarget& ft,
-                  const ::eventing::RenewResponse& x, 
-                  ::xml_schema::ErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  void
-  RenewResponse_ (::xercesc::XMLFormatTarget& ft,
-                  const ::eventing::RenewResponse& x, 
-                  ::xercesc::DOMErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  RenewResponse_ (::xercesc::DOMDocument& d,
-                  const ::eventing::RenewResponse& x,
-                  ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  RenewResponse_ (const ::eventing::RenewResponse& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  GetStatus_ (::std::ostream& os,
-              const ::eventing::GetStatus& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  GetStatus_ (::std::ostream& os,
-              const ::eventing::GetStatus& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  GetStatus_ (::std::ostream& os,
-              const ::eventing::GetStatus& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  GetStatus_ (::xercesc::XMLFormatTarget& ft,
-              const ::eventing::GetStatus& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  GetStatus_ (::xercesc::XMLFormatTarget& ft,
-              const ::eventing::GetStatus& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  GetStatus_ (::xercesc::XMLFormatTarget& ft,
-              const ::eventing::GetStatus& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  GetStatus_ (::xercesc::DOMDocument& d,
-              const ::eventing::GetStatus& x,
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetStatus_ (const ::eventing::GetStatus& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  GetStatusResponse_ (::std::ostream& os,
-                      const ::eventing::GetStatusResponse& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  GetStatusResponse_ (::std::ostream& os,
-                      const ::eventing::GetStatusResponse& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  GetStatusResponse_ (::std::ostream& os,
-                      const ::eventing::GetStatusResponse& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  GetStatusResponse_ (::xercesc::XMLFormatTarget& ft,
-                      const ::eventing::GetStatusResponse& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  GetStatusResponse_ (::xercesc::XMLFormatTarget& ft,
-                      const ::eventing::GetStatusResponse& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  GetStatusResponse_ (::xercesc::XMLFormatTarget& ft,
-                      const ::eventing::GetStatusResponse& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  GetStatusResponse_ (::xercesc::DOMDocument& d,
-                      const ::eventing::GetStatusResponse& x,
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetStatusResponse_ (const ::eventing::GetStatusResponse& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  Unsubscribe_ (::std::ostream& os,
-                const ::eventing::Unsubscribe& x, 
+    void
+    Subscribe_ (::std::ostream& os,
+                const ::WS::EVENTING::Subscribe& x, 
                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                 const ::std::string& e = "UTF-8",
                 ::xml_schema::Flags f = 0);
 
-  void
-  Unsubscribe_ (::std::ostream& os,
-                const ::eventing::Unsubscribe& x, 
+    void
+    Subscribe_ (::std::ostream& os,
+                const ::WS::EVENTING::Subscribe& x, 
                 ::xml_schema::ErrorHandler& eh,
                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                 const ::std::string& e = "UTF-8",
                 ::xml_schema::Flags f = 0);
 
-  void
-  Unsubscribe_ (::std::ostream& os,
-                const ::eventing::Unsubscribe& x, 
+    void
+    Subscribe_ (::std::ostream& os,
+                const ::WS::EVENTING::Subscribe& x, 
                 ::xercesc::DOMErrorHandler& eh,
                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                 const ::std::string& e = "UTF-8",
                 ::xml_schema::Flags f = 0);
 
-  // Serialize to xercesc::XMLFormatTarget.
-  //
+    // Serialize to xercesc::XMLFormatTarget.
+    //
 
-  void
-  Unsubscribe_ (::xercesc::XMLFormatTarget& ft,
-                const ::eventing::Unsubscribe& x, 
+    void
+    Subscribe_ (::xercesc::XMLFormatTarget& ft,
+                const ::WS::EVENTING::Subscribe& x, 
                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                 const ::std::string& e = "UTF-8",
                 ::xml_schema::Flags f = 0);
 
-  void
-  Unsubscribe_ (::xercesc::XMLFormatTarget& ft,
-                const ::eventing::Unsubscribe& x, 
+    void
+    Subscribe_ (::xercesc::XMLFormatTarget& ft,
+                const ::WS::EVENTING::Subscribe& x, 
                 ::xml_schema::ErrorHandler& eh,
                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                 const ::std::string& e = "UTF-8",
                 ::xml_schema::Flags f = 0);
 
-  void
-  Unsubscribe_ (::xercesc::XMLFormatTarget& ft,
-                const ::eventing::Unsubscribe& x, 
+    void
+    Subscribe_ (::xercesc::XMLFormatTarget& ft,
+                const ::WS::EVENTING::Subscribe& x, 
                 ::xercesc::DOMErrorHandler& eh,
                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                 const ::std::string& e = "UTF-8",
                 ::xml_schema::Flags f = 0);
 
-  // Serialize to an existing xercesc::DOMDocument.
-  //
+    // Serialize to an existing xercesc::DOMDocument.
+    //
 
-  void
-  Unsubscribe_ (::xercesc::DOMDocument& d,
-                const ::eventing::Unsubscribe& x,
+    void
+    Subscribe_ (::xercesc::DOMDocument& d,
+                const ::WS::EVENTING::Subscribe& x,
                 ::xml_schema::Flags f = 0);
 
-  // Serialize to a new xercesc::DOMDocument.
-  //
+    // Serialize to a new xercesc::DOMDocument.
+    //
 
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Unsubscribe_ (const ::eventing::Unsubscribe& x, 
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    Subscribe_ (const ::WS::EVENTING::Subscribe& x, 
                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                 ::xml_schema::Flags f = 0);
 
-  // Serialize to std::ostream.
-  //
+    // Serialize to std::ostream.
+    //
 
-  void
-  SubscriptionEnd_ (::std::ostream& os,
-                    const ::eventing::SubscriptionEnd& x, 
+    void
+    Identifier_ (::std::ostream& os,
+                 const ::WS::EVENTING::Identifier& x, 
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+    void
+    Identifier_ (::std::ostream& os,
+                 const ::WS::EVENTING::Identifier& x, 
+                 ::xml_schema::ErrorHandler& eh,
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+    void
+    Identifier_ (::std::ostream& os,
+                 const ::WS::EVENTING::Identifier& x, 
+                 ::xercesc::DOMErrorHandler& eh,
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    Identifier_ (::xercesc::XMLFormatTarget& ft,
+                 const ::WS::EVENTING::Identifier& x, 
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+    void
+    Identifier_ (::xercesc::XMLFormatTarget& ft,
+                 const ::WS::EVENTING::Identifier& x, 
+                 ::xml_schema::ErrorHandler& eh,
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+    void
+    Identifier_ (::xercesc::XMLFormatTarget& ft,
+                 const ::WS::EVENTING::Identifier& x, 
+                 ::xercesc::DOMErrorHandler& eh,
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    Identifier_ (::xercesc::DOMDocument& d,
+                 const ::WS::EVENTING::Identifier& x,
+                 ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    Identifier_ (const ::WS::EVENTING::Identifier& x, 
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 ::xml_schema::Flags f = 0);
+
+    // Serialize to std::ostream.
+    //
+
+    void
+    SubscribeResponse_ (::std::ostream& os,
+                        const ::WS::EVENTING::SubscribeResponse& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    void
+    SubscribeResponse_ (::std::ostream& os,
+                        const ::WS::EVENTING::SubscribeResponse& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    void
+    SubscribeResponse_ (::std::ostream& os,
+                        const ::WS::EVENTING::SubscribeResponse& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    SubscribeResponse_ (::xercesc::XMLFormatTarget& ft,
+                        const ::WS::EVENTING::SubscribeResponse& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    void
+    SubscribeResponse_ (::xercesc::XMLFormatTarget& ft,
+                        const ::WS::EVENTING::SubscribeResponse& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    void
+    SubscribeResponse_ (::xercesc::XMLFormatTarget& ft,
+                        const ::WS::EVENTING::SubscribeResponse& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    SubscribeResponse_ (::xercesc::DOMDocument& d,
+                        const ::WS::EVENTING::SubscribeResponse& x,
+                        ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    SubscribeResponse_ (const ::WS::EVENTING::SubscribeResponse& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        ::xml_schema::Flags f = 0);
+
+    // Serialize to std::ostream.
+    //
+
+    void
+    SupportedDialect (::std::ostream& os,
+                      const ::xml_schema::Uri& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    void
+    SupportedDialect (::std::ostream& os,
+                      const ::xml_schema::Uri& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    void
+    SupportedDialect (::std::ostream& os,
+                      const ::xml_schema::Uri& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    SupportedDialect (::xercesc::XMLFormatTarget& ft,
+                      const ::xml_schema::Uri& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    void
+    SupportedDialect (::xercesc::XMLFormatTarget& ft,
+                      const ::xml_schema::Uri& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    void
+    SupportedDialect (::xercesc::XMLFormatTarget& ft,
+                      const ::xml_schema::Uri& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    SupportedDialect (::xercesc::DOMDocument& d,
+                      const ::xml_schema::Uri& x,
+                      ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    SupportedDialect (const ::xml_schema::Uri& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      ::xml_schema::Flags f = 0);
+
+    // Serialize to std::ostream.
+    //
+
+    void
+    SupportedDeliveryMode (::std::ostream& os,
+                           const ::xml_schema::Uri& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+    void
+    SupportedDeliveryMode (::std::ostream& os,
+                           const ::xml_schema::Uri& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+    void
+    SupportedDeliveryMode (::std::ostream& os,
+                           const ::xml_schema::Uri& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    SupportedDeliveryMode (::xercesc::XMLFormatTarget& ft,
+                           const ::xml_schema::Uri& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+    void
+    SupportedDeliveryMode (::xercesc::XMLFormatTarget& ft,
+                           const ::xml_schema::Uri& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+    void
+    SupportedDeliveryMode (::xercesc::XMLFormatTarget& ft,
+                           const ::xml_schema::Uri& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    SupportedDeliveryMode (::xercesc::DOMDocument& d,
+                           const ::xml_schema::Uri& x,
+                           ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    SupportedDeliveryMode (const ::xml_schema::Uri& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           ::xml_schema::Flags f = 0);
+
+    // Serialize to std::ostream.
+    //
+
+    void
+    Renew_ (::std::ostream& os,
+            const ::WS::EVENTING::Renew& x, 
+            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+            const ::std::string& e = "UTF-8",
+            ::xml_schema::Flags f = 0);
+
+    void
+    Renew_ (::std::ostream& os,
+            const ::WS::EVENTING::Renew& x, 
+            ::xml_schema::ErrorHandler& eh,
+            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+            const ::std::string& e = "UTF-8",
+            ::xml_schema::Flags f = 0);
+
+    void
+    Renew_ (::std::ostream& os,
+            const ::WS::EVENTING::Renew& x, 
+            ::xercesc::DOMErrorHandler& eh,
+            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+            const ::std::string& e = "UTF-8",
+            ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    Renew_ (::xercesc::XMLFormatTarget& ft,
+            const ::WS::EVENTING::Renew& x, 
+            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+            const ::std::string& e = "UTF-8",
+            ::xml_schema::Flags f = 0);
+
+    void
+    Renew_ (::xercesc::XMLFormatTarget& ft,
+            const ::WS::EVENTING::Renew& x, 
+            ::xml_schema::ErrorHandler& eh,
+            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+            const ::std::string& e = "UTF-8",
+            ::xml_schema::Flags f = 0);
+
+    void
+    Renew_ (::xercesc::XMLFormatTarget& ft,
+            const ::WS::EVENTING::Renew& x, 
+            ::xercesc::DOMErrorHandler& eh,
+            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+            const ::std::string& e = "UTF-8",
+            ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    Renew_ (::xercesc::DOMDocument& d,
+            const ::WS::EVENTING::Renew& x,
+            ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    Renew_ (const ::WS::EVENTING::Renew& x, 
+            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+            ::xml_schema::Flags f = 0);
+
+    // Serialize to std::ostream.
+    //
+
+    void
+    RenewResponse_ (::std::ostream& os,
+                    const ::WS::EVENTING::RenewResponse& x, 
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
-  void
-  SubscriptionEnd_ (::std::ostream& os,
-                    const ::eventing::SubscriptionEnd& x, 
+    void
+    RenewResponse_ (::std::ostream& os,
+                    const ::WS::EVENTING::RenewResponse& x, 
                     ::xml_schema::ErrorHandler& eh,
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
-  void
-  SubscriptionEnd_ (::std::ostream& os,
-                    const ::eventing::SubscriptionEnd& x, 
+    void
+    RenewResponse_ (::std::ostream& os,
+                    const ::WS::EVENTING::RenewResponse& x, 
                     ::xercesc::DOMErrorHandler& eh,
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
-  // Serialize to xercesc::XMLFormatTarget.
-  //
+    // Serialize to xercesc::XMLFormatTarget.
+    //
 
-  void
-  SubscriptionEnd_ (::xercesc::XMLFormatTarget& ft,
-                    const ::eventing::SubscriptionEnd& x, 
+    void
+    RenewResponse_ (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::EVENTING::RenewResponse& x, 
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
-  void
-  SubscriptionEnd_ (::xercesc::XMLFormatTarget& ft,
-                    const ::eventing::SubscriptionEnd& x, 
+    void
+    RenewResponse_ (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::EVENTING::RenewResponse& x, 
                     ::xml_schema::ErrorHandler& eh,
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
-  void
-  SubscriptionEnd_ (::xercesc::XMLFormatTarget& ft,
-                    const ::eventing::SubscriptionEnd& x, 
+    void
+    RenewResponse_ (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::EVENTING::RenewResponse& x, 
                     ::xercesc::DOMErrorHandler& eh,
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
-  // Serialize to an existing xercesc::DOMDocument.
-  //
+    // Serialize to an existing xercesc::DOMDocument.
+    //
 
-  void
-  SubscriptionEnd_ (::xercesc::DOMDocument& d,
-                    const ::eventing::SubscriptionEnd& x,
+    void
+    RenewResponse_ (::xercesc::DOMDocument& d,
+                    const ::WS::EVENTING::RenewResponse& x,
                     ::xml_schema::Flags f = 0);
 
-  // Serialize to a new xercesc::DOMDocument.
-  //
+    // Serialize to a new xercesc::DOMDocument.
+    //
 
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SubscriptionEnd_ (const ::eventing::SubscriptionEnd& x, 
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    RenewResponse_ (const ::WS::EVENTING::RenewResponse& x, 
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     ::xml_schema::Flags f = 0);
 
-  void
-  operator<< (::xercesc::DOMElement&, const SubscriptionEndCodeType&);
+    // Serialize to std::ostream.
+    //
 
-  void
-  operator<< (::xercesc::DOMAttr&, const SubscriptionEndCodeType&);
+    void
+    GetStatus_ (::std::ostream& os,
+                const ::WS::EVENTING::GetStatus& x, 
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
 
-  void
-  operator<< (::xml_schema::ListStream&,
-              const SubscriptionEndCodeType&);
+    void
+    GetStatus_ (::std::ostream& os,
+                const ::WS::EVENTING::GetStatus& x, 
+                ::xml_schema::ErrorHandler& eh,
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
 
-  void
-  operator<< (::xercesc::DOMElement&, const OpenSubscriptionEndCodeType&);
+    void
+    GetStatus_ (::std::ostream& os,
+                const ::WS::EVENTING::GetStatus& x, 
+                ::xercesc::DOMErrorHandler& eh,
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
 
-  void
-  operator<< (::xercesc::DOMAttr&, const OpenSubscriptionEndCodeType&);
+    // Serialize to xercesc::XMLFormatTarget.
+    //
 
-  void
-  operator<< (::xml_schema::ListStream&,
-              const OpenSubscriptionEndCodeType&);
+    void
+    GetStatus_ (::xercesc::XMLFormatTarget& ft,
+                const ::WS::EVENTING::GetStatus& x, 
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
 
-  void
-  operator<< (::xercesc::DOMElement&, const Subscribe&);
+    void
+    GetStatus_ (::xercesc::XMLFormatTarget& ft,
+                const ::WS::EVENTING::GetStatus& x, 
+                ::xml_schema::ErrorHandler& eh,
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
 
-  void
-  operator<< (::xercesc::DOMElement&, const SubscribeResponse&);
+    void
+    GetStatus_ (::xercesc::XMLFormatTarget& ft,
+                const ::WS::EVENTING::GetStatus& x, 
+                ::xercesc::DOMErrorHandler& eh,
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
 
-  void
-  operator<< (::xercesc::DOMElement&, const Renew&);
+    // Serialize to an existing xercesc::DOMDocument.
+    //
 
-  void
-  operator<< (::xercesc::DOMElement&, const RenewResponse&);
+    void
+    GetStatus_ (::xercesc::DOMDocument& d,
+                const ::WS::EVENTING::GetStatus& x,
+                ::xml_schema::Flags f = 0);
 
-  void
-  operator<< (::xercesc::DOMElement&, const GetStatus&);
+    // Serialize to a new xercesc::DOMDocument.
+    //
 
-  void
-  operator<< (::xercesc::DOMElement&, const GetStatusResponse&);
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    GetStatus_ (const ::WS::EVENTING::GetStatus& x, 
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                ::xml_schema::Flags f = 0);
 
-  void
-  operator<< (::xercesc::DOMElement&, const Unsubscribe&);
+    // Serialize to std::ostream.
+    //
 
-  void
-  operator<< (::xercesc::DOMElement&, const SubscriptionEnd&);
+    void
+    GetStatusResponse_ (::std::ostream& os,
+                        const ::WS::EVENTING::GetStatusResponse& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    void
+    GetStatusResponse_ (::std::ostream& os,
+                        const ::WS::EVENTING::GetStatusResponse& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    void
+    GetStatusResponse_ (::std::ostream& os,
+                        const ::WS::EVENTING::GetStatusResponse& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    GetStatusResponse_ (::xercesc::XMLFormatTarget& ft,
+                        const ::WS::EVENTING::GetStatusResponse& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    void
+    GetStatusResponse_ (::xercesc::XMLFormatTarget& ft,
+                        const ::WS::EVENTING::GetStatusResponse& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    void
+    GetStatusResponse_ (::xercesc::XMLFormatTarget& ft,
+                        const ::WS::EVENTING::GetStatusResponse& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    GetStatusResponse_ (::xercesc::DOMDocument& d,
+                        const ::WS::EVENTING::GetStatusResponse& x,
+                        ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    GetStatusResponse_ (const ::WS::EVENTING::GetStatusResponse& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        ::xml_schema::Flags f = 0);
+
+    // Serialize to std::ostream.
+    //
+
+    void
+    Unsubscribe_ (::std::ostream& os,
+                  const ::WS::EVENTING::Unsubscribe& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+    void
+    Unsubscribe_ (::std::ostream& os,
+                  const ::WS::EVENTING::Unsubscribe& x, 
+                  ::xml_schema::ErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+    void
+    Unsubscribe_ (::std::ostream& os,
+                  const ::WS::EVENTING::Unsubscribe& x, 
+                  ::xercesc::DOMErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    Unsubscribe_ (::xercesc::XMLFormatTarget& ft,
+                  const ::WS::EVENTING::Unsubscribe& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+    void
+    Unsubscribe_ (::xercesc::XMLFormatTarget& ft,
+                  const ::WS::EVENTING::Unsubscribe& x, 
+                  ::xml_schema::ErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+    void
+    Unsubscribe_ (::xercesc::XMLFormatTarget& ft,
+                  const ::WS::EVENTING::Unsubscribe& x, 
+                  ::xercesc::DOMErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    Unsubscribe_ (::xercesc::DOMDocument& d,
+                  const ::WS::EVENTING::Unsubscribe& x,
+                  ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    Unsubscribe_ (const ::WS::EVENTING::Unsubscribe& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  ::xml_schema::Flags f = 0);
+
+    // Serialize to std::ostream.
+    //
+
+    void
+    SubscriptionEnd_ (::std::ostream& os,
+                      const ::WS::EVENTING::SubscriptionEnd& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    void
+    SubscriptionEnd_ (::std::ostream& os,
+                      const ::WS::EVENTING::SubscriptionEnd& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    void
+    SubscriptionEnd_ (::std::ostream& os,
+                      const ::WS::EVENTING::SubscriptionEnd& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    SubscriptionEnd_ (::xercesc::XMLFormatTarget& ft,
+                      const ::WS::EVENTING::SubscriptionEnd& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    void
+    SubscriptionEnd_ (::xercesc::XMLFormatTarget& ft,
+                      const ::WS::EVENTING::SubscriptionEnd& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    void
+    SubscriptionEnd_ (::xercesc::XMLFormatTarget& ft,
+                      const ::WS::EVENTING::SubscriptionEnd& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    SubscriptionEnd_ (::xercesc::DOMDocument& d,
+                      const ::WS::EVENTING::SubscriptionEnd& x,
+                      ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    SubscriptionEnd_ (const ::WS::EVENTING::SubscriptionEnd& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      ::xml_schema::Flags f = 0);
+
+    void
+    operator<< (::xercesc::DOMElement&, const SubscriptionEndCodeType&);
+
+    void
+    operator<< (::xercesc::DOMAttr&, const SubscriptionEndCodeType&);
+
+    void
+    operator<< (::xml_schema::ListStream&,
+                const SubscriptionEndCodeType&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const OpenSubscriptionEndCodeType&);
+
+    void
+    operator<< (::xercesc::DOMAttr&, const OpenSubscriptionEndCodeType&);
+
+    void
+    operator<< (::xml_schema::ListStream&,
+                const OpenSubscriptionEndCodeType&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const Subscribe&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const Identifier&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const SubscribeResponse&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const Renew&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const RenewResponse&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const GetStatus&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const GetStatusResponse&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const Unsubscribe&);
+
+    void
+    operator<< (::xercesc::DOMElement&, const SubscriptionEnd&);
+  }
 }
 
 #include <xsd/cxx/post.hxx>

@@ -8,7 +8,6 @@
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
@@ -25,6 +24,8 @@
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Util/DebugOut.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
@@ -85,6 +86,7 @@ public:
         // TODO: in real applications, check if state has an observed value and if the observed value has a value!
         return (float)result.getObservedValue().getValue();
     }
+
 };
 
 class CurValueStateHandler : public OSCPProviderNumericMetricStateHandler {
@@ -164,7 +166,6 @@ public:
 private:
     std::string descriptorHandle;
 };
-
 class OSCPHoldingDeviceProvider : public OSCPProvider {
 public:
 
@@ -341,11 +342,11 @@ private:
 int main()
 {
 	DebugOut(DebugOut::Default, "ExampleProject") << "Startup";
-    OSCLibrary::getInstance()->startup(DebugOut::Error);
-	OSCLibrary::getInstance()->setPortStart(11000);
+    OSCLibrary::getInstance().startup();
+	OSCLibrary::getInstance().setPortStart(11000);
 
-	OSCPServiceManager oscpsm;
-    class MyHandler : public OSCPHelloReceivedHandler {
+	OSELib::OSCP::ServiceManager oscpsm;
+    class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
     public:
     	MyHandler() {
     	}
@@ -425,6 +426,6 @@ int main()
 	provider.shutdown();
 	Poco::Thread::sleep(2000);
 
-    OSCLibrary::getInstance()->shutdown();
+    OSCLibrary::getInstance().shutdown();
 	DebugOut(DebugOut::Default, "ExampleProject") << "Shutdown." << std::endl;
 }

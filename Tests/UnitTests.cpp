@@ -47,13 +47,13 @@ int main()
 	//runAllTests();
 
 	// Only run tests of a specific test suite
-	//runTestSuite("Basics");
-	//runTestSuite("Advanced");
-	runTestSuite("OSCP");
+//	runTestSuite("Basics");
+//	runTestSuite("Advanced");
+//	runTestSuite("OSCP");
 
 	// Only run test with a given name
 
-	//runSingleTest("simpleoscp");
+	runSingleTest("simpleoscp");
 
 	return 0;
 }

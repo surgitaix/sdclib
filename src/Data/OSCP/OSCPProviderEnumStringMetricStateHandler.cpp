@@ -7,7 +7,6 @@
 
 #include "OSCLib/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {
@@ -22,7 +21,7 @@ OSCPProviderEnumStringMetricStateHandler::~OSCPProviderEnumStringMetricStateHand
 }
 
 InvocationState OSCPProviderEnumStringMetricStateHandler::onStateChangeRequest(const EnumStringMetricState & , const OperationInvocationContext & ) {
-    Util::DebugOut(Util::DebugOut::Error, "OSCPProviderEnumStringMetricStateHandler") << "Method not overridden: onStateChangeRequest(EnumStringMetricState)!";
+	log_error([] { return "Method not overridden: onStateChangeRequest(EnumStringMetricState)!"; });
     return InvocationState::FAILED;
 }
 

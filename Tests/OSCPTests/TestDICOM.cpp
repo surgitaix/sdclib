@@ -2,7 +2,6 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/Base64Binary.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/DICOMDeviceDescriptor.h"
@@ -13,10 +12,11 @@
 #include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
 #include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/TypeConversion.h"
 #include "OSCLib/Util/Task.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
@@ -84,7 +84,7 @@ private:
 }
 
 struct FixtureDICOMOSCP : Tests::AbstractOSCLibFixture {
-	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", Util::DebugOut::Default, 9050) {}
+	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", OSELib::LogLevel::NOTICE, 9050) {}
 };
 
 SUITE(OSCP) {
@@ -97,7 +97,7 @@ TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
         provider.startup();    
 
         // Consumer
-        OSCPServiceManager oscpsm;
+        OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::DICOMOSCP::DEVICE_ENDPOINT_REFERENCE));
 
         // Discovery test

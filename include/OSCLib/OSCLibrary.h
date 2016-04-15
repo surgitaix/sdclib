@@ -26,11 +26,6 @@
 #ifndef OSCLIB_H_
 #define OSCLIB_H_
 
-#include "Util/DebugOut.h"
-#include "Util/Task.h"
-
-#include <xercesc/dom/DOMImplementationLS.hpp>
-
 #include <atomic>
 #include <list>
 #include <memory>
@@ -42,55 +37,25 @@
 #include "Poco/Runnable.h"
 #include "Poco/NotificationQueue.h"
 
-namespace CDM {
-	class FromString;
-}
+#include "OSELib/fwd.h"
+#include "OSELib/Helper/WithLogger.h"
 
 namespace OSCLib {
 
-    class ShutdownTask;
-
-namespace Data {
-namespace OSCP {
-    class OSCPConsumer;
-    class OSCPProvider;
-    class OSCPServiceManager;
-}
-}
-
-namespace Comm {
-	class CommunicationManager;
-	class NetworkInterface;
-}
-
-namespace Dev {
-	class Device;
-}
-
-class ReaderThread;
-class WriterThread;
-
-class OSCLibrary {
-	friend class Dev::Device;
-    friend class Data::OSCP::OSCPConsumer;
-    friend class Data::OSCP::OSCPProvider;
-    friend class Data::OSCP::OSCPServiceManager;
-    friend class CDM::FromString;
+class OSCLibrary : public OSELib::WithLogger {
 public:
 
 	OSCLibrary();
 	virtual ~OSCLibrary();
 
-    void scheduleTaskForShutdown(std::shared_ptr<OSCLib::Util::Task> task);
-
-	static OSCLibrary * getInstance();
+	static OSCLibrary & getInstance();
 
 	/**
 	 * Startup framework.
 	 *
 	 * @param debugLevel The debug output level (0: no output, 1: errors, 2: errors and messages)
 	 */
-	void startup(Util::DebugOut::LogLevel debugLevel = Util::DebugOut::Default);
+	void startup(OSELib::LogLevel debugLevel = OSELib::LogLevel::ERROR);
 
 	/**
 	 * Shutdown framework.
@@ -99,20 +64,11 @@ public:
 	void shutdown();
 
 	/**
-	 * Bind active sockets to a specific interface.
-	 *
-	 * @param bindInt The interface address
-	 */
-	void setBindInterface(const std::string & bindInt);
-
-	std::string getBindInterface();
-
-	/**
 	 * Set the next global free port number used for bindings which are automatically created.
 	 *
 	 * @param portStart The next free port number to use
 	 */
-	void setPortStart(int portStart);
+	void setPortStart(unsigned int portStart, unsigned int portRange = 1000);
 
 	/**
 	 * Get the next global free port number used for bindings which are automatically created.
@@ -120,52 +76,22 @@ public:
 	 * 	 *
 	 * @return The next free port number to use
 	 */
-	int extractNextPort();
+	unsigned int extractFreePort();
+	void returnPortToPool(unsigned int port);
 
-	void readMessages();
+	bool isInitialized();
 
-    Comm::NetworkInterface * getNetInterface();
-
-	bool isInitialized() {
-		return initialized;
-	}
-
-    void bindToAll();
+	void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
 
 private:
-
-	void registerDevice(Dev::Device * device);
-	void unRegisterDevice(Dev::Device * device);
-    void registerConsumer(Data::OSCP::OSCPConsumer * consumer);
-    void unRegisterConsumer(Data::OSCP::OSCPConsumer * consumer);
-    void registerProvider(Data::OSCP::OSCPProvider * provider);
-    void unRegisterProvider(Data::OSCP::OSCPProvider * provider);
-    void cleanUpOSCP();
-
-	Comm::NetworkInterface * netInterface;
-	ReaderThread * reader;
-	static OSCLibrary * instance;
-	std::list<Comm::CommunicationManager *> managersShuttingDown;
-    std::set<Data::OSCP::OSCPConsumer *> consumers;
-    std::set<Data::OSCP::OSCPProvider *> providers;
-
-    std::set<Dev::Device *> deviceSet;
-	std::string bindInt;
-	std::atomic<int> portStart;
 	bool initialized;
 
+	void createPortLists(unsigned int portStart, unsigned int portRange = 1000);
+	std::deque<unsigned int> reservedPorts;
+	std::deque<unsigned int> availablePorts;
+
 	Poco::Mutex mutex;
-
-	xercesc::XMLGrammarPool * pool;
-    std::shared_ptr<ShutdownTask> shutdownTask;
-    Poco::NotificationQueue shutdownQueue;
-};
-
-class ReaderThread : public Util::Task {
-public:
-	ReaderThread();
-
-	void runImpl();
+	std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
 };
 
 } /* namespace OSCLib */

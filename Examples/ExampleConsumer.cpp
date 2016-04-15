@@ -5,13 +5,14 @@
 #include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
 #include "OSCLib/Util/DebugOut.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 using namespace OSCLib;
 using namespace OSCLib::Data::OSCP;
@@ -41,18 +42,18 @@ private:
 
 class ExampleConsumerAlertEventHandler : public Data::OSCP::OSCPConsumerAlertConditionStateHandler {
 public:
-    ExampleConsumerAlertEventHandler(const std::string & handle) :
-        handle(handle)
-    {
-    }
+	ExampleConsumerAlertEventHandler(const std::string & handle) :
+		handle(handle)
+	{
+	}
 
     virtual ~ExampleConsumerAlertEventHandler() {
 
     }
 
     void onStateChanged(const Data::OSCP::AlertConditionState & state) override {
-        Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Consumer: Received alert signal changed of " << handle << ", activation: "
-            << Data::OSCP::EnumToString::convert(state.getActivationState()) << ", presence: " << state.getPresence() << std::endl;
+    	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Consumer: Received alert signal changed of " << handle << ", activation: "
+        		<< Data::OSCP::EnumToString::convert(state.getActivationState()) << ", presence: " << state.getPresence() << std::endl;
     }
 
     std::string getHandle() override {
@@ -64,40 +65,40 @@ private:
 };
 
 void waitForUserInput() {
-    std::string temp;
-    Util::DebugOut(Util::DebugOut::Default, "") << "Press key to proceed.";
-    std::cin >> temp;
+	std::string temp;
+	Util::DebugOut(Util::DebugOut::Default, "") << "Press key to proceed.";
+	std::cin >> temp;
 }
 
 int main() {
-    Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    OSCLibrary::getInstance()->startup(Util::DebugOut::Error);
-    OSCLibrary::getInstance()->setPortStart(12000);
+	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
+    OSCLibrary::getInstance().startup();
+	OSCLibrary::getInstance().setPortStart(12000);
 
     class MyConnectionLostHandler : public Data::OSCP::OSCPConsumerConnectionLostHandler {
     public:
-        MyConnectionLostHandler(Data::OSCP::OSCPConsumer & consumer) : consumer(consumer) {
-        }
-        void onConnectionLost() override {
-            std::cerr << "Connection lost, disconnecting... ";
-            consumer.disconnect();
-            std::cerr << "disconnected." << std::endl;
-        }
+    	MyConnectionLostHandler(Data::OSCP::OSCPConsumer & consumer) : consumer(consumer) {
+    	}
+    	void onConnectionLost() override {
+    		std::cerr << "Connection lost, disconnecting... ";
+    		consumer.disconnect();
+    		std::cerr << "disconnected." << std::endl;
+    	}
     private:
-        Data::OSCP::OSCPConsumer & consumer;
+    	Data::OSCP::OSCPConsumer & consumer;
     };
 
-    // Discovery
-	Data::OSCP::OSCPServiceManager oscpsm;
-	std::shared_ptr<Data::OSCP::OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	// Discovery
+	OSELib::OSCP::ServiceManager oscpsm;
+	std::unique_ptr<Data::OSCP::OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 	std::shared_ptr<ExampleConsumerEventHandler> eh(new ExampleConsumerEventHandler("handle_metric"));
 
-    if (c != nullptr) {
-        Data::OSCP::OSCPConsumer & consumer = *c;
-        std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
-        consumer.setConnectionLostHandler(myHandler.get());
+	if (c != nullptr) {
+		Data::OSCP::OSCPConsumer & consumer = *c;
+	    std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
+	    consumer.setConnectionLostHandler(myHandler.get());
 
-        consumer.registerStateEventHandler(eh.get());
+		consumer.registerStateEventHandler(eh.get());
         Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
 
         NumericMetricState metricState;
@@ -111,12 +112,11 @@ int main() {
 
         waitForUserInput();
         consumer.unregisterStateEventHandler(eh.get());
-        consumer.disconnect();
-    }
-    else {
-        Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";
-    }
+		consumer.disconnect();
+	} else {
+		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";
+	}
 
-    OSCLibrary::getInstance()->shutdown();
+    OSCLibrary::getInstance().shutdown();
     Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Shutdown." << std::endl;
 }

@@ -3,9 +3,9 @@
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/FromString.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "osdm.hxx"
 
@@ -16,6 +16,11 @@
 
 #include <fstream>
 #include <sstream>
+
+#include "OSELib/Helper/Message.h"
+#include "OSELib/Helper/XercesDocumentWrapper.h"
+#include "OSELib/Helper/XercesParserWrapper.h"
+#include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
@@ -901,15 +906,15 @@ int main()
 {
 	const std::string testname("Create graphvis/dot files of all MDIBs of all found devices");
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Startup: " << testname;
-	OSCLibrary::getInstance()->startup(DebugOut::Default);
+	OSCLibrary::getInstance().startup();
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpng {} -o {}.png";
 
 	int loopcounter = 0;
-	OSCPServiceManager oscpsm;
+	OSELib::OSCP::ServiceManager oscpsm;
 
 	while (true) {
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Refreshing ..." << std::flush;
-		std::vector<std::shared_ptr<OSCPConsumer> > results(oscpsm.discoverOSCP());
+		std::vector<std::unique_ptr<OSCPConsumer> > results(oscpsm.discoverOSCP());
 
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found devices with these EPRs: ";
 
@@ -924,7 +929,11 @@ int main()
 				outFile.open(filename, std::ios::trunc);
 				Poco::Timestamp now;
 
-				std::unique_ptr<CDM::MDIB> mdib(CDM::FromString::validateAndConvert<CDM::MDIB>(consumer->requestRawMDIB()));
+				OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
+				auto rawMessage = OSELib::Helper::Message::create(consumer->requestRawMDIB());
+				auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
+
+				std::unique_ptr<CDM::MDIB> mdib(CDM::MDIBContainer(xercesDocument->getDocument()));
 
 				if (mdib) {
 					outFile << buildDotGraph(*mdib);

@@ -252,40 +252,8 @@ namespace WS
     {
       this->StreamDescriptions_.set (std::move (x));
     }
-
-    const StreamSource::AnyAttributeSet& StreamSource::
-    any_attribute () const
-    {
-      return this->any_attribute_;
-    }
-
-    StreamSource::AnyAttributeSet& StreamSource::
-    any_attribute ()
-    {
-      return this->any_attribute_;
-    }
-
-    void StreamSource::
-    any_attribute (const AnyAttributeSet& s)
-    {
-      this->any_attribute_ = s;
-    }
-
-    const ::xercesc::DOMDocument& StreamSource::
-    dom_document () const
-    {
-      return *this->dom_document_;
-    }
-
-    ::xercesc::DOMDocument& StreamSource::
-    dom_document ()
-    {
-      return *this->dom_document_;
-    }
   }
 }
-
-#include <xsd/cxx/xml/dom/wildcard-source.hxx>
 
 #include <xsd/cxx/xml/dom/parsing-source.hxx>
 
@@ -556,18 +524,14 @@ namespace WS
     StreamSource::
     StreamSource (const StreamDescriptionsType& StreamDescriptions)
     : ::xml_schema::Type (),
-      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
-      StreamDescriptions_ (StreamDescriptions, this),
-      any_attribute_ (this->dom_document ())
+      StreamDescriptions_ (StreamDescriptions, this)
     {
     }
 
     StreamSource::
     StreamSource (::std::unique_ptr< StreamDescriptionsType > StreamDescriptions)
     : ::xml_schema::Type (),
-      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
-      StreamDescriptions_ (std::move (StreamDescriptions), this),
-      any_attribute_ (this->dom_document ())
+      StreamDescriptions_ (std::move (StreamDescriptions), this)
     {
     }
 
@@ -576,9 +540,7 @@ namespace WS
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
     : ::xml_schema::Type (x, f, c),
-      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
-      StreamDescriptions_ (x.StreamDescriptions_, f, this),
-      any_attribute_ (x.any_attribute_, this->dom_document ())
+      StreamDescriptions_ (x.StreamDescriptions_, f, this)
     {
     }
 
@@ -587,13 +549,11 @@ namespace WS
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
     : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
-      dom_document_ (::xsd::cxx::xml::dom::create_document< char > ()),
-      StreamDescriptions_ (this),
-      any_attribute_ (this->dom_document ())
+      StreamDescriptions_ (this)
     {
       if ((f & ::xml_schema::Flags::base) == 0)
       {
-        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
+        ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
         this->parse (p, f);
       }
     }
@@ -645,28 +605,6 @@ namespace WS
           "StreamDescriptions",
           "http://standardized.namespace.org/ws-streaming");
       }
-
-      while (p.more_attributes ())
-      {
-        const ::xercesc::DOMAttr& i (p.next_attribute ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (i));
-
-        // any_attribute
-        //
-        if ((!n.namespace_ ().empty () &&
-             n.namespace_ () != "http://standardized.namespace.org/ws-streaming" &&
-             n.namespace_ () != ::xsd::cxx::xml::bits::xmlns_namespace< char > () &&
-             n.namespace_ () != ::xsd::cxx::xml::bits::xsi_namespace< char > ()))
-        {
-          ::xercesc::DOMAttr* r (
-            static_cast< ::xercesc::DOMAttr* > (
-              this->dom_document ().importNode (
-                const_cast< ::xercesc::DOMAttr* > (&i), true)));
-          this->any_attribute_ .insert (r);
-          continue;
-        }
-      }
     }
 
     StreamSource* StreamSource::
@@ -683,7 +621,6 @@ namespace WS
       {
         static_cast< ::xml_schema::Type& > (*this) = x;
         this->StreamDescriptions_ = x.StreamDescriptions_;
-        this->any_attribute_ = x.any_attribute_;
       }
 
       return *this;
@@ -1251,23 +1188,6 @@ namespace WS
     operator<< (::xercesc::DOMElement& e, const StreamSource& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
-
-      // any_attribute
-      //
-      for (StreamSource::AnyAttributeConstIterator
-           b (i.any_attribute ().begin ()), n (i.any_attribute ().end ());
-           b != n; ++b)
-      {
-        ::xercesc::DOMAttr* a (
-          static_cast< ::xercesc::DOMAttr* > (
-            e.getOwnerDocument ()->importNode (
-              const_cast< ::xercesc::DOMAttr* > (&(*b)), true)));
-
-        if (a->getLocalName () == 0)
-          e.setAttributeNode (a);
-        else
-          e.setAttributeNodeNS (a);
-      }
 
       // StreamDescriptions
       //

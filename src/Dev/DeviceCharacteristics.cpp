@@ -22,12 +22,11 @@
  *  @copyright (c) SurgiTAIX AG
  */
 
-#include "OSCLib/Comm/DPWS/DPWS11Constants.h"
-#include "OSCLib/Dev/DeviceCharacteristics.h"
-
 #include <stdexcept>
 
-using namespace OSCLib::Comm::DPWS;
+#include "OSCLib/Dev/DeviceCharacteristics.h"
+
+#include "OSELib/DPWS/DPWS11Constants.h"
 
 namespace OSCLib {
 namespace Dev {
@@ -52,21 +51,21 @@ const LocalizedString & DeviceCharacteristics::getFriendlyNames() const
 
 void DeviceCharacteristics::setManufacturer(const std::string & name)
 {
-	if (name.length() > MAX_FIELD_SIZE)
+	if (name.length() > OSELib::MAX_FIELD_SIZE)
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
 	this->manufacturer = name;
 }
 
 void DeviceCharacteristics::setManufacturerUrl(const std::string & url)
 {
-	if (url.length() > MAX_FIELD_SIZE)
+	if (url.length() > OSELib::MAX_FIELD_SIZE)
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
 	this->manufacturerUrl = url;
 }
 
 void DeviceCharacteristics::addModelName(const std::string & lang, const std::string & name)
 {
-	if (name.length() > MAX_FIELD_SIZE)
+	if (name.length() > OSELib::MAX_FIELD_SIZE)
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
 	modelName[lang] = name;
 }
@@ -106,28 +105,28 @@ const std::string & DeviceCharacteristics::getPresentationUrl() const
 
 void DeviceCharacteristics::setModelNumber(const std::string & modelNumber)
 {
-	if (modelNumber.length() > MAX_FIELD_SIZE)
+	if (modelNumber.length() > OSELib::MAX_FIELD_SIZE)
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
     this->modelNumber = modelNumber;
 }
 
 void DeviceCharacteristics::setModelUrl(const std::string & modelUrl)
 {
-	if (modelUrl.length() > MAX_URI_SIZE)
+	if (modelUrl.length() > OSELib::MAX_URI_SIZE)
 		throw std::runtime_error("Name length exceeds MAX_URI_SIZE");
     this->modelUrl = modelUrl;
 }
 
 void DeviceCharacteristics::setPresentationUrl(const std::string & presentationUrl)
 {
-	if (presentationUrl.length() > MAX_URI_SIZE)
+	if (presentationUrl.length() > OSELib::MAX_URI_SIZE)
 		throw std::runtime_error("Name length exceeds MAX_URI_SIZE");
     this->presentationUrl = presentationUrl;
 }
 
 void DeviceCharacteristics::addFriendlyName(const std::string & lang, const std::string & name)
 {
-	if (name.length() > MAX_FIELD_SIZE)
+	if (name.length() > OSELib::MAX_FIELD_SIZE)
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
 	friendlyName[lang] = name;
 }

@@ -23,9 +23,6 @@
  *
  */
 
-#include "OSCLib/Comm/Binding.h"
-#include "OSCLib/Comm/IPBinding.h"
-#include "OSCLib/Comm/Message.h"
 #include "OSCLib/Util/DebugOut.h"
 
 #include "Poco/Mutex.h"
@@ -74,37 +71,6 @@ DebugOut::DebugOut(std::ostream & s, const std::string & prefix) :
 DebugOut::~DebugOut() {
 	outputOnDestroy();
 	flush();
-}
-
-DebugOut & DebugOut::operator<< (OSCLib::Comm::Message & msg) {
-	this->operator <<(const_cast<const OSCLib::Comm::Message &>(msg));
-	return *this;
-}
-
-DebugOut & DebugOut::operator<< (const OSCLib::Comm::Message & msg) {
-	if (!showMessage) {
-		return *this;
-	}
-	std::string output;
-	const std::string intendation("  ");
-
-	output += "Message info: \n";
-	output += intendation + "Receive Protocol: " + msg.getProtocolString(msg.getReceiveProtocol()) + "\n";
-	output += intendation + "Send Protocol: " + msg.getProtocolString(msg.getSendProtocol()) + "\n";
-	if (msg.getDestination() != nullptr) {
-		output += intendation + "Destination: " + msg.getDestination()->toString() + "\n";
-	}
-	if (msg.getSource() != nullptr) {
-		output += intendation + "Source: " + msg.getSource()->toString() + "\n";
-	}
-	if (msg.getDispatcher() != nullptr) {
-		output += intendation + "Dispatcher: " + msg.getDispatcher()->toString() + "\n";
-	}
-	output += intendation + "Raw message size: " + std::to_string(msg.getRawBuffer().size()) + "\n";
-	output += intendation + "Raw content: " + msg.getRawBuffer() + "\n";
-
-	this->operator <<(output);
-	return *this;
 }
 
 void DebugOut::flush() {

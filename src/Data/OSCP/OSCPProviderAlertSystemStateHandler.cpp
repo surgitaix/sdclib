@@ -7,7 +7,6 @@
 
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSystemStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {
@@ -22,7 +21,7 @@ OSCPProviderAlertSystemStateHandler::~OSCPProviderAlertSystemStateHandler() {
 }
 
 InvocationState OSCPProviderAlertSystemStateHandler::onStateChangeRequest(const AlertSystemState & , const OperationInvocationContext & ) {
-    Util::DebugOut(Util::DebugOut::Error, "OSCPProviderMDStateHandler") << "Method not overridden: onStateChangeRequest(AlertSystemState)!";
+	log_error([] { return "Method not overridden: onStateChangeRequest(AlertSystemState)!"; });
     return InvocationState::FAILED;
 }
 

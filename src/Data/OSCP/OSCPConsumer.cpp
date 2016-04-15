@@ -21,13 +21,14 @@
  *  Author: besting, roehser
  */
 
+#include <memory>
+#include <vector>
+
+#include "Poco/Net/NetException.h"
+
+#include "osdm.hxx"
+
 #include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Cli/Client.h"
-#include "OSCLib/Comm/DPWS/DPWS11Constants.h"
-#include "OSCLib/Comm/Binding.h"
-#include "OSCLib/Comm/DPWS/DPWS11WaveformStreamActionHandler.h"
-#include "OSCLib/Dev/Device.h"
-#include "OSCLib/Data/OperationHelpers.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
 #include "OSCLib/Data/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
@@ -43,8 +44,6 @@
 #include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerSubscriptionLostHandler.h"
-#include "OSCLib/Data/OSCP/OSCPPingManager.h"
-#include "OSCLib/Data/OSCP/OSCPSubscriptionManager.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
@@ -82,14 +81,9 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/OSCP/Operations/OSCPOperationTraits.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/FromString.h"
-#include "OSCLib/Util/ToString.h"
-#include <vector>
-#include <memory>
 
-#include "osdm.hxx"
+#include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/OSCP/OperationTraits.h"
 
 namespace OSCLib {
 namespace Data {
@@ -166,68 +160,45 @@ CDM::SetContextState createRequestMessage(const WorkflowContextState & state, co
 	return result;
 }
 
-OSCPConsumer::OSCPConsumer() :
-		client(nullptr),
-		pingMan(nullptr),
-		subMan(nullptr),
+OSCPConsumer::OSCPConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription) :
+		WithLogger(OSELib::Log::OSCPCONSUMER),
 		connectionLostHandler(nullptr),
 		contextStateChangedHandler(nullptr),
 		subscriptionLostHandler(nullptr),
 		lastKnownMDIBVersion(0),
-		connected(true)
+		connected(true),
+		_deviceDescription(deviceDescription)
 {
-}
-
-OSCPConsumer::OSCPConsumer(std::shared_ptr<Cli::Client> client) :
-		client(client),
-		pingMan(nullptr),
-		subMan(nullptr),
-		connectionLostHandler(nullptr),
-		contextStateChangedHandler(nullptr),
-		subscriptionLostHandler(nullptr),
-		lastKnownMDIBVersion(0),
-		connected(true)
-{
-	std::shared_ptr<Comm::DPWS::DPWS11WaveformStreamActionHandler> wsah(new Comm::DPWS::DPWS11WaveformStreamActionHandler(*this));
-    this->client->addDPWSActionHandler(ACTION_ORNET_STREAM, wsah); 
-	initializePingManager();
-	initializeCDMEventSinks();
+	for (int i = 0; i < 3; i++) {
+		const int port(OSCLibrary::getInstance().extractFreePort());
+		try {
+			_adapter = std::unique_ptr<OSELibConsumerAdapter>(new OSELibConsumerAdapter(*this, port, _deviceDescription));
+			_adapter->start();
+			break;
+		} catch (const Poco::Net::NetException & e) {
+			log_fatal([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port."; });
+			OSCLibrary::getInstance().returnPortToPool(port);
+		}
+	}
 }
 
 OSCPConsumer::~OSCPConsumer() {
+
     for (auto & fis : fisMap) {
     	fis.second->consumer = nullptr;
     }
-    if (OSCLibrary::getInstance()->isInitialized() && isValid())
+    if (OSCLibrary::getInstance().isInitialized() && _adapter)
     {
-        disconnect();
-        Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "OSCPConsumer deleted before disconnected!";
+        log_error([] { return "OSCPConsumer deleted before disconnected!"; });
+    	disconnect();
     }
 }
 
 void OSCPConsumer::disconnect() {
-	{
-		Poco::Mutex::ScopedLock lock(pingManMutex);
-		if (pingMan) {
-			pingMan->detachConsumer();
-			OSCLibrary::getInstance()->scheduleTaskForShutdown(pingMan);
-			pingMan.reset();
-		}
+	if (_adapter) {
+		_adapter->stop();
+		_adapter.reset();
 	}
-    if (client) {
-        client->setClosing(true);
-        removeCDMEventSinks();
-        client->close();
-    }
-    OSCLibrary::getInstance()->unRegisterConsumer(this);
-}
-
-bool OSCPConsumer::isValid() {
-    return client != nullptr && !client->isClosed() && OSCLibrary::getInstance()->getNetInterface()->isValidUnicastCallback(client.get());
-}
-
-std::string OSCPConsumer::getProviderXAddr() const {
-    return client->getRemoteDevice()->getDefaultTransportAddr(OSCLib::Comm::DPWS::DPWS11);
 }
 
 void OSCPConsumer::setConnectionLostHandler(OSCPConsumerConnectionLostHandler * handler) {
@@ -235,9 +206,11 @@ void OSCPConsumer::setConnectionLostHandler(OSCPConsumerConnectionLostHandler * 
 }
 
 void OSCPConsumer::setContextStateChangedHandler(OSCPConsumerContextStateChangedHandler * handler) {
-    initializeCDMEventSinks();
     Poco::Mutex::ScopedLock lock(eventMutex);
 	contextStateChangedHandler = handler;
+	if (_adapter) {
+		_adapter->subscribeEvents();
+	}
 }
 
 void OSCPConsumer::setSubscriptionLostHandler(OSCPConsumerSubscriptionLostHandler * handler) {
@@ -245,8 +218,6 @@ void OSCPConsumer::setSubscriptionLostHandler(OSCPConsumerSubscriptionLostHandle
 }
 
 void OSCPConsumer::onConnectionLost() {
-	if (subMan)
-		subMan->setError(true);
     if (connectionLostHandler != nullptr) {
         connectionLostHandler->onConnectionLost();
     }
@@ -273,11 +244,11 @@ MDIBContainer OSCPConsumer::getMDIB() {
 
 MDDescription OSCPConsumer::getMDDescription() {
     const CDM::GetMDDescription request;
-    std::unique_ptr<const CDM::GetMDDescriptionResponse> response(invokeImpl<GetMDDescriptionTraits>(request));
+    auto response(_adapter->invoke(request));
 
 	if (response == nullptr) {
+        log_error([] { return "GetMDDescription request failed!"; });
 		onConnectionLost();
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "GetMDDescription request failed!";
 		return MDDescription();
 	}
 	const MDDescription description(ConvertFromCDM::convert(response->StaticDescription()));
@@ -299,44 +270,15 @@ MDDescription OSCPConsumer::getCachedMDDescription() {
 
 MDState OSCPConsumer::getMDState() {
     const CDM::GetMDState request;
-    std::unique_ptr<const CDM::GetMDStateResponse> response(invokeImpl<GetMDStateTraits>(request));
+    std::unique_ptr<const CDM::GetMDStateResponse> response(_adapter->invoke(request));
 
 	if (response == nullptr) {
+		log_error([] { return "GetMDState request failed!"; });
 		onConnectionLost();
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "GetMDState request failed!";
 		return MDState();
 	}
 
     return ConvertFromCDM::convert(response->MDState());
-}
-
-void OSCPConsumer::initializePingManager() {
-    Poco::Mutex::ScopedLock lock(pingManMutex);
-    pingMan.reset(new OSCPPingManager(*this));
-    if (isValid()) {
-        pingMan->start();
-    }
-}
-
-void OSCPConsumer::initializeCDMEventSinks() {
-    Poco::Mutex::ScopedLock lock(subManMutex);
-    if (subMan == nullptr) {
-        subMan.reset(new OSCPSubscriptionManager(*this));
-        if (isValid()) {
-        	subMan->init();
-            subMan->start();
-        }
-    }
-}
-
-void OSCPConsumer::removeCDMEventSinks() {
-	Poco::Mutex::ScopedLock lock(subManMutex);
-    if (subMan != nullptr) {
-    	subMan->remove();
-    	subMan->detachConsumer();
-        OSCLibrary::getInstance()->scheduleTaskForShutdown(subMan);
-        subMan.reset();
-    }
 }
 
 bool OSCPConsumer::unregisterFutureInvocationListener(int transactionId) {
@@ -345,35 +287,22 @@ bool OSCPConsumer::unregisterFutureInvocationListener(int transactionId) {
 }
 
 bool OSCPConsumer::registerStateEventHandler(OSCPConsumerEventHandler * handler) {
-    initializeCDMEventSinks();
-
-    if (!subMan || !subMan->isInitialized()) {
-        Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "Event registration failed due to prior missing event subscription!";
-        return false;
-    }
-
-    if (dynamic_cast<OSCPConsumerRealTimeSampleArrayMetricStateHandler *>(handler) != nullptr) {
-        client->enableStreaming();
-    }
-
     Poco::Mutex::ScopedLock lock(eventMutex);
 	eventHandlers[handler->getHandle()] = handler;
+	if (_adapter) {
+		_adapter->subscribeEvents();
+	}
 	return true;
 }
 
 bool OSCPConsumer::unregisterStateEventHandler(OSCPConsumerEventHandler * handler) {
-    if (!isValid()) {
-        return false;
-    }
-    bool cleanSinks(false);
-    {
-        Poco::Mutex::ScopedLock lock(eventMutex);
-        eventHandlers.erase(handler->getHandle());
-        cleanSinks = eventHandlers.empty();
-    }
-    if (cleanSinks) {
-        removeCDMEventSinks();
-    }
+	Poco::Mutex::ScopedLock lock(eventMutex);
+	eventHandlers.erase(handler->getHandle());
+
+	if (_adapter && eventHandlers.empty() && contextStateChangedHandler == nullptr) {
+		_adapter->unsubscribeEvents();
+	}
+
     return true;
 }
 
@@ -393,17 +322,21 @@ bool OSCPConsumer::requestMDIB() {
 
 std::unique_ptr<CDM::GetMDIBResponse> OSCPConsumer::requestCDMMDIB() {
     const CDM::GetMDIB request;
-    std::unique_ptr<CDM::GetMDIBResponse> response(invokeImpl<GetMDIBTraits>(request));
+    auto response(_adapter->invoke(request));
     return response;
 }
 
 std::string OSCPConsumer::requestRawMDIB() {
 	std::unique_ptr<const CDM::GetMDIBResponse> response(requestCDMMDIB());
 	if (response == nullptr) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "MDIB request failed!";
+		log_error([] { return "MDIB request failed!"; });
 		return "";
 	} else {
-		return CDM::ToString::convert(response->MDIB());
+		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
+		std::ostringstream result;
+		xml_schema::NamespaceInfomap map;
+		CDM::MDIBContainer(result, response->MDIB(), map, OSELib::XML_ENCODING, xercesFlags);
+		return result.str();
 	}
 }
 
@@ -414,7 +347,7 @@ InvocationState OSCPConsumer::commitState(const EnumStringMetricState & state, F
 	if (!state.getObservedValue().hasValue()) {
 		return InvocationState::FAILED;
 	}
-	return commitStateImpl<SetStringTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetStringTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const NumericMetricState & state, FutureInvocationState & fis) {
@@ -424,7 +357,7 @@ InvocationState OSCPConsumer::commitState(const NumericMetricState & state, Futu
 	if (!state.getObservedValue().hasValue()) {
 		return InvocationState::FAILED;
 	}
-	return commitStateImpl<SetValueTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetValueTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const StringMetricState & state, FutureInvocationState & fis) {
@@ -434,43 +367,43 @@ InvocationState OSCPConsumer::commitState(const StringMetricState & state, Futur
 	if (!state.getObservedValue().hasValue()) {
 		return InvocationState::FAILED;
 	}
-	return commitStateImpl<SetStringTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetStringTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const LocationContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const EnsembleContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const OperatorContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const PatientContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const WorkflowContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const AlertSystemState & state, FutureInvocationState & fis) {
-	return commitStateImpl<SetAlertStateTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const AlertSignalState & state, FutureInvocationState & fis) {
-	return commitStateImpl<SetAlertStateTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const AlertConditionState & state, FutureInvocationState & fis) {
-	return commitStateImpl<SetAlertStateTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const LimitAlertConditionState & state, FutureInvocationState & fis) {
-	return commitStateImpl<SetAlertStateTraits>(state, fis);
+	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const AlertSystemState & state) {
@@ -537,7 +470,7 @@ template<class OperationTraits, class StateType>
 InvocationState OSCPConsumer::commitStateImpl(const StateType & state, FutureInvocationState & fis) {
 
 	if (state.getDescriptorHandle().empty()) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "Commit failed: descriptor handle is empty!";
+		log_error([] { return "Commit failed: descriptor handle is empty!"; });
 		return InvocationState::FAILED;
 	}
 
@@ -545,7 +478,7 @@ InvocationState OSCPConsumer::commitStateImpl(const StateType & state, FutureInv
 
 	typename StateType::DescriptorType descriptor;
 	if (!mddescription.findDescriptor(state.getDescriptorHandle(), descriptor)) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "Could not find descriptor handle in getMDDescriptionResponse. Resolving matching set operations failed.!";
+		log_error([] { return "Could not find descriptor handle in getMDDescriptionResponse. Resolving matching set operations failed!"; });
 		return InvocationState::FAILED;
 	}
 
@@ -557,13 +490,12 @@ InvocationState OSCPConsumer::commitStateImpl(const StateType & state, FutureInv
 		operationHandle = mddescription.getFirstOperationHandleForOperationTarget(state.getHandle());
 	}
 	if (operationHandle.empty()) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "Commit failed: No set operation found to modify given state!";
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "State has descriptor handle " << state.getDescriptorHandle() << std::endl;
+		log_error([&] { return "Commit failed: No set operation found to modify given state! State has descriptor handle " + state.getDescriptorHandle(); });
 		return InvocationState::FAILED;
 	}
 
 	const typename OperationTraits::Request request(createRequestMessage(state, operationHandle));
-	std::unique_ptr<const typename OperationTraits::Response> response(invokeImpl<OperationTraits>(request));
+	std::unique_ptr<const typename OperationTraits::Response> response(_adapter->invoke(request));
 	if (response == nullptr) {
 		return InvocationState::FAILED;
 	} else {
@@ -598,36 +530,13 @@ InvocationState OSCPConsumer::activate(const std::string & handle, FutureInvocat
     const MDDescription mdd(getCachedMDDescription());
 
 	const CDM::Activate request(createRequestMessage(handle));
-	std::unique_ptr<const CDM::ActivateResponse> response(invokeImpl<ActivateTraits>(request));
+	std::unique_ptr<const CDM::ActivateResponse> response(_adapter->invoke(request));
 	if (response == nullptr) {
 		return InvocationState::FAILED;
 	} else {
 		handleInvocationState(response->TransactionId(), fis);
 		return ConvertFromCDM::convert(response->InvocationState());
 	}
-}
-
-template<class OperationTraits>
-std::unique_ptr<typename OperationTraits::Response> OSCPConsumer::invokeImpl(const typename OperationTraits::Request & request) {
-	Parameter message("CDMRequest", Parameter::Type::CDM);
-	message.setValue(CDM::ToString::convert(request));
-	Parameters p;
-	p.push_back(message);
-
-	Poco::Mutex::ScopedLock lock(requestMutex);
-	Parameters output;
-	bool success = client->invokeSync(OperationTraits::RequestAction(), p, &output, 10000);
-	if (success) {
-		const std::string bodyContent(output[output.size() - 1].getValue());
-		if (bodyContent.length() > 0) {
-			std::unique_ptr<typename OperationTraits::Response> response(CDM::FromString::validateAndConvert<typename OperationTraits::Response>(bodyContent));
-			if (response != nullptr) {
-				updateLastKnownMDIBVersion(response->MDIBVersion());
-			}
-			return response;
-		}
-	}
-	return nullptr;
 }
 
 bool OSCPConsumer::requestState(const std::string & handle, AlertConditionState & outState) {
@@ -696,17 +605,17 @@ bool OSCPConsumer::requestStateImpl(const std::string & handle, OutStateType & o
     CDM::GetMDState request;
     request.HandleRef().push_back(handle);
 
-    std::unique_ptr<const CDM::GetMDStateResponse> response(invokeImpl<GetMDStateTraits>(request));
+    auto response (_adapter->invoke(request));
     if (response == nullptr) {
     	return false;
     }
 
 	const CDM::MDState::StateSequence & resultStates(response->MDState().State());
 	if (resultStates.empty()) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "requestState failed: Got no response object for handle " << handle << std::endl;
+		log_error([&] { return "requestState failed: Got no response object for handle "  + handle; });
 		return false;
 	} else if (resultStates.size() > 1) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "requestState failed: Got too many response objects for handle " << handle << resultStates.size() << std::endl;
+		log_error([&] { return "requestState failed: Got too many response objects for handle " + handle + std::to_string(resultStates.size()); });
 		return false;
 	}
 
@@ -717,7 +626,7 @@ bool OSCPConsumer::requestStateImpl(const std::string & handle, OutStateType & o
 		outState.copyFrom(castedType);
 		return true;
 	} catch (...) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPConsumer") << "requestState failed: Types mismatch of returned object for handle " << handle << std::endl;
+		log_error([&] { return "requestState failed: Types mismatch of returned object for handle " + handle; });
 		return false;
 	}
 
@@ -781,7 +690,7 @@ void OSCPConsumer::onOperationInvoked(const OperationInvocationContext & oic, In
 }
 
 std::string OSCPConsumer::getEndpointReference() {
-	return client->getRemoteDevice()->getEndpointReference().getAddress();
+	return _deviceDescription.getEPR();
 }
 
 unsigned long long int OSCPConsumer::getLastKnownMDIBVersion() {

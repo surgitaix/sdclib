@@ -21,6 +21,15 @@
  *  Author: roehser, besting
  */
 
+#include <memory>
+
+#include "Poco/AutoPtr.h"
+#include "Poco/Net/NetException.h"
+#include "Poco/Notification.h"
+#include "Poco/UUIDGenerator.h"
+
+#include "osdm.hxx"
+
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
@@ -81,20 +90,14 @@
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
-#include "OSCLib/Dev/OSCP/OSCPDevice.h"
 #include "OSCLib/Dev/DeviceCharacteristics.h"
-#include "OSCLib/Comm/IPBinding.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/DefaultUUIDGenerator.h"
-#include "OSCLib/Util/FromString.h"
-#include "OSCLib/Util/ToString.h"
-
-#include "osdm.hxx"
-
-#include <memory>
-
-#include "Poco/AutoPtr.h"
-#include "Poco/Notification.h"
+#include "OSCLib/Util/Task.h"
+#include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/Helper/Message.h"
+#include "OSELib/Helper/XercesDocumentWrapper.h"
+#include "OSELib/Helper/XercesParserWrapper.h"
+#include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSCLib/Data/OSCP/OSELibProviderAdapter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -110,10 +113,11 @@ public:
     const OperationInvocationContext oic;
 };
 
-class AsyncProviderInvoker : public Util::Task {
+class AsyncProviderInvoker : public Util::Task, OSELib::WithLogger {
 public:
 	AsyncProviderInvoker(OSCPProvider & provider,
 			Poco::NotificationQueue & queue) :
+		WithLogger(OSELib::Log::OSCPPROVIDER),
 		provider(provider),
 		queue(queue){
     }
@@ -138,15 +142,19 @@ public:
 					provider.SetContextState(n->request, n->oic);
 				}
 				else {
-					Util::DebugOut(Util::DebugOut::Error, "AsyncProviderInvoker") << "Unknown invoke data type!";
+					log_error([&] { return "Unknown invoke data type!"; });
 				}
 			}
 			catch (...) {
-				Util::DebugOut(Util::DebugOut::Error, "AsyncProviderInvoker") << "Exception caught during async provider invoke.";
+				log_error([&] { return "Exception caught during async provider invoke."; });
 			}
 		}
 
-		Poco::Mutex::ScopedLock lock(provider.mutex);
+		if (this->isInterrupted()) {
+			return;
+		}
+
+		Poco::Mutex::ScopedLock lock(provider.getMutex());
 		if (provider.periodicEventInterval < provider.lastPeriodicEvent.elapsed()) {
 			provider.firePeriodicReportImpl(provider.getHandlesForPeriodicUpdate());
 			provider.lastPeriodicEvent.update();
@@ -175,12 +183,12 @@ bool isMetricChangeAllowed(const StateType & state, OSCPProvider & provider) {
 }
 
 OSCPProvider::OSCPProvider() :
-		device(*this),
-		periodicEventInterval(10, 0)
+	WithLogger(OSELib::Log::OSCPPROVIDER),
+	periodicEventInterval(10, 0)
 {
 	atomicTransactionId.store(0);
 	mdibVersion.store(0);
-    setEndpointReference(Util::DefaultUUIDGenerator::getUUID());
+    setEndpointReference(Poco::UUIDGenerator::defaultGenerator().create().toString());
 }
 
 OSCPProvider::~OSCPProvider() {
@@ -630,13 +638,14 @@ void OSCPProvider::updateState(const PatientContextState & object) {
 }
 
 void OSCPProvider::updateState(const RealTimeSampleArrayMetricState & object) {
-	incrementMDIBVersion();
-	CDM::RealTimeSampleArrayMetricState cdmState = *ConvertToCDM::convert(object);
+	// TODO
+	//incrementMDIBVersion();
+	//CDM::RealTimeSampleArrayMetricState cdmState = *ConvertToCDM::convert(object);
 
-	CDM::WaveformStream waveformStream;
-	waveformStream.RealTimeSampleArray().push_back(cdmState);
+	//CDM::WaveformStream waveformStream;
+	//waveformStream.RealTimeSampleArray().push_back(cdmState);
 
-	device.notifyEvent(waveformStream);
+	//device.notifyEvent(waveformStream);
 }
 
 void OSCPProvider::updateState(const StringMetricState & object) {
@@ -653,48 +662,48 @@ void OSCPProvider::updateState(const WorkflowContextState & object) {
 
 template<class T> void OSCPProvider::notifyAlertEventImpl(const T & object) {
 	if (object.getDescriptorHandle().empty()) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPProvider") << "State's descriptor handle is empty, event will not be fired!";
+		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
 	}
 
 	incrementMDIBVersion();
-    replaceState(object);
-
+	replaceState(object);
+	
 	CDM::AlertReportPart reportPart;
 	reportPart.AlertState().push_back(ConvertToCDM::convert(object));
 
 	CDM::EpisodicAlertReport report(getMDIBVersion());
 	report.AlertReportDetail().push_back(reportPart);
 
-	device.notifyEvent(report);
+	_adapter->notifyEvent(report);
 }
 
 template<class T> void OSCPProvider::notifyContextEventImpl(const T & object) {
 	if (object.getDescriptorHandle().empty()) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPProvider") << "State's descriptor handle is empty, event will not be fired!";
+		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
 	}
 
 	incrementMDIBVersion();
-    replaceState(object);
-
+	replaceState(object);
+	
 	CDM::ContextChangedReportPart reportPart;
     reportPart.ChangedContextState().push_back(object.getDescriptorHandle());
 
 	CDM::EpisodicContextChangedReport report(getMDIBVersion());
 	report.ReportPart().push_back(reportPart);
 
-	device.notifyEvent(report);
+	_adapter->notifyEvent(report);
 }
 
 template<class T> void OSCPProvider::notifyEpisodicMetricImpl(const T & object) {
 	if (object.getDescriptorHandle().empty()) {
-		Util::DebugOut(Util::DebugOut::Error, "OSCPProvider") << "State's descriptor handle is empty, event will not be fired!";
+		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
 	}
 
 	incrementMDIBVersion();
-    replaceState(object);
+	replaceState(object);
 
 	CDM::MetricReportPart mrp;
 	mrp.MetricState().push_back(ConvertToCDM::convert(object));
@@ -702,12 +711,12 @@ template<class T> void OSCPProvider::notifyEpisodicMetricImpl(const T & object) 
 	CDM::EpisodicMetricReport report(getMDIBVersion());
 	report.ReportPart().push_back(mrp);
 
-	device.notifyEvent(report);
+	_adapter->notifyEvent(report);
 }
 
 void OSCPProvider::firePeriodicReportImpl(const std::vector<std::string> & handles) {
 	if (handles.empty()) {
-		Util::DebugOut(Util::DebugOut::Full, "OSCPProvider") << "List of handles is empty, event will not be fired!";
+		log_debug([&] { return "List of handles is empty, event will not be fired!"; });
 		return;
 	}
 
@@ -739,15 +748,15 @@ void OSCPProvider::firePeriodicReportImpl(const std::vector<std::string> & handl
 
 	CDM::PeriodicAlertReport periodicAlertReport(getMDIBVersion());
 	periodicAlertReport.AlertReportDetail().push_back(periodicAlertReportPart);
-	device.notifyEvent(periodicAlertReport);
+	_adapter->notifyEvent(periodicAlertReport);
 
 	CDM::PeriodicContextChangedReport periodicContextReport(getMDIBVersion());
 	periodicContextReport.ReportPart().push_back(periodicContextChangedReportPart);
-	device.notifyEvent(periodicContextReport);
+	_adapter->notifyEvent(periodicContextReport);
 
 	CDM::PeriodicMetricReport periodicMetricReport(getMDIBVersion());
 	periodicMetricReport.ReportPart().push_back(periodicMetricReportPart);
-	device.notifyEvent(periodicMetricReport);
+	_adapter->notifyEvent(periodicMetricReport);
 }
 
 void OSCPProvider::setAlertConditionPresence(const std::string & alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
@@ -848,7 +857,7 @@ void OSCPProvider::evaluateAlertConditions(const std::string & source) {
 				h->sourceHasChanged(source);
 			}
 		} else if (OSCPProviderLimitAlertConditionStateHandler * h = dynamic_cast<OSCPProviderLimitAlertConditionStateHandler *>(handler.second)) {
-            if (std::find(relevantDescriptors.begin(), relevantDescriptors.end(), h->getDescriptorHandle()) != relevantDescriptors.end()) {
+			if (std::find(relevantDescriptors.begin(), relevantDescriptors.end(), h->getDescriptorHandle()) != relevantDescriptors.end()) {
 				h->sourceHasChanged(source);
 			}
 		}
@@ -875,18 +884,24 @@ MDDescription OSCPProvider::getMDDescription() {
 
 MDState OSCPProvider::getMDState() {
 	Poco::Mutex::ScopedLock lock(mutex);
-    return mdibStates;
+	return mdibStates;
 }
 
 void OSCPProvider::startup() {
-    device.prepareOSCPDevice(*this);
-    device.start();
-    providerInvoker.reset(new AsyncProviderInvoker(*this, invokeQueue));
-    providerInvoker->start();
-    OSCLibrary::getInstance()->registerProvider(this);
+	for (int i = 0; i < 3; i++) {
+		const int port(OSCLibrary::getInstance().extractFreePort());
+		try {
+			_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
+			_adapter->start();
+			break;
+		} catch (const Poco::Net::NetException & e) {
+			log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port. "; });
+			OSCLibrary::getInstance().returnPortToPool(port);
+		}
+	}
     // Grab all states (start with all operation states and add states from user handlers)
     Poco::Mutex::ScopedLock lock(mutex);
-    mdibStates = MDState(operationState);
+    mdibStates = MDState(operationStates);
     for (const auto & handler : stateHandlers) {
 		if (OSCPProviderAlertConditionStateHandler * h = dynamic_cast<OSCPProviderAlertConditionStateHandler *>(handler.second)) {
 			mdibStates.addState(h->getInitialClonedState());
@@ -929,29 +944,39 @@ void OSCPProvider::startup() {
 				mdibStates.addState(state);
 			}
 		} else {
-			Util::DebugOut(Util::DebugOut::Error, "OSCPProvider") << "Unknown handler type! This is an implementation error in the OSCLib!";
-		}
+    		log_fatal([&] { return "Unknown handler type! This is an implementation error in the OSCLib!"; });
+    		exit(1);
+   		}
 	}
+    providerInvoker.reset(new AsyncProviderInvoker(*this, invokeQueue));
+    providerInvoker->start();
     // Validation
     {
-		const std::string xml(CDM::ToString::convert(*ConvertToCDM::convert(getMDIB())));
-		std::unique_ptr<CDM::MDIB> result(CDM::FromString::validateAndConvert<CDM::MDIB>(xml));
+		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
+		std::ostringstream xml;
+		xml_schema::NamespaceInfomap map;
+		CDM::MDIBContainer(xml, *ConvertToCDM::convert(getMDIB()), map, OSELib::XML_ENCODING, xercesFlags);
+
+		OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
+		auto rawMessage = OSELib::Helper::Message::create(xml.str());
+		auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
+		std::unique_ptr<CDM::MDIB> result(CDM::MDIBContainer(xercesDocument->getDocument()));
 		if (result == nullptr) {
-			OSCLib::Util::DebugOut(OSCLib::Util::DebugOut::Error, std::cout, "OSCPProvider")
-				<< "Fatal error, can't create MDIB - schema validation error! Offending MDIB: "
-				<< std::endl << xml << std::endl;
+			log_fatal([&] { return "Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + xml.str(); });
 			std::exit(1);
 		}
     }
 }
 
 void OSCPProvider::shutdown() {
-    device.stop();
     if (providerInvoker) {
     	providerInvoker->interrupt();
     	providerInvoker.reset();
     }
-    OSCLibrary::getInstance()->unRegisterProvider(this);
+	if (_adapter) {
+		_adapter->stop();
+		_adapter.reset();
+	}
 }
 
 template<class T> void OSCPProvider::replaceState(const T & object) {
@@ -1008,7 +1033,7 @@ void OSCPProvider::addMDStateHandler(OSCPProviderMDStateHandler * handler) {
     handler->parentProvider = this;
 
     if (stateHandlers.find(handler->getDescriptorHandle()) != stateHandlers.end()) {
-        Util::DebugOut(Util::DebugOut::Error, "OSCPProvider") << "A OSCPProvider handler for handle " << handler->getDescriptorHandle() << " already exists. It will be overridden.";
+    	log_error([&] { return "A OSCPProvider handler for handle " + handler->getDescriptorHandle() + " already exists. It will be overridden."; });
     }
 
     if (auto activate_handler = dynamic_cast<OSCPProviderActivateOperationHandler *>(handler)) {
@@ -1020,27 +1045,28 @@ void OSCPProvider::addMDStateHandler(OSCPProviderMDStateHandler * handler) {
 
     		const auto sco(ConvertToCDM::convert(hydra.getSCO()));
     		for (const auto & operation : sco->Operation()) {
-                if (operation.Handle() == activate_handler->getDescriptorHandle()
+    			if (operation.Handle() == activate_handler->getDescriptorHandle()
     					&& nullptr != dynamic_cast<const CDM::ActivateOperationDescriptor *>(&operation)) {
-                    stateHandlers[handler->getDescriptorHandle()] = handler;
+    				stateHandlers[handler->getDescriptorHandle()] = handler;
     				return;
     			}
     		}
     	}
-    	Util::DebugOut(Util::DebugOut::Error, "OSCPProvider") << "Could not add handler because no ActivateOperationDescriptor with matching handle was found.";
-	} else {
-        stateHandlers[handler->getDescriptorHandle()] = handler;
+    	log_error([&] { return "Could not add handler because no ActivateOperationDescriptor with matching handle was found."; });
+    } else {
+		stateHandlers[handler->getDescriptorHandle()] = handler;
 	}
-
+	
+	// TODO
     // Check for streaming handler
-    if (auto streamHandler = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler)) {
-    	// Add MDPWS UDP muticast binding
-    	// Binding will be added twice, 1. as part of MDPWS protocol key and 2. using handle key
-        int port = OSCLibrary::getInstance()->extractNextPort();
-    	std::shared_ptr<OSCLib::Comm::IPBinding> streamBnd = std::make_shared<OSCLib::Comm::IPBinding>(OSCLib::Data::OSCP::MDPWS_MCAST_ADDR, port);
-    	streamBnd->setType(OSCLib::Comm::AbstractBinding::UDP_MULTICAST);
-        this->device.addStreamBinding(streamBnd, streamHandler->getDescriptorHandle());
-    }
+    //if (auto streamHandler = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler)) {
+    //	// Add MDPWS UDP muticast binding
+    //	// Binding will be added twice, 1. as part of MDPWS protocol key and 2. using handle key
+    //  int port = OSCLibrary::getInstance()->extractNextPort();
+    //	std::shared_ptr<OSCLib::Comm::IPBinding> streamBnd = std::make_shared<OSCLib::Comm::IPBinding>(OSCLib::Data::OSCP::MDPWS_MCAST_ADDR, port);
+    //	streamBnd->setType(OSCLib::Comm::AbstractBinding::UDP_MULTICAST);
+    //  this->device.addStreamBinding(streamBnd, streamHandler->getDescriptorHandle());
+    //}	
 }
 
 void OSCPProvider::addHydraMDS(HydraMDSDescriptor hmds) {
@@ -1088,7 +1114,7 @@ void OSCPProvider::notifyOperationInvoked(const OperationInvocationContext & oic
 	CDM::OperationInvokedReport oir(getMDIBVersion());
 	oir.ReportDetail().push_back(oirPart);
 
-	device.notifyEvent(oir);
+	_adapter->notifyEvent(oir);
 }
 
 template<class T>
@@ -1098,7 +1124,7 @@ void OSCPProvider::addSetOperationToSCOObjectImpl(const T & source, HydraMDSDesc
 	if (ownerMDS.hasSCO()) {
 		scoDescriptor = ConvertToCDM::convert(ownerMDS.getSCO());
 	} else {
-		// only set handle if previously created
+		// ownly set handle if previously created
 		scoDescriptor->Handle(ownerMDS.getHandle() + "_sco");
 	}
 
@@ -1108,8 +1134,9 @@ void OSCPProvider::addSetOperationToSCOObjectImpl(const T & source, HydraMDSDesc
 
 	Poco::Mutex::ScopedLock lock(mutex);
 
-	// Check for existing state
-	std::unique_ptr<CDM::MDState> cachedOperationStates(ConvertToCDM::convert(operationState));
+	// Now add a state object for the sco descriptor to the cached states.
+
+	std::unique_ptr<CDM::MDState> cachedOperationStates(ConvertToCDM::convert(operationStates));
 	bool existingOperationStateFound(false);
 	for (const auto & state : cachedOperationStates->State()) {
 		if (state.DescriptorHandle() == source.Handle()) {
@@ -1130,7 +1157,7 @@ void OSCPProvider::addSetOperationToSCOObjectImpl(const T & source, HydraMDSDesc
 				CDM::OperatingMode::En);
 		cachedOperationStates->State().push_back(operationState);
 		// replace cached states by update.
-		this->operationState = ConvertFromCDM::convert(*cachedOperationStates);
+		operationStates = ConvertFromCDM::convert(*cachedOperationStates);
 	}
 }
 
@@ -1200,11 +1227,11 @@ void OSCPProvider::createSetOperationForDescriptor(const WorkflowContextDescript
 }
 
 const Dev::DeviceCharacteristics& OSCPProvider::getDeviceCharacteristics() const {
-	return device.getDeviceCharacteristics();
+	return devicecharacteristics;
 }
 
 void OSCPProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics& deviceCharacteristics) {
-	this->device.setDeviceCharacteristics(deviceCharacteristics);
+	this->devicecharacteristics = deviceCharacteristics;
 }
 
 unsigned long long int OSCPProvider::getMDIBVersion() const {
@@ -1213,6 +1240,10 @@ unsigned long long int OSCPProvider::getMDIBVersion() const {
 
 void OSCPProvider::incrementMDIBVersion() {
 	mdibVersion++;
+}
+
+Poco::Mutex & OSCPProvider::getMutex() {
+	return mutex;
 }
 
 void OSCPProvider::setPeriodicEventInterval(const int seconds, const int milliseconds) {

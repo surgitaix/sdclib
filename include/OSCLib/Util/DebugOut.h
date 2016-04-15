@@ -33,11 +33,7 @@
 #include <sstream>
 
 namespace OSCLib {
-namespace Comm {
-class Message;
-}
 namespace Util {
-
 
 /**
  * Class for managing debug output.
@@ -67,8 +63,6 @@ public:
     void flush();
 
     DebugOut & operator<<(std::ostream & (*pf)(std::ostream&));
-    DebugOut & operator<< (const OSCLib::Comm::Message & msg);
-    DebugOut & operator<< (OSCLib::Comm::Message & msg);
 
     template<typename T>
     DebugOut & operator<<(T & item) {

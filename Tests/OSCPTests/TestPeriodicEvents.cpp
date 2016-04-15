@@ -11,7 +11,6 @@
 #include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
@@ -35,6 +34,8 @@
 #include "OSCLib/Util/DebugOut.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "Poco/Event.h"
 #include "Poco/Mutex.h"
@@ -404,7 +405,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixturePeriodicEvents : Tests::AbstractOSCLibFixture {
-	FixturePeriodicEvents() : AbstractOSCLibFixture("FixturePeriodicEvents", Util::DebugOut::Error, 9100) {}
+	FixturePeriodicEvents() : AbstractOSCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::NOTICE, 9100) {}
 };
 
 SUITE(OSCP) {
@@ -424,11 +425,12 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
         provider.setPeriodicEventInterval(0, 500);
 
         // Consumer
-        OSCPServiceManager oscpsm;
+        OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(Tests::PeriodicEvents::DEVICE_ENDPOINT_REFERENCE));
 
         // Make test fail if discovery fails
         CHECK_EQUAL(true, consumer != nullptr);
+
 		if (consumer != nullptr) {
             // Register for metric events
 	        Tests::PeriodicEvents::ConsumerDummyHandler dummyMetricHandler;

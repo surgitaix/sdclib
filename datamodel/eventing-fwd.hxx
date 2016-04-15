@@ -256,23 +256,28 @@ namespace xml_schema
 
 // Forward declarations.
 //
-namespace eventing
+namespace WS
 {
-  class DeliveryType;
-  class NonNegativeDurationType;
-  class ExpirationType;
-  class FilterType;
-  class LanguageSpecificStringType;
-  class SubscriptionEndCodeType;
-  class OpenSubscriptionEndCodeType;
-  class Subscribe;
-  class SubscribeResponse;
-  class Renew;
-  class RenewResponse;
-  class GetStatus;
-  class GetStatusResponse;
-  class Unsubscribe;
-  class SubscriptionEnd;
+  namespace EVENTING
+  {
+    class DeliveryType;
+    class NonNegativeDurationType;
+    class ExpirationType;
+    class ActionList;
+    class FilterType;
+    class LanguageSpecificStringType;
+    class SubscriptionEndCodeType;
+    class OpenSubscriptionEndCodeType;
+    class Subscribe;
+    class Identifier;
+    class SubscribeResponse;
+    class Renew;
+    class RenewResponse;
+    class GetStatus;
+    class GetStatusResponse;
+    class Unsubscribe;
+    class SubscriptionEnd;
+  }
 }
 
 

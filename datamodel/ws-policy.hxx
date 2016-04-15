@@ -63,8 +63,6 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include <xsd/cxx/tree/containers-wildcard.hxx>
-
 #include "ws-streaming.hxx"
 
 namespace WS

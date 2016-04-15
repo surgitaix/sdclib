@@ -24,36 +24,44 @@
 #ifndef OSCPPROVIDER_H_
 #define OSCPPROVIDER_H_
 
-#include "OSCLib/Dev/DeviceCharacteristics.h"
-#include "OSCLib/Dev/OSCP/OSCPDevice.h"
-#include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/MDState.h"
+#include <atomic>
+#include <memory>
 
 #include "Poco/NotificationQueue.h"
 #include "Poco/Mutex.h"
 #include "Poco/Timestamp.h"
 #include "Poco/Timespan.h"
 
-#include <atomic>
-#include <memory>
+#include "OSCLib/Dev/DeviceCharacteristics.h"
+#include "OSCLib/Data/OSCP/OSCP-fwd.h"
+#include "OSCLib/Data/OSCP/OSELibProviderAdapter.h"
+#include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
+#include "OSCLib/Data/OSCP/MDIB/MDState.h"
+
+#include "OSELib/Helper/WithLogger.h"
+
+
+// todo remove
+namespace OSELib {
+	struct ContextReportServiceImpl;
+	struct GetServiceImpl;
+	struct SetServiceImpl;
+}
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProvider {
+class OSCPProvider : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
-	friend struct ActivateTraits;
-	friend struct GetContextStatesTraits;
-	friend struct GetMDDescriptionTraits;
-	friend struct GetMDIBTraits;
-	friend struct GetMDStateTraits;
-    friend struct SetAlertStateTraits;
-    friend struct SetStringTraits;
-    friend struct SetValueTraits;
-	friend struct SetContextStateTraits;
+
     friend class OSCPProviderMDStateHandler;
+    
+    // todo replace by friend class OSELibProviderAdapter
+    friend struct OSELib::ContextReportServiceImpl;
+    friend struct OSELib::GetServiceImpl;
+    friend struct OSELib::SetServiceImpl;
+
 public:
     OSCPProvider();
     virtual ~OSCPProvider();
@@ -68,16 +76,12 @@ public:
     /**
     * @brief Get the Medical Device Description.
     *
-    * Note: can to be implemented by a custom OSCP provider as an alternative to get the description from provided hydra mds.
-    *
     * @return The MDDescription container
     */
     virtual MDDescription getMDDescription();
 
     /**
     * @brief Get all states as part of the MDIB.
-    *
-    * Note: can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
     *
     * @return The MD state container
     */
@@ -149,9 +153,9 @@ public:
     * All needed DPWS devices & services will be stopped and deleted.
     */
     void shutdown();
-
+    
     template<class T>
-    void replaceState(const T & state);
+    void replaceState(const T & state);    
 
     /**
     * @brief Add a state handler to provide states and to process incoming change requests from a consumer.
@@ -163,7 +167,7 @@ public:
     void addHydraMDS(HydraMDSDescriptor hmds);
 
     void removeHydraMDS(std::string handle);
-
+    
     /**
     * @brief Remove a request handler which provides states and processes incoming change requests from a consumer.
     *
@@ -180,17 +184,15 @@ public:
     unsigned long long int getMDIBVersion() const;
     void incrementMDIBVersion();
 
-    Poco::Mutex & getMutex() {
-        return mutex;
-    }
-
+    Poco::Mutex & getMutex();
+    
     void lock() {
     	getMutex().lock();
     }
 
     void unlock() {
     	getMutex().unlock();
-    }
+    }    
 
     void setPeriodicEventInterval(const int seconds, const int milliseconds);
     std::vector<std::string> getHandlesForPeriodicUpdate();
@@ -371,25 +373,23 @@ private:
 
     std::map<std::string, OSCPProviderMDStateHandler *> stateHandlers;
 
-    Poco::Mutex hMDSMapMutex;
-    std::map<std::string, HydraMDSDescriptor> hMDSMap;
-
-    Dev::OSCP::OSCPDevice device;
+	Poco::Mutex hMDSMapMutex;
+	std::map<std::string, HydraMDSDescriptor> hMDSMap;
+    std::unique_ptr<OSELibProviderAdapter> _adapter;
+    Dev::DeviceCharacteristics devicecharacteristics;
+	Poco::Mutex mutex;
 
     std::string endpointReference;
 
-    MDState mdibStates;
-    MDState operationState;
+	MDState mdibStates;
+    MDState operationStates;
     Poco::NotificationQueue invokeQueue;
     std::shared_ptr<AsyncProviderInvoker> providerInvoker;
 
     std::vector<std::string> handlesForPeriodicUpdates;
     Poco::Timestamp lastPeriodicEvent;
     Poco::Timespan periodicEventInterval;
-
-protected:
-	Poco::Mutex mutex;
-
+    
 };
 
 } /* namespace OSCP */

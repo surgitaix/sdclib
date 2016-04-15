@@ -8,26 +8,29 @@
 #ifndef ABSTRACTOSCLIBFIXTURE_H_
 #define ABSTRACTOSCLIBFIXTURE_H_
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Util/DebugOut.h"
 #include <string>
+
+#include "OSCLib/OSCLibrary.h"
+
+#include "OSELib/Helper/WithLogger.h"
 
 namespace OSCLib {
 namespace Tests {
 
-struct AbstractOSCLibFixture {
+struct AbstractOSCLibFixture : public OSELib::WithLogger {
 public:
-	AbstractOSCLibFixture(const std::string & testname, OSCLib::Util::DebugOut::LogLevel debuglevel, int portStart)
-	: testname(testname)
+	AbstractOSCLibFixture(const std::string & testname, OSELib::LogLevel debuglevel, int portStart) :
+		WithLogger(OSELib::Log::BASE),
+		testname(testname)
 	{
-		Util::DebugOut(Util::DebugOut::Default, testname) << "Startup.";
-		OSCLibrary::getInstance()->startup(debuglevel);
-        OSCLibrary::getInstance()->setPortStart(portStart);
+		log_notice([&]{ return testname + ":  Startup."; });
+		OSCLibrary::getInstance().startup(debuglevel);
+        OSCLibrary::getInstance().setPortStart(portStart);
 	}
 
 	virtual ~AbstractOSCLibFixture() {
-		OSCLibrary::getInstance()->shutdown();
-		Util::DebugOut(Util::DebugOut::Default, testname) << "Shutdown." << std::endl;
+		OSCLibrary::getInstance().shutdown();
+		log_notice([&]{ return testname + ":  Shutdown."; });
 	}
 
 private:

@@ -252,6 +252,8 @@ namespace xml_schema
   }
 }
 
+#include "eventing-fwd.hxx"
+
 // Forward declarations.
 //
 namespace WS

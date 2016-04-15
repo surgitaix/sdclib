@@ -19,7 +19,6 @@
 #include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
@@ -63,6 +62,8 @@
 #include "Poco/Event.h"
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
@@ -990,7 +991,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixtureSimpleOSCP : Tests::AbstractOSCLibFixture {
-	FixtureSimpleOSCP() : AbstractOSCLibFixture("FixtureSimpleOSCP", Util::DebugOut::Error, 9000) {}
+	FixtureSimpleOSCP() : AbstractOSCLibFixture("FixtureSimpleOSCP", OSELib::LogLevel::ERROR, 9000) {}
 };
 
 SUITE(OSCP) {
@@ -1001,13 +1002,13 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 	{
         // Provider
         Tests::SimpleOSCP::OSCPHoldingDeviceProvider provider;
-        provider.startup();    
+        provider.startup();
         provider.start();
 
         //Poco::Thread::sleep(2000000);
 
         // Consumer
-        OSCPServiceManager oscpsm;
+        OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleOSCP::DEVICE_ENDPOINT_REFERENCE));
 
         Tests::SimpleOSCP::ExampleConsumerNumericHandler eces1("handle_cur");
@@ -1022,8 +1023,6 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         CHECK_EQUAL(true, c != nullptr);
 
 		if (c != nullptr) {
-            const std::string xaddr(c->getProviderXAddr());
-
 			OSCPConsumer & consumer = *c;
             // MDIB test
             MDIBContainer mdib(consumer.getMDIB());
