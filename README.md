@@ -1,4 +1,4 @@
-# OSCLib
+# OSCLib (dev - unstable)
 
 ## HowTo build
 
