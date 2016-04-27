@@ -123,9 +123,11 @@ public:
         // Add handler
         addMDStateHandler(&streamHandler);
         addMDStateHandler(&streamHandlerAlt);
+
+        init();
     }
     
-	MDDescription getMDDescription() override {
+	void init() {
         // Currentweight stream metric (read-only)
         currentMetric
 			.setSamplePeriod(
@@ -183,10 +185,7 @@ public:
                 .setCodeId("MDC_DEV_ANALY_SAT_O2_MDS"))
 			.addVMD(holdingDeviceModule);
         
-        MDDescription mdd;
-        mdd.addHydraMDSDescriptor(holdingDeviceSystem);
-
-        return mdd;
+        addHydraMDS(holdingDeviceSystem);
     }
 
     void updateStateValue(const RealTimeSampleArrayValue & rtsav) {

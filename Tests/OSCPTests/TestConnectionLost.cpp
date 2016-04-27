@@ -36,9 +36,10 @@ public:
 
     OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : epr(number), metrics(metricCount) {
     	setEndpointReference(std::string("UDI_") + std::to_string(epr));
+    	init();
     }
 
-    MDDescription getMDDescription() override {
+    void init() {
 
         // Location context
         SystemContext sc;
@@ -84,10 +85,7 @@ public:
 
         mds.addVMD(testVMD);
 
-        MDDescription mdd;
-		mdd.addHydraMDSDescriptor(mds);
-
-        return mdd;
+        addHydraMDS(mds);
     }
 
 private:

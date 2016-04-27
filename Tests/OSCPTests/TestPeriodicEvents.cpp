@@ -325,9 +325,11 @@ public:
 		addMDStateHandler(&dummyState);
         addMDStateHandler(&hydraMDSState);
         addMDStateHandler(&vmdState);
+
+        init();
     }
 
-    MDDescription getMDDescription() override {
+    void init() {
 
     	// Alerts
         AlertSystemDescriptor alertSystem;
@@ -371,10 +373,7 @@ public:
 			.addVMD(deviceModule)
 			.setAlertSystem(alertSystem);
 
-        MDDescription mdd;
-        mdd.addHydraMDSDescriptor(deviceSystem);
-
-        return mdd;
+        addHydraMDS(deviceSystem);
     }
 
 private:

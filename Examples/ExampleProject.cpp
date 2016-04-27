@@ -213,9 +213,11 @@ public:
         addMDStateHandler(&channelState);
         addMDStateHandler(&hydraMDSState);
         addMDStateHandler(&vmdState);
+
+        init();
     }
        
-    MDDescription getMDDescription() override {
+    void init() {
         
         // Channel
         ChannelDescriptor holdingDeviceChannel;
@@ -243,9 +245,7 @@ public:
 
         createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
-        MDDescription mdd;
-		mdd.addHydraMDSDescriptor(holdingDeviceSystem);
-        return mdd;
+        addHydraMDS(holdingDeviceSystem);
     }
 
     void setCurrentWeight(float value) {

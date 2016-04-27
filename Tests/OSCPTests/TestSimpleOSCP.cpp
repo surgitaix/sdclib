@@ -847,9 +847,11 @@ public:
         addMDStateHandler(&channelState);
         addMDStateHandler(&hydraMDSState);
         addMDStateHandler(&vmdState);
+
+        init();
     }
 
-    MDDescription getMDDescription() override {
+    void init() {
 
         // Alerts
         AlertSystemDescriptor alertSystem;
@@ -917,10 +919,7 @@ public:
 			.setOperationTarget("handle_max");
         addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
-        MDDescription mdd;
-        mdd.addHydraMDSDescriptor(holdingDeviceSystem);
-
-        return mdd;
+        addHydraMDS(holdingDeviceSystem);
     }
 
     // Update weight periodically
