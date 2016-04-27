@@ -33,7 +33,7 @@ public:
 
     void updateState(const OSCLib::Data::OSCP::RealTimeSampleArrayMetricState & object);
 
-    virtual RealTimeSampleArrayMetricState getInitialClonedState() = 0;
+    virtual RealTimeSampleArrayMetricState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.

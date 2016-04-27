@@ -95,7 +95,7 @@ public:
     }
 
 
-    RealTimeSampleArrayMetricState getInitialClonedState() override {
+    RealTimeSampleArrayMetricState getInitialState() override {
         return createState();
     }
 

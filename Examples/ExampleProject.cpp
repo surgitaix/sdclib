@@ -72,7 +72,7 @@ public:
         return result;
     }
 
-    NumericMetricState getInitialClonedState() override {
+    NumericMetricState getInitialState() override {
         NumericMetricState result = createState();
         return result;
     }
@@ -105,7 +105,7 @@ public:
         return result;
     }
 
-    NumericMetricState getInitialClonedState() override {
+    NumericMetricState getInitialState() override {
         return createState(0);
     }
 
@@ -132,7 +132,7 @@ public:
         return result;
     }
 
-    virtual ComponentState getInitialClonedState() override {
+    virtual ComponentState getInitialState() override {
         ComponentState state = createState();
         return state;
     }
@@ -156,7 +156,7 @@ public:
         return result;
     }
 
-    virtual HydraMDSState getInitialClonedState() override {
+    virtual HydraMDSState getInitialState() override {
         HydraMDSState state = createState();
         return state;
     }

@@ -20,7 +20,7 @@ public:
 	OSCPProviderComponentStateHandler();
 	virtual ~OSCPProviderComponentStateHandler();
 
-    virtual ComponentState getInitialClonedState() = 0;
+    virtual ComponentState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.

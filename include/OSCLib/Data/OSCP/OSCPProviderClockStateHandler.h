@@ -19,7 +19,7 @@ public:
 	OSCPProviderClockStateHandler();
 	virtual ~OSCPProviderClockStateHandler();
 
-    virtual ClockState getInitialClonedState() = 0;
+    virtual ClockState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.

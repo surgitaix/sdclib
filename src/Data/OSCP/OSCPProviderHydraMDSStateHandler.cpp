@@ -22,7 +22,7 @@ OSCPProviderHydraMDSStateHandler::~OSCPProviderHydraMDSStateHandler() {
 }
 
 std::string OSCPProviderHydraMDSStateHandler::getDescriptorHandle() {
-    return getInitialClonedState().getDescriptorHandle();
+    return getInitialState().getDescriptorHandle();
 }
 
 } /* namespace OSCP */

@@ -31,7 +31,7 @@ void OSCPProviderNumericMetricStateHandler::updateState(const OSCLib::Data::OSCP
 }
 
 std::string OSCPProviderNumericMetricStateHandler::getDescriptorHandle() {
-    return getInitialClonedState().getDescriptorHandle();
+    return getInitialState().getDescriptorHandle();
 }
 
 } /* namespace OSCP */

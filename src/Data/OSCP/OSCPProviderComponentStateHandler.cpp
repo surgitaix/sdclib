@@ -22,7 +22,7 @@ OSCPProviderComponentStateHandler::~OSCPProviderComponentStateHandler() {
 }
 
 std::string OSCPProviderComponentStateHandler::getDescriptorHandle() {
-    return getInitialClonedState().getDescriptorHandle();
+    return getInitialState().getDescriptorHandle();
 }
 
 } /* namespace OSCP */

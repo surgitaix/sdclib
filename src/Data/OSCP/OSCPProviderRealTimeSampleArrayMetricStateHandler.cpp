@@ -31,7 +31,7 @@ void OSCPProviderRealTimeSampleArrayMetricStateHandler::updateState(const OSCLib
 }
 
 std::string OSCPProviderRealTimeSampleArrayMetricStateHandler::getDescriptorHandle() {
-    return getInitialClonedState().getDescriptorHandle();
+    return getInitialState().getDescriptorHandle();
 }
 
 } /* namespace OSCP */

@@ -22,7 +22,7 @@ OSCPProviderClockStateHandler::~OSCPProviderClockStateHandler() {
 }
 
 std::string OSCPProviderClockStateHandler::getDescriptorHandle() {
-    return getInitialClonedState().getDescriptorHandle();
+    return getInitialState().getDescriptorHandle();
 }
 
 } /* namespace OSCP */

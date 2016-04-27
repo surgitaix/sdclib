@@ -34,7 +34,7 @@ public:
 
     void updateState(const OSCLib::Data::OSCP::LimitAlertConditionState & object);
 
-    virtual LimitAlertConditionState getInitialClonedState() = 0;
+    virtual LimitAlertConditionState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.

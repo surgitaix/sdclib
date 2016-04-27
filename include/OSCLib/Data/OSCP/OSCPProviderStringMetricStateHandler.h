@@ -33,7 +33,7 @@ public:
 
     void updateState(const OSCLib::Data::OSCP::StringMetricState & object);
 
-    virtual StringMetricState getInitialClonedState() = 0;
+    virtual StringMetricState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.
