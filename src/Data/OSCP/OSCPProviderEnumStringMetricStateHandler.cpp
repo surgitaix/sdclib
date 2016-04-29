@@ -30,7 +30,7 @@ void OSCPProviderEnumStringMetricStateHandler::updateState(const OSCLib::Data::O
 }
 
 std::string OSCPProviderEnumStringMetricStateHandler::getDescriptorHandle() {
-    return getInitialClonedState().getDescriptorHandle();
+    return getInitialState().getDescriptorHandle();
 }
 
 } /* namespace OSCP */

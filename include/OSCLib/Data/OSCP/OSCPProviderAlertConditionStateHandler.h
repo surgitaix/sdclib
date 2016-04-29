@@ -39,7 +39,7 @@ public:
     *
     * @return The state
     */
-    virtual AlertConditionState getInitialClonedState() = 0;
+    virtual AlertConditionState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.

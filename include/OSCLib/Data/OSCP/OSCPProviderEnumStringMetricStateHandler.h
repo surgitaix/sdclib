@@ -33,7 +33,7 @@ public:
 
     void updateState(const OSCLib::Data::OSCP::EnumStringMetricState & object);
 
-    virtual EnumStringMetricState getInitialClonedState() = 0;
+    virtual EnumStringMetricState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.

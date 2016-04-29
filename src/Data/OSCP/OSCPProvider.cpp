@@ -904,27 +904,27 @@ void OSCPProvider::startup() {
     mdibStates = MDState(operationStates);
     for (const auto & handler : stateHandlers) {
 		if (OSCPProviderAlertConditionStateHandler * h = dynamic_cast<OSCPProviderAlertConditionStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderAlertSignalStateHandler * h = dynamic_cast<OSCPProviderAlertSignalStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderEnumStringMetricStateHandler * h = dynamic_cast<OSCPProviderEnumStringMetricStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderAlertSystemStateHandler * h = dynamic_cast<OSCPProviderAlertSystemStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderLimitAlertConditionStateHandler * h = dynamic_cast<OSCPProviderLimitAlertConditionStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderNumericMetricStateHandler * h = dynamic_cast<OSCPProviderNumericMetricStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderRealTimeSampleArrayMetricStateHandler * h = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderStringMetricStateHandler * h = dynamic_cast<OSCPProviderStringMetricStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderClockStateHandler * h = dynamic_cast<OSCPProviderClockStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderComponentStateHandler * h = dynamic_cast<OSCPProviderComponentStateHandler *>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderHydraMDSStateHandler * h = dynamic_cast<OSCPProviderHydraMDSStateHandler*>(handler.second)) {
-			mdibStates.addState(h->getInitialClonedState());
+			mdibStates.addState(h->getInitialState());
 		} else if (dynamic_cast<OSCPProviderActivateOperationHandler *>(handler.second)) {
 			// NOOP
 		} else if (OSCPProviderContextStateHandler * h = dynamic_cast<OSCPProviderContextStateHandler *>(handler.second)) {

@@ -30,7 +30,7 @@ void OSCPProviderAlertSignalStateHandler::updateState(const OSCLib::Data::OSCP::
 }
 
 std::string OSCPProviderAlertSignalStateHandler::getDescriptorHandle() {
-   return getInitialClonedState().getDescriptorHandle();
+   return getInitialState().getDescriptorHandle();
 }
 
 } /* namespace OSCP */

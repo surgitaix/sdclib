@@ -33,7 +33,7 @@ public:
 
     void updateState(const OSCLib::Data::OSCP::AlertSignalState & object);
 
-    virtual AlertSignalState getInitialClonedState() = 0;
+    virtual AlertSignalState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.

@@ -34,7 +34,7 @@ void OSCPProviderLimitAlertConditionStateHandler::updateState(const OSCLib::Data
 }
 
 std::string OSCPProviderLimitAlertConditionStateHandler::getDescriptorHandle() {
-    return getInitialClonedState().getDescriptorHandle();
+    return getInitialState().getDescriptorHandle();
 }
 
 } /* namespace OSCP */

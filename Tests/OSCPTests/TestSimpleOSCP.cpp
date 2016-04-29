@@ -376,7 +376,7 @@ public:
         return result;
     }
 
-    NumericMetricState getInitialClonedState() override {
+    NumericMetricState getInitialState() override {
         NumericMetricState result = createState();
         return result;
     }
@@ -410,7 +410,7 @@ public:
         return result;
     }
 
-    NumericMetricState getInitialClonedState() override {
+    NumericMetricState getInitialState() override {
         return createState(0);
     }
 
@@ -452,7 +452,7 @@ public:
         return result;
     }
 
-    EnumStringMetricState getInitialClonedState() override {
+    EnumStringMetricState getInitialState() override {
         return createState("hello");
     }
 
@@ -487,7 +487,7 @@ public:
         return result;
     }
 
-    StringMetricState getInitialClonedState() override {
+    StringMetricState getInitialState() override {
         return createState("Test");
     }
 
@@ -529,7 +529,7 @@ public:
         return result;
     }
 
-    AlertSignalState getInitialClonedState() override {
+    AlertSignalState getInitialState() override {
         return createState();
     }
 
@@ -565,7 +565,7 @@ public:
         return result;
     }
 
-    AlertSignalState getInitialClonedState() override {
+    AlertSignalState getInitialState() override {
         return createState();
     }
 
@@ -648,7 +648,7 @@ public:
         return result;
     }
 
-    LimitAlertConditionState getInitialClonedState() override {
+    LimitAlertConditionState getInitialState() override {
         return createState();
     }
 
@@ -660,7 +660,7 @@ public:
 	AlertSystemStateHandler() {
     }
 
-	AlertSystemState getInitialClonedState() override {
+	AlertSystemState getInitialState() override {
         AlertSystemState alertSystemState;
         // reference alert system descriptor's handle
         alertSystemState
@@ -702,7 +702,7 @@ public:
         return result;
     }
 
-    virtual ComponentState getInitialClonedState() override {
+    virtual ComponentState getInitialState() override {
         ComponentState state = createState();
         return state;
     }
@@ -726,7 +726,7 @@ public:
         return result;
     }
 
-    virtual HydraMDSState getInitialClonedState() override {
+    virtual HydraMDSState getInitialState() override {
         HydraMDSState state = createState();
         return state;
     }
@@ -848,9 +848,6 @@ public:
         addMDStateHandler(&channelState);
         addMDStateHandler(&hydraMDSState);
         addMDStateHandler(&vmdState);
-    }
-
-    MDDescription getMDDescription() override {
 
         // Alerts
         AlertSystemDescriptor alertSystem;
@@ -918,10 +915,7 @@ public:
 			.setOperationTarget("handle_max");
         addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
-        MDDescription mdd;
-        mdd.addHydraMDSDescriptor(holdingDeviceSystem);
-
-        return mdd;
+        addHydraMDS(holdingDeviceSystem);
     }
 
     // Update weight periodically

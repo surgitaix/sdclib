@@ -19,7 +19,7 @@ public:
 	OSCPProviderHydraMDSStateHandler();
 	virtual ~OSCPProviderHydraMDSStateHandler();
 
-    virtual HydraMDSState getInitialClonedState() = 0;
+    virtual HydraMDSState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.

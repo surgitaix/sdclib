@@ -173,7 +173,7 @@ public:
         return result;
     }
 
-	AlertConditionState getInitialClonedState() override {
+	AlertConditionState getInitialState() override {
     	AlertConditionState result = createState();
         return result;
     }
@@ -195,7 +195,7 @@ public:
         return result;
     }
 
-	AlertSystemState getInitialClonedState() override {
+	AlertSystemState getInitialState() override {
         AlertSystemState result = createState();
         return result;
     }
@@ -237,7 +237,7 @@ public:
         return result;
     }
 
-    NumericMetricState getInitialClonedState() override {
+    NumericMetricState getInitialState() override {
         NumericMetricState result = createState();
         return result;
     }
@@ -259,7 +259,7 @@ public:
         return result;
     }
 
-	virtual ComponentState getInitialClonedState() override {
+	virtual ComponentState getInitialState() override {
         ComponentState state = createState();
         return state;
 	}
@@ -283,7 +283,7 @@ public:
         return result;
     }
 
-	virtual HydraMDSState getInitialClonedState() override {
+	virtual HydraMDSState getInitialState() override {
         HydraMDSState state = createState();
         return state;
 	}
@@ -326,9 +326,6 @@ public:
 		addMDStateHandler(&dummyState);
         addMDStateHandler(&hydraMDSState);
         addMDStateHandler(&vmdState);
-    }
-
-    MDDescription getMDDescription() override {
 
     	// Alerts
         AlertSystemDescriptor alertSystem;
@@ -372,10 +369,7 @@ public:
 			.addVMD(deviceModule)
 			.setAlertSystem(alertSystem);
 
-        MDDescription mdd;
-        mdd.addHydraMDSDescriptor(deviceSystem);
-
-        return mdd;
+        addHydraMDS(deviceSystem);
     }
 
 private:
