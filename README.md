@@ -1,9 +1,9 @@
-# OSCLib (dev - unstable)
+# OSCLib
 
 ## HowTo build
 
 ### Essential requirements
-- GCC, pthread
+- Linux: GCC, pthread
 - Supported compilers: GCC, LLVM, MSVC++
 
 ### Additional dependecies: 
@@ -14,9 +14,9 @@
  - audo apt-get install libxerces-c-dev
 
 ## Build OSCLib using CMAKE
-- Example:
+- Example (Linux):
  - cmake .
  - make -j 4
 
 See the 'Examples' and 'Tests' folders for example implementations.
-Run './UnitTests' for testing OSCP related tests.
+Run './UnitTests' for running  OSCP related tests.
