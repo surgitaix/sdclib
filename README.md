@@ -3,7 +3,7 @@
 ## HowTo build
 
 ### Essential requirements
-- GCC, pthread
+- Linux: GCC, pthread
 - Supported compilers: GCC, LLVM, MSVC++
 
 ### Additional dependecies: 
@@ -14,7 +14,7 @@
  - audo apt-get install libxerces-c-dev
 
 ## Build OSCLib using CMAKE
-- Example:
+- Example (Linux):
  - cmake .
  - make -j 4
 
