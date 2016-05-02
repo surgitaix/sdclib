@@ -318,15 +318,6 @@ public:
 
         location.setHandle(LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
 
-        // State handlers
-		addMDStateHandler(&alertSystemState);
-		addMDStateHandler(&alertConditionState);
-        addMDStateHandler(&channelState);
-        addMDStateHandler(&contextStates);
-		addMDStateHandler(&dummyState);
-        addMDStateHandler(&hydraMDSState);
-        addMDStateHandler(&vmdState);
-
     	// Alerts
         AlertSystemDescriptor alertSystem;
         alertSystem
@@ -370,7 +361,16 @@ public:
 			.setAlertSystem(alertSystem);
 
         addHydraMDS(deviceSystem);
-    }
+
+        // State handlers
+		addMDStateHandler(&alertSystemState);
+		addMDStateHandler(&alertConditionState);
+        addMDStateHandler(&channelState);
+        addMDStateHandler(&contextStates);
+		addMDStateHandler(&dummyState);
+        addMDStateHandler(&hydraMDSState);
+        addMDStateHandler(&vmdState);
+	}
 
 private:
     // alert descriptors

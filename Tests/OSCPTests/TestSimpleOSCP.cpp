@@ -833,22 +833,6 @@ public:
 			.setLatching(true)
 			.setHandle("handle_alert_signal_latching");
 
-        // State handlers
-
-        addMDStateHandler(&contextStates);
-        addMDStateHandler(&curValueState);
-        addMDStateHandler(&enumState);
-        addMDStateHandler(&maxValueState);
-        addMDStateHandler(&strValueState);
-        addMDStateHandler(&limitAlertConditionHandler);
-        addMDStateHandler(&alertSigHandler);
-        addMDStateHandler(&latchingAlertSigHandler);
-        addMDStateHandler(&alertSysHandler);
-        addMDStateHandler(&cmdHandler);
-        addMDStateHandler(&channelState);
-        addMDStateHandler(&hydraMDSState);
-        addMDStateHandler(&vmdState);
-
         // Alerts
         AlertSystemDescriptor alertSystem;
         alertSystem
@@ -916,7 +900,23 @@ public:
         addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
         addHydraMDS(holdingDeviceSystem);
-    }
+
+        // State handlers
+
+        addMDStateHandler(&contextStates);
+        addMDStateHandler(&curValueState);
+        addMDStateHandler(&enumState);
+        addMDStateHandler(&maxValueState);
+        addMDStateHandler(&strValueState);
+        addMDStateHandler(&limitAlertConditionHandler);
+        addMDStateHandler(&alertSigHandler);
+        addMDStateHandler(&latchingAlertSigHandler);
+        addMDStateHandler(&alertSysHandler);
+        addMDStateHandler(&cmdHandler);
+        addMDStateHandler(&channelState);
+        addMDStateHandler(&hydraMDSState);
+        addMDStateHandler(&vmdState);
+	}
 
     // Update weight periodically
     virtual void runImpl() override {

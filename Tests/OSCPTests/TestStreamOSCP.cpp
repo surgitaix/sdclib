@@ -121,10 +121,6 @@ public:
         currentMetric.setHandle("handle_plethysmogram_stream");
         currentMetricAlt.setHandle("handle_plethysmogram_stream_alt");
 
-        // Add handler
-        addMDStateHandler(&streamHandler);
-        addMDStateHandler(&streamHandlerAlt);
-
         // Currentweight stream metric (read-only)
         currentMetric
 			.setSamplePeriod(
@@ -183,6 +179,10 @@ public:
 			.addVMD(holdingDeviceModule);
         
         addHydraMDS(holdingDeviceSystem);
+
+        // Add handler
+        addMDStateHandler(&streamHandler);
+        addMDStateHandler(&streamHandlerAlt);
     }
 
     void updateStateValue(const RealTimeSampleArrayValue & rtsav) {

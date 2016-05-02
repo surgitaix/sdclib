@@ -207,17 +207,7 @@ public:
         		CodedValue()
 				.addConceptDescription(LocalizedText().set("Maximum weight")))
         	.setHandle("handle_max");
-
-        // States
-        addMDStateHandler(&maxValueState);
-        addMDStateHandler(&curValueState);
-        addMDStateHandler(&channelState);
-        addMDStateHandler(&hydraMDSState);
-        addMDStateHandler(&vmdState);
-    }
        
-    MDDescription getMDDescription() override {
-        
         // Channel
         ChannelDescriptor holdingDeviceChannel;
         holdingDeviceChannel
@@ -244,9 +234,14 @@ public:
 
         createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
-        MDDescription mdd;
-		mdd.addHydraMDSDescriptor(holdingDeviceSystem);
-        return mdd;
+        addHydraMDS(holdingDeviceSystem);
+
+		// State handler
+        addMDStateHandler(&maxValueState);
+        addMDStateHandler(&curValueState);
+        addMDStateHandler(&channelState);
+        addMDStateHandler(&hydraMDSState);
+        addMDStateHandler(&vmdState);
     }
 
     void setCurrentWeight(float value) {
