@@ -154,6 +154,10 @@ struct EventReportEventSink : public OSCP::IEventReportEventSink, public OSELib:
 		}
 	}
 
+	virtual void dispatch(const OSCP::WaveformStreamTraits::ReportType & report) override {
+		// NOOP
+	}
+
 private:
 
 	void dispatchAlertState(const CDM::AbstractAlertState & alertState) {
@@ -243,14 +247,14 @@ void OSELibConsumerAdapter::start() {
 
 		virtual ~Factory() = default;
 
-		private:
+	private:
 		OSELib::HTTP::FrontController _frontController;
 
-			OSELib::ContextServiceEventSink contextServiceEventSink;
-			OSELib::EventReportEventSink eventReportEventSink;
+		OSELib::ContextServiceEventSink contextServiceEventSink;
+		OSELib::EventReportEventSink eventReportEventSink;
 
-			OSELib::ContextServiceEventSinkController _contextServiceEventSinkService;
-			OSELib::EventReportEventSinkController _eventReportEventSinkService;
+		OSELib::ContextServiceEventSinkController _contextServiceEventSinkService;
+		OSELib::EventReportEventSinkController _eventReportEventSinkService;
 	};
 
 	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_consumer), *_threadPool, ss,  new Poco::Net::HTTPServerParams));

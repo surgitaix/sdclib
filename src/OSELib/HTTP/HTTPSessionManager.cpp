@@ -73,7 +73,7 @@ public:
 				try {
 					const std::string responseContent(exchanger.exchangeHttp(session, message->_destination.getPath(), message->_message));
 				} catch (...) {
-					log_information([&] { return "Delivering event failed. Terminating subscription for sink: " + _destinationURI.toString(); });
+					log_error([&] { return "Delivering event failed. Terminating subscription for sink: " + _destinationURI.toString(); });
 					_subscriptions.unsubscribe(message->_myID);
 					return;
 				}

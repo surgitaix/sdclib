@@ -27,7 +27,7 @@ FrontControllerAdapter::~FrontControllerAdapter() = default;
 
 Poco::Net::HTTPRequestHandler * FrontControllerAdapter::createRequestHandler(const Poco::Net::HTTPServerRequest & request) {
 	log_debug([&] { return "Request for " + request.serverAddress().toString() + request.getURI(); });
-	 return _controller.dispatchRequest(request);
+	return _controller.dispatchRequest(request);
 }
 
 }

@@ -23,12 +23,14 @@ public:
 	std::string getGetServicePath() const;
 	std::string getPHIServicePath() const;
 	std::string getSetServicePath() const;
+	std::string getWaveformStreamServicePath() const;
 
 	WS::MEX::Metadata createDeviceMetadata(const std::string & serverAddress) const;
 	WS::MEX::Metadata createContextServiceMetadata(const std::string & serverAddress) const;
 	WS::MEX::Metadata createGetServiceMetadata(const std::string & serverAddress) const;
 	WS::MEX::Metadata createSetServiceMetadata(const std::string & serverAddress) const;
 	WS::MEX::Metadata createEventServiceMetadata(const std::string & serverAddress) const;
+	WS::MEX::Metadata createStreamServiceMetadata(const std::string & serverAddress) const;
 
 private:
 	using MetadataSection = WS::MEX::MetadataSection;
@@ -45,6 +47,7 @@ private:
 	MetadataSection createMetadataSectionThisDevice() const;
 	MetadataSection createMetadataSectionWSDLForContextService(const std::string & serverAddress) const;
 	MetadataSection createMetadataSectionWSDLForEventReportService(const std::string & serverAddress) const;
+	MetadataSection createMetadataSectionWSDLForWaveformReportService(const std::string & serverAddress) const;
 	MetadataSection createMetadataSectionWSDLForGetService(const std::string & serverAddress) const;
 	MetadataSection createMetadataSectionWSDLForSetService(const std::string & serverAddress) const;
 	MetadataSection createMetadataSectionRelationship(const Host & host, const std::vector<Hosted> & hosted) const;
@@ -53,6 +56,7 @@ private:
 
 	Hosted createHostedContextService(const std::string & serverAddress) const;
 	Hosted createHostedEventReportService(const std::string & serverAddress) const;
+	Hosted createHostedStreamReportService(const std::string & serverAddress) const;
 	Hosted createHostedGetService(const std::string & serverAddress) const;
 	Hosted createHostedSetService(const std::string & serverAddress) const;
 };

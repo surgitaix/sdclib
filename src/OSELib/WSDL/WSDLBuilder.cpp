@@ -35,6 +35,8 @@ WSDLBuilder::WSDLBuilder(const std::string & targetNamespace, const std::string 
 	definePrefixMapping("soap", OSCP::NS_WSDL_SOAP_BINDING);
 	definePrefixMapping("xsd", OSCP::NS_XML_SCHEMA);
 	definePrefixMapping("mm", OSCP::NS_MESSAGE_MODEL);
+	definePrefixMapping("wsstm", OSCP::WS_MEX_ORNET_NS_STREAM);
+	definePrefixMapping("wsp", OSCP::WS_POLICY);
 
 	// add wsdl imports
 	wsdl->import().push_back(WS::WSDL::TImport(OSCP::NS_MESSAGE_MODEL, SCHEMA::SCHEMA_MESSAGEMODEL_NAME));
@@ -95,6 +97,21 @@ void WSDLBuilder::addNotification(const std::string & notificationName, const xm
 
 		binding_->operation().push_back(bindingOperation);
 	}
+}
+
+void WSDLBuilder::addStreamType(const std::string & targetNs, const std::string & actionURI, const std::string & type, const std::string & id) {
+    WS::STREAMING::TStreamType streamType;
+    xml_schema::Uri action(actionURI);
+    streamType.actionURI(action);
+    xml_schema::Qname element(targetNamespace_, id);
+    streamType.element(element);
+    streamType.id(id);
+    streamType.streamType(type);
+    WS::STREAMING::TStreamDescriptions streamDescr(streamType);
+    streamDescr.targetNamespace(targetNs);
+    WS::STREAMING::StreamSource streamSource(streamDescr);
+    WS::POLICY::Policy p(streamSource);
+    portType_->Policy(p);
 }
 
 void WSDLBuilder::addOperation(const std::string & operationName, const xml_schema::Qname & request, const xml_schema::Qname & response, const std::string & requestAction, const std::string & responseAction) {

@@ -76,7 +76,7 @@ SubscriptionClient::~SubscriptionClient() {
 
 void SubscriptionClient::run() {
 
-	// todo clean up and splti method
+	// todo clean up and split method
 	OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
 
 	const WS::EVENTING::ExpirationType defaultExpires("PT10S");

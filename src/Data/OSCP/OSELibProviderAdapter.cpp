@@ -33,6 +33,7 @@
 #include "OSELib/HTTP/HTTPSessionManager.h"
 #include "OSELib/OSCP/ContextServiceHandler.h"
 #include "OSELib/OSCP/EventReportServiceHandler.h"
+#include "OSELib/OSCP/WaveformReportServiceHandler.h"
 #include "OSELib/OSCP/GetServiceHandler.h"
 #include "OSELib/OSCP/IContextService.h"
 #include "OSELib/OSCP/IEventReport.h"
@@ -51,6 +52,7 @@ using ContextServiceController = OSCP::OSCPServiceController<OSCP::IContextServi
 using EventReportServiceController = OSCP::OSCPServiceController<OSCP::IEventReport, OSCP::EventReportServiceHandler>;
 using GetServiceController = OSCP::OSCPServiceController<OSCP::IGetService, OSCP::GetServiceHandler>;
 using SetServiceController = OSCP::OSCPServiceController<OSCP::ISetService, OSCP::SetServiceHandler>;
+using WaveformEventReportServiceController = OSCP::OSCPServiceController<OSCP::IEventReport, OSCP::WaveformReportServiceHandler>;
 
 struct DeviceImpl : public DPWS::IDevice {
 	DeviceImpl(const DPWS::MetadataProvider & metadata, DPWS::DPWSHost & host) :
@@ -100,6 +102,7 @@ struct ContextReportServiceImpl : public OSCP::IContextService {
 		WSDL::WSDLBuilderTraitAdapter<OSCP::PeriodicContextChangedReportTraits> PeriodicContextChangedReportTraits(builder);
 		WSDL::WSDLBuilderTraitAdapter<OSCP::GetContextStatesTraits> GetContextStatesTraitsAdapter(builder);
 		WSDL::WSDLBuilderTraitAdapter<OSCP::SetContextStateTraits> SetContextStateTraits(builder);
+		WSDL::WSDLBuilderTraitAdapter<OSCP::WaveformStreamTraits> WaveformStreamTraits(builder);
 		return builder.serialize();
 	}
 
@@ -171,6 +174,42 @@ struct EventReportServiceImpl : public OSCP::IEventReport {
 private:
 	const DPWS::MetadataProvider _metadata;
 	DPWS::SubscriptionManager & _subscriptionManager;
+};
+
+struct WaveformReportServiceImpl : public OSCP::IEventReport {
+
+	WaveformReportServiceImpl(const DPWS::MetadataProvider & metadata) :
+		_metadata(metadata)
+	{
+	}
+
+	virtual std::string getBaseUri() const override {
+		return _metadata.getWaveformStreamServicePath();
+	}
+
+	virtual std::string getWSDL() override {
+		WSDL::WSDLBuilder builder(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_STREAMSERVICE_PORTTYPE);
+		builder.addStreamType(OSCP::WS_MEX_ORNET_STREAM_IDENTIFIER, OSCP::ACTION_ORNET_STREAM, OSCP::WS_MEX_ORNET_STREAM_TYPE, "WaveformStream");
+		return builder.serialize();
+	}
+
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
+		DPWS::MetadataProvider metadata;
+		return _metadata.createStreamServiceMetadata(serverAddress);
+	}
+
+	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
+		return nullptr;
+	}
+	virtual std::unique_ptr<DPWS::UnsubscribeTraits::Response> dispatch(const DPWS::UnsubscribeTraits::Request & request, const DPWS::UnsubscribeTraits::RequestIdentifier & identifier) override {
+		return nullptr;
+	}
+	virtual std::unique_ptr<DPWS::RenewTraits::Response> dispatch(const DPWS::RenewTraits::Request & request, const DPWS::RenewTraits::RequestIdentifier & identifier) override {
+		return nullptr;
+	}
+
+private:
+	const DPWS::MetadataProvider _metadata;
 };
 
 struct GetServiceImpl : public OSCP::IGetService {
@@ -344,11 +383,13 @@ void OSELibProviderAdapter::start() {
 			eventReportStub(metadata, subscriptionManager),
 			getServiceStub(provider, metadata),
 			setServiceStub(provider, metadata),
+			waveformReportStub(metadata),
 			_deviceService(_frontController, deviceStub),
 			_contextService(_frontController, contextStub),
 			_getService(_frontController, getServiceStub),
 			_setService(_frontController, setServiceStub),
-			_eventReportService(_frontController, eventReportStub)
+			_eventReportService(_frontController, eventReportStub),
+			_waveformReportService(_frontController, waveformReportStub)
 		{
 		}
 
@@ -360,6 +401,7 @@ void OSELibProviderAdapter::start() {
 			OSELib::EventReportServiceImpl eventReportStub;
 			OSELib::GetServiceImpl getServiceStub;
 			OSELib::SetServiceImpl setServiceStub;
+			OSELib::WaveformReportServiceImpl waveformReportStub;
 
 			OSELib::HTTP::FrontController _frontController;
 			OSELib::DPWS::DeviceServiceController _deviceService;
@@ -367,6 +409,7 @@ void OSELibProviderAdapter::start() {
 			OSELib::GetServiceController _getService;
 			OSELib::SetServiceController _setService;
 			OSELib::EventReportServiceController _eventReportService;
+			OSELib::WaveformEventReportServiceController _waveformReportService;
 	};
 
 	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager), *_threadPool, ss,  new Poco::Net::HTTPServerParams));

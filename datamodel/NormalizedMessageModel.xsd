@@ -6,8 +6,10 @@
 	xmlns:mex="http://schemas.xmlsoap.org/ws/2004/09/mex"
 	xmlns:mm="http://message-model-uri/15/04"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing"
+	xmlns:wsstm="http://standardized.namespace.org/ws-streaming"
 	xmlns:tns="http://www.w3.org/2003/05/soap-envelope"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsp="http://www.w3.org/ns/ws-policy"
 	elementFormDefault="qualified" 
 	attributeFormDefault="unqualified" 
 	xml:lang="en">
@@ -15,6 +17,7 @@
 	<xs:import namespace="http://www.w3.org/2005/08/addressing" schemaLocation="ws-addressing.xsd"/>
 	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/09/mex" schemaLocation="MetadataExchange.xsd"/>
 	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" schemaLocation="eventing.xsd"/>
+	<xs:import namespace="http://standardized.namespace.org/ws-streaming" schemaLocation="ws-streaming.xsd"/>
 	<xs:import namespace="http://message-model-uri/15/04" schemaLocation="BICEPS_MessageModel.xsd"/>
 	<xs:import namespace="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01" schemaLocation="wsdd-discovery-1.1-schema-os.xsd"/>
 
@@ -86,6 +89,9 @@
 				<xs:element ref="mm:SetStringResponse" />
 				<xs:element ref="mm:SetValue" />
 				<xs:element ref="mm:SetValueResponse" />
+				
+				<!-- WaveformStreamService -->
+				<xs:element ref="mm:WaveformStream" />
 				
 			</xs:choice>
 		</xs:complexType>

@@ -138,5 +138,22 @@ void PeriodicMetricReportTraits::dispatch(Dispatcher & dispatcher, const ReportT
 	dispatcher.dispatch(report);
 }
 
+
+xml_schema::Qname WaveformStreamTraits::MessageType() {
+	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());
+}
+std::string WaveformStreamTraits::NotificationName() {
+	return "WaveformStreamReport";
+}
+xml_schema::Qname WaveformStreamTraits::PortType() {
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STREAMSERVICE_PORTTYPE);
+}
+std::string WaveformStreamTraits::Action() {
+	return EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT;
+}
+void WaveformStreamTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
+	dispatcher.dispatch(report);
+}
+
 }
 }

@@ -53,7 +53,7 @@ public:
 	/**
 	 * Startup framework.
 	 *
-	 * @param debugLevel The debug output level (0: no output, 1: errors, 2: errors and messages)
+	 * @param debugLevel The debug output level.
 	 */
 	void startup(OSELib::LogLevel debugLevel = OSELib::LogLevel::ERROR);
 

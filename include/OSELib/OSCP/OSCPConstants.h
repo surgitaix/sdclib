@@ -38,10 +38,17 @@ const std::string NS_WSDL("http://schemas.xmlsoap.org/wsdl/");
 const std::string NS_WSDL_TARGET_NAMESPACE("http://message-model-uri/15/04");
 const std::string NS_WSDL_SOAP_BINDING("http://schemas.xmlsoap.org/wsdl/soap/");
 const std::string NS_XML_SCHEMA("http://www.w3.org/2001/XMLSchema");
-const std::string WS_MEX_ORNET_DIALECT_STREAM("http://standardized.namespace.org/ws-streaming/StreamDescriptions");
 const std::string WS_MEX_ORNET_NS_STREAM("http://standardized.namespace.org/ws-streaming");
 const std::string NS_ORNET_STREAM_ID(NS_MESSAGE_MODEL + "/WaveformStreamService");
+const std::string WS_POLICY("http://www.w3.org/ns/ws-policy");
+
+const std::string MDPWS_MCAST_ADDR("239.239.239.235");
+
 const std::string ACTION_ORNET_STREAM(NS_MESSAGE_MODEL + "/WaveformStreamService/WaveformStream");
+const std::string WS_MEX_ORNET_STREAM_IDENTIFIER(NS_MESSAGE_MODEL + "/WaveformStreamService");
+const std::string WS_MEX_ORNET_STREAM_TYPE("http://docs.oasis-open.org/ws-dd/soapoverudp/1.1/os/wsdd-soapoverudp-1.1-spec-os.html");
+
+const std::string WS_MEX_ORNET_DIALECT_STREAM("http://standardized.namespace.org/ws-streaming/StreamDescriptions");
 
 const std::string SOAP_HTTP_BINDING_URI("http://schemas.xmlsoap.org/soap/http");
 
@@ -50,6 +57,7 @@ const std::string QNAME_CONTEXTSERVICE_PORTTYPE("ContextService");
 const std::string QNAME_GETSERVICE_PORTTYPE("GetService");
 const std::string QNAME_REPORTSERVICE_PORTTYPE("ReportService");
 const std::string QNAME_SETSERVICE_PORTTYPE("SetService");
+const std::string QNAME_STREAMSERVICE_PORTTYPE("WaveformStreamService");
 
 // SOAP actions
 const std::string ACTION_CDM_ACTIVATE_REQUEST(NS_MESSAGE_MODEL + "/" + QNAME_SETSERVICE_PORTTYPE + "/Activate");
@@ -87,6 +95,7 @@ const std::string EVENT_ACTION_CDM_PERIODIC_CONTEXT_REPORT(NS_MESSAGE_MODEL + "/
 const std::string EVENT_ACTION_CDM_EPISODIC_METRIC_REPORT(NS_MESSAGE_MODEL + "/" + QNAME_REPORTSERVICE_PORTTYPE + "/EpisodicMetricReport");
 const std::string EVENT_ACTION_CDM_PERIODIC_METRIC_REPORT(NS_MESSAGE_MODEL + "/" + QNAME_REPORTSERVICE_PORTTYPE + "/PeriodicMetricReport");
 const std::string EVENT_ACTION_CDM_OPERATION_INVOKED_REPORT(NS_MESSAGE_MODEL + "/" + QNAME_REPORTSERVICE_PORTTYPE + "/OperationInvokedReport");
+const std::string EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT(NS_MESSAGE_MODEL + "/" + QNAME_STREAMSERVICE_PORTTYPE + "/WaveformStream");
 
 }
 }

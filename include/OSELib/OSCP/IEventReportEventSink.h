@@ -24,6 +24,7 @@ public:
 	virtual void dispatch(const PeriodicAlertReportTraits::ReportType & request) = 0;
 	virtual void dispatch(const PeriodicMetricReportTraits::ReportType & request) = 0;
 	virtual void dispatch(const OperationInvokedReportTraits::ReportType & request) = 0;
+	virtual void dispatch(const WaveformStreamTraits::ReportType & request) = 0;
 };
 
 } /* namespace OSCP */

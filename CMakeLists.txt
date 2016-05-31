@@ -249,6 +249,7 @@ set(OSCLibSOURCES
 ./src/OSELib/SOAP/SoapInvoke.cpp
 ./src/OSELib/SOAP/SubscribeActionCommand.cpp
 ./src/OSELib/SOAP/UnsubscribeActionCommand.cpp
+./src/OSELib/OSCP/WaveformReportServiceHandler.cpp
 ./src/OSELib/WSDL/WSDLBuilder.cpp
 ./src/Util/DebugOut.cpp
 ./src/Util/Task.cpp

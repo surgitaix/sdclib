@@ -24,6 +24,7 @@ public:
 
 	std::string serialize();
 
+	void addStreamType(const std::string & targetNs, const std::string & actionURI, const std::string & type, const std::string & id);
 	void addOperation(const std::string & operationName, const xml_schema::Qname & request, const xml_schema::Qname & response, const std::string & requestAction, const std::string & responseAction);
 	void addNotification(const std::string & notificationName, const xml_schema::Qname & notification, const std::string & action);
 

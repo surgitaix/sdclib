@@ -85,6 +85,16 @@ struct PeriodicMetricReportTraits {
 	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
 };
 
+struct WaveformStreamTraits {
+	typedef CDM::WaveformStream ReportType;
+	typedef IEventReportEventSink Dispatcher;
+	static xml_schema::Qname MessageType();
+	static std::string NotificationName();
+	static xml_schema::Qname PortType();
+	static std::string Action();
+	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+};
+
 }
 } /* namespace OSCLib */
 #endif /* OSCPREPORTRAITS_H_ */
