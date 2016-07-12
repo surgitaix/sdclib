@@ -8,10 +8,10 @@
 
 ### Additional dependecies: 
 - XSD, Xerces
-- Examples for Ubuntu:
- - audo apt-get install xsdcxx
- - audo apt-get install libxerces-c3.1
- - audo apt-get install libxerces-c-dev
+- Examples for Debian / Ubuntu:
+ - sudo apt-get install xsdcxx
+ - sudo apt-get install libxerces-c3.1
+ - sudo apt-get install libxerces-c-dev
 
 ## Build OSCLib using CMAKE
 - Example (Linux):
