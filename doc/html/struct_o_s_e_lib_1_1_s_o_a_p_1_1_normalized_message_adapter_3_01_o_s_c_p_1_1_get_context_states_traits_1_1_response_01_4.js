@@ -1,0 +1,6 @@
+var struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_get_context_states_traits_1_1_response_01_4 =
+[
+    [ "get", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_get_context_states_traits_1_1_response_01_4.html#a529f653bd5cec0aa193222bb5ac54628", null ],
+    [ "present", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_get_context_states_traits_1_1_response_01_4.html#ae49e87ec541535b5a8b969f54e4e210c", null ],
+    [ "set", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_get_context_states_traits_1_1_response_01_4.html#a57f468644dc51d419010920173da0c56", null ]
+];
