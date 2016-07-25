@@ -67,7 +67,9 @@ std::unique_ptr<xercesc::DOMDocument, XercesDocumentWrapper::DocumentDeleter> Xe
 		eh.throw_if_failed<xml_schema::Parsing> ();
 		return doc;
 	} catch (const xml_schema::Exception & e) {
-		logMessage("Schema validation failed with error: " + std::string(e.what()));
+		std::stringstream ss;
+		ss << e;
+		logMessage("Schema validation failed with error: " +ss.str());
 	} catch (const xml_schema::Properties::argument &) {
 		logMessage("Schema validation failed with error: Invalid property argument (empty namespace or location)");
 	} catch (const xsd::cxx::xml::invalid_utf16_string &) {
