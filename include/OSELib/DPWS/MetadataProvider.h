@@ -33,6 +33,8 @@ public:
 	WS::MEX::Metadata createStreamServiceMetadata(const std::string & serverAddress) const;
 
 private:
+	using StreamDescriptions = WS::STREAMING::TStreamDescriptions;
+	using StreamType = WS::STREAMING::TStreamType;
 	using MetadataSection = WS::MEX::MetadataSection;
 	using MetadataDialect = WS::MEX::MetadataSection::DialectType;
 	using MetadataLocation = WS::MEX::MetadataSection::LocationType;
@@ -47,6 +49,7 @@ private:
 	MetadataSection createMetadataSectionThisDevice() const;
 	MetadataSection createMetadataSectionWSDLForContextService(const std::string & serverAddress) const;
 	MetadataSection createMetadataSectionWSDLForEventReportService(const std::string & serverAddress) const;
+	MetadataSection createMetadataSectionStream() const;
 	MetadataSection createMetadataSectionWSDLForWaveformReportService(const std::string & serverAddress) const;
 	MetadataSection createMetadataSectionWSDLForGetService(const std::string & serverAddress) const;
 	MetadataSection createMetadataSectionWSDLForSetService(const std::string & serverAddress) const;
