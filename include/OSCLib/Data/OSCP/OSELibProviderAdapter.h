@@ -12,6 +12,7 @@
 
 #include "OSCP-fwd.h"
 #include "OSELib/fwd.h"
+#include <set>
 
 namespace OSCLib {
 namespace Data {
@@ -32,6 +33,10 @@ public:
 	void notifyEvent(const CDM::PeriodicContextChangedReport & report);
 	void notifyEvent(const CDM::PeriodicMetricReport & report);
 	void notifyEvent(const CDM::OperationInvokedReport & report);
+	void notifyEvent(const CDM::WaveformStream & stream, int port);
+
+	void addStreamingPort(const int port);
+	void removeStreamingPort(const int port);
 
 private:
 	OSCPProvider & _provider;
@@ -40,6 +45,7 @@ private:
 	std::unique_ptr<Poco::ThreadPool> _threadPool;
 
 	const unsigned int _port;
+	std::set<int> streamingPorts;
 
 	std::unique_ptr<OSELib::DPWS::SubscriptionManager> _subscriptionManager;
 	std::unique_ptr<OSELib::DPWS::DPWSHost> _dpwsHost;

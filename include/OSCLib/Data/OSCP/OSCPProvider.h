@@ -390,6 +390,8 @@ private:
     Poco::Timestamp lastPeriodicEvent;
     Poco::Timespan periodicEventInterval;
     
+    std::map<std::string, int> streamingPorts;
+
 };
 
 } /* namespace OSCP */

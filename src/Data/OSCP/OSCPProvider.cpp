@@ -638,14 +638,13 @@ void OSCPProvider::updateState(const PatientContextState & object) {
 }
 
 void OSCPProvider::updateState(const RealTimeSampleArrayMetricState & object) {
-	// TODO
-	//incrementMDIBVersion();
-	//CDM::RealTimeSampleArrayMetricState cdmState = *ConvertToCDM::convert(object);
+	incrementMDIBVersion();
+	CDM::RealTimeSampleArrayMetricState cdmState = *ConvertToCDM::convert(object);
 
-	//CDM::WaveformStream waveformStream;
-	//waveformStream.RealTimeSampleArray().push_back(cdmState);
+	CDM::WaveformStream waveformStream;
+	waveformStream.RealTimeSampleArray().push_back(cdmState);
 
-	//device.notifyEvent(waveformStream);
+	_adapter->notifyEvent(waveformStream, streamingPorts[object.getDescriptorHandle()]);
 }
 
 void OSCPProvider::updateState(const StringMetricState & object) {
@@ -1053,20 +1052,17 @@ void OSCPProvider::addMDStateHandler(OSCPProviderMDStateHandler * handler) {
     		}
     	}
     	log_error([&] { return "Could not add handler because no ActivateOperationDescriptor with matching handle was found."; });
-    } else {
+    }
+    else if (auto streamHandler = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler)) {
+    	int port = OSCLibrary::getInstance().extractFreePort();
+    	_adapter->addStreamingPort(port);
+    	streamingPorts[streamHandler->getDescriptorHandle()] = port;
+    	stateHandlers[handler->getDescriptorHandle()] = handler;
+    }
+    else {
 		stateHandlers[handler->getDescriptorHandle()] = handler;
 	}
 	
-	// TODO
-    // Check for streaming handler
-    //if (auto streamHandler = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler)) {
-    //	// Add MDPWS UDP muticast binding
-    //	// Binding will be added twice, 1. as part of MDPWS protocol key and 2. using handle key
-    //  int port = OSCLibrary::getInstance()->extractNextPort();
-    //	std::shared_ptr<OSCLib::Comm::IPBinding> streamBnd = std::make_shared<OSCLib::Comm::IPBinding>(OSCLib::Data::OSCP::MDPWS_MCAST_ADDR, port);
-    //	streamBnd->setType(OSCLib::Comm::AbstractBinding::UDP_MULTICAST);
-    //  this->device.addStreamBinding(streamBnd, streamHandler->getDescriptorHandle());
-    //}	
 }
 
 void OSCPProvider::addHydraMDS(HydraMDSDescriptor hmds) {

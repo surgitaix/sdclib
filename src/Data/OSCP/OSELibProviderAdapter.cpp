@@ -487,6 +487,19 @@ void OSELibProviderAdapter::notifyEvent(const CDM::OperationInvokedReport & repo
 	}
 }
 
+void OSELibProviderAdapter::notifyEvent(const CDM::WaveformStream & stream, int port) {
+	// TODO: implement
+}
+
+void OSELibProviderAdapter::addStreamingPort(const int port) {
+	streamingPorts.insert(port);
+}
+
+void OSELibProviderAdapter::removeStreamingPort(const int port) {
+	streamingPorts.erase(port);
+}
+
+
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
