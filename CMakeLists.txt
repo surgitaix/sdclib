@@ -446,6 +446,7 @@ list(APPEND OSCLibSOURCES
 ./datamodel/DICOMDeviceDescription.cxx
 ./datamodel/eventing.cxx
 ./datamodel/ExtensionPoint.cxx
+./datamodel/MDPWS.cxx
 ./datamodel/MetadataExchange.cxx
 ./datamodel/NormalizedMessageModel.cxx
 ./datamodel/ws-addressing.cxx
@@ -455,6 +456,7 @@ list(APPEND OSCLibSOURCES
 ./datamodel/ws-policy.cxx
 ./datamodel/ws-streaming.cxx
 ./datamodel/wsdl-soap-binding.cxx
+
 )
 
 

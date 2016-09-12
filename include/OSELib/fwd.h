@@ -19,6 +19,7 @@
 #include "wsdd-dpws-1.1-schema-os-fwd.hxx"
 #include "wsdl-custom-fwd.hxx"
 #include "wsdl-soap-binding-fwd.hxx"
+#include "MDPWS-fwd.hxx"
 
 namespace Poco {
 	namespace Net {

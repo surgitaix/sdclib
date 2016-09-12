@@ -7,6 +7,7 @@
 
 #include <OSELib/OSCP/OSCPConstants.h>
 #include "MetadataExchange.hxx"
+#include "MDPWS.hxx"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MetadataProvider.h"
@@ -147,8 +148,15 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLFor
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream() const {
 	MetadataSection metadataSectionStream((MetadataDialect(OSELib::WS_MEX_DIALECT_STREAM)));
 	metadataSectionStream.Identifier("http://message-model-uri/15/04/WaveformStreamService");
-	// TODO: create stream descriptions node (see WSDLbuilder.cpp!)
-
+	StreamDescriptions sd(OSCP::WS_MEX_ORNET_STREAM_IDENTIFIER);
+	MDPWS::StreamTransmissionType stt;
+	//TODO add udp address here
+	stt.StreamAddress("udp_adress");
+	StreamType st(stt,"WaveformStream",OSELib::OSCP::WS_MEX_ORNET_STREAM_TYPE);
+	xml_schema::Uri action(OSCP::ACTION_ORNET_STREAM);
+	st.ActionUri(action);
+	sd.StreamType().push_back(st);
+	metadataSectionStream.StreamDescriptions().set(sd);
 	return metadataSectionStream;
 }
 

@@ -69,6 +69,8 @@
 
 #include "eventing.hxx"
 
+#include "ws-streaming.hxx"
+
 #include "BICEPS_MessageModel.hxx"
 
 #include "wsdd-discovery-1.1-schema-os.hxx"
@@ -1131,6 +1133,27 @@ namespace MESSAGEMODEL
     void
     SetValueResponse (::std::unique_ptr< SetValueResponseType > p);
 
+    // WaveformStream
+    //
+    typedef ::CDM::WaveformStream WaveformStreamType;
+    typedef ::xsd::cxx::tree::optional< WaveformStreamType > WaveformStreamOptional;
+    typedef ::xsd::cxx::tree::traits< WaveformStreamType, char > WaveformStreamTraits;
+
+    const WaveformStreamOptional&
+    WaveformStream () const;
+
+    WaveformStreamOptional&
+    WaveformStream ();
+
+    void
+    WaveformStream (const WaveformStreamType& x);
+
+    void
+    WaveformStream (const WaveformStreamOptional& x);
+
+    void
+    WaveformStream (::std::unique_ptr< WaveformStreamType > p);
+
     // Constructors.
     //
     Body ();
@@ -1199,6 +1222,7 @@ namespace MESSAGEMODEL
     SetStringResponseOptional SetStringResponse_;
     SetValueOptional SetValue_;
     SetValueResponseOptional SetValueResponse_;
+    WaveformStreamOptional WaveformStream_;
   };
 
   class Envelope: public ::xml_schema::Type

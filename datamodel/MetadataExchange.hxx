@@ -65,6 +65,8 @@
 
 #include "wsdd-dpws-1.1-schema-os.hxx"
 
+#include "MDPWS.hxx"
+
 namespace WS
 {
   namespace MEX
@@ -309,6 +311,27 @@ namespace WS
       void
       Relationship (::std::unique_ptr< RelationshipType > p);
 
+      // StreamDescriptions
+      //
+      typedef ::MDPWS::StreamDescriptionsType StreamDescriptionsType;
+      typedef ::xsd::cxx::tree::optional< StreamDescriptionsType > StreamDescriptionsOptional;
+      typedef ::xsd::cxx::tree::traits< StreamDescriptionsType, char > StreamDescriptionsTraits;
+
+      const StreamDescriptionsOptional&
+      StreamDescriptions () const;
+
+      StreamDescriptionsOptional&
+      StreamDescriptions ();
+
+      void
+      StreamDescriptions (const StreamDescriptionsType& x);
+
+      void
+      StreamDescriptions (const StreamDescriptionsOptional& x);
+
+      void
+      StreamDescriptions (::std::unique_ptr< StreamDescriptionsType > p);
+
       // Dialect
       //
       typedef ::xml_schema::Uri DialectType;
@@ -382,6 +405,7 @@ namespace WS
       ThisModelOptional ThisModel_;
       ThisDeviceOptional ThisDevice_;
       RelationshipOptional Relationship_;
+      StreamDescriptionsOptional StreamDescriptions_;
       ::xsd::cxx::tree::one< DialectType > Dialect_;
       IdentifierOptional Identifier_;
     };

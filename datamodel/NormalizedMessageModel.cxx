@@ -1489,6 +1489,36 @@ namespace MESSAGEMODEL
     this->SetValueResponse_.set (std::move (x));
   }
 
+  const Body::WaveformStreamOptional& Body::
+  WaveformStream () const
+  {
+    return this->WaveformStream_;
+  }
+
+  Body::WaveformStreamOptional& Body::
+  WaveformStream ()
+  {
+    return this->WaveformStream_;
+  }
+
+  void Body::
+  WaveformStream (const WaveformStreamType& x)
+  {
+    this->WaveformStream_.set (x);
+  }
+
+  void Body::
+  WaveformStream (const WaveformStreamOptional& x)
+  {
+    this->WaveformStream_ = x;
+  }
+
+  void Body::
+  WaveformStream (::std::unique_ptr< WaveformStreamType > x)
+  {
+    this->WaveformStream_.set (std::move (x));
+  }
+
 
   // Envelope
   // 
@@ -1971,7 +2001,8 @@ namespace MESSAGEMODEL
     SetString_ (this),
     SetStringResponse_ (this),
     SetValue_ (this),
-    SetValueResponse_ (this)
+    SetValueResponse_ (this),
+    WaveformStream_ (this)
   {
   }
 
@@ -2017,7 +2048,8 @@ namespace MESSAGEMODEL
     SetString_ (x.SetString_, f, this),
     SetStringResponse_ (x.SetStringResponse_, f, this),
     SetValue_ (x.SetValue_, f, this),
-    SetValueResponse_ (x.SetValueResponse_, f, this)
+    SetValueResponse_ (x.SetValueResponse_, f, this),
+    WaveformStream_ (x.WaveformStream_, f, this)
   {
   }
 
@@ -2063,7 +2095,8 @@ namespace MESSAGEMODEL
     SetString_ (this),
     SetStringResponse_ (this),
     SetValue_ (this),
-    SetValueResponse_ (this)
+    SetValueResponse_ (this),
+    WaveformStream_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
@@ -2698,6 +2731,20 @@ namespace MESSAGEMODEL
         }
       }
 
+      // WaveformStream
+      //
+      if (n.name () == "WaveformStream" && n.namespace_ () == "http://message-model-uri/15/04")
+      {
+        ::std::unique_ptr< WaveformStreamType > r (
+          WaveformStreamTraits::create (i, f, this));
+
+        if (!this->WaveformStream_)
+        {
+          this->WaveformStream_.set (::std::move (r));
+          continue;
+        }
+      }
+
       break;
     }
   }
@@ -2753,6 +2800,7 @@ namespace MESSAGEMODEL
       this->SetStringResponse_ = x.SetStringResponse_;
       this->SetValue_ = x.SetValue_;
       this->SetValueResponse_ = x.SetValueResponse_;
+      this->WaveformStream_ = x.WaveformStream_;
     }
 
     return *this;
@@ -4998,6 +5046,19 @@ namespace MESSAGEMODEL
           e));
 
       s << *i.SetValueResponse ();
+    }
+
+    // WaveformStream
+    //
+    if (i.WaveformStream ())
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "WaveformStream",
+          "http://message-model-uri/15/04",
+          e));
+
+      s << *i.WaveformStream ();
     }
   }
 

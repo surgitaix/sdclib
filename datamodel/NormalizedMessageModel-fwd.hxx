@@ -258,6 +258,8 @@ namespace xml_schema
 
 #include "eventing-fwd.hxx"
 
+#include "ws-streaming-fwd.hxx"
+
 #include "BICEPS_MessageModel-fwd.hxx"
 
 #include "wsdd-discovery-1.1-schema-os-fwd.hxx"

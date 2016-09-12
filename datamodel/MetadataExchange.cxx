@@ -283,6 +283,36 @@ namespace WS
       this->Relationship_.set (std::move (x));
     }
 
+    const MetadataSection::StreamDescriptionsOptional& MetadataSection::
+    StreamDescriptions () const
+    {
+      return this->StreamDescriptions_;
+    }
+
+    MetadataSection::StreamDescriptionsOptional& MetadataSection::
+    StreamDescriptions ()
+    {
+      return this->StreamDescriptions_;
+    }
+
+    void MetadataSection::
+    StreamDescriptions (const StreamDescriptionsType& x)
+    {
+      this->StreamDescriptions_.set (x);
+    }
+
+    void MetadataSection::
+    StreamDescriptions (const StreamDescriptionsOptional& x)
+    {
+      this->StreamDescriptions_ = x;
+    }
+
+    void MetadataSection::
+    StreamDescriptions (::std::unique_ptr< StreamDescriptionsType > x)
+    {
+      this->StreamDescriptions_.set (std::move (x));
+    }
+
     const MetadataSection::DialectType& MetadataSection::
     Dialect () const
     {
@@ -582,6 +612,7 @@ namespace WS
       ThisModel_ (this),
       ThisDevice_ (this),
       Relationship_ (this),
+      StreamDescriptions_ (this),
       Dialect_ (Dialect, this),
       Identifier_ (this)
     {
@@ -597,6 +628,7 @@ namespace WS
       ThisModel_ (x.ThisModel_, f, this),
       ThisDevice_ (x.ThisDevice_, f, this),
       Relationship_ (x.Relationship_, f, this),
+      StreamDescriptions_ (x.StreamDescriptions_, f, this),
       Dialect_ (x.Dialect_, f, this),
       Identifier_ (x.Identifier_, f, this)
     {
@@ -612,6 +644,7 @@ namespace WS
       ThisModel_ (this),
       ThisDevice_ (this),
       Relationship_ (this),
+      StreamDescriptions_ (this),
       Dialect_ (this),
       Identifier_ (this)
     {
@@ -744,6 +777,34 @@ namespace WS
           }
         }
 
+        // StreamDescriptions
+        //
+        {
+          ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+            ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+              "StreamDescriptions",
+              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              &::xsd::cxx::tree::factory_impl< StreamDescriptionsType >,
+              true, true, i, n, f, this));
+
+          if (tmp.get () != 0)
+          {
+            if (!this->StreamDescriptions_)
+            {
+              ::std::unique_ptr< StreamDescriptionsType > r (
+                dynamic_cast< StreamDescriptionsType* > (tmp.get ()));
+
+              if (r.get ())
+                tmp.release ();
+              else
+                throw ::xsd::cxx::tree::not_derived< char > ();
+
+              this->StreamDescriptions_.set (::std::move (r));
+              continue;
+            }
+          }
+        }
+
         break;
       }
 
@@ -792,6 +853,7 @@ namespace WS
         this->ThisModel_ = x.ThisModel_;
         this->ThisDevice_ = x.ThisDevice_;
         this->Relationship_ = x.Relationship_;
+        this->StreamDescriptions_ = x.StreamDescriptions_;
         this->Dialect_ = x.Dialect_;
         this->Identifier_ = x.Identifier_;
       }
@@ -4110,6 +4172,33 @@ namespace WS
             e));
 
         s << *i.Relationship ();
+      }
+
+      // StreamDescriptions
+      //
+      {
+        ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+        if (i.StreamDescriptions ())
+        {
+          const MetadataSection::StreamDescriptionsType& x (*i.StreamDescriptions ());
+          if (typeid (MetadataSection::StreamDescriptionsType) == typeid (x))
+          {
+            ::xercesc::DOMElement& s (
+              ::xsd::cxx::xml::dom::create_element (
+                "StreamDescriptions",
+                "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+                e));
+
+            s << x;
+          }
+          else
+            tsm.serialize (
+              "StreamDescriptions",
+              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              true, true, e, x);
+        }
       }
 
       // Dialect

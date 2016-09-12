@@ -38,11 +38,13 @@ const std::string NS_WSDL("http://schemas.xmlsoap.org/wsdl/");
 const std::string NS_WSDL_TARGET_NAMESPACE("http://message-model-uri/15/04");
 const std::string NS_WSDL_SOAP_BINDING("http://schemas.xmlsoap.org/wsdl/soap/");
 const std::string NS_XML_SCHEMA("http://www.w3.org/2001/XMLSchema");
+const std::string NS_MDPWS("http://standards.ieee.org/downloads/11073/11073-20702-201x/");
 const std::string WS_MEX_ORNET_NS_STREAM("http://standardized.namespace.org/ws-streaming");
 const std::string NS_ORNET_STREAM_ID(NS_MESSAGE_MODEL + "/WaveformStreamService");
 const std::string WS_POLICY("http://www.w3.org/ns/ws-policy");
 
 const std::string MDPWS_MCAST_ADDR("239.239.239.235");
+const std::string MDPWS_STREAMTRANSMISSIONTYPE(NS_MDPWS + "/StreamTransmissionType");
 
 const std::string ACTION_ORNET_STREAM(NS_MESSAGE_MODEL + "/WaveformStreamService/WaveformStream");
 const std::string WS_MEX_ORNET_STREAM_IDENTIFIER(NS_MESSAGE_MODEL + "/WaveformStreamService");
