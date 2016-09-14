@@ -95,12 +95,12 @@ WS::MEX::Metadata MetadataProvider::createEventServiceMetadata(const std::string
 	return result;
 }
 
-WS::MEX::Metadata MetadataProvider::createStreamServiceMetadata(const std::string & serverAddress) const {
+WS::MEX::Metadata MetadataProvider::createStreamServiceMetadata(const std::string & serverAddress, const std::set<int> & streamingPorts) const {
 	WS::MEX::Metadata result;
 	result.MetadataSection().push_back(createMetadataSectionWSDLForWaveformReportService(serverAddress));
 	result.MetadataSection().push_back(
 			createMetadataSectionRelationship(createHostMetadata(serverAddress), { createHostedStreamReportService(serverAddress) } ));
-	result.MetadataSection().push_back(createMetadataSectionStream());
+	result.MetadataSection().push_back(createMetadataSectionStream(streamingPorts));
 	return result;
 }
 
@@ -145,7 +145,7 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLFor
 	return metadataSectionWsdl;
 }
 
-MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream() const {
+MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(const std::set<int> & streamingPorts) const {
 	MetadataSection metadataSectionStream((MetadataDialect(OSELib::WS_MEX_DIALECT_STREAM)));
 	metadataSectionStream.Identifier("http://message-model-uri/15/04/WaveformStreamService");
 	StreamDescriptions sd(OSCP::WS_MEX_ORNET_STREAM_IDENTIFIER);

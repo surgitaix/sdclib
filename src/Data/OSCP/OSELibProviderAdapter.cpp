@@ -178,7 +178,7 @@ private:
 
 struct WaveformReportServiceImpl : public OSCP::IEventReport {
 
-	WaveformReportServiceImpl(const DPWS::MetadataProvider & metadata) :
+	WaveformReportServiceImpl(const DPWS::MetadataProvider & metadata, std::set<int> & streamingPorts) :
 		_metadata(metadata)
 	{
 	}
@@ -195,7 +195,7 @@ struct WaveformReportServiceImpl : public OSCP::IEventReport {
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
 		DPWS::MetadataProvider metadata;
-		return _metadata.createStreamServiceMetadata(serverAddress);
+		return _metadata.createStreamServiceMetadata(serverAddress, streamingPorts);
 	}
 
 	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
@@ -210,6 +210,7 @@ struct WaveformReportServiceImpl : public OSCP::IEventReport {
 
 private:
 	const DPWS::MetadataProvider _metadata;
+	const std::set<int> streamingPorts;
 };
 
 struct GetServiceImpl : public OSCP::IGetService {
@@ -376,14 +377,15 @@ void OSELibProviderAdapter::start() {
 		Factory(OSCPProvider & provider,
 				const OSELib::DPWS::MetadataProvider & metadata,
 				OSELib::DPWS::DPWSHost & dpwsHost,
-				OSELib::DPWS::SubscriptionManager & subscriptionManager) :
+				OSELib::DPWS::SubscriptionManager & subscriptionManager,
+				std::set<int> & strPorts) :
 			FrontControllerAdapter(_frontController),
 			deviceStub(metadata, dpwsHost),
 			contextStub(provider, metadata, subscriptionManager),
 			eventReportStub(metadata, subscriptionManager),
 			getServiceStub(provider, metadata),
 			setServiceStub(provider, metadata),
-			waveformReportStub(metadata),
+			waveformReportStub(metadata, strPorts),
 			_deviceService(_frontController, deviceStub),
 			_contextService(_frontController, contextStub),
 			_getService(_frontController, getServiceStub),
@@ -412,7 +414,7 @@ void OSELibProviderAdapter::start() {
 			OSELib::WaveformEventReportServiceController _waveformReportService;
 	};
 
-	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager), *_threadPool, ss,  new Poco::Net::HTTPServerParams));
+	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts), *_threadPool, ss,  new Poco::Net::HTTPServerParams));
 
 	_httpServer->start();
 	_dpwsHost->start();
