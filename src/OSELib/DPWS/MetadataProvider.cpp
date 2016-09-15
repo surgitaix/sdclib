@@ -147,15 +147,17 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLFor
 
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(const std::set<int> & streamingPorts) const {
 	MetadataSection metadataSectionStream((MetadataDialect(OSELib::WS_MEX_DIALECT_STREAM)));
-	metadataSectionStream.Identifier("http://message-model-uri/15/04/WaveformStreamService");
+	metadataSectionStream.Identifier(OSCP::WS_MEX_ORNET_STREAM_IDENTIFIER);
 	StreamDescriptions sd(OSCP::WS_MEX_ORNET_STREAM_IDENTIFIER);
 	MDPWS::StreamTransmissionType stt;
-	//TODO add udp address here
-	stt.StreamAddress("udp_adress");
-	StreamType st(stt,"WaveformStream",OSELib::OSCP::WS_MEX_ORNET_STREAM_TYPE);
-	xml_schema::Uri action(OSCP::ACTION_ORNET_STREAM);
-	st.ActionUri(action);
-	sd.StreamType().push_back(st);
+	int counter(0);
+	for (auto it : streamingPorts)
+	{
+		counter++;
+		stt.StreamAddress(OSCP::MDPWS_MCAST_ADDR + std::to_string(it));
+		StreamType st(stt,"WaveformStream" + std::to_string(counter),OSELib::OSCP::WS_MEX_ORNET_STREAM_TYPE);
+		sd.StreamType().push_back(st);
+	}
 	metadataSectionStream.StreamDescriptions().set(sd);
 	return metadataSectionStream;
 }

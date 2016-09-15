@@ -189,6 +189,9 @@ OSCPProvider::OSCPProvider() :
 	atomicTransactionId.store(0);
 	mdibVersion.store(0);
     setEndpointReference(Poco::UUIDGenerator::defaultGenerator().create().toString());
+    const int port(OSCLibrary::getInstance().extractFreePort());
+    // FIXME: Make class final because of this pointer!
+	_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
 }
 
 OSCPProvider::~OSCPProvider() {
@@ -887,16 +890,24 @@ MDState OSCPProvider::getMDState() {
 }
 
 void OSCPProvider::startup() {
-	for (int i = 0; i < 3; i++) {
-		const int port(OSCLibrary::getInstance().extractFreePort());
-		try {
-			_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
-			_adapter->start();
-			break;
-		} catch (const Poco::Net::NetException & e) {
-			log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port. "; });
-			OSCLibrary::getInstance().returnPortToPool(port);
-		}
+	// FIXME:
+//	for (int i = 0; i < 3; i++) {
+//		const int port(OSCLibrary::getInstance().extractFreePort());
+//		try {
+//			_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
+//			_adapter->start();
+//			break;
+//		} catch (const Poco::Net::NetException & e) {
+//			log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port. "; });
+//			OSCLibrary::getInstance().returnPortToPool(port);
+//		}
+//	}
+	try {
+		// FIXME: Make class final because of this pointer!
+		_adapter->start();
+	} catch (const Poco::Net::NetException & e) {
+		//OSCLibrary::getInstance().returnPortToPool(port);
+		log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port. "; });
 	}
     // Grab all states (start with all operation states and add states from user handlers)
     Poco::Mutex::ScopedLock lock(mutex);

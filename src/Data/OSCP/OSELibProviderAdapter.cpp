@@ -179,7 +179,7 @@ private:
 struct WaveformReportServiceImpl : public OSCP::IEventReport {
 
 	WaveformReportServiceImpl(const DPWS::MetadataProvider & metadata, std::set<int> & streamingPorts) :
-		_metadata(metadata)
+		_metadata(metadata), _streamingPorts(streamingPorts)
 	{
 	}
 
@@ -195,7 +195,7 @@ struct WaveformReportServiceImpl : public OSCP::IEventReport {
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
 		DPWS::MetadataProvider metadata;
-		return _metadata.createStreamServiceMetadata(serverAddress, streamingPorts);
+		return _metadata.createStreamServiceMetadata(serverAddress, _streamingPorts);
 	}
 
 	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
@@ -210,7 +210,7 @@ struct WaveformReportServiceImpl : public OSCP::IEventReport {
 
 private:
 	const DPWS::MetadataProvider _metadata;
-	const std::set<int> streamingPorts;
+	const std::set<int> & _streamingPorts;
 };
 
 struct GetServiceImpl : public OSCP::IGetService {

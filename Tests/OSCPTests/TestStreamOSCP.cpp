@@ -240,7 +240,9 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
 	{
         // Provider
 		Tests::StreamOSCP::OSCPStreamHoldingDeviceProvider provider;
-        provider.startup();    
+        provider.startup();
+
+        Poco::Thread::sleep(INT32_MAX);
 
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
