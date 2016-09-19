@@ -31,11 +31,11 @@ namespace OSCLib {
 namespace Tests {
 namespace ConnectionLostOSCP {
 
-class OSCPTestDeviceProvider : public OSCPProvider {
+class OSCPTestDeviceProvider {
 public:
 
-    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : epr(number), metrics(metricCount) {
-    	setEndpointReference(std::string("UDI_") + std::to_string(epr));
+    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : oscpProvider(), epr(number), metrics(metricCount) {
+    	oscpProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
 
         // Location context
         SystemContext sc;
@@ -81,10 +81,26 @@ public:
 
         mds.addVMD(testVMD);
 
-        addHydraMDS(mds);
+        oscpProvider.addHydraMDS(mds);
     }
 
+    void startup() {
+    	oscpProvider.startup();
+    }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
+    }
+
+    const std::string getEndpointReference() const {
+    	return oscpProvider.getEndpointReference();
+    }
+
+
 private:
+    // Provider object
+    OSCPProvider oscpProvider;
+
     const std::size_t epr;
     const std::size_t metrics;
 };

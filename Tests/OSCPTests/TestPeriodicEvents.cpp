@@ -296,14 +296,15 @@ private:
 // Provider
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class OSCPDeviceProvider : public OSCPProvider {
+class OSCPDeviceProvider {
 public:
 	OSCPDeviceProvider() :
+		oscpProvider(),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
 		hydraMDSState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
-    	setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+		oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
         alertCondition
 			.addSource(METRIC_DUMMY_HANDLE)
@@ -360,19 +361,38 @@ public:
 			.addVMD(deviceModule)
 			.setAlertSystem(alertSystem);
 
-        addHydraMDS(deviceSystem);
+        oscpProvider.addHydraMDS(deviceSystem);
 
         // State handlers
-		addMDStateHandler(&alertSystemState);
-		addMDStateHandler(&alertConditionState);
-        addMDStateHandler(&channelState);
-        addMDStateHandler(&contextStates);
-		addMDStateHandler(&dummyState);
-        addMDStateHandler(&hydraMDSState);
-        addMDStateHandler(&vmdState);
+        oscpProvider.addMDStateHandler(&alertSystemState);
+        oscpProvider.addMDStateHandler(&alertConditionState);
+        oscpProvider.addMDStateHandler(&channelState);
+        oscpProvider.addMDStateHandler(&contextStates);
+        oscpProvider.addMDStateHandler(&dummyState);
+        oscpProvider.addMDStateHandler(&hydraMDSState);
+        oscpProvider.addMDStateHandler(&vmdState);
+	}
+
+	void startup() {
+		oscpProvider.startup();
+	}
+
+	void shutdown() {
+		oscpProvider.shutdown();
+	}
+
+	void addHandleForPeriodicEvent(const std::string & handle) {
+		oscpProvider.addHandleForPeriodicEvent(handle);
+	}
+
+	void setPeriodicEventInterval(const int seconds, const int milliseconds) {
+		oscpProvider.setPeriodicEventInterval(seconds, milliseconds);
 	}
 
 private:
+	// Provider
+	OSCPProvider oscpProvider;
+
     // alert descriptors
 	AlertConditionDescriptor alertCondition;
     // metric descriptors

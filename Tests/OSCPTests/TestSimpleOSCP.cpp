@@ -739,15 +739,16 @@ private:
 // Provider
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class OSCPHoldingDeviceProvider : public OSCPProvider, public Util::Task {
+class OSCPHoldingDeviceProvider : public Util::Task {
 public:
     OSCPHoldingDeviceProvider() :
+    	oscpProvider(),
     	currentWeight(0),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
 		hydraMDSState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
-    	setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+    	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
@@ -887,36 +888,45 @@ public:
                 .setCodingSystemId("OR.NET.Codings")
         		.setCodeId("MDCX_CODE_ID_MDS"));
 
-        createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
-        createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
-        createSetOperationForDescriptor(testEnumMetric, holdingDeviceSystem);
-        createSetOperationForDescriptor(testStringMetric, holdingDeviceSystem);
-        createSetOperationForDescriptor(location, holdingDeviceSystem);
-        createSetOperationForDescriptor(patient, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(testEnumMetric, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(testStringMetric, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
 
         ActivateOperationDescriptor aod;
 			aod.setHandle("handle_cmd")
 			.setOperationTarget("handle_max");
-        addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
-        addHydraMDS(holdingDeviceSystem);
+		oscpProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
+
+		oscpProvider. addHydraMDS(holdingDeviceSystem);
 
         // State handlers
 
-        addMDStateHandler(&contextStates);
-        addMDStateHandler(&curValueState);
-        addMDStateHandler(&enumState);
-        addMDStateHandler(&maxValueState);
-        addMDStateHandler(&strValueState);
-        addMDStateHandler(&limitAlertConditionHandler);
-        addMDStateHandler(&alertSigHandler);
-        addMDStateHandler(&latchingAlertSigHandler);
-        addMDStateHandler(&alertSysHandler);
-        addMDStateHandler(&cmdHandler);
-        addMDStateHandler(&channelState);
-        addMDStateHandler(&hydraMDSState);
-        addMDStateHandler(&vmdState);
+		oscpProvider.addMDStateHandler(&contextStates);
+		oscpProvider.addMDStateHandler(&curValueState);
+		oscpProvider.addMDStateHandler(&enumState);
+		oscpProvider.addMDStateHandler(&maxValueState);
+		oscpProvider.addMDStateHandler(&strValueState);
+		oscpProvider.addMDStateHandler(&limitAlertConditionHandler);
+		oscpProvider.addMDStateHandler(&alertSigHandler);
+		oscpProvider.addMDStateHandler(&latchingAlertSigHandler);
+		oscpProvider.addMDStateHandler(&alertSysHandler);
+		oscpProvider.addMDStateHandler(&cmdHandler);
+		oscpProvider.addMDStateHandler(&channelState);
+		oscpProvider.addMDStateHandler(&hydraMDSState);
+		oscpProvider.addMDStateHandler(&vmdState);
 	}
+
+    void startup() {
+    	oscpProvider.startup();
+    }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
+    }
 
     // Update weight periodically
     virtual void runImpl() override {
@@ -929,7 +939,7 @@ public:
     }
 
     void setCurrentWeight(float value) {
-        Poco::Mutex::ScopedLock lock(getMutex());
+        Poco::Mutex::ScopedLock lock(oscpProvider.getMutex());
         currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Changed value: " << currentWeight << std::endl;
@@ -938,6 +948,9 @@ public:
 
 private:
     float currentWeight;
+
+    // Provider object
+    OSCPProvider oscpProvider;
 
     // The current weight
     NumericMetricDescriptor currentWeightMetric;

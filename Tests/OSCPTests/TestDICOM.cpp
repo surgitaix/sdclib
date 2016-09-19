@@ -32,11 +32,11 @@ namespace DICOMOSCP {
 const std::string DEVICE_ENDPOINT_REFERENCE("EPR_DICOM_GATEWAY");
 const std::string MDS_HANDLE("dicom_mds");
 
-class OSCPHoldingDeviceProvider : public OSCPProvider {
+class OSCPHoldingDeviceProvider {
 public:
 
-    OSCPHoldingDeviceProvider() {
-    	setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+    OSCPHoldingDeviceProvider() : oscpProvider() {
+    	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
     	std::vector<char> fakeCert;
     	fakeCert.push_back('a');
@@ -74,7 +74,20 @@ public:
         return mdd;
     }
 
+    void startup() {
+    	oscpProvider.startup();
+    }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
+    }
+
+
+
 private:
+    // Provider object
+    OSCPProvider oscpProvider;
+
     // The current weight
     DICOMDeviceDescriptor dicomDescriptor;
 };

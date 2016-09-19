@@ -52,7 +52,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProvider : public OSELib::WithLogger {
+class OSCPProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
 
     friend class OSCPProviderMDStateHandler;

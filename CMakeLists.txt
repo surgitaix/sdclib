@@ -169,7 +169,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/WorkflowContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextState.cpp
 ./src/Data/OSCP/FutureInvocationState.cpp
-./src/Data/OSCP/OSCPCachedProvider.cpp
+#./src/Data/OSCP/OSCPCachedProvider.cpp
 ./src/Data/OSCP/OSCPConsumer.cpp
 ./src/Data/OSCP/OSCPConsumerEventHandler.cpp
 ./src/Data/OSCP/OSCPProvider.cpp
@@ -467,7 +467,7 @@ add_library(OSCLib SHARED ${OSCLibSOURCES})
 add_executable(UnitTests
 Tests/UnitTests.cpp
 Tests/OSCPTests/TestConnectionLost.cpp
-Tests/OSCPTests/TestDICOM.cpp
+#Tests/OSCPTests/TestDICOM.cpp
 Tests/OSCPTests/TestMultiOSCP.cpp
 Tests/OSCPTests/TestSimpleOSCP.cpp
 Tests/OSCPTests/TestPeriodicEvents.cpp

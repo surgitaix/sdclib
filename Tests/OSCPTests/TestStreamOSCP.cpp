@@ -111,11 +111,12 @@ private:
     std::string descriptorHandle;
 };
 
-class OSCPStreamHoldingDeviceProvider : public OSCPProvider, public Util::Task {
+class OSCPStreamHoldingDeviceProvider : public Util::Task {
 public:
 
-    OSCPStreamHoldingDeviceProvider() : streamHandler("handle_plethysmogram_stream"), streamHandlerAlt("handle_plethysmogram_stream_alt") {
-		setEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR);
+    OSCPStreamHoldingDeviceProvider() : oscpProvider(), streamHandler("handle_plethysmogram_stream"), streamHandlerAlt("handle_plethysmogram_stream_alt") {
+
+		oscpProvider.setEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR);
 
         // Handles and handle references of their states
         currentMetric.setHandle("handle_plethysmogram_stream");
@@ -178,11 +179,19 @@ public:
                 .setCodeId("MDC_DEV_ANALY_SAT_O2_MDS"))
 			.addVMD(holdingDeviceModule);
         
-        addHydraMDS(holdingDeviceSystem);
+        oscpProvider.addHydraMDS(holdingDeviceSystem);
 
         // Add handler
-        addMDStateHandler(&streamHandler);
-        addMDStateHandler(&streamHandlerAlt);
+        oscpProvider.addMDStateHandler(&streamHandler);
+        oscpProvider.addMDStateHandler(&streamHandlerAlt);
+    }
+
+    void startup() {
+    	oscpProvider.startup();
+    }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
     }
 
     void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
@@ -192,6 +201,7 @@ public:
 
 private:
 
+    OSCPProvider oscpProvider;
 	RealTimeSampleArrayMetricDescriptor currentMetric;
     RealTimeSampleArrayMetricDescriptor currentMetricAlt;
     StreamProviderStateHandler streamHandler;
@@ -235,7 +245,7 @@ struct FixtureStreamOSCP : Tests::AbstractOSCLibFixture {
 SUITE(OSCP) {
 TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
 {
-	DebugOut::openLogFile("Test.log.txt", true);
+	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
         // Provider

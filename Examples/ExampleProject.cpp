@@ -166,16 +166,21 @@ public:
 private:
     std::string descriptorHandle;
 };
-class OSCPHoldingDeviceProvider : public OSCPProvider {
+
+
+// This example shows one elegant way of implementing the Provider
+// Since the OSCPProvider class is final, it is recommended to implement the OSCPProvider as a member variable of a container class to expand the OSCPProvider in a clear and convinient fashion
+class OSCPHoldingDeviceProvider {
 public:
 
     OSCPHoldingDeviceProvider() :
-    	currentWeight(0),
+    	oscpProvider(),
+		currentWeight(0),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
-		hydraMDSState(MDS_HANDLE),
-		vmdState(VMD_DESCRIPTOR_HANDLE)
+    	hydraMDSState(MDS_HANDLE),
+    	vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
-    	setEndpointReference(deviceEPR);
+    	oscpProvider.setEndpointReference(deviceEPR);
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
         CodedValue unit;
@@ -207,7 +212,7 @@ public:
         		CodedValue()
 				.addConceptDescription(LocalizedText().set("Maximum weight")))
         	.setHandle("handle_max");
-       
+
         // Channel
         ChannelDescriptor holdingDeviceChannel;
         holdingDeviceChannel
@@ -215,13 +220,13 @@ public:
 			.addMetric(currentWeightMetric)
         	.addMetric(maxWeightMetric)
 			.setIntendedUse(IntendedUse::MEDICAL_A);
-        
+
         // VMD
-        VMDDescriptor holdingDeviceModule;       
+        VMDDescriptor holdingDeviceModule;
         holdingDeviceModule
 			.setHandle(VMD_DESCRIPTOR_HANDLE)
 			.addChannel(holdingDeviceChannel);
-        
+
         // MDS
         HydraMDSDescriptor holdingDeviceSystem;
         holdingDeviceSystem
@@ -232,26 +237,38 @@ public:
 				.setCodingSystemId("OR.NET.Codings")
 				.setCodeId("MDCX_CODE_ID_MDS"));
 
-        createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
-        addHydraMDS(holdingDeviceSystem);
+        oscpProvider.addHydraMDS(holdingDeviceSystem);
 
 		// State handler
-        addMDStateHandler(&maxValueState);
-        addMDStateHandler(&curValueState);
-        addMDStateHandler(&channelState);
-        addMDStateHandler(&hydraMDSState);
-        addMDStateHandler(&vmdState);
+        oscpProvider.addMDStateHandler(&maxValueState);
+        oscpProvider.addMDStateHandler(&curValueState);
+        oscpProvider.addMDStateHandler(&channelState);
+        oscpProvider.addMDStateHandler(&hydraMDSState);
+        oscpProvider.addMDStateHandler(&vmdState);
+    }
+
+    void startup() {
+    	oscpProvider.startup();
+    }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
     }
 
     void setCurrentWeight(float value) {
-    	Poco::Mutex::ScopedLock lock(getMutex());
+    	Poco::Mutex::ScopedLock lock(oscpProvider.getMutex());
     	currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "ExampleProject") << "Changed value: " << currentWeight << std::endl;
     }
 
 private:
+
+    // OSCPProvider for communication to the network
+    OSCPProvider oscpProvider;
+
     float currentWeight;
 
     // The current weight
