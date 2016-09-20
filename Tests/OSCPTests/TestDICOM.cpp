@@ -68,6 +68,7 @@ public:
 					setData(fakeCert));
     }
     // FIXME: not virtual anymore! final Provider!!
+    // Define own getMDDescriptio() instead of using the providers one
     MDDescription getMDDescription() {
         MDDescription mdd;
         mdd.addDicomMDSDescriptor(dicomDescriptor);
