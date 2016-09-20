@@ -67,8 +67,8 @@ public:
 					Base64Binary().
 					setData(fakeCert));
     }
-
-    MDDescription getMDDescription() override {
+    // FIXME: not virtual anymore! final Provider!!
+    MDDescription getMDDescription() {
         MDDescription mdd;
         mdd.addDicomMDSDescriptor(dicomDescriptor);
         return mdd;

@@ -78,7 +78,7 @@ public:
     *
     * @return The MDDescription container
     */
-    virtual MDDescription getMDDescription();
+    MDDescription getMDDescription();
 
     /**
     * @brief Get all states as part of the MDIB.
@@ -199,119 +199,23 @@ public:
     void addHandleForPeriodicEvent(const std::string & handle);
     void removeHandleForPeriodicEvent(const std::string & handle);
 
+    /**
+	* @brief Called on incoming consumer request for a state change.
+	*
+	* Notes:
+	* - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
+	* - The consumer will wait for this method to complete.
+	* - Make sure to update the state's invocation state and notify about the change.
+	*
+	* @param state The requested state containing fields to be updated.
+	*
+	* @return invocation state
+	*/
+
+	template<typename T>
+		InvocationState onStateChangeRequest(const T & state, const OperationInvocationContext & oic);
+
 protected:
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const EnumStringMetricState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes: 
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const AlertSystemState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const AlertConditionState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & oic);
 
     /**
     * @brief Notify all registered consumers about an operation invoked event (fires operation invoked event).
@@ -359,9 +263,6 @@ private:
 
     template<class T>
     void addSetOperationToSCOObjectImpl(const T & source, HydraMDSDescriptor & ownerMDS);
-
-    template<typename T>
-    InvocationState onStateChangeRequestImpl(const T & state, const OperationInvocationContext & oic);
 
     template<class T>
     void enqueueInvokeNotification(const T & request, const OperationInvocationContext & oic);

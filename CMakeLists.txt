@@ -467,7 +467,7 @@ add_library(OSCLib SHARED ${OSCLibSOURCES})
 add_executable(UnitTests
 Tests/UnitTests.cpp
 Tests/OSCPTests/TestConnectionLost.cpp
-#Tests/OSCPTests/TestDICOM.cpp
+Tests/OSCPTests/TestDICOM.cpp
 Tests/OSCPTests/TestMultiOSCP.cpp
 Tests/OSCPTests/TestSimpleOSCP.cpp
 Tests/OSCPTests/TestPeriodicEvents.cpp

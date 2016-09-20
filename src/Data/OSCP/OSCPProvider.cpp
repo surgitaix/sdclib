@@ -890,7 +890,7 @@ MDState OSCPProvider::getMDState() {
 }
 
 void OSCPProvider::startup() {
-	// FIXME:
+	// FIXME: understand and evtually delete completly -> partly moved to constructor
 //	for (int i = 0; i < 3; i++) {
 //		const int port(OSCLibrary::getInstance().extractFreePort());
 //		try {
@@ -1007,37 +1007,6 @@ template<class T> void OSCPProvider::replaceState(const T & object) {
     
 }
 
-InvocationState OSCPProvider::onStateChangeRequest(const EnumStringMetricState & state, const OperationInvocationContext & oic) {
-    return onStateChangeRequestImpl(state, oic);
-}
-
-InvocationState OSCPProvider::onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic) {
-    return onStateChangeRequestImpl(state, oic);
-}
-
-InvocationState OSCPProvider::onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) {
-    return onStateChangeRequestImpl(state, oic);
-}
-
-InvocationState OSCPProvider::onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) {
-    return onStateChangeRequestImpl(state, oic);
-}
-
-InvocationState OSCPProvider::onStateChangeRequest(const AlertSystemState & state, const OperationInvocationContext & oic) {
-    return onStateChangeRequestImpl(state, oic);
-}
-
-InvocationState OSCPProvider::onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic) {
-    return onStateChangeRequestImpl(state, oic);
-}
-
-InvocationState OSCPProvider::onStateChangeRequest(const AlertConditionState & state, const OperationInvocationContext & oic) {
-    return onStateChangeRequestImpl(state, oic);
-}
-
-InvocationState OSCPProvider::onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & oic) {
-    return onStateChangeRequestImpl(state, oic);
-}
 
 void OSCPProvider::addMDStateHandler(OSCPProviderMDStateHandler * handler) {
     handler->parentProvider = this;
@@ -1099,7 +1068,7 @@ const std::string OSCPProvider::getEndpointReference() const {
 	return endpointReference;
 }
 
-template<typename T> InvocationState OSCPProvider::onStateChangeRequestImpl(const T & state, const OperationInvocationContext & oic) {
+template<typename T> InvocationState OSCPProvider::onStateChangeRequest(const T & state, const OperationInvocationContext & oic) {
 	// Search by state handle AND by descriptor handle
 	std::map<std::string, OSCPProviderMDStateHandler *>::iterator it(stateHandlers.find(state.getDescriptorHandle()));
     if (it == stateHandlers.end() && state.hasHandle()) {
