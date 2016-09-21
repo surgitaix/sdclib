@@ -44,7 +44,7 @@ int main()
 {
 
     // This runs all existing tests.
-	//runAllTests();
+//	runAllTests();
 
 	// Only run tests of a specific test suite
 //	runTestSuite("Basics");

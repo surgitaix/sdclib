@@ -21,6 +21,8 @@
  *  Author: besting, roehser
  */
 
+// TODO: Reimplement Cached provider as a not inherited class!!
+
 #include <memory>
 
 #include "osdm.hxx"

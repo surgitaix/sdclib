@@ -298,6 +298,16 @@ bool MDDescription::findDescriptor(const std::string & handle, EnsembleContextDe
 	return false;
 }
 
+
+template <class MDSDescriptor>
+void MDDescription::addMDSDescriptor(const MDSDescriptor & source) {
+		CDM::MDDescription & mddescription(*this->data);
+		mddescription.MDS().push_back(ConvertToCDM::convert(source));
+}
+
+template void MDDescription::addMDSDescriptor<HydraMDSDescriptor>(const HydraMDSDescriptor & source);
+template void MDDescription::addMDSDescriptor<DICOMDeviceDescriptor>(const DICOMDeviceDescriptor & source);
+
 bool MDDescription::findDescriptor(const std::string & handle, LocationContextDescriptor & outDescriptor) const {
 	const CDM::MDDescription & mddescription(*this->data);
 	for (const auto & mds : mddescription.MDS()) {
@@ -389,16 +399,6 @@ bool MDDescription::findDescriptor(const std::string & handle, HydraMDSDescripto
 		}
 	}
 	return false;
-}
-
-void MDDescription::addHydraMDSDescriptor(const HydraMDSDescriptor & source) {
-	CDM::MDDescription & mddescription(*this->data);
-	mddescription.MDS().push_back(ConvertToCDM::convert(source));
-}
-
-void MDDescription::addDicomMDSDescriptor(const DICOMDeviceDescriptor & source) {
-	CDM::MDDescription & mddescription(*this->data);
-	mddescription.MDS().push_back(ConvertToCDM::convert(source));
 }
 
 std::string MDDescription::getOperationTargetForOperationHandle(const std::string & operationHandle) const {

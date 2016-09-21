@@ -879,7 +879,7 @@ MDDescription OSCPProvider::getMDDescription() {
 	Poco::Mutex::ScopedLock lock(hMDSMapMutex);
 	MDDescription mdd;
 	for (const auto & next : hMDSMap) {
-		mdd.addHydraMDSDescriptor(next.second);
+		mdd.addMDSDescriptor(next.second);
 	}
 	return mdd;
 }
@@ -890,20 +890,7 @@ MDState OSCPProvider::getMDState() {
 }
 
 void OSCPProvider::startup() {
-	// FIXME: understand and evtually delete completly -> partly moved to constructor
-//	for (int i = 0; i < 3; i++) {
-//		const int port(OSCLibrary::getInstance().extractFreePort());
-//		try {
-//			_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
-//			_adapter->start();
-//			break;
-//		} catch (const Poco::Net::NetException & e) {
-//			log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port. "; });
-//			OSCLibrary::getInstance().returnPortToPool(port);
-//		}
-//	}
 	try {
-		// FIXME: Make class final because of this pointer!
 		_adapter->start();
 	} catch (const Poco::Net::NetException & e) {
 		//OSCLibrary::getInstance().returnPortToPool(port);
