@@ -901,7 +901,11 @@ public:
 
 		oscpProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
-		oscpProvider. addHydraMDS(holdingDeviceSystem);
+		// create and add descrition
+		MDDescription mdDescription;
+		mdDescription.addMDSDescriptor(holdingDeviceSystem);
+
+		oscpProvider.setMDDescrition(mdDescription);
 
         // State handlers
 

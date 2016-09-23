@@ -23,6 +23,10 @@
 
 #include "osdm.hxx"
 
+// debug
+//#include "OSCLib/Util/DebugOut.h"
+#include <iostream>
+
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
@@ -301,12 +305,28 @@ bool MDDescription::findDescriptor(const std::string & handle, EnsembleContextDe
 
 template <class MDSDescriptor>
 void MDDescription::addMDSDescriptor(const MDSDescriptor & source) {
-		CDM::MDDescription & mddescription(*this->data);
-		mddescription.MDS().push_back(ConvertToCDM::convert(source));
+	CDM::MDDescription & mddescription(*this->data);
+	mddescription.MDS().push_back(ConvertToCDM::convert(source));
 }
 
 template void MDDescription::addMDSDescriptor<HydraMDSDescriptor>(const HydraMDSDescriptor & source);
 template void MDDescription::addMDSDescriptor<DICOMDeviceDescriptor>(const DICOMDeviceDescriptor & source);
+
+
+template <class MDSDescriptor>
+bool MDDescription::removeMDSDescriptor(const MDSDescriptor & object) {
+	CDM::MDDescription & mddescription(*this->data);
+	for (auto iter = mddescription.MDS().begin(); iter != mddescription.MDS().end(); iter++) {
+		if (iter->Handle() == object.getHandle()) {
+			mddescription.MDS().erase(iter);
+			return true;
+		}
+	}
+}
+
+template void MDDescription::removeMDSDescriptor<HydraMDSDescriptor>(const HydraMDSDescriptor & source);
+template void MDDescription::removeMDSDescriptor<DICOMDeviceDescriptor>(const DICOMDeviceDescriptor & source);
+
 
 bool MDDescription::findDescriptor(const std::string & handle, LocationContextDescriptor & outDescriptor) const {
 	const CDM::MDDescription & mddescription(*this->data);

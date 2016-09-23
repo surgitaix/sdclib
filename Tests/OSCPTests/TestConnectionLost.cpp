@@ -81,7 +81,12 @@ public:
 
         mds.addVMD(testVMD);
 
-        oscpProvider.addHydraMDS(mds);
+        // create and add descrition
+        MDDescription mdDescription;
+        mdDescription.addMDSDescriptor(mds);
+
+        oscpProvider.setMDDescrition(mdDescription);
+
     }
 
     void startup() {

@@ -361,7 +361,11 @@ public:
 			.addVMD(deviceModule)
 			.setAlertSystem(alertSystem);
 
-        oscpProvider.addHydraMDS(deviceSystem);
+        // create and add descrition
+		MDDescription mdDescription;
+		mdDescription.addMDSDescriptor(deviceSystem);
+
+		oscpProvider.setMDDescrition(mdDescription);
 
         // State handlers
         oscpProvider.addMDStateHandler(&alertSystemState);

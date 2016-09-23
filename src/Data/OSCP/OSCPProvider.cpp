@@ -190,7 +190,7 @@ OSCPProvider::OSCPProvider() :
 	mdibVersion.store(0);
     setEndpointReference(Poco::UUIDGenerator::defaultGenerator().create().toString());
     const int port(OSCLibrary::getInstance().extractFreePort());
-    // FIXME: Make class final because of this pointer!
+    m_mdDescription = std::unique_ptr<MDDescription>(new MDDescription());
 	_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
 }
 
@@ -875,13 +875,9 @@ MDIBContainer OSCPProvider::getMDIB() {
     return container;
 }
 
-MDDescription OSCPProvider::getMDDescription() {
-	Poco::Mutex::ScopedLock lock(hMDSMapMutex);
-	MDDescription mdd;
-	for (const auto & next : hMDSMap) {
-		mdd.addMDSDescriptor(next.second);
-	}
-	return mdd;
+MDDescription OSCPProvider::getMDDescription() const {
+//	Poco::Mutex::ScopedLock lock(hMDSMapMutex);
+	return *m_mdDescription;
 }
 
 MDState OSCPProvider::getMDState() {
@@ -1029,19 +1025,8 @@ void OSCPProvider::addMDStateHandler(OSCPProviderMDStateHandler * handler) {
     else {
 		stateHandlers[handler->getDescriptorHandle()] = handler;
 	}
-	
 }
 
-void OSCPProvider::addHydraMDS(HydraMDSDescriptor hmds) {
-	Poco::Mutex::ScopedLock lock(hMDSMapMutex);
-	hMDSMap[hmds.getHandle()] = hmds;
-	mdibVersion++;
-}
-
-void OSCPProvider::removeHydraMDS(std::string handle) {
-	Poco::Mutex::ScopedLock lock(hMDSMapMutex);
-	hMDSMap.erase(handle);
-}
 
 void OSCPProvider::removeMDStateHandler(OSCPProviderMDStateHandler * handler) {
     stateHandlers.erase(handler->getDescriptorHandle());
@@ -1049,6 +1034,11 @@ void OSCPProvider::removeMDStateHandler(OSCPProviderMDStateHandler * handler) {
 
 void OSCPProvider::setEndpointReference(const std::string & epr) {
 	this->endpointReference = epr;
+}
+
+
+void OSCPProvider::setMDDescrition(const MDDescription & mdDescription) {
+	m_mdDescription = std::make_shared<MDDescription>(mdDescription);
 }
 
 const std::string OSCPProvider::getEndpointReference() const {

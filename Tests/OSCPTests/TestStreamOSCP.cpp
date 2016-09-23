@@ -179,7 +179,11 @@ public:
                 .setCodeId("MDC_DEV_ANALY_SAT_O2_MDS"))
 			.addVMD(holdingDeviceModule);
         
-        oscpProvider.addHydraMDS(holdingDeviceSystem);
+        // create and add descrition
+		MDDescription mdDescription;
+		mdDescription.addMDSDescriptor(holdingDeviceSystem);
+
+		oscpProvider.setMDDescrition(mdDescription);
 
         // Add handler
         oscpProvider.addMDStateHandler(&streamHandler);

@@ -1,6 +1,8 @@
 
 	template <class MDSDescriptor>
 	void addMDSDescriptor(const MDSDescriptor & source);
+	template <class MDSDescriptor>
+	bool removeMDSDescriptor(const MDSDescriptor & object);
 
 	bool getFirstHydraMDSDescriptor(HydraMDSDescriptor & outDescriptor) const;
 

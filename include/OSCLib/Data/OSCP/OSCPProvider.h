@@ -78,7 +78,9 @@ public:
     *
     * @return The MDDescription container
     */
-    MDDescription getMDDescription();
+
+    void setMDDescrition(const MDDescription & mdDescription);
+    MDDescription getMDDescription() const;
 
     /**
     * @brief Get all states as part of the MDIB.
@@ -164,10 +166,6 @@ public:
     */
     void addMDStateHandler(OSCPProviderMDStateHandler * handler);
 
-    void addHydraMDS(HydraMDSDescriptor hmds);
-
-    void removeHydraMDS(std::string handle);
-    
     /**
     * @brief Remove a request handler which provides states and processes incoming change requests from a consumer.
     *
@@ -215,6 +213,7 @@ public:
 	template<typename T>
 		InvocationState onStateChangeRequest(const T & state, const OperationInvocationContext & oic);
 
+// TODO no inheritance no need for protected methods..
 protected:
 
     /**
@@ -274,8 +273,10 @@ private:
 
     std::map<std::string, OSCPProviderMDStateHandler *> stateHandlers;
 
-	Poco::Mutex hMDSMapMutex;
-	std::map<std::string, HydraMDSDescriptor> hMDSMap;
+//	Poco::Mutex hMDSMapMutex;
+
+	// maybe unique_ptr
+	std::shared_ptr<MDDescription> m_mdDescription;
     std::unique_ptr<OSELibProviderAdapter> _adapter;
     Dev::DeviceCharacteristics devicecharacteristics;
 	Poco::Mutex mutex;

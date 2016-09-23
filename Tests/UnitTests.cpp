@@ -54,7 +54,7 @@ int main()
 
 	// Only run test with a given name
 
-	runSingleTest("dicomoscp");
+	runSingleTest("simpleoscp");
 
 	return 0;
 }

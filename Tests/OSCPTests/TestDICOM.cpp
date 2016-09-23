@@ -67,6 +67,11 @@ public:
 					Base64Binary().
 					setData(fakeCert));
 
+    	MDDescription holdingDeviceDescription;
+    	holdingDeviceDescription.addMDSDescriptor(dicomDescriptor);
+
+    	// set the providers description
+    	oscpProvider.setMDDescrition(holdingDeviceDescription);
 
     }
 

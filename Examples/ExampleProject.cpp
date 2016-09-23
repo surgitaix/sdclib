@@ -237,9 +237,18 @@ public:
 				.setCodingSystemId("OR.NET.Codings")
 				.setCodeId("MDCX_CODE_ID_MDS"));
 
+
+        // add descriptor to description
+        // the description contains all the devices static information
+        MDDescription holdingDeviceDescription;
+        holdingDeviceDescription.addMDSDescriptor(holdingDeviceSystem);
+
+
+        // set the providers description
+        oscpProvider.setMDDescrition(holdingDeviceDescription);
+
         oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
-        oscpProvider.addHydraMDS(holdingDeviceSystem);
 
 		// State handler
         oscpProvider.addMDStateHandler(&maxValueState);
@@ -247,6 +256,8 @@ public:
         oscpProvider.addMDStateHandler(&channelState);
         oscpProvider.addMDStateHandler(&hydraMDSState);
         oscpProvider.addMDStateHandler(&vmdState);
+
+
     }
 
     void startup() {
