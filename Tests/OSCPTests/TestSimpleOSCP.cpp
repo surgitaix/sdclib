@@ -924,6 +924,10 @@ public:
 		oscpProvider.addMDStateHandler(&vmdState);
 	}
 
+    MDDescription getMDDescription() {
+    	return oscpProvider.getMDDescription();
+    }
+
     void startup() {
     	oscpProvider.startup();
     }
@@ -1016,8 +1020,15 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         provider.startup();
         provider.start();
 
-        //Poco::Thread::sleep(2000000);
+        // MDDescription test
+        MDDescription mdDescription =  provider.getMDDescription();
+        // add and remove a test MDS
+        HydraMDSDescriptor hydraMDS_test;
+        mdDescription.addMDSDescriptor(hydraMDS_test);
 
+        CHECK_EQUAL(true, mdDescription.removeMDSDescriptor(hydraMDS_test));
+
+        //Poco::Thread::sleep(2000000);
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleOSCP::DEVICE_ENDPOINT_REFERENCE));
