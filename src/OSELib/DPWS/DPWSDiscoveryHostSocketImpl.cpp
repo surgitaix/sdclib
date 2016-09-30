@@ -127,9 +127,10 @@ DPWSDiscoveryHostSocketImpl::DPWSDiscoveryHostSocketImpl(
 	WithLogger(Log::DISCOVERY),
 	probeDispatcher(probeDispatcher),
 	resolveDispatcher(resolveDispatcher),
-	ipv4DiscoveryMulticastAddress(Poco::Net::SocketAddress(OSELib::UDP_MULTICAST_IP_V4, OSELib::UPD_MULTICAST_DISCOVERY_PORT)),
-	ipv6DiscoveryMulticastAddress(Poco::Net::SocketAddress (OSELib::UDP_MULTICAST_IP_V6, OSELib::UPD_MULTICAST_DISCOVERY_PORT)),
-	// TODO: init static stream ipv4 address
+	ipv4DiscoveryMulticastAddress(Poco::Net::SocketAddress(OSELib::UDP_MULTICAST_DISCOVERY_IP_V4, OSELib::UPD_MULTICAST_DISCOVERY_PORT)),
+	ipv6DiscoveryMulticastAddress(Poco::Net::SocketAddress (OSELib::UDP_MULTICAST_DISCOVERY_IP_V6, OSELib::UPD_MULTICAST_DISCOVERY_PORT)),
+	ipv4StreamMulticastAddress(Poco::Net::SocketAddress(OSELib::UDP_MULTICAST_STREAMING_IP_V4, OSELib::UPD_MULTICAST_STREAMING_PORT)),
+	ipv6StreamMulticastAddress(Poco::Net::SocketAddress (OSELib::UDP_MULTICAST_STREAMING_IP_V6, OSELib::UPD_MULTICAST_STREAMING_PORT)),
 	ipv4BindingAddress(Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), ipv4DiscoveryMulticastAddress.port())),
 	ipv6BindingAddress(Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), ipv6DiscoveryMulticastAddress.port())),
 	ipv4MulticastListeningSocket(Poco::Net::MulticastSocket(ipv4BindingAddress.family())),
@@ -211,8 +212,7 @@ void DPWSDiscoveryHostSocketImpl::sendBye(const ByeType & bye) {
 // - add message body part with waveform stream
 
 void DPWSDiscoveryHostSocketImpl::sendStream(const CDM::WaveformStream & stream) {
-//	context.resetInstanceId();
-//	MESSAGEMODEL::Envelope message(buildHelloMessage(stream));
+//	MESSAGEMODEL::Envelope message(buildStreamMessage(stream));
 //	MESSAGEMODEL::Envelope::HeaderType::AppSequenceType appSequence(context.getInstanceId(), context.getNextMessageCounter());
 //	message.Header().AppSequence(appSequence);
 ////	if (message.Header().MessageID().present()) {

@@ -55,9 +55,11 @@ const int UDP_MULTICAST_UDP_REPEAT(2);
 const int UDP_MULTICAST_MIN_DELAY(50);
 const int UDP_MULTICAST_MAX_DELAY(250);
 const int UDP_MULTICAST_UPPER_DELAY(500);
-const std::string UDP_MULTICAST_IP_V4("239.255.255.250");
-//const std::string UDP_MULTICAST_IP_V4("239.255.255.250");
-const std::string UDP_MULTICAST_IP_V6("FF02::C");
+const std::string UDP_MULTICAST_DISCOVERY_IP_V4("239.255.255.250");
+const std::string UDP_MULTICAST_DISCOVERY_IP_V6("FF02::C");
+const std::string UDP_MULTICAST_STREAMING_IP_V4("239.239.239.235");
+const std::string UDP_MULTICAST_STREAMING_IP_V6("FF01::C");
+
 
 const std::string WS_NS_DPWS("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01");
 const std::string WS_NS_SOAP_ENVELOPE("http://www.w3.org/2003/05/soap-envelope");
