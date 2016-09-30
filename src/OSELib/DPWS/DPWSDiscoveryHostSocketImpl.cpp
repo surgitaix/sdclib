@@ -52,7 +52,25 @@ const MESSAGEMODEL::Envelope buildHelloMessage(const HelloType & notification) {
 	return MESSAGEMODEL::Envelope(header, body);
 }
 
-// todo: buildStreamMessage??? oder alles über hello?
+// todo: buildStreamMessage
+const MESSAGEMODEL::Envelope buildStreamMessage(const CDM::WaveformStream  & notification) {
+	MESSAGEMODEL::Envelope::HeaderType header;
+	{
+		// todo: write epr in from field
+//		header.From("asdf");
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+	}
+	MESSAGEMODEL::Envelope::BodyType body;
+	{
+		body.WaveformStream(notification);
+	}
+
+	return MESSAGEMODEL::Envelope(header,body);
+
+}
+
+
+
 
 
 const MESSAGEMODEL::Envelope buildProbeMatchMessage(const std::vector<ProbeMatchType> & notifications, const MESSAGEMODEL::Envelope & request) {
@@ -107,11 +125,11 @@ const MESSAGEMODEL::Envelope buildResolveMatchMessage(const ResolveMatchType & n
 
 struct DPWSDiscoveryHostSocketImpl::SendMulticastMessage : public Poco::Notification {
 	SendMulticastMessage(const std::string & message, Poco::Net::SocketAddress ipv4MulticastAdress, Poco::Net::SocketAddress ipv6MulticastAdress) :
-		content(message), ipv4MulticastAdress(ipv4MulticastAdress), ipv6MulticastAdress(ipv6MulticastAdress) {}
+		content(message), ipv4MulticastAddress(ipv4MulticastAdress), ipv6MulticastAddress(ipv6MulticastAdress) {}
 
 	const std::string content;
-	Poco::Net::SocketAddress ipv4MulticastAdress;
-	Poco::Net::SocketAddress ipv6MulticastAdress;
+	Poco::Net::SocketAddress ipv4MulticastAddress;
+	Poco::Net::SocketAddress ipv6MulticastAddress;
 };
 
 struct DPWSDiscoveryHostSocketImpl::SendUnicastMessage : public Poco::Notification {
@@ -208,21 +226,18 @@ void DPWSDiscoveryHostSocketImpl::sendBye(const ByeType & bye) {
 	}
 }
 
-// TODO: add new function sendStream (called by provider somehow).
-// - add message body part with waveform stream
 
 void DPWSDiscoveryHostSocketImpl::sendStream(const CDM::WaveformStream & stream) {
-//	MESSAGEMODEL::Envelope message(buildStreamMessage(stream));
-//	MESSAGEMODEL::Envelope::HeaderType::AppSequenceType appSequence(context.getInstanceId(), context.getNextMessageCounter());
-//	message.Header().AppSequence(appSequence);
-////	if (message.Header().MessageID().present()) {
-////		context.registerMessageId(message.Header().MessageID().get());
-////	}
-//	for (auto & socketQueue : socketSendMessageQueue) {
-//		// TODO add ipv4 and ipv6 discovery socket addresses (ipv4DiscoveryMulticastAddress and IPv6) to struct SendMulticastMessage
-//		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message)));
-//		reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
-//	}
+	MESSAGEMODEL::Envelope message(buildStreamMessage(stream));
+	MESSAGEMODEL::Envelope::HeaderType::AppSequenceType appSequence(context.getInstanceId(), context.getNextMessageCounter());
+	message.Header().AppSequence(appSequence);
+	if (message.Header().MessageID().present()) {
+		context.registerMessageId(message.Header().MessageID().get());
+	}
+	for (auto & socketQueue : socketSendMessageQueue) {
+		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message), ipv4StreamMulticastAddress, ipv6StreamMulticastAddress));
+		reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
+	}
 }
 
 
@@ -305,9 +320,9 @@ void DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableN
 		const Poco::AutoPtr<SendMulticastMessage> message(rawMessage.cast<SendMulticastMessage>());
 		if (not message.isNull()) {
 
-			Poco::Net::SocketAddress multicastAddress(message->ipv4MulticastAdress);
+			Poco::Net::SocketAddress multicastAddress(message->ipv4MulticastAddress);
 			if (socket.address().family() == Poco::Net::IPAddress::Family::IPv6) {
-				multicastAddress = message->ipv6MulticastAdress;
+				multicastAddress = message->ipv6MulticastAddress;
 			}
 			socket.sendTo(message->content.c_str(), message->content.size(), multicastAddress, 0);
 		}

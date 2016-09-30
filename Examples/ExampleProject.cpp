@@ -362,8 +362,10 @@ private:
     const std::string handle;
 };
 
+
 int main()
 {
+
 	DebugOut(DebugOut::Default, "ExampleProject") << "Startup";
     OSCLibrary::getInstance().startup();
 	OSCLibrary::getInstance().setPortStart(11000);

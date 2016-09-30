@@ -241,6 +241,7 @@ public:
 						);
 
 			}
+			// fixme: leeds to an buffer overflow
 			DebugOut(DebugOut::Default, "StreamOSCP") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 			Poco::Thread::sleep(100);
 			index += size;
