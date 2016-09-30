@@ -50,26 +50,26 @@ private:
 	struct SendUnicastMessage;
 
 	ProbeNotificationDispatcher & probeDispatcher;
-	ResolveNotificationDispatcher & _resolveDispatcher;
+	ResolveNotificationDispatcher & resolveDispatcher;
 
 	const Poco::Net::SocketAddress ipv4StreamMulticastAddress;
 	const Poco::Net::SocketAddress ipv6StreamMulticastAddress;
 	const Poco::Net::SocketAddress ipv4DiscoveryMulticastAddress;
 	const Poco::Net::SocketAddress ipv6DiscoveryMulticastAddress;
-	const Poco::Net::SocketAddress _ipv4BindingAddress;
-	const Poco::Net::SocketAddress _ipv6BindingAddress;
-	Poco::Net::MulticastSocket _ipv4MulticastListeningSocket;
-	Poco::Net::MulticastSocket _ipv6MulticastListeningSocket;
+	const Poco::Net::SocketAddress ipv4BindingAddress;
+	const Poco::Net::SocketAddress ipv6BindingAddress;
+	Poco::Net::MulticastSocket ipv4MulticastListeningSocket;
+	Poco::Net::MulticastSocket ipv6MulticastListeningSocket;
 
-	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> _socketSendMessageQueue;
-	Poco::TimedNotificationQueue _delayedMessages;
-	std::default_random_engine _generator;
-	std::uniform_int_distribution<unsigned int> _distribution;
+	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> socketSendMessageQueue;
+	Poco::TimedNotificationQueue delayedMessages;
+	std::default_random_engine generator;
+	std::uniform_int_distribution<unsigned int> distribution;
 
 	MessagingContext context;
 
-	Poco::Thread _reactorThread;
-	Poco::Net::SocketReactor _reactor;
+	Poco::Thread reactorThread;
+	Poco::Net::SocketReactor reactor;
 };
 
 } /* namespace Impl */

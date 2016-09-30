@@ -126,70 +126,70 @@ DPWSDiscoveryHostSocketImpl::DPWSDiscoveryHostSocketImpl(
 		ResolveNotificationDispatcher & resolveDispatcher) :
 	WithLogger(Log::DISCOVERY),
 	probeDispatcher(probeDispatcher),
-	_resolveDispatcher(resolveDispatcher),
+	resolveDispatcher(resolveDispatcher),
 	ipv4DiscoveryMulticastAddress(Poco::Net::SocketAddress(OSELib::UDP_MULTICAST_IP_V4, OSELib::UPD_MULTICAST_DISCOVERY_PORT)),
 	ipv6DiscoveryMulticastAddress(Poco::Net::SocketAddress (OSELib::UDP_MULTICAST_IP_V6, OSELib::UPD_MULTICAST_DISCOVERY_PORT)),
 	// TODO: init static stream ipv4 address
-	_ipv4BindingAddress(Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), ipv4DiscoveryMulticastAddress.port())),
-	_ipv6BindingAddress(Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), ipv6DiscoveryMulticastAddress.port())),
-	_ipv4MulticastListeningSocket(Poco::Net::MulticastSocket(_ipv4BindingAddress.family())),
-	_ipv6MulticastListeningSocket(Poco::Net::MulticastSocket(ipv6DiscoveryMulticastAddress.family())),
-	_generator(std::chrono::system_clock::now().time_since_epoch().count()),
-	_distribution(0, OSELib::APP_MAX_DELAY)
+	ipv4BindingAddress(Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), ipv4DiscoveryMulticastAddress.port())),
+	ipv6BindingAddress(Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), ipv6DiscoveryMulticastAddress.port())),
+	ipv4MulticastListeningSocket(Poco::Net::MulticastSocket(ipv4BindingAddress.family())),
+	ipv6MulticastListeningSocket(Poco::Net::MulticastSocket(ipv6DiscoveryMulticastAddress.family())),
+	generator(std::chrono::system_clock::now().time_since_epoch().count()),
+	distribution(0, OSELib::APP_MAX_DELAY)
 {
 	xercesc::XMLPlatformUtils::Initialize ();
 
-	_ipv4MulticastListeningSocket.bind(_ipv4BindingAddress, true);
+	ipv4MulticastListeningSocket.bind(ipv4BindingAddress, true);
 	for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
 		if (nextIf.supportsIPv4()
 			&& nextIf.address().isUnicast()
 			&& !nextIf.address().isLoopback()) {
-			_ipv4MulticastListeningSocket.joinGroup(ipv4DiscoveryMulticastAddress.host(), nextIf);
+			ipv4MulticastListeningSocket.joinGroup(ipv4DiscoveryMulticastAddress.host(), nextIf);
 			Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), 0), true);
 			datagramSocket.setBlocking(false);
-			_socketSendMessageQueue[datagramSocket].clear();
+			socketSendMessageQueue[datagramSocket].clear();
 		}
 	}
-	_ipv4MulticastListeningSocket.setBlocking(false);
+	ipv4MulticastListeningSocket.setBlocking(false);
 
-	_ipv6MulticastListeningSocket.bind(_ipv6BindingAddress, true);
+	ipv6MulticastListeningSocket.bind(ipv6BindingAddress, true);
 	for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
 		if (nextIf.supportsIPv6()
 			&& nextIf.address().isUnicast()
 			&& !nextIf.address().isLoopback()) {
 			try {
-			_ipv6MulticastListeningSocket.joinGroup(ipv6DiscoveryMulticastAddress.host(), nextIf);
+			ipv6MulticastListeningSocket.joinGroup(ipv6DiscoveryMulticastAddress.host(), nextIf);
 			Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), 0), true);
 			datagramSocket.setBlocking(false);
-			_socketSendMessageQueue[datagramSocket].clear();
+			socketSendMessageQueue[datagramSocket].clear();
 			} catch (...) {
 				// todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
 				log_error([&] { return "Another thing went wrong"; });
 			}
 		}
 	}
-	_ipv6MulticastListeningSocket.setBlocking(false);
+	ipv6MulticastListeningSocket.setBlocking(false);
 
-	_reactor.addEventHandler(_ipv4MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onMulticastSocketReadable));
-	_reactor.addEventHandler(_ipv6MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onMulticastSocketReadable));
+	reactor.addEventHandler(ipv4MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onMulticastSocketReadable));
+	reactor.addEventHandler(ipv6MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onMulticastSocketReadable));
 
-	_reactor.addEventHandler(_ipv4MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSDiscoveryHostSocketImpl::onTimeOut));
-	_reactor.addEventHandler(_ipv6MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSDiscoveryHostSocketImpl::onTimeOut));
+	reactor.addEventHandler(ipv4MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSDiscoveryHostSocketImpl::onTimeOut));
+	reactor.addEventHandler(ipv6MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSDiscoveryHostSocketImpl::onTimeOut));
 
-	_reactorThread.start(_reactor);
+	reactorThread.start(reactor);
 }
 
 DPWSDiscoveryHostSocketImpl::~DPWSDiscoveryHostSocketImpl() {
-	_reactor.removeEventHandler(_ipv4MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onMulticastSocketReadable));
-	_reactor.removeEventHandler(_ipv6MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onMulticastSocketReadable));
+	reactor.removeEventHandler(ipv4MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onMulticastSocketReadable));
+	reactor.removeEventHandler(ipv6MulticastListeningSocket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onMulticastSocketReadable));
 
-	for (auto & messagingSocketMapping : _socketSendMessageQueue) {
-		_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
-		_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSDiscoveryHostSocketImpl::onTimeOut));
+	for (auto & messagingSocketMapping : socketSendMessageQueue) {
+		reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
+		reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSDiscoveryHostSocketImpl::onTimeOut));
 	}
 
-	_reactor.stop();
-	_reactorThread.join();
+	reactor.stop();
+	reactorThread.join();
 
 	xercesc::XMLPlatformUtils::Terminate ();
 }
@@ -201,9 +201,9 @@ void DPWSDiscoveryHostSocketImpl::sendBye(const ByeType & bye) {
 	if (message.Header().MessageID().present()) {
 		context.registerMessageId(message.Header().MessageID().get());
 	}
-	for (auto & socketQueue : _socketSendMessageQueue) {
+	for (auto & socketQueue : socketSendMessageQueue) {
 		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message), ipv4DiscoveryMulticastAddress, ipv6DiscoveryMulticastAddress));
-		_reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
+		reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
 	}
 }
 
@@ -218,10 +218,10 @@ void DPWSDiscoveryHostSocketImpl::sendStream(const CDM::WaveformStream & stream)
 ////	if (message.Header().MessageID().present()) {
 ////		context.registerMessageId(message.Header().MessageID().get());
 ////	}
-//	for (auto & socketQueue : _socketSendMessageQueue) {
+//	for (auto & socketQueue : socketSendMessageQueue) {
 //		// TODO add ipv4 and ipv6 discovery socket addresses (ipv4DiscoveryMulticastAddress and IPv6) to struct SendMulticastMessage
 //		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message)));
-//		_reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
+//		reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
 //	}
 }
 
@@ -234,9 +234,9 @@ void DPWSDiscoveryHostSocketImpl::sendHello(const HelloType & hello) {
 	if (message.Header().MessageID().present()) {
 		context.registerMessageId(message.Header().MessageID().get());
 	}
-	for (auto & socketQueue : _socketSendMessageQueue) {
+	for (auto & socketQueue : socketSendMessageQueue) {
 		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message), ipv4DiscoveryMulticastAddress, ipv6DiscoveryMulticastAddress));
-		_reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
+		reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
 	}
 }
 
@@ -269,15 +269,15 @@ void DPWSDiscoveryHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableN
 			return;
 		}
 		const MESSAGEMODEL::Envelope responseMessage(buildProbeMatchMessage(result, *requestMessage));
-		_delayedMessages.enqueueNotification(new SendUnicastMessage(responseMessage, remoteAddr), createDelay());
+		delayedMessages.enqueueNotification(new SendUnicastMessage(responseMessage, remoteAddr), createDelay());
 	} else if (requestMessage->Body().Resolve().present()) {
 		const WS::DISCOVERY::ResolveType & resolve(requestMessage->Body().Resolve().get());
-		std::unique_ptr<ResolveMatchType> result(_resolveDispatcher.dispatch(resolve));
+		std::unique_ptr<ResolveMatchType> result(resolveDispatcher.dispatch(resolve));
 		if (result == nullptr) {
 			return;
 		}
 		const MESSAGEMODEL::Envelope responseMessage(buildResolveMatchMessage(*result, *requestMessage));
-		_delayedMessages.enqueueNotification(new SendUnicastMessage(responseMessage, remoteAddr), createDelay());
+		delayedMessages.enqueueNotification(new SendUnicastMessage(responseMessage, remoteAddr), createDelay());
 	}
 	processDelayedMessages();
 }
@@ -286,7 +286,7 @@ void DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableN
 	const Poco::AutoPtr<Poco::Net::WritableNotification> pNf(notification);
 	Poco::Net::DatagramSocket socket(pNf->socket());
 
-	const Poco::AutoPtr<Poco::Notification> rawMessage(_socketSendMessageQueue[socket].dequeueNotification());
+	const Poco::AutoPtr<Poco::Notification> rawMessage(socketSendMessageQueue[socket].dequeueNotification());
 	if (rawMessage.isNull()) {
 		notification->source().removeEventHandler(socket, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
 		return;
@@ -321,18 +321,18 @@ void DPWSDiscoveryHostSocketImpl::onTimeOut(Poco::Net::TimeoutNotification * not
 }
 
 Poco::Timestamp DPWSDiscoveryHostSocketImpl::createDelay() {
-	return Poco::Timestamp() + Poco::Timespan(0, 0, 0, 0, _distribution(_generator));
+	return Poco::Timestamp() + Poco::Timespan(0, 0, 0, 0, distribution(generator));
 }
 
 void DPWSDiscoveryHostSocketImpl::processDelayedMessages() {
-	if (_delayedMessages.empty()) {
-		_reactor.setTimeout(Poco::Timespan(0, 0, 0, 0, 250000));
+	if (delayedMessages.empty()) {
+		reactor.setTimeout(Poco::Timespan(0, 0, 0, 0, 250000));
 		return;
 	} else {
-		_reactor.setTimeout(Poco::Timespan(0, 0, 0, 0, 10000));
+		reactor.setTimeout(Poco::Timespan(0, 0, 0, 0, 10000));
 	}
 
-	Poco::AutoPtr<Poco::Notification> notification(_delayedMessages.dequeueNotification());
+	Poco::AutoPtr<Poco::Notification> notification(delayedMessages.dequeueNotification());
 	if (notification.isNull()) {
 		return;
 	}
@@ -340,10 +340,10 @@ void DPWSDiscoveryHostSocketImpl::processDelayedMessages() {
 	if (unicastMessage.isNull()) {
 		return;
 	}
-	for (auto & socketQueue : _socketSendMessageQueue) {
+	for (auto & socketQueue : socketSendMessageQueue) {
 		if (socketQueue.first.address().family() == unicastMessage->address.family()) {
 			socketQueue.second.enqueueNotification(new SendUnicastMessage(std::move(unicastMessage->content), unicastMessage->address));
-			_reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
+			reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryHostSocketImpl::onDatagrammSocketWritable));
 		}
 	}
 }
