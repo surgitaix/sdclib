@@ -50,11 +50,13 @@ const int UDP_UNICAST_MIN_DELAY(50);
 const int UDP_UNICAST_MAX_DELAY(250);
 const int UDP_UNICAST_UPPER_DELAY(500);
 const int UPD_MULTICAST_DISCOVERY_PORT(3702);
+const int UPD_MULTICAST_STREAMING_PORT(5555);
 const int UDP_MULTICAST_UDP_REPEAT(2);
 const int UDP_MULTICAST_MIN_DELAY(50);
 const int UDP_MULTICAST_MAX_DELAY(250);
 const int UDP_MULTICAST_UPPER_DELAY(500);
 const std::string UDP_MULTICAST_IP_V4("239.255.255.250");
+//const std::string UDP_MULTICAST_IP_V4("239.255.255.250");
 const std::string UDP_MULTICAST_IP_V6("FF02::C");
 
 const std::string WS_NS_DPWS("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01");

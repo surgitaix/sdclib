@@ -65,6 +65,11 @@ void DPWSHost::setXAddresses(const XAddressesType & xaddresses) {
 	sendHello();
 }
 
+// TODO: add intermediate sendStream function to FWD to DPWSHost...Impl
+void DPWSHost::sendStream(const CDM::WaveformStream & stream) {
+	_impl->sendStream(stream);
+}
+
 void DPWSHost::sendHello() {
 	if (not _started) {
 		return;

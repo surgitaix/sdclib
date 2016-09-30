@@ -292,7 +292,7 @@ private:
     Poco::Timestamp lastPeriodicEvent;
     Poco::Timespan periodicEventInterval;
     
-    std::map<std::string, int> streamingPorts;
+//    std::map<std::string, int> streamingPorts;
 
 };
 

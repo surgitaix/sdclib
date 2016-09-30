@@ -324,8 +324,8 @@ bool MDDescription::removeMDSDescriptor(const MDSDescriptor & object) {
 	}
 }
 
-template void MDDescription::removeMDSDescriptor<HydraMDSDescriptor>(const HydraMDSDescriptor & source);
-template void MDDescription::removeMDSDescriptor<DICOMDeviceDescriptor>(const DICOMDeviceDescriptor & source);
+template bool MDDescription::removeMDSDescriptor<HydraMDSDescriptor>(const HydraMDSDescriptor & source);
+template bool MDDescription::removeMDSDescriptor<DICOMDeviceDescriptor>(const DICOMDeviceDescriptor & source);
 
 
 bool MDDescription::findDescriptor(const std::string & handle, LocationContextDescriptor & outDescriptor) const {

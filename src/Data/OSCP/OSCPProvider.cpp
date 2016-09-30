@@ -647,7 +647,8 @@ void OSCPProvider::updateState(const RealTimeSampleArrayMetricState & object) {
 	CDM::WaveformStream waveformStream;
 	waveformStream.RealTimeSampleArray().push_back(cdmState);
 
-	_adapter->notifyEvent(waveformStream, streamingPorts[object.getDescriptorHandle()]);
+	_adapter->notifyEvent(waveformStream, OSELib::UPD_MULTICAST_STREAMING_PORT);
+//	_adapter->notifyEvent(waveformStream, streamingPorts[object.getDescriptorHandle()]);
 }
 
 void OSCPProvider::updateState(const StringMetricState & object) {
@@ -1017,9 +1018,11 @@ void OSCPProvider::addMDStateHandler(OSCPProviderMDStateHandler * handler) {
     	log_error([&] { return "Could not add handler because no ActivateOperationDescriptor with matching handle was found."; });
     }
     else if (auto streamHandler = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler)) {
-    	int port = OSCLibrary::getInstance().extractFreePort();
+//    	kicked since only one port shall be used
+//    	int port = OSCLibrary::getInstance().extractFreePort();
+    	int port = 5555;
     	_adapter->addStreamingPort(port);
-    	streamingPorts[streamHandler->getDescriptorHandle()] = port;
+//    	streamingPorts[streamHandler->getDescriptorHandle()] = port;
     	stateHandlers[handler->getDescriptorHandle()] = handler;
     }
     else {

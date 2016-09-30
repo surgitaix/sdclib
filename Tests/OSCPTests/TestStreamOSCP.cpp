@@ -199,6 +199,15 @@ public:
     }
 
     void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
+    	// todo: check if there is a differet concept but IMO oscpProvider needs an update
+    	RealTimeSampleArrayMetricState rtsams;
+		rtsams
+			.setDescriptorHandle("handle_rt")
+			.setObservedValue(rtsav)
+			.setComponentActivationState(ComponentActivation::ON);
+
+    	oscpProvider.updateState(rtsams);
+
         streamHandler.updateStateValue(rtsav);
         streamHandlerAlt.updateStateValue(rtsav);
     }
@@ -230,6 +239,7 @@ public:
 							RTValueType()
 							.setValues(samples))
 						);
+
 			}
 			DebugOut(DebugOut::Default, "StreamOSCP") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 			Poco::Thread::sleep(100);
@@ -255,6 +265,9 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
         // Provider
 		Tests::StreamOSCP::OSCPStreamHoldingDeviceProvider provider;
         provider.startup();
+
+        provider.start();
+        provider.runImpl();
 
         Poco::Thread::sleep(INT32_MAX);
 

@@ -31,6 +31,7 @@ public:
 
 	void start();
 	void stop();
+	void sendStream(const CDM::WaveformStream & stream);
 
 	void setScopes(const ScopesType & scopes);
 	void setTypes(const TypesType & types);

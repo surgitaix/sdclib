@@ -129,6 +129,7 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> ServiceManager::d
 	DPWS::ProbeType probeFilter;
 	probeFilter.Types().set(types);
 
+
 	ProbeMatchCallback probeCb;
 	_dpwsClient->addProbeMatchEventHandler(probeFilter, probeCb);
 	Poco::Thread::sleep(5000);

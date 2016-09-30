@@ -490,7 +490,8 @@ void OSELibProviderAdapter::notifyEvent(const CDM::OperationInvokedReport & repo
 }
 
 void OSELibProviderAdapter::notifyEvent(const CDM::WaveformStream & stream, int port) {
-	// TODO: implement
+	// TODO: use _dpwsHost and call sendStream once it is born! FWD "stream" var
+	_dpwsHost->sendStream(stream);
 }
 
 void OSELibProviderAdapter::addStreamingPort(const int port) {

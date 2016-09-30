@@ -36,6 +36,7 @@ public:
 
 	void sendBye(const ByeType & bye);
 	void sendHello(const HelloType & hello);
+	void sendStream(const CDM::WaveformStream & stream);
 
 private:
 	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
@@ -48,11 +49,13 @@ private:
 	struct SendMulticastMessage;
 	struct SendUnicastMessage;
 
-	ProbeNotificationDispatcher & _probeDispatcher;
+	ProbeNotificationDispatcher & probeDispatcher;
 	ResolveNotificationDispatcher & _resolveDispatcher;
 
-	const Poco::Net::SocketAddress _ipv4MulticastAddress;
-	const Poco::Net::SocketAddress _ipv6MulticastAddress;
+	const Poco::Net::SocketAddress ipv4StreamMulticastAddress;
+	const Poco::Net::SocketAddress ipv6StreamMulticastAddress;
+	const Poco::Net::SocketAddress ipv4DiscoveryMulticastAddress;
+	const Poco::Net::SocketAddress ipv6DiscoveryMulticastAddress;
 	const Poco::Net::SocketAddress _ipv4BindingAddress;
 	const Poco::Net::SocketAddress _ipv6BindingAddress;
 	Poco::Net::MulticastSocket _ipv4MulticastListeningSocket;
