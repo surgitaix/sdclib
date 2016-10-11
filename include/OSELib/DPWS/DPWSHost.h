@@ -51,7 +51,7 @@ private:
 	XAddressesType _xaddresses;
 	int _metadataVersion;
 
-	std::unique_ptr<Impl::DPWSDiscoveryHostSocketImpl> _impl;
+	std::unique_ptr<Impl::DPWSHostSocketImpl> _impl;
 };
 
 } /* namespace DPWS */

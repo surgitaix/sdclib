@@ -1,5 +1,5 @@
 /*
- * DPWSDiscoveryHostSocketImpl.h
+ * DPWSHostSocketImpl.h
  *
  *  Created on: 07.12.2015
  *      Author: matthias
@@ -27,12 +27,12 @@ namespace OSELib {
 namespace DPWS {
 namespace Impl {
 
-class DPWSDiscoveryHostSocketImpl : public WithLogger {
+class DPWSHostSocketImpl : public WithLogger {
 public:
-	DPWSDiscoveryHostSocketImpl(
+	DPWSHostSocketImpl(
 			ProbeNotificationDispatcher & probeDispatcher,
 			ResolveNotificationDispatcher & resolveDispatcher);
-	~DPWSDiscoveryHostSocketImpl();
+	~DPWSHostSocketImpl();
 
 	void sendBye(const ByeType & bye);
 	void sendHello(const HelloType & hello);

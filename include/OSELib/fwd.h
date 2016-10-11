@@ -40,7 +40,7 @@ namespace OSELib {
 	namespace DPWS {
 		namespace Impl {
 			class DPWSDiscoveryClientSocketImpl;
-			class DPWSDiscoveryHostSocketImpl;
+			class DPWSHostSocketImpl;
 		}
 
 		class ActiveSubscriptions;
