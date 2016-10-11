@@ -273,8 +273,6 @@ private:
 
     std::map<std::string, OSCPProviderMDStateHandler *> stateHandlers;
 
-//	Poco::Mutex hMDSMapMutex;
-
 	// maybe unique_ptr
 	std::shared_ptr<MDDescription> m_mdDescription;
     std::unique_ptr<OSELibProviderAdapter> _adapter;

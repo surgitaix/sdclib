@@ -42,7 +42,7 @@ namespace OSCLib {
 namespace Tests {
 namespace StreamOSCP {
 
-const std::string deviceEPR("UDI_1234");
+const std::string deviceEPR("UDI_STREAMINGTEST");
 
 class StreamConsumerEventHandler : public OSCPConsumerRealTimeSampleArrayMetricStateHandler {
 public:
@@ -209,7 +209,7 @@ public:
     	oscpProvider.updateState(rtsams);
 
         streamHandler.updateStateValue(rtsav);
-        streamHandlerAlt.updateStateValue(rtsav);
+//        streamHandlerAlt.updateStateValue(rtsav);
     }
 
 private:
@@ -243,7 +243,7 @@ public:
 			}
 			// fixme: leeds to an buffer overflow
 			DebugOut(DebugOut::Default, "StreamOSCP") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
-			Poco::Thread::sleep(100);
+			Poco::Thread::sleep(1000);
 			index += size;
 		}
     }
@@ -270,7 +270,8 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
         provider.start();
         provider.runImpl();
 
-        Poco::Thread::sleep(INT32_MAX);
+        Poco::Thread::sleep(3000);
+        DebugOut(DebugOut::Default, "StreamOSCP") << "\ncontinuing.." << std::endl;
 
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;

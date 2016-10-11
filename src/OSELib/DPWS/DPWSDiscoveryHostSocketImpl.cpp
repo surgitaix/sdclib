@@ -52,12 +52,10 @@ const MESSAGEMODEL::Envelope buildHelloMessage(const HelloType & notification) {
 	return MESSAGEMODEL::Envelope(header, body);
 }
 
-// todo: buildStreamMessage
-const MESSAGEMODEL::Envelope buildStreamMessage(const CDM::WaveformStream  & notification) {
+const MESSAGEMODEL::Envelope buildStreamMessage(const CDM::WaveformStream  & notification, const AddressType epr) {
 	MESSAGEMODEL::Envelope::HeaderType header;
 	{
-		// todo: write epr in from field
-//		header.From("asdf");
+		header.From(epr);
 		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
@@ -227,8 +225,8 @@ void DPWSDiscoveryHostSocketImpl::sendBye(const ByeType & bye) {
 }
 
 
-void DPWSDiscoveryHostSocketImpl::sendStream(const CDM::WaveformStream & stream) {
-	MESSAGEMODEL::Envelope message(buildStreamMessage(stream));
+void DPWSDiscoveryHostSocketImpl::sendStream(const CDM::WaveformStream & stream, const AddressType epr) {
+	MESSAGEMODEL::Envelope message(buildStreamMessage(stream, epr));
 	MESSAGEMODEL::Envelope::HeaderType::AppSequenceType appSequence(context.getInstanceId(), context.getNextMessageCounter());
 	message.Header().AppSequence(appSequence);
 	if (message.Header().MessageID().present()) {

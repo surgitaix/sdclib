@@ -647,8 +647,7 @@ void OSCPProvider::updateState(const RealTimeSampleArrayMetricState & object) {
 	CDM::WaveformStream waveformStream;
 	waveformStream.RealTimeSampleArray().push_back(cdmState);
 
-	_adapter->notifyEvent(waveformStream, OSELib::UPD_MULTICAST_STREAMING_PORT);
-//	_adapter->notifyEvent(waveformStream, streamingPorts[object.getDescriptorHandle()]);
+	_adapter->notifyEvent(waveformStream);
 }
 
 void OSCPProvider::updateState(const StringMetricState & object) {

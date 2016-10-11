@@ -33,7 +33,7 @@ public:
 	void notifyEvent(const CDM::PeriodicContextChangedReport & report);
 	void notifyEvent(const CDM::PeriodicMetricReport & report);
 	void notifyEvent(const CDM::OperationInvokedReport & report);
-	void notifyEvent(const CDM::WaveformStream & stream, int port);
+	void notifyEvent(const CDM::WaveformStream & stream);
 
 	void addStreamingPort(const int port);
 	void removeStreamingPort(const int port);
