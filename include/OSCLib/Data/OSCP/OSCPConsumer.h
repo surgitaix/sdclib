@@ -125,21 +125,9 @@ public:
     *
     * @return True, if request was successful
     */
-	bool requestState(const std::string & handle, AlertConditionState & outState);
-	bool requestState(const std::string & handle, AlertSignalState & outState);
-    bool requestState(const std::string & handle, AlertSystemState & outState);
-	bool requestState(const std::string & handle, ClockState & outState);
-	bool requestState(const std::string & handle, ComponentState & outState);
-	bool requestState(const std::string & handle, EnsembleContextState & outState);
-    bool requestState(const std::string & handle, EnumStringMetricState & outState);
-	bool requestState(const std::string & handle, LimitAlertConditionState & outState);
-	bool requestState(const std::string & handle, LocationContextState & outState);
-	bool requestState(const std::string & handle, NumericMetricState & outState);
-	bool requestState(const std::string & handle, OperationState & outState);
-	bool requestState(const std::string & handle, OperatorContextState & outState);
-	bool requestState(const std::string & handle, PatientContextState & outState);
-	bool requestState(const std::string & handle, StringMetricState & outState);
-	bool requestState(const std::string & handle, WorkflowContextState & outState);
+
+    template<class OutStateType>
+    bool requestState(const std::string & handle, OutStateType & state);
 
     /**
     * @brief Commit or 'SET' a state (asynchronously).
@@ -246,9 +234,6 @@ private:
     InvocationState commitStateImpl(const StateType & state, FutureInvocationState & transactionId);
 
     void handleInvocationState(int transactionId, FutureInvocationState & fis);
-
-    template<class OutStateType>
-    bool requestStateImpl(const std::string & handle, OutStateType & state);
 
     template<typename T>
     void onStateChanged(const T & state);

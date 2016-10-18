@@ -273,7 +273,6 @@ private:
 
     std::map<std::string, OSCPProviderMDStateHandler *> stateHandlers;
 
-	// maybe unique_ptr
 	std::shared_ptr<MDDescription> m_mdDescription;
     std::unique_ptr<OSELibProviderAdapter> _adapter;
     Dev::DeviceCharacteristics devicecharacteristics;

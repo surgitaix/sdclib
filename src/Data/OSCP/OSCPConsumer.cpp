@@ -539,68 +539,25 @@ InvocationState OSCPConsumer::activate(const std::string & handle, FutureInvocat
 	}
 }
 
-bool OSCPConsumer::requestState(const std::string & handle, AlertConditionState & outState) {
-	return requestStateImpl(handle, outState);
-}
+template bool OSCPConsumer::requestState<AlertConditionState>(const std::string & handle, AlertConditionState & outState);
+template bool OSCPConsumer::requestState<AlertSignalState>(const std::string & handle, AlertSignalState & outState);
+template bool OSCPConsumer::requestState<AlertSystemState>(const std::string & handle, AlertSystemState & outState);
+template bool OSCPConsumer::requestState<ClockState>(const std::string & handle, ClockState & outState);
+template bool OSCPConsumer::requestState<ComponentState>(const std::string & handle, ComponentState & outState);
+template bool OSCPConsumer::requestState<EnsembleContextState>(const std::string & handle, EnsembleContextState & outState);
+template bool OSCPConsumer::requestState<EnumStringMetricState>(const std::string & handle, EnumStringMetricState & outState);
+template bool OSCPConsumer::requestState<LimitAlertConditionState>(const std::string & handle, LimitAlertConditionState & outState);
+template bool OSCPConsumer::requestState<LocationContextState>(const std::string & handle, LocationContextState & outState);
+template bool OSCPConsumer::requestState<NumericMetricState>(const std::string & handle, NumericMetricState & outState);
+template bool OSCPConsumer::requestState<OperationState>(const std::string & handle, OperationState & outState);
+template bool OSCPConsumer::requestState<OperatorContextState>(const std::string & handle, OperatorContextState & outState);
+template bool OSCPConsumer::requestState<PatientContextState>(const std::string & handle, PatientContextState & outState);
+template bool OSCPConsumer::requestState<StringMetricState>(const std::string & handle, StringMetricState & outState);
+template bool OSCPConsumer::requestState<WorkflowContextState>(const std::string & handle, WorkflowContextState & outState);
 
-bool OSCPConsumer::requestState(const std::string & handle, AlertSignalState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, AlertSystemState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, ClockState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, ComponentState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, EnsembleContextState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, EnumStringMetricState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, LimitAlertConditionState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, LocationContextState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, NumericMetricState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, OperationState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, OperatorContextState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, PatientContextState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, StringMetricState & outState) {
-	return requestStateImpl(handle, outState);
-}
-
-bool OSCPConsumer::requestState(const std::string & handle, WorkflowContextState & outState) {
-	return requestStateImpl(handle, outState);
-}
 
 template<class OutStateType>
-bool OSCPConsumer::requestStateImpl(const std::string & handle, OutStateType & outState) {
+bool OSCPConsumer::requestState(const std::string & handle, OutStateType & outState) {
 
     CDM::GetMDState request;
     request.HandleRef().push_back(handle);
