@@ -85,12 +85,14 @@ void SubscriptionClient::run() {
 	constexpr int defaultWaitBeforeRenew (5000);
 
 	for (const auto & subscription : _subscriptions) {
+		// get information
 		const WS::ADDRESSING::AttributedURIType address(subscription.second._sinkURI.toString());
 		WS::ADDRESSING::EndpointReferenceType epr(address);
 		WS::ADDRESSING::EndpointReferenceType::ReferenceParametersType referenceParameters;
 		referenceParameters.Identifier(WS::EVENTING::Identifier(subscription.first.toString()));
 		epr.ReferenceParameters().set(referenceParameters);
 		const WS::EVENTING::DeliveryType delivery(epr);
+
 
 		OSELib::DPWS::SubscribeTraits::Request request(delivery);
 		request.Expires(defaultExpires);

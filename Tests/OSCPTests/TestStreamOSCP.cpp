@@ -199,17 +199,8 @@ public:
     }
 
     void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
-    	// todo: check if there is a differet concept but IMO oscpProvider needs an update
-    	RealTimeSampleArrayMetricState rtsams;
-		rtsams
-			.setDescriptorHandle("handle_rt")
-			.setObservedValue(rtsav)
-			.setComponentActivationState(ComponentActivation::ON);
-
-    	oscpProvider.updateState(rtsams);
-
-        streamHandler.updateStateValue(rtsav);
-//        streamHandlerAlt.updateStateValue(rtsav);
+        streamHandler.updateStateValue(rtsav); // updates handles and the parent provider
+        streamHandlerAlt.updateStateValue(rtsav);
     }
 
 private:
@@ -223,6 +214,7 @@ private:
 public:
     
     // Produce stream values
+    // runImpl() gets called when starting the provider thread by the inherited function start()
     virtual void runImpl() override {
     	DebugOut(DebugOut::Default, "StreamOSCP") << "\nPoducer thread started." << std::endl;
 		const std::size_t size(1000);
@@ -241,7 +233,6 @@ public:
 						);
 
 			}
-			// fixme: leeds to an buffer overflow
 			DebugOut(DebugOut::Default, "StreamOSCP") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
@@ -263,15 +254,16 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
+
+
         // Provider
 		Tests::StreamOSCP::OSCPStreamHoldingDeviceProvider provider;
-        provider.startup();
+		DebugOut(DebugOut::Default, "StreamOSCP") << "Provider init.." << std::endl;
+		provider.startup();
 
-        provider.start();
-        provider.runImpl();
 
-        Poco::Thread::sleep(3000);
-        DebugOut(DebugOut::Default, "StreamOSCP") << "\ncontinuing.." << std::endl;
+
+        
 
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
@@ -285,7 +277,8 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
         if (c != nullptr) {
             c->registerStateEventHandler(eventHandler.get());
             c->registerStateEventHandler(eventHandlerAlt.get());
-            provider.start();
+
+            provider.start();// starts provider in a thread and calls the overwritten function runImpl()
 
 			// Metric event reception test
             Poco::Thread::sleep(10000);

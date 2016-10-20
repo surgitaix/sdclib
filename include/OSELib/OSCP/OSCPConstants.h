@@ -43,7 +43,8 @@ const std::string WS_MEX_ORNET_NS_STREAM("http://standardized.namespace.org/ws-s
 const std::string NS_ORNET_STREAM_ID(NS_MESSAGE_MODEL + "/WaveformStreamService");
 const std::string WS_POLICY("http://www.w3.org/ns/ws-policy");
 
-const std::string MDPWS_MCAST_ADDR("soap.udp://239.239.239.235:");
+const std::string MDPWS_MCAST_ADDR("soap.udp://239.239.239.235");
+const int MDPWS_MCAST_PORT(5555);
 const std::string MDPWS_STREAMTRANSMISSIONTYPE(NS_MDPWS + "/StreamTransmissionType");
 
 const std::string ACTION_ORNET_STREAM(NS_MESSAGE_MODEL + "/Waveform/WaveformStream");

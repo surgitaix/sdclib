@@ -204,6 +204,30 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 						deviceDescription.setGetServiceURI(Poco::URI(hosted.EndpointReference().front().Address()));
 					} else if (hosted.ServiceId() == "SetService") {
 						deviceDescription.setSetServiceURI(Poco::URI(hosted.EndpointReference().front().Address()));
+					} else if (hosted.ServiceId() == "WaveformEventReport") {
+						deviceDescription.setWaveformEventReportURI(Poco::URI(hosted.EndpointReference().front().Address()));
+
+						// if a streaming service is initialized (by registering a handler) the metadata (i.e. the multicast address should be saved)
+						const DPWS::GetMetadataTraits::Request request_metadata;
+						using Invoker_metadata = OSELib::SOAP::GenericSoapInvoke<DPWS::GetMetadataTraits>;
+						// todo use real grammar for validation
+						Helper::XercesGrammarPoolProvider grammarPool;
+						std::unique_ptr<Invoker_metadata> invoker_metadata(new Invoker_metadata(deviceDescription.getWaveformEventReportURI(), grammarPool));
+
+						auto response_metadata(invoker_metadata->invoke(request_metadata));
+
+						if (response_metadata != nullptr) {
+							for (const auto & metadata_iter : response_metadata->MetadataSection()) {
+								if (metadata_iter.Dialect() != OSELib::WS_MEX_DIALECT_STREAM
+									|| !metadata_iter.StreamDescriptions().present()
+									|| metadata_iter.StreamDescriptions().get().StreamType().empty()
+									|| !metadata_iter.StreamDescriptions().get().StreamType().front().StreamTransmission().StreamAddress().present()
+									) {
+									continue;
+								}
+								deviceDescription.addStreamMulticastAddressURI(Poco::URI(metadata_iter.StreamDescriptions().get().StreamType().front().StreamTransmission().StreamAddress().get()));
+							}
+						}
 					}
 				}
 			}
@@ -218,6 +242,7 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 		|| deviceDescription.getEventServiceURI().empty()
 		|| deviceDescription.getGetServiceURI().empty()
 		|| deviceDescription.getSetServiceURI().empty()
+		|| deviceDescription.getWaveformEventReportURI().empty()
 	) {
 		log_error([&] { return "Missing service uri! Discovery incomplete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 		return nullptr;

@@ -493,6 +493,14 @@ void OSELibProviderAdapter::notifyEvent(const CDM::WaveformStream & stream) {
 	_dpwsHost->sendStream(stream);
 }
 
+unsigned int OSELibProviderAdapter::getPort() const {
+	return _port;
+}
+
+void OSELibProviderAdapter::setPort(unsigned int port) {
+	_port = port;
+}
+
 void OSELibProviderAdapter::addStreamingPort(const int port) {
 	streamingPorts.insert(port);
 }

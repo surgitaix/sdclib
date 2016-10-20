@@ -340,6 +340,7 @@ std::string OSCPConsumer::requestRawMDIB() {
 	}
 }
 
+// TODO: delete commitStateImpl() use one template class, use traits for Metrices: https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Member_Detector
 InvocationState OSCPConsumer::commitState(const EnumStringMetricState & state, FutureInvocationState & fis) {
 	if (!state.hasObservedValue()) {
 		return InvocationState::FAILED;

@@ -151,10 +151,13 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(
 	StreamDescriptions sd(OSCP::WS_MEX_ORNET_STREAM_IDENTIFIER);
 	MDPWS::StreamTransmissionType stt;
 	int counter(0);
+	// only one multicast address is used but multiple ports are possible (but not used in the recommended implementation,
+	// since the consumer should distinguish between the sending provider by the From-Field)
+	// still more than one port can be used
 	for (auto it : streamingPorts)
 	{
 		counter++;
-		stt.StreamAddress(OSCP::MDPWS_MCAST_ADDR + std::to_string(it));
+		stt.StreamAddress(OSCP::MDPWS_MCAST_ADDR + ":" + std::to_string(it));
 		StreamType st(stt,"WaveformStream" + std::to_string(counter),OSELib::OSCP::WS_MEX_ORNET_STREAM_TYPE);
 		sd.StreamType().push_back(st);
 	}

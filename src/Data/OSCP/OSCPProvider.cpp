@@ -889,8 +889,10 @@ void OSCPProvider::startup() {
 	try {
 		_adapter->start();
 	} catch (const Poco::Net::NetException & e) {
-		//OSCLibrary::getInstance().returnPortToPool(port);
+		//ToDo: reset new ports
+//		OSCLibrary::getInstance().returnPortToPool(port);
 		log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port. "; });
+
 	}
     // Grab all states (start with all operation states and add states from user handlers)
     Poco::Mutex::ScopedLock lock(mutex);
@@ -1017,11 +1019,12 @@ void OSCPProvider::addMDStateHandler(OSCPProviderMDStateHandler * handler) {
     	log_error([&] { return "Could not add handler because no ActivateOperationDescriptor with matching handle was found."; });
     }
     else if (auto streamHandler = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler)) {
-//    	kicked since only one port shall be used
-//    	int port = OSCLibrary::getInstance().extractFreePort();
-    	int port = 5555;
-    	_adapter->addStreamingPort(port);
-//    	streamingPorts[streamHandler->getDescriptorHandle()] = port;
+    	int port = OSCLibrary::getInstance().extractFreePort();
+//    	_adapter->addStreamingPort(4444);
+    	// FIXME: delete after testing that streaming works on more than one address!
+    	_adapter->addStreamingPort(5555);
+
+
     	stateHandlers[handler->getDescriptorHandle()] = handler;
     }
     else {
@@ -1079,7 +1082,7 @@ void OSCPProvider::addSetOperationToSCOObjectImpl(const T & source, HydraMDSDesc
 	if (ownerMDS.hasSCO()) {
 		scoDescriptor = ConvertToCDM::convert(ownerMDS.getSCO());
 	} else {
-		// ownly set handle if previously created
+		// only set handle if previously created
 		scoDescriptor->Handle(ownerMDS.getHandle() + "_sco");
 	}
 
