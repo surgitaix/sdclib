@@ -56,8 +56,8 @@ private:
 	const Poco::Net::SocketAddress _ipv6MulticastAddress;
 	const Poco::Net::SocketAddress _ipv4BindingAddress;
 	const Poco::Net::SocketAddress _ipv6BindingAddress;
-	Poco::Net::MulticastSocket _ipv4MulticastListeningSocket;
-	Poco::Net::MulticastSocket _ipv6MulticastListeningSocket;
+	Poco::Net::MulticastSocket _ipv4MulticastDiscoverySocket;
+	Poco::Net::MulticastSocket _ipv6MulticastDiscoverySocket;
 
 	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> _socketSendMessageQueue;
 
