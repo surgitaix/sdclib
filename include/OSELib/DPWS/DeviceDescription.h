@@ -50,7 +50,7 @@ public:
 	Poco::URI getWaveformEventReportURI() const;
 
 	void addStreamMulticastAddressURI(const Poco::URI & uri);
-	std::list<Poco::URI> & getStreamMulticastAddressURIs();
+	const std::list<Poco::URI>&  getStreamMulticastAddressURIs() const;
 
 private:
 	std::string _epr;

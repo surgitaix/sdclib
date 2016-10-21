@@ -241,9 +241,11 @@ private:
     void onConnectionLost();
     void onSubscriptionLost();
     void onContextStateChanged(const std::vector<std::string> & handle);
-
     void updateLastKnownMDIBVersion(unsigned long long int newVersion);
 
+    //
+    //Variables
+    //
     std::map<int, FutureInvocationState *> fisMap;
     Poco::Mutex transactionMutex;
 
@@ -261,6 +263,8 @@ private:
     std::atomic<bool> connected;
     OSELib::DPWS::DeviceDescription _deviceDescription;
     std::unique_ptr<OSELibConsumerAdapter> _adapter;
+
+
 };
 
 } /* namespace OSCP */

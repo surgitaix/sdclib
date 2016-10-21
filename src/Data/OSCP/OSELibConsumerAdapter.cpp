@@ -6,12 +6,14 @@
  */
 
 #include <iostream>
+#include <list>
 
 #include "Poco/Mutex.h"
 #include "Poco/ThreadPool.h"
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/NetworkInterface.h"
 #include "Poco/Net/ServerSocket.h"
+#include "Poco/Net/MulticastSocket.h"
 
 #include "BICEPS_DomainModel.hxx"
 #include "BICEPS_MessageModel.hxx"
@@ -267,6 +269,11 @@ void OSELibConsumerAdapter::start() {
 	}
 
 	_pingManager = std::unique_ptr<OSELib::DPWS::PingManager>(new OSELib::DPWS::PingManager(_consumer));
+}
+
+
+void  OSELibConsumerAdapter::initStream() {
+	// todo: maybe delete..
 }
 
 void OSELibConsumerAdapter::stop() {

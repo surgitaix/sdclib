@@ -73,7 +73,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
 	_ipv4BindingAddress(Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), _ipv4MulticastAddress.port())),
 	_ipv6BindingAddress(Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), _ipv6MulticastAddress.port())),
 	_ipv4MulticastListeningSocket(Poco::Net::MulticastSocket(_ipv4BindingAddress.family())),
-	_ipv6MulticastListeningSocket(Poco::Net::MulticastSocket(_ipv6MulticastAddress.family()))
+	_ipv6MulticastListeningSocket(Poco::Net::MulticastSocket(_ipv6BindingAddress.family()))
 {
 	xercesc::XMLPlatformUtils::Initialize ();
 

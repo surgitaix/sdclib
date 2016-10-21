@@ -77,7 +77,7 @@ void DeviceDescription::addStreamMulticastAddressURI(const Poco::URI & uri) {
 	_streamMulticastURI.push_back(uri);
 }
 
-std::list<Poco::URI>& DeviceDescription::getStreamMulticastAddressURIs() {
+const std::list<Poco::URI>& DeviceDescription::getStreamMulticastAddressURIs() const{
 	if (!_streamMulticastURI.empty()) {
 		return _streamMulticastURI;
 	} else {

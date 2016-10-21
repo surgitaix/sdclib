@@ -254,19 +254,14 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
-
-
         // Provider
 		Tests::StreamOSCP::OSCPStreamHoldingDeviceProvider provider;
 		DebugOut(DebugOut::Default, "StreamOSCP") << "Provider init.." << std::endl;
 		provider.startup();
 
-
-
-        
-
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
+        DebugOut(DebugOut::Default, "StreamOSCP") << "Consumer discovery..." << std::endl;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR));
         std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream");
         std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");

@@ -15,6 +15,11 @@
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
 
+
+// fixme: kick
+#include "OSCLib/Util/DebugOut.h"
+using namespace OSCLib::Util;
+
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
@@ -43,6 +48,10 @@ public:
 
 private:
 
+	void initStream();
+
+
+	// Variables
 	template<class TraitsType>
 	std::unique_ptr<typename TraitsType::Response> invokeImpl(const typename TraitsType::Request & request, const Poco::URI & requestURI);
 
