@@ -20,6 +20,7 @@ extern const xml_schema::Uri discoveryUri;
 extern const xml_schema::Uri byeUri;
 extern const xml_schema::Uri helloUri;
 extern const xml_schema::Uri probeUri;
+extern const xml_schema::Uri streamUri;
 extern const xml_schema::Uri probeMatchesUri;
 extern const xml_schema::Uri resolveUri;
 extern const xml_schema::Uri resolveMatchesUri;

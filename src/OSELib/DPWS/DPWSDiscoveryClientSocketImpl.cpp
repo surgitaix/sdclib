@@ -195,6 +195,7 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 	}
 }
 
+// for receiving the probe / resolve match messages that are send unicast
 void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::ReadableNotification * notification) {
 	const Poco::AutoPtr<Poco::Net::ReadableNotification> pNf(notification);
 	Poco::Net::DatagramSocket socket(pNf->socket());

@@ -198,6 +198,7 @@ set(OSCLibSOURCES
 ./src/OSELib/DPWS/DPWSClient.cpp
 ./src/OSELib/DPWS/DPWSCommon.cpp
 ./src/OSELib/DPWS/DPWSDiscoveryClientSocketImpl.cpp
+./src/OSELib/DPWS/DPWSStreamingClientSocketImpl.cpp
 ./src/OSELib/DPWS/DPWSHostSocketImpl.cpp
 ./src/OSELib/DPWS/DPWSHost.cpp
 ./src/OSELib/DPWS/MessageAdapter.cpp

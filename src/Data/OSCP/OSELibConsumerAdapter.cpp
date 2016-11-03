@@ -216,7 +216,8 @@ OSELibConsumerAdapter::OSELibConsumerAdapter(OSCPConsumer & consumer, const unsi
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
 	_port(port),
-	_deviceDescription(deviceDescription)
+	_deviceDescription(deviceDescription),
+	_streamClientSocketImpl()
 {
 }
 

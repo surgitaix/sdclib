@@ -15,6 +15,9 @@
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
 
+// todo: maybe just fwd..
+#include "OSELib/DPWS/DPWSStreamingClientSocketImpl.h"
+
 
 // fixme: kick
 #include "OSCLib/Util/DebugOut.h"
@@ -70,6 +73,8 @@ private:
 	const OSELib::DPWS::DeviceDescription _deviceDescription;
 	OSELib::OSCP::DefaultOSCPSchemaGrammarProvider _grammarProvider;
 	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
+//	std::unique_ptr<OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl> _streamClientSocketImpl;
+	OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl _streamClientSocketImpl;
 	std::unique_ptr<OSELib::DPWS::SubscriptionClient> _subscriptionClient;
 	std::unique_ptr<OSELib::DPWS::PingManager> _pingManager;
 };
