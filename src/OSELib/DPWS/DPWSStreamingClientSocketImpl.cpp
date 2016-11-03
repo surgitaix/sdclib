@@ -48,7 +48,9 @@ namespace Impl {
 //	_ipv4MulticastSocket(Poco::Net::MulticastSocket(_ipv4BindingAddress.family())),
 //	_ipv6MulticastDiscoverySocket(Poco::Net::MulticastSocket(_ipv6BindingAddress.family()))
 
-DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl()
+DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher):
+		_streamNotificationDispatcher(streamNotificationDispatcher)
+
 {
 	xercesc::XMLPlatformUtils::Initialize ();
 
@@ -120,9 +122,9 @@ void DPWSStreamingClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 //			}
 
 		auto helper = message->Body().WaveformStream().get().RealTimeSampleArray().front().ObservedValue().get().Samples().get();
-//		_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
+		_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 
-		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "asdfasdfasdfasdfasdfasdf";
+
 
 //		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << helper[10];
 	}

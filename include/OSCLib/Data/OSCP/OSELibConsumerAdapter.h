@@ -14,10 +14,10 @@
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/DPWS/Types.h"
 
 // todo: maybe just fwd..
 #include "OSELib/DPWS/DPWSStreamingClientSocketImpl.h"
-
 
 // fixme: kick
 #include "OSCLib/Util/DebugOut.h"
@@ -27,7 +27,9 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSELibConsumerAdapter {
+class OSELibConsumerAdapter :
+		public OSELib::DPWS::StreamNotificationDispatcher
+{
 public:
 	OSELibConsumerAdapter(OSCPConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription);
 	virtual ~OSELibConsumerAdapter();
@@ -49,10 +51,12 @@ public:
 	void subscribeEvents();
 	void unsubscribeEvents();
 
+
+
 private:
 
-	void initStream();
-
+	// callback
+	virtual void dispatch(const OSELib::DPWS::WaveformStreamType & notification) override;
 
 	// Variables
 	template<class TraitsType>

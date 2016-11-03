@@ -10,6 +10,7 @@
 
 #include "ws-addressing-fwd.hxx"
 #include "wsdd-discovery-1.1-schema-os-fwd.hxx"
+#include "BICEPS_MessageModel-fwd.hxx"
 
 namespace OSELib {
 namespace DPWS {
@@ -32,6 +33,7 @@ typedef WS::DISCOVERY::ByeType ByeType;
 typedef WS::DISCOVERY::HelloType HelloType;
 typedef WS::DISCOVERY::ProbeMatchType ProbeMatchType;
 typedef WS::DISCOVERY::ResolveMatchType ResolveMatchType;
+typedef CDM::WaveformStream WaveformStreamType;
 
 class ByeNotificationDispatcher {
 protected:
@@ -85,6 +87,27 @@ protected:
 
 public:
 	virtual void dispatch(const ResolveMatchType & notification) = 0;
+};
+
+
+// callback interface between OSELibConsumerAdapter and DPWSStreamingClientSocketImpl (and thus the Poco reactor framework)
+class StreamNotificationDispatcher {
+protected:
+	StreamNotificationDispatcher() = default;
+	virtual ~StreamNotificationDispatcher() = default;
+
+public:
+	virtual void dispatch(const WaveformStreamType & notification) = 0;
+};
+
+// callback interface between OSELibConsumerAdapter and OSELibConsumerAdapter
+class StreamNotificationDispatcherAdapterInterface {
+protected:
+	StreamNotificationDispatcherAdapterInterface() = default;
+	virtual ~StreamNotificationDispatcherAdapterInterface() = default;
+
+public:
+	virtual void dispatchStream(const StreamNotificationDispatcher & notification) = 0;
 };
 
 }

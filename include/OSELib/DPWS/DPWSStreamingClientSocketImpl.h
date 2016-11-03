@@ -11,7 +11,7 @@
 
 #include "Poco/NotificationQueue.h"
 #include "Poco/Thread.h"
-#include "Poco/Net/DatagramSocket.h"
+//#include "Poco/Net/DatagramSocket.h"
 #include "Poco/Net/MulticastSocket.h"
 #include "Poco/Net/SocketNotification.h"
 #include "Poco/Net/SocketReactor.h"
@@ -32,7 +32,7 @@ namespace Impl {
 class DPWSStreamingClientSocketImpl {
 public:
 	// todo: add stream dispatcher for callback
-	DPWSStreamingClientSocketImpl();
+	DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher);
 
 	~DPWSStreamingClientSocketImpl();
 
@@ -42,8 +42,8 @@ private:
 	// todo: implement verify msg
 //	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
 
-// callback!
-//	StreamNotificationDispatcher & _streamNotificationDispatcher;
+//  callback function
+	StreamNotificationDispatcher & _streamNotificationDispatcher;
 
 	// todo: cosmetics: save addresses nicely
 //	const Poco::Net::SocketAddress _ipv4MulticastAddress;

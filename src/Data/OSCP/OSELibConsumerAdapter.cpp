@@ -217,7 +217,7 @@ OSELibConsumerAdapter::OSELibConsumerAdapter(OSCPConsumer & consumer, const unsi
 	_threadPool(new Poco::ThreadPool()),
 	_port(port),
 	_deviceDescription(deviceDescription),
-	_streamClientSocketImpl()
+	_streamClientSocketImpl(*this)
 {
 }
 
@@ -272,10 +272,6 @@ void OSELibConsumerAdapter::start() {
 	_pingManager = std::unique_ptr<OSELib::DPWS::PingManager>(new OSELib::DPWS::PingManager(_consumer));
 }
 
-
-void  OSELibConsumerAdapter::initStream() {
-	// todo: maybe delete..
-}
 
 void OSELibConsumerAdapter::stop() {
 	Poco::Mutex::ScopedLock lock(mutex);
@@ -355,6 +351,11 @@ std::unique_ptr<typename TraitsType::Response> OSELibConsumerAdapter::invokeImpl
 
 	return nullptr;
 }
+
+void OSELibConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType & notification) {
+	DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "yeahaa";
+}
+
 
 template<>
 Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::GetMDDescriptionTraits::Request & ) {
