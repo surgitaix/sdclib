@@ -157,7 +157,7 @@ struct EventReportEventSink : public OSCP::IEventReportEventSink, public OSELib:
 	}
 
 	virtual void dispatch(const OSCP::WaveformStreamTraits::ReportType & report) override {
-		// NOOP
+		//
 	}
 
 private:
@@ -198,7 +198,7 @@ private:
 		}
 		if (const auto state = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&metricState)) {
 			_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
-			return;
+			return; //todo: !!!!!!!!!!s
 		}
 		log_error([&] { return "Unknown metric state type, event will not be forwarded to handler!"; });
 	}
@@ -217,7 +217,7 @@ OSELibConsumerAdapter::OSELibConsumerAdapter(OSCPConsumer & consumer, const unsi
 	_threadPool(new Poco::ThreadPool()),
 	_port(port),
 	_deviceDescription(deviceDescription),
-	_streamClientSocketImpl(*this)
+	_streamClientSocketImpl(*this, deviceDescription)
 {
 }
 
@@ -353,7 +353,8 @@ std::unique_ptr<typename TraitsType::Response> OSELibConsumerAdapter::invokeImpl
 }
 
 void OSELibConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType & notification) {
-	DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "yeahaa";
+//	state = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&notification))
+	_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(notification.RealTimeSampleArray().front()));
 }
 
 

@@ -85,6 +85,9 @@
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/OSCP/OperationTraits.h"
 
+
+
+
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
@@ -593,6 +596,7 @@ bool OSCPConsumer::requestState(const std::string & handle, OutStateType & outSt
 
 template<typename T> void OSCPConsumer::onStateChanged(const T & state) {
     Poco::Mutex::ScopedLock lock(eventMutex);
+
     std::map<std::string, OSCPConsumerEventHandler *>::iterator it = eventHandlers.find(state.getDescriptorHandle());
     if (it != eventHandlers.end()) {
     	if (typename T::ConsumerHandlerType * handler = dynamic_cast<typename T::ConsumerHandlerType *>(it->second)) {

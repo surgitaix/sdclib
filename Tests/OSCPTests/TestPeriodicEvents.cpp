@@ -77,7 +77,7 @@ public:
     void onStateChanged(const AlertConditionState & ) override {
     	++counter;
 		if (counter < 5) {
-			Util::DebugOut(Util::DebugOut::Default, "SimpleOSCP") << "Consumer: Received alert condition change of " << handle << std::endl;
+			Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received alert condition change of " << handle << std::endl;
 		} else {
 			event.set();
 		}
@@ -108,7 +108,7 @@ public:
         if (!handles.empty() && handles.front() == handle) {
         	++counter;
     		if (counter < 5) {
-    	        Util::DebugOut(Util::DebugOut::Default, "SimpleOSCP") << "Consumer: Received context values changed!" << std::endl;
+    	        Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received context values changed!" << std::endl;
     		} else {
     			event.set();
     		}
@@ -137,7 +137,7 @@ public:
     void onStateChanged(const NumericMetricState & ) override {
         ++counter;
     	if (counter < 5) {
-        	Util::DebugOut(Util::DebugOut::Default, "SimpleOSCP") << "Consumer: Received metric changed event of " << handle << std::endl;
+        	Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received metric changed event of " << handle << std::endl;
         } else {
         	event.set();
         }
@@ -476,6 +476,8 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
         provider.shutdown();
     } catch (char const* exc) {
     	Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << exc;
+    }catch (Poco::SystemException *e){
+    	Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << e->message();
 	} catch (...) {
 		Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << "Unknown exception occurred!";
 	}

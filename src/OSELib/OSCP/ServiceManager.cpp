@@ -132,7 +132,7 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> ServiceManager::d
 
 	ProbeMatchCallback probeCb;
 	_dpwsClient->addProbeMatchEventHandler(probeFilter, probeCb);
-	Poco::Thread::sleep(5000);
+	Poco::Thread::sleep(10000);
 	_dpwsClient->removeProbeMatchEventHandler(probeCb);
 	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb._results.size()); });
 

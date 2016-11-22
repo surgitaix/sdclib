@@ -45,43 +45,52 @@ namespace Impl {
 //	_ipv6MulticastAddress(Poco::Net::SocketAddress (OSELib::UDP_MULTICAST_DISCOVERY_IP_V6, OSELib::UPD_MULTICAST_DISCOVERY_PORT)),
 //	_ipv4BindingAddress(Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), _ipv4MulticastAddress.port())),
 //	_ipv6BindingAddress(Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), _ipv6MulticastAddress.port())),
-//	_ipv4MulticastSocket(Poco::Net::MulticastSocket(_ipv4BindingAddress.family())),
+//	m_ipv4MulticastSocket(Poco::Net::MulticastSocket(_ipv4BindingAddress.family())),
 //	_ipv6MulticastDiscoverySocket(Poco::Net::MulticastSocket(_ipv6BindingAddress.family()))
 
-DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher):
-		_streamNotificationDispatcher(streamNotificationDispatcher)
-
+DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription):
+		m_streamNotificationDispatcher(streamNotificationDispatcher),
+		m_deviceDescription(deviceDescription)
 {
 	xercesc::XMLPlatformUtils::Initialize ();
 
 	// todo:
 		// implementation of streaming multicast
 		// testwise
-		const Poco::Net::SocketAddress _ipv4MulticastStreamingAddress("239.239.239.235", 5555); // make member vars
-		const Poco::Net::SocketAddress _ipv4MulticastStreamingBindingAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), _ipv4MulticastStreamingAddress.port()); // make member vars
-		_ipv4MulticastSocket = Poco::Net::MulticastSocket(_ipv4MulticastStreamingBindingAddress.family());
 
-		_ipv4MulticastSocket.bind(_ipv4MulticastStreamingAddress, true);
+//		const Poco::Net::SocketAddress m_ipv4MulticastAddress("239.239.239.235", 5555); // make member vars
+
+	// only open a streaming socket, if the provider is providing a streaming service
+	if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
+		m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_deviceDescription.getStreamMulticastAddressURIs().front().getHost(), m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());
+
+		const Poco::Net::SocketAddress _ipv4MulticastStreamingBindingAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port()); // make member vars
+		m_ipv4MulticastSocket = Poco::Net::MulticastSocket(_ipv4MulticastStreamingBindingAddress.family());
+
+		m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, true);
 		// bind all network adapters to socket
 		for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
 			if (nextIf.supportsIPv4()
 				&& !nextIf.address().isLoopback()
 				&& nextIf.address().isUnicast()) { // devices network adapters have a unicast IP
-				_ipv4MulticastSocket.joinGroup(_ipv4MulticastStreamingAddress.host(), nextIf);
+				m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
 			}
 		}
-		_ipv4MulticastSocket.setBlocking(false);
+		m_ipv4MulticastSocket.setBlocking(false);
 
 
 
 
-	_reactor.addEventHandler(_ipv4MulticastSocket, Poco::Observer<DPWSStreamingClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSStreamingClientSocketImpl::onMulticastSocketReadable));
+		_reactor.addEventHandler(m_ipv4MulticastSocket, Poco::Observer<DPWSStreamingClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSStreamingClientSocketImpl::onMulticastSocketReadable));
 
-	_reactorThread.start(_reactor);
+		_reactorThread.start(_reactor);
+	} else {
+		DebugOut(DebugOut::Default, std::cerr, "DPWSStreamingClilentSocketImpl") << "No streaming service.\n";
+	}
 }
 
 DPWSStreamingClientSocketImpl::~DPWSStreamingClientSocketImpl() {
-//	_reactor.removeEventHandler(_ipv4MulticastSocket, Poco::Observer<DPWSStreamingClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSStreamingClientSocketImpl::onMulticastSocketReadable));
+//	_reactor.removeEventHandler(m_ipv4MulticastSocket, Poco::Observer<DPWSStreamingClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSStreamingClientSocketImpl::onMulticastSocketReadable));
 
 //	for (auto & messagingSocketMapping : _socketSendMessageQueue) {
 //		_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
@@ -121,8 +130,11 @@ void DPWSStreamingClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 //				return;
 //			}
 
-		auto helper = message->Body().WaveformStream().get().RealTimeSampleArray().front().ObservedValue().get().Samples().get();
-		_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
+//		auto helper = message->Body().WaveformStream().get().RealTimeSampleArray().front().ObservedValue().get().Samples().get();
+//		RealTimeSampleArrayMetricState
+
+//		auto helper = message->Body().WaveformStream().get().RealTimeSampleArray().front();
+		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 
 
 

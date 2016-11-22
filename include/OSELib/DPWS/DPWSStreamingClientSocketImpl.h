@@ -21,6 +21,7 @@
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/WithLogger.h"
 
+#include "OSELib/DPWS/DeviceDescription.h"
 
 namespace OSELib {
 namespace DPWS {
@@ -31,8 +32,7 @@ namespace Impl {
 
 class DPWSStreamingClientSocketImpl {
 public:
-	// todo: add stream dispatcher for callback
-	DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher);
+	DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
 
 	~DPWSStreamingClientSocketImpl();
 
@@ -43,15 +43,17 @@ private:
 //	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
 
 //  callback function
-	StreamNotificationDispatcher & _streamNotificationDispatcher;
+	StreamNotificationDispatcher & m_streamNotificationDispatcher;
 
-	// todo: cosmetics: save addresses nicely
-//	const Poco::Net::SocketAddress _ipv4MulticastAddress;
-//	const Poco::Net::SocketAddress _ipv6MulticastAddress;
-//	const Poco::Net::SocketAddress _ipv4BindingAddress;
-//	const Poco::Net::SocketAddress _ipv6BindingAddress;
-	Poco::Net::MulticastSocket _ipv4MulticastSocket;
-	Poco::Net::MulticastSocket _ipv6MulticastSocket;
+	// todo: make list of socket for compatibility with other frameworks
+	Poco::Net::SocketAddress m_ipv4MulticastAddress;
+	const Poco::Net::SocketAddress m_ipv6MulticastAddress;
+	const Poco::Net::SocketAddress m_ipv4BindingAddress;
+	const Poco::Net::SocketAddress m_ipv6BindingAddress;
+	Poco::Net::MulticastSocket m_ipv4MulticastSocket;
+	Poco::Net::MulticastSocket m_ipv6MulticastSocket;
+
+	const DeviceDescription & m_deviceDescription;
 
 //	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> _socketSendMessageQueue;
 

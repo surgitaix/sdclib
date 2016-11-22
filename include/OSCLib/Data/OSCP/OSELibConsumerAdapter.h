@@ -55,7 +55,7 @@ public:
 
 private:
 
-	// callback
+	// callback from _streamClientSocketImpl
 	virtual void dispatch(const OSELib::DPWS::WaveformStreamType & notification) override;
 
 	// Variables
