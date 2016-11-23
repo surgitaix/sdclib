@@ -77,10 +77,22 @@ void DeviceDescription::addStreamMulticastAddressURI(const Poco::URI & uri) {
 	_streamMulticastURI.push_back(uri);
 }
 
-const std::list<Poco::URI>& DeviceDescription::getStreamMulticastAddressURIs() const{
+//bool DeviceDescription::checkActiveStreaming() {
+//	if (!_streamMulticastURI.empty()) {
+//		return 1;
+//	} else {
+//		return 0;
+//	}
+//}
+
+
+const std::list<Poco::URI>& DeviceDescription::getStreamMulticastAddressURIs() const {
+//	if (checkActiveStreaming()) {
+//
+//	} else {
+//		throw std::runtime_error("No streaming service found.");
+//	}
 	return _streamMulticastURI;
-
-
 }
 
 DeviceDescription::~DeviceDescription() {

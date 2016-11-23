@@ -779,29 +779,15 @@ namespace WS
 
         // StreamDescriptions
         //
+        if (n.name () == "StreamDescriptions" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
         {
-          ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-            ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-              "StreamDescriptions",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
-              &::xsd::cxx::tree::factory_impl< StreamDescriptionsType >,
-              true, true, i, n, f, this));
+          ::std::unique_ptr< StreamDescriptionsType > r (
+            StreamDescriptionsTraits::create (i, f, this));
 
-          if (tmp.get () != 0)
+          if (!this->StreamDescriptions_)
           {
-            if (!this->StreamDescriptions_)
-            {
-              ::std::unique_ptr< StreamDescriptionsType > r (
-                dynamic_cast< StreamDescriptionsType* > (tmp.get ()));
-
-              if (r.get ())
-                tmp.release ();
-              else
-                throw ::xsd::cxx::tree::not_derived< char > ();
-
-              this->StreamDescriptions_.set (::std::move (r));
-              continue;
-            }
+            this->StreamDescriptions_.set (::std::move (r));
+            continue;
           }
         }
 
@@ -4176,29 +4162,15 @@ namespace WS
 
       // StreamDescriptions
       //
+      if (i.StreamDescriptions ())
       {
-        ::xsd::cxx::tree::type_serializer_map< char >& tsm (
-          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+        ::xercesc::DOMElement& s (
+          ::xsd::cxx::xml::dom::create_element (
+            "StreamDescriptions",
+            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            e));
 
-        if (i.StreamDescriptions ())
-        {
-          const MetadataSection::StreamDescriptionsType& x (*i.StreamDescriptions ());
-          if (typeid (MetadataSection::StreamDescriptionsType) == typeid (x))
-          {
-            ::xercesc::DOMElement& s (
-              ::xsd::cxx::xml::dom::create_element (
-                "StreamDescriptions",
-                "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
-                e));
-
-            s << x;
-          }
-          else
-            tsm.serialize (
-              "StreamDescriptions",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
-              true, true, e, x);
-        }
+        s << *i.StreamDescriptions ();
       }
 
       // Dialect

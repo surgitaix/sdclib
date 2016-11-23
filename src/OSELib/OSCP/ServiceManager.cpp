@@ -101,7 +101,6 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::discoverEndpoi
 		for (const auto & xaddr : resolveCb._result->XAddrs().get()) {
 			auto result(connectXAddress(xaddr, resolveCb._result->EndpointReference().Address()));
 			if (result) {
-				log_information([&] { return "Using xAddress: " + xaddr; });
 				return std::move(result);
 			}
 		}
@@ -145,7 +144,8 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> ServiceManager::d
 		}
 
 		for (const auto & xaddr : probeResult.XAddrs().get()) {
-			log_trace([&] { return "Trying xAddress: " + xaddr; });
+//			log_trace([&] { return "Trying xAddress: " + xaddr; });
+			log_notice([&] { return "Trying xAddress: " + xaddr; });
 			auto result(connectXAddress(xaddr, probeResult.EndpointReference().Address()));
 			if (result) {
 				log_information([&] { return "Using xAddress: " + xaddr; });

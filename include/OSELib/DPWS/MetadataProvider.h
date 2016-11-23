@@ -33,7 +33,7 @@ public:
 	WS::MEX::Metadata createStreamServiceMetadata(const std::string & serverAddress, const std::set<int> & streamingPorts) const;
 
 private:
-	using StreamDescriptions = MDPWS::StreamDescriptionsType; //????
+	using StreamDescriptions = MDPWS::StreamDescriptions; //????
 	using StreamType = MDPWS::StreamTypeType;
 //	using TargetNamespace = WS::STREAMING::TStreamDescriptions::TargetNamespaceOptional; // ?
 	using MetadataSection = WS::MEX::MetadataSection;

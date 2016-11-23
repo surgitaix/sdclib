@@ -97,28 +97,29 @@ and the doc ends.</document>
 		</xs:attribute>
 		<xs:anyAttribute namespace="##other" processContents="skip"/>
 	</xs:complexType>
-	<xs:complexType name="StreamDescriptionsType">
+	<xs:element name="StreamDescriptions">
 		<xs:annotation>
 			<xs:documentation>This element contains the declarations of all the stream types that apply to a given context.</xs:documentation>
 		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="Types" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>This optional element encloses data type definitions that are relevant to the declared StreamType elements. Usually, XML Schema declarations go here.</xs:documentation>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-					<xs:anyAttribute namespace="##other" processContents="skip"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="StreamType" type="mdpws:StreamTypeType" minOccurs="1" maxOccurs="unbounded"/>
-		</xs:sequence>
-		<xs:attribute name="TargetNamespace" type="xs:anyURI" use="required"/>
-		<xs:anyAttribute namespace="##other" processContents="skip"/>
-	</xs:complexType>
-	<xs:element name="StreamDescriptions" type="mdpws:StreamDescriptionsType"/>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Types" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This optional element encloses data type definitions that are relevant to the declared StreamType elements. Usually, XML Schema declarations go here.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:anyAttribute namespace="##other" processContents="skip"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="StreamType" type="mdpws:StreamTypeType" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="TargetNamespace" type="xs:anyURI" use="required"/>
+			<xs:anyAttribute namespace="##other" processContents="skip"/>
+		</xs:complexType>
+	</xs:element>
 	<!-- Safety Requirements Assertion -->
 	<xs:complexType name="SafetyReqAssertionType">
 		<xs:annotation>
@@ -290,4 +291,3 @@ Samples including allowed features:
 		</xs:simpleContent>
 	</xs:complexType>
 </xs:schema>
-

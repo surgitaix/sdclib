@@ -44,7 +44,7 @@ int main()
 {
 
     // This runs all existing tests.
-	runAllTests();
+//	runAllTests();
 
 	// Only run tests of a specific test suite
 //	runTestSuite("Basics");
@@ -54,7 +54,7 @@ int main()
 
 	// Only run test with a given name
 
-//	runSingleTest("connectionlostoscp");
+	runSingleTest("connectionlostoscp");
 
 	return 0;
 }

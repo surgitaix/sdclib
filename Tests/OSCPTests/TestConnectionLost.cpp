@@ -141,8 +141,10 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 	    	Data::OSCP::OSCPConsumer & consumer;
 	    };
 
-		constexpr std::size_t providerCount(10);
-		constexpr std::size_t metricCount(10);
+	    DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Waiting for the Providers to startup...";
+
+		constexpr std::size_t providerCount(20);
+		constexpr std::size_t metricCount(20);
 		std::vector<std::shared_ptr<Tests::ConnectionLostOSCP::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
 
@@ -151,13 +153,13 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 			providers.push_back(p);
 			p->startup();
 			providerEPRs.emplace_back(p->getEndpointReference());
-			Poco::Thread::sleep(2000);
+//			Poco::Thread::sleep(2000);
 		}
 
 
-		DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Waiting for the Providers to startup...";
 
-        Poco::Thread::sleep(10000);
+
+        Poco::Thread::sleep(5000);
 
         DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Starting discovery test...";
 
@@ -174,7 +176,7 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 				}
 			}
 			if (!foundOne) {
-				DebugOut(DebugOut::Default, std::cout, "multioscp") << "Missing epr: " << providerEPR << std::endl;
+				DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Missing epr: " << providerEPR << std::endl;
 			}
 			foundAll &= foundOne;
         }

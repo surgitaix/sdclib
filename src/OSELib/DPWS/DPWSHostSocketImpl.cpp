@@ -165,6 +165,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
 			ipv4MulticastListeningSocket.joinGroup(ipv4DiscoveryMulticastAddress.host(), nextIf);
 			Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), 0), true);
 			datagramSocket.setBlocking(false);
+			// adds datagramSocket to the queue with a clear entry
 			socketSendMessageQueue[datagramSocket].clear();
 		}
 	}
@@ -179,6 +180,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
 			ipv6MulticastListeningSocket.joinGroup(ipv6DiscoveryMulticastAddress.host(), nextIf);
 			Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), 0), true);
 			datagramSocket.setBlocking(false);
+			// adds datagramSocket to the queue with a clear entry
 			socketSendMessageQueue[datagramSocket].clear();
 			} catch (...) {
 				// todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
@@ -297,6 +299,7 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 }
 
 void DPWSHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotification * notification) {
+	processDelayedMessages();
 	const Poco::AutoPtr<Poco::Net::WritableNotification> pNf(notification);
 	Poco::Net::DatagramSocket socket(pNf->socket());
 
@@ -326,7 +329,6 @@ void DPWSHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotificati
 			socket.sendTo(message->content.c_str(), message->content.size(), multicastAddress, 0);
 		}
 	}
-	processDelayedMessages();
 }
 
 void DPWSHostSocketImpl::onTimeOut(Poco::Net::TimeoutNotification * notification) {
