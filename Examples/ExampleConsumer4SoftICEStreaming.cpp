@@ -42,6 +42,7 @@ public:
             if (values[i] != double(i))
                 verifiedChunks = false;
         }
+        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << handle << ". Validity: " << verifiedChunks << std::endl;
     }
 
     std::string getHandle() override {
@@ -74,7 +75,10 @@ int main() {
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider found!" << std::endl;
 		c->registerStateEventHandler(eventHandler.get());
 
-		Poco::Thread::sleep(60000);
+		std::string temp;
+		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Press key to exit program.";
+		std::cin >> temp;
+
 		c->unregisterStateEventHandler(eventHandler.get());
 		c->disconnect();
 	} else {

@@ -361,7 +361,7 @@ public:
 			.addVMD(deviceModule)
 			.setAlertSystem(alertSystem);
 
-        // create and add descrition
+        // create and add description
 		MDDescription mdDescription;
 		mdDescription.addMDSDescriptor(deviceSystem);
 

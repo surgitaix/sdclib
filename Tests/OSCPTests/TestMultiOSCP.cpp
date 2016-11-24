@@ -79,7 +79,7 @@ public:
 
         mds.addVMD(testVMD);
 
-        // create and add descrition
+        // create and add description
 		MDDescription mdDescription;
 		mdDescription.addMDSDescriptor(mds);
 

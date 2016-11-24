@@ -22,6 +22,7 @@
 #include "OSCLib/Util/DebugOut.h"
 using namespace OSCLib::Util;
 
+#include "OSELib/Helper/WithLogger.h"
 
 
 //#include "OSELib/Helper/BufferAdapter.h"
@@ -53,7 +54,6 @@ DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationD
 		m_deviceDescription(deviceDescription)
 {
 	xercesc::XMLPlatformUtils::Initialize ();
-
 	// todo:
 		// implementation of streaming multicast
 		// testwise
@@ -62,6 +62,7 @@ DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationD
 
 	// only open a streaming socket, if the provider is providing a streaming service
 	if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
+		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Host:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() << "Port: " + m_deviceDescription.getStreamMulticastAddressURIs().front().getPort() << std::endl;
 		m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_deviceDescription.getStreamMulticastAddressURIs().front().getHost(), m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());
 
 		const Poco::Net::SocketAddress _ipv4MulticastStreamingBindingAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port()); // make member vars
@@ -78,19 +79,16 @@ DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationD
 		}
 		m_ipv4MulticastSocket.setBlocking(false);
 
-
-
-
 		_reactor.addEventHandler(m_ipv4MulticastSocket, Poco::Observer<DPWSStreamingClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSStreamingClientSocketImpl::onMulticastSocketReadable));
 
 		_reactorThread.start(_reactor);
-	} else {
-		DebugOut(DebugOut::Default, std::cerr, "DPWSStreamingClilentSocketImpl") << "No streaming service.\n";
 	}
 }
 
 DPWSStreamingClientSocketImpl::~DPWSStreamingClientSocketImpl() {
-//	_reactor.removeEventHandler(m_ipv4MulticastSocket, Poco::Observer<DPWSStreamingClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSStreamingClientSocketImpl::onMulticastSocketReadable));
+	if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
+		_reactor.removeEventHandler(m_ipv4MulticastSocket, Poco::Observer<DPWSStreamingClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSStreamingClientSocketImpl::onMulticastSocketReadable));
+	}
 
 //	for (auto & messagingSocketMapping : _socketSendMessageQueue) {
 //		_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
@@ -105,6 +103,7 @@ DPWSStreamingClientSocketImpl::~DPWSStreamingClientSocketImpl() {
 
 void DPWSStreamingClientSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotification * notification) {
 
+	DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Stream recieved" << std::endl;
 	const Poco::AutoPtr<Poco::Net::ReadableNotification> pNf(notification);
 
 	Poco::Net::MulticastSocket socket(pNf->socket());
@@ -130,15 +129,13 @@ void DPWSStreamingClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 //				return;
 //			}
 
-//		auto helper = message->Body().WaveformStream().get().RealTimeSampleArray().front().ObservedValue().get().Samples().get();
-//		RealTimeSampleArrayMetricState
 
-//		auto helper = message->Body().WaveformStream().get().RealTimeSampleArray().front();
+
 		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 
 
 
-//		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << helper[10];
+
 	}
 
 }

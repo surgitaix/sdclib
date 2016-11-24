@@ -179,7 +179,7 @@ public:
                 .setCodeId("MDC_DEV_ANALY_SAT_O2_MDS"))
 			.addVMD(holdingDeviceModule);
         
-        // create and add descrition
+        // create and add description
 		MDDescription mdDescription;
 		mdDescription.addMDSDescriptor(holdingDeviceSystem);
 

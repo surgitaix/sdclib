@@ -901,7 +901,7 @@ public:
 
 		oscpProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
-		// create and add descrition
+		// create and add description
 		MDDescription mdDescription;
 		mdDescription.addMDSDescriptor(holdingDeviceSystem);
 

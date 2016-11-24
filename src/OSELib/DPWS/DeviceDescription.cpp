@@ -9,6 +9,10 @@
 
 #include "OSELib/DPWS/DeviceDescription.h"
 
+// todo: kick after dev
+#include "OSCLib/Util/DebugOut.h"
+using namespace OSCLib::Util;
+
 namespace OSELib {
 namespace DPWS {
 

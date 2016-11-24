@@ -48,7 +48,7 @@ const int MDPWS_MCAST_PORT(5555);
 const std::string MDPWS_STREAMTRANSMISSIONTYPE(NS_MDPWS + "/StreamTransmissionType");
 
 const std::string ACTION_ORNET_STREAM(NS_MESSAGE_MODEL + "/Waveform/WaveformStream");
-const std::string WS_MEX_ORNET_STREAM_IDENTIFIER(NS_MESSAGE_MODEL + "/Waveform");
+const std::string WS_MEX_ORNET_STREAM_IDENTIFIER(NS_MESSAGE_MODEL + "/WaveformStreamService");
 const std::string WS_MEX_ORNET_STREAM_TYPE("http://docs.oasis-open.org/ws-dd/soapoverudp/1.1/os/wsdd-soapoverudp-1.1-spec-os.html");
 
 const std::string WS_MEX_ORNET_DIALECT_STREAM("http://standardized.namespace.org/ws-streaming/StreamDescriptions");
