@@ -328,8 +328,7 @@ void OSELibProviderAdapter::start() {
 
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_dpwsHost || _subscriptionManager || _httpServer) {
-		return;
-		//todo maybe throw because starting twice is clearly an error
+		throw std::runtime_error("Service is already running..");
 	}
 
 	// todo make this configurable by the provider. The best would be to get all neccessary dpws device/model information in the provider constructor and directly forward it here

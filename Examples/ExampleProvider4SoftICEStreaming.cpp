@@ -190,8 +190,8 @@ public:
 int main()
 {
 	// Startup
-	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Startup";
-    OSCLibrary::getInstance().startup();
+	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Startup" << std::endl;
+    OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
 
 	OSELib::OSCP::ServiceManager oscpsm;
 

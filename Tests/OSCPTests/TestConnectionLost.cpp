@@ -143,8 +143,8 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 
 	    DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Waiting for the Providers to startup...";
 
-		constexpr std::size_t providerCount(20);
-		constexpr std::size_t metricCount(20);
+		constexpr std::size_t providerCount(10);
+		constexpr std::size_t metricCount(10);
 		std::vector<std::shared_ptr<Tests::ConnectionLostOSCP::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
 
@@ -159,7 +159,7 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 
 
 
-        Poco::Thread::sleep(5000);
+        Poco::Thread::sleep(10000);
 
         DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Starting discovery test...";
 

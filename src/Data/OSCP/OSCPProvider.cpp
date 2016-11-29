@@ -18,7 +18,7 @@
  * OSCPProvider.cpp
  *
  *  @Copyright (C) 2014, SurgiTAIX AG
- *  Author: roehser, besting
+ *  Author: roehser, besting, buerger
  */
 
 #include <memory>
@@ -189,7 +189,7 @@ OSCPProvider::OSCPProvider() :
 	atomicTransactionId.store(0);
 	mdibVersion.store(0);
     setEndpointReference(Poco::UUIDGenerator::defaultGenerator().create().toString());
-    const int port(OSCLibrary::getInstance().extractFreePort());
+    const unsigned int port(OSCLibrary::getInstance().extractFreePort());
     m_mdDescription = std::unique_ptr<MDDescription>(new MDDescription());
 	_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
 }
@@ -889,11 +889,20 @@ void OSCPProvider::startup() {
 	try {
 		_adapter->start();
 	} catch (const Poco::Net::NetException & e) {
-		//ToDo: reset new ports
-//		OSCLibrary::getInstance().returnPortToPool(port);
-		log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port. "; });
+		// Case: poco exception saying that the socket is not free
+		// -> retry with another port
+		unsigned int port(OSCLibrary::getInstance().extractFreePort());
+		log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with port: " + std::to_string(port); });
+		OSCLibrary::getInstance().returnPortToPool(_adapter->getPort());
+		_adapter.reset();
+		_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
+		this->startup();
+		return;
+	} catch (std::runtime_error & ex_re) {
+		log_error([&] { return ex_re.what(); });
 
 	}
+
     // Grab all states (start with all operation states and add states from user handlers)
     Poco::Mutex::ScopedLock lock(mutex);
     mdibStates = MDState(operationStates);
