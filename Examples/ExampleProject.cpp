@@ -31,6 +31,7 @@
 #include "Poco/ScopedLock.h"
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
+#include "Poco/Net/NetException.h"
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
@@ -366,91 +367,106 @@ private:
 int main()
 {
 
-	DebugOut(DebugOut::Default, "ExampleProject") << "Startup";
-    OSCLibrary::getInstance().startup();
-	OSCLibrary::getInstance().setPortStart(11000);
+	DebugOut(DebugOut::Default, "ExampleProject") << "1";
+	try {
+		OSCLibrary::getInstance().startup();
+		DebugOut(DebugOut::Default, "ExampleProject") << "2";
+		OSCLibrary::getInstance().setPortStart(11000);
 
-	OSELib::OSCP::ServiceManager oscpsm;
-    class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
-    public:
-    	MyHandler() {
-    	}
-    	void helloReceived(const std::string & epr) override {
-    		DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << epr;
-    	}
-    };
-    std::unique_ptr<MyHandler> myHandler(new MyHandler());
-    oscpsm.setHelloReceivedHandler(myHandler.get());
-	// Provider
-	OSCPHoldingDeviceProvider provider;
-	provider.startup();
-	DummyValueProducer dummyValueProducer(&provider);
-	dummyValueProducer.start();
+		OSELib::OSCP::ServiceManager oscpsm;
+		class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
+		public:
+			MyHandler() {
+			}
+			void helloReceived(const std::string & epr) override {
+				DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << epr;
+			}
+		};
+		std::unique_ptr<MyHandler> myHandler(new MyHandler());
+		DebugOut(DebugOut::Default, "ExampleProject") << "3";
+		oscpsm.setHelloReceivedHandler(myHandler.get());
+		// Provider
+		OSCPHoldingDeviceProvider provider;
+		provider.startup();
+		DebugOut(DebugOut::Default, "ExampleProject") << "4";
+		DummyValueProducer dummyValueProducer(&provider);
+		dummyValueProducer.start();
+		DebugOut(DebugOut::Default, "ExampleProject") << "5";
 
-    int temp;
-    DebugOut(DebugOut::Default, "ExampleProject") << "Press key to proceed test (until then, provider will keep running indefinitely).";
-    std::cin >> temp;
+		int temp;
+		DebugOut(DebugOut::Default, "ExampleProject") << "Press key to proceed test (until then, provider will keep running indefinitely).";
+		std::cin >> temp;
 
-	// Discovery
-	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
-    std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler("handle_cur"));
-    std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler("handle_max"));
+		// Discovery
+		std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+		DebugOut(DebugOut::Default, "ExampleProject") << "6";
+		std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler("handle_cur"));
+		std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler("handle_max"));
+		DebugOut(DebugOut::Default, "ExampleProject") << "7";
 
 
-	if (c != nullptr) {
-        OSCPConsumer & consumer = *c;
-		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
+		if (c != nullptr) {
+			OSCPConsumer & consumer = *c;
+			DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
 
-		// MDIB test
-		MDIBContainer mdib = consumer.getMDIB();
+			// MDIB test
+			MDIBContainer mdib = consumer.getMDIB();
 
-		// Register for metric event
-        consumer.registerStateEventHandler(eces1.get());
-        consumer.registerStateEventHandler(eces2.get());
+			// Register for metric event
+			consumer.registerStateEventHandler(eces1.get());
+			consumer.registerStateEventHandler(eces2.get());
 
-		Poco::Thread::sleep(4000);
+			Poco::Thread::sleep(4000);
 
-		// Get state test (current weight)
-		NumericMetricState currentWeightState;
-		consumer.requestState("handle_cur", currentWeightState);
-		double curWeight = currentWeightState.getObservedValue().getValue();
-		DebugOut(DebugOut::Default, "ExampleProject") << "Observed Weight " << curWeight;
+			// Get state test (current weight)
+			NumericMetricState currentWeightState;
+			consumer.requestState("handle_cur", currentWeightState);
+			double curWeight = currentWeightState.getObservedValue().getValue();
+			DebugOut(DebugOut::Default, "ExampleProject") << "Observed Weight " << curWeight;
 
-		// Set state test (must fail due to read-only)
-		InvocationState invocationStateFirst = consumer.commitState(currentWeightState);
-        DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (1st commit): " << Data::OSCP::EnumToString::convert(invocationStateFirst);
-		if (InvocationState::FAILED == invocationStateFirst) {
-			DebugOut(DebugOut::Default, "ExampleProject") << "Committing state failed as expected.";
+			// Set state test (must fail due to read-only)
+			InvocationState invocationStateFirst = consumer.commitState(currentWeightState);
+			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (1st commit): " << Data::OSCP::EnumToString::convert(invocationStateFirst);
+			if (InvocationState::FAILED == invocationStateFirst) {
+				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state failed as expected.";
+			} else {
+				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state succeeded. This is an error, because it should be read-only.";
+			}
+
+			// Get state test (maximum weight)
+			NumericMetricState maxWeightState;
+			consumer.requestState("handle_max", maxWeightState);
+			double maxWeight = maxWeightState.getObservedValue().getValue();
+			DebugOut(DebugOut::Default, "ExampleProject") << "Max weight value: "<< maxWeight;
+
+			// Set state test (must succeed)
+			InvocationState invocationStateSecond  = consumer.commitState(maxWeightState);
+			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): " << Data::OSCP::EnumToString::convert(invocationStateSecond);
+
+			Poco::Thread::sleep(1000);
+			consumer.unregisterStateEventHandler(eces1.get());
+			consumer.unregisterStateEventHandler(eces2.get());
+			Poco::Thread::sleep(4000);
+
+			consumer.disconnect();
 		} else {
-			DebugOut(DebugOut::Default, "ExampleProject") << "Committing state succeeded. This is an error, because it should be read-only.";
+			DebugOut(DebugOut::Default, "ExampleProject") << "Discovery failed.";
 		}
 
-		// Get state test (maximum weight)
-		NumericMetricState maxWeightState;
-		consumer.requestState("handle_max", maxWeightState);
-		double maxWeight = maxWeightState.getObservedValue().getValue();
-		DebugOut(DebugOut::Default, "ExampleProject") << "Max weight value: "<< maxWeight;
+		oscpsm.setHelloReceivedHandler(nullptr);
 
-		// Set state test (must succeed)
-		InvocationState invocationStateSecond  = consumer.commitState(maxWeightState);
-        DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): " << Data::OSCP::EnumToString::convert(invocationStateSecond);
+		dummyValueProducer.interrupt();
+		provider.shutdown();
+		Poco::Thread::sleep(2000);
 
-        Poco::Thread::sleep(1000);
-        consumer.unregisterStateEventHandler(eces1.get());
-        consumer.unregisterStateEventHandler(eces2.get());
-        Poco::Thread::sleep(4000);
-
-		consumer.disconnect();
-	} else {
-		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery failed.";
+		OSCLibrary::getInstance().shutdown();
+	} catch (Poco::Net::NetException & e) {
+		DebugOut(DebugOut::Default, "ExampleProject") << "what:" << e.what() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleProject") << "className:" << e.className() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleProject") << "code:" << e.code() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleProject") << "displayText:" << e.displayText() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleProject") << "message:" << e.message() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleProject") << "name:" << e.name() << std::endl;
 	}
-
-	oscpsm.setHelloReceivedHandler(nullptr);
-
-    dummyValueProducer.interrupt();
-	provider.shutdown();
-	Poco::Thread::sleep(2000);
-
-    OSCLibrary::getInstance().shutdown();
 	DebugOut(DebugOut::Default, "ExampleProject") << "Shutdown." << std::endl;
 }
