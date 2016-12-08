@@ -52,7 +52,7 @@ DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationD
 		m_streamNotificationDispatcher(streamNotificationDispatcher),
 		m_deviceDescription(deviceDescription)
 {
-	xercesc::XMLPlatformUtils::Initialize ();
+	xercesc::XMLPlatformUtils::Initialize();
 	// todo: implement ipv6
 
 //		const Poco::Net::SocketAddress m_ipv4MulticastAddress("239.239.239.235", 5555); // make member vars
@@ -130,9 +130,8 @@ void DPWSStreamingClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 	if (message->Header().From().get().Address() == m_deviceDescription.getEPR()) {
 		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 	} else {
-		log_error([&]{return "Message received has wrong endpoint reference";});
+		log_error([&]{return "Message has wrong endpoint reference";});
 	}
-
 
 }
 

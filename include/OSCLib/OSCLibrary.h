@@ -83,6 +83,7 @@ public:
 
 	void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
 
+
 private:
 	bool initialized;
 
@@ -92,6 +93,10 @@ private:
 
 	Poco::Mutex mutex;
 	std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
+
+	// declaring copy-methods prevents from initializing multiple copies of singleton
+	OSCLibrary(OSCLibrary const&);
+	void operator=(OSCLibrary const&);
 };
 
 } /* namespace OSCLib */
