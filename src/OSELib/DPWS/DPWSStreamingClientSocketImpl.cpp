@@ -22,8 +22,6 @@
 #include "OSCLib/Util/DebugOut.h"
 using namespace OSCLib::Util;
 
-#include "OSELib/Helper/WithLogger.h"
-
 
 //#include "OSELib/Helper/BufferAdapter.h"
 
@@ -50,13 +48,12 @@ namespace Impl {
 //	_ipv6MulticastDiscoverySocket(Poco::Net::MulticastSocket(_ipv6BindingAddress.family()))
 
 DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription):
+		WithLogger(Log::EVENTSINK),
 		m_streamNotificationDispatcher(streamNotificationDispatcher),
 		m_deviceDescription(deviceDescription)
 {
 	xercesc::XMLPlatformUtils::Initialize ();
-	// todo:
-		// implementation of streaming multicast
-		// testwise
+	// todo: implement ipv6
 
 //		const Poco::Net::SocketAddress m_ipv4MulticastAddress("239.239.239.235", 5555); // make member vars
 
@@ -103,7 +100,6 @@ DPWSStreamingClientSocketImpl::~DPWSStreamingClientSocketImpl() {
 
 void DPWSStreamingClientSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotification * notification) {
 
-	DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Stream recieved" << std::endl;
 	const Poco::AutoPtr<Poco::Net::ReadableNotification> pNf(notification);
 
 	Poco::Net::MulticastSocket socket(pNf->socket());
@@ -119,24 +115,24 @@ void DPWSStreamingClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 	std::unique_ptr<MESSAGEMODEL::Envelope> message(parseMessage(adapter));
 
 	if (message == nullptr
-		|| !message->Header().MessageID().present() ) {
-//		|| !message->Header().From().present() // todo: add later
+		|| !message->Header().MessageID().present()
+		|| !message->Body().WaveformStream().present()) {
+		log_error([&]{return "Message is invalid";});
 		return;
 	}
 
-	if (message->Body().WaveformStream().present()) {
-//			if (not verifyHello(*message)) {
-//				return;
-//			}
-
-
-
-		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
-
-
-
-
+	if (!message->Header().From().present()) {
+		log_error([&]{return "From-field in streaming message does not exist";});
+		return;
 	}
+
+
+	if (message->Header().From().get().Address() == m_deviceDescription.getEPR()) {
+		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
+	} else {
+		log_error([&]{return "Message received has wrong endpoint reference";});
+	}
+
 
 }
 

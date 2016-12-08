@@ -30,7 +30,7 @@ namespace Impl {
 //todo:
 //: public WithLogger
 
-class DPWSStreamingClientSocketImpl {
+class DPWSStreamingClientSocketImpl : public WithLogger {
 public:
 	DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
 
@@ -40,9 +40,9 @@ private:
 	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
 
 	// todo: implement verify msg
-//	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
+	//	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
 
-//  callback function
+	//  callback function, implemented in OSELibConsumerAdapter
 	StreamNotificationDispatcher & m_streamNotificationDispatcher;
 
 	// todo: make list of socket for compatibility with other frameworks

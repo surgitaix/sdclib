@@ -353,8 +353,7 @@ std::unique_ptr<typename TraitsType::Response> OSELibConsumerAdapter::invokeImpl
 }
 
 void OSELibConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType & notification) {
-//	state = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&notification))
-	_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(notification.RealTimeSampleArray().front()));
+		_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(notification.RealTimeSampleArray().front()));
 }
 
 
