@@ -64,6 +64,7 @@ private:
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Startup";
     OSCLibrary::getInstance().startup();
+    OSCLibrary::getInstance().setIP6enabled(false);
 
     // Consumer
 	OSELib::OSCP::ServiceManager oscpsm;

@@ -42,6 +42,8 @@
 
 namespace OSCLib {
 
+
+
 class OSCLibrary : public OSELib::WithLogger {
 public:
 
@@ -83,8 +85,15 @@ public:
 
 	void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
 
+	void setIP4enabled(bool IP4enabled);
+	void setIP6enabled(bool IP6enabled);
+	bool getIP4enabled();
+	bool getIP6enabled();
 
 private:
+
+	bool m_IP4enabled;
+	bool m_IP6enabled;
 	bool initialized;
 
 	void createPortLists(unsigned int portStart, unsigned int portRange = 1000);

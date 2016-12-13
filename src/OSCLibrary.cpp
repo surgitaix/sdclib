@@ -44,7 +44,9 @@ namespace OSCLib {
 
 OSCLibrary::OSCLibrary() :
 	WithLogger(OSELib::Log::BASE),
-	initialized(false)
+	initialized(false),
+	m_IP4enabled(true),
+	m_IP6enabled(true)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
 	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel);
@@ -131,4 +133,19 @@ bool OSCLibrary::isInitialized() {
 	return initialized;
 }
 
+void OSCLibrary::setIP4enabled(bool IP4enabled) {
+	m_IP4enabled = IP4enabled;
+}
+
+void OSCLibrary::setIP6enabled(bool IP6enabled) {
+	m_IP6enabled = IP6enabled;
+}
+
+bool OSCLibrary::getIP4enabled() {
+	return m_IP4enabled;
+}
+
+bool OSCLibrary::getIP6enabled() {
+	return m_IP6enabled;
+}
 } /* namespace OSCLib */

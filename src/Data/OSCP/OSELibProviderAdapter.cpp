@@ -415,6 +415,7 @@ void OSELibProviderAdapter::start() {
 
 	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts), *_threadPool, ss,  new Poco::Net::HTTPServerParams));
 
+
 	_httpServer->start();
 	_dpwsHost->start();
 }

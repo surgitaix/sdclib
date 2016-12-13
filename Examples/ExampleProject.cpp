@@ -370,23 +370,25 @@ int main()
 	DebugOut(DebugOut::Default, "ExampleProject") << "1";
 	try {
 		OSCLibrary::getInstance().startup();
+		OSCLibrary::getInstance().setIP6enabled(false);
 		DebugOut(DebugOut::Default, "ExampleProject") << "2";
 		OSCLibrary::getInstance().setPortStart(11000);
 
 		OSELib::OSCP::ServiceManager oscpsm;
-		class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
-		public:
-			MyHandler() {
-			}
-			void helloReceived(const std::string & epr) override {
-				DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << epr;
-			}
-		};
-		std::unique_ptr<MyHandler> myHandler(new MyHandler());
+//		class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
+//		public:
+//			MyHandler() {
+//			}
+//			void helloReceived(const std::string & epr) override {
+//				DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << epr;
+//			}
+//		};
+//		std::unique_ptr<MyHandler> myHandler(new MyHandler());
 		DebugOut(DebugOut::Default, "ExampleProject") << "3";
-		oscpsm.setHelloReceivedHandler(myHandler.get());
+//		oscpsm.setHelloReceivedHandler(myHandler.get());
 		// Provider
 		OSCPHoldingDeviceProvider provider;
+		DebugOut(DebugOut::Default, "ExampleProject") << "3.5";
 		provider.startup();
 		DebugOut(DebugOut::Default, "ExampleProject") << "4";
 		DummyValueProducer dummyValueProducer(&provider);

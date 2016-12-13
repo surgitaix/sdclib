@@ -192,13 +192,18 @@ int main()
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Startup" << std::endl;
     OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+    OSCLibrary::getInstance().setIP6enabled(false);
 
+    DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "1" << std::endl;
 	OSELib::OSCP::ServiceManager oscpsm;
-
+	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "2" << std::endl;
 	// Provider
 	OSCPStreamProvider provider;
+	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "3" << std::endl;
 	provider.startup();
+	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "4" << std::endl;
 	provider.start();
+	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "5" << std::endl;
 
 	std::string temp;
 	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Press key to exit program.";

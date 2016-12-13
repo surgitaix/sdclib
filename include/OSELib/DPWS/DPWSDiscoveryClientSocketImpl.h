@@ -52,10 +52,10 @@ private:
 	ProbeMatchNotificationDispatcher & _probeMatchDispatcher;
 	ResolveMatchNotificationDispatcher & _resolveDispatcher;
 
-	const Poco::Net::SocketAddress _ipv4MulticastAddress;
-	const Poco::Net::SocketAddress _ipv6MulticastAddress;
-	const Poco::Net::SocketAddress _ipv4BindingAddress;
-	const Poco::Net::SocketAddress _ipv6BindingAddress;
+	Poco::Net::SocketAddress _ipv4MulticastAddress;
+	Poco::Net::SocketAddress _ipv6MulticastAddress;
+	Poco::Net::SocketAddress _ipv4BindingAddress;
+	Poco::Net::SocketAddress _ipv6BindingAddress;
 	Poco::Net::MulticastSocket _ipv4MulticastDiscoverySocket;
 	Poco::Net::MulticastSocket _ipv6MulticastDiscoverySocket;
 
