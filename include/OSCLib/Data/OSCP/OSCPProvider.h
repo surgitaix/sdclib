@@ -157,7 +157,7 @@ public:
     void shutdown();
     
     template<class T>
-    void replaceState(const T & state);    
+    void replaceState(const T & state);
 
     /**
     * @brief Add a state handler to provide states and to process incoming change requests from a consumer.

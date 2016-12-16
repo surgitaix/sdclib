@@ -44,7 +44,7 @@ namespace OSCLib {
 
 
 
-class OSCLibrary : public OSELib::WithLogger {
+class OSCLibrary final : public OSELib::WithLogger {
 public:
 
 	OSCLibrary();

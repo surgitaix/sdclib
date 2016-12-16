@@ -75,6 +75,22 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
 		_ipv4MulticastAddress = Poco::Net::SocketAddress(OSELib::UDP_MULTICAST_DISCOVERY_IP_V4, OSELib::UPD_MULTICAST_DISCOVERY_PORT);
 		_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), _ipv4MulticastAddress.port());
 		_ipv4MulticastDiscoverySocket = Poco::Net::MulticastSocket(_ipv4BindingAddress.family());
+
+		_ipv4MulticastDiscoverySocket.bind(_ipv4BindingAddress, true);
+		for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
+			if (nextIf.supportsIPv4()
+				&& nextIf.address().isUnicast()
+				&& !nextIf.address().isLoopback()) {
+				_ipv4MulticastDiscoverySocket.joinGroup(_ipv4MulticastAddress.host(), nextIf);
+				Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), 0), true);
+				datagramSocket.setBlocking(false);
+				_reactor.addEventHandler(datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
+				_socketSendMessageQueue[datagramSocket].clear();
+			}
+		}
+		_ipv4MulticastDiscoverySocket.setBlocking(false);
+
+		_reactor.addEventHandler(_ipv4MulticastDiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 	}
 
 
@@ -82,47 +98,31 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
 		_ipv6MulticastAddress = Poco::Net::SocketAddress (OSELib::UDP_MULTICAST_DISCOVERY_IP_V6, OSELib::UPD_MULTICAST_DISCOVERY_PORT);
 		_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), _ipv6MulticastAddress.port());
 		_ipv6MulticastDiscoverySocket = Poco::Net::MulticastSocket(_ipv6BindingAddress.family());
+
+		_ipv6MulticastDiscoverySocket.bind(_ipv6BindingAddress, true);
+		for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
+			if (nextIf.supportsIPv6()
+				&& nextIf.address().isUnicast()
+				&& !nextIf.address().isLoopback()) {
+				try {
+				_ipv6MulticastDiscoverySocket.joinGroup(_ipv6MulticastAddress.host(), nextIf);
+				Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), 0), true);
+				datagramSocket.setBlocking(false);
+				_reactor.addEventHandler(datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
+				_socketSendMessageQueue[datagramSocket].clear();
+				} catch (...) {
+					// todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
+					log_error([&] { return "Some thing went wrong"; });
+				}
+			}
+		}
+		_ipv6MulticastDiscoverySocket.setBlocking(false);
+
+		_reactor.addEventHandler(_ipv6MulticastDiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 	}
 
 
 	xercesc::XMLPlatformUtils::Initialize ();
-
-
-	_ipv4MulticastDiscoverySocket.bind(_ipv4BindingAddress, true);
-	for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-		if (nextIf.supportsIPv4()
-			&& nextIf.address().isUnicast()
-			&& !nextIf.address().isLoopback()) {
-			_ipv4MulticastDiscoverySocket.joinGroup(_ipv4MulticastAddress.host(), nextIf);
-			Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), 0), true);
-			datagramSocket.setBlocking(false);
-			_reactor.addEventHandler(datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
-			_socketSendMessageQueue[datagramSocket].clear();
-		}
-	}
-	_ipv4MulticastDiscoverySocket.setBlocking(false);
-
-//	_ipv6MulticastDiscoverySocket.bind(_ipv6BindingAddress, true);
-//	for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-//		if (nextIf.supportsIPv6()
-//			&& nextIf.address().isUnicast()
-//			&& !nextIf.address().isLoopback()) {
-//			try {
-//			_ipv6MulticastDiscoverySocket.joinGroup(_ipv6MulticastAddress.host(), nextIf);
-//			Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), 0), true);
-//			datagramSocket.setBlocking(false);
-//			_reactor.addEventHandler(datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
-//			_socketSendMessageQueue[datagramSocket].clear();
-//			} catch (...) {
-//				// todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
-//				log_error([&] { return "Some thing went wrong"; });
-//			}
-//		}
-//	}
-//	_ipv6MulticastDiscoverySocket.setBlocking(false);
-
-	_reactor.addEventHandler(_ipv4MulticastDiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
-//	_reactor.addEventHandler(_ipv6MulticastDiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 
 	_reactorThread.start(_reactor);
 }

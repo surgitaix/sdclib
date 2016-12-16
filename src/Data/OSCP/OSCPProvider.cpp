@@ -893,6 +893,15 @@ void OSCPProvider::startup() {
 		// -> retry with another port
 		unsigned int port(OSCLibrary::getInstance().extractFreePort());
 		log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with port: " + std::to_string(port); });
+
+		//Debug embedded
+		log_notice([&] { return "what:" + std::string(e.what()); });
+		log_notice([&] { return  "className:" + std::string(e.className());});
+		log_notice([&] { return "code:" + std::to_string(e.code());});
+		log_notice([&] { return  "displayText:" + std::string(e.displayText());});
+		log_notice([&] { return  "message:" + std::string(e.message());});
+		log_notice([&] { return  "name:" + std::string(e.name());});
+
 		OSCLibrary::getInstance().returnPortToPool(_adapter->getPort());
 		_adapter.reset();
 		_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
