@@ -18,20 +18,20 @@
 namespace OSELib {
 namespace DPWS {
 
-DPWSClient::DPWSClient() :
+MDPWSClientAdapter::MDPWSClientAdapter() :
 	_impl(new Impl::DPWSDiscoveryClientSocketImpl(*this, *this, *this, *this))
 {
 }
 
-DPWSClient::~DPWSClient() = default;
+MDPWSClientAdapter::~MDPWSClientAdapter() = default;
 
-void DPWSClient::addProbeMatchEventHandler(const ProbeType & filter, ProbeMatchCallback & callback) {
+void MDPWSClientAdapter::addProbeMatchEventHandler(const ProbeType & filter, ProbeMatchCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	_probeMatchHandlers.push_back(ProbeMatchHandler(filter, &callback));
 	_impl->sendProbe(filter);
 }
 
-void DPWSClient::removeProbeMatchEventHandler(ProbeMatchCallback & callback) {
+void MDPWSClientAdapter::removeProbeMatchEventHandler(ProbeMatchCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	auto iterator = std::find_if(_probeMatchHandlers.begin(), _probeMatchHandlers.end(), [&](const ProbeMatchHandler & handler) { return std::get<1>(handler) == &callback; } );
 	if (iterator != _probeMatchHandlers.end()) {
@@ -39,13 +39,13 @@ void DPWSClient::removeProbeMatchEventHandler(ProbeMatchCallback & callback) {
 	}
 }
 
-void DPWSClient::addResolveMatchEventHandler(const ResolveType & filter, ResolveMatchCallback & callback) {
+void MDPWSClientAdapter::addResolveMatchEventHandler(const ResolveType & filter, ResolveMatchCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	_resolveMatchHandlers.push_back(ResolveMatchHandler(filter, &callback));
 	_impl->sendResolve(filter);
 }
 
-void DPWSClient::removeResolveMatchEventHandler(ResolveMatchCallback & callback) {
+void MDPWSClientAdapter::removeResolveMatchEventHandler(ResolveMatchCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	auto iterator = std::find_if(_resolveMatchHandlers.begin(), _resolveMatchHandlers.end(), [&](const ResolveMatchHandler & handler) { return std::get<1>(handler) == &callback; } );
 	if (iterator != _resolveMatchHandlers.end()) {
@@ -53,12 +53,12 @@ void DPWSClient::removeResolveMatchEventHandler(ResolveMatchCallback & callback)
 	}
 }
 
-void DPWSClient::addHelloEventHandler(HelloCallback & callback) {
+void MDPWSClientAdapter::addHelloEventHandler(HelloCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	_helloHandlers.push_back(&callback);
 }
 
-void DPWSClient::removeHelloEventHandler(HelloCallback & callback) {
+void MDPWSClientAdapter::removeHelloEventHandler(HelloCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	auto iterator = std::find(_helloHandlers.begin(), _helloHandlers.end(), &callback);
 	if (iterator != _helloHandlers.end()) {
@@ -66,12 +66,12 @@ void DPWSClient::removeHelloEventHandler(HelloCallback & callback) {
 	}
 }
 
-void DPWSClient::addByeEventHandler(ByeCallback & callback) {
+void MDPWSClientAdapter::addByeEventHandler(ByeCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	_byeHandlers.push_back(&callback);
 }
 
-void DPWSClient::removeByeEventHandler(ByeCallback & callback) {
+void MDPWSClientAdapter::removeByeEventHandler(ByeCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	auto iterator = std::find(_byeHandlers.begin(), _byeHandlers.end(), &callback);
 	if (iterator != _byeHandlers.end()) {
@@ -79,7 +79,7 @@ void DPWSClient::removeByeEventHandler(ByeCallback & callback) {
 	}
 }
 
-void DPWSClient::dispatch(const ProbeMatchType & notification) {
+void MDPWSClientAdapter::dispatch(const ProbeMatchType & notification) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	std::vector<ProbeMatchHandler> matchingHandlers;
 	for (const auto & handler : _probeMatchHandlers) {
@@ -92,7 +92,7 @@ void DPWSClient::dispatch(const ProbeMatchType & notification) {
 	}
 }
 
-void DPWSClient::dispatch(const ResolveMatchType & notification) {
+void MDPWSClientAdapter::dispatch(const ResolveMatchType & notification) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	std::vector<ResolveMatchHandler> matchingHandlers;
 	for (const auto & handler : _resolveMatchHandlers) {
@@ -105,14 +105,14 @@ void DPWSClient::dispatch(const ResolveMatchType & notification) {
 	}
 }
 
-void DPWSClient::dispatch(const ByeType & notification) {
+void MDPWSClientAdapter::dispatch(const ByeType & notification) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	for (auto & callback : _byeHandlers) {
 		callback->bye(notification);
 	}
 }
 
-void DPWSClient::dispatch(const HelloType & notification) {
+void MDPWSClientAdapter::dispatch(const HelloType & notification) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	for (auto & callback : _helloHandlers) {
 		callback->hello(notification);

@@ -78,7 +78,7 @@ private:
 	OSELib::OSCP::DefaultOSCPSchemaGrammarProvider _grammarProvider;
 	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
 //	std::unique_ptr<OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl> _streamClientSocketImpl;
-	OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl _streamClientSocketImpl;
+	OSELib::DPWS::Impl::MDPWSStreamingAdapter _streamClientSocketImpl;
 	std::unique_ptr<OSELib::DPWS::SubscriptionClient> _subscriptionClient;
 	std::unique_ptr<OSELib::DPWS::PingManager> _pingManager;
 };

@@ -47,7 +47,7 @@ namespace Impl {
 //	m_ipv4MulticastSocket(Poco::Net::MulticastSocket(_ipv4BindingAddress.family())),
 //	_ipv6MulticastDiscoverySocket(Poco::Net::MulticastSocket(_ipv6BindingAddress.family()))
 
-DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription):
+MDPWSStreamingAdapter::MDPWSStreamingAdapter(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription):
 		WithLogger(Log::EVENTSINK),
 		m_streamNotificationDispatcher(streamNotificationDispatcher),
 		m_deviceDescription(deviceDescription)
@@ -76,15 +76,15 @@ DPWSStreamingClientSocketImpl::DPWSStreamingClientSocketImpl(StreamNotificationD
 		}
 		m_ipv4MulticastSocket.setBlocking(false);
 
-		_reactor.addEventHandler(m_ipv4MulticastSocket, Poco::Observer<DPWSStreamingClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSStreamingClientSocketImpl::onMulticastSocketReadable));
+		_reactor.addEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
 
 		_reactorThread.start(_reactor);
 	}
 }
 
-DPWSStreamingClientSocketImpl::~DPWSStreamingClientSocketImpl() {
+MDPWSStreamingAdapter::~MDPWSStreamingAdapter() {
 	if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
-		_reactor.removeEventHandler(m_ipv4MulticastSocket, Poco::Observer<DPWSStreamingClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSStreamingClientSocketImpl::onMulticastSocketReadable));
+		_reactor.removeEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
 	}
 
 //	for (auto & messagingSocketMapping : _socketSendMessageQueue) {
@@ -98,7 +98,7 @@ DPWSStreamingClientSocketImpl::~DPWSStreamingClientSocketImpl() {
 	xercesc::XMLPlatformUtils::Terminate ();
 }
 
-void DPWSStreamingClientSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotification * notification) {
+void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotification * notification) {
 
 	const Poco::AutoPtr<Poco::Net::ReadableNotification> pNf(notification);
 

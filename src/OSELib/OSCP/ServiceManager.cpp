@@ -31,7 +31,7 @@ void HelloReceivedHandler::helloReceived(const std::string & ) {
 
 ServiceManager::ServiceManager() :
 	WithLogger(Log::SERVICEMANAGER),
-	_dpwsClient(new DPWS::DPWSClient())
+	_dpwsClient(new DPWS::MDPWSClientAdapter())
 {
 }
 

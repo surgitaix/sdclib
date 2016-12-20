@@ -30,11 +30,11 @@ namespace Impl {
 //todo:
 //: public WithLogger
 
-class DPWSStreamingClientSocketImpl : public WithLogger {
+class MDPWSStreamingAdapter : public WithLogger {
 public:
-	DPWSStreamingClientSocketImpl(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
+	MDPWSStreamingAdapter(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
 
-	~DPWSStreamingClientSocketImpl();
+	~MDPWSStreamingAdapter();
 
 private:
 	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);

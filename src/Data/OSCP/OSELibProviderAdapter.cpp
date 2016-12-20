@@ -55,7 +55,7 @@ using SetServiceController = OSCP::OSCPServiceController<OSCP::ISetService, OSCP
 using WaveformEventReportServiceController = OSCP::OSCPServiceController<OSCP::IEventReport, OSCP::WaveformReportServiceHandler>;
 
 struct DeviceImpl : public DPWS::IDevice {
-	DeviceImpl(const DPWS::MetadataProvider & metadata, DPWS::DPWSHost & host) :
+	DeviceImpl(const DPWS::MetadataProvider & metadata, DPWS::MDPWSHostAdapter & host) :
 		_metadata(metadata),
 		_host(host)
 	{
@@ -80,7 +80,7 @@ struct DeviceImpl : public DPWS::IDevice {
 
 private:
 	const DPWS::MetadataProvider _metadata;
-	DPWS::DPWSHost & _host;
+	DPWS::MDPWSHostAdapter & _host;
 };
 
 struct ContextReportServiceImpl : public OSCP::IContextService {
@@ -355,7 +355,7 @@ void OSELibProviderAdapter::start() {
 	types.push_back(OSELib::DPWS::QName("http://message-model-uri/15/04", "MedicalDevice"));
 	types.push_back(OSELib::DPWS::QName("http://www.draeger.com/projects/DSC/CMDM/2012/05", "MedicalDevice"));
 
-	_dpwsHost = std::unique_ptr<OSELib::DPWS::DPWSHost>(new OSELib::DPWS::DPWSHost(
+	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),
 			OSELib::DPWS::ScopesType(),
 			types,
@@ -375,7 +375,7 @@ void OSELibProviderAdapter::start() {
 	public:
 		Factory(OSCPProvider & provider,
 				const OSELib::DPWS::MetadataProvider & metadata,
-				OSELib::DPWS::DPWSHost & dpwsHost,
+				OSELib::DPWS::MDPWSHostAdapter & dpwsHost,
 				OSELib::DPWS::SubscriptionManager & subscriptionManager,
 				std::set<int> & strPorts) :
 			FrontControllerAdapter(_frontController),

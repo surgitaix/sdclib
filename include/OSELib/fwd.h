@@ -46,8 +46,8 @@ namespace OSELib {
 
 		class ActiveSubscriptions;
 
-		class DPWSClient;
-		class DPWSHost;
+		class MDPWSClientAdapter;
+		class MDPWSHostAdapter;
 
 		struct HelloCallback;
 

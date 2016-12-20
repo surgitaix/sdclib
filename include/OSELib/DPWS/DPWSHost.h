@@ -17,17 +17,17 @@ namespace DPWS {
 
 // fixme add mutex to datastructures. calling dispatch (from a socket call) and setting a scope or type causes a race condition
 
-class DPWSHost :
+class MDPWSHostAdapter :
 		public ProbeNotificationDispatcher,
 		public ResolveNotificationDispatcher
 {
 public:
-	DPWSHost(const AddressType & epr,
+	MDPWSHostAdapter(const AddressType & epr,
 			const ScopesType & scopes,
 			const TypesType & types,
 			const XAddressesType & xaddresses,
 			int metadataVersion = 1);
-	virtual ~DPWSHost();
+	virtual ~MDPWSHostAdapter();
 
 	void start();
 	void stop();

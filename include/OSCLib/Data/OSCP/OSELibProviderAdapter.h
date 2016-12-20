@@ -51,7 +51,7 @@ private:
 	std::set<int> streamingPorts;
 
 	std::unique_ptr<OSELib::DPWS::SubscriptionManager> _subscriptionManager;
-	std::unique_ptr<OSELib::DPWS::DPWSHost> _dpwsHost;
+	std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter> _dpwsHost;
 	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
 };
 

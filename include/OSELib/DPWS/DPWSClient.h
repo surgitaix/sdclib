@@ -37,15 +37,15 @@ struct ResolveMatchCallback {
 	virtual void resolveMatch(const ResolveMatchType & notification) = 0;
 };
 
-class DPWSClient :
+class MDPWSClientAdapter :
 		public ByeNotificationDispatcher,
 		public HelloNotificationDispatcher,
 		public ProbeMatchNotificationDispatcher,
 		public ResolveMatchNotificationDispatcher
 {
 public:
-	DPWSClient();
-	virtual ~DPWSClient();
+	MDPWSClientAdapter();
+	virtual ~MDPWSClientAdapter();
 
 	void addProbeMatchEventHandler(const ProbeType & filter, ProbeMatchCallback & callback);
 	void removeProbeMatchEventHandler(ProbeMatchCallback & callback);

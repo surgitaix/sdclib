@@ -103,8 +103,8 @@ int main() {
 
 	xercesc::XMLPlatformUtils::Initialize();
 
-	using Client = OSELib::DPWS::DPWSClient;
-	using Host = OSELib::DPWS::DPWSHost;
+	using Client = OSELib::DPWS::MDPWSClientAdapter;
+	using Host = OSELib::DPWS::MDPWSHostAdapter;
 	using namespace OSELib;
 
 	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
