@@ -17,7 +17,7 @@
 #include "OSELib/DPWS/Types.h"
 
 // todo: maybe just fwd..
-#include "OSELib/DPWS/DPWSStreamingClientSocketImpl.h"
+#include "OSELib/DPWS/MDPWSStreamingAdapter.h"
 
 // fixme: kick
 #include "OSCLib/Util/DebugOut.h"

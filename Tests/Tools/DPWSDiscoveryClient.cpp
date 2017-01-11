@@ -25,7 +25,7 @@
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
 #include "OSELib/DPWS/DPWSClient.h"
-#include "OSELib/DPWS/DPWSHost.h"
+#include "OSELib/DPWS/MDPWSHostAdapter.h"
 #include "OSELib/DPWS/MessageAdapter.h"
 
 /* Example usage of Discovery host.

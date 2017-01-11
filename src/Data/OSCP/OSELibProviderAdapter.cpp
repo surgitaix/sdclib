@@ -25,7 +25,7 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/DeviceServiceController.h"
-#include "OSELib/DPWS/DPWSHost.h"
+#include "OSELib/DPWS/MDPWSHostAdapter.h"
 #include "OSELib/DPWS/IDevice.h"
 #include "OSELib/DPWS/MetadataProvider.h"
 #include "OSELib/DPWS/SubscriptionManager.h"
