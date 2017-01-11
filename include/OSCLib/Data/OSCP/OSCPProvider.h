@@ -17,8 +17,8 @@
 /*
  * OSCPProvider.h
  *
- *  @Copyright (C) 2014, SurgiTAIX AG
- *  Author: roehser, besting
+ *  @Copyright (C) 2017, SurgiTAIX AG
+ *  Author: roehser, besting, buerger
  */
 
 #ifndef OSCPPROVIDER_H_

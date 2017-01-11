@@ -17,8 +17,8 @@
 /*
  * OSCPConsumer.h
  *
- *  @Copyright (C) 2014, SurgiTAIX AG
- *  Author: roehser, besting
+ *  @Copyright (C) 2017, SurgiTAIX AG
+ *  Author: roehser, besting, buerger
  */
 
 #ifndef OSCPCONSUMER_H_
@@ -53,7 +53,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumer : public OSELib::WithLogger {
+class OSCPConsumer final : public OSELib::WithLogger {
 friend class FutureInvocationState;
 friend class OSELibConsumerAdapter;
 // todo remove friend classes and only use oselibconsumer adapter
