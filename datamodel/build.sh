@@ -1,4 +1,5 @@
-xsdcxx cxx-tree \
+# if not xsd 4.0 is installed but xsd 3.3: call xsdcxx instead
+xsd cxx-tree \
 	--std c++11 \
 	--show-sloc \
 	--type-naming ucc \

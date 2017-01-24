@@ -313,7 +313,7 @@ namespace WS
 
       // StreamDescriptions
       //
-      typedef ::MDPWS::StreamDescriptions StreamDescriptionsType;
+      typedef ::MDPWS::StreamDescriptionsType StreamDescriptionsType;
       typedef ::xsd::cxx::tree::optional< StreamDescriptionsType > StreamDescriptionsOptional;
       typedef ::xsd::cxx::tree::traits< StreamDescriptionsType, char > StreamDescriptionsTraits;
 

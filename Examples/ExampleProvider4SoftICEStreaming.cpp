@@ -192,7 +192,8 @@ int main()
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Startup" << std::endl;
     OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
-    OSCLibrary::getInstance().setIP6enabled(false);
+    OSCLibrary::getInstance().setIP6enabled(true);
+    OSCLibrary::getInstance().setIP4enabled(false);
 
     DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "1" << std::endl;
 	OSELib::OSCP::ServiceManager oscpsm;

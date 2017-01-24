@@ -259,6 +259,7 @@ namespace MDPWS
   class StreamSourceType;
   class StreamTransmissionType;
   class StreamTypeType;
+  class StreamDescriptionsType;
   class SafetyReqAssertionType;
   class SelectorType;
   class SafetyReqType;
@@ -269,7 +270,6 @@ namespace MDPWS
   class SafetyContextType;
   class DcValueType;
   class CtxtValueType;
-  class StreamDescriptions;
   class Types;
 }
 

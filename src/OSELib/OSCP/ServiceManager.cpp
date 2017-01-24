@@ -16,7 +16,7 @@
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
-#include "OSELib/DPWS/DPWSClient.h"
+#include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/OSCP/OSCPConstants.h"
 #include "OSELib/OSCP/ServiceManager.h"
@@ -31,7 +31,7 @@ void HelloReceivedHandler::helloReceived(const std::string & ) {
 
 ServiceManager::ServiceManager() :
 	WithLogger(Log::SERVICEMANAGER),
-	_dpwsClient(new DPWS::MDPWSClientAdapter())
+	_dpwsClient(new DPWS::MDPWSDiscoveryClientAdapter())
 {
 }
 

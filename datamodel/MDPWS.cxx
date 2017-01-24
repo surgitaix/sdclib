@@ -276,6 +276,82 @@ namespace MDPWS
   }
 
 
+  // StreamDescriptionsType
+  // 
+
+  const StreamDescriptionsType::TypesOptional& StreamDescriptionsType::
+  Types () const
+  {
+    return this->Types_;
+  }
+
+  StreamDescriptionsType::TypesOptional& StreamDescriptionsType::
+  Types ()
+  {
+    return this->Types_;
+  }
+
+  void StreamDescriptionsType::
+  Types (const TypesType& x)
+  {
+    this->Types_.set (x);
+  }
+
+  void StreamDescriptionsType::
+  Types (const TypesOptional& x)
+  {
+    this->Types_ = x;
+  }
+
+  void StreamDescriptionsType::
+  Types (::std::unique_ptr< TypesType > x)
+  {
+    this->Types_.set (std::move (x));
+  }
+
+  const StreamDescriptionsType::StreamTypeSequence& StreamDescriptionsType::
+  StreamType () const
+  {
+    return this->StreamType_;
+  }
+
+  StreamDescriptionsType::StreamTypeSequence& StreamDescriptionsType::
+  StreamType ()
+  {
+    return this->StreamType_;
+  }
+
+  void StreamDescriptionsType::
+  StreamType (const StreamTypeSequence& s)
+  {
+    this->StreamType_ = s;
+  }
+
+  const StreamDescriptionsType::TargetNamespaceType& StreamDescriptionsType::
+  TargetNamespace () const
+  {
+    return this->TargetNamespace_.get ();
+  }
+
+  StreamDescriptionsType::TargetNamespaceType& StreamDescriptionsType::
+  TargetNamespace ()
+  {
+    return this->TargetNamespace_.get ();
+  }
+
+  void StreamDescriptionsType::
+  TargetNamespace (const TargetNamespaceType& x)
+  {
+    this->TargetNamespace_.set (x);
+  }
+
+  void StreamDescriptionsType::
+  TargetNamespace (::std::unique_ptr< TargetNamespaceType > x)
+  {
+    this->TargetNamespace_.set (std::move (x));
+  }
+
+
   // SafetyReqAssertionType
   // 
 
@@ -685,82 +761,6 @@ namespace MDPWS
   ReferencedSelector (::std::unique_ptr< ReferencedSelectorType > x)
   {
     this->ReferencedSelector_.set (std::move (x));
-  }
-
-
-  // StreamDescriptions
-  // 
-
-  const StreamDescriptions::TypesOptional& StreamDescriptions::
-  Types () const
-  {
-    return this->Types_;
-  }
-
-  StreamDescriptions::TypesOptional& StreamDescriptions::
-  Types ()
-  {
-    return this->Types_;
-  }
-
-  void StreamDescriptions::
-  Types (const TypesType& x)
-  {
-    this->Types_.set (x);
-  }
-
-  void StreamDescriptions::
-  Types (const TypesOptional& x)
-  {
-    this->Types_ = x;
-  }
-
-  void StreamDescriptions::
-  Types (::std::unique_ptr< TypesType > x)
-  {
-    this->Types_.set (std::move (x));
-  }
-
-  const StreamDescriptions::StreamTypeSequence& StreamDescriptions::
-  StreamType () const
-  {
-    return this->StreamType_;
-  }
-
-  StreamDescriptions::StreamTypeSequence& StreamDescriptions::
-  StreamType ()
-  {
-    return this->StreamType_;
-  }
-
-  void StreamDescriptions::
-  StreamType (const StreamTypeSequence& s)
-  {
-    this->StreamType_ = s;
-  }
-
-  const StreamDescriptions::TargetNamespaceType& StreamDescriptions::
-  TargetNamespace () const
-  {
-    return this->TargetNamespace_.get ();
-  }
-
-  StreamDescriptions::TargetNamespaceType& StreamDescriptions::
-  TargetNamespace ()
-  {
-    return this->TargetNamespace_.get ();
-  }
-
-  void StreamDescriptions::
-  TargetNamespace (const TargetNamespaceType& x)
-  {
-    this->TargetNamespace_.set (x);
-  }
-
-  void StreamDescriptions::
-  TargetNamespace (::std::unique_ptr< TargetNamespaceType > x)
-  {
-    this->TargetNamespace_.set (std::move (x));
   }
 
 
@@ -1183,6 +1183,150 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StreamTypeType >
   _xsd_StreamTypeType_type_factory_init (
     "StreamTypeType",
+    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+
+  // StreamDescriptionsType
+  //
+
+  StreamDescriptionsType::
+  StreamDescriptionsType (const TargetNamespaceType& TargetNamespace)
+  : ::xml_schema::Type (),
+    Types_ (this),
+    StreamType_ (this),
+    TargetNamespace_ (TargetNamespace, this)
+  {
+  }
+
+  StreamDescriptionsType::
+  StreamDescriptionsType (const StreamDescriptionsType& x,
+                          ::xml_schema::Flags f,
+                          ::xml_schema::Container* c)
+  : ::xml_schema::Type (x, f, c),
+    Types_ (x.Types_, f, this),
+    StreamType_ (x.StreamType_, f, this),
+    TargetNamespace_ (x.TargetNamespace_, f, this)
+  {
+  }
+
+  StreamDescriptionsType::
+  StreamDescriptionsType (const ::xercesc::DOMElement& e,
+                          ::xml_schema::Flags f,
+                          ::xml_schema::Container* c)
+  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    Types_ (this),
+    StreamType_ (this),
+    TargetNamespace_ (this)
+  {
+    if ((f & ::xml_schema::Flags::base) == 0)
+    {
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
+      this->parse (p, f);
+    }
+  }
+
+  void StreamDescriptionsType::
+  parse (::xsd::cxx::xml::dom::parser< char >& p,
+         ::xml_schema::Flags f)
+  {
+    for (; p.more_content (); p.next_content (false))
+    {
+      const ::xercesc::DOMElement& i (p.cur_element ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // Types
+      //
+      if (n.name () == "Types" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+      {
+        ::std::unique_ptr< TypesType > r (
+          TypesTraits::create (i, f, this));
+
+        if (!this->Types_)
+        {
+          this->Types_.set (::std::move (r));
+          continue;
+        }
+      }
+
+      // StreamType
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "StreamType",
+            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            &::xsd::cxx::tree::factory_impl< StreamTypeType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          ::std::unique_ptr< StreamTypeType > r (
+            dynamic_cast< StreamTypeType* > (tmp.get ()));
+
+          if (r.get ())
+            tmp.release ();
+          else
+            throw ::xsd::cxx::tree::not_derived< char > ();
+
+          this->StreamType_.push_back (::std::move (r));
+          continue;
+        }
+      }
+
+      break;
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      if (n.name () == "TargetNamespace" && n.namespace_ ().empty ())
+      {
+        this->TargetNamespace_.set (TargetNamespaceTraits::create (i, f, this));
+        continue;
+      }
+    }
+
+    if (!TargetNamespace_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_attribute< char > (
+        "TargetNamespace",
+        "");
+    }
+  }
+
+  StreamDescriptionsType* StreamDescriptionsType::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class StreamDescriptionsType (*this, f, c);
+  }
+
+  StreamDescriptionsType& StreamDescriptionsType::
+  operator= (const StreamDescriptionsType& x)
+  {
+    if (this != &x)
+    {
+      static_cast< ::xml_schema::Type& > (*this) = x;
+      this->Types_ = x.Types_;
+      this->StreamType_ = x.StreamType_;
+      this->TargetNamespace_ = x.TargetNamespace_;
+    }
+
+    return *this;
+  }
+
+  StreamDescriptionsType::
+  ~StreamDescriptionsType ()
+  {
+  }
+
+  static
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, StreamDescriptionsType >
+  _xsd_StreamDescriptionsType_type_factory_init (
+    "StreamDescriptionsType",
     "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
 
   // SafetyReqAssertionType
@@ -2308,144 +2452,6 @@ namespace MDPWS
     "CtxtValueType",
     "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
 
-  // StreamDescriptions
-  //
-
-  StreamDescriptions::
-  StreamDescriptions (const TargetNamespaceType& TargetNamespace)
-  : ::xml_schema::Type (),
-    Types_ (this),
-    StreamType_ (this),
-    TargetNamespace_ (TargetNamespace, this)
-  {
-  }
-
-  StreamDescriptions::
-  StreamDescriptions (const StreamDescriptions& x,
-                      ::xml_schema::Flags f,
-                      ::xml_schema::Container* c)
-  : ::xml_schema::Type (x, f, c),
-    Types_ (x.Types_, f, this),
-    StreamType_ (x.StreamType_, f, this),
-    TargetNamespace_ (x.TargetNamespace_, f, this)
-  {
-  }
-
-  StreamDescriptions::
-  StreamDescriptions (const ::xercesc::DOMElement& e,
-                      ::xml_schema::Flags f,
-                      ::xml_schema::Container* c)
-  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
-    Types_ (this),
-    StreamType_ (this),
-    TargetNamespace_ (this)
-  {
-    if ((f & ::xml_schema::Flags::base) == 0)
-    {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
-      this->parse (p, f);
-    }
-  }
-
-  void StreamDescriptions::
-  parse (::xsd::cxx::xml::dom::parser< char >& p,
-         ::xml_schema::Flags f)
-  {
-    for (; p.more_content (); p.next_content (false))
-    {
-      const ::xercesc::DOMElement& i (p.cur_element ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (i));
-
-      // Types
-      //
-      if (n.name () == "Types" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
-      {
-        ::std::unique_ptr< TypesType > r (
-          TypesTraits::create (i, f, this));
-
-        if (!this->Types_)
-        {
-          this->Types_.set (::std::move (r));
-          continue;
-        }
-      }
-
-      // StreamType
-      //
-      {
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "StreamType",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
-            &::xsd::cxx::tree::factory_impl< StreamTypeType >,
-            false, true, i, n, f, this));
-
-        if (tmp.get () != 0)
-        {
-          ::std::unique_ptr< StreamTypeType > r (
-            dynamic_cast< StreamTypeType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          this->StreamType_.push_back (::std::move (r));
-          continue;
-        }
-      }
-
-      break;
-    }
-
-    while (p.more_attributes ())
-    {
-      const ::xercesc::DOMAttr& i (p.next_attribute ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (i));
-
-      if (n.name () == "TargetNamespace" && n.namespace_ ().empty ())
-      {
-        this->TargetNamespace_.set (TargetNamespaceTraits::create (i, f, this));
-        continue;
-      }
-    }
-
-    if (!TargetNamespace_.present ())
-    {
-      throw ::xsd::cxx::tree::expected_attribute< char > (
-        "TargetNamespace",
-        "");
-    }
-  }
-
-  StreamDescriptions* StreamDescriptions::
-  _clone (::xml_schema::Flags f,
-          ::xml_schema::Container* c) const
-  {
-    return new class StreamDescriptions (*this, f, c);
-  }
-
-  StreamDescriptions& StreamDescriptions::
-  operator= (const StreamDescriptions& x)
-  {
-    if (this != &x)
-    {
-      static_cast< ::xml_schema::Type& > (*this) = x;
-      this->Types_ = x.Types_;
-      this->StreamType_ = x.StreamType_;
-      this->TargetNamespace_ = x.TargetNamespace_;
-    }
-
-    return *this;
-  }
-
-  StreamDescriptions::
-  ~StreamDescriptions ()
-  {
-  }
-
   // Types
   //
 
@@ -2798,10 +2804,10 @@ namespace MDPWS
       "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (const ::std::string& u,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (const ::std::string& u,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -2815,16 +2821,16 @@ namespace MDPWS
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptions > (
-      ::MDPWS::StreamDescriptions_ (
+    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
+      ::MDPWS::StreamDescriptions (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (const ::std::string& u,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (const ::std::string& u,
+                      ::xml_schema::ErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -2837,16 +2843,16 @@ namespace MDPWS
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptions > (
-      ::MDPWS::StreamDescriptions_ (
+    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
+      ::MDPWS::StreamDescriptions (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (const ::std::string& u,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (const ::std::string& u,
+                      ::xercesc::DOMErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -2855,92 +2861,92 @@ namespace MDPWS
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptions > (
-      ::MDPWS::StreamDescriptions_ (
+    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
+      ::MDPWS::StreamDescriptions (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::StreamDescriptions_ (isrc, f, p);
+    return ::MDPWS::StreamDescriptions (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      ::xml_schema::ErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::StreamDescriptions_ (isrc, h, f, p);
+    return ::MDPWS::StreamDescriptions (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      ::xercesc::DOMErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::StreamDescriptions_ (isrc, h, f, p);
+    return ::MDPWS::StreamDescriptions (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      const ::std::string& sid,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::StreamDescriptions_ (isrc, f, p);
+    return ::MDPWS::StreamDescriptions (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      const ::std::string& sid,
+                      ::xml_schema::ErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::StreamDescriptions_ (isrc, h, f, p);
+    return ::MDPWS::StreamDescriptions (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      const ::std::string& sid,
+                      ::xercesc::DOMErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::StreamDescriptions_ (isrc, h, f, p);
+    return ::MDPWS::StreamDescriptions (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::xercesc::InputSource& i,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::xercesc::InputSource& i,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -2950,16 +2956,16 @@ namespace MDPWS
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptions > (
-      ::MDPWS::StreamDescriptions_ (
+    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
+      ::MDPWS::StreamDescriptions (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::xercesc::InputSource& i,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::xercesc::InputSource& i,
+                      ::xml_schema::ErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -2968,16 +2974,16 @@ namespace MDPWS
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptions > (
-      ::MDPWS::StreamDescriptions_ (
+    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
+      ::MDPWS::StreamDescriptions (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::xercesc::InputSource& i,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::xercesc::InputSource& i,
+                      ::xercesc::DOMErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -2986,23 +2992,23 @@ namespace MDPWS
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptions > (
-      ::MDPWS::StreamDescriptions_ (
+    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
+      ::MDPWS::StreamDescriptions (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (const ::xercesc::DOMDocument& doc,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (const ::xercesc::DOMDocument& doc,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     if (f & ::xml_schema::Flags::keep_dom)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::MDPWS::StreamDescriptions > (
-        ::MDPWS::StreamDescriptions_ (
+      return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
+        ::MDPWS::StreamDescriptions (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -3010,12 +3016,23 @@ namespace MDPWS
     const ::xsd::cxx::xml::qualified_name< char > n (
       ::xsd::cxx::xml::dom::name< char > (e));
 
-    if (n.name () == "StreamDescriptions" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+        "StreamDescriptions",
+        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamDescriptionsType >,
+        true, true, e, n, f, 0));
+
+    if (tmp.get () != 0)
     {
-      ::std::unique_ptr< ::MDPWS::StreamDescriptions > r (
-        ::xsd::cxx::tree::traits< ::MDPWS::StreamDescriptions, char >::create (
-          e, f, 0));
+      ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > r (
+        dynamic_cast< ::MDPWS::StreamDescriptionsType* > (tmp.get ()));
+
+      if (r.get ())
+        tmp.release ();
+      else
+        throw ::xsd::cxx::tree::not_derived< char > ();
+
       return r;
     }
 
@@ -3026,10 +3043,10 @@ namespace MDPWS
       "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
   }
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties&)
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties&)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
       ((f & ::xml_schema::Flags::keep_dom) &&
@@ -3048,12 +3065,24 @@ namespace MDPWS
                        (c.get () ? &c : &d),
                        0);
 
-    if (n.name () == "StreamDescriptions" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+        "StreamDescriptions",
+        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamDescriptionsType >,
+        true, true, e, n, f, 0));
+
+    if (tmp.get () != 0)
     {
-      ::std::unique_ptr< ::MDPWS::StreamDescriptions > r (
-        ::xsd::cxx::tree::traits< ::MDPWS::StreamDescriptions, char >::create (
-          e, f, 0));
+
+      ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > r (
+        dynamic_cast< ::MDPWS::StreamDescriptionsType* > (tmp.get ()));
+
+      if (r.get ())
+        tmp.release ();
+      else
+        throw ::xsd::cxx::tree::not_derived< char > ();
+
       return r;
     }
 
@@ -4292,17 +4321,82 @@ namespace MDPWS
 
 
   void
-  StreamDescriptions_ (::std::ostream& o,
-                       const ::MDPWS::StreamDescriptions& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+  operator<< (::xercesc::DOMElement& e, const StreamDescriptionsType& i)
+  {
+    e << static_cast< const ::xml_schema::Type& > (i);
+
+    // Types
+    //
+    if (i.Types ())
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "Types",
+          "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+          e));
+
+      s << *i.Types ();
+    }
+
+    // StreamType
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      for (StreamDescriptionsType::StreamTypeConstIterator
+           b (i.StreamType ().begin ()), n (i.StreamType ().end ());
+           b != n; ++b)
+      {
+        if (typeid (StreamDescriptionsType::StreamTypeType) == typeid (*b))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "StreamType",
+              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              e));
+
+          s << *b;
+        }
+        else
+          tsm.serialize (
+            "StreamType",
+            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            false, true, e, *b);
+      }
+    }
+
+    // TargetNamespace
+    //
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "TargetNamespace",
+          e));
+
+      a << i.TargetNamespace ();
+    }
+  }
+
+  static
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StreamDescriptionsType >
+  _xsd_StreamDescriptionsType_type_serializer_init (
+    "StreamDescriptionsType",
+    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+
+
+  void
+  StreamDescriptions (::std::ostream& o,
+                      const ::MDPWS::StreamDescriptionsType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions_ (s, m, f));
+      ::MDPWS::StreamDescriptions (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4314,18 +4408,18 @@ namespace MDPWS
   }
 
   void
-  StreamDescriptions_ (::std::ostream& o,
-                       const ::MDPWS::StreamDescriptions& s,
-                       ::xml_schema::ErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+  StreamDescriptions (::std::ostream& o,
+                      const ::MDPWS::StreamDescriptionsType& s,
+                      ::xml_schema::ErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions_ (s, m, f));
+      ::MDPWS::StreamDescriptions (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -4334,15 +4428,15 @@ namespace MDPWS
   }
 
   void
-  StreamDescriptions_ (::std::ostream& o,
-                       const ::MDPWS::StreamDescriptions& s,
-                       ::xercesc::DOMErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+  StreamDescriptions (::std::ostream& o,
+                      const ::MDPWS::StreamDescriptionsType& s,
+                      ::xercesc::DOMErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions_ (s, m, f));
+      ::MDPWS::StreamDescriptions (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -4351,14 +4445,14 @@ namespace MDPWS
   }
 
   void
-  StreamDescriptions_ (::xercesc::XMLFormatTarget& t,
-                       const ::MDPWS::StreamDescriptions& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+  StreamDescriptions (::xercesc::XMLFormatTarget& t,
+                      const ::MDPWS::StreamDescriptionsType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions_ (s, m, f));
+      ::MDPWS::StreamDescriptions (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4369,15 +4463,15 @@ namespace MDPWS
   }
 
   void
-  StreamDescriptions_ (::xercesc::XMLFormatTarget& t,
-                       const ::MDPWS::StreamDescriptions& s,
-                       ::xml_schema::ErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+  StreamDescriptions (::xercesc::XMLFormatTarget& t,
+                      const ::MDPWS::StreamDescriptionsType& s,
+                      ::xml_schema::ErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions_ (s, m, f));
+      ::MDPWS::StreamDescriptions (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -4385,15 +4479,15 @@ namespace MDPWS
   }
 
   void
-  StreamDescriptions_ (::xercesc::XMLFormatTarget& t,
-                       const ::MDPWS::StreamDescriptions& s,
-                       ::xercesc::DOMErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+  StreamDescriptions (::xercesc::XMLFormatTarget& t,
+                      const ::MDPWS::StreamDescriptionsType& s,
+                      ::xercesc::DOMErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions_ (s, m, f));
+      ::MDPWS::StreamDescriptions (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -4401,41 +4495,62 @@ namespace MDPWS
   }
 
   void
-  StreamDescriptions_ (::xercesc::DOMDocument& d,
-                       const ::MDPWS::StreamDescriptions& s,
-                       ::xml_schema::Flags)
+  StreamDescriptions (::xercesc::DOMDocument& d,
+                      const ::MDPWS::StreamDescriptionsType& s,
+                      ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
     const ::xsd::cxx::xml::qualified_name< char > n (
       ::xsd::cxx::xml::dom::name< char > (e));
 
-    if (n.name () == "StreamDescriptions" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+    if (typeid (::MDPWS::StreamDescriptionsType) == typeid (s))
     {
-      e << s;
+      if (n.name () == "StreamDescriptions" &&
+          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+      {
+        e << s;
+      }
+      else
+      {
+        throw ::xsd::cxx::tree::unexpected_element < char > (
+          n.name (),
+          n.namespace_ (),
+          "StreamDescriptions",
+          "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      }
     }
     else
     {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
+      ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        e, n, s);
     }
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  StreamDescriptions_ (const ::MDPWS::StreamDescriptions& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       ::xml_schema::Flags f)
+  StreamDescriptions (const ::MDPWS::StreamDescriptionsType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      ::xml_schema::Flags f)
   {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+    if (typeid (::MDPWS::StreamDescriptionsType) == typeid (s))
+    {
+      d = ::xsd::cxx::xml::dom::serialize< char > (
         "StreamDescriptions",
         "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
-        m, f));
+        m, f);
+    }
+    else
+    {
+      d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+        "StreamDescriptions",
+        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        m, s, f);
+    }
 
-    ::MDPWS::StreamDescriptions_ (*d, s, f);
+    ::MDPWS::StreamDescriptions (*d, s, f);
     return d;
   }
 
@@ -5374,64 +5489,6 @@ namespace MDPWS
     "CtxtValueType",
     "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
 
-
-  void
-  operator<< (::xercesc::DOMElement& e, const StreamDescriptions& i)
-  {
-    e << static_cast< const ::xml_schema::Type& > (i);
-
-    // Types
-    //
-    if (i.Types ())
-    {
-      ::xercesc::DOMElement& s (
-        ::xsd::cxx::xml::dom::create_element (
-          "Types",
-          "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
-          e));
-
-      s << *i.Types ();
-    }
-
-    // StreamType
-    //
-    {
-      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
-
-      for (StreamDescriptions::StreamTypeConstIterator
-           b (i.StreamType ().begin ()), n (i.StreamType ().end ());
-           b != n; ++b)
-      {
-        if (typeid (StreamDescriptions::StreamTypeType) == typeid (*b))
-        {
-          ::xercesc::DOMElement& s (
-            ::xsd::cxx::xml::dom::create_element (
-              "StreamType",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
-              e));
-
-          s << *b;
-        }
-        else
-          tsm.serialize (
-            "StreamType",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
-            false, true, e, *b);
-      }
-    }
-
-    // TargetNamespace
-    //
-    {
-      ::xercesc::DOMAttr& a (
-        ::xsd::cxx::xml::dom::create_attribute (
-          "TargetNamespace",
-          e));
-
-      a << i.TargetNamespace ();
-    }
-  }
 
   void
   operator<< (::xercesc::DOMElement& e, const Types& i)

@@ -894,7 +894,7 @@ void OSCPProvider::startup() {
 		unsigned int port(OSCLibrary::getInstance().extractFreePort());
 		log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with port: " + std::to_string(port); });
 
-		//Debug embedded
+		// todo: remove Debug embedded
 		log_notice([&] { return "what:" + std::string(e.what()); });
 		log_notice([&] { return  "className:" + std::string(e.className());});
 		log_notice([&] { return "code:" + std::to_string(e.code());});

@@ -337,6 +337,99 @@ namespace MDPWS
     ActionUriOptional ActionUri_;
   };
 
+  class StreamDescriptionsType: public ::xml_schema::Type
+  {
+    public:
+    // Types
+    //
+    typedef ::MDPWS::Types TypesType;
+    typedef ::xsd::cxx::tree::optional< TypesType > TypesOptional;
+    typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
+
+    const TypesOptional&
+    Types () const;
+
+    TypesOptional&
+    Types ();
+
+    void
+    Types (const TypesType& x);
+
+    void
+    Types (const TypesOptional& x);
+
+    void
+    Types (::std::unique_ptr< TypesType > p);
+
+    // StreamType
+    //
+    typedef ::MDPWS::StreamTypeType StreamTypeType;
+    typedef ::xsd::cxx::tree::sequence< StreamTypeType > StreamTypeSequence;
+    typedef StreamTypeSequence::iterator StreamTypeIterator;
+    typedef StreamTypeSequence::const_iterator StreamTypeConstIterator;
+    typedef ::xsd::cxx::tree::traits< StreamTypeType, char > StreamTypeTraits;
+
+    const StreamTypeSequence&
+    StreamType () const;
+
+    StreamTypeSequence&
+    StreamType ();
+
+    void
+    StreamType (const StreamTypeSequence& s);
+
+    // TargetNamespace
+    //
+    typedef ::xml_schema::Uri TargetNamespaceType;
+    typedef ::xsd::cxx::tree::traits< TargetNamespaceType, char > TargetNamespaceTraits;
+
+    const TargetNamespaceType&
+    TargetNamespace () const;
+
+    TargetNamespaceType&
+    TargetNamespace ();
+
+    void
+    TargetNamespace (const TargetNamespaceType& x);
+
+    void
+    TargetNamespace (::std::unique_ptr< TargetNamespaceType > p);
+
+    // Constructors.
+    //
+    StreamDescriptionsType (const TargetNamespaceType&);
+
+    StreamDescriptionsType (const ::xercesc::DOMElement& e,
+                            ::xml_schema::Flags f = 0,
+                            ::xml_schema::Container* c = 0);
+
+    StreamDescriptionsType (const StreamDescriptionsType& x,
+                            ::xml_schema::Flags f = 0,
+                            ::xml_schema::Container* c = 0);
+
+    virtual StreamDescriptionsType*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    StreamDescriptionsType&
+    operator= (const StreamDescriptionsType& x);
+
+    virtual 
+    ~StreamDescriptionsType ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    TypesOptional Types_;
+    StreamTypeSequence StreamType_;
+    ::xsd::cxx::tree::one< TargetNamespaceType > TargetNamespace_;
+  };
+
   class SafetyReqAssertionType: public ::xml_schema::Type
   {
     public:
@@ -996,99 +1089,6 @@ namespace MDPWS
     ::xsd::cxx::tree::one< ReferencedSelectorType > ReferencedSelector_;
   };
 
-  class StreamDescriptions: public ::xml_schema::Type
-  {
-    public:
-    // Types
-    //
-    typedef ::MDPWS::Types TypesType;
-    typedef ::xsd::cxx::tree::optional< TypesType > TypesOptional;
-    typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
-
-    const TypesOptional&
-    Types () const;
-
-    TypesOptional&
-    Types ();
-
-    void
-    Types (const TypesType& x);
-
-    void
-    Types (const TypesOptional& x);
-
-    void
-    Types (::std::unique_ptr< TypesType > p);
-
-    // StreamType
-    //
-    typedef ::MDPWS::StreamTypeType StreamTypeType;
-    typedef ::xsd::cxx::tree::sequence< StreamTypeType > StreamTypeSequence;
-    typedef StreamTypeSequence::iterator StreamTypeIterator;
-    typedef StreamTypeSequence::const_iterator StreamTypeConstIterator;
-    typedef ::xsd::cxx::tree::traits< StreamTypeType, char > StreamTypeTraits;
-
-    const StreamTypeSequence&
-    StreamType () const;
-
-    StreamTypeSequence&
-    StreamType ();
-
-    void
-    StreamType (const StreamTypeSequence& s);
-
-    // TargetNamespace
-    //
-    typedef ::xml_schema::Uri TargetNamespaceType;
-    typedef ::xsd::cxx::tree::traits< TargetNamespaceType, char > TargetNamespaceTraits;
-
-    const TargetNamespaceType&
-    TargetNamespace () const;
-
-    TargetNamespaceType&
-    TargetNamespace ();
-
-    void
-    TargetNamespace (const TargetNamespaceType& x);
-
-    void
-    TargetNamespace (::std::unique_ptr< TargetNamespaceType > p);
-
-    // Constructors.
-    //
-    StreamDescriptions (const TargetNamespaceType&);
-
-    StreamDescriptions (const ::xercesc::DOMElement& e,
-                        ::xml_schema::Flags f = 0,
-                        ::xml_schema::Container* c = 0);
-
-    StreamDescriptions (const StreamDescriptions& x,
-                        ::xml_schema::Flags f = 0,
-                        ::xml_schema::Container* c = 0);
-
-    virtual StreamDescriptions*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    StreamDescriptions&
-    operator= (const StreamDescriptions& x);
-
-    virtual 
-    ~StreamDescriptions ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    TypesOptional Types_;
-    StreamTypeSequence StreamType_;
-    ::xsd::cxx::tree::one< TargetNamespaceType > TargetNamespace_;
-  };
-
   class Types: public ::xml_schema::Type
   {
     public:
@@ -1226,95 +1226,95 @@ namespace MDPWS
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (const ::std::string& uri,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (const ::std::string& uri,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (const ::std::string& uri,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (const ::std::string& uri,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (const ::std::string& uri,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (const ::std::string& uri,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       const ::std::string& id,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       const ::std::string& id,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::std::istream& is,
-                       const ::std::string& id,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::std::istream& is,
+                      const ::std::string& id,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::xercesc::InputSource& is,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::xercesc::InputSource& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::xercesc::InputSource& is,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::xercesc::InputSource& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::xercesc::InputSource& is,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::xercesc::InputSource& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (const ::xercesc::DOMDocument& d,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (const ::xercesc::DOMDocument& d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::MDPWS::StreamDescriptions >
-  StreamDescriptions_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
+  StreamDescriptions (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
@@ -1683,73 +1683,76 @@ namespace MDPWS
   void
   operator<< (::xercesc::DOMElement&, const StreamTypeType&);
 
+  void
+  operator<< (::xercesc::DOMElement&, const StreamDescriptionsType&);
+
   // Serialize to std::ostream.
   //
 
   void
-  StreamDescriptions_ (::std::ostream& os,
-                       const ::MDPWS::StreamDescriptions& x, 
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
+  StreamDescriptions (::std::ostream& os,
+                      const ::MDPWS::StreamDescriptionsType& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
   void
-  StreamDescriptions_ (::std::ostream& os,
-                       const ::MDPWS::StreamDescriptions& x, 
-                       ::xml_schema::ErrorHandler& eh,
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
+  StreamDescriptions (::std::ostream& os,
+                      const ::MDPWS::StreamDescriptionsType& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
   void
-  StreamDescriptions_ (::std::ostream& os,
-                       const ::MDPWS::StreamDescriptions& x, 
-                       ::xercesc::DOMErrorHandler& eh,
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
+  StreamDescriptions (::std::ostream& os,
+                      const ::MDPWS::StreamDescriptionsType& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
   // Serialize to xercesc::XMLFormatTarget.
   //
 
   void
-  StreamDescriptions_ (::xercesc::XMLFormatTarget& ft,
-                       const ::MDPWS::StreamDescriptions& x, 
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
+  StreamDescriptions (::xercesc::XMLFormatTarget& ft,
+                      const ::MDPWS::StreamDescriptionsType& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
   void
-  StreamDescriptions_ (::xercesc::XMLFormatTarget& ft,
-                       const ::MDPWS::StreamDescriptions& x, 
-                       ::xml_schema::ErrorHandler& eh,
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
+  StreamDescriptions (::xercesc::XMLFormatTarget& ft,
+                      const ::MDPWS::StreamDescriptionsType& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
   void
-  StreamDescriptions_ (::xercesc::XMLFormatTarget& ft,
-                       const ::MDPWS::StreamDescriptions& x, 
-                       ::xercesc::DOMErrorHandler& eh,
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
+  StreamDescriptions (::xercesc::XMLFormatTarget& ft,
+                      const ::MDPWS::StreamDescriptionsType& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
   // Serialize to an existing xercesc::DOMDocument.
   //
 
   void
-  StreamDescriptions_ (::xercesc::DOMDocument& d,
-                       const ::MDPWS::StreamDescriptions& x,
-                       ::xml_schema::Flags f = 0);
+  StreamDescriptions (::xercesc::DOMDocument& d,
+                      const ::MDPWS::StreamDescriptionsType& x,
+                      ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  StreamDescriptions_ (const ::MDPWS::StreamDescriptions& x, 
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       ::xml_schema::Flags f = 0);
+  StreamDescriptions (const ::MDPWS::StreamDescriptionsType& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      ::xml_schema::Flags f = 0);
 
   void
   operator<< (::xercesc::DOMElement&, const SafetyReqAssertionType&);
@@ -1984,9 +1987,6 @@ namespace MDPWS
 
   void
   operator<< (::xercesc::DOMElement&, const CtxtValueType&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const StreamDescriptions&);
 
   void
   operator<< (::xercesc::DOMElement&, const Types&);

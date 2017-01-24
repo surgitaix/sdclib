@@ -162,7 +162,6 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(
 		sd.StreamType().push_back(st);
 	}
 	metadataSectionStream.StreamDescriptions().set(sd);
-//	metadataSectionStream.StreamDescriptions().set(sd);
 	return metadataSectionStream;
 }
 

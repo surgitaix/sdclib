@@ -24,7 +24,7 @@
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
-#include "OSELib/DPWS/DPWSClient.h"
+#include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
 #include "OSELib/DPWS/MDPWSHostAdapter.h"
 #include "OSELib/DPWS/MessageAdapter.h"
 
@@ -103,7 +103,7 @@ int main() {
 
 	xercesc::XMLPlatformUtils::Initialize();
 
-	using Client = OSELib::DPWS::MDPWSClientAdapter;
+	using Client = OSELib::DPWS::MDPWSDiscoveryClientAdapter;
 	using Host = OSELib::DPWS::MDPWSHostAdapter;
 	using namespace OSELib;
 

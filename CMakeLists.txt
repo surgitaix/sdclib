@@ -195,7 +195,7 @@ set(OSCLibSOURCES
 ./src/OSELib/DPWS/DeviceDescription.cpp
 ./src/OSELib/DPWS/DeviceHandler.cpp
 ./src/OSELib/DPWS/DeviceServiceController.cpp
-./src/OSELib/DPWS/DPWSClient.cpp
+./src/OSELib/DPWS/MDPWSDiscoveryClientAdapter.cpp
 ./src/OSELib/DPWS/DPWSCommon.cpp
 ./src/OSELib/DPWS/DPWSDiscoveryClientSocketImpl.cpp
 ./src/OSELib/DPWS/MDPWSStreamingAdapter.cpp
