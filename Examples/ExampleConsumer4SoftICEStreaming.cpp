@@ -2,9 +2,12 @@
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
+#include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
@@ -32,13 +35,13 @@ public:
 
     void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
     	Poco::Mutex::ScopedLock lock(mutex);
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << handle << std::endl;
         std::vector<double> values = state.getObservedValue().getSamples().getValues();
 
         // simple check if the data is valid:
         // assumption: sequence of values, increased by 1
         verifiedChunks = true;
         for (size_t i = 0; i < values.size(); i++) {
+//        	DebugOut(DebugOut::Default, "StreamOSCP") << values[i];
             if (values[i] != double(i))
                 verifiedChunks = false;
         }
@@ -61,6 +64,27 @@ private:
 };
 
 
+class NumericConsumerEventHandler : public OSCPConsumerNumericMetricStateHandler {
+
+public:
+	NumericConsumerEventHandler(const std::string & handle) : handle(handle) {
+	}
+
+	void onStateChanged(const NumericMetricState & state) override {
+		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Recieved Value: " << state.getObservedValue().getValue() << std::endl;
+	}
+
+	std::string getHandle() override {
+	        return handle;
+	    }
+private:
+	const std::string handle;
+
+};
+
+
+
+
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Startup";
     OSCLibrary::getInstance().startup();
@@ -71,22 +95,34 @@ int main() {
 	OSELib::OSCP::ServiceManager oscpsm;
 	DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Consumer discovery..." << std::endl;
 	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference("DEMO-123"));
-	std::shared_ptr<StreamConsumerEventHandler> eventHandler = std::make_shared<StreamConsumerEventHandler>("handle_stream");
+	std::shared_ptr<StreamConsumerEventHandler> streamEventHandler = std::make_shared<StreamConsumerEventHandler>("handle_stream");
+	std::shared_ptr<NumericConsumerEventHandler> getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("SenseOfLife");
+	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");
 
 	if (c != nullptr) {
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider found!" << std::endl;
-		c->registerStateEventHandler(eventHandler.get());
+		c->registerStateEventHandler(streamEventHandler.get());
+		c->registerStateEventHandler(getNumericEventHandler.get());
+		c->registerStateEventHandler(setNumericEventHandler.get());
+
+		//set the providers value for the NMS: handle_set
+		NumericMetricState nms;
+		nms
+			.setObservedValue(NumericMetricValue().setValue(84.0))
+			.setDescriptorHandle("handle_set");
+		Poco::Thread::sleep(1000);
+		c->commitState(nms);
 
 		std::string temp;
 		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Press key to exit program.";
 		std::cin >> temp;
 
-		c->unregisterStateEventHandler(eventHandler.get());
+		c->unregisterStateEventHandler(streamEventHandler.get());
+		c->unregisterStateEventHandler(getNumericEventHandler.get());
+		c->unregisterStateEventHandler(setNumericEventHandler.get());
 		c->disconnect();
 	} else {
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider not found!" << std::endl;
 	}
-
-
 
 }

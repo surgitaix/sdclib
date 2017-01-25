@@ -3,11 +3,15 @@
  *
  *  @Copyright (C) 2016, SurgiTAIX AG
  *  Author: buerger
+ *
+ *  This program sends a RealTimeSampleArrayMetricState ("handle_stream") and a NumericMatricState ("SenseOfLife") to the network. It changes the "handle_stream"
+ *
  */
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
@@ -20,6 +24,10 @@
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
+#include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
+#include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
+
 #include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
@@ -39,7 +47,87 @@ using namespace OSCLib;
 using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
+
 const std::string deviceEPR("DEMO-123");
+
+
+class GetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
+public:
+
+	GetNumericMetricStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+	}
+
+
+	// Helper method
+	NumericMetricState createState(double value) {
+		NumericMetricState result;
+		result
+			.setObservedValue(NumericMetricValue().setValue(value))
+			.setComponentActivationState(ComponentActivation::ON)
+			.setDescriptorHandle("SenseOfLife")
+			.setHandle("SenseOfLife_handle");
+		return result;
+	}
+
+	NumericMetricState getInitialState() override {
+		NumericMetricState nms = createState(42.0);
+		return nms;
+	}
+
+	void setNumericValue(double value) {
+		NumericMetricState nms = createState(value);
+		updateState(nms);
+	}
+
+private:
+	std::string descriptorHandle;
+};
+
+
+
+class SetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
+public:
+
+    SetNumericMetricStateHandler(const std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+    }
+
+    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+        // Invocation has been fired as WAITING when entering this method
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: handle_set received state change request. State's value: " << state.getObservedValue().getValue() << std::endl;
+
+        notifyOperationInvoked(oic, InvocationState::STARTED);
+
+        return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+    }
+
+    // Helper method
+    NumericMetricState createState() {
+        NumericMetricState result;
+        result
+            .setObservedValue(NumericMetricValue().setValue(2.0))
+            .setComponentActivationState(ComponentActivation::ON)
+            .setDescriptorHandle("handle_set")
+            .setHandle("handle_set_state");
+        return result;
+    }
+
+    NumericMetricState getInitialState() override {
+        NumericMetricState result = createState();
+        return result;
+    }
+
+    // Convenience value getter
+    float getMaxWeight() {
+        NumericMetricState result;
+        // TODO: in real applications, check if findState returns true!
+        getParentProvider().getMDState().findState("handle_set", result);
+        // TODO: in real applications, check if state has an observed value and if the observed value has a value!
+        return (float)result.getObservedValue().getValue();
+    }
+
+private:
+    const std::string descriptorHandle;
+};
 
 
 
@@ -71,6 +159,7 @@ public:
         updateState(realTimeSampleArrayState);
     }
 
+
 private:
     std::string descriptorHandle;
 };
@@ -78,15 +167,15 @@ private:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() : oscpProvider(), streamHandler("handle_stream") {
+    OSCPStreamProvider() : oscpProvider(), streamHandler("handle_stream"), getNumericHandler("SenseOfLife"), setNumericHandler("handle_set") {
 
 		oscpProvider.setEndpointReference(deviceEPR);
 
-        // Handles and handle references of their states
-        currentMetric.setHandle("handle_stream");
+        // handle references of their states
+        streamMetricDescriptor.setHandle("handle_stream");
 
         // metric stream metric (read-only)
-        currentMetric
+        streamMetricDescriptor
 			.setSamplePeriod(
 					Duration()
 					.setseconds(0.001)
@@ -98,13 +187,24 @@ public:
 			.setMetricCategory(MetricCategory::MEASUREMENT)
 			.setAvailability(MetricAvailability::CONTINUOUS)
 			.setType(CodedValue()
-                    .setCodeId("MDCX_PLETHYSMOGRAM"));
+                    .setCodeId("MDCX_XXX"));
+
+        setMetricDescriptor
+        	.setHandle("handle_set")
+        	.setMetricCategory(MetricCategory::SETTING)
+        	.setAvailability(MetricAvailability::CONTINUOUS)
+        	.setType(CodedValue().addConceptDescription(LocalizedText().set("Maximum weight")));
+
+
+
+
 
 
         // Channel
         ChannelDescriptor holdingDeviceParameters;
         holdingDeviceParameters
-			.addMetric(currentMetric)
+			.addMetric(streamMetricDescriptor)
+			.addMetric(setMetricDescriptor)
 			.setIntendedUse(IntendedUse::INFORMATIONAL);
 
         // VMD
@@ -129,6 +229,8 @@ public:
                 .setCodeId("MDC_DEV_ANALY_SAT_O2_MDS"))
 			.addVMD(holdingDeviceModule);
 
+        oscpProvider.createSetOperationForDescriptor(setMetricDescriptor, holdingDeviceSystem);
+
         // create and add description
 		MDDescription mdDescription;
 		mdDescription.addMDSDescriptor(holdingDeviceSystem);
@@ -136,7 +238,9 @@ public:
 		oscpProvider.setMDDescrition(mdDescription);
 
         // Add handler
-        oscpProvider.addMDStateHandler(&streamHandler);
+		oscpProvider.addMDStateHandler(&streamHandler);
+		oscpProvider.addMDStateHandler(&getNumericHandler);
+		oscpProvider.addMDStateHandler(&setNumericHandler);
     }
 
     void startup() {
@@ -154,14 +258,19 @@ public:
 private:
 
     OSCPProvider oscpProvider;
-	RealTimeSampleArrayMetricDescriptor currentMetric;
+	RealTimeSampleArrayMetricDescriptor streamMetricDescriptor;
+	NumericMetricDescriptor setMetricDescriptor;
     StreamProviderStateHandler streamHandler;
+    GetNumericMetricStateHandler getNumericHandler;
+    SetNumericMetricStateHandler setNumericHandler;
 
 public:
 
     // Produce stream values
     // runImpl() gets called when starting the provider thread by the inherited function start()
     virtual void runImpl() override {
+
+    	// RealTimeArray
 		const std::size_t size(1000);
 		std::vector<double> samples;
 		for (std::size_t i = 0; i < size; i++) {
@@ -178,9 +287,14 @@ public:
 						);
 
 			}
-			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+//			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+
+			// NumericMetricState
+			getNumericHandler.setNumericValue(42.0);
+//			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "NumericMetric: value changed to 42.0" << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
+
 		}
     }
 };
@@ -192,8 +306,8 @@ int main()
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Startup" << std::endl;
     OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
-    OSCLibrary::getInstance().setIP6enabled(true);
-    OSCLibrary::getInstance().setIP4enabled(false);
+    OSCLibrary::getInstance().setIP6enabled(false);
+    OSCLibrary::getInstance().setIP4enabled(true);
 
     DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "1" << std::endl;
 	OSELib::OSCP::ServiceManager oscpsm;

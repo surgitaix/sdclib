@@ -238,6 +238,8 @@ public:
 				.setCodingSystemId("OR.NET.Codings")
 				.setCodeId("MDCX_CODE_ID_MDS"));
 
+        // the set operations have to be defined befor adding the MDDescription
+        oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
         // add descriptor to description
         // the description contains all the devices static information
@@ -247,8 +249,6 @@ public:
 
         // set the providers description
         oscpProvider.setMDDescrition(holdingDeviceDescription);
-
-        oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
 
 		// State handler
