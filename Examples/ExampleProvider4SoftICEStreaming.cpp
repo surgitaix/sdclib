@@ -4,7 +4,7 @@
  *  @Copyright (C) 2016, SurgiTAIX AG
  *  Author: buerger
  *
- *  This program sends a RealTimeSampleArrayMetricState ("handle_stream") and a NumericMatricState ("SenseOfLife") to the network. It changes the "handle_stream"
+ *  This program sends a RealTimeSampleArrayMetricState ("handle_stream") and a NumericMatricState ("handle_get") to the network. It changes the "handle_stream"
  *
  */
 
@@ -64,8 +64,8 @@ public:
 		result
 			.setObservedValue(NumericMetricValue().setValue(value))
 			.setComponentActivationState(ComponentActivation::ON)
-			.setDescriptorHandle("SenseOfLife")
-			.setHandle("SenseOfLife_handle");
+			.setDescriptorHandle("handle_get")
+			.setHandle("handle_get_state");
 		return result;
 	}
 
@@ -167,7 +167,7 @@ private:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() : oscpProvider(), streamHandler("handle_stream"), getNumericHandler("SenseOfLife"), setNumericHandler("handle_set") {
+    OSCPStreamProvider() : oscpProvider(), streamHandler("handle_stream"), getNumericHandler("handle_get"), setNumericHandler("handle_set") {
 
 		oscpProvider.setEndpointReference(deviceEPR);
 
