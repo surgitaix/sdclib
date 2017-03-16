@@ -48,8 +48,9 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & ses
     	Poco::Net::HTTPRequest req(Poco::Net::HTTPRequest::HTTP_POST, path, Poco::Net::HTTPMessage::HTTP_1_1);
         req.setContentType("application/soap+xml");
         req.setContentLength(requestData.length());
-        req.setKeepAlive(true);
+        req.setKeepAlive(false);
 
+        session.setTimeout(1000000);
         std::ostream & ostr = session.sendRequest(req);
         ostr << requestData << std::flush;
 

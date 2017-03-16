@@ -144,7 +144,6 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> ServiceManager::d
 		}
 
 		for (const auto & xaddr : probeResult.XAddrs().get()) {
-//			log_trace([&] { return "Trying xAddress: " + xaddr; });
 			log_notice([&] { return "Trying xAddress: " + xaddr; });
 			auto result(connectXAddress(xaddr, probeResult.EndpointReference().Address()));
 			if (result) {
@@ -197,16 +196,25 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 
 				for (const auto & hosted : metadata.Relationship().get().Hosted()) {
 					if (hosted.ServiceId() == "PHI") {
-						deviceDescription.setContextServiceURI(Poco::URI(hosted.EndpointReference().front().Address()));
+						for (const auto & iter : hosted.EndpointReference()) {
+							deviceDescription.addContextServiceURI(Poco::URI(iter.Address()));
+						}
 					} else if (hosted.ServiceId() == "EventReport") {
-						deviceDescription.setEventServiceURI(Poco::URI(hosted.EndpointReference().front().Address()));
+						for (const auto & iter : hosted.EndpointReference()) {
+							deviceDescription.addEventServiceURI(Poco::URI(iter.Address()));
+						}
 					} else if (hosted.ServiceId() == "GetService") {
-						deviceDescription.setGetServiceURI(Poco::URI(hosted.EndpointReference().front().Address()));
+						for (const auto & iter : hosted.EndpointReference()) {
+							deviceDescription.addGetServiceURI(Poco::URI(iter.Address()));
+						}
 					} else if (hosted.ServiceId() == "SetService") {
-						deviceDescription.setSetServiceURI(Poco::URI(hosted.EndpointReference().front().Address()));
+						for (const auto & iter : hosted.EndpointReference()) {
+							deviceDescription.addSetServiceURI(Poco::URI(iter.Address()));
+						}
 					} else if (hosted.ServiceId() == "WaveformEventReport") {
-						deviceDescription.setWaveformEventReportURI(Poco::URI(hosted.EndpointReference().front().Address()));
-
+						for (const auto & iter : hosted.EndpointReference()) {
+							deviceDescription.addWaveformEventReportURI(Poco::URI(iter.Address()));
+						}
 						// if a streaming service is initialized (by registering a handler) the metadata (i.e. the multicast address should be saved)
 						const DPWS::GetMetadataTraits::Request request_metadata;
 						using Invoker_metadata = OSELib::SOAP::GenericSoapInvoke<DPWS::GetMetadataTraits>;

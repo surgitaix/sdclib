@@ -9,16 +9,26 @@
 
 #include "OSELib/DPWS/DeviceDescription.h"
 
-// todo: kick after dev
-#include "OSCLib/Util/DebugOut.h"
-using namespace OSCLib::Util;
 
 namespace OSELib {
 namespace DPWS {
 
-DeviceDescription::DeviceDescription() {
+DeviceDescription::DeviceDescription() : WithLogger(Log::DISCOVERY) {
 
 }
+
+bool DeviceDescription::checkURIsValidity(const Poco::URI & uri) const {
+	// Checks if a given URI is valid by trying to establish a connection
+	try {
+		Poco::Net::StreamSocket connection;
+		connection.connect(Poco::Net::SocketAddress(uri.getHost(), uri.getPort()), Poco::Timespan(50000));
+		return true;
+	} catch (...) {
+		log_debug([&] { return "Contacting xAddress failed: " + uri.toString(); });
+		return false;
+	}
+}
+
 
 std::string DeviceDescription::getEPR() const {
 	return _epr;
@@ -42,61 +52,72 @@ void DeviceDescription::setDeviceURI(const Poco::URI & uri) {
 }
 
 Poco::URI DeviceDescription::getContextServiceURI() const {
-	return _contextServiceURI;
+	for (const auto iter : _contextServiceURIs) {
+		if (checkURIsValidity(iter)) {
+			return iter;
+		}
+	}
+	throw std::runtime_error("All ContextServiceURIs are not valid.");
 }
-void DeviceDescription::setContextServiceURI(const Poco::URI & uri) {
-	_contextServiceURI = uri;
+void DeviceDescription::addContextServiceURI(const Poco::URI & uri) {
+	_contextServiceURIs.push_back(uri);
 }
 
 Poco::URI DeviceDescription::getEventServiceURI() const {
-	return _eventServiceURI;
+	for (const auto iter : _eventServiceURIs) {
+			if (checkURIsValidity(iter)) {
+				return iter;
+			}
+		}
+		throw std::runtime_error("All EventServiceURIs are not valid.");
 }
-void DeviceDescription::setEventServiceURI(const Poco::URI & uri) {
-	_eventServiceURI = uri;
+void DeviceDescription::addEventServiceURI(const Poco::URI & uri) {
+	_eventServiceURIs.push_back(uri);
 }
 
 Poco::URI DeviceDescription::getGetServiceURI() const {
-	return _getServiceURI;
+	for (const auto iter : _getServiceURIs) {
+		if (checkURIsValidity(iter)) {
+			return iter;
+		}
+	}
+	throw std::runtime_error("All GetServiceURIs are not valid.");
 }
-void DeviceDescription::setGetServiceURI(const Poco::URI & uri) {
-	_getServiceURI = uri;
+void DeviceDescription::addGetServiceURI(const Poco::URI & uri) {
+	_getServiceURIs.push_back(uri);
 }
 
 Poco::URI DeviceDescription::getSetServiceURI() const {
-	return _setServiceURI;
+	for (const auto iter : _setServiceURIs) {
+		if (checkURIsValidity(iter)) {
+			return iter;
+		}
+	}
+	throw std::runtime_error("All SetServiceURIs are not valid.");
 }
-void DeviceDescription::setSetServiceURI(const Poco::URI & uri) {
-	_setServiceURI = uri;
+void DeviceDescription::addSetServiceURI(const Poco::URI & uri) {
+	_setServiceURIs.push_back(uri);
 }
 
-void DeviceDescription::setWaveformEventReportURI(const Poco::URI & uri) {
-	_waveformEventReportURI = uri;
+void DeviceDescription::addWaveformEventReportURI(const Poco::URI & uri) {
+	_waveformEventReportURIs.push_back(uri);
 }
 
 Poco::URI DeviceDescription::getWaveformEventReportURI() const {
-	return _waveformEventReportURI;
+	for (const auto iter : _waveformEventReportURIs) {
+		if (checkURIsValidity(iter)) {
+			return iter;
+		}
+	}
+	throw std::runtime_error("All WaveformEventReportURIs are not valid.");
 }
 
 void DeviceDescription::addStreamMulticastAddressURI(const Poco::URI & uri) {
-	_streamMulticastURI.push_back(uri);
+	_streamMulticastURIs.push_back(uri);
 }
 
-//bool DeviceDescription::checkActiveStreaming() {
-//	if (!_streamMulticastURI.empty()) {
-//		return 1;
-//	} else {
-//		return 0;
-//	}
-//}
-
-
 const std::list<Poco::URI>& DeviceDescription::getStreamMulticastAddressURIs() const {
-//	if (checkActiveStreaming()) {
-//
-//	} else {
-//		throw std::runtime_error("No streaming service found.");
-//	}
-	return _streamMulticastURI;
+	return _streamMulticastURIs;
 }
 
 DeviceDescription::~DeviceDescription() {

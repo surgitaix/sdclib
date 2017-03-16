@@ -23,7 +23,13 @@ using namespace OSCLib;
 using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
-const std::string deviceEPR("DEMO-123");
+//const std::string deviceEPR("DEMO-123");
+const std::string deviceEPR("UDI-1234567890");
+
+const std::string streamHandle("handle_stream");
+//const std::string deviceEPR("urn:uuid:4242d68b-40ef-486a-a019-6b00d1424200");
+//const std::string streamHandle("handle_plethysmogram_stream");
+
 
 class StreamConsumerEventHandler : public OSCPConsumerRealTimeSampleArrayMetricStateHandler {
 public:
@@ -41,7 +47,7 @@ public:
         // assumption: sequence of values, increased by 1
         verifiedChunks = true;
         for (size_t i = 0; i < values.size(); i++) {
-//        	DebugOut(DebugOut::Default, "StreamOSCP") << values[i];
+        	DebugOut(DebugOut::Default, "StreamOSCP") << values[i];
             if (values[i] != double(i))
                 verifiedChunks = false;
         }
@@ -89,37 +95,37 @@ int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Startup";
     OSCLibrary::getInstance().startup();
     OSCLibrary::getInstance().setIP4enabled(true);
-    OSCLibrary::getInstance().setIP6enabled(false);
+    OSCLibrary::getInstance().setIP6enabled(true);
 
     // Consumer
 	OSELib::OSCP::ServiceManager oscpsm;
 	DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Consumer discovery..." << std::endl;
-	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference("DEMO-123"));
-	std::shared_ptr<StreamConsumerEventHandler> streamEventHandler = std::make_shared<StreamConsumerEventHandler>("handle_stream");
-	std::shared_ptr<NumericConsumerEventHandler> getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_get");
-	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");
+	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	std::shared_ptr<StreamConsumerEventHandler> streamEventHandler = std::make_shared<StreamConsumerEventHandler>(streamHandle);
+//	std::shared_ptr<NumericConsumerEventHandler> getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_get");
+//	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");
 
 	if (c != nullptr) {
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider found!" << std::endl;
 		c->registerStateEventHandler(streamEventHandler.get());
-		c->registerStateEventHandler(getNumericEventHandler.get());
-		c->registerStateEventHandler(setNumericEventHandler.get());
+//		c->registerStateEventHandler(getNumericEventHandler.get());
+//		c->registerStateEventHandler(setNumericEventHandler.get());
 
 		//set the providers value for the NMS: handle_set
-		NumericMetricState nms;
-		nms
-			.setObservedValue(NumericMetricValue().setValue(84.0))
-			.setDescriptorHandle("handle_set");
-		Poco::Thread::sleep(1000);
-		c->commitState(nms);
+//		NumericMetricState nms;
+//		nms
+//			.setObservedValue(NumericMetricValue().setValue(84.0))
+//			.setDescriptorHandle("handle_set");
+//		Poco::Thread::sleep(1000);
+//		c->commitState(nms);
 
 		std::string temp;
 		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Press key to exit program.";
 		std::cin >> temp;
 
 		c->unregisterStateEventHandler(streamEventHandler.get());
-		c->unregisterStateEventHandler(getNumericEventHandler.get());
-		c->unregisterStateEventHandler(setNumericEventHandler.get());
+//		c->unregisterStateEventHandler(getNumericEventHandler.get());
+//		c->unregisterStateEventHandler(setNumericEventHandler.get());
 		c->disconnect();
 	} else {
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider not found!" << std::endl;

@@ -15,15 +15,21 @@
 #include <list>
 #include "Poco/URI.h"
 #include "Poco/Net/IPAddress.h"
+#include "Poco/Timespan.h"
+#include "Poco/Net/StreamSocket.h"
+#include "Poco/Net/SocketAddress.h"
+#include "OSELib/Helper/WithLogger.h"
 
 
 namespace OSELib {
 namespace DPWS {
 
-class DeviceDescription {
+class DeviceDescription : public WithLogger {
 public:
 	DeviceDescription();
 	virtual ~DeviceDescription();
+
+	bool checkURIsValidity(const Poco::URI & uri) const;
 
 	std::string getEPR() const;
 	void setEPR(const std::string & epr);
@@ -35,18 +41,18 @@ public:
 	void setDeviceURI(const Poco::URI & uri);
 
 	Poco::URI getContextServiceURI() const;
-	void setContextServiceURI(const Poco::URI & uri);
+	void addContextServiceURI(const Poco::URI & uri);
 
 	Poco::URI getEventServiceURI() const;
-	void setEventServiceURI(const Poco::URI & uri);
+	void addEventServiceURI(const Poco::URI & uri);
 
 	Poco::URI getGetServiceURI() const;
-	void setGetServiceURI(const Poco::URI & uri);
+	void addGetServiceURI(const Poco::URI & uri);
 
 	Poco::URI getSetServiceURI() const;
-	void setSetServiceURI(const Poco::URI & uri);
+	void addSetServiceURI(const Poco::URI & uri);
 
-	void setWaveformEventReportURI(const Poco::URI & uri);
+	void addWaveformEventReportURI(const Poco::URI & uri);
 	Poco::URI getWaveformEventReportURI() const;
 
 	void addStreamMulticastAddressURI(const Poco::URI & uri);
@@ -59,13 +65,14 @@ private:
 
 	Poco::URI _deviceURI;
 
-	Poco::URI _contextServiceURI;
-	Poco::URI _eventServiceURI;
-	Poco::URI _getServiceURI;
-	Poco::URI _setServiceURI;
-	Poco::URI _waveformEventReportURI;
 	// there may be more than one streaming addresses for compatibility with other frameworks
-	std::list<Poco::URI> _streamMulticastURI;
+	std::list<Poco::URI> _streamMulticastURIs;
+	std::list<Poco::URI> _contextServiceURIs;
+	std::list<Poco::URI> _eventServiceURIs;
+	std::list<Poco::URI> _getServiceURIs;
+	std::list<Poco::URI> _setServiceURIs;
+	std::list<Poco::URI> _waveformEventReportURIs;
+
 };
 
 } /* namespace DPWS */

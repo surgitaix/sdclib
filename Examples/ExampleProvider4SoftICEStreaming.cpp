@@ -48,7 +48,7 @@ using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
 
-const std::string deviceEPR("DEMO-123");
+const std::string deviceEPR("UDI-1234567890");
 
 
 class GetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
@@ -305,7 +305,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Startup" << std::endl;
-    OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+    OSCLibrary::getInstance().startup(OSELib::LogLevel::TRACE);
     OSCLibrary::getInstance().setIP6enabled(false);
     OSCLibrary::getInstance().setIP4enabled(true);
 
