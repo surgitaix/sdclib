@@ -64,14 +64,11 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SoapInvoke::invoke(std::unique_ptr<MESSA
 
 		if (responseContent.length() > 0) {
 			OSELib::SOAP::CommonSoapPreprocessing soapHandling(_grammarProvider);
-			log_error([&] {return responseContent;});
-			// hier gehts kaputt
 			soapHandling.parse(responseContent);
 			return std::move(soapHandling.normalizedMessage);
 		}
 	} catch (...) {
 		// fixme add proper exception handling
-
 		log_error([&] { return "Invoke caused exception. "; });
 	}
 

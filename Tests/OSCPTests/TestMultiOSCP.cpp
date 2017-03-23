@@ -83,7 +83,7 @@ public:
 		MDDescription mdDescription;
 		mdDescription.addMDSDescriptor(mds);
 
-		oscpProvider.setMDDescrition(mdDescription);
+		oscpProvider.setMDDescription(mdDescription);
 
 
     }

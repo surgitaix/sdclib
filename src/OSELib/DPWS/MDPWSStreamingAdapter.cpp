@@ -20,37 +20,15 @@
 
 #include "OSCLib/OSCLibrary.h"
 
-// todo: kick after dev
-#include "OSCLib/Util/DebugOut.h"
-using namespace OSCLib::Util;
-
-
-//#include "OSELib/Helper/BufferAdapter.h"
 
 namespace OSELib {
 namespace DPWS {
 namespace Impl {
 
-//struct SendMulticastMessage : public Poco::Notification {
-//	SendMulticastMessage(const std::string & message) :
-//		content_(message) {}
-//	const std::string content_;
-//};
 
-
-// todo: logger impl
-// init addresses in constants
-// WithLogger(Log::DISCOVERY)
-//
-//_ipv4MulticastAddress(Poco::Net::SocketAddress(OSELib::UDP_MULTICAST_DISCOVERY_IP_V4, OSELib::UPD_MULTICAST_DISCOVERY_PORT)),
-//	_ipv6MulticastAddress(Poco::Net::SocketAddress (OSELib::UDP_MULTICAST_DISCOVERY_IP_V6, OSELib::UPD_MULTICAST_DISCOVERY_PORT)),
-//	_ipv4BindingAddress(Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), _ipv4MulticastAddress.port())),
-//	_ipv6BindingAddress(Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), _ipv6MulticastAddress.port())),
-//	m_ipv4MulticastSocket(Poco::Net::MulticastSocket(_ipv4BindingAddress.family())),
-//	_ipv6MulticastDiscoverySocket(Poco::Net::MulticastSocket(_ipv6BindingAddress.family()))
 
 MDPWSStreamingAdapter::MDPWSStreamingAdapter(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription):
-		WithLogger(Log::EVENTSINK),
+		WithLogger(Log::DISCOVERY),
 		m_streamNotificationDispatcher(streamNotificationDispatcher),
 		m_deviceDescription(deviceDescription)
 {
@@ -61,10 +39,9 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(StreamNotificationDispatcher & stre
 
 	// only open a streaming socket, if the provider is providing a streaming service
 	if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
-
 		if ( OSCLib::OSCLibrary::getInstance().getIP4enabled() )
 		{
-			DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Host:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() << "Port: " + m_deviceDescription.getStreamMulticastAddressURIs().front().getPort() << std::endl;
+			log_debug([&] {return "Host:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() + "Port: " + std::to_string(m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());});
 			m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_deviceDescription.getStreamMulticastAddressURIs().front().getHost(), m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());
 
 			const Poco::Net::SocketAddress _ipv4MulticastStreamingBindingAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port()); // make member vars
@@ -155,11 +132,11 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 
 	m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 
-//	if (message->Header().From().get().Address() == m_deviceDescription.getEPR()) {
-//		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
-//	} else {
-//		log_error([&]{return "Message has wrong endpoint reference";});
-//	}
+	if (message->Header().From().get().Address() == m_deviceDescription.getEPR()) {
+		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
+	} else {
+		log_trace([&]{return "Message has wrong endpoint reference";});
+	}
 
 }
 

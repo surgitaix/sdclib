@@ -58,8 +58,6 @@ public:
         // we can update here, but if we return FINISHED, the framework will also update
         //updateState(state);
 
-        // Usually, update the real device's state here.
-
         return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
@@ -248,7 +246,7 @@ public:
 
 
         // set the providers description
-        oscpProvider.setMDDescrition(holdingDeviceDescription);
+        oscpProvider.setMDDescription(holdingDeviceDescription);
 
 
 		// State handler
@@ -375,17 +373,17 @@ int main()
 		OSCLibrary::getInstance().setPortStart(11000);
 
 		OSELib::OSCP::ServiceManager oscpsm;
-//		class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
-//		public:
-//			MyHandler() {
-//			}
-//			void helloReceived(const std::string & epr) override {
-//				DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << epr;
-//			}
-//		};
-//		std::unique_ptr<MyHandler> myHandler(new MyHandler());
+		class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
+		public:
+			MyHandler() {
+			}
+			void helloReceived(const std::string & epr) override {
+				DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << epr;
+			}
+		};
+		std::unique_ptr<MyHandler> myHandler(new MyHandler());
 		DebugOut(DebugOut::Default, "ExampleProject") << "3";
-//		oscpsm.setHelloReceivedHandler(myHandler.get());
+		oscpsm.setHelloReceivedHandler(myHandler.get());
 		// Provider
 		OSCPHoldingDeviceProvider provider;
 		DebugOut(DebugOut::Default, "ExampleProject") << "3.5";
@@ -463,12 +461,7 @@ int main()
 
 		OSCLibrary::getInstance().shutdown();
 	} catch (Poco::Net::NetException & e) {
-		DebugOut(DebugOut::Default, "ExampleProject") << "what:" << e.what() << std::endl;
-		DebugOut(DebugOut::Default, "ExampleProject") << "className:" << e.className() << std::endl;
-		DebugOut(DebugOut::Default, "ExampleProject") << "code:" << e.code() << std::endl;
-		DebugOut(DebugOut::Default, "ExampleProject") << "displayText:" << e.displayText() << std::endl;
-		DebugOut(DebugOut::Default, "ExampleProject") << "message:" << e.message() << std::endl;
-		DebugOut(DebugOut::Default, "ExampleProject") << "name:" << e.name() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleProject") << "An exeption was thrown:" << e.what() << std::endl;
 	}
 	DebugOut(DebugOut::Default, "ExampleProject") << "Shutdown." << std::endl;
 }

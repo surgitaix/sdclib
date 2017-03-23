@@ -71,7 +71,7 @@ public:
     	holdingDeviceDescription.addMDSDescriptor(dicomDescriptor);
 
     	// set the providers description
-    	oscpProvider.setMDDescrition(holdingDeviceDescription);
+    	oscpProvider.setMDDescription(holdingDeviceDescription);
 
     }
 

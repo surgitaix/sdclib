@@ -905,7 +905,7 @@ public:
 		MDDescription mdDescription;
 		mdDescription.addMDSDescriptor(holdingDeviceSystem);
 
-		oscpProvider.setMDDescrition(mdDescription);
+		oscpProvider.setMDDescription(mdDescription);
 
         // State handlers
 

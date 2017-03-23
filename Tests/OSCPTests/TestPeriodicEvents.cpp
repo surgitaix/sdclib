@@ -365,7 +365,7 @@ public:
 		MDDescription mdDescription;
 		mdDescription.addMDSDescriptor(deviceSystem);
 
-		oscpProvider.setMDDescrition(mdDescription);
+		oscpProvider.setMDDescription(mdDescription);
 
         // State handlers
         oscpProvider.addMDStateHandler(&alertSystemState);

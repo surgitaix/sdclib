@@ -249,14 +249,11 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 		return nullptr;
 	}
 
+	// GetService is the only mandatory service
 	if (deviceDescription.getDeviceURI().empty()
-		|| deviceDescription.getContextServiceURI().empty()
-		|| deviceDescription.getEventServiceURI().empty()
 		|| deviceDescription.getGetServiceURI().empty()
-		|| deviceDescription.getSetServiceURI().empty()
-		|| deviceDescription.getWaveformEventReportURI().empty()
 	) {
-		log_error([&] { return "Missing service uri! Discovery incomplete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
+		log_error([&] { return "Missing get-service uri! Discovery incomplete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 		return nullptr;
 	}
 

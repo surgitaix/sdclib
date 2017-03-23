@@ -32,28 +32,30 @@
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 
 #include "OSELib/Helper/Message.h"
+#include "OSELib/Helper/WithLogger.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesParserWrapper.h"
 #include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
+#include "Poco/Mutex.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSCPCachedProvider::OSCPCachedProvider() {
+OSCPCachedProvider::OSCPCachedProvider() : WithLogger(OSELib::Log::OSCPPROVIDER) {
 }
 
 OSCPCachedProvider::~OSCPCachedProvider() {
 }
 
 MDDescription OSCPCachedProvider::getMDDescription() {
-	Poco::Mutex::ScopedLock lock(getMutex());
-	return *mdDescription;
+	Poco::Mutex::ScopedLock lock(m_OSCPProvider.getMutex());
+	return *m_mdDescription;
 }
 
 void OSCPCachedProvider::setMDDescription(MDDescription description) {
-	Poco::Mutex::ScopedLock lock(getMutex());
-	this->mdDescription.reset(new MDDescription(description));
+	Poco::Mutex::ScopedLock lock(m_OSCPProvider.getMutex());
+	this->m_mdDescription.reset(new MDDescription(description));
 }
 
 void OSCPCachedProvider::setMDDescription(std::string xml) {
@@ -64,8 +66,8 @@ void OSCPCachedProvider::setMDDescription(std::string xml) {
 	std::unique_ptr<CDM::MDIB> result(CDM::MDIBContainer(xercesDocument->getDocument()));
 
 	if (result != nullptr) {
-		Poco::Mutex::ScopedLock lock(getMutex());
-		this->mdDescription.reset(new MDDescription(ConvertFromCDM::convert(result->MDDescription())));
+		Poco::Mutex::ScopedLock lock(m_OSCPProvider.getMutex());
+		this->m_mdDescription.reset(new MDDescription(ConvertFromCDM::convert(result->MDDescription())));
 	} else {
 		log_fatal([&] { return " Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + xml; });
 		std::exit(1);

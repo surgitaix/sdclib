@@ -876,7 +876,6 @@ MDIBContainer OSCPProvider::getMDIB() {
 }
 
 MDDescription OSCPProvider::getMDDescription() const {
-//	Poco::Mutex::ScopedLock lock(hMDSMapMutex);
 	return *m_mdDescription;
 }
 
@@ -893,14 +892,6 @@ void OSCPProvider::startup() {
 		// -> retry with another port
 		unsigned int port(OSCLibrary::getInstance().extractFreePort());
 		log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with port: " + std::to_string(port); });
-
-		// todo: remove Debug embedded
-		log_notice([&] { return "what:" + std::string(e.what()); });
-		log_notice([&] { return  "className:" + std::string(e.className());});
-		log_notice([&] { return "code:" + std::to_string(e.code());});
-		log_notice([&] { return  "displayText:" + std::string(e.displayText());});
-		log_notice([&] { return  "message:" + std::string(e.message());});
-		log_notice([&] { return  "name:" + std::string(e.name());});
 
 		OSCLibrary::getInstance().returnPortToPool(_adapter->getPort());
 		_adapter.reset();
@@ -1060,9 +1051,35 @@ void OSCPProvider::setEndpointReference(const std::string & epr) {
 }
 
 
-void OSCPProvider::setMDDescrition(const MDDescription & mdDescription) {
+void OSCPProvider::setMDDescription(const MDDescription & mdDescription) {
+	Poco::Mutex::ScopedLock lock(getMutex());
 	m_mdDescription = std::make_shared<MDDescription>(mdDescription);
 }
+
+void OSCPProvider::setMDDescription(std::string xml) {
+	OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
+	auto rawMessage = OSELib::Helper::Message::create(xml);
+	auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
+
+	std::unique_ptr<CDM::MDIB> result(CDM::MDIBContainer(xercesDocument->getDocument()));
+
+//	std::unique_ptr<CDM::GetMDDescriptionResponse> result(CDM::MDIBContainer(xercesDocument->getDocument()));
+
+
+
+
+	if (result != nullptr) {
+		Poco::Mutex::ScopedLock lock(getMutex());
+		this->m_mdDescription.reset(new MDDescription(ConvertFromCDM::convert(result->MDDescription())));
+	} else {
+		log_fatal([&] { return " Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + xml; });
+		//todo: proper exeption handling
+		std::exit(1);
+	}
+
+}
+
+
 
 const std::string OSCPProvider::getEndpointReference() const {
 	return endpointReference;
