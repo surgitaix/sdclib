@@ -29,9 +29,10 @@ No other rights are granted by implication, estoppel or otherwise.
 	schemaLocation="ws-addressing.xsd" />
 
   <!-- Types and global elements -->
-  <xs:complexType name="DeliveryType" mixed="true">
+  <xs:complexType name="DeliveryType">
     <xs:sequence>
-      <xs:any namespace="##any" processContents="lax" 
+      <xs:element ref="tns:NotifyTo" />
+      <xs:any namespace="##other" processContents="lax" 
         minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="Mode" type="xs:anyURI" use="optional" />
@@ -50,13 +51,17 @@ No other rights are granted by implication, estoppel or otherwise.
       <xs:union memberTypes="xs:dateTime tns:NonNegativeDurationType" />
   </xs:simpleType>
 
-  <xs:complexType name="FilterType" mixed="true">
-    <xs:sequence>
-      <xs:any namespace="##other" processContents="lax" 
-        minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="Dialect" type="xs:anyURI" use="optional" />
-    <xs:anyAttribute namespace="##other" processContents="lax" />
+  <xs:simpleType name="ActionList">
+  	<xs:list itemType="xs:anyURI" />
+  </xs:simpleType>
+
+  <xs:complexType name="FilterType">
+  	<xs:simpleContent>
+  		<xs:extension base="tns:ActionList">
+  		    <xs:attribute name="Dialect" type="xs:anyURI" use="optional" default="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01/Action" />
+    		<xs:anyAttribute namespace="##other" processContents="lax" />
+    	</xs:extension>
+  	</xs:simpleContent>
   </xs:complexType>
 
   <xs:complexType name="LanguageSpecificStringType">
@@ -85,7 +90,15 @@ No other rights are granted by implication, estoppel or otherwise.
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="Identifier" type="xs:anyURI" />
+ <xs:element name="Identifier" >
+ 	<xs:complexType>
+ 		<xs:simpleContent>
+ 			<xs:extension base="xs:anyURI">
+ 				<xs:attribute ref="wsa:IsReferenceParameter" use="optional" />
+ 			</xs:extension>
+ 		</xs:simpleContent>
+ 	</xs:complexType>
+ </xs:element>
  
   <!-- Subscribe response -->
   <xs:element name="SubscribeResponse">

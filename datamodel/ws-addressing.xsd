@@ -15,7 +15,9 @@
 
    $Id: ws-addr.xsd,v 1.2 2008/07/23 13:38:16 plehegar Exp $
 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2005/08/addressing" targetNamespace="http://www.w3.org/2005/08/addressing" blockDefault="#all" elementFormDefault="qualified" finalDefault="" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2005/08/addressing" xmlns:wse="http://schemas.xmlsoap.org/ws/2004/08/eventing" targetNamespace="http://www.w3.org/2005/08/addressing" blockDefault="#all" elementFormDefault="qualified" finalDefault="" attributeFormDefault="unqualified">
+	
+	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" schemaLocation="eventing.xsd"/>
 	
 	<!-- Constructs from the WS-Addressing Core -->
 
@@ -33,7 +35,9 @@
 	<xs:element name="ReferenceParameters" type="tns:ReferenceParametersType"/>
 	<xs:complexType name="ReferenceParametersType" mixed="false">
 		<xs:sequence>
-			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Add Identifier for ws-eventing -->
+			<xs:element ref="wse:Identifier" minOccurs="0" maxOccurs="1"/>
+			<!-- <xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/> -->
 		</xs:sequence>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>

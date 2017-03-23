@@ -7,7 +7,6 @@
 
 #include "OSCLib/Data/OSCP/OSCPProviderClockStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockState.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {

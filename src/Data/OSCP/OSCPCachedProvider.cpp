@@ -21,46 +21,55 @@
  *  Author: besting, roehser
  */
 
+// TODO: Reimplement Cached provider as a not inherited class!!
+
+#include <memory>
+
+#include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/OSCPCachedProvider.h"
 #include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/FromString.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "osdm.hxx"
-#include <memory>
+
+#include "OSELib/Helper/Message.h"
+#include "OSELib/Helper/WithLogger.h"
+#include "OSELib/Helper/XercesDocumentWrapper.h"
+#include "OSELib/Helper/XercesParserWrapper.h"
+#include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
+#include "Poco/Mutex.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSCPCachedProvider::OSCPCachedProvider() {
+OSCPCachedProvider::OSCPCachedProvider() : WithLogger(OSELib::Log::OSCPPROVIDER) {
 }
 
 OSCPCachedProvider::~OSCPCachedProvider() {
 }
 
 MDDescription OSCPCachedProvider::getMDDescription() {
-	Poco::Mutex::ScopedLock lock(mutex);
-	return *mdDescription;
+	Poco::Mutex::ScopedLock lock(m_OSCPProvider.getMutex());
+	return *m_mdDescription;
 }
 
 void OSCPCachedProvider::setMDDescription(MDDescription description) {
-	Poco::Mutex::ScopedLock lock(mutex);
-	this->mdDescription.reset(new MDDescription(description));
+	Poco::Mutex::ScopedLock lock(m_OSCPProvider.getMutex());
+	this->m_mdDescription.reset(new MDDescription(description));
 }
 
 void OSCPCachedProvider::setMDDescription(std::string xml) {
-	std::unique_ptr<CDM::MDIB> result(CDM::FromString::validateAndConvert<CDM::MDIB>(xml));
+	OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
+	auto rawMessage = OSELib::Helper::Message::create(xml);
+	auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
+
+	std::unique_ptr<CDM::MDIB> result(CDM::MDIBContainer(xercesDocument->getDocument()));
+
 	if (result != nullptr) {
-		Poco::Mutex::ScopedLock lock(mutex);
-		this->mdDescription.reset(new MDDescription(ConvertFromCDM::convert(result->MDDescription())));
-	}
-	else
-	{
-		OSCLib::Util::DebugOut(OSCLib::Util::DebugOut::Error, std::cout, "OSCPCachedProvider")
-			<< "Fatal error, can't create MDIB - schema validation error! Offending MDIB: "
-			<< std::endl << xml << std::endl;
+		Poco::Mutex::ScopedLock lock(m_OSCPProvider.getMutex());
+		this->m_mdDescription.reset(new MDDescription(ConvertFromCDM::convert(result->MDDescription())));
+	} else {
+		log_fatal([&] { return " Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + xml; });
 		std::exit(1);
 	}
 }

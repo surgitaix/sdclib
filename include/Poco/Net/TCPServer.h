@@ -19,7 +19,6 @@
 #ifndef Net_TCPServer_INCLUDED
 #define Net_TCPServer_INCLUDED
 
-#include <atomic>
 
 #include "Poco/Net/Net.h"
 #include "Poco/Net/ServerSocket.h"
@@ -185,7 +184,7 @@ private:
 	ServerSocket         _socket;
 	TCPServerDispatcher* _pDispatcher;
 	Poco::Thread         _thread;
-	std::atomic<bool>    _stopped;
+	bool                 _stopped;
 };
 
 

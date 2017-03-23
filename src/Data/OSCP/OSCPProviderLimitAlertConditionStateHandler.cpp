@@ -7,7 +7,6 @@
 
 #include "OSCLib/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {
@@ -22,7 +21,7 @@ OSCPProviderLimitAlertConditionStateHandler::~OSCPProviderLimitAlertConditionSta
 }
 
 InvocationState OSCPProviderLimitAlertConditionStateHandler::onStateChangeRequest(const LimitAlertConditionState & , const OperationInvocationContext & ) {
-    Util::DebugOut(Util::DebugOut::Error, "OSCPProviderMDStateHandler") << "Method not overridden: onStateChangeRequest(LimitAlertConditionState)!";
+	log_error([] { return "Method not overridden: onStateChangeRequest(LimitAlertConditionState)!"; });
     return InvocationState::FAILED;
 }
 

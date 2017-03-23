@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Clue for documentation elements: Please start and end a documentation by directly beginning after/ending before the opening/closing tag. Example:
+	<xsd:documentation>Here the doc starts [...] and ends.</document>
+
+	Do not do something like this:
+	<xsd:documentation>
+		Here the doc starts [...] and ends.
+	</document>
+
+
+	Always begin a new line at the beginning of the line and do not indent with whitespaces or tabs. Example:
+	<xsd:documentation>Here the doc starts [...]
+Here, a new line starts [...]
+Another new line starts [...]
+and the doc ends.</document>
+
+	Do not do something like this:
+	<xsd:documentation>Here the doc starts [...]
+		Here, a new line starts [...]
+		Another new line starts [...]
+		and the doc ends.</document>
+
+	All these rules prevent the documentation output format (that is generated using Altova XML Spy) from looking awkward/not well-shaped.
+
+	=====
+
+	Please fulfill CamelCase notation for any elements that exist or will be inserted.
+
+	=====
+
+	Information: Search for "TODO: add documentation" for missing documentation items
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mdpws="http://standards.ieee.org/downloads/11073/11073-20702-201x/" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20702-201x/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-20702_Draft6-Revision3">
+	<!-- Stream Source Policy Assertion -->
+	<xs:complexType name="StreamSourceType">
+		<xs:annotation>
+			<xs:documentation>Defines a policy assertion to announce a stream source. The policy assertion has [Endpoint Policy Subject]. When present in a policy alternative, it indicates that the subject is a stream source provider.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+	<xs:element name="StreamSource" type="mdpws:StreamSourceType"/>
+	<!-- Stream Description -->
+  
+  
+	<xs:complexType name="StreamTransmissionType">
+		<xs:annotation>
+			<xs:documentation>Definition of the mechanisms that are utilized to transmit a stream.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StreamAddress" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This element specifies the address for stream transmission. In case it contains a multicast address this address needs to be joined for receiving the multicast stream.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StreamPeriod" type="xs:duration" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains the duration with a fractional second between two messages of the stream (e.g., if the stream source provider publishes data with 50 Hz, it is PT0.02S).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:anyURI">
+			<xs:annotation>
+				<xs:documentation>References the mechanism for stream transmission. If omitted the value /mdpws:StreamDescriptions/mdpws:StreamType@StreamType is implied</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+  
+  
+	<xs:complexType name="StreamTypeType">
+		<xs:annotation>
+			<xs:documentation>Element to describes a specific stream type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StreamTransmission" type="mdpws:StreamTransmissionType"/>
+			<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Id" type="xs:ID" use="required">
+			<xs:annotation>
+				<xs:documentation>Unique identifier amongst all StreamType elements.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="StreamType" type="xs:anyURI" use="required">
+			<xs:annotation>
+				<xs:documentation>Indicates that the stream follows the specifications of the provided type. This value should be compared directly, as a case-sensitive string, with no attempt to unescape or to otherwise canonicalize it.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Element" type="xs:anyURI">
+			<xs:annotation>
+				<xs:documentation>Attribute that refers to a GED defined or imported in the /mdpws:StreamDescriptions/mdpws:Types element. The referenced GED serves as the definition of this Stream Type payload.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ActionUri" type="xs:anyURI">
+			<xs:annotation>
+				<xs:documentation>Attribute that provides a value for the 'action' property used to transmit the Stream, serve as a potential aid to identify the semantics implied by the message. When not present the implied value of this attribute is the concatenation of the /mdpws:StreamDescriptions/@TargetNamespace attribute and the /mdpws:StreamDescriptions/mdpws:StreamType/@Id attribute separated by the '/' character.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+  
+  
+	<xs:complexType name="StreamDescriptionsType">
+		<xs:annotation>
+			<xs:documentation>This element contains the declarations of all the stream types that apply to a given context.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Types" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This optional element encloses data type definitions that are relevant to the declared StreamType elements. Usually, XML Schema declarations go here.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="skip"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StreamType" type="mdpws:StreamTypeType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="TargetNamespace" type="xs:anyURI" use="required"/>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+	<xs:element name="StreamDescriptions" type="mdpws:StreamDescriptionsType"/>
+	<!-- Safety Requirements Assertion -->
+	<xs:complexType name="SafetyReqAssertionType">
+		<xs:annotation>
+			<xs:documentation>Assertion has [Message Policy Subject] or [Operation Policy Subject] or [Endpoint Policy Subject]. When present in a policy alternative, it indicates that for the subject additional safety information need to be transmitted for the specified message elements.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="TransmitDualChannel" type="xs:boolean" default="true">
+			<xs:annotation>
+				<xs:documentation>Boolean attribute that indicates that dual channel transmission is required for the specified message elements.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TransmitSafetyContext" type="xs:boolean" default="true">
+			<xs:annotation>
+				<xs:documentation>Boolean attribute that indicates that specified safety context information is required to be transmitted for the subject.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+	<xs:element name="SafetyReqAssertion" type="mdpws:SafetyReqAssertionType"/>
+	<!-- Safety Requirements Definition -->
+	<xs:complexType name="SelectorType">
+		<xs:annotation>
+			<xs:documentation>XPath expression that points to a specific text value or attribute in an XML structure. The following rules SHALL apply:
+
+1. {Path} must be a valid XPath expression, as defined in XPath [http://www.w3.org/TR/1999/REC-xpath-19991116].
+2. {Path} must conform to the following extended BNF:
+
+[1] Path       ::=  ( '/' Step )* '/' ( '@' Name | 'text()' )
+[2] Step       ::=  Name ('[' Expr ']')*
+[3] Expr       ::=  '@' Name '=' ( Number | Literal | ConcatCall) | Number
+[4] Name       ::=  QName | NCName
+[5] Literal    ::=  '"' [^"]* '"' | "'" [^']* "'" 
+[6] ConcatCall ::=  concat '(' ( Literal ( ',' Literal )* )? ')'	
+[7] Number     ::=  Digits ( '.' Digits? )?
+[8] Digits     ::=  [0-9]+
+
+where
+- QName is defined in: http://www.w3.org/TR/REC-xml-names/#NT-QName
+- NCName is defined in: http://www.w3.org/TR/REC-xml-names/#NT-NCName
+
+Samples including allowed features:
+/ns:Foo[@FooAttr='sample']/Bar[21]/text()
+/Foo[@FooAttr="sample"]/ns:Bar/@BarAttr</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Id" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Sets a unique identifier over all SelectorType instances that can be used to address the XPath expression the selector defines.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute namespace="##other" processContents="skip"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="SafetyReqType">
+		<xs:annotation>
+			<xs:documentation>Indicates that data is required that preserve patient safety during transmission.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DualChannelDef" type="mdpws:DualChannelDefType" minOccurs="0"/>
+			<xs:element name="SafetyContextDef" type="mdpws:SafetyContextDefType" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+	<xs:element name="SafetyReq" type="mdpws:SafetyReqType"/>
+	<xs:complexType name="DualChannelDefType">
+		<xs:annotation>
+			<xs:documentation>Defines a list of selectors that point to elements which are required to be protected by a dual-channel. The selector's root is SOAP message's body element.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Selector" type="mdpws:SelectorType" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Algorithm" type="xs:QName">
+			<xs:annotation>
+				<xs:documentation>Qualified name of an algorithm that SHALL be applied on the transformed data in order to compute the value of the second channel representation. Default is /mdpws:Base64SHA1</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Transform" type="xs:QName">
+			<xs:annotation>
+				<xs:documentation>Qualified name of a transformation that should be applied on the data before an algorithm is applied. Default is /mdpws:xml-exc-c14n.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+	<xs:complexType name="SafetyContextDefType">
+		<xs:annotation>
+			<xs:documentation>Defines a list of selectors that point to elements which are required to establish a safety context. The selector's root is an arbitrary element with type dom:Mdib.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Selector" type="mdpws:SelectorType" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+	<!-- Safety Information Transmission -->
+	<xs:complexType name="SafetyInfoType">
+		<xs:annotation>
+			<xs:documentation>Container element for embedding safety information in a SOAP message header.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DualChannel" type="mdpws:DualChannelType" minOccurs="0"/>
+			<xs:element name="SafetyContext" type="mdpws:SafetyContextType" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+	<xs:element name="SafetyInfo" type="mdpws:SafetyInfoType"/>
+	<xs:complexType name="DualChannelType">
+		<xs:annotation>
+			<xs:documentation>Dual-channel element that can be used to embed dual-channel information in a SOAP message header by providing a list of dual-channel values.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DcValue" type="mdpws:DcValueType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of dual-channel values.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+	<xs:complexType name="SafetyContextType">
+		<xs:annotation>
+			<xs:documentation>Safety context element that can be used to embed safety context information in a SOAP message header.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CtxtValue" type="mdpws:CtxtValueType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of safety context values.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="skip"/>
+	</xs:complexType>
+	<xs:complexType name="DcValueType">
+		<xs:annotation>
+			<xs:documentation>A single dual-channel value.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:anySimpleType">
+				<xs:attribute name="ReferencedSelector" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Name that points to a valid selector identifier (/mdpws:Selector/@Id)</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute namespace="##other" processContents="skip"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CtxtValueType">
+		<xs:annotation>
+			<xs:documentation>A single safety context value.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:anySimpleType">
+				<xs:attribute name="ReferencedSelector" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Name that points to a valid selector identifier (/mdpws:Selector/@Id)</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute namespace="##other" processContents="skip"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

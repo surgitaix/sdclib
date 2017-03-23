@@ -1,0 +1,44 @@
+Generelle Konzepte
+- Implementierungen sind möglichst lokal und es gibt möglichst wenige Abhängigkeiten zwischen den Komponenten.
+- Außer der Klasse OSCLibrary und Poco::Logger gibt es keine Singletons. Sowohl Provider als auch Client sind in sich geschlossene Implementierungen, die sich gegenseitig durch Seiteneffekte nicht beeinflussen können.
+- Implementierungen sind möglichst modular.
+- Lebenszeiten von Objekten sind streng hierarchisch, daher werden in aller Regel Referenzen auf übergeordnete Objekte übergeben, da untergeordnete Systeme stets kürzer leben.
+- Objekte werden, wenn möglich, statisch im Konstruktor konfiguriert, so dass sich Parameter nicht zur Laufzeit ändern können.
+- Es gibt derzeit wenig bis keine automatische Konfiguration im Framework. Verwendete HTTP Pfade und Soap Invokes werden hart codiert und das in unterschiedlichen, voneinander unabhängigen Klassen.  
+- Das gesamte Message-Handling wird von einer xsd generierten Nachrichtenmodell-Klasse abgewickelt: NormalizedMessageModel. Das heißt, dass für alle Soap Nachrichten eine Schemamodellierung vorhanden sein muss.
+- Durch die Verwendung bestimmter Klassen für Schema-Grammatiken kann die Schemavalidierung gesteuert werden.
+- Soap Nachrichten Dialoge und Events werden durch Traits-Klassen spezifiziert. Diese dienen als Grundlage für Template Implementierungen, die anhand der in den Traits definierten Typen instaziiert werden. 
+- Verwende überall wo möglich als Soap-Body-Datentyp TraitsType::Request und TraitsType::Response (GetMDIBTraits::Response) und NIE die konkreten Typen (wie z.B. CDM::GetMDIBRequest) selbst. Dadurch können alle Nachrichten und deren Typen zentral in den Traits Klassen für die gesamte Library gepflegt werden.
+
+Wichtig: 
+- Das Schema in NormalizedMessageModel dient der generierung von Nachrichtenmodell Objekten, auf denen die Library Implementierung basiert. Dieses Schema wird NICHT zur validierung verwendet.
+- Nachrichten werden anhand des GenericSoapMessage Schemas validiert, das im Quelltext hart codiert in der schema.h enthalten ist. Die Datei GenericSoapMessage.xsd ist zwar identisch mit dem Inhalt in der schema.h, jedoch wird das nicht automatisch eingefügt.
+- Aus den Schema Dateien in datamodel/ werden zwar mit xsd Klassen generiert, die zur Schemavalidierung verwendeten Daten werden aber in schema.h definiert.
+
+Nachrichtenfluss (Server-Seitig, d.h.: Webservice bzw. EventSink) 
+HTTPServer 
+-> FrontController (entscheidet anhand der POST URI an welchen spezialisierten Controller weitergeleitet wird)
+-> ServiceController (z.B. GetServiceController) ist Factory für konkreten HTTP Requesthandler
+-> HTTP Request Handler (z.b. GetServiceHandler) (Parst HTTP Request und SOAP Body, delegiert anhand der Action an Commands
+-> Commmands delegieren an Interface Implementierungen (z.B. GetServiceImpl von IGetService)
+-> Interface Implementierungen delegieren dann an Provider oder Consumer.
+-> Provider / Consumer
+
+Dadurch ergibt sich eine Trennung in Protokoll-Schichten:
+HTTPServer (HTTP)
+-> FrontController (HTTP)
+-> ServiceController (HTTP)
+-> HTTP RequestHandler (HTTP -> SOAP)
+-> Command (SOAP -> Webservice)
+-> Interface Implementierung (Webservice)
+-> Provider/Consumer (OSCP)
+
+Metadataprovider
+Hier werden die informationen hart codiert, die in der Get und GetMetadata übertragen werden. Diese sind parametrisiert vom server port, auf dem diese Nachrichten ankommen. Darüber hinaus gibt es keine automatische Konfiguration und kein Zusammenspiel mit anderen Implementierungen. 
+
+ServiceHandler (z.B. GetServiceHandler)
+Hier werden HTTP Requests ausgepackt, in Soap Nachrichten geparst (CommonSoapProcessing) und deren Body anhand der Action an höhere Schichten weitergeleitet(GenericSoapActionCommand, SoapActionCommand). Umgekehrt wird der response Body in Soap Nachrichten verpackt (GenericSoapActionCommand) und durch den HTTPSoapResponseWrapper zurückgeschickt.
+
+XercesGrammarPoolProvider
+Kapselt eine Sammlung von XML Schema Grammatiken, die vom XercesParserWrapper zum schemavalidierenden parsen verwendet wird. Es werden derzeit zwei Ausprägungen verwendet: XercesGrammarPoolProvider (keine Schemavalidierung, da pool nullptr) und DefaultOSCPSchemaGrammarProvider (für Datenmodell, Eventing, WS Addressing Valdierung).
+

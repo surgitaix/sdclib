@@ -2,7 +2,6 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/Base64Binary.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/DICOMDeviceDescriptor.h"
@@ -13,10 +12,11 @@
 #include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
 #include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/TypeConversion.h"
 #include "OSCLib/Util/Task.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
@@ -32,11 +32,11 @@ namespace DICOMOSCP {
 const std::string DEVICE_ENDPOINT_REFERENCE("EPR_DICOM_GATEWAY");
 const std::string MDS_HANDLE("dicom_mds");
 
-class OSCPHoldingDeviceProvider : public OSCPProvider {
+class OSCPHoldingDeviceProvider {
 public:
 
-    OSCPHoldingDeviceProvider() {
-    	setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+    OSCPHoldingDeviceProvider() : oscpProvider() {
+    	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
     	std::vector<char> fakeCert;
     	fakeCert.push_back('a');
@@ -66,15 +66,29 @@ public:
 			.addPublicCertificate(
 					Base64Binary().
 					setData(fakeCert));
+
+    	MDDescription holdingDeviceDescription;
+    	holdingDeviceDescription.addMDSDescriptor(dicomDescriptor);
+
+    	// set the providers description
+    	oscpProvider.setMDDescription(holdingDeviceDescription);
+
     }
 
-    MDDescription getMDDescription() override {
-        MDDescription mdd;
-        mdd.addDicomMDSDescriptor(dicomDescriptor);
-        return mdd;
+    void startup() {
+    	oscpProvider.startup();
     }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
+    }
+
+
 
 private:
+    // Provider object
+    OSCPProvider oscpProvider;
+
     // The current weight
     DICOMDeviceDescriptor dicomDescriptor;
 };
@@ -84,7 +98,7 @@ private:
 }
 
 struct FixtureDICOMOSCP : Tests::AbstractOSCLibFixture {
-	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", Util::DebugOut::Default, 9050) {}
+	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", OSELib::LogLevel::NOTICE, 9050) {}
 };
 
 SUITE(OSCP) {
@@ -97,7 +111,7 @@ TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
         provider.startup();    
 
         // Consumer
-        OSCPServiceManager oscpsm;
+        OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::DICOMOSCP::DEVICE_ENDPOINT_REFERENCE));
 
         // Discovery test

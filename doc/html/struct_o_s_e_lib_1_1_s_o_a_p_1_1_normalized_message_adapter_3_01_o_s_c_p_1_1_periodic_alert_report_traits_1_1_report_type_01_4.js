@@ -1,0 +1,6 @@
+var struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_periodic_alert_report_traits_1_1_report_type_01_4 =
+[
+    [ "get", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_periodic_alert_report_traits_1_1_report_type_01_4.html#a61496c9395537354a5a850fb7cb00b75", null ],
+    [ "present", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_periodic_alert_report_traits_1_1_report_type_01_4.html#a6e734857821d413b31cfc113121ce759", null ],
+    [ "set", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_periodic_alert_report_traits_1_1_report_type_01_4.html#ab5087fff25a274c831ada96f5f0dbd91", null ]
+];

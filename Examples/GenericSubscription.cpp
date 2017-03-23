@@ -41,8 +41,9 @@
 #include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Util/DebugOut.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "osdm.hxx"
 
@@ -205,11 +206,11 @@ int main (int argc, char * argv[])
 	}
 
 	DebugOut(DebugOut::Default, "GenericSubscription") << std::endl << "Startup";
-	OSCLibrary::getInstance()->startup(DebugOut::Default);
-	OSCLibrary::getInstance()->setPortStart(42000);
+	OSCLibrary::getInstance().startup();
+	OSCLibrary::getInstance().setPortStart(42000);
 
-	OSCPServiceManager oscpsm;
-	std::shared_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(epr));
+	OSELib::OSCP::ServiceManager oscpsm;
+	std::unique_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(epr));
 	if (consumer) {
 		DebugOut(DebugOut::Default, "GenericSubscription") << "Connected to device with epr: " << epr;
 		const MDDescription mdd(consumer->getMDDescription());
@@ -296,7 +297,7 @@ int main (int argc, char * argv[])
 		DebugOut(DebugOut::Default, "GenericSubscription") << "Connection failed for epr: " << epr;
 	}
 
-	OSCLibrary::getInstance()->shutdown();
+	OSCLibrary::getInstance().shutdown();
 	DebugOut(DebugOut::Default, "GenericSubscription") << "Shutdown" << std::endl;
 }
 

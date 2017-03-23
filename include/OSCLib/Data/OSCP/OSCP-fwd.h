@@ -13,46 +13,9 @@
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
-	template<class Traits>
-	class CDMEventSink;
-	template<class Traits>
-	class CDMEventSource;
-	struct ActivateTraits;
-	struct EpisodicAlertReportTraits;
-	struct EpisodicContextChangedReportTraits;
-	struct EpisodicMetricReportTraits;
-	struct GetContextStatesTraits;
-	struct GetMDDescriptionTraits;
-	struct GetMDIBTraits;
-	struct GetMDStateTraits;
-	struct OperationInvokedReportTraits;
-	struct PeriodicAlertReportTraits;
-	struct PeriodicContextChangedReportTraits;
-	struct PeriodicMetricReportTraits;
-	struct SetAlertStateTraits;
-	struct SetContextStateTraits;
-	struct SetStringTraits;
-	struct SetValueTraits;
-	struct WaveformStreamTraits;
-
-	typedef CDMEventSink<EpisodicAlertReportTraits> CDMEAREventSink;
-	typedef CDMEventSink<EpisodicMetricReportTraits> CDMEMREventSink;
-	typedef CDMEventSink<EpisodicContextChangedReportTraits> CDMECREventSink;
-	typedef CDMEventSink<PeriodicAlertReportTraits> CDMPAREventSink;
-	typedef CDMEventSink<PeriodicContextChangedReportTraits> CDMPCREventSink;
-	typedef CDMEventSink<PeriodicMetricReportTraits> CDMPMREventSink;
-	typedef CDMEventSink<OperationInvokedReportTraits> CDMOIREventSink;
-
-	typedef CDMEventSource<EpisodicAlertReportTraits> CDMEpisodicAlertEventSource;
-	typedef CDMEventSource<EpisodicContextChangedReportTraits> CDMEpisodicContextChangedEventSource;
-	typedef CDMEventSource<EpisodicMetricReportTraits> CDMEpisodicMetricEventSource;
-	typedef CDMEventSource<OperationInvokedReportTraits> CDMOperationInvokedReportSource;
-	typedef CDMEventSource<PeriodicAlertReportTraits> CDMPeriodicAlertEventSource;
-	typedef CDMEventSource<PeriodicContextChangedReportTraits> CDMPeriodicContextChangedEventSource;
-	typedef CDMEventSource<PeriodicMetricReportTraits> CDMPeriodicMetricEventSource;
-	typedef CDMEventSource<WaveformStreamTraits> CDMWaveformStreamSource;
 
 	class AsyncProviderInvoker;
+
 	class FutureInvocationState;
 	class OSCPConsumer;
 	class OSCPConsumerConnectionLostHandler;
@@ -67,8 +30,7 @@ namespace OSCP {
 	class OSCPConsumerAlertConditionStateHandler;
 	class OSCPConsumerLimitAlertConditionStateHandler;
 	class OSCPConsumerSubscriptionLostHandler;
-	class OSCPEventSink;
-	class OSCPPingManager;
+
 	class OSCPProvider;
 	class OSCPProviderMDStateHandler;
 	class OSCPProviderAlertConditionStateHandler;
@@ -82,7 +44,6 @@ namespace OSCP {
 	class OSCPProviderNumericMetricStateHandler;
 	class OSCPProviderRealTimeSampleArrayMetricStateHandler;
 	class OSCPProviderStringMetricStateHandler;
-	class OSCPSubscriptionManager;
 }
 }
 }

@@ -17,43 +17,51 @@
 /*
  * OSCPProvider.h
  *
- *  @Copyright (C) 2014, SurgiTAIX AG
- *  Author: roehser, besting
+ *  @Copyright (C) 2017, SurgiTAIX AG
+ *  Author: roehser, besting, buerger
  */
 
 #ifndef OSCPPROVIDER_H_
 #define OSCPPROVIDER_H_
 
-#include "OSCLib/Dev/DeviceCharacteristics.h"
-#include "OSCLib/Dev/OSCP/OSCPDevice.h"
-#include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/MDState.h"
+#include <atomic>
+#include <memory>
 
 #include "Poco/NotificationQueue.h"
 #include "Poco/Mutex.h"
 #include "Poco/Timestamp.h"
 #include "Poco/Timespan.h"
 
-#include <atomic>
-#include <memory>
+#include "OSCLib/Dev/DeviceCharacteristics.h"
+#include "OSCLib/Data/OSCP/OSCP-fwd.h"
+#include "OSCLib/Data/OSCP/OSELibProviderAdapter.h"
+#include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
+#include "OSCLib/Data/OSCP/MDIB/MDState.h"
+
+#include "OSELib/Helper/WithLogger.h"
+
+
+// todo remove
+namespace OSELib {
+	struct ContextReportServiceImpl;
+	struct GetServiceImpl;
+	struct SetServiceImpl;
+}
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProvider {
+class OSCPProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
-	friend struct ActivateTraits;
-	friend struct GetContextStatesTraits;
-	friend struct GetMDDescriptionTraits;
-	friend struct GetMDIBTraits;
-	friend struct GetMDStateTraits;
-    friend struct SetAlertStateTraits;
-    friend struct SetStringTraits;
-    friend struct SetValueTraits;
-	friend struct SetContextStateTraits;
+
     friend class OSCPProviderMDStateHandler;
+    
+    // todo replace by friend class OSELibProviderAdapter
+    friend struct OSELib::ContextReportServiceImpl;
+    friend struct OSELib::GetServiceImpl;
+    friend struct OSELib::SetServiceImpl;
+
 public:
     OSCPProvider();
     virtual ~OSCPProvider();
@@ -68,16 +76,15 @@ public:
     /**
     * @brief Get the Medical Device Description.
     *
-    * Note: can to be implemented by a custom OSCP provider as an alternative to get the description from provided hydra mds.
-    *
     * @return The MDDescription container
     */
-    virtual MDDescription getMDDescription();
+
+    void setMDDescription(const MDDescription & mdDescription);
+    void setMDDescription(std::string xml);
+    MDDescription getMDDescription() const;
 
     /**
     * @brief Get all states as part of the MDIB.
-    *
-    * Note: can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
     *
     * @return The MD state container
     */
@@ -149,7 +156,7 @@ public:
     * All needed DPWS devices & services will be stopped and deleted.
     */
     void shutdown();
-
+    
     template<class T>
     void replaceState(const T & state);
 
@@ -159,10 +166,6 @@ public:
     * @param handler The handler
     */
     void addMDStateHandler(OSCPProviderMDStateHandler * handler);
-
-    void addHydraMDS(HydraMDSDescriptor hmds);
-
-    void removeHydraMDS(std::string handle);
 
     /**
     * @brief Remove a request handler which provides states and processes incoming change requests from a consumer.
@@ -180,136 +183,39 @@ public:
     unsigned long long int getMDIBVersion() const;
     void incrementMDIBVersion();
 
-    Poco::Mutex & getMutex() {
-        return mutex;
-    }
-
+    Poco::Mutex & getMutex();
+    
     void lock() {
     	getMutex().lock();
     }
 
     void unlock() {
     	getMutex().unlock();
-    }
+    }    
 
     void setPeriodicEventInterval(const int seconds, const int milliseconds);
     std::vector<std::string> getHandlesForPeriodicUpdate();
     void addHandleForPeriodicEvent(const std::string & handle);
     void removeHandleForPeriodicEvent(const std::string & handle);
 
+    /**
+	* @brief Called on incoming consumer request for a state change.
+	*
+	* Notes:
+	* - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
+	* - The consumer will wait for this method to complete.
+	* - Make sure to update the state's invocation state and notify about the change.
+	*
+	* @param state The requested state containing fields to be updated.
+	*
+	* @return invocation state
+	*/
+
+	template<typename T>
+		InvocationState onStateChangeRequest(const T & state, const OperationInvocationContext & oic);
+
+// TODO no inheritance no need for protected methods..
 protected:
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const EnumStringMetricState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes: 
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const AlertSystemState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const AlertConditionState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic);
-
-    /**
-    * @brief Called on incoming consumer request for a state change.
-    *
-    * Notes:
-    * - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
-    * - The consumer will wait for this method to complete.
-    * - Make sure to update the state's invocation state and notify about the change.
-    *
-    * @param state The requested state containing fields to be updated.
-    *
-    * @return invocation state
-    */
-    virtual InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & oic);
 
     /**
     * @brief Notify all registered consumers about an operation invoked event (fires operation invoked event).
@@ -358,9 +264,6 @@ private:
     template<class T>
     void addSetOperationToSCOObjectImpl(const T & source, HydraMDSDescriptor & ownerMDS);
 
-    template<typename T>
-    InvocationState onStateChangeRequestImpl(const T & state, const OperationInvocationContext & oic);
-
     template<class T>
     void enqueueInvokeNotification(const T & request, const OperationInvocationContext & oic);
 
@@ -371,24 +274,23 @@ private:
 
     std::map<std::string, OSCPProviderMDStateHandler *> stateHandlers;
 
-    Poco::Mutex hMDSMapMutex;
-    std::map<std::string, HydraMDSDescriptor> hMDSMap;
-
-    Dev::OSCP::OSCPDevice device;
+	std::shared_ptr<MDDescription> m_mdDescription;
+    std::unique_ptr<OSELibProviderAdapter> _adapter;
+    Dev::DeviceCharacteristics devicecharacteristics;
+	Poco::Mutex mutex;
 
     std::string endpointReference;
 
-    MDState mdibStates;
-    MDState operationState;
+	MDState mdibStates;
+    MDState operationStates;
     Poco::NotificationQueue invokeQueue;
     std::shared_ptr<AsyncProviderInvoker> providerInvoker;
 
     std::vector<std::string> handlesForPeriodicUpdates;
     Poco::Timestamp lastPeriodicEvent;
     Poco::Timespan periodicEventInterval;
-
-protected:
-	Poco::Mutex mutex;
+    
+//    std::map<std::string, int> streamingPorts;
 
 };
 

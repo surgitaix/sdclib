@@ -1,0 +1,26 @@
+var class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor =
+[
+    [ "StateType", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a2c800659dccb7f5964a35e1be02e7f75", null ],
+    [ "WrappedType", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a7330d20b720fa15748a557b57e9239c0", null ],
+    [ "LocationContextDescriptor", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a3c236c42ece5152962ae83622197eca2", null ],
+    [ "LocationContextDescriptor", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#addf038740007aff2a9282ab3cd797c61", null ],
+    [ "~LocationContextDescriptor", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a2db828e7b8170634702a373b7f5ad493", null ],
+    [ "copyFrom", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#aa663eb8704c1d3adc8784ef30e18e089", null ],
+    [ "getDescriptorVersion", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a829950544b9adc563b2f277445ca7030", null ],
+    [ "getDescriptorVersion", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a63a204d201d2647fa847cc35fa283a3b", null ],
+    [ "getHandle", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a38c5cb69e72a1b222c83e150df125968", null ],
+    [ "getIntendedUse", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a71be8a4f8cc6ce93fcb5d6389c0f0c0d", null ],
+    [ "getIntendedUse", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a9ab845b9b801ce9c05d6cd9236b0a6d6", null ],
+    [ "getType", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#aea6385df9601688b52e9b31f9dc39c9e", null ],
+    [ "getType", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a0fbb19695b7a9c0bde869b6ca87a73c1", null ],
+    [ "hasDescriptorVersion", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a81edadf70d52e71c05322174db02bce4", null ],
+    [ "hasIntendedUse", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#af843878bf1e917731f71449a89feb29a", null ],
+    [ "hasType", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#ae4bc296d4d205387295a8d8aa437e029", null ],
+    [ "operator=", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#ae41ce70fbe59881fde90fe6a32525bdc", null ],
+    [ "setDescriptorVersion", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a13f11ae4e4441d90cedb2884ba4214ff", null ],
+    [ "setHandle", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#aceeec844067ee9b033c265ae4ed3a2bd", null ],
+    [ "setIntendedUse", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a8283b1a70dfb711b725008c75e6c3497", null ],
+    [ "setType", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#a36cb875693941b77724ea89fa03d3e3f", null ],
+    [ "ConvertFromCDM", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#ac6ec5845004d2a33d21a00e8b80d5716", null ],
+    [ "ConvertToCDM", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_location_context_descriptor.html#ada82341792793d9e390abb2d9023cda5", null ]
+];

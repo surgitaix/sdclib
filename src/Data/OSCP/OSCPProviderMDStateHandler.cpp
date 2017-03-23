@@ -35,23 +35,23 @@
 
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderMDStateHandler.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSCPProviderMDStateHandler::OSCPProviderMDStateHandler() : parentProvider(nullptr) {
-
+OSCPProviderMDStateHandler::OSCPProviderMDStateHandler() :
+	WithLogger(OSELib::Log::OSCPPROVIDER),
+	parentProvider(nullptr)
+{
 }
 
 OSCPProviderMDStateHandler::~OSCPProviderMDStateHandler() {
-
 }
 
 void OSCPProviderMDStateHandler::notifyOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
     if (parentProvider == nullptr) {
-        Util::DebugOut(Util::DebugOut::Error, "OSCPProviderMDStateHandler") << "Handler is used without calling OSCPProvider::addMDStateHandler!";
+    	log_error([] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
     } else {
     	parentProvider->notifyOperationInvoked(oic, is);
     }
@@ -59,7 +59,7 @@ void OSCPProviderMDStateHandler::notifyOperationInvoked(const OperationInvocatio
 
 void OSCPProviderMDStateHandler::setAlertConditionPresence(const std::string alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
     if (parentProvider == nullptr) {
-        Util::DebugOut(Util::DebugOut::Error, "OSCPProviderMDStateHandler") << "Handler is used without calling OSCPProvider::addMDStateHandler!";
+    	log_error([&] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
     } else {
         parentProvider->setAlertConditionPresence(alertConditionHandle, conditionPresence, oic);
     }
@@ -81,7 +81,7 @@ template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const Work
 
 template<class T> void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const T & object) {
     if (parentProvider == nullptr) {
-        Util::DebugOut(Util::DebugOut::Error, "OSCPProviderMDStateHandler") << "Handler is used without calling OSCPProvider::addMDStateHandler!";
+    	log_error([&] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
     } else {
         parentProvider->updateState(object);
     }

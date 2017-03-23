@@ -63,8 +63,6 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include <xsd/cxx/tree/containers-wildcard.hxx>
-
 namespace WS
 {
   namespace STREAMING
@@ -289,29 +287,6 @@ namespace WS
       void
       StreamDescriptions (::std::unique_ptr< StreamDescriptionsType > p);
 
-      // any_attribute
-      //
-      typedef ::xsd::cxx::tree::attribute_set< char > AnyAttributeSet;
-      typedef AnyAttributeSet::iterator AnyAttributeIterator;
-      typedef AnyAttributeSet::const_iterator AnyAttributeConstIterator;
-
-      const AnyAttributeSet&
-      any_attribute () const;
-
-      AnyAttributeSet&
-      any_attribute ();
-
-      void
-      any_attribute (const AnyAttributeSet& s);
-
-      // DOMDocument for wildcard content.
-      //
-      const ::xercesc::DOMDocument&
-      dom_document () const;
-
-      ::xercesc::DOMDocument&
-      dom_document ();
-
       // Constructors.
       //
       StreamSource (const StreamDescriptionsType&);
@@ -344,10 +319,7 @@ namespace WS
              ::xml_schema::Flags);
 
       protected:
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > dom_document_;
-
       ::xsd::cxx::tree::one< StreamDescriptionsType > StreamDescriptions_;
-      AnyAttributeSet any_attribute_;
     };
   }
 }

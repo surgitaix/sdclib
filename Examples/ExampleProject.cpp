@@ -8,7 +8,6 @@
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
@@ -26,10 +25,13 @@
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Util/DebugOut.h"
 
+#include "OSELib/OSCP/ServiceManager.h"
+
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
+#include "Poco/Net/NetException.h"
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
@@ -55,8 +57,6 @@ public:
 
         // we can update here, but if we return FINISHED, the framework will also update
         //updateState(state);
-
-        // Usually, update the real device's state here.
 
         return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
@@ -85,6 +85,7 @@ public:
         // TODO: in real applications, check if state has an observed value and if the observed value has a value!
         return (float)result.getObservedValue().getValue();
     }
+
 };
 
 class CurValueStateHandler : public OSCPProviderNumericMetricStateHandler {
@@ -165,16 +166,20 @@ private:
     std::string descriptorHandle;
 };
 
-class OSCPHoldingDeviceProvider : public OSCPProvider {
+
+// This example shows one elegant way of implementing the Provider
+// Since the OSCPProvider class is final, it is recommended to implement the OSCPProvider as a member variable of a container class to expand the OSCPProvider in a clear and convinient fashion
+class OSCPHoldingDeviceProvider {
 public:
 
     OSCPHoldingDeviceProvider() :
-    	currentWeight(0),
+    	oscpProvider(),
+		currentWeight(0),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
-		hydraMDSState(MDS_HANDLE),
-		vmdState(VMD_DESCRIPTOR_HANDLE)
+    	hydraMDSState(MDS_HANDLE),
+    	vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
-    	setEndpointReference(deviceEPR);
+    	oscpProvider.setEndpointReference(deviceEPR);
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
         CodedValue unit;
@@ -207,18 +212,6 @@ public:
 				.addConceptDescription(LocalizedText().set("Maximum weight")))
         	.setHandle("handle_max");
 
-        // States
-        addMDStateHandler(&maxValueState);
-        addMDStateHandler(&curValueState);
-        addMDStateHandler(&channelState);
-        addMDStateHandler(&hydraMDSState);
-        addMDStateHandler(&vmdState);
-
-        init();
-    }
-       
-    void init() {
-        
         // Channel
         ChannelDescriptor holdingDeviceChannel;
         holdingDeviceChannel
@@ -226,13 +219,13 @@ public:
 			.addMetric(currentWeightMetric)
         	.addMetric(maxWeightMetric)
 			.setIntendedUse(IntendedUse::MEDICAL_A);
-        
+
         // VMD
-        VMDDescriptor holdingDeviceModule;       
+        VMDDescriptor holdingDeviceModule;
         holdingDeviceModule
 			.setHandle(VMD_DESCRIPTOR_HANDLE)
 			.addChannel(holdingDeviceChannel);
-        
+
         // MDS
         HydraMDSDescriptor holdingDeviceSystem;
         holdingDeviceSystem
@@ -243,19 +236,49 @@ public:
 				.setCodingSystemId("OR.NET.Codings")
 				.setCodeId("MDCX_CODE_ID_MDS"));
 
-        createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
+        // the set operations have to be defined befor adding the MDDescription
+        oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
-        addHydraMDS(holdingDeviceSystem);
+        // add descriptor to description
+        // the description contains all the devices static information
+        MDDescription holdingDeviceDescription;
+        holdingDeviceDescription.addMDSDescriptor(holdingDeviceSystem);
+
+
+        // set the providers description
+        oscpProvider.setMDDescription(holdingDeviceDescription);
+
+
+		// State handler
+        oscpProvider.addMDStateHandler(&maxValueState);
+        oscpProvider.addMDStateHandler(&curValueState);
+        oscpProvider.addMDStateHandler(&channelState);
+        oscpProvider.addMDStateHandler(&hydraMDSState);
+        oscpProvider.addMDStateHandler(&vmdState);
+
+
+    }
+
+    void startup() {
+    	oscpProvider.startup();
+    }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
     }
 
     void setCurrentWeight(float value) {
-    	Poco::Mutex::ScopedLock lock(getMutex());
+    	Poco::Mutex::ScopedLock lock(oscpProvider.getMutex());
     	currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "ExampleProject") << "Changed value: " << currentWeight << std::endl;
     }
 
 private:
+
+    // OSCPProvider for communication to the network
+    OSCPProvider oscpProvider;
+
     float currentWeight;
 
     // The current weight
@@ -338,93 +361,107 @@ private:
     const std::string handle;
 };
 
+
 int main()
 {
-	DebugOut(DebugOut::Default, "ExampleProject") << "Startup";
-    OSCLibrary::getInstance()->startup(DebugOut::Error);
-	OSCLibrary::getInstance()->setPortStart(11000);
 
-	OSCPServiceManager oscpsm;
-    class MyHandler : public OSCPHelloReceivedHandler {
-    public:
-    	MyHandler() {
-    	}
-    	void helloReceived(const std::string & epr) override {
-    		DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << epr;
-    	}
-    };
-    std::unique_ptr<MyHandler> myHandler(new MyHandler());
-    oscpsm.setHelloReceivedHandler(myHandler.get());
-	// Provider
-	OSCPHoldingDeviceProvider provider;
-	provider.startup();
-	DummyValueProducer dummyValueProducer(&provider);
-	dummyValueProducer.start();
+	DebugOut(DebugOut::Default, "ExampleProject") << "1";
+	try {
+		OSCLibrary::getInstance().startup();
+		OSCLibrary::getInstance().setIP6enabled(false);
+		DebugOut(DebugOut::Default, "ExampleProject") << "2";
+		OSCLibrary::getInstance().setPortStart(11000);
 
-    int temp;
-    DebugOut(DebugOut::Default, "ExampleProject") << "Press key to proceed test (until then, provider will keep running indefinitely).";
-    std::cin >> temp;
+		OSELib::OSCP::ServiceManager oscpsm;
+		class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
+		public:
+			MyHandler() {
+			}
+			void helloReceived(const std::string & epr) override {
+				DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << epr;
+			}
+		};
+		std::unique_ptr<MyHandler> myHandler(new MyHandler());
+		DebugOut(DebugOut::Default, "ExampleProject") << "3";
+		oscpsm.setHelloReceivedHandler(myHandler.get());
+		// Provider
+		OSCPHoldingDeviceProvider provider;
+		DebugOut(DebugOut::Default, "ExampleProject") << "3.5";
+		provider.startup();
+		DebugOut(DebugOut::Default, "ExampleProject") << "4";
+		DummyValueProducer dummyValueProducer(&provider);
+		dummyValueProducer.start();
+		DebugOut(DebugOut::Default, "ExampleProject") << "5";
 
-	// Discovery
-	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
-    std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler("handle_cur"));
-    std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler("handle_max"));
+		int temp;
+		DebugOut(DebugOut::Default, "ExampleProject") << "Press key to proceed test (until then, provider will keep running indefinitely).";
+		std::cin >> temp;
+
+		// Discovery
+		std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+		DebugOut(DebugOut::Default, "ExampleProject") << "6";
+		std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler("handle_cur"));
+		std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler("handle_max"));
+		DebugOut(DebugOut::Default, "ExampleProject") << "7";
 
 
-	if (c != nullptr) {
-        OSCPConsumer & consumer = *c;
-		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
+		if (c != nullptr) {
+			OSCPConsumer & consumer = *c;
+			DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
 
-		// MDIB test
-		MDIBContainer mdib = consumer.getMDIB();
+			// MDIB test
+			MDIBContainer mdib = consumer.getMDIB();
 
-		// Register for metric event
-        consumer.registerStateEventHandler(eces1.get());
-        consumer.registerStateEventHandler(eces2.get());
+			// Register for metric event
+			consumer.registerStateEventHandler(eces1.get());
+			consumer.registerStateEventHandler(eces2.get());
 
-		Poco::Thread::sleep(4000);
+			Poco::Thread::sleep(4000);
 
-		// Get state test (current weight)
-		NumericMetricState currentWeightState;
-		consumer.requestState("handle_cur", currentWeightState);
-		double curWeight = currentWeightState.getObservedValue().getValue();
-		DebugOut(DebugOut::Default, "ExampleProject") << "Observed Weight " << curWeight;
+			// Get state test (current weight)
+			NumericMetricState currentWeightState;
+			consumer.requestState("handle_cur", currentWeightState);
+			double curWeight = currentWeightState.getObservedValue().getValue();
+			DebugOut(DebugOut::Default, "ExampleProject") << "Observed Weight " << curWeight;
 
-		// Set state test (must fail due to read-only)
-		InvocationState invocationStateFirst = consumer.commitState(currentWeightState);
-        DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (1st commit): " << Data::OSCP::EnumToString::convert(invocationStateFirst);
-		if (InvocationState::FAILED == invocationStateFirst) {
-			DebugOut(DebugOut::Default, "ExampleProject") << "Committing state failed as expected.";
+			// Set state test (must fail due to read-only)
+			InvocationState invocationStateFirst = consumer.commitState(currentWeightState);
+			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (1st commit): " << Data::OSCP::EnumToString::convert(invocationStateFirst);
+			if (InvocationState::FAILED == invocationStateFirst) {
+				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state failed as expected.";
+			} else {
+				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state succeeded. This is an error, because it should be read-only.";
+			}
+
+			// Get state test (maximum weight)
+			NumericMetricState maxWeightState;
+			consumer.requestState("handle_max", maxWeightState);
+			double maxWeight = maxWeightState.getObservedValue().getValue();
+			DebugOut(DebugOut::Default, "ExampleProject") << "Max weight value: "<< maxWeight;
+
+			// Set state test (must succeed)
+			InvocationState invocationStateSecond  = consumer.commitState(maxWeightState);
+			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): " << Data::OSCP::EnumToString::convert(invocationStateSecond);
+
+			Poco::Thread::sleep(1000);
+			consumer.unregisterStateEventHandler(eces1.get());
+			consumer.unregisterStateEventHandler(eces2.get());
+			Poco::Thread::sleep(4000);
+
+			consumer.disconnect();
 		} else {
-			DebugOut(DebugOut::Default, "ExampleProject") << "Committing state succeeded. This is an error, because it should be read-only.";
+			DebugOut(DebugOut::Default, "ExampleProject") << "Discovery failed.";
 		}
 
-		// Get state test (maximum weight)
-		NumericMetricState maxWeightState;
-		consumer.requestState("handle_max", maxWeightState);
-		double maxWeight = maxWeightState.getObservedValue().getValue();
-		DebugOut(DebugOut::Default, "ExampleProject") << "Max weight value: "<< maxWeight;
+		oscpsm.setHelloReceivedHandler(nullptr);
 
-		// Set state test (must succeed)
-		InvocationState invocationStateSecond  = consumer.commitState(maxWeightState);
-        DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): " << Data::OSCP::EnumToString::convert(invocationStateSecond);
+		dummyValueProducer.interrupt();
+		provider.shutdown();
+		Poco::Thread::sleep(2000);
 
-        Poco::Thread::sleep(1000);
-        consumer.unregisterStateEventHandler(eces1.get());
-        consumer.unregisterStateEventHandler(eces2.get());
-        Poco::Thread::sleep(4000);
-
-		consumer.disconnect();
-	} else {
-		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery failed.";
+		OSCLibrary::getInstance().shutdown();
+	} catch (Poco::Net::NetException & e) {
+		DebugOut(DebugOut::Default, "ExampleProject") << "An exeption was thrown:" << e.what() << std::endl;
 	}
-
-	oscpsm.setHelloReceivedHandler(nullptr);
-
-    dummyValueProducer.interrupt();
-	provider.shutdown();
-	Poco::Thread::sleep(2000);
-
-    OSCLibrary::getInstance()->shutdown();
 	DebugOut(DebugOut::Default, "ExampleProject") << "Shutdown." << std::endl;
 }

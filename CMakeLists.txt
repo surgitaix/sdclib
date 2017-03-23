@@ -13,7 +13,7 @@ if (crossCompile)
 endif()
 
 # Configure paths for your environment 
-# - CAN be omitted in linux, if all dependencies are installed on the system using 'make install'
+# - CAN be omitted in linux, if all dependencies (except pthread) are installed on the system using 'make install'
 # - MUST be specified for ARM cross-compilation!
 # Includes
 SET(XERCES_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xerces/include" CACHE PATH "Path to XERCES-C includes")
@@ -68,38 +68,6 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 set(OSCLibSOURCES
-./src/Cli/Client.cpp
-./src/Comm/AbstractBinding.cpp
-./src/Comm/Binding.cpp
-./src/Comm/CommunicationManager.cpp
-./src/Comm/DatagramSocketManager.cpp
-./src/Comm/DefaultNetworkInterface.cpp
-./src/Comm/HTTPClientExchanger.cpp
-./src/Comm/DPWS/DPWS11CommunicationManager.cpp
-./src/Comm/DPWS/DPWS11Message.cpp
-./src/Comm/DPWS/DPWS11MessageXMLBuilder.cpp
-./src/Comm/DPWS/DPWS11MessageXMLParser.cpp
-./src/Comm/DPWS/DPWS11MetadataSoapParserHandler.cpp
-./src/Comm/DPWS/DPWS11SoapParserHandler.cpp
-./src/Comm/DPWS/DPWS11WaveformStreamActionHandler.cpp
-./src/Comm/DPWS/DPWS11WSDLBuilder.cpp
-./src/Comm/DPWS/DPWS11WSDLParser.cpp
-./src/Comm/DPWS/XMLParser.cpp
-./src/Comm/IPBinding.cpp
-./src/Comm/Message.cpp
-./src/Comm/MulticastCallback.cpp
-./src/Comm/MulticastSocketManager.cpp
-./src/Comm/NetworkInterface.cpp
-./src/Comm/PendingMessage.cpp
-./src/Comm/Soap/SoapBody.cpp
-./src/Comm/Soap/SoapEnvelope.cpp
-./src/Comm/Soap/SoapHeader.cpp
-./src/Comm/Soap/XMLEntity.cpp
-./src/Comm/UnicastCallback.cpp
-./src/Data/EventSink.cpp
-./src/Data/EventSource.cpp
-./src/Data/Operation.cpp
-./src/Data/OperationHelpers.cpp
 ./src/Data/OSCP/MDIB/ActivateOperationDescriptor.cpp
 ./src/Data/OSCP/MDIB/AlertConditionDescriptor.cpp
 ./src/Data/OSCP/MDIB/AlertConditionReference.cpp
@@ -200,13 +168,9 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/VMDDescriptor.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextState.cpp
-./src/Data/OSCP/Operations/OSCPOperationTraits.cpp
-./src/Data/OSCP/Operations/OSCPReportTraits.cpp
 ./src/Data/OSCP/FutureInvocationState.cpp
-./src/Data/OSCP/OSCPCachedProvider.cpp
 ./src/Data/OSCP/OSCPConsumer.cpp
 ./src/Data/OSCP/OSCPConsumerEventHandler.cpp
-./src/Data/OSCP/OSCPPingManager.cpp
 ./src/Data/OSCP/OSCPProvider.cpp
 ./src/Data/OSCP/OSCPProviderActivateOperationHandler.cpp
 ./src/Data/OSCP/OSCPProviderAlertConditionStateHandler.cpp
@@ -222,33 +186,73 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/OSCPProviderNumericMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderStringMetricStateHandler.cpp
-./src/Data/OSCP/OSCPServiceManager.cpp
-./src/Data/OSCP/OSCPSubscriptionManager.cpp
-./src/Data/Parameter.cpp
-./src/Data/QName.cpp
-./src/Data/RemoteOperation.cpp
-./src/Data/Subscription.cpp
-./src/Data/SubscriptionVector.cpp
+./src/Data/OSCP/OSELibConsumerAdapter.cpp
+./src/Data/OSCP/OSELibProviderAdapter.cpp
 ./src/Dev/DeviceCharacteristics.cpp
-./src/Dev/Device.cpp
-./src/Dev/EndpointReference.cpp
-./src/Dev/Entity.cpp
-./src/Dev/OSCP/CDMContextService.cpp
-./src/Dev/OSCP/CDMEvtService.cpp
-./src/Dev/OSCP/CDMGetService.cpp
-./src/Dev/OSCP/CDMSetService.cpp
-./src/Dev/OSCP/CDMWavService.cpp
-./src/Dev/OSCP/OSCPDevice.cpp
-./src/Dev/OSCP/WSDLBuilder.cpp
-./src/Dev/Service.cpp
 ./src/OSCLibrary.cpp
+./src/OSELib/DPWS/ActiveSubscriptions.cpp
+./src/OSELib/DPWS/DeviceDescription.cpp
+./src/OSELib/DPWS/DeviceHandler.cpp
+./src/OSELib/DPWS/DeviceServiceController.cpp
+./src/OSELib/DPWS/MDPWSDiscoveryClientAdapter.cpp
+./src/OSELib/DPWS/DPWSCommon.cpp
+./src/OSELib/DPWS/DPWSDiscoveryClientSocketImpl.cpp
+./src/OSELib/DPWS/MDPWSStreamingAdapter.cpp
+./src/OSELib/DPWS/DPWSHostSocketImpl.cpp
+./src/OSELib/DPWS/MDPWSHostAdapter.cpp
+./src/OSELib/DPWS/MessageAdapter.cpp
+./src/OSELib/DPWS/MessagingContext.cpp
+./src/OSELib/DPWS/MetadataProvider.cpp
+./src/OSELib/DPWS/OperationTraits.cpp
+./src/OSELib/DPWS/PingManager.cpp
+./src/OSELib/DPWS/SubscriptionClient.cpp
+./src/OSELib/DPWS/SubscriptionManager.cpp
+./src/OSELib/Helper/BufferAdapter.cpp
+./src/OSELib/Helper/DurationWrapper.cpp
+./src/OSELib/Helper/Message.cpp
+./src/OSELib/Helper/SchemaGrammarProvider.cpp
+./src/OSELib/Helper/StreamReader.cpp
+./src/OSELib/Helper/WithLogger.cpp
+./src/OSELib/Helper/XercesDocumentWrapper.cpp
+./src/OSELib/Helper/XercesGrammarPoolProvider.cpp
+./src/OSELib/Helper/XercesParserWrapper.cpp
+./src/OSELib/Helper/XercesUniqueElementByTagNameFilter.cpp
+./src/OSELib/HTTP/FrontControllerAdapter.cpp
+./src/OSELib/HTTP/FrontController.cpp
+./src/OSELib/HTTP/GenericContentHandler.cpp
+./src/OSELib/HTTP/GenericFileHandler.cpp
+./src/OSELib/HTTP/HTTPClientExchanger.cpp
+./src/OSELib/HTTP/HTTPSessionManager.cpp
+./src/OSELib/HTTP/Service.cpp
+./src/OSELib/HTTP/StaticContentController.cpp
+./src/OSELib/OSCP/ContextEventSinkHandler.cpp
+./src/OSELib/OSCP/ContextServiceHandler.cpp
+./src/OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.cpp
+./src/OSELib/OSCP/EventReportEventSinkHandler.cpp
+./src/OSELib/OSCP/EventReportServiceHandler.cpp
+./src/OSELib/OSCP/GetServiceHandler.cpp
+./src/OSELib/OSCP/OperationTraits.cpp
+./src/OSELib/OSCP/ReportTraits.cpp
+./src/OSELib/OSCP/ServiceManager.cpp
+./src/OSELib/OSCP/SetServiceHandler.cpp
+./src/OSELib/SOAP/CommonSoapPreprocessing.cpp
+./src/OSELib/SOAP/GetActionCommand.cpp
+./src/OSELib/SOAP/GetMetadataActionCommand.cpp
+./src/OSELib/SOAP/HTTPRequestHandlerExceptionTrap.cpp
+./src/OSELib/SOAP/NormalizedMessageAdapter.cpp
+./src/OSELib/SOAP/NormalizedMessageSerializer.cpp
+./src/OSELib/SOAP/NormalizeMessageFilter.cpp
+./src/OSELib/SOAP/RenewActionCommand.cpp
+./src/OSELib/SOAP/SoapActionCommand.cpp
+./src/OSELib/SOAP/SoapFaultCommand.cpp
+./src/OSELib/SOAP/SoapHTTPResponseWrapper.cpp
+./src/OSELib/SOAP/SoapInvoke.cpp
+./src/OSELib/SOAP/SubscribeActionCommand.cpp
+./src/OSELib/SOAP/UnsubscribeActionCommand.cpp
+./src/OSELib/OSCP/WaveformReportServiceHandler.cpp
+./src/OSELib/WSDL/WSDLBuilder.cpp
 ./src/Util/DebugOut.cpp
-./src/Util/DefaultUUIDGenerator.cpp
-./src/Util/FromString.cpp
-./src/Util/Helpers.cpp
 ./src/Util/Task.cpp
-./src/Util/ToString.cpp
-./src/Util/TypeConversion.cpp
 )
 
 set(PocoSOURCES 
@@ -262,7 +266,10 @@ set(PocoSOURCES
 ./src/Dependencies/Poco/BinaryWriter.cpp
 ./src/Dependencies/Poco/Bugcheck.cpp
 ./src/Dependencies/Poco/ByteOrder.cpp
+./src/Dependencies/Poco/Channel.cpp
 ./src/Dependencies/Poco/Clock.cpp
+./src/Dependencies/Poco/Configurable.cpp
+./src/Dependencies/Poco/ConsoleChannel.cpp
 ./src/Dependencies/Poco/CountingStream.cpp
 ./src/Dependencies/Poco/DateTime.cpp
 ./src/Dependencies/Poco/DateTimeFormat.cpp
@@ -281,17 +288,29 @@ set(PocoSOURCES
 ./src/Dependencies/Poco/FileStream.cpp
 ./src/Dependencies/Poco/FileStreamFactory.cpp
 ./src/Dependencies/Poco/Format.cpp
+./src/Dependencies/Poco/Formatter.cpp
+./src/Dependencies/Poco/FormattingChannel.cpp
 ./src/Dependencies/Poco/FPEnvironment.cpp
 ./src/Dependencies/Poco/Latin1Encoding.cpp
 ./src/Dependencies/Poco/Latin2Encoding.cpp
 ./src/Dependencies/Poco/Latin9Encoding.cpp
 ./src/Dependencies/Poco/LocalDateTime.cpp
+./src/Dependencies/Poco/LogFile.cpp
+./src/Dependencies/Poco/Logger.cpp
+./src/Dependencies/Poco/LoggingRegistry.cpp
 ./src/Dependencies/Poco/MD4Engine.cpp
 ./src/Dependencies/Poco/MD5Engine.cpp
 ./src/Dependencies/Poco/MemoryPool.cpp
 ./src/Dependencies/Poco/MemoryStream.cpp
+./src/Dependencies/Poco/Message.cpp
 ./src/Dependencies/Poco/NullStream.cpp
 ./src/Dependencies/Poco/Mutex.cpp
+./src/Dependencies/Poco/PatternFormatter.cpp
+./src/Dependencies/Poco/Pipe.cpp
+./src/Dependencies/Poco/PipeImpl.cpp
+./src/Dependencies/Poco/Process.cpp
+./src/Dependencies/Poco/SimpleFileChannel.cpp
+./src/Dependencies/Poco/SplitterChannel.cpp
 ./src/Dependencies/Poco/StreamCopier.cpp
 ./src/Dependencies/Poco/URIStreamFactory.cpp
 ./src/Dependencies/Poco/URIStreamOpener.cpp
@@ -421,18 +440,24 @@ set(PocoSOURCES
 )
 
 
-list(APPEND OSCLibSOURCES ./datamodel/BICEPS_DomainModel.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/BICEPS_MessageModel.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/DICOMDeviceDescription.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/ExtensionPoint.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/wsdl-custom.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/wsdl-soap-binding.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/ws-addressing.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/ws-policy.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/ws-streaming.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/eventing.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/wsdd-discovery-1.1-schema-os.cxx)
-list(APPEND OSCLibSOURCES ./datamodel/MessageModel-Discovery.cxx)
+list(APPEND OSCLibSOURCES 
+./datamodel/BICEPS_DomainModel.cxx
+./datamodel/BICEPS_MessageModel.cxx
+./datamodel/DICOMDeviceDescription.cxx
+./datamodel/eventing.cxx
+./datamodel/ExtensionPoint.cxx
+./datamodel/MDPWS.cxx
+./datamodel/MetadataExchange.cxx
+./datamodel/NormalizedMessageModel.cxx
+./datamodel/ws-addressing.cxx
+./datamodel/wsdd-discovery-1.1-schema-os.cxx
+./datamodel/wsdd-dpws-1.1-schema-os.cxx
+./datamodel/wsdl-custom.cxx
+./datamodel/ws-policy.cxx
+./datamodel/ws-streaming.cxx
+./datamodel/wsdl-soap-binding.cxx
+
+)
 
 
 list(APPEND OSCLibSOURCES ${PocoSOURCES})
@@ -441,22 +466,12 @@ add_library(OSCLib SHARED ${OSCLibSOURCES})
 
 add_executable(UnitTests
 Tests/UnitTests.cpp
-Tests/IntegrationTests/TestStress.cpp
-Tests/Unittests/TestBinding.cpp
-Tests/IntegrationTests/TestEventing.cpp
-Tests/IntegrationTests/TestDiscovery.cpp
-Tests/Unittests/TestIPBinding.cpp
-Tests/IntegrationTests/TestCreateWSDL.cpp
 Tests/OSCPTests/TestConnectionLost.cpp
 Tests/OSCPTests/TestDICOM.cpp
 Tests/OSCPTests/TestMultiOSCP.cpp
 Tests/OSCPTests/TestSimpleOSCP.cpp
 Tests/OSCPTests/TestPeriodicEvents.cpp
 Tests/OSCPTests/TestStreamOSCP.cpp
-Tests/IntegrationTests/TestAutobinding.cpp
-Tests/IntegrationTests/TestComplexTypes.cpp
-Tests/IntegrationTests/TestServiceInvoke.cpp
-Tests/Unittests/TestUUIDGenerator.cpp
 Tests/UnitTest++/src/Test.cpp
 Tests/UnitTest++/src/TestList.cpp
 Tests/UnitTest++/src/TestRunner.cpp
@@ -480,6 +495,14 @@ Tests/UnitTest++/src/Posix/SignalTranslator.cpp
 
 add_executable(ExampleConsumer
 Examples/ExampleConsumer.cpp
+)
+
+add_executable(ExampleConsumer4SoftICEStreaming
+Examples/ExampleConsumer4SoftICEStreaming.cpp
+)
+
+add_executable(ExampleProvider4SoftICEStreaming
+Examples/ExampleProvider4SoftICEStreaming.cpp
 )
 
 add_executable(ExampleProject
@@ -514,11 +537,14 @@ add_executable(ClientForUniRostockDevices
 Examples/ClientForUniRostockDevices.cpp
 )
 
+
 SET(ADDITIONAL_LIBS "")
 
 target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleProvider4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})

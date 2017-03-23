@@ -1,0 +1,27 @@
+var class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure =
+[
+    [ "WrappedType", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#adf4dbb8b242e4d0dd78322296e2716b8", null ],
+    [ "ImagingProcedure", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a18c3f071e4cb0c0d2d13a3dc8d6b6441", null ],
+    [ "ImagingProcedure", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#ac23b3d438b3d9007dc186c6223ce3445", null ],
+    [ "~ImagingProcedure", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a5ece9a4819621a28a80fad6f6a2dba34", null ],
+    [ "copyFrom", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a67daa7f271dc5b55e5bc5e2aa4245e04", null ],
+    [ "getAccessionIdentifier", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a07168d579b301a08342ad4b885b363f9", null ],
+    [ "getModality", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#aefdfff4c99544fcf0fdb3eb4f5766996", null ],
+    [ "getModality", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a9d87c46f6dded7deb24e1186073a138d", null ],
+    [ "getProtocolCode", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a8ee6a33164f852b12af3f43670dccd73", null ],
+    [ "getProtocolCode", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a71c286f4517694570cc72a050f774735", null ],
+    [ "getRequestedProcedureID", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a8d647e32e9ea1d67695250961048f556", null ],
+    [ "getScheduledProcedureStepID", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a459b0bfdcf6cd50d90e4d2c566883177", null ],
+    [ "getStudyInstanceUID", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#aad0bcd7a2b258436ab6ef139afd0cd18", null ],
+    [ "hasModality", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#acafe1917fbd7132949a9454fd7bd0940", null ],
+    [ "hasProtocolCode", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a0c8cf8290c30cf0fc2537eb944ca1470", null ],
+    [ "operator=", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a01107f1d832978b7ca0e01ed072a9ed7", null ],
+    [ "setAccessionIdentifier", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#ab6aa63a299904706cb66044fd1b9acf6", null ],
+    [ "setModality", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a09479b4ba33f8b62898d15cfff7951aa", null ],
+    [ "setProtocolCode", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a3b798411b1451c618037b4bdf9391911", null ],
+    [ "setRequestedProcedureID", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a4ffd590a95e5000e8b672b822d809d3e", null ],
+    [ "setScheduledProcedureStepID", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a7081214426cf19e056e2d39b5d1da9a2", null ],
+    [ "setStudyInstanceUID", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#a3cab8b0331e07d571cd544fbe263204a", null ],
+    [ "ConvertFromCDM", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#ac6ec5845004d2a33d21a00e8b80d5716", null ],
+    [ "ConvertToCDM", "class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_imaging_procedure.html#ada82341792793d9e390abb2d9023cda5", null ]
+];

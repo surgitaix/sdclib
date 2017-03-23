@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://schemas.xmlsoap.org/ws/2004/09/mex" 
+xmlns:tns="http://schemas.xmlsoap.org/ws/2004/09/mex"
+xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:mpdws="http://standards.ieee.org/downloads/11073/11073-20702-201x/"
+elementFormDefault="qualified" blockDefault="#all">
+
+<xs:import namespace="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01" schemaLocation="wsdd-dpws-1.1-schema-os.xsd"/>
+<xs:import namespace="http://standards.ieee.org/downloads/11073/11073-20702-201x/" schemaLocation="MDPWS.xsd"/>
+  
+  <xs:element name="GetMetadata">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:Dialect" minOccurs="0"/>
+        <xs:element ref="tns:Identifier" minOccurs="0"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Dialect" type="xs:anyURI"/>
+  <xs:element name="Identifier" type="xs:anyURI"/>
+
+  <xs:element name="Metadata">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:MetadataSection" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MetadataSection">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="tns:MetadataReference"/>
+        <xs:element ref="tns:Location"/>
+        <xs:element ref="dpws:ThisModel"/>
+        <xs:element ref="dpws:ThisDevice"/>
+        <xs:element ref="dpws:Relationship"/>
+        <xs:element ref="mpdws:StreamDescriptions"/>
+      </xs:choice>
+      <xs:attribute name="Dialect" type="xs:anyURI" use="required"/>
+      <xs:attribute name="Identifier" type="xs:anyURI"/>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MetadataReference">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="1" maxOccurs="unbounded" processContents="lax" namespace="##other"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Location" type="xs:anyURI"/>
+</xs:schema>

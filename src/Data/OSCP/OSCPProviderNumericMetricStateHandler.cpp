@@ -7,7 +7,6 @@
 
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {
@@ -22,7 +21,7 @@ OSCPProviderNumericMetricStateHandler::~OSCPProviderNumericMetricStateHandler() 
 }
 
 InvocationState OSCPProviderNumericMetricStateHandler::onStateChangeRequest(const NumericMetricState & , const OperationInvocationContext & ) {
-    Util::DebugOut(Util::DebugOut::Error, "OSCPProviderMDStateHandler") << "Method not overridden: onStateChangeRequest(NumericMetricState)!";
+	log_error([] { return "Method not overridden: onStateChangeRequest(NumericMetricState)!"; });
     return InvocationState::FAILED;
 }
 

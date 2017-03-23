@@ -17,8 +17,8 @@
 /*
  * OSCPConsumer.h
  *
- *  @Copyright (C) 2014, SurgiTAIX AG
- *  Author: roehser, besting
+ *  @Copyright (C) 2017, SurgiTAIX AG
+ *  Author: roehser, besting, buerger
  */
 
 #ifndef OSCPCONSUMER_H_
@@ -28,6 +28,9 @@
 #include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
 #include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
 
+#include "OSELib/DPWS/DeviceDescription.h"
+#include "OSCLib/Data/OSCP/OSELibConsumerAdapter.h"
+
 #include <atomic>
 #include <deque>
 #include <map>
@@ -36,27 +39,29 @@
 
 #include "Poco/Mutex.h"
 
+#include "OSELib/Helper/WithLogger.h"
+
+namespace OSELib {
+	struct ContextServiceEventSink;
+	struct EventReportEventSink;
+	namespace OSCP {
+		class ServiceManager;
+	}
+}
+
 namespace OSCLib {
-
-namespace Cli {
-class Client;
-}
-
-namespace Comm {
-namespace DPWS {
-class DPWS11WaveformStreamActionHandler;
-}
-}
-
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumer {
-friend class OSCPPingManager;
-friend class OSCPServiceManager;
-friend class OSCPSubscriptionManager;
-friend class OSCLib::Comm::DPWS::DPWS11WaveformStreamActionHandler;
+class OSCPConsumer final : public OSELib::WithLogger {
 friend class FutureInvocationState;
+friend class OSELibConsumerAdapter;
+// todo remove friend classes and only use oselibconsumer adapter
+friend struct OSELib::ContextServiceEventSink;
+friend struct OSELib::EventReportEventSink;
+friend class OSELib::DPWS::PingManager;
+friend class OSELib::OSCP::ServiceManager;
+
 private:
 	struct TransactionState {
 		TransactionState(int id, InvocationState is) :
@@ -67,10 +72,7 @@ private:
 		const int transactionId;
 		const InvocationState invocationState;
 	};
-private:
-    virtual OSCPConsumer & operator=(const OSCPConsumer & consumer) { return *this; }
 public:
-    OSCPConsumer(const OSCPConsumer & consumer) { throw std::runtime_error("Not implemented."); }
 	virtual ~OSCPConsumer();
 
     /**
@@ -123,21 +125,9 @@ public:
     *
     * @return True, if request was successful
     */
-	bool requestState(const std::string & handle, AlertConditionState & outState);
-	bool requestState(const std::string & handle, AlertSignalState & outState);
-    bool requestState(const std::string & handle, AlertSystemState & outState);
-	bool requestState(const std::string & handle, ClockState & outState);
-	bool requestState(const std::string & handle, ComponentState & outState);
-	bool requestState(const std::string & handle, EnsembleContextState & outState);
-    bool requestState(const std::string & handle, EnumStringMetricState & outState);
-	bool requestState(const std::string & handle, LimitAlertConditionState & outState);
-	bool requestState(const std::string & handle, LocationContextState & outState);
-	bool requestState(const std::string & handle, NumericMetricState & outState);
-	bool requestState(const std::string & handle, OperationState & outState);
-	bool requestState(const std::string & handle, OperatorContextState & outState);
-	bool requestState(const std::string & handle, PatientContextState & outState);
-	bool requestState(const std::string & handle, StringMetricState & outState);
-	bool requestState(const std::string & handle, WorkflowContextState & outState);
+
+    template<class OutStateType>
+    bool requestState(const std::string & handle, OutStateType & state);
 
     /**
     * @brief Commit or 'SET' a state (asynchronously).
@@ -190,13 +180,6 @@ public:
     void disconnect();
 
     /**
-    * @brief Check if consumer is valid.
-    *
-    * @return True, if connected
-    */
-    bool isValid();
-
-    /**
     * @brief Check if consumer is connected.
     *
     * @return True, if connected
@@ -204,13 +187,6 @@ public:
     bool isConnected() {
         return connected;
     }
-
-    /**
-    * @brief Get the logical (default) transport address of the provider used by DPWS (XAddr).
-    *
-    * @return The XAddr
-    */
-    std::string getProviderXAddr() const;
 
     /**
     * @brief Set a handler which will be invoked if a ping fails.
@@ -240,8 +216,7 @@ public:
     unsigned long long int getLastKnownMDIBVersion();
 
 private:
-    OSCPConsumer();
-    OSCPConsumer(std::shared_ptr<Cli::Client> client);
+    OSCPConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription);
 
     /**
     * @brief Update the local MDIB using an RPC to the provider.
@@ -260,31 +235,17 @@ private:
 
     void handleInvocationState(int transactionId, FutureInvocationState & fis);
 
-    template<class OutStateType>
-    bool requestStateImpl(const std::string & handle, OutStateType & state);
-
-    template<class OperationTraits>
-    std::unique_ptr<typename OperationTraits::Response> invokeImpl(const typename OperationTraits::Request & request);
-
     template<typename T>
     void onStateChanged(const T & state);
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is);
     void onConnectionLost();
     void onSubscriptionLost();
     void onContextStateChanged(const std::vector<std::string> & handle);
-
-    void initializePingManager();
-    void initializeCDMEventSinks();
-    void removeCDMEventSinks();
-
     void updateLastKnownMDIBVersion(unsigned long long int newVersion);
 
-    std::shared_ptr<Cli::Client> client;
-    Poco::Mutex pingManMutex;
-	std::shared_ptr<OSCPPingManager> pingMan;
-	Poco::Mutex subManMutex;
-    std::shared_ptr<OSCPSubscriptionManager> subMan;
-
+    //
+    //Variables
+    //
     std::map<int, FutureInvocationState *> fisMap;
     Poco::Mutex transactionMutex;
 
@@ -300,6 +261,10 @@ private:
 
     unsigned long long int lastKnownMDIBVersion;
     std::atomic<bool> connected;
+    OSELib::DPWS::DeviceDescription _deviceDescription;
+    std::unique_ptr<OSELibConsumerAdapter> _adapter;
+
+
 };
 
 } /* namespace OSCP */

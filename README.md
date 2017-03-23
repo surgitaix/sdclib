@@ -20,4 +20,3 @@
 
 See the 'Examples' and 'Tests' folders for example implementations.
 Run './UnitTests' for running  OSCP related tests.
-

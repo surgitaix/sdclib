@@ -11,7 +11,6 @@
 #include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
@@ -35,6 +34,8 @@
 #include "OSCLib/Util/DebugOut.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "Poco/Event.h"
 #include "Poco/Mutex.h"
@@ -76,7 +77,7 @@ public:
     void onStateChanged(const AlertConditionState & ) override {
     	++counter;
 		if (counter < 5) {
-			Util::DebugOut(Util::DebugOut::Default, "SimpleOSCP") << "Consumer: Received alert condition change of " << handle << std::endl;
+			Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received alert condition change of " << handle << std::endl;
 		} else {
 			event.set();
 		}
@@ -107,7 +108,7 @@ public:
         if (!handles.empty() && handles.front() == handle) {
         	++counter;
     		if (counter < 5) {
-    	        Util::DebugOut(Util::DebugOut::Default, "SimpleOSCP") << "Consumer: Received context values changed!" << std::endl;
+    	        Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received context values changed!" << std::endl;
     		} else {
     			event.set();
     		}
@@ -136,7 +137,7 @@ public:
     void onStateChanged(const NumericMetricState & ) override {
         ++counter;
     	if (counter < 5) {
-        	Util::DebugOut(Util::DebugOut::Default, "SimpleOSCP") << "Consumer: Received metric changed event of " << handle << std::endl;
+        	Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received metric changed event of " << handle << std::endl;
         } else {
         	event.set();
         }
@@ -295,14 +296,15 @@ private:
 // Provider
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class OSCPDeviceProvider : public OSCPProvider {
+class OSCPDeviceProvider {
 public:
 	OSCPDeviceProvider() :
+		oscpProvider(),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
 		hydraMDSState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
-    	setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+		oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
         alertCondition
 			.addSource(METRIC_DUMMY_HANDLE)
@@ -316,20 +318,6 @@ public:
 	        .setHandle(METRIC_DUMMY_HANDLE);
 
         location.setHandle(LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
-
-        // State handlers
-		addMDStateHandler(&alertSystemState);
-		addMDStateHandler(&alertConditionState);
-        addMDStateHandler(&channelState);
-        addMDStateHandler(&contextStates);
-		addMDStateHandler(&dummyState);
-        addMDStateHandler(&hydraMDSState);
-        addMDStateHandler(&vmdState);
-
-        init();
-    }
-
-    void init() {
 
     	// Alerts
         AlertSystemDescriptor alertSystem;
@@ -373,10 +361,42 @@ public:
 			.addVMD(deviceModule)
 			.setAlertSystem(alertSystem);
 
-        addHydraMDS(deviceSystem);
-    }
+        // create and add description
+		MDDescription mdDescription;
+		mdDescription.addMDSDescriptor(deviceSystem);
+
+		oscpProvider.setMDDescription(mdDescription);
+
+        // State handlers
+        oscpProvider.addMDStateHandler(&alertSystemState);
+        oscpProvider.addMDStateHandler(&alertConditionState);
+        oscpProvider.addMDStateHandler(&channelState);
+        oscpProvider.addMDStateHandler(&contextStates);
+        oscpProvider.addMDStateHandler(&dummyState);
+        oscpProvider.addMDStateHandler(&hydraMDSState);
+        oscpProvider.addMDStateHandler(&vmdState);
+	}
+
+	void startup() {
+		oscpProvider.startup();
+	}
+
+	void shutdown() {
+		oscpProvider.shutdown();
+	}
+
+	void addHandleForPeriodicEvent(const std::string & handle) {
+		oscpProvider.addHandleForPeriodicEvent(handle);
+	}
+
+	void setPeriodicEventInterval(const int seconds, const int milliseconds) {
+		oscpProvider.setPeriodicEventInterval(seconds, milliseconds);
+	}
 
 private:
+	// Provider
+	OSCPProvider oscpProvider;
+
     // alert descriptors
 	AlertConditionDescriptor alertCondition;
     // metric descriptors
@@ -403,7 +423,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixturePeriodicEvents : Tests::AbstractOSCLibFixture {
-	FixturePeriodicEvents() : AbstractOSCLibFixture("FixturePeriodicEvents", Util::DebugOut::Error, 9100) {}
+	FixturePeriodicEvents() : AbstractOSCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::NOTICE, 9100) {}
 };
 
 SUITE(OSCP) {
@@ -423,11 +443,12 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
         provider.setPeriodicEventInterval(0, 500);
 
         // Consumer
-        OSCPServiceManager oscpsm;
+        OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(Tests::PeriodicEvents::DEVICE_ENDPOINT_REFERENCE));
 
         // Make test fail if discovery fails
         CHECK_EQUAL(true, consumer != nullptr);
+
 		if (consumer != nullptr) {
             // Register for metric events
 	        Tests::PeriodicEvents::ConsumerDummyHandler dummyMetricHandler;
@@ -455,6 +476,8 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
         provider.shutdown();
     } catch (char const* exc) {
     	Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << exc;
+    }catch (Poco::SystemException *e){
+    	Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << e->message();
 	} catch (...) {
 		Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << "Unknown exception occurred!";
 	}

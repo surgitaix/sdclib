@@ -24,19 +24,21 @@
 #ifndef OSCPPROVIDERMDSTATEHANDLER_H_
 #define OSCPPROVIDERMDSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include <memory>
+#include <string>
 
 #include "Poco/Mutex.h"
 
-#include <string>
-#include <memory>
+#include "OSCLib/Data/OSCP/OSCP-fwd.h"
+#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+
+#include "OSELib/Helper/WithLogger.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderMDStateHandler {
+class OSCPProviderMDStateHandler : public OSELib::WithLogger {
 	friend class OSCPProvider;
 public:
 	OSCPProviderMDStateHandler();

@@ -30,12 +30,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPCachedProvider : public OSCPProvider {
+class OSCPCachedProvider : OSELib::WithLogger {
 public:
 	OSCPCachedProvider();
 	virtual ~OSCPCachedProvider();
 
-	MDDescription getMDDescription() final override;
+	MDDescription getMDDescription();
 
     /**
     * @brief Set or update the MD description.
@@ -52,7 +52,8 @@ public:
 	void setMDDescription(std::string xml);
 
 private:
-	std::shared_ptr<MDDescription> mdDescription;
+	std::shared_ptr<MDDescription> m_mdDescription;
+	OSCPProvider m_OSCPProvider;
 };
 
 } /* namespace OSCP */

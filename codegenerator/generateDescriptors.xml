@@ -142,7 +142,7 @@
     </class>
 
     <class name = "MDDescription" parent = "NULL" abstract = "false" customImpl = "true" >
-	<include path = "OSCLib/Data/OSCP/MDIB/VersionCounter.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/VersionCounter.h" />
     	<property name = "DescriptionVersion" type = "VersionCounter" optional = "true" />
     </class>
     

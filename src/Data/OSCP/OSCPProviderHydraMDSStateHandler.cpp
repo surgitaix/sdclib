@@ -7,7 +7,6 @@
 
 #include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
-#include "OSCLib/Util/DebugOut.h"
 
 namespace OSCLib {
 namespace Data {

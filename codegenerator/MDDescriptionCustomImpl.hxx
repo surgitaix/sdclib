@@ -1,6 +1,9 @@
 
-	void addHydraMDSDescriptor(const HydraMDSDescriptor & source);
-	void addDicomMDSDescriptor(const DICOMDeviceDescriptor & source);
+	template <class MDSDescriptor>
+	void addMDSDescriptor(const MDSDescriptor & source);
+	template <class MDSDescriptor>
+	bool removeMDSDescriptor(const MDSDescriptor & object);
+
 	bool getFirstHydraMDSDescriptor(HydraMDSDescriptor & outDescriptor) const;
 
 	bool findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const;

@@ -19,7 +19,6 @@
 #include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
@@ -63,6 +62,8 @@
 #include "Poco/Event.h"
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
@@ -738,15 +739,16 @@ private:
 // Provider
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class OSCPHoldingDeviceProvider : public OSCPProvider, public Util::Task {
+class OSCPHoldingDeviceProvider : public Util::Task {
 public:
     OSCPHoldingDeviceProvider() :
+    	oscpProvider(),
     	currentWeight(0),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
 		hydraMDSState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
-    	setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+    	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
@@ -832,27 +834,6 @@ public:
 			.setLatching(true)
 			.setHandle("handle_alert_signal_latching");
 
-        // State handlers
-
-        addMDStateHandler(&contextStates);
-        addMDStateHandler(&curValueState);
-        addMDStateHandler(&enumState);
-        addMDStateHandler(&maxValueState);
-        addMDStateHandler(&strValueState);
-        addMDStateHandler(&limitAlertConditionHandler);
-        addMDStateHandler(&alertSigHandler);
-        addMDStateHandler(&latchingAlertSigHandler);
-        addMDStateHandler(&alertSysHandler);
-        addMDStateHandler(&cmdHandler);
-        addMDStateHandler(&channelState);
-        addMDStateHandler(&hydraMDSState);
-        addMDStateHandler(&vmdState);
-
-        init();
-    }
-
-    void init() {
-
         // Alerts
         AlertSystemDescriptor alertSystem;
         alertSystem
@@ -907,19 +888,52 @@ public:
                 .setCodingSystemId("OR.NET.Codings")
         		.setCodeId("MDCX_CODE_ID_MDS"));
 
-        createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
-        createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
-        createSetOperationForDescriptor(testEnumMetric, holdingDeviceSystem);
-        createSetOperationForDescriptor(testStringMetric, holdingDeviceSystem);
-        createSetOperationForDescriptor(location, holdingDeviceSystem);
-        createSetOperationForDescriptor(patient, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(testEnumMetric, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(testStringMetric, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
+        oscpProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
 
         ActivateOperationDescriptor aod;
 			aod.setHandle("handle_cmd")
 			.setOperationTarget("handle_max");
-        addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
-        addHydraMDS(holdingDeviceSystem);
+		oscpProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
+
+		// create and add description
+		MDDescription mdDescription;
+		mdDescription.addMDSDescriptor(holdingDeviceSystem);
+
+		oscpProvider.setMDDescription(mdDescription);
+
+        // State handlers
+
+		oscpProvider.addMDStateHandler(&contextStates);
+		oscpProvider.addMDStateHandler(&curValueState);
+		oscpProvider.addMDStateHandler(&enumState);
+		oscpProvider.addMDStateHandler(&maxValueState);
+		oscpProvider.addMDStateHandler(&strValueState);
+		oscpProvider.addMDStateHandler(&limitAlertConditionHandler);
+		oscpProvider.addMDStateHandler(&alertSigHandler);
+		oscpProvider.addMDStateHandler(&latchingAlertSigHandler);
+		oscpProvider.addMDStateHandler(&alertSysHandler);
+		oscpProvider.addMDStateHandler(&cmdHandler);
+		oscpProvider.addMDStateHandler(&channelState);
+		oscpProvider.addMDStateHandler(&hydraMDSState);
+		oscpProvider.addMDStateHandler(&vmdState);
+	}
+
+    MDDescription getMDDescription() {
+    	return oscpProvider.getMDDescription();
+    }
+
+    void startup() {
+    	oscpProvider.startup();
+    }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
     }
 
     // Update weight periodically
@@ -933,7 +947,7 @@ public:
     }
 
     void setCurrentWeight(float value) {
-        Poco::Mutex::ScopedLock lock(getMutex());
+        Poco::Mutex::ScopedLock lock(oscpProvider.getMutex());
         currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Changed value: " << currentWeight << std::endl;
@@ -942,6 +956,9 @@ public:
 
 private:
     float currentWeight;
+
+    // Provider object
+    OSCPProvider oscpProvider;
 
     // The current weight
     NumericMetricDescriptor currentWeightMetric;
@@ -989,7 +1006,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixtureSimpleOSCP : Tests::AbstractOSCLibFixture {
-	FixtureSimpleOSCP() : AbstractOSCLibFixture("FixtureSimpleOSCP", Util::DebugOut::Error, 9000) {}
+	FixtureSimpleOSCP() : AbstractOSCLibFixture("FixtureSimpleOSCP", OSELib::LogLevel::ERROR, 9000) {}
 };
 
 SUITE(OSCP) {
@@ -1000,13 +1017,20 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 	{
         // Provider
         Tests::SimpleOSCP::OSCPHoldingDeviceProvider provider;
-        provider.startup();    
+        provider.startup();
         provider.start();
 
-        //Poco::Thread::sleep(2000000);
+        // MDDescription test
+        MDDescription mdDescription =  provider.getMDDescription();
+        // add and remove a test MDS
+        HydraMDSDescriptor hydraMDS_test;
+        mdDescription.addMDSDescriptor(hydraMDS_test);
 
+        CHECK_EQUAL(true, mdDescription.removeMDSDescriptor(hydraMDS_test));
+
+        //Poco::Thread::sleep(2000000);
         // Consumer
-        OSCPServiceManager oscpsm;
+        OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleOSCP::DEVICE_ENDPOINT_REFERENCE));
 
         Tests::SimpleOSCP::ExampleConsumerNumericHandler eces1("handle_cur");
@@ -1021,8 +1045,6 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         CHECK_EQUAL(true, c != nullptr);
 
 		if (c != nullptr) {
-            const std::string xaddr(c->getProviderXAddr());
-
 			OSCPConsumer & consumer = *c;
             // MDIB test
             MDIBContainer mdib(consumer.getMDIB());

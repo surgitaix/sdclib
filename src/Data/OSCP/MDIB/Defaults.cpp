@@ -5,6 +5,8 @@
  *      Author: roehser
  */
 
+#include "Poco/UUIDGenerator.h"
+
 #include "OSCLib/Data/OSCP/MDIB/Annotation.h"
 #include "OSCLib/Data/OSCP/MDIB/BaseDemographics.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
@@ -22,7 +24,6 @@
 #include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
-#include "OSCLib/Util/DefaultUUIDGenerator.h"
 
 #include "osdm.hxx"
 
@@ -444,7 +445,7 @@ CDM::StringMetricValue * Defaults::StringMetricValue() {
 
 CDM::SystemContext * Defaults::SystemContext() {
 	return new CDM::SystemContext(
-			Util::DefaultUUIDGenerator::getUUID());
+			Poco::UUIDGenerator::defaultGenerator().create().toString());
 }
 
 CDM::SystemMetaData * Defaults::SystemMetaData() {

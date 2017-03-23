@@ -28,8 +28,9 @@
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Util/DebugOut.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "Poco/Thread.h"
 #include "Poco/Timestamp.h"
@@ -90,12 +91,12 @@ private:
 
 int main() {
 	DebugOut(DebugOut::Default, "ClientForUniRostockDevices") << std::endl << "Startup" << std::endl;
-    OSCLibrary::getInstance()->startup(Util::DebugOut::Error);
-	OSCLibrary::getInstance()->setPortStart(11111);
+    OSCLibrary::getInstance().startup();
+	OSCLibrary::getInstance().setPortStart(11111);
 
 	// Discovery
-	Data::OSCP::OSCPServiceManager oscpsm;
-	std::shared_ptr<Data::OSCP::OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	OSELib::OSCP::ServiceManager oscpsm;
+	std::unique_ptr<Data::OSCP::OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 
 	if (c != nullptr) {
 		Data::OSCP::OSCPConsumer & consumer = *c;
@@ -347,7 +348,7 @@ int main() {
 		Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Discovery failed.";
 	}
 
-    OSCLibrary::getInstance()->shutdown();
+    OSCLibrary::getInstance().shutdown();
 	DebugOut(DebugOut::Default, "ClientForUniRostockDevices") << "Shutdown" << std::endl;
 }
 

@@ -718,8 +718,6 @@ namespace WS
   }
 }
 
-#include <xsd/cxx/xml/dom/wildcard-source.hxx>
-
 #include <xsd/cxx/xml/dom/parsing-source.hxx>
 
 #include <xsd/cxx/tree/type-factory-map.hxx>

@@ -3,7 +3,6 @@
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
@@ -14,9 +13,10 @@
 #include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
 #include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/Task.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
@@ -31,15 +31,11 @@ namespace OSCLib {
 namespace Tests {
 namespace ConnectionLostOSCP {
 
-class OSCPTestDeviceProvider : public OSCPProvider {
+class OSCPTestDeviceProvider {
 public:
 
-    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : epr(number), metrics(metricCount) {
-    	setEndpointReference(std::string("UDI_") + std::to_string(epr));
-    	init();
-    }
-
-    void init() {
+    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : oscpProvider(), epr(number), metrics(metricCount) {
+    	oscpProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
 
         // Location context
         SystemContext sc;
@@ -85,10 +81,31 @@ public:
 
         mds.addVMD(testVMD);
 
-        addHydraMDS(mds);
+        // create and add description
+        MDDescription mdDescription;
+        mdDescription.addMDSDescriptor(mds);
+
+        oscpProvider.setMDDescription(mdDescription);
+
     }
 
+    void startup() {
+    	oscpProvider.startup();
+    }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
+    }
+
+    const std::string getEndpointReference() const {
+    	return oscpProvider.getEndpointReference();
+    }
+
+
 private:
+    // Provider object
+    OSCPProvider oscpProvider;
+
     const std::size_t epr;
     const std::size_t metrics;
 };
@@ -98,7 +115,7 @@ private:
 } /* namespace OSCLib */
 
 struct FixtureConnectionLostOSCP : Tests::AbstractOSCLibFixture {
-	FixtureConnectionLostOSCP() : AbstractOSCLibFixture("FixtureConnectionLostOSCP", Util::DebugOut::Error, 8150) {}
+	FixtureConnectionLostOSCP() : AbstractOSCLibFixture("FixtureConnectionLostOSCP", OSELib::LogLevel::NOTICE, 8150) {}
 };
 
 SUITE(OSCP) {
@@ -124,27 +141,56 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 	    	Data::OSCP::OSCPConsumer & consumer;
 	    };
 
-		std::size_t providerCount(10);
-		std::size_t metricCount = 10;
+	    DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Waiting for the Providers to startup...";
+
+		constexpr std::size_t providerCount(10);
+		constexpr std::size_t metricCount(10);
 		std::vector<std::shared_ptr<Tests::ConnectionLostOSCP::OSCPTestDeviceProvider>> providers;
+		std::vector<std::string> providerEPRs;
 
 		for (std::size_t i = 0; i < providerCount; i++) {
 			std::shared_ptr<Tests::ConnectionLostOSCP::OSCPTestDeviceProvider> p(new Tests::ConnectionLostOSCP::OSCPTestDeviceProvider(i, metricCount));
 			providers.push_back(p);
 			p->startup();
+			providerEPRs.emplace_back(p->getEndpointReference());
+//			Poco::Thread::sleep(2000);
 		}
 
-        Poco::Thread::sleep(2000);
+
+
+
+        Poco::Thread::sleep(10000);
 
         DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Starting discovery test...";
 
-        std::vector<std::shared_ptr<MyConnectionLostHandler>> connectionLostHanders;
+        OSELib::OSCP::ServiceManager sm;
+        std::vector<std::unique_ptr<OSCPConsumer>> consumers(sm.discoverOSCP());
 
-        OSCPServiceManager sm;
-        std::vector<std::shared_ptr<OSCPConsumer>> consumers = sm.discoverOSCP();
-        CHECK_EQUAL(providerCount, consumers.size());
+        bool foundAll = true;
+        for (const auto & providerEPR : providerEPRs) {
+        	bool foundOne = false;
+			for (const auto & consumer : consumers) {
+				if (consumer->getEndpointReference() == providerEPR) {
+					foundOne = true;
+					break;
+				}
+			}
+			if (!foundOne) {
+				DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Missing epr: " << providerEPR << std::endl;
+			}
+			foundAll &= foundOne;
+        }
+        CHECK_EQUAL(true, foundAll);
+
+        std::vector<std::shared_ptr<MyConnectionLostHandler>> connectionLostHanders;
         for (auto & nextConsumer : consumers) {
         	DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Found " << nextConsumer->getEndpointReference();
+
+        	if (std::find(providerEPRs.begin(), providerEPRs.end(), nextConsumer->getEndpointReference()) == providerEPRs.end()) {
+        		// not our own provider => skip
+        		continue;
+        	}
+
         	std::shared_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(*nextConsumer.get()));
         	nextConsumer->setConnectionLostHandler(myHandler.get());
         	connectionLostHanders.push_back(myHandler);

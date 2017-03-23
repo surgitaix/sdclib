@@ -3,9 +3,8 @@
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPServiceManager.h"
+#include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
@@ -24,8 +23,11 @@
 #include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
 #include "OSCLib/Util/DebugOut.h"
+#include "OSCLib/Util/Task.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
+
+#include "OSELib/OSCP/ServiceManager.h"
 
 #include "Poco/Runnable.h"
 #include "Poco/Mutex.h"
@@ -40,7 +42,7 @@ namespace OSCLib {
 namespace Tests {
 namespace StreamOSCP {
 
-const std::string deviceEPR("UDI_1234");
+const std::string deviceEPR("UDI_STREAMINGTEST");
 
 class StreamConsumerEventHandler : public OSCPConsumerRealTimeSampleArrayMetricStateHandler {
 public:
@@ -77,7 +79,6 @@ private:
     const std::string handle;
 };
 
-
 class StreamProviderStateHandler : public OSCPProviderRealTimeSampleArrayMetricStateHandler {
 public:
 
@@ -110,24 +111,17 @@ private:
     std::string descriptorHandle;
 };
 
-class OSCPStreamHoldingDeviceProvider : public OSCPProvider, public Util::Task {
+class OSCPStreamHoldingDeviceProvider : public Util::Task {
 public:
 
-    OSCPStreamHoldingDeviceProvider() : streamHandler("handle_plethysmogram_stream"), streamHandlerAlt("handle_plethysmogram_stream_alt") {
-		setEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR);
+    OSCPStreamHoldingDeviceProvider() : oscpProvider(), streamHandler("handle_plethysmogram_stream"), streamHandlerAlt("handle_plethysmogram_stream_alt") {
+
+		oscpProvider.setEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR);
 
         // Handles and handle references of their states
         currentMetric.setHandle("handle_plethysmogram_stream");
         currentMetricAlt.setHandle("handle_plethysmogram_stream_alt");
 
-        // Add handler
-        addMDStateHandler(&streamHandler);
-        addMDStateHandler(&streamHandlerAlt);
-
-        init();
-    }
-    
-	void init() {
         // Currentweight stream metric (read-only)
         currentMetric
 			.setSamplePeriod(
@@ -185,16 +179,33 @@ public:
                 .setCodeId("MDC_DEV_ANALY_SAT_O2_MDS"))
 			.addVMD(holdingDeviceModule);
         
-        addHydraMDS(holdingDeviceSystem);
+        // create and add description
+		MDDescription mdDescription;
+		mdDescription.addMDSDescriptor(holdingDeviceSystem);
+
+		oscpProvider.setMDDescription(mdDescription);
+
+        // Add handler
+        oscpProvider.addMDStateHandler(&streamHandler);
+        oscpProvider.addMDStateHandler(&streamHandlerAlt);
+    }
+
+    void startup() {
+    	oscpProvider.startup();
+    }
+
+    void shutdown() {
+    	oscpProvider.shutdown();
     }
 
     void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
-        streamHandler.updateStateValue(rtsav);
+        streamHandler.updateStateValue(rtsav); // updates handles and the parent provider
         streamHandlerAlt.updateStateValue(rtsav);
     }
 
 private:
 
+    OSCPProvider oscpProvider;
 	RealTimeSampleArrayMetricDescriptor currentMetric;
     RealTimeSampleArrayMetricDescriptor currentMetricAlt;
     StreamProviderStateHandler streamHandler;
@@ -203,6 +214,7 @@ private:
 public:
     
     // Produce stream values
+    // runImpl() gets called when starting the provider thread by the inherited function start()
     virtual void runImpl() override {
     	DebugOut(DebugOut::Default, "StreamOSCP") << "\nPoducer thread started." << std::endl;
 		const std::size_t size(1000);
@@ -219,9 +231,10 @@ public:
 							RTValueType()
 							.setValues(samples))
 						);
+
 			}
 			DebugOut(DebugOut::Default, "StreamOSCP") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
-			Poco::Thread::sleep(100);
+			Poco::Thread::sleep(1000);
 			index += size;
 		}
     }
@@ -232,21 +245,23 @@ public:
 }
 
 struct FixtureStreamOSCP : Tests::AbstractOSCLibFixture {
-	FixtureStreamOSCP() : AbstractOSCLibFixture("FixtureStreamOSCP", Util::DebugOut::Error, 10000) {}
+	FixtureStreamOSCP() : AbstractOSCLibFixture("FixtureStreamOSCP", OSELib::LogLevel::NOTICE, 10000) {}
 };
 
 SUITE(OSCP) {
 TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
 {
-	DebugOut::openLogFile("Test.log.txt", true);
+	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
         // Provider
 		Tests::StreamOSCP::OSCPStreamHoldingDeviceProvider provider;
-        provider.startup();    
+		DebugOut(DebugOut::Default, "StreamOSCP") << "Provider init.." << std::endl;
+		provider.startup();
 
         // Consumer
-        OSCPServiceManager oscpsm;
+        OSELib::OSCP::ServiceManager oscpsm;
+        DebugOut(DebugOut::Default, "StreamOSCP") << "Consumer discovery..." << std::endl;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR));
         std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream");
         std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
@@ -257,7 +272,8 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
         if (c != nullptr) {
             c->registerStateEventHandler(eventHandler.get());
             c->registerStateEventHandler(eventHandlerAlt.get());
-            provider.start();
+
+            provider.start();// starts provider in a thread and calls the overwritten function runImpl()
 
 			// Metric event reception test
             Poco::Thread::sleep(10000);
@@ -270,6 +286,7 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
             c->disconnect();
         }
 
+        Poco::Thread::sleep(2000);
         provider.shutdown();
 	}
 	catch (char const* exc)
