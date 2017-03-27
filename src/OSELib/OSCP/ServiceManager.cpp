@@ -66,7 +66,9 @@ void ServiceManager::setHelloReceivedHandler(HelloReceivedHandler * handler) {
 }
 
 std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connect(const std::string & xaddr) {
-	return connectXAddress(xaddr, "Unknown");
+	std::list<std::string> xAddress_list;
+	xAddress_list.push_back(xaddr);
+	return connectXAddress(xAddress_list, "Unknown");
 }
 
 std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
@@ -97,12 +99,15 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::discoverEndpoi
 	}
 	_dpwsClient->removeResolveMatchEventHandler(resolveCb);
 
+	std::list<std::string> xAddress_list;
+
 	if (resolveCb._result && resolveCb._result->XAddrs().present()) {
 		for (const auto & xaddr : resolveCb._result->XAddrs().get()) {
-			auto result(connectXAddress(xaddr, resolveCb._result->EndpointReference().Address()));
-			if (result) {
-				return std::move(result);
-			}
+			xAddress_list.push_back(xaddr);
+		}
+		auto result(connectXAddress(xAddress_list, resolveCb._result->EndpointReference().Address()));
+		if (result) {
+			return std::move(result);
 		}
 	}
 
@@ -136,35 +141,52 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> ServiceManager::d
 	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb._results.size()); });
 
 	std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> results;
+	std::list<std::string> xAddress_list;
 
+	// probeCb._results contains the exact number of unique EPR in the network
 	for (const auto & probeResult : probeCb._results) {
 		if (!probeResult.XAddrs().present()) {
 			log_debug([&] { return "No xAddresses in response for epr: " + probeResult.EndpointReference().Address(); });
 			continue;
 		}
 
+		// one EPR may be connected via multiple network interfaces
 		for (const auto & xaddr : probeResult.XAddrs().get()) {
 			log_notice([&] { return "Trying xAddress: " + xaddr; });
-			auto result(connectXAddress(xaddr, probeResult.EndpointReference().Address()));
-			if (result) {
-				log_information([&] { return "Using xAddress: " + xaddr; });
-				results.emplace_back(std::move(result));
-			}
+			xAddress_list.push_back(xaddr);
 		}
+		auto result(connectXAddress(xAddress_list, probeResult.EndpointReference().Address()));
+		if (result) {
+			results.emplace_back(std::move(result));
+		}
+		xAddress_list.clear();
 	}
+
 
 	return results;
 }
 
-std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddress(const std::string & xaddress, const std::string & epr) {
+std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) {
 	DPWS::DeviceDescription deviceDescription;
-	try {
-		deviceDescription.setDeviceURI(Poco::URI(xaddress));
-	} catch (...) {
-		log_error([&] { return "XAddress has invalid format: " + xaddress; });
+
+	bool connectionPossible_flag = 0;
+	for (const auto xaddress : xaddress_list) {
+		try {
+				deviceDescription.addDeviceURI(Poco::URI(xaddress));
+				log_debug([&] { return "XAddress reachable: " + xaddress; });
+				connectionPossible_flag = 1;
+			} catch (...) {
+				log_debug([&] { return "XAddress not reachable: " + xaddress; });
+			}
+	}
+
+	if (connectionPossible_flag) {
+		deviceDescription.setEPR(epr);
+	} else {
 		return nullptr;
 	}
-	deviceDescription.setEPR(epr);
+
+
 
 	try {
 		const Poco::URI remoteURI(deviceDescription.getDeviceURI());
@@ -224,8 +246,6 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 		// get metadata for streaming
 		const DPWS::GetMetadataTraits::Request request_metadata;
 		using Invoker_metadata = OSELib::SOAP::GenericSoapInvoke<DPWS::GetMetadataTraits>;
-		// todo use real grammar for validation
-//		Helper::XercesGrammarPoolProvider grammarPool;
 		std::unique_ptr<Invoker_metadata> invoker_metadata(new Invoker_metadata(deviceDescription.getWaveformEventReportURI(), grammarPool));
 
 		auto response_metadata(invoker_metadata->invoke(request_metadata));

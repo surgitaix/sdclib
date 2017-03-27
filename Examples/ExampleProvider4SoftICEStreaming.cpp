@@ -287,7 +287,7 @@ public:
 						);
 
 			}
-//			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
 			// NumericMetricState
 			getNumericHandler.setNumericValue(42.0);

@@ -17,7 +17,7 @@ int main()
 {
 	const std::string testname("Test SimpleServiceDiscovery");
 	DebugOut(DebugOut::Default, "SimpleServiceDiscovery") << std::endl << "Startup: " << testname;
-	OSCLibrary::getInstance().startup();
+	OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
 
 	int loopcounter = 0;
 	OSELib::OSCP::ServiceManager oscpsm;
@@ -29,7 +29,9 @@ int main()
 		DebugOut(DebugOut::Default, "simpleservicediscovery") << "Found devices with these EPRs: ";
 
 		for (auto & it : results) {
+
 			DebugOut(DebugOut::Default, "simpleservicediscovery") << (*it).getEndpointReference();
+
 		}
 
 		for (auto & it : results) {
