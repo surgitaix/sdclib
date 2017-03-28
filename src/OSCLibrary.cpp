@@ -46,7 +46,8 @@ OSCLibrary::OSCLibrary() :
 	WithLogger(OSELib::Log::BASE),
 	initialized(false),
 	m_IP4enabled(true),
-	m_IP6enabled(true)
+	m_IP6enabled(true),
+	m_numberOfReattemptsWithAnotherPort(3)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
 	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel);
@@ -148,4 +149,14 @@ bool OSCLibrary::getIP4enabled() {
 bool OSCLibrary::getIP6enabled() {
 	return m_IP6enabled;
 }
+
+int OSCLibrary::getNumberOfReattemptsWithAnotherPort() const {
+	return m_numberOfReattemptsWithAnotherPort;
+}
+
+void OSCLibrary::setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort) {
+	m_numberOfReattemptsWithAnotherPort = numberOfReattemptsWithAnotherPort;
+}
+
+
 } /* namespace OSCLib */

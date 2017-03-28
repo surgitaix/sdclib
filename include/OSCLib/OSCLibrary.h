@@ -89,12 +89,16 @@ public:
 	void setIP6enabled(bool IP6enabled);
 	bool getIP4enabled();
 	bool getIP6enabled();
+	int getNumberOfReattemptsWithAnotherPort() const;
+	void setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort);
+
 
 private:
 
 	bool m_IP4enabled;
 	bool m_IP6enabled;
 	bool initialized;
+	int m_numberOfReattemptsWithAnotherPort;
 
 	void createPortLists(unsigned int portStart, unsigned int portRange = 1000);
 	std::deque<unsigned int> reservedPorts;
