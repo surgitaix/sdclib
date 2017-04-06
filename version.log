@@ -1,0 +1,12 @@
+Update to version 2.0.1:
+
+- OSCPProvider expanded: able to load MDDescription from xml file
+- Selectable number of attempts to open a socket if port is blocked in OSCLibrary 
+- Bugfixes
+
+
+Upgrade to version 2.0.0:
+
+- new architecture for higher stability and security
+- new API: finalized (not derivable) API-classes (see ExampleProject.cpp for an implementation example of a service provider, service consumer and state handlers)
+- incompatible to former versions of OSClib 1.X.X 
