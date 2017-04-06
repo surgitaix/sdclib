@@ -36,8 +36,7 @@ public:
 	std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> discoverOSCP();
 
 private:
-	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> connectXAddress(const std::string & xaddress, const std::string & epr);
-
+	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
 	std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> _dpwsClient;
 	// todo: kick this helloCallback. Supposedly it is not needed.
 	std::unique_ptr<DPWS::HelloCallback> _helloCallback;

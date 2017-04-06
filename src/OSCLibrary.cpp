@@ -46,7 +46,8 @@ OSCLibrary::OSCLibrary() :
 	WithLogger(OSELib::Log::BASE),
 	initialized(false),
 	m_IP4enabled(true),
-	m_IP6enabled(true)
+	m_IP6enabled(true),
+	m_numberOfReattemptsWithAnotherPort(3)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
 	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel);
@@ -78,7 +79,7 @@ void OSCLibrary::startup(OSELib::LogLevel debugLevel) {
 	if (!initialized) {
 		initialized = true;
 		setDebugLevel(debugLevel);
-		log_notice([&]{ return "OSCLib version 2.0 (C) 2016 SurgiTAIX AG"; });
+		log_notice([&]{ return "OSCLib version 2.0.1 (C) 2016 SurgiTAIX AG"; });
         xercesc::XMLPlatformUtils::Initialize();
 	} else {
 		log_error([&]{ return "OSCLib already initialized!"; });
@@ -148,4 +149,14 @@ bool OSCLibrary::getIP4enabled() {
 bool OSCLibrary::getIP6enabled() {
 	return m_IP6enabled;
 }
+
+int OSCLibrary::getNumberOfReattemptsWithAnotherPort() const {
+	return m_numberOfReattemptsWithAnotherPort;
+}
+
+void OSCLibrary::setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort) {
+	m_numberOfReattemptsWithAnotherPort = numberOfReattemptsWithAnotherPort;
+}
+
+
 } /* namespace OSCLib */

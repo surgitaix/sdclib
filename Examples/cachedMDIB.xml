@@ -1,0 +1,62 @@
+<p1:MDIBContainer xmlns:p1="http://domain-model-uri/15/04" p1:MDIBVersion="348">
+  <p1:MDDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <p1:MDS Handle="Invalid. Not assigned!" xsi:type="p1:HydraMDSDescriptor">
+      <p1:Type>
+        <p1:CodeId>MDC_DEV_ANALY_SAT_O2_MDS</p1:CodeId>
+      </p1:Type>
+      <p1:MetaData>
+        <p1:Manufacturer>SurgiTAIX AG</p1:Manufacturer>
+        <p1:ModelName>ChipOx</p1:ModelName>
+        <p1:ModelNumber>1</p1:ModelNumber>
+        <p1:SerialNumber>1234</p1:SerialNumber>
+      </p1:MetaData>
+      <p1:Context Handle="b5ad6bc8-0fe3-11e7-ad02-080027e33f83"/>
+      <p1:SCO Handle="Invalid. Not assigned!_sco" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <p1:Operation Handle="handle_set_sco" OperationTarget="handle_set" xsi:type="p1:SetValueOperationDescriptor"/>
+      </p1:SCO>
+      <p1:VMD Handle="Invalid. Not assigned!">
+        <p1:Channel Handle="Invalid. Not assigned!" IntendedUse="Inf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <p1:Metric Handle="handle_stream" xsi:type="p1:RealTimeSampleArrayMetricDescriptor">
+            <p1:Type>
+              <p1:CodeId>MDCX_XXX</p1:CodeId>
+            </p1:Type>
+            <p1:Unit>
+              <p1:CodeId>Code not assigned</p1:CodeId>
+            </p1:Unit>
+            <p1:MetricCategory>Msrmt</p1:MetricCategory>
+            <p1:Availability>Cont</p1:Availability>
+            <p1:SamplePeriod>PT0.001S</p1:SamplePeriod>
+            <p1:Resolution>1</p1:Resolution>
+            <p1:TechnicalRange Lower="0" Upper="2"/>
+          </p1:Metric>
+          <p1:Metric Handle="handle_set" xsi:type="p1:NumericMetricDescriptor">
+            <p1:Type>
+              <p1:CodeId>Code not assigned</p1:CodeId>
+              <p1:ConceptDescription>Maximum weight</p1:ConceptDescription>
+            </p1:Type>
+            <p1:Unit>
+              <p1:CodeId>Code not assigned</p1:CodeId>
+            </p1:Unit>
+            <p1:MetricCategory>Set</p1:MetricCategory>
+            <p1:Availability>Cont</p1:Availability>
+            <p1:Resolution>1</p1:Resolution>
+          </p1:Metric>
+        </p1:Channel>
+      </p1:VMD>
+    </p1:MDS>
+  </p1:MDDescription>
+  <p1:MDState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <p1:State DescriptorHandle="handle_set_sco" OperatingMode="En" xsi:type="p1:OperationState"/>
+    <p1:State DescriptorHandle="handle_get" Handle="handle_get_state" p1:ComponentActivationState="On" xsi:type="p1:NumericMetricState">
+      <p1:ObservedValue Value="42">
+        <p1:MeasurementState Validity="Inv"/>
+      </p1:ObservedValue>
+    </p1:State>
+    <p1:State DescriptorHandle="handle_set" Handle="handle_set_state" p1:ComponentActivationState="On" xsi:type="p1:NumericMetricState">
+      <p1:ObservedValue Value="2">
+        <p1:MeasurementState Validity="Inv"/>
+      </p1:ObservedValue>
+    </p1:State>
+    <p1:State DescriptorHandle="handle_stream" Handle="handle_stream_state" p1:ComponentActivationState="On" xsi:type="p1:RealTimeSampleArrayMetricState"/>
+  </p1:MDState>
+</p1:MDIBContainer>

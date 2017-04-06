@@ -2,9 +2,9 @@
  * DeviceDescription.cpp
  *
  *  Created on: 11.12.2015
- *      Author: matthias, sebastian
+ *      Author: sebastian, matthias
  *
- *      contains information about the provider
+ *      contains information for the consumer about the provider. all addresses are firstly added while discovery. the possibility of establishing a connection is checked before returning a URI.
  */
 
 #include "OSELib/DPWS/DeviceDescription.h"
@@ -13,7 +13,7 @@
 namespace OSELib {
 namespace DPWS {
 
-DeviceDescription::DeviceDescription() : WithLogger(Log::DISCOVERY) {
+DeviceDescription::DeviceDescription() : WithLogger(Log::DISCOVERY), _epr("") {
 
 }
 
@@ -45,10 +45,15 @@ void DeviceDescription::setLocalIP(const Poco::Net::IPAddress & localIP) {
 }
 
 Poco::URI DeviceDescription::getDeviceURI() const {
-	return _deviceURI;
+	return _deviceURIs.front();
 }
-void DeviceDescription::setDeviceURI(const Poco::URI & uri) {
-	_deviceURI = uri;
+
+void DeviceDescription::addDeviceURI(const Poco::URI & uri) {
+	if (checkURIsValidity(uri)) {
+		_deviceURIs.push_back(uri);
+	} else {
+		throw std::runtime_error("DeviceURI is not valid.");
+	}
 }
 
 Poco::URI DeviceDescription::getContextServiceURI() const {
@@ -116,6 +121,7 @@ void DeviceDescription::addStreamMulticastAddressURI(const Poco::URI & uri) {
 	_streamMulticastURIs.push_back(uri);
 }
 
+// regarding to the standard multiple streaming addresses can be stated by the provider
 const std::list<Poco::URI>& DeviceDescription::getStreamMulticastAddressURIs() const {
 	return _streamMulticastURIs;
 }

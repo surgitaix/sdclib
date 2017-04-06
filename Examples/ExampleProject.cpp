@@ -37,7 +37,7 @@ using namespace OSCLib;
 using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
-const std::string deviceEPR("UDI_12345");
+const std::string deviceEPR("UDI_EP");
 
 const std::string MDS_HANDLE("mds_handle");
 const std::string VMD_DESCRIPTOR_HANDLE("vmd_handle");
@@ -364,12 +364,9 @@ private:
 
 int main()
 {
-
-	DebugOut(DebugOut::Default, "ExampleProject") << "1";
 	try {
 		OSCLibrary::getInstance().startup();
 		OSCLibrary::getInstance().setIP6enabled(false);
-		DebugOut(DebugOut::Default, "ExampleProject") << "2";
 		OSCLibrary::getInstance().setPortStart(11000);
 
 		OSELib::OSCP::ServiceManager oscpsm;
@@ -382,16 +379,12 @@ int main()
 			}
 		};
 		std::unique_ptr<MyHandler> myHandler(new MyHandler());
-		DebugOut(DebugOut::Default, "ExampleProject") << "3";
 		oscpsm.setHelloReceivedHandler(myHandler.get());
 		// Provider
 		OSCPHoldingDeviceProvider provider;
-		DebugOut(DebugOut::Default, "ExampleProject") << "3.5";
 		provider.startup();
-		DebugOut(DebugOut::Default, "ExampleProject") << "4";
 		DummyValueProducer dummyValueProducer(&provider);
 		dummyValueProducer.start();
-		DebugOut(DebugOut::Default, "ExampleProject") << "5";
 
 		int temp;
 		DebugOut(DebugOut::Default, "ExampleProject") << "Press key to proceed test (until then, provider will keep running indefinitely).";
@@ -399,10 +392,9 @@ int main()
 
 		// Discovery
 		std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
-		DebugOut(DebugOut::Default, "ExampleProject") << "6";
+
 		std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler("handle_cur"));
 		std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler("handle_max"));
-		DebugOut(DebugOut::Default, "ExampleProject") << "7";
 
 
 		if (c != nullptr) {

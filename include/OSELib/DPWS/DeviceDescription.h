@@ -1,10 +1,10 @@
-/*
+/*l
  * DeviceDescription.h
  *
  *  Created on: 11.12.2015
- *      Author: matthias, sebastian
+ *      Author: sebastian, matthias
  *
- *      contains information about the provider
+ *      Contains information about the provider, to which the consumer connects to. All devices xAddresses are saved here (no validity check). The validity of the connection is checked in each get-method.
  *
  */
 
@@ -38,7 +38,7 @@ public:
 	void setLocalIP(const Poco::Net::IPAddress & localIP);
 
 	Poco::URI getDeviceURI() const;
-	void setDeviceURI(const Poco::URI & uri);
+	void addDeviceURI(const Poco::URI & uri);
 
 	Poco::URI getContextServiceURI() const;
 	void addContextServiceURI(const Poco::URI & uri);
@@ -56,14 +56,12 @@ public:
 	Poco::URI getWaveformEventReportURI() const;
 
 	void addStreamMulticastAddressURI(const Poco::URI & uri);
-//	bool checkActiveStreaming();
 	const std::list<Poco::URI>&  getStreamMulticastAddressURIs() const;
 
 private:
 	std::string _epr;
 	Poco::Net::IPAddress _localIP;
 
-	Poco::URI _deviceURI;
 
 	// there may be more than one streaming addresses for compatibility with other frameworks
 	std::list<Poco::URI> _streamMulticastURIs;
@@ -72,6 +70,7 @@ private:
 	std::list<Poco::URI> _getServiceURIs;
 	std::list<Poco::URI> _setServiceURIs;
 	std::list<Poco::URI> _waveformEventReportURIs;
+	std::list<Poco::URI> _deviceURIs;
 
 };
 

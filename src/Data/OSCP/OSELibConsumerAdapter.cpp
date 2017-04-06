@@ -227,11 +227,11 @@ OSELibConsumerAdapter::~OSELibConsumerAdapter() {
 void OSELibConsumerAdapter::start() {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_httpServer) {
-		return;
-		//todo maybe throw because starting twice is clearly an error
+		throw std::runtime_error("An http-Server is already running.");
 	}
 
 	Poco::Net::ServerSocket ss;
+	// todo: IPv6 implementation
 	const Poco::Net::IPAddress address(Poco::Net::IPAddress::Family::IPv4);
 	const Poco::Net::SocketAddress socketAddress(address, _port);
 	ss.bind(socketAddress);

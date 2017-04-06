@@ -1,12 +1,17 @@
 /*
- * ExampleProvider4SoftICEStreaming.cpp
+ * ExampleCachedProvider.cpp
  *
- *  @Copyright (C) 2016, SurgiTAIX AG
+ *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: buerger
  *
- *  This program sends a RealTimeSampleArrayMetricState ("handle_stream") and a NumericMatricState ("handle_get") to the network. It changes the "handle_stream"
+ *  The ExampleCachedProvider uses an .xml file ('cachedMDIB.xml') to build up an OSCP-provider device. It further shows how some of the the providers states ('') can be used to
  *
  */
+
+
+#include <string>
+#include <fstream>
+#include <streambuf>
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
@@ -171,71 +176,16 @@ public:
 
 		oscpProvider.setEndpointReference(deviceEPR);
 
-        // handle references of their states
-        streamMetricDescriptor.setHandle("handle_stream");
-
-        // metric stream metric (read-only)
-        streamMetricDescriptor
-			.setSamplePeriod(
-					Duration()
-					.setseconds(0.001)
-					)
-			.setResolution(1.0)
-			.addTechnicalRange(Range()
-					.setUpper(2)
-					.setLower(0))
-			.setMetricCategory(MetricCategory::MEASUREMENT)
-			.setAvailability(MetricAvailability::CONTINUOUS)
-			.setType(CodedValue()
-                    .setCodeId("MDCX_XXX"));
-
-        setMetricDescriptor
-        	.setHandle("handle_set")
-        	.setMetricCategory(MetricCategory::SETTING)
-        	.setAvailability(MetricAvailability::CONTINUOUS)
-        	.setType(CodedValue().addConceptDescription(LocalizedText().set("Maximum weight")));
 
 
+		std::ifstream t("Examples/cachedMDIB.xml");
+		std::stringstream buffer;
+		buffer << t.rdbuf();
+		std::string mdDesciption_xml = buffer.str();
 
+		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << mdDesciption_xml;
 
-
-
-        // Channel
-        ChannelDescriptor holdingDeviceParameters;
-        holdingDeviceParameters
-			.addMetric(streamMetricDescriptor)
-			.addMetric(setMetricDescriptor)
-			.setIntendedUse(IntendedUse::INFORMATIONAL);
-
-        // VMD
-        VMDDescriptor holdingDeviceModule;
-        holdingDeviceModule.addChannel(holdingDeviceParameters);
-
-        // MDS
-        HydraMDSDescriptor holdingDeviceSystem;
-        holdingDeviceSystem
-			.setMetaData(
-				SystemMetaData()
-				.addManufacturer(
-					LocalizedText()
-					.set("SurgiTAIX AG"))
-				.addModelName(
-					LocalizedText()
-					.set("ChipOx"))
-				.addModelNumber("1")
-				.addSerialNumber("1234")
-				)
-            .setType(CodedValue()
-                .setCodeId("MDC_DEV_ANALY_SAT_O2_MDS"))
-			.addVMD(holdingDeviceModule);
-
-        oscpProvider.createSetOperationForDescriptor(setMetricDescriptor, holdingDeviceSystem);
-
-        // create and add description
-		MDDescription mdDescription;
-		mdDescription.addMDSDescriptor(holdingDeviceSystem);
-
-		oscpProvider.setMDDescription(mdDescription);
+		oscpProvider.setMDDescription(mdDesciption_xml);
 
         // Add handler
 		oscpProvider.addMDStateHandler(&streamHandler);
@@ -287,7 +237,7 @@ public:
 						);
 
 			}
-			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+//			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
 			// NumericMetricState
 			getNumericHandler.setNumericValue(42.0);

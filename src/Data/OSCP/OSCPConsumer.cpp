@@ -172,17 +172,21 @@ OSCPConsumer::OSCPConsumer(const OSELib::DPWS::DeviceDescription & deviceDescrip
 		connected(true),
 		_deviceDescription(deviceDescription)
 {
-	for (int i = 0; i < 3; i++) {
+
+	for (int i = 0; i < OSCLibrary::getInstance().getNumberOfReattemptsWithAnotherPort(); i++) {
 		const int port(OSCLibrary::getInstance().extractFreePort());
 		try {
 			_adapter = std::unique_ptr<OSELibConsumerAdapter>(new OSELibConsumerAdapter(*this, port, _deviceDescription));
 			_adapter->start();
 			break;
 		} catch (const Poco::Net::NetException & e) {
-			log_fatal([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port."; });
+			log_error([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port."; });
 			OSCLibrary::getInstance().returnPortToPool(port);
+		} catch (const std::runtime_error & e) {
+			log_error([&] {return "Exception: " + std::string(e.what()); });
 		}
 	}
+	log_error([&] { return "Connecting to " + deviceDescription.getEPR() + " failed after " + std::to_string(OSCLibrary::getInstance().getNumberOfReattemptsWithAnotherPort()) + " attempts."; });
 }
 
 OSCPConsumer::~OSCPConsumer() {
