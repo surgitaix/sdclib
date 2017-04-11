@@ -1063,11 +1063,6 @@ void OSCPProvider::setMDDescription(std::string xml) {
 
 	std::unique_ptr<CDM::MDIB> result(CDM::MDIBContainer(xercesDocument->getDocument()));
 
-//	std::unique_ptr<CDM::GetMDDescriptionResponse> result(CDM::MDIBContainer(xercesDocument->getDocument()));
-
-
-
-
 	if (result != nullptr) {
 		Poco::Mutex::ScopedLock lock(getMutex());
 		this->m_mdDescription.reset(new MDDescription(ConvertFromCDM::convert(result->MDDescription())));

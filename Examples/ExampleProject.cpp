@@ -51,7 +51,7 @@ public:
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: MaxValueStateHandler received state change request" << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProject") << "Provider: MaxValueStateHandler received state change request" << std::endl;
 
         notifyOperationInvoked(oic, InvocationState::STARTED);
 
@@ -80,10 +80,12 @@ public:
     // Convenience value getter
     float getMaxWeight() {
         NumericMetricState result;
-        // TODO: in real applications, check if findState returns true!
-        getParentProvider().getMDState().findState("handle_max", result);
-        // TODO: in real applications, check if state has an observed value and if the observed value has a value!
-        return (float)result.getObservedValue().getValue();
+        if (getParentProvider().getMDState().findState("handle_max", result) && result.hasObservedValue()) {
+        	return (float)result.getObservedValue().getValue();
+        } else {
+        	DebugOut(DebugOut::Default, "ExampleProject") << "No observed value" << std::endl;
+        	return 0;
+        }
     }
 
 };
@@ -236,7 +238,7 @@ public:
 				.setCodingSystemId("OR.NET.Codings")
 				.setCodeId("MDCX_CODE_ID_MDS"));
 
-        // the set operations have to be defined befor adding the MDDescription
+        // the set operations have to be defined before adding the MDDescription
         oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
         // add descriptor to description
