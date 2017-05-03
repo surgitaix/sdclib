@@ -256,7 +256,7 @@ namespace xml_schema
 //
 namespace CDM
 {
-  class Extension;
+  class ExtensionType;
 }
 
 

@@ -14,7 +14,7 @@
 #define XSD_CXX_TREE_USE_CHAR
 #endif
 
-#include "BICEPS_DomainModel-fwd.hxx"
+#include "BICEPS_ParticipantModel-fwd.hxx"
 #include "BICEPS_MessageModel-fwd.hxx"
 #include "DICOMDeviceDescription-fwd.hxx"
 #include "ExtensionPoint-fwd.hxx"

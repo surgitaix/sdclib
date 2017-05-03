@@ -63,67 +63,67 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include "BICEPS_DomainModel.hxx"
+#include "BICEPS_ParticipantModel.hxx"
 
 namespace CDM
 {
-  class DICOMTransferRole: public ::xml_schema::String
+  class DicomTransferRole: public ::xml_schema::String
   {
     public:
     enum Value
     {
-      SCU,
-      SCP
+      Scu,
+      Scp
     };
 
-    DICOMTransferRole (Value v);
+    DicomTransferRole (Value v);
 
-    DICOMTransferRole (const char* v);
+    DicomTransferRole (const char* v);
 
-    DICOMTransferRole (const ::std::string& v);
+    DicomTransferRole (const ::std::string& v);
 
-    DICOMTransferRole (const ::xml_schema::String& v);
+    DicomTransferRole (const ::xml_schema::String& v);
 
-    DICOMTransferRole (const ::xercesc::DOMElement& e,
+    DicomTransferRole (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
-    DICOMTransferRole (const ::xercesc::DOMAttr& a,
+    DicomTransferRole (const ::xercesc::DOMAttr& a,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
-    DICOMTransferRole (const ::std::string& s,
+    DicomTransferRole (const ::std::string& s,
                        const ::xercesc::DOMElement* e,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
-    DICOMTransferRole (const DICOMTransferRole& x,
+    DicomTransferRole (const DicomTransferRole& x,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
-    virtual DICOMTransferRole*
+    virtual DicomTransferRole*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    DICOMTransferRole&
+    DicomTransferRole&
     operator= (Value v);
 
     virtual
     operator Value () const
     {
-      return _xsd_DICOMTransferRole_convert ();
+      return _xsd_DicomTransferRole_convert ();
     }
 
     protected:
     Value
-    _xsd_DICOMTransferRole_convert () const;
+    _xsd_DicomTransferRole_convert () const;
 
     public:
-    static const char* const _xsd_DICOMTransferRole_literals_[2];
-    static const Value _xsd_DICOMTransferRole_indexes_[2];
+    static const char* const _xsd_DicomTransferRole_literals_[2];
+    static const Value _xsd_DicomTransferRole_indexes_[2];
   };
 
-  class DICOMTransferCapability: public ::xml_schema::Type
+  class DicomTransferCapability: public ::xml_schema::Type
   {
     public:
     // TransferSyntax
@@ -143,26 +143,26 @@ namespace CDM
     void
     TransferSyntax (const TransferSyntaxSequence& s);
 
-    // SOPClass
+    // SopClass
     //
-    typedef ::xml_schema::String SOPClassType;
-    typedef ::xsd::cxx::tree::traits< SOPClassType, char > SOPClassTraits;
+    typedef ::xml_schema::String SopClassType;
+    typedef ::xsd::cxx::tree::traits< SopClassType, char > SopClassTraits;
 
-    const SOPClassType&
-    SOPClass () const;
+    const SopClassType&
+    SopClass () const;
 
-    SOPClassType&
-    SOPClass ();
-
-    void
-    SOPClass (const SOPClassType& x);
+    SopClassType&
+    SopClass ();
 
     void
-    SOPClass (::std::unique_ptr< SOPClassType > p);
+    SopClass (const SopClassType& x);
+
+    void
+    SopClass (::std::unique_ptr< SopClassType > p);
 
     // TransferRole
     //
-    typedef ::CDM::DICOMTransferRole TransferRoleType;
+    typedef ::CDM::DicomTransferRole TransferRoleType;
     typedef ::xsd::cxx::tree::traits< TransferRoleType, char > TransferRoleTraits;
 
     const TransferRoleType&
@@ -179,26 +179,26 @@ namespace CDM
 
     // Constructors.
     //
-    DICOMTransferCapability (const SOPClassType&,
+    DicomTransferCapability (const SopClassType&,
                              const TransferRoleType&);
 
-    DICOMTransferCapability (const ::xercesc::DOMElement& e,
+    DicomTransferCapability (const ::xercesc::DOMElement& e,
                              ::xml_schema::Flags f = 0,
                              ::xml_schema::Container* c = 0);
 
-    DICOMTransferCapability (const DICOMTransferCapability& x,
+    DicomTransferCapability (const DicomTransferCapability& x,
                              ::xml_schema::Flags f = 0,
                              ::xml_schema::Container* c = 0);
 
-    virtual DICOMTransferCapability*
+    virtual DicomTransferCapability*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    DICOMTransferCapability&
-    operator= (const DICOMTransferCapability& x);
+    DicomTransferCapability&
+    operator= (const DicomTransferCapability& x);
 
     virtual 
-    ~DICOMTransferCapability ();
+    ~DicomTransferCapability ();
 
     // Implementation.
     //
@@ -209,16 +209,16 @@ namespace CDM
 
     protected:
     TransferSyntaxSequence TransferSyntax_;
-    ::xsd::cxx::tree::one< SOPClassType > SOPClass_;
+    ::xsd::cxx::tree::one< SopClassType > SopClass_;
     ::xsd::cxx::tree::one< TransferRoleType > TransferRole_;
   };
 
-  class DICOMNetworkAE: public ::xml_schema::Type
+  class DicomNetworkAe: public ::xml_schema::Type
   {
     public:
     // TransferCapability
     //
-    typedef ::CDM::DICOMTransferCapability TransferCapabilityType;
+    typedef ::CDM::DicomTransferCapability TransferCapabilityType;
     typedef ::xsd::cxx::tree::sequence< TransferCapabilityType > TransferCapabilitySequence;
     typedef TransferCapabilitySequence::iterator TransferCapabilityIterator;
     typedef TransferCapabilitySequence::const_iterator TransferCapabilityConstIterator;
@@ -267,22 +267,39 @@ namespace CDM
     void
     SupportedCharacterSet (const SupportedCharacterSetSequence& s);
 
-    // AETitle
+    // Description
     //
-    typedef ::xml_schema::String AETitleType;
-    typedef ::xsd::cxx::tree::traits< AETitleType, char > AETitleTraits;
+    typedef ::CDM::LocalizedText DescriptionType;
+    typedef ::xsd::cxx::tree::sequence< DescriptionType > DescriptionSequence;
+    typedef DescriptionSequence::iterator DescriptionIterator;
+    typedef DescriptionSequence::const_iterator DescriptionConstIterator;
+    typedef ::xsd::cxx::tree::traits< DescriptionType, char > DescriptionTraits;
 
-    const AETitleType&
-    AETitle () const;
+    const DescriptionSequence&
+    Description () const;
 
-    AETitleType&
-    AETitle ();
+    DescriptionSequence&
+    Description ();
 
     void
-    AETitle (const AETitleType& x);
+    Description (const DescriptionSequence& s);
+
+    // AeTitle
+    //
+    typedef ::xml_schema::String AeTitleType;
+    typedef ::xsd::cxx::tree::traits< AeTitleType, char > AeTitleTraits;
+
+    const AeTitleType&
+    AeTitle () const;
+
+    AeTitleType&
+    AeTitle ();
 
     void
-    AETitle (::std::unique_ptr< AETitleType > p);
+    AeTitle (const AeTitleType& x);
+
+    void
+    AeTitle (::std::unique_ptr< AeTitleType > p);
 
     // NetworkConnectionReference
     //
@@ -329,51 +346,30 @@ namespace CDM
     void
     AssociationAcceptor (const AssociationAcceptorType& x);
 
-    // Description
-    //
-    typedef ::xml_schema::String DescriptionType;
-    typedef ::xsd::cxx::tree::optional< DescriptionType > DescriptionOptional;
-    typedef ::xsd::cxx::tree::traits< DescriptionType, char > DescriptionTraits;
-
-    const DescriptionOptional&
-    Description () const;
-
-    DescriptionOptional&
-    Description ();
-
-    void
-    Description (const DescriptionType& x);
-
-    void
-    Description (const DescriptionOptional& x);
-
-    void
-    Description (::std::unique_ptr< DescriptionType > p);
-
     // Constructors.
     //
-    DICOMNetworkAE (const AETitleType&,
+    DicomNetworkAe (const AeTitleType&,
                     const NetworkConnectionReferenceType&,
                     const AssociationInitiatorType&,
                     const AssociationAcceptorType&);
 
-    DICOMNetworkAE (const ::xercesc::DOMElement& e,
+    DicomNetworkAe (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
-    DICOMNetworkAE (const DICOMNetworkAE& x,
+    DicomNetworkAe (const DicomNetworkAe& x,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
-    virtual DICOMNetworkAE*
+    virtual DicomNetworkAe*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    DICOMNetworkAE&
-    operator= (const DICOMNetworkAE& x);
+    DicomNetworkAe&
+    operator= (const DicomNetworkAe& x);
 
     virtual 
-    ~DICOMNetworkAE ();
+    ~DicomNetworkAe ();
 
     // Implementation.
     //
@@ -386,32 +382,32 @@ namespace CDM
     TransferCapabilitySequence TransferCapability_;
     ApplicationClusterSequence ApplicationCluster_;
     SupportedCharacterSetSequence SupportedCharacterSet_;
-    ::xsd::cxx::tree::one< AETitleType > AETitle_;
+    DescriptionSequence Description_;
+    ::xsd::cxx::tree::one< AeTitleType > AeTitle_;
     ::xsd::cxx::tree::one< NetworkConnectionReferenceType > NetworkConnectionReference_;
     ::xsd::cxx::tree::one< AssociationInitiatorType > AssociationInitiator_;
     ::xsd::cxx::tree::one< AssociationAcceptorType > AssociationAcceptor_;
-    DescriptionOptional Description_;
   };
 
-  class DICOMNetworkConnection: public ::xml_schema::Type
+  class DicomNetworkConnection: public ::xml_schema::Type
   {
     public:
-    // TLSCipherSuite
+    // TlsCipherSuite
     //
-    typedef ::xml_schema::String TLSCipherSuiteType;
-    typedef ::xsd::cxx::tree::sequence< TLSCipherSuiteType > TLSCipherSuiteSequence;
-    typedef TLSCipherSuiteSequence::iterator TLSCipherSuiteIterator;
-    typedef TLSCipherSuiteSequence::const_iterator TLSCipherSuiteConstIterator;
-    typedef ::xsd::cxx::tree::traits< TLSCipherSuiteType, char > TLSCipherSuiteTraits;
+    typedef ::xml_schema::String TlsCipherSuiteType;
+    typedef ::xsd::cxx::tree::sequence< TlsCipherSuiteType > TlsCipherSuiteSequence;
+    typedef TlsCipherSuiteSequence::iterator TlsCipherSuiteIterator;
+    typedef TlsCipherSuiteSequence::const_iterator TlsCipherSuiteConstIterator;
+    typedef ::xsd::cxx::tree::traits< TlsCipherSuiteType, char > TlsCipherSuiteTraits;
 
-    const TLSCipherSuiteSequence&
-    TLSCipherSuite () const;
+    const TlsCipherSuiteSequence&
+    TlsCipherSuite () const;
 
-    TLSCipherSuiteSequence&
-    TLSCipherSuite ();
+    TlsCipherSuiteSequence&
+    TlsCipherSuite ();
 
     void
-    TLSCipherSuite (const TLSCipherSuiteSequence& s);
+    TlsCipherSuite (const TlsCipherSuiteSequence& s);
 
     // id
     //
@@ -467,26 +463,26 @@ namespace CDM
 
     // Constructors.
     //
-    DICOMNetworkConnection (const IdType&,
+    DicomNetworkConnection (const IdType&,
                             const HostnameType&);
 
-    DICOMNetworkConnection (const ::xercesc::DOMElement& e,
+    DicomNetworkConnection (const ::xercesc::DOMElement& e,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
-    DICOMNetworkConnection (const DICOMNetworkConnection& x,
+    DicomNetworkConnection (const DicomNetworkConnection& x,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
-    virtual DICOMNetworkConnection*
+    virtual DicomNetworkConnection*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    DICOMNetworkConnection&
-    operator= (const DICOMNetworkConnection& x);
+    DicomNetworkConnection&
+    operator= (const DicomNetworkConnection& x);
 
     virtual 
-    ~DICOMNetworkConnection ();
+    ~DicomNetworkConnection ();
 
     // Implementation.
     //
@@ -496,35 +492,35 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    TLSCipherSuiteSequence TLSCipherSuite_;
+    TlsCipherSuiteSequence TlsCipherSuite_;
     ::xsd::cxx::tree::one< IdType > id_;
     ::xsd::cxx::tree::one< HostnameType > Hostname_;
     PortOptional Port_;
   };
 
-  class DICOMDeviceDescriptor: public ::CDM::AbstractMDSDescriptor
+  class DicomDeviceDescriptor: public ::CDM::MdsDescriptor
   {
     public:
-    // NetworkAE
+    // NetworkAe
     //
-    typedef ::CDM::DICOMNetworkAE NetworkAEType;
-    typedef ::xsd::cxx::tree::sequence< NetworkAEType > NetworkAESequence;
-    typedef NetworkAESequence::iterator NetworkAEIterator;
-    typedef NetworkAESequence::const_iterator NetworkAEConstIterator;
-    typedef ::xsd::cxx::tree::traits< NetworkAEType, char > NetworkAETraits;
+    typedef ::CDM::DicomNetworkAe NetworkAeType;
+    typedef ::xsd::cxx::tree::sequence< NetworkAeType > NetworkAeSequence;
+    typedef NetworkAeSequence::iterator NetworkAeIterator;
+    typedef NetworkAeSequence::const_iterator NetworkAeConstIterator;
+    typedef ::xsd::cxx::tree::traits< NetworkAeType, char > NetworkAeTraits;
 
-    const NetworkAESequence&
-    NetworkAE () const;
+    const NetworkAeSequence&
+    NetworkAe () const;
 
-    NetworkAESequence&
-    NetworkAE ();
+    NetworkAeSequence&
+    NetworkAe ();
 
     void
-    NetworkAE (const NetworkAESequence& s);
+    NetworkAe (const NetworkAeSequence& s);
 
     // NetworkConnection
     //
-    typedef ::CDM::DICOMNetworkConnection NetworkConnectionType;
+    typedef ::CDM::DicomNetworkConnection NetworkConnectionType;
     typedef ::xsd::cxx::tree::sequence< NetworkConnectionType > NetworkConnectionSequence;
     typedef NetworkConnectionSequence::iterator NetworkConnectionIterator;
     typedef NetworkConnectionSequence::const_iterator NetworkConnectionConstIterator;
@@ -643,45 +639,37 @@ namespace CDM
 
     // Description
     //
-    typedef ::xml_schema::String DescriptionType;
-    typedef ::xsd::cxx::tree::optional< DescriptionType > DescriptionOptional;
+    typedef ::CDM::LocalizedText DescriptionType;
+    typedef ::xsd::cxx::tree::sequence< DescriptionType > DescriptionSequence;
+    typedef DescriptionSequence::iterator DescriptionIterator;
+    typedef DescriptionSequence::const_iterator DescriptionConstIterator;
     typedef ::xsd::cxx::tree::traits< DescriptionType, char > DescriptionTraits;
 
-    const DescriptionOptional&
+    const DescriptionSequence&
     Description () const;
 
-    DescriptionOptional&
+    DescriptionSequence&
     Description ();
 
     void
-    Description (const DescriptionType& x);
-
-    void
-    Description (const DescriptionOptional& x);
-
-    void
-    Description (::std::unique_ptr< DescriptionType > p);
+    Description (const DescriptionSequence& s);
 
     // StationName
     //
-    typedef ::xml_schema::String StationNameType;
-    typedef ::xsd::cxx::tree::optional< StationNameType > StationNameOptional;
+    typedef ::CDM::LocalizedText StationNameType;
+    typedef ::xsd::cxx::tree::sequence< StationNameType > StationNameSequence;
+    typedef StationNameSequence::iterator StationNameIterator;
+    typedef StationNameSequence::const_iterator StationNameConstIterator;
     typedef ::xsd::cxx::tree::traits< StationNameType, char > StationNameTraits;
 
-    const StationNameOptional&
+    const StationNameSequence&
     StationName () const;
 
-    StationNameOptional&
+    StationNameSequence&
     StationName ();
 
     void
-    StationName (const StationNameType& x);
-
-    void
-    StationName (const StationNameOptional& x);
-
-    void
-    StationName (::std::unique_ptr< StationNameType > p);
+    StationName (const StationNameSequence& s);
 
     // IssuerOfPatientID
     //
@@ -706,29 +694,25 @@ namespace CDM
 
     // Constructors.
     //
-    DICOMDeviceDescriptor (const HandleType&,
-                           const ContextType&);
+    DicomDeviceDescriptor (const HandleType&);
 
-    DICOMDeviceDescriptor (const HandleType&,
-                           ::std::unique_ptr< ContextType >);
-
-    DICOMDeviceDescriptor (const ::xercesc::DOMElement& e,
+    DicomDeviceDescriptor (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
-    DICOMDeviceDescriptor (const DICOMDeviceDescriptor& x,
+    DicomDeviceDescriptor (const DicomDeviceDescriptor& x,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
-    virtual DICOMDeviceDescriptor*
+    virtual DicomDeviceDescriptor*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    DICOMDeviceDescriptor&
-    operator= (const DICOMDeviceDescriptor& x);
+    DicomDeviceDescriptor&
+    operator= (const DicomDeviceDescriptor& x);
 
     virtual 
-    ~DICOMDeviceDescriptor ();
+    ~DicomDeviceDescriptor ();
 
     // Implementation.
     //
@@ -738,7 +722,7 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    NetworkAESequence NetworkAE_;
+    NetworkAeSequence NetworkAe_;
     NetworkConnectionSequence NetworkConnection_;
     SoftwareVersionSequence SoftwareVersion_;
     InstitutionNameSequence InstitutionName_;
@@ -746,8 +730,8 @@ namespace CDM
     InstitutionalDepartmentNameSequence InstitutionalDepartmentName_;
     PrimaryDeviceTypeSequence PrimaryDeviceType_;
     PublicCertificateSequence PublicCertificate_;
-    DescriptionOptional Description_;
-    StationNameOptional StationName_;
+    DescriptionSequence Description_;
+    StationNameSequence StationName_;
     IssuerOfPatientIDOptional IssuerOfPatientID_;
   };
 }
@@ -773,26 +757,26 @@ namespace CDM
 namespace CDM
 {
   void
-  operator<< (::xercesc::DOMElement&, const DICOMTransferRole&);
+  operator<< (::xercesc::DOMElement&, const DicomTransferRole&);
 
   void
-  operator<< (::xercesc::DOMAttr&, const DICOMTransferRole&);
+  operator<< (::xercesc::DOMAttr&, const DicomTransferRole&);
 
   void
   operator<< (::xml_schema::ListStream&,
-              const DICOMTransferRole&);
+              const DicomTransferRole&);
 
   void
-  operator<< (::xercesc::DOMElement&, const DICOMTransferCapability&);
+  operator<< (::xercesc::DOMElement&, const DicomTransferCapability&);
 
   void
-  operator<< (::xercesc::DOMElement&, const DICOMNetworkAE&);
+  operator<< (::xercesc::DOMElement&, const DicomNetworkAe&);
 
   void
-  operator<< (::xercesc::DOMElement&, const DICOMNetworkConnection&);
+  operator<< (::xercesc::DOMElement&, const DicomNetworkConnection&);
 
   void
-  operator<< (::xercesc::DOMElement&, const DICOMDeviceDescriptor&);
+  operator<< (::xercesc::DOMElement&, const DicomDeviceDescriptor&);
 }
 
 #include <xsd/cxx/post.hxx>

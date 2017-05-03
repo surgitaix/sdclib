@@ -692,47 +692,47 @@ namespace MESSAGEMODEL
     void
     SetContextStateResponse (::std::unique_ptr< SetContextStateResponseType > p);
 
-    // EpisodicContextChangedReport
+    // EpisodicContextReport
     //
-    typedef ::CDM::EpisodicContextChangedReport EpisodicContextChangedReportType;
-    typedef ::xsd::cxx::tree::optional< EpisodicContextChangedReportType > EpisodicContextChangedReportOptional;
-    typedef ::xsd::cxx::tree::traits< EpisodicContextChangedReportType, char > EpisodicContextChangedReportTraits;
+    typedef ::CDM::EpisodicContextReport EpisodicContextReportType;
+    typedef ::xsd::cxx::tree::optional< EpisodicContextReportType > EpisodicContextReportOptional;
+    typedef ::xsd::cxx::tree::traits< EpisodicContextReportType, char > EpisodicContextReportTraits;
 
-    const EpisodicContextChangedReportOptional&
-    EpisodicContextChangedReport () const;
+    const EpisodicContextReportOptional&
+    EpisodicContextReport () const;
 
-    EpisodicContextChangedReportOptional&
-    EpisodicContextChangedReport ();
-
-    void
-    EpisodicContextChangedReport (const EpisodicContextChangedReportType& x);
+    EpisodicContextReportOptional&
+    EpisodicContextReport ();
 
     void
-    EpisodicContextChangedReport (const EpisodicContextChangedReportOptional& x);
+    EpisodicContextReport (const EpisodicContextReportType& x);
 
     void
-    EpisodicContextChangedReport (::std::unique_ptr< EpisodicContextChangedReportType > p);
+    EpisodicContextReport (const EpisodicContextReportOptional& x);
 
-    // PeriodicContextChangedReport
+    void
+    EpisodicContextReport (::std::unique_ptr< EpisodicContextReportType > p);
+
+    // PeriodicContextReport
     //
-    typedef ::CDM::PeriodicContextChangedReport PeriodicContextChangedReportType;
-    typedef ::xsd::cxx::tree::optional< PeriodicContextChangedReportType > PeriodicContextChangedReportOptional;
-    typedef ::xsd::cxx::tree::traits< PeriodicContextChangedReportType, char > PeriodicContextChangedReportTraits;
+    typedef ::CDM::PeriodicContextReport PeriodicContextReportType;
+    typedef ::xsd::cxx::tree::optional< PeriodicContextReportType > PeriodicContextReportOptional;
+    typedef ::xsd::cxx::tree::traits< PeriodicContextReportType, char > PeriodicContextReportTraits;
 
-    const PeriodicContextChangedReportOptional&
-    PeriodicContextChangedReport () const;
+    const PeriodicContextReportOptional&
+    PeriodicContextReport () const;
 
-    PeriodicContextChangedReportOptional&
-    PeriodicContextChangedReport ();
-
-    void
-    PeriodicContextChangedReport (const PeriodicContextChangedReportType& x);
+    PeriodicContextReportOptional&
+    PeriodicContextReport ();
 
     void
-    PeriodicContextChangedReport (const PeriodicContextChangedReportOptional& x);
+    PeriodicContextReport (const PeriodicContextReportType& x);
 
     void
-    PeriodicContextChangedReport (::std::unique_ptr< PeriodicContextChangedReportType > p);
+    PeriodicContextReport (const PeriodicContextReportOptional& x);
+
+    void
+    PeriodicContextReport (::std::unique_ptr< PeriodicContextReportType > p);
 
     // EpisodicAlertReport
     //
@@ -839,131 +839,131 @@ namespace MESSAGEMODEL
     void
     OperationInvokedReport (::std::unique_ptr< OperationInvokedReportType > p);
 
-    // GetMDDescription
+    // GetMdDescription
     //
-    typedef ::CDM::GetMDDescription GetMDDescriptionType;
-    typedef ::xsd::cxx::tree::optional< GetMDDescriptionType > GetMDDescriptionOptional;
-    typedef ::xsd::cxx::tree::traits< GetMDDescriptionType, char > GetMDDescriptionTraits;
+    typedef ::CDM::GetMdDescription GetMdDescriptionType;
+    typedef ::xsd::cxx::tree::optional< GetMdDescriptionType > GetMdDescriptionOptional;
+    typedef ::xsd::cxx::tree::traits< GetMdDescriptionType, char > GetMdDescriptionTraits;
 
-    const GetMDDescriptionOptional&
-    GetMDDescription () const;
+    const GetMdDescriptionOptional&
+    GetMdDescription () const;
 
-    GetMDDescriptionOptional&
-    GetMDDescription ();
-
-    void
-    GetMDDescription (const GetMDDescriptionType& x);
+    GetMdDescriptionOptional&
+    GetMdDescription ();
 
     void
-    GetMDDescription (const GetMDDescriptionOptional& x);
+    GetMdDescription (const GetMdDescriptionType& x);
 
     void
-    GetMDDescription (::std::unique_ptr< GetMDDescriptionType > p);
+    GetMdDescription (const GetMdDescriptionOptional& x);
 
-    // GetMDDescriptionResponse
+    void
+    GetMdDescription (::std::unique_ptr< GetMdDescriptionType > p);
+
+    // GetMdDescriptionResponse
     //
-    typedef ::CDM::GetMDDescriptionResponse GetMDDescriptionResponseType;
-    typedef ::xsd::cxx::tree::optional< GetMDDescriptionResponseType > GetMDDescriptionResponseOptional;
-    typedef ::xsd::cxx::tree::traits< GetMDDescriptionResponseType, char > GetMDDescriptionResponseTraits;
+    typedef ::CDM::GetMdDescriptionResponse GetMdDescriptionResponseType;
+    typedef ::xsd::cxx::tree::optional< GetMdDescriptionResponseType > GetMdDescriptionResponseOptional;
+    typedef ::xsd::cxx::tree::traits< GetMdDescriptionResponseType, char > GetMdDescriptionResponseTraits;
 
-    const GetMDDescriptionResponseOptional&
-    GetMDDescriptionResponse () const;
+    const GetMdDescriptionResponseOptional&
+    GetMdDescriptionResponse () const;
 
-    GetMDDescriptionResponseOptional&
-    GetMDDescriptionResponse ();
-
-    void
-    GetMDDescriptionResponse (const GetMDDescriptionResponseType& x);
+    GetMdDescriptionResponseOptional&
+    GetMdDescriptionResponse ();
 
     void
-    GetMDDescriptionResponse (const GetMDDescriptionResponseOptional& x);
+    GetMdDescriptionResponse (const GetMdDescriptionResponseType& x);
 
     void
-    GetMDDescriptionResponse (::std::unique_ptr< GetMDDescriptionResponseType > p);
+    GetMdDescriptionResponse (const GetMdDescriptionResponseOptional& x);
 
-    // GetMDIB
+    void
+    GetMdDescriptionResponse (::std::unique_ptr< GetMdDescriptionResponseType > p);
+
+    // GetMdib
     //
-    typedef ::CDM::GetMDIB GetMDIBType;
-    typedef ::xsd::cxx::tree::optional< GetMDIBType > GetMDIBOptional;
-    typedef ::xsd::cxx::tree::traits< GetMDIBType, char > GetMDIBTraits;
+    typedef ::CDM::GetMdib GetMdibType;
+    typedef ::xsd::cxx::tree::optional< GetMdibType > GetMdibOptional;
+    typedef ::xsd::cxx::tree::traits< GetMdibType, char > GetMdibTraits;
 
-    const GetMDIBOptional&
-    GetMDIB () const;
+    const GetMdibOptional&
+    GetMdib () const;
 
-    GetMDIBOptional&
-    GetMDIB ();
-
-    void
-    GetMDIB (const GetMDIBType& x);
+    GetMdibOptional&
+    GetMdib ();
 
     void
-    GetMDIB (const GetMDIBOptional& x);
+    GetMdib (const GetMdibType& x);
 
     void
-    GetMDIB (::std::unique_ptr< GetMDIBType > p);
+    GetMdib (const GetMdibOptional& x);
 
-    // GetMDIBResponse
+    void
+    GetMdib (::std::unique_ptr< GetMdibType > p);
+
+    // GetMdibResponse
     //
-    typedef ::CDM::GetMDIBResponse GetMDIBResponseType;
-    typedef ::xsd::cxx::tree::optional< GetMDIBResponseType > GetMDIBResponseOptional;
-    typedef ::xsd::cxx::tree::traits< GetMDIBResponseType, char > GetMDIBResponseTraits;
+    typedef ::CDM::GetMdibResponse GetMdibResponseType;
+    typedef ::xsd::cxx::tree::optional< GetMdibResponseType > GetMdibResponseOptional;
+    typedef ::xsd::cxx::tree::traits< GetMdibResponseType, char > GetMdibResponseTraits;
 
-    const GetMDIBResponseOptional&
-    GetMDIBResponse () const;
+    const GetMdibResponseOptional&
+    GetMdibResponse () const;
 
-    GetMDIBResponseOptional&
-    GetMDIBResponse ();
-
-    void
-    GetMDIBResponse (const GetMDIBResponseType& x);
+    GetMdibResponseOptional&
+    GetMdibResponse ();
 
     void
-    GetMDIBResponse (const GetMDIBResponseOptional& x);
+    GetMdibResponse (const GetMdibResponseType& x);
 
     void
-    GetMDIBResponse (::std::unique_ptr< GetMDIBResponseType > p);
+    GetMdibResponse (const GetMdibResponseOptional& x);
 
-    // GetMDState
+    void
+    GetMdibResponse (::std::unique_ptr< GetMdibResponseType > p);
+
+    // GetMdState
     //
-    typedef ::CDM::GetMDState GetMDStateType;
-    typedef ::xsd::cxx::tree::optional< GetMDStateType > GetMDStateOptional;
-    typedef ::xsd::cxx::tree::traits< GetMDStateType, char > GetMDStateTraits;
+    typedef ::CDM::GetMdState GetMdStateType;
+    typedef ::xsd::cxx::tree::optional< GetMdStateType > GetMdStateOptional;
+    typedef ::xsd::cxx::tree::traits< GetMdStateType, char > GetMdStateTraits;
 
-    const GetMDStateOptional&
-    GetMDState () const;
+    const GetMdStateOptional&
+    GetMdState () const;
 
-    GetMDStateOptional&
-    GetMDState ();
-
-    void
-    GetMDState (const GetMDStateType& x);
+    GetMdStateOptional&
+    GetMdState ();
 
     void
-    GetMDState (const GetMDStateOptional& x);
+    GetMdState (const GetMdStateType& x);
 
     void
-    GetMDState (::std::unique_ptr< GetMDStateType > p);
+    GetMdState (const GetMdStateOptional& x);
 
-    // GetMDStateResponse
+    void
+    GetMdState (::std::unique_ptr< GetMdStateType > p);
+
+    // GetMdStateResponse
     //
-    typedef ::CDM::GetMDStateResponse GetMDStateResponseType;
-    typedef ::xsd::cxx::tree::optional< GetMDStateResponseType > GetMDStateResponseOptional;
-    typedef ::xsd::cxx::tree::traits< GetMDStateResponseType, char > GetMDStateResponseTraits;
+    typedef ::CDM::GetMdStateResponse GetMdStateResponseType;
+    typedef ::xsd::cxx::tree::optional< GetMdStateResponseType > GetMdStateResponseOptional;
+    typedef ::xsd::cxx::tree::traits< GetMdStateResponseType, char > GetMdStateResponseTraits;
 
-    const GetMDStateResponseOptional&
-    GetMDStateResponse () const;
+    const GetMdStateResponseOptional&
+    GetMdStateResponse () const;
 
-    GetMDStateResponseOptional&
-    GetMDStateResponse ();
-
-    void
-    GetMDStateResponse (const GetMDStateResponseType& x);
+    GetMdStateResponseOptional&
+    GetMdStateResponse ();
 
     void
-    GetMDStateResponse (const GetMDStateResponseOptional& x);
+    GetMdStateResponse (const GetMdStateResponseType& x);
 
     void
-    GetMDStateResponse (::std::unique_ptr< GetMDStateResponseType > p);
+    GetMdStateResponse (const GetMdStateResponseOptional& x);
+
+    void
+    GetMdStateResponse (::std::unique_ptr< GetMdStateResponseType > p);
 
     // Activate
     //
@@ -1201,19 +1201,19 @@ namespace MESSAGEMODEL
     GetContextStatesResponseOptional GetContextStatesResponse_;
     SetContextStateOptional SetContextState_;
     SetContextStateResponseOptional SetContextStateResponse_;
-    EpisodicContextChangedReportOptional EpisodicContextChangedReport_;
-    PeriodicContextChangedReportOptional PeriodicContextChangedReport_;
+    EpisodicContextReportOptional EpisodicContextReport_;
+    PeriodicContextReportOptional PeriodicContextReport_;
     EpisodicAlertReportOptional EpisodicAlertReport_;
     EpisodicMetricReportOptional EpisodicMetricReport_;
     PeriodicAlertReportOptional PeriodicAlertReport_;
     PeriodicMetricReportOptional PeriodicMetricReport_;
     OperationInvokedReportOptional OperationInvokedReport_;
-    GetMDDescriptionOptional GetMDDescription_;
-    GetMDDescriptionResponseOptional GetMDDescriptionResponse_;
-    GetMDIBOptional GetMDIB_;
-    GetMDIBResponseOptional GetMDIBResponse_;
-    GetMDStateOptional GetMDState_;
-    GetMDStateResponseOptional GetMDStateResponse_;
+    GetMdDescriptionOptional GetMdDescription_;
+    GetMdDescriptionResponseOptional GetMdDescriptionResponse_;
+    GetMdibOptional GetMdib_;
+    GetMdibResponseOptional GetMdibResponse_;
+    GetMdStateOptional GetMdState_;
+    GetMdStateResponseOptional GetMdStateResponse_;
     ActivateOptional Activate_;
     ActivateResponseOptional ActivateResponse_;
     SetAlertStateOptional SetAlertState_;

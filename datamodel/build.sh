@@ -10,9 +10,9 @@ xsd cxx-tree \
 	--hxx-suffix ".hxx" \
 	--cxx-suffix ".cxx" \
 	--ixx-suffix ".ixx" \
-	--namespace-map http://extension-point-uri/15/03=CDM \
-	--namespace-map http://domain-model-uri/15/04=CDM \
-	--namespace-map http://message-model-uri/15/04=CDM \
+	--namespace-map http://p11073-10207/draft7/ext/2017/03/17=CDM \
+	--namespace-map http://p11073-10207/draft7/pm/2017/03/17=CDM \
+	--namespace-map http://p11073-10207/draft7/msg/2017/03/17=CDM \
 	\
 	--namespace-map http://www.w3.org/2005/08/addressing=WS::ADDRESSING \
 	--namespace-map http://schemas.xmlsoap.org/ws/2004/09/mex=WS::MEX \
@@ -28,11 +28,14 @@ xsd cxx-tree \
 	--namespace-map http://standards.ieee.org/downloads/11073/11073-20702-201x/=MDPWS \
 	--namespace-map http://www.w3.org/ns/ws-policy=WS::POLICY \
 	--namespace-map http://www.w3.org/2003/05/soap-envelope=MESSAGEMODEL \
-	ExtensionPoint.xsd BICEPS_DomainModel.xsd BICEPS_MessageModel.xsd \
+	\
+	--namespace-map http://dicom-extension-uri/09/08=CDM \
+	ExtensionPoint.xsd BICEPS_ParticipantModel.xsd BICEPS_MessageModel.xsd \
 	ws-addressing.xsd MetadataExchange.xsd wsdd-dpws-1.1-schema-os.xsd wsdd-discovery-1.1-schema-os.xsd \
 	wsdl-custom.xsd wsdl-soap-binding.xsd \
 	MDPWS.xsd \
 	eventing.xsd \
 	ws-policy.xsd ws-streaming.xsd \
-	NormalizedMessageModel.xsd
+	NormalizedMessageModel.xsd \
+	DICOMDeviceDescription.xsd
 

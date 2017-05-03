@@ -252,17 +252,17 @@ namespace xml_schema
   }
 }
 
-#include "BICEPS_DomainModel-fwd.hxx"
+#include "BICEPS_ParticipantModel-fwd.hxx"
 
 // Forward declarations.
 //
 namespace CDM
 {
-  class DICOMTransferRole;
-  class DICOMTransferCapability;
-  class DICOMNetworkAE;
-  class DICOMNetworkConnection;
-  class DICOMDeviceDescriptor;
+  class DicomTransferRole;
+  class DicomTransferCapability;
+  class DicomNetworkAe;
+  class DicomNetworkConnection;
+  class DicomDeviceDescriptor;
 }
 
 

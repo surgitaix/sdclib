@@ -859,64 +859,64 @@ namespace MESSAGEMODEL
     this->SetContextStateResponse_.set (std::move (x));
   }
 
-  const Body::EpisodicContextChangedReportOptional& Body::
-  EpisodicContextChangedReport () const
+  const Body::EpisodicContextReportOptional& Body::
+  EpisodicContextReport () const
   {
-    return this->EpisodicContextChangedReport_;
+    return this->EpisodicContextReport_;
   }
 
-  Body::EpisodicContextChangedReportOptional& Body::
-  EpisodicContextChangedReport ()
+  Body::EpisodicContextReportOptional& Body::
+  EpisodicContextReport ()
   {
-    return this->EpisodicContextChangedReport_;
-  }
-
-  void Body::
-  EpisodicContextChangedReport (const EpisodicContextChangedReportType& x)
-  {
-    this->EpisodicContextChangedReport_.set (x);
+    return this->EpisodicContextReport_;
   }
 
   void Body::
-  EpisodicContextChangedReport (const EpisodicContextChangedReportOptional& x)
+  EpisodicContextReport (const EpisodicContextReportType& x)
   {
-    this->EpisodicContextChangedReport_ = x;
+    this->EpisodicContextReport_.set (x);
   }
 
   void Body::
-  EpisodicContextChangedReport (::std::unique_ptr< EpisodicContextChangedReportType > x)
+  EpisodicContextReport (const EpisodicContextReportOptional& x)
   {
-    this->EpisodicContextChangedReport_.set (std::move (x));
-  }
-
-  const Body::PeriodicContextChangedReportOptional& Body::
-  PeriodicContextChangedReport () const
-  {
-    return this->PeriodicContextChangedReport_;
-  }
-
-  Body::PeriodicContextChangedReportOptional& Body::
-  PeriodicContextChangedReport ()
-  {
-    return this->PeriodicContextChangedReport_;
+    this->EpisodicContextReport_ = x;
   }
 
   void Body::
-  PeriodicContextChangedReport (const PeriodicContextChangedReportType& x)
+  EpisodicContextReport (::std::unique_ptr< EpisodicContextReportType > x)
   {
-    this->PeriodicContextChangedReport_.set (x);
+    this->EpisodicContextReport_.set (std::move (x));
+  }
+
+  const Body::PeriodicContextReportOptional& Body::
+  PeriodicContextReport () const
+  {
+    return this->PeriodicContextReport_;
+  }
+
+  Body::PeriodicContextReportOptional& Body::
+  PeriodicContextReport ()
+  {
+    return this->PeriodicContextReport_;
   }
 
   void Body::
-  PeriodicContextChangedReport (const PeriodicContextChangedReportOptional& x)
+  PeriodicContextReport (const PeriodicContextReportType& x)
   {
-    this->PeriodicContextChangedReport_ = x;
+    this->PeriodicContextReport_.set (x);
   }
 
   void Body::
-  PeriodicContextChangedReport (::std::unique_ptr< PeriodicContextChangedReportType > x)
+  PeriodicContextReport (const PeriodicContextReportOptional& x)
   {
-    this->PeriodicContextChangedReport_.set (std::move (x));
+    this->PeriodicContextReport_ = x;
+  }
+
+  void Body::
+  PeriodicContextReport (::std::unique_ptr< PeriodicContextReportType > x)
+  {
+    this->PeriodicContextReport_.set (std::move (x));
   }
 
   const Body::EpisodicAlertReportOptional& Body::
@@ -1069,184 +1069,184 @@ namespace MESSAGEMODEL
     this->OperationInvokedReport_.set (std::move (x));
   }
 
-  const Body::GetMDDescriptionOptional& Body::
-  GetMDDescription () const
+  const Body::GetMdDescriptionOptional& Body::
+  GetMdDescription () const
   {
-    return this->GetMDDescription_;
+    return this->GetMdDescription_;
   }
 
-  Body::GetMDDescriptionOptional& Body::
-  GetMDDescription ()
+  Body::GetMdDescriptionOptional& Body::
+  GetMdDescription ()
   {
-    return this->GetMDDescription_;
-  }
-
-  void Body::
-  GetMDDescription (const GetMDDescriptionType& x)
-  {
-    this->GetMDDescription_.set (x);
+    return this->GetMdDescription_;
   }
 
   void Body::
-  GetMDDescription (const GetMDDescriptionOptional& x)
+  GetMdDescription (const GetMdDescriptionType& x)
   {
-    this->GetMDDescription_ = x;
+    this->GetMdDescription_.set (x);
   }
 
   void Body::
-  GetMDDescription (::std::unique_ptr< GetMDDescriptionType > x)
+  GetMdDescription (const GetMdDescriptionOptional& x)
   {
-    this->GetMDDescription_.set (std::move (x));
-  }
-
-  const Body::GetMDDescriptionResponseOptional& Body::
-  GetMDDescriptionResponse () const
-  {
-    return this->GetMDDescriptionResponse_;
-  }
-
-  Body::GetMDDescriptionResponseOptional& Body::
-  GetMDDescriptionResponse ()
-  {
-    return this->GetMDDescriptionResponse_;
+    this->GetMdDescription_ = x;
   }
 
   void Body::
-  GetMDDescriptionResponse (const GetMDDescriptionResponseType& x)
+  GetMdDescription (::std::unique_ptr< GetMdDescriptionType > x)
   {
-    this->GetMDDescriptionResponse_.set (x);
+    this->GetMdDescription_.set (std::move (x));
+  }
+
+  const Body::GetMdDescriptionResponseOptional& Body::
+  GetMdDescriptionResponse () const
+  {
+    return this->GetMdDescriptionResponse_;
+  }
+
+  Body::GetMdDescriptionResponseOptional& Body::
+  GetMdDescriptionResponse ()
+  {
+    return this->GetMdDescriptionResponse_;
   }
 
   void Body::
-  GetMDDescriptionResponse (const GetMDDescriptionResponseOptional& x)
+  GetMdDescriptionResponse (const GetMdDescriptionResponseType& x)
   {
-    this->GetMDDescriptionResponse_ = x;
+    this->GetMdDescriptionResponse_.set (x);
   }
 
   void Body::
-  GetMDDescriptionResponse (::std::unique_ptr< GetMDDescriptionResponseType > x)
+  GetMdDescriptionResponse (const GetMdDescriptionResponseOptional& x)
   {
-    this->GetMDDescriptionResponse_.set (std::move (x));
-  }
-
-  const Body::GetMDIBOptional& Body::
-  GetMDIB () const
-  {
-    return this->GetMDIB_;
-  }
-
-  Body::GetMDIBOptional& Body::
-  GetMDIB ()
-  {
-    return this->GetMDIB_;
+    this->GetMdDescriptionResponse_ = x;
   }
 
   void Body::
-  GetMDIB (const GetMDIBType& x)
+  GetMdDescriptionResponse (::std::unique_ptr< GetMdDescriptionResponseType > x)
   {
-    this->GetMDIB_.set (x);
+    this->GetMdDescriptionResponse_.set (std::move (x));
+  }
+
+  const Body::GetMdibOptional& Body::
+  GetMdib () const
+  {
+    return this->GetMdib_;
+  }
+
+  Body::GetMdibOptional& Body::
+  GetMdib ()
+  {
+    return this->GetMdib_;
   }
 
   void Body::
-  GetMDIB (const GetMDIBOptional& x)
+  GetMdib (const GetMdibType& x)
   {
-    this->GetMDIB_ = x;
+    this->GetMdib_.set (x);
   }
 
   void Body::
-  GetMDIB (::std::unique_ptr< GetMDIBType > x)
+  GetMdib (const GetMdibOptional& x)
   {
-    this->GetMDIB_.set (std::move (x));
-  }
-
-  const Body::GetMDIBResponseOptional& Body::
-  GetMDIBResponse () const
-  {
-    return this->GetMDIBResponse_;
-  }
-
-  Body::GetMDIBResponseOptional& Body::
-  GetMDIBResponse ()
-  {
-    return this->GetMDIBResponse_;
+    this->GetMdib_ = x;
   }
 
   void Body::
-  GetMDIBResponse (const GetMDIBResponseType& x)
+  GetMdib (::std::unique_ptr< GetMdibType > x)
   {
-    this->GetMDIBResponse_.set (x);
+    this->GetMdib_.set (std::move (x));
+  }
+
+  const Body::GetMdibResponseOptional& Body::
+  GetMdibResponse () const
+  {
+    return this->GetMdibResponse_;
+  }
+
+  Body::GetMdibResponseOptional& Body::
+  GetMdibResponse ()
+  {
+    return this->GetMdibResponse_;
   }
 
   void Body::
-  GetMDIBResponse (const GetMDIBResponseOptional& x)
+  GetMdibResponse (const GetMdibResponseType& x)
   {
-    this->GetMDIBResponse_ = x;
+    this->GetMdibResponse_.set (x);
   }
 
   void Body::
-  GetMDIBResponse (::std::unique_ptr< GetMDIBResponseType > x)
+  GetMdibResponse (const GetMdibResponseOptional& x)
   {
-    this->GetMDIBResponse_.set (std::move (x));
-  }
-
-  const Body::GetMDStateOptional& Body::
-  GetMDState () const
-  {
-    return this->GetMDState_;
-  }
-
-  Body::GetMDStateOptional& Body::
-  GetMDState ()
-  {
-    return this->GetMDState_;
+    this->GetMdibResponse_ = x;
   }
 
   void Body::
-  GetMDState (const GetMDStateType& x)
+  GetMdibResponse (::std::unique_ptr< GetMdibResponseType > x)
   {
-    this->GetMDState_.set (x);
+    this->GetMdibResponse_.set (std::move (x));
+  }
+
+  const Body::GetMdStateOptional& Body::
+  GetMdState () const
+  {
+    return this->GetMdState_;
+  }
+
+  Body::GetMdStateOptional& Body::
+  GetMdState ()
+  {
+    return this->GetMdState_;
   }
 
   void Body::
-  GetMDState (const GetMDStateOptional& x)
+  GetMdState (const GetMdStateType& x)
   {
-    this->GetMDState_ = x;
+    this->GetMdState_.set (x);
   }
 
   void Body::
-  GetMDState (::std::unique_ptr< GetMDStateType > x)
+  GetMdState (const GetMdStateOptional& x)
   {
-    this->GetMDState_.set (std::move (x));
-  }
-
-  const Body::GetMDStateResponseOptional& Body::
-  GetMDStateResponse () const
-  {
-    return this->GetMDStateResponse_;
-  }
-
-  Body::GetMDStateResponseOptional& Body::
-  GetMDStateResponse ()
-  {
-    return this->GetMDStateResponse_;
+    this->GetMdState_ = x;
   }
 
   void Body::
-  GetMDStateResponse (const GetMDStateResponseType& x)
+  GetMdState (::std::unique_ptr< GetMdStateType > x)
   {
-    this->GetMDStateResponse_.set (x);
+    this->GetMdState_.set (std::move (x));
+  }
+
+  const Body::GetMdStateResponseOptional& Body::
+  GetMdStateResponse () const
+  {
+    return this->GetMdStateResponse_;
+  }
+
+  Body::GetMdStateResponseOptional& Body::
+  GetMdStateResponse ()
+  {
+    return this->GetMdStateResponse_;
   }
 
   void Body::
-  GetMDStateResponse (const GetMDStateResponseOptional& x)
+  GetMdStateResponse (const GetMdStateResponseType& x)
   {
-    this->GetMDStateResponse_ = x;
+    this->GetMdStateResponse_.set (x);
   }
 
   void Body::
-  GetMDStateResponse (::std::unique_ptr< GetMDStateResponseType > x)
+  GetMdStateResponse (const GetMdStateResponseOptional& x)
   {
-    this->GetMDStateResponse_.set (std::move (x));
+    this->GetMdStateResponse_ = x;
+  }
+
+  void Body::
+  GetMdStateResponse (::std::unique_ptr< GetMdStateResponseType > x)
+  {
+    this->GetMdStateResponse_.set (std::move (x));
   }
 
   const Body::ActivateOptional& Body::
@@ -1981,19 +1981,19 @@ namespace MESSAGEMODEL
     GetContextStatesResponse_ (this),
     SetContextState_ (this),
     SetContextStateResponse_ (this),
-    EpisodicContextChangedReport_ (this),
-    PeriodicContextChangedReport_ (this),
+    EpisodicContextReport_ (this),
+    PeriodicContextReport_ (this),
     EpisodicAlertReport_ (this),
     EpisodicMetricReport_ (this),
     PeriodicAlertReport_ (this),
     PeriodicMetricReport_ (this),
     OperationInvokedReport_ (this),
-    GetMDDescription_ (this),
-    GetMDDescriptionResponse_ (this),
-    GetMDIB_ (this),
-    GetMDIBResponse_ (this),
-    GetMDState_ (this),
-    GetMDStateResponse_ (this),
+    GetMdDescription_ (this),
+    GetMdDescriptionResponse_ (this),
+    GetMdib_ (this),
+    GetMdibResponse_ (this),
+    GetMdState_ (this),
+    GetMdStateResponse_ (this),
     Activate_ (this),
     ActivateResponse_ (this),
     SetAlertState_ (this),
@@ -2028,19 +2028,19 @@ namespace MESSAGEMODEL
     GetContextStatesResponse_ (x.GetContextStatesResponse_, f, this),
     SetContextState_ (x.SetContextState_, f, this),
     SetContextStateResponse_ (x.SetContextStateResponse_, f, this),
-    EpisodicContextChangedReport_ (x.EpisodicContextChangedReport_, f, this),
-    PeriodicContextChangedReport_ (x.PeriodicContextChangedReport_, f, this),
+    EpisodicContextReport_ (x.EpisodicContextReport_, f, this),
+    PeriodicContextReport_ (x.PeriodicContextReport_, f, this),
     EpisodicAlertReport_ (x.EpisodicAlertReport_, f, this),
     EpisodicMetricReport_ (x.EpisodicMetricReport_, f, this),
     PeriodicAlertReport_ (x.PeriodicAlertReport_, f, this),
     PeriodicMetricReport_ (x.PeriodicMetricReport_, f, this),
     OperationInvokedReport_ (x.OperationInvokedReport_, f, this),
-    GetMDDescription_ (x.GetMDDescription_, f, this),
-    GetMDDescriptionResponse_ (x.GetMDDescriptionResponse_, f, this),
-    GetMDIB_ (x.GetMDIB_, f, this),
-    GetMDIBResponse_ (x.GetMDIBResponse_, f, this),
-    GetMDState_ (x.GetMDState_, f, this),
-    GetMDStateResponse_ (x.GetMDStateResponse_, f, this),
+    GetMdDescription_ (x.GetMdDescription_, f, this),
+    GetMdDescriptionResponse_ (x.GetMdDescriptionResponse_, f, this),
+    GetMdib_ (x.GetMdib_, f, this),
+    GetMdibResponse_ (x.GetMdibResponse_, f, this),
+    GetMdState_ (x.GetMdState_, f, this),
+    GetMdStateResponse_ (x.GetMdStateResponse_, f, this),
     Activate_ (x.Activate_, f, this),
     ActivateResponse_ (x.ActivateResponse_, f, this),
     SetAlertState_ (x.SetAlertState_, f, this),
@@ -2075,19 +2075,19 @@ namespace MESSAGEMODEL
     GetContextStatesResponse_ (this),
     SetContextState_ (this),
     SetContextStateResponse_ (this),
-    EpisodicContextChangedReport_ (this),
-    PeriodicContextChangedReport_ (this),
+    EpisodicContextReport_ (this),
+    PeriodicContextReport_ (this),
     EpisodicAlertReport_ (this),
     EpisodicMetricReport_ (this),
     PeriodicAlertReport_ (this),
     PeriodicMetricReport_ (this),
     OperationInvokedReport_ (this),
-    GetMDDescription_ (this),
-    GetMDDescriptionResponse_ (this),
-    GetMDIB_ (this),
-    GetMDIBResponse_ (this),
-    GetMDState_ (this),
-    GetMDStateResponse_ (this),
+    GetMdDescription_ (this),
+    GetMdDescriptionResponse_ (this),
+    GetMdib_ (this),
+    GetMdibResponse_ (this),
+    GetMdState_ (this),
+    GetMdStateResponse_ (this),
     Activate_ (this),
     ActivateResponse_ (this),
     SetAlertState_ (this),
@@ -2383,7 +2383,7 @@ namespace MESSAGEMODEL
 
       // GetContextStates
       //
-      if (n.name () == "GetContextStates" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "GetContextStates" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< GetContextStatesType > r (
           GetContextStatesTraits::create (i, f, this));
@@ -2397,7 +2397,7 @@ namespace MESSAGEMODEL
 
       // GetContextStatesResponse
       //
-      if (n.name () == "GetContextStatesResponse" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "GetContextStatesResponse" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< GetContextStatesResponseType > r (
           GetContextStatesResponseTraits::create (i, f, this));
@@ -2411,7 +2411,7 @@ namespace MESSAGEMODEL
 
       // SetContextState
       //
-      if (n.name () == "SetContextState" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "SetContextState" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< SetContextStateType > r (
           SetContextStateTraits::create (i, f, this));
@@ -2425,7 +2425,7 @@ namespace MESSAGEMODEL
 
       // SetContextStateResponse
       //
-      if (n.name () == "SetContextStateResponse" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "SetContextStateResponse" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< SetContextStateResponseType > r (
           SetContextStateResponseTraits::create (i, f, this));
@@ -2437,37 +2437,37 @@ namespace MESSAGEMODEL
         }
       }
 
-      // EpisodicContextChangedReport
+      // EpisodicContextReport
       //
-      if (n.name () == "EpisodicContextChangedReport" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "EpisodicContextReport" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
-        ::std::unique_ptr< EpisodicContextChangedReportType > r (
-          EpisodicContextChangedReportTraits::create (i, f, this));
+        ::std::unique_ptr< EpisodicContextReportType > r (
+          EpisodicContextReportTraits::create (i, f, this));
 
-        if (!this->EpisodicContextChangedReport_)
+        if (!this->EpisodicContextReport_)
         {
-          this->EpisodicContextChangedReport_.set (::std::move (r));
+          this->EpisodicContextReport_.set (::std::move (r));
           continue;
         }
       }
 
-      // PeriodicContextChangedReport
+      // PeriodicContextReport
       //
-      if (n.name () == "PeriodicContextChangedReport" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "PeriodicContextReport" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
-        ::std::unique_ptr< PeriodicContextChangedReportType > r (
-          PeriodicContextChangedReportTraits::create (i, f, this));
+        ::std::unique_ptr< PeriodicContextReportType > r (
+          PeriodicContextReportTraits::create (i, f, this));
 
-        if (!this->PeriodicContextChangedReport_)
+        if (!this->PeriodicContextReport_)
         {
-          this->PeriodicContextChangedReport_.set (::std::move (r));
+          this->PeriodicContextReport_.set (::std::move (r));
           continue;
         }
       }
 
       // EpisodicAlertReport
       //
-      if (n.name () == "EpisodicAlertReport" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "EpisodicAlertReport" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< EpisodicAlertReportType > r (
           EpisodicAlertReportTraits::create (i, f, this));
@@ -2481,7 +2481,7 @@ namespace MESSAGEMODEL
 
       // EpisodicMetricReport
       //
-      if (n.name () == "EpisodicMetricReport" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "EpisodicMetricReport" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< EpisodicMetricReportType > r (
           EpisodicMetricReportTraits::create (i, f, this));
@@ -2495,7 +2495,7 @@ namespace MESSAGEMODEL
 
       // PeriodicAlertReport
       //
-      if (n.name () == "PeriodicAlertReport" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "PeriodicAlertReport" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< PeriodicAlertReportType > r (
           PeriodicAlertReportTraits::create (i, f, this));
@@ -2509,7 +2509,7 @@ namespace MESSAGEMODEL
 
       // PeriodicMetricReport
       //
-      if (n.name () == "PeriodicMetricReport" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "PeriodicMetricReport" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< PeriodicMetricReportType > r (
           PeriodicMetricReportTraits::create (i, f, this));
@@ -2523,7 +2523,7 @@ namespace MESSAGEMODEL
 
       // OperationInvokedReport
       //
-      if (n.name () == "OperationInvokedReport" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "OperationInvokedReport" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< OperationInvokedReportType > r (
           OperationInvokedReportTraits::create (i, f, this));
@@ -2535,93 +2535,93 @@ namespace MESSAGEMODEL
         }
       }
 
-      // GetMDDescription
+      // GetMdDescription
       //
-      if (n.name () == "GetMDDescription" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "GetMdDescription" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
-        ::std::unique_ptr< GetMDDescriptionType > r (
-          GetMDDescriptionTraits::create (i, f, this));
+        ::std::unique_ptr< GetMdDescriptionType > r (
+          GetMdDescriptionTraits::create (i, f, this));
 
-        if (!this->GetMDDescription_)
+        if (!this->GetMdDescription_)
         {
-          this->GetMDDescription_.set (::std::move (r));
+          this->GetMdDescription_.set (::std::move (r));
           continue;
         }
       }
 
-      // GetMDDescriptionResponse
+      // GetMdDescriptionResponse
       //
-      if (n.name () == "GetMDDescriptionResponse" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "GetMdDescriptionResponse" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
-        ::std::unique_ptr< GetMDDescriptionResponseType > r (
-          GetMDDescriptionResponseTraits::create (i, f, this));
+        ::std::unique_ptr< GetMdDescriptionResponseType > r (
+          GetMdDescriptionResponseTraits::create (i, f, this));
 
-        if (!this->GetMDDescriptionResponse_)
+        if (!this->GetMdDescriptionResponse_)
         {
-          this->GetMDDescriptionResponse_.set (::std::move (r));
+          this->GetMdDescriptionResponse_.set (::std::move (r));
           continue;
         }
       }
 
-      // GetMDIB
+      // GetMdib
       //
-      if (n.name () == "GetMDIB" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "GetMdib" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
-        ::std::unique_ptr< GetMDIBType > r (
-          GetMDIBTraits::create (i, f, this));
+        ::std::unique_ptr< GetMdibType > r (
+          GetMdibTraits::create (i, f, this));
 
-        if (!this->GetMDIB_)
+        if (!this->GetMdib_)
         {
-          this->GetMDIB_.set (::std::move (r));
+          this->GetMdib_.set (::std::move (r));
           continue;
         }
       }
 
-      // GetMDIBResponse
+      // GetMdibResponse
       //
-      if (n.name () == "GetMDIBResponse" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "GetMdibResponse" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
-        ::std::unique_ptr< GetMDIBResponseType > r (
-          GetMDIBResponseTraits::create (i, f, this));
+        ::std::unique_ptr< GetMdibResponseType > r (
+          GetMdibResponseTraits::create (i, f, this));
 
-        if (!this->GetMDIBResponse_)
+        if (!this->GetMdibResponse_)
         {
-          this->GetMDIBResponse_.set (::std::move (r));
+          this->GetMdibResponse_.set (::std::move (r));
           continue;
         }
       }
 
-      // GetMDState
+      // GetMdState
       //
-      if (n.name () == "GetMDState" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "GetMdState" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
-        ::std::unique_ptr< GetMDStateType > r (
-          GetMDStateTraits::create (i, f, this));
+        ::std::unique_ptr< GetMdStateType > r (
+          GetMdStateTraits::create (i, f, this));
 
-        if (!this->GetMDState_)
+        if (!this->GetMdState_)
         {
-          this->GetMDState_.set (::std::move (r));
+          this->GetMdState_.set (::std::move (r));
           continue;
         }
       }
 
-      // GetMDStateResponse
+      // GetMdStateResponse
       //
-      if (n.name () == "GetMDStateResponse" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "GetMdStateResponse" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
-        ::std::unique_ptr< GetMDStateResponseType > r (
-          GetMDStateResponseTraits::create (i, f, this));
+        ::std::unique_ptr< GetMdStateResponseType > r (
+          GetMdStateResponseTraits::create (i, f, this));
 
-        if (!this->GetMDStateResponse_)
+        if (!this->GetMdStateResponse_)
         {
-          this->GetMDStateResponse_.set (::std::move (r));
+          this->GetMdStateResponse_.set (::std::move (r));
           continue;
         }
       }
 
       // Activate
       //
-      if (n.name () == "Activate" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "Activate" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< ActivateType > r (
           ActivateTraits::create (i, f, this));
@@ -2635,7 +2635,7 @@ namespace MESSAGEMODEL
 
       // ActivateResponse
       //
-      if (n.name () == "ActivateResponse" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "ActivateResponse" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< ActivateResponseType > r (
           ActivateResponseTraits::create (i, f, this));
@@ -2649,7 +2649,7 @@ namespace MESSAGEMODEL
 
       // SetAlertState
       //
-      if (n.name () == "SetAlertState" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "SetAlertState" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< SetAlertStateType > r (
           SetAlertStateTraits::create (i, f, this));
@@ -2663,7 +2663,7 @@ namespace MESSAGEMODEL
 
       // SetAlertStateResponse
       //
-      if (n.name () == "SetAlertStateResponse" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "SetAlertStateResponse" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< SetAlertStateResponseType > r (
           SetAlertStateResponseTraits::create (i, f, this));
@@ -2677,7 +2677,7 @@ namespace MESSAGEMODEL
 
       // SetString
       //
-      if (n.name () == "SetString" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "SetString" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< SetStringType > r (
           SetStringTraits::create (i, f, this));
@@ -2691,7 +2691,7 @@ namespace MESSAGEMODEL
 
       // SetStringResponse
       //
-      if (n.name () == "SetStringResponse" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "SetStringResponse" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< SetStringResponseType > r (
           SetStringResponseTraits::create (i, f, this));
@@ -2705,7 +2705,7 @@ namespace MESSAGEMODEL
 
       // SetValue
       //
-      if (n.name () == "SetValue" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "SetValue" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< SetValueType > r (
           SetValueTraits::create (i, f, this));
@@ -2719,7 +2719,7 @@ namespace MESSAGEMODEL
 
       // SetValueResponse
       //
-      if (n.name () == "SetValueResponse" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "SetValueResponse" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< SetValueResponseType > r (
           SetValueResponseTraits::create (i, f, this));
@@ -2733,7 +2733,7 @@ namespace MESSAGEMODEL
 
       // WaveformStream
       //
-      if (n.name () == "WaveformStream" && n.namespace_ () == "http://message-model-uri/15/04")
+      if (n.name () == "WaveformStream" && n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
       {
         ::std::unique_ptr< WaveformStreamType > r (
           WaveformStreamTraits::create (i, f, this));
@@ -2779,19 +2779,19 @@ namespace MESSAGEMODEL
       this->GetContextStatesResponse_ = x.GetContextStatesResponse_;
       this->SetContextState_ = x.SetContextState_;
       this->SetContextStateResponse_ = x.SetContextStateResponse_;
-      this->EpisodicContextChangedReport_ = x.EpisodicContextChangedReport_;
-      this->PeriodicContextChangedReport_ = x.PeriodicContextChangedReport_;
+      this->EpisodicContextReport_ = x.EpisodicContextReport_;
+      this->PeriodicContextReport_ = x.PeriodicContextReport_;
       this->EpisodicAlertReport_ = x.EpisodicAlertReport_;
       this->EpisodicMetricReport_ = x.EpisodicMetricReport_;
       this->PeriodicAlertReport_ = x.PeriodicAlertReport_;
       this->PeriodicMetricReport_ = x.PeriodicMetricReport_;
       this->OperationInvokedReport_ = x.OperationInvokedReport_;
-      this->GetMDDescription_ = x.GetMDDescription_;
-      this->GetMDDescriptionResponse_ = x.GetMDDescriptionResponse_;
-      this->GetMDIB_ = x.GetMDIB_;
-      this->GetMDIBResponse_ = x.GetMDIBResponse_;
-      this->GetMDState_ = x.GetMDState_;
-      this->GetMDStateResponse_ = x.GetMDStateResponse_;
+      this->GetMdDescription_ = x.GetMdDescription_;
+      this->GetMdDescriptionResponse_ = x.GetMdDescriptionResponse_;
+      this->GetMdib_ = x.GetMdib_;
+      this->GetMdibResponse_ = x.GetMdibResponse_;
+      this->GetMdState_ = x.GetMdState_;
+      this->GetMdStateResponse_ = x.GetMdStateResponse_;
       this->Activate_ = x.Activate_;
       this->ActivateResponse_ = x.ActivateResponse_;
       this->SetAlertState_ = x.SetAlertState_;
@@ -4730,7 +4730,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetContextStates",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.GetContextStates ();
@@ -4743,7 +4743,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetContextStatesResponse",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.GetContextStatesResponse ();
@@ -4756,7 +4756,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetContextState",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.SetContextState ();
@@ -4769,36 +4769,36 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetContextStateResponse",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.SetContextStateResponse ();
     }
 
-    // EpisodicContextChangedReport
+    // EpisodicContextReport
     //
-    if (i.EpisodicContextChangedReport ())
+    if (i.EpisodicContextReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
-          "EpisodicContextChangedReport",
-          "http://message-model-uri/15/04",
+          "EpisodicContextReport",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
-      s << *i.EpisodicContextChangedReport ();
+      s << *i.EpisodicContextReport ();
     }
 
-    // PeriodicContextChangedReport
+    // PeriodicContextReport
     //
-    if (i.PeriodicContextChangedReport ())
+    if (i.PeriodicContextReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
-          "PeriodicContextChangedReport",
-          "http://message-model-uri/15/04",
+          "PeriodicContextReport",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
-      s << *i.PeriodicContextChangedReport ();
+      s << *i.PeriodicContextReport ();
     }
 
     // EpisodicAlertReport
@@ -4808,7 +4808,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "EpisodicAlertReport",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.EpisodicAlertReport ();
@@ -4821,7 +4821,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "EpisodicMetricReport",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.EpisodicMetricReport ();
@@ -4834,7 +4834,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "PeriodicAlertReport",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.PeriodicAlertReport ();
@@ -4847,7 +4847,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "PeriodicMetricReport",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.PeriodicMetricReport ();
@@ -4860,88 +4860,88 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "OperationInvokedReport",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.OperationInvokedReport ();
     }
 
-    // GetMDDescription
+    // GetMdDescription
     //
-    if (i.GetMDDescription ())
+    if (i.GetMdDescription ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
-          "GetMDDescription",
-          "http://message-model-uri/15/04",
+          "GetMdDescription",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
-      s << *i.GetMDDescription ();
+      s << *i.GetMdDescription ();
     }
 
-    // GetMDDescriptionResponse
+    // GetMdDescriptionResponse
     //
-    if (i.GetMDDescriptionResponse ())
+    if (i.GetMdDescriptionResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
-          "GetMDDescriptionResponse",
-          "http://message-model-uri/15/04",
+          "GetMdDescriptionResponse",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
-      s << *i.GetMDDescriptionResponse ();
+      s << *i.GetMdDescriptionResponse ();
     }
 
-    // GetMDIB
+    // GetMdib
     //
-    if (i.GetMDIB ())
+    if (i.GetMdib ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
-          "GetMDIB",
-          "http://message-model-uri/15/04",
+          "GetMdib",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
-      s << *i.GetMDIB ();
+      s << *i.GetMdib ();
     }
 
-    // GetMDIBResponse
+    // GetMdibResponse
     //
-    if (i.GetMDIBResponse ())
+    if (i.GetMdibResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
-          "GetMDIBResponse",
-          "http://message-model-uri/15/04",
+          "GetMdibResponse",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
-      s << *i.GetMDIBResponse ();
+      s << *i.GetMdibResponse ();
     }
 
-    // GetMDState
+    // GetMdState
     //
-    if (i.GetMDState ())
+    if (i.GetMdState ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
-          "GetMDState",
-          "http://message-model-uri/15/04",
+          "GetMdState",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
-      s << *i.GetMDState ();
+      s << *i.GetMdState ();
     }
 
-    // GetMDStateResponse
+    // GetMdStateResponse
     //
-    if (i.GetMDStateResponse ())
+    if (i.GetMdStateResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
-          "GetMDStateResponse",
-          "http://message-model-uri/15/04",
+          "GetMdStateResponse",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
-      s << *i.GetMDStateResponse ();
+      s << *i.GetMdStateResponse ();
     }
 
     // Activate
@@ -4951,7 +4951,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Activate",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.Activate ();
@@ -4964,7 +4964,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ActivateResponse",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.ActivateResponse ();
@@ -4977,7 +4977,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetAlertState",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.SetAlertState ();
@@ -4990,7 +4990,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetAlertStateResponse",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.SetAlertStateResponse ();
@@ -5003,7 +5003,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetString",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.SetString ();
@@ -5016,7 +5016,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetStringResponse",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.SetStringResponse ();
@@ -5029,7 +5029,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetValue",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.SetValue ();
@@ -5042,7 +5042,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetValueResponse",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.SetValueResponse ();
@@ -5055,7 +5055,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "WaveformStream",
-          "http://message-model-uri/15/04",
+          "http://p11073-10207/draft7/msg/2017/03/17",
           e));
 
       s << *i.WaveformStream ();
