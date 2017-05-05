@@ -1,8 +1,16 @@
 <classes script = "generate.gsl" >
 
+    <class name = "MetricQuality" parent = "NULL" abstract = "false" >
+	<property name = "Validity" type = "MeasurementValidity" optional = "false" />	
+	<property name = "Mode" type = "GenerationMode" optional = "true" />
+	<property name = "Qi" type = "double" optional = "true" />
+    </class>
+
+
     <class name = "AbstractMetricValue" parent = "NULL" abstract = "true" >
     	<include path = "OSCLib/Data/OSCP/MDIB/MeasurementState.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/Timestamp.h" />
+	<property name = "MetricQuality" type = "MetricQuality" optional = "false" />	
     	<property name = "MeasurementState" type = "MeasurementState" optional = "false" />
     	<property name = "Start_Time" type = "Timestamp" optional = "true" />
     	<property name = "Stop_Time" type = "Timestamp" optional = "true" />

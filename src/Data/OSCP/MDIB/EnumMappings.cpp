@@ -14,14 +14,6 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-std::string EnumToString::convert(Activation source) {
-	switch (source) {
-		case Activation::OFF: return "Off";
-		case Activation::ON: return "On";
-	}
-	throw std::runtime_error("Illegal value for Activation");
-}
-
 std::string EnumToString::convert(AlertConditionKind source) {
 	switch (source) {
 		case AlertConditionKind::PHYSIOLOGICAL: return "Physiological";
@@ -80,10 +72,10 @@ std::string EnumToString::convert(ContextAssociation source) {
 	throw std::runtime_error("Illegal value for ContextAssociation");
 }
 
-std::string EnumToString::convert(DICOMTransferRole source) {
+std::string EnumToString::convert(DicomTransferRole source) {
 	switch (source) {
-		case DICOMTransferRole::SCU: return "SCU";
-		case DICOMTransferRole::SCP: return "SCP";
+		case DicomTransferRole::Scu: return "Scu";
+		case DicomTransferRole::Scp: return "Scp";
 	}
 	throw std::runtime_error("Illegal value for DICOMTransferRole");
 }
@@ -129,15 +121,17 @@ std::string EnumToString::convert(MetricCategory source) {
 	throw std::runtime_error("Illegal value for MetricCategory");
 }
 
-std::string EnumToString::convert(MetricMeasurementValidity source) {
+std::string EnumToString::convert(MeasurementValidity source) {
 	switch (source) {
-		case MetricMeasurementValidity::Valid: return "Valid";
-		case MetricMeasurementValidity::Validated_Data: return "Validated Data";
-		case MetricMeasurementValidity::Questionable: return "Questionable";
-		case MetricMeasurementValidity::Calibration_Ongoing: return "Calibration Ongoing";
-		case MetricMeasurementValidity::Invalid: return "Invalid";
-		case MetricMeasurementValidity::Overflow: return "Overflow";
-		case MetricMeasurementValidity::Underflow: return "Underflow";
+		case MeasurementValidity::Valid: return "Valid";
+		case MeasurementValidity::ValidatedData: return "Validated data";
+		case MeasurementValidity::Ongoing: return "Ongoing";
+		case MeasurementValidity::Questionable: return "Questionable";
+		case MeasurementValidity::CalibrationOngoing: return "Calibration ongoing";
+		case MeasurementValidity::Invalid: return "Invalid";
+		case MeasurementValidity::Overflow: return "Overflow";
+		case MeasurementValidity::Underflow: return "Underflow";
+		case MeasurementValidity::NotAvailable: return "Not available";
 	}
 	throw std::runtime_error("Illegal value for MetricMeasurementValidity");
 }

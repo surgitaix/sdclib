@@ -30,20 +30,18 @@ public:
 	static std::string convert(const std::string & source);
 	static unsigned short int convert(const unsigned short int & source);
 
-	static CDM::Activation convert(const Activation & source);
 	static CDM::AlertConditionKind convert(const AlertConditionKind & source);
 	static CDM::AlertConditionPriority convert(const AlertConditionPriority & source);
 	static CDM::AlertSignalManifestation convert(const AlertSignalManifestation & source);
 	static CDM::CalibrationState convert(const CalibrationState & source);
 	static CDM::ComponentActivation convert(const ComponentActivation & source);
 	static CDM::ContextAssociation convert(const ContextAssociation & source);
-	static CDM::DICOMTransferRole convert(const DICOMTransferRole & source);
+	static CDM::DicomTransferRole convert(const DicomTransferRole & source);
 	static CDM::GenerationMode convert(const GenerationMode & source);
-	static CDM::IntendedUse convert(const IntendedUse & source);
 	static CDM::InvocationState convert(const InvocationState & source);
 	static CDM::MetricAvailability convert(const MetricAvailability & source);
 	static CDM::MetricCategory convert(const MetricCategory & source);
-	static CDM::MetricMeasurementValidity convert(const MetricMeasurementValidity & source);
+	static CDM::MeasurementValidity convert(const MeasurementValidity & source);
 	static CDM::MetricRetrievability convert(const MetricRetrievability & source);
 	static CDM::MonitoredAlertLimits convert(const MonitoredAlertLimits & source);
 	static CDM::OperatingMode convert(const OperatingMode & source);

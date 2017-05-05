@@ -30,7 +30,6 @@ public:
 	static long long convert(const long long & source);
 	static std::string convert(const std::string & source);
 
-	static Activation convert(const CDM::Activation & source);
 	static ActivateOperationDescriptor convert(const CDM::ActivateOperationDescriptor & source);
 	static AlertConditionDescriptor convert(const CDM::AlertConditionDescriptor & source);
 	static AlertConditionKind convert(const CDM::AlertConditionKind & source);
@@ -61,7 +60,7 @@ public:
 	static DICOMNetworkAE convert(const CDM::DICOMNetworkAE & source);
 	static DICOMNetworkConnection convert(const CDM::DICOMNetworkConnection & source);
 	static DICOMTransferCapability convert(const CDM::DICOMTransferCapability & source);
-	static DICOMTransferRole convert(const CDM::DICOMTransferRole & source);
+	static DicomTransferRole convert(const CDM::DicomTransferRole & source);
 	static Duration convert(const CDM::Duration & source);
 	static EnsembleContextDescriptor convert(const CDM::EnsembleContextDescriptor & source);
 	static EnsembleContextState convert(const CDM::EnsembleContextState & source);
@@ -73,7 +72,6 @@ public:
 	static HydraMDSState convert(const CDM::HydraMDSState & source);
 	static ImagingProcedure convert(const CDM::ImagingProcedure & source);
 	static InstanceIdentifier convert(const CDM::InstanceIdentifier & source);
-	static IntendedUse convert(const CDM::IntendedUse & source);
 	static InvocationState convert(const CDM::InvocationState & source);
 	static Language convert(const CDM::Language & source);
 	static LimitAlertConditionDescriptor convert(const CDM::LimitAlertConditionDescriptor & source);
@@ -87,7 +85,7 @@ public:
 	static MeasurementState convert(const CDM::MeasurementState & source);
 	static MetricAvailability convert(const CDM::MetricAvailability & source);
 	static MetricCategory convert(const CDM::MetricCategory & source);
-	static MetricMeasurementValidity convert(const CDM::MetricMeasurementValidity & source);
+	static MeasurementValidity convert(const CDM::MeasurementValidity & source);
 	static MetricRetrievability convert(const CDM::MetricRetrievability & source);
 	static MonitoredAlertLimits convert(const CDM::MonitoredAlertLimits & source);
 	static NumericMetricDescriptor convert(const CDM::NumericMetricDescriptor & source);

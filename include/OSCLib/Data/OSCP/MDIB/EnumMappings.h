@@ -14,11 +14,6 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-enum class Activation
-{
-	OFF,
-	ON
-};
 
 enum class AlertConditionKind
 {
@@ -64,23 +59,15 @@ enum class ContextAssociation {
 	DISASSOCIATED
 };
 
-enum class DICOMTransferRole {
-	SCU,
-	SCP
+enum class DicomTransferRole {
+	Scu,
+	Scp
 };
 
 enum class GenerationMode {
-	REAL_DATA,
-	TEST_DATA,
-	DEMO_DATA
-};
-
-enum class IntendedUse
-{
-	INFORMATIONAL,
-	MEDICAL_A,
-	MEDICAL_B,
-	MEDICAL_C
+	Real,
+	Test,
+	Demo
 };
 
 enum class InvocationState
@@ -109,15 +96,17 @@ enum class MetricCategory
 	RECOMMENDATION
 };
 
-enum class MetricMeasurementValidity
+enum class MeasurementValidity
 {
 	Valid,
-	Validated_Data,
+	ValidatedData,
+	Ongoing,
 	Questionable,
-	Calibration_Ongoing,
+	CalibrationOngoing,
 	Invalid,
 	Overflow,
-	Underflow
+	Underflow,
+	NotAvailable
 };
 
 enum class MetricRetrievability
@@ -181,19 +170,18 @@ enum class SignalPresence
 
 class EnumToString {
 public:
-	static std::string convert(Activation source);
 	static std::string convert(AlertConditionKind source);
 	static std::string convert(AlertConditionPriority source);
 	static std::string convert(AlertSignalManifestation source);
 	static std::string convert(CalibrationState source);
 	static std::string convert(ComponentActivation source);
 	static std::string convert(ContextAssociation source);
-	static std::string convert(DICOMTransferRole source);
+	static std::string convert(DicomTransferRole source);
 	static std::string convert(GenerationMode source);
 	static std::string convert(InvocationState source);
 	static std::string convert(MetricAvailability source);
 	static std::string convert(MetricCategory source);
-	static std::string convert(MetricMeasurementValidity source);
+	static std::string convert(MeasurementValidity source);
 	static std::string convert(MetricRetrievability source);
 	static std::string convert(MonitoredAlertLimits source);
 	static std::string convert(OperatingMode source);

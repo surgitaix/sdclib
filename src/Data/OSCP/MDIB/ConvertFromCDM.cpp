@@ -438,15 +438,17 @@ MetricCategory ConvertFromCDM::convert(const CDM::MetricCategory & source) {
 	throw std::runtime_error("Illegal value for MetricCategory");
 }
 
-MetricMeasurementValidity ConvertFromCDM::convert(const CDM::MetricMeasurementValidity & source) {
+MeasurementValidity ConvertFromCDM::convert(const CDM::MeasurementValidity & source) {
 	switch (source) {
-		case CDM::MetricMeasurementValidity::Vld: return MetricMeasurementValidity::Valid;
-		case CDM::MetricMeasurementValidity::Vldated: return MetricMeasurementValidity::Validated_Data;
-		case CDM::MetricMeasurementValidity::Qst: return MetricMeasurementValidity::Questionable;
-		case CDM::MetricMeasurementValidity::Calib: return MetricMeasurementValidity::Calibration_Ongoing;
-		case CDM::MetricMeasurementValidity::Inv: return MetricMeasurementValidity::Invalid;
-		case CDM::MetricMeasurementValidity::Oflw: return MetricMeasurementValidity::Overflow;
-		case CDM::MetricMeasurementValidity::Uflw: return MetricMeasurementValidity::Underflow;
+		case CDM::MeasurementValidity::Vld: return MeasurementValidity::Valid;
+		case CDM::MeasurementValidity::Vldated: return MeasurementValidity::ValidatedData;
+		case CDM::MeasurementValidity::Ong: return MeasurementValidity::Ongoing;
+		case CDM::MeasurementValidity::Qst: return MeasurementValidity::Questionable;
+		case CDM::MeasurementValidity::Calib: return MeasurementValidity::CalibrationOngoing;
+		case CDM::MeasurementValidity::Inv: return MeasurementValidity::Invalid;
+		case CDM::MeasurementValidity::Oflw: return MeasurementValidity::Overflow;
+		case CDM::MeasurementValidity::Uflw: return MeasurementValidity::Underflow;
+		case CDM::MeasurementValidity::NA: return MeasurementValidity::NotAvailable;
 	}
 	throw std::runtime_error("Illegal value for MetricMeasurementValidity");
 }

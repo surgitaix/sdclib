@@ -135,14 +135,6 @@ unsigned short int ConvertToCDM::convert(const unsigned short int & source) {
 	return source;
 }
 
-CDM::Activation ConvertToCDM::convert(const Activation & source) {
-	switch (source) {
-		case Activation::OFF: return CDM::Activation::Off;
-		case Activation::ON: return CDM::Activation::On;
-	}
-	throw std::runtime_error("Illegal value for Activation");
-}
-
 CDM::AlertConditionKind ConvertToCDM::convert(const AlertConditionKind & source) {
 	switch (source) {
 		case AlertConditionKind::PHYSIOLOGICAL: return CDM::AlertConditionKind::Phy;
@@ -201,10 +193,10 @@ CDM::ContextAssociation ConvertToCDM::convert(const ContextAssociation & source)
 	throw std::runtime_error("Illegal value for ContextAssociation");
 }
 
-CDM::DICOMTransferRole ConvertToCDM::convert(const DICOMTransferRole & source) {
+CDM::DicomTransferRole ConvertToCDM::convert(const DicomTransferRole & source) {
 	switch (source) {
-		case DICOMTransferRole::SCU: return CDM::DICOMTransferRole::SCU;
-		case DICOMTransferRole::SCP: return CDM::DICOMTransferRole::SCP;
+		case DicomTransferRole::SCU: return CDM::DicomTransferRole::SCU;
+		case DicomTransferRole::SCP: return CDM::DicomTransferRole::SCP;
 	}
 	throw std::runtime_error("Illegal value for DICOMTransferRole");
 }
@@ -216,16 +208,6 @@ CDM::GenerationMode ConvertToCDM::convert(const GenerationMode & source) {
 		case GenerationMode::TEST_DATA: return CDM::GenerationMode::Test;
 	}
 	throw std::runtime_error("Illegal value for GenerationMode");
-}
-
-CDM::IntendedUse ConvertToCDM::convert(const IntendedUse & source) {
-	switch (source) {
-		case IntendedUse::INFORMATIONAL: return CDM::IntendedUse::Inf;
-		case IntendedUse::MEDICAL_A: return CDM::IntendedUse::MedA;
-		case IntendedUse::MEDICAL_B: return CDM::IntendedUse::MedB;
-		case IntendedUse::MEDICAL_C: return CDM::IntendedUse::MedC;
-	}
-	throw std::runtime_error("Illegal value for IntendedUse");
 }
 
 CDM::InvocationState ConvertToCDM::convert(const InvocationState & source) {
@@ -260,15 +242,15 @@ CDM::MetricCategory ConvertToCDM::convert(const MetricCategory & source) {
 	throw std::runtime_error("Illegal value for MetricCategory");
 }
 
-CDM::MetricMeasurementValidity ConvertToCDM::convert(const MetricMeasurementValidity & source) {
+CDM::MeasurementValidity ConvertToCDM::convert(const MeasurementValidity & source) {
 	switch (source) {
-		case MetricMeasurementValidity::Valid: return CDM::MetricMeasurementValidity::Vld;
-		case MetricMeasurementValidity::Validated_Data: return CDM::MetricMeasurementValidity::Vldated;
-		case MetricMeasurementValidity::Questionable: return CDM::MetricMeasurementValidity::Qst;
-		case MetricMeasurementValidity::Calibration_Ongoing: return CDM::MetricMeasurementValidity::Calib;
-		case MetricMeasurementValidity::Invalid: return CDM::MetricMeasurementValidity::Inv;
-		case MetricMeasurementValidity::Overflow: return CDM::MetricMeasurementValidity::Oflw;
-		case MetricMeasurementValidity::Underflow: return CDM::MetricMeasurementValidity::Uflw;
+		case MeasurementValidity::Valid: return CDM::MetricMeasurementValidity::Vld;
+		case MeasurementValidity::ValidatedData: return CDM::MetricMeasurementValidity::Vldated;
+		case MeasurementValidity::Questionable: return CDM::MetricMeasurementValidity::Qst;
+		case MeasurementValidity::CalibrationOngoing: return CDM::MetricMeasurementValidity::Calib;
+		case MeasurementValidity::Invalid: return CDM::MetricMeasurementValidity::Inv;
+		case MeasurementValidity::Overflow: return CDM::MetricMeasurementValidity::Oflw;
+		case MeasurementValidity::Underflow: return CDM::MetricMeasurementValidity::Uflw;
 	}
 	throw std::runtime_error("Illegal value for MetricMeasurementValidity");
 }
