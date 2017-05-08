@@ -70,11 +70,6 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	WorkflowContextDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
-
 private:
 	std::shared_ptr<CDM::WorkflowContextDescriptor> data;
 };

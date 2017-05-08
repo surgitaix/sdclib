@@ -126,27 +126,6 @@ bool AlertConditionDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-AlertConditionDescriptor & AlertConditionDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertConditionDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse AlertConditionDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool AlertConditionDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 AlertConditionDescriptor & AlertConditionDescriptor::setKind(const AlertConditionKind & value) {
 	data->Kind(ConvertToCDM::convert(value));
 	return *this;

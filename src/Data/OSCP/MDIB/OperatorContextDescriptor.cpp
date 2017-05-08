@@ -124,27 +124,6 @@ bool OperatorContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-OperatorContextDescriptor & OperatorContextDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool OperatorContextDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse OperatorContextDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool OperatorContextDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 
 } /* namespace OSCP */
 } /* namespace Data */

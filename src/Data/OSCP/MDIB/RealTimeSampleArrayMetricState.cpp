@@ -37,7 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -125,88 +125,56 @@ bool RealTimeSampleArrayMetricState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setComponentActivationState(const ComponentActivation & value) {
-	data->ComponentActivationState(ConvertToCDM::convert(value));
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActivationState(const ComponentActivation & value) {
+	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool RealTimeSampleArrayMetricState::getComponentActivationState(ComponentActivation & out) const {
-	if (data->ComponentActivationState().present()) {
-		out = ConvertFromCDM::convert(data->ComponentActivationState().get());
+
+ComponentActivation RealTimeSampleArrayMetricState::getActivationState() const {
+	return ConvertFromCDM::convert(data->ActivationState());
+}
+	
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setLifeTimePeriod(const Duration & value) {
+	data->LifeTimePeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool RealTimeSampleArrayMetricState::getLifeTimePeriod(Duration & out) const {
+	if (data->LifeTimePeriod().present()) {
+		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
 	}
 	return false;
 }
 
-ComponentActivation RealTimeSampleArrayMetricState::getComponentActivationState() const {
-	return ConvertFromCDM::convert(data->ComponentActivationState().get());
+Duration RealTimeSampleArrayMetricState::getLifeTimePeriod() const {
+	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
-bool RealTimeSampleArrayMetricState::hasComponentActivationState() const {
-	return data->ComponentActivationState().present();
+bool RealTimeSampleArrayMetricState::hasLifeTimePeriod() const {
+	return data->LifeTimePeriod().present();
 }
 	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setCalibrationInfo(const CalibrationInfo & value) {
-	data->CalibrationInfo(ConvertToCDM::convert(value));
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActiveDeterminationPeriod(const Duration & value) {
+	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool RealTimeSampleArrayMetricState::getCalibrationInfo(CalibrationInfo & out) const {
-	if (data->CalibrationInfo().present()) {
-		out = ConvertFromCDM::convert(data->CalibrationInfo().get());
+bool RealTimeSampleArrayMetricState::getActiveDeterminationPeriod(Duration & out) const {
+	if (data->ActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 		return true;
 	}
 	return false;
 }
 
-CalibrationInfo RealTimeSampleArrayMetricState::getCalibrationInfo() const {
-	return ConvertFromCDM::convert(data->CalibrationInfo().get());
+Duration RealTimeSampleArrayMetricState::getActiveDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 }
 	
-bool RealTimeSampleArrayMetricState::hasCalibrationInfo() const {
-	return data->CalibrationInfo().present();
-}
-	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setOperatingHours(const int & value) {
-	data->OperatingHours(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool RealTimeSampleArrayMetricState::getOperatingHours(int & out) const {
-	if (data->OperatingHours().present()) {
-		out = ConvertFromCDM::convert(data->OperatingHours().get());
-		return true;
-	}
-	return false;
-}
-
-int RealTimeSampleArrayMetricState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours().get());
-}
-	
-bool RealTimeSampleArrayMetricState::hasOperatingHours() const {
-	return data->OperatingHours().present();
-}
-	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setOperatingCycles(const int & value) {
-	data->OperatingCycles(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool RealTimeSampleArrayMetricState::getOperatingCycles(int & out) const {
-	if (data->OperatingCycles().present()) {
-		out = ConvertFromCDM::convert(data->OperatingCycles().get());
-		return true;
-	}
-	return false;
-}
-
-int RealTimeSampleArrayMetricState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles().get());
-}
-	
-bool RealTimeSampleArrayMetricState::hasOperatingCycles() const {
-	return data->OperatingCycles().present();
+bool RealTimeSampleArrayMetricState::hasActiveDeterminationPeriod() const {
+	return data->ActiveDeterminationPeriod().present();
 }
 	
 RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setObservedValue(const RealTimeSampleArrayValue & value) {

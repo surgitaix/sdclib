@@ -38,7 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -126,88 +126,56 @@ bool NumericMetricState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
-NumericMetricState & NumericMetricState::setComponentActivationState(const ComponentActivation & value) {
-	data->ComponentActivationState(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::setActivationState(const ComponentActivation & value) {
+	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getComponentActivationState(ComponentActivation & out) const {
-	if (data->ComponentActivationState().present()) {
-		out = ConvertFromCDM::convert(data->ComponentActivationState().get());
+
+ComponentActivation NumericMetricState::getActivationState() const {
+	return ConvertFromCDM::convert(data->ActivationState());
+}
+	
+NumericMetricState & NumericMetricState::setLifeTimePeriod(const Duration & value) {
+	data->LifeTimePeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NumericMetricState::getLifeTimePeriod(Duration & out) const {
+	if (data->LifeTimePeriod().present()) {
+		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
 	}
 	return false;
 }
 
-ComponentActivation NumericMetricState::getComponentActivationState() const {
-	return ConvertFromCDM::convert(data->ComponentActivationState().get());
+Duration NumericMetricState::getLifeTimePeriod() const {
+	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
-bool NumericMetricState::hasComponentActivationState() const {
-	return data->ComponentActivationState().present();
+bool NumericMetricState::hasLifeTimePeriod() const {
+	return data->LifeTimePeriod().present();
 }
 	
-NumericMetricState & NumericMetricState::setCalibrationInfo(const CalibrationInfo & value) {
-	data->CalibrationInfo(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::setActiveDeterminationPeriod(const Duration & value) {
+	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getCalibrationInfo(CalibrationInfo & out) const {
-	if (data->CalibrationInfo().present()) {
-		out = ConvertFromCDM::convert(data->CalibrationInfo().get());
+bool NumericMetricState::getActiveDeterminationPeriod(Duration & out) const {
+	if (data->ActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 		return true;
 	}
 	return false;
 }
 
-CalibrationInfo NumericMetricState::getCalibrationInfo() const {
-	return ConvertFromCDM::convert(data->CalibrationInfo().get());
+Duration NumericMetricState::getActiveDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 }
 	
-bool NumericMetricState::hasCalibrationInfo() const {
-	return data->CalibrationInfo().present();
-}
-	
-NumericMetricState & NumericMetricState::setOperatingHours(const int & value) {
-	data->OperatingHours(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool NumericMetricState::getOperatingHours(int & out) const {
-	if (data->OperatingHours().present()) {
-		out = ConvertFromCDM::convert(data->OperatingHours().get());
-		return true;
-	}
-	return false;
-}
-
-int NumericMetricState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours().get());
-}
-	
-bool NumericMetricState::hasOperatingHours() const {
-	return data->OperatingHours().present();
-}
-	
-NumericMetricState & NumericMetricState::setOperatingCycles(const int & value) {
-	data->OperatingCycles(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool NumericMetricState::getOperatingCycles(int & out) const {
-	if (data->OperatingCycles().present()) {
-		out = ConvertFromCDM::convert(data->OperatingCycles().get());
-		return true;
-	}
-	return false;
-}
-
-int NumericMetricState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles().get());
-}
-	
-bool NumericMetricState::hasOperatingCycles() const {
-	return data->OperatingCycles().present();
+bool NumericMetricState::hasActiveDeterminationPeriod() const {
+	return data->ActiveDeterminationPeriod().present();
 }
 	
 NumericMetricState & NumericMetricState::setObservedValue(const NumericMetricValue & value) {

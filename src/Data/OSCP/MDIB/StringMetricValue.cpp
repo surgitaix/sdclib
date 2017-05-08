@@ -72,14 +72,14 @@ StringMetricValue & StringMetricValue:: operator=(const StringMetricValue & obje
 }
 
 
-StringMetricValue & StringMetricValue::setMeasurementState(const MeasurementState & value) {
-	data->MeasurementState(ConvertToCDM::convert(value));
+StringMetricValue & StringMetricValue::setMetricQuality(const MetricQuality & value) {
+	data->MetricQuality(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MeasurementState StringMetricValue::getMeasurementState() const {
-	return ConvertFromCDM::convert(data->MeasurementState());
+MetricQuality StringMetricValue::getMetricQuality() const {
+	return ConvertFromCDM::convert(data->MetricQuality());
 }
 	
 StringMetricValue & StringMetricValue::setStart_Time(const Timestamp & value) {
@@ -124,25 +124,25 @@ bool StringMetricValue::hasStop_Time() const {
 	return data->Stop_Time().present();
 }
 	
-StringMetricValue & StringMetricValue::setObservationTime(const Timestamp & value) {
-	data->ObservationTime(ConvertToCDM::convert(value));
+StringMetricValue & StringMetricValue::setDeterminationTime(const Timestamp & value) {
+	data->DeterminationTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricValue::getObservationTime(Timestamp & out) const {
-	if (data->ObservationTime().present()) {
-		out = ConvertFromCDM::convert(data->ObservationTime().get());
+bool StringMetricValue::getDeterminationTime(Timestamp & out) const {
+	if (data->DeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp StringMetricValue::getObservationTime() const {
-	return ConvertFromCDM::convert(data->ObservationTime().get());
+Timestamp StringMetricValue::getDeterminationTime() const {
+	return ConvertFromCDM::convert(data->DeterminationTime().get());
 }
 	
-bool StringMetricValue::hasObservationTime() const {
-	return data->ObservationTime().present();
+bool StringMetricValue::hasDeterminationTime() const {
+	return data->DeterminationTime().present();
 }
 	
 StringMetricValue & StringMetricValue::setValue(const std::string & value) {

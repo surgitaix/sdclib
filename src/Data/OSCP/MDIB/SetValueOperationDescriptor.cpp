@@ -125,27 +125,6 @@ bool SetValueOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-SetValueOperationDescriptor & SetValueOperationDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SetValueOperationDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse SetValueOperationDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool SetValueOperationDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 SetValueOperationDescriptor & SetValueOperationDescriptor::setOperationTarget(const std::string & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;

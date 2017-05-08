@@ -126,27 +126,6 @@ bool ClockDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-ClockDescriptor & ClockDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ClockDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse ClockDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool ClockDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 ClockDescriptor & ClockDescriptor::setResolution(const Duration & value) {
 	data->Resolution(ConvertToCDM::convert(value));
 	return *this;

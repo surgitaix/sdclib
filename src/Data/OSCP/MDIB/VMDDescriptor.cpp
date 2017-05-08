@@ -127,27 +127,6 @@ bool VMDDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-VMDDescriptor & VMDDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool VMDDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse VMDDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool VMDDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 VMDDescriptor & VMDDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;

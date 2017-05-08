@@ -101,25 +101,25 @@ bool MeasurementState::hasMode() const {
 	return data->Mode().present();
 }
 	
-MeasurementState & MeasurementState::setQI(const double & value) {
-	data->QI(ConvertToCDM::convert(value));
+MeasurementState & MeasurementState::setQi(const double & value) {
+	data->Qi(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool MeasurementState::getQI(double & out) const {
-	if (data->QI().present()) {
-		out = ConvertFromCDM::convert(data->QI().get());
+bool MeasurementState::getQi(double & out) const {
+	if (data->Qi().present()) {
+		out = ConvertFromCDM::convert(data->Qi().get());
 		return true;
 	}
 	return false;
 }
 
-double MeasurementState::getQI() const {
-	return ConvertFromCDM::convert(data->QI().get());
+double MeasurementState::getQi() const {
+	return ConvertFromCDM::convert(data->Qi().get());
 }
 	
-bool MeasurementState::hasQI() const {
-	return data->QI().present();
+bool MeasurementState::hasQi() const {
+	return data->Qi().present();
 }
 	
 

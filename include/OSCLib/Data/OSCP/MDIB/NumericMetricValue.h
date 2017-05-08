@@ -56,8 +56,8 @@ public:
     
     typedef CDM::NumericMetricValue WrappedType;
 
-	NumericMetricValue & setMeasurementState(const MeasurementState & value);
-	MeasurementState getMeasurementState() const;
+	NumericMetricValue & setMetricQuality(const MetricQuality & value);
+	MetricQuality getMetricQuality() const;
 
 	NumericMetricValue & setStart_Time(const Timestamp & value);
 	Timestamp getStart_Time() const;
@@ -69,10 +69,10 @@ public:
 	bool getStop_Time(Timestamp & out) const;
 	bool hasStop_Time() const;
 
-	NumericMetricValue & setObservationTime(const Timestamp & value);
-	Timestamp getObservationTime() const;
-	bool getObservationTime(Timestamp & out) const;
-	bool hasObservationTime() const;
+	NumericMetricValue & setDeterminationTime(const Timestamp & value);
+	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
 
 	NumericMetricValue & setValue(const double & value);
 	double getValue() const;

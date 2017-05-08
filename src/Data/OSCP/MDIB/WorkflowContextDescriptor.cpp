@@ -124,27 +124,6 @@ bool WorkflowContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-WorkflowContextDescriptor & WorkflowContextDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool WorkflowContextDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse WorkflowContextDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool WorkflowContextDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 
 } /* namespace OSCP */
 } /* namespace Data */

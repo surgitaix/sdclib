@@ -72,8 +72,8 @@ public:
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	AlertConditionState & setActivationState(const PausableActivation & value);
-	PausableActivation getActivationState() const;
+	AlertConditionState & setActivationState(const AlertActivation & value);
+	AlertActivation getActivationState() const;
 
 	AlertConditionState & setRank(const int & value);
 	int getRank() const;

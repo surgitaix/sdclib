@@ -72,25 +72,18 @@ public:
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	EnumStringMetricState & setComponentActivationState(const ComponentActivation & value);
-	ComponentActivation getComponentActivationState() const;
-	bool getComponentActivationState(ComponentActivation & out) const;
-	bool hasComponentActivationState() const;
+	EnumStringMetricState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
 
-	EnumStringMetricState & setCalibrationInfo(const CalibrationInfo & value);
-	CalibrationInfo getCalibrationInfo() const;
-	bool getCalibrationInfo(CalibrationInfo & out) const;
-	bool hasCalibrationInfo() const;
+	EnumStringMetricState & setLifeTimePeriod(const Duration & value);
+	Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(Duration & out) const;
+	bool hasLifeTimePeriod() const;
 
-	EnumStringMetricState & setOperatingHours(const int & value);
-	int getOperatingHours() const;
-	bool getOperatingHours(int & out) const;
-	bool hasOperatingHours() const;
-
-	EnumStringMetricState & setOperatingCycles(const int & value);
-	int getOperatingCycles() const;
-	bool getOperatingCycles(int & out) const;
-	bool hasOperatingCycles() const;
+	EnumStringMetricState & setActiveDeterminationPeriod(const Duration & value);
+	Duration getActiveDeterminationPeriod() const;
+	bool getActiveDeterminationPeriod(Duration & out) const;
+	bool hasActiveDeterminationPeriod() const;
 
 	EnumStringMetricState & setObservedValue(const StringMetricValue & value);
 	StringMetricValue getObservedValue() const;

@@ -174,13 +174,23 @@ CDM::CalibrationState ConvertToCDM::convert(const CalibrationState & source) {
 
 CDM::ComponentActivation ConvertToCDM::convert(const ComponentActivation & source) {
 	switch (source) {
-		case ComponentActivation::OFF: return CDM::ComponentActivation::Off;
-		case ComponentActivation::ON: return CDM::ComponentActivation::On;
-		case ComponentActivation::NOT_READY: return CDM::ComponentActivation::NotRdy;
-		case ComponentActivation::STANDBY: return CDM::ComponentActivation::StndBy;
-		case ComponentActivation::SHUTDOWN: return CDM::ComponentActivation::Shtdn;
+		case ComponentActivation::Off: return CDM::ComponentActivation::Off;
+		case ComponentActivation::On: return CDM::ComponentActivation::On;
+		case ComponentActivation::NotReady: return CDM::ComponentActivation::NotRdy;
+		case ComponentActivation::Standby: return CDM::ComponentActivation::StndBy;
+		case ComponentActivation::Shutdown: return CDM::ComponentActivation::Shtdn;
+		case ComponentActivation::Fail: return CDM::ComponentActivation::Fail;
 	}
 	throw std::runtime_error("Illegal value for ComponentActivation");
+}
+
+CDM::AlertActivation ConvertToCDM::convert(const AlertActivation & source) {
+	switch (source) {
+		case AlertActivation::Off: return CDM::AlertActivation::Off;
+		case AlertActivation::On: return CDM::AlertActivation::On;
+		case AlertActivation::Paused: return CDM::AlertActivation::Psd;
+	}
+	throw std::runtime_error("Illegal value for AlertActivation");
 }
 
 CDM::ContextAssociation ConvertToCDM::convert(const ContextAssociation & source) {
@@ -255,22 +265,12 @@ CDM::MeasurementValidity ConvertToCDM::convert(const MeasurementValidity & sourc
 	throw std::runtime_error("Illegal value for MetricMeasurementValidity");
 }
 
-CDM::MetricRetrievability ConvertToCDM::convert(const MetricRetrievability & source) {
+CDM::AlertConditionMonitoredLimits ConvertToCDM::convert(const AlertConditionMonitoredLimits & source) {
 	switch (source) {
-		case MetricRetrievability::GET: return CDM::MetricRetrievability::Get;
-		case MetricRetrievability::PERIODIC: return CDM::MetricRetrievability::Per;
-		case MetricRetrievability::EPISODIC: return CDM::MetricRetrievability::Ep;
-		case MetricRetrievability::STREAM: return CDM::MetricRetrievability::Strm;
-	}
-	throw std::runtime_error("Illegal value for Retrievability");
-}
-
-CDM::MonitoredAlertLimits ConvertToCDM::convert(const MonitoredAlertLimits & source) {
-	switch (source) {
-		case MonitoredAlertLimits::NONE: return CDM::MonitoredAlertLimits::None;
-		case MonitoredAlertLimits::LOW_OFF: return CDM::MonitoredAlertLimits::LoOff;
-		case MonitoredAlertLimits::HIGH_OFF: return CDM::MonitoredAlertLimits::HiOff;
-		case MonitoredAlertLimits::ALL: return CDM::MonitoredAlertLimits::All;
+		case AlertConditionMonitoredLimits::None: return CDM::AlertConditionMonitoredLimits::None;
+		case AlertConditionMonitoredLimits::LoOff: return CDM::AlertConditionMonitoredLimits::LoOff;
+		case AlertConditionMonitoredLimits::HiOff: return CDM::AlertConditionMonitoredLimits::HiOff;
+		case AlertConditionMonitoredLimits::All: return CDM::AlertConditionMonitoredLimits::All;
 	}
 	throw std::runtime_error("Illegal value for MonitoredAlertLimits");
 }

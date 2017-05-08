@@ -35,6 +35,7 @@ public:
 	static CDM::AlertSignalManifestation convert(const AlertSignalManifestation & source);
 	static CDM::CalibrationState convert(const CalibrationState & source);
 	static CDM::ComponentActivation convert(const ComponentActivation & source);
+	static CDM::AlertActivation convert(const AlertActivation & source);
 	static CDM::ContextAssociation convert(const ContextAssociation & source);
 	static CDM::DicomTransferRole convert(const DicomTransferRole & source);
 	static CDM::GenerationMode convert(const GenerationMode & source);
@@ -42,11 +43,9 @@ public:
 	static CDM::MetricAvailability convert(const MetricAvailability & source);
 	static CDM::MetricCategory convert(const MetricCategory & source);
 	static CDM::MeasurementValidity convert(const MeasurementValidity & source);
-	static CDM::MetricRetrievability convert(const MetricRetrievability & source);
-	static CDM::MonitoredAlertLimits convert(const MonitoredAlertLimits & source);
+	static CDM::AlertConditionMonitoredLimits convert(const AlertConditionMonitoredLimits & source);
 	static CDM::OperatingMode convert(const OperatingMode & source);
 	static CDM::PatientType convert(const PatientType & source);
-	static CDM::PausableActivation convert(const PausableActivation & source);
 	static CDM::PrimaryAlertSignalLocation convert(const PrimaryAlertSignalLocation & source);
 	static CDM::Sex convert(const Sex & source);
 	static CDM::SignalPresence convert(const SignalPresence & source);

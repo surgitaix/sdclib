@@ -69,11 +69,6 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	SCODescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
-
 	SCODescriptor & addProductionSpecification(const ProductionSpecification & value);
 	std::vector<ProductionSpecification> getProductionSpecifications() const;
 	void clearProductionSpecifications();

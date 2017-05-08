@@ -70,11 +70,6 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	NumericMetricDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
-
 	NumericMetricDescriptor & setUnit(const CodedValue & value);
 	CodedValue getUnit() const;
 

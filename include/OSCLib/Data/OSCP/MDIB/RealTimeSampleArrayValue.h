@@ -56,8 +56,8 @@ public:
     
     typedef CDM::RealTimeSampleArrayValue WrappedType;
 
-	RealTimeSampleArrayValue & setMeasurementState(const MeasurementState & value);
-	MeasurementState getMeasurementState() const;
+	RealTimeSampleArrayValue & setMetricQuality(const MetricQuality & value);
+	MetricQuality getMetricQuality() const;
 
 	RealTimeSampleArrayValue & setStart_Time(const Timestamp & value);
 	Timestamp getStart_Time() const;
@@ -69,10 +69,10 @@ public:
 	bool getStop_Time(Timestamp & out) const;
 	bool hasStop_Time() const;
 
-	RealTimeSampleArrayValue & setObservationTime(const Timestamp & value);
-	Timestamp getObservationTime() const;
-	bool getObservationTime(Timestamp & out) const;
-	bool hasObservationTime() const;
+	RealTimeSampleArrayValue & setDeterminationTime(const Timestamp & value);
+	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
 
 	RealTimeSampleArrayValue & setSamples(const RTValueType & value);
 	RTValueType getSamples() const;

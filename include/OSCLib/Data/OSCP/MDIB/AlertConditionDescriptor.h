@@ -69,11 +69,6 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	AlertConditionDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
-
 	AlertConditionDescriptor & setKind(const AlertConditionKind & value);
 	AlertConditionKind getKind() const;
 

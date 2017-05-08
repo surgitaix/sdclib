@@ -72,25 +72,18 @@ public:
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	RealTimeSampleArrayMetricState & setComponentActivationState(const ComponentActivation & value);
-	ComponentActivation getComponentActivationState() const;
-	bool getComponentActivationState(ComponentActivation & out) const;
-	bool hasComponentActivationState() const;
+	RealTimeSampleArrayMetricState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
 
-	RealTimeSampleArrayMetricState & setCalibrationInfo(const CalibrationInfo & value);
-	CalibrationInfo getCalibrationInfo() const;
-	bool getCalibrationInfo(CalibrationInfo & out) const;
-	bool hasCalibrationInfo() const;
+	RealTimeSampleArrayMetricState & setLifeTimePeriod(const Duration & value);
+	Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(Duration & out) const;
+	bool hasLifeTimePeriod() const;
 
-	RealTimeSampleArrayMetricState & setOperatingHours(const int & value);
-	int getOperatingHours() const;
-	bool getOperatingHours(int & out) const;
-	bool hasOperatingHours() const;
-
-	RealTimeSampleArrayMetricState & setOperatingCycles(const int & value);
-	int getOperatingCycles() const;
-	bool getOperatingCycles(int & out) const;
-	bool hasOperatingCycles() const;
+	RealTimeSampleArrayMetricState & setActiveDeterminationPeriod(const Duration & value);
+	Duration getActiveDeterminationPeriod() const;
+	bool getActiveDeterminationPeriod(Duration & out) const;
+	bool hasActiveDeterminationPeriod() const;
 
 	RealTimeSampleArrayMetricState & setObservedValue(const RealTimeSampleArrayValue & value);
 	RealTimeSampleArrayValue getObservedValue() const;

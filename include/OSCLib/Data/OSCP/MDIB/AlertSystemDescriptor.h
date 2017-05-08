@@ -69,11 +69,6 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	AlertSystemDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
-
 	AlertSystemDescriptor & setMaxPhysiologicalAlarmListEntries(const int & value);
 	int getMaxPhysiologicalAlarmListEntries() const;
 	bool getMaxPhysiologicalAlarmListEntries(int & out) const;

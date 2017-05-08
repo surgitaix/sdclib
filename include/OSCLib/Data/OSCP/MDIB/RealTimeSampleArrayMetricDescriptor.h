@@ -70,11 +70,6 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	RealTimeSampleArrayMetricDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
-
 	RealTimeSampleArrayMetricDescriptor & setUnit(const CodedValue & value);
 	CodedValue getUnit() const;
 

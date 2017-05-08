@@ -126,27 +126,6 @@ bool StringMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool StringMetricDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse StringMetricDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool StringMetricDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 StringMetricDescriptor & StringMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;

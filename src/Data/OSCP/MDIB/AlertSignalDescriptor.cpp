@@ -125,27 +125,6 @@ bool AlertSignalDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-AlertSignalDescriptor & AlertSignalDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertSignalDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse AlertSignalDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool AlertSignalDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 AlertSignalDescriptor & AlertSignalDescriptor::setConditionSignaled(const std::string & value) {
 	data->ConditionSignaled(ConvertToCDM::convert(value));
 	return *this;

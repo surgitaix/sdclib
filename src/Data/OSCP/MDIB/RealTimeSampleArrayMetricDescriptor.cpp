@@ -129,27 +129,6 @@ bool RealTimeSampleArrayMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool RealTimeSampleArrayMetricDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse RealTimeSampleArrayMetricDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool RealTimeSampleArrayMetricDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;

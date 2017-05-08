@@ -11,10 +11,9 @@
     	<include path = "OSCLib/Data/OSCP/MDIB/MeasurementState.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/Timestamp.h" />
 	<property name = "MetricQuality" type = "MetricQuality" optional = "false" />	
-    	<property name = "MeasurementState" type = "MeasurementState" optional = "false" />
     	<property name = "Start_Time" type = "Timestamp" optional = "true" />
     	<property name = "Stop_Time" type = "Timestamp" optional = "true" />
-    	<property name = "ObservationTime" type = "Timestamp" optional = "true" />
+    	<property name = "DeterminationTime" type = "Timestamp" optional = "true" />
     </class>
     
     <class name = "AlertConditionReference" parent = "NULL" abstract = "false" customImpl = "true" >
@@ -153,7 +152,7 @@
 	<class name = "MeasurementState" parent = "NULL" abstract = "false" >
 		<property name = "Validity" type = "MetricMeasurementValidity" optional = "false" />
 		<property name = "Mode" type = "GenerationMode" optional = "true" />
-		<property name = "QI" type = "double" optional = "true" />
+		<property name = "Qi" type = "double" optional = "true" />
     </class>
     
     <class name = "NumericMetricValue" parent = "AbstractMetricValue" abstract = "false" >

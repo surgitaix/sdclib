@@ -128,27 +128,6 @@ bool EnumStringMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool EnumStringMetricDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse EnumStringMetricDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool EnumStringMetricDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;

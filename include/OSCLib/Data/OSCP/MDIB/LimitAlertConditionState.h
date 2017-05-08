@@ -72,8 +72,8 @@ public:
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	LimitAlertConditionState & setActivationState(const PausableActivation & value);
-	PausableActivation getActivationState() const;
+	LimitAlertConditionState & setActivationState(const AlertActivation & value);
+	AlertActivation getActivationState() const;
 
 	LimitAlertConditionState & setRank(const int & value);
 	int getRank() const;
@@ -93,12 +93,12 @@ public:
 	bool getLimits(Range & out) const;
 	bool hasLimits() const;
 
-	LimitAlertConditionState & setMonitoredAlertLimits(const MonitoredAlertLimits & value);
-	MonitoredAlertLimits getMonitoredAlertLimits() const;
+	LimitAlertConditionState & setMonitoredAlertLimits(const AlertConditionMonitoredLimits & value);
+	AlertConditionMonitoredLimits getMonitoredAlertLimits() const;
 
-	LimitAlertConditionState & setAutoLimitActivationState(const PausableActivation & value);
-	PausableActivation getAutoLimitActivationState() const;
-	bool getAutoLimitActivationState(PausableActivation & out) const;
+	LimitAlertConditionState & setAutoLimitActivationState(const AlertActivation & value);
+	AlertActivation getAutoLimitActivationState() const;
+	bool getAutoLimitActivationState(AlertActivation & out) const;
 	bool hasAutoLimitActivationState() const;
 
 private:

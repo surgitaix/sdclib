@@ -10,7 +10,6 @@
     	<property name = "Type" type = "CodedValue" optional = "true" />
         <property name = "Handle" type = "std::string" optional = "false" />
         <property name = "DescriptorVersion" type = "VersionCounter" optional = "true" />
-    	<property name = "IntendedUse" type = "IntendedUse" optional = "true" />
     </class>
     
     <class name = "AbstractDeviceComponent" parent = "AbstractDescriptor" abstract = "true" >

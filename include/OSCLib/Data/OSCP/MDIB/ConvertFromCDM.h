@@ -86,8 +86,7 @@ public:
 	static MetricAvailability convert(const CDM::MetricAvailability & source);
 	static MetricCategory convert(const CDM::MetricCategory & source);
 	static MeasurementValidity convert(const CDM::MeasurementValidity & source);
-	static MetricRetrievability convert(const CDM::MetricRetrievability & source);
-	static MonitoredAlertLimits convert(const CDM::MonitoredAlertLimits & source);
+	static AlertConditionMonitoredLimits convert(const CDM::AlertConditionMonitoredLimits & source);
 	static NumericMetricDescriptor convert(const CDM::NumericMetricDescriptor & source);
 	static NumericMetricState convert(const CDM::NumericMetricState & source);
 	static NumericMetricValue convert(const CDM::NumericMetricValue & source);
@@ -101,7 +100,7 @@ public:
 	static PatientContextState convert(const CDM::PatientContextState & source);
 	static PatientDemographicsCoreData convert(const CDM::PatientDemographicsCoreData & source);
 	static PatientType convert(const CDM::PatientType & source);
-	static PausableActivation convert(const CDM::PausableActivation & source);
+	static AlertActivation convert(const CDM::AlertActivation & source);
 	static PersonParticipation convert(const CDM::PersonParticipation & source);
 	static PersonReference convert(const CDM::PersonReference & source);
 	static PrimaryAlertSignalLocation convert(const CDM::PrimaryAlertSignalLocation & source);

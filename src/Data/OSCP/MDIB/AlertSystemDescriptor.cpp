@@ -127,27 +127,6 @@ bool AlertSystemDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-AlertSystemDescriptor & AlertSystemDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertSystemDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse AlertSystemDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool AlertSystemDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 AlertSystemDescriptor & AlertSystemDescriptor::setMaxPhysiologicalAlarmListEntries(const int & value) {
 	data->MaxPhysiologicalAlarmListEntries(ConvertToCDM::convert(value));
 	return *this;

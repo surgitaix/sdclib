@@ -124,27 +124,6 @@ bool LocationContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-LocationContextDescriptor & LocationContextDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool LocationContextDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse LocationContextDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool LocationContextDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 
 } /* namespace OSCP */
 } /* namespace Data */

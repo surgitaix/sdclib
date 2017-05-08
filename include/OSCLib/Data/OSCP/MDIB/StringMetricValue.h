@@ -56,8 +56,8 @@ public:
     
     typedef CDM::StringMetricValue WrappedType;
 
-	StringMetricValue & setMeasurementState(const MeasurementState & value);
-	MeasurementState getMeasurementState() const;
+	StringMetricValue & setMetricQuality(const MetricQuality & value);
+	MetricQuality getMetricQuality() const;
 
 	StringMetricValue & setStart_Time(const Timestamp & value);
 	Timestamp getStart_Time() const;
@@ -69,10 +69,10 @@ public:
 	bool getStop_Time(Timestamp & out) const;
 	bool hasStop_Time() const;
 
-	StringMetricValue & setObservationTime(const Timestamp & value);
-	Timestamp getObservationTime() const;
-	bool getObservationTime(Timestamp & out) const;
-	bool hasObservationTime() const;
+	StringMetricValue & setDeterminationTime(const Timestamp & value);
+	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
 
 	StringMetricValue & setValue(const std::string & value);
 	std::string getValue() const;

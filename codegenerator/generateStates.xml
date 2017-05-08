@@ -22,6 +22,7 @@
     </class>
     
     <class name = "AbstractAlertState" parent = "AbstractState" abstract = "true" >
+    	<property name = "ActivationState" type = "AlertActivation" optional = "false" />
     </class>
     
 	<class name = "AbstractIdentifiableContextState" parent = "AbstractContextState" abstract = "true" >
@@ -29,7 +30,11 @@
     	<propertyList nameSingle = "Identification" nameSeveral = "Identifications" type = "InstanceIdentifier" /> 
     </class>
     
-    <class name = "AbstractMetricState" parent = "ComponentState" abstract = "true" >
+    <class name = "AbstractMetricState" parent = "AbstractState" abstract = "true" >
+	<include path = "OSCLib/Data/OSCP/MDIB/Duration.h" />
+    	<property name = "ActivationState" type = "ComponentActivation" optional = "false" />
+	<property name = "LifeTimePeriod" type = "Duration" optional = "true" />
+	<property name = "ActiveDeterminationPeriod" type = "Duration" optional = "true" />
     </class>    
     
     <class name = "AlertConditionState" parent = "AbstractAlertState" abstract = "false" >
@@ -37,7 +42,6 @@
         <typedef name = "DescriptorType" type = "AlertConditionDescriptor" />
         <typedef name = "ProviderHandlerType" type = "OSCPProviderAlertConditionStateHandler" />
         <typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertConditionStateHandler" />
-    	<property name = "ActivationState" type = "PausableActivation" optional = "false" />
     	<property name = "Rank" type = "int" optional = "true" />
 		<property name = "Presence" type = "bool" optional = "false" />
 		<property name = "ObservationTime" type = "Timestamp" optional = "true" />
@@ -49,7 +53,6 @@
         <typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSignalStateHandler" />
     	<property name = "Location" type = "PrimaryAlertSignalLocation" optional = "true" />
     	<property name = "Slot" type = "int" optional = "true" />
-    	<property name = "ActivationState" type = "PausableActivation" optional = "false" />
     	<property name = "Presence" type = "SignalPresence" optional = "true" />
     </class>
     
@@ -58,7 +61,6 @@
         <typedef name = "DescriptorType" type = "AlertSystemDescriptor" />
         <typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSystemStateHandler" />
         <typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSystemStateHandler" />
-    	<property name = "ActivationState" type = "PausableActivation" optional = "false" />
     	<property name = "PresentPhysiologicalAlarmConditions" type = "AlertConditionReference" optional = "true" />
     	<property name = "PresentTechnicalAlarmConditions" type = "AlertConditionReference" optional = "true" />
     </class>
@@ -76,14 +78,6 @@
     	<property name = "LastSet" type = "Timestamp" optional = "true" />
     	<property name = "TimeZone" type = "TimeZone" optional = "true" />
 		<property name = "CriticalUse" type = "bool" optional = "true" />
-    </class>
-    
-    <class name = "ComponentState" parent = "AbstractState" abstract = "false" >
-    	<include path = "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h" />
-    	<property name = "ComponentActivationState" type = "ComponentActivation" optional = "true" />
-    	<property name = "CalibrationInfo" type = "CalibrationInfo" optional = "true" />
-    	<property name = "OperatingHours" type = "int" optional = "true" />
-    	<property name = "OperatingCycles" type = "int" optional = "true" />
     </class>
     
     <class name = "EnsembleContextState" parent = "AbstractIdentifiableContextState" abstract = "false" >
@@ -111,8 +105,8 @@
     	<typedef name = "ProviderHandlerType" type = "OSCPProviderLimitAlertConditionStateHandler" />
     	<typedef name = "ConsumerHandlerType" type = "OSCPConsumerLimitAlertConditionStateHandler" />
 		<property name = "Limits" type = "Range" optional = "true" />
-    	<property name = "MonitoredAlertLimits" type = "MonitoredAlertLimits" optional = "false" />
-		<property name = "AutoLimitActivationState" type = "PausableActivation" optional = "true" />
+    	<property name = "MonitoredAlertLimits" type = "AlertConditionMonitoredLimits" optional = "false" />
+		<property name = "AutoLimitActivationState" type = "AlertActivation" optional = "true" />
     </class>
 
     <class name = "LocationContextState" parent = "AbstractIdentifiableContextState" abstract = "false" >

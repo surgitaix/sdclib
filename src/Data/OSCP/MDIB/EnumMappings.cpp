@@ -53,11 +53,12 @@ std::string EnumToString::convert(CalibrationState source) {
 
 std::string EnumToString::convert(ComponentActivation source) {
 	switch (source) {
-		case ComponentActivation::OFF: return "Off";
-		case ComponentActivation::ON: return "On";
-		case ComponentActivation::NOT_READY: return "Not ready";
-		case ComponentActivation::STANDBY: return "Standby";
-		case ComponentActivation::SHUTDOWN: return "Shutdown";
+		case ComponentActivation::Off: return "Off";
+		case ComponentActivation::On: return "On";
+		case ComponentActivation::NotReady: return "Not ready";
+		case ComponentActivation::Standby: return "Standby";
+		case ComponentActivation::Shutdown: return "Shutdown";
+		case ComponentActivation::Fail: return "Fail";
 	}
 	throw std::runtime_error("Illegal value for ComponentActivation");
 }
@@ -146,12 +147,12 @@ std::string EnumToString::convert(MetricRetrievability source) {
 	throw std::runtime_error("Illegal value for MetricRetrievability");
 }
 
-std::string EnumToString::convert(MonitoredAlertLimits source) {
+std::string EnumToString::convert(AlertConditionMonitoredLimits source) {
 	switch (source) {
-		case MonitoredAlertLimits::NONE: return "None";
-		case MonitoredAlertLimits::LOW_OFF: return "Low off";
-		case MonitoredAlertLimits::HIGH_OFF: return "High off";
-		case MonitoredAlertLimits::ALL: return "All";
+		case AlertConditionMonitoredLimits::None: return "None";
+		case AlertConditionMonitoredLimits::LoOff: return "Low off";
+		case AlertConditionMonitoredLimits::HiOff: return "High off";
+		case AlertConditionMonitoredLimits::All: return "All";
 	}
 	throw std::runtime_error("Illegal value for MonitoredAlertLimits");
 }
@@ -175,13 +176,13 @@ std::string EnumToString::convert(PatientType source) {
 	throw std::runtime_error("Illegal value for PatientType");
 }
 
-std::string EnumToString::convert(PausableActivation source) {
+std::string EnumToString::convert(AlertActivation source) {
 	switch (source) {
-		case PausableActivation::OFF: return "Off";
-		case PausableActivation::ON: return "On";
-		case PausableActivation::PAUSED: return "Paused";
+		case AlertActivation::Off: return "Off";
+		case AlertActivation::On: return "On";
+		case AlertActivation::Paused: return "Paused";
 	}
-	throw std::runtime_error("Illegal value for PausableActivation");
+	throw std::runtime_error("Illegal value for AlertActivation");
 }
 
 std::string EnumToString::convert(PrimaryAlertSignalLocation source) {

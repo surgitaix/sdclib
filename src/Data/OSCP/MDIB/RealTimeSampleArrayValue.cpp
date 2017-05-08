@@ -74,14 +74,14 @@ RealTimeSampleArrayValue & RealTimeSampleArrayValue:: operator=(const RealTimeSa
 }
 
 
-RealTimeSampleArrayValue & RealTimeSampleArrayValue::setMeasurementState(const MeasurementState & value) {
-	data->MeasurementState(ConvertToCDM::convert(value));
+RealTimeSampleArrayValue & RealTimeSampleArrayValue::setMetricQuality(const MetricQuality & value) {
+	data->MetricQuality(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MeasurementState RealTimeSampleArrayValue::getMeasurementState() const {
-	return ConvertFromCDM::convert(data->MeasurementState());
+MetricQuality RealTimeSampleArrayValue::getMetricQuality() const {
+	return ConvertFromCDM::convert(data->MetricQuality());
 }
 	
 RealTimeSampleArrayValue & RealTimeSampleArrayValue::setStart_Time(const Timestamp & value) {
@@ -126,25 +126,25 @@ bool RealTimeSampleArrayValue::hasStop_Time() const {
 	return data->Stop_Time().present();
 }
 	
-RealTimeSampleArrayValue & RealTimeSampleArrayValue::setObservationTime(const Timestamp & value) {
-	data->ObservationTime(ConvertToCDM::convert(value));
+RealTimeSampleArrayValue & RealTimeSampleArrayValue::setDeterminationTime(const Timestamp & value) {
+	data->DeterminationTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool RealTimeSampleArrayValue::getObservationTime(Timestamp & out) const {
-	if (data->ObservationTime().present()) {
-		out = ConvertFromCDM::convert(data->ObservationTime().get());
+bool RealTimeSampleArrayValue::getDeterminationTime(Timestamp & out) const {
+	if (data->DeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp RealTimeSampleArrayValue::getObservationTime() const {
-	return ConvertFromCDM::convert(data->ObservationTime().get());
+Timestamp RealTimeSampleArrayValue::getDeterminationTime() const {
+	return ConvertFromCDM::convert(data->DeterminationTime().get());
 }
 	
-bool RealTimeSampleArrayValue::hasObservationTime() const {
-	return data->ObservationTime().present();
+bool RealTimeSampleArrayValue::hasDeterminationTime() const {
+	return data->DeterminationTime().present();
 }
 	
 RealTimeSampleArrayValue & RealTimeSampleArrayValue::setSamples(const RTValueType & value) {

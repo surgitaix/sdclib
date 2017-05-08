@@ -72,8 +72,8 @@ public:
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	AlertSystemState & setActivationState(const PausableActivation & value);
-	PausableActivation getActivationState() const;
+	AlertSystemState & setActivationState(const AlertActivation & value);
+	AlertActivation getActivationState() const;
 
 	AlertSystemState & setPresentPhysiologicalAlarmConditions(const AlertConditionReference & value);
 	AlertConditionReference getPresentPhysiologicalAlarmConditions() const;

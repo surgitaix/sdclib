@@ -14,6 +14,13 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
+enum class AlertActivation
+{
+	Off,
+	On,
+	Paused
+};
+
 
 enum class AlertConditionKind
 {
@@ -22,6 +29,15 @@ enum class AlertConditionKind
 	OTHER
 };
 
+enum class AlertConditionMonitoredLimits
+{
+	None,
+	LoOff,
+	HiOff,
+	All
+};
+
+
 enum class AlertConditionPriority
 {
 	LOW,
@@ -29,6 +45,7 @@ enum class AlertConditionPriority
 	HIGH,
 	NONE
 };
+
 
 enum class AlertSignalManifestation
 {
@@ -45,11 +62,12 @@ enum class CalibrationState {
 
 enum class ComponentActivation
 {
-	OFF,
-	ON,
-	NOT_READY,
-	STANDBY,
-	SHUTDOWN
+	Off,
+	On,
+	NotReady,
+	Standby,
+	Shutdown,
+	Fail
 };
 
 enum class ContextAssociation {
@@ -117,13 +135,7 @@ enum class MetricRetrievability
     STREAM
 };
 
-enum class MonitoredAlertLimits
-{
-	NONE,
-	LOW_OFF,
-	HIGH_OFF,
-	ALL
-};
+
 
 enum class OperatingMode {
 	DISABLED,
@@ -137,13 +149,6 @@ enum class PatientType
 	NEONATAL,
 	PEDIATRIC,
 	UNSPECIFIED
-};
-
-enum class PausableActivation
-{
-	OFF,
-	ON,
-	PAUSED
 };
 
 enum class PrimaryAlertSignalLocation
@@ -183,10 +188,10 @@ public:
 	static std::string convert(MetricCategory source);
 	static std::string convert(MeasurementValidity source);
 	static std::string convert(MetricRetrievability source);
-	static std::string convert(MonitoredAlertLimits source);
+	static std::string convert(AlertConditionMonitoredLimits source);
 	static std::string convert(OperatingMode source);
 	static std::string convert(PatientType source);
-	static std::string convert(PausableActivation source);
+	static std::string convert(AlertActivation source);
 	static std::string convert(PrimaryAlertSignalLocation source);
 	static std::string convert(Sex source);
 	static std::string convert(SignalPresence source);

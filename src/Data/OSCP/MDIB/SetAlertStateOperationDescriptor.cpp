@@ -125,27 +125,6 @@ bool SetAlertStateOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SetAlertStateOperationDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse SetAlertStateOperationDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool SetAlertStateOperationDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setOperationTarget(const std::string & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;

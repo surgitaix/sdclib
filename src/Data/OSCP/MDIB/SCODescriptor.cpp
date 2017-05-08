@@ -125,27 +125,6 @@ bool SCODescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-SCODescriptor & SCODescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SCODescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse SCODescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool SCODescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 SCODescriptor & SCODescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;

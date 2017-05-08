@@ -453,22 +453,12 @@ MeasurementValidity ConvertFromCDM::convert(const CDM::MeasurementValidity & sou
 	throw std::runtime_error("Illegal value for MetricMeasurementValidity");
 }
 
-MetricRetrievability ConvertFromCDM::convert(const CDM::MetricRetrievability & source) {
+AlertConditionMonitoredLimits ConvertFromCDM::convert(const CDM::AlertConditionMonitoredLimits & source) {
 	switch (source) {
-		case CDM::MetricRetrievability::Get: return MetricRetrievability::GET;
-		case CDM::MetricRetrievability::Per: return MetricRetrievability::PERIODIC;
-		case CDM::MetricRetrievability::Ep: return MetricRetrievability::EPISODIC;
-		case CDM::MetricRetrievability::Strm: return MetricRetrievability::STREAM;
-	}
-	throw std::runtime_error("Illegal value for MetricRetrievability");
-}
-
-MonitoredAlertLimits ConvertFromCDM::convert(const CDM::MonitoredAlertLimits & source) {
-	switch (source) {
-		case CDM::MonitoredAlertLimits::None: return MonitoredAlertLimits::NONE;
-		case CDM::MonitoredAlertLimits::LoOff: return MonitoredAlertLimits::LOW_OFF;
-		case CDM::MonitoredAlertLimits::HiOff: return MonitoredAlertLimits::HIGH_OFF;
-		case CDM::MonitoredAlertLimits::All: return MonitoredAlertLimits::ALL;
+		case CDM::AlertConditionMonitoredLimits::None: return AlertConditionMonitoredLimits::None;
+		case CDM::AlertConditionMonitoredLimits::LoOff: return AlertConditionMonitoredLimits::LoOff;
+		case CDM::AlertConditionMonitoredLimits::HiOff: return AlertConditionMonitoredLimits::HiOff;
+		case CDM::AlertConditionMonitoredLimits::All: return AlertConditionMonitoredLimits::All;
 	}
 	throw std::runtime_error("Illegal value for MonitoredAlertLimits");
 }
@@ -536,13 +526,13 @@ PatientType ConvertFromCDM::convert(const CDM::PatientType & source) {
 	throw std::runtime_error("Illegal value for PatientType");
 }
 
-PausableActivation ConvertFromCDM::convert(const CDM::PausableActivation & source) {
+AlertActivation ConvertFromCDM::convert(const CDM::AlertActivation & source) {
 	switch (source) {
-		case CDM::PausableActivation::Off: return PausableActivation::OFF;
-		case CDM::PausableActivation::On: return PausableActivation::ON;
-		case CDM::PausableActivation::Psd: return PausableActivation::PAUSED;
+		case CDM::AlertActivation::Off: return AlertActivation::Off;
+		case CDM::AlertActivation::On: return AlertActivation::On;
+		case CDM::AlertActivation::Psd: return AlertActivation::Paused;
 	}
-	throw std::runtime_error("Illegal value for PausableActivation");
+	throw std::runtime_error("Illegal value for AlertActivation");
 }
 
 PersonParticipation ConvertFromCDM::convert(const CDM::PersonParticipation & source) {

@@ -64,10 +64,10 @@ public:
 	bool getMode(GenerationMode & out) const;
 	bool hasMode() const;
 
-	MeasurementState & setQI(const double & value);
-	double getQI() const;
-	bool getQI(double & out) const;
-	bool hasQI() const;
+	MeasurementState & setQi(const double & value);
+	double getQi() const;
+	bool getQi(double & out) const;
+	bool hasQi() const;
 
 private:
 	std::shared_ptr<CDM::MeasurementState> data;

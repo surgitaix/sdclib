@@ -69,11 +69,6 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	ActivateOperationDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
-
 	ActivateOperationDescriptor & setOperationTarget(const std::string & value);
 	std::string getOperationTarget() const;
 

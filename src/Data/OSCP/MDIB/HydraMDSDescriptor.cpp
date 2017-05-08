@@ -131,27 +131,6 @@ bool HydraMDSDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-HydraMDSDescriptor & HydraMDSDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool HydraMDSDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse HydraMDSDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool HydraMDSDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 HydraMDSDescriptor & HydraMDSDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;

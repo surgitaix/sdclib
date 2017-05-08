@@ -132,27 +132,6 @@ bool DICOMDeviceDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-DICOMDeviceDescriptor & DICOMDeviceDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool DICOMDeviceDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse DICOMDeviceDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool DICOMDeviceDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 DICOMDeviceDescriptor & DICOMDeviceDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;

@@ -126,27 +126,6 @@ bool SetRangeOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-SetRangeOperationDescriptor & SetRangeOperationDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SetRangeOperationDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse SetRangeOperationDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool SetRangeOperationDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 SetRangeOperationDescriptor & SetRangeOperationDescriptor::setOperationTarget(const std::string & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;

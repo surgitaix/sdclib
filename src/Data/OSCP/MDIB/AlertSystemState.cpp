@@ -124,13 +124,13 @@ bool AlertSystemState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
-AlertSystemState & AlertSystemState::setActivationState(const PausableActivation & value) {
+AlertSystemState & AlertSystemState::setActivationState(const AlertActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-PausableActivation AlertSystemState::getActivationState() const {
+AlertActivation AlertSystemState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	

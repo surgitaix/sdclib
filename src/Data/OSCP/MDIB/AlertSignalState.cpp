@@ -123,6 +123,16 @@ bool AlertSignalState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
+AlertSignalState & AlertSignalState::setActivationState(const AlertActivation & value) {
+	data->ActivationState(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+AlertActivation AlertSignalState::getActivationState() const {
+	return ConvertFromCDM::convert(data->ActivationState());
+}
+	
 AlertSignalState & AlertSignalState::setLocation(const PrimaryAlertSignalLocation & value) {
 	data->Location(ConvertToCDM::convert(value));
 	return *this;
@@ -163,16 +173,6 @@ int AlertSignalState::getSlot() const {
 	
 bool AlertSignalState::hasSlot() const {
 	return data->Slot().present();
-}
-	
-AlertSignalState & AlertSignalState::setActivationState(const PausableActivation & value) {
-	data->ActivationState(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-PausableActivation AlertSignalState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
 AlertSignalState & AlertSignalState::setPresence(const SignalPresence & value) {

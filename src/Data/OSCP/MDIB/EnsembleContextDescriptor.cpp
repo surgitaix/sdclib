@@ -124,27 +124,6 @@ bool EnsembleContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-EnsembleContextDescriptor & EnsembleContextDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool EnsembleContextDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse EnsembleContextDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool EnsembleContextDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 
 } /* namespace OSCP */
 } /* namespace Data */

@@ -125,13 +125,13 @@ bool LimitAlertConditionState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
-LimitAlertConditionState & LimitAlertConditionState::setActivationState(const PausableActivation & value) {
+LimitAlertConditionState & LimitAlertConditionState::setActivationState(const AlertActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-PausableActivation LimitAlertConditionState::getActivationState() const {
+AlertActivation LimitAlertConditionState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
@@ -208,22 +208,22 @@ bool LimitAlertConditionState::hasLimits() const {
 	return data->Limits().present();
 }
 	
-LimitAlertConditionState & LimitAlertConditionState::setMonitoredAlertLimits(const MonitoredAlertLimits & value) {
+LimitAlertConditionState & LimitAlertConditionState::setMonitoredAlertLimits(const AlertConditionMonitoredLimits & value) {
 	data->MonitoredAlertLimits(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MonitoredAlertLimits LimitAlertConditionState::getMonitoredAlertLimits() const {
+AlertConditionMonitoredLimits LimitAlertConditionState::getMonitoredAlertLimits() const {
 	return ConvertFromCDM::convert(data->MonitoredAlertLimits());
 }
 	
-LimitAlertConditionState & LimitAlertConditionState::setAutoLimitActivationState(const PausableActivation & value) {
+LimitAlertConditionState & LimitAlertConditionState::setAutoLimitActivationState(const AlertActivation & value) {
 	data->AutoLimitActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LimitAlertConditionState::getAutoLimitActivationState(PausableActivation & out) const {
+bool LimitAlertConditionState::getAutoLimitActivationState(AlertActivation & out) const {
 	if (data->AutoLimitActivationState().present()) {
 		out = ConvertFromCDM::convert(data->AutoLimitActivationState().get());
 		return true;
@@ -231,7 +231,7 @@ bool LimitAlertConditionState::getAutoLimitActivationState(PausableActivation & 
 	return false;
 }
 
-PausableActivation LimitAlertConditionState::getAutoLimitActivationState() const {
+AlertActivation LimitAlertConditionState::getAutoLimitActivationState() const {
 	return ConvertFromCDM::convert(data->AutoLimitActivationState().get());
 }
 	

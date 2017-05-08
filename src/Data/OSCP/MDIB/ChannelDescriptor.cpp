@@ -126,27 +126,6 @@ bool ChannelDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-ChannelDescriptor & ChannelDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ChannelDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse ChannelDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool ChannelDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 ChannelDescriptor & ChannelDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;

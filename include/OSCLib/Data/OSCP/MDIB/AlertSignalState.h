@@ -72,6 +72,9 @@ public:
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
+	AlertSignalState & setActivationState(const AlertActivation & value);
+	AlertActivation getActivationState() const;
+
 	AlertSignalState & setLocation(const PrimaryAlertSignalLocation & value);
 	PrimaryAlertSignalLocation getLocation() const;
 	bool getLocation(PrimaryAlertSignalLocation & out) const;
@@ -81,9 +84,6 @@ public:
 	int getSlot() const;
 	bool getSlot(int & out) const;
 	bool hasSlot() const;
-
-	AlertSignalState & setActivationState(const PausableActivation & value);
-	PausableActivation getActivationState() const;
 
 	AlertSignalState & setPresence(const SignalPresence & value);
 	SignalPresence getPresence() const;

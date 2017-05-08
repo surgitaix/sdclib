@@ -58,39 +58,6 @@ public:
     typedef HydraMDSDescriptor DescriptorType;
     typedef OSCPProviderHydraMDSStateHandler ProviderHandlerType;
 
-	HydraMDSState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	HydraMDSState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
-	HydraMDSState & setStateVersion(const VersionCounter & value);
-	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
-
-	HydraMDSState & setComponentActivationState(const ComponentActivation & value);
-	ComponentActivation getComponentActivationState() const;
-	bool getComponentActivationState(ComponentActivation & out) const;
-	bool hasComponentActivationState() const;
-
-	HydraMDSState & setCalibrationInfo(const CalibrationInfo & value);
-	CalibrationInfo getCalibrationInfo() const;
-	bool getCalibrationInfo(CalibrationInfo & out) const;
-	bool hasCalibrationInfo() const;
-
-	HydraMDSState & setOperatingHours(const int & value);
-	int getOperatingHours() const;
-	bool getOperatingHours(int & out) const;
-	bool hasOperatingHours() const;
-
-	HydraMDSState & setOperatingCycles(const int & value);
-	int getOperatingCycles() const;
-	bool getOperatingCycles(int & out) const;
-	bool hasOperatingCycles() const;
-
 	HydraMDSState & setLang(const Language & value);
 	Language getLang() const;
 	bool getLang(Language & out) const;

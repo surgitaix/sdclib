@@ -127,27 +127,6 @@ bool LimitAlertConditionDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool LimitAlertConditionDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse LimitAlertConditionDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool LimitAlertConditionDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setKind(const AlertConditionKind & value) {
 	data->Kind(ConvertToCDM::convert(value));
 	return *this;

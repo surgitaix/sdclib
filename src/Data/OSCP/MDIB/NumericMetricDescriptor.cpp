@@ -128,27 +128,6 @@ bool NumericMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-NumericMetricDescriptor & NumericMetricDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool NumericMetricDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
-		return true;
-	}
-	return false;
-}
-
-IntendedUse NumericMetricDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
-}
-	
-bool NumericMetricDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
-}
-	
 NumericMetricDescriptor & NumericMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;
