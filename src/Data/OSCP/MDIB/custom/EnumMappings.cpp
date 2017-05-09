@@ -5,7 +5,7 @@
  *      Author: roehser
  */
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "osdm.hxx"
 
 #include <stdexcept>

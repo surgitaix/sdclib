@@ -23,7 +23,7 @@
 #include "OSCLib/Data/OSCP/MDIB/ClockState.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
-#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/DateTime.h"
 #include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/DicomNetworkAE.h"
