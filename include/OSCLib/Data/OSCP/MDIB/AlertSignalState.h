@@ -75,9 +75,9 @@ public:
 	AlertSignalState & setActivationState(const AlertActivation & value);
 	AlertActivation getActivationState() const;
 
-	AlertSignalState & setLocation(const PrimaryAlertSignalLocation & value);
-	PrimaryAlertSignalLocation getLocation() const;
-	bool getLocation(PrimaryAlertSignalLocation & out) const;
+	AlertSignalState & setLocation(const AlertSignalPrimaryLocation & value);
+	AlertSignalPrimaryLocation getLocation() const;
+	bool getLocation(AlertSignalPrimaryLocation & out) const;
 	bool hasLocation() const;
 
 	AlertSignalState & setSlot(const int & value);
@@ -85,9 +85,9 @@ public:
 	bool getSlot(int & out) const;
 	bool hasSlot() const;
 
-	AlertSignalState & setPresence(const SignalPresence & value);
-	SignalPresence getPresence() const;
-	bool getPresence(SignalPresence & out) const;
+	AlertSignalState & setPresence(const AlertSignalPresence & value);
+	AlertSignalPresence getPresence() const;
+	bool getPresence(AlertSignalPresence & out) const;
 	bool hasPresence() const;
 
 private:

@@ -75,20 +75,51 @@ CalibrationInfo & CalibrationInfo::setComponentCalibrationState(const Calibratio
 	return *this;
 }
 
-bool CalibrationInfo::getComponentCalibrationState(CalibrationState & out) const {
-	if (data->ComponentCalibrationState().present()) {
-		out = ConvertFromCDM::convert(data->ComponentCalibrationState().get());
+
+CalibrationState CalibrationInfo::getComponentCalibrationState() const {
+	return ConvertFromCDM::convert(data->ComponentCalibrationState());
+}
+	
+CalibrationInfo & CalibrationInfo::setTime(const Timestamp & value) {
+	data->Time(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool CalibrationInfo::getTime(Timestamp & out) const {
+	if (data->Time().present()) {
+		out = ConvertFromCDM::convert(data->Time().get());
 		return true;
 	}
 	return false;
 }
 
-CalibrationState CalibrationInfo::getComponentCalibrationState() const {
-	return ConvertFromCDM::convert(data->ComponentCalibrationState().get());
+Timestamp CalibrationInfo::getTime() const {
+	return ConvertFromCDM::convert(data->Time().get());
 }
 	
-bool CalibrationInfo::hasComponentCalibrationState() const {
-	return data->ComponentCalibrationState().present();
+bool CalibrationInfo::hasTime() const {
+	return data->Time().present();
+}
+	
+CalibrationInfo & CalibrationInfo::setType(const CalibrationType & value) {
+	data->Type(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool CalibrationInfo::getType(CalibrationType & out) const {
+	if (data->Type().present()) {
+		out = ConvertFromCDM::convert(data->Type().get());
+		return true;
+	}
+	return false;
+}
+
+CalibrationType CalibrationInfo::getType() const {
+	return ConvertFromCDM::convert(data->Type().get());
+}
+	
+bool CalibrationInfo::hasType() const {
+	return data->Type().present();
 }
 	
 

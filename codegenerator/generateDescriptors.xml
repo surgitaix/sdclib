@@ -92,13 +92,13 @@
 		<property name = "Resolution" type = "Duration" optional = "true" />
     </class>
 
-    <class name = "DICOMDeviceDescriptor" parent = "AbstractMDSDescriptor" abstract = "false" >
+    <class name = "DicomDeviceDescriptor" parent = "AbstractMDSDescriptor" abstract = "false" >
     	<include path = "OSCLib/Data/OSCP/MDIB/Base64Binary.h" />
-    	<include path = "OSCLib/Data/OSCP/MDIB/DICOMNetworkAE.h" />
-    	<include path = "OSCLib/Data/OSCP/MDIB/DICOMNetworkConnection.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-    	<propertyList nameSingle = "NetworkAE" nameSeveral = "NetworkAEs" type = "DICOMNetworkAE" />
-    	<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnection" type = "DICOMNetworkConnection" />
+    	<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAes" type = "DicomNetworkAe" />
+    	<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnection" type = "DicomNetworkConnection" />
     	<propertyList nameSingle = "SoftwareVersion" nameSeveral = "SoftwareVersions" type = "std::string" />
     	<propertyList nameSingle = "InstitutionName" nameSeveral = "InstitutionNames" type = "LocalizedText" />
     	<propertyList nameSingle = "InstitutionAddress" nameSeveral = "InstitutionAddresses" type = "LocalizedText" />

@@ -25,10 +25,10 @@
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/DateTime.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMDeviceDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMNetworkAE.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMNetworkConnection.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMTransferCapability.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkAE.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
@@ -223,11 +223,21 @@ CalibrationInfo ConvertFromCDM::convert(const CDM::CalibrationInfo & source) {
 
 CalibrationState ConvertFromCDM::convert(const CDM::CalibrationState & source) {
 	switch (source) {
-		case CDM::CalibrationState::Cal: return CalibrationState::CALIBRATED;
-		case CDM::CalibrationState::Req: return CalibrationState::CALIBRATION_REQUIRED;
-		case CDM::CalibrationState::No: return CalibrationState::NOT_CALIBRATED;
+		case CDM::CalibrationState::Cal: return CalibrationState::Calibrated;
+		case CDM::CalibrationState::Req: return CalibrationState::CalibrationRequired;
+		case CDM::CalibrationState::No: return CalibrationState::NotCalibrated;
 	}
 	throw std::runtime_error("Illegal value for CalibrationState");
+}
+
+CalibrationType ConvertFromCDM::convert(const CDM::CalibrationType & source) {
+	switch (source) {
+		case CDM::CalibrationType::Offset: return CalibrationType::Offset;
+		case CDM::CalibrationType::Gain: return CalibrationType::Gain;
+		case CDM::CalibrationType::TP: return CalibrationType::TwoPointCalibration;
+		case CDM::CalibrationType::Unspec: return CalibrationType::Unspecified;
+	}
+	throw std::runtime_error("Illegal value for CalibrationType");
 }
 
 CauseInfo ConvertFromCDM::convert(const CDM::CauseInfo & source) {
@@ -283,28 +293,28 @@ DateTime ConvertFromCDM::convert(const CDM::DateTime & source) {
 	return DateTime(source);
 }
 
-DICOMDeviceDescriptor ConvertFromCDM::convert(const CDM::DICOMDeviceDescriptor & source) {
-	return DICOMDeviceDescriptor(source);
+DicomDeviceDescriptor ConvertFromCDM::convert(const CDM::DicomDeviceDescriptor & source) {
+	return DicomDeviceDescriptor(source);
 }
 
-DICOMNetworkAE ConvertFromCDM::convert(const CDM::DICOMNetworkAE & source) {
-	return DICOMNetworkAE(source);
+DicomNetworkAe ConvertFromCDM::convert(const CDM::DicomNetworkAe & source) {
+	return DicomNetworkAe(source);
 }
 
-DICOMNetworkConnection ConvertFromCDM::convert(const CDM::DICOMNetworkConnection & source) {
-	return DICOMNetworkConnection(source);
+DicomNetworkConnection ConvertFromCDM::convert(const CDM::DicomNetworkConnection & source) {
+	return DicomNetworkConnection(source);
 }
 
-DICOMTransferCapability ConvertFromCDM::convert(const CDM::DICOMTransferCapability & source) {
-	return DICOMTransferCapability(source);
+DicomTransferCapability ConvertFromCDM::convert(const CDM::DicomTransferCapability & source) {
+	return DicomTransferCapability(source);
 }
 
-DICOMTransferRole ConvertFromCDM::convert(const CDM::DICOMTransferRole & source) {
+DicomTransferRole ConvertFromCDM::convert(const CDM::DicomTransferRole & source) {
 	switch (source) {
-		case CDM::DICOMTransferRole::SCU: return DICOMTransferRole::SCU;
-		case CDM::DICOMTransferRole::SCP: return DICOMTransferRole::SCP;
+		case CDM::DicomTransferRole::SCU: return DicomTransferRole::SCU;
+		case CDM::DicomTransferRole::SCP: return DicomTransferRole::SCP;
 	}
-	throw std::runtime_error("Illegal value for DICOMTransferRole");
+	throw std::runtime_error("Illegal value for DicomTransferRole");
 }
 
 Duration ConvertFromCDM::convert(const CDM::Duration & source) {
@@ -543,10 +553,10 @@ PersonReference ConvertFromCDM::convert(const CDM::PersonReference & source) {
 	return PersonReference(source);
 }
 
-PrimaryAlertSignalLocation ConvertFromCDM::convert(const CDM::PrimaryAlertSignalLocation & source) {
+AlertSignalPrimaryLocation ConvertFromCDM::convert(const CDM::AlertSignalPrimaryLocation & source) {
 	switch (source) {
-		case CDM::PrimaryAlertSignalLocation::Loc: return PrimaryAlertSignalLocation::LOCAL;
-		case CDM::PrimaryAlertSignalLocation::Rem: return PrimaryAlertSignalLocation::REMOTE;
+		case CDM::AlertSignalPrimaryLocation::Loc: return AlertSignalPrimaryLocation::Local;
+		case CDM::AlertSignalPrimaryLocation::Rem: return AlertSignalPrimaryLocation::Remote;
 	}
 	throw std::runtime_error("Illegal value for PrimaryAlertSignalLocation");
 }
@@ -621,12 +631,12 @@ Sex ConvertFromCDM::convert(const CDM::Sex & source) {
 	throw std::runtime_error("Illegal value for Sex");
 }
 
-SignalPresence ConvertFromCDM::convert(const CDM::SignalPresence & source) {
+AlertSignalPresence ConvertFromCDM::convert(const CDM::AlertSignalPresence & source) {
 	switch (source) {
-		case CDM::SignalPresence::On: return SignalPresence::On;
-		case CDM::SignalPresence::Off: return SignalPresence::Off;
-		case CDM::SignalPresence::Ack: return SignalPresence::Ack;
-		case CDM::SignalPresence::Latch: return SignalPresence::Latch;
+		case CDM::AlertSignalPresence::On: return AlertSignalPresence::On;
+		case CDM::AlertSignalPresence::Off: return AlertSignalPresence::Off;
+		case CDM::AlertSignalPresence::Ack: return AlertSignalPresence::Acknowledged;
+		case CDM::AlertSignalPresence::Latch: return AlertSignalPresence::Latched;
 	}
 	throw std::runtime_error("Illegal value for SignalPresence");
 }

@@ -38,7 +38,9 @@
     </class>
 
    	<class name = "CalibrationInfo" parent = "NULL" abstract = "false" >
-   		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "true" />
+   		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "false" />
+   		<property name = "Time" type = "Timestamp" optional = "true" />
+   		<property name = "Type" type = "CalibrationType" optional = "true" />
     </class>
 
    	<class name = "CauseInfo" parent = "NULL" abstract = "false" >
@@ -74,30 +76,30 @@
     	<property name = "seconds" type = "double" optional = "false" />
     </class>
 
-    <class name = "DICOMNetworkAE" parent = "NULL" abstract = "false" >
-    	<include path = "OSCLib/Data/OSCP/MDIB/DICOMTransferCapability.h" />
+    <class name = "DicomNetworkAe" parent = "NULL" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-    	<propertyList nameSingle = "NetworkConnectionReference" nameSeveral = "NetworkConnectionReferences" type = "std::string" />
-    	<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilities" type = "DICOMTransferCapability" />
+    	<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilities" type = "DicomTransferCapability" />
     	<propertyList nameSingle = "ApplicationCluster" nameSeveral = "ApplicationClusters" type = "LocalizedText" />
     	<propertyList nameSingle = "SupportedCharacterSet" nameSeveral = "SupportedCharacterSets" type = "std::string" />
-    	<property name = "AETitle" type = "std::string" optional = "false" />
+	<propertyList nameSingle = "Description" nameSeveral = "Descriptions" type = "LocalizedText" />
+    	<property name = "AeTitle" type = "std::string" optional = "false" />
+    	<property name = "NetworkConnectionReference" type = "std::string" optional = "false" />
     	<property name = "AssociationInitiator" type = "bool" optional = "false" />
     	<property name = "AssociationAcceptor" type = "bool" optional = "false" />
-    	<property name = "Description" type = "std::string" optional = "true" />
     </class>
     
-	<class name = "DICOMNetworkConnection" parent = "NULL" abstract = "false" >
+	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false" >
     	<property name = "id" type = "std::string" optional = "false" />
        	<property name = "Hostname" type = "std::string" optional = "false" />
     	<property name = "Port" type = "unsigned short int" optional = "true" />
     	<propertyList nameSingle = "TLSCipherSuite" nameSeveral = "TLSCipherSuites" type = "std::string" />
     </class>
     
-	<class name = "DICOMTransferCapability" parent = "NULL" abstract = "false" >
+	<class name = "DicomTransferCapability" parent = "NULL" abstract = "false" >
     	<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxes" type = "std::string" />
     	<property name = "SOPClass" type = "std::string" optional = "false" />
-       	<property name = "TransferRole" type = "DICOMTransferRole" optional = "false" />
+       	<property name = "TransferRole" type = "DicomTransferRole" optional = "false" />
     </class>   
     
 	<class name = "Duration" parent = "NULL" abstract = "false" >

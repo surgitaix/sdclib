@@ -165,11 +165,22 @@ CDM::AlertSignalManifestation ConvertToCDM::convert(const AlertSignalManifestati
 
 CDM::CalibrationState ConvertToCDM::convert(const CalibrationState & source) {
 	switch (source) {
-		case CalibrationState::CALIBRATED: return CDM::CalibrationState::Cal;
-		case CalibrationState::CALIBRATION_REQUIRED: return CDM::CalibrationState::Req;
-		case CalibrationState::NOT_CALIBRATED: return CDM::CalibrationState::No;
+		case CalibrationState::Calibrated: return CDM::CalibrationState::Cal;
+		case CalibrationState::CalibrationRequired: return CDM::CalibrationState::Req;
+		case CalibrationState::NotCalibrated: return CDM::CalibrationState::No;
 	}
 	throw std::runtime_error("Illegal value for CalibrationState");
+}
+
+CDM::CalibrationType ConvertToCDM::convert(const CalibrationType & source) {
+	switch (source) {
+	case CalibrationType::Offset: return CDM::CalibrationType::Offset;
+	case CalibrationType::Gain: return CDM::CalibrationType::Gain;
+	case CalibrationType::TwoPoint: return CDM::CalibrationType::TP;
+	case CalibrationType::Unspecified: return CDM::CalibrationType::Unspec;
+
+	}
+	throw std::runtime_error("Illegal value for CalibrationType");
 }
 
 CDM::ComponentActivation ConvertToCDM::convert(const ComponentActivation & source) {
@@ -303,10 +314,10 @@ CDM::PausableActivation ConvertToCDM::convert(const PausableActivation & source)
 	throw std::runtime_error("Illegal value for PausableActivation");
 }
 
-CDM::PrimaryAlertSignalLocation ConvertToCDM::convert(const PrimaryAlertSignalLocation & source) {
+CDM::AlertSignalPrimaryLocation ConvertToCDM::convert(const AlertSignalPrimaryLocation & source) {
 	switch (source) {
-		case PrimaryAlertSignalLocation::LOCAL: return CDM::PrimaryAlertSignalLocation::Loc;
-		case PrimaryAlertSignalLocation::REMOTE: return CDM::PrimaryAlertSignalLocation::Rem;
+		case AlertSignalPrimaryLocation::Local: return CDM::AlertSignalPrimaryLocation::Loc;
+		case AlertSignalPrimaryLocation::Remote: return CDM::AlertSignalPrimaryLocation::Rem;
 	}
 	throw std::runtime_error("Illegal value for PrimaryAlertSignalLocation");
 }
@@ -321,12 +332,12 @@ CDM::Sex ConvertToCDM::convert(const Sex & source) {
 	throw std::runtime_error("Illegal value for Sex");
 }
 
-CDM::SignalPresence ConvertToCDM::convert(const SignalPresence & source) {
+CDM::AlertSignalPresence ConvertToCDM::convert(const AlertSignalPresence & source) {
 	switch (source) {
-		case SignalPresence::On: return CDM::SignalPresence::On;
-		case SignalPresence::Off: return CDM::SignalPresence::Off;
-		case SignalPresence::Ack: return CDM::SignalPresence::Ack;
-		case SignalPresence::Latch: return CDM::SignalPresence::Latch;
+		case AlertSignalPresence::On: return CDM::AlertSignalPresence::On;
+		case AlertSignalPresence::Off: return CDM::AlertSignalPresence::Off;
+		case AlertSignalPresence::Acknowledged: return CDM::AlertSignalPresence::Ack;
+		case AlertSignalPresence::Latched: return CDM::AlertSignalPresence::Latch;
 	}
 	throw std::runtime_error("Illegal value for SignalPresence");
 }
@@ -391,7 +402,7 @@ template
 std::unique_ptr<typename CodedValue::WrappedType> ConvertToCDM::convert(const CodedValue & source);
 
 template
-std::unique_ptr<typename ComponentState::WrappedType> ConvertToCDM::convert(const ComponentState & source);
+std::unique_ptr<typename ComponentActivation::WrappedType> ConvertToCDM::convert(const ComponentActivation & source);
 
 template
 std::unique_ptr<typename DateTime::WrappedType> ConvertToCDM::convert(const DateTime & source);

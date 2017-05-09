@@ -55,9 +55,16 @@ enum class AlertSignalManifestation
 };
 
 enum class CalibrationState {
-	NOT_CALIBRATED,
-	CALIBRATION_REQUIRED,
-	CALIBRATED
+	NotCalibrated,
+	CalibrationRequired,
+	Calibrated
+};
+
+enum class CalibrationType {
+	Offset,
+	Gain,
+	TwoPointCalibration,
+	Unspecified
 };
 
 enum class ComponentActivation
@@ -151,10 +158,10 @@ enum class PatientType
 	UNSPECIFIED
 };
 
-enum class PrimaryAlertSignalLocation
+enum class AlertSignalPrimaryLocation
 {
-	LOCAL,
-	REMOTE
+	Local,
+	Remote
 };
 
 enum class Sex
@@ -165,12 +172,12 @@ enum class Sex
 	UNKNOWN
 };
 
-enum class SignalPresence
+enum class AlertSignalPresence
 {
 	On,
 	Off,
-	Latch,
-	Ack
+	Latched,
+	Acknowledged
 };
 
 class EnumToString {
@@ -178,7 +185,9 @@ public:
 	static std::string convert(AlertConditionKind source);
 	static std::string convert(AlertConditionPriority source);
 	static std::string convert(AlertSignalManifestation source);
+	static std::string convert(AlertSignalPresence source);
 	static std::string convert(CalibrationState source);
+	static std::string convert(CalibrationType source);
 	static std::string convert(ComponentActivation source);
 	static std::string convert(ContextAssociation source);
 	static std::string convert(DicomTransferRole source);
@@ -192,9 +201,9 @@ public:
 	static std::string convert(OperatingMode source);
 	static std::string convert(PatientType source);
 	static std::string convert(AlertActivation source);
-	static std::string convert(PrimaryAlertSignalLocation source);
+	static std::string convert(AlertSignalPrimaryLocation source);
 	static std::string convert(Sex source);
-	static std::string convert(SignalPresence source);
+
 };
 
 }

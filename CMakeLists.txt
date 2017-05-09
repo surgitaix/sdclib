@@ -95,10 +95,10 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/ConvertToCDM.cpp
 ./src/Data/OSCP/MDIB/DateTime.cpp
 ./src/Data/OSCP/MDIB/Defaults.cpp
-./src/Data/OSCP/MDIB/DICOMDeviceDescriptor.cpp
-./src/Data/OSCP/MDIB/DICOMNetworkAE.cpp
-./src/Data/OSCP/MDIB/DICOMNetworkConnection.cpp
-./src/Data/OSCP/MDIB/DICOMTransferCapability.cpp
+./src/Data/OSCP/MDIB/DicomDeviceDescriptor.cpp
+./src/Data/OSCP/MDIB/DicomNetworkAe.cpp
+./src/Data/OSCP/MDIB/DicomNetworkConnection.cpp
+./src/Data/OSCP/MDIB/DicomTransferCapability.cpp
 ./src/Data/OSCP/MDIB/Duration.cpp
 ./src/Data/OSCP/MDIB/EnsembleContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/EnsembleContextState.cpp
@@ -441,7 +441,7 @@ set(PocoSOURCES
 
 
 list(APPEND OSCLibSOURCES 
-./datamodel/BICEPS_DomainModel.cxx
+./datamodel/BICEPS_ParticipantModel.cxx
 ./datamodel/BICEPS_MessageModel.cxx
 ./datamodel/DICOMDeviceDescription.cxx
 ./datamodel/eventing.cxx

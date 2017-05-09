@@ -46,6 +46,7 @@ public:
 	static BaseDemographics convert(const CDM::BaseDemographics & source);
 	static CalibrationInfo convert(const CDM::CalibrationInfo & source);
 	static CalibrationState convert(const CDM::CalibrationState & source);
+	static CalibrationType convert(const CDM::CalibrationType & source);
 	static CauseInfo convert(const CDM::CauseInfo & source);
 	static ChannelDescriptor convert(const CDM::ChannelDescriptor & source);
 	static ClinicalInfo convert(const CDM::ClinicalInfo & source);
@@ -53,13 +54,12 @@ public:
 	static ClockState convert(const CDM::ClockState & source);
 	static CodedValue convert(const CDM::CodedValue & source);
 	static ComponentActivation convert(const CDM::ComponentActivation & source);
-	static ComponentState convert(const CDM::ComponentState & source);
 	static ContextAssociation convert(const CDM::ContextAssociation & source);
 	static DateTime convert(const CDM::DateTime & source);
-	static DICOMDeviceDescriptor convert(const CDM::DICOMDeviceDescriptor & source);
-	static DICOMNetworkAE convert(const CDM::DICOMNetworkAE & source);
-	static DICOMNetworkConnection convert(const CDM::DICOMNetworkConnection & source);
-	static DICOMTransferCapability convert(const CDM::DICOMTransferCapability & source);
+	static DicomDeviceDescriptor convert(const CDM::DicomDeviceDescriptor & source);
+	static DicomNetworkAe convert(const CDM::DicomNetworkAe  & source);
+	static DicomNetworkConnection convert(const CDM::DicomNetworkConnection & source);
+	static DicomTransferCapability convert(const CDM::DicomTransferCapability & source);
 	static DicomTransferRole convert(const CDM::DicomTransferRole & source);
 	static Duration convert(const CDM::Duration & source);
 	static EnsembleContextDescriptor convert(const CDM::EnsembleContextDescriptor & source);
@@ -103,7 +103,7 @@ public:
 	static AlertActivation convert(const CDM::AlertActivation & source);
 	static PersonParticipation convert(const CDM::PersonParticipation & source);
 	static PersonReference convert(const CDM::PersonReference & source);
-	static PrimaryAlertSignalLocation convert(const CDM::PrimaryAlertSignalLocation & source);
+	static AlertSignalPrimaryLocation convert(const CDM::AlertSignalPrimaryLocation & source);
 	static ProductionSpecification convert(const CDM::ProductionSpecification & source);
 	static Range convert(const CDM::Range & source);
 	static RealTimeSampleArrayMetricDescriptor convert(const CDM::RealTimeSampleArrayMetricDescriptor & source);
@@ -120,7 +120,7 @@ public:
 	static SetStringOperationDescriptor convert(const CDM::SetStringOperationDescriptor & source);
 	static SetValueOperationDescriptor convert(const CDM::SetValueOperationDescriptor & source);
 	static Sex convert(const CDM::Sex & source);
-	static SignalPresence convert(const CDM::SignalPresence & source);
+	static AlertSignalPresence convert(const CDM::AlertSignalPresence & source);
 	static StringMetricDescriptor convert(const CDM::StringMetricDescriptor & source);
 	static StringMetricState convert(const CDM::StringMetricState & source);
 	static StringMetricValue convert(const CDM::StringMetricValue & source);

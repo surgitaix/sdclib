@@ -133,12 +133,12 @@ AlertActivation AlertSignalState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-AlertSignalState & AlertSignalState::setLocation(const PrimaryAlertSignalLocation & value) {
+AlertSignalState & AlertSignalState::setLocation(const AlertSignalPrimaryLocation & value) {
 	data->Location(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalState::getLocation(PrimaryAlertSignalLocation & out) const {
+bool AlertSignalState::getLocation(AlertSignalPrimaryLocation & out) const {
 	if (data->Location().present()) {
 		out = ConvertFromCDM::convert(data->Location().get());
 		return true;
@@ -146,7 +146,7 @@ bool AlertSignalState::getLocation(PrimaryAlertSignalLocation & out) const {
 	return false;
 }
 
-PrimaryAlertSignalLocation AlertSignalState::getLocation() const {
+AlertSignalPrimaryLocation AlertSignalState::getLocation() const {
 	return ConvertFromCDM::convert(data->Location().get());
 }
 	
@@ -175,12 +175,12 @@ bool AlertSignalState::hasSlot() const {
 	return data->Slot().present();
 }
 	
-AlertSignalState & AlertSignalState::setPresence(const SignalPresence & value) {
+AlertSignalState & AlertSignalState::setPresence(const AlertSignalPresence & value) {
 	data->Presence(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalState::getPresence(SignalPresence & out) const {
+bool AlertSignalState::getPresence(AlertSignalPresence & out) const {
 	if (data->Presence().present()) {
 		out = ConvertFromCDM::convert(data->Presence().get());
 		return true;
@@ -188,7 +188,7 @@ bool AlertSignalState::getPresence(SignalPresence & out) const {
 	return false;
 }
 
-SignalPresence AlertSignalState::getPresence() const {
+AlertSignalPresence AlertSignalState::getPresence() const {
 	return ConvertFromCDM::convert(data->Presence().get());
 }
 	

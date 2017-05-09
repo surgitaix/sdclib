@@ -16,15 +16,16 @@
 
     <class name = "AbstractState" parent = "NULL" abstract = "true" >
    		<include path = "OSCLib/Data/OSCP/MDIB/VersionCounter.h" />
-        <property name = "Handle" type = "std::string" optional = "true"/>
+      <property name = "Handle" type = "std::string" optional = "true"/>
     	<property name = "DescriptorHandle" type = "std::string" optional = "false" />
-		<property name = "StateVersion" type = "VersionCounter" optional = "true" />
+	<property name = "StateVersion" type = "VersionCounter" optional = "true" />
     </class>
-    
+
     <class name = "AbstractAlertState" parent = "AbstractState" abstract = "true" >
     	<property name = "ActivationState" type = "AlertActivation" optional = "false" />
     </class>
-    
+
+
 	<class name = "AbstractIdentifiableContextState" parent = "AbstractContextState" abstract = "true" >
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
     	<propertyList nameSingle = "Identification" nameSeveral = "Identifications" type = "InstanceIdentifier" /> 
@@ -42,18 +43,18 @@
         <typedef name = "DescriptorType" type = "AlertConditionDescriptor" />
         <typedef name = "ProviderHandlerType" type = "OSCPProviderAlertConditionStateHandler" />
         <typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertConditionStateHandler" />
-    	<property name = "Rank" type = "int" optional = "true" />
-		<property name = "Presence" type = "bool" optional = "false" />
-		<property name = "ObservationTime" type = "Timestamp" optional = "true" />
+	<property name = "Rank" type = "int" optional = "true" />
+	<property name = "Presence" type = "bool" optional = "false" />
+	<property name = "ObservationTime" type = "Timestamp" optional = "true" />
     </class>
     
     <class name = "AlertSignalState" parent = "AbstractAlertState" abstract = "false" >
         <typedef name = "DescriptorType" type = "AlertSignalDescriptor" />
         <typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSignalStateHandler" />
         <typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSignalStateHandler" />
-    	<property name = "Location" type = "PrimaryAlertSignalLocation" optional = "true" />
+    	<property name = "Location" type = "AlertSignalPrimaryLocation" optional = "true" />
     	<property name = "Slot" type = "int" optional = "true" />
-    	<property name = "Presence" type = "SignalPresence" optional = "true" />
+    	<property name = "Presence" type = "AlertSignalPresence" optional = "true" />
     </class>
     
     <class name = "AlertSystemState" parent = "AbstractAlertState" abstract = "false" >
@@ -77,7 +78,7 @@
     	<property name = "Accuracy" type = "double" optional = "true" />
     	<property name = "LastSet" type = "Timestamp" optional = "true" />
     	<property name = "TimeZone" type = "TimeZone" optional = "true" />
-		<property name = "CriticalUse" type = "bool" optional = "true" />
+	<property name = "CriticalUse" type = "bool" optional = "true" />
     </class>
     
     <class name = "EnsembleContextState" parent = "AbstractIdentifiableContextState" abstract = "false" >
@@ -92,7 +93,15 @@
     	<property name = "ObservedValue" type = "StringMetricValue" optional = "true" />
     </class>
     
-	<class name = "HydraMDSState" parent = "ComponentState" abstract = "false" >
+    <class name = "AbstractDeviceComponentState" parent = "AbstractState" abstract = "false" >
+    	<property name = "ActivationState" type = "int" optional = "true" />
+    	<property name = "OperatingHours" type = "unsigned int" optional = "true" />
+    	<property name = "OperatingCycles" type = "int" optional = "true" />
+	<property name = "CalibrationInfo" type = "CalibrationInfo" optional = "true" />
+	<property name = "NextCalibration" type = "CalibrationInfo" optional = "true" />
+    </class>
+
+	<class name = "MDSState" parent = "AbstractDeviceComponentState" abstract = "false" >
       	<include path = "OSCLib/Data/OSCP/MDIB/Language.h" />
     	<typedef name = "DescriptorType" type = "HydraMDSDescriptor" />
     	<typedef name = "ProviderHandlerType" type = "OSCPProviderHydraMDSStateHandler" />

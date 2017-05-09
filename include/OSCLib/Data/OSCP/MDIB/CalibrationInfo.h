@@ -58,8 +58,16 @@ public:
 
 	CalibrationInfo & setComponentCalibrationState(const CalibrationState & value);
 	CalibrationState getComponentCalibrationState() const;
-	bool getComponentCalibrationState(CalibrationState & out) const;
-	bool hasComponentCalibrationState() const;
+
+	CalibrationInfo & setTime(const Timestamp & value);
+	Timestamp getTime() const;
+	bool getTime(Timestamp & out) const;
+	bool hasTime() const;
+
+	CalibrationInfo & setType(const CalibrationType & value);
+	CalibrationType getType() const;
+	bool getType(CalibrationType & out) const;
+	bool hasType() const;
 
 private:
 	std::shared_ptr<CDM::CalibrationInfo> data;

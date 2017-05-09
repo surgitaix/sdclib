@@ -44,11 +44,21 @@ std::string EnumToString::convert(AlertSignalManifestation source) {
 
 std::string EnumToString::convert(CalibrationState source) {
 	switch (source) {
-		case CalibrationState::CALIBRATED: return "Calibrated";
-		case CalibrationState::CALIBRATION_REQUIRED: return "Calibration required";
-		case CalibrationState::NOT_CALIBRATED: return "Not calibrated";
+		case CalibrationState::Calibrated: return "Calibrated";
+		case CalibrationState::CalibrationRequired: return "Calibration required";
+		case CalibrationState::NotCalibrated: return "Not calibrated";
 	}
 	throw std::runtime_error("Illegal value for CalibrationState");
+}
+
+std::string EnumToString::convert(CalibrationType source) {
+	switch (source) {
+		case CalibrationType::Offset: return "Offset";
+		case CalibrationType::Gain: return "Gain calibration";
+		case CalibrationType::TwoPointCalibration: return "Two point calibration";
+		case CalibrationType::Unspecified: return "Unspecified";
+	}
+	throw std::runtime_error("Illegal value for CalibrationType");
 }
 
 std::string EnumToString::convert(ComponentActivation source) {
@@ -185,10 +195,10 @@ std::string EnumToString::convert(AlertActivation source) {
 	throw std::runtime_error("Illegal value for AlertActivation");
 }
 
-std::string EnumToString::convert(PrimaryAlertSignalLocation source) {
+std::string EnumToString::convert(AlertSignalPrimaryLocation source) {
 	switch (source) {
-		case PrimaryAlertSignalLocation::LOCAL: return "Local";
-		case PrimaryAlertSignalLocation::REMOTE: return "Remote";
+		case AlertSignalPrimaryLocation::Local: return "Local";
+		case AlertSignalPrimaryLocation::Remote: return "Remote";
 	}
 	throw std::runtime_error("Illegal value for PrimaryAlertSignalLocation");
 }
@@ -203,14 +213,14 @@ std::string EnumToString::convert(Sex source) {
 	throw std::runtime_error("Illegal value for Sex");
 }
 
-std::string EnumToString::convert(SignalPresence source) {
+std::string EnumToString::convert(AlertSignalPresence source) {
 	switch (source) {
-		case SignalPresence::On: return "On";
-		case SignalPresence::Off: return "Off";
-		case SignalPresence::Ack: return "Ack";
-		case SignalPresence::Latch: return "Latch";
+		case AlertSignalPresence::On: return "On";
+		case AlertSignalPresence::Off: return "Off";
+		case AlertSignalPresence::Acknowledged: return "Acknowledged";
+		case AlertSignalPresence::Latched: return "Latched";
 	}
-	throw std::runtime_error("Illegal value for SignalPresence");
+	throw std::runtime_error("Illegal value for AlertSignalPresence");
 }
 
 }
