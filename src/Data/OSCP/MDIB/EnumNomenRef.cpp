@@ -29,7 +29,7 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumNomenRef.h"
+#include "OSCLib/Data/OSCP/MDIB/EnumNomenRef.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"

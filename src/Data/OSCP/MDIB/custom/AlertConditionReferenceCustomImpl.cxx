@@ -1,8 +1,8 @@
 
 
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionReference.h"
-#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 
 #include "osdm.hxx"
 

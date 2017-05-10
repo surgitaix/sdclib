@@ -32,7 +32,7 @@
 #ifndef RANGE_H_
 #define RANGE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
