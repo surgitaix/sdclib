@@ -36,10 +36,10 @@ namespace OSCP {
 	class CodedValue;
 	class ComponentState;
 	class DateTime;
-	class DICOMDeviceDescriptor;
-	class DICOMNetworkAE;
-	class DICOMNetworkConnection;
-	class DICOMTransferCapability;
+	class DicomDeviceDescriptor;
+	class DicomNetworkAe;
+	class DicomNetworkConnection;
+	class DicomTransferCapability;
 	class Duration;
 	class EnsembleContextDescriptor;
 	class EnsembleContextState;
