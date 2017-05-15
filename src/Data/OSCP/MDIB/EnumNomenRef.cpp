@@ -36,7 +36,7 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Codeker dValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SampleIndex.h"
 
 namespace OSCLib {

@@ -36,8 +36,6 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/EnumNomenRef.h"
-#include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
@@ -128,6 +126,27 @@ bool EnumStringMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setSafetyClassification(const std::string & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool EnumStringMetricDescriptor::getSafetyClassification(std::string & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+		return true;
+	}
+	return false;
+}
+
+std::string EnumStringMetricDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
+}
+	
+bool EnumStringMetricDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
+}
+	
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;
@@ -197,13 +216,13 @@ void EnumStringMetricDescriptor::clearBodySites() {
 	data->BodySite().clear();
 }
 
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::addAllowedValue(const std::string & value) {
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::addAllowedValue(const AllowedValue & value) {
 	data->AllowedValue().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<std::string> EnumStringMetricDescriptor::getAllowedValues() const {
-	std::vector<std::string> result;
+std::vector<AllowedValue> EnumStringMetricDescriptor::getAllowedValues() const {
+	std::vector<AllowedValue> result;
 	result.reserve(data->AllowedValue().size());
 	for (const auto & value: data->AllowedValue()) {
 		result.push_back(ConvertFromCDM::convert(value));
@@ -213,24 +232,6 @@ std::vector<std::string> EnumStringMetricDescriptor::getAllowedValues() const {
 
 void EnumStringMetricDescriptor::clearAllowedValues() {
 	data->AllowedValue().clear();
-}
-
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::addEnumCodes(const EnumNomenRef & value) {
-	data->EnumCodes().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<EnumNomenRef> EnumStringMetricDescriptor::getEnumCodes() const {
-	std::vector<EnumNomenRef> result;
-	result.reserve(data->EnumCodes().size());
-	for (const auto & value: data->EnumCodes()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void EnumStringMetricDescriptor::clearEnumCodes() {
-	data->EnumCodes().clear();
 }
 
 

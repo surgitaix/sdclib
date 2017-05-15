@@ -127,6 +127,27 @@ bool AlertSystemDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
+AlertSystemDescriptor & AlertSystemDescriptor::setSafetyClassification(const std::string & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSystemDescriptor::getSafetyClassification(std::string & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+		return true;
+	}
+	return false;
+}
+
+std::string AlertSystemDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
+}
+	
+bool AlertSystemDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
+}
+	
 AlertSystemDescriptor & AlertSystemDescriptor::setMaxPhysiologicalAlarmListEntries(const int & value) {
 	data->MaxPhysiologicalAlarmListEntries(ConvertToCDM::convert(value));
 	return *this;

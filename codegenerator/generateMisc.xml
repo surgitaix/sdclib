@@ -113,7 +113,7 @@
     </class>
     
     <class name = "EnumNomenRef" parent = "NULL" abstract = "false" >
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Codeker dValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/SampleIndex.h" />
     	<property name = "Code" type = "CodedValue" optional = "false" />
     	<property name = "EnumIndex" type = "SampleIndex" optional = "true" />
@@ -217,9 +217,9 @@
 	<class name = "ProductionSpecification" parent = "NULL" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<property name = "specType" type = "CodedValue" optional = "false" />
-		<property name = "productionSpec" type = "std::string" optional = "false" />
-		<property name = "componentId" type = "InstanceIdentifier" optional = "true" />
+		<property name = "SpecType" type = "CodedValue" optional = "false" />
+		<property name = "ProductionSpec" type = "std::string" optional = "false" />
+		<property name = "ComponentId" type = "InstanceIdentifier" optional = "true" />
     </class>    
 
     <class name = "RealTimeSampleArrayValue" parent = "AbstractMetricValue" abstract = "false" >

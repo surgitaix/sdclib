@@ -10,9 +10,10 @@
     	<property name = "Type" type = "CodedValue" optional = "true" />
         <property name = "Handle" type = "std::string" optional = "false" />
         <property name = "DescriptorVersion" type = "VersionCounter" optional = "true" />
+        <property name = "SafetyClassification" type = "std::string" optional = "true" />
     </class>
     
-    <class name = "AbstractDeviceComponent" parent = "AbstractDescriptor" abstract = "true" >
+    <class name = "AbstractDeviceComponentDescriptor" parent = "AbstractDescriptor" abstract = "true" >
     	<include path = "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h" />
     	<propertyList nameSingle = "ProductionSpecification" nameSeveral = "ProductionSpecifications" type = "ProductionSpecification" />
     </class>
@@ -20,13 +21,9 @@
     <class name = "AbstractContextDescriptor" parent = "AbstractDescriptor" abstract = "true" >
     </class>
 
-    <class name = "AbstractMDSDescriptor" parent = "AbstractDeviceComponent" abstract = "true" >
-    	<include path = "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h" />
-    	<include path = "OSCLib/Data/OSCP/MDIB/SystemContext.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/SystemMetaData.h" />
-		<property name = "MetaData" type = "SystemMetaData" optional = "true" />
-		<property name = "Context" type = "SystemContext" optional = "false" />
-		<property name = "Clock" type = "ClockDescriptor" optional = "true" />
+    <class name = "AbstractAlertingDeviceComponentDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "true" >
+		<include path = "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h" />
+    	<property name = "AlertSystem" type = "AlertSystemDescriptor" optional = "true" />
     </class>
 
     <class name = "AbstractMetricDescriptor" parent = "AbstractDescriptor" abstract = "true" >
@@ -115,21 +112,50 @@
     </class>
 
     <class name = "EnumStringMetricDescriptor" parent = "StringMetricDescriptor" abstract = "false" >
-	<include path = "OSCLib/Data/OSCP/MDIB/EnumNomenRef.h" />
-	<include path = "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h" />
-	<propertyList nameSingle = "AllowedValue" nameSeveral = "AllowedValues" type = "std::string" />
-	<propertyList nameSingle = "EnumCodes" nameSeveral = "EnumCodes" type = "EnumNomenRef" />
+	<propertyList nameSingle = "AllowedValue" nameSeveral = "AllowedValues" type = "AllowedValue" />
     </class>
-    
-    <class name = "HydraMDSDescriptor" parent = "AbstractMDSDescriptor" abstract = "false" >
+
+    <class name = "AllowedValue" parent = "NULL" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+	<property name = "Value" type = "std::string" optional = "false" />
+	<property name = "Type" type = "CodedValue" optional = "false" />
+    </class>
+	
+    AbstractAlertingDeviceComponentDescriptor
+    <class name = "MdsDescriptor" parent = "AbstractAlertingDeviceComponentDescriptor" abstract = "false" >
     	<include path = "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/SCODescriptor.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/SystemContext.h" />
+	<include path = "OSCLib/Data/OSCP/MDIB/SystemMetaData.h" />
+	<property name = "MetaData" type = "SystemMetaData" optional = "true" />
+	<property name = "Context" type = "SystemContext" optional = "false" />
+	<property name = "Clock" type = "ClockDescriptor" optional = "true" />
     	<property name = "SCO" type = "SCODescriptor" optional = "true" />
-    	<property name = "AlertSystem" type = "AlertSystemDescriptor" optional = "true" />
+    	<property name = "Battery" type = "BatteryDescriptor" optional = "true" />
     	<propertyList nameSingle = "VMD" nameSeveral = "VMDs" type = "VMDDescriptor" />
     </class>
+
+    <class name = "BatteryDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
+	<property name = "CapacityFullCharge" type = "Measurement" optional = "false" />
+	<property name = "CapacitySpecified" type = "Measurement" optional = "false" />
+	<property name = "VoltageSpecified" type = "Measurement" optional = "false" />
+    </class>
+
+    <class name = "Measurement" parent = "AbstractDeviceComponentDescriptor" abstract = "false" >
+ 	<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+	<property name = "MeasurementUnit" type = "CodedValue" optional = "false" />
+	<property name = "MeasuredValue" type = "double" optional = "false" />
+    </class>
     
+<class name = "LimitAlertConditionDescriptor" parent = "AlertConditionDescriptor" abstract = "false" >
+    	<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<property name = "MaxLimits" type = "Range" optional = "false" />
+    	<property name = "AutoLimitSupported" type = "bool" optional = "true" />
+    </class>
+
     <class name = "LimitAlertConditionDescriptor" parent = "AlertConditionDescriptor" abstract = "false" >
     	<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<property name = "MaxLimits" type = "Range" optional = "false" />
@@ -194,6 +220,7 @@
     </class> 
 
     <class name = "StringMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false" >
+<!-- wird State type wirklich benötigt -->
     	<typedef name ="StateType" type = "StringMetricState" />
     </class>
 

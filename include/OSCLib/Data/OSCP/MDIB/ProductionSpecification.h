@@ -56,16 +56,16 @@ public:
     
     typedef CDM::ProductionSpecification WrappedType;
 
-	ProductionSpecification & setspecType(const CodedValue & value);
-	CodedValue getspecType() const;
+	ProductionSpecification & setSpecType(const CodedValue & value);
+	CodedValue getSpecType() const;
 
-	ProductionSpecification & setproductionSpec(const std::string & value);
-	std::string getproductionSpec() const;
+	ProductionSpecification & setProductionSpec(const std::string & value);
+	std::string getProductionSpec() const;
 
-	ProductionSpecification & setcomponentId(const InstanceIdentifier & value);
-	InstanceIdentifier getcomponentId() const;
-	bool getcomponentId(InstanceIdentifier & out) const;
-	bool hascomponentId() const;
+	ProductionSpecification & setComponentId(const InstanceIdentifier & value);
+	InstanceIdentifier getComponentId() const;
+	bool getComponentId(InstanceIdentifier & out) const;
+	bool hasComponentId() const;
 
 private:
 	std::shared_ptr<CDM::ProductionSpecification> data;

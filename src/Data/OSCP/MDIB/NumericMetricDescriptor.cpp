@@ -128,6 +128,27 @@ bool NumericMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
+NumericMetricDescriptor & NumericMetricDescriptor::setSafetyClassification(const std::string & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NumericMetricDescriptor::getSafetyClassification(std::string & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+		return true;
+	}
+	return false;
+}
+
+std::string NumericMetricDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
+}
+	
+bool NumericMetricDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
+}
+	
 NumericMetricDescriptor & NumericMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;

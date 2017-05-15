@@ -56,23 +56,6 @@ public:
     
     typedef CDM::VMDDescriptor WrappedType;
 
-	VMDDescriptor & setType(const CodedValue & value);
-	CodedValue getType() const;
-	bool getType(CodedValue & out) const;
-	bool hasType() const;
-
-	VMDDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
-
-	VMDDescriptor & setDescriptorVersion(const VersionCounter & value);
-	VersionCounter getDescriptorVersion() const;
-	bool getDescriptorVersion(VersionCounter & out) const;
-	bool hasDescriptorVersion() const;
-
-	VMDDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecifications() const;
-	void clearProductionSpecifications();
-	
 	VMDDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;

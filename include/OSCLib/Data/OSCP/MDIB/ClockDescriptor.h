@@ -69,6 +69,11 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
+	ClockDescriptor & setSafetyClassification(const std::string & value);
+	std::string getSafetyClassification() const;
+	bool getSafetyClassification(std::string & out) const;
+	bool hasSafetyClassification() const;
+
 	ClockDescriptor & setResolution(const Duration & value);
 	Duration getResolution() const;
 	bool getResolution(Duration & out) const;

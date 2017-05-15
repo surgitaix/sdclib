@@ -36,9 +36,6 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -72,76 +69,6 @@ SCODescriptor & SCODescriptor:: operator=(const SCODescriptor & object) {
 	return *this;
 }
 
-
-SCODescriptor & SCODescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SCODescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
-		return true;
-	}
-	return false;
-}
-
-CodedValue SCODescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
-}
-	
-bool SCODescriptor::hasType() const {
-	return data->Type().present();
-}
-	
-SCODescriptor & SCODescriptor::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string SCODescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
-}
-	
-SCODescriptor & SCODescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SCODescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-VersionCounter SCODescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool SCODescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-SCODescriptor & SCODescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<ProductionSpecification> SCODescriptor::getProductionSpecifications() const {
-	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void SCODescriptor::clearProductionSpecifications() {
-	data->ProductionSpecification().clear();
-}
 
 
 } /* namespace OSCP */

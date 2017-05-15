@@ -126,6 +126,27 @@ bool ClockDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
+ClockDescriptor & ClockDescriptor::setSafetyClassification(const std::string & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockDescriptor::getSafetyClassification(std::string & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+		return true;
+	}
+	return false;
+}
+
+std::string ClockDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
+}
+	
+bool ClockDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
+}
+	
 ClockDescriptor & ClockDescriptor::setResolution(const Duration & value) {
 	data->Resolution(ConvertToCDM::convert(value));
 	return *this;

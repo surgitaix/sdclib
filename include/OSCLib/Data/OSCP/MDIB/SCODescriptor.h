@@ -56,23 +56,6 @@ public:
     
     typedef CDM::SCODescriptor WrappedType;
 
-	SCODescriptor & setType(const CodedValue & value);
-	CodedValue getType() const;
-	bool getType(CodedValue & out) const;
-	bool hasType() const;
-
-	SCODescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
-
-	SCODescriptor & setDescriptorVersion(const VersionCounter & value);
-	VersionCounter getDescriptorVersion() const;
-	bool getDescriptorVersion(VersionCounter & out) const;
-	bool hasDescriptorVersion() const;
-
-	SCODescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecifications() const;
-	void clearProductionSpecifications();
-	
 
 	std::vector<ActivateOperationDescriptor> collectAllActivateOperationDescriptors() const;
 	std::vector<SetAlertStateOperationDescriptor> collectAllSetAlertStateOperationDescriptors() const;

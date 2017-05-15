@@ -25,6 +25,7 @@ namespace OSCP {
 	class AlertSignalState;
 	class AlertSystemDescriptor;
 	class AlertSystemState;
+	class AllowedValue;
 	class Base64Binary;
 	class BaseDemographics;
 	class CauseInfo;
@@ -45,9 +46,8 @@ namespace OSCP {
 	class EnsembleContextState;
 	class EnumStringMetricDescriptor;
 	class EnumStringMetricState;
-	class EnumNomenRef;
 	class InstanceIdentifier;
-	class HydraMDSDescriptor;
+	class MdsDescriptor;
 	class HydraMDSState;
 	class ImagingProcedure;
 	class Language;

@@ -64,11 +64,11 @@ public:
 	static Duration convert(const CDM::Duration & source);
 	static EnsembleContextDescriptor convert(const CDM::EnsembleContextDescriptor & source);
 	static EnsembleContextState convert(const CDM::EnsembleContextState & source);
-	static EnumNomenRef convert(const CDM::EnumNomenRef & source);
+	static AllowedValue convert(const CDM::AllowedValue & source);
 	static EnumStringMetricDescriptor convert(const CDM::EnumStringMetricDescriptor & source);
 	static EnumStringMetricState convert(const CDM::EnumStringMetricState & source);
 	static GenerationMode convert(const CDM::GenerationMode & source);
-	static HydraMDSDescriptor convert(const CDM::HydraMDSDescriptor & source);
+	static MdsDescriptor convert(const CDM::MdsDescriptor & source);
 	static HydraMDSState convert(const CDM::HydraMDSState & source);
 	static ImagingProcedure convert(const CDM::ImagingProcedure & source);
 	static InstanceIdentifier convert(const CDM::InstanceIdentifier & source);

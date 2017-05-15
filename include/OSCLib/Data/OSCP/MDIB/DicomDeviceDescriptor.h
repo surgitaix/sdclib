@@ -56,36 +56,6 @@ public:
     
     typedef CDM::DicomDeviceDescriptor WrappedType;
 
-	DicomDeviceDescriptor & setType(const CodedValue & value);
-	CodedValue getType() const;
-	bool getType(CodedValue & out) const;
-	bool hasType() const;
-
-	DicomDeviceDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
-
-	DicomDeviceDescriptor & setDescriptorVersion(const VersionCounter & value);
-	VersionCounter getDescriptorVersion() const;
-	bool getDescriptorVersion(VersionCounter & out) const;
-	bool hasDescriptorVersion() const;
-
-	DicomDeviceDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecifications() const;
-	void clearProductionSpecifications();
-	
-	DicomDeviceDescriptor & setMetaData(const SystemMetaData & value);
-	SystemMetaData getMetaData() const;
-	bool getMetaData(SystemMetaData & out) const;
-	bool hasMetaData() const;
-
-	DicomDeviceDescriptor & setContext(const SystemContext & value);
-	SystemContext getContext() const;
-
-	DicomDeviceDescriptor & setClock(const ClockDescriptor & value);
-	ClockDescriptor getClock() const;
-	bool getClock(ClockDescriptor & out) const;
-	bool hasClock() const;
-
 	DicomDeviceDescriptor & setDescription(const std::string & value);
 	std::string getDescription() const;
 	bool getDescription(std::string & out) const;

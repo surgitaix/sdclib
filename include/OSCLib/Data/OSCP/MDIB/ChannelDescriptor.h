@@ -56,23 +56,6 @@ public:
     
     typedef CDM::ChannelDescriptor WrappedType;
 
-	ChannelDescriptor & setType(const CodedValue & value);
-	CodedValue getType() const;
-	bool getType(CodedValue & out) const;
-	bool hasType() const;
-
-	ChannelDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
-
-	ChannelDescriptor & setDescriptorVersion(const VersionCounter & value);
-	VersionCounter getDescriptorVersion() const;
-	bool getDescriptorVersion(VersionCounter & out) const;
-	bool hasDescriptorVersion() const;
-
-	ChannelDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecifications() const;
-	void clearProductionSpecifications();
-	
 	ChannelDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;

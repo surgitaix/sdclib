@@ -69,6 +69,11 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
+	AlertConditionDescriptor & setSafetyClassification(const std::string & value);
+	std::string getSafetyClassification() const;
+	bool getSafetyClassification(std::string & out) const;
+	bool hasSafetyClassification() const;
+
 	AlertConditionDescriptor & setKind(const AlertConditionKind & value);
 	AlertConditionKind getKind() const;
 

@@ -78,6 +78,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/AlertSystemDescriptor.cpp
 ./src/Data/OSCP/MDIB/custom/AlertSystemDescriptorCustomImpl.cxx
 ./src/Data/OSCP/MDIB/AlertSystemState.cpp
+./src/Data/OSCP/MDIB/AllowedValue.cpp
 ./src/Data/OSCP/MDIB/Annotation.cpp
 ./src/Data/OSCP/MDIB/Base64Binary.cpp
 ./src/Data/OSCP/MDIB/custom/Base64BinaryCustomImpl.cxx
@@ -103,10 +104,9 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/EnsembleContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/EnsembleContextState.cpp
 ./src/Data/OSCP/MDIB/custom/EnumMappings.cpp
-./src/Data/OSCP/MDIB/EnumNomenRef.cpp
 ./src/Data/OSCP/MDIB/EnumStringMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/EnumStringMetricState.cpp
-./src/Data/OSCP/MDIB/HydraMDSDescriptor.cpp
+./src/Data/OSCP/MDIB/MdsDescriptor.cpp
 ./src/Data/OSCP/MDIB/HydraMDSState.cpp
 ./src/Data/OSCP/MDIB/ImagingProcedure.cpp
 ./src/Data/OSCP/MDIB/InstanceIdentifier.cpp
@@ -118,7 +118,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/LocationContextState.cpp
 ./src/Data/OSCP/MDIB/MDDescription.cpp
 ./src/Data/OSCP/MDIB/custom/MDDescriptionCustomImpl.cxx
-./src/Data/OSCP/MDIB/MDIBContainer.cpp
+./src/Data/OSCP/MDIB/custom/MDIBContainer.cpp
 ./src/Data/OSCP/MDIB/MDState.cpp
 ./src/Data/OSCP/MDIB/custom/MDStateCustomImpl.cxx
 ./src/Data/OSCP/MDIB/Measure.cpp
@@ -127,7 +127,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/NumericMetricState.cpp
 ./src/Data/OSCP/MDIB/NumericMetricValue.cpp
 ./src/Data/OSCP/MDIB/OperationState.cpp
-./src/Data/OSCP/MDIB/OperationInvocationContext.cpp
+./src/Data/OSCP/MDIB/custom/OperationInvocationContext.cpp
 ./src/Data/OSCP/MDIB/OperatorContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/OperatorContextState.cpp
 ./src/Data/OSCP/MDIB/Order.cpp

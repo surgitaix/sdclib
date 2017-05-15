@@ -37,9 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -73,76 +70,6 @@ ChannelDescriptor & ChannelDescriptor:: operator=(const ChannelDescriptor & obje
 	return *this;
 }
 
-
-ChannelDescriptor & ChannelDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ChannelDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
-		return true;
-	}
-	return false;
-}
-
-CodedValue ChannelDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
-}
-	
-bool ChannelDescriptor::hasType() const {
-	return data->Type().present();
-}
-	
-ChannelDescriptor & ChannelDescriptor::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string ChannelDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
-}
-	
-ChannelDescriptor & ChannelDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ChannelDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-VersionCounter ChannelDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool ChannelDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-ChannelDescriptor & ChannelDescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecifications() const {
-	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void ChannelDescriptor::clearProductionSpecifications() {
-	data->ProductionSpecification().clear();
-}
 
 ChannelDescriptor & ChannelDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
 	data->AlertSystem(ConvertToCDM::convert(value));

@@ -69,6 +69,11 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
+	EnumStringMetricDescriptor & setSafetyClassification(const std::string & value);
+	std::string getSafetyClassification() const;
+	bool getSafetyClassification(std::string & out) const;
+	bool hasSafetyClassification() const;
+
 	EnumStringMetricDescriptor & setUnit(const CodedValue & value);
 	CodedValue getUnit() const;
 
@@ -87,13 +92,9 @@ public:
 	std::vector<CodedValue> getBodySites() const;
 	void clearBodySites();
 	
-	EnumStringMetricDescriptor & addAllowedValue(const std::string & value);
-	std::vector<std::string> getAllowedValues() const;
+	EnumStringMetricDescriptor & addAllowedValue(const AllowedValue & value);
+	std::vector<AllowedValue> getAllowedValues() const;
 	void clearAllowedValues();
-	
-	EnumStringMetricDescriptor & addEnumCodes(const EnumNomenRef & value);
-	std::vector<EnumNomenRef> getEnumCodes() const;
-	void clearEnumCodes();
 	
 private:
 	std::shared_ptr<CDM::EnumStringMetricDescriptor> data;

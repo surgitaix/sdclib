@@ -35,7 +35,7 @@
 #include "OSCLib/Data/OSCP/MDIB/EnumNomenRef.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
 #include "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
@@ -329,8 +329,8 @@ EnsembleContextState ConvertFromCDM::convert(const CDM::EnsembleContextState & s
 	return EnsembleContextState(source);
 }
 
-EnumNomenRef ConvertFromCDM::convert(const CDM::EnumNomenRef & source) {
-	return EnumNomenRef(source);
+AllowedValue ConvertFromCDM::convert(const CDM::AllowedValue & source) {
+	return AllowedValueType(source);
 }
 
 EnumStringMetricDescriptor ConvertFromCDM::convert(const CDM::EnumStringMetricDescriptor & source) {

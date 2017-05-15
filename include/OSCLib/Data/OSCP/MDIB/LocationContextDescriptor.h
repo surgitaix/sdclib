@@ -70,6 +70,11 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
+	LocationContextDescriptor & setSafetyClassification(const std::string & value);
+	std::string getSafetyClassification() const;
+	bool getSafetyClassification(std::string & out) const;
+	bool hasSafetyClassification() const;
+
 private:
 	std::shared_ptr<CDM::LocationContextDescriptor> data;
 };

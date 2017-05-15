@@ -38,9 +38,6 @@
 
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -74,76 +71,6 @@ VMDDescriptor & VMDDescriptor:: operator=(const VMDDescriptor & object) {
 	return *this;
 }
 
-
-VMDDescriptor & VMDDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool VMDDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
-		return true;
-	}
-	return false;
-}
-
-CodedValue VMDDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
-}
-	
-bool VMDDescriptor::hasType() const {
-	return data->Type().present();
-}
-	
-VMDDescriptor & VMDDescriptor::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string VMDDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
-}
-	
-VMDDescriptor & VMDDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool VMDDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-VersionCounter VMDDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool VMDDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-VMDDescriptor & VMDDescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<ProductionSpecification> VMDDescriptor::getProductionSpecifications() const {
-	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void VMDDescriptor::clearProductionSpecifications() {
-	data->ProductionSpecification().clear();
-}
 
 VMDDescriptor & VMDDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
 	data->AlertSystem(ConvertToCDM::convert(value));

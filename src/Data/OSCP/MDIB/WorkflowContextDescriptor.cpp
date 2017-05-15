@@ -124,6 +124,27 @@ bool WorkflowContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
+WorkflowContextDescriptor & WorkflowContextDescriptor::setSafetyClassification(const std::string & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowContextDescriptor::getSafetyClassification(std::string & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+		return true;
+	}
+	return false;
+}
+
+std::string WorkflowContextDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
+}
+	
+bool WorkflowContextDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

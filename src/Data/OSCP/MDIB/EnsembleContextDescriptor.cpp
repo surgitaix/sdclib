@@ -124,6 +124,27 @@ bool EnsembleContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
+EnsembleContextDescriptor & EnsembleContextDescriptor::setSafetyClassification(const std::string & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool EnsembleContextDescriptor::getSafetyClassification(std::string & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+		return true;
+	}
+	return false;
+}
+
+std::string EnsembleContextDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
+}
+	
+bool EnsembleContextDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */
