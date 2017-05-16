@@ -48,7 +48,7 @@ namespace OSCP {
 	class EnumStringMetricState;
 	class InstanceIdentifier;
 	class MdsDescriptor;
-	class HydraMDSState;
+	class MdsState;
 	class ImagingProcedure;
 	class Language;
 	class LimitAlertConditionDescriptor;
@@ -56,14 +56,13 @@ namespace OSCP {
 	class LocalizedText;
 	class LocationContextDescriptor;
 	class LocationContextState;
-	class MDDescription;
-	class MDState;
-	class Measure;
-	class MeasurementState;
+	class LocationReference;
+	class MdDescription;
+	class MdState;
+	class Measurement;
 	class NumericMetricDescriptor;
 	class NumericMetricState;
 	class NumericMetricValue;
-	class OperationState;
 	class OperatorContextDescriptor;
 	class OperatorContextState;
 	class Order;
@@ -71,6 +70,7 @@ namespace OSCP {
 	class PatientContextDescriptor;
 	class PatientContextState;
 	class PatientDemographicsCoreData;
+	class PerformedOrderDetail;
 	class PersonParticipation;
 	class PersonReference;
 	class ProductionSpecification;
@@ -79,8 +79,9 @@ namespace OSCP {
 	class RealTimeSampleArrayMetricDescriptor;
 	class RealTimeSampleArrayMetricState;
 	class RealTimeSampleArrayValue;
-	class RemedyInfo;
 	class ReferencedVersion;
+	class RemedyInfo;
+	class RequestedOrderDetail;
 	class RTValueType;
 	class SCODescriptor;
 	class SetAlertStateOperationDescriptor;
@@ -99,6 +100,7 @@ namespace OSCP {
 	class VMDDescriptor;
 	class WorkflowContextDescriptor;
 	class WorkflowContextState;
+	class WorkflowDetail;
 }
 }
 }

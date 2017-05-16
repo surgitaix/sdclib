@@ -124,12 +124,12 @@ bool WorkflowContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-WorkflowContextDescriptor & WorkflowContextDescriptor::setSafetyClassification(const std::string & value) {
+WorkflowContextDescriptor & WorkflowContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool WorkflowContextDescriptor::getSafetyClassification(std::string & out) const {
+bool WorkflowContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -137,7 +137,7 @@ bool WorkflowContextDescriptor::getSafetyClassification(std::string & out) const
 	return false;
 }
 
-std::string WorkflowContextDescriptor::getSafetyClassification() const {
+SafetyClassification WorkflowContextDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

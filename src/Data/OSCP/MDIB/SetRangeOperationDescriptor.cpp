@@ -126,12 +126,12 @@ bool SetRangeOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-SetRangeOperationDescriptor & SetRangeOperationDescriptor::setSafetyClassification(const std::string & value) {
+SetRangeOperationDescriptor & SetRangeOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetRangeOperationDescriptor::getSafetyClassification(std::string & out) const {
+bool SetRangeOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -139,7 +139,7 @@ bool SetRangeOperationDescriptor::getSafetyClassification(std::string & out) con
 	return false;
 }
 
-std::string SetRangeOperationDescriptor::getSafetyClassification() const {
+SafetyClassification SetRangeOperationDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

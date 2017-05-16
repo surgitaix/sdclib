@@ -125,12 +125,12 @@ bool SetAlertStateOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setSafetyClassification(const std::string & value) {
+SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetAlertStateOperationDescriptor::getSafetyClassification(std::string & out) const {
+bool SetAlertStateOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -138,7 +138,7 @@ bool SetAlertStateOperationDescriptor::getSafetyClassification(std::string & out
 	return false;
 }
 
-std::string SetAlertStateOperationDescriptor::getSafetyClassification() const {
+SafetyClassification SetAlertStateOperationDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

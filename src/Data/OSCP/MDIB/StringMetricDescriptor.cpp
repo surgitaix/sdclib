@@ -126,12 +126,12 @@ bool StringMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setSafetyClassification(const std::string & value) {
+StringMetricDescriptor & StringMetricDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricDescriptor::getSafetyClassification(std::string & out) const {
+bool StringMetricDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -139,7 +139,7 @@ bool StringMetricDescriptor::getSafetyClassification(std::string & out) const {
 	return false;
 }
 
-std::string StringMetricDescriptor::getSafetyClassification() const {
+SafetyClassification StringMetricDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

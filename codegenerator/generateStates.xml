@@ -101,12 +101,15 @@
 	<property name = "NextCalibration" type = "CalibrationInfo" optional = "true" />
     </class>
 
-	<class name = "MDSState" parent = "AbstractDeviceComponentState" abstract = "false" >
+	<class name = "MdsState" parent = "AbstractAlertingDeviceComponentState" abstract = "false" >
       	<include path = "OSCLib/Data/OSCP/MDIB/Language.h" />
-    	<typedef name = "DescriptorType" type = "HydraMDSDescriptor" />
+    	<typedef name = "DescriptorType" type = "MdsDescriptor" />
     	<typedef name = "ProviderHandlerType" type = "OSCPProviderHydraMDSStateHandler" />
     	<property name = "Lang" type = "Language" optional = "true" />
+    	<property name = "OperatingMode" type = "MdsOperatingMode" optional = "true" />
     </class>
+
+
     
     <class name = "LimitAlertConditionState" parent = "AlertConditionState" abstract = "false" >
     	<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
@@ -122,7 +125,7 @@
     	<typedef name = "DescriptorType" type = "LocationContextDescriptor" />
     </class>
     
-    <class name = "MDState" parent = "NULL" abstract = "false" customImpl = "true" >
+    <class name = "MdState" parent = "NULL" abstract = "false" customImpl = "true" >
 		<include path = "OSCLib/Data/OSCP/MDIB/VersionCounter.h" />
     	<property name = "StateVersion" type = "VersionCounter" optional = "true" />
     </class>
@@ -137,7 +140,7 @@
     	<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRanges" type = "Range" />
     </class>
     
-    <class name = "OperationState" parent = "AbstractState" abstract = "false" >
+    <class name = "AbstractOperationState" parent = "AbstractState" abstract = "true" >
     	<property name = "OperatingMode" type = "OperatingMode" optional = "false" />
     </class>
     

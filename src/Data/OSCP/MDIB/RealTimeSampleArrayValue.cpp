@@ -38,8 +38,8 @@
 
 #include "OSCLib/Data/OSCP/MDIB/Annotation.h"
 #include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
-#include "OSCLib/Data/OSCP/MDIB/MeasurementState.h"
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 
 namespace OSCLib {
 namespace Data {

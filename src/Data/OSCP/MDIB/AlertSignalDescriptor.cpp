@@ -125,12 +125,12 @@ bool AlertSignalDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-AlertSignalDescriptor & AlertSignalDescriptor::setSafetyClassification(const std::string & value) {
+AlertSignalDescriptor & AlertSignalDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalDescriptor::getSafetyClassification(std::string & out) const {
+bool AlertSignalDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -138,7 +138,7 @@ bool AlertSignalDescriptor::getSafetyClassification(std::string & out) const {
 	return false;
 }
 
-std::string AlertSignalDescriptor::getSafetyClassification() const {
+SafetyClassification AlertSignalDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

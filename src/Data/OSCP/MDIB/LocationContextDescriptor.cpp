@@ -124,12 +124,12 @@ bool LocationContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-LocationContextDescriptor & LocationContextDescriptor::setSafetyClassification(const std::string & value) {
+LocationContextDescriptor & LocationContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocationContextDescriptor::getSafetyClassification(std::string & out) const {
+bool LocationContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -137,7 +137,7 @@ bool LocationContextDescriptor::getSafetyClassification(std::string & out) const
 	return false;
 }
 
-std::string LocationContextDescriptor::getSafetyClassification() const {
+SafetyClassification LocationContextDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

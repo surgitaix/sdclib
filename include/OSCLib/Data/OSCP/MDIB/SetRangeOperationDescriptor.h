@@ -69,9 +69,9 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	SetRangeOperationDescriptor & setSafetyClassification(const std::string & value);
-	std::string getSafetyClassification() const;
-	bool getSafetyClassification(std::string & out) const;
+	SetRangeOperationDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
 	SetRangeOperationDescriptor & setOperationTarget(const std::string & value);

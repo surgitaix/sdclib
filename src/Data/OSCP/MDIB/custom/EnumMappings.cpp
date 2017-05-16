@@ -14,6 +14,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
+
 std::string EnumToString::convert(AlertConditionKind source) {
 	switch (source) {
 		case AlertConditionKind::PHYSIOLOGICAL: return "Physiological";
@@ -40,6 +41,16 @@ std::string EnumToString::convert(AlertSignalManifestation source) {
 		case AlertSignalManifestation::TANGIBLE: return "Tangible";
 	}
 	throw std::runtime_error("Illegal value for AlertSignalManifestation");
+}
+
+std::string EnumToString::convert(AlertSignalPresence source) {
+	switch (source) {
+		case AlertSignalPresence::On: return "On";
+		case AlertSignalPresence::Off: return "Off";
+		case AlertSignalPresence::Acknowledged: return "Acknowledged";
+		case AlertSignalPresence::Latched: return "Latched";
+	}
+	throw std::runtime_error("Illegal value for AlertSignalPresence");
 }
 
 std::string EnumToString::convert(CalibrationState source) {
@@ -112,6 +123,16 @@ std::string EnumToString::convert(InvocationState source) {
 	throw std::runtime_error("Illegal value for InvocationState");
 }
 
+std::string EnumToString::convert(MdsOperatingMode source) {
+	switch (source) {
+		case MdsOperatingMode::Normal: return "Normal";
+		case MdsOperatingMode::Demo: return "Demo";
+		case MdsOperatingMode::Service: return "Service";
+		case MdsOperatingMode::Maintenance: return "Maintenance";
+	}
+	throw std::runtime_error("Illegal value for InvocationState");
+}
+
 std::string EnumToString::convert(MetricAvailability source) {
 	switch (source) {
 		case MetricAvailability::INTERMITTENT: return "Intermittent";
@@ -169,9 +190,9 @@ std::string EnumToString::convert(AlertConditionMonitoredLimits source) {
 
 std::string EnumToString::convert(OperatingMode source) {
 	switch (source) {
-		case OperatingMode::DISABLED: return "Disabled";
-		case OperatingMode::ENABLED: return "Enabled";
-		case OperatingMode::NOT_AVAILABLE: return "Not available";
+		case OperatingMode::Disabled: return "Disabled";
+		case OperatingMode::Enabled: return "Enabled";
+		case OperatingMode::NotAvailable: return "Not available";
 	}
 	throw std::runtime_error("Illegal value for OperatingMode");
 }
@@ -213,15 +234,18 @@ std::string EnumToString::convert(Sex source) {
 	throw std::runtime_error("Illegal value for Sex");
 }
 
-std::string EnumToString::convert(AlertSignalPresence source) {
+
+
+std::string EnumToString::convert(SafetyClassification source) {
 	switch (source) {
-		case AlertSignalPresence::On: return "On";
-		case AlertSignalPresence::Off: return "Off";
-		case AlertSignalPresence::Acknowledged: return "Acknowledged";
-		case AlertSignalPresence::Latched: return "Latched";
+		case SafetyClassification::Inf: return "Informal";
+		case SafetyClassification::MedA: return "Medical Class A";
+		case SafetyClassification::MedB: return "Medical Class B";
+		case SafetyClassification::MedC: return "Medical Class C";
 	}
-	throw std::runtime_error("Illegal value for AlertSignalPresence");
+	throw std::runtime_error("Illegal value for SafetyClassification");
 }
+
 
 }
 }

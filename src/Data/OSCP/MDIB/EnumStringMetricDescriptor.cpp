@@ -126,12 +126,12 @@ bool EnumStringMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setSafetyClassification(const std::string & value) {
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricDescriptor::getSafetyClassification(std::string & out) const {
+bool EnumStringMetricDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -139,7 +139,7 @@ bool EnumStringMetricDescriptor::getSafetyClassification(std::string & out) cons
 	return false;
 }
 
-std::string EnumStringMetricDescriptor::getSafetyClassification() const {
+SafetyClassification EnumStringMetricDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

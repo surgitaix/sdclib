@@ -105,6 +105,15 @@ enum class InvocationState
 	FINISHED
 };
 
+
+enum class MdsOperatingMode
+{
+	Normal,
+	Demo,
+	Service,
+	Maintenance
+};
+
 enum class MetricAvailability
 {
 	INTERMITTENT,
@@ -145,9 +154,9 @@ enum class MetricRetrievability
 
 
 enum class OperatingMode {
-	DISABLED,
-	ENABLED,
-	NOT_AVAILABLE
+	Disabled,
+	Enabled,
+	NotAvailable
 };
 
 enum class PatientType
@@ -163,6 +172,15 @@ enum class AlertSignalPrimaryLocation
 	Local,
 	Remote
 };
+
+enum class SafetyClassification
+{
+	Inf,
+	MedA,
+	MedB,
+	MedC
+};
+
 
 enum class Sex
 {
@@ -182,10 +200,12 @@ enum class AlertSignalPresence
 
 class EnumToString {
 public:
+	static std::string convert(AlertActivation source);
 	static std::string convert(AlertConditionKind source);
 	static std::string convert(AlertConditionPriority source);
 	static std::string convert(AlertSignalManifestation source);
 	static std::string convert(AlertSignalPresence source);
+	static std::string convert(AlertSignalPrimaryLocation source);
 	static std::string convert(CalibrationState source);
 	static std::string convert(CalibrationType source);
 	static std::string convert(ComponentActivation source);
@@ -193,6 +213,7 @@ public:
 	static std::string convert(DicomTransferRole source);
 	static std::string convert(GenerationMode source);
 	static std::string convert(InvocationState source);
+	static std::string convert(MdsOperatingMode source);
 	static std::string convert(MetricAvailability source);
 	static std::string convert(MetricCategory source);
 	static std::string convert(MeasurementValidity source);
@@ -200,10 +221,8 @@ public:
 	static std::string convert(AlertConditionMonitoredLimits source);
 	static std::string convert(OperatingMode source);
 	static std::string convert(PatientType source);
-	static std::string convert(AlertActivation source);
-	static std::string convert(AlertSignalPrimaryLocation source);
+	static std::string convert(SafetyClassification source);
 	static std::string convert(Sex source);
-
 };
 
 }

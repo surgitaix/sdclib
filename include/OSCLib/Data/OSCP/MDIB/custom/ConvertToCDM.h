@@ -41,6 +41,7 @@ public:
 	static CDM::DicomTransferRole convert(const DicomTransferRole & source);
 	static CDM::GenerationMode convert(const GenerationMode & source);
 	static CDM::InvocationState convert(const InvocationState & source);
+	static CDM::MdsOperatingMode convert(const MdsOperatingMode & source);
 	static CDM::MetricAvailability convert(const MetricAvailability & source);
 	static CDM::MetricCategory convert(const MetricCategory & source);
 	static CDM::MeasurementValidity convert(const MeasurementValidity & source);
@@ -48,7 +49,7 @@ public:
 	static CDM::OperatingMode convert(const OperatingMode & source);
 	static CDM::PatientType convert(const PatientType & source);
 	static CDM::AlertSignalPrimaryLocation convert(const AlertSignalPrimaryLocation & source);
-	static CDM::Sex convert(const Sex & source);
+	static CDM::SafetyClassification convert(const SafetyClassification & source);
 	static CDM::AlertSignalPresence convert(const AlertSignalPresence & source);
 
 	template <class WrapperType>

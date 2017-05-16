@@ -124,12 +124,12 @@ bool OperatorContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-OperatorContextDescriptor & OperatorContextDescriptor::setSafetyClassification(const std::string & value) {
+OperatorContextDescriptor & OperatorContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool OperatorContextDescriptor::getSafetyClassification(std::string & out) const {
+bool OperatorContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -137,7 +137,7 @@ bool OperatorContextDescriptor::getSafetyClassification(std::string & out) const
 	return false;
 }
 
-std::string OperatorContextDescriptor::getSafetyClassification() const {
+SafetyClassification OperatorContextDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

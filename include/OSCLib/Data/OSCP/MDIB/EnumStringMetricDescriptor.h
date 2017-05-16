@@ -69,9 +69,9 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	EnumStringMetricDescriptor & setSafetyClassification(const std::string & value);
-	std::string getSafetyClassification() const;
-	bool getSafetyClassification(std::string & out) const;
+	EnumStringMetricDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
 	EnumStringMetricDescriptor & setUnit(const CodedValue & value);

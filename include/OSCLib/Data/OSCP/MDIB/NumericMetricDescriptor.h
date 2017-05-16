@@ -70,9 +70,9 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	NumericMetricDescriptor & setSafetyClassification(const std::string & value);
-	std::string getSafetyClassification() const;
-	bool getSafetyClassification(std::string & out) const;
+	NumericMetricDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
 	NumericMetricDescriptor & setUnit(const CodedValue & value);

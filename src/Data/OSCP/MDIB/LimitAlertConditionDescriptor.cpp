@@ -132,12 +132,12 @@ bool LimitAlertConditionDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setSafetyClassification(const std::string & value) {
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LimitAlertConditionDescriptor::getSafetyClassification(std::string & out) const {
+bool LimitAlertConditionDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -145,7 +145,7 @@ bool LimitAlertConditionDescriptor::getSafetyClassification(std::string & out) c
 	return false;
 }
 
-std::string LimitAlertConditionDescriptor::getSafetyClassification() const {
+SafetyClassification LimitAlertConditionDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
@@ -292,12 +292,12 @@ bool LimitAlertConditionDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setSafetyClassification(const std::string & value) {
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LimitAlertConditionDescriptor::getSafetyClassification(std::string & out) const {
+bool LimitAlertConditionDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -305,7 +305,7 @@ bool LimitAlertConditionDescriptor::getSafetyClassification(std::string & out) c
 	return false;
 }
 
-std::string LimitAlertConditionDescriptor::getSafetyClassification() const {
+SafetyClassification LimitAlertConditionDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

@@ -10,7 +10,7 @@
     	<property name = "Type" type = "CodedValue" optional = "true" />
         <property name = "Handle" type = "std::string" optional = "false" />
         <property name = "DescriptorVersion" type = "VersionCounter" optional = "true" />
-        <property name = "SafetyClassification" type = "std::string" optional = "true" />
+        <property name = "SafetyClassification" type = "SafetyClassification" optional = "true" />
     </class>
     
     <class name = "AbstractDeviceComponentDescriptor" parent = "AbstractDescriptor" abstract = "true" >
@@ -121,7 +121,6 @@
 	<property name = "Type" type = "CodedValue" optional = "false" />
     </class>
 	
-    AbstractAlertingDeviceComponentDescriptor
     <class name = "MdsDescriptor" parent = "AbstractAlertingDeviceComponentDescriptor" abstract = "false" >
     	<include path = "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/SCODescriptor.h" />
@@ -166,7 +165,7 @@
     	<typedef name = "StateType" type = "LocationContextState" />
     </class>
 
-    <class name = "MDDescription" parent = "NULL" abstract = "false" customImpl = "true" >
+    <class name = "MdDescription" parent = "NULL" abstract = "false" customImpl = "true" >
 		<include path = "OSCLib/Data/OSCP/MDIB/VersionCounter.h" />
     	<property name = "DescriptionVersion" type = "VersionCounter" optional = "true" />
     </class>

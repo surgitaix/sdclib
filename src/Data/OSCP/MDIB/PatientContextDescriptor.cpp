@@ -124,12 +124,12 @@ bool PatientContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-PatientContextDescriptor & PatientContextDescriptor::setSafetyClassification(const std::string & value) {
+PatientContextDescriptor & PatientContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool PatientContextDescriptor::getSafetyClassification(std::string & out) const {
+bool PatientContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -137,7 +137,7 @@ bool PatientContextDescriptor::getSafetyClassification(std::string & out) const 
 	return false;
 }
 
-std::string PatientContextDescriptor::getSafetyClassification() const {
+SafetyClassification PatientContextDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

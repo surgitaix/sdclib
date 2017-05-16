@@ -49,7 +49,7 @@
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/MDIBContainer.h"
 #include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
-#include "OSCLib/Data/OSCP/MDIB/MDState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdState.h"
 #include "OSCLib/Data/OSCP/MDIB/Measure.h"
 #include "OSCLib/Data/OSCP/MDIB/MeasurementState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
@@ -243,6 +243,16 @@ CDM::InvocationState ConvertToCDM::convert(const InvocationState & source) {
 	throw std::runtime_error("Illegal value for InvocationState");
 }
 
+CDM::MdsOperatingMode ConvertToCDM::convert(const MdsOperatingMode & source) {
+	switch (source) {
+		case MdsOperatingMode::Normal: return CDM::MdsOperatingMode::Nml;
+		case MdsOperatingMode::Demo: return CDM::MdsOperatingMode::Dmo;
+		case MdsOperatingMode::Service: return CDM::MdsOperatingMode::Srv;
+		case MdsOperatingMode::Maintenance: return CDM::MdsOperatingMode::Mtn;
+	}
+	throw std::runtime_error("Illegal value for MdsOperatingMode");
+}
+
 CDM::MetricAvailability ConvertToCDM::convert(const MetricAvailability & source) {
 	switch (source) {
 		case MetricAvailability::INTERMITTENT: return CDM::MetricAvailability::Intr;
@@ -288,9 +298,9 @@ CDM::AlertConditionMonitoredLimits ConvertToCDM::convert(const AlertConditionMon
 
 CDM::OperatingMode ConvertToCDM::convert(const OperatingMode & source) {
 	switch (source) {
-		case OperatingMode::DISABLED: return CDM::OperatingMode::Dis;
-		case OperatingMode::ENABLED: return CDM::OperatingMode::En;
-		case OperatingMode::NOT_AVAILABLE: return CDM::OperatingMode::NA;
+		case OperatingMode::Disabled: return CDM::OperatingMode::Dis;
+		case OperatingMode::Enabled: return CDM::OperatingMode::En;
+		case OperatingMode::NotAvailable: return CDM::OperatingMode::NA;
 	}
 	throw std::runtime_error("Illegal value for OperatingMode");
 }
@@ -320,6 +330,17 @@ CDM::AlertSignalPrimaryLocation ConvertToCDM::convert(const AlertSignalPrimaryLo
 		case AlertSignalPrimaryLocation::Remote: return CDM::AlertSignalPrimaryLocation::Rem;
 	}
 	throw std::runtime_error("Illegal value for PrimaryAlertSignalLocation");
+}
+
+
+CDM::SafetyClassification ConvertToCDM::convert(const SafetyClassification & source) {
+	switch (source) {
+		case SafetyClassification::Inf: return CDM::SafetyClassification::Inf;
+		case SafetyClassification::MedA: return CDM::SafetyClassification::MedA;
+		case SafetyClassification::MedB: return CDM::SafetyClassification::MedB;
+		case SafetyClassification::MedC: return CDM::SafetyClassification::MedC;
+	}
+	throw std::runtime_error("Illegal value for SafetyClassification");
 }
 
 CDM::Sex ConvertToCDM::convert(const Sex & source) {
@@ -476,7 +497,7 @@ template
 std::unique_ptr<typename MDDescription::WrappedType> ConvertToCDM::convert(const MDDescription & source);
 
 template
-std::unique_ptr<typename MDState::WrappedType> ConvertToCDM::convert(const MDState & source);
+std::unique_ptr<typename MdState::WrappedType> ConvertToCDM::convert(const MdState & source);
 
 template
 std::unique_ptr<typename Measure::WrappedType> ConvertToCDM::convert(const Measure & source);

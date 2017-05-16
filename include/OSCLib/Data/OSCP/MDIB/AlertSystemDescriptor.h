@@ -69,9 +69,9 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	AlertSystemDescriptor & setSafetyClassification(const std::string & value);
-	std::string getSafetyClassification() const;
-	bool getSafetyClassification(std::string & out) const;
+	AlertSystemDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
 	AlertSystemDescriptor & setMaxPhysiologicalAlarmListEntries(const int & value);

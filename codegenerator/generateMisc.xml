@@ -8,8 +8,8 @@
 
 
     <class name = "AbstractMetricValue" parent = "NULL" abstract = "true" >
-    	<include path = "OSCLib/Data/OSCP/MDIB/MeasurementState.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/Timestamp.h" />
+    	<include path = "OSCLib/Data/OSCP/MDIB/MetricQuality.h" />
 	<property name = "MetricQuality" type = "MetricQuality" optional = "false" />	
     	<property name = "Start_Time" type = "Timestamp" optional = "true" />
     	<property name = "Stop_Time" type = "Timestamp" optional = "true" />
@@ -145,51 +145,65 @@
     	<property name = "Lang" type = "Language" optional = "true" />
     </class>
     
-    <class name = "Measure" parent = "NULL" abstract = "false" >
+    <class name = "Measurement" parent = "NULL" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
     	<property name = "MeasurementUnit" type = "CodedValue" optional = "false" />
     	<property name = "MeasuredValue" type = "double" optional = "true" />
-    </class>
-    
-	<class name = "MeasurementState" parent = "NULL" abstract = "false" >
-		<property name = "Validity" type = "MetricMeasurementValidity" optional = "false" />
-		<property name = "Mode" type = "GenerationMode" optional = "true" />
-		<property name = "Qi" type = "double" optional = "true" />
     </class>
     
     <class name = "NumericMetricValue" parent = "AbstractMetricValue" abstract = "false" >
     	<property name = "Value" type = "double" optional = "true" />
     </class>
 
-    <class name = "Order" parent = "NULL" abstract = "false" >
-    	<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
+    <class name = "WorkflowDetail" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h" />
-    	<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-    	<include path = "OSCLib/Data/OSCP/MDIB/OrderDetail.h" />
-    	<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
-    	<property name = "VisitNumber" type = "InstanceIdentifier" optional = "true" />
-    	<property name = "PlacerOrderNumber" type = "InstanceIdentifier" optional = "false" />
-    	<property name = "FillerOrderNumber" type = "InstanceIdentifier" optional = "true" />
+		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/LocationReference.h" />
     	<property name = "Patient" type = "PersonReference" optional = "false" />
-    	<property name = "ReferringPhysician" type = "PersonReference" optional = "true" />
-    	<property name = "RequestingPhysician" type = "PersonReference" optional = "true" />
-    	<propertyList nameSingle = "Reason" nameSeveral = "Reasons" type = "ClinicalInfo" />
+    	<property name = "VisitNumber" type = "InstanceIdentifier" optional = "true" />
     	<propertyList nameSingle = "DangerCode" nameSeveral = "DangerCodes" type = "CodedValue" />
     	<propertyList nameSingle = "RelevantClinicalInfo" nameSeveral = "RelevantClinicalInfos" type = "ClinicalInfo" />
-    	<propertyList nameSingle = "ImagingProcedure" nameSeveral = "ImagingProcedures" type = "ImagingProcedure" />
-		<property name = "RequestedOrderDetail" type = "OrderDetail" optional = "true" />
-		<property name = "PerformedOrderDetail" type = "OrderDetail" optional = "true" />
+	<property name = "RequestedOrderDetail" type = "RequestedOrderDetail" optional = "true" />
+	<property name = "PerformedOrderDetail" type = "PerformedOrderDetail" optional = "true" />
+    	<property name = "AssignedLocation" type = "LocationReference" optional = "true" />
     </class>
 
-   	<class name = "OrderDetail" parent = "NULL" abstract = "false" >
+
+    <class name = "RequestedOrderDetail" parent = "OrderDetail" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
+    	<property name = "ReferringPhysician" type = "PersonReference" optional = "true" />
+    	<property name = "RequestingPhysician" type = "PersonReference" optional = "true" />
+    	<property name = "PlacerOrderNumber" type = "InstanceIdentifier" optional = "false" />
+    </class>
+
+    <class name = "PerformedOrderDetail" parent = "OrderDetail" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
+    	<property name = "FillerOrderNumber" type = "InstanceIdentifier" optional = "false" />
+    	<propertyList nameSingle = "ResultingClinicalInfo" nameSeveral="ResultingClinicalInfos" type = "ClinicalInfo" optional = "true" />
+    </class>
+
+    <class name = "LocationReference" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/LocationDetail.h" />
+    	<propertyList nameSingle = "Identification" nameSeveral = "Identifiers" type = "InstanceIdentifier" />
+    	<property name = "LocationDetail" type = "LocationDetail" optional = "true" />
+    </class>
+
+   <class name = "OrderDetail" parent = "NULL" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/DateTime.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/PersonParticipation.h" />
-		<property name = "Start" type = "DateTime" optional = "true" />
-		<property name = "End" type = "DateTime" optional = "true" />
-		<propertyList nameSingle = "Performer" nameSeveral = "Performers" type = "PersonParticipation" />
+	<property name = "Start" type = "DateTime" optional = "true" />
+	<property name = "End" type = "DateTime" optional = "true" />
+	<propertyList nameSingle = "Performer" nameSeveral = "Performers" type = "PersonParticipation" />
     	<propertyList nameSingle = "Service" nameSeveral = "Services" type = "CodedValue" />
+    	<propertyList nameSingle = "ImagingProcedure" nameSeveral = "ImagingProcedures" type = "ImagingProcedure" />
     </class>
     
 	<class name = "PatientDemographicsCoreData" parent = "BaseDemographics" abstract = "false" >

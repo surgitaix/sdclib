@@ -126,12 +126,12 @@ bool ActivateOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-ActivateOperationDescriptor & ActivateOperationDescriptor::setSafetyClassification(const std::string & value) {
+ActivateOperationDescriptor & ActivateOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ActivateOperationDescriptor::getSafetyClassification(std::string & out) const {
+bool ActivateOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -139,7 +139,7 @@ bool ActivateOperationDescriptor::getSafetyClassification(std::string & out) con
 	return false;
 }
 
-std::string ActivateOperationDescriptor::getSafetyClassification() const {
+SafetyClassification ActivateOperationDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

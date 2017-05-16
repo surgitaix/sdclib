@@ -124,12 +124,12 @@ bool EnsembleContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-EnsembleContextDescriptor & EnsembleContextDescriptor::setSafetyClassification(const std::string & value) {
+EnsembleContextDescriptor & EnsembleContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnsembleContextDescriptor::getSafetyClassification(std::string & out) const {
+bool EnsembleContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -137,7 +137,7 @@ bool EnsembleContextDescriptor::getSafetyClassification(std::string & out) const
 	return false;
 }
 
-std::string EnsembleContextDescriptor::getSafetyClassification() const {
+SafetyClassification EnsembleContextDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	

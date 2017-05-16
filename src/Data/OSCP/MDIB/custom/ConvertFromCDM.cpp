@@ -26,7 +26,7 @@
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/DateTime.h"
 #include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/DicomNetworkAE.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h"
 #include "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h"
 #include "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
@@ -44,8 +44,9 @@
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationReference.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/MDState.h"
 #include "OSCLib/Data/OSCP/MDIB/Measure.h"
 #include "OSCLib/Data/OSCP/MDIB/MeasurementState.h"
@@ -60,17 +61,17 @@
 #include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientDemographicsCoreData.h"
+#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h"
 #include "OSCLib/Data/OSCP/MDIB/PersonParticipation.h"
 #include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
 #include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
-#include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/RemedyInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h"
 #include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
 #include "OSCLib/Data/OSCP/MDIB/SampleIndex.h"
 #include "OSCLib/Data/OSCP/MDIB/SCODescriptor.h"
@@ -88,6 +89,10 @@
 #include "OSCLib/Data/OSCP/MDIB/TimeZone.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/WorkflowDetail.h"
+
 
 #include "osdm.hxx"
 
@@ -147,6 +152,15 @@ Activation ConvertFromCDM::convert(const CDM::Activation & source) {
 
 ActivateOperationDescriptor ConvertFromCDM::convert(const CDM::ActivateOperationDescriptor & source) {
 	return ActivateOperationDescriptor(source);
+}
+
+AlertActivation ConvertFromCDM::convert(const CDM::AlertActivation & source) {
+	switch (source) {
+		case CDM::AlertActivation::Off: return AlertActivation::Off;
+		case CDM::AlertActivation::On: return AlertActivation::On;
+		case CDM::AlertActivation::Psd: return AlertActivation::Paused;
+	}
+	throw std::runtime_error("Illegal value for AlertActivation");
 }
 
 AlertConditionDescriptor ConvertFromCDM::convert(const CDM::AlertConditionDescriptor & source) {
@@ -247,7 +261,7 @@ CauseInfo ConvertFromCDM::convert(const CDM::CauseInfo & source) {
 ChannelDescriptor ConvertFromCDM::convert(const CDM::ChannelDescriptor & source) {
 	return ChannelDescriptor(source);
 }
-
+d
 ClinicalInfo ConvertFromCDM::convert(const CDM::ClinicalInfo & source) {
 	return ClinicalInfo(source);
 }
@@ -412,20 +426,32 @@ LocationContextState ConvertFromCDM::convert(const CDM::LocationContextState & s
 	return LocationContextState(source);
 }
 
-MDDescription ConvertFromCDM::convert(const CDM::MDDescription & source) {
-	return MDDescription(source);
+LocationReference ConvertFromCDM::convert(const CDM::LocationReference & source) {
+	return LocationContextState(source);
 }
 
-MDState ConvertFromCDM::convert(const CDM::MDState & source) {
+MdDescription ConvertFromCDM::convert(const CDM::MdDescription & source) {
+	return MdDescription(source);
+}
+
+
+MdsOperatingMode ConvertFromCDM::convert(const CDM::MdsOperatingMode & source) {
+	switch (source) {
+		case CDM::MdsOperatingMode::Nml: return MdsOperatingMode::Normal;
+		case CDM::MdsOperatingMode::Dmo: return MdsOperatingMode::Demo;
+		case CDM::MdsOperatingMode::Srv: return MdsOperatingMode::Service;
+		case CDM::MdsOperatingMode::Mtn: return MdsOperatingMode::Maintenance;
+	}
+	throw std::runtime_error("Illegal value for MdsOperatingMode");
+}
+
+
+MdState ConvertFromCDM::convert(const CDM::MdState & source) {
 	return MDState(source);
 }
 
-Measure ConvertFromCDM::convert(const CDM::Measure & source) {
+Measurement ConvertFromCDM::convert(const CDM::Measurement & source) {
 	return Measure(source);
-}
-
-MeasurementState ConvertFromCDM::convert(const CDM::MeasurementState & source) {
-	return MeasurementState(source);
 }
 
 MetricAvailability ConvertFromCDM::convert(const CDM::MetricAvailability & source) {
@@ -487,15 +513,11 @@ NumericMetricValue ConvertFromCDM::convert(const CDM::NumericMetricValue & sourc
 
 OperatingMode ConvertFromCDM::convert(const CDM::OperatingMode & source) {
 	switch (source) {
-		case CDM::OperatingMode::Dis: return OperatingMode::DISABLED;
-		case CDM::OperatingMode::En: return OperatingMode::ENABLED;
-		case CDM::OperatingMode::NA: return OperatingMode::NOT_AVAILABLE;
+		case CDM::OperatingMode::Dis: return OperatingMode::Disabled;
+		case CDM::OperatingMode::En: return OperatingMode::Enabled;
+		case CDM::OperatingMode::NA: return OperatingMode::NotAvailable;
 	}
 	throw std::runtime_error("Illegal value for OperatingMode");
-}
-
-OperationState ConvertFromCDM::convert(const CDM::OperationState & source) {
-	return OperationState(source);
 }
 
 OperatorContextDescriptor ConvertFromCDM::convert(const CDM::OperatorContextDescriptor & source) {
@@ -536,13 +558,8 @@ PatientType ConvertFromCDM::convert(const CDM::PatientType & source) {
 	throw std::runtime_error("Illegal value for PatientType");
 }
 
-AlertActivation ConvertFromCDM::convert(const CDM::AlertActivation & source) {
-	switch (source) {
-		case CDM::AlertActivation::Off: return AlertActivation::Off;
-		case CDM::AlertActivation::On: return AlertActivation::On;
-		case CDM::AlertActivation::Psd: return AlertActivation::Paused;
-	}
-	throw std::runtime_error("Illegal value for AlertActivation");
+PerformedOrderDetail ConvertFromCDM::convert(const CDM::PerformedOrderDetail & source) {
+	return PerformedOrderDetail(source);
 }
 
 PersonParticipation ConvertFromCDM::convert(const CDM::PersonParticipation & source) {
@@ -589,9 +606,24 @@ RemedyInfo ConvertFromCDM::convert(const CDM::RemedyInfo & source) {
 	return RemedyInfo(source);
 }
 
+RequestedOrderDetail ConvertFromCDM::convert(const CDM::RequestedOrderDetail & source) {
+	return RequestedOrderDetail(source);
+}
+
 RTValueType ConvertFromCDM::convert(const CDM::RTValueType & source) {
 	return RTValueType(source);
 }
+
+SafetyClassification ConvertFromCDM::convert(const CDM::SafetyClassification & source) {
+	switch (source) {
+		case CDM::SafetyClassification::Inf: return SafetyClassification::Inf;
+		case CDM::SafetyClassification::MedA: return SafetyClassification::MedA;
+		case CDM::SafetyClassification::MedB: return SafetyClassification::MedB;
+		case CDM::SafetyClassification::MedC: return SafetyClassification::MedC;
+	}
+	throw std::runtime_error("Illegal value for PrimaryAlertSignalLocation");
+}
+
 
 SampleIndex ConvertFromCDM::convert(const CDM::SampleIndex & source) {
 	return SampleIndex(source);
@@ -684,6 +716,11 @@ WorkflowContextDescriptor ConvertFromCDM::convert(const CDM::WorkflowContextDesc
 WorkflowContextState ConvertFromCDM::convert(const CDM::WorkflowContextState & source) {
 	return WorkflowContextState(source);
 }
+
+WorkflowDetail ConvertFromCDM::convert(const CDM::WorkflowDetail & source) {
+	return WorkflowDetail(source);
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

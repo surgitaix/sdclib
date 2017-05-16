@@ -15,7 +15,7 @@
   */
 
 /*
- *  HydraMDSState.h
+ *  LocationReference.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,10 +29,10 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef HYDRAMDSSTATE_H_
-#define HYDRAMDSSTATE_H_
+#ifndef LOCATIONREFERENCE_H_
+#define LOCATIONREFERENCE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -40,34 +40,36 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class HydraMDSState {
+class LocationReference {
 private:
-	HydraMDSState(const CDM::HydraMDSState & object);
-	operator CDM::HydraMDSState() const;
+	LocationReference(const CDM::LocationReference & object);
+	operator CDM::LocationReference() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	HydraMDSState();
-	HydraMDSState(const HydraMDSState & object);
-	virtual ~HydraMDSState();
+	LocationReference();
+	LocationReference(const LocationReference & object);
+	virtual ~LocationReference();
     
-    void copyFrom(const HydraMDSState & object);
-    HydraMDSState & operator=(const HydraMDSState & object);
+    void copyFrom(const LocationReference & object);
+    LocationReference & operator=(const LocationReference & object);
     
-    typedef CDM::HydraMDSState WrappedType;
-    typedef HydraMDSDescriptor DescriptorType;
-    typedef OSCPProviderHydraMDSStateHandler ProviderHandlerType;
+    typedef CDM::LocationReference WrappedType;
 
-	HydraMDSState & setLang(const Language & value);
-	Language getLang() const;
-	bool getLang(Language & out) const;
-	bool hasLang() const;
+	LocationReference & setLocationDetail(const LocationDetail & value);
+	LocationDetail getLocationDetail() const;
+	bool getLocationDetail(LocationDetail & out) const;
+	bool hasLocationDetail() const;
 
+	LocationReference & addIdentification(const InstanceIdentifier & value);
+	std::vector<InstanceIdentifier> getIdentifiers() const;
+	void clearIdentifiers();
+	
 private:
-	std::shared_ptr<CDM::HydraMDSState> data;
+	std::shared_ptr<CDM::LocationReference> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* HYDRAMDSSTATE_H_ */
+#endif /* LOCATIONREFERENCE_H_ */

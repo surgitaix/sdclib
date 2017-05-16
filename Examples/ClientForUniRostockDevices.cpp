@@ -179,7 +179,7 @@ int main() {
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for operation state:";
 				OperationState os;
 				if (consumer.requestState(handle_setString_operation, os)
-						&& os.getOperatingMode() == OperatingMode::ENABLED) {
+						&& os.getOperatingMode() == OperatingMode::Enabled) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 				} else {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";

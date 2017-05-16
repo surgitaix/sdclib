@@ -70,9 +70,9 @@ public:
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	WorkflowContextDescriptor & setSafetyClassification(const std::string & value);
-	std::string getSafetyClassification() const;
-	bool getSafetyClassification(std::string & out) const;
+	WorkflowContextDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
 private:

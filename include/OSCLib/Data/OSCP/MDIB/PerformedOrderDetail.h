@@ -15,7 +15,7 @@
   */
 
 /*
- *  OrderDetail.h
+ *  PerformedOrderDetail.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef ORDERDETAIL_H_
-#define ORDERDETAIL_H_
+#ifndef PERFORMEDORDERDETAIL_H_
+#define PERFORMEDORDERDETAIL_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,49 +40,56 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OrderDetail {
+class PerformedOrderDetail {
 private:
-	OrderDetail(const CDM::OrderDetail & object);
-	operator CDM::OrderDetail() const;
+	PerformedOrderDetail(const CDM::PerformedOrderDetail & object);
+	operator CDM::PerformedOrderDetail() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	OrderDetail();
-	OrderDetail(const OrderDetail & object);
-	virtual ~OrderDetail();
+	PerformedOrderDetail();
+	PerformedOrderDetail(const PerformedOrderDetail & object);
+	virtual ~PerformedOrderDetail();
     
-    void copyFrom(const OrderDetail & object);
-    OrderDetail & operator=(const OrderDetail & object);
+    void copyFrom(const PerformedOrderDetail & object);
+    PerformedOrderDetail & operator=(const PerformedOrderDetail & object);
     
-    typedef CDM::OrderDetail WrappedType;
+    typedef CDM::PerformedOrderDetail WrappedType;
 
-	OrderDetail & setStart(const DateTime & value);
+	PerformedOrderDetail & setStart(const DateTime & value);
 	DateTime getStart() const;
 	bool getStart(DateTime & out) const;
 	bool hasStart() const;
 
-	OrderDetail & setEnd(const DateTime & value);
+	PerformedOrderDetail & setEnd(const DateTime & value);
 	DateTime getEnd() const;
 	bool getEnd(DateTime & out) const;
 	bool hasEnd() const;
 
-	OrderDetail & addPerformer(const PersonParticipation & value);
+	PerformedOrderDetail & addPerformer(const PersonParticipation & value);
 	std::vector<PersonParticipation> getPerformers() const;
 	void clearPerformers();
 	
-	OrderDetail & addService(const CodedValue & value);
+	PerformedOrderDetail & addService(const CodedValue & value);
 	std::vector<CodedValue> getServices() const;
 	void clearServices();
 	
-	OrderDetail & addImagingProcedure(const ImagingProcedure & value);
+	PerformedOrderDetail & addImagingProcedure(const ImagingProcedure & value);
 	std::vector<ImagingProcedure> getImagingProcedures() const;
 	void clearImagingProcedures();
 	
+	PerformedOrderDetail & setFillerOrderNumber(const InstanceIdentifier & value);
+	InstanceIdentifier getFillerOrderNumber() const;
+
+	PerformedOrderDetail & addResultingClinicalInfo(const ClinicalInfo & value);
+	std::vector<ClinicalInfo> getResultingClinicalInfos() const;
+	void clearResultingClinicalInfos();
+	
 private:
-	std::shared_ptr<CDM::OrderDetail> data;
+	std::shared_ptr<CDM::PerformedOrderDetail> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* ORDERDETAIL_H_ */
+#endif /* PERFORMEDORDERDETAIL_H_ */
