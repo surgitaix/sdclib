@@ -37,7 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -156,24 +155,6 @@ std::string SetContextOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
 	
-SetContextOperationDescriptor & SetContextOperationDescriptor::addModifiableElement(const CodedValue & value) {
-	data->ModifiableElement().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<CodedValue> SetContextOperationDescriptor::getModifiableElements() const {
-	std::vector<CodedValue> result;
-	result.reserve(data->ModifiableElement().size());
-	for (const auto & value: data->ModifiableElement()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void SetContextOperationDescriptor::clearModifiableElements() {
-	data->ModifiableElement().clear();
-}
-
 
 } /* namespace OSCP */
 } /* namespace Data */

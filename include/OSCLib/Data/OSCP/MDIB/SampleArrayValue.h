@@ -15,7 +15,7 @@
   */
 
 /*
- *  RealTimeSampleArrayValue.h
+ *  SampleArrayValue.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef REALTIMESAMPLEARRAYVALUE_H_
-#define REALTIMESAMPLEARRAYVALUE_H_
+#ifndef SAMPLEARRAYVALUE_H_
+#define SAMPLEARRAYVALUE_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,54 +40,54 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class RealTimeSampleArrayValue {
+class SampleArrayValue {
 private:
-	RealTimeSampleArrayValue(const CDM::RealTimeSampleArrayValue & object);
-	operator CDM::RealTimeSampleArrayValue() const;
+	SampleArrayValue(const CDM::SampleArrayValue & object);
+	operator CDM::SampleArrayValue() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	RealTimeSampleArrayValue();
-	RealTimeSampleArrayValue(const RealTimeSampleArrayValue & object);
-	virtual ~RealTimeSampleArrayValue();
+	SampleArrayValue();
+	SampleArrayValue(const SampleArrayValue & object);
+	virtual ~SampleArrayValue();
     
-    void copyFrom(const RealTimeSampleArrayValue & object);
-    RealTimeSampleArrayValue & operator=(const RealTimeSampleArrayValue & object);
+    void copyFrom(const SampleArrayValue & object);
+    SampleArrayValue & operator=(const SampleArrayValue & object);
     
-    typedef CDM::RealTimeSampleArrayValue WrappedType;
+    typedef CDM::SampleArrayValue WrappedType;
 
-	RealTimeSampleArrayValue & setMetricQuality(const MetricQuality & value);
+	SampleArrayValue & setMetricQuality(const MetricQuality & value);
 	MetricQuality getMetricQuality() const;
 
-	RealTimeSampleArrayValue & setStart_Time(const Timestamp & value);
+	SampleArrayValue & setStart_Time(const Timestamp & value);
 	Timestamp getStart_Time() const;
 	bool getStart_Time(Timestamp & out) const;
 	bool hasStart_Time() const;
 
-	RealTimeSampleArrayValue & setStop_Time(const Timestamp & value);
+	SampleArrayValue & setStop_Time(const Timestamp & value);
 	Timestamp getStop_Time() const;
 	bool getStop_Time(Timestamp & out) const;
 	bool hasStop_Time() const;
 
-	RealTimeSampleArrayValue & setDeterminationTime(const Timestamp & value);
+	SampleArrayValue & setDeterminationTime(const Timestamp & value);
 	Timestamp getDeterminationTime() const;
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
-	RealTimeSampleArrayValue & setSamples(const RTValueType & value);
-	RTValueType getSamples() const;
-	bool getSamples(RTValueType & out) const;
+	SampleArrayValue & setSamples(const RealTimeValueType & value);
+	RealTimeValueType getSamples() const;
+	bool getSamples(RealTimeValueType & out) const;
 	bool hasSamples() const;
 
-	RealTimeSampleArrayValue & addAnnotation(const Annotation & value);
-	std::vector<Annotation> getAnnotations() const;
-	void clearAnnotations();
+	SampleArrayValue & addApplyAnnotation(const ApplyAnnotation & value);
+	std::vector<ApplyAnnotation> getApplyAnnotations() const;
+	void clearApplyAnnotations();
 	
 private:
-	std::shared_ptr<CDM::RealTimeSampleArrayValue> data;
+	std::shared_ptr<CDM::SampleArrayValue> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* REALTIMESAMPLEARRAYVALUE_H_ */
+#endif /* SAMPLEARRAYVALUE_H_ */

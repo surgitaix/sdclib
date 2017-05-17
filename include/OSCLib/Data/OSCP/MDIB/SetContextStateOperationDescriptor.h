@@ -15,7 +15,7 @@
   */
 
 /*
- *  SetContextOperationDescriptor.h
+ *  SetContextStateOperationDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef SETCONTEXTOPERATIONDESCRIPTOR_H_
-#define SETCONTEXTOPERATIONDESCRIPTOR_H_
+#ifndef SETCONTEXTSTATEOPERATIONDESCRIPTOR_H_
+#define SETCONTEXTSTATEOPERATIONDESCRIPTOR_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,48 +40,52 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class SetContextOperationDescriptor {
+class SetContextStateOperationDescriptor {
 private:
-	SetContextOperationDescriptor(const CDM::SetContextOperationDescriptor & object);
-	operator CDM::SetContextOperationDescriptor() const;
+	SetContextStateOperationDescriptor(const CDM::SetContextStateOperationDescriptor & object);
+	operator CDM::SetContextStateOperationDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SetContextOperationDescriptor();
-	SetContextOperationDescriptor(const SetContextOperationDescriptor & object);
-	virtual ~SetContextOperationDescriptor();
+	SetContextStateOperationDescriptor();
+	SetContextStateOperationDescriptor(const SetContextStateOperationDescriptor & object);
+	virtual ~SetContextStateOperationDescriptor();
     
-    void copyFrom(const SetContextOperationDescriptor & object);
-    SetContextOperationDescriptor & operator=(const SetContextOperationDescriptor & object);
+    void copyFrom(const SetContextStateOperationDescriptor & object);
+    SetContextStateOperationDescriptor & operator=(const SetContextStateOperationDescriptor & object);
     
-    typedef CDM::SetContextOperationDescriptor WrappedType;
+    typedef CDM::SetContextStateOperationDescriptor WrappedType;
 
-	SetContextOperationDescriptor & setType(const CodedValue & value);
+	SetContextStateOperationDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	SetContextOperationDescriptor & setHandle(const std::string & value);
+	SetContextStateOperationDescriptor & setHandle(const std::string & value);
 	std::string getHandle() const;
 
-	SetContextOperationDescriptor & setDescriptorVersion(const VersionCounter & value);
+	SetContextStateOperationDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	SetContextOperationDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SetContextStateOperationDescriptor & setSafetyClassification(const SafetyClassification & value);
 	SafetyClassification getSafetyClassification() const;
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	SetContextOperationDescriptor & setOperationTarget(const std::string & value);
+	SetContextStateOperationDescriptor & setOperationTarget(const std::string & value);
 	std::string getOperationTarget() const;
 
+	SetContextStateOperationDescriptor & addModifiableElement(const std::string & value);
+	std::vector<std::string> getModifiableElements() const;
+	void clearModifiableElements();
+	
 private:
-	std::shared_ptr<CDM::SetContextOperationDescriptor> data;
+	std::shared_ptr<CDM::SetContextStateOperationDescriptor> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* SETCONTEXTOPERATIONDESCRIPTOR_H_ */
+#endif /* SETCONTEXTSTATEOPERATIONDESCRIPTOR_H_ */

@@ -15,7 +15,7 @@
   */
 
 /*
- *  VMDDescriptor.h
+ *  RealTimeValueType.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef VMDDESCRIPTOR_H_
-#define VMDDESCRIPTOR_H_
+#ifndef REALTIMEVALUETYPE_H_
+#define REALTIMEVALUETYPE_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,36 +40,29 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class VMDDescriptor {
+class RealTimeValueType {
 private:
-	VMDDescriptor(const CDM::VMDDescriptor & object);
-	operator CDM::VMDDescriptor() const;
+	RealTimeValueType(const CDM::RealTimeValueType & object);
+	operator CDM::RealTimeValueType() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	VMDDescriptor();
-	VMDDescriptor(const VMDDescriptor & object);
-	virtual ~VMDDescriptor();
+	RealTimeValueType();
+	RealTimeValueType(const RealTimeValueType & object);
+	virtual ~RealTimeValueType();
     
-    void copyFrom(const VMDDescriptor & object);
-    VMDDescriptor & operator=(const VMDDescriptor & object);
+    void copyFrom(const RealTimeValueType & object);
+    RealTimeValueType & operator=(const RealTimeValueType & object);
     
-    typedef CDM::VMDDescriptor WrappedType;
+    typedef CDM::RealTimeValueType WrappedType;
 
-	VMDDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
-	AlertSystemDescriptor getAlertSystem() const;
-	bool getAlertSystem(AlertSystemDescriptor & out) const;
-	bool hasAlertSystem() const;
-
-	VMDDescriptor & addChannel(const ChannelDescriptor & value);
-	std::vector<ChannelDescriptor> getChannels() const;
-	void clearChannels();
-	
+	RealTimeValueType & setValues(const std::vector<double> & values);
+	std::vector<double> getValues() const;
 private:
-	std::shared_ptr<CDM::VMDDescriptor> data;
+	std::shared_ptr<CDM::RealTimeValueType> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* VMDDESCRIPTOR_H_ */
+#endif /* REALTIMEVALUETYPE_H_ */

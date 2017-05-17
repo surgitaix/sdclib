@@ -15,7 +15,7 @@
   */
 
 /*
- *  SystemContext.cpp
+ *  SystemContextDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,7 +29,7 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
@@ -41,46 +41,47 @@
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SystemContext::SystemContext() : data(Defaults::SystemContext()) {
+SystemContextDescriptor::SystemContextDescriptor() : data(Defaults::SystemContextDescriptor()) {
 }
 
-SystemContext::operator CDM::SystemContext() const {
+SystemContextDescriptor::operator CDM::SystemContextDescriptor() const {
 	return *data;
 }
 
-SystemContext::SystemContext(const CDM::SystemContext & object) : data(new CDM::SystemContext(object)) {
+SystemContextDescriptor::SystemContextDescriptor(const CDM::SystemContextDescriptor & object) : data(new CDM::SystemContextDescriptor(object)) {
 
 }
 
-SystemContext::SystemContext(const SystemContext & object) : data(new CDM::SystemContext(*object.data)) {
+SystemContextDescriptor::SystemContextDescriptor(const SystemContextDescriptor & object) : data(new CDM::SystemContextDescriptor(*object.data)) {
 
 }
 
-SystemContext::~SystemContext() {
+SystemContextDescriptor::~SystemContextDescriptor() {
 
 }
 
-void SystemContext::copyFrom(const SystemContext & object) {
+void SystemContextDescriptor::copyFrom(const SystemContextDescriptor & object) {
 	*data = *object.data;
 }
 
-SystemContext & SystemContext:: operator=(const SystemContext & object) {
+SystemContextDescriptor & SystemContextDescriptor:: operator=(const SystemContextDescriptor & object) {
 	copyFrom(object);
 	return *this;
 }
 
 
-SystemContext & SystemContext::setEnsembleContext(const EnsembleContextDescriptor & value) {
+SystemContextDescriptor & SystemContextDescriptor::setEnsembleContext(const EnsembleContextDescriptor & value) {
 	data->EnsembleContext(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContext::getEnsembleContext(EnsembleContextDescriptor & out) const {
+bool SystemContextDescriptor::getEnsembleContext(EnsembleContextDescriptor & out) const {
 	if (data->EnsembleContext().present()) {
 		out = ConvertFromCDM::convert(data->EnsembleContext().get());
 		return true;
@@ -88,20 +89,20 @@ bool SystemContext::getEnsembleContext(EnsembleContextDescriptor & out) const {
 	return false;
 }
 
-EnsembleContextDescriptor SystemContext::getEnsembleContext() const {
+EnsembleContextDescriptor SystemContextDescriptor::getEnsembleContext() const {
 	return ConvertFromCDM::convert(data->EnsembleContext().get());
 }
 	
-bool SystemContext::hasEnsembleContext() const {
+bool SystemContextDescriptor::hasEnsembleContext() const {
 	return data->EnsembleContext().present();
 }
 	
-SystemContext & SystemContext::setLocationContext(const LocationContextDescriptor & value) {
+SystemContextDescriptor & SystemContextDescriptor::setLocationContext(const LocationContextDescriptor & value) {
 	data->LocationContext(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContext::getLocationContext(LocationContextDescriptor & out) const {
+bool SystemContextDescriptor::getLocationContext(LocationContextDescriptor & out) const {
 	if (data->LocationContext().present()) {
 		out = ConvertFromCDM::convert(data->LocationContext().get());
 		return true;
@@ -109,20 +110,20 @@ bool SystemContext::getLocationContext(LocationContextDescriptor & out) const {
 	return false;
 }
 
-LocationContextDescriptor SystemContext::getLocationContext() const {
+LocationContextDescriptor SystemContextDescriptor::getLocationContext() const {
 	return ConvertFromCDM::convert(data->LocationContext().get());
 }
 	
-bool SystemContext::hasLocationContext() const {
+bool SystemContextDescriptor::hasLocationContext() const {
 	return data->LocationContext().present();
 }
 	
-SystemContext & SystemContext::setOperatorContext(const OperatorContextDescriptor & value) {
+SystemContextDescriptor & SystemContextDescriptor::setOperatorContext(const OperatorContextDescriptor & value) {
 	data->OperatorContext(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContext::getOperatorContext(OperatorContextDescriptor & out) const {
+bool SystemContextDescriptor::getOperatorContext(OperatorContextDescriptor & out) const {
 	if (data->OperatorContext().present()) {
 		out = ConvertFromCDM::convert(data->OperatorContext().get());
 		return true;
@@ -130,20 +131,20 @@ bool SystemContext::getOperatorContext(OperatorContextDescriptor & out) const {
 	return false;
 }
 
-OperatorContextDescriptor SystemContext::getOperatorContext() const {
+OperatorContextDescriptor SystemContextDescriptor::getOperatorContext() const {
 	return ConvertFromCDM::convert(data->OperatorContext().get());
 }
 	
-bool SystemContext::hasOperatorContext() const {
+bool SystemContextDescriptor::hasOperatorContext() const {
 	return data->OperatorContext().present();
 }
 	
-SystemContext & SystemContext::setPatientContext(const PatientContextDescriptor & value) {
+SystemContextDescriptor & SystemContextDescriptor::setPatientContext(const PatientContextDescriptor & value) {
 	data->PatientContext(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContext::getPatientContext(PatientContextDescriptor & out) const {
+bool SystemContextDescriptor::getPatientContext(PatientContextDescriptor & out) const {
 	if (data->PatientContext().present()) {
 		out = ConvertFromCDM::convert(data->PatientContext().get());
 		return true;
@@ -151,20 +152,20 @@ bool SystemContext::getPatientContext(PatientContextDescriptor & out) const {
 	return false;
 }
 
-PatientContextDescriptor SystemContext::getPatientContext() const {
+PatientContextDescriptor SystemContextDescriptor::getPatientContext() const {
 	return ConvertFromCDM::convert(data->PatientContext().get());
 }
 	
-bool SystemContext::hasPatientContext() const {
+bool SystemContextDescriptor::hasPatientContext() const {
 	return data->PatientContext().present();
 }
 	
-SystemContext & SystemContext::setWorkflowContext(const WorkflowContextDescriptor & value) {
+SystemContextDescriptor & SystemContextDescriptor::setWorkflowContext(const WorkflowContextDescriptor & value) {
 	data->WorkflowContext(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContext::getWorkflowContext(WorkflowContextDescriptor & out) const {
+bool SystemContextDescriptor::getWorkflowContext(WorkflowContextDescriptor & out) const {
 	if (data->WorkflowContext().present()) {
 		out = ConvertFromCDM::convert(data->WorkflowContext().get());
 		return true;
@@ -172,12 +173,33 @@ bool SystemContext::getWorkflowContext(WorkflowContextDescriptor & out) const {
 	return false;
 }
 
-WorkflowContextDescriptor SystemContext::getWorkflowContext() const {
+WorkflowContextDescriptor SystemContextDescriptor::getWorkflowContext() const {
 	return ConvertFromCDM::convert(data->WorkflowContext().get());
 }
 	
-bool SystemContext::hasWorkflowContext() const {
+bool SystemContextDescriptor::hasWorkflowContext() const {
 	return data->WorkflowContext().present();
+}
+	
+SystemContextDescriptor & SystemContextDescriptor::setMeansContext(const MeansContextDescriptor & value) {
+	data->MeansContext(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SystemContextDescriptor::getMeansContext(MeansContextDescriptor & out) const {
+	if (data->MeansContext().present()) {
+		out = ConvertFromCDM::convert(data->MeansContext().get());
+		return true;
+	}
+	return false;
+}
+
+MeansContextDescriptor SystemContextDescriptor::getMeansContext() const {
+	return ConvertFromCDM::convert(data->MeansContext().get());
+}
+	
+bool SystemContextDescriptor::hasMeansContext() const {
+	return data->MeansContext().present();
 }
 	
 

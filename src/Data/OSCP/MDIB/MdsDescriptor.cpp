@@ -41,7 +41,7 @@
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
@@ -192,12 +192,12 @@ bool MdsDescriptor::hasAlertSystem() const {
 	return data->AlertSystem().present();
 }
 	
-MdsDescriptor & MdsDescriptor::setMetaData(const SystemMetaData & value) {
+MdsDescriptor & MdsDescriptor::setMetaData(const MetaData & value) {
 	data->MetaData(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool MdsDescriptor::getMetaData(SystemMetaData & out) const {
+bool MdsDescriptor::getMetaData(MetaData & out) const {
 	if (data->MetaData().present()) {
 		out = ConvertFromCDM::convert(data->MetaData().get());
 		return true;
@@ -205,7 +205,7 @@ bool MdsDescriptor::getMetaData(SystemMetaData & out) const {
 	return false;
 }
 
-SystemMetaData MdsDescriptor::getMetaData() const {
+MetaData MdsDescriptor::getMetaData() const {
 	return ConvertFromCDM::convert(data->MetaData().get());
 }
 	
@@ -244,25 +244,25 @@ bool MdsDescriptor::hasClock() const {
 	return data->Clock().present();
 }
 	
-MdsDescriptor & MdsDescriptor::setSCO(const SCODescriptor & value) {
-	data->SCO(ConvertToCDM::convert(value));
+MdsDescriptor & MdsDescriptor::setSco(const ScoDescriptor & value) {
+	data->Sco(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool MdsDescriptor::getSCO(SCODescriptor & out) const {
-	if (data->SCO().present()) {
-		out = ConvertFromCDM::convert(data->SCO().get());
+bool MdsDescriptor::getSco(ScoDescriptor & out) const {
+	if (data->Sco().present()) {
+		out = ConvertFromCDM::convert(data->Sco().get());
 		return true;
 	}
 	return false;
 }
 
-SCODescriptor MdsDescriptor::getSCO() const {
-	return ConvertFromCDM::convert(data->SCO().get());
+ScoDescriptor MdsDescriptor::getSco() const {
+	return ConvertFromCDM::convert(data->Sco().get());
 }
 	
-bool MdsDescriptor::hasSCO() const {
-	return data->SCO().present();
+bool MdsDescriptor::hasSco() const {
+	return data->Sco().present();
 }
 	
 MdsDescriptor & MdsDescriptor::setBattery(const BatteryDescriptor & value) {

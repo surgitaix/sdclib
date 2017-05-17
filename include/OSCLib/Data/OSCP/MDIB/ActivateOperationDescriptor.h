@@ -77,10 +77,6 @@ public:
 	ActivateOperationDescriptor & setOperationTarget(const std::string & value);
 	std::string getOperationTarget() const;
 
-	ActivateOperationDescriptor & addModifiableElement(const CodedValue & value);
-	std::vector<CodedValue> getModifiableElements() const;
-	void clearModifiableElements();
-	
 	ActivateOperationDescriptor & setActivationDuration(const Duration & value);
 	Duration getActivationDuration() const;
 	bool getActivationDuration(Duration & out) const;

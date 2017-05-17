@@ -15,7 +15,7 @@
   */
 
 /*
- *  SetValueOperationDescriptor.cpp
+ *  ScoDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,7 +29,7 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/SetValueOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
@@ -43,41 +43,41 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetValueOperationDescriptor::SetValueOperationDescriptor() : data(Defaults::SetValueOperationDescriptor()) {
+ScoDescriptor::ScoDescriptor() : data(Defaults::ScoDescriptor()) {
 }
 
-SetValueOperationDescriptor::operator CDM::SetValueOperationDescriptor() const {
+ScoDescriptor::operator CDM::ScoDescriptor() const {
 	return *data;
 }
 
-SetValueOperationDescriptor::SetValueOperationDescriptor(const CDM::SetValueOperationDescriptor & object) : data(new CDM::SetValueOperationDescriptor(object)) {
+ScoDescriptor::ScoDescriptor(const CDM::ScoDescriptor & object) : data(new CDM::ScoDescriptor(object)) {
 
 }
 
-SetValueOperationDescriptor::SetValueOperationDescriptor(const SetValueOperationDescriptor & object) : data(new CDM::SetValueOperationDescriptor(*object.data)) {
+ScoDescriptor::ScoDescriptor(const ScoDescriptor & object) : data(new CDM::ScoDescriptor(*object.data)) {
 
 }
 
-SetValueOperationDescriptor::~SetValueOperationDescriptor() {
+ScoDescriptor::~ScoDescriptor() {
 
 }
 
-void SetValueOperationDescriptor::copyFrom(const SetValueOperationDescriptor & object) {
+void ScoDescriptor::copyFrom(const ScoDescriptor & object) {
 	*data = *object.data;
 }
 
-SetValueOperationDescriptor & SetValueOperationDescriptor:: operator=(const SetValueOperationDescriptor & object) {
+ScoDescriptor & ScoDescriptor:: operator=(const ScoDescriptor & object) {
 	copyFrom(object);
 	return *this;
 }
 
 
-SetValueOperationDescriptor & SetValueOperationDescriptor::setType(const CodedValue & value) {
+ScoDescriptor & ScoDescriptor::setType(const CodedValue & value) {
 	data->Type(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetValueOperationDescriptor::getType(CodedValue & out) const {
+bool ScoDescriptor::getType(CodedValue & out) const {
 	if (data->Type().present()) {
 		out = ConvertFromCDM::convert(data->Type().get());
 		return true;
@@ -85,30 +85,30 @@ bool SetValueOperationDescriptor::getType(CodedValue & out) const {
 	return false;
 }
 
-CodedValue SetValueOperationDescriptor::getType() const {
+CodedValue ScoDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
 	
-bool SetValueOperationDescriptor::hasType() const {
+bool ScoDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-SetValueOperationDescriptor & SetValueOperationDescriptor::setHandle(const std::string & value) {
+ScoDescriptor & ScoDescriptor::setHandle(const std::string & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetValueOperationDescriptor::getHandle() const {
+std::string ScoDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
-SetValueOperationDescriptor & SetValueOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
+ScoDescriptor & ScoDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetValueOperationDescriptor::getDescriptorVersion(VersionCounter & out) const {
+bool ScoDescriptor::getDescriptorVersion(VersionCounter & out) const {
 	if (data->DescriptorVersion().present()) {
 		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
@@ -116,20 +116,20 @@ bool SetValueOperationDescriptor::getDescriptorVersion(VersionCounter & out) con
 	return false;
 }
 
-VersionCounter SetValueOperationDescriptor::getDescriptorVersion() const {
+VersionCounter ScoDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool SetValueOperationDescriptor::hasDescriptorVersion() const {
+bool ScoDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-SetValueOperationDescriptor & SetValueOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
+ScoDescriptor & ScoDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetValueOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
+bool ScoDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -137,24 +137,32 @@ bool SetValueOperationDescriptor::getSafetyClassification(SafetyClassification &
 	return false;
 }
 
-SafetyClassification SetValueOperationDescriptor::getSafetyClassification() const {
+SafetyClassification ScoDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool SetValueOperationDescriptor::hasSafetyClassification() const {
+bool ScoDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-SetValueOperationDescriptor & SetValueOperationDescriptor::setOperationTarget(const std::string & value) {
-	data->OperationTarget(ConvertToCDM::convert(value));
+ScoDescriptor & ScoDescriptor::addOperation(const AbstractOperationDescriptor & value) {
+	data->Operation().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-
-std::string SetValueOperationDescriptor::getOperationTarget() const {
-	return ConvertFromCDM::convert(data->OperationTarget());
+std::vector<AbstractOperationDescriptor> ScoDescriptor::getOperations() const {
+	std::vector<AbstractOperationDescriptor> result;
+	result.reserve(data->Operation().size());
+	for (const auto & value: data->Operation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
 }
-	
+
+void ScoDescriptor::clearOperations() {
+	data->Operation().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

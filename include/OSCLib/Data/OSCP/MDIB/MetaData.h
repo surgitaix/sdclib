@@ -15,7 +15,7 @@
   */
 
 /*
- *  SystemMetaData.h
+ *  MetaData.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef SYSTEMMETADATA_H_
-#define SYSTEMMETADATA_H_
+#ifndef METADATA_H_
+#define METADATA_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,48 +40,48 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class SystemMetaData {
+class MetaData {
 private:
-	SystemMetaData(const CDM::SystemMetaData & object);
-	operator CDM::SystemMetaData() const;
+	MetaData(const CDM::MetaData & object);
+	operator CDM::MetaData() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SystemMetaData();
-	SystemMetaData(const SystemMetaData & object);
-	virtual ~SystemMetaData();
+	MetaData();
+	MetaData(const MetaData & object);
+	virtual ~MetaData();
     
-    void copyFrom(const SystemMetaData & object);
-    SystemMetaData & operator=(const SystemMetaData & object);
+    void copyFrom(const MetaData & object);
+    MetaData & operator=(const MetaData & object);
     
-    typedef CDM::SystemMetaData WrappedType;
+    typedef CDM::MetaData WrappedType;
 
-	SystemMetaData & setUDI(const std::string & value);
-	std::string getUDI() const;
-	bool getUDI(std::string & out) const;
-	bool hasUDI() const;
+	MetaData & setUdi(const std::string & value);
+	std::string getUdi() const;
+	bool getUdi(std::string & out) const;
+	bool hasUdi() const;
 
-	SystemMetaData & addManufacturer(const LocalizedText & value);
+	MetaData & addManufacturer(const LocalizedText & value);
 	std::vector<LocalizedText> getManufacturer() const;
 	void clearManufacturer();
 	
-	SystemMetaData & addModelName(const LocalizedText & value);
+	MetaData & addModelName(const LocalizedText & value);
 	std::vector<LocalizedText> getModelName() const;
 	void clearModelName();
 	
-	SystemMetaData & addModelNumber(const std::string & value);
+	MetaData & addModelNumber(const std::string & value);
 	std::vector<std::string> getModelNumber() const;
 	void clearModelNumber();
 	
-	SystemMetaData & addSerialNumber(const std::string & value);
+	MetaData & addSerialNumber(const std::string & value);
 	std::vector<std::string> getSerialNumber() const;
 	void clearSerialNumber();
 	
 private:
-	std::shared_ptr<CDM::SystemMetaData> data;
+	std::shared_ptr<CDM::MetaData> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* SYSTEMMETADATA_H_ */
+#endif /* METADATA_H_ */

@@ -77,10 +77,6 @@ public:
 	SetAlertStateOperationDescriptor & setOperationTarget(const std::string & value);
 	std::string getOperationTarget() const;
 
-	SetAlertStateOperationDescriptor & addModifiableElement(const CodedValue & value);
-	std::vector<CodedValue> getModifiableElements() const;
-	void clearModifiableElements();
-	
 private:
 	std::shared_ptr<CDM::SetAlertStateOperationDescriptor> data;
 };

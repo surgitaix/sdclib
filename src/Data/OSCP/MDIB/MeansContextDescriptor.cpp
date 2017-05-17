@@ -15,7 +15,7 @@
   */
 
 /*
- *  Annotation.h
+ *  MeansContextDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,44 +29,49 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef ANNOTATION_H_
-#define ANNOTATION_H_
+#include "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
-#include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "osdm-fwd.hxx"
+#include "osdm.hxx"
+
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class Annotation {
-private:
-	Annotation(const CDM::Annotation & object);
-	operator CDM::Annotation() const;
-	friend class ConvertFromCDM;
-	friend class ConvertToCDM;
-public:
-	Annotation();
-	Annotation(const Annotation & object);
-	virtual ~Annotation();
-    
-    void copyFrom(const Annotation & object);
-    Annotation & operator=(const Annotation & object);
-    
-    typedef CDM::Annotation WrappedType;
+MeansContextDescriptor::MeansContextDescriptor() : data(Defaults::MeansContextDescriptor()) {
+}
 
-	Annotation & setAnnotationIndex(const unsigned int & value);
-	unsigned int getAnnotationIndex() const;
+MeansContextDescriptor::operator CDM::MeansContextDescriptor() const {
+	return *data;
+}
 
-	Annotation & setSampleIndex(const unsigned int & value);
-	unsigned int getSampleIndex() const;
+MeansContextDescriptor::MeansContextDescriptor(const CDM::MeansContextDescriptor & object) : data(new CDM::MeansContextDescriptor(object)) {
 
-private:
-	std::shared_ptr<CDM::Annotation> data;
-};
+}
+
+MeansContextDescriptor::MeansContextDescriptor(const MeansContextDescriptor & object) : data(new CDM::MeansContextDescriptor(*object.data)) {
+
+}
+
+MeansContextDescriptor::~MeansContextDescriptor() {
+
+}
+
+void MeansContextDescriptor::copyFrom(const MeansContextDescriptor & object) {
+	*data = *object.data;
+}
+
+MeansContextDescriptor & MeansContextDescriptor:: operator=(const MeansContextDescriptor & object) {
+	copyFrom(object);
+	return *this;
+}
+
+
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* ANNOTATION_H_ */
+

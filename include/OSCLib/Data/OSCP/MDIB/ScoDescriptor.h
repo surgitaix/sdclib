@@ -15,7 +15,7 @@
   */
 
 /*
- *  SetContextOperationDescriptor.h
+ *  ScoDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef SETCONTEXTOPERATIONDESCRIPTOR_H_
-#define SETCONTEXTOPERATIONDESCRIPTOR_H_
+#ifndef SCODESCRIPTOR_H_
+#define SCODESCRIPTOR_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,48 +40,60 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class SetContextOperationDescriptor {
+class ScoDescriptor {
 private:
-	SetContextOperationDescriptor(const CDM::SetContextOperationDescriptor & object);
-	operator CDM::SetContextOperationDescriptor() const;
+	ScoDescriptor(const CDM::ScoDescriptor & object);
+	operator CDM::ScoDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SetContextOperationDescriptor();
-	SetContextOperationDescriptor(const SetContextOperationDescriptor & object);
-	virtual ~SetContextOperationDescriptor();
+	ScoDescriptor();
+	ScoDescriptor(const ScoDescriptor & object);
+	virtual ~ScoDescriptor();
     
-    void copyFrom(const SetContextOperationDescriptor & object);
-    SetContextOperationDescriptor & operator=(const SetContextOperationDescriptor & object);
+    void copyFrom(const ScoDescriptor & object);
+    ScoDescriptor & operator=(const ScoDescriptor & object);
     
-    typedef CDM::SetContextOperationDescriptor WrappedType;
+    typedef CDM::ScoDescriptor WrappedType;
 
-	SetContextOperationDescriptor & setType(const CodedValue & value);
+	ScoDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	SetContextOperationDescriptor & setHandle(const std::string & value);
+	ScoDescriptor & setHandle(const std::string & value);
 	std::string getHandle() const;
 
-	SetContextOperationDescriptor & setDescriptorVersion(const VersionCounter & value);
+	ScoDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	SetContextOperationDescriptor & setSafetyClassification(const SafetyClassification & value);
+	ScoDescriptor & setSafetyClassification(const SafetyClassification & value);
 	SafetyClassification getSafetyClassification() const;
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	SetContextOperationDescriptor & setOperationTarget(const std::string & value);
-	std::string getOperationTarget() const;
+	ScoDescriptor & addOperation(const AbstractOperationDescriptor & value);
+	std::vector<AbstractOperationDescriptor> getOperations() const;
+	void clearOperations();
+	
+
+	std::vector<ActivateOperationDescriptor> collectAllActivateOperationDescriptors() const;
+	std::vector<SetAlertStateOperationDescriptor> collectAllSetAlertStateOperationDescriptors() const;
+	std::vector<SetContextOperationDescriptor> collectAllSetContextOperationDescriptors() const;
+	std::vector<SetRangeOperationDescriptor> collectAllSetRangeOperationDescriptors() const;
+	std::vector<SetStringOperationDescriptor> collectAllSetStringOperationDescriptors() const;
+	std::vector<SetValueOperationDescriptor> collectAllSetValueOperationDescriptors() const;
 
 private:
-	std::shared_ptr<CDM::SetContextOperationDescriptor> data;
+	template <class WrapperOperationDescriptorType>
+	void collectOperationDescriptorImpl(std::vector<WrapperOperationDescriptorType> & out) const;
+private:
+	std::shared_ptr<CDM::ScoDescriptor> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* SETCONTEXTOPERATIONDESCRIPTOR_H_ */
+#endif /* SCODESCRIPTOR_H_ */

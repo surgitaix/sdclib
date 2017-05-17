@@ -15,7 +15,7 @@
   */
 
 /*
- *  SampleIndex.h
+ *  RealTimeValueType.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,40 +29,49 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef SAMPLEINDEX_H_
-#define SAMPLEINDEX_H_
+#include "OSCLib/Data/OSCP/MDIB/RealTimeValueType.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
-#include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "osdm-fwd.hxx"
+#include "osdm.hxx"
+
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class SampleIndex {
-private:
-	SampleIndex(const CDM::SampleIndex & object);
-	operator CDM::SampleIndex() const;
-	friend class ConvertFromCDM;
-	friend class ConvertToCDM;
-public:
-	SampleIndex();
-	SampleIndex(const SampleIndex & object);
-	virtual ~SampleIndex();
-    
-    void copyFrom(const SampleIndex & object);
-    SampleIndex & operator=(const SampleIndex & object);
-    
-    typedef CDM::SampleIndex WrappedType;
+RealTimeValueType::RealTimeValueType() : data(Defaults::RealTimeValueType()) {
+}
 
-	int get() const;
-	SampleIndex & set(const int & value); 
-private:
-	std::shared_ptr<CDM::SampleIndex> data;
-};
+RealTimeValueType::operator CDM::RealTimeValueType() const {
+	return *data;
+}
+
+RealTimeValueType::RealTimeValueType(const CDM::RealTimeValueType & object) : data(new CDM::RealTimeValueType(object)) {
+
+}
+
+RealTimeValueType::RealTimeValueType(const RealTimeValueType & object) : data(new CDM::RealTimeValueType(*object.data)) {
+
+}
+
+RealTimeValueType::~RealTimeValueType() {
+
+}
+
+void RealTimeValueType::copyFrom(const RealTimeValueType & object) {
+	*data = *object.data;
+}
+
+RealTimeValueType & RealTimeValueType:: operator=(const RealTimeValueType & object) {
+	copyFrom(object);
+	return *this;
+}
+
+
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* SAMPLEINDEX_H_ */
+

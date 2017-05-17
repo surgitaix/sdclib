@@ -15,7 +15,7 @@
   */
 
 /*
- *  Annotation.h
+ *  MeansContextDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef ANNOTATION_H_
-#define ANNOTATION_H_
+#ifndef MEANSCONTEXTDESCRIPTOR_H_
+#define MEANSCONTEXTDESCRIPTOR_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,33 +40,27 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class Annotation {
+class MeansContextDescriptor {
 private:
-	Annotation(const CDM::Annotation & object);
-	operator CDM::Annotation() const;
+	MeansContextDescriptor(const CDM::MeansContextDescriptor & object);
+	operator CDM::MeansContextDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	Annotation();
-	Annotation(const Annotation & object);
-	virtual ~Annotation();
+	MeansContextDescriptor();
+	MeansContextDescriptor(const MeansContextDescriptor & object);
+	virtual ~MeansContextDescriptor();
     
-    void copyFrom(const Annotation & object);
-    Annotation & operator=(const Annotation & object);
+    void copyFrom(const MeansContextDescriptor & object);
+    MeansContextDescriptor & operator=(const MeansContextDescriptor & object);
     
-    typedef CDM::Annotation WrappedType;
-
-	Annotation & setAnnotationIndex(const unsigned int & value);
-	unsigned int getAnnotationIndex() const;
-
-	Annotation & setSampleIndex(const unsigned int & value);
-	unsigned int getSampleIndex() const;
+    typedef CDM::MeansContextDescriptor WrappedType;
 
 private:
-	std::shared_ptr<CDM::Annotation> data;
+	std::shared_ptr<CDM::MeansContextDescriptor> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* ANNOTATION_H_ */
+#endif /* MEANSCONTEXTDESCRIPTOR_H_ */

@@ -15,7 +15,7 @@
   */
 
 /*
- *  SetRangeOperationDescriptor.h
+ *  VmdDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef SETRANGEOPERATIONDESCRIPTOR_H_
-#define SETRANGEOPERATIONDESCRIPTOR_H_
+#ifndef VMDDESCRIPTOR_H_
+#define VMDDESCRIPTOR_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,55 +40,63 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class SetRangeOperationDescriptor {
+class VmdDescriptor {
 private:
-	SetRangeOperationDescriptor(const CDM::SetRangeOperationDescriptor & object);
-	operator CDM::SetRangeOperationDescriptor() const;
+	VmdDescriptor(const CDM::VmdDescriptor & object);
+	operator CDM::VmdDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SetRangeOperationDescriptor();
-	SetRangeOperationDescriptor(const SetRangeOperationDescriptor & object);
-	virtual ~SetRangeOperationDescriptor();
+	VmdDescriptor();
+	VmdDescriptor(const VmdDescriptor & object);
+	virtual ~VmdDescriptor();
     
-    void copyFrom(const SetRangeOperationDescriptor & object);
-    SetRangeOperationDescriptor & operator=(const SetRangeOperationDescriptor & object);
+    void copyFrom(const VmdDescriptor & object);
+    VmdDescriptor & operator=(const VmdDescriptor & object);
     
-    typedef CDM::SetRangeOperationDescriptor WrappedType;
+    typedef CDM::VmdDescriptor WrappedType;
 
-	SetRangeOperationDescriptor & setType(const CodedValue & value);
+	VmdDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	SetRangeOperationDescriptor & setHandle(const std::string & value);
+	VmdDescriptor & setHandle(const std::string & value);
 	std::string getHandle() const;
 
-	SetRangeOperationDescriptor & setDescriptorVersion(const VersionCounter & value);
+	VmdDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	SetRangeOperationDescriptor & setSafetyClassification(const SafetyClassification & value);
+	VmdDescriptor & setSafetyClassification(const SafetyClassification & value);
 	SafetyClassification getSafetyClassification() const;
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	SetRangeOperationDescriptor & setOperationTarget(const std::string & value);
-	std::string getOperationTarget() const;
-
-	SetRangeOperationDescriptor & addModifiableElement(const CodedValue & value);
-	std::vector<CodedValue> getModifiableElements() const;
-	void clearModifiableElements();
+	VmdDescriptor & addProductionSpecification(const ProductionSpecification & value);
+	std::vector<ProductionSpecification> getProductionSpecifications() const;
+	void clearProductionSpecifications();
 	
-	SetRangeOperationDescriptor & setAllowedMaxRange(const Range & value);
-	Range getAllowedMaxRange() const;
+	VmdDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
+	AlertSystemDescriptor getAlertSystem() const;
+	bool getAlertSystem(AlertSystemDescriptor & out) const;
+	bool hasAlertSystem() const;
 
+	VmdDescriptor & setSco(const ScoDescriptor & value);
+	ScoDescriptor getSco() const;
+	bool getSco(ScoDescriptor & out) const;
+	bool hasSco() const;
+
+	VmdDescriptor & addChannel(const ChannelDescriptor & value);
+	std::vector<ChannelDescriptor> getChannels() const;
+	void clearChannels();
+	
 private:
-	std::shared_ptr<CDM::SetRangeOperationDescriptor> data;
+	std::shared_ptr<CDM::VmdDescriptor> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* SETRANGEOPERATIONDESCRIPTOR_H_ */
+#endif /* VMDDESCRIPTOR_H_ */

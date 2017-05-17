@@ -83,9 +83,9 @@ public:
 	bool getAlertSystem(AlertSystemDescriptor & out) const;
 	bool hasAlertSystem() const;
 
-	MdsDescriptor & setMetaData(const SystemMetaData & value);
-	SystemMetaData getMetaData() const;
-	bool getMetaData(SystemMetaData & out) const;
+	MdsDescriptor & setMetaData(const MetaData & value);
+	MetaData getMetaData() const;
+	bool getMetaData(MetaData & out) const;
 	bool hasMetaData() const;
 
 	MdsDescriptor & setContext(const SystemContext & value);
@@ -96,10 +96,10 @@ public:
 	bool getClock(ClockDescriptor & out) const;
 	bool hasClock() const;
 
-	MdsDescriptor & setSCO(const SCODescriptor & value);
-	SCODescriptor getSCO() const;
-	bool getSCO(SCODescriptor & out) const;
-	bool hasSCO() const;
+	MdsDescriptor & setSco(const ScoDescriptor & value);
+	ScoDescriptor getSco() const;
+	bool getSco(ScoDescriptor & out) const;
+	bool hasSco() const;
 
 	MdsDescriptor & setBattery(const BatteryDescriptor & value);
 	BatteryDescriptor getBattery() const;

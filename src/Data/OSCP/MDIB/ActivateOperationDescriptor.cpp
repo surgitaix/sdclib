@@ -38,7 +38,6 @@
 
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -157,24 +156,6 @@ std::string ActivateOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
 	
-ActivateOperationDescriptor & ActivateOperationDescriptor::addModifiableElement(const CodedValue & value) {
-	data->ModifiableElement().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<CodedValue> ActivateOperationDescriptor::getModifiableElements() const {
-	std::vector<CodedValue> result;
-	result.reserve(data->ModifiableElement().size());
-	for (const auto & value: data->ModifiableElement()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void ActivateOperationDescriptor::clearModifiableElements() {
-	data->ModifiableElement().clear();
-}
-
 ActivateOperationDescriptor & ActivateOperationDescriptor::setActivationDuration(const Duration & value) {
 	data->ActivationDuration(ConvertToCDM::convert(value));
 	return *this;

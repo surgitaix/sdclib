@@ -15,7 +15,7 @@
   */
 
 /*
- *  Annotation.h
+ *  SystemContextState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef ANNOTATION_H_
-#define ANNOTATION_H_
+#ifndef SYSTEMCONTEXTSTATE_H_
+#define SYSTEMCONTEXTSTATE_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,33 +40,40 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class Annotation {
+class SystemContextState {
 private:
-	Annotation(const CDM::Annotation & object);
-	operator CDM::Annotation() const;
+	SystemContextState(const CDM::SystemContextState & object);
+	operator CDM::SystemContextState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	Annotation();
-	Annotation(const Annotation & object);
-	virtual ~Annotation();
+	SystemContextState();
+	SystemContextState(const SystemContextState & object);
+	virtual ~SystemContextState();
     
-    void copyFrom(const Annotation & object);
-    Annotation & operator=(const Annotation & object);
+    void copyFrom(const SystemContextState & object);
+    SystemContextState & operator=(const SystemContextState & object);
     
-    typedef CDM::Annotation WrappedType;
+    typedef CDM::SystemContextState WrappedType;
 
-	Annotation & setAnnotationIndex(const unsigned int & value);
-	unsigned int getAnnotationIndex() const;
+	SystemContextState & setHandle(const std::string & value);
+	std::string getHandle() const;
+	bool getHandle(std::string & out) const;
+	bool hasHandle() const;
 
-	Annotation & setSampleIndex(const unsigned int & value);
-	unsigned int getSampleIndex() const;
+	SystemContextState & setDescriptorHandle(const std::string & value);
+	std::string getDescriptorHandle() const;
+
+	SystemContextState & setStateVersion(const VersionCounter & value);
+	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 private:
-	std::shared_ptr<CDM::Annotation> data;
+	std::shared_ptr<CDM::SystemContextState> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* ANNOTATION_H_ */
+#endif /* SYSTEMCONTEXTSTATE_H_ */

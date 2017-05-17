@@ -12,7 +12,7 @@
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
-#include "OSCLib/Data/OSCP/MDIB/Annotation.h"
+#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h"
 #include "OSCLib/Data/OSCP/MDIB/Base64Binary.h"
 #include "OSCLib/Data/OSCP/MDIB/BaseDemographics.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
@@ -47,48 +47,19 @@
 #include "OSCLib/Data/OSCP/MDIB/LocationReference.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
-#include "OSCLib/Data/OSCP/MDIB/MDState.h"
-#include "OSCLib/Data/OSCP/MDIB/Measure.h"
-#include "OSCLib/Data/OSCP/MDIB/MeasurementState.h"
-#include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/Order.h"
-#include "OSCLib/Data/OSCP/MDIB/OrderDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/PatientDemographicsCoreData.h"
-#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/PersonParticipation.h"
-#include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
-#include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/RemedyInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
-#include "OSCLib/Data/OSCP/MDIB/SampleIndex.h"
-#include "OSCLib/Data/OSCP/MDIB/SCODescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetContextOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetRangeOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdState.h"
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetValueOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/TimeZone.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowDetail.h"
@@ -219,8 +190,8 @@ AlertSystemState ConvertFromCDM::convert(const CDM::AlertSystemState & source) {
 	return AlertSystemState(source);
 }
 
-Annotation ConvertFromCDM::convert(const CDM::Annotation & source) {
-	return Annotation(source);
+ApplyAnnotation ConvertFromCDM::convert(const CDM::ApplyAnnotation & source) {
+	return ApplyAnnotation(source);
 }
 
 Base64Binary ConvertFromCDM::convert(const CDM::Base64Binary & source) {
@@ -447,7 +418,11 @@ MdsOperatingMode ConvertFromCDM::convert(const CDM::MdsOperatingMode & source) {
 
 
 MdState ConvertFromCDM::convert(const CDM::MdState & source) {
-	return MDState(source);
+	return MdState(source);
+}
+
+MeansContextDescriptor ConvertFromCDM::convert(const CDM::MeansContextDescriptor & source) {
+	return MeansContextDescriptor(source);
 }
 
 Measurement ConvertFromCDM::convert(const CDM::Measurement & source) {
@@ -594,8 +569,8 @@ RealTimeSampleArrayMetricState ConvertFromCDM::convert(const CDM::RealTimeSample
 	return RealTimeSampleArrayMetricState(source);
 }
 
-RealTimeSampleArrayValue ConvertFromCDM::convert(const CDM::RealTimeSampleArrayValue & source) {
-	return RealTimeSampleArrayValue(source);
+SampleArrayValue ConvertFromCDM::convert(const CDM::SampleArrayValue & source) {
+	return SampleArrayValue(source);
 }
 
 ReferencedVersion ConvertFromCDM::convert(const CDM::ReferencedVersion & source) {
@@ -610,8 +585,8 @@ RequestedOrderDetail ConvertFromCDM::convert(const CDM::RequestedOrderDetail & s
 	return RequestedOrderDetail(source);
 }
 
-RTValueType ConvertFromCDM::convert(const CDM::RTValueType & source) {
-	return RTValueType(source);
+RealTimeValueType ConvertFromCDM::convert(const CDM::RealTimeValueType & source) {
+	return RealTimeValueType(source);
 }
 
 SafetyClassification ConvertFromCDM::convert(const CDM::SafetyClassification & source) {
@@ -624,13 +599,8 @@ SafetyClassification ConvertFromCDM::convert(const CDM::SafetyClassification & s
 	throw std::runtime_error("Illegal value for PrimaryAlertSignalLocation");
 }
 
-
-SampleIndex ConvertFromCDM::convert(const CDM::SampleIndex & source) {
-	return SampleIndex(source);
-}
-
-SCODescriptor ConvertFromCDM::convert(const CDM::SCODescriptor & source) {
-	return SCODescriptor(source);
+ScoDescriptor ConvertFromCDM::convert(const CDM::ScoDescriptor & source) {
+	return ScoDescriptor(source);
 }
 
 SetAlertStateOperationDescriptor ConvertFromCDM::convert(const CDM::SetAlertStateOperationDescriptor & source) {
@@ -639,10 +609,6 @@ SetAlertStateOperationDescriptor ConvertFromCDM::convert(const CDM::SetAlertStat
 
 SetContextOperationDescriptor ConvertFromCDM::convert(const CDM::SetContextOperationDescriptor & source) {
 	return SetContextOperationDescriptor(source);
-}
-
-SetRangeOperationDescriptor ConvertFromCDM::convert(const CDM::SetRangeOperationDescriptor & source) {
-	return SetRangeOperationDescriptor(source);
 }
 
 SetStringOperationDescriptor ConvertFromCDM::convert(const CDM::SetStringOperationDescriptor & source) {
@@ -685,12 +651,16 @@ StringMetricValue ConvertFromCDM::convert(const CDM::StringMetricValue & source)
 	return StringMetricValue(source);
 }
 
-SystemContext ConvertFromCDM::convert(const CDM::SystemContext & source) {
-	return SystemContext(source);
+SystemContextDescriptor ConvertFromCDM::convert(const CDM::SystemContextDescriptor & source) {
+	return SystemContextDescriptor(source);
 }
 
-SystemMetaData ConvertFromCDM::convert(const CDM::SystemMetaData & source) {
-	return SystemMetaData(source);
+SystemContextState ConvertFromCDM::convert(const CDM::SystemContextState & source) {
+	return SystemContextState(source);
+}
+
+MetaData ConvertFromCDM::convert(const CDM::MetaData & source) {
+	return MetaData(source);
 }
 
 Timestamp ConvertFromCDM::convert(const CDM::Timestamp & source) {
@@ -705,8 +675,8 @@ VersionCounter ConvertFromCDM::convert(const CDM::VersionCounter & source) {
 	return VersionCounter(source);
 }
 
-VMDDescriptor ConvertFromCDM::convert(const CDM::VMDDescriptor & source) {
-	return VMDDescriptor(source);
+VmdDescriptor ConvertFromCDM::convert(const CDM::VmdDescriptor & source) {
+	return VmdDescriptor(source);
 }
 
 WorkflowContextDescriptor ConvertFromCDM::convert(const CDM::WorkflowContextDescriptor & source) {

@@ -77,10 +77,6 @@ public:
 	SetStringOperationDescriptor & setOperationTarget(const std::string & value);
 	std::string getOperationTarget() const;
 
-	SetStringOperationDescriptor & addModifiableElement(const CodedValue & value);
-	std::vector<CodedValue> getModifiableElements() const;
-	void clearModifiableElements();
-	
 private:
 	std::shared_ptr<CDM::SetStringOperationDescriptor> data;
 };

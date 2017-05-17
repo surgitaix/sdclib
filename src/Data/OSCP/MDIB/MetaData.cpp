@@ -15,7 +15,7 @@
   */
 
 /*
- *  SystemMetaData.cpp
+ *  MetaData.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,7 +29,7 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
@@ -42,62 +42,62 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SystemMetaData::SystemMetaData() : data(Defaults::SystemMetaData()) {
+MetaData::MetaData() : data(Defaults::MetaData()) {
 }
 
-SystemMetaData::operator CDM::SystemMetaData() const {
+MetaData::operator CDM::MetaData() const {
 	return *data;
 }
 
-SystemMetaData::SystemMetaData(const CDM::SystemMetaData & object) : data(new CDM::SystemMetaData(object)) {
+MetaData::MetaData(const CDM::MetaData & object) : data(new CDM::MetaData(object)) {
 
 }
 
-SystemMetaData::SystemMetaData(const SystemMetaData & object) : data(new CDM::SystemMetaData(*object.data)) {
+MetaData::MetaData(const MetaData & object) : data(new CDM::MetaData(*object.data)) {
 
 }
 
-SystemMetaData::~SystemMetaData() {
+MetaData::~MetaData() {
 
 }
 
-void SystemMetaData::copyFrom(const SystemMetaData & object) {
+void MetaData::copyFrom(const MetaData & object) {
 	*data = *object.data;
 }
 
-SystemMetaData & SystemMetaData:: operator=(const SystemMetaData & object) {
+MetaData & MetaData:: operator=(const MetaData & object) {
 	copyFrom(object);
 	return *this;
 }
 
 
-SystemMetaData & SystemMetaData::setUDI(const std::string & value) {
-	data->UDI(ConvertToCDM::convert(value));
+MetaData & MetaData::setUdi(const std::string & value) {
+	data->Udi(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemMetaData::getUDI(std::string & out) const {
-	if (data->UDI().present()) {
-		out = ConvertFromCDM::convert(data->UDI().get());
+bool MetaData::getUdi(std::string & out) const {
+	if (data->Udi().present()) {
+		out = ConvertFromCDM::convert(data->Udi().get());
 		return true;
 	}
 	return false;
 }
 
-std::string SystemMetaData::getUDI() const {
-	return ConvertFromCDM::convert(data->UDI().get());
+std::string MetaData::getUdi() const {
+	return ConvertFromCDM::convert(data->Udi().get());
 }
 	
-bool SystemMetaData::hasUDI() const {
-	return data->UDI().present();
+bool MetaData::hasUdi() const {
+	return data->Udi().present();
 }
 	
-SystemMetaData & SystemMetaData::addManufacturer(const LocalizedText & value) {
+MetaData & MetaData::addManufacturer(const LocalizedText & value) {
 	data->Manufacturer().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<LocalizedText> SystemMetaData::getManufacturer() const {
+std::vector<LocalizedText> MetaData::getManufacturer() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Manufacturer().size());
 	for (const auto & value: data->Manufacturer()) {
@@ -106,16 +106,16 @@ std::vector<LocalizedText> SystemMetaData::getManufacturer() const {
 	return result;
 }
 
-void SystemMetaData::clearManufacturer() {
+void MetaData::clearManufacturer() {
 	data->Manufacturer().clear();
 }
 
-SystemMetaData & SystemMetaData::addModelName(const LocalizedText & value) {
+MetaData & MetaData::addModelName(const LocalizedText & value) {
 	data->ModelName().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<LocalizedText> SystemMetaData::getModelName() const {
+std::vector<LocalizedText> MetaData::getModelName() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->ModelName().size());
 	for (const auto & value: data->ModelName()) {
@@ -124,16 +124,16 @@ std::vector<LocalizedText> SystemMetaData::getModelName() const {
 	return result;
 }
 
-void SystemMetaData::clearModelName() {
+void MetaData::clearModelName() {
 	data->ModelName().clear();
 }
 
-SystemMetaData & SystemMetaData::addModelNumber(const std::string & value) {
+MetaData & MetaData::addModelNumber(const std::string & value) {
 	data->ModelNumber().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<std::string> SystemMetaData::getModelNumber() const {
+std::vector<std::string> MetaData::getModelNumber() const {
 	std::vector<std::string> result;
 	result.reserve(data->ModelNumber().size());
 	for (const auto & value: data->ModelNumber()) {
@@ -142,16 +142,16 @@ std::vector<std::string> SystemMetaData::getModelNumber() const {
 	return result;
 }
 
-void SystemMetaData::clearModelNumber() {
+void MetaData::clearModelNumber() {
 	data->ModelNumber().clear();
 }
 
-SystemMetaData & SystemMetaData::addSerialNumber(const std::string & value) {
+MetaData & MetaData::addSerialNumber(const std::string & value) {
 	data->SerialNumber().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<std::string> SystemMetaData::getSerialNumber() const {
+std::vector<std::string> MetaData::getSerialNumber() const {
 	std::vector<std::string> result;
 	result.reserve(data->SerialNumber().size());
 	for (const auto & value: data->SerialNumber()) {
@@ -160,7 +160,7 @@ std::vector<std::string> SystemMetaData::getSerialNumber() const {
 	return result;
 }
 
-void SystemMetaData::clearSerialNumber() {
+void MetaData::clearSerialNumber() {
 	data->SerialNumber().clear();
 }
 

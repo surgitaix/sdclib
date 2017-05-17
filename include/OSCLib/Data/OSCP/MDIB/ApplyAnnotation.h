@@ -15,7 +15,7 @@
   */
 
 /*
- *  SampleIndex.cpp
+ *  ApplyAnnotation.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,58 +29,44 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/SampleIndex.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
+#ifndef APPLYANNOTATION_H_
+#define APPLYANNOTATION_H_
 
-#include "osdm.hxx"
-
+#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/OSCP-fwd.h"
+#include "osdm-fwd.hxx"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SampleIndex::SampleIndex() : data(Defaults::SampleIndex()) {
-}
+class ApplyAnnotation {
+private:
+	ApplyAnnotation(const CDM::ApplyAnnotation & object);
+	operator CDM::ApplyAnnotation() const;
+	friend class ConvertFromCDM;
+	friend class ConvertToCDM;
+public:
+	ApplyAnnotation();
+	ApplyAnnotation(const ApplyAnnotation & object);
+	virtual ~ApplyAnnotation();
+    
+    void copyFrom(const ApplyAnnotation & object);
+    ApplyAnnotation & operator=(const ApplyAnnotation & object);
+    
+    typedef CDM::ApplyAnnotation WrappedType;
 
-SampleIndex::operator CDM::SampleIndex() const {
-	return *data;
-}
+	ApplyAnnotation & setAnnotationIndex(const unsigned int & value);
+	unsigned int getAnnotationIndex() const;
 
-SampleIndex::SampleIndex(const CDM::SampleIndex & object) : data(new CDM::SampleIndex(object)) {
+	ApplyAnnotation & setSampleIndex(const unsigned int & value);
+	unsigned int getSampleIndex() const;
 
-}
-
-SampleIndex::SampleIndex(const SampleIndex & object) : data(new CDM::SampleIndex(*object.data)) {
-
-}
-
-SampleIndex::~SampleIndex() {
-
-}
-
-void SampleIndex::copyFrom(const SampleIndex & object) {
-	*data = *object.data;
-}
-
-SampleIndex & SampleIndex:: operator=(const SampleIndex & object) {
-	copyFrom(object);
-	return *this;
-}
-
-int SampleIndex::get() const {
-	return *data;
-}
-	
-SampleIndex & SampleIndex::set(const int & value) {
-	*data = value;
-	return *this;
-} 
-	
-
+private:
+	std::shared_ptr<CDM::ApplyAnnotation> data;
+};
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-
+#endif /* APPLYANNOTATION_H_ */

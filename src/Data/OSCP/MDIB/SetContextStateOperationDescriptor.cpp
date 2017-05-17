@@ -15,7 +15,7 @@
   */
 
 /*
- *  SetRangeOperationDescriptor.cpp
+ *  SetContextStateOperationDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,15 +29,13 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/SetRangeOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
@@ -45,41 +43,41 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetRangeOperationDescriptor::SetRangeOperationDescriptor() : data(Defaults::SetRangeOperationDescriptor()) {
+SetContextStateOperationDescriptor::SetContextStateOperationDescriptor() : data(Defaults::SetContextStateOperationDescriptor()) {
 }
 
-SetRangeOperationDescriptor::operator CDM::SetRangeOperationDescriptor() const {
+SetContextStateOperationDescriptor::operator CDM::SetContextStateOperationDescriptor() const {
 	return *data;
 }
 
-SetRangeOperationDescriptor::SetRangeOperationDescriptor(const CDM::SetRangeOperationDescriptor & object) : data(new CDM::SetRangeOperationDescriptor(object)) {
+SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(const CDM::SetContextStateOperationDescriptor & object) : data(new CDM::SetContextStateOperationDescriptor(object)) {
 
 }
 
-SetRangeOperationDescriptor::SetRangeOperationDescriptor(const SetRangeOperationDescriptor & object) : data(new CDM::SetRangeOperationDescriptor(*object.data)) {
+SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(const SetContextStateOperationDescriptor & object) : data(new CDM::SetContextStateOperationDescriptor(*object.data)) {
 
 }
 
-SetRangeOperationDescriptor::~SetRangeOperationDescriptor() {
+SetContextStateOperationDescriptor::~SetContextStateOperationDescriptor() {
 
 }
 
-void SetRangeOperationDescriptor::copyFrom(const SetRangeOperationDescriptor & object) {
+void SetContextStateOperationDescriptor::copyFrom(const SetContextStateOperationDescriptor & object) {
 	*data = *object.data;
 }
 
-SetRangeOperationDescriptor & SetRangeOperationDescriptor:: operator=(const SetRangeOperationDescriptor & object) {
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor:: operator=(const SetContextStateOperationDescriptor & object) {
 	copyFrom(object);
 	return *this;
 }
 
 
-SetRangeOperationDescriptor & SetRangeOperationDescriptor::setType(const CodedValue & value) {
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setType(const CodedValue & value) {
 	data->Type(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetRangeOperationDescriptor::getType(CodedValue & out) const {
+bool SetContextStateOperationDescriptor::getType(CodedValue & out) const {
 	if (data->Type().present()) {
 		out = ConvertFromCDM::convert(data->Type().get());
 		return true;
@@ -87,30 +85,30 @@ bool SetRangeOperationDescriptor::getType(CodedValue & out) const {
 	return false;
 }
 
-CodedValue SetRangeOperationDescriptor::getType() const {
+CodedValue SetContextStateOperationDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
 	
-bool SetRangeOperationDescriptor::hasType() const {
+bool SetContextStateOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-SetRangeOperationDescriptor & SetRangeOperationDescriptor::setHandle(const std::string & value) {
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setHandle(const std::string & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetRangeOperationDescriptor::getHandle() const {
+std::string SetContextStateOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
-SetRangeOperationDescriptor & SetRangeOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetRangeOperationDescriptor::getDescriptorVersion(VersionCounter & out) const {
+bool SetContextStateOperationDescriptor::getDescriptorVersion(VersionCounter & out) const {
 	if (data->DescriptorVersion().present()) {
 		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
@@ -118,20 +116,20 @@ bool SetRangeOperationDescriptor::getDescriptorVersion(VersionCounter & out) con
 	return false;
 }
 
-VersionCounter SetRangeOperationDescriptor::getDescriptorVersion() const {
+VersionCounter SetContextStateOperationDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool SetRangeOperationDescriptor::hasDescriptorVersion() const {
+bool SetContextStateOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-SetRangeOperationDescriptor & SetRangeOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetRangeOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
+bool SetContextStateOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
 	if (data->SafetyClassification().present()) {
 		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
@@ -139,31 +137,31 @@ bool SetRangeOperationDescriptor::getSafetyClassification(SafetyClassification &
 	return false;
 }
 
-SafetyClassification SetRangeOperationDescriptor::getSafetyClassification() const {
+SafetyClassification SetContextStateOperationDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool SetRangeOperationDescriptor::hasSafetyClassification() const {
+bool SetContextStateOperationDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-SetRangeOperationDescriptor & SetRangeOperationDescriptor::setOperationTarget(const std::string & value) {
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setOperationTarget(const std::string & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetRangeOperationDescriptor::getOperationTarget() const {
+std::string SetContextStateOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
 	
-SetRangeOperationDescriptor & SetRangeOperationDescriptor::addModifiableElement(const CodedValue & value) {
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::addModifiableElement(const std::string & value) {
 	data->ModifiableElement().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<CodedValue> SetRangeOperationDescriptor::getModifiableElements() const {
-	std::vector<CodedValue> result;
+std::vector<std::string> SetContextStateOperationDescriptor::getModifiableElements() const {
+	std::vector<std::string> result;
 	result.reserve(data->ModifiableElement().size());
 	for (const auto & value: data->ModifiableElement()) {
 		result.push_back(ConvertFromCDM::convert(value));
@@ -171,20 +169,10 @@ std::vector<CodedValue> SetRangeOperationDescriptor::getModifiableElements() con
 	return result;
 }
 
-void SetRangeOperationDescriptor::clearModifiableElements() {
+void SetContextStateOperationDescriptor::clearModifiableElements() {
 	data->ModifiableElement().clear();
 }
 
-SetRangeOperationDescriptor & SetRangeOperationDescriptor::setAllowedMaxRange(const Range & value) {
-	data->AllowedMaxRange(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-Range SetRangeOperationDescriptor::getAllowedMaxRange() const {
-	return ConvertFromCDM::convert(data->AllowedMaxRange());
-}
-	
 
 } /* namespace OSCP */
 } /* namespace Data */

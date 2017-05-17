@@ -15,7 +15,7 @@
   */
 
 /*
- *  SystemContext.h
+ *  SystemContextDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef SYSTEMCONTEXT_H_
-#define SYSTEMCONTEXT_H_
+#ifndef SYSTEMCONTEXTDESCRIPTOR_H_
+#define SYSTEMCONTEXTDESCRIPTOR_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,52 +40,57 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class SystemContext {
+class SystemContextDescriptor {
 private:
-	SystemContext(const CDM::SystemContext & object);
-	operator CDM::SystemContext() const;
+	SystemContextDescriptor(const CDM::SystemContextDescriptor & object);
+	operator CDM::SystemContextDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SystemContext();
-	SystemContext(const SystemContext & object);
-	virtual ~SystemContext();
+	SystemContextDescriptor();
+	SystemContextDescriptor(const SystemContextDescriptor & object);
+	virtual ~SystemContextDescriptor();
     
-    void copyFrom(const SystemContext & object);
-    SystemContext & operator=(const SystemContext & object);
+    void copyFrom(const SystemContextDescriptor & object);
+    SystemContextDescriptor & operator=(const SystemContextDescriptor & object);
     
-    typedef CDM::SystemContext WrappedType;
+    typedef CDM::SystemContextDescriptor WrappedType;
 
-	SystemContext & setEnsembleContext(const EnsembleContextDescriptor & value);
+	SystemContextDescriptor & setEnsembleContext(const EnsembleContextDescriptor & value);
 	EnsembleContextDescriptor getEnsembleContext() const;
 	bool getEnsembleContext(EnsembleContextDescriptor & out) const;
 	bool hasEnsembleContext() const;
 
-	SystemContext & setLocationContext(const LocationContextDescriptor & value);
+	SystemContextDescriptor & setLocationContext(const LocationContextDescriptor & value);
 	LocationContextDescriptor getLocationContext() const;
 	bool getLocationContext(LocationContextDescriptor & out) const;
 	bool hasLocationContext() const;
 
-	SystemContext & setOperatorContext(const OperatorContextDescriptor & value);
+	SystemContextDescriptor & setOperatorContext(const OperatorContextDescriptor & value);
 	OperatorContextDescriptor getOperatorContext() const;
 	bool getOperatorContext(OperatorContextDescriptor & out) const;
 	bool hasOperatorContext() const;
 
-	SystemContext & setPatientContext(const PatientContextDescriptor & value);
+	SystemContextDescriptor & setPatientContext(const PatientContextDescriptor & value);
 	PatientContextDescriptor getPatientContext() const;
 	bool getPatientContext(PatientContextDescriptor & out) const;
 	bool hasPatientContext() const;
 
-	SystemContext & setWorkflowContext(const WorkflowContextDescriptor & value);
+	SystemContextDescriptor & setWorkflowContext(const WorkflowContextDescriptor & value);
 	WorkflowContextDescriptor getWorkflowContext() const;
 	bool getWorkflowContext(WorkflowContextDescriptor & out) const;
 	bool hasWorkflowContext() const;
 
+	SystemContextDescriptor & setMeansContext(const MeansContextDescriptor & value);
+	MeansContextDescriptor getMeansContext() const;
+	bool getMeansContext(MeansContextDescriptor & out) const;
+	bool hasMeansContext() const;
+
 private:
-	std::shared_ptr<CDM::SystemContext> data;
+	std::shared_ptr<CDM::SystemContextDescriptor> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* SYSTEMCONTEXT_H_ */
+#endif /* SYSTEMCONTEXTDESCRIPTOR_H_ */

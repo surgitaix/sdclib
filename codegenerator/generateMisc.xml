@@ -19,11 +19,9 @@
     <class name = "AlertConditionReference" parent = "NULL" abstract = "false" customImpl = "true" >
     </class>
 
-    <class name = "Annotation" parent = "NULL" abstract = "false" >
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/SampleIndex.h" />
-		<property name = "Code" type = "CodedValue" optional = "false" />
-		<property name = "SampleIndex" type = "SampleIndex" optional = "true" />
+    <class name = "ApplyAnnotation" parent = "NULL" abstract = "false" >
+		<property name = "AnnotationIndex" type = "unsigned int" optional = "false" />
+		<property name = "SampleIndex" type = "unsigned int" optional = "false" />
     </class>
 
     <class name = "Base64Binary" parent = "NULL" abstract = "false" customImpl = "true" >
@@ -110,13 +108,6 @@
     	<property name = "hours" type = "unsigned int" optional = "false" />
     	<property name = "minutes" type = "unsigned int" optional = "false" />
     	<property name = "seconds" type = "double" optional = "false" />
-    </class>
-    
-    <class name = "EnumNomenRef" parent = "NULL" abstract = "false" >
-		<include path = "OSCLib/Data/OSCP/MDIB/Codeker dValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/SampleIndex.h" />
-    	<property name = "Code" type = "CodedValue" optional = "false" />
-    	<property name = "EnumIndex" type = "SampleIndex" optional = "true" />
     </class>
 
 	<class name = "ImagingProcedure" parent = "NULL" abstract = "false" >
@@ -236,11 +227,11 @@
 		<property name = "ComponentId" type = "InstanceIdentifier" optional = "true" />
     </class>    
 
-    <class name = "RealTimeSampleArrayValue" parent = "AbstractMetricValue" abstract = "false" >
-		<include path = "OSCLib/Data/OSCP/MDIB/Annotation.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/RTValueType.h" />
-		<property name = "Samples" type = "RTValueType" optional = "true" />
-		<propertyList nameSingle = "Annotation" nameSeveral = "Annotations" type = "Annotation" />
+    <class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/RealTimeValueType.h" />
+		<property name = "Samples" type = "RealTimeValueType" optional = "true" />
+		<propertyList nameSingle = "ApplyAnnotation" nameSeveral = "ApplyAnnotations" type = "ApplyAnnotation" />
     </class>
 
     <class name = "Range" parent = "NULL" abstract = "false" >
@@ -257,32 +248,37 @@
     <class name = "ReferencedVersion" parent = "NULL" valuetype = "long long" abstract = "false" >
     </class>
 
-    <class name = "RTValueType" parent = "NULL" abstract = "false" customImpl = "true" >
-    </class>
-	
-    <class name = "SampleIndex" parent = "NULL" abstract = "false" valuetype = "int">
+    <class name = "RealTimeValueType" parent = "NULL" abstract = "false" customImpl = "true" >
     </class>
     
     <class name = "StringMetricValue" parent = "AbstractMetricValue" abstract = "false" >
     	<property name = "Value" type = "std::string" optional = "true" />
     </class>
 
-    <class name = "SystemContext" parent = "AbstractDescriptor" abstract = "false" >
+    <class name = "SystemContextDescriptor" parent = "AbstractDescriptor" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h" />
 		<property name = "EnsembleContext" type = "EnsembleContextDescriptor" optional = "true" />
 		<property name = "LocationContext" type = "LocationContextDescriptor" optional = "true" />
 		<property name = "OperatorContext" type = "OperatorContextDescriptor" optional = "true" />
 		<property name = "PatientContext" type = "PatientContextDescriptor" optional = "true" />
 		<property name = "WorkflowContext" type = "WorkflowContextDescriptor" optional = "true" />
+		<property name = "MeansContext" type = "MeansContextDescriptor" optional = "true" />
     </class>
+
+
+
+    <class name = "MeansContextDescriptor" parent = "AbstractContextDescriptor" abstract = "false" >
+    </class>
+
     
-    <class name = "SystemMetaData" parent = "NULL" abstract = "false" >
+    <class name = "MetaData" parent = "NULL" abstract = "false" >
     	<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-    	<property name = "UDI" type = "std::string" optional = "true" />
+    	<property name = "Udi" type = "std::string" optional = "true" />
     	<propertyList nameSingle = "Manufacturer" nameSeveral = "Manufacturer" type = "LocalizedText" />
     	<propertyList nameSingle = "ModelName" nameSeveral = "ModelName" type = "LocalizedText" />
     	<propertyList nameSingle = "ModelNumber" nameSeveral = "ModelNumber" type = "std::string" />

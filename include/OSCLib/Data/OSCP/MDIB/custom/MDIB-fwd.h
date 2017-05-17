@@ -16,7 +16,6 @@ namespace OSCP {
 	class OperationInvocationContext;
 
 	// classes, that are generated
-	class Annotation;
 	class ActivateOperationDescriptor;
 	class AlertConditionDescriptor;
 	class AlertConditionReference;
@@ -26,6 +25,7 @@ namespace OSCP {
 	class AlertSystemDescriptor;
 	class AlertSystemState;
 	class AllowedValue;
+	class ApplyAnnotation;
 	class Base64Binary;
 	class BaseDemographics;
 	class CauseInfo;
@@ -59,6 +59,7 @@ namespace OSCP {
 	class LocationReference;
 	class MdDescription;
 	class MdState;
+	class MeansContextDescriptor;
 	class Measurement;
 	class NumericMetricDescriptor;
 	class NumericMetricState;
@@ -78,26 +79,26 @@ namespace OSCP {
 	class Range;
 	class RealTimeSampleArrayMetricDescriptor;
 	class RealTimeSampleArrayMetricState;
-	class RealTimeSampleArrayValue;
+	class RealTimeValueType;
 	class ReferencedVersion;
 	class RemedyInfo;
 	class RequestedOrderDetail;
-	class RTValueType;
-	class SCODescriptor;
+	class SampleArrayValue;
+	class ScoDescriptor;
 	class SetAlertStateOperationDescriptor;
-	class SetContextOperationDescriptor;
-	class SetRangeOperationDescriptor;
+	class SetContextStateOperationDescriptor;
 	class SetStringOperationDescriptor;
 	class SetValueOperationDescriptor;
 	class StringMetricDescriptor;
 	class StringMetricState;
 	class StringMetricValue;
-	class SystemContext;
-	class SystemMetaData;
+	class SystemContextDescriptor;
+	class SystemContextState;
+	class MetaData;
 	class Timestamp;
 	class TimeZone;
 	class VersionCounter;
-	class VMDDescriptor;
+	class VmdDescriptor;
 	class WorkflowContextDescriptor;
 	class WorkflowContextState;
 	class WorkflowDetail;

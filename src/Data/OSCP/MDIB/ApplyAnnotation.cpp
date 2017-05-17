@@ -15,7 +15,7 @@
   */
 
 /*
- *  SCODescriptor.cpp
+ *  ApplyAnnotation.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,7 +29,7 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/SCODescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
@@ -41,35 +41,55 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SCODescriptor::SCODescriptor() : data(Defaults::SCODescriptor()) {
+ApplyAnnotation::ApplyAnnotation() : data(Defaults::ApplyAnnotation()) {
 }
 
-SCODescriptor::operator CDM::SCODescriptor() const {
+ApplyAnnotation::operator CDM::ApplyAnnotation() const {
 	return *data;
 }
 
-SCODescriptor::SCODescriptor(const CDM::SCODescriptor & object) : data(new CDM::SCODescriptor(object)) {
+ApplyAnnotation::ApplyAnnotation(const CDM::ApplyAnnotation & object) : data(new CDM::ApplyAnnotation(object)) {
 
 }
 
-SCODescriptor::SCODescriptor(const SCODescriptor & object) : data(new CDM::SCODescriptor(*object.data)) {
+ApplyAnnotation::ApplyAnnotation(const ApplyAnnotation & object) : data(new CDM::ApplyAnnotation(*object.data)) {
 
 }
 
-SCODescriptor::~SCODescriptor() {
+ApplyAnnotation::~ApplyAnnotation() {
 
 }
 
-void SCODescriptor::copyFrom(const SCODescriptor & object) {
+void ApplyAnnotation::copyFrom(const ApplyAnnotation & object) {
 	*data = *object.data;
 }
 
-SCODescriptor & SCODescriptor:: operator=(const SCODescriptor & object) {
+ApplyAnnotation & ApplyAnnotation:: operator=(const ApplyAnnotation & object) {
 	copyFrom(object);
 	return *this;
 }
 
 
+ApplyAnnotation & ApplyAnnotation::setAnnotationIndex(const unsigned int & value) {
+	data->AnnotationIndex(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+unsigned int ApplyAnnotation::getAnnotationIndex() const {
+	return ConvertFromCDM::convert(data->AnnotationIndex());
+}
+	
+ApplyAnnotation & ApplyAnnotation::setSampleIndex(const unsigned int & value) {
+	data->SampleIndex(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+unsigned int ApplyAnnotation::getSampleIndex() const {
+	return ConvertFromCDM::convert(data->SampleIndex());
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

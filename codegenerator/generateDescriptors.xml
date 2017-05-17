@@ -37,10 +37,12 @@
     </class>
     
     <class name = "AbstractOperationDescriptor" parent = "AbstractDescriptor" abstract = "true" >
-    	<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-    	<propertyList nameSingle = "ModifiableElement" nameSeveral = "ModifiableElements" type = "CodedValue" />
         <property name = "OperationTarget" type = "std::string" optional = "false" />
-    </class>     
+    </class>
+
+    <class name = "AbstractSetStateOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "true" >
+	<propertyList nameSingle = "ModifiableElement" nameSeveral = "ModifiableElements" type = "std::string" />
+    </class>
     
     <class name = "ActivateOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "false" >
     	<include path = "OSCLib/Data/OSCP/MDIB/Duration.h" />
@@ -127,11 +129,11 @@
     	<include path = "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/SystemContext.h" />
-	<include path = "OSCLib/Data/OSCP/MDIB/SystemMetaData.h" />
-	<property name = "MetaData" type = "SystemMetaData" optional = "true" />
+	<include path = "OSCLib/Data/OSCP/MDIB/MetaData.h" />
+	<property name = "MetaData" type = "MetaData" optional = "true" />
 	<property name = "Context" type = "SystemContext" optional = "false" />
 	<property name = "Clock" type = "ClockDescriptor" optional = "true" />
-    	<property name = "SCO" type = "SCODescriptor" optional = "true" />
+    	<property name = "Sco" type = "ScoDescriptor" optional = "true" />
     	<property name = "Battery" type = "BatteryDescriptor" optional = "true" />
     	<propertyList nameSingle = "VMD" nameSeveral = "VMDs" type = "VMDDescriptor" />
     </class>
@@ -198,19 +200,16 @@
     	<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRanges" type = "Range" />
     </class>
     
-    <class name = "SCODescriptor" parent = "AbstractDeviceComponent" abstract = "false" customImpl = "true" >
+    <class name = "ScoDescriptor" parent = "AbstractDescriptor" abstract = "false" customImpl = "true" >
+    	<propertyList nameSingle = "Operation" nameSeveral = "Operations" type = "AbstractOperationDescriptor" />
     </class>
 
     <class name = "SetAlertStateOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "false" >
     </class>
 
-    <class name = "SetContextOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "false" >
+    <class name = "SetContextStateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false" >
     </class>
-    
-	<class name = "SetRangeOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "false" >
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
-		<property name = "AllowedMaxRange" type = "Range" optional = "false" />
-    </class>
+
 
     <class name = "SetStringOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "false" >
     </class>
@@ -223,11 +222,11 @@
     	<typedef name ="StateType" type = "StringMetricState" />
     </class>
 
-    <class name = "VMDDescriptor" parent = "AbstractDeviceComponent" abstract = "false" >
+    <class name = "VmdDescriptor" parent = "AbstractAlertingDeviceComponentDescriptor" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h" />
     	<propertyList nameSingle = "Channel" nameSeveral = "Channels" type = "ChannelDescriptor" />
-		<property name = "AlertSystem" type = "AlertSystemDescriptor" optional = "true" />
+	<property name = "Sco" type = "ScoDescriptor" optional = "true" />
     </class>
     
 	<class name = "WorkflowContextDescriptor" parent = "AbstractContextDescriptor" abstract = "false" >
