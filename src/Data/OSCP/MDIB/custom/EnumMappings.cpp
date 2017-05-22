@@ -26,10 +26,10 @@ std::string EnumToString::convert(AlertConditionKind source) {
 
 std::string EnumToString::convert(AlertConditionPriority source) {
 	switch (source) {
-		case AlertConditionPriority::LOW: return "Low";
-		case AlertConditionPriority::MEDIUM: return "Medium";
-		case AlertConditionPriority::HIGH: return "High";
-		case AlertConditionPriority::NONE: return "None";
+		case AlertConditionPriority::Low: return "Low";
+		case AlertConditionPriority::Medium: return "Medium";
+		case AlertConditionPriority::High: return "High";
+		case AlertConditionPriority::None: return "None";
 	}
 	throw std::runtime_error("Illegal value for AlertConditionPriority");
 }

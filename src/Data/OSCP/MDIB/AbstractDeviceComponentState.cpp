@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -71,25 +72,25 @@ AbstractDeviceComponentState & AbstractDeviceComponentState:: operator=(const Ab
 }
 
 
-AbstractDeviceComponentState & AbstractDeviceComponentState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+AbstractDeviceComponentState & AbstractDeviceComponentState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AbstractDeviceComponentState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool AbstractDeviceComponentState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string AbstractDeviceComponentState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion AbstractDeviceComponentState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool AbstractDeviceComponentState::hasHandle() const {
-	return data->Handle().present();
+bool AbstractDeviceComponentState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 AbstractDeviceComponentState & AbstractDeviceComponentState::setDescriptorHandle(const std::string & value) {

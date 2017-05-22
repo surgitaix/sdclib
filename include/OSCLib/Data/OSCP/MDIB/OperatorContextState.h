@@ -57,10 +57,10 @@ public:
     typedef CDM::OperatorContextState WrappedType;
     typedef OperatorContextDescriptor DescriptorType;
 
-	OperatorContextState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	OperatorContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	OperatorContextState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

@@ -66,7 +66,7 @@ public:
 	static CDM::NumericMetricDescriptor * NumericMetricDescriptor();
 	static CDM::NumericMetricState * NumericMetricState();
 	static CDM::NumericMetricValue * NumericMetricValue();
-	static CDM::OperationState * OperationState();
+	static CDM::AbstractOperationState * AbstractOperationState();
 	static CDM::OperatorContextDescriptor * OperatorContextDescriptor();
 	static CDM::OperatorContextState * OperatorContextState();
 	static CDM::PatientContextDescriptor * PatientContextDescriptor();

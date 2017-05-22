@@ -37,6 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionReference.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -72,25 +73,25 @@ AlertSystemState & AlertSystemState:: operator=(const AlertSystemState & object)
 }
 
 
-AlertSystemState & AlertSystemState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+AlertSystemState & AlertSystemState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSystemState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool AlertSystemState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string AlertSystemState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion AlertSystemState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool AlertSystemState::hasHandle() const {
-	return data->Handle().present();
+bool AlertSystemState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 AlertSystemState & AlertSystemState::setDescriptorHandle(const std::string & value) {

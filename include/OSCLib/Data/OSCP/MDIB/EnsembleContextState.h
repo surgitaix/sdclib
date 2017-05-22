@@ -57,10 +57,10 @@ public:
     typedef CDM::EnsembleContextState WrappedType;
     typedef EnsembleContextDescriptor DescriptorType;
 
-	EnsembleContextState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	EnsembleContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	EnsembleContextState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

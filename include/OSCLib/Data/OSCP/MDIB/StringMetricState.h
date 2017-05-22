@@ -59,10 +59,10 @@ public:
     typedef OSCPProviderStringMetricStateHandler ProviderHandlerType;
     typedef OSCPConsumerStringMetricStateHandler ConsumerHandlerType;
 
-	StringMetricState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	StringMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	StringMetricState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

@@ -258,7 +258,7 @@ namespace xml_schema
 
 // Forward declarations.
 //
-namespace CDM
+namespace MDM
 {
   class TransactionId;
   class InvocationState;

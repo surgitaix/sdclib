@@ -56,10 +56,10 @@ public:
     
     typedef CDM::AbstractDeviceComponentState WrappedType;
 
-	AbstractDeviceComponentState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	AbstractDeviceComponentState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	AbstractDeviceComponentState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

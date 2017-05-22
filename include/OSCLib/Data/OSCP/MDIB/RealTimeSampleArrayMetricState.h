@@ -59,10 +59,10 @@ public:
     typedef OSCPProviderRealTimeSampleArrayMetricStateHandler ProviderHandlerType;
     typedef OSCPConsumerRealTimeSampleArrayMetricStateHandler ConsumerHandlerType;
 
-	RealTimeSampleArrayMetricState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	RealTimeSampleArrayMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	RealTimeSampleArrayMetricState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

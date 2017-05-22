@@ -40,7 +40,7 @@
 
 #include "BICEPS_MessageModel.hxx"
 
-namespace CDM
+namespace MDM
 {
   // TransactionId
   // 
@@ -2677,7 +2677,7 @@ namespace _xsd
   type_factory_plate_init;
 }
 
-namespace CDM
+namespace MDM
 {
   // TransactionId
   //
@@ -2810,13 +2810,13 @@ namespace CDM
   const InvocationState::Value InvocationState::
   _xsd_InvocationState_indexes_[7] =
   {
-    ::CDM::InvocationState::Cnclld,
-    ::CDM::InvocationState::CnclldMan,
-    ::CDM::InvocationState::Fail,
-    ::CDM::InvocationState::Fin,
-    ::CDM::InvocationState::FinMod,
-    ::CDM::InvocationState::Start,
-    ::CDM::InvocationState::Wait
+    ::MDM::InvocationState::Cnclld,
+    ::MDM::InvocationState::CnclldMan,
+    ::MDM::InvocationState::Fail,
+    ::MDM::InvocationState::Fin,
+    ::MDM::InvocationState::FinMod,
+    ::MDM::InvocationState::Start,
+    ::MDM::InvocationState::Wait
   };
 
   static
@@ -2893,10 +2893,10 @@ namespace CDM
   const InvocationError::Value InvocationError::
   _xsd_InvocationError_indexes_[4] =
   {
-    ::CDM::InvocationError::Inv,
-    ::CDM::InvocationError::Oth,
-    ::CDM::InvocationError::Unkn,
-    ::CDM::InvocationError::Unspec
+    ::MDM::InvocationError::Inv,
+    ::MDM::InvocationError::Oth,
+    ::MDM::InvocationError::Unkn,
+    ::MDM::InvocationError::Unspec
   };
 
   static
@@ -4060,7 +4060,7 @@ namespace CDM
 
   AbstractContextReport::
   AbstractContextReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     ReportPart_ (this)
   {
   }
@@ -4069,7 +4069,7 @@ namespace CDM
   AbstractContextReport (const AbstractContextReport& x,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     ReportPart_ (x.ReportPart_, f, this)
   {
   }
@@ -4078,7 +4078,7 @@ namespace CDM
   AbstractContextReport (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     ReportPart_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -4092,7 +4092,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -4127,7 +4127,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->ReportPart_ = x.ReportPart_;
     }
 
@@ -4332,7 +4332,7 @@ namespace CDM
 
   AbstractMetricReport::
   AbstractMetricReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     ReportPart_ (this)
   {
   }
@@ -4341,7 +4341,7 @@ namespace CDM
   AbstractMetricReport (const AbstractMetricReport& x,
                         ::xml_schema::Flags f,
                         ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     ReportPart_ (x.ReportPart_, f, this)
   {
   }
@@ -4350,7 +4350,7 @@ namespace CDM
   AbstractMetricReport (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f,
                         ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     ReportPart_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -4364,7 +4364,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -4399,7 +4399,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->ReportPart_ = x.ReportPart_;
     }
 
@@ -4422,7 +4422,7 @@ namespace CDM
 
   AbstractComponentReport::
   AbstractComponentReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     ReportPart_ (this)
   {
   }
@@ -4431,7 +4431,7 @@ namespace CDM
   AbstractComponentReport (const AbstractComponentReport& x,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     ReportPart_ (x.ReportPart_, f, this)
   {
   }
@@ -4440,7 +4440,7 @@ namespace CDM
   AbstractComponentReport (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     ReportPart_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -4454,7 +4454,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -4489,7 +4489,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->ReportPart_ = x.ReportPart_;
     }
 
@@ -4512,7 +4512,7 @@ namespace CDM
 
   AbstractAlertReport::
   AbstractAlertReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     ReportPart_ (this)
   {
   }
@@ -4521,7 +4521,7 @@ namespace CDM
   AbstractAlertReport (const AbstractAlertReport& x,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     ReportPart_ (x.ReportPart_, f, this)
   {
   }
@@ -4530,7 +4530,7 @@ namespace CDM
   AbstractAlertReport (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     ReportPart_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -4544,7 +4544,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -4579,7 +4579,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->ReportPart_ = x.ReportPart_;
     }
 
@@ -4602,7 +4602,7 @@ namespace CDM
 
   AbstractOperationalStateReport::
   AbstractOperationalStateReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     ReportPart_ (this)
   {
   }
@@ -4611,7 +4611,7 @@ namespace CDM
   AbstractOperationalStateReport (const AbstractOperationalStateReport& x,
                                   ::xml_schema::Flags f,
                                   ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     ReportPart_ (x.ReportPart_, f, this)
   {
   }
@@ -4620,7 +4620,7 @@ namespace CDM
   AbstractOperationalStateReport (const ::xercesc::DOMElement& e,
                                   ::xml_schema::Flags f,
                                   ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     ReportPart_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -4634,7 +4634,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -4669,7 +4669,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->ReportPart_ = x.ReportPart_;
     }
 
@@ -4754,9 +4754,9 @@ namespace CDM
   const DescriptionModificationType::Value DescriptionModificationType::
   _xsd_DescriptionModificationType_indexes_[3] =
   {
-    ::CDM::DescriptionModificationType::Crt,
-    ::CDM::DescriptionModificationType::Del,
-    ::CDM::DescriptionModificationType::Upt
+    ::MDM::DescriptionModificationType::Crt,
+    ::MDM::DescriptionModificationType::Del,
+    ::MDM::DescriptionModificationType::Upt
   };
 
   static
@@ -4833,10 +4833,10 @@ namespace CDM
   const RetrievabilityMethod::Value RetrievabilityMethod::
   _xsd_RetrievabilityMethod_indexes_[4] =
   {
-    ::CDM::RetrievabilityMethod::Ep,
-    ::CDM::RetrievabilityMethod::Get,
-    ::CDM::RetrievabilityMethod::Per,
-    ::CDM::RetrievabilityMethod::Strm
+    ::MDM::RetrievabilityMethod::Ep,
+    ::MDM::RetrievabilityMethod::Get,
+    ::MDM::RetrievabilityMethod::Per,
+    ::MDM::RetrievabilityMethod::Strm
   };
 
   static
@@ -4989,7 +4989,7 @@ namespace CDM
 
   GetMdib::
   GetMdib ()
-  : ::CDM::AbstractGet ()
+  : ::MDM::AbstractGet ()
   {
   }
 
@@ -4997,7 +4997,7 @@ namespace CDM
   GetMdib (const GetMdib& x,
            ::xml_schema::Flags f,
            ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c)
+  : ::MDM::AbstractGet (x, f, c)
   {
   }
 
@@ -5005,7 +5005,7 @@ namespace CDM
   GetMdib (const ::xercesc::DOMElement& e,
            ::xml_schema::Flags f,
            ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f, c)
+  : ::MDM::AbstractGet (e, f, c)
   {
   }
 
@@ -5027,7 +5027,7 @@ namespace CDM
   GetMdibResponse::
   GetMdibResponse (const SequenceIdType& SequenceId,
                    const MdibType& Mdib)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     Mdib_ (Mdib, this)
   {
   }
@@ -5035,7 +5035,7 @@ namespace CDM
   GetMdibResponse::
   GetMdibResponse (const SequenceIdType& SequenceId,
                    ::std::unique_ptr< MdibType > Mdib)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     Mdib_ (std::move (Mdib), this)
   {
   }
@@ -5044,7 +5044,7 @@ namespace CDM
   GetMdibResponse (const GetMdibResponse& x,
                    ::xml_schema::Flags f,
                    ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     Mdib_ (x.Mdib_, f, this)
   {
   }
@@ -5053,7 +5053,7 @@ namespace CDM
   GetMdibResponse (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f,
                    ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     Mdib_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -5067,7 +5067,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -5126,7 +5126,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->Mdib_ = x.Mdib_;
     }
 
@@ -5143,7 +5143,7 @@ namespace CDM
 
   GetMdDescription::
   GetMdDescription ()
-  : ::CDM::AbstractGet (),
+  : ::MDM::AbstractGet (),
     HandleRef_ (this)
   {
   }
@@ -5152,7 +5152,7 @@ namespace CDM
   GetMdDescription (const GetMdDescription& x,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c),
+  : ::MDM::AbstractGet (x, f, c),
     HandleRef_ (x.HandleRef_, f, this)
   {
   }
@@ -5161,7 +5161,7 @@ namespace CDM
   GetMdDescription (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
     HandleRef_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -5175,7 +5175,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGet::parse (p, f);
+    this->::MDM::AbstractGet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -5224,7 +5224,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGet& > (*this) = x;
+      static_cast< ::MDM::AbstractGet& > (*this) = x;
       this->HandleRef_ = x.HandleRef_;
     }
 
@@ -5242,7 +5242,7 @@ namespace CDM
   GetMdDescriptionResponse::
   GetMdDescriptionResponse (const SequenceIdType& SequenceId,
                             const MdDescriptionType& MdDescription)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     MdDescription_ (MdDescription, this)
   {
   }
@@ -5250,7 +5250,7 @@ namespace CDM
   GetMdDescriptionResponse::
   GetMdDescriptionResponse (const SequenceIdType& SequenceId,
                             ::std::unique_ptr< MdDescriptionType > MdDescription)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     MdDescription_ (std::move (MdDescription), this)
   {
   }
@@ -5259,7 +5259,7 @@ namespace CDM
   GetMdDescriptionResponse (const GetMdDescriptionResponse& x,
                             ::xml_schema::Flags f,
                             ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     MdDescription_ (x.MdDescription_, f, this)
   {
   }
@@ -5268,7 +5268,7 @@ namespace CDM
   GetMdDescriptionResponse (const ::xercesc::DOMElement& e,
                             ::xml_schema::Flags f,
                             ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     MdDescription_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -5282,7 +5282,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -5341,7 +5341,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->MdDescription_ = x.MdDescription_;
     }
 
@@ -5358,7 +5358,7 @@ namespace CDM
 
   GetMdState::
   GetMdState ()
-  : ::CDM::AbstractGet (),
+  : ::MDM::AbstractGet (),
     HandleRef_ (this)
   {
   }
@@ -5367,7 +5367,7 @@ namespace CDM
   GetMdState (const GetMdState& x,
               ::xml_schema::Flags f,
               ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c),
+  : ::MDM::AbstractGet (x, f, c),
     HandleRef_ (x.HandleRef_, f, this)
   {
   }
@@ -5376,7 +5376,7 @@ namespace CDM
   GetMdState (const ::xercesc::DOMElement& e,
               ::xml_schema::Flags f,
               ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
     HandleRef_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -5390,7 +5390,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGet::parse (p, f);
+    this->::MDM::AbstractGet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -5439,7 +5439,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGet& > (*this) = x;
+      static_cast< ::MDM::AbstractGet& > (*this) = x;
       this->HandleRef_ = x.HandleRef_;
     }
 
@@ -5457,7 +5457,7 @@ namespace CDM
   GetMdStateResponse::
   GetMdStateResponse (const SequenceIdType& SequenceId,
                       const MdStateType& MdState)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     MdState_ (MdState, this)
   {
   }
@@ -5465,7 +5465,7 @@ namespace CDM
   GetMdStateResponse::
   GetMdStateResponse (const SequenceIdType& SequenceId,
                       ::std::unique_ptr< MdStateType > MdState)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     MdState_ (std::move (MdState), this)
   {
   }
@@ -5474,7 +5474,7 @@ namespace CDM
   GetMdStateResponse (const GetMdStateResponse& x,
                       ::xml_schema::Flags f,
                       ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     MdState_ (x.MdState_, f, this)
   {
   }
@@ -5483,7 +5483,7 @@ namespace CDM
   GetMdStateResponse (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f,
                       ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     MdState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -5497,7 +5497,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -5556,7 +5556,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->MdState_ = x.MdState_;
     }
 
@@ -5573,7 +5573,7 @@ namespace CDM
 
   GetContextStates::
   GetContextStates ()
-  : ::CDM::AbstractGet (),
+  : ::MDM::AbstractGet (),
     HandleRef_ (this)
   {
   }
@@ -5582,7 +5582,7 @@ namespace CDM
   GetContextStates (const GetContextStates& x,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c),
+  : ::MDM::AbstractGet (x, f, c),
     HandleRef_ (x.HandleRef_, f, this)
   {
   }
@@ -5591,7 +5591,7 @@ namespace CDM
   GetContextStates (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
     HandleRef_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -5605,7 +5605,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGet::parse (p, f);
+    this->::MDM::AbstractGet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -5654,7 +5654,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGet& > (*this) = x;
+      static_cast< ::MDM::AbstractGet& > (*this) = x;
       this->HandleRef_ = x.HandleRef_;
     }
 
@@ -5671,7 +5671,7 @@ namespace CDM
 
   GetContextStatesResponse::
   GetContextStatesResponse (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     ContextState_ (this)
   {
   }
@@ -5680,7 +5680,7 @@ namespace CDM
   GetContextStatesResponse (const GetContextStatesResponse& x,
                             ::xml_schema::Flags f,
                             ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     ContextState_ (x.ContextState_, f, this)
   {
   }
@@ -5689,7 +5689,7 @@ namespace CDM
   GetContextStatesResponse (const ::xercesc::DOMElement& e,
                             ::xml_schema::Flags f,
                             ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     ContextState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -5703,7 +5703,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -5752,7 +5752,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->ContextState_ = x.ContextState_;
     }
 
@@ -5769,14 +5769,14 @@ namespace CDM
 
   SetContextState::
   SetContextState (const OperationHandleRefType& OperationHandleRef)
-  : ::CDM::AbstractSet (OperationHandleRef),
+  : ::MDM::AbstractSet (OperationHandleRef),
     ProposedContextState_ (this)
   {
   }
 
   SetContextState::
   SetContextState (::std::unique_ptr< OperationHandleRefType > OperationHandleRef)
-  : ::CDM::AbstractSet (std::move (OperationHandleRef)),
+  : ::MDM::AbstractSet (std::move (OperationHandleRef)),
     ProposedContextState_ (this)
   {
   }
@@ -5785,7 +5785,7 @@ namespace CDM
   SetContextState (const SetContextState& x,
                    ::xml_schema::Flags f,
                    ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (x, f, c),
+  : ::MDM::AbstractSet (x, f, c),
     ProposedContextState_ (x.ProposedContextState_, f, this)
   {
   }
@@ -5794,7 +5794,7 @@ namespace CDM
   SetContextState (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f,
                    ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
     ProposedContextState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -5808,7 +5808,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractSet::parse (p, f);
+    this->::MDM::AbstractSet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -5857,7 +5857,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractSet& > (*this) = x;
+      static_cast< ::MDM::AbstractSet& > (*this) = x;
       this->ProposedContextState_ = x.ProposedContextState_;
     }
 
@@ -5875,7 +5875,7 @@ namespace CDM
   SetContextStateResponse::
   SetContextStateResponse (const InvocationInfoType& InvocationInfo,
                            const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (InvocationInfo,
+  : ::MDM::AbstractSetResponse (InvocationInfo,
                                 SequenceId)
   {
   }
@@ -5883,7 +5883,7 @@ namespace CDM
   SetContextStateResponse::
   SetContextStateResponse (::std::unique_ptr< InvocationInfoType > InvocationInfo,
                            const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (std::move (InvocationInfo),
+  : ::MDM::AbstractSetResponse (std::move (InvocationInfo),
                                 SequenceId)
   {
   }
@@ -5892,7 +5892,7 @@ namespace CDM
   SetContextStateResponse (const SetContextStateResponse& x,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (x, f, c)
+  : ::MDM::AbstractSetResponse (x, f, c)
   {
   }
 
@@ -5900,7 +5900,7 @@ namespace CDM
   SetContextStateResponse (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (e, f, c)
+  : ::MDM::AbstractSetResponse (e, f, c)
   {
   }
 
@@ -5921,7 +5921,7 @@ namespace CDM
 
   ReportPart::
   ReportPart ()
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     ContextState_ (this)
   {
   }
@@ -5930,7 +5930,7 @@ namespace CDM
   ReportPart (const ReportPart& x,
               ::xml_schema::Flags f,
               ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (x, f, c),
+  : ::MDM::AbstractReportPart (x, f, c),
     ContextState_ (x.ContextState_, f, this)
   {
   }
@@ -5939,7 +5939,7 @@ namespace CDM
   ReportPart (const ::xercesc::DOMElement& e,
               ::xml_schema::Flags f,
               ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
     ContextState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -5953,7 +5953,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReportPart::parse (p, f);
+    this->::MDM::AbstractReportPart::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -6002,7 +6002,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReportPart& > (*this) = x;
+      static_cast< ::MDM::AbstractReportPart& > (*this) = x;
       this->ContextState_ = x.ContextState_;
     }
 
@@ -6019,7 +6019,7 @@ namespace CDM
 
   PeriodicContextReport::
   PeriodicContextReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractContextReport (SequenceId)
+  : ::MDM::AbstractContextReport (SequenceId)
   {
   }
 
@@ -6027,7 +6027,7 @@ namespace CDM
   PeriodicContextReport (const PeriodicContextReport& x,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractContextReport (x, f, c)
+  : ::MDM::AbstractContextReport (x, f, c)
   {
   }
 
@@ -6035,7 +6035,7 @@ namespace CDM
   PeriodicContextReport (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractContextReport (e, f, c)
+  : ::MDM::AbstractContextReport (e, f, c)
   {
   }
 
@@ -6056,7 +6056,7 @@ namespace CDM
 
   EpisodicContextReport::
   EpisodicContextReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractContextReport (SequenceId)
+  : ::MDM::AbstractContextReport (SequenceId)
   {
   }
 
@@ -6064,7 +6064,7 @@ namespace CDM
   EpisodicContextReport (const EpisodicContextReport& x,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractContextReport (x, f, c)
+  : ::MDM::AbstractContextReport (x, f, c)
   {
   }
 
@@ -6072,7 +6072,7 @@ namespace CDM
   EpisodicContextReport (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractContextReport (e, f, c)
+  : ::MDM::AbstractContextReport (e, f, c)
   {
   }
 
@@ -6093,7 +6093,7 @@ namespace CDM
 
   GetLocalizedText::
   GetLocalizedText (const RefType& Ref)
-  : ::CDM::AbstractGet (),
+  : ::MDM::AbstractGet (),
     Ref_ (Ref, this),
     Version_ (this),
     Lang_ (this)
@@ -6102,7 +6102,7 @@ namespace CDM
 
   GetLocalizedText::
   GetLocalizedText (::std::unique_ptr< RefType > Ref)
-  : ::CDM::AbstractGet (),
+  : ::MDM::AbstractGet (),
     Ref_ (std::move (Ref), this),
     Version_ (this),
     Lang_ (this)
@@ -6113,7 +6113,7 @@ namespace CDM
   GetLocalizedText (const GetLocalizedText& x,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c),
+  : ::MDM::AbstractGet (x, f, c),
     Ref_ (x.Ref_, f, this),
     Version_ (x.Version_, f, this),
     Lang_ (x.Lang_, f, this)
@@ -6124,7 +6124,7 @@ namespace CDM
   GetLocalizedText (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
     Ref_ (this),
     Version_ (this),
     Lang_ (this)
@@ -6140,7 +6140,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGet::parse (p, f);
+    this->::MDM::AbstractGet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -6252,7 +6252,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGet& > (*this) = x;
+      static_cast< ::MDM::AbstractGet& > (*this) = x;
       this->Ref_ = x.Ref_;
       this->Version_ = x.Version_;
       this->Lang_ = x.Lang_;
@@ -6271,7 +6271,7 @@ namespace CDM
 
   GetLocalizedTextResponse::
   GetLocalizedTextResponse (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     Text_ (this)
   {
   }
@@ -6280,7 +6280,7 @@ namespace CDM
   GetLocalizedTextResponse (const GetLocalizedTextResponse& x,
                             ::xml_schema::Flags f,
                             ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     Text_ (x.Text_, f, this)
   {
   }
@@ -6289,7 +6289,7 @@ namespace CDM
   GetLocalizedTextResponse (const ::xercesc::DOMElement& e,
                             ::xml_schema::Flags f,
                             ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     Text_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -6303,7 +6303,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -6338,7 +6338,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->Text_ = x.Text_;
     }
 
@@ -6355,7 +6355,7 @@ namespace CDM
 
   GetSupportedLanguages::
   GetSupportedLanguages ()
-  : ::CDM::AbstractGet ()
+  : ::MDM::AbstractGet ()
   {
   }
 
@@ -6363,7 +6363,7 @@ namespace CDM
   GetSupportedLanguages (const GetSupportedLanguages& x,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c)
+  : ::MDM::AbstractGet (x, f, c)
   {
   }
 
@@ -6371,7 +6371,7 @@ namespace CDM
   GetSupportedLanguages (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f, c)
+  : ::MDM::AbstractGet (e, f, c)
   {
   }
 
@@ -6392,7 +6392,7 @@ namespace CDM
 
   GetSupportedLanguagesResponse::
   GetSupportedLanguagesResponse (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     Lang_ (this)
   {
   }
@@ -6401,7 +6401,7 @@ namespace CDM
   GetSupportedLanguagesResponse (const GetSupportedLanguagesResponse& x,
                                  ::xml_schema::Flags f,
                                  ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     Lang_ (x.Lang_, f, this)
   {
   }
@@ -6410,7 +6410,7 @@ namespace CDM
   GetSupportedLanguagesResponse (const ::xercesc::DOMElement& e,
                                  ::xml_schema::Flags f,
                                  ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     Lang_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -6424,7 +6424,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -6473,7 +6473,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->Lang_ = x.Lang_;
     }
 
@@ -6490,7 +6490,7 @@ namespace CDM
 
   GetDescriptorsFromArchive::
   GetDescriptorsFromArchive ()
-  : ::CDM::AbstractGet (),
+  : ::MDM::AbstractGet (),
     DescriptorRevisions_ (this),
     TimeFrame_ (this),
     Handle_ (this)
@@ -6501,7 +6501,7 @@ namespace CDM
   GetDescriptorsFromArchive (const GetDescriptorsFromArchive& x,
                              ::xml_schema::Flags f,
                              ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c),
+  : ::MDM::AbstractGet (x, f, c),
     DescriptorRevisions_ (x.DescriptorRevisions_, f, this),
     TimeFrame_ (x.TimeFrame_, f, this),
     Handle_ (x.Handle_, f, this)
@@ -6512,7 +6512,7 @@ namespace CDM
   GetDescriptorsFromArchive (const ::xercesc::DOMElement& e,
                              ::xml_schema::Flags f,
                              ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
     DescriptorRevisions_ (this),
     TimeFrame_ (this),
     Handle_ (this)
@@ -6528,7 +6528,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGet::parse (p, f);
+    this->::MDM::AbstractGet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -6633,7 +6633,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGet& > (*this) = x;
+      static_cast< ::MDM::AbstractGet& > (*this) = x;
       this->DescriptorRevisions_ = x.DescriptorRevisions_;
       this->TimeFrame_ = x.TimeFrame_;
       this->Handle_ = x.Handle_;
@@ -6652,7 +6652,7 @@ namespace CDM
 
   GetDescriptorsFromArchiveResponse::
   GetDescriptorsFromArchiveResponse (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     Descriptor_ (this)
   {
   }
@@ -6661,7 +6661,7 @@ namespace CDM
   GetDescriptorsFromArchiveResponse (const GetDescriptorsFromArchiveResponse& x,
                                      ::xml_schema::Flags f,
                                      ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     Descriptor_ (x.Descriptor_, f, this)
   {
   }
@@ -6670,7 +6670,7 @@ namespace CDM
   GetDescriptorsFromArchiveResponse (const ::xercesc::DOMElement& e,
                                      ::xml_schema::Flags f,
                                      ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     Descriptor_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -6684,7 +6684,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -6733,7 +6733,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->Descriptor_ = x.Descriptor_;
     }
 
@@ -6750,7 +6750,7 @@ namespace CDM
 
   GetStatesFromArchive::
   GetStatesFromArchive ()
-  : ::CDM::AbstractGet (),
+  : ::MDM::AbstractGet (),
     StateRevisions_ (this),
     TimeFrame_ (this),
     Handle_ (this)
@@ -6761,7 +6761,7 @@ namespace CDM
   GetStatesFromArchive (const GetStatesFromArchive& x,
                         ::xml_schema::Flags f,
                         ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c),
+  : ::MDM::AbstractGet (x, f, c),
     StateRevisions_ (x.StateRevisions_, f, this),
     TimeFrame_ (x.TimeFrame_, f, this),
     Handle_ (x.Handle_, f, this)
@@ -6772,7 +6772,7 @@ namespace CDM
   GetStatesFromArchive (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f,
                         ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
     StateRevisions_ (this),
     TimeFrame_ (this),
     Handle_ (this)
@@ -6788,7 +6788,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGet::parse (p, f);
+    this->::MDM::AbstractGet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -6893,7 +6893,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGet& > (*this) = x;
+      static_cast< ::MDM::AbstractGet& > (*this) = x;
       this->StateRevisions_ = x.StateRevisions_;
       this->TimeFrame_ = x.TimeFrame_;
       this->Handle_ = x.Handle_;
@@ -6912,7 +6912,7 @@ namespace CDM
 
   GetStatesFromArchiveResponse::
   GetStatesFromArchiveResponse (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     State_ (this)
   {
   }
@@ -6921,7 +6921,7 @@ namespace CDM
   GetStatesFromArchiveResponse (const GetStatesFromArchiveResponse& x,
                                 ::xml_schema::Flags f,
                                 ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     State_ (x.State_, f, this)
   {
   }
@@ -6930,7 +6930,7 @@ namespace CDM
   GetStatesFromArchiveResponse (const ::xercesc::DOMElement& e,
                                 ::xml_schema::Flags f,
                                 ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     State_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -6944,7 +6944,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -6993,7 +6993,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->State_ = x.State_;
     }
 
@@ -7011,7 +7011,7 @@ namespace CDM
   SetValue::
   SetValue (const OperationHandleRefType& OperationHandleRef,
             const RequestedNumericValueType& RequestedNumericValue)
-  : ::CDM::AbstractSet (OperationHandleRef),
+  : ::MDM::AbstractSet (OperationHandleRef),
     RequestedNumericValue_ (RequestedNumericValue, this)
   {
   }
@@ -7019,7 +7019,7 @@ namespace CDM
   SetValue::
   SetValue (::std::unique_ptr< OperationHandleRefType > OperationHandleRef,
             const RequestedNumericValueType& RequestedNumericValue)
-  : ::CDM::AbstractSet (std::move (OperationHandleRef)),
+  : ::MDM::AbstractSet (std::move (OperationHandleRef)),
     RequestedNumericValue_ (RequestedNumericValue, this)
   {
   }
@@ -7028,7 +7028,7 @@ namespace CDM
   SetValue (const SetValue& x,
             ::xml_schema::Flags f,
             ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (x, f, c),
+  : ::MDM::AbstractSet (x, f, c),
     RequestedNumericValue_ (x.RequestedNumericValue_, f, this)
   {
   }
@@ -7037,7 +7037,7 @@ namespace CDM
   SetValue (const ::xercesc::DOMElement& e,
             ::xml_schema::Flags f,
             ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
     RequestedNumericValue_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -7051,7 +7051,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractSet::parse (p, f);
+    this->::MDM::AbstractSet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -7093,7 +7093,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractSet& > (*this) = x;
+      static_cast< ::MDM::AbstractSet& > (*this) = x;
       this->RequestedNumericValue_ = x.RequestedNumericValue_;
     }
 
@@ -7111,7 +7111,7 @@ namespace CDM
   SetValueResponse::
   SetValueResponse (const InvocationInfoType& InvocationInfo,
                     const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (InvocationInfo,
+  : ::MDM::AbstractSetResponse (InvocationInfo,
                                 SequenceId)
   {
   }
@@ -7119,7 +7119,7 @@ namespace CDM
   SetValueResponse::
   SetValueResponse (::std::unique_ptr< InvocationInfoType > InvocationInfo,
                     const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (std::move (InvocationInfo),
+  : ::MDM::AbstractSetResponse (std::move (InvocationInfo),
                                 SequenceId)
   {
   }
@@ -7128,7 +7128,7 @@ namespace CDM
   SetValueResponse (const SetValueResponse& x,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (x, f, c)
+  : ::MDM::AbstractSetResponse (x, f, c)
   {
   }
 
@@ -7136,7 +7136,7 @@ namespace CDM
   SetValueResponse (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (e, f, c)
+  : ::MDM::AbstractSetResponse (e, f, c)
   {
   }
 
@@ -7158,7 +7158,7 @@ namespace CDM
   SetString::
   SetString (const OperationHandleRefType& OperationHandleRef,
              const RequestedStringValueType& RequestedStringValue)
-  : ::CDM::AbstractSet (OperationHandleRef),
+  : ::MDM::AbstractSet (OperationHandleRef),
     RequestedStringValue_ (RequestedStringValue, this)
   {
   }
@@ -7166,7 +7166,7 @@ namespace CDM
   SetString::
   SetString (::std::unique_ptr< OperationHandleRefType > OperationHandleRef,
              ::std::unique_ptr< RequestedStringValueType > RequestedStringValue)
-  : ::CDM::AbstractSet (std::move (OperationHandleRef)),
+  : ::MDM::AbstractSet (std::move (OperationHandleRef)),
     RequestedStringValue_ (std::move (RequestedStringValue), this)
   {
   }
@@ -7175,7 +7175,7 @@ namespace CDM
   SetString (const SetString& x,
              ::xml_schema::Flags f,
              ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (x, f, c),
+  : ::MDM::AbstractSet (x, f, c),
     RequestedStringValue_ (x.RequestedStringValue_, f, this)
   {
   }
@@ -7184,7 +7184,7 @@ namespace CDM
   SetString (const ::xercesc::DOMElement& e,
              ::xml_schema::Flags f,
              ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
     RequestedStringValue_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -7198,7 +7198,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractSet::parse (p, f);
+    this->::MDM::AbstractSet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -7257,7 +7257,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractSet& > (*this) = x;
+      static_cast< ::MDM::AbstractSet& > (*this) = x;
       this->RequestedStringValue_ = x.RequestedStringValue_;
     }
 
@@ -7275,7 +7275,7 @@ namespace CDM
   SetStringResponse::
   SetStringResponse (const InvocationInfoType& InvocationInfo,
                      const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (InvocationInfo,
+  : ::MDM::AbstractSetResponse (InvocationInfo,
                                 SequenceId)
   {
   }
@@ -7283,7 +7283,7 @@ namespace CDM
   SetStringResponse::
   SetStringResponse (::std::unique_ptr< InvocationInfoType > InvocationInfo,
                      const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (std::move (InvocationInfo),
+  : ::MDM::AbstractSetResponse (std::move (InvocationInfo),
                                 SequenceId)
   {
   }
@@ -7292,7 +7292,7 @@ namespace CDM
   SetStringResponse (const SetStringResponse& x,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (x, f, c)
+  : ::MDM::AbstractSetResponse (x, f, c)
   {
   }
 
@@ -7300,7 +7300,7 @@ namespace CDM
   SetStringResponse (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (e, f, c)
+  : ::MDM::AbstractSetResponse (e, f, c)
   {
   }
 
@@ -7321,14 +7321,14 @@ namespace CDM
 
   Activate::
   Activate (const OperationHandleRefType& OperationHandleRef)
-  : ::CDM::AbstractSet (OperationHandleRef),
+  : ::MDM::AbstractSet (OperationHandleRef),
     Argument_ (this)
   {
   }
 
   Activate::
   Activate (::std::unique_ptr< OperationHandleRefType > OperationHandleRef)
-  : ::CDM::AbstractSet (std::move (OperationHandleRef)),
+  : ::MDM::AbstractSet (std::move (OperationHandleRef)),
     Argument_ (this)
   {
   }
@@ -7337,7 +7337,7 @@ namespace CDM
   Activate (const Activate& x,
             ::xml_schema::Flags f,
             ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (x, f, c),
+  : ::MDM::AbstractSet (x, f, c),
     Argument_ (x.Argument_, f, this)
   {
   }
@@ -7346,7 +7346,7 @@ namespace CDM
   Activate (const ::xercesc::DOMElement& e,
             ::xml_schema::Flags f,
             ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
     Argument_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -7360,7 +7360,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractSet::parse (p, f);
+    this->::MDM::AbstractSet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -7395,7 +7395,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractSet& > (*this) = x;
+      static_cast< ::MDM::AbstractSet& > (*this) = x;
       this->Argument_ = x.Argument_;
     }
 
@@ -7413,7 +7413,7 @@ namespace CDM
   ActivateResponse::
   ActivateResponse (const InvocationInfoType& InvocationInfo,
                     const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (InvocationInfo,
+  : ::MDM::AbstractSetResponse (InvocationInfo,
                                 SequenceId)
   {
   }
@@ -7421,7 +7421,7 @@ namespace CDM
   ActivateResponse::
   ActivateResponse (::std::unique_ptr< InvocationInfoType > InvocationInfo,
                     const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (std::move (InvocationInfo),
+  : ::MDM::AbstractSetResponse (std::move (InvocationInfo),
                                 SequenceId)
   {
   }
@@ -7430,7 +7430,7 @@ namespace CDM
   ActivateResponse (const ActivateResponse& x,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (x, f, c)
+  : ::MDM::AbstractSetResponse (x, f, c)
   {
   }
 
@@ -7438,7 +7438,7 @@ namespace CDM
   ActivateResponse (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f,
                     ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (e, f, c)
+  : ::MDM::AbstractSetResponse (e, f, c)
   {
   }
 
@@ -7460,7 +7460,7 @@ namespace CDM
   SetAlertState::
   SetAlertState (const OperationHandleRefType& OperationHandleRef,
                  const ProposedAlertStateType& ProposedAlertState)
-  : ::CDM::AbstractSet (OperationHandleRef),
+  : ::MDM::AbstractSet (OperationHandleRef),
     ProposedAlertState_ (ProposedAlertState, this)
   {
   }
@@ -7468,7 +7468,7 @@ namespace CDM
   SetAlertState::
   SetAlertState (const OperationHandleRefType& OperationHandleRef,
                  ::std::unique_ptr< ProposedAlertStateType > ProposedAlertState)
-  : ::CDM::AbstractSet (OperationHandleRef),
+  : ::MDM::AbstractSet (OperationHandleRef),
     ProposedAlertState_ (std::move (ProposedAlertState), this)
   {
   }
@@ -7476,7 +7476,7 @@ namespace CDM
   SetAlertState::
   SetAlertState (::std::unique_ptr< OperationHandleRefType > OperationHandleRef,
                  ::std::unique_ptr< ProposedAlertStateType > ProposedAlertState)
-  : ::CDM::AbstractSet (std::move (OperationHandleRef)),
+  : ::MDM::AbstractSet (std::move (OperationHandleRef)),
     ProposedAlertState_ (std::move (ProposedAlertState), this)
   {
   }
@@ -7485,7 +7485,7 @@ namespace CDM
   SetAlertState (const SetAlertState& x,
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (x, f, c),
+  : ::MDM::AbstractSet (x, f, c),
     ProposedAlertState_ (x.ProposedAlertState_, f, this)
   {
   }
@@ -7494,7 +7494,7 @@ namespace CDM
   SetAlertState (const ::xercesc::DOMElement& e,
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
     ProposedAlertState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -7508,7 +7508,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractSet::parse (p, f);
+    this->::MDM::AbstractSet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -7567,7 +7567,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractSet& > (*this) = x;
+      static_cast< ::MDM::AbstractSet& > (*this) = x;
       this->ProposedAlertState_ = x.ProposedAlertState_;
     }
 
@@ -7585,7 +7585,7 @@ namespace CDM
   SetAlertStateResponse::
   SetAlertStateResponse (const InvocationInfoType& InvocationInfo,
                          const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (InvocationInfo,
+  : ::MDM::AbstractSetResponse (InvocationInfo,
                                 SequenceId)
   {
   }
@@ -7593,7 +7593,7 @@ namespace CDM
   SetAlertStateResponse::
   SetAlertStateResponse (::std::unique_ptr< InvocationInfoType > InvocationInfo,
                          const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (std::move (InvocationInfo),
+  : ::MDM::AbstractSetResponse (std::move (InvocationInfo),
                                 SequenceId)
   {
   }
@@ -7602,7 +7602,7 @@ namespace CDM
   SetAlertStateResponse (const SetAlertStateResponse& x,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (x, f, c)
+  : ::MDM::AbstractSetResponse (x, f, c)
   {
   }
 
@@ -7610,7 +7610,7 @@ namespace CDM
   SetAlertStateResponse (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (e, f, c)
+  : ::MDM::AbstractSetResponse (e, f, c)
   {
   }
 
@@ -7631,14 +7631,14 @@ namespace CDM
 
   SetComponentState::
   SetComponentState (const OperationHandleRefType& OperationHandleRef)
-  : ::CDM::AbstractSet (OperationHandleRef),
+  : ::MDM::AbstractSet (OperationHandleRef),
     ProposedComponentState_ (this)
   {
   }
 
   SetComponentState::
   SetComponentState (::std::unique_ptr< OperationHandleRefType > OperationHandleRef)
-  : ::CDM::AbstractSet (std::move (OperationHandleRef)),
+  : ::MDM::AbstractSet (std::move (OperationHandleRef)),
     ProposedComponentState_ (this)
   {
   }
@@ -7647,7 +7647,7 @@ namespace CDM
   SetComponentState (const SetComponentState& x,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (x, f, c),
+  : ::MDM::AbstractSet (x, f, c),
     ProposedComponentState_ (x.ProposedComponentState_, f, this)
   {
   }
@@ -7656,7 +7656,7 @@ namespace CDM
   SetComponentState (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
     ProposedComponentState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -7670,7 +7670,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractSet::parse (p, f);
+    this->::MDM::AbstractSet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -7719,7 +7719,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractSet& > (*this) = x;
+      static_cast< ::MDM::AbstractSet& > (*this) = x;
       this->ProposedComponentState_ = x.ProposedComponentState_;
     }
 
@@ -7737,7 +7737,7 @@ namespace CDM
   SetComponentStateResponse::
   SetComponentStateResponse (const InvocationInfoType& InvocationInfo,
                              const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (InvocationInfo,
+  : ::MDM::AbstractSetResponse (InvocationInfo,
                                 SequenceId)
   {
   }
@@ -7745,7 +7745,7 @@ namespace CDM
   SetComponentStateResponse::
   SetComponentStateResponse (::std::unique_ptr< InvocationInfoType > InvocationInfo,
                              const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (std::move (InvocationInfo),
+  : ::MDM::AbstractSetResponse (std::move (InvocationInfo),
                                 SequenceId)
   {
   }
@@ -7754,7 +7754,7 @@ namespace CDM
   SetComponentStateResponse (const SetComponentStateResponse& x,
                              ::xml_schema::Flags f,
                              ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (x, f, c)
+  : ::MDM::AbstractSetResponse (x, f, c)
   {
   }
 
@@ -7762,7 +7762,7 @@ namespace CDM
   SetComponentStateResponse (const ::xercesc::DOMElement& e,
                              ::xml_schema::Flags f,
                              ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (e, f, c)
+  : ::MDM::AbstractSetResponse (e, f, c)
   {
   }
 
@@ -7783,14 +7783,14 @@ namespace CDM
 
   SetMetricState::
   SetMetricState (const OperationHandleRefType& OperationHandleRef)
-  : ::CDM::AbstractSet (OperationHandleRef),
+  : ::MDM::AbstractSet (OperationHandleRef),
     ProposedMetricState_ (this)
   {
   }
 
   SetMetricState::
   SetMetricState (::std::unique_ptr< OperationHandleRefType > OperationHandleRef)
-  : ::CDM::AbstractSet (std::move (OperationHandleRef)),
+  : ::MDM::AbstractSet (std::move (OperationHandleRef)),
     ProposedMetricState_ (this)
   {
   }
@@ -7799,7 +7799,7 @@ namespace CDM
   SetMetricState (const SetMetricState& x,
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (x, f, c),
+  : ::MDM::AbstractSet (x, f, c),
     ProposedMetricState_ (x.ProposedMetricState_, f, this)
   {
   }
@@ -7808,7 +7808,7 @@ namespace CDM
   SetMetricState (const ::xercesc::DOMElement& e,
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
-  : ::CDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractSet (e, f | ::xml_schema::Flags::base, c),
     ProposedMetricState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -7822,7 +7822,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractSet::parse (p, f);
+    this->::MDM::AbstractSet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -7871,7 +7871,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractSet& > (*this) = x;
+      static_cast< ::MDM::AbstractSet& > (*this) = x;
       this->ProposedMetricState_ = x.ProposedMetricState_;
     }
 
@@ -7889,7 +7889,7 @@ namespace CDM
   SetMetricStateResponse::
   SetMetricStateResponse (const InvocationInfoType& InvocationInfo,
                           const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (InvocationInfo,
+  : ::MDM::AbstractSetResponse (InvocationInfo,
                                 SequenceId)
   {
   }
@@ -7897,7 +7897,7 @@ namespace CDM
   SetMetricStateResponse::
   SetMetricStateResponse (::std::unique_ptr< InvocationInfoType > InvocationInfo,
                           const SequenceIdType& SequenceId)
-  : ::CDM::AbstractSetResponse (std::move (InvocationInfo),
+  : ::MDM::AbstractSetResponse (std::move (InvocationInfo),
                                 SequenceId)
   {
   }
@@ -7906,7 +7906,7 @@ namespace CDM
   SetMetricStateResponse (const SetMetricStateResponse& x,
                           ::xml_schema::Flags f,
                           ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (x, f, c)
+  : ::MDM::AbstractSetResponse (x, f, c)
   {
   }
 
@@ -7914,7 +7914,7 @@ namespace CDM
   SetMetricStateResponse (const ::xercesc::DOMElement& e,
                           ::xml_schema::Flags f,
                           ::xml_schema::Container* c)
-  : ::CDM::AbstractSetResponse (e, f, c)
+  : ::MDM::AbstractSetResponse (e, f, c)
   {
   }
 
@@ -7935,7 +7935,7 @@ namespace CDM
 
   OperationInvokedReport::
   OperationInvokedReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     ReportPart_ (this)
   {
   }
@@ -7944,7 +7944,7 @@ namespace CDM
   OperationInvokedReport (const OperationInvokedReport& x,
                           ::xml_schema::Flags f,
                           ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     ReportPart_ (x.ReportPart_, f, this)
   {
   }
@@ -7953,7 +7953,7 @@ namespace CDM
   OperationInvokedReport (const ::xercesc::DOMElement& e,
                           ::xml_schema::Flags f,
                           ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     ReportPart_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -7967,7 +7967,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -8002,7 +8002,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->ReportPart_ = x.ReportPart_;
     }
 
@@ -8019,7 +8019,7 @@ namespace CDM
 
   GetContainmentTree::
   GetContainmentTree ()
-  : ::CDM::AbstractGet (),
+  : ::MDM::AbstractGet (),
     HandleRef_ (this)
   {
   }
@@ -8028,7 +8028,7 @@ namespace CDM
   GetContainmentTree (const GetContainmentTree& x,
                       ::xml_schema::Flags f,
                       ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c),
+  : ::MDM::AbstractGet (x, f, c),
     HandleRef_ (x.HandleRef_, f, this)
   {
   }
@@ -8037,7 +8037,7 @@ namespace CDM
   GetContainmentTree (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f,
                       ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
     HandleRef_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -8051,7 +8051,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGet::parse (p, f);
+    this->::MDM::AbstractGet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -8100,7 +8100,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGet& > (*this) = x;
+      static_cast< ::MDM::AbstractGet& > (*this) = x;
       this->HandleRef_ = x.HandleRef_;
     }
 
@@ -8118,7 +8118,7 @@ namespace CDM
   GetContainmentTreeResponse::
   GetContainmentTreeResponse (const SequenceIdType& SequenceId,
                               const ContainmentTreeType& ContainmentTree)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     ContainmentTree_ (ContainmentTree, this)
   {
   }
@@ -8126,7 +8126,7 @@ namespace CDM
   GetContainmentTreeResponse::
   GetContainmentTreeResponse (const SequenceIdType& SequenceId,
                               ::std::unique_ptr< ContainmentTreeType > ContainmentTree)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     ContainmentTree_ (std::move (ContainmentTree), this)
   {
   }
@@ -8135,7 +8135,7 @@ namespace CDM
   GetContainmentTreeResponse (const GetContainmentTreeResponse& x,
                               ::xml_schema::Flags f,
                               ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     ContainmentTree_ (x.ContainmentTree_, f, this)
   {
   }
@@ -8144,7 +8144,7 @@ namespace CDM
   GetContainmentTreeResponse (const ::xercesc::DOMElement& e,
                               ::xml_schema::Flags f,
                               ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     ContainmentTree_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -8158,7 +8158,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -8217,7 +8217,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->ContainmentTree_ = x.ContainmentTree_;
     }
 
@@ -8234,7 +8234,7 @@ namespace CDM
 
   GetDescriptor::
   GetDescriptor ()
-  : ::CDM::AbstractGet (),
+  : ::MDM::AbstractGet (),
     HandleRef_ (this)
   {
   }
@@ -8243,7 +8243,7 @@ namespace CDM
   GetDescriptor (const GetDescriptor& x,
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (x, f, c),
+  : ::MDM::AbstractGet (x, f, c),
     HandleRef_ (x.HandleRef_, f, this)
   {
   }
@@ -8252,7 +8252,7 @@ namespace CDM
   GetDescriptor (const ::xercesc::DOMElement& e,
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
-  : ::CDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGet (e, f | ::xml_schema::Flags::base, c),
     HandleRef_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -8266,7 +8266,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGet::parse (p, f);
+    this->::MDM::AbstractGet::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -8315,7 +8315,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGet& > (*this) = x;
+      static_cast< ::MDM::AbstractGet& > (*this) = x;
       this->HandleRef_ = x.HandleRef_;
     }
 
@@ -8332,7 +8332,7 @@ namespace CDM
 
   GetDescriptorResponse::
   GetDescriptorResponse (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractGetResponse (SequenceId),
+  : ::MDM::AbstractGetResponse (SequenceId),
     Descriptor_ (this)
   {
   }
@@ -8341,7 +8341,7 @@ namespace CDM
   GetDescriptorResponse (const GetDescriptorResponse& x,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (x, f, c),
+  : ::MDM::AbstractGetResponse (x, f, c),
     Descriptor_ (x.Descriptor_, f, this)
   {
   }
@@ -8350,7 +8350,7 @@ namespace CDM
   GetDescriptorResponse (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractGetResponse (e, f | ::xml_schema::Flags::base, c),
     Descriptor_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -8364,7 +8364,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractGetResponse::parse (p, f);
+    this->::MDM::AbstractGetResponse::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -8413,7 +8413,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractGetResponse& > (*this) = x;
+      static_cast< ::MDM::AbstractGetResponse& > (*this) = x;
       this->Descriptor_ = x.Descriptor_;
     }
 
@@ -8430,7 +8430,7 @@ namespace CDM
 
   ReportPart1::
   ReportPart1 ()
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     MetricState_ (this)
   {
   }
@@ -8439,7 +8439,7 @@ namespace CDM
   ReportPart1 (const ReportPart1& x,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (x, f, c),
+  : ::MDM::AbstractReportPart (x, f, c),
     MetricState_ (x.MetricState_, f, this)
   {
   }
@@ -8448,7 +8448,7 @@ namespace CDM
   ReportPart1 (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
     MetricState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -8462,7 +8462,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReportPart::parse (p, f);
+    this->::MDM::AbstractReportPart::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -8511,7 +8511,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReportPart& > (*this) = x;
+      static_cast< ::MDM::AbstractReportPart& > (*this) = x;
       this->MetricState_ = x.MetricState_;
     }
 
@@ -8528,7 +8528,7 @@ namespace CDM
 
   EpisodicMetricReport::
   EpisodicMetricReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractMetricReport (SequenceId)
+  : ::MDM::AbstractMetricReport (SequenceId)
   {
   }
 
@@ -8536,7 +8536,7 @@ namespace CDM
   EpisodicMetricReport (const EpisodicMetricReport& x,
                         ::xml_schema::Flags f,
                         ::xml_schema::Container* c)
-  : ::CDM::AbstractMetricReport (x, f, c)
+  : ::MDM::AbstractMetricReport (x, f, c)
   {
   }
 
@@ -8544,7 +8544,7 @@ namespace CDM
   EpisodicMetricReport (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f,
                         ::xml_schema::Container* c)
-  : ::CDM::AbstractMetricReport (e, f, c)
+  : ::MDM::AbstractMetricReport (e, f, c)
   {
   }
 
@@ -8565,7 +8565,7 @@ namespace CDM
 
   PeriodicMetricReport::
   PeriodicMetricReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractMetricReport (SequenceId)
+  : ::MDM::AbstractMetricReport (SequenceId)
   {
   }
 
@@ -8573,7 +8573,7 @@ namespace CDM
   PeriodicMetricReport (const PeriodicMetricReport& x,
                         ::xml_schema::Flags f,
                         ::xml_schema::Container* c)
-  : ::CDM::AbstractMetricReport (x, f, c)
+  : ::MDM::AbstractMetricReport (x, f, c)
   {
   }
 
@@ -8581,7 +8581,7 @@ namespace CDM
   PeriodicMetricReport (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f,
                         ::xml_schema::Container* c)
-  : ::CDM::AbstractMetricReport (e, f, c)
+  : ::MDM::AbstractMetricReport (e, f, c)
   {
   }
 
@@ -8602,7 +8602,7 @@ namespace CDM
 
   ReportPart2::
   ReportPart2 ()
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     ComponentState_ (this)
   {
   }
@@ -8611,7 +8611,7 @@ namespace CDM
   ReportPart2 (const ReportPart2& x,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (x, f, c),
+  : ::MDM::AbstractReportPart (x, f, c),
     ComponentState_ (x.ComponentState_, f, this)
   {
   }
@@ -8620,7 +8620,7 @@ namespace CDM
   ReportPart2 (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
     ComponentState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -8634,7 +8634,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReportPart::parse (p, f);
+    this->::MDM::AbstractReportPart::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -8683,7 +8683,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReportPart& > (*this) = x;
+      static_cast< ::MDM::AbstractReportPart& > (*this) = x;
       this->ComponentState_ = x.ComponentState_;
     }
 
@@ -8700,7 +8700,7 @@ namespace CDM
 
   EpisodicComponentReport::
   EpisodicComponentReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractComponentReport (SequenceId)
+  : ::MDM::AbstractComponentReport (SequenceId)
   {
   }
 
@@ -8708,7 +8708,7 @@ namespace CDM
   EpisodicComponentReport (const EpisodicComponentReport& x,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractComponentReport (x, f, c)
+  : ::MDM::AbstractComponentReport (x, f, c)
   {
   }
 
@@ -8716,7 +8716,7 @@ namespace CDM
   EpisodicComponentReport (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractComponentReport (e, f, c)
+  : ::MDM::AbstractComponentReport (e, f, c)
   {
   }
 
@@ -8737,7 +8737,7 @@ namespace CDM
 
   PeriodicComponentReport::
   PeriodicComponentReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractComponentReport (SequenceId)
+  : ::MDM::AbstractComponentReport (SequenceId)
   {
   }
 
@@ -8745,7 +8745,7 @@ namespace CDM
   PeriodicComponentReport (const PeriodicComponentReport& x,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractComponentReport (x, f, c)
+  : ::MDM::AbstractComponentReport (x, f, c)
   {
   }
 
@@ -8753,7 +8753,7 @@ namespace CDM
   PeriodicComponentReport (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractComponentReport (e, f, c)
+  : ::MDM::AbstractComponentReport (e, f, c)
   {
   }
 
@@ -8774,7 +8774,7 @@ namespace CDM
 
   ReportPart3::
   ReportPart3 ()
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     AlertState_ (this)
   {
   }
@@ -8783,7 +8783,7 @@ namespace CDM
   ReportPart3 (const ReportPart3& x,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (x, f, c),
+  : ::MDM::AbstractReportPart (x, f, c),
     AlertState_ (x.AlertState_, f, this)
   {
   }
@@ -8792,7 +8792,7 @@ namespace CDM
   ReportPart3 (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
     AlertState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -8806,7 +8806,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReportPart::parse (p, f);
+    this->::MDM::AbstractReportPart::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -8855,7 +8855,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReportPart& > (*this) = x;
+      static_cast< ::MDM::AbstractReportPart& > (*this) = x;
       this->AlertState_ = x.AlertState_;
     }
 
@@ -8872,7 +8872,7 @@ namespace CDM
 
   EpisodicAlertReport::
   EpisodicAlertReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractAlertReport (SequenceId)
+  : ::MDM::AbstractAlertReport (SequenceId)
   {
   }
 
@@ -8880,7 +8880,7 @@ namespace CDM
   EpisodicAlertReport (const EpisodicAlertReport& x,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-  : ::CDM::AbstractAlertReport (x, f, c)
+  : ::MDM::AbstractAlertReport (x, f, c)
   {
   }
 
@@ -8888,7 +8888,7 @@ namespace CDM
   EpisodicAlertReport (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-  : ::CDM::AbstractAlertReport (e, f, c)
+  : ::MDM::AbstractAlertReport (e, f, c)
   {
   }
 
@@ -8909,7 +8909,7 @@ namespace CDM
 
   PeriodicAlertReport::
   PeriodicAlertReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractAlertReport (SequenceId)
+  : ::MDM::AbstractAlertReport (SequenceId)
   {
   }
 
@@ -8917,7 +8917,7 @@ namespace CDM
   PeriodicAlertReport (const PeriodicAlertReport& x,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-  : ::CDM::AbstractAlertReport (x, f, c)
+  : ::MDM::AbstractAlertReport (x, f, c)
   {
   }
 
@@ -8925,7 +8925,7 @@ namespace CDM
   PeriodicAlertReport (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-  : ::CDM::AbstractAlertReport (e, f, c)
+  : ::MDM::AbstractAlertReport (e, f, c)
   {
   }
 
@@ -8946,7 +8946,7 @@ namespace CDM
 
   ReportPart4::
   ReportPart4 ()
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     OperationState_ (this)
   {
   }
@@ -8955,7 +8955,7 @@ namespace CDM
   ReportPart4 (const ReportPart4& x,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (x, f, c),
+  : ::MDM::AbstractReportPart (x, f, c),
     OperationState_ (x.OperationState_, f, this)
   {
   }
@@ -8964,7 +8964,7 @@ namespace CDM
   ReportPart4 (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
     OperationState_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -8978,7 +8978,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReportPart::parse (p, f);
+    this->::MDM::AbstractReportPart::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -9027,7 +9027,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReportPart& > (*this) = x;
+      static_cast< ::MDM::AbstractReportPart& > (*this) = x;
       this->OperationState_ = x.OperationState_;
     }
 
@@ -9044,7 +9044,7 @@ namespace CDM
 
   EpisodicOperationalStateReport::
   EpisodicOperationalStateReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractOperationalStateReport (SequenceId)
+  : ::MDM::AbstractOperationalStateReport (SequenceId)
   {
   }
 
@@ -9052,7 +9052,7 @@ namespace CDM
   EpisodicOperationalStateReport (const EpisodicOperationalStateReport& x,
                                   ::xml_schema::Flags f,
                                   ::xml_schema::Container* c)
-  : ::CDM::AbstractOperationalStateReport (x, f, c)
+  : ::MDM::AbstractOperationalStateReport (x, f, c)
   {
   }
 
@@ -9060,7 +9060,7 @@ namespace CDM
   EpisodicOperationalStateReport (const ::xercesc::DOMElement& e,
                                   ::xml_schema::Flags f,
                                   ::xml_schema::Container* c)
-  : ::CDM::AbstractOperationalStateReport (e, f, c)
+  : ::MDM::AbstractOperationalStateReport (e, f, c)
   {
   }
 
@@ -9081,7 +9081,7 @@ namespace CDM
 
   PeriodicOperationalStateReport::
   PeriodicOperationalStateReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractOperationalStateReport (SequenceId)
+  : ::MDM::AbstractOperationalStateReport (SequenceId)
   {
   }
 
@@ -9089,7 +9089,7 @@ namespace CDM
   PeriodicOperationalStateReport (const PeriodicOperationalStateReport& x,
                                   ::xml_schema::Flags f,
                                   ::xml_schema::Container* c)
-  : ::CDM::AbstractOperationalStateReport (x, f, c)
+  : ::MDM::AbstractOperationalStateReport (x, f, c)
   {
   }
 
@@ -9097,7 +9097,7 @@ namespace CDM
   PeriodicOperationalStateReport (const ::xercesc::DOMElement& e,
                                   ::xml_schema::Flags f,
                                   ::xml_schema::Container* c)
-  : ::CDM::AbstractOperationalStateReport (e, f, c)
+  : ::MDM::AbstractOperationalStateReport (e, f, c)
   {
   }
 
@@ -9118,7 +9118,7 @@ namespace CDM
 
   SystemErrorReport::
   SystemErrorReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     ReportPart_ (this)
   {
   }
@@ -9127,7 +9127,7 @@ namespace CDM
   SystemErrorReport (const SystemErrorReport& x,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     ReportPart_ (x.ReportPart_, f, this)
   {
   }
@@ -9136,7 +9136,7 @@ namespace CDM
   SystemErrorReport (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     ReportPart_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -9150,7 +9150,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -9185,7 +9185,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->ReportPart_ = x.ReportPart_;
     }
 
@@ -9202,7 +9202,7 @@ namespace CDM
 
   DescriptionModificationReport::
   DescriptionModificationReport (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     ReportPart_ (this)
   {
   }
@@ -9211,7 +9211,7 @@ namespace CDM
   DescriptionModificationReport (const DescriptionModificationReport& x,
                                  ::xml_schema::Flags f,
                                  ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     ReportPart_ (x.ReportPart_, f, this)
   {
   }
@@ -9220,7 +9220,7 @@ namespace CDM
   DescriptionModificationReport (const ::xercesc::DOMElement& e,
                                  ::xml_schema::Flags f,
                                  ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     ReportPart_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -9234,7 +9234,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -9269,7 +9269,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->ReportPart_ = x.ReportPart_;
     }
 
@@ -9286,7 +9286,7 @@ namespace CDM
 
   WaveformStream::
   WaveformStream (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     State_ (this)
   {
   }
@@ -9295,7 +9295,7 @@ namespace CDM
   WaveformStream (const WaveformStream& x,
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     State_ (x.State_, f, this)
   {
   }
@@ -9304,7 +9304,7 @@ namespace CDM
   WaveformStream (const ::xercesc::DOMElement& e,
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     State_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -9318,7 +9318,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -9367,7 +9367,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->State_ = x.State_;
     }
 
@@ -9384,7 +9384,7 @@ namespace CDM
 
   ObservedValueStream::
   ObservedValueStream (const SequenceIdType& SequenceId)
-  : ::CDM::AbstractReport (SequenceId),
+  : ::MDM::AbstractReport (SequenceId),
     Value_ (this)
   {
   }
@@ -9393,7 +9393,7 @@ namespace CDM
   ObservedValueStream (const ObservedValueStream& x,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (x, f, c),
+  : ::MDM::AbstractReport (x, f, c),
     Value_ (x.Value_, f, this)
   {
   }
@@ -9402,7 +9402,7 @@ namespace CDM
   ObservedValueStream (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f,
                        ::xml_schema::Container* c)
-  : ::CDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReport (e, f | ::xml_schema::Flags::base, c),
     Value_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -9416,7 +9416,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReport::parse (p, f);
+    this->::MDM::AbstractReport::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -9451,7 +9451,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReport& > (*this) = x;
+      static_cast< ::MDM::AbstractReport& > (*this) = x;
       this->Value_ = x.Value_;
     }
 
@@ -9807,7 +9807,7 @@ namespace CDM
   ReportPart5::
   ReportPart5 (const InvocationInfoType& InvocationInfo,
                const OperationHandleRefType& OperationHandleRef)
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     InvocationInfo_ (InvocationInfo, this),
     OperationHandleRef_ (OperationHandleRef, this),
     OperationTarget_ (this)
@@ -9817,7 +9817,7 @@ namespace CDM
   ReportPart5::
   ReportPart5 (::std::unique_ptr< InvocationInfoType > InvocationInfo,
                const OperationHandleRefType& OperationHandleRef)
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     InvocationInfo_ (std::move (InvocationInfo), this),
     OperationHandleRef_ (OperationHandleRef, this),
     OperationTarget_ (this)
@@ -9828,7 +9828,7 @@ namespace CDM
   ReportPart5 (const ReportPart5& x,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (x, f, c),
+  : ::MDM::AbstractReportPart (x, f, c),
     InvocationInfo_ (x.InvocationInfo_, f, this),
     OperationHandleRef_ (x.OperationHandleRef_, f, this),
     OperationTarget_ (x.OperationTarget_, f, this)
@@ -9839,7 +9839,7 @@ namespace CDM
   ReportPart5 (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
     InvocationInfo_ (this),
     OperationHandleRef_ (this),
     OperationTarget_ (this)
@@ -9855,7 +9855,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReportPart::parse (p, f);
+    this->::MDM::AbstractReportPart::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -9940,7 +9940,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReportPart& > (*this) = x;
+      static_cast< ::MDM::AbstractReportPart& > (*this) = x;
       this->InvocationInfo_ = x.InvocationInfo_;
       this->OperationHandleRef_ = x.OperationHandleRef_;
       this->OperationTarget_ = x.OperationTarget_;
@@ -9959,7 +9959,7 @@ namespace CDM
 
   ReportPart6::
   ReportPart6 (const ErrorCodeType& ErrorCode)
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     ErrorCode_ (ErrorCode, this),
     ErrorInfo_ (this)
   {
@@ -9967,7 +9967,7 @@ namespace CDM
 
   ReportPart6::
   ReportPart6 (::std::unique_ptr< ErrorCodeType > ErrorCode)
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     ErrorCode_ (std::move (ErrorCode), this),
     ErrorInfo_ (this)
   {
@@ -9977,7 +9977,7 @@ namespace CDM
   ReportPart6 (const ReportPart6& x,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (x, f, c),
+  : ::MDM::AbstractReportPart (x, f, c),
     ErrorCode_ (x.ErrorCode_, f, this),
     ErrorInfo_ (x.ErrorInfo_, f, this)
   {
@@ -9987,7 +9987,7 @@ namespace CDM
   ReportPart6 (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
     ErrorCode_ (this),
     ErrorInfo_ (this)
   {
@@ -10002,7 +10002,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReportPart::parse (p, f);
+    this->::MDM::AbstractReportPart::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -10089,7 +10089,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReportPart& > (*this) = x;
+      static_cast< ::MDM::AbstractReportPart& > (*this) = x;
       this->ErrorCode_ = x.ErrorCode_;
       this->ErrorInfo_ = x.ErrorInfo_;
     }
@@ -10107,7 +10107,7 @@ namespace CDM
 
   ReportPart7::
   ReportPart7 ()
-  : ::CDM::AbstractReportPart (),
+  : ::MDM::AbstractReportPart (),
     Descriptor_ (this),
     State_ (this),
     ParentDescriptor_ (this),
@@ -10119,7 +10119,7 @@ namespace CDM
   ReportPart7 (const ReportPart7& x,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (x, f, c),
+  : ::MDM::AbstractReportPart (x, f, c),
     Descriptor_ (x.Descriptor_, f, this),
     State_ (x.State_, f, this),
     ParentDescriptor_ (x.ParentDescriptor_, f, this),
@@ -10131,7 +10131,7 @@ namespace CDM
   ReportPart7 (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f,
                ::xml_schema::Container* c)
-  : ::CDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
+  : ::MDM::AbstractReportPart (e, f | ::xml_schema::Flags::base, c),
     Descriptor_ (this),
     State_ (this),
     ParentDescriptor_ (this),
@@ -10148,7 +10148,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractReportPart::parse (p, f);
+    this->::MDM::AbstractReportPart::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -10241,7 +10241,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractReportPart& > (*this) = x;
+      static_cast< ::MDM::AbstractReportPart& > (*this) = x;
       this->Descriptor_ = x.Descriptor_;
       this->State_ = x.State_;
       this->ParentDescriptor_ = x.ParentDescriptor_;
@@ -10384,9 +10384,9 @@ namespace CDM
 #include <xsd/cxx/xml/sax/std-input-source.hxx>
 #include <xsd/cxx/tree/error-handler.hxx>
 
-namespace CDM
+namespace MDM
 {
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (const ::std::string& u,
             ::xml_schema::Flags f,
             const ::xml_schema::Properties& p)
@@ -10403,12 +10403,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdib > (
-      ::CDM::GetMdib_ (
+    return ::std::unique_ptr< ::MDM::GetMdib > (
+      ::MDM::GetMdib_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (const ::std::string& u,
             ::xml_schema::ErrorHandler& h,
             ::xml_schema::Flags f,
@@ -10425,12 +10425,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdib > (
-      ::CDM::GetMdib_ (
+    return ::std::unique_ptr< ::MDM::GetMdib > (
+      ::MDM::GetMdib_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (const ::std::string& u,
             ::xercesc::DOMErrorHandler& h,
             ::xml_schema::Flags f,
@@ -10443,12 +10443,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdib > (
-      ::CDM::GetMdib_ (
+    return ::std::unique_ptr< ::MDM::GetMdib > (
+      ::MDM::GetMdib_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::std::istream& is,
             ::xml_schema::Flags f,
             const ::xml_schema::Properties& p)
@@ -10458,10 +10458,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdib_ (isrc, f, p);
+    return ::MDM::GetMdib_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::std::istream& is,
             ::xml_schema::ErrorHandler& h,
             ::xml_schema::Flags f,
@@ -10472,20 +10472,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdib_ (isrc, h, f, p);
+    return ::MDM::GetMdib_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::std::istream& is,
             ::xercesc::DOMErrorHandler& h,
             ::xml_schema::Flags f,
             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdib_ (isrc, h, f, p);
+    return ::MDM::GetMdib_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::std::istream& is,
             const ::std::string& sid,
             ::xml_schema::Flags f,
@@ -10496,10 +10496,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdib_ (isrc, f, p);
+    return ::MDM::GetMdib_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::std::istream& is,
             const ::std::string& sid,
             ::xml_schema::ErrorHandler& h,
@@ -10511,10 +10511,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdib_ (isrc, h, f, p);
+    return ::MDM::GetMdib_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::std::istream& is,
             const ::std::string& sid,
             ::xercesc::DOMErrorHandler& h,
@@ -10522,10 +10522,10 @@ namespace CDM
             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdib_ (isrc, h, f, p);
+    return ::MDM::GetMdib_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::xercesc::InputSource& i,
             ::xml_schema::Flags f,
             const ::xml_schema::Properties& p)
@@ -10538,12 +10538,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdib > (
-      ::CDM::GetMdib_ (
+    return ::std::unique_ptr< ::MDM::GetMdib > (
+      ::MDM::GetMdib_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::xercesc::InputSource& i,
             ::xml_schema::ErrorHandler& h,
             ::xml_schema::Flags f,
@@ -10556,12 +10556,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdib > (
-      ::CDM::GetMdib_ (
+    return ::std::unique_ptr< ::MDM::GetMdib > (
+      ::MDM::GetMdib_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::xercesc::InputSource& i,
             ::xercesc::DOMErrorHandler& h,
             ::xml_schema::Flags f,
@@ -10574,12 +10574,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdib > (
-      ::CDM::GetMdib_ (
+    return ::std::unique_ptr< ::MDM::GetMdib > (
+      ::MDM::GetMdib_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (const ::xercesc::DOMDocument& doc,
             ::xml_schema::Flags f,
             const ::xml_schema::Properties& p)
@@ -10589,8 +10589,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetMdib > (
-        ::CDM::GetMdib_ (
+      return ::std::unique_ptr< ::MDM::GetMdib > (
+        ::MDM::GetMdib_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -10601,8 +10601,8 @@ namespace CDM
     if (n.name () == "GetMdib" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdib > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdib, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdib > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdib, char >::create (
           e, f, 0));
       return r;
     }
@@ -10614,7 +10614,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdib >
+  ::std::unique_ptr< ::MDM::GetMdib >
   GetMdib_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
             ::xml_schema::Flags f,
             const ::xml_schema::Properties&)
@@ -10639,8 +10639,8 @@ namespace CDM
     if (n.name () == "GetMdib" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdib > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdib, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdib > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdib, char >::create (
           e, f, 0));
       return r;
     }
@@ -10652,7 +10652,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (const ::std::string& u,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
@@ -10669,12 +10669,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdibResponse > (
-      ::CDM::GetMdibResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
+      ::MDM::GetMdibResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (const ::std::string& u,
                     ::xml_schema::ErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -10691,12 +10691,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdibResponse > (
-      ::CDM::GetMdibResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
+      ::MDM::GetMdibResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (const ::std::string& u,
                     ::xercesc::DOMErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -10709,12 +10709,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdibResponse > (
-      ::CDM::GetMdibResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
+      ::MDM::GetMdibResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::std::istream& is,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
@@ -10724,10 +10724,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdibResponse_ (isrc, f, p);
+    return ::MDM::GetMdibResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::std::istream& is,
                     ::xml_schema::ErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -10738,20 +10738,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdibResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdibResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::std::istream& is,
                     ::xercesc::DOMErrorHandler& h,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdibResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdibResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::std::istream& is,
                     const ::std::string& sid,
                     ::xml_schema::Flags f,
@@ -10762,10 +10762,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdibResponse_ (isrc, f, p);
+    return ::MDM::GetMdibResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::std::istream& is,
                     const ::std::string& sid,
                     ::xml_schema::ErrorHandler& h,
@@ -10777,10 +10777,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdibResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdibResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::std::istream& is,
                     const ::std::string& sid,
                     ::xercesc::DOMErrorHandler& h,
@@ -10788,10 +10788,10 @@ namespace CDM
                     const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdibResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdibResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::xercesc::InputSource& i,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
@@ -10804,12 +10804,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdibResponse > (
-      ::CDM::GetMdibResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
+      ::MDM::GetMdibResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::xercesc::InputSource& i,
                     ::xml_schema::ErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -10822,12 +10822,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdibResponse > (
-      ::CDM::GetMdibResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
+      ::MDM::GetMdibResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::xercesc::InputSource& i,
                     ::xercesc::DOMErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -10840,12 +10840,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdibResponse > (
-      ::CDM::GetMdibResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
+      ::MDM::GetMdibResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (const ::xercesc::DOMDocument& doc,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
@@ -10855,8 +10855,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetMdibResponse > (
-        ::CDM::GetMdibResponse_ (
+      return ::std::unique_ptr< ::MDM::GetMdibResponse > (
+        ::MDM::GetMdibResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -10867,8 +10867,8 @@ namespace CDM
     if (n.name () == "GetMdibResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdibResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdibResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdibResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdibResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -10880,7 +10880,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdibResponse >
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
   GetMdibResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties&)
@@ -10905,8 +10905,8 @@ namespace CDM
     if (n.name () == "GetMdibResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdibResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdibResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdibResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdibResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -10918,7 +10918,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (const ::std::string& u,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -10935,12 +10935,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescription > (
-      ::CDM::GetMdDescription_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescription > (
+      ::MDM::GetMdDescription_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (const ::std::string& u,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -10957,12 +10957,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescription > (
-      ::CDM::GetMdDescription_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescription > (
+      ::MDM::GetMdDescription_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (const ::std::string& u,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -10975,12 +10975,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescription > (
-      ::CDM::GetMdDescription_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescription > (
+      ::MDM::GetMdDescription_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::std::istream& is,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -10990,10 +10990,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdDescription_ (isrc, f, p);
+    return ::MDM::GetMdDescription_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::std::istream& is,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -11004,20 +11004,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdDescription_ (isrc, h, f, p);
+    return ::MDM::GetMdDescription_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::std::istream& is,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdDescription_ (isrc, h, f, p);
+    return ::MDM::GetMdDescription_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::Flags f,
@@ -11028,10 +11028,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdDescription_ (isrc, f, p);
+    return ::MDM::GetMdDescription_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::ErrorHandler& h,
@@ -11043,10 +11043,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdDescription_ (isrc, h, f, p);
+    return ::MDM::GetMdDescription_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xercesc::DOMErrorHandler& h,
@@ -11054,10 +11054,10 @@ namespace CDM
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdDescription_ (isrc, h, f, p);
+    return ::MDM::GetMdDescription_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::xercesc::InputSource& i,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -11070,12 +11070,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescription > (
-      ::CDM::GetMdDescription_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescription > (
+      ::MDM::GetMdDescription_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::xercesc::InputSource& i,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -11088,12 +11088,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescription > (
-      ::CDM::GetMdDescription_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescription > (
+      ::MDM::GetMdDescription_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::xercesc::InputSource& i,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -11106,12 +11106,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescription > (
-      ::CDM::GetMdDescription_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescription > (
+      ::MDM::GetMdDescription_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (const ::xercesc::DOMDocument& doc,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -11121,8 +11121,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetMdDescription > (
-        ::CDM::GetMdDescription_ (
+      return ::std::unique_ptr< ::MDM::GetMdDescription > (
+        ::MDM::GetMdDescription_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -11133,8 +11133,8 @@ namespace CDM
     if (n.name () == "GetMdDescription" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdDescription > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdDescription, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdDescription > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdDescription, char >::create (
           e, f, 0));
       return r;
     }
@@ -11146,7 +11146,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescription >
+  ::std::unique_ptr< ::MDM::GetMdDescription >
   GetMdDescription_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties&)
@@ -11171,8 +11171,8 @@ namespace CDM
     if (n.name () == "GetMdDescription" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdDescription > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdDescription, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdDescription > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdDescription, char >::create (
           e, f, 0));
       return r;
     }
@@ -11184,7 +11184,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (const ::std::string& u,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -11201,12 +11201,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescriptionResponse > (
-      ::CDM::GetMdDescriptionResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
+      ::MDM::GetMdDescriptionResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (const ::std::string& u,
                              ::xml_schema::ErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -11223,12 +11223,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescriptionResponse > (
-      ::CDM::GetMdDescriptionResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
+      ::MDM::GetMdDescriptionResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (const ::std::string& u,
                              ::xercesc::DOMErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -11241,12 +11241,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescriptionResponse > (
-      ::CDM::GetMdDescriptionResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
+      ::MDM::GetMdDescriptionResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::std::istream& is,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -11256,10 +11256,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdDescriptionResponse_ (isrc, f, p);
+    return ::MDM::GetMdDescriptionResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::std::istream& is,
                              ::xml_schema::ErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -11270,20 +11270,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdDescriptionResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdDescriptionResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::std::istream& is,
                              ::xercesc::DOMErrorHandler& h,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdDescriptionResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdDescriptionResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::std::istream& is,
                              const ::std::string& sid,
                              ::xml_schema::Flags f,
@@ -11294,10 +11294,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdDescriptionResponse_ (isrc, f, p);
+    return ::MDM::GetMdDescriptionResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::std::istream& is,
                              const ::std::string& sid,
                              ::xml_schema::ErrorHandler& h,
@@ -11309,10 +11309,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdDescriptionResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdDescriptionResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::std::istream& is,
                              const ::std::string& sid,
                              ::xercesc::DOMErrorHandler& h,
@@ -11320,10 +11320,10 @@ namespace CDM
                              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdDescriptionResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdDescriptionResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::xercesc::InputSource& i,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -11336,12 +11336,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescriptionResponse > (
-      ::CDM::GetMdDescriptionResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
+      ::MDM::GetMdDescriptionResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::xercesc::InputSource& i,
                              ::xml_schema::ErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -11354,12 +11354,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescriptionResponse > (
-      ::CDM::GetMdDescriptionResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
+      ::MDM::GetMdDescriptionResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::xercesc::InputSource& i,
                              ::xercesc::DOMErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -11372,12 +11372,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdDescriptionResponse > (
-      ::CDM::GetMdDescriptionResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
+      ::MDM::GetMdDescriptionResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (const ::xercesc::DOMDocument& doc,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -11387,8 +11387,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetMdDescriptionResponse > (
-        ::CDM::GetMdDescriptionResponse_ (
+      return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
+        ::MDM::GetMdDescriptionResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -11399,8 +11399,8 @@ namespace CDM
     if (n.name () == "GetMdDescriptionResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdDescriptionResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdDescriptionResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdDescriptionResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -11412,7 +11412,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdDescriptionResponse >
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
   GetMdDescriptionResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties&)
@@ -11437,8 +11437,8 @@ namespace CDM
     if (n.name () == "GetMdDescriptionResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdDescriptionResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdDescriptionResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdDescriptionResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -11450,7 +11450,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (const ::std::string& u,
                ::xml_schema::Flags f,
                const ::xml_schema::Properties& p)
@@ -11467,12 +11467,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdState > (
-      ::CDM::GetMdState_ (
+    return ::std::unique_ptr< ::MDM::GetMdState > (
+      ::MDM::GetMdState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (const ::std::string& u,
                ::xml_schema::ErrorHandler& h,
                ::xml_schema::Flags f,
@@ -11489,12 +11489,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdState > (
-      ::CDM::GetMdState_ (
+    return ::std::unique_ptr< ::MDM::GetMdState > (
+      ::MDM::GetMdState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (const ::std::string& u,
                ::xercesc::DOMErrorHandler& h,
                ::xml_schema::Flags f,
@@ -11507,12 +11507,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdState > (
-      ::CDM::GetMdState_ (
+    return ::std::unique_ptr< ::MDM::GetMdState > (
+      ::MDM::GetMdState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::std::istream& is,
                ::xml_schema::Flags f,
                const ::xml_schema::Properties& p)
@@ -11522,10 +11522,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdState_ (isrc, f, p);
+    return ::MDM::GetMdState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::std::istream& is,
                ::xml_schema::ErrorHandler& h,
                ::xml_schema::Flags f,
@@ -11536,20 +11536,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdState_ (isrc, h, f, p);
+    return ::MDM::GetMdState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::std::istream& is,
                ::xercesc::DOMErrorHandler& h,
                ::xml_schema::Flags f,
                const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdState_ (isrc, h, f, p);
+    return ::MDM::GetMdState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::std::istream& is,
                const ::std::string& sid,
                ::xml_schema::Flags f,
@@ -11560,10 +11560,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdState_ (isrc, f, p);
+    return ::MDM::GetMdState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::std::istream& is,
                const ::std::string& sid,
                ::xml_schema::ErrorHandler& h,
@@ -11575,10 +11575,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdState_ (isrc, h, f, p);
+    return ::MDM::GetMdState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::std::istream& is,
                const ::std::string& sid,
                ::xercesc::DOMErrorHandler& h,
@@ -11586,10 +11586,10 @@ namespace CDM
                const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdState_ (isrc, h, f, p);
+    return ::MDM::GetMdState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::xercesc::InputSource& i,
                ::xml_schema::Flags f,
                const ::xml_schema::Properties& p)
@@ -11602,12 +11602,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdState > (
-      ::CDM::GetMdState_ (
+    return ::std::unique_ptr< ::MDM::GetMdState > (
+      ::MDM::GetMdState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::xercesc::InputSource& i,
                ::xml_schema::ErrorHandler& h,
                ::xml_schema::Flags f,
@@ -11620,12 +11620,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdState > (
-      ::CDM::GetMdState_ (
+    return ::std::unique_ptr< ::MDM::GetMdState > (
+      ::MDM::GetMdState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::xercesc::InputSource& i,
                ::xercesc::DOMErrorHandler& h,
                ::xml_schema::Flags f,
@@ -11638,12 +11638,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdState > (
-      ::CDM::GetMdState_ (
+    return ::std::unique_ptr< ::MDM::GetMdState > (
+      ::MDM::GetMdState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (const ::xercesc::DOMDocument& doc,
                ::xml_schema::Flags f,
                const ::xml_schema::Properties& p)
@@ -11653,8 +11653,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetMdState > (
-        ::CDM::GetMdState_ (
+      return ::std::unique_ptr< ::MDM::GetMdState > (
+        ::MDM::GetMdState_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -11665,8 +11665,8 @@ namespace CDM
     if (n.name () == "GetMdState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdState > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdState, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdState > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdState, char >::create (
           e, f, 0));
       return r;
     }
@@ -11678,7 +11678,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdState >
+  ::std::unique_ptr< ::MDM::GetMdState >
   GetMdState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                ::xml_schema::Flags f,
                const ::xml_schema::Properties&)
@@ -11703,8 +11703,8 @@ namespace CDM
     if (n.name () == "GetMdState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdState > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdState, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdState > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdState, char >::create (
           e, f, 0));
       return r;
     }
@@ -11716,7 +11716,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (const ::std::string& u,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
@@ -11733,12 +11733,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdStateResponse > (
-      ::CDM::GetMdStateResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
+      ::MDM::GetMdStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (const ::std::string& u,
                        ::xml_schema::ErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -11755,12 +11755,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdStateResponse > (
-      ::CDM::GetMdStateResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
+      ::MDM::GetMdStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (const ::std::string& u,
                        ::xercesc::DOMErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -11773,12 +11773,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdStateResponse > (
-      ::CDM::GetMdStateResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
+      ::MDM::GetMdStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::std::istream& is,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
@@ -11788,10 +11788,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdStateResponse_ (isrc, f, p);
+    return ::MDM::GetMdStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::std::istream& is,
                        ::xml_schema::ErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -11802,20 +11802,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdStateResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::std::istream& is,
                        ::xercesc::DOMErrorHandler& h,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetMdStateResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::std::istream& is,
                        const ::std::string& sid,
                        ::xml_schema::Flags f,
@@ -11826,10 +11826,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdStateResponse_ (isrc, f, p);
+    return ::MDM::GetMdStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::std::istream& is,
                        const ::std::string& sid,
                        ::xml_schema::ErrorHandler& h,
@@ -11841,10 +11841,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdStateResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::std::istream& is,
                        const ::std::string& sid,
                        ::xercesc::DOMErrorHandler& h,
@@ -11852,10 +11852,10 @@ namespace CDM
                        const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetMdStateResponse_ (isrc, h, f, p);
+    return ::MDM::GetMdStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::xercesc::InputSource& i,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
@@ -11868,12 +11868,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdStateResponse > (
-      ::CDM::GetMdStateResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
+      ::MDM::GetMdStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::xercesc::InputSource& i,
                        ::xml_schema::ErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -11886,12 +11886,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdStateResponse > (
-      ::CDM::GetMdStateResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
+      ::MDM::GetMdStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::xercesc::InputSource& i,
                        ::xercesc::DOMErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -11904,12 +11904,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetMdStateResponse > (
-      ::CDM::GetMdStateResponse_ (
+    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
+      ::MDM::GetMdStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (const ::xercesc::DOMDocument& doc,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
@@ -11919,8 +11919,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetMdStateResponse > (
-        ::CDM::GetMdStateResponse_ (
+      return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
+        ::MDM::GetMdStateResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -11931,8 +11931,8 @@ namespace CDM
     if (n.name () == "GetMdStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -11944,7 +11944,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetMdStateResponse >
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
   GetMdStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties&)
@@ -11969,8 +11969,8 @@ namespace CDM
     if (n.name () == "GetMdStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetMdStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetMdStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetMdStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetMdStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -11982,7 +11982,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (const ::std::string& u,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -11999,12 +11999,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStates > (
-      ::CDM::GetContextStates_ (
+    return ::std::unique_ptr< ::MDM::GetContextStates > (
+      ::MDM::GetContextStates_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (const ::std::string& u,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -12021,12 +12021,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStates > (
-      ::CDM::GetContextStates_ (
+    return ::std::unique_ptr< ::MDM::GetContextStates > (
+      ::MDM::GetContextStates_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (const ::std::string& u,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -12039,12 +12039,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStates > (
-      ::CDM::GetContextStates_ (
+    return ::std::unique_ptr< ::MDM::GetContextStates > (
+      ::MDM::GetContextStates_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -12054,10 +12054,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContextStates_ (isrc, f, p);
+    return ::MDM::GetContextStates_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -12068,20 +12068,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContextStates_ (isrc, h, f, p);
+    return ::MDM::GetContextStates_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContextStates_ (isrc, h, f, p);
+    return ::MDM::GetContextStates_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::Flags f,
@@ -12092,10 +12092,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContextStates_ (isrc, f, p);
+    return ::MDM::GetContextStates_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::ErrorHandler& h,
@@ -12107,10 +12107,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContextStates_ (isrc, h, f, p);
+    return ::MDM::GetContextStates_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xercesc::DOMErrorHandler& h,
@@ -12118,10 +12118,10 @@ namespace CDM
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContextStates_ (isrc, h, f, p);
+    return ::MDM::GetContextStates_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::xercesc::InputSource& i,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -12134,12 +12134,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStates > (
-      ::CDM::GetContextStates_ (
+    return ::std::unique_ptr< ::MDM::GetContextStates > (
+      ::MDM::GetContextStates_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::xercesc::InputSource& i,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -12152,12 +12152,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStates > (
-      ::CDM::GetContextStates_ (
+    return ::std::unique_ptr< ::MDM::GetContextStates > (
+      ::MDM::GetContextStates_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::xercesc::InputSource& i,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -12170,12 +12170,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStates > (
-      ::CDM::GetContextStates_ (
+    return ::std::unique_ptr< ::MDM::GetContextStates > (
+      ::MDM::GetContextStates_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (const ::xercesc::DOMDocument& doc,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -12185,8 +12185,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetContextStates > (
-        ::CDM::GetContextStates_ (
+      return ::std::unique_ptr< ::MDM::GetContextStates > (
+        ::MDM::GetContextStates_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -12197,8 +12197,8 @@ namespace CDM
     if (n.name () == "GetContextStates" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetContextStates > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetContextStates, char >::create (
+      ::std::unique_ptr< ::MDM::GetContextStates > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetContextStates, char >::create (
           e, f, 0));
       return r;
     }
@@ -12210,7 +12210,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties&)
@@ -12235,8 +12235,8 @@ namespace CDM
     if (n.name () == "GetContextStates" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetContextStates > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetContextStates, char >::create (
+      ::std::unique_ptr< ::MDM::GetContextStates > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetContextStates, char >::create (
           e, f, 0));
       return r;
     }
@@ -12248,7 +12248,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (const ::std::string& u,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -12265,12 +12265,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStatesResponse > (
-      ::CDM::GetContextStatesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
+      ::MDM::GetContextStatesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (const ::std::string& u,
                              ::xml_schema::ErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -12287,12 +12287,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStatesResponse > (
-      ::CDM::GetContextStatesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
+      ::MDM::GetContextStatesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (const ::std::string& u,
                              ::xercesc::DOMErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -12305,12 +12305,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStatesResponse > (
-      ::CDM::GetContextStatesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
+      ::MDM::GetContextStatesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -12320,10 +12320,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContextStatesResponse_ (isrc, f, p);
+    return ::MDM::GetContextStatesResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              ::xml_schema::ErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -12334,20 +12334,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContextStatesResponse_ (isrc, h, f, p);
+    return ::MDM::GetContextStatesResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              ::xercesc::DOMErrorHandler& h,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContextStatesResponse_ (isrc, h, f, p);
+    return ::MDM::GetContextStatesResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              const ::std::string& sid,
                              ::xml_schema::Flags f,
@@ -12358,10 +12358,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContextStatesResponse_ (isrc, f, p);
+    return ::MDM::GetContextStatesResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              const ::std::string& sid,
                              ::xml_schema::ErrorHandler& h,
@@ -12373,10 +12373,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContextStatesResponse_ (isrc, h, f, p);
+    return ::MDM::GetContextStatesResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              const ::std::string& sid,
                              ::xercesc::DOMErrorHandler& h,
@@ -12384,10 +12384,10 @@ namespace CDM
                              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContextStatesResponse_ (isrc, h, f, p);
+    return ::MDM::GetContextStatesResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::xercesc::InputSource& i,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -12400,12 +12400,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStatesResponse > (
-      ::CDM::GetContextStatesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
+      ::MDM::GetContextStatesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::xercesc::InputSource& i,
                              ::xml_schema::ErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -12418,12 +12418,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStatesResponse > (
-      ::CDM::GetContextStatesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
+      ::MDM::GetContextStatesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::xercesc::InputSource& i,
                              ::xercesc::DOMErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -12436,12 +12436,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContextStatesResponse > (
-      ::CDM::GetContextStatesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
+      ::MDM::GetContextStatesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (const ::xercesc::DOMDocument& doc,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -12451,8 +12451,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetContextStatesResponse > (
-        ::CDM::GetContextStatesResponse_ (
+      return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
+        ::MDM::GetContextStatesResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -12463,8 +12463,8 @@ namespace CDM
     if (n.name () == "GetContextStatesResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetContextStatesResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetContextStatesResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetContextStatesResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -12476,7 +12476,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties&)
@@ -12501,8 +12501,8 @@ namespace CDM
     if (n.name () == "GetContextStatesResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetContextStatesResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetContextStatesResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetContextStatesResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -12514,7 +12514,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (const ::std::string& u,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
@@ -12531,12 +12531,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextState > (
-      ::CDM::SetContextState_ (
+    return ::std::unique_ptr< ::MDM::SetContextState > (
+      ::MDM::SetContextState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (const ::std::string& u,
                     ::xml_schema::ErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -12553,12 +12553,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextState > (
-      ::CDM::SetContextState_ (
+    return ::std::unique_ptr< ::MDM::SetContextState > (
+      ::MDM::SetContextState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (const ::std::string& u,
                     ::xercesc::DOMErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -12571,12 +12571,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextState > (
-      ::CDM::SetContextState_ (
+    return ::std::unique_ptr< ::MDM::SetContextState > (
+      ::MDM::SetContextState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
@@ -12586,10 +12586,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetContextState_ (isrc, f, p);
+    return ::MDM::SetContextState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     ::xml_schema::ErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -12600,20 +12600,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetContextState_ (isrc, h, f, p);
+    return ::MDM::SetContextState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     ::xercesc::DOMErrorHandler& h,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetContextState_ (isrc, h, f, p);
+    return ::MDM::SetContextState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     const ::std::string& sid,
                     ::xml_schema::Flags f,
@@ -12624,10 +12624,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetContextState_ (isrc, f, p);
+    return ::MDM::SetContextState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     const ::std::string& sid,
                     ::xml_schema::ErrorHandler& h,
@@ -12639,10 +12639,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetContextState_ (isrc, h, f, p);
+    return ::MDM::SetContextState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     const ::std::string& sid,
                     ::xercesc::DOMErrorHandler& h,
@@ -12650,10 +12650,10 @@ namespace CDM
                     const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetContextState_ (isrc, h, f, p);
+    return ::MDM::SetContextState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::xercesc::InputSource& i,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
@@ -12666,12 +12666,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextState > (
-      ::CDM::SetContextState_ (
+    return ::std::unique_ptr< ::MDM::SetContextState > (
+      ::MDM::SetContextState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::xercesc::InputSource& i,
                     ::xml_schema::ErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -12684,12 +12684,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextState > (
-      ::CDM::SetContextState_ (
+    return ::std::unique_ptr< ::MDM::SetContextState > (
+      ::MDM::SetContextState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::xercesc::InputSource& i,
                     ::xercesc::DOMErrorHandler& h,
                     ::xml_schema::Flags f,
@@ -12702,12 +12702,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextState > (
-      ::CDM::SetContextState_ (
+    return ::std::unique_ptr< ::MDM::SetContextState > (
+      ::MDM::SetContextState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (const ::xercesc::DOMDocument& doc,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties& p)
@@ -12717,8 +12717,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetContextState > (
-        ::CDM::SetContextState_ (
+      return ::std::unique_ptr< ::MDM::SetContextState > (
+        ::MDM::SetContextState_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -12729,8 +12729,8 @@ namespace CDM
     if (n.name () == "SetContextState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetContextState > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetContextState, char >::create (
+      ::std::unique_ptr< ::MDM::SetContextState > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetContextState, char >::create (
           e, f, 0));
       return r;
     }
@@ -12742,7 +12742,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                     ::xml_schema::Flags f,
                     const ::xml_schema::Properties&)
@@ -12767,8 +12767,8 @@ namespace CDM
     if (n.name () == "SetContextState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetContextState > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetContextState, char >::create (
+      ::std::unique_ptr< ::MDM::SetContextState > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetContextState, char >::create (
           e, f, 0));
       return r;
     }
@@ -12780,7 +12780,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (const ::std::string& u,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -12797,12 +12797,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextStateResponse > (
-      ::CDM::SetContextStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
+      ::MDM::SetContextStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (const ::std::string& u,
                             ::xml_schema::ErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -12819,12 +12819,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextStateResponse > (
-      ::CDM::SetContextStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
+      ::MDM::SetContextStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (const ::std::string& u,
                             ::xercesc::DOMErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -12837,12 +12837,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextStateResponse > (
-      ::CDM::SetContextStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
+      ::MDM::SetContextStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -12852,10 +12852,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetContextStateResponse_ (isrc, f, p);
+    return ::MDM::SetContextStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             ::xml_schema::ErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -12866,20 +12866,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetContextStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetContextStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             ::xercesc::DOMErrorHandler& h,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetContextStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetContextStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             const ::std::string& sid,
                             ::xml_schema::Flags f,
@@ -12890,10 +12890,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetContextStateResponse_ (isrc, f, p);
+    return ::MDM::SetContextStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             const ::std::string& sid,
                             ::xml_schema::ErrorHandler& h,
@@ -12905,10 +12905,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetContextStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetContextStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             const ::std::string& sid,
                             ::xercesc::DOMErrorHandler& h,
@@ -12916,10 +12916,10 @@ namespace CDM
                             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetContextStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetContextStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::xercesc::InputSource& i,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -12932,12 +12932,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextStateResponse > (
-      ::CDM::SetContextStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
+      ::MDM::SetContextStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::xercesc::InputSource& i,
                             ::xml_schema::ErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -12950,12 +12950,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextStateResponse > (
-      ::CDM::SetContextStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
+      ::MDM::SetContextStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::xercesc::InputSource& i,
                             ::xercesc::DOMErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -12968,12 +12968,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetContextStateResponse > (
-      ::CDM::SetContextStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
+      ::MDM::SetContextStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (const ::xercesc::DOMDocument& doc,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -12983,8 +12983,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetContextStateResponse > (
-        ::CDM::SetContextStateResponse_ (
+      return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
+        ::MDM::SetContextStateResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -12995,8 +12995,8 @@ namespace CDM
     if (n.name () == "SetContextStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetContextStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetContextStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetContextStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetContextStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -13008,7 +13008,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties&)
@@ -13033,8 +13033,8 @@ namespace CDM
     if (n.name () == "SetContextStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetContextStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetContextStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetContextStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetContextStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -13046,7 +13046,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (const ::std::string& u,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -13063,12 +13063,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicContextReport > (
-      ::CDM::PeriodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
+      ::MDM::PeriodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (const ::std::string& u,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13085,12 +13085,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicContextReport > (
-      ::CDM::PeriodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
+      ::MDM::PeriodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (const ::std::string& u,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13103,12 +13103,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicContextReport > (
-      ::CDM::PeriodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
+      ::MDM::PeriodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::std::istream& is,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -13118,10 +13118,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicContextReport_ (isrc, f, p);
+    return ::MDM::PeriodicContextReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::std::istream& is,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13132,20 +13132,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicContextReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicContextReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::std::istream& is,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicContextReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicContextReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::Flags f,
@@ -13156,10 +13156,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicContextReport_ (isrc, f, p);
+    return ::MDM::PeriodicContextReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::ErrorHandler& h,
@@ -13171,10 +13171,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicContextReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicContextReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xercesc::DOMErrorHandler& h,
@@ -13182,10 +13182,10 @@ namespace CDM
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicContextReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicContextReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::xercesc::InputSource& i,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -13198,12 +13198,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicContextReport > (
-      ::CDM::PeriodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
+      ::MDM::PeriodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::xercesc::InputSource& i,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13216,12 +13216,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicContextReport > (
-      ::CDM::PeriodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
+      ::MDM::PeriodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::xercesc::InputSource& i,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13234,12 +13234,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicContextReport > (
-      ::CDM::PeriodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
+      ::MDM::PeriodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (const ::xercesc::DOMDocument& doc,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -13249,8 +13249,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::PeriodicContextReport > (
-        ::CDM::PeriodicContextReport_ (
+      return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
+        ::MDM::PeriodicContextReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -13261,8 +13261,8 @@ namespace CDM
     if (n.name () == "PeriodicContextReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicContextReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicContextReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicContextReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicContextReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -13274,7 +13274,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicContextReport >
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
   PeriodicContextReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties&)
@@ -13299,8 +13299,8 @@ namespace CDM
     if (n.name () == "PeriodicContextReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicContextReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicContextReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicContextReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicContextReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -13312,7 +13312,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (const ::std::string& u,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -13329,12 +13329,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicContextReport > (
-      ::CDM::EpisodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
+      ::MDM::EpisodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (const ::std::string& u,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13351,12 +13351,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicContextReport > (
-      ::CDM::EpisodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
+      ::MDM::EpisodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (const ::std::string& u,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13369,12 +13369,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicContextReport > (
-      ::CDM::EpisodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
+      ::MDM::EpisodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::std::istream& is,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -13384,10 +13384,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicContextReport_ (isrc, f, p);
+    return ::MDM::EpisodicContextReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::std::istream& is,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13398,20 +13398,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicContextReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicContextReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::std::istream& is,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicContextReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicContextReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::Flags f,
@@ -13422,10 +13422,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicContextReport_ (isrc, f, p);
+    return ::MDM::EpisodicContextReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::ErrorHandler& h,
@@ -13437,10 +13437,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicContextReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicContextReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xercesc::DOMErrorHandler& h,
@@ -13448,10 +13448,10 @@ namespace CDM
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicContextReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicContextReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::xercesc::InputSource& i,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -13464,12 +13464,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicContextReport > (
-      ::CDM::EpisodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
+      ::MDM::EpisodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::xercesc::InputSource& i,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13482,12 +13482,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicContextReport > (
-      ::CDM::EpisodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
+      ::MDM::EpisodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::xercesc::InputSource& i,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -13500,12 +13500,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicContextReport > (
-      ::CDM::EpisodicContextReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
+      ::MDM::EpisodicContextReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (const ::xercesc::DOMDocument& doc,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -13515,8 +13515,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::EpisodicContextReport > (
-        ::CDM::EpisodicContextReport_ (
+      return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
+        ::MDM::EpisodicContextReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -13527,8 +13527,8 @@ namespace CDM
     if (n.name () == "EpisodicContextReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicContextReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicContextReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicContextReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicContextReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -13540,7 +13540,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicContextReport >
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
   EpisodicContextReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties&)
@@ -13565,8 +13565,8 @@ namespace CDM
     if (n.name () == "EpisodicContextReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicContextReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicContextReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicContextReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicContextReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -13578,7 +13578,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (const ::std::string& u,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -13595,12 +13595,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedText > (
-      ::CDM::GetLocalizedText_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
+      ::MDM::GetLocalizedText_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (const ::std::string& u,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -13617,12 +13617,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedText > (
-      ::CDM::GetLocalizedText_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
+      ::MDM::GetLocalizedText_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (const ::std::string& u,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -13635,12 +13635,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedText > (
-      ::CDM::GetLocalizedText_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
+      ::MDM::GetLocalizedText_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::std::istream& is,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -13650,10 +13650,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetLocalizedText_ (isrc, f, p);
+    return ::MDM::GetLocalizedText_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::std::istream& is,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -13664,20 +13664,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetLocalizedText_ (isrc, h, f, p);
+    return ::MDM::GetLocalizedText_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::std::istream& is,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetLocalizedText_ (isrc, h, f, p);
+    return ::MDM::GetLocalizedText_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::Flags f,
@@ -13688,10 +13688,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetLocalizedText_ (isrc, f, p);
+    return ::MDM::GetLocalizedText_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::ErrorHandler& h,
@@ -13703,10 +13703,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetLocalizedText_ (isrc, h, f, p);
+    return ::MDM::GetLocalizedText_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xercesc::DOMErrorHandler& h,
@@ -13714,10 +13714,10 @@ namespace CDM
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetLocalizedText_ (isrc, h, f, p);
+    return ::MDM::GetLocalizedText_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::xercesc::InputSource& i,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -13730,12 +13730,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedText > (
-      ::CDM::GetLocalizedText_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
+      ::MDM::GetLocalizedText_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::xercesc::InputSource& i,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -13748,12 +13748,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedText > (
-      ::CDM::GetLocalizedText_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
+      ::MDM::GetLocalizedText_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::xercesc::InputSource& i,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -13766,12 +13766,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedText > (
-      ::CDM::GetLocalizedText_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
+      ::MDM::GetLocalizedText_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (const ::xercesc::DOMDocument& doc,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -13781,8 +13781,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetLocalizedText > (
-        ::CDM::GetLocalizedText_ (
+      return ::std::unique_ptr< ::MDM::GetLocalizedText > (
+        ::MDM::GetLocalizedText_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -13793,8 +13793,8 @@ namespace CDM
     if (n.name () == "GetLocalizedText" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetLocalizedText > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetLocalizedText, char >::create (
+      ::std::unique_ptr< ::MDM::GetLocalizedText > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetLocalizedText, char >::create (
           e, f, 0));
       return r;
     }
@@ -13806,7 +13806,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedText >
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
   GetLocalizedText_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties&)
@@ -13831,8 +13831,8 @@ namespace CDM
     if (n.name () == "GetLocalizedText" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetLocalizedText > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetLocalizedText, char >::create (
+      ::std::unique_ptr< ::MDM::GetLocalizedText > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetLocalizedText, char >::create (
           e, f, 0));
       return r;
     }
@@ -13844,7 +13844,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (const ::std::string& u,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -13861,12 +13861,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedTextResponse > (
-      ::CDM::GetLocalizedTextResponse_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
+      ::MDM::GetLocalizedTextResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (const ::std::string& u,
                              ::xml_schema::ErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -13883,12 +13883,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedTextResponse > (
-      ::CDM::GetLocalizedTextResponse_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
+      ::MDM::GetLocalizedTextResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (const ::std::string& u,
                              ::xercesc::DOMErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -13901,12 +13901,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedTextResponse > (
-      ::CDM::GetLocalizedTextResponse_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
+      ::MDM::GetLocalizedTextResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::std::istream& is,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -13916,10 +13916,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetLocalizedTextResponse_ (isrc, f, p);
+    return ::MDM::GetLocalizedTextResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::std::istream& is,
                              ::xml_schema::ErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -13930,20 +13930,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetLocalizedTextResponse_ (isrc, h, f, p);
+    return ::MDM::GetLocalizedTextResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::std::istream& is,
                              ::xercesc::DOMErrorHandler& h,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetLocalizedTextResponse_ (isrc, h, f, p);
+    return ::MDM::GetLocalizedTextResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::std::istream& is,
                              const ::std::string& sid,
                              ::xml_schema::Flags f,
@@ -13954,10 +13954,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetLocalizedTextResponse_ (isrc, f, p);
+    return ::MDM::GetLocalizedTextResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::std::istream& is,
                              const ::std::string& sid,
                              ::xml_schema::ErrorHandler& h,
@@ -13969,10 +13969,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetLocalizedTextResponse_ (isrc, h, f, p);
+    return ::MDM::GetLocalizedTextResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::std::istream& is,
                              const ::std::string& sid,
                              ::xercesc::DOMErrorHandler& h,
@@ -13980,10 +13980,10 @@ namespace CDM
                              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetLocalizedTextResponse_ (isrc, h, f, p);
+    return ::MDM::GetLocalizedTextResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::xercesc::InputSource& i,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -13996,12 +13996,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedTextResponse > (
-      ::CDM::GetLocalizedTextResponse_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
+      ::MDM::GetLocalizedTextResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::xercesc::InputSource& i,
                              ::xml_schema::ErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -14014,12 +14014,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedTextResponse > (
-      ::CDM::GetLocalizedTextResponse_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
+      ::MDM::GetLocalizedTextResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::xercesc::InputSource& i,
                              ::xercesc::DOMErrorHandler& h,
                              ::xml_schema::Flags f,
@@ -14032,12 +14032,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetLocalizedTextResponse > (
-      ::CDM::GetLocalizedTextResponse_ (
+    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
+      ::MDM::GetLocalizedTextResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (const ::xercesc::DOMDocument& doc,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties& p)
@@ -14047,8 +14047,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetLocalizedTextResponse > (
-        ::CDM::GetLocalizedTextResponse_ (
+      return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
+        ::MDM::GetLocalizedTextResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -14059,8 +14059,8 @@ namespace CDM
     if (n.name () == "GetLocalizedTextResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetLocalizedTextResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetLocalizedTextResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetLocalizedTextResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -14072,7 +14072,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetLocalizedTextResponse >
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
   GetLocalizedTextResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                              ::xml_schema::Flags f,
                              const ::xml_schema::Properties&)
@@ -14097,8 +14097,8 @@ namespace CDM
     if (n.name () == "GetLocalizedTextResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetLocalizedTextResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetLocalizedTextResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetLocalizedTextResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -14110,7 +14110,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (const ::std::string& u,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -14127,12 +14127,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguages > (
-      ::CDM::GetSupportedLanguages_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
+      ::MDM::GetSupportedLanguages_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (const ::std::string& u,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -14149,12 +14149,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguages > (
-      ::CDM::GetSupportedLanguages_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
+      ::MDM::GetSupportedLanguages_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (const ::std::string& u,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -14167,12 +14167,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguages > (
-      ::CDM::GetSupportedLanguages_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
+      ::MDM::GetSupportedLanguages_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::std::istream& is,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -14182,10 +14182,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetSupportedLanguages_ (isrc, f, p);
+    return ::MDM::GetSupportedLanguages_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::std::istream& is,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -14196,20 +14196,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetSupportedLanguages_ (isrc, h, f, p);
+    return ::MDM::GetSupportedLanguages_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::std::istream& is,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetSupportedLanguages_ (isrc, h, f, p);
+    return ::MDM::GetSupportedLanguages_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::Flags f,
@@ -14220,10 +14220,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetSupportedLanguages_ (isrc, f, p);
+    return ::MDM::GetSupportedLanguages_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::ErrorHandler& h,
@@ -14235,10 +14235,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetSupportedLanguages_ (isrc, h, f, p);
+    return ::MDM::GetSupportedLanguages_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xercesc::DOMErrorHandler& h,
@@ -14246,10 +14246,10 @@ namespace CDM
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetSupportedLanguages_ (isrc, h, f, p);
+    return ::MDM::GetSupportedLanguages_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::xercesc::InputSource& i,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -14262,12 +14262,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguages > (
-      ::CDM::GetSupportedLanguages_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
+      ::MDM::GetSupportedLanguages_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::xercesc::InputSource& i,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -14280,12 +14280,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguages > (
-      ::CDM::GetSupportedLanguages_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
+      ::MDM::GetSupportedLanguages_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::xercesc::InputSource& i,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -14298,12 +14298,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguages > (
-      ::CDM::GetSupportedLanguages_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
+      ::MDM::GetSupportedLanguages_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (const ::xercesc::DOMDocument& doc,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -14313,8 +14313,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetSupportedLanguages > (
-        ::CDM::GetSupportedLanguages_ (
+      return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
+        ::MDM::GetSupportedLanguages_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -14325,8 +14325,8 @@ namespace CDM
     if (n.name () == "GetSupportedLanguages" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetSupportedLanguages > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetSupportedLanguages, char >::create (
+      ::std::unique_ptr< ::MDM::GetSupportedLanguages > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguages, char >::create (
           e, f, 0));
       return r;
     }
@@ -14338,7 +14338,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguages >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
   GetSupportedLanguages_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties&)
@@ -14363,8 +14363,8 @@ namespace CDM
     if (n.name () == "GetSupportedLanguages" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetSupportedLanguages > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetSupportedLanguages, char >::create (
+      ::std::unique_ptr< ::MDM::GetSupportedLanguages > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguages, char >::create (
           e, f, 0));
       return r;
     }
@@ -14376,7 +14376,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (const ::std::string& u,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
@@ -14393,12 +14393,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse > (
-      ::CDM::GetSupportedLanguagesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
+      ::MDM::GetSupportedLanguagesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (const ::std::string& u,
                                   ::xml_schema::ErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -14415,12 +14415,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse > (
-      ::CDM::GetSupportedLanguagesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
+      ::MDM::GetSupportedLanguagesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (const ::std::string& u,
                                   ::xercesc::DOMErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -14433,12 +14433,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse > (
-      ::CDM::GetSupportedLanguagesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
+      ::MDM::GetSupportedLanguagesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::std::istream& is,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
@@ -14448,10 +14448,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetSupportedLanguagesResponse_ (isrc, f, p);
+    return ::MDM::GetSupportedLanguagesResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::std::istream& is,
                                   ::xml_schema::ErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -14462,20 +14462,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
+    return ::MDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::std::istream& is,
                                   ::xercesc::DOMErrorHandler& h,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
+    return ::MDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::std::istream& is,
                                   const ::std::string& sid,
                                   ::xml_schema::Flags f,
@@ -14486,10 +14486,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetSupportedLanguagesResponse_ (isrc, f, p);
+    return ::MDM::GetSupportedLanguagesResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::std::istream& is,
                                   const ::std::string& sid,
                                   ::xml_schema::ErrorHandler& h,
@@ -14501,10 +14501,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
+    return ::MDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::std::istream& is,
                                   const ::std::string& sid,
                                   ::xercesc::DOMErrorHandler& h,
@@ -14512,10 +14512,10 @@ namespace CDM
                                   const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
+    return ::MDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::xercesc::InputSource& i,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
@@ -14528,12 +14528,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse > (
-      ::CDM::GetSupportedLanguagesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
+      ::MDM::GetSupportedLanguagesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::xercesc::InputSource& i,
                                   ::xml_schema::ErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -14546,12 +14546,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse > (
-      ::CDM::GetSupportedLanguagesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
+      ::MDM::GetSupportedLanguagesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::xercesc::InputSource& i,
                                   ::xercesc::DOMErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -14564,12 +14564,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse > (
-      ::CDM::GetSupportedLanguagesResponse_ (
+    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
+      ::MDM::GetSupportedLanguagesResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (const ::xercesc::DOMDocument& doc,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
@@ -14579,8 +14579,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse > (
-        ::CDM::GetSupportedLanguagesResponse_ (
+      return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
+        ::MDM::GetSupportedLanguagesResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -14591,8 +14591,8 @@ namespace CDM
     if (n.name () == "GetSupportedLanguagesResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetSupportedLanguagesResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguagesResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -14604,7 +14604,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse >
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
   GetSupportedLanguagesResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties&)
@@ -14629,8 +14629,8 @@ namespace CDM
     if (n.name () == "GetSupportedLanguagesResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetSupportedLanguagesResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetSupportedLanguagesResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguagesResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -14642,7 +14642,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (const ::std::string& u,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
@@ -14659,12 +14659,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive > (
-      ::CDM::GetDescriptorsFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
+      ::MDM::GetDescriptorsFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (const ::std::string& u,
                               ::xml_schema::ErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -14681,12 +14681,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive > (
-      ::CDM::GetDescriptorsFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
+      ::MDM::GetDescriptorsFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (const ::std::string& u,
                               ::xercesc::DOMErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -14699,12 +14699,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive > (
-      ::CDM::GetDescriptorsFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
+      ::MDM::GetDescriptorsFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::std::istream& is,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
@@ -14714,10 +14714,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptorsFromArchive_ (isrc, f, p);
+    return ::MDM::GetDescriptorsFromArchive_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::std::istream& is,
                               ::xml_schema::ErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -14728,20 +14728,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::std::istream& is,
                               ::xercesc::DOMErrorHandler& h,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::std::istream& is,
                               const ::std::string& sid,
                               ::xml_schema::Flags f,
@@ -14752,10 +14752,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptorsFromArchive_ (isrc, f, p);
+    return ::MDM::GetDescriptorsFromArchive_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::std::istream& is,
                               const ::std::string& sid,
                               ::xml_schema::ErrorHandler& h,
@@ -14767,10 +14767,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::std::istream& is,
                               const ::std::string& sid,
                               ::xercesc::DOMErrorHandler& h,
@@ -14778,10 +14778,10 @@ namespace CDM
                               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::xercesc::InputSource& i,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
@@ -14794,12 +14794,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive > (
-      ::CDM::GetDescriptorsFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
+      ::MDM::GetDescriptorsFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::xercesc::InputSource& i,
                               ::xml_schema::ErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -14812,12 +14812,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive > (
-      ::CDM::GetDescriptorsFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
+      ::MDM::GetDescriptorsFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::xercesc::InputSource& i,
                               ::xercesc::DOMErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -14830,12 +14830,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive > (
-      ::CDM::GetDescriptorsFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
+      ::MDM::GetDescriptorsFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (const ::xercesc::DOMDocument& doc,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
@@ -14845,8 +14845,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive > (
-        ::CDM::GetDescriptorsFromArchive_ (
+      return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
+        ::MDM::GetDescriptorsFromArchive_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -14857,8 +14857,8 @@ namespace CDM
     if (n.name () == "GetDescriptorsFromArchive" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetDescriptorsFromArchive, char >::create (
+      ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchive, char >::create (
           e, f, 0));
       return r;
     }
@@ -14870,7 +14870,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
   GetDescriptorsFromArchive_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties&)
@@ -14895,8 +14895,8 @@ namespace CDM
     if (n.name () == "GetDescriptorsFromArchive" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetDescriptorsFromArchive > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetDescriptorsFromArchive, char >::create (
+      ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchive, char >::create (
           e, f, 0));
       return r;
     }
@@ -14908,7 +14908,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (const ::std::string& u,
                                       ::xml_schema::Flags f,
                                       const ::xml_schema::Properties& p)
@@ -14925,12 +14925,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse > (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
+      ::MDM::GetDescriptorsFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (const ::std::string& u,
                                       ::xml_schema::ErrorHandler& h,
                                       ::xml_schema::Flags f,
@@ -14947,12 +14947,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse > (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
+      ::MDM::GetDescriptorsFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (const ::std::string& u,
                                       ::xercesc::DOMErrorHandler& h,
                                       ::xml_schema::Flags f,
@@ -14965,12 +14965,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse > (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
+      ::MDM::GetDescriptorsFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::std::istream& is,
                                       ::xml_schema::Flags f,
                                       const ::xml_schema::Properties& p)
@@ -14980,10 +14980,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptorsFromArchiveResponse_ (isrc, f, p);
+    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::std::istream& is,
                                       ::xml_schema::ErrorHandler& h,
                                       ::xml_schema::Flags f,
@@ -14994,20 +14994,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::std::istream& is,
                                       ::xercesc::DOMErrorHandler& h,
                                       ::xml_schema::Flags f,
                                       const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::std::istream& is,
                                       const ::std::string& sid,
                                       ::xml_schema::Flags f,
@@ -15018,10 +15018,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptorsFromArchiveResponse_ (isrc, f, p);
+    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::std::istream& is,
                                       const ::std::string& sid,
                                       ::xml_schema::ErrorHandler& h,
@@ -15033,10 +15033,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::std::istream& is,
                                       const ::std::string& sid,
                                       ::xercesc::DOMErrorHandler& h,
@@ -15044,10 +15044,10 @@ namespace CDM
                                       const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::xercesc::InputSource& i,
                                       ::xml_schema::Flags f,
                                       const ::xml_schema::Properties& p)
@@ -15060,12 +15060,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse > (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
+      ::MDM::GetDescriptorsFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::xercesc::InputSource& i,
                                       ::xml_schema::ErrorHandler& h,
                                       ::xml_schema::Flags f,
@@ -15078,12 +15078,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse > (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
+      ::MDM::GetDescriptorsFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::xercesc::InputSource& i,
                                       ::xercesc::DOMErrorHandler& h,
                                       ::xml_schema::Flags f,
@@ -15096,12 +15096,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse > (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
+      ::MDM::GetDescriptorsFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (const ::xercesc::DOMDocument& doc,
                                       ::xml_schema::Flags f,
                                       const ::xml_schema::Properties& p)
@@ -15111,8 +15111,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse > (
-        ::CDM::GetDescriptorsFromArchiveResponse_ (
+      return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
+        ::MDM::GetDescriptorsFromArchiveResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -15123,8 +15123,8 @@ namespace CDM
     if (n.name () == "GetDescriptorsFromArchiveResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetDescriptorsFromArchiveResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchiveResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -15136,7 +15136,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
   GetDescriptorsFromArchiveResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                                       ::xml_schema::Flags f,
                                       const ::xml_schema::Properties&)
@@ -15161,8 +15161,8 @@ namespace CDM
     if (n.name () == "GetDescriptorsFromArchiveResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetDescriptorsFromArchiveResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetDescriptorsFromArchiveResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchiveResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -15174,7 +15174,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (const ::std::string& u,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -15191,12 +15191,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchive > (
-      ::CDM::GetStatesFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
+      ::MDM::GetStatesFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (const ::std::string& u,
                          ::xml_schema::ErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -15213,12 +15213,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchive > (
-      ::CDM::GetStatesFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
+      ::MDM::GetStatesFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (const ::std::string& u,
                          ::xercesc::DOMErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -15231,12 +15231,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchive > (
-      ::CDM::GetStatesFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
+      ::MDM::GetStatesFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::std::istream& is,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -15246,10 +15246,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetStatesFromArchive_ (isrc, f, p);
+    return ::MDM::GetStatesFromArchive_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::std::istream& is,
                          ::xml_schema::ErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -15260,20 +15260,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetStatesFromArchive_ (isrc, h, f, p);
+    return ::MDM::GetStatesFromArchive_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::std::istream& is,
                          ::xercesc::DOMErrorHandler& h,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetStatesFromArchive_ (isrc, h, f, p);
+    return ::MDM::GetStatesFromArchive_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::std::istream& is,
                          const ::std::string& sid,
                          ::xml_schema::Flags f,
@@ -15284,10 +15284,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetStatesFromArchive_ (isrc, f, p);
+    return ::MDM::GetStatesFromArchive_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::std::istream& is,
                          const ::std::string& sid,
                          ::xml_schema::ErrorHandler& h,
@@ -15299,10 +15299,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetStatesFromArchive_ (isrc, h, f, p);
+    return ::MDM::GetStatesFromArchive_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::std::istream& is,
                          const ::std::string& sid,
                          ::xercesc::DOMErrorHandler& h,
@@ -15310,10 +15310,10 @@ namespace CDM
                          const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetStatesFromArchive_ (isrc, h, f, p);
+    return ::MDM::GetStatesFromArchive_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::xercesc::InputSource& i,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -15326,12 +15326,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchive > (
-      ::CDM::GetStatesFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
+      ::MDM::GetStatesFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::xercesc::InputSource& i,
                          ::xml_schema::ErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -15344,12 +15344,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchive > (
-      ::CDM::GetStatesFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
+      ::MDM::GetStatesFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::xercesc::InputSource& i,
                          ::xercesc::DOMErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -15362,12 +15362,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchive > (
-      ::CDM::GetStatesFromArchive_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
+      ::MDM::GetStatesFromArchive_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (const ::xercesc::DOMDocument& doc,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -15377,8 +15377,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetStatesFromArchive > (
-        ::CDM::GetStatesFromArchive_ (
+      return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
+        ::MDM::GetStatesFromArchive_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -15389,8 +15389,8 @@ namespace CDM
     if (n.name () == "GetStatesFromArchive" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetStatesFromArchive > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetStatesFromArchive, char >::create (
+      ::std::unique_ptr< ::MDM::GetStatesFromArchive > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchive, char >::create (
           e, f, 0));
       return r;
     }
@@ -15402,7 +15402,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchive >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
   GetStatesFromArchive_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties&)
@@ -15427,8 +15427,8 @@ namespace CDM
     if (n.name () == "GetStatesFromArchive" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetStatesFromArchive > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetStatesFromArchive, char >::create (
+      ::std::unique_ptr< ::MDM::GetStatesFromArchive > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchive, char >::create (
           e, f, 0));
       return r;
     }
@@ -15440,7 +15440,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (const ::std::string& u,
                                  ::xml_schema::Flags f,
                                  const ::xml_schema::Properties& p)
@@ -15457,12 +15457,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse > (
-      ::CDM::GetStatesFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
+      ::MDM::GetStatesFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (const ::std::string& u,
                                  ::xml_schema::ErrorHandler& h,
                                  ::xml_schema::Flags f,
@@ -15479,12 +15479,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse > (
-      ::CDM::GetStatesFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
+      ::MDM::GetStatesFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (const ::std::string& u,
                                  ::xercesc::DOMErrorHandler& h,
                                  ::xml_schema::Flags f,
@@ -15497,12 +15497,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse > (
-      ::CDM::GetStatesFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
+      ::MDM::GetStatesFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::std::istream& is,
                                  ::xml_schema::Flags f,
                                  const ::xml_schema::Properties& p)
@@ -15512,10 +15512,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetStatesFromArchiveResponse_ (isrc, f, p);
+    return ::MDM::GetStatesFromArchiveResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::std::istream& is,
                                  ::xml_schema::ErrorHandler& h,
                                  ::xml_schema::Flags f,
@@ -15526,20 +15526,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
+    return ::MDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::std::istream& is,
                                  ::xercesc::DOMErrorHandler& h,
                                  ::xml_schema::Flags f,
                                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
+    return ::MDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::std::istream& is,
                                  const ::std::string& sid,
                                  ::xml_schema::Flags f,
@@ -15550,10 +15550,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetStatesFromArchiveResponse_ (isrc, f, p);
+    return ::MDM::GetStatesFromArchiveResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::std::istream& is,
                                  const ::std::string& sid,
                                  ::xml_schema::ErrorHandler& h,
@@ -15565,10 +15565,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
+    return ::MDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::std::istream& is,
                                  const ::std::string& sid,
                                  ::xercesc::DOMErrorHandler& h,
@@ -15576,10 +15576,10 @@ namespace CDM
                                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
+    return ::MDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::xercesc::InputSource& i,
                                  ::xml_schema::Flags f,
                                  const ::xml_schema::Properties& p)
@@ -15592,12 +15592,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse > (
-      ::CDM::GetStatesFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
+      ::MDM::GetStatesFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::xercesc::InputSource& i,
                                  ::xml_schema::ErrorHandler& h,
                                  ::xml_schema::Flags f,
@@ -15610,12 +15610,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse > (
-      ::CDM::GetStatesFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
+      ::MDM::GetStatesFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::xercesc::InputSource& i,
                                  ::xercesc::DOMErrorHandler& h,
                                  ::xml_schema::Flags f,
@@ -15628,12 +15628,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse > (
-      ::CDM::GetStatesFromArchiveResponse_ (
+    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
+      ::MDM::GetStatesFromArchiveResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (const ::xercesc::DOMDocument& doc,
                                  ::xml_schema::Flags f,
                                  const ::xml_schema::Properties& p)
@@ -15643,8 +15643,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse > (
-        ::CDM::GetStatesFromArchiveResponse_ (
+      return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
+        ::MDM::GetStatesFromArchiveResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -15655,8 +15655,8 @@ namespace CDM
     if (n.name () == "GetStatesFromArchiveResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetStatesFromArchiveResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchiveResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -15668,7 +15668,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse >
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
   GetStatesFromArchiveResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                                  ::xml_schema::Flags f,
                                  const ::xml_schema::Properties&)
@@ -15693,8 +15693,8 @@ namespace CDM
     if (n.name () == "GetStatesFromArchiveResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetStatesFromArchiveResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetStatesFromArchiveResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchiveResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -15706,7 +15706,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (const ::std::string& u,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -15723,12 +15723,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetValue > (
-      ::CDM::SetValue_ (
+    return ::std::unique_ptr< ::MDM::SetValue > (
+      ::MDM::SetValue_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (const ::std::string& u,
              ::xml_schema::ErrorHandler& h,
              ::xml_schema::Flags f,
@@ -15745,12 +15745,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetValue > (
-      ::CDM::SetValue_ (
+    return ::std::unique_ptr< ::MDM::SetValue > (
+      ::MDM::SetValue_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (const ::std::string& u,
              ::xercesc::DOMErrorHandler& h,
              ::xml_schema::Flags f,
@@ -15763,12 +15763,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetValue > (
-      ::CDM::SetValue_ (
+    return ::std::unique_ptr< ::MDM::SetValue > (
+      ::MDM::SetValue_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::std::istream& is,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -15778,10 +15778,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetValue_ (isrc, f, p);
+    return ::MDM::SetValue_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::std::istream& is,
              ::xml_schema::ErrorHandler& h,
              ::xml_schema::Flags f,
@@ -15792,20 +15792,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetValue_ (isrc, h, f, p);
+    return ::MDM::SetValue_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::std::istream& is,
              ::xercesc::DOMErrorHandler& h,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetValue_ (isrc, h, f, p);
+    return ::MDM::SetValue_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::std::istream& is,
              const ::std::string& sid,
              ::xml_schema::Flags f,
@@ -15816,10 +15816,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetValue_ (isrc, f, p);
+    return ::MDM::SetValue_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::std::istream& is,
              const ::std::string& sid,
              ::xml_schema::ErrorHandler& h,
@@ -15831,10 +15831,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetValue_ (isrc, h, f, p);
+    return ::MDM::SetValue_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::std::istream& is,
              const ::std::string& sid,
              ::xercesc::DOMErrorHandler& h,
@@ -15842,10 +15842,10 @@ namespace CDM
              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetValue_ (isrc, h, f, p);
+    return ::MDM::SetValue_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::xercesc::InputSource& i,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -15858,12 +15858,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetValue > (
-      ::CDM::SetValue_ (
+    return ::std::unique_ptr< ::MDM::SetValue > (
+      ::MDM::SetValue_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::xercesc::InputSource& i,
              ::xml_schema::ErrorHandler& h,
              ::xml_schema::Flags f,
@@ -15876,12 +15876,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetValue > (
-      ::CDM::SetValue_ (
+    return ::std::unique_ptr< ::MDM::SetValue > (
+      ::MDM::SetValue_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::xercesc::InputSource& i,
              ::xercesc::DOMErrorHandler& h,
              ::xml_schema::Flags f,
@@ -15894,12 +15894,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetValue > (
-      ::CDM::SetValue_ (
+    return ::std::unique_ptr< ::MDM::SetValue > (
+      ::MDM::SetValue_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (const ::xercesc::DOMDocument& doc,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -15909,8 +15909,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetValue > (
-        ::CDM::SetValue_ (
+      return ::std::unique_ptr< ::MDM::SetValue > (
+        ::MDM::SetValue_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -15921,8 +15921,8 @@ namespace CDM
     if (n.name () == "SetValue" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetValue > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetValue, char >::create (
+      ::std::unique_ptr< ::MDM::SetValue > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetValue, char >::create (
           e, f, 0));
       return r;
     }
@@ -15934,7 +15934,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetValue >
+  ::std::unique_ptr< ::MDM::SetValue >
   SetValue_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties&)
@@ -15959,8 +15959,8 @@ namespace CDM
     if (n.name () == "SetValue" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetValue > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetValue, char >::create (
+      ::std::unique_ptr< ::MDM::SetValue > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetValue, char >::create (
           e, f, 0));
       return r;
     }
@@ -15972,7 +15972,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (const ::std::string& u,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -15989,12 +15989,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetValueResponse > (
-      ::CDM::SetValueResponse_ (
+    return ::std::unique_ptr< ::MDM::SetValueResponse > (
+      ::MDM::SetValueResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (const ::std::string& u,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -16011,12 +16011,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetValueResponse > (
-      ::CDM::SetValueResponse_ (
+    return ::std::unique_ptr< ::MDM::SetValueResponse > (
+      ::MDM::SetValueResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (const ::std::string& u,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -16029,12 +16029,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetValueResponse > (
-      ::CDM::SetValueResponse_ (
+    return ::std::unique_ptr< ::MDM::SetValueResponse > (
+      ::MDM::SetValueResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::std::istream& is,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -16044,10 +16044,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetValueResponse_ (isrc, f, p);
+    return ::MDM::SetValueResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::std::istream& is,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -16058,20 +16058,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetValueResponse_ (isrc, h, f, p);
+    return ::MDM::SetValueResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::std::istream& is,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetValueResponse_ (isrc, h, f, p);
+    return ::MDM::SetValueResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::Flags f,
@@ -16082,10 +16082,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetValueResponse_ (isrc, f, p);
+    return ::MDM::SetValueResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::ErrorHandler& h,
@@ -16097,10 +16097,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetValueResponse_ (isrc, h, f, p);
+    return ::MDM::SetValueResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xercesc::DOMErrorHandler& h,
@@ -16108,10 +16108,10 @@ namespace CDM
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetValueResponse_ (isrc, h, f, p);
+    return ::MDM::SetValueResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::xercesc::InputSource& i,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -16124,12 +16124,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetValueResponse > (
-      ::CDM::SetValueResponse_ (
+    return ::std::unique_ptr< ::MDM::SetValueResponse > (
+      ::MDM::SetValueResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::xercesc::InputSource& i,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -16142,12 +16142,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetValueResponse > (
-      ::CDM::SetValueResponse_ (
+    return ::std::unique_ptr< ::MDM::SetValueResponse > (
+      ::MDM::SetValueResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::xercesc::InputSource& i,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -16160,12 +16160,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetValueResponse > (
-      ::CDM::SetValueResponse_ (
+    return ::std::unique_ptr< ::MDM::SetValueResponse > (
+      ::MDM::SetValueResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (const ::xercesc::DOMDocument& doc,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -16175,8 +16175,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetValueResponse > (
-        ::CDM::SetValueResponse_ (
+      return ::std::unique_ptr< ::MDM::SetValueResponse > (
+        ::MDM::SetValueResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -16187,8 +16187,8 @@ namespace CDM
     if (n.name () == "SetValueResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetValueResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetValueResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetValueResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetValueResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -16200,7 +16200,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetValueResponse >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
   SetValueResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties&)
@@ -16225,8 +16225,8 @@ namespace CDM
     if (n.name () == "SetValueResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetValueResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetValueResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetValueResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetValueResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -16238,7 +16238,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (const ::std::string& u,
               ::xml_schema::Flags f,
               const ::xml_schema::Properties& p)
@@ -16255,12 +16255,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetString > (
-      ::CDM::SetString_ (
+    return ::std::unique_ptr< ::MDM::SetString > (
+      ::MDM::SetString_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (const ::std::string& u,
               ::xml_schema::ErrorHandler& h,
               ::xml_schema::Flags f,
@@ -16277,12 +16277,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetString > (
-      ::CDM::SetString_ (
+    return ::std::unique_ptr< ::MDM::SetString > (
+      ::MDM::SetString_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (const ::std::string& u,
               ::xercesc::DOMErrorHandler& h,
               ::xml_schema::Flags f,
@@ -16295,12 +16295,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetString > (
-      ::CDM::SetString_ (
+    return ::std::unique_ptr< ::MDM::SetString > (
+      ::MDM::SetString_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::std::istream& is,
               ::xml_schema::Flags f,
               const ::xml_schema::Properties& p)
@@ -16310,10 +16310,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetString_ (isrc, f, p);
+    return ::MDM::SetString_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::std::istream& is,
               ::xml_schema::ErrorHandler& h,
               ::xml_schema::Flags f,
@@ -16324,20 +16324,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetString_ (isrc, h, f, p);
+    return ::MDM::SetString_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::std::istream& is,
               ::xercesc::DOMErrorHandler& h,
               ::xml_schema::Flags f,
               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetString_ (isrc, h, f, p);
+    return ::MDM::SetString_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::std::istream& is,
               const ::std::string& sid,
               ::xml_schema::Flags f,
@@ -16348,10 +16348,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetString_ (isrc, f, p);
+    return ::MDM::SetString_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::std::istream& is,
               const ::std::string& sid,
               ::xml_schema::ErrorHandler& h,
@@ -16363,10 +16363,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetString_ (isrc, h, f, p);
+    return ::MDM::SetString_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::std::istream& is,
               const ::std::string& sid,
               ::xercesc::DOMErrorHandler& h,
@@ -16374,10 +16374,10 @@ namespace CDM
               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetString_ (isrc, h, f, p);
+    return ::MDM::SetString_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::xercesc::InputSource& i,
               ::xml_schema::Flags f,
               const ::xml_schema::Properties& p)
@@ -16390,12 +16390,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetString > (
-      ::CDM::SetString_ (
+    return ::std::unique_ptr< ::MDM::SetString > (
+      ::MDM::SetString_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::xercesc::InputSource& i,
               ::xml_schema::ErrorHandler& h,
               ::xml_schema::Flags f,
@@ -16408,12 +16408,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetString > (
-      ::CDM::SetString_ (
+    return ::std::unique_ptr< ::MDM::SetString > (
+      ::MDM::SetString_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::xercesc::InputSource& i,
               ::xercesc::DOMErrorHandler& h,
               ::xml_schema::Flags f,
@@ -16426,12 +16426,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetString > (
-      ::CDM::SetString_ (
+    return ::std::unique_ptr< ::MDM::SetString > (
+      ::MDM::SetString_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (const ::xercesc::DOMDocument& doc,
               ::xml_schema::Flags f,
               const ::xml_schema::Properties& p)
@@ -16441,8 +16441,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetString > (
-        ::CDM::SetString_ (
+      return ::std::unique_ptr< ::MDM::SetString > (
+        ::MDM::SetString_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -16453,8 +16453,8 @@ namespace CDM
     if (n.name () == "SetString" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetString > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetString, char >::create (
+      ::std::unique_ptr< ::MDM::SetString > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetString, char >::create (
           e, f, 0));
       return r;
     }
@@ -16466,7 +16466,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetString >
+  ::std::unique_ptr< ::MDM::SetString >
   SetString_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
               ::xml_schema::Flags f,
               const ::xml_schema::Properties&)
@@ -16491,8 +16491,8 @@ namespace CDM
     if (n.name () == "SetString" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetString > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetString, char >::create (
+      ::std::unique_ptr< ::MDM::SetString > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetString, char >::create (
           e, f, 0));
       return r;
     }
@@ -16504,7 +16504,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (const ::std::string& u,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -16521,12 +16521,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetStringResponse > (
-      ::CDM::SetStringResponse_ (
+    return ::std::unique_ptr< ::MDM::SetStringResponse > (
+      ::MDM::SetStringResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (const ::std::string& u,
                       ::xml_schema::ErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -16543,12 +16543,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetStringResponse > (
-      ::CDM::SetStringResponse_ (
+    return ::std::unique_ptr< ::MDM::SetStringResponse > (
+      ::MDM::SetStringResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (const ::std::string& u,
                       ::xercesc::DOMErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -16561,12 +16561,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetStringResponse > (
-      ::CDM::SetStringResponse_ (
+    return ::std::unique_ptr< ::MDM::SetStringResponse > (
+      ::MDM::SetStringResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::std::istream& is,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -16576,10 +16576,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetStringResponse_ (isrc, f, p);
+    return ::MDM::SetStringResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::std::istream& is,
                       ::xml_schema::ErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -16590,20 +16590,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetStringResponse_ (isrc, h, f, p);
+    return ::MDM::SetStringResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::std::istream& is,
                       ::xercesc::DOMErrorHandler& h,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetStringResponse_ (isrc, h, f, p);
+    return ::MDM::SetStringResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::std::istream& is,
                       const ::std::string& sid,
                       ::xml_schema::Flags f,
@@ -16614,10 +16614,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetStringResponse_ (isrc, f, p);
+    return ::MDM::SetStringResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::std::istream& is,
                       const ::std::string& sid,
                       ::xml_schema::ErrorHandler& h,
@@ -16629,10 +16629,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetStringResponse_ (isrc, h, f, p);
+    return ::MDM::SetStringResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::std::istream& is,
                       const ::std::string& sid,
                       ::xercesc::DOMErrorHandler& h,
@@ -16640,10 +16640,10 @@ namespace CDM
                       const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetStringResponse_ (isrc, h, f, p);
+    return ::MDM::SetStringResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::xercesc::InputSource& i,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -16656,12 +16656,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetStringResponse > (
-      ::CDM::SetStringResponse_ (
+    return ::std::unique_ptr< ::MDM::SetStringResponse > (
+      ::MDM::SetStringResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::xercesc::InputSource& i,
                       ::xml_schema::ErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -16674,12 +16674,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetStringResponse > (
-      ::CDM::SetStringResponse_ (
+    return ::std::unique_ptr< ::MDM::SetStringResponse > (
+      ::MDM::SetStringResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::xercesc::InputSource& i,
                       ::xercesc::DOMErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -16692,12 +16692,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetStringResponse > (
-      ::CDM::SetStringResponse_ (
+    return ::std::unique_ptr< ::MDM::SetStringResponse > (
+      ::MDM::SetStringResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (const ::xercesc::DOMDocument& doc,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -16707,8 +16707,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetStringResponse > (
-        ::CDM::SetStringResponse_ (
+      return ::std::unique_ptr< ::MDM::SetStringResponse > (
+        ::MDM::SetStringResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -16719,8 +16719,8 @@ namespace CDM
     if (n.name () == "SetStringResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetStringResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetStringResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetStringResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetStringResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -16732,7 +16732,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetStringResponse >
+  ::std::unique_ptr< ::MDM::SetStringResponse >
   SetStringResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties&)
@@ -16757,8 +16757,8 @@ namespace CDM
     if (n.name () == "SetStringResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetStringResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetStringResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetStringResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetStringResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -16770,7 +16770,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (const ::std::string& u,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -16787,12 +16787,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::Activate > (
-      ::CDM::Activate_ (
+    return ::std::unique_ptr< ::MDM::Activate > (
+      ::MDM::Activate_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (const ::std::string& u,
              ::xml_schema::ErrorHandler& h,
              ::xml_schema::Flags f,
@@ -16809,12 +16809,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::Activate > (
-      ::CDM::Activate_ (
+    return ::std::unique_ptr< ::MDM::Activate > (
+      ::MDM::Activate_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (const ::std::string& u,
              ::xercesc::DOMErrorHandler& h,
              ::xml_schema::Flags f,
@@ -16827,12 +16827,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::Activate > (
-      ::CDM::Activate_ (
+    return ::std::unique_ptr< ::MDM::Activate > (
+      ::MDM::Activate_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::std::istream& is,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -16842,10 +16842,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::Activate_ (isrc, f, p);
+    return ::MDM::Activate_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::std::istream& is,
              ::xml_schema::ErrorHandler& h,
              ::xml_schema::Flags f,
@@ -16856,20 +16856,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::Activate_ (isrc, h, f, p);
+    return ::MDM::Activate_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::std::istream& is,
              ::xercesc::DOMErrorHandler& h,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::Activate_ (isrc, h, f, p);
+    return ::MDM::Activate_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::std::istream& is,
              const ::std::string& sid,
              ::xml_schema::Flags f,
@@ -16880,10 +16880,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::Activate_ (isrc, f, p);
+    return ::MDM::Activate_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::std::istream& is,
              const ::std::string& sid,
              ::xml_schema::ErrorHandler& h,
@@ -16895,10 +16895,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::Activate_ (isrc, h, f, p);
+    return ::MDM::Activate_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::std::istream& is,
              const ::std::string& sid,
              ::xercesc::DOMErrorHandler& h,
@@ -16906,10 +16906,10 @@ namespace CDM
              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::Activate_ (isrc, h, f, p);
+    return ::MDM::Activate_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::xercesc::InputSource& i,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -16922,12 +16922,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::Activate > (
-      ::CDM::Activate_ (
+    return ::std::unique_ptr< ::MDM::Activate > (
+      ::MDM::Activate_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::xercesc::InputSource& i,
              ::xml_schema::ErrorHandler& h,
              ::xml_schema::Flags f,
@@ -16940,12 +16940,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::Activate > (
-      ::CDM::Activate_ (
+    return ::std::unique_ptr< ::MDM::Activate > (
+      ::MDM::Activate_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::xercesc::InputSource& i,
              ::xercesc::DOMErrorHandler& h,
              ::xml_schema::Flags f,
@@ -16958,12 +16958,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::Activate > (
-      ::CDM::Activate_ (
+    return ::std::unique_ptr< ::MDM::Activate > (
+      ::MDM::Activate_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (const ::xercesc::DOMDocument& doc,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -16973,8 +16973,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::Activate > (
-        ::CDM::Activate_ (
+      return ::std::unique_ptr< ::MDM::Activate > (
+        ::MDM::Activate_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -16985,8 +16985,8 @@ namespace CDM
     if (n.name () == "Activate" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::Activate > r (
-        ::xsd::cxx::tree::traits< ::CDM::Activate, char >::create (
+      ::std::unique_ptr< ::MDM::Activate > r (
+        ::xsd::cxx::tree::traits< ::MDM::Activate, char >::create (
           e, f, 0));
       return r;
     }
@@ -16998,7 +16998,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::Activate >
+  ::std::unique_ptr< ::MDM::Activate >
   Activate_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties&)
@@ -17023,8 +17023,8 @@ namespace CDM
     if (n.name () == "Activate" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::Activate > r (
-        ::xsd::cxx::tree::traits< ::CDM::Activate, char >::create (
+      ::std::unique_ptr< ::MDM::Activate > r (
+        ::xsd::cxx::tree::traits< ::MDM::Activate, char >::create (
           e, f, 0));
       return r;
     }
@@ -17036,7 +17036,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (const ::std::string& u,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -17053,12 +17053,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::ActivateResponse > (
-      ::CDM::ActivateResponse_ (
+    return ::std::unique_ptr< ::MDM::ActivateResponse > (
+      ::MDM::ActivateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (const ::std::string& u,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -17075,12 +17075,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ActivateResponse > (
-      ::CDM::ActivateResponse_ (
+    return ::std::unique_ptr< ::MDM::ActivateResponse > (
+      ::MDM::ActivateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (const ::std::string& u,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -17093,12 +17093,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ActivateResponse > (
-      ::CDM::ActivateResponse_ (
+    return ::std::unique_ptr< ::MDM::ActivateResponse > (
+      ::MDM::ActivateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::std::istream& is,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -17108,10 +17108,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::ActivateResponse_ (isrc, f, p);
+    return ::MDM::ActivateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::std::istream& is,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -17122,20 +17122,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::ActivateResponse_ (isrc, h, f, p);
+    return ::MDM::ActivateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::std::istream& is,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::ActivateResponse_ (isrc, h, f, p);
+    return ::MDM::ActivateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::Flags f,
@@ -17146,10 +17146,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::ActivateResponse_ (isrc, f, p);
+    return ::MDM::ActivateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xml_schema::ErrorHandler& h,
@@ -17161,10 +17161,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::ActivateResponse_ (isrc, h, f, p);
+    return ::MDM::ActivateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::std::istream& is,
                      const ::std::string& sid,
                      ::xercesc::DOMErrorHandler& h,
@@ -17172,10 +17172,10 @@ namespace CDM
                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::ActivateResponse_ (isrc, h, f, p);
+    return ::MDM::ActivateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::xercesc::InputSource& i,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -17188,12 +17188,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::ActivateResponse > (
-      ::CDM::ActivateResponse_ (
+    return ::std::unique_ptr< ::MDM::ActivateResponse > (
+      ::MDM::ActivateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::xercesc::InputSource& i,
                      ::xml_schema::ErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -17206,12 +17206,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ActivateResponse > (
-      ::CDM::ActivateResponse_ (
+    return ::std::unique_ptr< ::MDM::ActivateResponse > (
+      ::MDM::ActivateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::xercesc::InputSource& i,
                      ::xercesc::DOMErrorHandler& h,
                      ::xml_schema::Flags f,
@@ -17224,12 +17224,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ActivateResponse > (
-      ::CDM::ActivateResponse_ (
+    return ::std::unique_ptr< ::MDM::ActivateResponse > (
+      ::MDM::ActivateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (const ::xercesc::DOMDocument& doc,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties& p)
@@ -17239,8 +17239,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::ActivateResponse > (
-        ::CDM::ActivateResponse_ (
+      return ::std::unique_ptr< ::MDM::ActivateResponse > (
+        ::MDM::ActivateResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -17251,8 +17251,8 @@ namespace CDM
     if (n.name () == "ActivateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::ActivateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::ActivateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::ActivateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::ActivateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -17264,7 +17264,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::ActivateResponse >
+  ::std::unique_ptr< ::MDM::ActivateResponse >
   ActivateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                      ::xml_schema::Flags f,
                      const ::xml_schema::Properties&)
@@ -17289,8 +17289,8 @@ namespace CDM
     if (n.name () == "ActivateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::ActivateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::ActivateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::ActivateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::ActivateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -17302,7 +17302,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (const ::std::string& u,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
@@ -17319,12 +17319,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertState > (
-      ::CDM::SetAlertState_ (
+    return ::std::unique_ptr< ::MDM::SetAlertState > (
+      ::MDM::SetAlertState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (const ::std::string& u,
                   ::xml_schema::ErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -17341,12 +17341,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertState > (
-      ::CDM::SetAlertState_ (
+    return ::std::unique_ptr< ::MDM::SetAlertState > (
+      ::MDM::SetAlertState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (const ::std::string& u,
                   ::xercesc::DOMErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -17359,12 +17359,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertState > (
-      ::CDM::SetAlertState_ (
+    return ::std::unique_ptr< ::MDM::SetAlertState > (
+      ::MDM::SetAlertState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::std::istream& is,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
@@ -17374,10 +17374,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetAlertState_ (isrc, f, p);
+    return ::MDM::SetAlertState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::std::istream& is,
                   ::xml_schema::ErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -17388,20 +17388,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetAlertState_ (isrc, h, f, p);
+    return ::MDM::SetAlertState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::std::istream& is,
                   ::xercesc::DOMErrorHandler& h,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetAlertState_ (isrc, h, f, p);
+    return ::MDM::SetAlertState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::std::istream& is,
                   const ::std::string& sid,
                   ::xml_schema::Flags f,
@@ -17412,10 +17412,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetAlertState_ (isrc, f, p);
+    return ::MDM::SetAlertState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::std::istream& is,
                   const ::std::string& sid,
                   ::xml_schema::ErrorHandler& h,
@@ -17427,10 +17427,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetAlertState_ (isrc, h, f, p);
+    return ::MDM::SetAlertState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::std::istream& is,
                   const ::std::string& sid,
                   ::xercesc::DOMErrorHandler& h,
@@ -17438,10 +17438,10 @@ namespace CDM
                   const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetAlertState_ (isrc, h, f, p);
+    return ::MDM::SetAlertState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::xercesc::InputSource& i,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
@@ -17454,12 +17454,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertState > (
-      ::CDM::SetAlertState_ (
+    return ::std::unique_ptr< ::MDM::SetAlertState > (
+      ::MDM::SetAlertState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::xercesc::InputSource& i,
                   ::xml_schema::ErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -17472,12 +17472,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertState > (
-      ::CDM::SetAlertState_ (
+    return ::std::unique_ptr< ::MDM::SetAlertState > (
+      ::MDM::SetAlertState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::xercesc::InputSource& i,
                   ::xercesc::DOMErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -17490,12 +17490,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertState > (
-      ::CDM::SetAlertState_ (
+    return ::std::unique_ptr< ::MDM::SetAlertState > (
+      ::MDM::SetAlertState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (const ::xercesc::DOMDocument& doc,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
@@ -17505,8 +17505,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetAlertState > (
-        ::CDM::SetAlertState_ (
+      return ::std::unique_ptr< ::MDM::SetAlertState > (
+        ::MDM::SetAlertState_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -17517,8 +17517,8 @@ namespace CDM
     if (n.name () == "SetAlertState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetAlertState > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetAlertState, char >::create (
+      ::std::unique_ptr< ::MDM::SetAlertState > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetAlertState, char >::create (
           e, f, 0));
       return r;
     }
@@ -17530,7 +17530,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertState >
+  ::std::unique_ptr< ::MDM::SetAlertState >
   SetAlertState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties&)
@@ -17555,8 +17555,8 @@ namespace CDM
     if (n.name () == "SetAlertState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetAlertState > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetAlertState, char >::create (
+      ::std::unique_ptr< ::MDM::SetAlertState > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetAlertState, char >::create (
           e, f, 0));
       return r;
     }
@@ -17568,7 +17568,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (const ::std::string& u,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -17585,12 +17585,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertStateResponse > (
-      ::CDM::SetAlertStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
+      ::MDM::SetAlertStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (const ::std::string& u,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -17607,12 +17607,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertStateResponse > (
-      ::CDM::SetAlertStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
+      ::MDM::SetAlertStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (const ::std::string& u,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -17625,12 +17625,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertStateResponse > (
-      ::CDM::SetAlertStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
+      ::MDM::SetAlertStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::std::istream& is,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -17640,10 +17640,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetAlertStateResponse_ (isrc, f, p);
+    return ::MDM::SetAlertStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::std::istream& is,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -17654,20 +17654,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetAlertStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetAlertStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::std::istream& is,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetAlertStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetAlertStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::Flags f,
@@ -17678,10 +17678,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetAlertStateResponse_ (isrc, f, p);
+    return ::MDM::SetAlertStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::ErrorHandler& h,
@@ -17693,10 +17693,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetAlertStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetAlertStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xercesc::DOMErrorHandler& h,
@@ -17704,10 +17704,10 @@ namespace CDM
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetAlertStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetAlertStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::xercesc::InputSource& i,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -17720,12 +17720,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertStateResponse > (
-      ::CDM::SetAlertStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
+      ::MDM::SetAlertStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::xercesc::InputSource& i,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -17738,12 +17738,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertStateResponse > (
-      ::CDM::SetAlertStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
+      ::MDM::SetAlertStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::xercesc::InputSource& i,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -17756,12 +17756,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetAlertStateResponse > (
-      ::CDM::SetAlertStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
+      ::MDM::SetAlertStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (const ::xercesc::DOMDocument& doc,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -17771,8 +17771,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetAlertStateResponse > (
-        ::CDM::SetAlertStateResponse_ (
+      return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
+        ::MDM::SetAlertStateResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -17783,8 +17783,8 @@ namespace CDM
     if (n.name () == "SetAlertStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetAlertStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetAlertStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetAlertStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetAlertStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -17796,7 +17796,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
   SetAlertStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties&)
@@ -17821,8 +17821,8 @@ namespace CDM
     if (n.name () == "SetAlertStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetAlertStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetAlertStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetAlertStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetAlertStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -17834,7 +17834,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (const ::std::string& u,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -17851,12 +17851,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentState > (
-      ::CDM::SetComponentState_ (
+    return ::std::unique_ptr< ::MDM::SetComponentState > (
+      ::MDM::SetComponentState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (const ::std::string& u,
                       ::xml_schema::ErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -17873,12 +17873,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentState > (
-      ::CDM::SetComponentState_ (
+    return ::std::unique_ptr< ::MDM::SetComponentState > (
+      ::MDM::SetComponentState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (const ::std::string& u,
                       ::xercesc::DOMErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -17891,12 +17891,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentState > (
-      ::CDM::SetComponentState_ (
+    return ::std::unique_ptr< ::MDM::SetComponentState > (
+      ::MDM::SetComponentState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::std::istream& is,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -17906,10 +17906,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetComponentState_ (isrc, f, p);
+    return ::MDM::SetComponentState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::std::istream& is,
                       ::xml_schema::ErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -17920,20 +17920,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetComponentState_ (isrc, h, f, p);
+    return ::MDM::SetComponentState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::std::istream& is,
                       ::xercesc::DOMErrorHandler& h,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetComponentState_ (isrc, h, f, p);
+    return ::MDM::SetComponentState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::std::istream& is,
                       const ::std::string& sid,
                       ::xml_schema::Flags f,
@@ -17944,10 +17944,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetComponentState_ (isrc, f, p);
+    return ::MDM::SetComponentState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::std::istream& is,
                       const ::std::string& sid,
                       ::xml_schema::ErrorHandler& h,
@@ -17959,10 +17959,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetComponentState_ (isrc, h, f, p);
+    return ::MDM::SetComponentState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::std::istream& is,
                       const ::std::string& sid,
                       ::xercesc::DOMErrorHandler& h,
@@ -17970,10 +17970,10 @@ namespace CDM
                       const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetComponentState_ (isrc, h, f, p);
+    return ::MDM::SetComponentState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::xercesc::InputSource& i,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -17986,12 +17986,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentState > (
-      ::CDM::SetComponentState_ (
+    return ::std::unique_ptr< ::MDM::SetComponentState > (
+      ::MDM::SetComponentState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::xercesc::InputSource& i,
                       ::xml_schema::ErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -18004,12 +18004,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentState > (
-      ::CDM::SetComponentState_ (
+    return ::std::unique_ptr< ::MDM::SetComponentState > (
+      ::MDM::SetComponentState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::xercesc::InputSource& i,
                       ::xercesc::DOMErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -18022,12 +18022,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentState > (
-      ::CDM::SetComponentState_ (
+    return ::std::unique_ptr< ::MDM::SetComponentState > (
+      ::MDM::SetComponentState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (const ::xercesc::DOMDocument& doc,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -18037,8 +18037,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetComponentState > (
-        ::CDM::SetComponentState_ (
+      return ::std::unique_ptr< ::MDM::SetComponentState > (
+        ::MDM::SetComponentState_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -18049,8 +18049,8 @@ namespace CDM
     if (n.name () == "SetComponentState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetComponentState > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetComponentState, char >::create (
+      ::std::unique_ptr< ::MDM::SetComponentState > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetComponentState, char >::create (
           e, f, 0));
       return r;
     }
@@ -18062,7 +18062,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentState >
+  ::std::unique_ptr< ::MDM::SetComponentState >
   SetComponentState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties&)
@@ -18087,8 +18087,8 @@ namespace CDM
     if (n.name () == "SetComponentState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetComponentState > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetComponentState, char >::create (
+      ::std::unique_ptr< ::MDM::SetComponentState > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetComponentState, char >::create (
           e, f, 0));
       return r;
     }
@@ -18100,7 +18100,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (const ::std::string& u,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
@@ -18117,12 +18117,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentStateResponse > (
-      ::CDM::SetComponentStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
+      ::MDM::SetComponentStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (const ::std::string& u,
                               ::xml_schema::ErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -18139,12 +18139,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentStateResponse > (
-      ::CDM::SetComponentStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
+      ::MDM::SetComponentStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (const ::std::string& u,
                               ::xercesc::DOMErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -18157,12 +18157,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentStateResponse > (
-      ::CDM::SetComponentStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
+      ::MDM::SetComponentStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::std::istream& is,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
@@ -18172,10 +18172,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetComponentStateResponse_ (isrc, f, p);
+    return ::MDM::SetComponentStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::std::istream& is,
                               ::xml_schema::ErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -18186,20 +18186,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetComponentStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetComponentStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::std::istream& is,
                               ::xercesc::DOMErrorHandler& h,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetComponentStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetComponentStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::std::istream& is,
                               const ::std::string& sid,
                               ::xml_schema::Flags f,
@@ -18210,10 +18210,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetComponentStateResponse_ (isrc, f, p);
+    return ::MDM::SetComponentStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::std::istream& is,
                               const ::std::string& sid,
                               ::xml_schema::ErrorHandler& h,
@@ -18225,10 +18225,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetComponentStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetComponentStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::std::istream& is,
                               const ::std::string& sid,
                               ::xercesc::DOMErrorHandler& h,
@@ -18236,10 +18236,10 @@ namespace CDM
                               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetComponentStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetComponentStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::xercesc::InputSource& i,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
@@ -18252,12 +18252,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentStateResponse > (
-      ::CDM::SetComponentStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
+      ::MDM::SetComponentStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::xercesc::InputSource& i,
                               ::xml_schema::ErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -18270,12 +18270,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentStateResponse > (
-      ::CDM::SetComponentStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
+      ::MDM::SetComponentStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::xercesc::InputSource& i,
                               ::xercesc::DOMErrorHandler& h,
                               ::xml_schema::Flags f,
@@ -18288,12 +18288,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetComponentStateResponse > (
-      ::CDM::SetComponentStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
+      ::MDM::SetComponentStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (const ::xercesc::DOMDocument& doc,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties& p)
@@ -18303,8 +18303,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetComponentStateResponse > (
-        ::CDM::SetComponentStateResponse_ (
+      return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
+        ::MDM::SetComponentStateResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -18315,8 +18315,8 @@ namespace CDM
     if (n.name () == "SetComponentStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetComponentStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetComponentStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetComponentStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetComponentStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -18328,7 +18328,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetComponentStateResponse >
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
   SetComponentStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                               ::xml_schema::Flags f,
                               const ::xml_schema::Properties&)
@@ -18353,8 +18353,8 @@ namespace CDM
     if (n.name () == "SetComponentStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetComponentStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetComponentStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetComponentStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetComponentStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -18366,7 +18366,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (const ::std::string& u,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -18383,12 +18383,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricState > (
-      ::CDM::SetMetricState_ (
+    return ::std::unique_ptr< ::MDM::SetMetricState > (
+      ::MDM::SetMetricState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (const ::std::string& u,
                    ::xml_schema::ErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -18405,12 +18405,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricState > (
-      ::CDM::SetMetricState_ (
+    return ::std::unique_ptr< ::MDM::SetMetricState > (
+      ::MDM::SetMetricState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (const ::std::string& u,
                    ::xercesc::DOMErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -18423,12 +18423,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricState > (
-      ::CDM::SetMetricState_ (
+    return ::std::unique_ptr< ::MDM::SetMetricState > (
+      ::MDM::SetMetricState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::std::istream& is,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -18438,10 +18438,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetMetricState_ (isrc, f, p);
+    return ::MDM::SetMetricState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::std::istream& is,
                    ::xml_schema::ErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -18452,20 +18452,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetMetricState_ (isrc, h, f, p);
+    return ::MDM::SetMetricState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::std::istream& is,
                    ::xercesc::DOMErrorHandler& h,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetMetricState_ (isrc, h, f, p);
+    return ::MDM::SetMetricState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::std::istream& is,
                    const ::std::string& sid,
                    ::xml_schema::Flags f,
@@ -18476,10 +18476,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetMetricState_ (isrc, f, p);
+    return ::MDM::SetMetricState_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::std::istream& is,
                    const ::std::string& sid,
                    ::xml_schema::ErrorHandler& h,
@@ -18491,10 +18491,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetMetricState_ (isrc, h, f, p);
+    return ::MDM::SetMetricState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::std::istream& is,
                    const ::std::string& sid,
                    ::xercesc::DOMErrorHandler& h,
@@ -18502,10 +18502,10 @@ namespace CDM
                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetMetricState_ (isrc, h, f, p);
+    return ::MDM::SetMetricState_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::xercesc::InputSource& i,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -18518,12 +18518,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricState > (
-      ::CDM::SetMetricState_ (
+    return ::std::unique_ptr< ::MDM::SetMetricState > (
+      ::MDM::SetMetricState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::xercesc::InputSource& i,
                    ::xml_schema::ErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -18536,12 +18536,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricState > (
-      ::CDM::SetMetricState_ (
+    return ::std::unique_ptr< ::MDM::SetMetricState > (
+      ::MDM::SetMetricState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::xercesc::InputSource& i,
                    ::xercesc::DOMErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -18554,12 +18554,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricState > (
-      ::CDM::SetMetricState_ (
+    return ::std::unique_ptr< ::MDM::SetMetricState > (
+      ::MDM::SetMetricState_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (const ::xercesc::DOMDocument& doc,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -18569,8 +18569,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetMetricState > (
-        ::CDM::SetMetricState_ (
+      return ::std::unique_ptr< ::MDM::SetMetricState > (
+        ::MDM::SetMetricState_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -18581,8 +18581,8 @@ namespace CDM
     if (n.name () == "SetMetricState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetMetricState > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetMetricState, char >::create (
+      ::std::unique_ptr< ::MDM::SetMetricState > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetMetricState, char >::create (
           e, f, 0));
       return r;
     }
@@ -18594,7 +18594,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricState >
+  ::std::unique_ptr< ::MDM::SetMetricState >
   SetMetricState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties&)
@@ -18619,8 +18619,8 @@ namespace CDM
     if (n.name () == "SetMetricState" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetMetricState > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetMetricState, char >::create (
+      ::std::unique_ptr< ::MDM::SetMetricState > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetMetricState, char >::create (
           e, f, 0));
       return r;
     }
@@ -18632,7 +18632,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (const ::std::string& u,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
@@ -18649,12 +18649,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricStateResponse > (
-      ::CDM::SetMetricStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
+      ::MDM::SetMetricStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (const ::std::string& u,
                            ::xml_schema::ErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -18671,12 +18671,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricStateResponse > (
-      ::CDM::SetMetricStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
+      ::MDM::SetMetricStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (const ::std::string& u,
                            ::xercesc::DOMErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -18689,12 +18689,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricStateResponse > (
-      ::CDM::SetMetricStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
+      ::MDM::SetMetricStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::std::istream& is,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
@@ -18704,10 +18704,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetMetricStateResponse_ (isrc, f, p);
+    return ::MDM::SetMetricStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::std::istream& is,
                            ::xml_schema::ErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -18718,20 +18718,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetMetricStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetMetricStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::std::istream& is,
                            ::xercesc::DOMErrorHandler& h,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SetMetricStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetMetricStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::std::istream& is,
                            const ::std::string& sid,
                            ::xml_schema::Flags f,
@@ -18742,10 +18742,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetMetricStateResponse_ (isrc, f, p);
+    return ::MDM::SetMetricStateResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::std::istream& is,
                            const ::std::string& sid,
                            ::xml_schema::ErrorHandler& h,
@@ -18757,10 +18757,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetMetricStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetMetricStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::std::istream& is,
                            const ::std::string& sid,
                            ::xercesc::DOMErrorHandler& h,
@@ -18768,10 +18768,10 @@ namespace CDM
                            const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SetMetricStateResponse_ (isrc, h, f, p);
+    return ::MDM::SetMetricStateResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::xercesc::InputSource& i,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
@@ -18784,12 +18784,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricStateResponse > (
-      ::CDM::SetMetricStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
+      ::MDM::SetMetricStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::xercesc::InputSource& i,
                            ::xml_schema::ErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -18802,12 +18802,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricStateResponse > (
-      ::CDM::SetMetricStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
+      ::MDM::SetMetricStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::xercesc::InputSource& i,
                            ::xercesc::DOMErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -18820,12 +18820,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SetMetricStateResponse > (
-      ::CDM::SetMetricStateResponse_ (
+    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
+      ::MDM::SetMetricStateResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (const ::xercesc::DOMDocument& doc,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
@@ -18835,8 +18835,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SetMetricStateResponse > (
-        ::CDM::SetMetricStateResponse_ (
+      return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
+        ::MDM::SetMetricStateResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -18847,8 +18847,8 @@ namespace CDM
     if (n.name () == "SetMetricStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetMetricStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetMetricStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetMetricStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetMetricStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -18860,7 +18860,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SetMetricStateResponse >
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
   SetMetricStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties&)
@@ -18885,8 +18885,8 @@ namespace CDM
     if (n.name () == "SetMetricStateResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SetMetricStateResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::SetMetricStateResponse, char >::create (
+      ::std::unique_ptr< ::MDM::SetMetricStateResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::SetMetricStateResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -18898,7 +18898,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (const ::std::string& u,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
@@ -18915,12 +18915,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::OperationInvokedReport > (
-      ::CDM::OperationInvokedReport_ (
+    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
+      ::MDM::OperationInvokedReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (const ::std::string& u,
                            ::xml_schema::ErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -18937,12 +18937,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::OperationInvokedReport > (
-      ::CDM::OperationInvokedReport_ (
+    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
+      ::MDM::OperationInvokedReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (const ::std::string& u,
                            ::xercesc::DOMErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -18955,12 +18955,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::OperationInvokedReport > (
-      ::CDM::OperationInvokedReport_ (
+    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
+      ::MDM::OperationInvokedReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
@@ -18970,10 +18970,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::OperationInvokedReport_ (isrc, f, p);
+    return ::MDM::OperationInvokedReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            ::xml_schema::ErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -18984,20 +18984,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::OperationInvokedReport_ (isrc, h, f, p);
+    return ::MDM::OperationInvokedReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            ::xercesc::DOMErrorHandler& h,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::OperationInvokedReport_ (isrc, h, f, p);
+    return ::MDM::OperationInvokedReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            const ::std::string& sid,
                            ::xml_schema::Flags f,
@@ -19008,10 +19008,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::OperationInvokedReport_ (isrc, f, p);
+    return ::MDM::OperationInvokedReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            const ::std::string& sid,
                            ::xml_schema::ErrorHandler& h,
@@ -19023,10 +19023,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::OperationInvokedReport_ (isrc, h, f, p);
+    return ::MDM::OperationInvokedReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            const ::std::string& sid,
                            ::xercesc::DOMErrorHandler& h,
@@ -19034,10 +19034,10 @@ namespace CDM
                            const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::OperationInvokedReport_ (isrc, h, f, p);
+    return ::MDM::OperationInvokedReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::xercesc::InputSource& i,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
@@ -19050,12 +19050,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::OperationInvokedReport > (
-      ::CDM::OperationInvokedReport_ (
+    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
+      ::MDM::OperationInvokedReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::xercesc::InputSource& i,
                            ::xml_schema::ErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -19068,12 +19068,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::OperationInvokedReport > (
-      ::CDM::OperationInvokedReport_ (
+    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
+      ::MDM::OperationInvokedReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::xercesc::InputSource& i,
                            ::xercesc::DOMErrorHandler& h,
                            ::xml_schema::Flags f,
@@ -19086,12 +19086,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::OperationInvokedReport > (
-      ::CDM::OperationInvokedReport_ (
+    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
+      ::MDM::OperationInvokedReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (const ::xercesc::DOMDocument& doc,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties& p)
@@ -19101,8 +19101,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::OperationInvokedReport > (
-        ::CDM::OperationInvokedReport_ (
+      return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
+        ::MDM::OperationInvokedReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -19113,8 +19113,8 @@ namespace CDM
     if (n.name () == "OperationInvokedReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::OperationInvokedReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::OperationInvokedReport, char >::create (
+      ::std::unique_ptr< ::MDM::OperationInvokedReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::OperationInvokedReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -19126,7 +19126,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                            ::xml_schema::Flags f,
                            const ::xml_schema::Properties&)
@@ -19151,8 +19151,8 @@ namespace CDM
     if (n.name () == "OperationInvokedReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::OperationInvokedReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::OperationInvokedReport, char >::create (
+      ::std::unique_ptr< ::MDM::OperationInvokedReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::OperationInvokedReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -19164,7 +19164,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (const ::std::string& u,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
@@ -19181,12 +19181,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTree > (
-      ::CDM::GetContainmentTree_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
+      ::MDM::GetContainmentTree_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (const ::std::string& u,
                        ::xml_schema::ErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -19203,12 +19203,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTree > (
-      ::CDM::GetContainmentTree_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
+      ::MDM::GetContainmentTree_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (const ::std::string& u,
                        ::xercesc::DOMErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -19221,12 +19221,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTree > (
-      ::CDM::GetContainmentTree_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
+      ::MDM::GetContainmentTree_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::std::istream& is,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
@@ -19236,10 +19236,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContainmentTree_ (isrc, f, p);
+    return ::MDM::GetContainmentTree_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::std::istream& is,
                        ::xml_schema::ErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -19250,20 +19250,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContainmentTree_ (isrc, h, f, p);
+    return ::MDM::GetContainmentTree_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::std::istream& is,
                        ::xercesc::DOMErrorHandler& h,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContainmentTree_ (isrc, h, f, p);
+    return ::MDM::GetContainmentTree_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::std::istream& is,
                        const ::std::string& sid,
                        ::xml_schema::Flags f,
@@ -19274,10 +19274,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContainmentTree_ (isrc, f, p);
+    return ::MDM::GetContainmentTree_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::std::istream& is,
                        const ::std::string& sid,
                        ::xml_schema::ErrorHandler& h,
@@ -19289,10 +19289,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContainmentTree_ (isrc, h, f, p);
+    return ::MDM::GetContainmentTree_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::std::istream& is,
                        const ::std::string& sid,
                        ::xercesc::DOMErrorHandler& h,
@@ -19300,10 +19300,10 @@ namespace CDM
                        const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContainmentTree_ (isrc, h, f, p);
+    return ::MDM::GetContainmentTree_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::xercesc::InputSource& i,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
@@ -19316,12 +19316,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTree > (
-      ::CDM::GetContainmentTree_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
+      ::MDM::GetContainmentTree_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::xercesc::InputSource& i,
                        ::xml_schema::ErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -19334,12 +19334,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTree > (
-      ::CDM::GetContainmentTree_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
+      ::MDM::GetContainmentTree_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::xercesc::InputSource& i,
                        ::xercesc::DOMErrorHandler& h,
                        ::xml_schema::Flags f,
@@ -19352,12 +19352,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTree > (
-      ::CDM::GetContainmentTree_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
+      ::MDM::GetContainmentTree_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (const ::xercesc::DOMDocument& doc,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties& p)
@@ -19367,8 +19367,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetContainmentTree > (
-        ::CDM::GetContainmentTree_ (
+      return ::std::unique_ptr< ::MDM::GetContainmentTree > (
+        ::MDM::GetContainmentTree_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -19379,8 +19379,8 @@ namespace CDM
     if (n.name () == "GetContainmentTree" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetContainmentTree > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetContainmentTree, char >::create (
+      ::std::unique_ptr< ::MDM::GetContainmentTree > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetContainmentTree, char >::create (
           e, f, 0));
       return r;
     }
@@ -19392,7 +19392,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
   GetContainmentTree_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                        ::xml_schema::Flags f,
                        const ::xml_schema::Properties&)
@@ -19417,8 +19417,8 @@ namespace CDM
     if (n.name () == "GetContainmentTree" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetContainmentTree > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetContainmentTree, char >::create (
+      ::std::unique_ptr< ::MDM::GetContainmentTree > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetContainmentTree, char >::create (
           e, f, 0));
       return r;
     }
@@ -19430,7 +19430,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (const ::std::string& u,
                                ::xml_schema::Flags f,
                                const ::xml_schema::Properties& p)
@@ -19447,12 +19447,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTreeResponse > (
-      ::CDM::GetContainmentTreeResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
+      ::MDM::GetContainmentTreeResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (const ::std::string& u,
                                ::xml_schema::ErrorHandler& h,
                                ::xml_schema::Flags f,
@@ -19469,12 +19469,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTreeResponse > (
-      ::CDM::GetContainmentTreeResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
+      ::MDM::GetContainmentTreeResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (const ::std::string& u,
                                ::xercesc::DOMErrorHandler& h,
                                ::xml_schema::Flags f,
@@ -19487,12 +19487,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTreeResponse > (
-      ::CDM::GetContainmentTreeResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
+      ::MDM::GetContainmentTreeResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::std::istream& is,
                                ::xml_schema::Flags f,
                                const ::xml_schema::Properties& p)
@@ -19502,10 +19502,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContainmentTreeResponse_ (isrc, f, p);
+    return ::MDM::GetContainmentTreeResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::std::istream& is,
                                ::xml_schema::ErrorHandler& h,
                                ::xml_schema::Flags f,
@@ -19516,20 +19516,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContainmentTreeResponse_ (isrc, h, f, p);
+    return ::MDM::GetContainmentTreeResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::std::istream& is,
                                ::xercesc::DOMErrorHandler& h,
                                ::xml_schema::Flags f,
                                const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetContainmentTreeResponse_ (isrc, h, f, p);
+    return ::MDM::GetContainmentTreeResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::std::istream& is,
                                const ::std::string& sid,
                                ::xml_schema::Flags f,
@@ -19540,10 +19540,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContainmentTreeResponse_ (isrc, f, p);
+    return ::MDM::GetContainmentTreeResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::std::istream& is,
                                const ::std::string& sid,
                                ::xml_schema::ErrorHandler& h,
@@ -19555,10 +19555,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContainmentTreeResponse_ (isrc, h, f, p);
+    return ::MDM::GetContainmentTreeResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::std::istream& is,
                                const ::std::string& sid,
                                ::xercesc::DOMErrorHandler& h,
@@ -19566,10 +19566,10 @@ namespace CDM
                                const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetContainmentTreeResponse_ (isrc, h, f, p);
+    return ::MDM::GetContainmentTreeResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::xercesc::InputSource& i,
                                ::xml_schema::Flags f,
                                const ::xml_schema::Properties& p)
@@ -19582,12 +19582,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTreeResponse > (
-      ::CDM::GetContainmentTreeResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
+      ::MDM::GetContainmentTreeResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::xercesc::InputSource& i,
                                ::xml_schema::ErrorHandler& h,
                                ::xml_schema::Flags f,
@@ -19600,12 +19600,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTreeResponse > (
-      ::CDM::GetContainmentTreeResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
+      ::MDM::GetContainmentTreeResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::xercesc::InputSource& i,
                                ::xercesc::DOMErrorHandler& h,
                                ::xml_schema::Flags f,
@@ -19618,12 +19618,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetContainmentTreeResponse > (
-      ::CDM::GetContainmentTreeResponse_ (
+    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
+      ::MDM::GetContainmentTreeResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (const ::xercesc::DOMDocument& doc,
                                ::xml_schema::Flags f,
                                const ::xml_schema::Properties& p)
@@ -19633,8 +19633,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetContainmentTreeResponse > (
-        ::CDM::GetContainmentTreeResponse_ (
+      return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
+        ::MDM::GetContainmentTreeResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -19645,8 +19645,8 @@ namespace CDM
     if (n.name () == "GetContainmentTreeResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetContainmentTreeResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetContainmentTreeResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetContainmentTreeResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -19658,7 +19658,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
   GetContainmentTreeResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                                ::xml_schema::Flags f,
                                const ::xml_schema::Properties&)
@@ -19683,8 +19683,8 @@ namespace CDM
     if (n.name () == "GetContainmentTreeResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetContainmentTreeResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetContainmentTreeResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetContainmentTreeResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -19696,7 +19696,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (const ::std::string& u,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
@@ -19713,12 +19713,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptor > (
-      ::CDM::GetDescriptor_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptor > (
+      ::MDM::GetDescriptor_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (const ::std::string& u,
                   ::xml_schema::ErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -19735,12 +19735,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptor > (
-      ::CDM::GetDescriptor_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptor > (
+      ::MDM::GetDescriptor_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (const ::std::string& u,
                   ::xercesc::DOMErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -19753,12 +19753,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptor > (
-      ::CDM::GetDescriptor_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptor > (
+      ::MDM::GetDescriptor_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::std::istream& is,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
@@ -19768,10 +19768,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptor_ (isrc, f, p);
+    return ::MDM::GetDescriptor_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::std::istream& is,
                   ::xml_schema::ErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -19782,20 +19782,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptor_ (isrc, h, f, p);
+    return ::MDM::GetDescriptor_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::std::istream& is,
                   ::xercesc::DOMErrorHandler& h,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptor_ (isrc, h, f, p);
+    return ::MDM::GetDescriptor_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::std::istream& is,
                   const ::std::string& sid,
                   ::xml_schema::Flags f,
@@ -19806,10 +19806,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptor_ (isrc, f, p);
+    return ::MDM::GetDescriptor_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::std::istream& is,
                   const ::std::string& sid,
                   ::xml_schema::ErrorHandler& h,
@@ -19821,10 +19821,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptor_ (isrc, h, f, p);
+    return ::MDM::GetDescriptor_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::std::istream& is,
                   const ::std::string& sid,
                   ::xercesc::DOMErrorHandler& h,
@@ -19832,10 +19832,10 @@ namespace CDM
                   const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptor_ (isrc, h, f, p);
+    return ::MDM::GetDescriptor_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::xercesc::InputSource& i,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
@@ -19848,12 +19848,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptor > (
-      ::CDM::GetDescriptor_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptor > (
+      ::MDM::GetDescriptor_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::xercesc::InputSource& i,
                   ::xml_schema::ErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -19866,12 +19866,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptor > (
-      ::CDM::GetDescriptor_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptor > (
+      ::MDM::GetDescriptor_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::xercesc::InputSource& i,
                   ::xercesc::DOMErrorHandler& h,
                   ::xml_schema::Flags f,
@@ -19884,12 +19884,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptor > (
-      ::CDM::GetDescriptor_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptor > (
+      ::MDM::GetDescriptor_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (const ::xercesc::DOMDocument& doc,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties& p)
@@ -19899,8 +19899,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetDescriptor > (
-        ::CDM::GetDescriptor_ (
+      return ::std::unique_ptr< ::MDM::GetDescriptor > (
+        ::MDM::GetDescriptor_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -19911,8 +19911,8 @@ namespace CDM
     if (n.name () == "GetDescriptor" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetDescriptor > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetDescriptor, char >::create (
+      ::std::unique_ptr< ::MDM::GetDescriptor > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetDescriptor, char >::create (
           e, f, 0));
       return r;
     }
@@ -19924,7 +19924,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
+  ::std::unique_ptr< ::MDM::GetDescriptor >
   GetDescriptor_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                   ::xml_schema::Flags f,
                   const ::xml_schema::Properties&)
@@ -19949,8 +19949,8 @@ namespace CDM
     if (n.name () == "GetDescriptor" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetDescriptor > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetDescriptor, char >::create (
+      ::std::unique_ptr< ::MDM::GetDescriptor > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetDescriptor, char >::create (
           e, f, 0));
       return r;
     }
@@ -19962,7 +19962,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (const ::std::string& u,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -19979,12 +19979,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorResponse > (
-      ::CDM::GetDescriptorResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
+      ::MDM::GetDescriptorResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (const ::std::string& u,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -20001,12 +20001,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorResponse > (
-      ::CDM::GetDescriptorResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
+      ::MDM::GetDescriptorResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (const ::std::string& u,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -20019,12 +20019,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorResponse > (
-      ::CDM::GetDescriptorResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
+      ::MDM::GetDescriptorResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::std::istream& is,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -20034,10 +20034,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptorResponse_ (isrc, f, p);
+    return ::MDM::GetDescriptorResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::std::istream& is,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -20048,20 +20048,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptorResponse_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::std::istream& is,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::GetDescriptorResponse_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::Flags f,
@@ -20072,10 +20072,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptorResponse_ (isrc, f, p);
+    return ::MDM::GetDescriptorResponse_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xml_schema::ErrorHandler& h,
@@ -20087,10 +20087,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptorResponse_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::std::istream& is,
                           const ::std::string& sid,
                           ::xercesc::DOMErrorHandler& h,
@@ -20098,10 +20098,10 @@ namespace CDM
                           const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::GetDescriptorResponse_ (isrc, h, f, p);
+    return ::MDM::GetDescriptorResponse_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::xercesc::InputSource& i,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -20114,12 +20114,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorResponse > (
-      ::CDM::GetDescriptorResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
+      ::MDM::GetDescriptorResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::xercesc::InputSource& i,
                           ::xml_schema::ErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -20132,12 +20132,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorResponse > (
-      ::CDM::GetDescriptorResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
+      ::MDM::GetDescriptorResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::xercesc::InputSource& i,
                           ::xercesc::DOMErrorHandler& h,
                           ::xml_schema::Flags f,
@@ -20150,12 +20150,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::GetDescriptorResponse > (
-      ::CDM::GetDescriptorResponse_ (
+    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
+      ::MDM::GetDescriptorResponse_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (const ::xercesc::DOMDocument& doc,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties& p)
@@ -20165,8 +20165,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::GetDescriptorResponse > (
-        ::CDM::GetDescriptorResponse_ (
+      return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
+        ::MDM::GetDescriptorResponse_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -20177,8 +20177,8 @@ namespace CDM
     if (n.name () == "GetDescriptorResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetDescriptorResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetDescriptorResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetDescriptorResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -20190,7 +20190,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
   GetDescriptorResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                           ::xml_schema::Flags f,
                           const ::xml_schema::Properties&)
@@ -20215,8 +20215,8 @@ namespace CDM
     if (n.name () == "GetDescriptorResponse" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::GetDescriptorResponse > r (
-        ::xsd::cxx::tree::traits< ::CDM::GetDescriptorResponse, char >::create (
+      ::std::unique_ptr< ::MDM::GetDescriptorResponse > r (
+        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorResponse, char >::create (
           e, f, 0));
       return r;
     }
@@ -20228,7 +20228,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (const ::std::string& u,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -20245,12 +20245,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicMetricReport > (
-      ::CDM::EpisodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
+      ::MDM::EpisodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (const ::std::string& u,
                          ::xml_schema::ErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20267,12 +20267,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicMetricReport > (
-      ::CDM::EpisodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
+      ::MDM::EpisodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (const ::std::string& u,
                          ::xercesc::DOMErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20285,12 +20285,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicMetricReport > (
-      ::CDM::EpisodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
+      ::MDM::EpisodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::std::istream& is,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -20300,10 +20300,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicMetricReport_ (isrc, f, p);
+    return ::MDM::EpisodicMetricReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::std::istream& is,
                          ::xml_schema::ErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20314,20 +20314,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicMetricReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicMetricReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::std::istream& is,
                          ::xercesc::DOMErrorHandler& h,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicMetricReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicMetricReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::std::istream& is,
                          const ::std::string& sid,
                          ::xml_schema::Flags f,
@@ -20338,10 +20338,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicMetricReport_ (isrc, f, p);
+    return ::MDM::EpisodicMetricReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::std::istream& is,
                          const ::std::string& sid,
                          ::xml_schema::ErrorHandler& h,
@@ -20353,10 +20353,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicMetricReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicMetricReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::std::istream& is,
                          const ::std::string& sid,
                          ::xercesc::DOMErrorHandler& h,
@@ -20364,10 +20364,10 @@ namespace CDM
                          const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicMetricReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicMetricReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::xercesc::InputSource& i,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -20380,12 +20380,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicMetricReport > (
-      ::CDM::EpisodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
+      ::MDM::EpisodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::xercesc::InputSource& i,
                          ::xml_schema::ErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20398,12 +20398,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicMetricReport > (
-      ::CDM::EpisodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
+      ::MDM::EpisodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::xercesc::InputSource& i,
                          ::xercesc::DOMErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20416,12 +20416,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicMetricReport > (
-      ::CDM::EpisodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
+      ::MDM::EpisodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (const ::xercesc::DOMDocument& doc,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -20431,8 +20431,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::EpisodicMetricReport > (
-        ::CDM::EpisodicMetricReport_ (
+      return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
+        ::MDM::EpisodicMetricReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -20443,8 +20443,8 @@ namespace CDM
     if (n.name () == "EpisodicMetricReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicMetricReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicMetricReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicMetricReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicMetricReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -20456,7 +20456,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
   EpisodicMetricReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties&)
@@ -20481,8 +20481,8 @@ namespace CDM
     if (n.name () == "EpisodicMetricReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicMetricReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicMetricReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicMetricReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicMetricReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -20494,7 +20494,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (const ::std::string& u,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -20511,12 +20511,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicMetricReport > (
-      ::CDM::PeriodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
+      ::MDM::PeriodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (const ::std::string& u,
                          ::xml_schema::ErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20533,12 +20533,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicMetricReport > (
-      ::CDM::PeriodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
+      ::MDM::PeriodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (const ::std::string& u,
                          ::xercesc::DOMErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20551,12 +20551,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicMetricReport > (
-      ::CDM::PeriodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
+      ::MDM::PeriodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::std::istream& is,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -20566,10 +20566,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicMetricReport_ (isrc, f, p);
+    return ::MDM::PeriodicMetricReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::std::istream& is,
                          ::xml_schema::ErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20580,20 +20580,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicMetricReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicMetricReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::std::istream& is,
                          ::xercesc::DOMErrorHandler& h,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicMetricReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicMetricReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::std::istream& is,
                          const ::std::string& sid,
                          ::xml_schema::Flags f,
@@ -20604,10 +20604,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicMetricReport_ (isrc, f, p);
+    return ::MDM::PeriodicMetricReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::std::istream& is,
                          const ::std::string& sid,
                          ::xml_schema::ErrorHandler& h,
@@ -20619,10 +20619,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicMetricReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicMetricReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::std::istream& is,
                          const ::std::string& sid,
                          ::xercesc::DOMErrorHandler& h,
@@ -20630,10 +20630,10 @@ namespace CDM
                          const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicMetricReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicMetricReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::xercesc::InputSource& i,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -20646,12 +20646,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicMetricReport > (
-      ::CDM::PeriodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
+      ::MDM::PeriodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::xercesc::InputSource& i,
                          ::xml_schema::ErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20664,12 +20664,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicMetricReport > (
-      ::CDM::PeriodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
+      ::MDM::PeriodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::xercesc::InputSource& i,
                          ::xercesc::DOMErrorHandler& h,
                          ::xml_schema::Flags f,
@@ -20682,12 +20682,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicMetricReport > (
-      ::CDM::PeriodicMetricReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
+      ::MDM::PeriodicMetricReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (const ::xercesc::DOMDocument& doc,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties& p)
@@ -20697,8 +20697,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::PeriodicMetricReport > (
-        ::CDM::PeriodicMetricReport_ (
+      return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
+        ::MDM::PeriodicMetricReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -20709,8 +20709,8 @@ namespace CDM
     if (n.name () == "PeriodicMetricReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicMetricReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicMetricReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicMetricReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicMetricReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -20722,7 +20722,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
   PeriodicMetricReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                          ::xml_schema::Flags f,
                          const ::xml_schema::Properties&)
@@ -20747,8 +20747,8 @@ namespace CDM
     if (n.name () == "PeriodicMetricReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicMetricReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicMetricReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicMetricReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicMetricReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -20760,7 +20760,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (const ::std::string& u,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -20777,12 +20777,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicComponentReport > (
-      ::CDM::EpisodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
+      ::MDM::EpisodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (const ::std::string& u,
                             ::xml_schema::ErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -20799,12 +20799,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicComponentReport > (
-      ::CDM::EpisodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
+      ::MDM::EpisodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (const ::std::string& u,
                             ::xercesc::DOMErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -20817,12 +20817,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicComponentReport > (
-      ::CDM::EpisodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
+      ::MDM::EpisodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::std::istream& is,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -20832,10 +20832,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicComponentReport_ (isrc, f, p);
+    return ::MDM::EpisodicComponentReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::std::istream& is,
                             ::xml_schema::ErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -20846,20 +20846,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicComponentReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicComponentReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::std::istream& is,
                             ::xercesc::DOMErrorHandler& h,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicComponentReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicComponentReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::std::istream& is,
                             const ::std::string& sid,
                             ::xml_schema::Flags f,
@@ -20870,10 +20870,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicComponentReport_ (isrc, f, p);
+    return ::MDM::EpisodicComponentReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::std::istream& is,
                             const ::std::string& sid,
                             ::xml_schema::ErrorHandler& h,
@@ -20885,10 +20885,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicComponentReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicComponentReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::std::istream& is,
                             const ::std::string& sid,
                             ::xercesc::DOMErrorHandler& h,
@@ -20896,10 +20896,10 @@ namespace CDM
                             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicComponentReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicComponentReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::xercesc::InputSource& i,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -20912,12 +20912,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicComponentReport > (
-      ::CDM::EpisodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
+      ::MDM::EpisodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::xercesc::InputSource& i,
                             ::xml_schema::ErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -20930,12 +20930,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicComponentReport > (
-      ::CDM::EpisodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
+      ::MDM::EpisodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::xercesc::InputSource& i,
                             ::xercesc::DOMErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -20948,12 +20948,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicComponentReport > (
-      ::CDM::EpisodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
+      ::MDM::EpisodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (const ::xercesc::DOMDocument& doc,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -20963,8 +20963,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::EpisodicComponentReport > (
-        ::CDM::EpisodicComponentReport_ (
+      return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
+        ::MDM::EpisodicComponentReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -20975,8 +20975,8 @@ namespace CDM
     if (n.name () == "EpisodicComponentReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicComponentReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicComponentReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicComponentReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicComponentReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -20988,7 +20988,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicComponentReport >
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
   EpisodicComponentReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties&)
@@ -21013,8 +21013,8 @@ namespace CDM
     if (n.name () == "EpisodicComponentReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicComponentReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicComponentReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicComponentReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicComponentReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -21026,7 +21026,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (const ::std::string& u,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -21043,12 +21043,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicComponentReport > (
-      ::CDM::PeriodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
+      ::MDM::PeriodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (const ::std::string& u,
                             ::xml_schema::ErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -21065,12 +21065,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicComponentReport > (
-      ::CDM::PeriodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
+      ::MDM::PeriodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (const ::std::string& u,
                             ::xercesc::DOMErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -21083,12 +21083,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicComponentReport > (
-      ::CDM::PeriodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
+      ::MDM::PeriodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::std::istream& is,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -21098,10 +21098,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicComponentReport_ (isrc, f, p);
+    return ::MDM::PeriodicComponentReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::std::istream& is,
                             ::xml_schema::ErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -21112,20 +21112,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicComponentReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicComponentReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::std::istream& is,
                             ::xercesc::DOMErrorHandler& h,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicComponentReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicComponentReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::std::istream& is,
                             const ::std::string& sid,
                             ::xml_schema::Flags f,
@@ -21136,10 +21136,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicComponentReport_ (isrc, f, p);
+    return ::MDM::PeriodicComponentReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::std::istream& is,
                             const ::std::string& sid,
                             ::xml_schema::ErrorHandler& h,
@@ -21151,10 +21151,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicComponentReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicComponentReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::std::istream& is,
                             const ::std::string& sid,
                             ::xercesc::DOMErrorHandler& h,
@@ -21162,10 +21162,10 @@ namespace CDM
                             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicComponentReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicComponentReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::xercesc::InputSource& i,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -21178,12 +21178,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicComponentReport > (
-      ::CDM::PeriodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
+      ::MDM::PeriodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::xercesc::InputSource& i,
                             ::xml_schema::ErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -21196,12 +21196,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicComponentReport > (
-      ::CDM::PeriodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
+      ::MDM::PeriodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::xercesc::InputSource& i,
                             ::xercesc::DOMErrorHandler& h,
                             ::xml_schema::Flags f,
@@ -21214,12 +21214,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicComponentReport > (
-      ::CDM::PeriodicComponentReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
+      ::MDM::PeriodicComponentReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (const ::xercesc::DOMDocument& doc,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties& p)
@@ -21229,8 +21229,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::PeriodicComponentReport > (
-        ::CDM::PeriodicComponentReport_ (
+      return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
+        ::MDM::PeriodicComponentReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -21241,8 +21241,8 @@ namespace CDM
     if (n.name () == "PeriodicComponentReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicComponentReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicComponentReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicComponentReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicComponentReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -21254,7 +21254,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicComponentReport >
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
   PeriodicComponentReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                             ::xml_schema::Flags f,
                             const ::xml_schema::Properties&)
@@ -21279,8 +21279,8 @@ namespace CDM
     if (n.name () == "PeriodicComponentReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicComponentReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicComponentReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicComponentReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicComponentReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -21292,7 +21292,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (const ::std::string& u,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -21309,12 +21309,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicAlertReport > (
-      ::CDM::EpisodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
+      ::MDM::EpisodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (const ::std::string& u,
                         ::xml_schema::ErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21331,12 +21331,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicAlertReport > (
-      ::CDM::EpisodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
+      ::MDM::EpisodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (const ::std::string& u,
                         ::xercesc::DOMErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21349,12 +21349,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicAlertReport > (
-      ::CDM::EpisodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
+      ::MDM::EpisodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::std::istream& is,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -21364,10 +21364,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicAlertReport_ (isrc, f, p);
+    return ::MDM::EpisodicAlertReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::std::istream& is,
                         ::xml_schema::ErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21378,20 +21378,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicAlertReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicAlertReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::std::istream& is,
                         ::xercesc::DOMErrorHandler& h,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicAlertReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicAlertReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::std::istream& is,
                         const ::std::string& sid,
                         ::xml_schema::Flags f,
@@ -21402,10 +21402,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicAlertReport_ (isrc, f, p);
+    return ::MDM::EpisodicAlertReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::std::istream& is,
                         const ::std::string& sid,
                         ::xml_schema::ErrorHandler& h,
@@ -21417,10 +21417,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicAlertReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicAlertReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::std::istream& is,
                         const ::std::string& sid,
                         ::xercesc::DOMErrorHandler& h,
@@ -21428,10 +21428,10 @@ namespace CDM
                         const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicAlertReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicAlertReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::xercesc::InputSource& i,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -21444,12 +21444,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicAlertReport > (
-      ::CDM::EpisodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
+      ::MDM::EpisodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::xercesc::InputSource& i,
                         ::xml_schema::ErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21462,12 +21462,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicAlertReport > (
-      ::CDM::EpisodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
+      ::MDM::EpisodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::xercesc::InputSource& i,
                         ::xercesc::DOMErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21480,12 +21480,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicAlertReport > (
-      ::CDM::EpisodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
+      ::MDM::EpisodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (const ::xercesc::DOMDocument& doc,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -21495,8 +21495,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::EpisodicAlertReport > (
-        ::CDM::EpisodicAlertReport_ (
+      return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
+        ::MDM::EpisodicAlertReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -21507,8 +21507,8 @@ namespace CDM
     if (n.name () == "EpisodicAlertReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicAlertReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicAlertReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicAlertReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicAlertReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -21520,7 +21520,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
   EpisodicAlertReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties&)
@@ -21545,8 +21545,8 @@ namespace CDM
     if (n.name () == "EpisodicAlertReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicAlertReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicAlertReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicAlertReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicAlertReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -21558,7 +21558,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (const ::std::string& u,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -21575,12 +21575,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicAlertReport > (
-      ::CDM::PeriodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
+      ::MDM::PeriodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (const ::std::string& u,
                         ::xml_schema::ErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21597,12 +21597,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicAlertReport > (
-      ::CDM::PeriodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
+      ::MDM::PeriodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (const ::std::string& u,
                         ::xercesc::DOMErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21615,12 +21615,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicAlertReport > (
-      ::CDM::PeriodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
+      ::MDM::PeriodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::std::istream& is,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -21630,10 +21630,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicAlertReport_ (isrc, f, p);
+    return ::MDM::PeriodicAlertReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::std::istream& is,
                         ::xml_schema::ErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21644,20 +21644,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicAlertReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicAlertReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::std::istream& is,
                         ::xercesc::DOMErrorHandler& h,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicAlertReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicAlertReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::std::istream& is,
                         const ::std::string& sid,
                         ::xml_schema::Flags f,
@@ -21668,10 +21668,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicAlertReport_ (isrc, f, p);
+    return ::MDM::PeriodicAlertReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::std::istream& is,
                         const ::std::string& sid,
                         ::xml_schema::ErrorHandler& h,
@@ -21683,10 +21683,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicAlertReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicAlertReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::std::istream& is,
                         const ::std::string& sid,
                         ::xercesc::DOMErrorHandler& h,
@@ -21694,10 +21694,10 @@ namespace CDM
                         const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicAlertReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicAlertReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::xercesc::InputSource& i,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -21710,12 +21710,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicAlertReport > (
-      ::CDM::PeriodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
+      ::MDM::PeriodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::xercesc::InputSource& i,
                         ::xml_schema::ErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21728,12 +21728,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicAlertReport > (
-      ::CDM::PeriodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
+      ::MDM::PeriodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::xercesc::InputSource& i,
                         ::xercesc::DOMErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -21746,12 +21746,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicAlertReport > (
-      ::CDM::PeriodicAlertReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
+      ::MDM::PeriodicAlertReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (const ::xercesc::DOMDocument& doc,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -21761,8 +21761,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::PeriodicAlertReport > (
-        ::CDM::PeriodicAlertReport_ (
+      return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
+        ::MDM::PeriodicAlertReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -21773,8 +21773,8 @@ namespace CDM
     if (n.name () == "PeriodicAlertReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicAlertReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicAlertReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicAlertReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicAlertReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -21786,7 +21786,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
   PeriodicAlertReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties&)
@@ -21811,8 +21811,8 @@ namespace CDM
     if (n.name () == "PeriodicAlertReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicAlertReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicAlertReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicAlertReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicAlertReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -21824,7 +21824,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (const ::std::string& u,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
@@ -21841,12 +21841,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport > (
-      ::CDM::EpisodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
+      ::MDM::EpisodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (const ::std::string& u,
                                    ::xml_schema::ErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -21863,12 +21863,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport > (
-      ::CDM::EpisodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
+      ::MDM::EpisodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (const ::std::string& u,
                                    ::xercesc::DOMErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -21881,12 +21881,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport > (
-      ::CDM::EpisodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
+      ::MDM::EpisodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::std::istream& is,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
@@ -21896,10 +21896,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicOperationalStateReport_ (isrc, f, p);
+    return ::MDM::EpisodicOperationalStateReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::std::istream& is,
                                    ::xml_schema::ErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -21910,20 +21910,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::std::istream& is,
                                    ::xercesc::DOMErrorHandler& h,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::std::istream& is,
                                    const ::std::string& sid,
                                    ::xml_schema::Flags f,
@@ -21934,10 +21934,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicOperationalStateReport_ (isrc, f, p);
+    return ::MDM::EpisodicOperationalStateReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::std::istream& is,
                                    const ::std::string& sid,
                                    ::xml_schema::ErrorHandler& h,
@@ -21949,10 +21949,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::std::istream& is,
                                    const ::std::string& sid,
                                    ::xercesc::DOMErrorHandler& h,
@@ -21960,10 +21960,10 @@ namespace CDM
                                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
+    return ::MDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::xercesc::InputSource& i,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
@@ -21976,12 +21976,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport > (
-      ::CDM::EpisodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
+      ::MDM::EpisodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::xercesc::InputSource& i,
                                    ::xml_schema::ErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -21994,12 +21994,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport > (
-      ::CDM::EpisodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
+      ::MDM::EpisodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::xercesc::InputSource& i,
                                    ::xercesc::DOMErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -22012,12 +22012,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport > (
-      ::CDM::EpisodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
+      ::MDM::EpisodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (const ::xercesc::DOMDocument& doc,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
@@ -22027,8 +22027,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport > (
-        ::CDM::EpisodicOperationalStateReport_ (
+      return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
+        ::MDM::EpisodicOperationalStateReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -22039,8 +22039,8 @@ namespace CDM
     if (n.name () == "EpisodicOperationalStateReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicOperationalStateReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicOperationalStateReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -22052,7 +22052,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
   EpisodicOperationalStateReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties&)
@@ -22077,8 +22077,8 @@ namespace CDM
     if (n.name () == "EpisodicOperationalStateReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::EpisodicOperationalStateReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::EpisodicOperationalStateReport, char >::create (
+      ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::EpisodicOperationalStateReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -22090,7 +22090,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (const ::std::string& u,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
@@ -22107,12 +22107,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport > (
-      ::CDM::PeriodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
+      ::MDM::PeriodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (const ::std::string& u,
                                    ::xml_schema::ErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -22129,12 +22129,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport > (
-      ::CDM::PeriodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
+      ::MDM::PeriodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (const ::std::string& u,
                                    ::xercesc::DOMErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -22147,12 +22147,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport > (
-      ::CDM::PeriodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
+      ::MDM::PeriodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::std::istream& is,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
@@ -22162,10 +22162,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicOperationalStateReport_ (isrc, f, p);
+    return ::MDM::PeriodicOperationalStateReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::std::istream& is,
                                    ::xml_schema::ErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -22176,20 +22176,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::std::istream& is,
                                    ::xercesc::DOMErrorHandler& h,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::std::istream& is,
                                    const ::std::string& sid,
                                    ::xml_schema::Flags f,
@@ -22200,10 +22200,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicOperationalStateReport_ (isrc, f, p);
+    return ::MDM::PeriodicOperationalStateReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::std::istream& is,
                                    const ::std::string& sid,
                                    ::xml_schema::ErrorHandler& h,
@@ -22215,10 +22215,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::std::istream& is,
                                    const ::std::string& sid,
                                    ::xercesc::DOMErrorHandler& h,
@@ -22226,10 +22226,10 @@ namespace CDM
                                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
+    return ::MDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::xercesc::InputSource& i,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
@@ -22242,12 +22242,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport > (
-      ::CDM::PeriodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
+      ::MDM::PeriodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::xercesc::InputSource& i,
                                    ::xml_schema::ErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -22260,12 +22260,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport > (
-      ::CDM::PeriodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
+      ::MDM::PeriodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::xercesc::InputSource& i,
                                    ::xercesc::DOMErrorHandler& h,
                                    ::xml_schema::Flags f,
@@ -22278,12 +22278,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport > (
-      ::CDM::PeriodicOperationalStateReport_ (
+    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
+      ::MDM::PeriodicOperationalStateReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (const ::xercesc::DOMDocument& doc,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties& p)
@@ -22293,8 +22293,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport > (
-        ::CDM::PeriodicOperationalStateReport_ (
+      return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
+        ::MDM::PeriodicOperationalStateReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -22305,8 +22305,8 @@ namespace CDM
     if (n.name () == "PeriodicOperationalStateReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicOperationalStateReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicOperationalStateReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -22318,7 +22318,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport >
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
   PeriodicOperationalStateReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                                    ::xml_schema::Flags f,
                                    const ::xml_schema::Properties&)
@@ -22343,8 +22343,8 @@ namespace CDM
     if (n.name () == "PeriodicOperationalStateReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::PeriodicOperationalStateReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::PeriodicOperationalStateReport, char >::create (
+      ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::PeriodicOperationalStateReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -22356,7 +22356,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (const ::std::string& u,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -22373,12 +22373,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SystemErrorReport > (
-      ::CDM::SystemErrorReport_ (
+    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
+      ::MDM::SystemErrorReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (const ::std::string& u,
                       ::xml_schema::ErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -22395,12 +22395,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SystemErrorReport > (
-      ::CDM::SystemErrorReport_ (
+    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
+      ::MDM::SystemErrorReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (const ::std::string& u,
                       ::xercesc::DOMErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -22413,12 +22413,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SystemErrorReport > (
-      ::CDM::SystemErrorReport_ (
+    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
+      ::MDM::SystemErrorReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -22428,10 +22428,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SystemErrorReport_ (isrc, f, p);
+    return ::MDM::SystemErrorReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       ::xml_schema::ErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -22442,20 +22442,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SystemErrorReport_ (isrc, h, f, p);
+    return ::MDM::SystemErrorReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       ::xercesc::DOMErrorHandler& h,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::SystemErrorReport_ (isrc, h, f, p);
+    return ::MDM::SystemErrorReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       const ::std::string& sid,
                       ::xml_schema::Flags f,
@@ -22466,10 +22466,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SystemErrorReport_ (isrc, f, p);
+    return ::MDM::SystemErrorReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       const ::std::string& sid,
                       ::xml_schema::ErrorHandler& h,
@@ -22481,10 +22481,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SystemErrorReport_ (isrc, h, f, p);
+    return ::MDM::SystemErrorReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       const ::std::string& sid,
                       ::xercesc::DOMErrorHandler& h,
@@ -22492,10 +22492,10 @@ namespace CDM
                       const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::SystemErrorReport_ (isrc, h, f, p);
+    return ::MDM::SystemErrorReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::xercesc::InputSource& i,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -22508,12 +22508,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::SystemErrorReport > (
-      ::CDM::SystemErrorReport_ (
+    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
+      ::MDM::SystemErrorReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::xercesc::InputSource& i,
                       ::xml_schema::ErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -22526,12 +22526,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SystemErrorReport > (
-      ::CDM::SystemErrorReport_ (
+    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
+      ::MDM::SystemErrorReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::xercesc::InputSource& i,
                       ::xercesc::DOMErrorHandler& h,
                       ::xml_schema::Flags f,
@@ -22544,12 +22544,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::SystemErrorReport > (
-      ::CDM::SystemErrorReport_ (
+    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
+      ::MDM::SystemErrorReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (const ::xercesc::DOMDocument& doc,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties& p)
@@ -22559,8 +22559,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::SystemErrorReport > (
-        ::CDM::SystemErrorReport_ (
+      return ::std::unique_ptr< ::MDM::SystemErrorReport > (
+        ::MDM::SystemErrorReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -22571,8 +22571,8 @@ namespace CDM
     if (n.name () == "SystemErrorReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SystemErrorReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::SystemErrorReport, char >::create (
+      ::std::unique_ptr< ::MDM::SystemErrorReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::SystemErrorReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -22584,7 +22584,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                       ::xml_schema::Flags f,
                       const ::xml_schema::Properties&)
@@ -22609,8 +22609,8 @@ namespace CDM
     if (n.name () == "SystemErrorReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::SystemErrorReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::SystemErrorReport, char >::create (
+      ::std::unique_ptr< ::MDM::SystemErrorReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::SystemErrorReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -22622,7 +22622,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (const ::std::string& u,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
@@ -22639,12 +22639,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::DescriptionModificationReport > (
-      ::CDM::DescriptionModificationReport_ (
+    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
+      ::MDM::DescriptionModificationReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (const ::std::string& u,
                                   ::xml_schema::ErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -22661,12 +22661,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::DescriptionModificationReport > (
-      ::CDM::DescriptionModificationReport_ (
+    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
+      ::MDM::DescriptionModificationReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (const ::std::string& u,
                                   ::xercesc::DOMErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -22679,12 +22679,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::DescriptionModificationReport > (
-      ::CDM::DescriptionModificationReport_ (
+    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
+      ::MDM::DescriptionModificationReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::std::istream& is,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
@@ -22694,10 +22694,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::DescriptionModificationReport_ (isrc, f, p);
+    return ::MDM::DescriptionModificationReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::std::istream& is,
                                   ::xml_schema::ErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -22708,20 +22708,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::DescriptionModificationReport_ (isrc, h, f, p);
+    return ::MDM::DescriptionModificationReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::std::istream& is,
                                   ::xercesc::DOMErrorHandler& h,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::DescriptionModificationReport_ (isrc, h, f, p);
+    return ::MDM::DescriptionModificationReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::std::istream& is,
                                   const ::std::string& sid,
                                   ::xml_schema::Flags f,
@@ -22732,10 +22732,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::DescriptionModificationReport_ (isrc, f, p);
+    return ::MDM::DescriptionModificationReport_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::std::istream& is,
                                   const ::std::string& sid,
                                   ::xml_schema::ErrorHandler& h,
@@ -22747,10 +22747,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::DescriptionModificationReport_ (isrc, h, f, p);
+    return ::MDM::DescriptionModificationReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::std::istream& is,
                                   const ::std::string& sid,
                                   ::xercesc::DOMErrorHandler& h,
@@ -22758,10 +22758,10 @@ namespace CDM
                                   const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::DescriptionModificationReport_ (isrc, h, f, p);
+    return ::MDM::DescriptionModificationReport_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::xercesc::InputSource& i,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
@@ -22774,12 +22774,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::DescriptionModificationReport > (
-      ::CDM::DescriptionModificationReport_ (
+    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
+      ::MDM::DescriptionModificationReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::xercesc::InputSource& i,
                                   ::xml_schema::ErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -22792,12 +22792,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::DescriptionModificationReport > (
-      ::CDM::DescriptionModificationReport_ (
+    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
+      ::MDM::DescriptionModificationReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::xercesc::InputSource& i,
                                   ::xercesc::DOMErrorHandler& h,
                                   ::xml_schema::Flags f,
@@ -22810,12 +22810,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::DescriptionModificationReport > (
-      ::CDM::DescriptionModificationReport_ (
+    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
+      ::MDM::DescriptionModificationReport_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (const ::xercesc::DOMDocument& doc,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties& p)
@@ -22825,8 +22825,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::DescriptionModificationReport > (
-        ::CDM::DescriptionModificationReport_ (
+      return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
+        ::MDM::DescriptionModificationReport_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -22837,8 +22837,8 @@ namespace CDM
     if (n.name () == "DescriptionModificationReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::DescriptionModificationReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::DescriptionModificationReport, char >::create (
+      ::std::unique_ptr< ::MDM::DescriptionModificationReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::DescriptionModificationReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -22850,7 +22850,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::DescriptionModificationReport >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
   DescriptionModificationReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                                   ::xml_schema::Flags f,
                                   const ::xml_schema::Properties&)
@@ -22875,8 +22875,8 @@ namespace CDM
     if (n.name () == "DescriptionModificationReport" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::DescriptionModificationReport > r (
-        ::xsd::cxx::tree::traits< ::CDM::DescriptionModificationReport, char >::create (
+      ::std::unique_ptr< ::MDM::DescriptionModificationReport > r (
+        ::xsd::cxx::tree::traits< ::MDM::DescriptionModificationReport, char >::create (
           e, f, 0));
       return r;
     }
@@ -22888,7 +22888,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (const ::std::string& u,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -22905,12 +22905,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::WaveformStream > (
-      ::CDM::WaveformStream_ (
+    return ::std::unique_ptr< ::MDM::WaveformStream > (
+      ::MDM::WaveformStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (const ::std::string& u,
                    ::xml_schema::ErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -22927,12 +22927,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::WaveformStream > (
-      ::CDM::WaveformStream_ (
+    return ::std::unique_ptr< ::MDM::WaveformStream > (
+      ::MDM::WaveformStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (const ::std::string& u,
                    ::xercesc::DOMErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -22945,12 +22945,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::WaveformStream > (
-      ::CDM::WaveformStream_ (
+    return ::std::unique_ptr< ::MDM::WaveformStream > (
+      ::MDM::WaveformStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -22960,10 +22960,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::WaveformStream_ (isrc, f, p);
+    return ::MDM::WaveformStream_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    ::xml_schema::ErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -22974,20 +22974,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::WaveformStream_ (isrc, h, f, p);
+    return ::MDM::WaveformStream_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    ::xercesc::DOMErrorHandler& h,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::WaveformStream_ (isrc, h, f, p);
+    return ::MDM::WaveformStream_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    const ::std::string& sid,
                    ::xml_schema::Flags f,
@@ -22998,10 +22998,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::WaveformStream_ (isrc, f, p);
+    return ::MDM::WaveformStream_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    const ::std::string& sid,
                    ::xml_schema::ErrorHandler& h,
@@ -23013,10 +23013,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::WaveformStream_ (isrc, h, f, p);
+    return ::MDM::WaveformStream_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    const ::std::string& sid,
                    ::xercesc::DOMErrorHandler& h,
@@ -23024,10 +23024,10 @@ namespace CDM
                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::WaveformStream_ (isrc, h, f, p);
+    return ::MDM::WaveformStream_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::xercesc::InputSource& i,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -23040,12 +23040,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::WaveformStream > (
-      ::CDM::WaveformStream_ (
+    return ::std::unique_ptr< ::MDM::WaveformStream > (
+      ::MDM::WaveformStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::xercesc::InputSource& i,
                    ::xml_schema::ErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -23058,12 +23058,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::WaveformStream > (
-      ::CDM::WaveformStream_ (
+    return ::std::unique_ptr< ::MDM::WaveformStream > (
+      ::MDM::WaveformStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::xercesc::InputSource& i,
                    ::xercesc::DOMErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -23076,12 +23076,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::WaveformStream > (
-      ::CDM::WaveformStream_ (
+    return ::std::unique_ptr< ::MDM::WaveformStream > (
+      ::MDM::WaveformStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (const ::xercesc::DOMDocument& doc,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -23091,8 +23091,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::WaveformStream > (
-        ::CDM::WaveformStream_ (
+      return ::std::unique_ptr< ::MDM::WaveformStream > (
+        ::MDM::WaveformStream_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -23103,8 +23103,8 @@ namespace CDM
     if (n.name () == "WaveformStream" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::WaveformStream > r (
-        ::xsd::cxx::tree::traits< ::CDM::WaveformStream, char >::create (
+      ::std::unique_ptr< ::MDM::WaveformStream > r (
+        ::xsd::cxx::tree::traits< ::MDM::WaveformStream, char >::create (
           e, f, 0));
       return r;
     }
@@ -23116,7 +23116,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties&)
@@ -23141,8 +23141,8 @@ namespace CDM
     if (n.name () == "WaveformStream" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::WaveformStream > r (
-        ::xsd::cxx::tree::traits< ::CDM::WaveformStream, char >::create (
+      ::std::unique_ptr< ::MDM::WaveformStream > r (
+        ::xsd::cxx::tree::traits< ::MDM::WaveformStream, char >::create (
           e, f, 0));
       return r;
     }
@@ -23154,7 +23154,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (const ::std::string& u,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -23171,12 +23171,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::ObservedValueStream > (
-      ::CDM::ObservedValueStream_ (
+    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
+      ::MDM::ObservedValueStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (const ::std::string& u,
                         ::xml_schema::ErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -23193,12 +23193,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ObservedValueStream > (
-      ::CDM::ObservedValueStream_ (
+    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
+      ::MDM::ObservedValueStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (const ::std::string& u,
                         ::xercesc::DOMErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -23211,12 +23211,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ObservedValueStream > (
-      ::CDM::ObservedValueStream_ (
+    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
+      ::MDM::ObservedValueStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::std::istream& is,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -23226,10 +23226,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::ObservedValueStream_ (isrc, f, p);
+    return ::MDM::ObservedValueStream_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::std::istream& is,
                         ::xml_schema::ErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -23240,20 +23240,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::ObservedValueStream_ (isrc, h, f, p);
+    return ::MDM::ObservedValueStream_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::std::istream& is,
                         ::xercesc::DOMErrorHandler& h,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::ObservedValueStream_ (isrc, h, f, p);
+    return ::MDM::ObservedValueStream_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::std::istream& is,
                         const ::std::string& sid,
                         ::xml_schema::Flags f,
@@ -23264,10 +23264,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::ObservedValueStream_ (isrc, f, p);
+    return ::MDM::ObservedValueStream_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::std::istream& is,
                         const ::std::string& sid,
                         ::xml_schema::ErrorHandler& h,
@@ -23279,10 +23279,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::ObservedValueStream_ (isrc, h, f, p);
+    return ::MDM::ObservedValueStream_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::std::istream& is,
                         const ::std::string& sid,
                         ::xercesc::DOMErrorHandler& h,
@@ -23290,10 +23290,10 @@ namespace CDM
                         const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::ObservedValueStream_ (isrc, h, f, p);
+    return ::MDM::ObservedValueStream_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::xercesc::InputSource& i,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -23306,12 +23306,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::ObservedValueStream > (
-      ::CDM::ObservedValueStream_ (
+    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
+      ::MDM::ObservedValueStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::xercesc::InputSource& i,
                         ::xml_schema::ErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -23324,12 +23324,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ObservedValueStream > (
-      ::CDM::ObservedValueStream_ (
+    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
+      ::MDM::ObservedValueStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::xercesc::InputSource& i,
                         ::xercesc::DOMErrorHandler& h,
                         ::xml_schema::Flags f,
@@ -23342,12 +23342,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ObservedValueStream > (
-      ::CDM::ObservedValueStream_ (
+    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
+      ::MDM::ObservedValueStream_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (const ::xercesc::DOMDocument& doc,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties& p)
@@ -23357,8 +23357,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::ObservedValueStream > (
-        ::CDM::ObservedValueStream_ (
+      return ::std::unique_ptr< ::MDM::ObservedValueStream > (
+        ::MDM::ObservedValueStream_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -23369,8 +23369,8 @@ namespace CDM
     if (n.name () == "ObservedValueStream" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::ObservedValueStream > r (
-        ::xsd::cxx::tree::traits< ::CDM::ObservedValueStream, char >::create (
+      ::std::unique_ptr< ::MDM::ObservedValueStream > r (
+        ::xsd::cxx::tree::traits< ::MDM::ObservedValueStream, char >::create (
           e, f, 0));
       return r;
     }
@@ -23382,7 +23382,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::ObservedValueStream >
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
   ObservedValueStream_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                         ::xml_schema::Flags f,
                         const ::xml_schema::Properties&)
@@ -23407,8 +23407,8 @@ namespace CDM
     if (n.name () == "ObservedValueStream" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::ObservedValueStream > r (
-        ::xsd::cxx::tree::traits< ::CDM::ObservedValueStream, char >::create (
+      ::std::unique_ptr< ::MDM::ObservedValueStream > r (
+        ::xsd::cxx::tree::traits< ::MDM::ObservedValueStream, char >::create (
           e, f, 0));
       return r;
     }
@@ -23420,7 +23420,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (const ::std::string& u,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -23437,12 +23437,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::Retrievability > (
-      ::CDM::Retrievability_ (
+    return ::std::unique_ptr< ::MDM::Retrievability > (
+      ::MDM::Retrievability_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (const ::std::string& u,
                    ::xml_schema::ErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -23459,12 +23459,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::Retrievability > (
-      ::CDM::Retrievability_ (
+    return ::std::unique_ptr< ::MDM::Retrievability > (
+      ::MDM::Retrievability_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (const ::std::string& u,
                    ::xercesc::DOMErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -23477,12 +23477,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::Retrievability > (
-      ::CDM::Retrievability_ (
+    return ::std::unique_ptr< ::MDM::Retrievability > (
+      ::MDM::Retrievability_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -23492,10 +23492,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::Retrievability_ (isrc, f, p);
+    return ::MDM::Retrievability_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    ::xml_schema::ErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -23506,20 +23506,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::Retrievability_ (isrc, h, f, p);
+    return ::MDM::Retrievability_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    ::xercesc::DOMErrorHandler& h,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::Retrievability_ (isrc, h, f, p);
+    return ::MDM::Retrievability_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    const ::std::string& sid,
                    ::xml_schema::Flags f,
@@ -23530,10 +23530,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::Retrievability_ (isrc, f, p);
+    return ::MDM::Retrievability_ (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    const ::std::string& sid,
                    ::xml_schema::ErrorHandler& h,
@@ -23545,10 +23545,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::Retrievability_ (isrc, h, f, p);
+    return ::MDM::Retrievability_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    const ::std::string& sid,
                    ::xercesc::DOMErrorHandler& h,
@@ -23556,10 +23556,10 @@ namespace CDM
                    const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::Retrievability_ (isrc, h, f, p);
+    return ::MDM::Retrievability_ (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::xercesc::InputSource& i,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -23572,12 +23572,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::Retrievability > (
-      ::CDM::Retrievability_ (
+    return ::std::unique_ptr< ::MDM::Retrievability > (
+      ::MDM::Retrievability_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::xercesc::InputSource& i,
                    ::xml_schema::ErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -23590,12 +23590,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::Retrievability > (
-      ::CDM::Retrievability_ (
+    return ::std::unique_ptr< ::MDM::Retrievability > (
+      ::MDM::Retrievability_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::xercesc::InputSource& i,
                    ::xercesc::DOMErrorHandler& h,
                    ::xml_schema::Flags f,
@@ -23608,12 +23608,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::Retrievability > (
-      ::CDM::Retrievability_ (
+    return ::std::unique_ptr< ::MDM::Retrievability > (
+      ::MDM::Retrievability_ (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (const ::xercesc::DOMDocument& doc,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties& p)
@@ -23623,8 +23623,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::Retrievability > (
-        ::CDM::Retrievability_ (
+      return ::std::unique_ptr< ::MDM::Retrievability > (
+        ::MDM::Retrievability_ (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -23635,8 +23635,8 @@ namespace CDM
     if (n.name () == "Retrievability" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::Retrievability > r (
-        ::xsd::cxx::tree::traits< ::CDM::Retrievability, char >::create (
+      ::std::unique_ptr< ::MDM::Retrievability > r (
+        ::xsd::cxx::tree::traits< ::MDM::Retrievability, char >::create (
           e, f, 0));
       return r;
     }
@@ -23648,7 +23648,7 @@ namespace CDM
       "http://p11073-10207/draft7/msg/2017/03/17");
   }
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                    ::xml_schema::Flags f,
                    const ::xml_schema::Properties&)
@@ -23673,8 +23673,8 @@ namespace CDM
     if (n.name () == "Retrievability" &&
         n.namespace_ () == "http://p11073-10207/draft7/msg/2017/03/17")
     {
-      ::std::unique_ptr< ::CDM::Retrievability > r (
-        ::xsd::cxx::tree::traits< ::CDM::Retrievability, char >::create (
+      ::std::unique_ptr< ::MDM::Retrievability > r (
+        ::xsd::cxx::tree::traits< ::MDM::Retrievability, char >::create (
           e, f, 0));
       return r;
     }
@@ -23700,7 +23700,7 @@ namespace _xsd
   type_serializer_plate_init;
 }
 
-namespace CDM
+namespace MDM
 {
   void
   operator<< (::xercesc::DOMElement& e, const TransactionId& i)
@@ -24345,7 +24345,7 @@ namespace CDM
 
   void
   GetMdib_ (::std::ostream& o,
-            const ::CDM::GetMdib& s,
+            const ::MDM::GetMdib& s,
             const ::xml_schema::NamespaceInfomap& m,
             const ::std::string& e,
             ::xml_schema::Flags f)
@@ -24354,7 +24354,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdib_ (s, m, f));
+      ::MDM::GetMdib_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -24367,7 +24367,7 @@ namespace CDM
 
   void
   GetMdib_ (::std::ostream& o,
-            const ::CDM::GetMdib& s,
+            const ::MDM::GetMdib& s,
             ::xml_schema::ErrorHandler& h,
             const ::xml_schema::NamespaceInfomap& m,
             const ::std::string& e,
@@ -24377,7 +24377,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdib_ (s, m, f));
+      ::MDM::GetMdib_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24387,14 +24387,14 @@ namespace CDM
 
   void
   GetMdib_ (::std::ostream& o,
-            const ::CDM::GetMdib& s,
+            const ::MDM::GetMdib& s,
             ::xercesc::DOMErrorHandler& h,
             const ::xml_schema::NamespaceInfomap& m,
             const ::std::string& e,
             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdib_ (s, m, f));
+      ::MDM::GetMdib_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24404,13 +24404,13 @@ namespace CDM
 
   void
   GetMdib_ (::xercesc::XMLFormatTarget& t,
-            const ::CDM::GetMdib& s,
+            const ::MDM::GetMdib& s,
             const ::xml_schema::NamespaceInfomap& m,
             const ::std::string& e,
             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdib_ (s, m, f));
+      ::MDM::GetMdib_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -24422,14 +24422,14 @@ namespace CDM
 
   void
   GetMdib_ (::xercesc::XMLFormatTarget& t,
-            const ::CDM::GetMdib& s,
+            const ::MDM::GetMdib& s,
             ::xml_schema::ErrorHandler& h,
             const ::xml_schema::NamespaceInfomap& m,
             const ::std::string& e,
             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdib_ (s, m, f));
+      ::MDM::GetMdib_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -24438,14 +24438,14 @@ namespace CDM
 
   void
   GetMdib_ (::xercesc::XMLFormatTarget& t,
-            const ::CDM::GetMdib& s,
+            const ::MDM::GetMdib& s,
             ::xercesc::DOMErrorHandler& h,
             const ::xml_schema::NamespaceInfomap& m,
             const ::std::string& e,
             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdib_ (s, m, f));
+      ::MDM::GetMdib_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -24454,7 +24454,7 @@ namespace CDM
 
   void
   GetMdib_ (::xercesc::DOMDocument& d,
-            const ::CDM::GetMdib& s,
+            const ::MDM::GetMdib& s,
             ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -24477,7 +24477,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdib_ (const ::CDM::GetMdib& s,
+  GetMdib_ (const ::MDM::GetMdib& s,
             const ::xml_schema::NamespaceInfomap& m,
             ::xml_schema::Flags f)
   {
@@ -24487,13 +24487,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetMdib_ (*d, s, f);
+    ::MDM::GetMdib_ (*d, s, f);
     return d;
   }
 
   void
   GetMdibResponse_ (::std::ostream& o,
-                    const ::CDM::GetMdibResponse& s,
+                    const ::MDM::GetMdibResponse& s,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
@@ -24502,7 +24502,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdibResponse_ (s, m, f));
+      ::MDM::GetMdibResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -24515,7 +24515,7 @@ namespace CDM
 
   void
   GetMdibResponse_ (::std::ostream& o,
-                    const ::CDM::GetMdibResponse& s,
+                    const ::MDM::GetMdibResponse& s,
                     ::xml_schema::ErrorHandler& h,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
@@ -24525,7 +24525,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdibResponse_ (s, m, f));
+      ::MDM::GetMdibResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24535,14 +24535,14 @@ namespace CDM
 
   void
   GetMdibResponse_ (::std::ostream& o,
-                    const ::CDM::GetMdibResponse& s,
+                    const ::MDM::GetMdibResponse& s,
                     ::xercesc::DOMErrorHandler& h,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdibResponse_ (s, m, f));
+      ::MDM::GetMdibResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24552,13 +24552,13 @@ namespace CDM
 
   void
   GetMdibResponse_ (::xercesc::XMLFormatTarget& t,
-                    const ::CDM::GetMdibResponse& s,
+                    const ::MDM::GetMdibResponse& s,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdibResponse_ (s, m, f));
+      ::MDM::GetMdibResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -24570,14 +24570,14 @@ namespace CDM
 
   void
   GetMdibResponse_ (::xercesc::XMLFormatTarget& t,
-                    const ::CDM::GetMdibResponse& s,
+                    const ::MDM::GetMdibResponse& s,
                     ::xml_schema::ErrorHandler& h,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdibResponse_ (s, m, f));
+      ::MDM::GetMdibResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -24586,14 +24586,14 @@ namespace CDM
 
   void
   GetMdibResponse_ (::xercesc::XMLFormatTarget& t,
-                    const ::CDM::GetMdibResponse& s,
+                    const ::MDM::GetMdibResponse& s,
                     ::xercesc::DOMErrorHandler& h,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdibResponse_ (s, m, f));
+      ::MDM::GetMdibResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -24602,7 +24602,7 @@ namespace CDM
 
   void
   GetMdibResponse_ (::xercesc::DOMDocument& d,
-                    const ::CDM::GetMdibResponse& s,
+                    const ::MDM::GetMdibResponse& s,
                     ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -24625,7 +24625,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdibResponse_ (const ::CDM::GetMdibResponse& s,
+  GetMdibResponse_ (const ::MDM::GetMdibResponse& s,
                     const ::xml_schema::NamespaceInfomap& m,
                     ::xml_schema::Flags f)
   {
@@ -24635,13 +24635,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetMdibResponse_ (*d, s, f);
+    ::MDM::GetMdibResponse_ (*d, s, f);
     return d;
   }
 
   void
   GetMdDescription_ (::std::ostream& o,
-                     const ::CDM::GetMdDescription& s,
+                     const ::MDM::GetMdDescription& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
@@ -24650,7 +24650,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescription_ (s, m, f));
+      ::MDM::GetMdDescription_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -24663,7 +24663,7 @@ namespace CDM
 
   void
   GetMdDescription_ (::std::ostream& o,
-                     const ::CDM::GetMdDescription& s,
+                     const ::MDM::GetMdDescription& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
@@ -24673,7 +24673,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescription_ (s, m, f));
+      ::MDM::GetMdDescription_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24683,14 +24683,14 @@ namespace CDM
 
   void
   GetMdDescription_ (::std::ostream& o,
-                     const ::CDM::GetMdDescription& s,
+                     const ::MDM::GetMdDescription& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescription_ (s, m, f));
+      ::MDM::GetMdDescription_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24700,13 +24700,13 @@ namespace CDM
 
   void
   GetMdDescription_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::GetMdDescription& s,
+                     const ::MDM::GetMdDescription& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescription_ (s, m, f));
+      ::MDM::GetMdDescription_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -24718,14 +24718,14 @@ namespace CDM
 
   void
   GetMdDescription_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::GetMdDescription& s,
+                     const ::MDM::GetMdDescription& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescription_ (s, m, f));
+      ::MDM::GetMdDescription_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -24734,14 +24734,14 @@ namespace CDM
 
   void
   GetMdDescription_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::GetMdDescription& s,
+                     const ::MDM::GetMdDescription& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescription_ (s, m, f));
+      ::MDM::GetMdDescription_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -24750,7 +24750,7 @@ namespace CDM
 
   void
   GetMdDescription_ (::xercesc::DOMDocument& d,
-                     const ::CDM::GetMdDescription& s,
+                     const ::MDM::GetMdDescription& s,
                      ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -24773,7 +24773,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdDescription_ (const ::CDM::GetMdDescription& s,
+  GetMdDescription_ (const ::MDM::GetMdDescription& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      ::xml_schema::Flags f)
   {
@@ -24783,13 +24783,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetMdDescription_ (*d, s, f);
+    ::MDM::GetMdDescription_ (*d, s, f);
     return d;
   }
 
   void
   GetMdDescriptionResponse_ (::std::ostream& o,
-                             const ::CDM::GetMdDescriptionResponse& s,
+                             const ::MDM::GetMdDescriptionResponse& s,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
@@ -24798,7 +24798,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescriptionResponse_ (s, m, f));
+      ::MDM::GetMdDescriptionResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -24811,7 +24811,7 @@ namespace CDM
 
   void
   GetMdDescriptionResponse_ (::std::ostream& o,
-                             const ::CDM::GetMdDescriptionResponse& s,
+                             const ::MDM::GetMdDescriptionResponse& s,
                              ::xml_schema::ErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
@@ -24821,7 +24821,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescriptionResponse_ (s, m, f));
+      ::MDM::GetMdDescriptionResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24831,14 +24831,14 @@ namespace CDM
 
   void
   GetMdDescriptionResponse_ (::std::ostream& o,
-                             const ::CDM::GetMdDescriptionResponse& s,
+                             const ::MDM::GetMdDescriptionResponse& s,
                              ::xercesc::DOMErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescriptionResponse_ (s, m, f));
+      ::MDM::GetMdDescriptionResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24848,13 +24848,13 @@ namespace CDM
 
   void
   GetMdDescriptionResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::CDM::GetMdDescriptionResponse& s,
+                             const ::MDM::GetMdDescriptionResponse& s,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescriptionResponse_ (s, m, f));
+      ::MDM::GetMdDescriptionResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -24866,14 +24866,14 @@ namespace CDM
 
   void
   GetMdDescriptionResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::CDM::GetMdDescriptionResponse& s,
+                             const ::MDM::GetMdDescriptionResponse& s,
                              ::xml_schema::ErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescriptionResponse_ (s, m, f));
+      ::MDM::GetMdDescriptionResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -24882,14 +24882,14 @@ namespace CDM
 
   void
   GetMdDescriptionResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::CDM::GetMdDescriptionResponse& s,
+                             const ::MDM::GetMdDescriptionResponse& s,
                              ::xercesc::DOMErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdDescriptionResponse_ (s, m, f));
+      ::MDM::GetMdDescriptionResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -24898,7 +24898,7 @@ namespace CDM
 
   void
   GetMdDescriptionResponse_ (::xercesc::DOMDocument& d,
-                             const ::CDM::GetMdDescriptionResponse& s,
+                             const ::MDM::GetMdDescriptionResponse& s,
                              ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -24921,7 +24921,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdDescriptionResponse_ (const ::CDM::GetMdDescriptionResponse& s,
+  GetMdDescriptionResponse_ (const ::MDM::GetMdDescriptionResponse& s,
                              const ::xml_schema::NamespaceInfomap& m,
                              ::xml_schema::Flags f)
   {
@@ -24931,13 +24931,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetMdDescriptionResponse_ (*d, s, f);
+    ::MDM::GetMdDescriptionResponse_ (*d, s, f);
     return d;
   }
 
   void
   GetMdState_ (::std::ostream& o,
-               const ::CDM::GetMdState& s,
+               const ::MDM::GetMdState& s,
                const ::xml_schema::NamespaceInfomap& m,
                const ::std::string& e,
                ::xml_schema::Flags f)
@@ -24946,7 +24946,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdState_ (s, m, f));
+      ::MDM::GetMdState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -24959,7 +24959,7 @@ namespace CDM
 
   void
   GetMdState_ (::std::ostream& o,
-               const ::CDM::GetMdState& s,
+               const ::MDM::GetMdState& s,
                ::xml_schema::ErrorHandler& h,
                const ::xml_schema::NamespaceInfomap& m,
                const ::std::string& e,
@@ -24969,7 +24969,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdState_ (s, m, f));
+      ::MDM::GetMdState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24979,14 +24979,14 @@ namespace CDM
 
   void
   GetMdState_ (::std::ostream& o,
-               const ::CDM::GetMdState& s,
+               const ::MDM::GetMdState& s,
                ::xercesc::DOMErrorHandler& h,
                const ::xml_schema::NamespaceInfomap& m,
                const ::std::string& e,
                ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdState_ (s, m, f));
+      ::MDM::GetMdState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -24996,13 +24996,13 @@ namespace CDM
 
   void
   GetMdState_ (::xercesc::XMLFormatTarget& t,
-               const ::CDM::GetMdState& s,
+               const ::MDM::GetMdState& s,
                const ::xml_schema::NamespaceInfomap& m,
                const ::std::string& e,
                ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdState_ (s, m, f));
+      ::MDM::GetMdState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25014,14 +25014,14 @@ namespace CDM
 
   void
   GetMdState_ (::xercesc::XMLFormatTarget& t,
-               const ::CDM::GetMdState& s,
+               const ::MDM::GetMdState& s,
                ::xml_schema::ErrorHandler& h,
                const ::xml_schema::NamespaceInfomap& m,
                const ::std::string& e,
                ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdState_ (s, m, f));
+      ::MDM::GetMdState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25030,14 +25030,14 @@ namespace CDM
 
   void
   GetMdState_ (::xercesc::XMLFormatTarget& t,
-               const ::CDM::GetMdState& s,
+               const ::MDM::GetMdState& s,
                ::xercesc::DOMErrorHandler& h,
                const ::xml_schema::NamespaceInfomap& m,
                const ::std::string& e,
                ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdState_ (s, m, f));
+      ::MDM::GetMdState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25046,7 +25046,7 @@ namespace CDM
 
   void
   GetMdState_ (::xercesc::DOMDocument& d,
-               const ::CDM::GetMdState& s,
+               const ::MDM::GetMdState& s,
                ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -25069,7 +25069,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdState_ (const ::CDM::GetMdState& s,
+  GetMdState_ (const ::MDM::GetMdState& s,
                const ::xml_schema::NamespaceInfomap& m,
                ::xml_schema::Flags f)
   {
@@ -25079,13 +25079,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetMdState_ (*d, s, f);
+    ::MDM::GetMdState_ (*d, s, f);
     return d;
   }
 
   void
   GetMdStateResponse_ (::std::ostream& o,
-                       const ::CDM::GetMdStateResponse& s,
+                       const ::MDM::GetMdStateResponse& s,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
@@ -25094,7 +25094,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdStateResponse_ (s, m, f));
+      ::MDM::GetMdStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25107,7 +25107,7 @@ namespace CDM
 
   void
   GetMdStateResponse_ (::std::ostream& o,
-                       const ::CDM::GetMdStateResponse& s,
+                       const ::MDM::GetMdStateResponse& s,
                        ::xml_schema::ErrorHandler& h,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
@@ -25117,7 +25117,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdStateResponse_ (s, m, f));
+      ::MDM::GetMdStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25127,14 +25127,14 @@ namespace CDM
 
   void
   GetMdStateResponse_ (::std::ostream& o,
-                       const ::CDM::GetMdStateResponse& s,
+                       const ::MDM::GetMdStateResponse& s,
                        ::xercesc::DOMErrorHandler& h,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdStateResponse_ (s, m, f));
+      ::MDM::GetMdStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25144,13 +25144,13 @@ namespace CDM
 
   void
   GetMdStateResponse_ (::xercesc::XMLFormatTarget& t,
-                       const ::CDM::GetMdStateResponse& s,
+                       const ::MDM::GetMdStateResponse& s,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdStateResponse_ (s, m, f));
+      ::MDM::GetMdStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25162,14 +25162,14 @@ namespace CDM
 
   void
   GetMdStateResponse_ (::xercesc::XMLFormatTarget& t,
-                       const ::CDM::GetMdStateResponse& s,
+                       const ::MDM::GetMdStateResponse& s,
                        ::xml_schema::ErrorHandler& h,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdStateResponse_ (s, m, f));
+      ::MDM::GetMdStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25178,14 +25178,14 @@ namespace CDM
 
   void
   GetMdStateResponse_ (::xercesc::XMLFormatTarget& t,
-                       const ::CDM::GetMdStateResponse& s,
+                       const ::MDM::GetMdStateResponse& s,
                        ::xercesc::DOMErrorHandler& h,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetMdStateResponse_ (s, m, f));
+      ::MDM::GetMdStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25194,7 +25194,7 @@ namespace CDM
 
   void
   GetMdStateResponse_ (::xercesc::DOMDocument& d,
-                       const ::CDM::GetMdStateResponse& s,
+                       const ::MDM::GetMdStateResponse& s,
                        ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -25217,7 +25217,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdStateResponse_ (const ::CDM::GetMdStateResponse& s,
+  GetMdStateResponse_ (const ::MDM::GetMdStateResponse& s,
                        const ::xml_schema::NamespaceInfomap& m,
                        ::xml_schema::Flags f)
   {
@@ -25227,13 +25227,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetMdStateResponse_ (*d, s, f);
+    ::MDM::GetMdStateResponse_ (*d, s, f);
     return d;
   }
 
   void
   GetContextStates_ (::std::ostream& o,
-                     const ::CDM::GetContextStates& s,
+                     const ::MDM::GetContextStates& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
@@ -25242,7 +25242,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStates_ (s, m, f));
+      ::MDM::GetContextStates_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25255,7 +25255,7 @@ namespace CDM
 
   void
   GetContextStates_ (::std::ostream& o,
-                     const ::CDM::GetContextStates& s,
+                     const ::MDM::GetContextStates& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
@@ -25265,7 +25265,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStates_ (s, m, f));
+      ::MDM::GetContextStates_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25275,14 +25275,14 @@ namespace CDM
 
   void
   GetContextStates_ (::std::ostream& o,
-                     const ::CDM::GetContextStates& s,
+                     const ::MDM::GetContextStates& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStates_ (s, m, f));
+      ::MDM::GetContextStates_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25292,13 +25292,13 @@ namespace CDM
 
   void
   GetContextStates_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::GetContextStates& s,
+                     const ::MDM::GetContextStates& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStates_ (s, m, f));
+      ::MDM::GetContextStates_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25310,14 +25310,14 @@ namespace CDM
 
   void
   GetContextStates_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::GetContextStates& s,
+                     const ::MDM::GetContextStates& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStates_ (s, m, f));
+      ::MDM::GetContextStates_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25326,14 +25326,14 @@ namespace CDM
 
   void
   GetContextStates_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::GetContextStates& s,
+                     const ::MDM::GetContextStates& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStates_ (s, m, f));
+      ::MDM::GetContextStates_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25342,7 +25342,7 @@ namespace CDM
 
   void
   GetContextStates_ (::xercesc::DOMDocument& d,
-                     const ::CDM::GetContextStates& s,
+                     const ::MDM::GetContextStates& s,
                      ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -25365,7 +25365,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStates_ (const ::CDM::GetContextStates& s,
+  GetContextStates_ (const ::MDM::GetContextStates& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      ::xml_schema::Flags f)
   {
@@ -25375,13 +25375,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetContextStates_ (*d, s, f);
+    ::MDM::GetContextStates_ (*d, s, f);
     return d;
   }
 
   void
   GetContextStatesResponse_ (::std::ostream& o,
-                             const ::CDM::GetContextStatesResponse& s,
+                             const ::MDM::GetContextStatesResponse& s,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
@@ -25390,7 +25390,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStatesResponse_ (s, m, f));
+      ::MDM::GetContextStatesResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25403,7 +25403,7 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::std::ostream& o,
-                             const ::CDM::GetContextStatesResponse& s,
+                             const ::MDM::GetContextStatesResponse& s,
                              ::xml_schema::ErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
@@ -25413,7 +25413,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStatesResponse_ (s, m, f));
+      ::MDM::GetContextStatesResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25423,14 +25423,14 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::std::ostream& o,
-                             const ::CDM::GetContextStatesResponse& s,
+                             const ::MDM::GetContextStatesResponse& s,
                              ::xercesc::DOMErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStatesResponse_ (s, m, f));
+      ::MDM::GetContextStatesResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25440,13 +25440,13 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::CDM::GetContextStatesResponse& s,
+                             const ::MDM::GetContextStatesResponse& s,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStatesResponse_ (s, m, f));
+      ::MDM::GetContextStatesResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25458,14 +25458,14 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::CDM::GetContextStatesResponse& s,
+                             const ::MDM::GetContextStatesResponse& s,
                              ::xml_schema::ErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStatesResponse_ (s, m, f));
+      ::MDM::GetContextStatesResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25474,14 +25474,14 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::CDM::GetContextStatesResponse& s,
+                             const ::MDM::GetContextStatesResponse& s,
                              ::xercesc::DOMErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContextStatesResponse_ (s, m, f));
+      ::MDM::GetContextStatesResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25490,7 +25490,7 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::xercesc::DOMDocument& d,
-                             const ::CDM::GetContextStatesResponse& s,
+                             const ::MDM::GetContextStatesResponse& s,
                              ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -25513,7 +25513,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStatesResponse_ (const ::CDM::GetContextStatesResponse& s,
+  GetContextStatesResponse_ (const ::MDM::GetContextStatesResponse& s,
                              const ::xml_schema::NamespaceInfomap& m,
                              ::xml_schema::Flags f)
   {
@@ -25523,13 +25523,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetContextStatesResponse_ (*d, s, f);
+    ::MDM::GetContextStatesResponse_ (*d, s, f);
     return d;
   }
 
   void
   SetContextState_ (::std::ostream& o,
-                    const ::CDM::SetContextState& s,
+                    const ::MDM::SetContextState& s,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
@@ -25538,7 +25538,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextState_ (s, m, f));
+      ::MDM::SetContextState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25551,7 +25551,7 @@ namespace CDM
 
   void
   SetContextState_ (::std::ostream& o,
-                    const ::CDM::SetContextState& s,
+                    const ::MDM::SetContextState& s,
                     ::xml_schema::ErrorHandler& h,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
@@ -25561,7 +25561,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextState_ (s, m, f));
+      ::MDM::SetContextState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25571,14 +25571,14 @@ namespace CDM
 
   void
   SetContextState_ (::std::ostream& o,
-                    const ::CDM::SetContextState& s,
+                    const ::MDM::SetContextState& s,
                     ::xercesc::DOMErrorHandler& h,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextState_ (s, m, f));
+      ::MDM::SetContextState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25588,13 +25588,13 @@ namespace CDM
 
   void
   SetContextState_ (::xercesc::XMLFormatTarget& t,
-                    const ::CDM::SetContextState& s,
+                    const ::MDM::SetContextState& s,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextState_ (s, m, f));
+      ::MDM::SetContextState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25606,14 +25606,14 @@ namespace CDM
 
   void
   SetContextState_ (::xercesc::XMLFormatTarget& t,
-                    const ::CDM::SetContextState& s,
+                    const ::MDM::SetContextState& s,
                     ::xml_schema::ErrorHandler& h,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextState_ (s, m, f));
+      ::MDM::SetContextState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25622,14 +25622,14 @@ namespace CDM
 
   void
   SetContextState_ (::xercesc::XMLFormatTarget& t,
-                    const ::CDM::SetContextState& s,
+                    const ::MDM::SetContextState& s,
                     ::xercesc::DOMErrorHandler& h,
                     const ::xml_schema::NamespaceInfomap& m,
                     const ::std::string& e,
                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextState_ (s, m, f));
+      ::MDM::SetContextState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25638,7 +25638,7 @@ namespace CDM
 
   void
   SetContextState_ (::xercesc::DOMDocument& d,
-                    const ::CDM::SetContextState& s,
+                    const ::MDM::SetContextState& s,
                     ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -25661,7 +25661,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetContextState_ (const ::CDM::SetContextState& s,
+  SetContextState_ (const ::MDM::SetContextState& s,
                     const ::xml_schema::NamespaceInfomap& m,
                     ::xml_schema::Flags f)
   {
@@ -25671,13 +25671,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetContextState_ (*d, s, f);
+    ::MDM::SetContextState_ (*d, s, f);
     return d;
   }
 
   void
   SetContextStateResponse_ (::std::ostream& o,
-                            const ::CDM::SetContextStateResponse& s,
+                            const ::MDM::SetContextStateResponse& s,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
@@ -25686,7 +25686,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextStateResponse_ (s, m, f));
+      ::MDM::SetContextStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25699,7 +25699,7 @@ namespace CDM
 
   void
   SetContextStateResponse_ (::std::ostream& o,
-                            const ::CDM::SetContextStateResponse& s,
+                            const ::MDM::SetContextStateResponse& s,
                             ::xml_schema::ErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
@@ -25709,7 +25709,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextStateResponse_ (s, m, f));
+      ::MDM::SetContextStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25719,14 +25719,14 @@ namespace CDM
 
   void
   SetContextStateResponse_ (::std::ostream& o,
-                            const ::CDM::SetContextStateResponse& s,
+                            const ::MDM::SetContextStateResponse& s,
                             ::xercesc::DOMErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextStateResponse_ (s, m, f));
+      ::MDM::SetContextStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25736,13 +25736,13 @@ namespace CDM
 
   void
   SetContextStateResponse_ (::xercesc::XMLFormatTarget& t,
-                            const ::CDM::SetContextStateResponse& s,
+                            const ::MDM::SetContextStateResponse& s,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextStateResponse_ (s, m, f));
+      ::MDM::SetContextStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25754,14 +25754,14 @@ namespace CDM
 
   void
   SetContextStateResponse_ (::xercesc::XMLFormatTarget& t,
-                            const ::CDM::SetContextStateResponse& s,
+                            const ::MDM::SetContextStateResponse& s,
                             ::xml_schema::ErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextStateResponse_ (s, m, f));
+      ::MDM::SetContextStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25770,14 +25770,14 @@ namespace CDM
 
   void
   SetContextStateResponse_ (::xercesc::XMLFormatTarget& t,
-                            const ::CDM::SetContextStateResponse& s,
+                            const ::MDM::SetContextStateResponse& s,
                             ::xercesc::DOMErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetContextStateResponse_ (s, m, f));
+      ::MDM::SetContextStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25786,7 +25786,7 @@ namespace CDM
 
   void
   SetContextStateResponse_ (::xercesc::DOMDocument& d,
-                            const ::CDM::SetContextStateResponse& s,
+                            const ::MDM::SetContextStateResponse& s,
                             ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -25809,7 +25809,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetContextStateResponse_ (const ::CDM::SetContextStateResponse& s,
+  SetContextStateResponse_ (const ::MDM::SetContextStateResponse& s,
                             const ::xml_schema::NamespaceInfomap& m,
                             ::xml_schema::Flags f)
   {
@@ -25819,14 +25819,14 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetContextStateResponse_ (*d, s, f);
+    ::MDM::SetContextStateResponse_ (*d, s, f);
     return d;
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const AbstractContextReport& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // ReportPart
     //
@@ -25853,7 +25853,7 @@ namespace CDM
 
   void
   PeriodicContextReport_ (::std::ostream& o,
-                          const ::CDM::PeriodicContextReport& s,
+                          const ::MDM::PeriodicContextReport& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
@@ -25862,7 +25862,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicContextReport_ (s, m, f));
+      ::MDM::PeriodicContextReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25875,7 +25875,7 @@ namespace CDM
 
   void
   PeriodicContextReport_ (::std::ostream& o,
-                          const ::CDM::PeriodicContextReport& s,
+                          const ::MDM::PeriodicContextReport& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
@@ -25885,7 +25885,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicContextReport_ (s, m, f));
+      ::MDM::PeriodicContextReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25895,14 +25895,14 @@ namespace CDM
 
   void
   PeriodicContextReport_ (::std::ostream& o,
-                          const ::CDM::PeriodicContextReport& s,
+                          const ::MDM::PeriodicContextReport& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicContextReport_ (s, m, f));
+      ::MDM::PeriodicContextReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -25912,13 +25912,13 @@ namespace CDM
 
   void
   PeriodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::PeriodicContextReport& s,
+                          const ::MDM::PeriodicContextReport& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicContextReport_ (s, m, f));
+      ::MDM::PeriodicContextReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -25930,14 +25930,14 @@ namespace CDM
 
   void
   PeriodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::PeriodicContextReport& s,
+                          const ::MDM::PeriodicContextReport& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicContextReport_ (s, m, f));
+      ::MDM::PeriodicContextReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25946,14 +25946,14 @@ namespace CDM
 
   void
   PeriodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::PeriodicContextReport& s,
+                          const ::MDM::PeriodicContextReport& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicContextReport_ (s, m, f));
+      ::MDM::PeriodicContextReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -25962,7 +25962,7 @@ namespace CDM
 
   void
   PeriodicContextReport_ (::xercesc::DOMDocument& d,
-                          const ::CDM::PeriodicContextReport& s,
+                          const ::MDM::PeriodicContextReport& s,
                           ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -25985,7 +25985,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicContextReport_ (const ::CDM::PeriodicContextReport& s,
+  PeriodicContextReport_ (const ::MDM::PeriodicContextReport& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           ::xml_schema::Flags f)
   {
@@ -25995,13 +25995,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::PeriodicContextReport_ (*d, s, f);
+    ::MDM::PeriodicContextReport_ (*d, s, f);
     return d;
   }
 
   void
   EpisodicContextReport_ (::std::ostream& o,
-                          const ::CDM::EpisodicContextReport& s,
+                          const ::MDM::EpisodicContextReport& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
@@ -26010,7 +26010,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicContextReport_ (s, m, f));
+      ::MDM::EpisodicContextReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26023,7 +26023,7 @@ namespace CDM
 
   void
   EpisodicContextReport_ (::std::ostream& o,
-                          const ::CDM::EpisodicContextReport& s,
+                          const ::MDM::EpisodicContextReport& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
@@ -26033,7 +26033,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicContextReport_ (s, m, f));
+      ::MDM::EpisodicContextReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26043,14 +26043,14 @@ namespace CDM
 
   void
   EpisodicContextReport_ (::std::ostream& o,
-                          const ::CDM::EpisodicContextReport& s,
+                          const ::MDM::EpisodicContextReport& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicContextReport_ (s, m, f));
+      ::MDM::EpisodicContextReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26060,13 +26060,13 @@ namespace CDM
 
   void
   EpisodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::EpisodicContextReport& s,
+                          const ::MDM::EpisodicContextReport& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicContextReport_ (s, m, f));
+      ::MDM::EpisodicContextReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26078,14 +26078,14 @@ namespace CDM
 
   void
   EpisodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::EpisodicContextReport& s,
+                          const ::MDM::EpisodicContextReport& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicContextReport_ (s, m, f));
+      ::MDM::EpisodicContextReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26094,14 +26094,14 @@ namespace CDM
 
   void
   EpisodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::EpisodicContextReport& s,
+                          const ::MDM::EpisodicContextReport& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicContextReport_ (s, m, f));
+      ::MDM::EpisodicContextReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26110,7 +26110,7 @@ namespace CDM
 
   void
   EpisodicContextReport_ (::xercesc::DOMDocument& d,
-                          const ::CDM::EpisodicContextReport& s,
+                          const ::MDM::EpisodicContextReport& s,
                           ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -26133,7 +26133,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicContextReport_ (const ::CDM::EpisodicContextReport& s,
+  EpisodicContextReport_ (const ::MDM::EpisodicContextReport& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           ::xml_schema::Flags f)
   {
@@ -26143,13 +26143,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::EpisodicContextReport_ (*d, s, f);
+    ::MDM::EpisodicContextReport_ (*d, s, f);
     return d;
   }
 
   void
   GetLocalizedText_ (::std::ostream& o,
-                     const ::CDM::GetLocalizedText& s,
+                     const ::MDM::GetLocalizedText& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
@@ -26158,7 +26158,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedText_ (s, m, f));
+      ::MDM::GetLocalizedText_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26171,7 +26171,7 @@ namespace CDM
 
   void
   GetLocalizedText_ (::std::ostream& o,
-                     const ::CDM::GetLocalizedText& s,
+                     const ::MDM::GetLocalizedText& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
@@ -26181,7 +26181,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedText_ (s, m, f));
+      ::MDM::GetLocalizedText_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26191,14 +26191,14 @@ namespace CDM
 
   void
   GetLocalizedText_ (::std::ostream& o,
-                     const ::CDM::GetLocalizedText& s,
+                     const ::MDM::GetLocalizedText& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedText_ (s, m, f));
+      ::MDM::GetLocalizedText_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26208,13 +26208,13 @@ namespace CDM
 
   void
   GetLocalizedText_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::GetLocalizedText& s,
+                     const ::MDM::GetLocalizedText& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedText_ (s, m, f));
+      ::MDM::GetLocalizedText_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26226,14 +26226,14 @@ namespace CDM
 
   void
   GetLocalizedText_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::GetLocalizedText& s,
+                     const ::MDM::GetLocalizedText& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedText_ (s, m, f));
+      ::MDM::GetLocalizedText_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26242,14 +26242,14 @@ namespace CDM
 
   void
   GetLocalizedText_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::GetLocalizedText& s,
+                     const ::MDM::GetLocalizedText& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedText_ (s, m, f));
+      ::MDM::GetLocalizedText_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26258,7 +26258,7 @@ namespace CDM
 
   void
   GetLocalizedText_ (::xercesc::DOMDocument& d,
-                     const ::CDM::GetLocalizedText& s,
+                     const ::MDM::GetLocalizedText& s,
                      ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -26281,7 +26281,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetLocalizedText_ (const ::CDM::GetLocalizedText& s,
+  GetLocalizedText_ (const ::MDM::GetLocalizedText& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      ::xml_schema::Flags f)
   {
@@ -26291,13 +26291,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetLocalizedText_ (*d, s, f);
+    ::MDM::GetLocalizedText_ (*d, s, f);
     return d;
   }
 
   void
   GetLocalizedTextResponse_ (::std::ostream& o,
-                             const ::CDM::GetLocalizedTextResponse& s,
+                             const ::MDM::GetLocalizedTextResponse& s,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
@@ -26306,7 +26306,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedTextResponse_ (s, m, f));
+      ::MDM::GetLocalizedTextResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26319,7 +26319,7 @@ namespace CDM
 
   void
   GetLocalizedTextResponse_ (::std::ostream& o,
-                             const ::CDM::GetLocalizedTextResponse& s,
+                             const ::MDM::GetLocalizedTextResponse& s,
                              ::xml_schema::ErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
@@ -26329,7 +26329,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedTextResponse_ (s, m, f));
+      ::MDM::GetLocalizedTextResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26339,14 +26339,14 @@ namespace CDM
 
   void
   GetLocalizedTextResponse_ (::std::ostream& o,
-                             const ::CDM::GetLocalizedTextResponse& s,
+                             const ::MDM::GetLocalizedTextResponse& s,
                              ::xercesc::DOMErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedTextResponse_ (s, m, f));
+      ::MDM::GetLocalizedTextResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26356,13 +26356,13 @@ namespace CDM
 
   void
   GetLocalizedTextResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::CDM::GetLocalizedTextResponse& s,
+                             const ::MDM::GetLocalizedTextResponse& s,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedTextResponse_ (s, m, f));
+      ::MDM::GetLocalizedTextResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26374,14 +26374,14 @@ namespace CDM
 
   void
   GetLocalizedTextResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::CDM::GetLocalizedTextResponse& s,
+                             const ::MDM::GetLocalizedTextResponse& s,
                              ::xml_schema::ErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedTextResponse_ (s, m, f));
+      ::MDM::GetLocalizedTextResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26390,14 +26390,14 @@ namespace CDM
 
   void
   GetLocalizedTextResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::CDM::GetLocalizedTextResponse& s,
+                             const ::MDM::GetLocalizedTextResponse& s,
                              ::xercesc::DOMErrorHandler& h,
                              const ::xml_schema::NamespaceInfomap& m,
                              const ::std::string& e,
                              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetLocalizedTextResponse_ (s, m, f));
+      ::MDM::GetLocalizedTextResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26406,7 +26406,7 @@ namespace CDM
 
   void
   GetLocalizedTextResponse_ (::xercesc::DOMDocument& d,
-                             const ::CDM::GetLocalizedTextResponse& s,
+                             const ::MDM::GetLocalizedTextResponse& s,
                              ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -26429,7 +26429,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetLocalizedTextResponse_ (const ::CDM::GetLocalizedTextResponse& s,
+  GetLocalizedTextResponse_ (const ::MDM::GetLocalizedTextResponse& s,
                              const ::xml_schema::NamespaceInfomap& m,
                              ::xml_schema::Flags f)
   {
@@ -26439,13 +26439,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetLocalizedTextResponse_ (*d, s, f);
+    ::MDM::GetLocalizedTextResponse_ (*d, s, f);
     return d;
   }
 
   void
   GetSupportedLanguages_ (::std::ostream& o,
-                          const ::CDM::GetSupportedLanguages& s,
+                          const ::MDM::GetSupportedLanguages& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
@@ -26454,7 +26454,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguages_ (s, m, f));
+      ::MDM::GetSupportedLanguages_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26467,7 +26467,7 @@ namespace CDM
 
   void
   GetSupportedLanguages_ (::std::ostream& o,
-                          const ::CDM::GetSupportedLanguages& s,
+                          const ::MDM::GetSupportedLanguages& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
@@ -26477,7 +26477,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguages_ (s, m, f));
+      ::MDM::GetSupportedLanguages_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26487,14 +26487,14 @@ namespace CDM
 
   void
   GetSupportedLanguages_ (::std::ostream& o,
-                          const ::CDM::GetSupportedLanguages& s,
+                          const ::MDM::GetSupportedLanguages& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguages_ (s, m, f));
+      ::MDM::GetSupportedLanguages_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26504,13 +26504,13 @@ namespace CDM
 
   void
   GetSupportedLanguages_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::GetSupportedLanguages& s,
+                          const ::MDM::GetSupportedLanguages& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguages_ (s, m, f));
+      ::MDM::GetSupportedLanguages_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26522,14 +26522,14 @@ namespace CDM
 
   void
   GetSupportedLanguages_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::GetSupportedLanguages& s,
+                          const ::MDM::GetSupportedLanguages& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguages_ (s, m, f));
+      ::MDM::GetSupportedLanguages_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26538,14 +26538,14 @@ namespace CDM
 
   void
   GetSupportedLanguages_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::GetSupportedLanguages& s,
+                          const ::MDM::GetSupportedLanguages& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguages_ (s, m, f));
+      ::MDM::GetSupportedLanguages_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26554,7 +26554,7 @@ namespace CDM
 
   void
   GetSupportedLanguages_ (::xercesc::DOMDocument& d,
-                          const ::CDM::GetSupportedLanguages& s,
+                          const ::MDM::GetSupportedLanguages& s,
                           ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -26577,7 +26577,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetSupportedLanguages_ (const ::CDM::GetSupportedLanguages& s,
+  GetSupportedLanguages_ (const ::MDM::GetSupportedLanguages& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           ::xml_schema::Flags f)
   {
@@ -26587,13 +26587,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetSupportedLanguages_ (*d, s, f);
+    ::MDM::GetSupportedLanguages_ (*d, s, f);
     return d;
   }
 
   void
   GetSupportedLanguagesResponse_ (::std::ostream& o,
-                                  const ::CDM::GetSupportedLanguagesResponse& s,
+                                  const ::MDM::GetSupportedLanguagesResponse& s,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
@@ -26602,7 +26602,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguagesResponse_ (s, m, f));
+      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26615,7 +26615,7 @@ namespace CDM
 
   void
   GetSupportedLanguagesResponse_ (::std::ostream& o,
-                                  const ::CDM::GetSupportedLanguagesResponse& s,
+                                  const ::MDM::GetSupportedLanguagesResponse& s,
                                   ::xml_schema::ErrorHandler& h,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
@@ -26625,7 +26625,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguagesResponse_ (s, m, f));
+      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26635,14 +26635,14 @@ namespace CDM
 
   void
   GetSupportedLanguagesResponse_ (::std::ostream& o,
-                                  const ::CDM::GetSupportedLanguagesResponse& s,
+                                  const ::MDM::GetSupportedLanguagesResponse& s,
                                   ::xercesc::DOMErrorHandler& h,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguagesResponse_ (s, m, f));
+      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26652,13 +26652,13 @@ namespace CDM
 
   void
   GetSupportedLanguagesResponse_ (::xercesc::XMLFormatTarget& t,
-                                  const ::CDM::GetSupportedLanguagesResponse& s,
+                                  const ::MDM::GetSupportedLanguagesResponse& s,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguagesResponse_ (s, m, f));
+      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26670,14 +26670,14 @@ namespace CDM
 
   void
   GetSupportedLanguagesResponse_ (::xercesc::XMLFormatTarget& t,
-                                  const ::CDM::GetSupportedLanguagesResponse& s,
+                                  const ::MDM::GetSupportedLanguagesResponse& s,
                                   ::xml_schema::ErrorHandler& h,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguagesResponse_ (s, m, f));
+      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26686,14 +26686,14 @@ namespace CDM
 
   void
   GetSupportedLanguagesResponse_ (::xercesc::XMLFormatTarget& t,
-                                  const ::CDM::GetSupportedLanguagesResponse& s,
+                                  const ::MDM::GetSupportedLanguagesResponse& s,
                                   ::xercesc::DOMErrorHandler& h,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetSupportedLanguagesResponse_ (s, m, f));
+      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26702,7 +26702,7 @@ namespace CDM
 
   void
   GetSupportedLanguagesResponse_ (::xercesc::DOMDocument& d,
-                                  const ::CDM::GetSupportedLanguagesResponse& s,
+                                  const ::MDM::GetSupportedLanguagesResponse& s,
                                   ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -26725,7 +26725,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetSupportedLanguagesResponse_ (const ::CDM::GetSupportedLanguagesResponse& s,
+  GetSupportedLanguagesResponse_ (const ::MDM::GetSupportedLanguagesResponse& s,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   ::xml_schema::Flags f)
   {
@@ -26735,7 +26735,7 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetSupportedLanguagesResponse_ (*d, s, f);
+    ::MDM::GetSupportedLanguagesResponse_ (*d, s, f);
     return d;
   }
 
@@ -26815,7 +26815,7 @@ namespace CDM
 
   void
   GetDescriptorsFromArchive_ (::std::ostream& o,
-                              const ::CDM::GetDescriptorsFromArchive& s,
+                              const ::MDM::GetDescriptorsFromArchive& s,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
@@ -26824,7 +26824,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchive_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26837,7 +26837,7 @@ namespace CDM
 
   void
   GetDescriptorsFromArchive_ (::std::ostream& o,
-                              const ::CDM::GetDescriptorsFromArchive& s,
+                              const ::MDM::GetDescriptorsFromArchive& s,
                               ::xml_schema::ErrorHandler& h,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
@@ -26847,7 +26847,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchive_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26857,14 +26857,14 @@ namespace CDM
 
   void
   GetDescriptorsFromArchive_ (::std::ostream& o,
-                              const ::CDM::GetDescriptorsFromArchive& s,
+                              const ::MDM::GetDescriptorsFromArchive& s,
                               ::xercesc::DOMErrorHandler& h,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchive_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -26874,13 +26874,13 @@ namespace CDM
 
   void
   GetDescriptorsFromArchive_ (::xercesc::XMLFormatTarget& t,
-                              const ::CDM::GetDescriptorsFromArchive& s,
+                              const ::MDM::GetDescriptorsFromArchive& s,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchive_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26892,14 +26892,14 @@ namespace CDM
 
   void
   GetDescriptorsFromArchive_ (::xercesc::XMLFormatTarget& t,
-                              const ::CDM::GetDescriptorsFromArchive& s,
+                              const ::MDM::GetDescriptorsFromArchive& s,
                               ::xml_schema::ErrorHandler& h,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchive_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26908,14 +26908,14 @@ namespace CDM
 
   void
   GetDescriptorsFromArchive_ (::xercesc::XMLFormatTarget& t,
-                              const ::CDM::GetDescriptorsFromArchive& s,
+                              const ::MDM::GetDescriptorsFromArchive& s,
                               ::xercesc::DOMErrorHandler& h,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchive_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -26924,7 +26924,7 @@ namespace CDM
 
   void
   GetDescriptorsFromArchive_ (::xercesc::DOMDocument& d,
-                              const ::CDM::GetDescriptorsFromArchive& s,
+                              const ::MDM::GetDescriptorsFromArchive& s,
                               ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -26947,7 +26947,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptorsFromArchive_ (const ::CDM::GetDescriptorsFromArchive& s,
+  GetDescriptorsFromArchive_ (const ::MDM::GetDescriptorsFromArchive& s,
                               const ::xml_schema::NamespaceInfomap& m,
                               ::xml_schema::Flags f)
   {
@@ -26957,13 +26957,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetDescriptorsFromArchive_ (*d, s, f);
+    ::MDM::GetDescriptorsFromArchive_ (*d, s, f);
     return d;
   }
 
   void
   GetDescriptorsFromArchiveResponse_ (::std::ostream& o,
-                                      const ::CDM::GetDescriptorsFromArchiveResponse& s,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
                                       const ::xml_schema::NamespaceInfomap& m,
                                       const ::std::string& e,
                                       ::xml_schema::Flags f)
@@ -26972,7 +26972,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -26985,7 +26985,7 @@ namespace CDM
 
   void
   GetDescriptorsFromArchiveResponse_ (::std::ostream& o,
-                                      const ::CDM::GetDescriptorsFromArchiveResponse& s,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
                                       ::xml_schema::ErrorHandler& h,
                                       const ::xml_schema::NamespaceInfomap& m,
                                       const ::std::string& e,
@@ -26995,7 +26995,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27005,14 +27005,14 @@ namespace CDM
 
   void
   GetDescriptorsFromArchiveResponse_ (::std::ostream& o,
-                                      const ::CDM::GetDescriptorsFromArchiveResponse& s,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
                                       ::xercesc::DOMErrorHandler& h,
                                       const ::xml_schema::NamespaceInfomap& m,
                                       const ::std::string& e,
                                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27022,13 +27022,13 @@ namespace CDM
 
   void
   GetDescriptorsFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                      const ::CDM::GetDescriptorsFromArchiveResponse& s,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
                                       const ::xml_schema::NamespaceInfomap& m,
                                       const ::std::string& e,
                                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27040,14 +27040,14 @@ namespace CDM
 
   void
   GetDescriptorsFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                      const ::CDM::GetDescriptorsFromArchiveResponse& s,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
                                       ::xml_schema::ErrorHandler& h,
                                       const ::xml_schema::NamespaceInfomap& m,
                                       const ::std::string& e,
                                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27056,14 +27056,14 @@ namespace CDM
 
   void
   GetDescriptorsFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                      const ::CDM::GetDescriptorsFromArchiveResponse& s,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
                                       ::xercesc::DOMErrorHandler& h,
                                       const ::xml_schema::NamespaceInfomap& m,
                                       const ::std::string& e,
                                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
+      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27072,7 +27072,7 @@ namespace CDM
 
   void
   GetDescriptorsFromArchiveResponse_ (::xercesc::DOMDocument& d,
-                                      const ::CDM::GetDescriptorsFromArchiveResponse& s,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
                                       ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -27095,7 +27095,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptorsFromArchiveResponse_ (const ::CDM::GetDescriptorsFromArchiveResponse& s,
+  GetDescriptorsFromArchiveResponse_ (const ::MDM::GetDescriptorsFromArchiveResponse& s,
                                       const ::xml_schema::NamespaceInfomap& m,
                                       ::xml_schema::Flags f)
   {
@@ -27105,13 +27105,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetDescriptorsFromArchiveResponse_ (*d, s, f);
+    ::MDM::GetDescriptorsFromArchiveResponse_ (*d, s, f);
     return d;
   }
 
   void
   GetStatesFromArchive_ (::std::ostream& o,
-                         const ::CDM::GetStatesFromArchive& s,
+                         const ::MDM::GetStatesFromArchive& s,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
@@ -27120,7 +27120,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchive_ (s, m, f));
+      ::MDM::GetStatesFromArchive_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27133,7 +27133,7 @@ namespace CDM
 
   void
   GetStatesFromArchive_ (::std::ostream& o,
-                         const ::CDM::GetStatesFromArchive& s,
+                         const ::MDM::GetStatesFromArchive& s,
                          ::xml_schema::ErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
@@ -27143,7 +27143,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchive_ (s, m, f));
+      ::MDM::GetStatesFromArchive_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27153,14 +27153,14 @@ namespace CDM
 
   void
   GetStatesFromArchive_ (::std::ostream& o,
-                         const ::CDM::GetStatesFromArchive& s,
+                         const ::MDM::GetStatesFromArchive& s,
                          ::xercesc::DOMErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchive_ (s, m, f));
+      ::MDM::GetStatesFromArchive_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27170,13 +27170,13 @@ namespace CDM
 
   void
   GetStatesFromArchive_ (::xercesc::XMLFormatTarget& t,
-                         const ::CDM::GetStatesFromArchive& s,
+                         const ::MDM::GetStatesFromArchive& s,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchive_ (s, m, f));
+      ::MDM::GetStatesFromArchive_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27188,14 +27188,14 @@ namespace CDM
 
   void
   GetStatesFromArchive_ (::xercesc::XMLFormatTarget& t,
-                         const ::CDM::GetStatesFromArchive& s,
+                         const ::MDM::GetStatesFromArchive& s,
                          ::xml_schema::ErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchive_ (s, m, f));
+      ::MDM::GetStatesFromArchive_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27204,14 +27204,14 @@ namespace CDM
 
   void
   GetStatesFromArchive_ (::xercesc::XMLFormatTarget& t,
-                         const ::CDM::GetStatesFromArchive& s,
+                         const ::MDM::GetStatesFromArchive& s,
                          ::xercesc::DOMErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchive_ (s, m, f));
+      ::MDM::GetStatesFromArchive_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27220,7 +27220,7 @@ namespace CDM
 
   void
   GetStatesFromArchive_ (::xercesc::DOMDocument& d,
-                         const ::CDM::GetStatesFromArchive& s,
+                         const ::MDM::GetStatesFromArchive& s,
                          ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -27243,7 +27243,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetStatesFromArchive_ (const ::CDM::GetStatesFromArchive& s,
+  GetStatesFromArchive_ (const ::MDM::GetStatesFromArchive& s,
                          const ::xml_schema::NamespaceInfomap& m,
                          ::xml_schema::Flags f)
   {
@@ -27253,13 +27253,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetStatesFromArchive_ (*d, s, f);
+    ::MDM::GetStatesFromArchive_ (*d, s, f);
     return d;
   }
 
   void
   GetStatesFromArchiveResponse_ (::std::ostream& o,
-                                 const ::CDM::GetStatesFromArchiveResponse& s,
+                                 const ::MDM::GetStatesFromArchiveResponse& s,
                                  const ::xml_schema::NamespaceInfomap& m,
                                  const ::std::string& e,
                                  ::xml_schema::Flags f)
@@ -27268,7 +27268,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchiveResponse_ (s, m, f));
+      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27281,7 +27281,7 @@ namespace CDM
 
   void
   GetStatesFromArchiveResponse_ (::std::ostream& o,
-                                 const ::CDM::GetStatesFromArchiveResponse& s,
+                                 const ::MDM::GetStatesFromArchiveResponse& s,
                                  ::xml_schema::ErrorHandler& h,
                                  const ::xml_schema::NamespaceInfomap& m,
                                  const ::std::string& e,
@@ -27291,7 +27291,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchiveResponse_ (s, m, f));
+      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27301,14 +27301,14 @@ namespace CDM
 
   void
   GetStatesFromArchiveResponse_ (::std::ostream& o,
-                                 const ::CDM::GetStatesFromArchiveResponse& s,
+                                 const ::MDM::GetStatesFromArchiveResponse& s,
                                  ::xercesc::DOMErrorHandler& h,
                                  const ::xml_schema::NamespaceInfomap& m,
                                  const ::std::string& e,
                                  ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchiveResponse_ (s, m, f));
+      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27318,13 +27318,13 @@ namespace CDM
 
   void
   GetStatesFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                 const ::CDM::GetStatesFromArchiveResponse& s,
+                                 const ::MDM::GetStatesFromArchiveResponse& s,
                                  const ::xml_schema::NamespaceInfomap& m,
                                  const ::std::string& e,
                                  ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchiveResponse_ (s, m, f));
+      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27336,14 +27336,14 @@ namespace CDM
 
   void
   GetStatesFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                 const ::CDM::GetStatesFromArchiveResponse& s,
+                                 const ::MDM::GetStatesFromArchiveResponse& s,
                                  ::xml_schema::ErrorHandler& h,
                                  const ::xml_schema::NamespaceInfomap& m,
                                  const ::std::string& e,
                                  ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchiveResponse_ (s, m, f));
+      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27352,14 +27352,14 @@ namespace CDM
 
   void
   GetStatesFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                 const ::CDM::GetStatesFromArchiveResponse& s,
+                                 const ::MDM::GetStatesFromArchiveResponse& s,
                                  ::xercesc::DOMErrorHandler& h,
                                  const ::xml_schema::NamespaceInfomap& m,
                                  const ::std::string& e,
                                  ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetStatesFromArchiveResponse_ (s, m, f));
+      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27368,7 +27368,7 @@ namespace CDM
 
   void
   GetStatesFromArchiveResponse_ (::xercesc::DOMDocument& d,
-                                 const ::CDM::GetStatesFromArchiveResponse& s,
+                                 const ::MDM::GetStatesFromArchiveResponse& s,
                                  ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -27391,7 +27391,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetStatesFromArchiveResponse_ (const ::CDM::GetStatesFromArchiveResponse& s,
+  GetStatesFromArchiveResponse_ (const ::MDM::GetStatesFromArchiveResponse& s,
                                  const ::xml_schema::NamespaceInfomap& m,
                                  ::xml_schema::Flags f)
   {
@@ -27401,13 +27401,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetStatesFromArchiveResponse_ (*d, s, f);
+    ::MDM::GetStatesFromArchiveResponse_ (*d, s, f);
     return d;
   }
 
   void
   SetValue_ (::std::ostream& o,
-             const ::CDM::SetValue& s,
+             const ::MDM::SetValue& s,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
@@ -27416,7 +27416,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValue_ (s, m, f));
+      ::MDM::SetValue_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27429,7 +27429,7 @@ namespace CDM
 
   void
   SetValue_ (::std::ostream& o,
-             const ::CDM::SetValue& s,
+             const ::MDM::SetValue& s,
              ::xml_schema::ErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
@@ -27439,7 +27439,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValue_ (s, m, f));
+      ::MDM::SetValue_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27449,14 +27449,14 @@ namespace CDM
 
   void
   SetValue_ (::std::ostream& o,
-             const ::CDM::SetValue& s,
+             const ::MDM::SetValue& s,
              ::xercesc::DOMErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValue_ (s, m, f));
+      ::MDM::SetValue_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27466,13 +27466,13 @@ namespace CDM
 
   void
   SetValue_ (::xercesc::XMLFormatTarget& t,
-             const ::CDM::SetValue& s,
+             const ::MDM::SetValue& s,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValue_ (s, m, f));
+      ::MDM::SetValue_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27484,14 +27484,14 @@ namespace CDM
 
   void
   SetValue_ (::xercesc::XMLFormatTarget& t,
-             const ::CDM::SetValue& s,
+             const ::MDM::SetValue& s,
              ::xml_schema::ErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValue_ (s, m, f));
+      ::MDM::SetValue_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27500,14 +27500,14 @@ namespace CDM
 
   void
   SetValue_ (::xercesc::XMLFormatTarget& t,
-             const ::CDM::SetValue& s,
+             const ::MDM::SetValue& s,
              ::xercesc::DOMErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValue_ (s, m, f));
+      ::MDM::SetValue_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27516,7 +27516,7 @@ namespace CDM
 
   void
   SetValue_ (::xercesc::DOMDocument& d,
-             const ::CDM::SetValue& s,
+             const ::MDM::SetValue& s,
              ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -27539,7 +27539,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetValue_ (const ::CDM::SetValue& s,
+  SetValue_ (const ::MDM::SetValue& s,
              const ::xml_schema::NamespaceInfomap& m,
              ::xml_schema::Flags f)
   {
@@ -27549,13 +27549,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetValue_ (*d, s, f);
+    ::MDM::SetValue_ (*d, s, f);
     return d;
   }
 
   void
   SetValueResponse_ (::std::ostream& o,
-                     const ::CDM::SetValueResponse& s,
+                     const ::MDM::SetValueResponse& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
@@ -27564,7 +27564,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValueResponse_ (s, m, f));
+      ::MDM::SetValueResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27577,7 +27577,7 @@ namespace CDM
 
   void
   SetValueResponse_ (::std::ostream& o,
-                     const ::CDM::SetValueResponse& s,
+                     const ::MDM::SetValueResponse& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
@@ -27587,7 +27587,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValueResponse_ (s, m, f));
+      ::MDM::SetValueResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27597,14 +27597,14 @@ namespace CDM
 
   void
   SetValueResponse_ (::std::ostream& o,
-                     const ::CDM::SetValueResponse& s,
+                     const ::MDM::SetValueResponse& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValueResponse_ (s, m, f));
+      ::MDM::SetValueResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27614,13 +27614,13 @@ namespace CDM
 
   void
   SetValueResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::SetValueResponse& s,
+                     const ::MDM::SetValueResponse& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValueResponse_ (s, m, f));
+      ::MDM::SetValueResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27632,14 +27632,14 @@ namespace CDM
 
   void
   SetValueResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::SetValueResponse& s,
+                     const ::MDM::SetValueResponse& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValueResponse_ (s, m, f));
+      ::MDM::SetValueResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27648,14 +27648,14 @@ namespace CDM
 
   void
   SetValueResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::SetValueResponse& s,
+                     const ::MDM::SetValueResponse& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetValueResponse_ (s, m, f));
+      ::MDM::SetValueResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27664,7 +27664,7 @@ namespace CDM
 
   void
   SetValueResponse_ (::xercesc::DOMDocument& d,
-                     const ::CDM::SetValueResponse& s,
+                     const ::MDM::SetValueResponse& s,
                      ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -27687,7 +27687,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetValueResponse_ (const ::CDM::SetValueResponse& s,
+  SetValueResponse_ (const ::MDM::SetValueResponse& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      ::xml_schema::Flags f)
   {
@@ -27697,13 +27697,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetValueResponse_ (*d, s, f);
+    ::MDM::SetValueResponse_ (*d, s, f);
     return d;
   }
 
   void
   SetString_ (::std::ostream& o,
-              const ::CDM::SetString& s,
+              const ::MDM::SetString& s,
               const ::xml_schema::NamespaceInfomap& m,
               const ::std::string& e,
               ::xml_schema::Flags f)
@@ -27712,7 +27712,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetString_ (s, m, f));
+      ::MDM::SetString_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27725,7 +27725,7 @@ namespace CDM
 
   void
   SetString_ (::std::ostream& o,
-              const ::CDM::SetString& s,
+              const ::MDM::SetString& s,
               ::xml_schema::ErrorHandler& h,
               const ::xml_schema::NamespaceInfomap& m,
               const ::std::string& e,
@@ -27735,7 +27735,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetString_ (s, m, f));
+      ::MDM::SetString_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27745,14 +27745,14 @@ namespace CDM
 
   void
   SetString_ (::std::ostream& o,
-              const ::CDM::SetString& s,
+              const ::MDM::SetString& s,
               ::xercesc::DOMErrorHandler& h,
               const ::xml_schema::NamespaceInfomap& m,
               const ::std::string& e,
               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetString_ (s, m, f));
+      ::MDM::SetString_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27762,13 +27762,13 @@ namespace CDM
 
   void
   SetString_ (::xercesc::XMLFormatTarget& t,
-              const ::CDM::SetString& s,
+              const ::MDM::SetString& s,
               const ::xml_schema::NamespaceInfomap& m,
               const ::std::string& e,
               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetString_ (s, m, f));
+      ::MDM::SetString_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27780,14 +27780,14 @@ namespace CDM
 
   void
   SetString_ (::xercesc::XMLFormatTarget& t,
-              const ::CDM::SetString& s,
+              const ::MDM::SetString& s,
               ::xml_schema::ErrorHandler& h,
               const ::xml_schema::NamespaceInfomap& m,
               const ::std::string& e,
               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetString_ (s, m, f));
+      ::MDM::SetString_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27796,14 +27796,14 @@ namespace CDM
 
   void
   SetString_ (::xercesc::XMLFormatTarget& t,
-              const ::CDM::SetString& s,
+              const ::MDM::SetString& s,
               ::xercesc::DOMErrorHandler& h,
               const ::xml_schema::NamespaceInfomap& m,
               const ::std::string& e,
               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetString_ (s, m, f));
+      ::MDM::SetString_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27812,7 +27812,7 @@ namespace CDM
 
   void
   SetString_ (::xercesc::DOMDocument& d,
-              const ::CDM::SetString& s,
+              const ::MDM::SetString& s,
               ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -27835,7 +27835,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetString_ (const ::CDM::SetString& s,
+  SetString_ (const ::MDM::SetString& s,
               const ::xml_schema::NamespaceInfomap& m,
               ::xml_schema::Flags f)
   {
@@ -27845,13 +27845,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetString_ (*d, s, f);
+    ::MDM::SetString_ (*d, s, f);
     return d;
   }
 
   void
   SetStringResponse_ (::std::ostream& o,
-                      const ::CDM::SetStringResponse& s,
+                      const ::MDM::SetStringResponse& s,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
@@ -27860,7 +27860,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetStringResponse_ (s, m, f));
+      ::MDM::SetStringResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27873,7 +27873,7 @@ namespace CDM
 
   void
   SetStringResponse_ (::std::ostream& o,
-                      const ::CDM::SetStringResponse& s,
+                      const ::MDM::SetStringResponse& s,
                       ::xml_schema::ErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
@@ -27883,7 +27883,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetStringResponse_ (s, m, f));
+      ::MDM::SetStringResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27893,14 +27893,14 @@ namespace CDM
 
   void
   SetStringResponse_ (::std::ostream& o,
-                      const ::CDM::SetStringResponse& s,
+                      const ::MDM::SetStringResponse& s,
                       ::xercesc::DOMErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetStringResponse_ (s, m, f));
+      ::MDM::SetStringResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -27910,13 +27910,13 @@ namespace CDM
 
   void
   SetStringResponse_ (::xercesc::XMLFormatTarget& t,
-                      const ::CDM::SetStringResponse& s,
+                      const ::MDM::SetStringResponse& s,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetStringResponse_ (s, m, f));
+      ::MDM::SetStringResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -27928,14 +27928,14 @@ namespace CDM
 
   void
   SetStringResponse_ (::xercesc::XMLFormatTarget& t,
-                      const ::CDM::SetStringResponse& s,
+                      const ::MDM::SetStringResponse& s,
                       ::xml_schema::ErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetStringResponse_ (s, m, f));
+      ::MDM::SetStringResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27944,14 +27944,14 @@ namespace CDM
 
   void
   SetStringResponse_ (::xercesc::XMLFormatTarget& t,
-                      const ::CDM::SetStringResponse& s,
+                      const ::MDM::SetStringResponse& s,
                       ::xercesc::DOMErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetStringResponse_ (s, m, f));
+      ::MDM::SetStringResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -27960,7 +27960,7 @@ namespace CDM
 
   void
   SetStringResponse_ (::xercesc::DOMDocument& d,
-                      const ::CDM::SetStringResponse& s,
+                      const ::MDM::SetStringResponse& s,
                       ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -27983,7 +27983,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetStringResponse_ (const ::CDM::SetStringResponse& s,
+  SetStringResponse_ (const ::MDM::SetStringResponse& s,
                       const ::xml_schema::NamespaceInfomap& m,
                       ::xml_schema::Flags f)
   {
@@ -27993,13 +27993,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetStringResponse_ (*d, s, f);
+    ::MDM::SetStringResponse_ (*d, s, f);
     return d;
   }
 
   void
   Activate_ (::std::ostream& o,
-             const ::CDM::Activate& s,
+             const ::MDM::Activate& s,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
@@ -28008,7 +28008,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Activate_ (s, m, f));
+      ::MDM::Activate_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28021,7 +28021,7 @@ namespace CDM
 
   void
   Activate_ (::std::ostream& o,
-             const ::CDM::Activate& s,
+             const ::MDM::Activate& s,
              ::xml_schema::ErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
@@ -28031,7 +28031,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Activate_ (s, m, f));
+      ::MDM::Activate_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28041,14 +28041,14 @@ namespace CDM
 
   void
   Activate_ (::std::ostream& o,
-             const ::CDM::Activate& s,
+             const ::MDM::Activate& s,
              ::xercesc::DOMErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Activate_ (s, m, f));
+      ::MDM::Activate_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28058,13 +28058,13 @@ namespace CDM
 
   void
   Activate_ (::xercesc::XMLFormatTarget& t,
-             const ::CDM::Activate& s,
+             const ::MDM::Activate& s,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Activate_ (s, m, f));
+      ::MDM::Activate_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28076,14 +28076,14 @@ namespace CDM
 
   void
   Activate_ (::xercesc::XMLFormatTarget& t,
-             const ::CDM::Activate& s,
+             const ::MDM::Activate& s,
              ::xml_schema::ErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Activate_ (s, m, f));
+      ::MDM::Activate_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28092,14 +28092,14 @@ namespace CDM
 
   void
   Activate_ (::xercesc::XMLFormatTarget& t,
-             const ::CDM::Activate& s,
+             const ::MDM::Activate& s,
              ::xercesc::DOMErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Activate_ (s, m, f));
+      ::MDM::Activate_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28108,7 +28108,7 @@ namespace CDM
 
   void
   Activate_ (::xercesc::DOMDocument& d,
-             const ::CDM::Activate& s,
+             const ::MDM::Activate& s,
              ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -28131,7 +28131,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Activate_ (const ::CDM::Activate& s,
+  Activate_ (const ::MDM::Activate& s,
              const ::xml_schema::NamespaceInfomap& m,
              ::xml_schema::Flags f)
   {
@@ -28141,13 +28141,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::Activate_ (*d, s, f);
+    ::MDM::Activate_ (*d, s, f);
     return d;
   }
 
   void
   ActivateResponse_ (::std::ostream& o,
-                     const ::CDM::ActivateResponse& s,
+                     const ::MDM::ActivateResponse& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
@@ -28156,7 +28156,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ActivateResponse_ (s, m, f));
+      ::MDM::ActivateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28169,7 +28169,7 @@ namespace CDM
 
   void
   ActivateResponse_ (::std::ostream& o,
-                     const ::CDM::ActivateResponse& s,
+                     const ::MDM::ActivateResponse& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
@@ -28179,7 +28179,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ActivateResponse_ (s, m, f));
+      ::MDM::ActivateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28189,14 +28189,14 @@ namespace CDM
 
   void
   ActivateResponse_ (::std::ostream& o,
-                     const ::CDM::ActivateResponse& s,
+                     const ::MDM::ActivateResponse& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ActivateResponse_ (s, m, f));
+      ::MDM::ActivateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28206,13 +28206,13 @@ namespace CDM
 
   void
   ActivateResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::ActivateResponse& s,
+                     const ::MDM::ActivateResponse& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ActivateResponse_ (s, m, f));
+      ::MDM::ActivateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28224,14 +28224,14 @@ namespace CDM
 
   void
   ActivateResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::ActivateResponse& s,
+                     const ::MDM::ActivateResponse& s,
                      ::xml_schema::ErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ActivateResponse_ (s, m, f));
+      ::MDM::ActivateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28240,14 +28240,14 @@ namespace CDM
 
   void
   ActivateResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::CDM::ActivateResponse& s,
+                     const ::MDM::ActivateResponse& s,
                      ::xercesc::DOMErrorHandler& h,
                      const ::xml_schema::NamespaceInfomap& m,
                      const ::std::string& e,
                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ActivateResponse_ (s, m, f));
+      ::MDM::ActivateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28256,7 +28256,7 @@ namespace CDM
 
   void
   ActivateResponse_ (::xercesc::DOMDocument& d,
-                     const ::CDM::ActivateResponse& s,
+                     const ::MDM::ActivateResponse& s,
                      ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -28279,7 +28279,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  ActivateResponse_ (const ::CDM::ActivateResponse& s,
+  ActivateResponse_ (const ::MDM::ActivateResponse& s,
                      const ::xml_schema::NamespaceInfomap& m,
                      ::xml_schema::Flags f)
   {
@@ -28289,13 +28289,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::ActivateResponse_ (*d, s, f);
+    ::MDM::ActivateResponse_ (*d, s, f);
     return d;
   }
 
   void
   SetAlertState_ (::std::ostream& o,
-                  const ::CDM::SetAlertState& s,
+                  const ::MDM::SetAlertState& s,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
@@ -28304,7 +28304,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertState_ (s, m, f));
+      ::MDM::SetAlertState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28317,7 +28317,7 @@ namespace CDM
 
   void
   SetAlertState_ (::std::ostream& o,
-                  const ::CDM::SetAlertState& s,
+                  const ::MDM::SetAlertState& s,
                   ::xml_schema::ErrorHandler& h,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
@@ -28327,7 +28327,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertState_ (s, m, f));
+      ::MDM::SetAlertState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28337,14 +28337,14 @@ namespace CDM
 
   void
   SetAlertState_ (::std::ostream& o,
-                  const ::CDM::SetAlertState& s,
+                  const ::MDM::SetAlertState& s,
                   ::xercesc::DOMErrorHandler& h,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertState_ (s, m, f));
+      ::MDM::SetAlertState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28354,13 +28354,13 @@ namespace CDM
 
   void
   SetAlertState_ (::xercesc::XMLFormatTarget& t,
-                  const ::CDM::SetAlertState& s,
+                  const ::MDM::SetAlertState& s,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertState_ (s, m, f));
+      ::MDM::SetAlertState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28372,14 +28372,14 @@ namespace CDM
 
   void
   SetAlertState_ (::xercesc::XMLFormatTarget& t,
-                  const ::CDM::SetAlertState& s,
+                  const ::MDM::SetAlertState& s,
                   ::xml_schema::ErrorHandler& h,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertState_ (s, m, f));
+      ::MDM::SetAlertState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28388,14 +28388,14 @@ namespace CDM
 
   void
   SetAlertState_ (::xercesc::XMLFormatTarget& t,
-                  const ::CDM::SetAlertState& s,
+                  const ::MDM::SetAlertState& s,
                   ::xercesc::DOMErrorHandler& h,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertState_ (s, m, f));
+      ::MDM::SetAlertState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28404,7 +28404,7 @@ namespace CDM
 
   void
   SetAlertState_ (::xercesc::DOMDocument& d,
-                  const ::CDM::SetAlertState& s,
+                  const ::MDM::SetAlertState& s,
                   ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -28427,7 +28427,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetAlertState_ (const ::CDM::SetAlertState& s,
+  SetAlertState_ (const ::MDM::SetAlertState& s,
                   const ::xml_schema::NamespaceInfomap& m,
                   ::xml_schema::Flags f)
   {
@@ -28437,13 +28437,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetAlertState_ (*d, s, f);
+    ::MDM::SetAlertState_ (*d, s, f);
     return d;
   }
 
   void
   SetAlertStateResponse_ (::std::ostream& o,
-                          const ::CDM::SetAlertStateResponse& s,
+                          const ::MDM::SetAlertStateResponse& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
@@ -28452,7 +28452,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertStateResponse_ (s, m, f));
+      ::MDM::SetAlertStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28465,7 +28465,7 @@ namespace CDM
 
   void
   SetAlertStateResponse_ (::std::ostream& o,
-                          const ::CDM::SetAlertStateResponse& s,
+                          const ::MDM::SetAlertStateResponse& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
@@ -28475,7 +28475,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertStateResponse_ (s, m, f));
+      ::MDM::SetAlertStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28485,14 +28485,14 @@ namespace CDM
 
   void
   SetAlertStateResponse_ (::std::ostream& o,
-                          const ::CDM::SetAlertStateResponse& s,
+                          const ::MDM::SetAlertStateResponse& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertStateResponse_ (s, m, f));
+      ::MDM::SetAlertStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28502,13 +28502,13 @@ namespace CDM
 
   void
   SetAlertStateResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::SetAlertStateResponse& s,
+                          const ::MDM::SetAlertStateResponse& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertStateResponse_ (s, m, f));
+      ::MDM::SetAlertStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28520,14 +28520,14 @@ namespace CDM
 
   void
   SetAlertStateResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::SetAlertStateResponse& s,
+                          const ::MDM::SetAlertStateResponse& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertStateResponse_ (s, m, f));
+      ::MDM::SetAlertStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28536,14 +28536,14 @@ namespace CDM
 
   void
   SetAlertStateResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::SetAlertStateResponse& s,
+                          const ::MDM::SetAlertStateResponse& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetAlertStateResponse_ (s, m, f));
+      ::MDM::SetAlertStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28552,7 +28552,7 @@ namespace CDM
 
   void
   SetAlertStateResponse_ (::xercesc::DOMDocument& d,
-                          const ::CDM::SetAlertStateResponse& s,
+                          const ::MDM::SetAlertStateResponse& s,
                           ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -28575,7 +28575,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetAlertStateResponse_ (const ::CDM::SetAlertStateResponse& s,
+  SetAlertStateResponse_ (const ::MDM::SetAlertStateResponse& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           ::xml_schema::Flags f)
   {
@@ -28585,13 +28585,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetAlertStateResponse_ (*d, s, f);
+    ::MDM::SetAlertStateResponse_ (*d, s, f);
     return d;
   }
 
   void
   SetComponentState_ (::std::ostream& o,
-                      const ::CDM::SetComponentState& s,
+                      const ::MDM::SetComponentState& s,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
@@ -28600,7 +28600,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentState_ (s, m, f));
+      ::MDM::SetComponentState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28613,7 +28613,7 @@ namespace CDM
 
   void
   SetComponentState_ (::std::ostream& o,
-                      const ::CDM::SetComponentState& s,
+                      const ::MDM::SetComponentState& s,
                       ::xml_schema::ErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
@@ -28623,7 +28623,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentState_ (s, m, f));
+      ::MDM::SetComponentState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28633,14 +28633,14 @@ namespace CDM
 
   void
   SetComponentState_ (::std::ostream& o,
-                      const ::CDM::SetComponentState& s,
+                      const ::MDM::SetComponentState& s,
                       ::xercesc::DOMErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentState_ (s, m, f));
+      ::MDM::SetComponentState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28650,13 +28650,13 @@ namespace CDM
 
   void
   SetComponentState_ (::xercesc::XMLFormatTarget& t,
-                      const ::CDM::SetComponentState& s,
+                      const ::MDM::SetComponentState& s,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentState_ (s, m, f));
+      ::MDM::SetComponentState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28668,14 +28668,14 @@ namespace CDM
 
   void
   SetComponentState_ (::xercesc::XMLFormatTarget& t,
-                      const ::CDM::SetComponentState& s,
+                      const ::MDM::SetComponentState& s,
                       ::xml_schema::ErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentState_ (s, m, f));
+      ::MDM::SetComponentState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28684,14 +28684,14 @@ namespace CDM
 
   void
   SetComponentState_ (::xercesc::XMLFormatTarget& t,
-                      const ::CDM::SetComponentState& s,
+                      const ::MDM::SetComponentState& s,
                       ::xercesc::DOMErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentState_ (s, m, f));
+      ::MDM::SetComponentState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28700,7 +28700,7 @@ namespace CDM
 
   void
   SetComponentState_ (::xercesc::DOMDocument& d,
-                      const ::CDM::SetComponentState& s,
+                      const ::MDM::SetComponentState& s,
                       ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -28723,7 +28723,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetComponentState_ (const ::CDM::SetComponentState& s,
+  SetComponentState_ (const ::MDM::SetComponentState& s,
                       const ::xml_schema::NamespaceInfomap& m,
                       ::xml_schema::Flags f)
   {
@@ -28733,13 +28733,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetComponentState_ (*d, s, f);
+    ::MDM::SetComponentState_ (*d, s, f);
     return d;
   }
 
   void
   SetComponentStateResponse_ (::std::ostream& o,
-                              const ::CDM::SetComponentStateResponse& s,
+                              const ::MDM::SetComponentStateResponse& s,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
@@ -28748,7 +28748,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentStateResponse_ (s, m, f));
+      ::MDM::SetComponentStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28761,7 +28761,7 @@ namespace CDM
 
   void
   SetComponentStateResponse_ (::std::ostream& o,
-                              const ::CDM::SetComponentStateResponse& s,
+                              const ::MDM::SetComponentStateResponse& s,
                               ::xml_schema::ErrorHandler& h,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
@@ -28771,7 +28771,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentStateResponse_ (s, m, f));
+      ::MDM::SetComponentStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28781,14 +28781,14 @@ namespace CDM
 
   void
   SetComponentStateResponse_ (::std::ostream& o,
-                              const ::CDM::SetComponentStateResponse& s,
+                              const ::MDM::SetComponentStateResponse& s,
                               ::xercesc::DOMErrorHandler& h,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentStateResponse_ (s, m, f));
+      ::MDM::SetComponentStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28798,13 +28798,13 @@ namespace CDM
 
   void
   SetComponentStateResponse_ (::xercesc::XMLFormatTarget& t,
-                              const ::CDM::SetComponentStateResponse& s,
+                              const ::MDM::SetComponentStateResponse& s,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentStateResponse_ (s, m, f));
+      ::MDM::SetComponentStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28816,14 +28816,14 @@ namespace CDM
 
   void
   SetComponentStateResponse_ (::xercesc::XMLFormatTarget& t,
-                              const ::CDM::SetComponentStateResponse& s,
+                              const ::MDM::SetComponentStateResponse& s,
                               ::xml_schema::ErrorHandler& h,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentStateResponse_ (s, m, f));
+      ::MDM::SetComponentStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28832,14 +28832,14 @@ namespace CDM
 
   void
   SetComponentStateResponse_ (::xercesc::XMLFormatTarget& t,
-                              const ::CDM::SetComponentStateResponse& s,
+                              const ::MDM::SetComponentStateResponse& s,
                               ::xercesc::DOMErrorHandler& h,
                               const ::xml_schema::NamespaceInfomap& m,
                               const ::std::string& e,
                               ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetComponentStateResponse_ (s, m, f));
+      ::MDM::SetComponentStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28848,7 +28848,7 @@ namespace CDM
 
   void
   SetComponentStateResponse_ (::xercesc::DOMDocument& d,
-                              const ::CDM::SetComponentStateResponse& s,
+                              const ::MDM::SetComponentStateResponse& s,
                               ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -28871,7 +28871,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetComponentStateResponse_ (const ::CDM::SetComponentStateResponse& s,
+  SetComponentStateResponse_ (const ::MDM::SetComponentStateResponse& s,
                               const ::xml_schema::NamespaceInfomap& m,
                               ::xml_schema::Flags f)
   {
@@ -28881,13 +28881,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetComponentStateResponse_ (*d, s, f);
+    ::MDM::SetComponentStateResponse_ (*d, s, f);
     return d;
   }
 
   void
   SetMetricState_ (::std::ostream& o,
-                   const ::CDM::SetMetricState& s,
+                   const ::MDM::SetMetricState& s,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
@@ -28896,7 +28896,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricState_ (s, m, f));
+      ::MDM::SetMetricState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28909,7 +28909,7 @@ namespace CDM
 
   void
   SetMetricState_ (::std::ostream& o,
-                   const ::CDM::SetMetricState& s,
+                   const ::MDM::SetMetricState& s,
                    ::xml_schema::ErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
@@ -28919,7 +28919,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricState_ (s, m, f));
+      ::MDM::SetMetricState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28929,14 +28929,14 @@ namespace CDM
 
   void
   SetMetricState_ (::std::ostream& o,
-                   const ::CDM::SetMetricState& s,
+                   const ::MDM::SetMetricState& s,
                    ::xercesc::DOMErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricState_ (s, m, f));
+      ::MDM::SetMetricState_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -28946,13 +28946,13 @@ namespace CDM
 
   void
   SetMetricState_ (::xercesc::XMLFormatTarget& t,
-                   const ::CDM::SetMetricState& s,
+                   const ::MDM::SetMetricState& s,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricState_ (s, m, f));
+      ::MDM::SetMetricState_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -28964,14 +28964,14 @@ namespace CDM
 
   void
   SetMetricState_ (::xercesc::XMLFormatTarget& t,
-                   const ::CDM::SetMetricState& s,
+                   const ::MDM::SetMetricState& s,
                    ::xml_schema::ErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricState_ (s, m, f));
+      ::MDM::SetMetricState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28980,14 +28980,14 @@ namespace CDM
 
   void
   SetMetricState_ (::xercesc::XMLFormatTarget& t,
-                   const ::CDM::SetMetricState& s,
+                   const ::MDM::SetMetricState& s,
                    ::xercesc::DOMErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricState_ (s, m, f));
+      ::MDM::SetMetricState_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -28996,7 +28996,7 @@ namespace CDM
 
   void
   SetMetricState_ (::xercesc::DOMDocument& d,
-                   const ::CDM::SetMetricState& s,
+                   const ::MDM::SetMetricState& s,
                    ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -29019,7 +29019,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetMetricState_ (const ::CDM::SetMetricState& s,
+  SetMetricState_ (const ::MDM::SetMetricState& s,
                    const ::xml_schema::NamespaceInfomap& m,
                    ::xml_schema::Flags f)
   {
@@ -29029,13 +29029,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetMetricState_ (*d, s, f);
+    ::MDM::SetMetricState_ (*d, s, f);
     return d;
   }
 
   void
   SetMetricStateResponse_ (::std::ostream& o,
-                           const ::CDM::SetMetricStateResponse& s,
+                           const ::MDM::SetMetricStateResponse& s,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
@@ -29044,7 +29044,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricStateResponse_ (s, m, f));
+      ::MDM::SetMetricStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29057,7 +29057,7 @@ namespace CDM
 
   void
   SetMetricStateResponse_ (::std::ostream& o,
-                           const ::CDM::SetMetricStateResponse& s,
+                           const ::MDM::SetMetricStateResponse& s,
                            ::xml_schema::ErrorHandler& h,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
@@ -29067,7 +29067,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricStateResponse_ (s, m, f));
+      ::MDM::SetMetricStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29077,14 +29077,14 @@ namespace CDM
 
   void
   SetMetricStateResponse_ (::std::ostream& o,
-                           const ::CDM::SetMetricStateResponse& s,
+                           const ::MDM::SetMetricStateResponse& s,
                            ::xercesc::DOMErrorHandler& h,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricStateResponse_ (s, m, f));
+      ::MDM::SetMetricStateResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29094,13 +29094,13 @@ namespace CDM
 
   void
   SetMetricStateResponse_ (::xercesc::XMLFormatTarget& t,
-                           const ::CDM::SetMetricStateResponse& s,
+                           const ::MDM::SetMetricStateResponse& s,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricStateResponse_ (s, m, f));
+      ::MDM::SetMetricStateResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29112,14 +29112,14 @@ namespace CDM
 
   void
   SetMetricStateResponse_ (::xercesc::XMLFormatTarget& t,
-                           const ::CDM::SetMetricStateResponse& s,
+                           const ::MDM::SetMetricStateResponse& s,
                            ::xml_schema::ErrorHandler& h,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricStateResponse_ (s, m, f));
+      ::MDM::SetMetricStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29128,14 +29128,14 @@ namespace CDM
 
   void
   SetMetricStateResponse_ (::xercesc::XMLFormatTarget& t,
-                           const ::CDM::SetMetricStateResponse& s,
+                           const ::MDM::SetMetricStateResponse& s,
                            ::xercesc::DOMErrorHandler& h,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SetMetricStateResponse_ (s, m, f));
+      ::MDM::SetMetricStateResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29144,7 +29144,7 @@ namespace CDM
 
   void
   SetMetricStateResponse_ (::xercesc::DOMDocument& d,
-                           const ::CDM::SetMetricStateResponse& s,
+                           const ::MDM::SetMetricStateResponse& s,
                            ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -29167,7 +29167,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetMetricStateResponse_ (const ::CDM::SetMetricStateResponse& s,
+  SetMetricStateResponse_ (const ::MDM::SetMetricStateResponse& s,
                            const ::xml_schema::NamespaceInfomap& m,
                            ::xml_schema::Flags f)
   {
@@ -29177,13 +29177,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SetMetricStateResponse_ (*d, s, f);
+    ::MDM::SetMetricStateResponse_ (*d, s, f);
     return d;
   }
 
   void
   OperationInvokedReport_ (::std::ostream& o,
-                           const ::CDM::OperationInvokedReport& s,
+                           const ::MDM::OperationInvokedReport& s,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
@@ -29192,7 +29192,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::OperationInvokedReport_ (s, m, f));
+      ::MDM::OperationInvokedReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29205,7 +29205,7 @@ namespace CDM
 
   void
   OperationInvokedReport_ (::std::ostream& o,
-                           const ::CDM::OperationInvokedReport& s,
+                           const ::MDM::OperationInvokedReport& s,
                            ::xml_schema::ErrorHandler& h,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
@@ -29215,7 +29215,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::OperationInvokedReport_ (s, m, f));
+      ::MDM::OperationInvokedReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29225,14 +29225,14 @@ namespace CDM
 
   void
   OperationInvokedReport_ (::std::ostream& o,
-                           const ::CDM::OperationInvokedReport& s,
+                           const ::MDM::OperationInvokedReport& s,
                            ::xercesc::DOMErrorHandler& h,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::OperationInvokedReport_ (s, m, f));
+      ::MDM::OperationInvokedReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29242,13 +29242,13 @@ namespace CDM
 
   void
   OperationInvokedReport_ (::xercesc::XMLFormatTarget& t,
-                           const ::CDM::OperationInvokedReport& s,
+                           const ::MDM::OperationInvokedReport& s,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::OperationInvokedReport_ (s, m, f));
+      ::MDM::OperationInvokedReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29260,14 +29260,14 @@ namespace CDM
 
   void
   OperationInvokedReport_ (::xercesc::XMLFormatTarget& t,
-                           const ::CDM::OperationInvokedReport& s,
+                           const ::MDM::OperationInvokedReport& s,
                            ::xml_schema::ErrorHandler& h,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::OperationInvokedReport_ (s, m, f));
+      ::MDM::OperationInvokedReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29276,14 +29276,14 @@ namespace CDM
 
   void
   OperationInvokedReport_ (::xercesc::XMLFormatTarget& t,
-                           const ::CDM::OperationInvokedReport& s,
+                           const ::MDM::OperationInvokedReport& s,
                            ::xercesc::DOMErrorHandler& h,
                            const ::xml_schema::NamespaceInfomap& m,
                            const ::std::string& e,
                            ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::OperationInvokedReport_ (s, m, f));
+      ::MDM::OperationInvokedReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29292,7 +29292,7 @@ namespace CDM
 
   void
   OperationInvokedReport_ (::xercesc::DOMDocument& d,
-                           const ::CDM::OperationInvokedReport& s,
+                           const ::MDM::OperationInvokedReport& s,
                            ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -29315,7 +29315,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  OperationInvokedReport_ (const ::CDM::OperationInvokedReport& s,
+  OperationInvokedReport_ (const ::MDM::OperationInvokedReport& s,
                            const ::xml_schema::NamespaceInfomap& m,
                            ::xml_schema::Flags f)
   {
@@ -29325,13 +29325,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::OperationInvokedReport_ (*d, s, f);
+    ::MDM::OperationInvokedReport_ (*d, s, f);
     return d;
   }
 
   void
   GetContainmentTree_ (::std::ostream& o,
-                       const ::CDM::GetContainmentTree& s,
+                       const ::MDM::GetContainmentTree& s,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
@@ -29340,7 +29340,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTree_ (s, m, f));
+      ::MDM::GetContainmentTree_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29353,7 +29353,7 @@ namespace CDM
 
   void
   GetContainmentTree_ (::std::ostream& o,
-                       const ::CDM::GetContainmentTree& s,
+                       const ::MDM::GetContainmentTree& s,
                        ::xml_schema::ErrorHandler& h,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
@@ -29363,7 +29363,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTree_ (s, m, f));
+      ::MDM::GetContainmentTree_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29373,14 +29373,14 @@ namespace CDM
 
   void
   GetContainmentTree_ (::std::ostream& o,
-                       const ::CDM::GetContainmentTree& s,
+                       const ::MDM::GetContainmentTree& s,
                        ::xercesc::DOMErrorHandler& h,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTree_ (s, m, f));
+      ::MDM::GetContainmentTree_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29390,13 +29390,13 @@ namespace CDM
 
   void
   GetContainmentTree_ (::xercesc::XMLFormatTarget& t,
-                       const ::CDM::GetContainmentTree& s,
+                       const ::MDM::GetContainmentTree& s,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTree_ (s, m, f));
+      ::MDM::GetContainmentTree_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29408,14 +29408,14 @@ namespace CDM
 
   void
   GetContainmentTree_ (::xercesc::XMLFormatTarget& t,
-                       const ::CDM::GetContainmentTree& s,
+                       const ::MDM::GetContainmentTree& s,
                        ::xml_schema::ErrorHandler& h,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTree_ (s, m, f));
+      ::MDM::GetContainmentTree_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29424,14 +29424,14 @@ namespace CDM
 
   void
   GetContainmentTree_ (::xercesc::XMLFormatTarget& t,
-                       const ::CDM::GetContainmentTree& s,
+                       const ::MDM::GetContainmentTree& s,
                        ::xercesc::DOMErrorHandler& h,
                        const ::xml_schema::NamespaceInfomap& m,
                        const ::std::string& e,
                        ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTree_ (s, m, f));
+      ::MDM::GetContainmentTree_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29440,7 +29440,7 @@ namespace CDM
 
   void
   GetContainmentTree_ (::xercesc::DOMDocument& d,
-                       const ::CDM::GetContainmentTree& s,
+                       const ::MDM::GetContainmentTree& s,
                        ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -29463,7 +29463,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContainmentTree_ (const ::CDM::GetContainmentTree& s,
+  GetContainmentTree_ (const ::MDM::GetContainmentTree& s,
                        const ::xml_schema::NamespaceInfomap& m,
                        ::xml_schema::Flags f)
   {
@@ -29473,13 +29473,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetContainmentTree_ (*d, s, f);
+    ::MDM::GetContainmentTree_ (*d, s, f);
     return d;
   }
 
   void
   GetContainmentTreeResponse_ (::std::ostream& o,
-                               const ::CDM::GetContainmentTreeResponse& s,
+                               const ::MDM::GetContainmentTreeResponse& s,
                                const ::xml_schema::NamespaceInfomap& m,
                                const ::std::string& e,
                                ::xml_schema::Flags f)
@@ -29488,7 +29488,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTreeResponse_ (s, m, f));
+      ::MDM::GetContainmentTreeResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29501,7 +29501,7 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::std::ostream& o,
-                               const ::CDM::GetContainmentTreeResponse& s,
+                               const ::MDM::GetContainmentTreeResponse& s,
                                ::xml_schema::ErrorHandler& h,
                                const ::xml_schema::NamespaceInfomap& m,
                                const ::std::string& e,
@@ -29511,7 +29511,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTreeResponse_ (s, m, f));
+      ::MDM::GetContainmentTreeResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29521,14 +29521,14 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::std::ostream& o,
-                               const ::CDM::GetContainmentTreeResponse& s,
+                               const ::MDM::GetContainmentTreeResponse& s,
                                ::xercesc::DOMErrorHandler& h,
                                const ::xml_schema::NamespaceInfomap& m,
                                const ::std::string& e,
                                ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTreeResponse_ (s, m, f));
+      ::MDM::GetContainmentTreeResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29538,13 +29538,13 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::xercesc::XMLFormatTarget& t,
-                               const ::CDM::GetContainmentTreeResponse& s,
+                               const ::MDM::GetContainmentTreeResponse& s,
                                const ::xml_schema::NamespaceInfomap& m,
                                const ::std::string& e,
                                ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTreeResponse_ (s, m, f));
+      ::MDM::GetContainmentTreeResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29556,14 +29556,14 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::xercesc::XMLFormatTarget& t,
-                               const ::CDM::GetContainmentTreeResponse& s,
+                               const ::MDM::GetContainmentTreeResponse& s,
                                ::xml_schema::ErrorHandler& h,
                                const ::xml_schema::NamespaceInfomap& m,
                                const ::std::string& e,
                                ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTreeResponse_ (s, m, f));
+      ::MDM::GetContainmentTreeResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29572,14 +29572,14 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::xercesc::XMLFormatTarget& t,
-                               const ::CDM::GetContainmentTreeResponse& s,
+                               const ::MDM::GetContainmentTreeResponse& s,
                                ::xercesc::DOMErrorHandler& h,
                                const ::xml_schema::NamespaceInfomap& m,
                                const ::std::string& e,
                                ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetContainmentTreeResponse_ (s, m, f));
+      ::MDM::GetContainmentTreeResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29588,7 +29588,7 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::xercesc::DOMDocument& d,
-                               const ::CDM::GetContainmentTreeResponse& s,
+                               const ::MDM::GetContainmentTreeResponse& s,
                                ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -29611,7 +29611,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContainmentTreeResponse_ (const ::CDM::GetContainmentTreeResponse& s,
+  GetContainmentTreeResponse_ (const ::MDM::GetContainmentTreeResponse& s,
                                const ::xml_schema::NamespaceInfomap& m,
                                ::xml_schema::Flags f)
   {
@@ -29621,13 +29621,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetContainmentTreeResponse_ (*d, s, f);
+    ::MDM::GetContainmentTreeResponse_ (*d, s, f);
     return d;
   }
 
   void
   GetDescriptor_ (::std::ostream& o,
-                  const ::CDM::GetDescriptor& s,
+                  const ::MDM::GetDescriptor& s,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
@@ -29636,7 +29636,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptor_ (s, m, f));
+      ::MDM::GetDescriptor_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29649,7 +29649,7 @@ namespace CDM
 
   void
   GetDescriptor_ (::std::ostream& o,
-                  const ::CDM::GetDescriptor& s,
+                  const ::MDM::GetDescriptor& s,
                   ::xml_schema::ErrorHandler& h,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
@@ -29659,7 +29659,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptor_ (s, m, f));
+      ::MDM::GetDescriptor_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29669,14 +29669,14 @@ namespace CDM
 
   void
   GetDescriptor_ (::std::ostream& o,
-                  const ::CDM::GetDescriptor& s,
+                  const ::MDM::GetDescriptor& s,
                   ::xercesc::DOMErrorHandler& h,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptor_ (s, m, f));
+      ::MDM::GetDescriptor_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29686,13 +29686,13 @@ namespace CDM
 
   void
   GetDescriptor_ (::xercesc::XMLFormatTarget& t,
-                  const ::CDM::GetDescriptor& s,
+                  const ::MDM::GetDescriptor& s,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptor_ (s, m, f));
+      ::MDM::GetDescriptor_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29704,14 +29704,14 @@ namespace CDM
 
   void
   GetDescriptor_ (::xercesc::XMLFormatTarget& t,
-                  const ::CDM::GetDescriptor& s,
+                  const ::MDM::GetDescriptor& s,
                   ::xml_schema::ErrorHandler& h,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptor_ (s, m, f));
+      ::MDM::GetDescriptor_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29720,14 +29720,14 @@ namespace CDM
 
   void
   GetDescriptor_ (::xercesc::XMLFormatTarget& t,
-                  const ::CDM::GetDescriptor& s,
+                  const ::MDM::GetDescriptor& s,
                   ::xercesc::DOMErrorHandler& h,
                   const ::xml_schema::NamespaceInfomap& m,
                   const ::std::string& e,
                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptor_ (s, m, f));
+      ::MDM::GetDescriptor_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29736,7 +29736,7 @@ namespace CDM
 
   void
   GetDescriptor_ (::xercesc::DOMDocument& d,
-                  const ::CDM::GetDescriptor& s,
+                  const ::MDM::GetDescriptor& s,
                   ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -29759,7 +29759,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptor_ (const ::CDM::GetDescriptor& s,
+  GetDescriptor_ (const ::MDM::GetDescriptor& s,
                   const ::xml_schema::NamespaceInfomap& m,
                   ::xml_schema::Flags f)
   {
@@ -29769,13 +29769,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetDescriptor_ (*d, s, f);
+    ::MDM::GetDescriptor_ (*d, s, f);
     return d;
   }
 
   void
   GetDescriptorResponse_ (::std::ostream& o,
-                          const ::CDM::GetDescriptorResponse& s,
+                          const ::MDM::GetDescriptorResponse& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
@@ -29784,7 +29784,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorResponse_ (s, m, f));
+      ::MDM::GetDescriptorResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29797,7 +29797,7 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::std::ostream& o,
-                          const ::CDM::GetDescriptorResponse& s,
+                          const ::MDM::GetDescriptorResponse& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
@@ -29807,7 +29807,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorResponse_ (s, m, f));
+      ::MDM::GetDescriptorResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29817,14 +29817,14 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::std::ostream& o,
-                          const ::CDM::GetDescriptorResponse& s,
+                          const ::MDM::GetDescriptorResponse& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorResponse_ (s, m, f));
+      ::MDM::GetDescriptorResponse_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29834,13 +29834,13 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::GetDescriptorResponse& s,
+                          const ::MDM::GetDescriptorResponse& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorResponse_ (s, m, f));
+      ::MDM::GetDescriptorResponse_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29852,14 +29852,14 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::GetDescriptorResponse& s,
+                          const ::MDM::GetDescriptorResponse& s,
                           ::xml_schema::ErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorResponse_ (s, m, f));
+      ::MDM::GetDescriptorResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29868,14 +29868,14 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::CDM::GetDescriptorResponse& s,
+                          const ::MDM::GetDescriptorResponse& s,
                           ::xercesc::DOMErrorHandler& h,
                           const ::xml_schema::NamespaceInfomap& m,
                           const ::std::string& e,
                           ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::GetDescriptorResponse_ (s, m, f));
+      ::MDM::GetDescriptorResponse_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -29884,7 +29884,7 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::xercesc::DOMDocument& d,
-                          const ::CDM::GetDescriptorResponse& s,
+                          const ::MDM::GetDescriptorResponse& s,
                           ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -29907,7 +29907,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptorResponse_ (const ::CDM::GetDescriptorResponse& s,
+  GetDescriptorResponse_ (const ::MDM::GetDescriptorResponse& s,
                           const ::xml_schema::NamespaceInfomap& m,
                           ::xml_schema::Flags f)
   {
@@ -29917,14 +29917,14 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::GetDescriptorResponse_ (*d, s, f);
+    ::MDM::GetDescriptorResponse_ (*d, s, f);
     return d;
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const AbstractMetricReport& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // ReportPart
     //
@@ -29951,7 +29951,7 @@ namespace CDM
 
   void
   EpisodicMetricReport_ (::std::ostream& o,
-                         const ::CDM::EpisodicMetricReport& s,
+                         const ::MDM::EpisodicMetricReport& s,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
@@ -29960,7 +29960,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicMetricReport_ (s, m, f));
+      ::MDM::EpisodicMetricReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -29973,7 +29973,7 @@ namespace CDM
 
   void
   EpisodicMetricReport_ (::std::ostream& o,
-                         const ::CDM::EpisodicMetricReport& s,
+                         const ::MDM::EpisodicMetricReport& s,
                          ::xml_schema::ErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
@@ -29983,7 +29983,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicMetricReport_ (s, m, f));
+      ::MDM::EpisodicMetricReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -29993,14 +29993,14 @@ namespace CDM
 
   void
   EpisodicMetricReport_ (::std::ostream& o,
-                         const ::CDM::EpisodicMetricReport& s,
+                         const ::MDM::EpisodicMetricReport& s,
                          ::xercesc::DOMErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicMetricReport_ (s, m, f));
+      ::MDM::EpisodicMetricReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30010,13 +30010,13 @@ namespace CDM
 
   void
   EpisodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::CDM::EpisodicMetricReport& s,
+                         const ::MDM::EpisodicMetricReport& s,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicMetricReport_ (s, m, f));
+      ::MDM::EpisodicMetricReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30028,14 +30028,14 @@ namespace CDM
 
   void
   EpisodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::CDM::EpisodicMetricReport& s,
+                         const ::MDM::EpisodicMetricReport& s,
                          ::xml_schema::ErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicMetricReport_ (s, m, f));
+      ::MDM::EpisodicMetricReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30044,14 +30044,14 @@ namespace CDM
 
   void
   EpisodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::CDM::EpisodicMetricReport& s,
+                         const ::MDM::EpisodicMetricReport& s,
                          ::xercesc::DOMErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicMetricReport_ (s, m, f));
+      ::MDM::EpisodicMetricReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30060,7 +30060,7 @@ namespace CDM
 
   void
   EpisodicMetricReport_ (::xercesc::DOMDocument& d,
-                         const ::CDM::EpisodicMetricReport& s,
+                         const ::MDM::EpisodicMetricReport& s,
                          ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -30083,7 +30083,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicMetricReport_ (const ::CDM::EpisodicMetricReport& s,
+  EpisodicMetricReport_ (const ::MDM::EpisodicMetricReport& s,
                          const ::xml_schema::NamespaceInfomap& m,
                          ::xml_schema::Flags f)
   {
@@ -30093,13 +30093,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::EpisodicMetricReport_ (*d, s, f);
+    ::MDM::EpisodicMetricReport_ (*d, s, f);
     return d;
   }
 
   void
   PeriodicMetricReport_ (::std::ostream& o,
-                         const ::CDM::PeriodicMetricReport& s,
+                         const ::MDM::PeriodicMetricReport& s,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
@@ -30108,7 +30108,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicMetricReport_ (s, m, f));
+      ::MDM::PeriodicMetricReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30121,7 +30121,7 @@ namespace CDM
 
   void
   PeriodicMetricReport_ (::std::ostream& o,
-                         const ::CDM::PeriodicMetricReport& s,
+                         const ::MDM::PeriodicMetricReport& s,
                          ::xml_schema::ErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
@@ -30131,7 +30131,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicMetricReport_ (s, m, f));
+      ::MDM::PeriodicMetricReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30141,14 +30141,14 @@ namespace CDM
 
   void
   PeriodicMetricReport_ (::std::ostream& o,
-                         const ::CDM::PeriodicMetricReport& s,
+                         const ::MDM::PeriodicMetricReport& s,
                          ::xercesc::DOMErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicMetricReport_ (s, m, f));
+      ::MDM::PeriodicMetricReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30158,13 +30158,13 @@ namespace CDM
 
   void
   PeriodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::CDM::PeriodicMetricReport& s,
+                         const ::MDM::PeriodicMetricReport& s,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicMetricReport_ (s, m, f));
+      ::MDM::PeriodicMetricReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30176,14 +30176,14 @@ namespace CDM
 
   void
   PeriodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::CDM::PeriodicMetricReport& s,
+                         const ::MDM::PeriodicMetricReport& s,
                          ::xml_schema::ErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicMetricReport_ (s, m, f));
+      ::MDM::PeriodicMetricReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30192,14 +30192,14 @@ namespace CDM
 
   void
   PeriodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::CDM::PeriodicMetricReport& s,
+                         const ::MDM::PeriodicMetricReport& s,
                          ::xercesc::DOMErrorHandler& h,
                          const ::xml_schema::NamespaceInfomap& m,
                          const ::std::string& e,
                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicMetricReport_ (s, m, f));
+      ::MDM::PeriodicMetricReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30208,7 +30208,7 @@ namespace CDM
 
   void
   PeriodicMetricReport_ (::xercesc::DOMDocument& d,
-                         const ::CDM::PeriodicMetricReport& s,
+                         const ::MDM::PeriodicMetricReport& s,
                          ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -30231,7 +30231,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicMetricReport_ (const ::CDM::PeriodicMetricReport& s,
+  PeriodicMetricReport_ (const ::MDM::PeriodicMetricReport& s,
                          const ::xml_schema::NamespaceInfomap& m,
                          ::xml_schema::Flags f)
   {
@@ -30241,14 +30241,14 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::PeriodicMetricReport_ (*d, s, f);
+    ::MDM::PeriodicMetricReport_ (*d, s, f);
     return d;
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const AbstractComponentReport& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // ReportPart
     //
@@ -30275,7 +30275,7 @@ namespace CDM
 
   void
   EpisodicComponentReport_ (::std::ostream& o,
-                            const ::CDM::EpisodicComponentReport& s,
+                            const ::MDM::EpisodicComponentReport& s,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
@@ -30284,7 +30284,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicComponentReport_ (s, m, f));
+      ::MDM::EpisodicComponentReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30297,7 +30297,7 @@ namespace CDM
 
   void
   EpisodicComponentReport_ (::std::ostream& o,
-                            const ::CDM::EpisodicComponentReport& s,
+                            const ::MDM::EpisodicComponentReport& s,
                             ::xml_schema::ErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
@@ -30307,7 +30307,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicComponentReport_ (s, m, f));
+      ::MDM::EpisodicComponentReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30317,14 +30317,14 @@ namespace CDM
 
   void
   EpisodicComponentReport_ (::std::ostream& o,
-                            const ::CDM::EpisodicComponentReport& s,
+                            const ::MDM::EpisodicComponentReport& s,
                             ::xercesc::DOMErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicComponentReport_ (s, m, f));
+      ::MDM::EpisodicComponentReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30334,13 +30334,13 @@ namespace CDM
 
   void
   EpisodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::CDM::EpisodicComponentReport& s,
+                            const ::MDM::EpisodicComponentReport& s,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicComponentReport_ (s, m, f));
+      ::MDM::EpisodicComponentReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30352,14 +30352,14 @@ namespace CDM
 
   void
   EpisodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::CDM::EpisodicComponentReport& s,
+                            const ::MDM::EpisodicComponentReport& s,
                             ::xml_schema::ErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicComponentReport_ (s, m, f));
+      ::MDM::EpisodicComponentReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30368,14 +30368,14 @@ namespace CDM
 
   void
   EpisodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::CDM::EpisodicComponentReport& s,
+                            const ::MDM::EpisodicComponentReport& s,
                             ::xercesc::DOMErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicComponentReport_ (s, m, f));
+      ::MDM::EpisodicComponentReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30384,7 +30384,7 @@ namespace CDM
 
   void
   EpisodicComponentReport_ (::xercesc::DOMDocument& d,
-                            const ::CDM::EpisodicComponentReport& s,
+                            const ::MDM::EpisodicComponentReport& s,
                             ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -30407,7 +30407,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicComponentReport_ (const ::CDM::EpisodicComponentReport& s,
+  EpisodicComponentReport_ (const ::MDM::EpisodicComponentReport& s,
                             const ::xml_schema::NamespaceInfomap& m,
                             ::xml_schema::Flags f)
   {
@@ -30417,13 +30417,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::EpisodicComponentReport_ (*d, s, f);
+    ::MDM::EpisodicComponentReport_ (*d, s, f);
     return d;
   }
 
   void
   PeriodicComponentReport_ (::std::ostream& o,
-                            const ::CDM::PeriodicComponentReport& s,
+                            const ::MDM::PeriodicComponentReport& s,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
@@ -30432,7 +30432,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicComponentReport_ (s, m, f));
+      ::MDM::PeriodicComponentReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30445,7 +30445,7 @@ namespace CDM
 
   void
   PeriodicComponentReport_ (::std::ostream& o,
-                            const ::CDM::PeriodicComponentReport& s,
+                            const ::MDM::PeriodicComponentReport& s,
                             ::xml_schema::ErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
@@ -30455,7 +30455,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicComponentReport_ (s, m, f));
+      ::MDM::PeriodicComponentReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30465,14 +30465,14 @@ namespace CDM
 
   void
   PeriodicComponentReport_ (::std::ostream& o,
-                            const ::CDM::PeriodicComponentReport& s,
+                            const ::MDM::PeriodicComponentReport& s,
                             ::xercesc::DOMErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicComponentReport_ (s, m, f));
+      ::MDM::PeriodicComponentReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30482,13 +30482,13 @@ namespace CDM
 
   void
   PeriodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::CDM::PeriodicComponentReport& s,
+                            const ::MDM::PeriodicComponentReport& s,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicComponentReport_ (s, m, f));
+      ::MDM::PeriodicComponentReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30500,14 +30500,14 @@ namespace CDM
 
   void
   PeriodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::CDM::PeriodicComponentReport& s,
+                            const ::MDM::PeriodicComponentReport& s,
                             ::xml_schema::ErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicComponentReport_ (s, m, f));
+      ::MDM::PeriodicComponentReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30516,14 +30516,14 @@ namespace CDM
 
   void
   PeriodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::CDM::PeriodicComponentReport& s,
+                            const ::MDM::PeriodicComponentReport& s,
                             ::xercesc::DOMErrorHandler& h,
                             const ::xml_schema::NamespaceInfomap& m,
                             const ::std::string& e,
                             ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicComponentReport_ (s, m, f));
+      ::MDM::PeriodicComponentReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30532,7 +30532,7 @@ namespace CDM
 
   void
   PeriodicComponentReport_ (::xercesc::DOMDocument& d,
-                            const ::CDM::PeriodicComponentReport& s,
+                            const ::MDM::PeriodicComponentReport& s,
                             ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -30555,7 +30555,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicComponentReport_ (const ::CDM::PeriodicComponentReport& s,
+  PeriodicComponentReport_ (const ::MDM::PeriodicComponentReport& s,
                             const ::xml_schema::NamespaceInfomap& m,
                             ::xml_schema::Flags f)
   {
@@ -30565,14 +30565,14 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::PeriodicComponentReport_ (*d, s, f);
+    ::MDM::PeriodicComponentReport_ (*d, s, f);
     return d;
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const AbstractAlertReport& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // ReportPart
     //
@@ -30599,7 +30599,7 @@ namespace CDM
 
   void
   EpisodicAlertReport_ (::std::ostream& o,
-                        const ::CDM::EpisodicAlertReport& s,
+                        const ::MDM::EpisodicAlertReport& s,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
@@ -30608,7 +30608,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicAlertReport_ (s, m, f));
+      ::MDM::EpisodicAlertReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30621,7 +30621,7 @@ namespace CDM
 
   void
   EpisodicAlertReport_ (::std::ostream& o,
-                        const ::CDM::EpisodicAlertReport& s,
+                        const ::MDM::EpisodicAlertReport& s,
                         ::xml_schema::ErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
@@ -30631,7 +30631,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicAlertReport_ (s, m, f));
+      ::MDM::EpisodicAlertReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30641,14 +30641,14 @@ namespace CDM
 
   void
   EpisodicAlertReport_ (::std::ostream& o,
-                        const ::CDM::EpisodicAlertReport& s,
+                        const ::MDM::EpisodicAlertReport& s,
                         ::xercesc::DOMErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicAlertReport_ (s, m, f));
+      ::MDM::EpisodicAlertReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30658,13 +30658,13 @@ namespace CDM
 
   void
   EpisodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::CDM::EpisodicAlertReport& s,
+                        const ::MDM::EpisodicAlertReport& s,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicAlertReport_ (s, m, f));
+      ::MDM::EpisodicAlertReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30676,14 +30676,14 @@ namespace CDM
 
   void
   EpisodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::CDM::EpisodicAlertReport& s,
+                        const ::MDM::EpisodicAlertReport& s,
                         ::xml_schema::ErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicAlertReport_ (s, m, f));
+      ::MDM::EpisodicAlertReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30692,14 +30692,14 @@ namespace CDM
 
   void
   EpisodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::CDM::EpisodicAlertReport& s,
+                        const ::MDM::EpisodicAlertReport& s,
                         ::xercesc::DOMErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicAlertReport_ (s, m, f));
+      ::MDM::EpisodicAlertReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30708,7 +30708,7 @@ namespace CDM
 
   void
   EpisodicAlertReport_ (::xercesc::DOMDocument& d,
-                        const ::CDM::EpisodicAlertReport& s,
+                        const ::MDM::EpisodicAlertReport& s,
                         ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -30731,7 +30731,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicAlertReport_ (const ::CDM::EpisodicAlertReport& s,
+  EpisodicAlertReport_ (const ::MDM::EpisodicAlertReport& s,
                         const ::xml_schema::NamespaceInfomap& m,
                         ::xml_schema::Flags f)
   {
@@ -30741,13 +30741,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::EpisodicAlertReport_ (*d, s, f);
+    ::MDM::EpisodicAlertReport_ (*d, s, f);
     return d;
   }
 
   void
   PeriodicAlertReport_ (::std::ostream& o,
-                        const ::CDM::PeriodicAlertReport& s,
+                        const ::MDM::PeriodicAlertReport& s,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
@@ -30756,7 +30756,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicAlertReport_ (s, m, f));
+      ::MDM::PeriodicAlertReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30769,7 +30769,7 @@ namespace CDM
 
   void
   PeriodicAlertReport_ (::std::ostream& o,
-                        const ::CDM::PeriodicAlertReport& s,
+                        const ::MDM::PeriodicAlertReport& s,
                         ::xml_schema::ErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
@@ -30779,7 +30779,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicAlertReport_ (s, m, f));
+      ::MDM::PeriodicAlertReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30789,14 +30789,14 @@ namespace CDM
 
   void
   PeriodicAlertReport_ (::std::ostream& o,
-                        const ::CDM::PeriodicAlertReport& s,
+                        const ::MDM::PeriodicAlertReport& s,
                         ::xercesc::DOMErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicAlertReport_ (s, m, f));
+      ::MDM::PeriodicAlertReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30806,13 +30806,13 @@ namespace CDM
 
   void
   PeriodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::CDM::PeriodicAlertReport& s,
+                        const ::MDM::PeriodicAlertReport& s,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicAlertReport_ (s, m, f));
+      ::MDM::PeriodicAlertReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30824,14 +30824,14 @@ namespace CDM
 
   void
   PeriodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::CDM::PeriodicAlertReport& s,
+                        const ::MDM::PeriodicAlertReport& s,
                         ::xml_schema::ErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicAlertReport_ (s, m, f));
+      ::MDM::PeriodicAlertReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30840,14 +30840,14 @@ namespace CDM
 
   void
   PeriodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::CDM::PeriodicAlertReport& s,
+                        const ::MDM::PeriodicAlertReport& s,
                         ::xercesc::DOMErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicAlertReport_ (s, m, f));
+      ::MDM::PeriodicAlertReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -30856,7 +30856,7 @@ namespace CDM
 
   void
   PeriodicAlertReport_ (::xercesc::DOMDocument& d,
-                        const ::CDM::PeriodicAlertReport& s,
+                        const ::MDM::PeriodicAlertReport& s,
                         ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -30879,7 +30879,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicAlertReport_ (const ::CDM::PeriodicAlertReport& s,
+  PeriodicAlertReport_ (const ::MDM::PeriodicAlertReport& s,
                         const ::xml_schema::NamespaceInfomap& m,
                         ::xml_schema::Flags f)
   {
@@ -30889,14 +30889,14 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::PeriodicAlertReport_ (*d, s, f);
+    ::MDM::PeriodicAlertReport_ (*d, s, f);
     return d;
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const AbstractOperationalStateReport& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // ReportPart
     //
@@ -30923,7 +30923,7 @@ namespace CDM
 
   void
   EpisodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::CDM::EpisodicOperationalStateReport& s,
+                                   const ::MDM::EpisodicOperationalStateReport& s,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
@@ -30932,7 +30932,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicOperationalStateReport_ (s, m, f));
+      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -30945,7 +30945,7 @@ namespace CDM
 
   void
   EpisodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::CDM::EpisodicOperationalStateReport& s,
+                                   const ::MDM::EpisodicOperationalStateReport& s,
                                    ::xml_schema::ErrorHandler& h,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
@@ -30955,7 +30955,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicOperationalStateReport_ (s, m, f));
+      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30965,14 +30965,14 @@ namespace CDM
 
   void
   EpisodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::CDM::EpisodicOperationalStateReport& s,
+                                   const ::MDM::EpisodicOperationalStateReport& s,
                                    ::xercesc::DOMErrorHandler& h,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicOperationalStateReport_ (s, m, f));
+      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -30982,13 +30982,13 @@ namespace CDM
 
   void
   EpisodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::CDM::EpisodicOperationalStateReport& s,
+                                   const ::MDM::EpisodicOperationalStateReport& s,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicOperationalStateReport_ (s, m, f));
+      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31000,14 +31000,14 @@ namespace CDM
 
   void
   EpisodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::CDM::EpisodicOperationalStateReport& s,
+                                   const ::MDM::EpisodicOperationalStateReport& s,
                                    ::xml_schema::ErrorHandler& h,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicOperationalStateReport_ (s, m, f));
+      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31016,14 +31016,14 @@ namespace CDM
 
   void
   EpisodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::CDM::EpisodicOperationalStateReport& s,
+                                   const ::MDM::EpisodicOperationalStateReport& s,
                                    ::xercesc::DOMErrorHandler& h,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::EpisodicOperationalStateReport_ (s, m, f));
+      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31032,7 +31032,7 @@ namespace CDM
 
   void
   EpisodicOperationalStateReport_ (::xercesc::DOMDocument& d,
-                                   const ::CDM::EpisodicOperationalStateReport& s,
+                                   const ::MDM::EpisodicOperationalStateReport& s,
                                    ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -31055,7 +31055,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicOperationalStateReport_ (const ::CDM::EpisodicOperationalStateReport& s,
+  EpisodicOperationalStateReport_ (const ::MDM::EpisodicOperationalStateReport& s,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    ::xml_schema::Flags f)
   {
@@ -31065,13 +31065,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::EpisodicOperationalStateReport_ (*d, s, f);
+    ::MDM::EpisodicOperationalStateReport_ (*d, s, f);
     return d;
   }
 
   void
   PeriodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::CDM::PeriodicOperationalStateReport& s,
+                                   const ::MDM::PeriodicOperationalStateReport& s,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
@@ -31080,7 +31080,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicOperationalStateReport_ (s, m, f));
+      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31093,7 +31093,7 @@ namespace CDM
 
   void
   PeriodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::CDM::PeriodicOperationalStateReport& s,
+                                   const ::MDM::PeriodicOperationalStateReport& s,
                                    ::xml_schema::ErrorHandler& h,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
@@ -31103,7 +31103,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicOperationalStateReport_ (s, m, f));
+      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31113,14 +31113,14 @@ namespace CDM
 
   void
   PeriodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::CDM::PeriodicOperationalStateReport& s,
+                                   const ::MDM::PeriodicOperationalStateReport& s,
                                    ::xercesc::DOMErrorHandler& h,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicOperationalStateReport_ (s, m, f));
+      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31130,13 +31130,13 @@ namespace CDM
 
   void
   PeriodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::CDM::PeriodicOperationalStateReport& s,
+                                   const ::MDM::PeriodicOperationalStateReport& s,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicOperationalStateReport_ (s, m, f));
+      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31148,14 +31148,14 @@ namespace CDM
 
   void
   PeriodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::CDM::PeriodicOperationalStateReport& s,
+                                   const ::MDM::PeriodicOperationalStateReport& s,
                                    ::xml_schema::ErrorHandler& h,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicOperationalStateReport_ (s, m, f));
+      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31164,14 +31164,14 @@ namespace CDM
 
   void
   PeriodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::CDM::PeriodicOperationalStateReport& s,
+                                   const ::MDM::PeriodicOperationalStateReport& s,
                                    ::xercesc::DOMErrorHandler& h,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    const ::std::string& e,
                                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::PeriodicOperationalStateReport_ (s, m, f));
+      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31180,7 +31180,7 @@ namespace CDM
 
   void
   PeriodicOperationalStateReport_ (::xercesc::DOMDocument& d,
-                                   const ::CDM::PeriodicOperationalStateReport& s,
+                                   const ::MDM::PeriodicOperationalStateReport& s,
                                    ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -31203,7 +31203,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicOperationalStateReport_ (const ::CDM::PeriodicOperationalStateReport& s,
+  PeriodicOperationalStateReport_ (const ::MDM::PeriodicOperationalStateReport& s,
                                    const ::xml_schema::NamespaceInfomap& m,
                                    ::xml_schema::Flags f)
   {
@@ -31213,13 +31213,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::PeriodicOperationalStateReport_ (*d, s, f);
+    ::MDM::PeriodicOperationalStateReport_ (*d, s, f);
     return d;
   }
 
   void
   SystemErrorReport_ (::std::ostream& o,
-                      const ::CDM::SystemErrorReport& s,
+                      const ::MDM::SystemErrorReport& s,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
@@ -31228,7 +31228,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SystemErrorReport_ (s, m, f));
+      ::MDM::SystemErrorReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31241,7 +31241,7 @@ namespace CDM
 
   void
   SystemErrorReport_ (::std::ostream& o,
-                      const ::CDM::SystemErrorReport& s,
+                      const ::MDM::SystemErrorReport& s,
                       ::xml_schema::ErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
@@ -31251,7 +31251,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SystemErrorReport_ (s, m, f));
+      ::MDM::SystemErrorReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31261,14 +31261,14 @@ namespace CDM
 
   void
   SystemErrorReport_ (::std::ostream& o,
-                      const ::CDM::SystemErrorReport& s,
+                      const ::MDM::SystemErrorReport& s,
                       ::xercesc::DOMErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SystemErrorReport_ (s, m, f));
+      ::MDM::SystemErrorReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31278,13 +31278,13 @@ namespace CDM
 
   void
   SystemErrorReport_ (::xercesc::XMLFormatTarget& t,
-                      const ::CDM::SystemErrorReport& s,
+                      const ::MDM::SystemErrorReport& s,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SystemErrorReport_ (s, m, f));
+      ::MDM::SystemErrorReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31296,14 +31296,14 @@ namespace CDM
 
   void
   SystemErrorReport_ (::xercesc::XMLFormatTarget& t,
-                      const ::CDM::SystemErrorReport& s,
+                      const ::MDM::SystemErrorReport& s,
                       ::xml_schema::ErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SystemErrorReport_ (s, m, f));
+      ::MDM::SystemErrorReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31312,14 +31312,14 @@ namespace CDM
 
   void
   SystemErrorReport_ (::xercesc::XMLFormatTarget& t,
-                      const ::CDM::SystemErrorReport& s,
+                      const ::MDM::SystemErrorReport& s,
                       ::xercesc::DOMErrorHandler& h,
                       const ::xml_schema::NamespaceInfomap& m,
                       const ::std::string& e,
                       ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::SystemErrorReport_ (s, m, f));
+      ::MDM::SystemErrorReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31328,7 +31328,7 @@ namespace CDM
 
   void
   SystemErrorReport_ (::xercesc::DOMDocument& d,
-                      const ::CDM::SystemErrorReport& s,
+                      const ::MDM::SystemErrorReport& s,
                       ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -31351,7 +31351,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SystemErrorReport_ (const ::CDM::SystemErrorReport& s,
+  SystemErrorReport_ (const ::MDM::SystemErrorReport& s,
                       const ::xml_schema::NamespaceInfomap& m,
                       ::xml_schema::Flags f)
   {
@@ -31361,7 +31361,7 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::SystemErrorReport_ (*d, s, f);
+    ::MDM::SystemErrorReport_ (*d, s, f);
     return d;
   }
 
@@ -31393,7 +31393,7 @@ namespace CDM
 
   void
   DescriptionModificationReport_ (::std::ostream& o,
-                                  const ::CDM::DescriptionModificationReport& s,
+                                  const ::MDM::DescriptionModificationReport& s,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
@@ -31402,7 +31402,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::DescriptionModificationReport_ (s, m, f));
+      ::MDM::DescriptionModificationReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31415,7 +31415,7 @@ namespace CDM
 
   void
   DescriptionModificationReport_ (::std::ostream& o,
-                                  const ::CDM::DescriptionModificationReport& s,
+                                  const ::MDM::DescriptionModificationReport& s,
                                   ::xml_schema::ErrorHandler& h,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
@@ -31425,7 +31425,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::DescriptionModificationReport_ (s, m, f));
+      ::MDM::DescriptionModificationReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31435,14 +31435,14 @@ namespace CDM
 
   void
   DescriptionModificationReport_ (::std::ostream& o,
-                                  const ::CDM::DescriptionModificationReport& s,
+                                  const ::MDM::DescriptionModificationReport& s,
                                   ::xercesc::DOMErrorHandler& h,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::DescriptionModificationReport_ (s, m, f));
+      ::MDM::DescriptionModificationReport_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31452,13 +31452,13 @@ namespace CDM
 
   void
   DescriptionModificationReport_ (::xercesc::XMLFormatTarget& t,
-                                  const ::CDM::DescriptionModificationReport& s,
+                                  const ::MDM::DescriptionModificationReport& s,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::DescriptionModificationReport_ (s, m, f));
+      ::MDM::DescriptionModificationReport_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31470,14 +31470,14 @@ namespace CDM
 
   void
   DescriptionModificationReport_ (::xercesc::XMLFormatTarget& t,
-                                  const ::CDM::DescriptionModificationReport& s,
+                                  const ::MDM::DescriptionModificationReport& s,
                                   ::xml_schema::ErrorHandler& h,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::DescriptionModificationReport_ (s, m, f));
+      ::MDM::DescriptionModificationReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31486,14 +31486,14 @@ namespace CDM
 
   void
   DescriptionModificationReport_ (::xercesc::XMLFormatTarget& t,
-                                  const ::CDM::DescriptionModificationReport& s,
+                                  const ::MDM::DescriptionModificationReport& s,
                                   ::xercesc::DOMErrorHandler& h,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   const ::std::string& e,
                                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::DescriptionModificationReport_ (s, m, f));
+      ::MDM::DescriptionModificationReport_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31502,7 +31502,7 @@ namespace CDM
 
   void
   DescriptionModificationReport_ (::xercesc::DOMDocument& d,
-                                  const ::CDM::DescriptionModificationReport& s,
+                                  const ::MDM::DescriptionModificationReport& s,
                                   ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -31525,7 +31525,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  DescriptionModificationReport_ (const ::CDM::DescriptionModificationReport& s,
+  DescriptionModificationReport_ (const ::MDM::DescriptionModificationReport& s,
                                   const ::xml_schema::NamespaceInfomap& m,
                                   ::xml_schema::Flags f)
   {
@@ -31535,13 +31535,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::DescriptionModificationReport_ (*d, s, f);
+    ::MDM::DescriptionModificationReport_ (*d, s, f);
     return d;
   }
 
   void
   WaveformStream_ (::std::ostream& o,
-                   const ::CDM::WaveformStream& s,
+                   const ::MDM::WaveformStream& s,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
@@ -31550,7 +31550,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::WaveformStream_ (s, m, f));
+      ::MDM::WaveformStream_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31563,7 +31563,7 @@ namespace CDM
 
   void
   WaveformStream_ (::std::ostream& o,
-                   const ::CDM::WaveformStream& s,
+                   const ::MDM::WaveformStream& s,
                    ::xml_schema::ErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
@@ -31573,7 +31573,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::WaveformStream_ (s, m, f));
+      ::MDM::WaveformStream_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31583,14 +31583,14 @@ namespace CDM
 
   void
   WaveformStream_ (::std::ostream& o,
-                   const ::CDM::WaveformStream& s,
+                   const ::MDM::WaveformStream& s,
                    ::xercesc::DOMErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::WaveformStream_ (s, m, f));
+      ::MDM::WaveformStream_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31600,13 +31600,13 @@ namespace CDM
 
   void
   WaveformStream_ (::xercesc::XMLFormatTarget& t,
-                   const ::CDM::WaveformStream& s,
+                   const ::MDM::WaveformStream& s,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::WaveformStream_ (s, m, f));
+      ::MDM::WaveformStream_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31618,14 +31618,14 @@ namespace CDM
 
   void
   WaveformStream_ (::xercesc::XMLFormatTarget& t,
-                   const ::CDM::WaveformStream& s,
+                   const ::MDM::WaveformStream& s,
                    ::xml_schema::ErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::WaveformStream_ (s, m, f));
+      ::MDM::WaveformStream_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31634,14 +31634,14 @@ namespace CDM
 
   void
   WaveformStream_ (::xercesc::XMLFormatTarget& t,
-                   const ::CDM::WaveformStream& s,
+                   const ::MDM::WaveformStream& s,
                    ::xercesc::DOMErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::WaveformStream_ (s, m, f));
+      ::MDM::WaveformStream_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31650,7 +31650,7 @@ namespace CDM
 
   void
   WaveformStream_ (::xercesc::DOMDocument& d,
-                   const ::CDM::WaveformStream& s,
+                   const ::MDM::WaveformStream& s,
                    ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -31673,7 +31673,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  WaveformStream_ (const ::CDM::WaveformStream& s,
+  WaveformStream_ (const ::MDM::WaveformStream& s,
                    const ::xml_schema::NamespaceInfomap& m,
                    ::xml_schema::Flags f)
   {
@@ -31683,13 +31683,13 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::WaveformStream_ (*d, s, f);
+    ::MDM::WaveformStream_ (*d, s, f);
     return d;
   }
 
   void
   ObservedValueStream_ (::std::ostream& o,
-                        const ::CDM::ObservedValueStream& s,
+                        const ::MDM::ObservedValueStream& s,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
@@ -31698,7 +31698,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ObservedValueStream_ (s, m, f));
+      ::MDM::ObservedValueStream_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31711,7 +31711,7 @@ namespace CDM
 
   void
   ObservedValueStream_ (::std::ostream& o,
-                        const ::CDM::ObservedValueStream& s,
+                        const ::MDM::ObservedValueStream& s,
                         ::xml_schema::ErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
@@ -31721,7 +31721,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ObservedValueStream_ (s, m, f));
+      ::MDM::ObservedValueStream_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31731,14 +31731,14 @@ namespace CDM
 
   void
   ObservedValueStream_ (::std::ostream& o,
-                        const ::CDM::ObservedValueStream& s,
+                        const ::MDM::ObservedValueStream& s,
                         ::xercesc::DOMErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ObservedValueStream_ (s, m, f));
+      ::MDM::ObservedValueStream_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31748,13 +31748,13 @@ namespace CDM
 
   void
   ObservedValueStream_ (::xercesc::XMLFormatTarget& t,
-                        const ::CDM::ObservedValueStream& s,
+                        const ::MDM::ObservedValueStream& s,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ObservedValueStream_ (s, m, f));
+      ::MDM::ObservedValueStream_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31766,14 +31766,14 @@ namespace CDM
 
   void
   ObservedValueStream_ (::xercesc::XMLFormatTarget& t,
-                        const ::CDM::ObservedValueStream& s,
+                        const ::MDM::ObservedValueStream& s,
                         ::xml_schema::ErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ObservedValueStream_ (s, m, f));
+      ::MDM::ObservedValueStream_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31782,14 +31782,14 @@ namespace CDM
 
   void
   ObservedValueStream_ (::xercesc::XMLFormatTarget& t,
-                        const ::CDM::ObservedValueStream& s,
+                        const ::MDM::ObservedValueStream& s,
                         ::xercesc::DOMErrorHandler& h,
                         const ::xml_schema::NamespaceInfomap& m,
                         const ::std::string& e,
                         ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::ObservedValueStream_ (s, m, f));
+      ::MDM::ObservedValueStream_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -31798,7 +31798,7 @@ namespace CDM
 
   void
   ObservedValueStream_ (::xercesc::DOMDocument& d,
-                        const ::CDM::ObservedValueStream& s,
+                        const ::MDM::ObservedValueStream& s,
                         ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -31821,7 +31821,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  ObservedValueStream_ (const ::CDM::ObservedValueStream& s,
+  ObservedValueStream_ (const ::MDM::ObservedValueStream& s,
                         const ::xml_schema::NamespaceInfomap& m,
                         ::xml_schema::Flags f)
   {
@@ -31831,7 +31831,7 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::ObservedValueStream_ (*d, s, f);
+    ::MDM::ObservedValueStream_ (*d, s, f);
     return d;
   }
 
@@ -31926,7 +31926,7 @@ namespace CDM
 
   void
   Retrievability_ (::std::ostream& o,
-                   const ::CDM::Retrievability& s,
+                   const ::MDM::Retrievability& s,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
@@ -31935,7 +31935,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Retrievability_ (s, m, f));
+      ::MDM::Retrievability_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31948,7 +31948,7 @@ namespace CDM
 
   void
   Retrievability_ (::std::ostream& o,
-                   const ::CDM::Retrievability& s,
+                   const ::MDM::Retrievability& s,
                    ::xml_schema::ErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
@@ -31958,7 +31958,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Retrievability_ (s, m, f));
+      ::MDM::Retrievability_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31968,14 +31968,14 @@ namespace CDM
 
   void
   Retrievability_ (::std::ostream& o,
-                   const ::CDM::Retrievability& s,
+                   const ::MDM::Retrievability& s,
                    ::xercesc::DOMErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Retrievability_ (s, m, f));
+      ::MDM::Retrievability_ (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -31985,13 +31985,13 @@ namespace CDM
 
   void
   Retrievability_ (::xercesc::XMLFormatTarget& t,
-                   const ::CDM::Retrievability& s,
+                   const ::MDM::Retrievability& s,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Retrievability_ (s, m, f));
+      ::MDM::Retrievability_ (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -32003,14 +32003,14 @@ namespace CDM
 
   void
   Retrievability_ (::xercesc::XMLFormatTarget& t,
-                   const ::CDM::Retrievability& s,
+                   const ::MDM::Retrievability& s,
                    ::xml_schema::ErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Retrievability_ (s, m, f));
+      ::MDM::Retrievability_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -32019,14 +32019,14 @@ namespace CDM
 
   void
   Retrievability_ (::xercesc::XMLFormatTarget& t,
-                   const ::CDM::Retrievability& s,
+                   const ::MDM::Retrievability& s,
                    ::xercesc::DOMErrorHandler& h,
                    const ::xml_schema::NamespaceInfomap& m,
                    const ::std::string& e,
                    ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Retrievability_ (s, m, f));
+      ::MDM::Retrievability_ (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -32035,7 +32035,7 @@ namespace CDM
 
   void
   Retrievability_ (::xercesc::DOMDocument& d,
-                   const ::CDM::Retrievability& s,
+                   const ::MDM::Retrievability& s,
                    ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
@@ -32058,7 +32058,7 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Retrievability_ (const ::CDM::Retrievability& s,
+  Retrievability_ (const ::MDM::Retrievability& s,
                    const ::xml_schema::NamespaceInfomap& m,
                    ::xml_schema::Flags f)
   {
@@ -32068,20 +32068,20 @@ namespace CDM
         "http://p11073-10207/draft7/msg/2017/03/17",
         m, f));
 
-    ::CDM::Retrievability_ (*d, s, f);
+    ::MDM::Retrievability_ (*d, s, f);
     return d;
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const GetMdib& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const GetMdibResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // Mdib
     //
@@ -32111,7 +32111,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetMdDescription& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
 
     // HandleRef
     //
@@ -32145,7 +32145,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetMdDescriptionResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // MdDescription
     //
@@ -32175,7 +32175,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetMdState& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
 
     // HandleRef
     //
@@ -32209,7 +32209,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetMdStateResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // MdState
     //
@@ -32239,7 +32239,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetContextStates& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
 
     // HandleRef
     //
@@ -32273,7 +32273,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetContextStatesResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // ContextState
     //
@@ -32307,7 +32307,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const SetContextState& i)
   {
-    e << static_cast< const ::CDM::AbstractSet& > (i);
+    e << static_cast< const ::MDM::AbstractSet& > (i);
 
     // ProposedContextState
     //
@@ -32341,13 +32341,13 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const SetContextStateResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractSetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractSetResponse& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const ReportPart& i)
   {
-    e << static_cast< const ::CDM::AbstractReportPart& > (i);
+    e << static_cast< const ::MDM::AbstractReportPart& > (i);
 
     // ContextState
     //
@@ -32381,19 +32381,19 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const PeriodicContextReport& i)
   {
-    e << static_cast< const ::CDM::AbstractContextReport& > (i);
+    e << static_cast< const ::MDM::AbstractContextReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const EpisodicContextReport& i)
   {
-    e << static_cast< const ::CDM::AbstractContextReport& > (i);
+    e << static_cast< const ::MDM::AbstractContextReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const GetLocalizedText& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
 
     // Ref
     //
@@ -32478,7 +32478,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetLocalizedTextResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // Text
     //
@@ -32499,13 +32499,13 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetSupportedLanguages& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const GetSupportedLanguagesResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // Lang
     //
@@ -32539,7 +32539,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetDescriptorsFromArchive& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
 
     // DescriptorRevisions
     //
@@ -32627,7 +32627,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetDescriptorsFromArchiveResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // Descriptor
     //
@@ -32661,7 +32661,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetStatesFromArchive& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
 
     // StateRevisions
     //
@@ -32749,7 +32749,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetStatesFromArchiveResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // State
     //
@@ -32783,7 +32783,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const SetValue& i)
   {
-    e << static_cast< const ::CDM::AbstractSet& > (i);
+    e << static_cast< const ::MDM::AbstractSet& > (i);
 
     // RequestedNumericValue
     //
@@ -32801,13 +32801,13 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const SetValueResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractSetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractSetResponse& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const SetString& i)
   {
-    e << static_cast< const ::CDM::AbstractSet& > (i);
+    e << static_cast< const ::MDM::AbstractSet& > (i);
 
     // RequestedStringValue
     //
@@ -32837,13 +32837,13 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const SetStringResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractSetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractSetResponse& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const Activate& i)
   {
-    e << static_cast< const ::CDM::AbstractSet& > (i);
+    e << static_cast< const ::MDM::AbstractSet& > (i);
 
     // Argument
     //
@@ -32864,13 +32864,13 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const ActivateResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractSetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractSetResponse& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const SetAlertState& i)
   {
-    e << static_cast< const ::CDM::AbstractSet& > (i);
+    e << static_cast< const ::MDM::AbstractSet& > (i);
 
     // ProposedAlertState
     //
@@ -32900,13 +32900,13 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const SetAlertStateResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractSetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractSetResponse& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const SetComponentState& i)
   {
-    e << static_cast< const ::CDM::AbstractSet& > (i);
+    e << static_cast< const ::MDM::AbstractSet& > (i);
 
     // ProposedComponentState
     //
@@ -32940,13 +32940,13 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const SetComponentStateResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractSetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractSetResponse& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const SetMetricState& i)
   {
-    e << static_cast< const ::CDM::AbstractSet& > (i);
+    e << static_cast< const ::MDM::AbstractSet& > (i);
 
     // ProposedMetricState
     //
@@ -32980,13 +32980,13 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const SetMetricStateResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractSetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractSetResponse& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const OperationInvokedReport& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // ReportPart
     //
@@ -33007,7 +33007,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetContainmentTree& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
 
     // HandleRef
     //
@@ -33041,7 +33041,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetContainmentTreeResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // ContainmentTree
     //
@@ -33071,7 +33071,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetDescriptor& i)
   {
-    e << static_cast< const ::CDM::AbstractGet& > (i);
+    e << static_cast< const ::MDM::AbstractGet& > (i);
 
     // HandleRef
     //
@@ -33105,7 +33105,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const GetDescriptorResponse& i)
   {
-    e << static_cast< const ::CDM::AbstractGetResponse& > (i);
+    e << static_cast< const ::MDM::AbstractGetResponse& > (i);
 
     // Descriptor
     //
@@ -33139,7 +33139,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const ReportPart1& i)
   {
-    e << static_cast< const ::CDM::AbstractReportPart& > (i);
+    e << static_cast< const ::MDM::AbstractReportPart& > (i);
 
     // MetricState
     //
@@ -33173,19 +33173,19 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const EpisodicMetricReport& i)
   {
-    e << static_cast< const ::CDM::AbstractMetricReport& > (i);
+    e << static_cast< const ::MDM::AbstractMetricReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const PeriodicMetricReport& i)
   {
-    e << static_cast< const ::CDM::AbstractMetricReport& > (i);
+    e << static_cast< const ::MDM::AbstractMetricReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const ReportPart2& i)
   {
-    e << static_cast< const ::CDM::AbstractReportPart& > (i);
+    e << static_cast< const ::MDM::AbstractReportPart& > (i);
 
     // ComponentState
     //
@@ -33219,19 +33219,19 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const EpisodicComponentReport& i)
   {
-    e << static_cast< const ::CDM::AbstractComponentReport& > (i);
+    e << static_cast< const ::MDM::AbstractComponentReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const PeriodicComponentReport& i)
   {
-    e << static_cast< const ::CDM::AbstractComponentReport& > (i);
+    e << static_cast< const ::MDM::AbstractComponentReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const ReportPart3& i)
   {
-    e << static_cast< const ::CDM::AbstractReportPart& > (i);
+    e << static_cast< const ::MDM::AbstractReportPart& > (i);
 
     // AlertState
     //
@@ -33265,19 +33265,19 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const EpisodicAlertReport& i)
   {
-    e << static_cast< const ::CDM::AbstractAlertReport& > (i);
+    e << static_cast< const ::MDM::AbstractAlertReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const PeriodicAlertReport& i)
   {
-    e << static_cast< const ::CDM::AbstractAlertReport& > (i);
+    e << static_cast< const ::MDM::AbstractAlertReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const ReportPart4& i)
   {
-    e << static_cast< const ::CDM::AbstractReportPart& > (i);
+    e << static_cast< const ::MDM::AbstractReportPart& > (i);
 
     // OperationState
     //
@@ -33311,19 +33311,19 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const EpisodicOperationalStateReport& i)
   {
-    e << static_cast< const ::CDM::AbstractOperationalStateReport& > (i);
+    e << static_cast< const ::MDM::AbstractOperationalStateReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const PeriodicOperationalStateReport& i)
   {
-    e << static_cast< const ::CDM::AbstractOperationalStateReport& > (i);
+    e << static_cast< const ::MDM::AbstractOperationalStateReport& > (i);
   }
 
   void
   operator<< (::xercesc::DOMElement& e, const SystemErrorReport& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // ReportPart
     //
@@ -33344,7 +33344,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const DescriptionModificationReport& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // ReportPart
     //
@@ -33365,7 +33365,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const WaveformStream& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // State
     //
@@ -33399,7 +33399,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const ObservedValueStream& i)
   {
-    e << static_cast< const ::CDM::AbstractReport& > (i);
+    e << static_cast< const ::MDM::AbstractReport& > (i);
 
     // Value
     //
@@ -33529,7 +33529,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const ReportPart5& i)
   {
-    e << static_cast< const ::CDM::AbstractReportPart& > (i);
+    e << static_cast< const ::MDM::AbstractReportPart& > (i);
 
     // InvocationInfo
     //
@@ -33582,7 +33582,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const ReportPart6& i)
   {
-    e << static_cast< const ::CDM::AbstractReportPart& > (i);
+    e << static_cast< const ::MDM::AbstractReportPart& > (i);
 
     // ErrorCode
     //
@@ -33639,7 +33639,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const ReportPart7& i)
   {
-    e << static_cast< const ::CDM::AbstractReportPart& > (i);
+    e << static_cast< const ::MDM::AbstractReportPart& > (i);
 
     // Descriptor
     //

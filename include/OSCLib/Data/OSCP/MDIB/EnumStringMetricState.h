@@ -59,10 +59,10 @@ public:
     typedef OSCPProviderEnumStringMetricStateHandler ProviderHandlerType;
     typedef OSCPConsumerEnumStringMetricStateHandler ConsumerHandlerType;
 
-	EnumStringMetricState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	EnumStringMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	EnumStringMetricState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

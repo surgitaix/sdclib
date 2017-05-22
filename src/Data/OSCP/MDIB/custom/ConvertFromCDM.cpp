@@ -361,14 +361,14 @@ IntendedUse ConvertFromCDM::convert(const CDM::IntendedUse & source) {
 	throw std::runtime_error("Illegal value for IntendedUse");
 }
 
-InvocationState ConvertFromCDM::convert(const CDM::InvocationState & source) {
+InvocationState ConvertFromCDM::convert(const MDM::InvocationState & source) {
 	switch (source) {
-		case CDM::InvocationState::Fail: return InvocationState::FAILED;
-		case CDM::InvocationState::Wait: return InvocationState::WAITING;
-		case CDM::InvocationState::Start: return InvocationState::STARTED;
-		case CDM::InvocationState::Cnclld: return InvocationState::CANCELLED;
-		case CDM::InvocationState::CnclldMan: return InvocationState::CANCELLED_MANUALLY;
-		case CDM::InvocationState::Fin: return InvocationState::FINISHED;
+		case MDM::InvocationState::Fail: return InvocationState::FAILED;
+		case MDM::InvocationState::Wait: return InvocationState::WAITING;
+		case MDM::InvocationState::Start: return InvocationState::STARTED;
+		case MDM::InvocationState::Cnclld: return InvocationState::CANCELLED;
+		case MDM::InvocationState::CnclldMan: return InvocationState::CANCELLED_MANUALLY;
+		case MDM::InvocationState::Fin: return InvocationState::FINISHED;
 	}
 	throw std::runtime_error("Illegal value for InvocationState");
 }

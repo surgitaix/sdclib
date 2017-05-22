@@ -74,7 +74,7 @@ public:
 	static MdsState convert(const CDM::MdsState & source);
 	static ImagingProcedure convert(const CDM::ImagingProcedure & source);
 	static InstanceIdentifier convert(const CDM::InstanceIdentifier & source);
-	static InvocationState convert(const CDM::InvocationState & source);
+	static InvocationState convert(const MDM::InvocationState & source);
 	static Language convert(const CDM::Language & source);
 	static LimitAlertConditionDescriptor convert(const CDM::LimitAlertConditionDescriptor & source);
 	static LimitAlertConditionState convert(const CDM::LimitAlertConditionState & source);

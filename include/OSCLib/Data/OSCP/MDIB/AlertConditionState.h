@@ -59,10 +59,10 @@ public:
     typedef OSCPProviderAlertConditionStateHandler ProviderHandlerType;
     typedef OSCPConsumerAlertConditionStateHandler ConsumerHandlerType;
 
-	AlertConditionState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	AlertConditionState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	AlertConditionState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;
@@ -83,10 +83,15 @@ public:
 	AlertConditionState & setPresence(const bool & value);
 	bool getPresence() const;
 
-	AlertConditionState & setObservationTime(const Timestamp & value);
-	Timestamp getObservationTime() const;
-	bool getObservationTime(Timestamp & out) const;
-	bool hasObservationTime() const;
+	AlertConditionState & setDeterminationTime(const Timestamp & value);
+	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
+
+	AlertConditionState & setActualPriority(const AlertConditionPriority & value);
+	AlertConditionPriority getActualPriority() const;
+	bool getActualPriority(AlertConditionPriority & out) const;
+	bool hasActualPriority() const;
 
 private:
 	std::shared_ptr<CDM::AlertConditionState> data;

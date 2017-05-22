@@ -37,6 +37,8 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -72,25 +74,25 @@ AlertConditionState & AlertConditionState:: operator=(const AlertConditionState 
 }
 
 
-AlertConditionState & AlertConditionState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+AlertConditionState & AlertConditionState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertConditionState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool AlertConditionState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string AlertConditionState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion AlertConditionState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool AlertConditionState::hasHandle() const {
-	return data->Handle().present();
+bool AlertConditionState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 AlertConditionState & AlertConditionState::setDescriptorHandle(const std::string & value) {
@@ -165,25 +167,46 @@ bool AlertConditionState::getPresence() const {
 	return ConvertFromCDM::convert(data->Presence());
 }
 	
-AlertConditionState & AlertConditionState::setObservationTime(const Timestamp & value) {
-	data->ObservationTime(ConvertToCDM::convert(value));
+AlertConditionState & AlertConditionState::setDeterminationTime(const Timestamp & value) {
+	data->DeterminationTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertConditionState::getObservationTime(Timestamp & out) const {
-	if (data->ObservationTime().present()) {
-		out = ConvertFromCDM::convert(data->ObservationTime().get());
+bool AlertConditionState::getDeterminationTime(Timestamp & out) const {
+	if (data->DeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp AlertConditionState::getObservationTime() const {
-	return ConvertFromCDM::convert(data->ObservationTime().get());
+Timestamp AlertConditionState::getDeterminationTime() const {
+	return ConvertFromCDM::convert(data->DeterminationTime().get());
 }
 	
-bool AlertConditionState::hasObservationTime() const {
-	return data->ObservationTime().present();
+bool AlertConditionState::hasDeterminationTime() const {
+	return data->DeterminationTime().present();
+}
+	
+AlertConditionState & AlertConditionState::setActualPriority(const AlertConditionPriority & value) {
+	data->ActualPriority(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionState::getActualPriority(AlertConditionPriority & out) const {
+	if (data->ActualPriority().present()) {
+		out = ConvertFromCDM::convert(data->ActualPriority().get());
+		return true;
+	}
+	return false;
+}
+
+AlertConditionPriority AlertConditionState::getActualPriority() const {
+	return ConvertFromCDM::convert(data->ActualPriority().get());
+}
+	
+bool AlertConditionState::hasActualPriority() const {
+	return data->ActualPriority().present();
 }
 	
 

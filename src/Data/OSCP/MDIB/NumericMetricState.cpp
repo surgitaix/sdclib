@@ -39,6 +39,7 @@
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -74,25 +75,25 @@ NumericMetricState & NumericMetricState:: operator=(const NumericMetricState & o
 }
 
 
-NumericMetricState & NumericMetricState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool NumericMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string NumericMetricState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion NumericMetricState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool NumericMetricState::hasHandle() const {
-	return data->Handle().present();
+bool NumericMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 NumericMetricState & NumericMetricState::setDescriptorHandle(const std::string & value) {

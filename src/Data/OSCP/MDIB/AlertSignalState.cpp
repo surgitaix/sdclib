@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -71,25 +72,25 @@ AlertSignalState & AlertSignalState:: operator=(const AlertSignalState & object)
 }
 
 
-AlertSignalState & AlertSignalState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+AlertSignalState & AlertSignalState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool AlertSignalState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string AlertSignalState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion AlertSignalState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool AlertSignalState::hasHandle() const {
-	return data->Handle().present();
+bool AlertSignalState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 AlertSignalState & AlertSignalState::setDescriptorHandle(const std::string & value) {

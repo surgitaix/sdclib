@@ -59,10 +59,10 @@ public:
     typedef OSCPProviderAlertSignalStateHandler ProviderHandlerType;
     typedef OSCPConsumerAlertSignalStateHandler ConsumerHandlerType;
 
-	AlertSignalState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	AlertSignalState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	AlertSignalState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

@@ -26,10 +26,10 @@
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/DateTime.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMDeviceDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMNetworkAE.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMNetworkConnection.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMTransferCapability.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
@@ -38,7 +38,7 @@
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
@@ -48,7 +48,7 @@
 #include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/MDIBContainer.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/MdState.h"
 #include "OSCLib/Data/OSCP/MDIB/Measure.h"
 #include "OSCLib/Data/OSCP/MDIB/MeasurementState.h"
@@ -69,21 +69,20 @@
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/RemedyInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
-#include "OSCLib/Data/OSCP/MDIB/SampleIndex.h"
+#include "OSCLib/Data/OSCP/MDIB/RealTimeValueType.h"
 #include "OSCLib/Data/OSCP/MDIB/SCODescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/TimeZone.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 
@@ -146,10 +145,10 @@ CDM::AlertConditionKind ConvertToCDM::convert(const AlertConditionKind & source)
 
 CDM::AlertConditionPriority ConvertToCDM::convert(const AlertConditionPriority & source) {
 	switch (source) {
-		case AlertConditionPriority::LOW: return CDM::AlertConditionPriority::Lo;
-		case AlertConditionPriority::MEDIUM: return CDM::AlertConditionPriority::Me;
-		case AlertConditionPriority::HIGH: return CDM::AlertConditionPriority::Hi;
-		case AlertConditionPriority::NONE: return CDM::AlertConditionPriority::None;
+		case AlertConditionPriority::Low: return CDM::AlertConditionPriority::Lo;
+		case AlertConditionPriority::Medium: return CDM::AlertConditionPriority::Me;
+		case AlertConditionPriority::High: return CDM::AlertConditionPriority::Hi;
+		case AlertConditionPriority::None: return CDM::AlertConditionPriority::None;
 	}
 	throw std::runtime_error("Illegal value for AlertConditionPriority");
 }
@@ -231,14 +230,14 @@ CDM::GenerationMode ConvertToCDM::convert(const GenerationMode & source) {
 	throw std::runtime_error("Illegal value for GenerationMode");
 }
 
-CDM::InvocationState ConvertToCDM::convert(const InvocationState & source) {
+MDM::InvocationState ConvertToCDM::convert(const InvocationState & source) {
 	switch (source) {
-		case InvocationState::FAILED: return CDM::InvocationState::Fail;
-		case InvocationState::WAITING: return CDM::InvocationState::Wait;
-		case InvocationState::STARTED: return CDM::InvocationState::Start;
-		case InvocationState::CANCELLED: return CDM::InvocationState::Cnclld;
-		case InvocationState::CANCELLED_MANUALLY: return CDM::InvocationState::CnclldMan;
-		case InvocationState::FINISHED: return CDM::InvocationState::Fin;
+		case InvocationState::FAILED: return MDM::InvocationState::Fail;
+		case InvocationState::WAITING: return MDM::InvocationState::Wait;
+		case InvocationState::STARTED: return MDM::InvocationState::Start;
+		case InvocationState::CANCELLED: return MDM::InvocationState::Cnclld;
+		case InvocationState::CANCELLED_MANUALLY: return MDM::InvocationState::CnclldMan;
+		case InvocationState::FINISHED: return MDM::InvocationState::Fin;
 	}
 	throw std::runtime_error("Illegal value for InvocationState");
 }

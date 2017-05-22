@@ -74,15 +74,15 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	AlertSystemDescriptor & setMaxPhysiologicalAlarmListEntries(const int & value);
-	int getMaxPhysiologicalAlarmListEntries() const;
-	bool getMaxPhysiologicalAlarmListEntries(int & out) const;
-	bool hasMaxPhysiologicalAlarmListEntries() const;
+	AlertSystemDescriptor & setMaxPhysiologicalParallelAlarms(const unsigned int & value);
+	unsigned int getMaxPhysiologicalParallelAlarms() const;
+	bool getMaxPhysiologicalParallelAlarms(unsigned int & out) const;
+	bool hasMaxPhysiologicalParallelAlarms() const;
 
-	AlertSystemDescriptor & setMaxTechnicalAlarmListEntries(const int & value);
-	int getMaxTechnicalAlarmListEntries() const;
-	bool getMaxTechnicalAlarmListEntries(int & out) const;
-	bool hasMaxTechnicalAlarmListEntries() const;
+	AlertSystemDescriptor & setMaxTechnicalParallelAlarms(const unsigned int & value);
+	unsigned int getMaxTechnicalParallelAlarms() const;
+	bool getMaxTechnicalParallelAlarms(unsigned int & out) const;
+	bool hasMaxTechnicalParallelAlarms() const;
 
 	AlertSystemDescriptor & setSelfCheckPeriod(const Duration & value);
 	Duration getSelfCheckPeriod() const;
@@ -92,6 +92,10 @@ public:
 	AlertSystemDescriptor & addAlertSignal(const AlertSignalDescriptor & value);
 	std::vector<AlertSignalDescriptor> getAlertSignals() const;
 	void clearAlertSignals();
+	
+	AlertSystemDescriptor & addAlertCondition(const AlertConditionDescriptor & value);
+	std::vector<AlertConditionDescriptor> getAlertConditions() const;
+	void clearAlertConditions();
 	
 	AlertSystemDescriptor & addAlertCondition(const AlertConditionDescriptor & value);
 	std::vector<AlertConditionDescriptor> getAlertConditions() const;

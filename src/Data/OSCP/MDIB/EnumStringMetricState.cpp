@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -73,25 +74,25 @@ EnumStringMetricState & EnumStringMetricState:: operator=(const EnumStringMetric
 }
 
 
-EnumStringMetricState & EnumStringMetricState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+EnumStringMetricState & EnumStringMetricState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool EnumStringMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string EnumStringMetricState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion EnumStringMetricState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool EnumStringMetricState::hasHandle() const {
-	return data->Handle().present();
+bool EnumStringMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 EnumStringMetricState & EnumStringMetricState::setDescriptorHandle(const std::string & value) {

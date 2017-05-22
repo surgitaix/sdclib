@@ -59,10 +59,10 @@ public:
     typedef OSCPProviderLimitAlertConditionStateHandler ProviderHandlerType;
     typedef OSCPConsumerLimitAlertConditionStateHandler ConsumerHandlerType;
 
-	LimitAlertConditionState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	LimitAlertConditionState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	LimitAlertConditionState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;
@@ -83,10 +83,15 @@ public:
 	LimitAlertConditionState & setPresence(const bool & value);
 	bool getPresence() const;
 
-	LimitAlertConditionState & setObservationTime(const Timestamp & value);
-	Timestamp getObservationTime() const;
-	bool getObservationTime(Timestamp & out) const;
-	bool hasObservationTime() const;
+	LimitAlertConditionState & setDeterminationTime(const Timestamp & value);
+	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
+
+	LimitAlertConditionState & setActualPriority(const AlertConditionPriority & value);
+	AlertConditionPriority getActualPriority() const;
+	bool getActualPriority(AlertConditionPriority & out) const;
+	bool hasActualPriority() const;
 
 	LimitAlertConditionState & setLimits(const Range & value);
 	Range getLimits() const;

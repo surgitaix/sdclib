@@ -38,6 +38,8 @@
 
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -73,25 +75,25 @@ LimitAlertConditionState & LimitAlertConditionState:: operator=(const LimitAlert
 }
 
 
-LimitAlertConditionState & LimitAlertConditionState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+LimitAlertConditionState & LimitAlertConditionState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LimitAlertConditionState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool LimitAlertConditionState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string LimitAlertConditionState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion LimitAlertConditionState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool LimitAlertConditionState::hasHandle() const {
-	return data->Handle().present();
+bool LimitAlertConditionState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setDescriptorHandle(const std::string & value) {
@@ -166,25 +168,46 @@ bool LimitAlertConditionState::getPresence() const {
 	return ConvertFromCDM::convert(data->Presence());
 }
 	
-LimitAlertConditionState & LimitAlertConditionState::setObservationTime(const Timestamp & value) {
-	data->ObservationTime(ConvertToCDM::convert(value));
+LimitAlertConditionState & LimitAlertConditionState::setDeterminationTime(const Timestamp & value) {
+	data->DeterminationTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LimitAlertConditionState::getObservationTime(Timestamp & out) const {
-	if (data->ObservationTime().present()) {
-		out = ConvertFromCDM::convert(data->ObservationTime().get());
+bool LimitAlertConditionState::getDeterminationTime(Timestamp & out) const {
+	if (data->DeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp LimitAlertConditionState::getObservationTime() const {
-	return ConvertFromCDM::convert(data->ObservationTime().get());
+Timestamp LimitAlertConditionState::getDeterminationTime() const {
+	return ConvertFromCDM::convert(data->DeterminationTime().get());
 }
 	
-bool LimitAlertConditionState::hasObservationTime() const {
-	return data->ObservationTime().present();
+bool LimitAlertConditionState::hasDeterminationTime() const {
+	return data->DeterminationTime().present();
+}
+	
+LimitAlertConditionState & LimitAlertConditionState::setActualPriority(const AlertConditionPriority & value) {
+	data->ActualPriority(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionState::getActualPriority(AlertConditionPriority & out) const {
+	if (data->ActualPriority().present()) {
+		out = ConvertFromCDM::convert(data->ActualPriority().get());
+		return true;
+	}
+	return false;
+}
+
+AlertConditionPriority LimitAlertConditionState::getActualPriority() const {
+	return ConvertFromCDM::convert(data->ActualPriority().get());
+}
+	
+bool LimitAlertConditionState::hasActualPriority() const {
+	return data->ActualPriority().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setLimits(const Range & value) {

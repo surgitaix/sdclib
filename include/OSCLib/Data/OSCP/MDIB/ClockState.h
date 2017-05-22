@@ -57,10 +57,10 @@ public:
     typedef CDM::ClockState WrappedType;
     typedef ClockDescriptor DescriptorType;
 
-	ClockState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	ClockState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	ClockState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

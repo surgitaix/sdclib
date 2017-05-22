@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Duration.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -73,25 +74,25 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState:: operator=(cons
 }
 
 
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool RealTimeSampleArrayMetricState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool RealTimeSampleArrayMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string RealTimeSampleArrayMetricState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion RealTimeSampleArrayMetricState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool RealTimeSampleArrayMetricState::hasHandle() const {
-	return data->Handle().present();
+bool RealTimeSampleArrayMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setDescriptorHandle(const std::string & value) {

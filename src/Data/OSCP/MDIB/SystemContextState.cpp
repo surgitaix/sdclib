@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -71,25 +72,25 @@ SystemContextState & SystemContextState:: operator=(const SystemContextState & o
 }
 
 
-SystemContextState & SystemContextState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+SystemContextState & SystemContextState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContextState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool SystemContextState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string SystemContextState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion SystemContextState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool SystemContextState::hasHandle() const {
-	return data->Handle().present();
+bool SystemContextState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 SystemContextState & SystemContextState::setDescriptorHandle(const std::string & value) {

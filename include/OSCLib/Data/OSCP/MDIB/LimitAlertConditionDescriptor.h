@@ -96,54 +96,8 @@ public:
 	bool getAutoLimitSupported(bool & out) const;
 	bool hasAutoLimitSupported() const;
 
-	LimitAlertConditionDescriptor & setType(const CodedValue & value);
-	CodedValue getType() const;
-	bool getType(CodedValue & out) const;
-	bool hasType() const;
-
-	LimitAlertConditionDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
-
-	LimitAlertConditionDescriptor & setDescriptorVersion(const VersionCounter & value);
-	VersionCounter getDescriptorVersion() const;
-	bool getDescriptorVersion(VersionCounter & out) const;
-	bool hasDescriptorVersion() const;
-
-	LimitAlertConditionDescriptor & setSafetyClassification(const SafetyClassification & value);
-	SafetyClassification getSafetyClassification() const;
-	bool getSafetyClassification(SafetyClassification & out) const;
-	bool hasSafetyClassification() const;
-
-	LimitAlertConditionDescriptor & setKind(const AlertConditionKind & value);
-	AlertConditionKind getKind() const;
-
-	LimitAlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
-	AlertConditionPriority getPriority() const;
-
-	LimitAlertConditionDescriptor & addSource(const std::string & value);
-	std::vector<std::string> getSources() const;
-	void clearSources();
-	
-	LimitAlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
-	std::vector<CauseInfo> getCauseInfo() const;
-	void clearCauseInfo();
-	
-	LimitAlertConditionDescriptor & setMaxLimits(const Range & value);
-	Range getMaxLimits() const;
-
-	LimitAlertConditionDescriptor & setAutoLimitSupported(const bool & value);
-	bool getAutoLimitSupported() const;
-	bool getAutoLimitSupported(bool & out) const;
-	bool hasAutoLimitSupported() const;
-
 private:
 	std::shared_ptr<CDM::LimitAlertConditionDescriptor> data;
-};
-
-} /* namespace OSCP */
-} /* namespace Data */
-} /* namespace OSCLib */
-#endif /* LIMITALERTCONDITIONDESCRIPTOR_H_ */
 };
 
 } /* namespace OSCP */

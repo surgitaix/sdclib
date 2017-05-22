@@ -15,16 +15,22 @@
 	</class>
 
     <class name = "AbstractState" parent = "NULL" abstract = "true" >
+		<include path = "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h" />
    		<include path = "OSCLib/Data/OSCP/MDIB/VersionCounter.h" />
-      <property name = "Handle" type = "std::string" optional = "true"/>
+      <property name = "DescriptorVersion" type = "ReferencedVersion" optional = "true"/>
     	<property name = "DescriptorHandle" type = "std::string" optional = "false" />
 	<property name = "StateVersion" type = "VersionCounter" optional = "true" />
+    </class>
+
+    <class name = "AbstractMultiState" parent = "AbstractState" abstract = "true" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+    	<property name = "Category" type = "CodedValue" optional = "true" />
+    	<property name = "Handle" type = "std::string" optional = "false" />
     </class>
 
     <class name = "AbstractAlertState" parent = "AbstractState" abstract = "true" >
     	<property name = "ActivationState" type = "AlertActivation" optional = "false" />
     </class>
-
 
 	<class name = "AbstractIdentifiableContextState" parent = "AbstractContextState" abstract = "true" >
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
@@ -40,12 +46,14 @@
     
     <class name = "AlertConditionState" parent = "AbstractAlertState" abstract = "false" >
         <include path = "OSCLib/Data/OSCP/MDIB/Timestamp.h" />
+        <include path = "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h" />
         <typedef name = "DescriptorType" type = "AlertConditionDescriptor" />
         <typedef name = "ProviderHandlerType" type = "OSCPProviderAlertConditionStateHandler" />
         <typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertConditionStateHandler" />
 	<property name = "Rank" type = "int" optional = "true" />
 	<property name = "Presence" type = "bool" optional = "false" />
-	<property name = "ObservationTime" type = "Timestamp" optional = "true" />
+	<property name = "DeterminationTime" type = "Timestamp" optional = "true" />
+	<property name = "ActualPriority" type = "AlertConditionPriority" optional = "true" />
     </class>
     
     <class name = "AlertSignalState" parent = "AbstractAlertState" abstract = "false" >

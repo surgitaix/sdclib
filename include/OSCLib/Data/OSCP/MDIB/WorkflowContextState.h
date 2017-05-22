@@ -57,10 +57,10 @@ public:
     typedef CDM::WorkflowContextState WrappedType;
     typedef WorkflowContextDescriptor DescriptorType;
 
-	WorkflowContextState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	WorkflowContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	WorkflowContextState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

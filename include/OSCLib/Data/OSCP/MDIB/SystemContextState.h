@@ -56,10 +56,10 @@ public:
     
     typedef CDM::SystemContextState WrappedType;
 
-	SystemContextState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	SystemContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	SystemContextState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

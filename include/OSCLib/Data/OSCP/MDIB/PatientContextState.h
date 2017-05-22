@@ -57,10 +57,10 @@ public:
     typedef CDM::PatientContextState WrappedType;
     typedef PatientContextDescriptor DescriptorType;
 
-	PatientContextState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	PatientContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	PatientContextState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

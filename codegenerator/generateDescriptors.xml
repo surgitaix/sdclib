@@ -69,13 +69,13 @@
 		<property name = "AcknowledgeTimeout" type = "Duration" optional = "true" />
     </class>
 
-    <class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false" customImpl = "true" >
+    <class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false" customImpl = "true">
     	<include path = "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h" />
     	<include path = "OSCLib/Data/OSCP/MDIB/Duration.h" />
     	<propertyList nameSingle = "AlertSignal" nameSeveral = "AlertSignals" type = "AlertSignalDescriptor" />
-    	<property name = "MaxPhysiologicalAlarmListEntries" type = "int" optional = "true" />
-    	<property name = "MaxTechnicalAlarmListEntries" type = "int" optional = "true" />
+    	<property name = "MaxPhysiologicalParallelAlarms" type = "unsigned int" optional = "true" />
+    	<property name = "MaxTechnicalParallelAlarms" type = "unsigned int" optional = "true" />
     	<property name = "SelfCheckPeriod" type = "Duration" optional = "true" />
     </class>
     
@@ -149,12 +149,6 @@
  	<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 	<property name = "MeasurementUnit" type = "CodedValue" optional = "false" />
 	<property name = "MeasuredValue" type = "double" optional = "false" />
-    </class>
-    
-<class name = "LimitAlertConditionDescriptor" parent = "AlertConditionDescriptor" abstract = "false" >
-    	<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
-		<property name = "MaxLimits" type = "Range" optional = "false" />
-    	<property name = "AutoLimitSupported" type = "bool" optional = "true" />
     </class>
 
     <class name = "LimitAlertConditionDescriptor" parent = "AlertConditionDescriptor" abstract = "false" >

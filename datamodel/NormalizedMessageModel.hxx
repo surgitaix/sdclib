@@ -610,7 +610,7 @@ namespace MESSAGEMODEL
 
     // GetContextStates
     //
-    typedef ::CDM::GetContextStates GetContextStatesType;
+    typedef ::MDM::GetContextStates GetContextStatesType;
     typedef ::xsd::cxx::tree::optional< GetContextStatesType > GetContextStatesOptional;
     typedef ::xsd::cxx::tree::traits< GetContextStatesType, char > GetContextStatesTraits;
 
@@ -631,7 +631,7 @@ namespace MESSAGEMODEL
 
     // GetContextStatesResponse
     //
-    typedef ::CDM::GetContextStatesResponse GetContextStatesResponseType;
+    typedef ::MDM::GetContextStatesResponse GetContextStatesResponseType;
     typedef ::xsd::cxx::tree::optional< GetContextStatesResponseType > GetContextStatesResponseOptional;
     typedef ::xsd::cxx::tree::traits< GetContextStatesResponseType, char > GetContextStatesResponseTraits;
 
@@ -652,7 +652,7 @@ namespace MESSAGEMODEL
 
     // SetContextState
     //
-    typedef ::CDM::SetContextState SetContextStateType;
+    typedef ::MDM::SetContextState SetContextStateType;
     typedef ::xsd::cxx::tree::optional< SetContextStateType > SetContextStateOptional;
     typedef ::xsd::cxx::tree::traits< SetContextStateType, char > SetContextStateTraits;
 
@@ -673,7 +673,7 @@ namespace MESSAGEMODEL
 
     // SetContextStateResponse
     //
-    typedef ::CDM::SetContextStateResponse SetContextStateResponseType;
+    typedef ::MDM::SetContextStateResponse SetContextStateResponseType;
     typedef ::xsd::cxx::tree::optional< SetContextStateResponseType > SetContextStateResponseOptional;
     typedef ::xsd::cxx::tree::traits< SetContextStateResponseType, char > SetContextStateResponseTraits;
 
@@ -694,7 +694,7 @@ namespace MESSAGEMODEL
 
     // EpisodicContextReport
     //
-    typedef ::CDM::EpisodicContextReport EpisodicContextReportType;
+    typedef ::MDM::EpisodicContextReport EpisodicContextReportType;
     typedef ::xsd::cxx::tree::optional< EpisodicContextReportType > EpisodicContextReportOptional;
     typedef ::xsd::cxx::tree::traits< EpisodicContextReportType, char > EpisodicContextReportTraits;
 
@@ -715,7 +715,7 @@ namespace MESSAGEMODEL
 
     // PeriodicContextReport
     //
-    typedef ::CDM::PeriodicContextReport PeriodicContextReportType;
+    typedef ::MDM::PeriodicContextReport PeriodicContextReportType;
     typedef ::xsd::cxx::tree::optional< PeriodicContextReportType > PeriodicContextReportOptional;
     typedef ::xsd::cxx::tree::traits< PeriodicContextReportType, char > PeriodicContextReportTraits;
 
@@ -736,7 +736,7 @@ namespace MESSAGEMODEL
 
     // EpisodicAlertReport
     //
-    typedef ::CDM::EpisodicAlertReport EpisodicAlertReportType;
+    typedef ::MDM::EpisodicAlertReport EpisodicAlertReportType;
     typedef ::xsd::cxx::tree::optional< EpisodicAlertReportType > EpisodicAlertReportOptional;
     typedef ::xsd::cxx::tree::traits< EpisodicAlertReportType, char > EpisodicAlertReportTraits;
 
@@ -757,7 +757,7 @@ namespace MESSAGEMODEL
 
     // EpisodicMetricReport
     //
-    typedef ::CDM::EpisodicMetricReport EpisodicMetricReportType;
+    typedef ::MDM::EpisodicMetricReport EpisodicMetricReportType;
     typedef ::xsd::cxx::tree::optional< EpisodicMetricReportType > EpisodicMetricReportOptional;
     typedef ::xsd::cxx::tree::traits< EpisodicMetricReportType, char > EpisodicMetricReportTraits;
 
@@ -778,7 +778,7 @@ namespace MESSAGEMODEL
 
     // PeriodicAlertReport
     //
-    typedef ::CDM::PeriodicAlertReport PeriodicAlertReportType;
+    typedef ::MDM::PeriodicAlertReport PeriodicAlertReportType;
     typedef ::xsd::cxx::tree::optional< PeriodicAlertReportType > PeriodicAlertReportOptional;
     typedef ::xsd::cxx::tree::traits< PeriodicAlertReportType, char > PeriodicAlertReportTraits;
 
@@ -799,7 +799,7 @@ namespace MESSAGEMODEL
 
     // PeriodicMetricReport
     //
-    typedef ::CDM::PeriodicMetricReport PeriodicMetricReportType;
+    typedef ::MDM::PeriodicMetricReport PeriodicMetricReportType;
     typedef ::xsd::cxx::tree::optional< PeriodicMetricReportType > PeriodicMetricReportOptional;
     typedef ::xsd::cxx::tree::traits< PeriodicMetricReportType, char > PeriodicMetricReportTraits;
 
@@ -820,7 +820,7 @@ namespace MESSAGEMODEL
 
     // OperationInvokedReport
     //
-    typedef ::CDM::OperationInvokedReport OperationInvokedReportType;
+    typedef ::MDM::OperationInvokedReport OperationInvokedReportType;
     typedef ::xsd::cxx::tree::optional< OperationInvokedReportType > OperationInvokedReportOptional;
     typedef ::xsd::cxx::tree::traits< OperationInvokedReportType, char > OperationInvokedReportTraits;
 
@@ -841,7 +841,7 @@ namespace MESSAGEMODEL
 
     // GetMdDescription
     //
-    typedef ::CDM::GetMdDescription GetMdDescriptionType;
+    typedef ::MDM::GetMdDescription GetMdDescriptionType;
     typedef ::xsd::cxx::tree::optional< GetMdDescriptionType > GetMdDescriptionOptional;
     typedef ::xsd::cxx::tree::traits< GetMdDescriptionType, char > GetMdDescriptionTraits;
 
@@ -862,7 +862,7 @@ namespace MESSAGEMODEL
 
     // GetMdDescriptionResponse
     //
-    typedef ::CDM::GetMdDescriptionResponse GetMdDescriptionResponseType;
+    typedef ::MDM::GetMdDescriptionResponse GetMdDescriptionResponseType;
     typedef ::xsd::cxx::tree::optional< GetMdDescriptionResponseType > GetMdDescriptionResponseOptional;
     typedef ::xsd::cxx::tree::traits< GetMdDescriptionResponseType, char > GetMdDescriptionResponseTraits;
 
@@ -883,7 +883,7 @@ namespace MESSAGEMODEL
 
     // GetMdib
     //
-    typedef ::CDM::GetMdib GetMdibType;
+    typedef ::MDM::GetMdib GetMdibType;
     typedef ::xsd::cxx::tree::optional< GetMdibType > GetMdibOptional;
     typedef ::xsd::cxx::tree::traits< GetMdibType, char > GetMdibTraits;
 
@@ -904,7 +904,7 @@ namespace MESSAGEMODEL
 
     // GetMdibResponse
     //
-    typedef ::CDM::GetMdibResponse GetMdibResponseType;
+    typedef ::MDM::GetMdibResponse GetMdibResponseType;
     typedef ::xsd::cxx::tree::optional< GetMdibResponseType > GetMdibResponseOptional;
     typedef ::xsd::cxx::tree::traits< GetMdibResponseType, char > GetMdibResponseTraits;
 
@@ -925,7 +925,7 @@ namespace MESSAGEMODEL
 
     // GetMdState
     //
-    typedef ::CDM::GetMdState GetMdStateType;
+    typedef ::MDM::GetMdState GetMdStateType;
     typedef ::xsd::cxx::tree::optional< GetMdStateType > GetMdStateOptional;
     typedef ::xsd::cxx::tree::traits< GetMdStateType, char > GetMdStateTraits;
 
@@ -946,7 +946,7 @@ namespace MESSAGEMODEL
 
     // GetMdStateResponse
     //
-    typedef ::CDM::GetMdStateResponse GetMdStateResponseType;
+    typedef ::MDM::GetMdStateResponse GetMdStateResponseType;
     typedef ::xsd::cxx::tree::optional< GetMdStateResponseType > GetMdStateResponseOptional;
     typedef ::xsd::cxx::tree::traits< GetMdStateResponseType, char > GetMdStateResponseTraits;
 
@@ -967,7 +967,7 @@ namespace MESSAGEMODEL
 
     // Activate
     //
-    typedef ::CDM::Activate ActivateType;
+    typedef ::MDM::Activate ActivateType;
     typedef ::xsd::cxx::tree::optional< ActivateType > ActivateOptional;
     typedef ::xsd::cxx::tree::traits< ActivateType, char > ActivateTraits;
 
@@ -988,7 +988,7 @@ namespace MESSAGEMODEL
 
     // ActivateResponse
     //
-    typedef ::CDM::ActivateResponse ActivateResponseType;
+    typedef ::MDM::ActivateResponse ActivateResponseType;
     typedef ::xsd::cxx::tree::optional< ActivateResponseType > ActivateResponseOptional;
     typedef ::xsd::cxx::tree::traits< ActivateResponseType, char > ActivateResponseTraits;
 
@@ -1009,7 +1009,7 @@ namespace MESSAGEMODEL
 
     // SetAlertState
     //
-    typedef ::CDM::SetAlertState SetAlertStateType;
+    typedef ::MDM::SetAlertState SetAlertStateType;
     typedef ::xsd::cxx::tree::optional< SetAlertStateType > SetAlertStateOptional;
     typedef ::xsd::cxx::tree::traits< SetAlertStateType, char > SetAlertStateTraits;
 
@@ -1030,7 +1030,7 @@ namespace MESSAGEMODEL
 
     // SetAlertStateResponse
     //
-    typedef ::CDM::SetAlertStateResponse SetAlertStateResponseType;
+    typedef ::MDM::SetAlertStateResponse SetAlertStateResponseType;
     typedef ::xsd::cxx::tree::optional< SetAlertStateResponseType > SetAlertStateResponseOptional;
     typedef ::xsd::cxx::tree::traits< SetAlertStateResponseType, char > SetAlertStateResponseTraits;
 
@@ -1051,7 +1051,7 @@ namespace MESSAGEMODEL
 
     // SetString
     //
-    typedef ::CDM::SetString SetStringType;
+    typedef ::MDM::SetString SetStringType;
     typedef ::xsd::cxx::tree::optional< SetStringType > SetStringOptional;
     typedef ::xsd::cxx::tree::traits< SetStringType, char > SetStringTraits;
 
@@ -1072,7 +1072,7 @@ namespace MESSAGEMODEL
 
     // SetStringResponse
     //
-    typedef ::CDM::SetStringResponse SetStringResponseType;
+    typedef ::MDM::SetStringResponse SetStringResponseType;
     typedef ::xsd::cxx::tree::optional< SetStringResponseType > SetStringResponseOptional;
     typedef ::xsd::cxx::tree::traits< SetStringResponseType, char > SetStringResponseTraits;
 
@@ -1093,7 +1093,7 @@ namespace MESSAGEMODEL
 
     // SetValue
     //
-    typedef ::CDM::SetValue SetValueType;
+    typedef ::MDM::SetValue SetValueType;
     typedef ::xsd::cxx::tree::optional< SetValueType > SetValueOptional;
     typedef ::xsd::cxx::tree::traits< SetValueType, char > SetValueTraits;
 
@@ -1114,7 +1114,7 @@ namespace MESSAGEMODEL
 
     // SetValueResponse
     //
-    typedef ::CDM::SetValueResponse SetValueResponseType;
+    typedef ::MDM::SetValueResponse SetValueResponseType;
     typedef ::xsd::cxx::tree::optional< SetValueResponseType > SetValueResponseOptional;
     typedef ::xsd::cxx::tree::traits< SetValueResponseType, char > SetValueResponseTraits;
 
@@ -1135,7 +1135,7 @@ namespace MESSAGEMODEL
 
     // WaveformStream
     //
-    typedef ::CDM::WaveformStream WaveformStreamType;
+    typedef ::MDM::WaveformStream WaveformStreamType;
     typedef ::xsd::cxx::tree::optional< WaveformStreamType > WaveformStreamOptional;
     typedef ::xsd::cxx::tree::traits< WaveformStreamType, char > WaveformStreamTraits;
 

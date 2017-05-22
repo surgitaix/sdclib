@@ -42,6 +42,7 @@
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -77,25 +78,25 @@ WorkflowContextState & WorkflowContextState:: operator=(const WorkflowContextSta
 }
 
 
-WorkflowContextState & WorkflowContextState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+WorkflowContextState & WorkflowContextState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool WorkflowContextState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool WorkflowContextState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string WorkflowContextState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion WorkflowContextState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool WorkflowContextState::hasHandle() const {
-	return data->Handle().present();
+bool WorkflowContextState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 WorkflowContextState & WorkflowContextState::setDescriptorHandle(const std::string & value) {

@@ -40,7 +40,7 @@ public:
 	static CDM::ContextAssociation convert(const ContextAssociation & source);
 	static CDM::DicomTransferRole convert(const DicomTransferRole & source);
 	static CDM::GenerationMode convert(const GenerationMode & source);
-	static CDM::InvocationState convert(const InvocationState & source);
+	static MDM::InvocationState convert(const InvocationState & source);
 	static CDM::MdsOperatingMode convert(const MdsOperatingMode & source);
 	static CDM::MetricAvailability convert(const MetricAvailability & source);
 	static CDM::MetricCategory convert(const MetricCategory & source);

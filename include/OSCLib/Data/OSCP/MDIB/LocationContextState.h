@@ -57,10 +57,10 @@ public:
     typedef CDM::LocationContextState WrappedType;
     typedef LocationContextDescriptor DescriptorType;
 
-	LocationContextState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
+	LocationContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	LocationContextState & setDescriptorHandle(const std::string & value);
 	std::string getDescriptorHandle() const;

@@ -40,10 +40,10 @@ enum class AlertConditionMonitoredLimits
 
 enum class AlertConditionPriority
 {
-	LOW,
-	MEDIUM,
-	HIGH,
-	NONE
+	Low,
+	Medium,
+	High,
+	None
 };
 
 

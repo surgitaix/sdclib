@@ -41,6 +41,7 @@
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -76,25 +77,25 @@ LocationContextState & LocationContextState:: operator=(const LocationContextSta
 }
 
 
-LocationContextState & LocationContextState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+LocationContextState & LocationContextState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocationContextState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool LocationContextState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string LocationContextState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion LocationContextState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool LocationContextState::hasHandle() const {
-	return data->Handle().present();
+bool LocationContextState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 LocationContextState & LocationContextState::setDescriptorHandle(const std::string & value) {

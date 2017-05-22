@@ -39,6 +39,7 @@
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/TimeZone.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
 #include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
@@ -74,25 +75,25 @@ ClockState & ClockState:: operator=(const ClockState & object) {
 }
 
 
-ClockState & ClockState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
+ClockState & ClockState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ClockState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
+bool ClockState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-std::string ClockState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
+ReferencedVersion ClockState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool ClockState::hasHandle() const {
-	return data->Handle().present();
+bool ClockState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 ClockState & ClockState::setDescriptorHandle(const std::string & value) {
