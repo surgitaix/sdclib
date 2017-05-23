@@ -90,9 +90,21 @@ CDM::AlertSystemState * Defaults::AlertSystemState() {
 			CDM::PausableActivation::On);
 }
 
+CDM::AllowedValue * Defaults::AllowedValue() {
+	return new CDM::AllowedValue(
+			ConvertToCDM::convert(OSCP::AllowedValue())
+			);
+}
+
 CDM::Annotation * Defaults::Annotation() {
 	return new CDM::Annotation(
-			ConvertToCDM::convert(OSCP::CodedValue())
+			ConvertToCDM::convert(OSCP::Annotation())
+			);
+}
+
+CDM::ApplyAnnotation * Defaults::ApplyAnnotation() {
+	return new CDM::ApplyAnnotation(
+			ConvertToCDM::convert(OSCP::ApplyAnnotation())
 			);
 }
 
@@ -102,6 +114,12 @@ CDM::Base64Binary * Defaults::Base64Binary() {
 
 CDM::BaseDemographics * Defaults::BaseDemographics() {
 	return new CDM::BaseDemographics();
+}
+
+CDM::BatteryDescriptor * Defaults::BatteryDescriptor() {
+	return new CDM::BatteryDescriptor(
+			ConvertToCDM::convert(OSCP::BatteryDescriptor())
+			);
 }
 
 CDM::CauseInfo * Defaults::CauseInfo() {

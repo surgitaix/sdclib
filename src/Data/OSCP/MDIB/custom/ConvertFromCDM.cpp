@@ -22,7 +22,6 @@
 #include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockState.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/DateTime.h"
 #include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
@@ -36,7 +35,6 @@
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
 #include "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/Language.h"
@@ -575,6 +573,14 @@ SampleArrayValue ConvertFromCDM::convert(const CDM::SampleArrayValue & source) {
 
 ReferencedVersion ConvertFromCDM::convert(const CDM::ReferencedVersion & source) {
 	return ReferencedVersion(source);
+}
+
+ReferenceRange ConvertFromCDM::convert(const CDM::ReferenceRange & source) {
+	return ReferenceRange(source);
+}
+
+RelatedMeasurement ConvertFromCDM::convert(const CDM::RelatedMeasurement & source) {
+	return RelatedMeasurement(source);
 }
 
 RemedyInfo ConvertFromCDM::convert(const CDM::RemedyInfo & source) {

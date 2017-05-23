@@ -86,9 +86,20 @@ AllowedValue & AllowedValue::setType(const CodedValue & value) {
 	return *this;
 }
 
+bool AllowedValue::getType(CodedValue & out) const {
+	if (data->Type().present()) {
+		out = ConvertFromCDM::convert(data->Type().get());
+		return true;
+	}
+	return false;
+}
 
 CodedValue AllowedValue::getType() const {
-	return ConvertFromCDM::convert(data->Type());
+	return ConvertFromCDM::convert(data->Type().get());
+}
+	
+bool AllowedValue::hasType() const {
+	return data->Type().present();
 }
 	
 

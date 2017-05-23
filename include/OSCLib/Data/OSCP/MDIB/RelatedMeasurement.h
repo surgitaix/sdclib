@@ -15,7 +15,7 @@
   */
 
 /*
- *  CauseInfo.h
+ *  RelatedMeasurement.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef CAUSEINFO_H_
-#define CAUSEINFO_H_
+#ifndef RELATEDMEASUREMENT_H_
+#define RELATEDMEASUREMENT_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,36 +40,36 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class CauseInfo {
+class RelatedMeasurement {
 private:
-	CauseInfo(const CDM::CauseInfo & object);
-	operator CDM::CauseInfo() const;
+	RelatedMeasurement(const CDM::RelatedMeasurement & object);
+	operator CDM::RelatedMeasurement() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	CauseInfo();
-	CauseInfo(const CauseInfo & object);
-	virtual ~CauseInfo();
+	RelatedMeasurement();
+	RelatedMeasurement(const RelatedMeasurement & object);
+	virtual ~RelatedMeasurement();
     
-    void copyFrom(const CauseInfo & object);
-    CauseInfo & operator=(const CauseInfo & object);
+    void copyFrom(const RelatedMeasurement & object);
+    RelatedMeasurement & operator=(const RelatedMeasurement & object);
     
-    typedef CDM::CauseInfo WrappedType;
+    typedef CDM::RelatedMeasurement WrappedType;
 
-	CauseInfo & setRemedyInfo(const RemedyInfo & value);
-	RemedyInfo getRemedyInfo() const;
-	bool getRemedyInfo(RemedyInfo & out) const;
-	bool hasRemedyInfo() const;
+	RelatedMeasurement & setValue(const Measurement & value);
+	Measurement getValue() const;
+	bool getValue(Measurement & out) const;
+	bool hasValue() const;
 
-	CauseInfo & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptions() const;
-	void clearDescriptions();
+	RelatedMeasurement & addReferenceRange(const ReferenceRange & value);
+	std::vector<ReferenceRange> getReferenceRanges() const;
+	void clearReferenceRanges();
 	
 private:
-	std::shared_ptr<CDM::CauseInfo> data;
+	std::shared_ptr<CDM::RelatedMeasurement> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* CAUSEINFO_H_ */
+#endif /* RELATEDMEASUREMENT_H_ */

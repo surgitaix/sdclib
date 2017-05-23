@@ -30,9 +30,12 @@ public:
 	static CDM::AlertSignalState * AlertSignalState();
 	static CDM::AlertSystemDescriptor * AlertSystemDescriptor();
 	static CDM::AlertSystemState * AlertSystemState();
+	static CDM::AllowedValue * AllowedValue();
 	static CDM::Annotation * Annotation();
+	static CDM::ApplyAnnotation * ApplyAnnotation();
 	static CDM::Base64Binary * Base64Binary();
 	static CDM::BaseDemographics * BaseDemographics();
+	static CDM::BatteryDescriptor * BatteryDescriptor();
 	static CDM::CauseInfo * CauseInfo();
 	static CDM::CalibrationInfo * CalibrationInfo();
 	static CDM::ChannelDescriptor * ChannelDescriptor();

@@ -1,4 +1,4 @@
-/**
+ /**
   * This program is free software: you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
   * the Free Software Foundation, either version 3 of the License, or
@@ -227,24 +227,6 @@ std::vector<AlertSignalDescriptor> AlertSystemDescriptor::getAlertSignals() cons
 
 void AlertSystemDescriptor::clearAlertSignals() {
 	data->AlertSignal().clear();
-}
-
-AlertSystemDescriptor & AlertSystemDescriptor::addAlertCondition(const AlertConditionDescriptor & value) {
-	data->AlertCondition().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<AlertConditionDescriptor> AlertSystemDescriptor::getAlertConditions() const {
-	std::vector<AlertConditionDescriptor> result;
-	result.reserve(data->AlertCondition().size());
-	for (const auto & value: data->AlertCondition()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void AlertSystemDescriptor::clearAlertConditions() {
-	data->AlertCondition().clear();
 }
 
 

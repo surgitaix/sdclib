@@ -80,12 +80,18 @@ public:
 	
 	BatteryDescriptor & setCapacityFullCharge(const Measurement & value);
 	Measurement getCapacityFullCharge() const;
+	bool getCapacityFullCharge(Measurement & out) const;
+	bool hasCapacityFullCharge() const;
 
 	BatteryDescriptor & setCapacitySpecified(const Measurement & value);
 	Measurement getCapacitySpecified() const;
+	bool getCapacitySpecified(Measurement & out) const;
+	bool hasCapacitySpecified() const;
 
 	BatteryDescriptor & setVoltageSpecified(const Measurement & value);
 	Measurement getVoltageSpecified() const;
+	bool getVoltageSpecified(Measurement & out) const;
+	bool hasVoltageSpecified() const;
 
 private:
 	std::shared_ptr<CDM::BatteryDescriptor> data;

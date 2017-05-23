@@ -80,7 +80,9 @@ namespace OSCP {
 	class RealTimeSampleArrayMetricDescriptor;
 	class RealTimeSampleArrayMetricState;
 	class RealTimeValueType;
+	class ReferenceRange;
 	class ReferencedVersion;
+	class RelatedMeasurement;
 	class RemedyInfo;
 	class RequestedOrderDetail;
 	class SampleArrayValue;

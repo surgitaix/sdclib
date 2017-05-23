@@ -72,25 +72,25 @@ CauseInfo & CauseInfo:: operator=(const CauseInfo & object) {
 }
 
 
-CauseInfo & CauseInfo::setRemedy(const RemedyInfo & value) {
-	data->Remedy(ConvertToCDM::convert(value));
+CauseInfo & CauseInfo::setRemedyInfo(const RemedyInfo & value) {
+	data->RemedyInfo(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool CauseInfo::getRemedy(RemedyInfo & out) const {
-	if (data->Remedy().present()) {
-		out = ConvertFromCDM::convert(data->Remedy().get());
+bool CauseInfo::getRemedyInfo(RemedyInfo & out) const {
+	if (data->RemedyInfo().present()) {
+		out = ConvertFromCDM::convert(data->RemedyInfo().get());
 		return true;
 	}
 	return false;
 }
 
-RemedyInfo CauseInfo::getRemedy() const {
-	return ConvertFromCDM::convert(data->Remedy().get());
+RemedyInfo CauseInfo::getRemedyInfo() const {
+	return ConvertFromCDM::convert(data->RemedyInfo().get());
 }
 	
-bool CauseInfo::hasRemedy() const {
-	return data->Remedy().present();
+bool CauseInfo::hasRemedyInfo() const {
+	return data->RemedyInfo().present();
 }
 	
 CauseInfo & CauseInfo::addDescription(const LocalizedText & value) {

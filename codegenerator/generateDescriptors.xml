@@ -120,7 +120,7 @@
     <class name = "AllowedValue" parent = "NULL" abstract = "false" >
     	<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 	<property name = "Value" type = "std::string" optional = "false" />
-	<property name = "Type" type = "CodedValue" optional = "false" />
+	<property name = "Type" type = "CodedValue" optional = "true" />
     </class>
 	
     <class name = "MdsDescriptor" parent = "AbstractAlertingDeviceComponentDescriptor" abstract = "false" >
@@ -140,9 +140,9 @@
 
     <class name = "BatteryDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false" >
     	<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-	<property name = "CapacityFullCharge" type = "Measurement" optional = "false" />
-	<property name = "CapacitySpecified" type = "Measurement" optional = "false" />
-	<property name = "VoltageSpecified" type = "Measurement" optional = "false" />
+	<property name = "CapacityFullCharge" type = "Measurement" optional = "true" />
+	<property name = "CapacitySpecified" type = "Measurement" optional = "true" />
+	<property name = "VoltageSpecified" type = "Measurement" optional = "true" />
     </class>
 
     <class name = "Measurement" parent = "AbstractDeviceComponentDescriptor" abstract = "false" >

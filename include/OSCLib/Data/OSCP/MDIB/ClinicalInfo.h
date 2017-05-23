@@ -59,11 +59,11 @@ public:
 	ClinicalInfo & setType(const CodedValue & value);
 	CodedValue getType() const;
 
-	ClinicalInfo & setMeasuredValue(const double & value);
-	double getMeasuredValue() const;
+	ClinicalInfo & setDescription(const LocalizedText & value);
+	LocalizedText getDescription() const;
 
-	ClinicalInfo & addRelatedMeasurement(const Measure & value);
-	std::vector<Measure> getRelatedMeasurements() const;
+	ClinicalInfo & addRelatedMeasurement(const RelatedMeasurement & value);
+	std::vector<RelatedMeasurement> getRelatedMeasurements() const;
 	void clearRelatedMeasurements();
 	
 private:

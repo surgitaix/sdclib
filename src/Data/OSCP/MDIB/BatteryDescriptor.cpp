@@ -170,9 +170,20 @@ BatteryDescriptor & BatteryDescriptor::setCapacityFullCharge(const Measurement &
 	return *this;
 }
 
+bool BatteryDescriptor::getCapacityFullCharge(Measurement & out) const {
+	if (data->CapacityFullCharge().present()) {
+		out = ConvertFromCDM::convert(data->CapacityFullCharge().get());
+		return true;
+	}
+	return false;
+}
 
 Measurement BatteryDescriptor::getCapacityFullCharge() const {
-	return ConvertFromCDM::convert(data->CapacityFullCharge());
+	return ConvertFromCDM::convert(data->CapacityFullCharge().get());
+}
+	
+bool BatteryDescriptor::hasCapacityFullCharge() const {
+	return data->CapacityFullCharge().present();
 }
 	
 BatteryDescriptor & BatteryDescriptor::setCapacitySpecified(const Measurement & value) {
@@ -180,9 +191,20 @@ BatteryDescriptor & BatteryDescriptor::setCapacitySpecified(const Measurement & 
 	return *this;
 }
 
+bool BatteryDescriptor::getCapacitySpecified(Measurement & out) const {
+	if (data->CapacitySpecified().present()) {
+		out = ConvertFromCDM::convert(data->CapacitySpecified().get());
+		return true;
+	}
+	return false;
+}
 
 Measurement BatteryDescriptor::getCapacitySpecified() const {
-	return ConvertFromCDM::convert(data->CapacitySpecified());
+	return ConvertFromCDM::convert(data->CapacitySpecified().get());
+}
+	
+bool BatteryDescriptor::hasCapacitySpecified() const {
+	return data->CapacitySpecified().present();
 }
 	
 BatteryDescriptor & BatteryDescriptor::setVoltageSpecified(const Measurement & value) {
@@ -190,9 +212,20 @@ BatteryDescriptor & BatteryDescriptor::setVoltageSpecified(const Measurement & v
 	return *this;
 }
 
+bool BatteryDescriptor::getVoltageSpecified(Measurement & out) const {
+	if (data->VoltageSpecified().present()) {
+		out = ConvertFromCDM::convert(data->VoltageSpecified().get());
+		return true;
+	}
+	return false;
+}
 
 Measurement BatteryDescriptor::getVoltageSpecified() const {
-	return ConvertFromCDM::convert(data->VoltageSpecified());
+	return ConvertFromCDM::convert(data->VoltageSpecified().get());
+}
+	
+bool BatteryDescriptor::hasVoltageSpecified() const {
+	return data->VoltageSpecified().present();
 }
 	
 

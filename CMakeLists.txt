@@ -92,7 +92,6 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/ClockDescriptor.cpp
 ./src/Data/OSCP/MDIB/ClockState.cpp
 ./src/Data/OSCP/MDIB/CodedValue.cpp
-./src/Data/OSCP/MDIB/ComponentState.cpp
 ./src/Data/OSCP/MDIB/custom/ConvertFromCDM.cpp
 ./src/Data/OSCP/MDIB/custom/ConvertToCDM.cpp
 ./src/Data/OSCP/MDIB/DateTime.cpp
@@ -147,7 +146,9 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/Range.cpp
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.cpp
+./src/Data/OSCP/MDIB/ReferenceRange.cpp
 ./src/Data/OSCP/MDIB/ReferencedVersion.cpp
+./src/Data/OSCP/MDIB/RelatedMeasurement.cpp
 ./src/Data/OSCP/MDIB/RemedyInfo.cpp
 ./src/Data/OSCP/MDIB/RequestedOrderDetail.cpp
 ./src/Data/OSCP/MDIB/RealTimeValueType.cpp

@@ -40,6 +40,7 @@ public:
 	static AlertConditionState convert(const CDM::AlertConditionState & source);
 	static AlertSignalDescriptor convert(const CDM::AlertSignalDescriptor & source);
 	static AlertSignalManifestation convert(const CDM::AlertSignalManifestation & source);
+	static AlertSignalPrimaryLocation convert(const CDM::AlertSignalPrimaryLocation & source);
 	static AlertSignalState convert(const CDM::AlertSignalState & source);
 	static AlertSystemDescriptor convert(const CDM::AlertSystemDescriptor & source);
 	static AlertSystemState convert(const CDM::AlertSystemState & source);
@@ -104,13 +105,14 @@ public:
 	static PerformedOrderDetail convert(const CDM::PerformedOrderDetail & source);
 	static PersonParticipation convert(const CDM::PersonParticipation & source);
 	static PersonReference convert(const CDM::PersonReference & source);
-	static AlertSignalPrimaryLocation convert(const CDM::AlertSignalPrimaryLocation & source);
 	static ProductionSpecification convert(const CDM::ProductionSpecification & source);
 	static Range convert(const CDM::Range & source);
 	static RealTimeSampleArrayMetricDescriptor convert(const CDM::RealTimeSampleArrayMetricDescriptor & source);
 	static RealTimeSampleArrayMetricState convert(const CDM::RealTimeSampleArrayMetricState & source);
 	static SampleArrayValue convert(const CDM::SampleArrayValue  & source);
+	static ReferenceRange convert(const CDM::ReferenceRange & source);
 	static ReferencedVersion convert(const CDM::ReferencedVersion & source);
+	static RelatedMeasurement convert(const CDM::RelatedMeasurement);
 	static RemedyInfo convert(const CDM::RemedyInfo & source);
 	static RequestedOrderDetail convert(const CDM::RequestedOrderDetail & source);
 	static RealTimeValueType convert(const CDM::RealTimeValueType & source);

@@ -36,7 +36,8 @@
     </class>
 
    	<class name = "CalibrationInfo" parent = "NULL" abstract = "false" >
-   		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "false" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Timestamp.h" />
+   		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "true" />
    		<property name = "Time" type = "Timestamp" optional = "true" />
    		<property name = "Type" type = "CalibrationType" optional = "true" />
     </class>
@@ -44,17 +45,33 @@
    	<class name = "CauseInfo" parent = "NULL" abstract = "false" >
    		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
    		<include path = "OSCLib/Data/OSCP/MDIB/RemedyInfo.h" />
-   		<property name = "Remedy" type = "RemedyInfo" optional = "true" />
+   		<property name = "RemedyInfo" type = "RemedyInfo" optional = "true" />
 		<propertyList nameSingle = "Description" nameSeveral = "Descriptions" type = "LocalizedText" />
     </class>
    
-	<class name = "ClinicalInfo" parent = "NULL" abstract = "false" >
+    <class name = "ClinicalInfo" parent = "NULL" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measure.h" />
+   		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+   		<include path = "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h" />
 		<property name = "Type" type = "CodedValue" optional = "false" />
-		<propertyList nameSingle = "RelatedMeasurement" nameSeveral = "RelatedMeasurements" type = "Measure" />
-		<property name = "MeasuredValue" type = "double" optional = "false" />
+		<property name = "Description" type = "LocalizedText" optional = "false" />
+		<propertyList nameSingle = "RelatedMeasurement" nameSeveral = "RelatedMeasurements" type = "RelatedMeasurement" />
     </class>
+
+    <class name = "RelatedMeasurement" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/ReferenceRange.h" />
+		<property name = "Value" type = "Measurement" optional = "true" />
+		<propertyList nameSingle = "ReferenceRange" nameSeveral = "ReferenceRanges" type = "ReferenceRange" />
+    </class>
+
+    <class name = "ReferenceRange" parent = "NULL" abstract = "false" >
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<property name = "Range" type = "Range" optional = "true" />
+		<property name = "Meaning" type = "CodedValue" optional = "true" />
+    </class>
+
 	
     <class name = "CodedValue" parent = "NULL" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />

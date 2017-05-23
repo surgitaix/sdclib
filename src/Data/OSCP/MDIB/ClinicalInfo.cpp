@@ -37,7 +37,8 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Measure.h"
+#include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
+#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h"
 
 namespace OSCLib {
 namespace Data {
@@ -82,23 +83,23 @@ CodedValue ClinicalInfo::getType() const {
 	return ConvertFromCDM::convert(data->Type());
 }
 	
-ClinicalInfo & ClinicalInfo::setMeasuredValue(const double & value) {
-	data->MeasuredValue(ConvertToCDM::convert(value));
+ClinicalInfo & ClinicalInfo::setDescription(const LocalizedText & value) {
+	data->Description(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-double ClinicalInfo::getMeasuredValue() const {
-	return ConvertFromCDM::convert(data->MeasuredValue());
+LocalizedText ClinicalInfo::getDescription() const {
+	return ConvertFromCDM::convert(data->Description());
 }
 	
-ClinicalInfo & ClinicalInfo::addRelatedMeasurement(const Measure & value) {
+ClinicalInfo & ClinicalInfo::addRelatedMeasurement(const RelatedMeasurement & value) {
 	data->RelatedMeasurement().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<Measure> ClinicalInfo::getRelatedMeasurements() const {
-	std::vector<Measure> result;
+std::vector<RelatedMeasurement> ClinicalInfo::getRelatedMeasurements() const {
+	std::vector<RelatedMeasurement> result;
 	result.reserve(data->RelatedMeasurement().size());
 	for (const auto & value: data->RelatedMeasurement()) {
 		result.push_back(ConvertFromCDM::convert(value));

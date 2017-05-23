@@ -15,7 +15,7 @@
   */
 
 /*
- *  CauseInfo.h
+ *  ReferenceRange.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef CAUSEINFO_H_
-#define CAUSEINFO_H_
+#ifndef REFERENCERANGE_H_
+#define REFERENCERANGE_H_
 
 #include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,36 +40,37 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class CauseInfo {
+class ReferenceRange {
 private:
-	CauseInfo(const CDM::CauseInfo & object);
-	operator CDM::CauseInfo() const;
+	ReferenceRange(const CDM::ReferenceRange & object);
+	operator CDM::ReferenceRange() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	CauseInfo();
-	CauseInfo(const CauseInfo & object);
-	virtual ~CauseInfo();
+	ReferenceRange();
+	ReferenceRange(const ReferenceRange & object);
+	virtual ~ReferenceRange();
     
-    void copyFrom(const CauseInfo & object);
-    CauseInfo & operator=(const CauseInfo & object);
+    void copyFrom(const ReferenceRange & object);
+    ReferenceRange & operator=(const ReferenceRange & object);
     
-    typedef CDM::CauseInfo WrappedType;
+    typedef CDM::ReferenceRange WrappedType;
 
-	CauseInfo & setRemedyInfo(const RemedyInfo & value);
-	RemedyInfo getRemedyInfo() const;
-	bool getRemedyInfo(RemedyInfo & out) const;
-	bool hasRemedyInfo() const;
+	ReferenceRange & setRange(const Range & value);
+	Range getRange() const;
+	bool getRange(Range & out) const;
+	bool hasRange() const;
 
-	CauseInfo & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptions() const;
-	void clearDescriptions();
-	
+	ReferenceRange & setMeaning(const CodedValue & value);
+	CodedValue getMeaning() const;
+	bool getMeaning(CodedValue & out) const;
+	bool hasMeaning() const;
+
 private:
-	std::shared_ptr<CDM::CauseInfo> data;
+	std::shared_ptr<CDM::ReferenceRange> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* CAUSEINFO_H_ */
+#endif /* REFERENCERANGE_H_ */
