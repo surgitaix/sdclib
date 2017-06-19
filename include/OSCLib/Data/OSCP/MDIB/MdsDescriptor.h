@@ -88,8 +88,8 @@ public:
 	bool getMetaData(MetaData & out) const;
 	bool hasMetaData() const;
 
-	MdsDescriptor & setContext(const SystemContext & value);
-	SystemContext getContext() const;
+	MdsDescriptor & setContext(const SystemContextDescriptor & value);
+	SystemContextDescriptor getContext() const;
 
 	MdsDescriptor & setClock(const ClockDescriptor & value);
 	ClockDescriptor getClock() const;
@@ -106,8 +106,8 @@ public:
 	bool getBattery(BatteryDescriptor & out) const;
 	bool hasBattery() const;
 
-	MdsDescriptor & addVMD(const VMDDescriptor & value);
-	std::vector<VMDDescriptor> getVMDs() const;
+	MdsDescriptor & addVMD(const VmdDescriptor & value);
+	std::vector<VmdDescriptor> getVMDs() const;
 	void clearVMDs();
 	
 private:

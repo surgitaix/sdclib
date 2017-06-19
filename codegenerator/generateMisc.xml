@@ -53,8 +53,8 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
    		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
    		<include path = "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h" />
-		<property name = "Type" type = "CodedValue" optional = "false" />
-		<property name = "Description" type = "LocalizedText" optional = "false" />
+		<property name = "Type" type = "CodedValue" optional = "true" />
+		<propertyList nameSingle = "Description" nameSeveral = "Descriptions" type = "LocalizedText" />
 		<propertyList nameSingle = "RelatedMeasurement" nameSeveral = "RelatedMeasurements" type = "RelatedMeasurement" />
     </class>
 
@@ -75,14 +75,17 @@
 	
     <class name = "CodedValue" parent = "NULL" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<property name = "CodingSystemId" type = "std::string" optional = "true" />
 		<propertyList nameSingle = "CodingSystemName" nameSeveral = "CodingSystemNames" type = "LocalizedText" />
-		<property name = "VersionId" type = "std::string" optional = "true" />
-    	<property name = "CodeId" type = "std::string" optional = "false" />
-    	<propertyList nameSingle = "ConceptDescription" nameSeveral = "ConceptDescriptions" type = "LocalizedText" />
+    		<propertyList nameSingle = "ConceptDescription" nameSeveral = "ConceptDescriptions" type = "LocalizedText" />
+		<propertyList nameSingle = "Translation" nameSeveral = "Translations" type = "CodedValue" />
+	    	<property name = "Code" type = "std::string" optional = "false" />
+		<property name = "CodingSystem" type = "std::string" optional = "true" />
+		<property name = "CodingSystemVersion" type = "std::string" optional = "true" />
+		<property name = "SymbolicCodeName" type = "std::string" optional = "true" />
     </class>
 
-	<class name = "DateTime" parent = "NULL" abstract = "false" >
+
+    <class name = "DateTime" parent = "NULL" abstract = "false" >
     	<property name = "year" type = "int" optional = "false" />
     	<property name = "month" type = "unsigned short" optional = "false" />
     	<property name = "day" type = "unsigned short" optional = "false" />

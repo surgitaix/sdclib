@@ -56,18 +56,23 @@ public:
     
     typedef CDM::CodedValue WrappedType;
 
-	CodedValue & setCodingSystemId(const std::string & value);
-	std::string getCodingSystemId() const;
-	bool getCodingSystemId(std::string & out) const;
-	bool hasCodingSystemId() const;
+	CodedValue & setCode(const std::string & value);
+	std::string getCode() const;
 
-	CodedValue & setVersionId(const std::string & value);
-	std::string getVersionId() const;
-	bool getVersionId(std::string & out) const;
-	bool hasVersionId() const;
+	CodedValue & setCodingSystem(const std::string & value);
+	std::string getCodingSystem() const;
+	bool getCodingSystem(std::string & out) const;
+	bool hasCodingSystem() const;
 
-	CodedValue & setCodeId(const std::string & value);
-	std::string getCodeId() const;
+	CodedValue & setCodingSystemVersion(const std::string & value);
+	std::string getCodingSystemVersion() const;
+	bool getCodingSystemVersion(std::string & out) const;
+	bool hasCodingSystemVersion() const;
+
+	CodedValue & setSymbolicCodeName(const std::string & value);
+	std::string getSymbolicCodeName() const;
+	bool getSymbolicCodeName(std::string & out) const;
+	bool hasSymbolicCodeName() const;
 
 	CodedValue & addCodingSystemName(const LocalizedText & value);
 	std::vector<LocalizedText> getCodingSystemNames() const;
@@ -76,6 +81,10 @@ public:
 	CodedValue & addConceptDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getConceptDescriptions() const;
 	void clearConceptDescriptions();
+	
+	CodedValue & addTranslation(const CodedValue & value);
+	std::vector<CodedValue> getTranslations() const;
+	void clearTranslations();
 	
 private:
 	std::shared_ptr<CDM::CodedValue> data;

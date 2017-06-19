@@ -37,11 +37,12 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SCODescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
@@ -213,13 +214,13 @@ bool MdsDescriptor::hasMetaData() const {
 	return data->MetaData().present();
 }
 	
-MdsDescriptor & MdsDescriptor::setContext(const SystemContext & value) {
+MdsDescriptor & MdsDescriptor::setContext(const SystemContextDescriptor & value) {
 	data->Context(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-SystemContext MdsDescriptor::getContext() const {
+SystemContextDescriptor MdsDescriptor::getContext() const {
 	return ConvertFromCDM::convert(data->Context());
 }
 	
@@ -286,13 +287,13 @@ bool MdsDescriptor::hasBattery() const {
 	return data->Battery().present();
 }
 	
-MdsDescriptor & MdsDescriptor::addVMD(const VMDDescriptor & value) {
+MdsDescriptor & MdsDescriptor::addVMD(const VmdDescriptor & value) {
 	data->VMD().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<VMDDescriptor> MdsDescriptor::getVMDs() const {
-	std::vector<VMDDescriptor> result;
+std::vector<VmdDescriptor> MdsDescriptor::getVMDs() const {
+	std::vector<VmdDescriptor> result;
 	result.reserve(data->VMD().size());
 	for (const auto & value: data->VMD()) {
 		result.push_back(ConvertFromCDM::convert(value));

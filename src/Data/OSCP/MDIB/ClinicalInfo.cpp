@@ -78,21 +78,40 @@ ClinicalInfo & ClinicalInfo::setType(const CodedValue & value) {
 	return *this;
 }
 
+bool ClinicalInfo::getType(CodedValue & out) const {
+	if (data->Type().present()) {
+		out = ConvertFromCDM::convert(data->Type().get());
+		return true;
+	}
+	return false;
+}
 
 CodedValue ClinicalInfo::getType() const {
-	return ConvertFromCDM::convert(data->Type());
+	return ConvertFromCDM::convert(data->Type().get());
 }
 	
-ClinicalInfo & ClinicalInfo::setDescription(const LocalizedText & value) {
-	data->Description(ConvertToCDM::convert(value));
+bool ClinicalInfo::hasType() const {
+	return data->Type().present();
+}
+	
+ClinicalInfo & ClinicalInfo::addDescription(const LocalizedText & value) {
+	data->Description().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-
-LocalizedText ClinicalInfo::getDescription() const {
-	return ConvertFromCDM::convert(data->Description());
+std::vector<LocalizedText> ClinicalInfo::getDescriptions() const {
+	std::vector<LocalizedText> result;
+	result.reserve(data->Description().size());
+	for (const auto & value: data->Description()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
 }
-	
+
+void ClinicalInfo::clearDescriptions() {
+	data->Description().clear();
+}
+
 ClinicalInfo & ClinicalInfo::addRelatedMeasurement(const RelatedMeasurement & value) {
 	data->RelatedMeasurement().push_back(ConvertToCDM::convert(value));
 	return *this;

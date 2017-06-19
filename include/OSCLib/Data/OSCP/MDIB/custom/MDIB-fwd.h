@@ -28,6 +28,7 @@ namespace OSCP {
 	class ApplyAnnotation;
 	class Base64Binary;
 	class BaseDemographics;
+	class BatteryDescriptor;
 	class CauseInfo;
 	class CalibrationInfo;
 	class ChannelDescriptor;
