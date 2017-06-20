@@ -3,7 +3,7 @@
 ## HowTo build
 
 ### Essential requirements
-- Linux: GCC, pthread
+- Linux: GCC (> 4.8), pthread, Cmake (> 2.8)
 - Supported compilers: GCC, LLVM, MSVC++
 
 ### Additional dependecies: 
