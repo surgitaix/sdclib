@@ -69,6 +69,7 @@ ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/ActivateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/ActivateOperationState.cpp
 ./src/Data/OSCP/MDIB/AlertConditionDescriptor.cpp
 ./src/Data/OSCP/MDIB/AlertConditionReference.cpp
 ./src/Data/OSCP/MDIB/custom/AlertConditionReferenceCustomImpl.cxx
@@ -116,6 +117,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/LocalizedText.cpp
 ./src/Data/OSCP/MDIB/LocationContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/LocationContextState.cpp
+./src/Data/OSCP/MDIB/LocationDetail.cpp
 ./src/Data/OSCP/MDIB/LocationReference.cpp
 ./src/Data/OSCP/MDIB/MdDescription.cpp
 ./src/Data/OSCP/MDIB/custom/MdDescriptionCustomImpl.cxx
@@ -157,7 +159,13 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/ScoDescriptor.cpp
 ./src/Data/OSCP/MDIB/custom/ScoDescriptorCustomImpl.cxx
 ./src/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetAlertStateOperationState.cpp
+./src/Data/OSCP/MDIB/SetComponentStateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetComponentStateOperationState.cpp
 ./src/Data/OSCP/MDIB/SetContextStateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetContextStateOperationState.cpp
+./src/Data/OSCP/MDIB/SetMetricStateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetMetricStateOperationState.cpp
 ./src/Data/OSCP/MDIB/SetStringOperationDescriptor.cpp
 ./src/Data/OSCP/MDIB/SetValueOperationDescriptor.cpp
 ./src/Data/OSCP/MDIB/StringMetricDescriptor.cpp

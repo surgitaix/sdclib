@@ -17,6 +17,7 @@ namespace OSCP {
 
 	// classes, that are generated
 	class ActivateOperationDescriptor;
+	class ActivateOperationState;
 	class AlertConditionDescriptor;
 	class AlertConditionReference;
 	class AlertConditionState;
@@ -89,7 +90,13 @@ namespace OSCP {
 	class SampleArrayValue;
 	class ScoDescriptor;
 	class SetAlertStateOperationDescriptor;
+	class SetAlertStateOperationState;
+	class SetComponentStateOperationDescriptor;
+	class SetComponentStateOperationState;
 	class SetContextStateOperationDescriptor;
+	class SetContextStateOperationState;
+	class SetMetricStateOperationDescriptor;
+	class SetMetricStateOperationState;
 	class SetStringOperationDescriptor;
 	class SetValueOperationDescriptor;
 	class StringMetricDescriptor;

@@ -5,6 +5,7 @@
  *      Author: roehser
  */
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ActivateOperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionReference.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
@@ -45,6 +46,14 @@
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/MdState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetComponentStateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetComponentStateOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetMetricStateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetMetricStateOperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetValueOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
@@ -81,7 +90,7 @@ ConvertFromCDM::~ConvertFromCDM() {
 bool ConvertFromCDM::convert(const bool & source) {
 	return source;
 }
-
+SetMetricStateOperationDescriptor
 double ConvertFromCDM::convert(const double & source) {
 	return source;
 }
@@ -120,6 +129,10 @@ Activation ConvertFromCDM::convert(const CDM::Activation & source) {
 
 ActivateOperationDescriptor ConvertFromCDM::convert(const CDM::ActivateOperationDescriptor & source) {
 	return ActivateOperationDescriptor(source);
+}
+
+ActiveOperationState ConvertFromCDM::convert(const CDM::ActivateOperationState & source) {
+	return ActiveOperationState(source);
 }
 
 AlertActivation ConvertFromCDM::convert(const CDM::AlertActivation & source) {
@@ -612,8 +625,33 @@ SetAlertStateOperationDescriptor ConvertFromCDM::convert(const CDM::SetAlertStat
 	return SetAlertStateOperationDescriptor(source);
 }
 
+SetAlertStateOperationState ConvertFromCDM::convert(const CDM::SetAlertStateOperationState & source) {
+	return SetAlertStateOperationState(source);
+}
+
+SetComponentStateOperationDescriptor ConvertFromCDM::convert(const CDM::SetComponentStateOperationDescriptor & source) {
+	return SetComponentStateOperationDescriptor(source);
+}
+
+SetComponentStateOperationState ConvertFromCDM::convert(const CDM::SetComponentStateOperationState & source) {
+	return SetComponentStateOperationState(source);
+}
+
+
 SetContextOperationDescriptor ConvertFromCDM::convert(const CDM::SetContextOperationDescriptor & source) {
 	return SetContextOperationDescriptor(source);
+}
+
+SetContextStateOperationState ConvertFromCDM::convert(const CDM::SetContextStateOperationState & source) {
+	return SetContextStateOperationState(source);
+}
+
+SetMetricStateOperationDescriptor ConvertFromCDM::convert(const CDM::SetMetricStateOperationDescriptor & source) {
+	return SetMetricStateOperationDescriptor(source);
+}
+
+SetMetricStateOperationState ConvertFromCDM::convert(const CDM::SetMetricStateOperationState & source) {
+	return SetMetricStateOperationState(source);
 }
 
 SetStringOperationDescriptor ConvertFromCDM::convert(const CDM::SetStringOperationDescriptor & source) {

@@ -1,10 +1,10 @@
 
-	template <class MDSDescriptor>
-	void addMDSDescriptor(const MDSDescriptor & source);
-	template <class MDSDescriptor>
-	bool removeMDSDescriptor(const MDSDescriptor & object);
+	template <class MdsDescriptor>
+	void addMDSDescriptor(const MdsDescriptor & source);
+	template <class MdsDescriptor>
+	bool removeMDSDescriptor(const MdsDescriptor & object);
 
-	bool getFirstHydraMDSDescriptor(HydraMDSDescriptor & outDescriptor) const;
+	bool getFirstHydraMDSDescriptor(MdsDescriptor & outDescriptor) const;
 
 	bool findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const;
@@ -13,7 +13,7 @@
 	bool findDescriptor(const std::string & handle, ClockDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, EnsembleContextDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, EnumStringMetricDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, HydraMDSDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, MdsDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, LimitAlertConditionDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, LocationContextDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, NumericMetricDescriptor & outDescriptor) const;
@@ -21,7 +21,7 @@
 	bool findDescriptor(const std::string & handle, PatientContextDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, VMDDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, VmdDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, WorkflowContextDescriptor & outDescriptor) const;
 
 	std::string getOperationTargetForOperationHandle(const std::string & operationHandle) const;
@@ -34,13 +34,13 @@
 
 	std::vector<ChannelDescriptor> collectAllChannelDescriptors() const;
 	std::vector<ClockDescriptor> collectAllClockDescriptors() const;
-	std::vector<DICOMDeviceDescriptor> collectAllDICOMDeviceDescriptors() const;
+	std::vector<DicomDeviceDescriptor> collectAllDICOMDeviceDescriptors() const;
 	std::vector<EnumStringMetricDescriptor> collectAllEnumStringMetricDescriptors() const;
-	std::vector<HydraMDSDescriptor> collectAllHydraMDSDescriptors() const;
+	std::vector<MdsDescriptor> collectAllHydraMDSDescriptors() const;
 	std::vector<NumericMetricDescriptor> collectAllNumericMetricDescriptors() const;
 	std::vector<RealTimeSampleArrayMetricDescriptor> collectAllRealTimeSampleArrayMetricDescriptors() const;
 	std::vector<StringMetricDescriptor> collectAllStringMetricDescriptors() const;
-	std::vector<VMDDescriptor> collectAllVMDDescriptors() const;
+	std::vector<VmdDescriptor> collectAllVMDDescriptors() const;
 
 private:
 	template <class WrapperMetricDescriptorType>

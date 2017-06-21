@@ -38,7 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/DateTime.h"
-#include "OSCLib/Data/OSCP/MDIB/Measure.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 
 namespace OSCLib {
 namespace Data {
@@ -238,12 +238,12 @@ bool PatientDemographicsCoreData::hasDateOfBirth() const {
 	return data->DateOfBirth().present();
 }
 	
-PatientDemographicsCoreData & PatientDemographicsCoreData::setHeight(const Measure & value) {
+PatientDemographicsCoreData & PatientDemographicsCoreData::setHeight(const Measurement & value) {
 	data->Height(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool PatientDemographicsCoreData::getHeight(Measure & out) const {
+bool PatientDemographicsCoreData::getHeight(Measurement & out) const {
 	if (data->Height().present()) {
 		out = ConvertFromCDM::convert(data->Height().get());
 		return true;
@@ -251,7 +251,7 @@ bool PatientDemographicsCoreData::getHeight(Measure & out) const {
 	return false;
 }
 
-Measure PatientDemographicsCoreData::getHeight() const {
+Measurement PatientDemographicsCoreData::getHeight() const {
 	return ConvertFromCDM::convert(data->Height().get());
 }
 	

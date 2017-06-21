@@ -187,7 +187,6 @@
 
     <class name = "RealTimeSampleArrayMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
     	<include path = "OSCLib/Data/OSCP/MDIB/Duration.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measure.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<typedef name = "StateType" type = "RealTimeSampleArrayMetricState" />
 		<property name = "SamplePeriod" type = "Duration" optional = "false" />
@@ -205,6 +204,11 @@
     <class name = "SetContextStateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false" >
     </class>
 
+    <class name = "SetMetricStateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false" >
+    </class>
+
+    <class name = "SetComponentStateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false" >
+    </class>
 
     <class name = "SetStringOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "false" >
     </class>

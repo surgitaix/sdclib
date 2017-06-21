@@ -199,6 +199,15 @@
     	<propertyList nameSingle = "ResultingClinicalInfo" nameSeveral="ResultingClinicalInfos" type = "ClinicalInfo" optional = "true" />
     </class>
 
+    <class name = "LocationDetail" parent = "NULL" abstract = "false" >
+    	<property name = "PoC" type = "std::string" optional = "true" />
+    	<property name = "Room" type = "std::string" optional = "true" />
+    	<property name = "Bed" type = "std::string" optional = "true" />
+    	<property name = "Facility" type = "std::string" optional = "true" />
+    	<property name = "Building" type = "std::string" optional = "true" />
+    	<property name = "Floor" type = "std::string" optional = "true" />
+    </class>
+
     <class name = "LocationReference" parent = "NULL" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocationDetail.h" />
@@ -220,11 +229,11 @@
 	<class name = "PatientDemographicsCoreData" parent = "BaseDemographics" abstract = "false" >
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/DateTime.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measure.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<property name = "Sex" type = "Sex" optional = "true" />
 		<property name = "PatientType" type = "PatientType" optional = "true" />
 		<property name = "DateOfBirth" type = "DateTime" optional = "true" />
-		<property name = "Height" type = "Measure" optional = "true" />
+		<property name = "Height" type = "Measurement" optional = "true" />
 		<property name = "Weight" type = "Measure" optional = "true" />
 		<property name = "Race" type = "CodedValue" optional = "true" />
     </class>

@@ -23,6 +23,7 @@ public:
 	virtual ~Defaults();
 
 	static CDM::ActivateOperationDescriptor * ActivateOperationDescriptor();
+	static CDM::ActivateOperationState* ActivateOperationState();
 	static CDM::AlertConditionDescriptor * AlertConditionDescriptor();
 	static CDM::AlertConditionReference * AlertConditionReference();
 	static CDM::AlertConditionState * AlertConditionState();

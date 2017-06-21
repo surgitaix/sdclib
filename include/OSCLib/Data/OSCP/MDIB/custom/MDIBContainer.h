@@ -37,14 +37,14 @@ public:
     MDIBContainer();
     virtual ~MDIBContainer();
 
-    void setMDDescription(const MDDescription & mdd);
-    MDDescription getMDDescription() const;
-    void setMDState(const MDState & mds);
-    MDState getMDState() const;
+    void setMDDescription(const MdDescription & mdd);
+    MdDescription getMDDescription() const;
+    void setMDState(const MdState & mds);
+    MdState getMDState() const;
     void setMDIBVersion(const unsigned long long int version);
     unsigned long long int getMDIBVersion() const;
 
-    typedef CDM::MDIB WrappedType;
+    typedef CDM::Mdib WrappedType;
 
 	bool findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const;
@@ -62,8 +62,8 @@ public:
 	bool findState(const std::string & handle, StringMetricState & outState) const;
 
 private:
-    std::shared_ptr<MDDescription> mddescription;
-    std::shared_ptr<MDState> mdstate;
+    std::shared_ptr<MdDescription> mddescription;
+    std::shared_ptr<MdState> mdstate;
     unsigned long long int mdibVersion;
 };
 

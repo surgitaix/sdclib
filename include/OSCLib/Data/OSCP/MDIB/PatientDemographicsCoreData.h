@@ -95,9 +95,9 @@ public:
 	bool getDateOfBirth(DateTime & out) const;
 	bool hasDateOfBirth() const;
 
-	PatientDemographicsCoreData & setHeight(const Measure & value);
-	Measure getHeight() const;
-	bool getHeight(Measure & out) const;
+	PatientDemographicsCoreData & setHeight(const Measurement & value);
+	Measurement getHeight() const;
+	bool getHeight(Measurement & out) const;
 	bool hasHeight() const;
 
 	PatientDemographicsCoreData & setWeight(const Measure & value);

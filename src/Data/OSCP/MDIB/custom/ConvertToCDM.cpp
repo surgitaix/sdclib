@@ -48,7 +48,7 @@
 #include "OSCLib/Data/OSCP/MDIB/custom/MDIBContainer.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/MdState.h"
-#include "OSCLib/Data/OSCP/MDIB/Measure.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/MeasurementState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"

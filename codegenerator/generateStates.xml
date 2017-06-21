@@ -151,6 +151,25 @@
     <class name = "AbstractOperationState" parent = "AbstractState" abstract = "true" >
     	<property name = "OperatingMode" type = "OperatingMode" optional = "false" />
     </class>
+
+
+    <class name = "ActivateOperationState" parent = "AbstractOperationState" abstract = "false" >
+    </class>
+
+    <class name = "SetContextStateOperationState" parent = "AbstractOperationState" abstract = "false" >
+    </class>
+
+    <class name = "SetMetricStateOperationState" parent = "AbstractOperationState" abstract = "false" >
+    </class>
+
+    <class name = "SetComponentStateOperationState" parent = "AbstractOperationState" abstract = "false" >
+    </class>
+
+
+
+    <class name = "SetAlertStateOperationState" parent = "AbstractOperationState" abstract = "false" >
+    </class>
+
     
     <class name = "OperatorContextState" parent = "AbstractIdentifiableContextState" abstract = "false" >
     	<typedef name = "DescriptorType" type = "OperatorContextDescriptor" />

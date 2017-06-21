@@ -31,6 +31,7 @@ public:
 	static std::string convert(const std::string & source);
 
 	static ActivateOperationDescriptor convert(const CDM::ActivateOperationDescriptor & source);
+	static ActivateOperationState convert(const CDM::ActivateOperationState & source);
 	static AlertActivation convert(const CDM::AlertActivation & source);
 	static AlertConditionDescriptor convert(const CDM::AlertConditionDescriptor & source);
 	static AlertConditionKind convert(const CDM::AlertConditionKind & source);
@@ -119,7 +120,13 @@ public:
 	static SafetyClassification convert(const CDM::SafetyClassification & source);
 	static ScoDescriptor convert(const CDM::ScoDescriptor & source);
 	static SetAlertStateOperationDescriptor convert(const CDM::SetAlertStateOperationDescriptor & source);
+	static SetAlertStateOperationState convert(const CDM::SetAlertStateOperationState & source);
+	static SetComponentStateOperationDescriptor convert(const CDM::SetComponentStateOperationDescriptor & source);
+	static SetComponentStateOperationState convert(const CDM::SetComponentStateOperationState & source);
 	static SetContextStateOperationDescriptor convert(const CDM::SetContextStateOperationDescriptor & source);
+	static SetContextStateOperationState convert(const CDM::SetContextStateOperationState & source);
+	static SetMetricStateOperationDescriptor convert(const CDM::SetMetricStateOperationDescriptor & source);
+	static SetMetricStateOperationState convert(const CDM::SetMetricStateOperationState & source);
 	static SetStringOperationDescriptor convert(const CDM::SetStringOperationDescriptor & source);
 	static SetValueOperationDescriptor convert(const CDM::SetValueOperationDescriptor & source);
 	static Sex convert(const CDM::Sex & source);
