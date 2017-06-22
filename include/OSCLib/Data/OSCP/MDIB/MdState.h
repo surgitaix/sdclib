@@ -107,7 +107,6 @@ public:
     MdState & addState(const LimitAlertConditionState & source);
     MdState & addState(const MdsState & source);
     MdState & addState(const NumericMetricState & source);
-    MdState & addState(const OperationState & source);
     MdState & addState(const OperatorContextState & source);
     MdState & addState(const PatientContextState & source);
     MdState & addState(const RealTimeSampleArrayMetricState & source);

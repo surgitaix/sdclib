@@ -161,7 +161,8 @@
     	<property name = "MeasurementUnit" type = "CodedValue" optional = "false" />
     	<property name = "MeasuredValue" type = "double" optional = "true" />
     </class>
-    
+
+
     <class name = "NumericMetricValue" parent = "AbstractMetricValue" abstract = "false" >
     	<property name = "Value" type = "double" optional = "true" />
     </class>

@@ -90,7 +90,7 @@ ConvertFromCDM::~ConvertFromCDM() {
 bool ConvertFromCDM::convert(const bool & source) {
 	return source;
 }
-SetMetricStateOperationDescriptor
+
 double ConvertFromCDM::convert(const double & source) {
 	return source;
 }

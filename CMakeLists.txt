@@ -126,7 +126,6 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/custom/MdStateCustomImpl.cxx
 ./src/Data/OSCP/MDIB/MeansContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/Measurement.cpp
-./src/Data/OSCP/MDIB/MeasurementState.cpp
 ./src/Data/OSCP/MDIB/MetaData.cpp
 ./src/Data/OSCP/MDIB/NumericMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/NumericMetricState.cpp

@@ -30,6 +30,7 @@ public:
 	static long long convert(const long long & source);
 	static std::string convert(const std::string & source);
 
+	// Atogenerated here ----
 	static ActivateOperationDescriptor convert(const CDM::ActivateOperationDescriptor & source);
 	static ActivateOperationState convert(const CDM::ActivateOperationState & source);
 	static AlertActivation convert(const CDM::AlertActivation & source);

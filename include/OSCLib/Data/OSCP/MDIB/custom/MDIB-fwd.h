@@ -49,8 +49,6 @@ namespace OSCP {
 	class EnumStringMetricDescriptor;
 	class EnumStringMetricState;
 	class InstanceIdentifier;
-	class MdsDescriptor;
-	class MdsState;
 	class ImagingProcedure;
 	class Language;
 	class LimitAlertConditionDescriptor;
@@ -58,11 +56,15 @@ namespace OSCP {
 	class LocalizedText;
 	class LocationContextDescriptor;
 	class LocationContextState;
+	class LocationDetail;
 	class LocationReference;
 	class MdDescription;
+	class MdsDescriptor;
 	class MdState;
+	class MdsState;
 	class MeansContextDescriptor;
 	class Measurement;
+	class MetricQuality;
 	class NumericMetricDescriptor;
 	class NumericMetricState;
 	class NumericMetricValue;
