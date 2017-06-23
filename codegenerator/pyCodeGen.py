@@ -14,6 +14,7 @@ from io import StringIO, BytesIO
 
 # typedefs
 class CppTypdefStringBuilder(object):
+    
     def __init__(self):
         ## init basetype_map for converting xsd-basetypes to cpp-basetypes
         # if a type is unknown the compiler throws a KeyError!
@@ -28,6 +29,7 @@ class CppTypdefStringBuilder(object):
         
 # enums
 class CppEnumClassBuilder(object):
+    
     def __init__(self, simpleType_name):
         self.content = 'enum class' + simpleType_name + '\n{\n'
         
@@ -37,17 +39,30 @@ class CppEnumClassBuilder(object):
     def getEnumClassAsString(self):
         return self.content[:-2] + '\n};\n\n'
     
-# declarations
-class CppEnumToStringClassBuilder(object):
+# EnumToStringClass declarations
+class CppEnumToStringClassDeclarationBuilder(object):
+    
     def __init__(self):
         self.content = 'class EnumToString {\npublic:\n'
         
-    def addConvertFunctionForSimpleType(self, simpleType_name):
+    def addConvertFunctionDeclarationForSimpleType(self, simpleType_name):
         self.content = self.content + '\tstatic static std::string convert(' + simpleType_name + ' source);\n'
     
-    def getEnumToStringClassAsString(self):
+    def getEnumToStringClassDeclarationAsString(self):
         return self.content + '};\n\n';
     
+# EnumToStringClass definition
+class CppEnumToStringClassDefinitionBuilder(object):
+    
+    def __init__(self,simpleType_name):
+        self.simpleType_name = simpleType_name
+        self.content = 'std::string EnumToString::convert(' + self.simpleType_name + ' source) {\n\tswitch (source) {\n'
+        
+    def addConvertFunctionDefinitionForSimpleType(self,enum_name):
+        self.content = self.content + '\t\tcase ' + self.simpleType_name + '::' + enum_name + ': return \"' + enum_name + '\"\n';
+        
+    def getEnumToStringClassDefinitionsAsString(self):
+        return self.content + '\t}\n\tthrow std::runtime_error(\"Illegal value for ' + self.simpleType_name + '\");\n}\n\n'
 
 # class: build cpp files
 class CppFileBuilder(object): 
@@ -58,7 +73,7 @@ class CppFileBuilder(object):
         
     def readFileToStr(self, filename):
         with open(filename, 'r') as myfile:
-            data=myfile.read()#.replace('\n', '')
+            data=myfile.read()
             return data
 
 ## factories
@@ -71,17 +86,23 @@ def make_CppEnumClassBuilder(simpleType_name):
     return l_cppEnumClassBuilder
 
 def make_CppEnumToStringClassBuilder():
-    l_cppEnumToStringClassBuilder = CppEnumToStringClassBuilder()
+    l_cppEnumToStringClassBuilder = CppEnumToStringClassDeclarationBuilder()
     return l_cppEnumToStringClassBuilder
 
 def make_CppTypdefStringBuilder():
     l_cppTypdefStringBuilder = CppTypdefStringBuilder()
     return l_cppTypdefStringBuilder
 
+def make_CppEnumToStringClassDefinitionBuilder(simpleType_name):
+    l_cppEnumToStringClassDefinitionbuilder = CppEnumToStringClassDefinitionBuilder(simpleType_name)
+    return l_cppEnumToStringClassDefinitionbuilder
+     
 ## init
 enumClasses_cppCode = ''
+enumToStringClassMethods_cppCode = ''
 cppTypdefStringBuilder = make_CppTypdefStringBuilder()
 cppEnumToStringClassBuilder = make_CppEnumToStringClassBuilder()
+
 
 
 
@@ -102,13 +123,16 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
                 
                 enum_entry = enum_node.attrib['value']
                 print 'enum-type>>' + enum_entry
+                # enum_Flag is False at the beginning of a new enum class -> reset classes
                 if not enum_flag:
                     cppEnumClassBuilder = make_CppEnumClassBuilder(simpleType_name)
-                    cppEnumToStringClassBuilder.addConvertFunctionForSimpleType(simpleType_name)
+                    cppEnumToStringClassBuilder.addConvertFunctionDeclarationForSimpleType(simpleType_name)
+                    cppEnumToStringClassDefinitionBuilder = make_CppEnumToStringClassDefinitionBuilder(simpleType_name)
                     
                 # flag as enum
                 enum_flag = True
                 cppEnumClassBuilder.appendEnumEntry(enum_entry)
+                cppEnumToStringClassDefinitionBuilder.addConvertFunctionDefinitionForSimpleType(enum_entry)
                 
                 
             # basetypes
@@ -117,17 +141,24 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
                     basetype_name = basetype_node.attrib['base']
                     print 'base-type>>' + basetype_name
                     cppTypdefStringBuilder.addTypedef(simpleType_name, basetype_name)
-                    
+                
+            # append code for each enum class
             if enum_flag:
                 enumClasses_cppCode = enumClasses_cppCode + cppEnumClassBuilder.getEnumClassAsString()
+                enumToStringClassMethods_cppCode = enumToStringClassMethods_cppCode + cppEnumToStringClassDefinitionBuilder.getEnumToStringClassDefinitionsAsString()
             
-# build SimpleTypesMapping.h to file
+    
+# build SimpleTypesMapping.h 
 cppFileBuilder = make_CppFileBuilder()
 contentBeginning = cppFileBuilder.readFileToStr('SimpleTypesMapping_beginning.hxx')
 contentEnding = cppFileBuilder.readFileToStr('SimpleTypesMapping_ending.hxx')
-cppFileBuilder.writeToFile('SimpleTypesMapping.h', contentBeginning + cppTypdefStringBuilder.getCppTypedefString() + enumClasses_cppCode  + cppEnumToStringClassBuilder.getEnumToStringClassAsString() + contentEnding)
+cppFileBuilder.writeToFile('SimpleTypesMapping.h', contentBeginning + cppTypdefStringBuilder.getCppTypedefString() + enumClasses_cppCode  + cppEnumToStringClassBuilder.getEnumToStringClassDeclarationAsString() + contentEnding)
 
-
+#build SimpleTypesMapping.cpp 
+cppFileBuilder = make_CppFileBuilder()
+contentBeginning = cppFileBuilder.readFileToStr('SimpleTypesMapping_beginning.cxx')
+contentEnding = cppFileBuilder.readFileToStr('SimpleTypesMapping_ending.cxx')
+cppFileBuilder.writeToFile('SimpleTypesMapping.cpp', contentBeginning + enumToStringClassMethods_cppCode + contentEnding)
 
     
 
