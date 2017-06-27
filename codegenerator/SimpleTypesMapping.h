@@ -31,7 +31,7 @@ typedef std::string TimeZone;
 typedef unsigned int TransactionId;
 
 
-enum classMeasurementValidity
+enum class MeasurementValidity
 {
 	Vld,
 	Vldated,
@@ -44,7 +44,7 @@ enum classMeasurementValidity
 	NA
 };
 
-enum classSafetyClassification
+enum class SafetyClassification
 {
 	Inf,
 	MedA,
@@ -52,7 +52,7 @@ enum classSafetyClassification
 	MedC
 };
 
-enum classComponentActivation
+enum class ComponentActivation
 {
 	On,
 	NotRdy,
@@ -62,14 +62,14 @@ enum classComponentActivation
 	Fail
 };
 
-enum classCalibrationState
+enum class CalibrationState
 {
 	No,
 	Req,
 	Cal
 };
 
-enum classCalibrationType
+enum class CalibrationType
 {
 	Offset,
 	Gain,
@@ -77,7 +77,7 @@ enum classCalibrationType
 	Unspec
 };
 
-enum classMdsOperatingMode
+enum class MdsOperatingMode
 {
 	Nml,
 	Dmo,
@@ -85,21 +85,21 @@ enum classMdsOperatingMode
 	Mtn
 };
 
-enum classAlertActivation
+enum class AlertActivation
 {
 	On,
 	Off,
 	Psd
 };
 
-enum classAlertConditionKind
+enum class AlertConditionKind
 {
 	Phy,
 	Tec,
 	Oth
 };
 
-enum classAlertConditionPriority
+enum class AlertConditionPriority
 {
 	Lo,
 	Me,
@@ -107,7 +107,7 @@ enum classAlertConditionPriority
 	None
 };
 
-enum classAlertConditionMonitoredLimits
+enum class AlertConditionMonitoredLimits
 {
 	All,
 	LoOff,
@@ -115,7 +115,7 @@ enum classAlertConditionMonitoredLimits
 	None
 };
 
-enum classAlertSignalManifestation
+enum class AlertSignalManifestation
 {
 	Aud,
 	Vis,
@@ -123,7 +123,7 @@ enum classAlertSignalManifestation
 	Oth
 };
 
-enum classAlertSignalPresence
+enum class AlertSignalPresence
 {
 	On,
 	Off,
@@ -131,20 +131,20 @@ enum classAlertSignalPresence
 	Ack
 };
 
-enum classAlertSignalPrimaryLocation
+enum class AlertSignalPrimaryLocation
 {
 	Loc,
 	Rem
 };
 
-enum classGenerationMode
+enum class GenerationMode
 {
 	Real,
 	Test,
 	Demo
 };
 
-enum classMetricCategory
+enum class MetricCategory
 {
 	Unspec,
 	Msrmt,
@@ -154,26 +154,26 @@ enum classMetricCategory
 	Rcmm
 };
 
-enum classDerivationMethod
+enum class DerivationMethod
 {
 	Auto,
 	Man
 };
 
-enum classMetricAvailability
+enum class MetricAvailability
 {
 	Intr,
 	Cont
 };
 
-enum classOperatingMode
+enum class OperatingMode
 {
 	Dis,
 	En,
 	NA
 };
 
-enum classContextAssociation
+enum class ContextAssociation
 {
 	No,
 	Pre,
@@ -181,7 +181,7 @@ enum classContextAssociation
 	Dis
 };
 
-enum classSex
+enum class Sex
 {
 	Unspec,
 	M,
@@ -189,7 +189,7 @@ enum classSex
 	Unkn
 };
 
-enum classPatientType
+enum class PatientType
 {
 	Unspec,
 	Ad,
@@ -197,7 +197,7 @@ enum classPatientType
 	Neo
 };
 
-enum classInvocationState
+enum class InvocationState
 {
 	Wait,
 	Start,
@@ -208,7 +208,7 @@ enum classInvocationState
 	Fail
 };
 
-enum classInvocationError
+enum class InvocationError
 {
 	Unspec,
 	Unkn,
@@ -216,14 +216,14 @@ enum classInvocationError
 	Oth
 };
 
-enum classDescriptionModificationType
+enum class DescriptionModificationType
 {
 	Crt,
 	Upt,
 	Del
 };
 
-enum classRetrievabilityMethod
+enum class RetrievabilityMethod
 {
 	Get,
 	Per,
