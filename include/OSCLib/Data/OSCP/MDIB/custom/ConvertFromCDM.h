@@ -41,7 +41,7 @@ public:
 	static AlertConditionReference convert(const CDM::AlertConditionReference & source);
 	static AlertConditionState convert(const CDM::AlertConditionState & source);
 	static AlertSignalDescriptor convert(const CDM::AlertSignalDescriptor & source);
-	static AlertSignalManifestation convert(const CDM::AlertSignalManifestation & source);
+	static AlertSignalManifestation convert(const CDM::QualityIndicator & source);
 	static AlertSignalPrimaryLocation convert(const CDM::AlertSignalPrimaryLocation & source);
 	static AlertSignalState convert(const CDM::AlertSignalState & source);
 	static AlertSystemDescriptor convert(const CDM::AlertSystemDescriptor & source);

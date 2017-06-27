@@ -1,5 +1,5 @@
 /*
- * SimpleTypesMapping.h
+ * SimpleTypesMapping.cpp
  *
  *  Created on: 22.06.2017
  *      Author: buerger
@@ -19,3 +19,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
+EnumToString::EnumToString() {
+
+}
+
+EnumToString::~EnumToString() {
+
+}

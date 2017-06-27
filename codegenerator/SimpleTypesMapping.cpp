@@ -1,5 +1,5 @@
 /*
- * SimpleTypesMapping.h
+ * SimpleTypesMapping.cpp
  *
  *  Created on: 22.06.2017
  *      Author: buerger
@@ -19,6 +19,13 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
+EnumToString::EnumToString() {
+
+}
+
+EnumToString::~EnumToString() {
+
+}
 std::string EnumToString::convert(MeasurementValidity source) {
 	switch (source) {
 		case MeasurementValidity::Vld: return "Vld"
@@ -271,6 +278,6 @@ std::string EnumToString::convert(RetrievabilityMethod source) {
 
 
 
-}
-}
-}
+} /* namespace OSCP */
+} /* namespace Data */
+} /* namespace OSCLib */

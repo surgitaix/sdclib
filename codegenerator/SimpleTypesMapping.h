@@ -26,7 +26,7 @@ typedef std::string SymbolicCodeName;
 typedef std::string LocalizedTextRef;
 typedef std::string Handle;
 typedef std::string HandleRef;
-typedef long long QualityIndicator;
+typedef double QualityIndicator;
 typedef std::string TimeZone;
 typedef unsigned int TransactionId;
 
@@ -261,8 +261,8 @@ public:
 };
 
 
-}
-}
-}
+} /* namespace OSCP */
+} /* namespace Data */
+} /* namespace OSCLib */
 
 #endif /* SIMPLETYPESMAPPING_H_ */

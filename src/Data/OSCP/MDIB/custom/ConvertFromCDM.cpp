@@ -242,7 +242,7 @@ CauseInfo ConvertFromCDM::convert(const CDM::CauseInfo & source) {
 ChannelDescriptor ConvertFromCDM::convert(const CDM::ChannelDescriptor & source) {
 	return ChannelDescriptor(source);
 }
-d
+
 ClinicalInfo ConvertFromCDM::convert(const CDM::ClinicalInfo & source) {
 	return ClinicalInfo(source);
 }
