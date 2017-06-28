@@ -70,9 +70,6 @@
 		<property name = "UpdatePeriod" type = "duration" optional = "false" />
 	</class>
 
-	<class name = "ExtensionType" parent = "NULL" abstract = "false">
-	</class>
-
 	<class name = "Mdib" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/MdDescription.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/MdState.h" />
@@ -740,6 +737,9 @@
 	<class name = "ContainmentTreeEntry" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
+	</class>
+
+	<class name = "ExtensionType" parent = "NULL" abstract = "false">
 	</class>
 
 </classes>

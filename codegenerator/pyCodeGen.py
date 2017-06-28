@@ -18,187 +18,197 @@ class CppTypdefStringBuilder(object):
     def __init__(self):
         ## init basetype_map for converting xsd-basetypes to cpp-basetypes
         # if a type is unknown the compiler throws a KeyError!
-        self.basetype_map = basetype_map
-        self.content = ''
+        self.__basetype_map = basetype_map
+        self.__content = ''
     
     def addTypedef(self, simpleType_name, baseTypeName_xsd):
-        self.content = self.content + 'typedef ' + self.basetype_map[baseTypeName_xsd] + ' ' + simpleType_name + ';\n';
+        self.__content = self.__content + 'typedef ' + self.__basetype_map[baseTypeName_xsd] + ' ' + simpleType_name + ';\n';
          
     def getCppTypedefString(self):
-        return self.content + '\n\n'
+        return self.__content + '\n\n'
         
 # enums
 class CppEnumClassBuilder(object):
     
     def __init__(self, simpleType_name):
-        self.content = 'enum class ' + simpleType_name + '\n{\n'
+        self.__content = 'enum class ' + simpleType_name + '\n{\n'
         
     def appendEnumEntry(self, enum_name):
-        self.content = self.content + '\t' + enum_name + ',\n'
+        self.__content = self.__content + '\t' + enum_name + ',\n'
         
     def getEnumClassAsString(self):
-        return self.content[:-2] + '\n};\n\n'
+        return self.__content[:-2] + '\n};\n\n'
     
 # EnumToStringClass declarations
 class CppEnumToStringClassDeclarationBuilder(object):
     
     def __init__(self):
-        self.content = 'class EnumToString {\npublic:\n'
+        self.__content = 'class EnumToString {\npublic:\n'
         
     def addConvertFunctionDeclarationForSimpleType(self, simpleType_name):
-        self.content = self.content + '\tstatic static std::string convert(' + simpleType_name + ' source);\n'
+        self.__content = self.__content + '\tstatic static std::string convert(' + simpleType_name + ' source);\n'
     
     def getEnumToStringClassDeclarationAsString(self):
-        return self.content + '};\n\n';
+        return self.__content + '};\n\n';
     
 # EnumToStringClass definition
 class CppEnumToStringClassDefinitionBuilder(object):
     
     def __init__(self,simpleType_name):
-        self.simpleType_name = simpleType_name
-        self.content = 'std::string EnumToString::convert(' + self.simpleType_name + ' source) {\n\tswitch (source) {\n'
+        self.__simpleType_name = simpleType_name
+        self.__content = 'std::string EnumToString::convert(' + self.__simpleType_name + ' source) {\n\tswitch (source) {\n'
         
     def addConvertFunctionDefinitionForSimpleType(self,enum_name):
-        self.content = self.content + '\t\tcase ' + self.simpleType_name + '::' + enum_name + ': return \"' + enum_name + '\"\n';
+        self.__content = self.__content + '\t\tcase ' + self.__simpleType_name + '::' + enum_name + ': return \"' + enum_name + '\"\n';
         
     def getEnumToStringClassDefinitionsAsString(self):
-        return self.content + '\t}\n\tthrow std::runtime_error(\"Illegal value for ' + self.simpleType_name + '\");\n}\n\n'
+        return self.__content + '\t}\n\tthrow std::runtime_error(\"Illegal value for ' + self.__simpleType_name + '\");\n}\n\n'
 
 # ConvertFromCDM header
 class CppConvertFromCDMClassDeclarationBuilder(object):
     def __init__(self):
-        self.content = ''
+        self.__content = ''
         
     def addType(self, type_name):
-        self.content = self.content + '\tstatic ' + type_name +' convert(const CDM::' + type_name + ' & source);\n'
+        self.__content = self.__content + '\tstatic ' + type_name +' convert(const CDM::' + type_name + ' & source);\n'
         
     def getCoverterFunctionsDeclarationsAsString(self):
-        return self.content
+        return self.__content
 
 
 # Separate class for EnumConverterFunctions for ConvertFromCDM
 # basetypes do not need any conversion
 class CppConvertFromCDMClassEnumConverterFunctionBuilder(object):    
     def __init__(self, type_name):
-        self.type_name = type_name
-        self.content = self.type_name + ' ConvertFromCDM::convert(const CDM::' + self.type_name + ' & source) {\n\tswitch (source) {\n'
+        self.__type_name = type_name
+        self.__content = self.__type_name + ' ConvertFromCDM::convert(const CDM::' + self.__type_name + ' & source) {\n\tswitch (source) {\n'
     
     def addConvertEnumEntry(self, enum_name):
-        self.content = self.content + '\t\tcase CDM::' + self.type_name +  '::' + enum_name +': return ' + self.type_name + '::' + enum_name + ';\n'
+        self.__content = self.__content + '\t\tcase CDM::' + self.__type_name +  '::' + enum_name +': return ' + self.__type_name + '::' + enum_name + ';\n'
         
     def getEnumConverterFunction(self):
-        return self.content + '\t}\n\tthrow std::runtime_error(\"Illegal value for ' + self.type_name + '\");\n}\n\n'
+        return self.__content + '\t}\n\tthrow std::runtime_error(\"Illegal value for ' + self.__type_name + '\");\n}\n\n'
         
 
 # ConvertFromCDM definition
 class CppConvertFromCDMClassDefinitionBuilder(object):
     def __init__(self):
-        self.enums = ''
-        self.includes = ''
-        self.complex = ''
+        self.__enums = ''
+        self.__includes = ''
+        self.__complex = ''
     
     def addComplexType(self, type_name):
-        self.complex = self.complex + type_name + 'ConvertFromCDM::convert(const CDM::' + type_name +' & source) {\n\treturn ' + type_name + '(source);\n}\n\n'
-        self.includes = self.includes + '#include \"OSCLib/Data/OSCP/MDIB/'+ include_name + '.h\"\n'
+        self.__complex = self.__complex + type_name + 'ConvertFromCDM::convert(const CDM::' + type_name +' & source) {\n\treturn ' + type_name + '(source);\n}\n\n'
+        self.__includes = self.__includes + '#include \"OSCLib/Data/OSCP/MDIB/'+ type_name + '.h\"\n'
         
     def addEnumConverterFunctionAsString(self,enumConverterFunction_string):
-        self.enums = self.enums + enumConverterFunction_string;
+        self.__enums = self.__enums + enumConverterFunction_string;
 
     def getEnumsAsString(self):
-        return self.enums;
+        return self.__enums;
     
     def getIncludesAsString(self):
-        return self.includes
+        return self.__includes
     
     def getComplexTypeFuctionsAsString(self):
-        return self.complex
+        return self.__complex
     
 # ConvertToCDM header - simpleTypes only. complex types are transformed only in the definition via template method
 class CppConvertToCDMClassDeclarationBuilder(object):
     def __init__(self):
-        self.content = ''
+        self.__content = ''
         
     def addType(self, type_name):
-        self.content = self.content + '\tstatic CDM::' + type_name +' convert(const ' + type_name + ' & source);\n'
+        self.__content = self.__content + '\tstatic CDM::' + type_name +' convert(const ' + type_name + ' & source);\n'
         
     def getCoverterFunctionsDeclarationsAsString(self):
-        return self.content
+        return self.__content
 
     
 # Separate class for EnumConverterFunctions for ConvertToCDM
 # basetypes do not need any conversion
 class CppConvertToCDMClassEnumConverterFunctionBuilder(object):    
     def __init__(self, type_name):
-        self.type_name = type_name
-        self.content = 'CDM::' + self.type_name + ' ConvertToCDM::convert(const ' + self.type_name + ' & source) {\n\tswitch (source) {\n'
+        self.__type_name = type_name
+        self.__content = 'CDM::' + self.__type_name + ' ConvertToCDM::convert(const ' + self.__type_name + ' & source) {\n\tswitch (source) {\n'
     
     def addConvertEnumEntry(self, enum_name):
-        self.content = self.content + '\t\tcase ' + self.type_name +  '::' + enum_name +': return CDM::' + self.type_name + '::' + enum_name + ';\n'
+        self.__content = self.__content + '\t\tcase ' + self.__type_name +  '::' + enum_name +': return CDM::' + self.__type_name + '::' + enum_name + ';\n'
         
     def getEnumConverterFunction(self):
-        return self.content + '\t}\n\tthrow std::runtime_error(\"Illegal value for ' + self.type_name + '\");\n}\n\n'
+        return self.__content + '\t}\n\tthrow std::runtime_error(\"Illegal value for ' + self.__type_name + '\");\n}\n\n'
     
 
 # ConvertToCDM definition
 class CppConvertToCDMClassDefinitionBuilder(object):
     def __init__(self):
-        self.enums = ''
-        self.includes = ''
-        self.complex = ''
+        self.__enums = ''
+        self.__includes = ''
+        self.__complex = ''
     
     def addComplexType(self, type_name):
-        self.complex = self.complex + 'template\nstd::unique_ptr<typename ' + type_name + 'WrappedType> ConvertToCDM::convert(const '+ type_name + '&source);'
-        self.includes = self.includes + '#include \"OSCLib/Data/OSCP/MDIB/'+ include_complexTypeName + '.h\"\n'
+        self.__complex = self.__complex + 'template\nstd::unique_ptr<typename ' + type_name + '::WrappedType> ConvertToCDM::convert(const '+ type_name + '&source);\n\n'
+        self.__includes = self.__includes + '#include \"OSCLib/Data/OSCP/MDIB/'+ type_name + '.h\"\n'
         
     def addEnumConverterFunctionAsString(self,enumConverterFunction_string):
-        self.enums = self.enums + enumConverterFunction_string;
+        self.__enums = self.__enums + enumConverterFunction_string;
 
     def getEnumsAsString(self):
-        return self.enums;
+        return self.__enums;
     
     def getIncludesAsString(self):
-        return self.includes
-
+        return self.__includes
+    
+    def getComplexAsString(self):
+        return self.__complex
 
 class GSLClassBuilder(object):    
     
     def __init__(self, class_name, parent_name, abstract_string):
-        self.includes = ''
-        self.properties = ''
-        self.propertylists = ''
-        self.typedefs = ''
-        self.classdeclaration = '\t<class name = \"' + class_name + '\" parent = \"' + parent_name + '\" abstract = \"' + abstract_string + '\">\n'
+        self.__includes = ''
+        self.__properties = ''
+        self.__propertylists = ''
+        self.__typedefs = ''
+        self.__classdeclaration = '\t<class name = \"' + class_name + '\" parent = \"' + parent_name + '\" abstract = \"' + abstract_string + '\">\n'
         
     def addInclude(self,complexType_name):
-        self.includes = self.includes + '\t\t<include path = \"OSCLib/Data/OSCP/MDIB/' + complexType_name + '.h\" />\n'
+        self.__includes = self.__includes + '\t\t<include path = \"OSCLib/Data/OSCP/MDIB/' + complexType_name + '.h\" />\n'
         
     def addProperty(self, property_name, property_type, optionality_string):
-        self.properties = self.properties + '\t\t<property name = \"' + property_name + '\" type = \"' + property_type + '\" optional = \"' + optionality_string + '\" />\n'
+        self.__properties = self.__properties + '\t\t<property name = \"' + property_name + '\" type = \"' + property_type + '\" optional = \"' + optionality_string + '\" />\n'
     
     def addPropertyList(self, property_name, property_type):
         # automatically names nameServeral attaching a 's' to property_name
-        self.propertylists = self.propertylists + '\t\t<propertyList nameSingle = \"' + property_name + '\" nameSeveral = \"' + property_name + 's\" type = \"' + property_type + '\" />\n'
+        self.__propertylists = self.__propertylists + '\t\t<propertyList nameSingle = \"' + property_name + '\" nameSeveral = \"' + property_name + 's\" type = \"' + property_type + '\" />\n'
         
     def addTypedef(self, typedef_name, typedef_type):
-        self.typedefs = self.typedefs + '\t\t<typedef name = \"' + typedef_name + '\" type = \"' + typedef_type + '\" />\n'
+        self.__typedefs = self.__typedefs + '\t\t<typedef name = \"' + typedef_name + '\" type = \"' + typedef_type + '\" />\n'
 
     def getGSLClassAsString(self):
-        return self.classdeclaration + self.includes + self.typedefs + self.properties + self.propertylists + '\t</class>\n\n' 
+        return self.__classdeclaration + self.__includes + self.__typedefs + self.__properties + self.__propertylists + '\t</class>\n\n' 
 
 # contains the gsl descriptions
 class GSLFileBuilder(object):
     def __init__(self):
-        self.content = '<?xml version="1.0"?>\n<classes script = \"generate.gsl\" >\n'
-
-    def addAbstractClassToSet(self, class_name):
-        self.abstractClassesSet.add(class_name)
+        self.__content = '<?xml version="1.0"?>\n<classes script = \"generate.gsl\" >\n'
 
     def addClassAsString(self, class_string):
-        self.content = self.content + class_string
+        self.__content = self.__content + class_string
         
     def getContent(self):
-        return self.content + '</classes>'
+        return self.__content + '</classes>'
     
+# MDIB forward declarations
+class MDIBDeclacationsBuilder(object):
+    def __init__(self):
+        self.__content = ''
+        
+    def addType(self, type_name):
+        self.__content = self.__content + '\tclass ' + type_name + ';\n'
+        
+    def getDeclarationsAsString(self):
+        return self.__content
+
 # class: build files
 class FileManager(object): 
 
@@ -267,10 +277,15 @@ def make_GSLClassBuilder(class_name, parent_name, abstract_bool):
     l_gslClassBuilder = GSLClassBuilder(class_name, parent_name, abstract_bool)
     return l_gslClassBuilder
 
+def make_MDIBDeclacationsBuilder():
+    l_mdibDeclarationsBuilder = MDIBDeclacationsBuilder()
+    return l_mdibDeclarationsBuilder
+
 ## init
 basetype_map = {'xsd:unsignedLong' : 'unsigned long', 'pm:VersionCounter' : 'unsigned long', 'xsd:string' : 'std::string', 
                 'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'std::string', 'xsd:dateTime' : 'std::string'}
 simpleTypes_set = set()
+complexTypes_set = set()
 enumClasses_cppCode = ''
 enumToStringClassMethods_cppCode = ''
 cppTypdefStringBuilder = make_CppTypdefStringBuilder()
@@ -280,6 +295,8 @@ cppConvertFromCDMClassDefinitionBuilder = make_CppConvertFromCDMClassDefinitionB
 cppConvertToCDMClassDeclarationBuilder = make_CppConvertToCDMClassDeclarationBuilder()
 cppConvertToCDMClassDefinitionBuilder = make_CppConvertToCDMClassDefinitionBuilder()
 gslFileBuilder = make_GSLFileBuilder()
+mdibDeclacationsBuilder = make_MDIBDeclacationsBuilder()
+
 
 
 
@@ -344,32 +361,9 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
 ###
 ### ComplexTypes
 ###
-
-# # find abstract classes first
-# print '--- abstract complexTypes ---'
-# for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse('../datamodel/BICEPS_MessageModel.xsd'),  etree.parse('../datamodel/ExtensionPoint.xsd') }:
-#     # search for simple type and go deeper
-#     # orientation: https://stackoverflow.com/questions/12657043/parse-xml-with-lxml-extract-element-value
-#     for complexType_node in tree.xpath('//xsd:extension', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-#         # only take nodes that have an attribute
-#         for attribute_name in complexType_node.attrib:
-#             # get the name of the simple type
-#             complexType_name = complexType_node.attrib[attribute_name] # attribute_name = 'base'
-
-#             abstractClassName = complexType_name[(complexType_name.index(':')+1):]
-
-#             gslFileBuilder.addAbstractClassToSet(abstractClassName)
-#             print abstractClassName
-
-
-##
-## complexTypes
-##
 print '--- complexTypes ---'
 
 ## write all complex types to set -> later needed to add include file for entries of complexType
-complexTypes_set = set()
-
 for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse('../datamodel/BICEPS_MessageModel.xsd'),  etree.parse('../datamodel/ExtensionPoint.xsd') }:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         # only take nodes that have an attribute
@@ -378,14 +372,27 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
             complexType_name = complexType_node.attrib[attribute_name]
             complexTypes_set.add(complexType_name)
         
-
+# analyse complex types
 for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse('../datamodel/BICEPS_MessageModel.xsd'),  etree.parse('../datamodel/ExtensionPoint.xsd') }:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         # only take nodes that have an attribute
         for attribute_name in complexType_node.attrib:
             # get name
             complexType_name = complexType_node.attrib[attribute_name]
-            ## structure analysis -> gsl file
+            
+            ### non-gsl files
+            # add to ConverterClasses
+            cppConvertFromCDMClassDefinitionBuilder.addComplexType(complexType_name)
+            cppConvertFromCDMClassDeclarationBuilder.addType(complexType_name)
+            cppConvertToCDMClassDefinitionBuilder.addComplexType(complexType_name)
+            # add to mdib-fws
+            mdibDeclacationsBuilder.addType(complexType_name)
+            
+            
+            
+            ### gsl-file
+            ###
+            ### structure analysis 
             # parent handling
             hasParents = False
             for complexTypeParent_node in complexType_node.xpath('./*/xsd:extension', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
@@ -511,7 +518,7 @@ cppFileBuilder.writeToFile('ConvertFromCDM.h', contentBeginning + cppConvertFrom
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertFromCDM_beginning.cxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertFromCDM_ending.cxx')
-cppFileBuilder.writeToFile('ConvertFromCDM.cpp', cppConvertFromCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertFromCDMClassDefinitionBuilder.getEnumsAsString() + contentEnding)
+cppFileBuilder.writeToFile('ConvertFromCDM.cpp', cppConvertFromCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertFromCDMClassDefinitionBuilder.getEnumsAsString() + cppConvertFromCDMClassDefinitionBuilder.getComplexTypeFuctionsAsString() + contentEnding)
 
 # build ConvertToCDM.h
 cppFileBuilder = make_FileManager()
@@ -523,7 +530,7 @@ cppFileBuilder.writeToFile('ConvertToCDM.h', contentBeginning + cppConvertToCDMC
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertToCDM_beginning.cxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertToCDM_ending.cxx')
-cppFileBuilder.writeToFile('ConvertToCDM.cpp', cppConvertToCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertToCDMClassDefinitionBuilder.getEnumsAsString() + contentEnding)
+cppFileBuilder.writeToFile('ConvertToCDM.cpp', cppConvertToCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertToCDMClassDefinitionBuilder.getEnumsAsString() + cppConvertToCDMClassDefinitionBuilder.getComplexAsString() + contentEnding)
 
 
 ## complex types
@@ -531,6 +538,11 @@ cppFileBuilder.writeToFile('ConvertToCDM.cpp', cppConvertToCDMClassDefinitionBui
 cppFileBuilder = make_FileManager()
 cppFileBuilder.writeToFile('complexTypesGSLformated.xml', gslFileBuilder.getContent())
 
+#build mdib-fwd.h
+cppFileBuilder = make_FileManager()
+contentBeginning = cppFileBuilder.readFileToStr('MDIB-fwd_beginning.hxx')
+contentEnding = cppFileBuilder.readFileToStr('MDIB-fwd_ending.hxx')
+cppFileBuilder.writeToFile('MDIB-fwd.h', contentBeginning + mdibDeclacationsBuilder.getDeclarationsAsString() + contentEnding)
 
 
 
