@@ -20,4 +20,6 @@ do
   echo "Processing $f file..."
   echo $f | cut -c 2- >> CMakeLists_ToAdd.txt
 done
+echo " "
 echo "Do not forget to add the content of CMakeLists_ToAdd.txt to CMakeLists.txt!"
+echo " "

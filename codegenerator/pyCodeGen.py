@@ -46,7 +46,7 @@ class CppEnumToStringClassDeclarationBuilder(object):
         self.__content = 'class EnumToString {\npublic:\n'
         
     def addConvertFunctionDeclarationForSimpleType(self, simpleType_name):
-        self.__content = self.__content + '\tstatic static std::string convert(' + simpleType_name + ' source);\n'
+        self.__content = self.__content + '\tstatic std::string convert(' + simpleType_name + ' source);\n'
     
     def getEnumToStringClassDeclarationAsString(self):
         return self.__content + '};\n\n';
@@ -223,7 +223,6 @@ class FileManager(object):
 
 
 
-
 ## factories
 def make_FileManager():
     l_cppFileBuilder = FileManager()
@@ -282,8 +281,10 @@ def make_MDIBDeclacationsBuilder():
     return l_mdibDeclarationsBuilder
 
 ## init
+# orientation:https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.3.0/com.ibm.cics.ts.applicationprogramming.doc/datamapping/dfhws_wsdl2c.html
 basetype_map = {'xsd:unsignedLong' : 'unsigned long', 'pm:VersionCounter' : 'unsigned long', 'xsd:string' : 'std::string', 
-                'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'std::string', 'xsd:dateTime' : 'std::string'}
+                'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'std::string', 'xsd:dateTime' : 'char[40]', 'xsd:boolean' : 'bool', 
+                'xsd:duration' : 'std::string', 'xsd:language' : 'std::string', 'xsd:anyURI' : 'std::string', 'xsd:int' : 'int' , 'xsd:long' : 'long long' }
 simpleTypes_set = set()
 complexTypes_set = set()
 enumClasses_cppCode = ''
@@ -296,9 +297,6 @@ cppConvertToCDMClassDeclarationBuilder = make_CppConvertToCDMClassDeclarationBui
 cppConvertToCDMClassDefinitionBuilder = make_CppConvertToCDMClassDefinitionBuilder()
 gslFileBuilder = make_GSLFileBuilder()
 mdibDeclacationsBuilder = make_MDIBDeclacationsBuilder()
-
-
-
 
 
 ###
@@ -389,7 +387,6 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
             mdibDeclacationsBuilder.addType(complexType_name)
             
             
-            
             ### gsl-file
             ###
             ### structure analysis 
@@ -433,14 +430,12 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
                         elif elem_type in simpleTypes_set:
                             isLinkedTo = 'simpleType'
                         else:
-                            isLinkedTo = 'baseType'
-                            elem_type = basetype_map[elem_type_xsd]
-                            
+                            isLinkedTo = 'baseType'                            
                             # check if datatype is a basetype -> transform in case of
                             # this is done after the checking for the complexTypes to assure that the compiler complains when a new unknown basetype occurs
                             elem_type = basetype_map[elem_type_xsd]
                         
-                        # element + max occurenc = unbounded -> propertyList
+                        # element + max occurence = unbounded -> propertyList
                         if 'maxOccurs' in element_node.attrib:
                             if element_node.attrib['maxOccurs'] == 'unbounded':
                                 glsClassBuilder.addPropertyList(element_name, elem_type)
@@ -470,6 +465,18 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
                         # get rid of the namespace prefix
                         attribute_type = attribute_type_xsd[(attribute_type_xsd.index(':')+1):]
                         
+                        # check if linked to a complexType -> include is necessary
+                        if attribute_type in complexTypes_set:
+                            isLinkedTo = 'complexType'
+                            glsClassBuilder.addInclude(attribute_type)
+                        elif attribute_type in simpleTypes_set:
+                            isLinkedTo = 'simpleType'
+                        else:
+                            isLinkedTo = 'baseType'                            
+                            # check if datatype is a basetype -> transform in case of
+                            # this is done after the checking for the complexTypes to assure that the compiler complains when a new unknown basetype occurs
+                            attribute_type = basetype_map[attribute_type_xsd]
+                        
                         optionality_string = 'false'
                         if 'use' in attribute_node.attrib:
                             if attribute_node.attrib['use'] == 'optional':
@@ -477,7 +484,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
                             
                         # add class
                         glsClassBuilder.addProperty(attribute_name, attribute_type, optionality_string)
-                        print '>> Attribute -> Property: ' + element_name + ', type= ' + elem_type + ', optional= ' + elem_optional + ', linkedToComplexType= ' + isLinkedTo
+                        print '>> Attribute -> Property: ' + attribute_name + ', type= ' + attribute_type + ', optional= ' + optionality_string + ', linkedToComplexType= ' + isLinkedTo
                             
                             
                                 
@@ -489,12 +496,6 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
                 ##
                 ## what to do with extensions: <xsd:element ref="ext:Extension" minOccurs="0"/> 
                 ##
-                
-# for each class: add type
-#cppConvertFromCDMClassDeclarationBuilder.addType(complexType_name) 
-
-
-
 
 # build SimpleTypesMapping.h 
 cppFileBuilder = make_FileManager()
