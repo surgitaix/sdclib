@@ -32,7 +32,7 @@
 #ifndef RANGE_H_
 #define RANGE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,20 +56,30 @@ public:
     
     typedef CDM::Range WrappedType;
 
-	Range & setLower(const double & value);
-	double getLower() const;
-	bool getLower(double & out) const;
+	Range & setLower(const decimal & value);
+	decimal getLower() const;
+	bool getLower(decimal & out) const;
 	bool hasLower() const;
 
-	Range & setUpper(const double & value);
-	double getUpper() const;
-	bool getUpper(double & out) const;
+	Range & setUpper(const decimal & value);
+	decimal getUpper() const;
+	bool getUpper(decimal & out) const;
 	bool hasUpper() const;
 
-	Range & setStepWidth(const double & value);
-	double getStepWidth() const;
-	bool getStepWidth(double & out) const;
+	Range & setStepWidth(const decimal & value);
+	decimal getStepWidth() const;
+	bool getStepWidth(decimal & out) const;
 	bool hasStepWidth() const;
+
+	Range & setRelativeAccuracy(const decimal & value);
+	decimal getRelativeAccuracy() const;
+	bool getRelativeAccuracy(decimal & out) const;
+	bool hasRelativeAccuracy() const;
+
+	Range & setAbsoluteAccuracy(const decimal & value);
+	decimal getAbsoluteAccuracy() const;
+	bool getAbsoluteAccuracy(decimal & out) const;
+	bool hasAbsoluteAccuracy() const;
 
 private:
 	std::shared_ptr<CDM::Range> data;

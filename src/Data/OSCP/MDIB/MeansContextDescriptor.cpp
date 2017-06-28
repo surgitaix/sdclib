@@ -30,12 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -70,6 +71,79 @@ MeansContextDescriptor & MeansContextDescriptor:: operator=(const MeansContextDe
 }
 
 
+MeansContextDescriptor & MeansContextDescriptor::setType(const CodedValue & value) {
+	data->Type(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MeansContextDescriptor::getType(CodedValue & out) const {
+	if (data->Type().present()) {
+		out = ConvertFromCDM::convert(data->Type().get());
+		return true;
+	}
+	return false;
+}
+
+CodedValue MeansContextDescriptor::getType() const {
+	return ConvertFromCDM::convert(data->Type().get());
+}
+	
+bool MeansContextDescriptor::hasType() const {
+	return data->Type().present();
+}
+	
+MeansContextDescriptor & MeansContextDescriptor::setHandle(const Handle & value) {
+	data->Handle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Handle MeansContextDescriptor::getHandle() const {
+	return ConvertFromCDM::convert(data->Handle());
+}
+	
+MeansContextDescriptor & MeansContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MeansContextDescriptor::getDescriptorVersion(VersionCounter & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
+
+VersionCounter MeansContextDescriptor::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool MeansContextDescriptor::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
+}
+	
+MeansContextDescriptor & MeansContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MeansContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+		return true;
+	}
+	return false;
+}
+
+SafetyClassification MeansContextDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
+}
+	
+bool MeansContextDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

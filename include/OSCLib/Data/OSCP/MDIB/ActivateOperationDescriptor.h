@@ -32,7 +32,7 @@
 #ifndef ACTIVATEOPERATIONDESCRIPTOR_H_
 #define ACTIVATEOPERATIONDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	ActivateOperationDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	ActivateOperationDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	ActivateOperationDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -74,13 +74,24 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	ActivateOperationDescriptor & setOperationTarget(const std::string & value);
-	std::string getOperationTarget() const;
+	ActivateOperationDescriptor & setOperationTarget(const HandleRef & value);
+	HandleRef getOperationTarget() const;
 
-	ActivateOperationDescriptor & setActivationDuration(const Duration & value);
-	Duration getActivationDuration() const;
-	bool getActivationDuration(Duration & out) const;
-	bool hasActivationDuration() const;
+	ActivateOperationDescriptor & addModifiableElement(const std::string & value);
+	std::vector<std::string> getModifiableElements() const;
+	void clearModifiableElements();
+	
+	ActivateOperationDescriptor & setArgName(const CodedValue & value);
+	CodedValue getArgName() const;
+
+	ActivateOperationDescriptor & setArg(const std::string & value);
+	std::string getArg() const;
+
+	ActivateOperationDescriptor & setActivationDuration(const duration & value);
+	duration getActivationDuration() const;
+
+	ActivateOperationDescriptor & setRetriggerable(const boolean & value);
+	boolean getRetriggerable() const;
 
 private:
 	std::shared_ptr<CDM::ActivateOperationDescriptor> data;

@@ -32,7 +32,7 @@
 #ifndef LIMITALERTCONDITIONDESCRIPTOR_H_
 #define LIMITALERTCONDITIONDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	LimitAlertConditionDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	LimitAlertConditionDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	LimitAlertConditionDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -80,21 +80,19 @@ public:
 	LimitAlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getPriority() const;
 
-	LimitAlertConditionDescriptor & addSource(const std::string & value);
-	std::vector<std::string> getSources() const;
+	LimitAlertConditionDescriptor & addSource(const HandleRef & value);
+	std::vector<HandleRef> getSources() const;
 	void clearSources();
 	
 	LimitAlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
-	std::vector<CauseInfo> getCauseInfo() const;
-	void clearCauseInfo();
+	std::vector<CauseInfo> getCauseInfos() const;
+	void clearCauseInfos();
 	
 	LimitAlertConditionDescriptor & setMaxLimits(const Range & value);
 	Range getMaxLimits() const;
 
-	LimitAlertConditionDescriptor & setAutoLimitSupported(const bool & value);
-	bool getAutoLimitSupported() const;
-	bool getAutoLimitSupported(bool & out) const;
-	bool hasAutoLimitSupported() const;
+	LimitAlertConditionDescriptor & setAutoLimitSupported(const boolean & value);
+	boolean getAutoLimitSupported() const;
 
 private:
 	std::shared_ptr<CDM::LimitAlertConditionDescriptor> data;

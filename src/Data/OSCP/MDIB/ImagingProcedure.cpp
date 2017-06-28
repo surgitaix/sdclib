@@ -30,14 +30,18 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -82,34 +86,34 @@ InstanceIdentifier ImagingProcedure::getAccessionIdentifier() const {
 	return ConvertFromCDM::convert(data->AccessionIdentifier());
 }
 	
-ImagingProcedure & ImagingProcedure::setRequestedProcedureID(const InstanceIdentifier & value) {
-	data->RequestedProcedureID(ConvertToCDM::convert(value));
+ImagingProcedure & ImagingProcedure::setRequestedProcedureId(const InstanceIdentifier & value) {
+	data->RequestedProcedureId(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-InstanceIdentifier ImagingProcedure::getRequestedProcedureID() const {
-	return ConvertFromCDM::convert(data->RequestedProcedureID());
+InstanceIdentifier ImagingProcedure::getRequestedProcedureId() const {
+	return ConvertFromCDM::convert(data->RequestedProcedureId());
 }
 	
-ImagingProcedure & ImagingProcedure::setStudyInstanceUID(const InstanceIdentifier & value) {
-	data->StudyInstanceUID(ConvertToCDM::convert(value));
+ImagingProcedure & ImagingProcedure::setStudyInstanceUid(const InstanceIdentifier & value) {
+	data->StudyInstanceUid(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-InstanceIdentifier ImagingProcedure::getStudyInstanceUID() const {
-	return ConvertFromCDM::convert(data->StudyInstanceUID());
+InstanceIdentifier ImagingProcedure::getStudyInstanceUid() const {
+	return ConvertFromCDM::convert(data->StudyInstanceUid());
 }
 	
-ImagingProcedure & ImagingProcedure::setScheduledProcedureStepID(const InstanceIdentifier & value) {
-	data->ScheduledProcedureStepID(ConvertToCDM::convert(value));
+ImagingProcedure & ImagingProcedure::setScheduledProcedureStepId(const InstanceIdentifier & value) {
+	data->ScheduledProcedureStepId(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-InstanceIdentifier ImagingProcedure::getScheduledProcedureStepID() const {
-	return ConvertFromCDM::convert(data->ScheduledProcedureStepID());
+InstanceIdentifier ImagingProcedure::getScheduledProcedureStepId() const {
+	return ConvertFromCDM::convert(data->ScheduledProcedureStepId());
 }
 	
 ImagingProcedure & ImagingProcedure::setModality(const CodedValue & value) {

@@ -30,14 +30,12 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -72,56 +70,34 @@ SetContextStateOperationState & SetContextStateOperationState:: operator=(const 
 }
 
 
-SetContextStateOperationState & SetContextStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SetContextStateOperationState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-ReferencedVersion SetContextStateOperationState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool SetContextStateOperationState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-SetContextStateOperationState & SetContextStateOperationState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string SetContextStateOperationState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 SetContextStateOperationState & SetContextStateOperationState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetContextStateOperationState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
-		return true;
-	}
-	return false;
-}
 
 VersionCounter SetContextStateOperationState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->StateVersion());
 }
 	
-bool SetContextStateOperationState::hasStateVersion() const {
-	return data->StateVersion().present();
+SetContextStateOperationState & SetContextStateOperationState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef SetContextStateOperationState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+SetContextStateOperationState & SetContextStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion SetContextStateOperationState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
 }
 	
 SetContextStateOperationState & SetContextStateOperationState::setOperatingMode(const OperatingMode & value) {

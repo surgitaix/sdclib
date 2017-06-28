@@ -30,15 +30,17 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
+#include "OSCLib/Data/OSCP/MDIB/Range.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -94,6 +96,57 @@ bool ClinicalInfo::hasType() const {
 	return data->Type().present();
 }
 	
+ClinicalInfo & ClinicalInfo::setValue(const Measurement & value) {
+	data->Value(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Measurement ClinicalInfo::getValue() const {
+	return ConvertFromCDM::convert(data->Value());
+}
+	
+ClinicalInfo & ClinicalInfo::setRange(const Range & value) {
+	data->Range(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Range ClinicalInfo::getRange() const {
+	return ConvertFromCDM::convert(data->Range());
+}
+	
+ClinicalInfo & ClinicalInfo::setMeaning(const CodedValue & value) {
+	data->Meaning(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClinicalInfo::getMeaning(CodedValue & out) const {
+	if (data->Meaning().present()) {
+		out = ConvertFromCDM::convert(data->Meaning().get());
+		return true;
+	}
+	return false;
+}
+
+CodedValue ClinicalInfo::getMeaning() const {
+	return ConvertFromCDM::convert(data->Meaning().get());
+}
+	
+bool ClinicalInfo::hasMeaning() const {
+	return data->Meaning().present();
+}
+	
+ClinicalInfo & ClinicalInfo::setValidity(const MeasurementValidity & value) {
+	data->Validity(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+MeasurementValidity ClinicalInfo::getValidity() const {
+	return ConvertFromCDM::convert(data->Validity());
+}
+	
 ClinicalInfo & ClinicalInfo::addDescription(const LocalizedText & value) {
 	data->Description().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -110,24 +163,6 @@ std::vector<LocalizedText> ClinicalInfo::getDescriptions() const {
 
 void ClinicalInfo::clearDescriptions() {
 	data->Description().clear();
-}
-
-ClinicalInfo & ClinicalInfo::addRelatedMeasurement(const RelatedMeasurement & value) {
-	data->RelatedMeasurement().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<RelatedMeasurement> ClinicalInfo::getRelatedMeasurements() const {
-	std::vector<RelatedMeasurement> result;
-	result.reserve(data->RelatedMeasurement().size());
-	for (const auto & value: data->RelatedMeasurement()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void ClinicalInfo::clearRelatedMeasurements() {
-	data->RelatedMeasurement().clear();
 }
 
 

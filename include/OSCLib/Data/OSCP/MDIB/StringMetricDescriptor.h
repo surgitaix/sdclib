@@ -32,7 +32,7 @@
 #ifndef STRINGMETRICDESCRIPTOR_H_
 #define STRINGMETRICDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,15 +55,14 @@ public:
     StringMetricDescriptor & operator=(const StringMetricDescriptor & object);
     
     typedef CDM::StringMetricDescriptor WrappedType;
-    typedef StringMetricState StateType;
 
 	StringMetricDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	StringMetricDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	StringMetricDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	StringMetricDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -81,13 +80,31 @@ public:
 	StringMetricDescriptor & setMetricCategory(const MetricCategory & value);
 	MetricCategory getMetricCategory() const;
 
-	StringMetricDescriptor & setAvailability(const MetricAvailability & value);
-	MetricAvailability getAvailability() const;
+	StringMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
+	DerivationMethod getDerivationMethod() const;
 
-	StringMetricDescriptor & setMaxDelayTime(const Duration & value);
-	Duration getMaxDelayTime() const;
-	bool getMaxDelayTime(Duration & out) const;
+	StringMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
+	MetricAvailability getMetricAvailability() const;
+
+	StringMetricDescriptor & setMaxMeasurementTime(const duration & value);
+	duration getMaxMeasurementTime() const;
+	bool getMaxMeasurementTime(duration & out) const;
+	bool hasMaxMeasurementTime() const;
+
+	StringMetricDescriptor & setMaxDelayTime(const duration & value);
+	duration getMaxDelayTime() const;
+	bool getMaxDelayTime(duration & out) const;
 	bool hasMaxDelayTime() const;
+
+	StringMetricDescriptor & setDeterminationPeriod(const duration & value);
+	duration getDeterminationPeriod() const;
+	bool getDeterminationPeriod(duration & out) const;
+	bool hasDeterminationPeriod() const;
+
+	StringMetricDescriptor & setLifeTimePeriod(const duration & value);
+	duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(duration & out) const;
+	bool hasLifeTimePeriod() const;
 
 	StringMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySites() const;

@@ -32,7 +32,7 @@
 #ifndef LOCATIONDETAIL_H_
 #define LOCATIONDETAIL_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,34 +56,34 @@ public:
     
     typedef CDM::LocationDetail WrappedType;
 
-	LocationDetail & setPoC(const std::string & value);
-	std::string getPoC() const;
-	bool getPoC(std::string & out) const;
+	LocationDetail & setPoC(const string & value);
+	string getPoC() const;
+	bool getPoC(string & out) const;
 	bool hasPoC() const;
 
-	LocationDetail & setRoom(const std::string & value);
-	std::string getRoom() const;
-	bool getRoom(std::string & out) const;
+	LocationDetail & setRoom(const string & value);
+	string getRoom() const;
+	bool getRoom(string & out) const;
 	bool hasRoom() const;
 
-	LocationDetail & setBed(const std::string & value);
-	std::string getBed() const;
-	bool getBed(std::string & out) const;
+	LocationDetail & setBed(const string & value);
+	string getBed() const;
+	bool getBed(string & out) const;
 	bool hasBed() const;
 
-	LocationDetail & setFacility(const std::string & value);
-	std::string getFacility() const;
-	bool getFacility(std::string & out) const;
+	LocationDetail & setFacility(const string & value);
+	string getFacility() const;
+	bool getFacility(string & out) const;
 	bool hasFacility() const;
 
-	LocationDetail & setBuilding(const std::string & value);
-	std::string getBuilding() const;
-	bool getBuilding(std::string & out) const;
+	LocationDetail & setBuilding(const string & value);
+	string getBuilding() const;
+	bool getBuilding(string & out) const;
 	bool hasBuilding() const;
 
-	LocationDetail & setFloor(const std::string & value);
-	std::string getFloor() const;
-	bool getFloor(std::string & out) const;
+	LocationDetail & setFloor(const string & value);
+	string getFloor() const;
+	bool getFloor(string & out) const;
 	bool hasFloor() const;
 
 private:

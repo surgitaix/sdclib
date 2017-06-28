@@ -32,7 +32,7 @@
 #ifndef REALTIMESAMPLEARRAYMETRICSTATE_H_
 #define REALTIMESAMPLEARRAYMETRICSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,41 +55,40 @@ public:
     RealTimeSampleArrayMetricState & operator=(const RealTimeSampleArrayMetricState & object);
     
     typedef CDM::RealTimeSampleArrayMetricState WrappedType;
-    typedef RealTimeSampleArrayMetricDescriptor DescriptorType;
-    typedef OSCPProviderRealTimeSampleArrayMetricStateHandler ProviderHandlerType;
-    typedef OSCPConsumerRealTimeSampleArrayMetricStateHandler ConsumerHandlerType;
-
-	RealTimeSampleArrayMetricState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	RealTimeSampleArrayMetricState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	RealTimeSampleArrayMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	RealTimeSampleArrayMetricState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	RealTimeSampleArrayMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	RealTimeSampleArrayMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	RealTimeSampleArrayMetricState & setLifeTimePeriod(const Duration & value);
-	Duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(Duration & out) const;
+	RealTimeSampleArrayMetricState & setActiveDeterminationPeriod(const duration & value);
+	duration getActiveDeterminationPeriod() const;
+
+	RealTimeSampleArrayMetricState & setLifeTimePeriod(const duration & value);
+	duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(duration & out) const;
 	bool hasLifeTimePeriod() const;
 
-	RealTimeSampleArrayMetricState & setActiveDeterminationPeriod(const Duration & value);
-	Duration getActiveDeterminationPeriod() const;
-	bool getActiveDeterminationPeriod(Duration & out) const;
-	bool hasActiveDeterminationPeriod() const;
+	RealTimeSampleArrayMetricState & addBodySite(const CodedValue & value);
+	std::vector<CodedValue> getBodySites() const;
+	void clearBodySites();
+	
+	RealTimeSampleArrayMetricState & setMetricValue(const SampleArrayValue & value);
+	SampleArrayValue getMetricValue() const;
+	bool getMetricValue(SampleArrayValue & out) const;
+	bool hasMetricValue() const;
 
-	RealTimeSampleArrayMetricState & setObservedValue(const RealTimeSampleArrayValue & value);
-	RealTimeSampleArrayValue getObservedValue() const;
-	bool getObservedValue(RealTimeSampleArrayValue & out) const;
-	bool hasObservedValue() const;
-
+	RealTimeSampleArrayMetricState & addPhysiologicalRange(const Range & value);
+	std::vector<Range> getPhysiologicalRanges() const;
+	void clearPhysiologicalRanges();
+	
 private:
 	std::shared_ptr<CDM::RealTimeSampleArrayMetricState> data;
 };

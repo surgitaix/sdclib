@@ -30,14 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -72,56 +71,86 @@ NumericMetricValue & NumericMetricValue:: operator=(const NumericMetricValue & o
 }
 
 
-NumericMetricValue & NumericMetricValue::setMetricQuality(const MetricQuality & value) {
-	data->MetricQuality(ConvertToCDM::convert(value));
+NumericMetricValue & NumericMetricValue::setType(const CodedValue & value) {
+	data->Type(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MetricQuality NumericMetricValue::getMetricQuality() const {
-	return ConvertFromCDM::convert(data->MetricQuality());
+CodedValue NumericMetricValue::getType() const {
+	return ConvertFromCDM::convert(data->Type());
 }
 	
-NumericMetricValue & NumericMetricValue::setStart_Time(const Timestamp & value) {
-	data->Start_Time(ConvertToCDM::convert(value));
+NumericMetricValue & NumericMetricValue::setValidity(const MeasurementValidity & value) {
+	data->Validity(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricValue::getStart_Time(Timestamp & out) const {
-	if (data->Start_Time().present()) {
-		out = ConvertFromCDM::convert(data->Start_Time().get());
+
+MeasurementValidity NumericMetricValue::getValidity() const {
+	return ConvertFromCDM::convert(data->Validity());
+}
+	
+NumericMetricValue & NumericMetricValue::setMode(const GenerationMode & value) {
+	data->Mode(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+GenerationMode NumericMetricValue::getMode() const {
+	return ConvertFromCDM::convert(data->Mode());
+}
+	
+NumericMetricValue & NumericMetricValue::setQi(const QualityIndicator & value) {
+	data->Qi(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+QualityIndicator NumericMetricValue::getQi() const {
+	return ConvertFromCDM::convert(data->Qi());
+}
+	
+NumericMetricValue & NumericMetricValue::setStartTime(const Timestamp & value) {
+	data->StartTime(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NumericMetricValue::getStartTime(Timestamp & out) const {
+	if (data->StartTime().present()) {
+		out = ConvertFromCDM::convert(data->StartTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp NumericMetricValue::getStart_Time() const {
-	return ConvertFromCDM::convert(data->Start_Time().get());
+Timestamp NumericMetricValue::getStartTime() const {
+	return ConvertFromCDM::convert(data->StartTime().get());
 }
 	
-bool NumericMetricValue::hasStart_Time() const {
-	return data->Start_Time().present();
+bool NumericMetricValue::hasStartTime() const {
+	return data->StartTime().present();
 }
 	
-NumericMetricValue & NumericMetricValue::setStop_Time(const Timestamp & value) {
-	data->Stop_Time(ConvertToCDM::convert(value));
+NumericMetricValue & NumericMetricValue::setStopTime(const Timestamp & value) {
+	data->StopTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricValue::getStop_Time(Timestamp & out) const {
-	if (data->Stop_Time().present()) {
-		out = ConvertFromCDM::convert(data->Stop_Time().get());
+bool NumericMetricValue::getStopTime(Timestamp & out) const {
+	if (data->StopTime().present()) {
+		out = ConvertFromCDM::convert(data->StopTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp NumericMetricValue::getStop_Time() const {
-	return ConvertFromCDM::convert(data->Stop_Time().get());
+Timestamp NumericMetricValue::getStopTime() const {
+	return ConvertFromCDM::convert(data->StopTime().get());
 }
 	
-bool NumericMetricValue::hasStop_Time() const {
-	return data->Stop_Time().present();
+bool NumericMetricValue::hasStopTime() const {
+	return data->StopTime().present();
 }
 	
 NumericMetricValue & NumericMetricValue::setDeterminationTime(const Timestamp & value) {
@@ -145,12 +174,12 @@ bool NumericMetricValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
-NumericMetricValue & NumericMetricValue::setValue(const double & value) {
+NumericMetricValue & NumericMetricValue::setValue(const decimal & value) {
 	data->Value(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricValue::getValue(double & out) const {
+bool NumericMetricValue::getValue(decimal & out) const {
 	if (data->Value().present()) {
 		out = ConvertFromCDM::convert(data->Value().get());
 		return true;
@@ -158,7 +187,7 @@ bool NumericMetricValue::getValue(double & out) const {
 	return false;
 }
 
-double NumericMetricValue::getValue() const {
+decimal NumericMetricValue::getValue() const {
 	return ConvertFromCDM::convert(data->Value().get());
 }
 	

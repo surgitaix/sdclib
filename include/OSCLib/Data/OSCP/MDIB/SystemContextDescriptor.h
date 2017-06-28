@@ -32,7 +32,7 @@
 #ifndef SYSTEMCONTEXTDESCRIPTOR_H_
 #define SYSTEMCONTEXTDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,25 +56,43 @@ public:
     
     typedef CDM::SystemContextDescriptor WrappedType;
 
-	SystemContextDescriptor & setEnsembleContext(const EnsembleContextDescriptor & value);
-	EnsembleContextDescriptor getEnsembleContext() const;
-	bool getEnsembleContext(EnsembleContextDescriptor & out) const;
-	bool hasEnsembleContext() const;
+	SystemContextDescriptor & setType(const CodedValue & value);
+	CodedValue getType() const;
+	bool getType(CodedValue & out) const;
+	bool hasType() const;
+
+	SystemContextDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
+
+	SystemContextDescriptor & setDescriptorVersion(const VersionCounter & value);
+	VersionCounter getDescriptorVersion() const;
+	bool getDescriptorVersion(VersionCounter & out) const;
+	bool hasDescriptorVersion() const;
+
+	SystemContextDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
+
+	SystemContextDescriptor & setPatientContext(const PatientContextDescriptor & value);
+	PatientContextDescriptor getPatientContext() const;
+	bool getPatientContext(PatientContextDescriptor & out) const;
+	bool hasPatientContext() const;
 
 	SystemContextDescriptor & setLocationContext(const LocationContextDescriptor & value);
 	LocationContextDescriptor getLocationContext() const;
 	bool getLocationContext(LocationContextDescriptor & out) const;
 	bool hasLocationContext() const;
 
+	SystemContextDescriptor & setEnsembleContext(const EnsembleContextDescriptor & value);
+	EnsembleContextDescriptor getEnsembleContext() const;
+	bool getEnsembleContext(EnsembleContextDescriptor & out) const;
+	bool hasEnsembleContext() const;
+
 	SystemContextDescriptor & setOperatorContext(const OperatorContextDescriptor & value);
 	OperatorContextDescriptor getOperatorContext() const;
 	bool getOperatorContext(OperatorContextDescriptor & out) const;
 	bool hasOperatorContext() const;
-
-	SystemContextDescriptor & setPatientContext(const PatientContextDescriptor & value);
-	PatientContextDescriptor getPatientContext() const;
-	bool getPatientContext(PatientContextDescriptor & out) const;
-	bool hasPatientContext() const;
 
 	SystemContextDescriptor & setWorkflowContext(const WorkflowContextDescriptor & value);
 	WorkflowContextDescriptor getWorkflowContext() const;

@@ -32,7 +32,7 @@
 #ifndef SYSTEMCONTEXTSTATE_H_
 #define SYSTEMCONTEXTSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,18 +56,14 @@ public:
     
     typedef CDM::SystemContextState WrappedType;
 
-	SystemContextState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	SystemContextState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	SystemContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	SystemContextState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	SystemContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 private:
 	std::shared_ptr<CDM::SystemContextState> data;

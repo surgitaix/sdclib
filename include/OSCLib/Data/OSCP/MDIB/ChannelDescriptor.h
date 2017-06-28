@@ -32,7 +32,7 @@
 #ifndef CHANNELDESCRIPTOR_H_
 #define CHANNELDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,28 +56,44 @@ public:
     
     typedef CDM::ChannelDescriptor WrappedType;
 
+	ChannelDescriptor & setType(const CodedValue & value);
+	CodedValue getType() const;
+	bool getType(CodedValue & out) const;
+	bool hasType() const;
+
+	ChannelDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
+
+	ChannelDescriptor & setDescriptorVersion(const VersionCounter & value);
+	VersionCounter getDescriptorVersion() const;
+	bool getDescriptorVersion(VersionCounter & out) const;
+	bool hasDescriptorVersion() const;
+
+	ChannelDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
+
+	ChannelDescriptor & setSpecType(const CodedValue & value);
+	CodedValue getSpecType() const;
+
+	ChannelDescriptor & setProductionSpec(const std::string & value);
+	std::string getProductionSpec() const;
+
+	ChannelDescriptor & setComponentId(const InstanceIdentifier & value);
+	InstanceIdentifier getComponentId() const;
+	bool getComponentId(InstanceIdentifier & out) const;
+	bool hasComponentId() const;
+
 	ChannelDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;
 	bool hasAlertSystem() const;
 
-
-	std::vector<EnumStringMetricDescriptor> getEnumStringMetricDescriptors() const;
-	std::vector<NumericMetricDescriptor> getNumericMetricDescriptors() const;
-	std::vector<StringMetricDescriptor> getStringMetricDescriptors() const;
-	std::vector<RealTimeSampleArrayMetricDescriptor> getRealTimeSampleArrayMetricDescriptors() const;
-
-	ChannelDescriptor & addMetric(const EnumStringMetricDescriptor & source);
-	ChannelDescriptor & addMetric(const NumericMetricDescriptor & source);
-	ChannelDescriptor & addMetric(const StringMetricDescriptor & source);
-	ChannelDescriptor & addMetric(const RealTimeSampleArrayMetricDescriptor & source);
-
-private:
-	template<class U, class V>
-	void getMetricDescriptors(std::vector<U> & result) const;
-
-	template<class T>
-	ChannelDescriptor & addMetricImpl(const T & source);
+	ChannelDescriptor & addMetric(const AbstractMetricDescriptor & value);
+	std::vector<AbstractMetricDescriptor> getMetrics() const;
+	void clearMetrics();
+	
 private:
 	std::shared_ptr<CDM::ChannelDescriptor> data;
 };

@@ -32,7 +32,7 @@
 #ifndef WORKFLOWCONTEXTDESCRIPTOR_H_
 #define WORKFLOWCONTEXTDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,15 +55,14 @@ public:
     WorkflowContextDescriptor & operator=(const WorkflowContextDescriptor & object);
     
     typedef CDM::WorkflowContextDescriptor WrappedType;
-    typedef WorkflowContextState StateType;
 
 	WorkflowContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	WorkflowContextDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	WorkflowContextDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	WorkflowContextDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;

@@ -30,16 +30,16 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -95,13 +95,13 @@ bool EnumStringMetricDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setHandle(const std::string & value) {
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string EnumStringMetricDescriptor::getHandle() const {
+Handle EnumStringMetricDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -167,22 +167,53 @@ MetricCategory EnumStringMetricDescriptor::getMetricCategory() const {
 	return ConvertFromCDM::convert(data->MetricCategory());
 }
 	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setAvailability(const MetricAvailability & value) {
-	data->Availability(ConvertToCDM::convert(value));
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setDerivationMethod(const DerivationMethod & value) {
+	data->DerivationMethod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MetricAvailability EnumStringMetricDescriptor::getAvailability() const {
-	return ConvertFromCDM::convert(data->Availability());
+DerivationMethod EnumStringMetricDescriptor::getDerivationMethod() const {
+	return ConvertFromCDM::convert(data->DerivationMethod());
 }
 	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMaxDelayTime(const Duration & value) {
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
+	data->MetricAvailability(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+MetricAvailability EnumStringMetricDescriptor::getMetricAvailability() const {
+	return ConvertFromCDM::convert(data->MetricAvailability());
+}
+	
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMaxMeasurementTime(const duration & value) {
+	data->MaxMeasurementTime(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool EnumStringMetricDescriptor::getMaxMeasurementTime(duration & out) const {
+	if (data->MaxMeasurementTime().present()) {
+		out = ConvertFromCDM::convert(data->MaxMeasurementTime().get());
+		return true;
+	}
+	return false;
+}
+
+duration EnumStringMetricDescriptor::getMaxMeasurementTime() const {
+	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
+}
+	
+bool EnumStringMetricDescriptor::hasMaxMeasurementTime() const {
+	return data->MaxMeasurementTime().present();
+}
+	
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMaxDelayTime(const duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricDescriptor::getMaxDelayTime(Duration & out) const {
+bool EnumStringMetricDescriptor::getMaxDelayTime(duration & out) const {
 	if (data->MaxDelayTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxDelayTime().get());
 		return true;
@@ -190,12 +221,54 @@ bool EnumStringMetricDescriptor::getMaxDelayTime(Duration & out) const {
 	return false;
 }
 
-Duration EnumStringMetricDescriptor::getMaxDelayTime() const {
+duration EnumStringMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
 	
 bool EnumStringMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
+}
+	
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setDeterminationPeriod(const duration & value) {
+	data->DeterminationPeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool EnumStringMetricDescriptor::getDeterminationPeriod(duration & out) const {
+	if (data->DeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationPeriod().get());
+		return true;
+	}
+	return false;
+}
+
+duration EnumStringMetricDescriptor::getDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
+}
+	
+bool EnumStringMetricDescriptor::hasDeterminationPeriod() const {
+	return data->DeterminationPeriod().present();
+}
+	
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setLifeTimePeriod(const duration & value) {
+	data->LifeTimePeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool EnumStringMetricDescriptor::getLifeTimePeriod(duration & out) const {
+	if (data->LifeTimePeriod().present()) {
+		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
+		return true;
+	}
+	return false;
+}
+
+duration EnumStringMetricDescriptor::getLifeTimePeriod() const {
+	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
+}
+	
+bool EnumStringMetricDescriptor::hasLifeTimePeriod() const {
+	return data->LifeTimePeriod().present();
 }
 	
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::addBodySite(const CodedValue & value) {
@@ -216,24 +289,37 @@ void EnumStringMetricDescriptor::clearBodySites() {
 	data->BodySite().clear();
 }
 
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::addAllowedValue(const AllowedValue & value) {
-	data->AllowedValue().push_back(ConvertToCDM::convert(value));
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setValue(const std::string & value) {
+	data->Value(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<AllowedValue> EnumStringMetricDescriptor::getAllowedValues() const {
-	std::vector<AllowedValue> result;
-	result.reserve(data->AllowedValue().size());
-	for (const auto & value: data->AllowedValue()) {
-		result.push_back(ConvertFromCDM::convert(value));
+
+std::string EnumStringMetricDescriptor::getValue() const {
+	return ConvertFromCDM::convert(data->Value());
+}
+	
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setType(const CodedValue & value) {
+	data->Type(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool EnumStringMetricDescriptor::getType(CodedValue & out) const {
+	if (data->Type().present()) {
+		out = ConvertFromCDM::convert(data->Type().get());
+		return true;
 	}
-	return result;
+	return false;
 }
 
-void EnumStringMetricDescriptor::clearAllowedValues() {
-	data->AllowedValue().clear();
+CodedValue EnumStringMetricDescriptor::getType() const {
+	return ConvertFromCDM::convert(data->Type().get());
 }
-
+	
+bool EnumStringMetricDescriptor::hasType() const {
+	return data->Type().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

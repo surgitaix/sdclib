@@ -1,5 +1,5 @@
 
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "osdm.hxx"
 
 #include <stdexcept>

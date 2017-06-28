@@ -32,7 +32,7 @@
 #ifndef CLOCKSTATE_H_
 #define CLOCKSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,20 +55,34 @@ public:
     ClockState & operator=(const ClockState & object);
     
     typedef CDM::ClockState WrappedType;
-    typedef ClockDescriptor DescriptorType;
-
-	ClockState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	ClockState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	ClockState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	ClockState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	ClockState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+
+	ClockState & setCalibrationInfo(const CalibrationInfo & value);
+	CalibrationInfo getCalibrationInfo() const;
+	bool getCalibrationInfo(CalibrationInfo & out) const;
+	bool hasCalibrationInfo() const;
+
+	ClockState & setNextCalibration(const CalibrationInfo & value);
+	CalibrationInfo getNextCalibration() const;
+	bool getNextCalibration(CalibrationInfo & out) const;
+	bool hasNextCalibration() const;
+
+	ClockState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
+
+	ClockState & setOperatingHours(const unsignedInt & value);
+	unsignedInt getOperatingHours() const;
+
+	ClockState & setOperatingCycles(const int & value);
+	int getOperatingCycles() const;
 
 	ClockState & setActiveSyncProtocol(const CodedValue & value);
 	CodedValue getActiveSyncProtocol() const;
@@ -77,35 +91,29 @@ public:
 
 	ClockState & setDateAndTime(const Timestamp & value);
 	Timestamp getDateAndTime() const;
-	bool getDateAndTime(Timestamp & out) const;
-	bool hasDateAndTime() const;
 
-	ClockState & setRemoteSync(const bool & value);
-	bool getRemoteSync() const;
+	ClockState & setRemoteSync(const boolean & value);
+	boolean getRemoteSync() const;
 
-	ClockState & setReferenceSource(const std::string & value);
-	std::string getReferenceSource() const;
-	bool getReferenceSource(std::string & out) const;
-	bool hasReferenceSource() const;
+	ClockState & setReferenceSource(const string & value);
+	string getReferenceSource() const;
 
-	ClockState & setAccuracy(const double & value);
-	double getAccuracy() const;
-	bool getAccuracy(double & out) const;
+	ClockState & setAccuracy(const decimal & value);
+	decimal getAccuracy() const;
+	bool getAccuracy(decimal & out) const;
 	bool hasAccuracy() const;
 
 	ClockState & setLastSet(const Timestamp & value);
 	Timestamp getLastSet() const;
-	bool getLastSet(Timestamp & out) const;
-	bool hasLastSet() const;
 
 	ClockState & setTimeZone(const TimeZone & value);
 	TimeZone getTimeZone() const;
 	bool getTimeZone(TimeZone & out) const;
 	bool hasTimeZone() const;
 
-	ClockState & setCriticalUse(const bool & value);
-	bool getCriticalUse() const;
-	bool getCriticalUse(bool & out) const;
+	ClockState & setCriticalUse(const boolean & value);
+	boolean getCriticalUse() const;
+	bool getCriticalUse(boolean & out) const;
 	bool hasCriticalUse() const;
 
 private:

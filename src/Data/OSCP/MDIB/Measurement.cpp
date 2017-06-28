@@ -30,8 +30,8 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
@@ -81,25 +81,14 @@ CodedValue Measurement::getMeasurementUnit() const {
 	return ConvertFromCDM::convert(data->MeasurementUnit());
 }
 	
-Measurement & Measurement::setMeasuredValue(const double & value) {
+Measurement & Measurement::setMeasuredValue(const decimal & value) {
 	data->MeasuredValue(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool Measurement::getMeasuredValue(double & out) const {
-	if (data->MeasuredValue().present()) {
-		out = ConvertFromCDM::convert(data->MeasuredValue().get());
-		return true;
-	}
-	return false;
-}
 
-double Measurement::getMeasuredValue() const {
-	return ConvertFromCDM::convert(data->MeasuredValue().get());
-}
-	
-bool Measurement::hasMeasuredValue() const {
-	return data->MeasuredValue().present();
+decimal Measurement::getMeasuredValue() const {
+	return ConvertFromCDM::convert(data->MeasuredValue());
 }
 	
 

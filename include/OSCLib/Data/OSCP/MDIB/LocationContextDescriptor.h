@@ -32,7 +32,7 @@
 #ifndef LOCATIONCONTEXTDESCRIPTOR_H_
 #define LOCATIONCONTEXTDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,15 +55,14 @@ public:
     LocationContextDescriptor & operator=(const LocationContextDescriptor & object);
     
     typedef CDM::LocationContextDescriptor WrappedType;
-    typedef LocationContextState StateType;
 
 	LocationContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	LocationContextDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	LocationContextDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	LocationContextDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;

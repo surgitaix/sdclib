@@ -32,7 +32,7 @@
 #ifndef NUMERICMETRICDESCRIPTOR_H_
 #define NUMERICMETRICDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,15 +55,14 @@ public:
     NumericMetricDescriptor & operator=(const NumericMetricDescriptor & object);
     
     typedef CDM::NumericMetricDescriptor WrappedType;
-    typedef NumericMetricState StateType;
 
 	NumericMetricDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	NumericMetricDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	NumericMetricDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	NumericMetricDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -81,30 +80,41 @@ public:
 	NumericMetricDescriptor & setMetricCategory(const MetricCategory & value);
 	MetricCategory getMetricCategory() const;
 
-	NumericMetricDescriptor & setAvailability(const MetricAvailability & value);
-	MetricAvailability getAvailability() const;
+	NumericMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
+	DerivationMethod getDerivationMethod() const;
 
-	NumericMetricDescriptor & setMaxDelayTime(const Duration & value);
-	Duration getMaxDelayTime() const;
-	bool getMaxDelayTime(Duration & out) const;
+	NumericMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
+	MetricAvailability getMetricAvailability() const;
+
+	NumericMetricDescriptor & setMaxMeasurementTime(const duration & value);
+	duration getMaxMeasurementTime() const;
+	bool getMaxMeasurementTime(duration & out) const;
+	bool hasMaxMeasurementTime() const;
+
+	NumericMetricDescriptor & setMaxDelayTime(const duration & value);
+	duration getMaxDelayTime() const;
+	bool getMaxDelayTime(duration & out) const;
 	bool hasMaxDelayTime() const;
+
+	NumericMetricDescriptor & setDeterminationPeriod(const duration & value);
+	duration getDeterminationPeriod() const;
+	bool getDeterminationPeriod(duration & out) const;
+	bool hasDeterminationPeriod() const;
+
+	NumericMetricDescriptor & setLifeTimePeriod(const duration & value);
+	duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(duration & out) const;
+	bool hasLifeTimePeriod() const;
 
 	NumericMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySites() const;
 	void clearBodySites();
 	
-	NumericMetricDescriptor & setResolution(const double & value);
-	double getResolution() const;
+	NumericMetricDescriptor & setResolution(const decimal & value);
+	decimal getResolution() const;
 
-	NumericMetricDescriptor & setMeasurePeriod(const Duration & value);
-	Duration getMeasurePeriod() const;
-	bool getMeasurePeriod(Duration & out) const;
-	bool hasMeasurePeriod() const;
-
-	NumericMetricDescriptor & setAveragingPeriod(const Duration & value);
-	Duration getAveragingPeriod() const;
-	bool getAveragingPeriod(Duration & out) const;
-	bool hasAveragingPeriod() const;
+	NumericMetricDescriptor & setAveragingPeriod(const duration & value);
+	duration getAveragingPeriod() const;
 
 	NumericMetricDescriptor & addTechnicalRange(const Range & value);
 	std::vector<Range> getTechnicalRanges() const;

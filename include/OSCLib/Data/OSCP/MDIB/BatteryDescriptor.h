@@ -32,7 +32,7 @@
 #ifndef BATTERYDESCRIPTOR_H_
 #define BATTERYDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	BatteryDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	BatteryDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	BatteryDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -74,10 +74,17 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	BatteryDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecifications() const;
-	void clearProductionSpecifications();
-	
+	BatteryDescriptor & setSpecType(const CodedValue & value);
+	CodedValue getSpecType() const;
+
+	BatteryDescriptor & setProductionSpec(const std::string & value);
+	std::string getProductionSpec() const;
+
+	BatteryDescriptor & setComponentId(const InstanceIdentifier & value);
+	InstanceIdentifier getComponentId() const;
+	bool getComponentId(InstanceIdentifier & out) const;
+	bool hasComponentId() const;
+
 	BatteryDescriptor & setCapacityFullCharge(const Measurement & value);
 	Measurement getCapacityFullCharge() const;
 	bool getCapacityFullCharge(Measurement & out) const;

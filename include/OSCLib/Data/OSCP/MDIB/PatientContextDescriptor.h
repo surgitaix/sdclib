@@ -32,7 +32,7 @@
 #ifndef PATIENTCONTEXTDESCRIPTOR_H_
 #define PATIENTCONTEXTDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,15 +55,14 @@ public:
     PatientContextDescriptor & operator=(const PatientContextDescriptor & object);
     
     typedef CDM::PatientContextDescriptor WrappedType;
-    typedef PatientContextState StateType;
 
 	PatientContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	PatientContextDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	PatientContextDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	PatientContextDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;

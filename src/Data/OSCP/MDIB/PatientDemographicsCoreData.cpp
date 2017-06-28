@@ -30,15 +30,15 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/PatientDemographicsCoreData.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/DateTime.h"
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -217,27 +217,6 @@ bool PatientDemographicsCoreData::hasPatientType() const {
 	return data->PatientType().present();
 }
 	
-PatientDemographicsCoreData & PatientDemographicsCoreData::setDateOfBirth(const DateTime & value) {
-	data->DateOfBirth(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool PatientDemographicsCoreData::getDateOfBirth(DateTime & out) const {
-	if (data->DateOfBirth().present()) {
-		out = ConvertFromCDM::convert(data->DateOfBirth().get());
-		return true;
-	}
-	return false;
-}
-
-DateTime PatientDemographicsCoreData::getDateOfBirth() const {
-	return ConvertFromCDM::convert(data->DateOfBirth().get());
-}
-	
-bool PatientDemographicsCoreData::hasDateOfBirth() const {
-	return data->DateOfBirth().present();
-}
-	
 PatientDemographicsCoreData & PatientDemographicsCoreData::setHeight(const Measurement & value) {
 	data->Height(ConvertToCDM::convert(value));
 	return *this;
@@ -259,12 +238,12 @@ bool PatientDemographicsCoreData::hasHeight() const {
 	return data->Height().present();
 }
 	
-PatientDemographicsCoreData & PatientDemographicsCoreData::setWeight(const Measure & value) {
+PatientDemographicsCoreData & PatientDemographicsCoreData::setWeight(const Measurement & value) {
 	data->Weight(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool PatientDemographicsCoreData::getWeight(Measure & out) const {
+bool PatientDemographicsCoreData::getWeight(Measurement & out) const {
 	if (data->Weight().present()) {
 		out = ConvertFromCDM::convert(data->Weight().get());
 		return true;
@@ -272,7 +251,7 @@ bool PatientDemographicsCoreData::getWeight(Measure & out) const {
 	return false;
 }
 
-Measure PatientDemographicsCoreData::getWeight() const {
+Measurement PatientDemographicsCoreData::getWeight() const {
 	return ConvertFromCDM::convert(data->Weight().get());
 }
 	

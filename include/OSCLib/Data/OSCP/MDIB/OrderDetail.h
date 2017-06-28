@@ -32,7 +32,7 @@
 #ifndef ORDERDETAIL_H_
 #define ORDERDETAIL_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,14 +56,14 @@ public:
     
     typedef CDM::OrderDetail WrappedType;
 
-	OrderDetail & setStart(const DateTime & value);
-	DateTime getStart() const;
-	bool getStart(DateTime & out) const;
+	OrderDetail & setStart(const std::string & value);
+	std::string getStart() const;
+	bool getStart(std::string & out) const;
 	bool hasStart() const;
 
-	OrderDetail & setEnd(const DateTime & value);
-	DateTime getEnd() const;
-	bool getEnd(DateTime & out) const;
+	OrderDetail & setEnd(const std::string & value);
+	std::string getEnd() const;
+	bool getEnd(std::string & out) const;
 	bool hasEnd() const;
 
 	OrderDetail & addPerformer(const PersonParticipation & value);

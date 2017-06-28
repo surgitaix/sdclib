@@ -30,15 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/AlertConditionReference.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemSignalActivation.h"
 
 namespace OSCLib {
 namespace Data {
@@ -73,56 +71,34 @@ AlertSystemState & AlertSystemState:: operator=(const AlertSystemState & object)
 }
 
 
-AlertSystemState & AlertSystemState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertSystemState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-ReferencedVersion AlertSystemState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool AlertSystemState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-AlertSystemState & AlertSystemState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string AlertSystemState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 AlertSystemState & AlertSystemState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSystemState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
-		return true;
-	}
-	return false;
-}
 
 VersionCounter AlertSystemState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->StateVersion());
 }
 	
-bool AlertSystemState::hasStateVersion() const {
-	return data->StateVersion().present();
+AlertSystemState & AlertSystemState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef AlertSystemState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+AlertSystemState & AlertSystemState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion AlertSystemState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
 }
 	
 AlertSystemState & AlertSystemState::setActivationState(const AlertActivation & value) {
@@ -135,25 +111,34 @@ AlertActivation AlertSystemState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
+AlertSystemState & AlertSystemState::setLastSelfCheck(const Timestamp & value) {
+	data->LastSelfCheck(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Timestamp AlertSystemState::getLastSelfCheck() const {
+	return ConvertFromCDM::convert(data->LastSelfCheck());
+}
+	
+AlertSystemState & AlertSystemState::setSelfCheckCount(const long & value) {
+	data->SelfCheckCount(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+long AlertSystemState::getSelfCheckCount() const {
+	return ConvertFromCDM::convert(data->SelfCheckCount());
+}
+	
 AlertSystemState & AlertSystemState::setPresentPhysiologicalAlarmConditions(const AlertConditionReference & value) {
 	data->PresentPhysiologicalAlarmConditions(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSystemState::getPresentPhysiologicalAlarmConditions(AlertConditionReference & out) const {
-	if (data->PresentPhysiologicalAlarmConditions().present()) {
-		out = ConvertFromCDM::convert(data->PresentPhysiologicalAlarmConditions().get());
-		return true;
-	}
-	return false;
-}
 
 AlertConditionReference AlertSystemState::getPresentPhysiologicalAlarmConditions() const {
-	return ConvertFromCDM::convert(data->PresentPhysiologicalAlarmConditions().get());
-}
-	
-bool AlertSystemState::hasPresentPhysiologicalAlarmConditions() const {
-	return data->PresentPhysiologicalAlarmConditions().present();
+	return ConvertFromCDM::convert(data->PresentPhysiologicalAlarmConditions());
 }
 	
 AlertSystemState & AlertSystemState::setPresentTechnicalAlarmConditions(const AlertConditionReference & value) {
@@ -161,22 +146,29 @@ AlertSystemState & AlertSystemState::setPresentTechnicalAlarmConditions(const Al
 	return *this;
 }
 
-bool AlertSystemState::getPresentTechnicalAlarmConditions(AlertConditionReference & out) const {
-	if (data->PresentTechnicalAlarmConditions().present()) {
-		out = ConvertFromCDM::convert(data->PresentTechnicalAlarmConditions().get());
-		return true;
-	}
-	return false;
-}
 
 AlertConditionReference AlertSystemState::getPresentTechnicalAlarmConditions() const {
-	return ConvertFromCDM::convert(data->PresentTechnicalAlarmConditions().get());
+	return ConvertFromCDM::convert(data->PresentTechnicalAlarmConditions());
 }
 	
-bool AlertSystemState::hasPresentTechnicalAlarmConditions() const {
-	return data->PresentTechnicalAlarmConditions().present();
+AlertSystemState & AlertSystemState::addSystemSignalActivation(const SystemSignalActivation & value) {
+	data->SystemSignalActivation().push_back(ConvertToCDM::convert(value));
+	return *this;
 }
-	
+
+std::vector<SystemSignalActivation> AlertSystemState::getSystemSignalActivations() const {
+	std::vector<SystemSignalActivation> result;
+	result.reserve(data->SystemSignalActivation().size());
+	for (const auto & value: data->SystemSignalActivation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void AlertSystemState::clearSystemSignalActivations() {
+	data->SystemSignalActivation().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

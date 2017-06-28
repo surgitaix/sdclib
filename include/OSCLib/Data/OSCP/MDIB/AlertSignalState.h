@@ -32,7 +32,7 @@
 #ifndef ALERTSIGNALSTATE_H_
 #define ALERTSIGNALSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,40 +55,33 @@ public:
     AlertSignalState & operator=(const AlertSignalState & object);
     
     typedef CDM::AlertSignalState WrappedType;
-    typedef AlertSignalDescriptor DescriptorType;
-    typedef OSCPProviderAlertSignalStateHandler ProviderHandlerType;
-    typedef OSCPConsumerAlertSignalStateHandler ConsumerHandlerType;
-
-	AlertSignalState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	AlertSignalState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	AlertSignalState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	AlertSignalState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	AlertSignalState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	AlertSignalState & setActivationState(const AlertActivation & value);
 	AlertActivation getActivationState() const;
+
+	AlertSignalState & setPresence(const AlertSignalPresence & value);
+	AlertSignalPresence getPresence() const;
+	bool getPresence(AlertSignalPresence & out) const;
+	bool hasPresence() const;
 
 	AlertSignalState & setLocation(const AlertSignalPrimaryLocation & value);
 	AlertSignalPrimaryLocation getLocation() const;
 	bool getLocation(AlertSignalPrimaryLocation & out) const;
 	bool hasLocation() const;
 
-	AlertSignalState & setSlot(const int & value);
-	int getSlot() const;
-	bool getSlot(int & out) const;
+	AlertSignalState & setSlot(const unsignedInt & value);
+	unsignedInt getSlot() const;
+	bool getSlot(unsignedInt & out) const;
 	bool hasSlot() const;
-
-	AlertSignalState & setPresence(const AlertSignalPresence & value);
-	AlertSignalPresence getPresence() const;
-	bool getPresence(AlertSignalPresence & out) const;
-	bool hasPresence() const;
 
 private:
 	std::shared_ptr<CDM::AlertSignalState> data;

@@ -32,7 +32,7 @@
 #ifndef SAMPLEARRAYVALUE_H_
 #define SAMPLEARRAYVALUE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,33 +56,42 @@ public:
     
     typedef CDM::SampleArrayValue WrappedType;
 
-	SampleArrayValue & setMetricQuality(const MetricQuality & value);
-	MetricQuality getMetricQuality() const;
+	SampleArrayValue & setType(const CodedValue & value);
+	CodedValue getType() const;
 
-	SampleArrayValue & setStart_Time(const Timestamp & value);
-	Timestamp getStart_Time() const;
-	bool getStart_Time(Timestamp & out) const;
-	bool hasStart_Time() const;
+	SampleArrayValue & setValidity(const MeasurementValidity & value);
+	MeasurementValidity getValidity() const;
 
-	SampleArrayValue & setStop_Time(const Timestamp & value);
-	Timestamp getStop_Time() const;
-	bool getStop_Time(Timestamp & out) const;
-	bool hasStop_Time() const;
+	SampleArrayValue & setMode(const GenerationMode & value);
+	GenerationMode getMode() const;
+
+	SampleArrayValue & setQi(const QualityIndicator & value);
+	QualityIndicator getQi() const;
+
+	SampleArrayValue & setStartTime(const Timestamp & value);
+	Timestamp getStartTime() const;
+	bool getStartTime(Timestamp & out) const;
+	bool hasStartTime() const;
+
+	SampleArrayValue & setStopTime(const Timestamp & value);
+	Timestamp getStopTime() const;
+	bool getStopTime(Timestamp & out) const;
+	bool hasStopTime() const;
 
 	SampleArrayValue & setDeterminationTime(const Timestamp & value);
 	Timestamp getDeterminationTime() const;
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
+	SampleArrayValue & setAnnotationIndex(const unsignedInt & value);
+	unsignedInt getAnnotationIndex() const;
+
+	SampleArrayValue & setSampleIndex(const unsignedInt & value);
+	unsignedInt getSampleIndex() const;
+
 	SampleArrayValue & setSamples(const RealTimeValueType & value);
 	RealTimeValueType getSamples() const;
-	bool getSamples(RealTimeValueType & out) const;
-	bool hasSamples() const;
 
-	SampleArrayValue & addApplyAnnotation(const ApplyAnnotation & value);
-	std::vector<ApplyAnnotation> getApplyAnnotations() const;
-	void clearApplyAnnotations();
-	
 private:
 	std::shared_ptr<CDM::SampleArrayValue> data;
 };

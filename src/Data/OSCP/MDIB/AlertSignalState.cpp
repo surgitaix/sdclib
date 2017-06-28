@@ -30,14 +30,12 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -72,56 +70,34 @@ AlertSignalState & AlertSignalState:: operator=(const AlertSignalState & object)
 }
 
 
-AlertSignalState & AlertSignalState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertSignalState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-ReferencedVersion AlertSignalState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool AlertSignalState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-AlertSignalState & AlertSignalState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string AlertSignalState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 AlertSignalState & AlertSignalState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
-		return true;
-	}
-	return false;
-}
 
 VersionCounter AlertSignalState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->StateVersion());
 }
 	
-bool AlertSignalState::hasStateVersion() const {
-	return data->StateVersion().present();
+AlertSignalState & AlertSignalState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef AlertSignalState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+AlertSignalState & AlertSignalState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion AlertSignalState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
 }
 	
 AlertSignalState & AlertSignalState::setActivationState(const AlertActivation & value) {
@@ -132,6 +108,27 @@ AlertSignalState & AlertSignalState::setActivationState(const AlertActivation & 
 
 AlertActivation AlertSignalState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
+}
+	
+AlertSignalState & AlertSignalState::setPresence(const AlertSignalPresence & value) {
+	data->Presence(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSignalState::getPresence(AlertSignalPresence & out) const {
+	if (data->Presence().present()) {
+		out = ConvertFromCDM::convert(data->Presence().get());
+		return true;
+	}
+	return false;
+}
+
+AlertSignalPresence AlertSignalState::getPresence() const {
+	return ConvertFromCDM::convert(data->Presence().get());
+}
+	
+bool AlertSignalState::hasPresence() const {
+	return data->Presence().present();
 }
 	
 AlertSignalState & AlertSignalState::setLocation(const AlertSignalPrimaryLocation & value) {
@@ -155,12 +152,12 @@ bool AlertSignalState::hasLocation() const {
 	return data->Location().present();
 }
 	
-AlertSignalState & AlertSignalState::setSlot(const int & value) {
+AlertSignalState & AlertSignalState::setSlot(const unsignedInt & value) {
 	data->Slot(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalState::getSlot(int & out) const {
+bool AlertSignalState::getSlot(unsignedInt & out) const {
 	if (data->Slot().present()) {
 		out = ConvertFromCDM::convert(data->Slot().get());
 		return true;
@@ -168,33 +165,12 @@ bool AlertSignalState::getSlot(int & out) const {
 	return false;
 }
 
-int AlertSignalState::getSlot() const {
+unsignedInt AlertSignalState::getSlot() const {
 	return ConvertFromCDM::convert(data->Slot().get());
 }
 	
 bool AlertSignalState::hasSlot() const {
 	return data->Slot().present();
-}
-	
-AlertSignalState & AlertSignalState::setPresence(const AlertSignalPresence & value) {
-	data->Presence(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertSignalState::getPresence(AlertSignalPresence & out) const {
-	if (data->Presence().present()) {
-		out = ConvertFromCDM::convert(data->Presence().get());
-		return true;
-	}
-	return false;
-}
-
-AlertSignalPresence AlertSignalState::getPresence() const {
-	return ConvertFromCDM::convert(data->Presence().get());
-}
-	
-bool AlertSignalState::hasPresence() const {
-	return data->Presence().present();
 }
 	
 

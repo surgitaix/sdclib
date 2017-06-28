@@ -30,14 +30,14 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/AbstractOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -93,13 +93,13 @@ bool ScoDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-ScoDescriptor & ScoDescriptor::setHandle(const std::string & value) {
+ScoDescriptor & ScoDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string ScoDescriptor::getHandle() const {
+Handle ScoDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	

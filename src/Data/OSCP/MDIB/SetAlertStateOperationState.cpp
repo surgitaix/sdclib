@@ -30,14 +30,12 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -72,56 +70,34 @@ SetAlertStateOperationState & SetAlertStateOperationState:: operator=(const SetA
 }
 
 
-SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SetAlertStateOperationState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-ReferencedVersion SetAlertStateOperationState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool SetAlertStateOperationState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string SetAlertStateOperationState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 SetAlertStateOperationState & SetAlertStateOperationState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetAlertStateOperationState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
-		return true;
-	}
-	return false;
-}
 
 VersionCounter SetAlertStateOperationState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->StateVersion());
 }
 	
-bool SetAlertStateOperationState::hasStateVersion() const {
-	return data->StateVersion().present();
+SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef SetAlertStateOperationState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion SetAlertStateOperationState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
 }
 	
 SetAlertStateOperationState & SetAlertStateOperationState::setOperatingMode(const OperatingMode & value) {

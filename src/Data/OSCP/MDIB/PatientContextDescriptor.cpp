@@ -30,14 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -93,13 +92,13 @@ bool PatientContextDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-PatientContextDescriptor & PatientContextDescriptor::setHandle(const std::string & value) {
+PatientContextDescriptor & PatientContextDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string PatientContextDescriptor::getHandle() const {
+Handle PatientContextDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	

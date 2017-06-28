@@ -32,7 +32,7 @@
 #ifndef OPERATORCONTEXTDESCRIPTOR_H_
 #define OPERATORCONTEXTDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,15 +55,14 @@ public:
     OperatorContextDescriptor & operator=(const OperatorContextDescriptor & object);
     
     typedef CDM::OperatorContextDescriptor WrappedType;
-    typedef OperatorContextState StateType;
 
 	OperatorContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	OperatorContextDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	OperatorContextDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	OperatorContextDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;

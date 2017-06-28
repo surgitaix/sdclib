@@ -30,8 +30,8 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
@@ -39,8 +39,6 @@
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CauseInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -96,13 +94,13 @@ bool LimitAlertConditionDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setHandle(const std::string & value) {
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string LimitAlertConditionDescriptor::getHandle() const {
+Handle LimitAlertConditionDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -168,13 +166,13 @@ AlertConditionPriority LimitAlertConditionDescriptor::getPriority() const {
 	return ConvertFromCDM::convert(data->Priority());
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addSource(const std::string & value) {
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addSource(const HandleRef & value) {
 	data->Source().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<std::string> LimitAlertConditionDescriptor::getSources() const {
-	std::vector<std::string> result;
+std::vector<HandleRef> LimitAlertConditionDescriptor::getSources() const {
+	std::vector<HandleRef> result;
 	result.reserve(data->Source().size());
 	for (const auto & value: data->Source()) {
 		result.push_back(ConvertFromCDM::convert(value));
@@ -191,7 +189,7 @@ LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addCauseInfo(cons
 	return *this;
 }
 
-std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfo() const {
+std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfos() const {
 	std::vector<CauseInfo> result;
 	result.reserve(data->CauseInfo().size());
 	for (const auto & value: data->CauseInfo()) {
@@ -200,7 +198,7 @@ std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfo() const {
 	return result;
 }
 
-void LimitAlertConditionDescriptor::clearCauseInfo() {
+void LimitAlertConditionDescriptor::clearCauseInfos() {
 	data->CauseInfo().clear();
 }
 
@@ -214,25 +212,14 @@ Range LimitAlertConditionDescriptor::getMaxLimits() const {
 	return ConvertFromCDM::convert(data->MaxLimits());
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setAutoLimitSupported(const bool & value) {
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setAutoLimitSupported(const boolean & value) {
 	data->AutoLimitSupported(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LimitAlertConditionDescriptor::getAutoLimitSupported(bool & out) const {
-	if (data->AutoLimitSupported().present()) {
-		out = ConvertFromCDM::convert(data->AutoLimitSupported().get());
-		return true;
-	}
-	return false;
-}
 
-bool LimitAlertConditionDescriptor::getAutoLimitSupported() const {
-	return ConvertFromCDM::convert(data->AutoLimitSupported().get());
-}
-	
-bool LimitAlertConditionDescriptor::hasAutoLimitSupported() const {
-	return data->AutoLimitSupported().present();
+boolean LimitAlertConditionDescriptor::getAutoLimitSupported() const {
+	return ConvertFromCDM::convert(data->AutoLimitSupported());
 }
 	
 

@@ -30,12 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/BaseDemographics.h"
 
 namespace OSCLib {
@@ -71,22 +72,43 @@ PersonReference & PersonReference:: operator=(const PersonReference & object) {
 }
 
 
-PersonReference & PersonReference::addName(const BaseDemographics & value) {
-	data->Name().push_back(ConvertToCDM::convert(value));
+PersonReference & PersonReference::setName(const BaseDemographics & value) {
+	data->Name(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<BaseDemographics> PersonReference::getNames() const {
-	std::vector<BaseDemographics> result;
-	result.reserve(data->Name().size());
-	for (const auto & value: data->Name()) {
+bool PersonReference::getName(BaseDemographics & out) const {
+	if (data->Name().present()) {
+		out = ConvertFromCDM::convert(data->Name().get());
+		return true;
+	}
+	return false;
+}
+
+BaseDemographics PersonReference::getName() const {
+	return ConvertFromCDM::convert(data->Name().get());
+}
+	
+bool PersonReference::hasName() const {
+	return data->Name().present();
+}
+	
+PersonReference & PersonReference::addIdentification(const InstanceIdentifier & value) {
+	data->Identification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<InstanceIdentifier> PersonReference::getIdentifications() const {
+	std::vector<InstanceIdentifier> result;
+	result.reserve(data->Identification().size());
+	for (const auto & value: data->Identification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
-void PersonReference::clearNames() {
-	data->Name().clear();
+void PersonReference::clearIdentifications() {
+	data->Identification().clear();
 }
 
 

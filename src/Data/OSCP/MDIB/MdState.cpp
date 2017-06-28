@@ -30,13 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/MdState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/AbstractState.h"
 
 namespace OSCLib {
 namespace Data {
@@ -92,6 +92,24 @@ bool MdState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
+MdState & MdState::addState(const AbstractState & value) {
+	data->State().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<AbstractState> MdState::getStates() const {
+	std::vector<AbstractState> result;
+	result.reserve(data->State().size());
+	for (const auto & value: data->State()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void MdState::clearStates() {
+	data->State().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

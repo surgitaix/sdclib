@@ -30,16 +30,14 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CauseInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -95,13 +93,13 @@ bool AlertConditionDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-AlertConditionDescriptor & AlertConditionDescriptor::setHandle(const std::string & value) {
+AlertConditionDescriptor & AlertConditionDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string AlertConditionDescriptor::getHandle() const {
+Handle AlertConditionDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -167,13 +165,13 @@ AlertConditionPriority AlertConditionDescriptor::getPriority() const {
 	return ConvertFromCDM::convert(data->Priority());
 }
 	
-AlertConditionDescriptor & AlertConditionDescriptor::addSource(const std::string & value) {
+AlertConditionDescriptor & AlertConditionDescriptor::addSource(const HandleRef & value) {
 	data->Source().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<std::string> AlertConditionDescriptor::getSources() const {
-	std::vector<std::string> result;
+std::vector<HandleRef> AlertConditionDescriptor::getSources() const {
+	std::vector<HandleRef> result;
 	result.reserve(data->Source().size());
 	for (const auto & value: data->Source()) {
 		result.push_back(ConvertFromCDM::convert(value));
@@ -190,7 +188,7 @@ AlertConditionDescriptor & AlertConditionDescriptor::addCauseInfo(const CauseInf
 	return *this;
 }
 
-std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfo() const {
+std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfos() const {
 	std::vector<CauseInfo> result;
 	result.reserve(data->CauseInfo().size());
 	for (const auto & value: data->CauseInfo()) {
@@ -199,7 +197,7 @@ std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfo() const {
 	return result;
 }
 
-void AlertConditionDescriptor::clearCauseInfo() {
+void AlertConditionDescriptor::clearCauseInfos() {
 	data->CauseInfo().clear();
 }
 

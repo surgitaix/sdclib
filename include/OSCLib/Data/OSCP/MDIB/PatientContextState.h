@@ -32,7 +32,7 @@
 #ifndef PATIENTCONTEXTSTATE_H_
 #define PATIENTCONTEXTSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,43 +55,40 @@ public:
     PatientContextState & operator=(const PatientContextState & object);
     
     typedef CDM::PatientContextState WrappedType;
-    typedef PatientContextDescriptor DescriptorType;
-
-	PatientContextState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	PatientContextState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	PatientContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	PatientContextState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	PatientContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+
+	PatientContextState & setCategory(const CodedValue & value);
+	CodedValue getCategory() const;
+	bool getCategory(CodedValue & out) const;
+	bool hasCategory() const;
+
+	PatientContextState & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	PatientContextState & setContextAssociation(const ContextAssociation & value);
 	ContextAssociation getContextAssociation() const;
-	bool getContextAssociation(ContextAssociation & out) const;
-	bool hasContextAssociation() const;
 
-	PatientContextState & setBindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getBindingMDIBVersion() const;
+	PatientContextState & setBindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getBindingMdibVersion() const;
+	bool getBindingMdibVersion(ReferencedVersion & out) const;
+	bool hasBindingMdibVersion() const;
 
-	PatientContextState & setUnbindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getUnbindingMDIBVersion() const;
-	bool getUnbindingMDIBVersion(ReferencedVersion & out) const;
-	bool hasUnbindingMDIBVersion() const;
+	PatientContextState & setUnbindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getUnbindingMdibVersion() const;
 
 	PatientContextState & setBindingStartTime(const Timestamp & value);
 	Timestamp getBindingStartTime() const;
-	bool getBindingStartTime(Timestamp & out) const;
-	bool hasBindingStartTime() const;
 
 	PatientContextState & setBindingEndTime(const Timestamp & value);
 	Timestamp getBindingEndTime() const;
-	bool getBindingEndTime(Timestamp & out) const;
-	bool hasBindingEndTime() const;
 
 	PatientContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidators() const;

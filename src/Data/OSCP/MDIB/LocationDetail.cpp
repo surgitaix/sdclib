@@ -30,8 +30,8 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/LocationDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
@@ -70,12 +70,12 @@ LocationDetail & LocationDetail:: operator=(const LocationDetail & object) {
 }
 
 
-LocationDetail & LocationDetail::setPoC(const std::string & value) {
+LocationDetail & LocationDetail::setPoC(const string & value) {
 	data->PoC(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocationDetail::getPoC(std::string & out) const {
+bool LocationDetail::getPoC(string & out) const {
 	if (data->PoC().present()) {
 		out = ConvertFromCDM::convert(data->PoC().get());
 		return true;
@@ -83,7 +83,7 @@ bool LocationDetail::getPoC(std::string & out) const {
 	return false;
 }
 
-std::string LocationDetail::getPoC() const {
+string LocationDetail::getPoC() const {
 	return ConvertFromCDM::convert(data->PoC().get());
 }
 	
@@ -91,12 +91,12 @@ bool LocationDetail::hasPoC() const {
 	return data->PoC().present();
 }
 	
-LocationDetail & LocationDetail::setRoom(const std::string & value) {
+LocationDetail & LocationDetail::setRoom(const string & value) {
 	data->Room(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocationDetail::getRoom(std::string & out) const {
+bool LocationDetail::getRoom(string & out) const {
 	if (data->Room().present()) {
 		out = ConvertFromCDM::convert(data->Room().get());
 		return true;
@@ -104,7 +104,7 @@ bool LocationDetail::getRoom(std::string & out) const {
 	return false;
 }
 
-std::string LocationDetail::getRoom() const {
+string LocationDetail::getRoom() const {
 	return ConvertFromCDM::convert(data->Room().get());
 }
 	
@@ -112,12 +112,12 @@ bool LocationDetail::hasRoom() const {
 	return data->Room().present();
 }
 	
-LocationDetail & LocationDetail::setBed(const std::string & value) {
+LocationDetail & LocationDetail::setBed(const string & value) {
 	data->Bed(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocationDetail::getBed(std::string & out) const {
+bool LocationDetail::getBed(string & out) const {
 	if (data->Bed().present()) {
 		out = ConvertFromCDM::convert(data->Bed().get());
 		return true;
@@ -125,7 +125,7 @@ bool LocationDetail::getBed(std::string & out) const {
 	return false;
 }
 
-std::string LocationDetail::getBed() const {
+string LocationDetail::getBed() const {
 	return ConvertFromCDM::convert(data->Bed().get());
 }
 	
@@ -133,12 +133,12 @@ bool LocationDetail::hasBed() const {
 	return data->Bed().present();
 }
 	
-LocationDetail & LocationDetail::setFacility(const std::string & value) {
+LocationDetail & LocationDetail::setFacility(const string & value) {
 	data->Facility(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocationDetail::getFacility(std::string & out) const {
+bool LocationDetail::getFacility(string & out) const {
 	if (data->Facility().present()) {
 		out = ConvertFromCDM::convert(data->Facility().get());
 		return true;
@@ -146,7 +146,7 @@ bool LocationDetail::getFacility(std::string & out) const {
 	return false;
 }
 
-std::string LocationDetail::getFacility() const {
+string LocationDetail::getFacility() const {
 	return ConvertFromCDM::convert(data->Facility().get());
 }
 	
@@ -154,12 +154,12 @@ bool LocationDetail::hasFacility() const {
 	return data->Facility().present();
 }
 	
-LocationDetail & LocationDetail::setBuilding(const std::string & value) {
+LocationDetail & LocationDetail::setBuilding(const string & value) {
 	data->Building(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocationDetail::getBuilding(std::string & out) const {
+bool LocationDetail::getBuilding(string & out) const {
 	if (data->Building().present()) {
 		out = ConvertFromCDM::convert(data->Building().get());
 		return true;
@@ -167,7 +167,7 @@ bool LocationDetail::getBuilding(std::string & out) const {
 	return false;
 }
 
-std::string LocationDetail::getBuilding() const {
+string LocationDetail::getBuilding() const {
 	return ConvertFromCDM::convert(data->Building().get());
 }
 	
@@ -175,12 +175,12 @@ bool LocationDetail::hasBuilding() const {
 	return data->Building().present();
 }
 	
-LocationDetail & LocationDetail::setFloor(const std::string & value) {
+LocationDetail & LocationDetail::setFloor(const string & value) {
 	data->Floor(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocationDetail::getFloor(std::string & out) const {
+bool LocationDetail::getFloor(string & out) const {
 	if (data->Floor().present()) {
 		out = ConvertFromCDM::convert(data->Floor().get());
 		return true;
@@ -188,7 +188,7 @@ bool LocationDetail::getFloor(std::string & out) const {
 	return false;
 }
 
-std::string LocationDetail::getFloor() const {
+string LocationDetail::getFloor() const {
 	return ConvertFromCDM::convert(data->Floor().get());
 }
 	

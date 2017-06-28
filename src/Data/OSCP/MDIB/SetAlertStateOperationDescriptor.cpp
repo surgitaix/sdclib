@@ -30,14 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -93,13 +92,13 @@ bool SetAlertStateOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setHandle(const std::string & value) {
+SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetAlertStateOperationDescriptor::getHandle() const {
+Handle SetAlertStateOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -145,16 +144,34 @@ bool SetAlertStateOperationDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setOperationTarget(const std::string & value) {
+SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setOperationTarget(const HandleRef & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetAlertStateOperationDescriptor::getOperationTarget() const {
+HandleRef SetAlertStateOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
 	
+SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::addModifiableElement(const std::string & value) {
+	data->ModifiableElement().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<std::string> SetAlertStateOperationDescriptor::getModifiableElements() const {
+	std::vector<std::string> result;
+	result.reserve(data->ModifiableElement().size());
+	for (const auto & value: data->ModifiableElement()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void SetAlertStateOperationDescriptor::clearModifiableElements() {
+	data->ModifiableElement().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

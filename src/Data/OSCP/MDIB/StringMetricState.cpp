@@ -30,16 +30,14 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -74,56 +72,34 @@ StringMetricState & StringMetricState:: operator=(const StringMetricState & obje
 }
 
 
-StringMetricState & StringMetricState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool StringMetricState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-ReferencedVersion StringMetricState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool StringMetricState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-StringMetricState & StringMetricState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string StringMetricState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 StringMetricState & StringMetricState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
-		return true;
-	}
-	return false;
-}
 
 VersionCounter StringMetricState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->StateVersion());
 }
 	
-bool StringMetricState::hasStateVersion() const {
-	return data->StateVersion().present();
+StringMetricState & StringMetricState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef StringMetricState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+StringMetricState & StringMetricState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion StringMetricState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
 }
 	
 StringMetricState & StringMetricState::setActivationState(const ComponentActivation & value) {
@@ -136,12 +112,22 @@ ComponentActivation StringMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-StringMetricState & StringMetricState::setLifeTimePeriod(const Duration & value) {
+StringMetricState & StringMetricState::setActiveDeterminationPeriod(const duration & value) {
+	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+duration StringMetricState::getActiveDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
+}
+	
+StringMetricState & StringMetricState::setLifeTimePeriod(const duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricState::getLifeTimePeriod(Duration & out) const {
+bool StringMetricState::getLifeTimePeriod(duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -149,7 +135,7 @@ bool StringMetricState::getLifeTimePeriod(Duration & out) const {
 	return false;
 }
 
-Duration StringMetricState::getLifeTimePeriod() const {
+duration StringMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -157,46 +143,43 @@ bool StringMetricState::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
 	
-StringMetricState & StringMetricState::setActiveDeterminationPeriod(const Duration & value) {
-	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
+StringMetricState & StringMetricState::addBodySite(const CodedValue & value) {
+	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricState::getActiveDeterminationPeriod(Duration & out) const {
-	if (data->ActiveDeterminationPeriod().present()) {
-		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+std::vector<CodedValue> StringMetricState::getBodySites() const {
+	std::vector<CodedValue> result;
+	result.reserve(data->BodySite().size());
+	for (const auto & value: data->BodySite()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void StringMetricState::clearBodySites() {
+	data->BodySite().clear();
+}
+
+StringMetricState & StringMetricState::setMetricValue(const StringMetricValue & value) {
+	data->MetricValue(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricState::getMetricValue(StringMetricValue & out) const {
+	if (data->MetricValue().present()) {
+		out = ConvertFromCDM::convert(data->MetricValue().get());
 		return true;
 	}
 	return false;
 }
 
-Duration StringMetricState::getActiveDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+StringMetricValue StringMetricState::getMetricValue() const {
+	return ConvertFromCDM::convert(data->MetricValue().get());
 }
 	
-bool StringMetricState::hasActiveDeterminationPeriod() const {
-	return data->ActiveDeterminationPeriod().present();
-}
-	
-StringMetricState & StringMetricState::setObservedValue(const StringMetricValue & value) {
-	data->ObservedValue(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool StringMetricState::getObservedValue(StringMetricValue & out) const {
-	if (data->ObservedValue().present()) {
-		out = ConvertFromCDM::convert(data->ObservedValue().get());
-		return true;
-	}
-	return false;
-}
-
-StringMetricValue StringMetricState::getObservedValue() const {
-	return ConvertFromCDM::convert(data->ObservedValue().get());
-}
-	
-bool StringMetricState::hasObservedValue() const {
-	return data->ObservedValue().present();
+bool StringMetricState::hasMetricValue() const {
+	return data->MetricValue().present();
 }
 	
 

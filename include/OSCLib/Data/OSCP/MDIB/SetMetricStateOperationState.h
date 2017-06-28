@@ -32,7 +32,7 @@
 #ifndef SETMETRICSTATEOPERATIONSTATE_H_
 #define SETMETRICSTATEOPERATIONSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,18 +56,14 @@ public:
     
     typedef CDM::SetMetricStateOperationState WrappedType;
 
-	SetMetricStateOperationState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	SetMetricStateOperationState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	SetMetricStateOperationState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	SetMetricStateOperationState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	SetMetricStateOperationState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	SetMetricStateOperationState & setOperatingMode(const OperatingMode & value);
 	OperatingMode getOperatingMode() const;

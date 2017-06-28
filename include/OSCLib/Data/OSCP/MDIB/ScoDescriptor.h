@@ -32,7 +32,7 @@
 #ifndef SCODESCRIPTOR_H_
 #define SCODESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	ScoDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	ScoDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	ScoDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -78,17 +78,6 @@ public:
 	std::vector<AbstractOperationDescriptor> getOperations() const;
 	void clearOperations();
 	
-
-	std::vector<ActivateOperationDescriptor> collectAllActivateOperationDescriptors() const;
-	std::vector<SetAlertStateOperationDescriptor> collectAllSetAlertStateOperationDescriptors() const;
-	std::vector<SetContextOperationDescriptor> collectAllSetContextOperationDescriptors() const;
-	std::vector<SetRangeOperationDescriptor> collectAllSetRangeOperationDescriptors() const;
-	std::vector<SetStringOperationDescriptor> collectAllSetStringOperationDescriptors() const;
-	std::vector<SetValueOperationDescriptor> collectAllSetValueOperationDescriptors() const;
-
-private:
-	template <class WrapperOperationDescriptorType>
-	void collectOperationDescriptorImpl(std::vector<WrapperOperationDescriptorType> & out) const;
 private:
 	std::shared_ptr<CDM::ScoDescriptor> data;
 };

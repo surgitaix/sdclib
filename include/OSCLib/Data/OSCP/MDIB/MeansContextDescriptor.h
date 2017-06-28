@@ -32,7 +32,7 @@
 #ifndef MEANSCONTEXTDESCRIPTOR_H_
 #define MEANSCONTEXTDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,6 +55,24 @@ public:
     MeansContextDescriptor & operator=(const MeansContextDescriptor & object);
     
     typedef CDM::MeansContextDescriptor WrappedType;
+
+	MeansContextDescriptor & setType(const CodedValue & value);
+	CodedValue getType() const;
+	bool getType(CodedValue & out) const;
+	bool hasType() const;
+
+	MeansContextDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
+
+	MeansContextDescriptor & setDescriptorVersion(const VersionCounter & value);
+	VersionCounter getDescriptorVersion() const;
+	bool getDescriptorVersion(VersionCounter & out) const;
+	bool hasDescriptorVersion() const;
+
+	MeansContextDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
 
 private:
 	std::shared_ptr<CDM::MeansContextDescriptor> data;

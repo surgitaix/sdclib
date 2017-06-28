@@ -32,7 +32,7 @@
 #ifndef VMDDESCRIPTOR_H_
 #define VMDDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	VmdDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	VmdDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	VmdDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -74,10 +74,17 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	VmdDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecifications() const;
-	void clearProductionSpecifications();
-	
+	VmdDescriptor & setSpecType(const CodedValue & value);
+	CodedValue getSpecType() const;
+
+	VmdDescriptor & setProductionSpec(const std::string & value);
+	std::string getProductionSpec() const;
+
+	VmdDescriptor & setComponentId(const InstanceIdentifier & value);
+	InstanceIdentifier getComponentId() const;
+	bool getComponentId(InstanceIdentifier & out) const;
+	bool hasComponentId() const;
+
 	VmdDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;

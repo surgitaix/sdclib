@@ -30,13 +30,14 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Language.h"
+#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -71,25 +72,116 @@ MdsState & MdsState:: operator=(const MdsState & object) {
 }
 
 
-MdsState & MdsState::setLang(const Language & value) {
-	data->Lang(ConvertToCDM::convert(value));
+MdsState & MdsState::setStateVersion(const VersionCounter & value) {
+	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool MdsState::getLang(Language & out) const {
-	if (data->Lang().present()) {
-		out = ConvertFromCDM::convert(data->Lang().get());
+
+VersionCounter MdsState::getStateVersion() const {
+	return ConvertFromCDM::convert(data->StateVersion());
+}
+	
+MdsState & MdsState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef MdsState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+MdsState & MdsState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion MdsState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
+}
+	
+MdsState & MdsState::setCalibrationInfo(const CalibrationInfo & value) {
+	data->CalibrationInfo(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MdsState::getCalibrationInfo(CalibrationInfo & out) const {
+	if (data->CalibrationInfo().present()) {
+		out = ConvertFromCDM::convert(data->CalibrationInfo().get());
 		return true;
 	}
 	return false;
 }
 
-Language MdsState::getLang() const {
-	return ConvertFromCDM::convert(data->Lang().get());
+CalibrationInfo MdsState::getCalibrationInfo() const {
+	return ConvertFromCDM::convert(data->CalibrationInfo().get());
 }
 	
-bool MdsState::hasLang() const {
-	return data->Lang().present();
+bool MdsState::hasCalibrationInfo() const {
+	return data->CalibrationInfo().present();
+}
+	
+MdsState & MdsState::setNextCalibration(const CalibrationInfo & value) {
+	data->NextCalibration(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MdsState::getNextCalibration(CalibrationInfo & out) const {
+	if (data->NextCalibration().present()) {
+		out = ConvertFromCDM::convert(data->NextCalibration().get());
+		return true;
+	}
+	return false;
+}
+
+CalibrationInfo MdsState::getNextCalibration() const {
+	return ConvertFromCDM::convert(data->NextCalibration().get());
+}
+	
+bool MdsState::hasNextCalibration() const {
+	return data->NextCalibration().present();
+}
+	
+MdsState & MdsState::setActivationState(const ComponentActivation & value) {
+	data->ActivationState(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ComponentActivation MdsState::getActivationState() const {
+	return ConvertFromCDM::convert(data->ActivationState());
+}
+	
+MdsState & MdsState::setOperatingHours(const unsignedInt & value) {
+	data->OperatingHours(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+unsignedInt MdsState::getOperatingHours() const {
+	return ConvertFromCDM::convert(data->OperatingHours());
+}
+	
+MdsState & MdsState::setOperatingCycles(const int & value) {
+	data->OperatingCycles(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+int MdsState::getOperatingCycles() const {
+	return ConvertFromCDM::convert(data->OperatingCycles());
+}
+	
+MdsState & MdsState::setLang(const language & value) {
+	data->Lang(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+language MdsState::getLang() const {
+	return ConvertFromCDM::convert(data->Lang());
 }
 	
 MdsState & MdsState::setOperatingMode(const MdsOperatingMode & value) {

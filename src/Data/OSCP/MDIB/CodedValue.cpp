@@ -30,13 +30,15 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
+#include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -71,77 +73,44 @@ CodedValue & CodedValue:: operator=(const CodedValue & object) {
 }
 
 
-CodedValue & CodedValue::setCode(const std::string & value) {
+CodedValue & CodedValue::setCode(const CodeIdentifier & value) {
 	data->Code(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string CodedValue::getCode() const {
+CodeIdentifier CodedValue::getCode() const {
 	return ConvertFromCDM::convert(data->Code());
 }
 	
-CodedValue & CodedValue::setCodingSystem(const std::string & value) {
+CodedValue & CodedValue::setCodingSystem(const anyURI & value) {
 	data->CodingSystem(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool CodedValue::getCodingSystem(std::string & out) const {
-	if (data->CodingSystem().present()) {
-		out = ConvertFromCDM::convert(data->CodingSystem().get());
-		return true;
-	}
-	return false;
-}
 
-std::string CodedValue::getCodingSystem() const {
-	return ConvertFromCDM::convert(data->CodingSystem().get());
+anyURI CodedValue::getCodingSystem() const {
+	return ConvertFromCDM::convert(data->CodingSystem());
 }
 	
-bool CodedValue::hasCodingSystem() const {
-	return data->CodingSystem().present();
-}
-	
-CodedValue & CodedValue::setCodingSystemVersion(const std::string & value) {
+CodedValue & CodedValue::setCodingSystemVersion(const string & value) {
 	data->CodingSystemVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool CodedValue::getCodingSystemVersion(std::string & out) const {
-	if (data->CodingSystemVersion().present()) {
-		out = ConvertFromCDM::convert(data->CodingSystemVersion().get());
-		return true;
-	}
-	return false;
-}
 
-std::string CodedValue::getCodingSystemVersion() const {
-	return ConvertFromCDM::convert(data->CodingSystemVersion().get());
+string CodedValue::getCodingSystemVersion() const {
+	return ConvertFromCDM::convert(data->CodingSystemVersion());
 }
 	
-bool CodedValue::hasCodingSystemVersion() const {
-	return data->CodingSystemVersion().present();
-}
-	
-CodedValue & CodedValue::setSymbolicCodeName(const std::string & value) {
+CodedValue & CodedValue::setSymbolicCodeName(const SymbolicCodeName & value) {
 	data->SymbolicCodeName(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool CodedValue::getSymbolicCodeName(std::string & out) const {
-	if (data->SymbolicCodeName().present()) {
-		out = ConvertFromCDM::convert(data->SymbolicCodeName().get());
-		return true;
-	}
-	return false;
-}
 
-std::string CodedValue::getSymbolicCodeName() const {
-	return ConvertFromCDM::convert(data->SymbolicCodeName().get());
-}
-	
-bool CodedValue::hasSymbolicCodeName() const {
-	return data->SymbolicCodeName().present();
+SymbolicCodeName CodedValue::getSymbolicCodeName() const {
+	return ConvertFromCDM::convert(data->SymbolicCodeName());
 }
 	
 CodedValue & CodedValue::addCodingSystemName(const LocalizedText & value) {

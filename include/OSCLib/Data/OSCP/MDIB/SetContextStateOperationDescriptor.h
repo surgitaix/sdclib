@@ -32,7 +32,7 @@
 #ifndef SETCONTEXTSTATEOPERATIONDESCRIPTOR_H_
 #define SETCONTEXTSTATEOPERATIONDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	SetContextStateOperationDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	SetContextStateOperationDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	SetContextStateOperationDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -74,8 +74,8 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	SetContextStateOperationDescriptor & setOperationTarget(const std::string & value);
-	std::string getOperationTarget() const;
+	SetContextStateOperationDescriptor & setOperationTarget(const HandleRef & value);
+	HandleRef getOperationTarget() const;
 
 	SetContextStateOperationDescriptor & addModifiableElement(const std::string & value);
 	std::vector<std::string> getModifiableElements() const;

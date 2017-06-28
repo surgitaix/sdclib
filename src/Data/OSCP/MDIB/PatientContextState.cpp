@@ -30,20 +30,16 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/PatientDemographicsCoreData.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -78,56 +74,65 @@ PatientContextState & PatientContextState:: operator=(const PatientContextState 
 }
 
 
-PatientContextState & PatientContextState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool PatientContextState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-ReferencedVersion PatientContextState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool PatientContextState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-PatientContextState & PatientContextState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string PatientContextState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 PatientContextState & PatientContextState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool PatientContextState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+
+VersionCounter PatientContextState::getStateVersion() const {
+	return ConvertFromCDM::convert(data->StateVersion());
+}
+	
+PatientContextState & PatientContextState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef PatientContextState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+PatientContextState & PatientContextState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion PatientContextState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
+}
+	
+PatientContextState & PatientContextState::setCategory(const CodedValue & value) {
+	data->Category(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool PatientContextState::getCategory(CodedValue & out) const {
+	if (data->Category().present()) {
+		out = ConvertFromCDM::convert(data->Category().get());
 		return true;
 	}
 	return false;
 }
 
-VersionCounter PatientContextState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+CodedValue PatientContextState::getCategory() const {
+	return ConvertFromCDM::convert(data->Category().get());
 }
 	
-bool PatientContextState::hasStateVersion() const {
-	return data->StateVersion().present();
+bool PatientContextState::hasCategory() const {
+	return data->Category().present();
+}
+	
+PatientContextState & PatientContextState::setHandle(const Handle & value) {
+	data->Handle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Handle PatientContextState::getHandle() const {
+	return ConvertFromCDM::convert(data->Handle());
 }
 	
 PatientContextState & PatientContextState::setContextAssociation(const ContextAssociation & value) {
@@ -135,51 +140,40 @@ PatientContextState & PatientContextState::setContextAssociation(const ContextAs
 	return *this;
 }
 
-bool PatientContextState::getContextAssociation(ContextAssociation & out) const {
-	if (data->ContextAssociation().present()) {
-		out = ConvertFromCDM::convert(data->ContextAssociation().get());
-		return true;
-	}
-	return false;
-}
 
 ContextAssociation PatientContextState::getContextAssociation() const {
-	return ConvertFromCDM::convert(data->ContextAssociation().get());
+	return ConvertFromCDM::convert(data->ContextAssociation());
 }
 	
-bool PatientContextState::hasContextAssociation() const {
-	return data->ContextAssociation().present();
-}
-	
-PatientContextState & PatientContextState::setBindingMDIBVersion(const ReferencedVersion & value) {
-	data->BindingMDIBVersion(ConvertToCDM::convert(value));
+PatientContextState & PatientContextState::setBindingMdibVersion(const ReferencedVersion & value) {
+	data->BindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-
-ReferencedVersion PatientContextState::getBindingMDIBVersion() const {
-	return ConvertFromCDM::convert(data->BindingMDIBVersion());
-}
-	
-PatientContextState & PatientContextState::setUnbindingMDIBVersion(const ReferencedVersion & value) {
-	data->UnbindingMDIBVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool PatientContextState::getUnbindingMDIBVersion(ReferencedVersion & out) const {
-	if (data->UnbindingMDIBVersion().present()) {
-		out = ConvertFromCDM::convert(data->UnbindingMDIBVersion().get());
+bool PatientContextState::getBindingMdibVersion(ReferencedVersion & out) const {
+	if (data->BindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->BindingMdibVersion().get());
 		return true;
 	}
 	return false;
 }
 
-ReferencedVersion PatientContextState::getUnbindingMDIBVersion() const {
-	return ConvertFromCDM::convert(data->UnbindingMDIBVersion().get());
+ReferencedVersion PatientContextState::getBindingMdibVersion() const {
+	return ConvertFromCDM::convert(data->BindingMdibVersion().get());
 }
 	
-bool PatientContextState::hasUnbindingMDIBVersion() const {
-	return data->UnbindingMDIBVersion().present();
+bool PatientContextState::hasBindingMdibVersion() const {
+	return data->BindingMdibVersion().present();
+}
+	
+PatientContextState & PatientContextState::setUnbindingMdibVersion(const ReferencedVersion & value) {
+	data->UnbindingMdibVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion PatientContextState::getUnbindingMdibVersion() const {
+	return ConvertFromCDM::convert(data->UnbindingMdibVersion());
 }
 	
 PatientContextState & PatientContextState::setBindingStartTime(const Timestamp & value) {
@@ -187,20 +181,9 @@ PatientContextState & PatientContextState::setBindingStartTime(const Timestamp &
 	return *this;
 }
 
-bool PatientContextState::getBindingStartTime(Timestamp & out) const {
-	if (data->BindingStartTime().present()) {
-		out = ConvertFromCDM::convert(data->BindingStartTime().get());
-		return true;
-	}
-	return false;
-}
 
 Timestamp PatientContextState::getBindingStartTime() const {
-	return ConvertFromCDM::convert(data->BindingStartTime().get());
-}
-	
-bool PatientContextState::hasBindingStartTime() const {
-	return data->BindingStartTime().present();
+	return ConvertFromCDM::convert(data->BindingStartTime());
 }
 	
 PatientContextState & PatientContextState::setBindingEndTime(const Timestamp & value) {
@@ -208,20 +191,9 @@ PatientContextState & PatientContextState::setBindingEndTime(const Timestamp & v
 	return *this;
 }
 
-bool PatientContextState::getBindingEndTime(Timestamp & out) const {
-	if (data->BindingEndTime().present()) {
-		out = ConvertFromCDM::convert(data->BindingEndTime().get());
-		return true;
-	}
-	return false;
-}
 
 Timestamp PatientContextState::getBindingEndTime() const {
-	return ConvertFromCDM::convert(data->BindingEndTime().get());
-}
-	
-bool PatientContextState::hasBindingEndTime() const {
-	return data->BindingEndTime().present();
+	return ConvertFromCDM::convert(data->BindingEndTime());
 }
 	
 PatientContextState & PatientContextState::addValidator(const InstanceIdentifier & value) {

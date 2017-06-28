@@ -32,7 +32,7 @@
 #ifndef MDSSTATE_H_
 #define MDSSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,13 +55,37 @@ public:
     MdsState & operator=(const MdsState & object);
     
     typedef CDM::MdsState WrappedType;
-    typedef MdsDescriptor DescriptorType;
-    typedef OSCPProviderHydraMDSStateHandler ProviderHandlerType;
 
-	MdsState & setLang(const Language & value);
-	Language getLang() const;
-	bool getLang(Language & out) const;
-	bool hasLang() const;
+	MdsState & setStateVersion(const VersionCounter & value);
+	VersionCounter getStateVersion() const;
+
+	MdsState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	MdsState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+
+	MdsState & setCalibrationInfo(const CalibrationInfo & value);
+	CalibrationInfo getCalibrationInfo() const;
+	bool getCalibrationInfo(CalibrationInfo & out) const;
+	bool hasCalibrationInfo() const;
+
+	MdsState & setNextCalibration(const CalibrationInfo & value);
+	CalibrationInfo getNextCalibration() const;
+	bool getNextCalibration(CalibrationInfo & out) const;
+	bool hasNextCalibration() const;
+
+	MdsState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
+
+	MdsState & setOperatingHours(const unsignedInt & value);
+	unsignedInt getOperatingHours() const;
+
+	MdsState & setOperatingCycles(const int & value);
+	int getOperatingCycles() const;
+
+	MdsState & setLang(const language & value);
+	language getLang() const;
 
 	MdsState & setOperatingMode(const MdsOperatingMode & value);
 	MdsOperatingMode getOperatingMode() const;

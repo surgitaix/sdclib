@@ -32,7 +32,7 @@
 #ifndef INSTANCEIDENTIFIER_H_
 #define INSTANCEIDENTIFIER_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,13 +56,18 @@ public:
     
     typedef CDM::InstanceIdentifier WrappedType;
 
-	InstanceIdentifier & setroot(const std::string & value);
-	std::string getroot() const;
+	InstanceIdentifier & setType(const CodedValue & value);
+	CodedValue getType() const;
+	bool getType(CodedValue & out) const;
+	bool hasType() const;
 
-	InstanceIdentifier & setextension(const std::string & value);
-	std::string getextension() const;
-	bool getextension(std::string & out) const;
-	bool hasextension() const;
+	InstanceIdentifier & setRoot(const anyURI & value);
+	anyURI getRoot() const;
+
+	InstanceIdentifier & setExtension(const string & value);
+	string getExtension() const;
+	bool getExtension(string & out) const;
+	bool hasExtension() const;
 
 	InstanceIdentifier & addIdentifierName(const LocalizedText & value);
 	std::vector<LocalizedText> getIdentifierNames() const;

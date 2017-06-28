@@ -30,15 +30,15 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/OrderDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/DateTime.h"
 #include "OSCLib/Data/OSCP/MDIB/PersonParticipation.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h"
 
 namespace OSCLib {
 namespace Data {
@@ -73,12 +73,12 @@ OrderDetail & OrderDetail:: operator=(const OrderDetail & object) {
 }
 
 
-OrderDetail & OrderDetail::setStart(const DateTime & value) {
+OrderDetail & OrderDetail::setStart(const std::string & value) {
 	data->Start(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool OrderDetail::getStart(DateTime & out) const {
+bool OrderDetail::getStart(std::string & out) const {
 	if (data->Start().present()) {
 		out = ConvertFromCDM::convert(data->Start().get());
 		return true;
@@ -86,7 +86,7 @@ bool OrderDetail::getStart(DateTime & out) const {
 	return false;
 }
 
-DateTime OrderDetail::getStart() const {
+std::string OrderDetail::getStart() const {
 	return ConvertFromCDM::convert(data->Start().get());
 }
 	
@@ -94,12 +94,12 @@ bool OrderDetail::hasStart() const {
 	return data->Start().present();
 }
 	
-OrderDetail & OrderDetail::setEnd(const DateTime & value) {
+OrderDetail & OrderDetail::setEnd(const std::string & value) {
 	data->End(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool OrderDetail::getEnd(DateTime & out) const {
+bool OrderDetail::getEnd(std::string & out) const {
 	if (data->End().present()) {
 		out = ConvertFromCDM::convert(data->End().get());
 		return true;
@@ -107,7 +107,7 @@ bool OrderDetail::getEnd(DateTime & out) const {
 	return false;
 }
 
-DateTime OrderDetail::getEnd() const {
+std::string OrderDetail::getEnd() const {
 	return ConvertFromCDM::convert(data->End().get());
 }
 	

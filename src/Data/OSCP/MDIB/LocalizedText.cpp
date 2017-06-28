@@ -30,13 +30,12 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Language.h"
 
 namespace OSCLib {
 namespace Data {
@@ -70,35 +69,35 @@ LocalizedText & LocalizedText:: operator=(const LocalizedText & object) {
 	return *this;
 }
 
-std::string LocalizedText::get() const {
-	return *data;
+
+LocalizedText & LocalizedText::setRef(const LocalizedTextRef & value) {
+	data->Ref(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+LocalizedTextRef LocalizedText::getRef() const {
+	return ConvertFromCDM::convert(data->Ref());
 }
 	
-LocalizedText & LocalizedText::set(const std::string & value) {
-	*data = value;
-	return *this;
-} 
-	
-
-LocalizedText & LocalizedText::setLang(const Language & value) {
+LocalizedText & LocalizedText::setLang(const language & value) {
 	data->Lang(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocalizedText::getLang(Language & out) const {
-	if (data->Lang().present()) {
-		out = ConvertFromCDM::convert(data->Lang().get());
-		return true;
-	}
-	return false;
-}
 
-Language LocalizedText::getLang() const {
-	return ConvertFromCDM::convert(data->Lang().get());
+language LocalizedText::getLang() const {
+	return ConvertFromCDM::convert(data->Lang());
 }
 	
-bool LocalizedText::hasLang() const {
-	return data->Lang().present();
+LocalizedText & LocalizedText::setVersion(const ReferencedVersion & value) {
+	data->Version(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion LocalizedText::getVersion() const {
+	return ConvertFromCDM::convert(data->Version());
 }
 	
 

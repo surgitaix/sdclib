@@ -32,7 +32,7 @@
 #ifndef STRINGMETRICVALUE_H_
 #define STRINGMETRICVALUE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,27 +56,36 @@ public:
     
     typedef CDM::StringMetricValue WrappedType;
 
-	StringMetricValue & setMetricQuality(const MetricQuality & value);
-	MetricQuality getMetricQuality() const;
+	StringMetricValue & setType(const CodedValue & value);
+	CodedValue getType() const;
 
-	StringMetricValue & setStart_Time(const Timestamp & value);
-	Timestamp getStart_Time() const;
-	bool getStart_Time(Timestamp & out) const;
-	bool hasStart_Time() const;
+	StringMetricValue & setValidity(const MeasurementValidity & value);
+	MeasurementValidity getValidity() const;
 
-	StringMetricValue & setStop_Time(const Timestamp & value);
-	Timestamp getStop_Time() const;
-	bool getStop_Time(Timestamp & out) const;
-	bool hasStop_Time() const;
+	StringMetricValue & setMode(const GenerationMode & value);
+	GenerationMode getMode() const;
+
+	StringMetricValue & setQi(const QualityIndicator & value);
+	QualityIndicator getQi() const;
+
+	StringMetricValue & setStartTime(const Timestamp & value);
+	Timestamp getStartTime() const;
+	bool getStartTime(Timestamp & out) const;
+	bool hasStartTime() const;
+
+	StringMetricValue & setStopTime(const Timestamp & value);
+	Timestamp getStopTime() const;
+	bool getStopTime(Timestamp & out) const;
+	bool hasStopTime() const;
 
 	StringMetricValue & setDeterminationTime(const Timestamp & value);
 	Timestamp getDeterminationTime() const;
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
-	StringMetricValue & setValue(const std::string & value);
-	std::string getValue() const;
-	bool getValue(std::string & out) const;
+	StringMetricValue & setValue(const string & value);
+	string getValue() const;
+	bool getValue(string & out) const;
 	bool hasValue() const;
 
 private:

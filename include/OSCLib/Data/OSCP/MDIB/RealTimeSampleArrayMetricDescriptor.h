@@ -32,7 +32,7 @@
 #ifndef REALTIMESAMPLEARRAYMETRICDESCRIPTOR_H_
 #define REALTIMESAMPLEARRAYMETRICDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,15 +55,14 @@ public:
     RealTimeSampleArrayMetricDescriptor & operator=(const RealTimeSampleArrayMetricDescriptor & object);
     
     typedef CDM::RealTimeSampleArrayMetricDescriptor WrappedType;
-    typedef RealTimeSampleArrayMetricState StateType;
 
 	RealTimeSampleArrayMetricDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	RealTimeSampleArrayMetricDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	RealTimeSampleArrayMetricDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	RealTimeSampleArrayMetricDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -81,23 +80,41 @@ public:
 	RealTimeSampleArrayMetricDescriptor & setMetricCategory(const MetricCategory & value);
 	MetricCategory getMetricCategory() const;
 
-	RealTimeSampleArrayMetricDescriptor & setAvailability(const MetricAvailability & value);
-	MetricAvailability getAvailability() const;
+	RealTimeSampleArrayMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
+	DerivationMethod getDerivationMethod() const;
 
-	RealTimeSampleArrayMetricDescriptor & setMaxDelayTime(const Duration & value);
-	Duration getMaxDelayTime() const;
-	bool getMaxDelayTime(Duration & out) const;
+	RealTimeSampleArrayMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
+	MetricAvailability getMetricAvailability() const;
+
+	RealTimeSampleArrayMetricDescriptor & setMaxMeasurementTime(const duration & value);
+	duration getMaxMeasurementTime() const;
+	bool getMaxMeasurementTime(duration & out) const;
+	bool hasMaxMeasurementTime() const;
+
+	RealTimeSampleArrayMetricDescriptor & setMaxDelayTime(const duration & value);
+	duration getMaxDelayTime() const;
+	bool getMaxDelayTime(duration & out) const;
 	bool hasMaxDelayTime() const;
+
+	RealTimeSampleArrayMetricDescriptor & setDeterminationPeriod(const duration & value);
+	duration getDeterminationPeriod() const;
+	bool getDeterminationPeriod(duration & out) const;
+	bool hasDeterminationPeriod() const;
+
+	RealTimeSampleArrayMetricDescriptor & setLifeTimePeriod(const duration & value);
+	duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(duration & out) const;
+	bool hasLifeTimePeriod() const;
 
 	RealTimeSampleArrayMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySites() const;
 	void clearBodySites();
 	
-	RealTimeSampleArrayMetricDescriptor & setSamplePeriod(const Duration & value);
-	Duration getSamplePeriod() const;
+	RealTimeSampleArrayMetricDescriptor & setResolution(const decimal & value);
+	decimal getResolution() const;
 
-	RealTimeSampleArrayMetricDescriptor & setResolution(const double & value);
-	double getResolution() const;
+	RealTimeSampleArrayMetricDescriptor & setSamplePeriod(const duration & value);
+	duration getSamplePeriod() const;
 
 	RealTimeSampleArrayMetricDescriptor & addTechnicalRange(const Range & value);
 	std::vector<Range> getTechnicalRanges() const;

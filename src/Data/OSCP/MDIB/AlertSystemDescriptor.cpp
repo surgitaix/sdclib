@@ -30,17 +30,15 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -96,13 +94,13 @@ bool AlertSystemDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-AlertSystemDescriptor & AlertSystemDescriptor::setHandle(const std::string & value) {
+AlertSystemDescriptor & AlertSystemDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string AlertSystemDescriptor::getHandle() const {
+Handle AlertSystemDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -148,69 +146,54 @@ bool AlertSystemDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-AlertSystemDescriptor & AlertSystemDescriptor::setMaxPhysiologicalParallelAlarms(const unsigned int & value) {
+AlertSystemDescriptor & AlertSystemDescriptor::setMaxPhysiologicalParallelAlarms(const unsignedInt & value) {
 	data->MaxPhysiologicalParallelAlarms(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSystemDescriptor::getMaxPhysiologicalParallelAlarms(unsigned int & out) const {
-	if (data->MaxPhysiologicalParallelAlarms().present()) {
-		out = ConvertFromCDM::convert(data->MaxPhysiologicalParallelAlarms().get());
-		return true;
-	}
-	return false;
-}
 
-unsigned int AlertSystemDescriptor::getMaxPhysiologicalParallelAlarms() const {
-	return ConvertFromCDM::convert(data->MaxPhysiologicalParallelAlarms().get());
+unsignedInt AlertSystemDescriptor::getMaxPhysiologicalParallelAlarms() const {
+	return ConvertFromCDM::convert(data->MaxPhysiologicalParallelAlarms());
 }
 	
-bool AlertSystemDescriptor::hasMaxPhysiologicalParallelAlarms() const {
-	return data->MaxPhysiologicalParallelAlarms().present();
-}
-	
-AlertSystemDescriptor & AlertSystemDescriptor::setMaxTechnicalParallelAlarms(const unsigned int & value) {
+AlertSystemDescriptor & AlertSystemDescriptor::setMaxTechnicalParallelAlarms(const unsignedInt & value) {
 	data->MaxTechnicalParallelAlarms(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSystemDescriptor::getMaxTechnicalParallelAlarms(unsigned int & out) const {
-	if (data->MaxTechnicalParallelAlarms().present()) {
-		out = ConvertFromCDM::convert(data->MaxTechnicalParallelAlarms().get());
-		return true;
-	}
-	return false;
-}
 
-unsigned int AlertSystemDescriptor::getMaxTechnicalParallelAlarms() const {
-	return ConvertFromCDM::convert(data->MaxTechnicalParallelAlarms().get());
+unsignedInt AlertSystemDescriptor::getMaxTechnicalParallelAlarms() const {
+	return ConvertFromCDM::convert(data->MaxTechnicalParallelAlarms());
 }
 	
-bool AlertSystemDescriptor::hasMaxTechnicalParallelAlarms() const {
-	return data->MaxTechnicalParallelAlarms().present();
-}
-	
-AlertSystemDescriptor & AlertSystemDescriptor::setSelfCheckPeriod(const Duration & value) {
+AlertSystemDescriptor & AlertSystemDescriptor::setSelfCheckPeriod(const duration & value) {
 	data->SelfCheckPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSystemDescriptor::getSelfCheckPeriod(Duration & out) const {
-	if (data->SelfCheckPeriod().present()) {
-		out = ConvertFromCDM::convert(data->SelfCheckPeriod().get());
-		return true;
-	}
-	return false;
+
+duration AlertSystemDescriptor::getSelfCheckPeriod() const {
+	return ConvertFromCDM::convert(data->SelfCheckPeriod());
+}
+	
+AlertSystemDescriptor & AlertSystemDescriptor::addAlertCondition(const AlertConditionDescriptor & value) {
+	data->AlertCondition().push_back(ConvertToCDM::convert(value));
+	return *this;
 }
 
-Duration AlertSystemDescriptor::getSelfCheckPeriod() const {
-	return ConvertFromCDM::convert(data->SelfCheckPeriod().get());
+std::vector<AlertConditionDescriptor> AlertSystemDescriptor::getAlertConditions() const {
+	std::vector<AlertConditionDescriptor> result;
+	result.reserve(data->AlertCondition().size());
+	for (const auto & value: data->AlertCondition()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
 }
-	
-bool AlertSystemDescriptor::hasSelfCheckPeriod() const {
-	return data->SelfCheckPeriod().present();
+
+void AlertSystemDescriptor::clearAlertConditions() {
+	data->AlertCondition().clear();
 }
-	
+
 AlertSystemDescriptor & AlertSystemDescriptor::addAlertSignal(const AlertSignalDescriptor & value) {
 	data->AlertSignal().push_back(ConvertToCDM::convert(value));
 	return *this;

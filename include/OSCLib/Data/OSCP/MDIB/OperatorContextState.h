@@ -32,7 +32,7 @@
 #ifndef OPERATORCONTEXTSTATE_H_
 #define OPERATORCONTEXTSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,43 +55,40 @@ public:
     OperatorContextState & operator=(const OperatorContextState & object);
     
     typedef CDM::OperatorContextState WrappedType;
-    typedef OperatorContextDescriptor DescriptorType;
-
-	OperatorContextState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	OperatorContextState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	OperatorContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	OperatorContextState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	OperatorContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+
+	OperatorContextState & setCategory(const CodedValue & value);
+	CodedValue getCategory() const;
+	bool getCategory(CodedValue & out) const;
+	bool hasCategory() const;
+
+	OperatorContextState & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	OperatorContextState & setContextAssociation(const ContextAssociation & value);
 	ContextAssociation getContextAssociation() const;
-	bool getContextAssociation(ContextAssociation & out) const;
-	bool hasContextAssociation() const;
 
-	OperatorContextState & setBindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getBindingMDIBVersion() const;
+	OperatorContextState & setBindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getBindingMdibVersion() const;
+	bool getBindingMdibVersion(ReferencedVersion & out) const;
+	bool hasBindingMdibVersion() const;
 
-	OperatorContextState & setUnbindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getUnbindingMDIBVersion() const;
-	bool getUnbindingMDIBVersion(ReferencedVersion & out) const;
-	bool hasUnbindingMDIBVersion() const;
+	OperatorContextState & setUnbindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getUnbindingMdibVersion() const;
 
 	OperatorContextState & setBindingStartTime(const Timestamp & value);
 	Timestamp getBindingStartTime() const;
-	bool getBindingStartTime(Timestamp & out) const;
-	bool hasBindingStartTime() const;
 
 	OperatorContextState & setBindingEndTime(const Timestamp & value);
 	Timestamp getBindingEndTime() const;
-	bool getBindingEndTime(Timestamp & out) const;
-	bool hasBindingEndTime() const;
 
 	OperatorContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidators() const;
@@ -101,6 +98,9 @@ public:
 	std::vector<InstanceIdentifier> getIdentifications() const;
 	void clearIdentifications();
 	
+	OperatorContextState & setOperatorDetails(const BaseDemographics & value);
+	BaseDemographics getOperatorDetails() const;
+
 private:
 	std::shared_ptr<CDM::OperatorContextState> data;
 };

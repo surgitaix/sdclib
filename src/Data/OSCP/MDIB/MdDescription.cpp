@@ -30,13 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 
 namespace OSCLib {
 namespace Data {
@@ -92,6 +92,24 @@ bool MdDescription::hasDescriptionVersion() const {
 	return data->DescriptionVersion().present();
 }
 	
+MdDescription & MdDescription::addMds(const MdsDescriptor & value) {
+	data->Mds().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<MdsDescriptor> MdDescription::getMdss() const {
+	std::vector<MdsDescriptor> result;
+	result.reserve(data->Mds().size());
+	for (const auto & value: data->Mds()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void MdDescription::clearMdss() {
+	data->Mds().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

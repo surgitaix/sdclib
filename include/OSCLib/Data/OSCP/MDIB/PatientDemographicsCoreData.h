@@ -32,7 +32,7 @@
 #ifndef PATIENTDEMOGRAPHICSCOREDATA_H_
 #define PATIENTDEMOGRAPHICSCOREDATA_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -90,19 +90,14 @@ public:
 	bool getPatientType(PatientType & out) const;
 	bool hasPatientType() const;
 
-	PatientDemographicsCoreData & setDateOfBirth(const DateTime & value);
-	DateTime getDateOfBirth() const;
-	bool getDateOfBirth(DateTime & out) const;
-	bool hasDateOfBirth() const;
-
 	PatientDemographicsCoreData & setHeight(const Measurement & value);
 	Measurement getHeight() const;
 	bool getHeight(Measurement & out) const;
 	bool hasHeight() const;
 
-	PatientDemographicsCoreData & setWeight(const Measure & value);
-	Measure getWeight() const;
-	bool getWeight(Measure & out) const;
+	PatientDemographicsCoreData & setWeight(const Measurement & value);
+	Measurement getWeight() const;
+	bool getWeight(Measurement & out) const;
 	bool hasWeight() const;
 
 	PatientDemographicsCoreData & setRace(const CodedValue & value);

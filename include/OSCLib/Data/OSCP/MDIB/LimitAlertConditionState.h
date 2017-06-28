@@ -32,7 +32,7 @@
 #ifndef LIMITALERTCONDITIONSTATE_H_
 #define LIMITALERTCONDITIONSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,48 +55,33 @@ public:
     LimitAlertConditionState & operator=(const LimitAlertConditionState & object);
     
     typedef CDM::LimitAlertConditionState WrappedType;
-    typedef LimitAlertConditionDescriptor DescriptorType;
-    typedef OSCPProviderLimitAlertConditionStateHandler ProviderHandlerType;
-    typedef OSCPConsumerLimitAlertConditionStateHandler ConsumerHandlerType;
-
-	LimitAlertConditionState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	LimitAlertConditionState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	LimitAlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	LimitAlertConditionState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	LimitAlertConditionState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	LimitAlertConditionState & setActivationState(const AlertActivation & value);
 	AlertActivation getActivationState() const;
 
+	LimitAlertConditionState & setActualPriority(const AlertConditionPriority & value);
+	AlertConditionPriority getActualPriority() const;
+
 	LimitAlertConditionState & setRank(const int & value);
 	int getRank() const;
-	bool getRank(int & out) const;
-	bool hasRank() const;
 
-	LimitAlertConditionState & setPresence(const bool & value);
-	bool getPresence() const;
+	LimitAlertConditionState & setPresence(const boolean & value);
+	boolean getPresence() const;
 
 	LimitAlertConditionState & setDeterminationTime(const Timestamp & value);
 	Timestamp getDeterminationTime() const;
-	bool getDeterminationTime(Timestamp & out) const;
-	bool hasDeterminationTime() const;
-
-	LimitAlertConditionState & setActualPriority(const AlertConditionPriority & value);
-	AlertConditionPriority getActualPriority() const;
-	bool getActualPriority(AlertConditionPriority & out) const;
-	bool hasActualPriority() const;
 
 	LimitAlertConditionState & setLimits(const Range & value);
 	Range getLimits() const;
-	bool getLimits(Range & out) const;
-	bool hasLimits() const;
 
 	LimitAlertConditionState & setMonitoredAlertLimits(const AlertConditionMonitoredLimits & value);
 	AlertConditionMonitoredLimits getMonitoredAlertLimits() const;

@@ -30,18 +30,19 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -76,25 +77,98 @@ SystemContextDescriptor & SystemContextDescriptor:: operator=(const SystemContex
 }
 
 
-SystemContextDescriptor & SystemContextDescriptor::setEnsembleContext(const EnsembleContextDescriptor & value) {
-	data->EnsembleContext(ConvertToCDM::convert(value));
+SystemContextDescriptor & SystemContextDescriptor::setType(const CodedValue & value) {
+	data->Type(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContextDescriptor::getEnsembleContext(EnsembleContextDescriptor & out) const {
-	if (data->EnsembleContext().present()) {
-		out = ConvertFromCDM::convert(data->EnsembleContext().get());
+bool SystemContextDescriptor::getType(CodedValue & out) const {
+	if (data->Type().present()) {
+		out = ConvertFromCDM::convert(data->Type().get());
 		return true;
 	}
 	return false;
 }
 
-EnsembleContextDescriptor SystemContextDescriptor::getEnsembleContext() const {
-	return ConvertFromCDM::convert(data->EnsembleContext().get());
+CodedValue SystemContextDescriptor::getType() const {
+	return ConvertFromCDM::convert(data->Type().get());
 }
 	
-bool SystemContextDescriptor::hasEnsembleContext() const {
-	return data->EnsembleContext().present();
+bool SystemContextDescriptor::hasType() const {
+	return data->Type().present();
+}
+	
+SystemContextDescriptor & SystemContextDescriptor::setHandle(const Handle & value) {
+	data->Handle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Handle SystemContextDescriptor::getHandle() const {
+	return ConvertFromCDM::convert(data->Handle());
+}
+	
+SystemContextDescriptor & SystemContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SystemContextDescriptor::getDescriptorVersion(VersionCounter & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
+
+VersionCounter SystemContextDescriptor::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool SystemContextDescriptor::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
+}
+	
+SystemContextDescriptor & SystemContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SystemContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+		return true;
+	}
+	return false;
+}
+
+SafetyClassification SystemContextDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
+}
+	
+bool SystemContextDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
+}
+	
+SystemContextDescriptor & SystemContextDescriptor::setPatientContext(const PatientContextDescriptor & value) {
+	data->PatientContext(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SystemContextDescriptor::getPatientContext(PatientContextDescriptor & out) const {
+	if (data->PatientContext().present()) {
+		out = ConvertFromCDM::convert(data->PatientContext().get());
+		return true;
+	}
+	return false;
+}
+
+PatientContextDescriptor SystemContextDescriptor::getPatientContext() const {
+	return ConvertFromCDM::convert(data->PatientContext().get());
+}
+	
+bool SystemContextDescriptor::hasPatientContext() const {
+	return data->PatientContext().present();
 }
 	
 SystemContextDescriptor & SystemContextDescriptor::setLocationContext(const LocationContextDescriptor & value) {
@@ -118,6 +192,27 @@ bool SystemContextDescriptor::hasLocationContext() const {
 	return data->LocationContext().present();
 }
 	
+SystemContextDescriptor & SystemContextDescriptor::setEnsembleContext(const EnsembleContextDescriptor & value) {
+	data->EnsembleContext(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SystemContextDescriptor::getEnsembleContext(EnsembleContextDescriptor & out) const {
+	if (data->EnsembleContext().present()) {
+		out = ConvertFromCDM::convert(data->EnsembleContext().get());
+		return true;
+	}
+	return false;
+}
+
+EnsembleContextDescriptor SystemContextDescriptor::getEnsembleContext() const {
+	return ConvertFromCDM::convert(data->EnsembleContext().get());
+}
+	
+bool SystemContextDescriptor::hasEnsembleContext() const {
+	return data->EnsembleContext().present();
+}
+	
 SystemContextDescriptor & SystemContextDescriptor::setOperatorContext(const OperatorContextDescriptor & value) {
 	data->OperatorContext(ConvertToCDM::convert(value));
 	return *this;
@@ -137,27 +232,6 @@ OperatorContextDescriptor SystemContextDescriptor::getOperatorContext() const {
 	
 bool SystemContextDescriptor::hasOperatorContext() const {
 	return data->OperatorContext().present();
-}
-	
-SystemContextDescriptor & SystemContextDescriptor::setPatientContext(const PatientContextDescriptor & value) {
-	data->PatientContext(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SystemContextDescriptor::getPatientContext(PatientContextDescriptor & out) const {
-	if (data->PatientContext().present()) {
-		out = ConvertFromCDM::convert(data->PatientContext().get());
-		return true;
-	}
-	return false;
-}
-
-PatientContextDescriptor SystemContextDescriptor::getPatientContext() const {
-	return ConvertFromCDM::convert(data->PatientContext().get());
-}
-	
-bool SystemContextDescriptor::hasPatientContext() const {
-	return data->PatientContext().present();
 }
 	
 SystemContextDescriptor & SystemContextDescriptor::setWorkflowContext(const WorkflowContextDescriptor & value) {

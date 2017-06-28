@@ -32,7 +32,7 @@
 #ifndef CLOCKDESCRIPTOR_H_
 #define CLOCKDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	ClockDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	ClockDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	ClockDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -74,10 +74,19 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	ClockDescriptor & setResolution(const Duration & value);
-	Duration getResolution() const;
-	bool getResolution(Duration & out) const;
-	bool hasResolution() const;
+	ClockDescriptor & setSpecType(const CodedValue & value);
+	CodedValue getSpecType() const;
+
+	ClockDescriptor & setProductionSpec(const std::string & value);
+	std::string getProductionSpec() const;
+
+	ClockDescriptor & setComponentId(const InstanceIdentifier & value);
+	InstanceIdentifier getComponentId() const;
+	bool getComponentId(InstanceIdentifier & out) const;
+	bool hasComponentId() const;
+
+	ClockDescriptor & setResolution(const duration & value);
+	duration getResolution() const;
 
 	ClockDescriptor & addTimeProtocol(const CodedValue & value);
 	std::vector<CodedValue> getTimeProtocols() const;

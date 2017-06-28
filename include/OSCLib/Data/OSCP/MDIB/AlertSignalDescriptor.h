@@ -32,7 +32,7 @@
 #ifndef ALERTSIGNALDESCRIPTOR_H_
 #define ALERTSIGNALDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	AlertSignalDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	AlertSignalDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	AlertSignalDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -74,33 +74,29 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	AlertSignalDescriptor & setConditionSignaled(const std::string & value);
-	std::string getConditionSignaled() const;
+	AlertSignalDescriptor & setConditionSignaled(const HandleRef & value);
+	HandleRef getConditionSignaled() const;
 
 	AlertSignalDescriptor & setManifestation(const AlertSignalManifestation & value);
 	AlertSignalManifestation getManifestation() const;
 
-	AlertSignalDescriptor & setLatching(const bool & value);
-	bool getLatching() const;
+	AlertSignalDescriptor & setLatching(const boolean & value);
+	boolean getLatching() const;
 
-	AlertSignalDescriptor & setDefaultSignalGenerationDelay(const Duration & value);
-	Duration getDefaultSignalGenerationDelay() const;
-	bool getDefaultSignalGenerationDelay(Duration & out) const;
-	bool hasDefaultSignalGenerationDelay() const;
+	AlertSignalDescriptor & setDefaultSignalGenerationDelay(const duration & value);
+	duration getDefaultSignalGenerationDelay() const;
 
-	AlertSignalDescriptor & setSignalDelegationSupported(const bool & value);
-	bool getSignalDelegationSupported() const;
-	bool getSignalDelegationSupported(bool & out) const;
-	bool hasSignalDelegationSupported() const;
+	AlertSignalDescriptor & setSignalDelegationSupported(const boolean & value);
+	boolean getSignalDelegationSupported() const;
 
-	AlertSignalDescriptor & setAcknowledgementSupported(const bool & value);
-	bool getAcknowledgementSupported() const;
-	bool getAcknowledgementSupported(bool & out) const;
+	AlertSignalDescriptor & setAcknowledgementSupported(const boolean & value);
+	boolean getAcknowledgementSupported() const;
+	bool getAcknowledgementSupported(boolean & out) const;
 	bool hasAcknowledgementSupported() const;
 
-	AlertSignalDescriptor & setAcknowledgeTimeout(const Duration & value);
-	Duration getAcknowledgeTimeout() const;
-	bool getAcknowledgeTimeout(Duration & out) const;
+	AlertSignalDescriptor & setAcknowledgeTimeout(const duration & value);
+	duration getAcknowledgeTimeout() const;
+	bool getAcknowledgeTimeout(duration & out) const;
 	bool hasAcknowledgeTimeout() const;
 
 private:

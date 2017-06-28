@@ -32,7 +32,7 @@
 #ifndef WORKFLOWCONTEXTSTATE_H_
 #define WORKFLOWCONTEXTSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,43 +55,40 @@ public:
     WorkflowContextState & operator=(const WorkflowContextState & object);
     
     typedef CDM::WorkflowContextState WrappedType;
-    typedef WorkflowContextDescriptor DescriptorType;
-
-	WorkflowContextState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	WorkflowContextState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	WorkflowContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	WorkflowContextState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	WorkflowContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+
+	WorkflowContextState & setCategory(const CodedValue & value);
+	CodedValue getCategory() const;
+	bool getCategory(CodedValue & out) const;
+	bool hasCategory() const;
+
+	WorkflowContextState & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	WorkflowContextState & setContextAssociation(const ContextAssociation & value);
 	ContextAssociation getContextAssociation() const;
-	bool getContextAssociation(ContextAssociation & out) const;
-	bool hasContextAssociation() const;
 
-	WorkflowContextState & setBindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getBindingMDIBVersion() const;
+	WorkflowContextState & setBindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getBindingMdibVersion() const;
+	bool getBindingMdibVersion(ReferencedVersion & out) const;
+	bool hasBindingMdibVersion() const;
 
-	WorkflowContextState & setUnbindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getUnbindingMDIBVersion() const;
-	bool getUnbindingMDIBVersion(ReferencedVersion & out) const;
-	bool hasUnbindingMDIBVersion() const;
+	WorkflowContextState & setUnbindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getUnbindingMdibVersion() const;
 
 	WorkflowContextState & setBindingStartTime(const Timestamp & value);
 	Timestamp getBindingStartTime() const;
-	bool getBindingStartTime(Timestamp & out) const;
-	bool hasBindingStartTime() const;
 
 	WorkflowContextState & setBindingEndTime(const Timestamp & value);
 	Timestamp getBindingEndTime() const;
-	bool getBindingEndTime(Timestamp & out) const;
-	bool hasBindingEndTime() const;
 
 	WorkflowContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidators() const;
@@ -101,11 +98,49 @@ public:
 	std::vector<InstanceIdentifier> getIdentifications() const;
 	void clearIdentifications();
 	
-	WorkflowContextState & setOrderDetail(const Order & value);
-	Order getOrderDetail() const;
-	bool getOrderDetail(Order & out) const;
-	bool hasOrderDetail() const;
+	WorkflowContextState & setPatient(const PersonReference & value);
+	PersonReference getPatient() const;
 
+	WorkflowContextState & setAssignedLocation(const LocationReference & value);
+	LocationReference getAssignedLocation() const;
+	bool getAssignedLocation(LocationReference & out) const;
+	bool hasAssignedLocation() const;
+
+	WorkflowContextState & setVisitNumber(const InstanceIdentifier & value);
+	InstanceIdentifier getVisitNumber() const;
+	bool getVisitNumber(InstanceIdentifier & out) const;
+	bool hasVisitNumber() const;
+
+	WorkflowContextState & setReferringPhysician(const PersonReference & value);
+	PersonReference getReferringPhysician() const;
+	bool getReferringPhysician(PersonReference & out) const;
+	bool hasReferringPhysician() const;
+
+	WorkflowContextState & setRequestingPhysician(const PersonReference & value);
+	PersonReference getRequestingPhysician() const;
+	bool getRequestingPhysician(PersonReference & out) const;
+	bool hasRequestingPhysician() const;
+
+	WorkflowContextState & setPlacerOrderNumber(const InstanceIdentifier & value);
+	InstanceIdentifier getPlacerOrderNumber() const;
+
+	WorkflowContextState & setFillerOrderNumber(const InstanceIdentifier & value);
+	InstanceIdentifier getFillerOrderNumber() const;
+	bool getFillerOrderNumber(InstanceIdentifier & out) const;
+	bool hasFillerOrderNumber() const;
+
+	WorkflowContextState & addDangerCode(const CodedValue & value);
+	std::vector<CodedValue> getDangerCodes() const;
+	void clearDangerCodes();
+	
+	WorkflowContextState & addRelevantClinicalInfo(const ClinicalInfo & value);
+	std::vector<ClinicalInfo> getRelevantClinicalInfos() const;
+	void clearRelevantClinicalInfos();
+	
+	WorkflowContextState & addResultingClinicalInfo(const ClinicalInfo & value);
+	std::vector<ClinicalInfo> getResultingClinicalInfos() const;
+	void clearResultingClinicalInfos();
+	
 private:
 	std::shared_ptr<CDM::WorkflowContextState> data;
 };

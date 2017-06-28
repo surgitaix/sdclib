@@ -30,14 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -93,13 +92,13 @@ bool EnsembleContextDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-EnsembleContextDescriptor & EnsembleContextDescriptor::setHandle(const std::string & value) {
+EnsembleContextDescriptor & EnsembleContextDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string EnsembleContextDescriptor::getHandle() const {
+Handle EnsembleContextDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	

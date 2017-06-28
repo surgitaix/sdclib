@@ -30,16 +30,15 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -95,13 +94,13 @@ bool StringMetricDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setHandle(const std::string & value) {
+StringMetricDescriptor & StringMetricDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string StringMetricDescriptor::getHandle() const {
+Handle StringMetricDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -167,22 +166,53 @@ MetricCategory StringMetricDescriptor::getMetricCategory() const {
 	return ConvertFromCDM::convert(data->MetricCategory());
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setAvailability(const MetricAvailability & value) {
-	data->Availability(ConvertToCDM::convert(value));
+StringMetricDescriptor & StringMetricDescriptor::setDerivationMethod(const DerivationMethod & value) {
+	data->DerivationMethod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MetricAvailability StringMetricDescriptor::getAvailability() const {
-	return ConvertFromCDM::convert(data->Availability());
+DerivationMethod StringMetricDescriptor::getDerivationMethod() const {
+	return ConvertFromCDM::convert(data->DerivationMethod());
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setMaxDelayTime(const Duration & value) {
+StringMetricDescriptor & StringMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
+	data->MetricAvailability(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+MetricAvailability StringMetricDescriptor::getMetricAvailability() const {
+	return ConvertFromCDM::convert(data->MetricAvailability());
+}
+	
+StringMetricDescriptor & StringMetricDescriptor::setMaxMeasurementTime(const duration & value) {
+	data->MaxMeasurementTime(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricDescriptor::getMaxMeasurementTime(duration & out) const {
+	if (data->MaxMeasurementTime().present()) {
+		out = ConvertFromCDM::convert(data->MaxMeasurementTime().get());
+		return true;
+	}
+	return false;
+}
+
+duration StringMetricDescriptor::getMaxMeasurementTime() const {
+	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
+}
+	
+bool StringMetricDescriptor::hasMaxMeasurementTime() const {
+	return data->MaxMeasurementTime().present();
+}
+	
+StringMetricDescriptor & StringMetricDescriptor::setMaxDelayTime(const duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricDescriptor::getMaxDelayTime(Duration & out) const {
+bool StringMetricDescriptor::getMaxDelayTime(duration & out) const {
 	if (data->MaxDelayTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxDelayTime().get());
 		return true;
@@ -190,12 +220,54 @@ bool StringMetricDescriptor::getMaxDelayTime(Duration & out) const {
 	return false;
 }
 
-Duration StringMetricDescriptor::getMaxDelayTime() const {
+duration StringMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
 	
 bool StringMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
+}
+	
+StringMetricDescriptor & StringMetricDescriptor::setDeterminationPeriod(const duration & value) {
+	data->DeterminationPeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricDescriptor::getDeterminationPeriod(duration & out) const {
+	if (data->DeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationPeriod().get());
+		return true;
+	}
+	return false;
+}
+
+duration StringMetricDescriptor::getDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
+}
+	
+bool StringMetricDescriptor::hasDeterminationPeriod() const {
+	return data->DeterminationPeriod().present();
+}
+	
+StringMetricDescriptor & StringMetricDescriptor::setLifeTimePeriod(const duration & value) {
+	data->LifeTimePeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricDescriptor::getLifeTimePeriod(duration & out) const {
+	if (data->LifeTimePeriod().present()) {
+		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
+		return true;
+	}
+	return false;
+}
+
+duration StringMetricDescriptor::getLifeTimePeriod() const {
+	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
+}
+	
+bool StringMetricDescriptor::hasLifeTimePeriod() const {
+	return data->LifeTimePeriod().present();
 }
 	
 StringMetricDescriptor & StringMetricDescriptor::addBodySite(const CodedValue & value) {

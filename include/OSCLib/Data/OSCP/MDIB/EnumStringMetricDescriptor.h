@@ -32,7 +32,7 @@
 #ifndef ENUMSTRINGMETRICDESCRIPTOR_H_
 #define ENUMSTRINGMETRICDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	EnumStringMetricDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	EnumStringMetricDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	EnumStringMetricDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -80,22 +80,44 @@ public:
 	EnumStringMetricDescriptor & setMetricCategory(const MetricCategory & value);
 	MetricCategory getMetricCategory() const;
 
-	EnumStringMetricDescriptor & setAvailability(const MetricAvailability & value);
-	MetricAvailability getAvailability() const;
+	EnumStringMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
+	DerivationMethod getDerivationMethod() const;
 
-	EnumStringMetricDescriptor & setMaxDelayTime(const Duration & value);
-	Duration getMaxDelayTime() const;
-	bool getMaxDelayTime(Duration & out) const;
+	EnumStringMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
+	MetricAvailability getMetricAvailability() const;
+
+	EnumStringMetricDescriptor & setMaxMeasurementTime(const duration & value);
+	duration getMaxMeasurementTime() const;
+	bool getMaxMeasurementTime(duration & out) const;
+	bool hasMaxMeasurementTime() const;
+
+	EnumStringMetricDescriptor & setMaxDelayTime(const duration & value);
+	duration getMaxDelayTime() const;
+	bool getMaxDelayTime(duration & out) const;
 	bool hasMaxDelayTime() const;
+
+	EnumStringMetricDescriptor & setDeterminationPeriod(const duration & value);
+	duration getDeterminationPeriod() const;
+	bool getDeterminationPeriod(duration & out) const;
+	bool hasDeterminationPeriod() const;
+
+	EnumStringMetricDescriptor & setLifeTimePeriod(const duration & value);
+	duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(duration & out) const;
+	bool hasLifeTimePeriod() const;
 
 	EnumStringMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySites() const;
 	void clearBodySites();
 	
-	EnumStringMetricDescriptor & addAllowedValue(const AllowedValue & value);
-	std::vector<AllowedValue> getAllowedValues() const;
-	void clearAllowedValues();
-	
+	EnumStringMetricDescriptor & setValue(const std::string & value);
+	std::string getValue() const;
+
+	EnumStringMetricDescriptor & setType(const CodedValue & value);
+	CodedValue getType() const;
+	bool getType(CodedValue & out) const;
+	bool hasType() const;
+
 private:
 	std::shared_ptr<CDM::EnumStringMetricDescriptor> data;
 };

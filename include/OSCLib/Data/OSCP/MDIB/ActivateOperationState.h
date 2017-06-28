@@ -32,7 +32,7 @@
 #ifndef ACTIVATEOPERATIONSTATE_H_
 #define ACTIVATEOPERATIONSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,18 +56,14 @@ public:
     
     typedef CDM::ActivateOperationState WrappedType;
 
-	ActivateOperationState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	ActivateOperationState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	ActivateOperationState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	ActivateOperationState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	ActivateOperationState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	ActivateOperationState & setOperatingMode(const OperatingMode & value);
 	OperatingMode getOperatingMode() const;

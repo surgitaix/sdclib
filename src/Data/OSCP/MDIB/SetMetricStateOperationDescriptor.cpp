@@ -30,14 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/SetMetricStateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -93,13 +92,13 @@ bool SetMetricStateOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setHandle(const std::string & value) {
+SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetMetricStateOperationDescriptor::getHandle() const {
+Handle SetMetricStateOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -145,13 +144,13 @@ bool SetMetricStateOperationDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setOperationTarget(const std::string & value) {
+SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setOperationTarget(const HandleRef & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetMetricStateOperationDescriptor::getOperationTarget() const {
+HandleRef SetMetricStateOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
 	

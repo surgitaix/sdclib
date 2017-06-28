@@ -32,7 +32,7 @@
 #ifndef MDSDESCRIPTOR_H_
 #define MDSDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	MdsDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	MdsDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	MdsDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -74,41 +74,67 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	MdsDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecifications() const;
-	void clearProductionSpecifications();
-	
+	MdsDescriptor & setSpecType(const CodedValue & value);
+	CodedValue getSpecType() const;
+
+	MdsDescriptor & setProductionSpec(const std::string & value);
+	std::string getProductionSpec() const;
+
+	MdsDescriptor & setComponentId(const InstanceIdentifier & value);
+	InstanceIdentifier getComponentId() const;
+	bool getComponentId(InstanceIdentifier & out) const;
+	bool hasComponentId() const;
+
 	MdsDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;
 	bool hasAlertSystem() const;
 
-	MdsDescriptor & setMetaData(const MetaData & value);
-	MetaData getMetaData() const;
-	bool getMetaData(MetaData & out) const;
-	bool hasMetaData() const;
+	MdsDescriptor & setUdi(const std::string & value);
+	std::string getUdi() const;
+	bool getUdi(std::string & out) const;
+	bool hasUdi() const;
 
-	MdsDescriptor & setContext(const SystemContextDescriptor & value);
-	SystemContextDescriptor getContext() const;
+	MdsDescriptor & setModelNumber(const std::string & value);
+	std::string getModelNumber() const;
+	bool getModelNumber(std::string & out) const;
+	bool hasModelNumber() const;
+
+	MdsDescriptor & setSystemContext(const SystemContextDescriptor & value);
+	SystemContextDescriptor getSystemContext() const;
+	bool getSystemContext(SystemContextDescriptor & out) const;
+	bool hasSystemContext() const;
 
 	MdsDescriptor & setClock(const ClockDescriptor & value);
 	ClockDescriptor getClock() const;
 	bool getClock(ClockDescriptor & out) const;
 	bool hasClock() const;
 
-	MdsDescriptor & setSco(const ScoDescriptor & value);
-	ScoDescriptor getSco() const;
-	bool getSco(ScoDescriptor & out) const;
-	bool hasSco() const;
-
 	MdsDescriptor & setBattery(const BatteryDescriptor & value);
 	BatteryDescriptor getBattery() const;
 	bool getBattery(BatteryDescriptor & out) const;
 	bool hasBattery() const;
 
-	MdsDescriptor & addVMD(const VmdDescriptor & value);
-	std::vector<VmdDescriptor> getVMDs() const;
-	void clearVMDs();
+	MdsDescriptor & setSco(const ScoDescriptor & value);
+	ScoDescriptor getSco() const;
+	bool getSco(ScoDescriptor & out) const;
+	bool hasSco() const;
+
+	MdsDescriptor & addManufacturer(const LocalizedText & value);
+	std::vector<LocalizedText> getManufacturers() const;
+	void clearManufacturers();
+	
+	MdsDescriptor & addModelName(const LocalizedText & value);
+	std::vector<LocalizedText> getModelNames() const;
+	void clearModelNames();
+	
+	MdsDescriptor & addSerialNumber(const std::string & value);
+	std::vector<std::string> getSerialNumbers() const;
+	void clearSerialNumbers();
+	
+	MdsDescriptor & addVmd(const VmdDescriptor & value);
+	std::vector<VmdDescriptor> getVmds() const;
+	void clearVmds();
 	
 private:
 	std::shared_ptr<CDM::MdsDescriptor> data;

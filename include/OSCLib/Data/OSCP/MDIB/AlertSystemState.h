@@ -32,7 +32,7 @@
 #ifndef ALERTSYSTEMSTATE_H_
 #define ALERTSYSTEMSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,36 +55,35 @@ public:
     AlertSystemState & operator=(const AlertSystemState & object);
     
     typedef CDM::AlertSystemState WrappedType;
-    typedef AlertSystemDescriptor DescriptorType;
-    typedef OSCPProviderAlertSystemStateHandler ProviderHandlerType;
-    typedef OSCPConsumerAlertSystemStateHandler ConsumerHandlerType;
-
-	AlertSystemState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	AlertSystemState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	AlertSystemState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	AlertSystemState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	AlertSystemState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	AlertSystemState & setActivationState(const AlertActivation & value);
 	AlertActivation getActivationState() const;
 
+	AlertSystemState & setLastSelfCheck(const Timestamp & value);
+	Timestamp getLastSelfCheck() const;
+
+	AlertSystemState & setSelfCheckCount(const long & value);
+	long getSelfCheckCount() const;
+
 	AlertSystemState & setPresentPhysiologicalAlarmConditions(const AlertConditionReference & value);
 	AlertConditionReference getPresentPhysiologicalAlarmConditions() const;
-	bool getPresentPhysiologicalAlarmConditions(AlertConditionReference & out) const;
-	bool hasPresentPhysiologicalAlarmConditions() const;
 
 	AlertSystemState & setPresentTechnicalAlarmConditions(const AlertConditionReference & value);
 	AlertConditionReference getPresentTechnicalAlarmConditions() const;
-	bool getPresentTechnicalAlarmConditions(AlertConditionReference & out) const;
-	bool hasPresentTechnicalAlarmConditions() const;
 
+	AlertSystemState & addSystemSignalActivation(const SystemSignalActivation & value);
+	std::vector<SystemSignalActivation> getSystemSignalActivations() const;
+	void clearSystemSignalActivations();
+	
 private:
 	std::shared_ptr<CDM::AlertSystemState> data;
 };

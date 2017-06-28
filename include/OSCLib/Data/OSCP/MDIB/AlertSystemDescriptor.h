@@ -32,7 +32,7 @@
 #ifndef ALERTSYSTEMDESCRIPTOR_H_
 #define ALERTSYSTEMDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	AlertSystemDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	AlertSystemDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	AlertSystemDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -74,30 +74,23 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	AlertSystemDescriptor & setMaxPhysiologicalParallelAlarms(const unsigned int & value);
-	unsigned int getMaxPhysiologicalParallelAlarms() const;
-	bool getMaxPhysiologicalParallelAlarms(unsigned int & out) const;
-	bool hasMaxPhysiologicalParallelAlarms() const;
+	AlertSystemDescriptor & setMaxPhysiologicalParallelAlarms(const unsignedInt & value);
+	unsignedInt getMaxPhysiologicalParallelAlarms() const;
 
-	AlertSystemDescriptor & setMaxTechnicalParallelAlarms(const unsigned int & value);
-	unsigned int getMaxTechnicalParallelAlarms() const;
-	bool getMaxTechnicalParallelAlarms(unsigned int & out) const;
-	bool hasMaxTechnicalParallelAlarms() const;
+	AlertSystemDescriptor & setMaxTechnicalParallelAlarms(const unsignedInt & value);
+	unsignedInt getMaxTechnicalParallelAlarms() const;
 
-	AlertSystemDescriptor & setSelfCheckPeriod(const Duration & value);
-	Duration getSelfCheckPeriod() const;
-	bool getSelfCheckPeriod(Duration & out) const;
-	bool hasSelfCheckPeriod() const;
+	AlertSystemDescriptor & setSelfCheckPeriod(const duration & value);
+	duration getSelfCheckPeriod() const;
 
+	AlertSystemDescriptor & addAlertCondition(const AlertConditionDescriptor & value);
+	std::vector<AlertConditionDescriptor> getAlertConditions() const;
+	void clearAlertConditions();
+	
 	AlertSystemDescriptor & addAlertSignal(const AlertSignalDescriptor & value);
 	std::vector<AlertSignalDescriptor> getAlertSignals() const;
 	void clearAlertSignals();
 	
-	AlertSystemDescriptor & addAlertCondition(const AlertConditionDescriptor & value);
-	std::vector<AlertConditionDescriptor> getAlertConditions() const;
-
-	AlertSystemDescriptor & addLimitAlertCondition(const LimitAlertConditionDescriptor & source);
-	std::vector<LimitAlertConditionDescriptor> getLimitAlertConditions() const;
 private:
 	std::shared_ptr<CDM::AlertSystemDescriptor> data;
 };

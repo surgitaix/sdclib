@@ -32,7 +32,7 @@
 #ifndef CODEDVALUE_H_
 #define CODEDVALUE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,23 +56,17 @@ public:
     
     typedef CDM::CodedValue WrappedType;
 
-	CodedValue & setCode(const std::string & value);
-	std::string getCode() const;
+	CodedValue & setCode(const CodeIdentifier & value);
+	CodeIdentifier getCode() const;
 
-	CodedValue & setCodingSystem(const std::string & value);
-	std::string getCodingSystem() const;
-	bool getCodingSystem(std::string & out) const;
-	bool hasCodingSystem() const;
+	CodedValue & setCodingSystem(const anyURI & value);
+	anyURI getCodingSystem() const;
 
-	CodedValue & setCodingSystemVersion(const std::string & value);
-	std::string getCodingSystemVersion() const;
-	bool getCodingSystemVersion(std::string & out) const;
-	bool hasCodingSystemVersion() const;
+	CodedValue & setCodingSystemVersion(const string & value);
+	string getCodingSystemVersion() const;
 
-	CodedValue & setSymbolicCodeName(const std::string & value);
-	std::string getSymbolicCodeName() const;
-	bool getSymbolicCodeName(std::string & out) const;
-	bool hasSymbolicCodeName() const;
+	CodedValue & setSymbolicCodeName(const SymbolicCodeName & value);
+	SymbolicCodeName getSymbolicCodeName() const;
 
 	CodedValue & addCodingSystemName(const LocalizedText & value);
 	std::vector<LocalizedText> getCodingSystemNames() const;

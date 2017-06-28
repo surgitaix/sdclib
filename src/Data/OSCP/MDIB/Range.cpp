@@ -30,8 +30,8 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
@@ -70,12 +70,12 @@ Range & Range:: operator=(const Range & object) {
 }
 
 
-Range & Range::setLower(const double & value) {
+Range & Range::setLower(const decimal & value) {
 	data->Lower(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool Range::getLower(double & out) const {
+bool Range::getLower(decimal & out) const {
 	if (data->Lower().present()) {
 		out = ConvertFromCDM::convert(data->Lower().get());
 		return true;
@@ -83,7 +83,7 @@ bool Range::getLower(double & out) const {
 	return false;
 }
 
-double Range::getLower() const {
+decimal Range::getLower() const {
 	return ConvertFromCDM::convert(data->Lower().get());
 }
 	
@@ -91,12 +91,12 @@ bool Range::hasLower() const {
 	return data->Lower().present();
 }
 	
-Range & Range::setUpper(const double & value) {
+Range & Range::setUpper(const decimal & value) {
 	data->Upper(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool Range::getUpper(double & out) const {
+bool Range::getUpper(decimal & out) const {
 	if (data->Upper().present()) {
 		out = ConvertFromCDM::convert(data->Upper().get());
 		return true;
@@ -104,7 +104,7 @@ bool Range::getUpper(double & out) const {
 	return false;
 }
 
-double Range::getUpper() const {
+decimal Range::getUpper() const {
 	return ConvertFromCDM::convert(data->Upper().get());
 }
 	
@@ -112,12 +112,12 @@ bool Range::hasUpper() const {
 	return data->Upper().present();
 }
 	
-Range & Range::setStepWidth(const double & value) {
+Range & Range::setStepWidth(const decimal & value) {
 	data->StepWidth(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool Range::getStepWidth(double & out) const {
+bool Range::getStepWidth(decimal & out) const {
 	if (data->StepWidth().present()) {
 		out = ConvertFromCDM::convert(data->StepWidth().get());
 		return true;
@@ -125,12 +125,54 @@ bool Range::getStepWidth(double & out) const {
 	return false;
 }
 
-double Range::getStepWidth() const {
+decimal Range::getStepWidth() const {
 	return ConvertFromCDM::convert(data->StepWidth().get());
 }
 	
 bool Range::hasStepWidth() const {
 	return data->StepWidth().present();
+}
+	
+Range & Range::setRelativeAccuracy(const decimal & value) {
+	data->RelativeAccuracy(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool Range::getRelativeAccuracy(decimal & out) const {
+	if (data->RelativeAccuracy().present()) {
+		out = ConvertFromCDM::convert(data->RelativeAccuracy().get());
+		return true;
+	}
+	return false;
+}
+
+decimal Range::getRelativeAccuracy() const {
+	return ConvertFromCDM::convert(data->RelativeAccuracy().get());
+}
+	
+bool Range::hasRelativeAccuracy() const {
+	return data->RelativeAccuracy().present();
+}
+	
+Range & Range::setAbsoluteAccuracy(const decimal & value) {
+	data->AbsoluteAccuracy(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool Range::getAbsoluteAccuracy(decimal & out) const {
+	if (data->AbsoluteAccuracy().present()) {
+		out = ConvertFromCDM::convert(data->AbsoluteAccuracy().get());
+		return true;
+	}
+	return false;
+}
+
+decimal Range::getAbsoluteAccuracy() const {
+	return ConvertFromCDM::convert(data->AbsoluteAccuracy().get());
+}
+	
+bool Range::hasAbsoluteAccuracy() const {
+	return data->AbsoluteAccuracy().present();
 }
 	
 

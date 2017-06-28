@@ -8,7 +8,7 @@
 #ifndef OSCLIB_DATA_OSCP_OSCP_FWD_H_
 #define OSCLIB_DATA_OSCP_OSCP_FWD_H_
 
-#include "MDIB/custom/MDIB-fwd.h"
+#include "MDIB/MDIB-fwd.h"
 
 namespace OSCLib {
 namespace Data {

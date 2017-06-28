@@ -32,7 +32,7 @@
 #ifndef STRINGMETRICSTATE_H_
 #define STRINGMETRICSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,40 +55,35 @@ public:
     StringMetricState & operator=(const StringMetricState & object);
     
     typedef CDM::StringMetricState WrappedType;
-    typedef StringMetricDescriptor DescriptorType;
-    typedef OSCPProviderStringMetricStateHandler ProviderHandlerType;
-    typedef OSCPConsumerStringMetricStateHandler ConsumerHandlerType;
-
-	StringMetricState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	StringMetricState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	StringMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	StringMetricState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	StringMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	StringMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	StringMetricState & setLifeTimePeriod(const Duration & value);
-	Duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(Duration & out) const;
+	StringMetricState & setActiveDeterminationPeriod(const duration & value);
+	duration getActiveDeterminationPeriod() const;
+
+	StringMetricState & setLifeTimePeriod(const duration & value);
+	duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(duration & out) const;
 	bool hasLifeTimePeriod() const;
 
-	StringMetricState & setActiveDeterminationPeriod(const Duration & value);
-	Duration getActiveDeterminationPeriod() const;
-	bool getActiveDeterminationPeriod(Duration & out) const;
-	bool hasActiveDeterminationPeriod() const;
-
-	StringMetricState & setObservedValue(const StringMetricValue & value);
-	StringMetricValue getObservedValue() const;
-	bool getObservedValue(StringMetricValue & out) const;
-	bool hasObservedValue() const;
+	StringMetricState & addBodySite(const CodedValue & value);
+	std::vector<CodedValue> getBodySites() const;
+	void clearBodySites();
+	
+	StringMetricState & setMetricValue(const StringMetricValue & value);
+	StringMetricValue getMetricValue() const;
+	bool getMetricValue(StringMetricValue & out) const;
+	bool hasMetricValue() const;
 
 private:
 	std::shared_ptr<CDM::StringMetricState> data;

@@ -30,17 +30,15 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -75,56 +73,34 @@ NumericMetricState & NumericMetricState:: operator=(const NumericMetricState & o
 }
 
 
-NumericMetricState & NumericMetricState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool NumericMetricState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-ReferencedVersion NumericMetricState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool NumericMetricState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-NumericMetricState & NumericMetricState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string NumericMetricState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 NumericMetricState & NumericMetricState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
-		return true;
-	}
-	return false;
-}
 
 VersionCounter NumericMetricState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->StateVersion());
 }
 	
-bool NumericMetricState::hasStateVersion() const {
-	return data->StateVersion().present();
+NumericMetricState & NumericMetricState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef NumericMetricState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+NumericMetricState & NumericMetricState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion NumericMetricState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
 }
 	
 NumericMetricState & NumericMetricState::setActivationState(const ComponentActivation & value) {
@@ -137,12 +113,22 @@ ComponentActivation NumericMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-NumericMetricState & NumericMetricState::setLifeTimePeriod(const Duration & value) {
+NumericMetricState & NumericMetricState::setActiveDeterminationPeriod(const duration & value) {
+	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+duration NumericMetricState::getActiveDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
+}
+	
+NumericMetricState & NumericMetricState::setLifeTimePeriod(const duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getLifeTimePeriod(Duration & out) const {
+bool NumericMetricState::getLifeTimePeriod(duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -150,7 +136,7 @@ bool NumericMetricState::getLifeTimePeriod(Duration & out) const {
 	return false;
 }
 
-Duration NumericMetricState::getLifeTimePeriod() const {
+duration NumericMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -158,46 +144,64 @@ bool NumericMetricState::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
 	
-NumericMetricState & NumericMetricState::setActiveDeterminationPeriod(const Duration & value) {
-	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::addBodySite(const CodedValue & value) {
+	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getActiveDeterminationPeriod(Duration & out) const {
-	if (data->ActiveDeterminationPeriod().present()) {
-		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+std::vector<CodedValue> NumericMetricState::getBodySites() const {
+	std::vector<CodedValue> result;
+	result.reserve(data->BodySite().size());
+	for (const auto & value: data->BodySite()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void NumericMetricState::clearBodySites() {
+	data->BodySite().clear();
+}
+
+NumericMetricState & NumericMetricState::setMetricValue(const NumericMetricValue & value) {
+	data->MetricValue(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NumericMetricState::getMetricValue(NumericMetricValue & out) const {
+	if (data->MetricValue().present()) {
+		out = ConvertFromCDM::convert(data->MetricValue().get());
 		return true;
 	}
 	return false;
 }
 
-Duration NumericMetricState::getActiveDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+NumericMetricValue NumericMetricState::getMetricValue() const {
+	return ConvertFromCDM::convert(data->MetricValue().get());
 }
 	
-bool NumericMetricState::hasActiveDeterminationPeriod() const {
-	return data->ActiveDeterminationPeriod().present();
+bool NumericMetricState::hasMetricValue() const {
+	return data->MetricValue().present();
 }
 	
-NumericMetricState & NumericMetricState::setObservedValue(const NumericMetricValue & value) {
-	data->ObservedValue(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::setActiveAveragingPeriod(const duration & value) {
+	data->ActiveAveragingPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getObservedValue(NumericMetricValue & out) const {
-	if (data->ObservedValue().present()) {
-		out = ConvertFromCDM::convert(data->ObservedValue().get());
+bool NumericMetricState::getActiveAveragingPeriod(duration & out) const {
+	if (data->ActiveAveragingPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveAveragingPeriod().get());
 		return true;
 	}
 	return false;
 }
 
-NumericMetricValue NumericMetricState::getObservedValue() const {
-	return ConvertFromCDM::convert(data->ObservedValue().get());
+duration NumericMetricState::getActiveAveragingPeriod() const {
+	return ConvertFromCDM::convert(data->ActiveAveragingPeriod().get());
 }
 	
-bool NumericMetricState::hasObservedValue() const {
-	return data->ObservedValue().present();
+bool NumericMetricState::hasActiveAveragingPeriod() const {
+	return data->ActiveAveragingPeriod().present();
 }
 	
 NumericMetricState & NumericMetricState::addPhysiologicalRange(const Range & value) {

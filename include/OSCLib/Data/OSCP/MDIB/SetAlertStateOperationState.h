@@ -32,7 +32,7 @@
 #ifndef SETALERTSTATEOPERATIONSTATE_H_
 #define SETALERTSTATEOPERATIONSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,18 +56,14 @@ public:
     
     typedef CDM::SetAlertStateOperationState WrappedType;
 
-	SetAlertStateOperationState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	SetAlertStateOperationState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	SetAlertStateOperationState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	SetAlertStateOperationState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	SetAlertStateOperationState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	SetAlertStateOperationState & setOperatingMode(const OperatingMode & value);
 	OperatingMode getOperatingMode() const;

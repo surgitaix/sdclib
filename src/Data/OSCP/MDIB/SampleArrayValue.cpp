@@ -30,16 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeValueType.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -74,56 +71,86 @@ SampleArrayValue & SampleArrayValue:: operator=(const SampleArrayValue & object)
 }
 
 
-SampleArrayValue & SampleArrayValue::setMetricQuality(const MetricQuality & value) {
-	data->MetricQuality(ConvertToCDM::convert(value));
+SampleArrayValue & SampleArrayValue::setType(const CodedValue & value) {
+	data->Type(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MetricQuality SampleArrayValue::getMetricQuality() const {
-	return ConvertFromCDM::convert(data->MetricQuality());
+CodedValue SampleArrayValue::getType() const {
+	return ConvertFromCDM::convert(data->Type());
 }
 	
-SampleArrayValue & SampleArrayValue::setStart_Time(const Timestamp & value) {
-	data->Start_Time(ConvertToCDM::convert(value));
+SampleArrayValue & SampleArrayValue::setValidity(const MeasurementValidity & value) {
+	data->Validity(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SampleArrayValue::getStart_Time(Timestamp & out) const {
-	if (data->Start_Time().present()) {
-		out = ConvertFromCDM::convert(data->Start_Time().get());
+
+MeasurementValidity SampleArrayValue::getValidity() const {
+	return ConvertFromCDM::convert(data->Validity());
+}
+	
+SampleArrayValue & SampleArrayValue::setMode(const GenerationMode & value) {
+	data->Mode(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+GenerationMode SampleArrayValue::getMode() const {
+	return ConvertFromCDM::convert(data->Mode());
+}
+	
+SampleArrayValue & SampleArrayValue::setQi(const QualityIndicator & value) {
+	data->Qi(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+QualityIndicator SampleArrayValue::getQi() const {
+	return ConvertFromCDM::convert(data->Qi());
+}
+	
+SampleArrayValue & SampleArrayValue::setStartTime(const Timestamp & value) {
+	data->StartTime(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SampleArrayValue::getStartTime(Timestamp & out) const {
+	if (data->StartTime().present()) {
+		out = ConvertFromCDM::convert(data->StartTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp SampleArrayValue::getStart_Time() const {
-	return ConvertFromCDM::convert(data->Start_Time().get());
+Timestamp SampleArrayValue::getStartTime() const {
+	return ConvertFromCDM::convert(data->StartTime().get());
 }
 	
-bool SampleArrayValue::hasStart_Time() const {
-	return data->Start_Time().present();
+bool SampleArrayValue::hasStartTime() const {
+	return data->StartTime().present();
 }
 	
-SampleArrayValue & SampleArrayValue::setStop_Time(const Timestamp & value) {
-	data->Stop_Time(ConvertToCDM::convert(value));
+SampleArrayValue & SampleArrayValue::setStopTime(const Timestamp & value) {
+	data->StopTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SampleArrayValue::getStop_Time(Timestamp & out) const {
-	if (data->Stop_Time().present()) {
-		out = ConvertFromCDM::convert(data->Stop_Time().get());
+bool SampleArrayValue::getStopTime(Timestamp & out) const {
+	if (data->StopTime().present()) {
+		out = ConvertFromCDM::convert(data->StopTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp SampleArrayValue::getStop_Time() const {
-	return ConvertFromCDM::convert(data->Stop_Time().get());
+Timestamp SampleArrayValue::getStopTime() const {
+	return ConvertFromCDM::convert(data->StopTime().get());
 }
 	
-bool SampleArrayValue::hasStop_Time() const {
-	return data->Stop_Time().present();
+bool SampleArrayValue::hasStopTime() const {
+	return data->StopTime().present();
 }
 	
 SampleArrayValue & SampleArrayValue::setDeterminationTime(const Timestamp & value) {
@@ -147,45 +174,36 @@ bool SampleArrayValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
+SampleArrayValue & SampleArrayValue::setAnnotationIndex(const unsignedInt & value) {
+	data->AnnotationIndex(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+unsignedInt SampleArrayValue::getAnnotationIndex() const {
+	return ConvertFromCDM::convert(data->AnnotationIndex());
+}
+	
+SampleArrayValue & SampleArrayValue::setSampleIndex(const unsignedInt & value) {
+	data->SampleIndex(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+unsignedInt SampleArrayValue::getSampleIndex() const {
+	return ConvertFromCDM::convert(data->SampleIndex());
+}
+	
 SampleArrayValue & SampleArrayValue::setSamples(const RealTimeValueType & value) {
 	data->Samples(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SampleArrayValue::getSamples(RealTimeValueType & out) const {
-	if (data->Samples().present()) {
-		out = ConvertFromCDM::convert(data->Samples().get());
-		return true;
-	}
-	return false;
-}
 
 RealTimeValueType SampleArrayValue::getSamples() const {
-	return ConvertFromCDM::convert(data->Samples().get());
+	return ConvertFromCDM::convert(data->Samples());
 }
 	
-bool SampleArrayValue::hasSamples() const {
-	return data->Samples().present();
-}
-	
-SampleArrayValue & SampleArrayValue::addApplyAnnotation(const ApplyAnnotation & value) {
-	data->ApplyAnnotation().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<ApplyAnnotation> SampleArrayValue::getApplyAnnotations() const {
-	std::vector<ApplyAnnotation> result;
-	result.reserve(data->ApplyAnnotation().size());
-	for (const auto & value: data->ApplyAnnotation()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void SampleArrayValue::clearApplyAnnotations() {
-	data->ApplyAnnotation().clear();
-}
-
 
 } /* namespace OSCP */
 } /* namespace Data */

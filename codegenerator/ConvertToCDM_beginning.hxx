@@ -12,8 +12,8 @@
 #ifndef DATA_OSCP_MDIB_CONVERTTOCDM_H_
 #define DATA_OSCP_MDIB_CONVERTTOCDM_H_
 
-#include "SimpleTypesMapping.h"
-#include "MDIB-fwd.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
 #include "osdm-fwd.hxx"
 
 namespace OSCLib {

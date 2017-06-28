@@ -32,7 +32,7 @@
 #ifndef LOCATIONREFERENCE_H_
 #define LOCATIONREFERENCE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -62,8 +62,8 @@ public:
 	bool hasLocationDetail() const;
 
 	LocationReference & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifiers() const;
-	void clearIdentifiers();
+	std::vector<InstanceIdentifier> getIdentifications() const;
+	void clearIdentifications();
 	
 private:
 	std::shared_ptr<CDM::LocationReference> data;

@@ -32,7 +32,7 @@
 #ifndef ENUMSTRINGMETRICSTATE_H_
 #define ENUMSTRINGMETRICSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,40 +55,35 @@ public:
     EnumStringMetricState & operator=(const EnumStringMetricState & object);
     
     typedef CDM::EnumStringMetricState WrappedType;
-    typedef EnumStringMetricDescriptor DescriptorType;
-    typedef OSCPProviderEnumStringMetricStateHandler ProviderHandlerType;
-    typedef OSCPConsumerEnumStringMetricStateHandler ConsumerHandlerType;
-
-	EnumStringMetricState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	EnumStringMetricState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	EnumStringMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	EnumStringMetricState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	EnumStringMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	EnumStringMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	EnumStringMetricState & setLifeTimePeriod(const Duration & value);
-	Duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(Duration & out) const;
+	EnumStringMetricState & setActiveDeterminationPeriod(const duration & value);
+	duration getActiveDeterminationPeriod() const;
+
+	EnumStringMetricState & setLifeTimePeriod(const duration & value);
+	duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(duration & out) const;
 	bool hasLifeTimePeriod() const;
 
-	EnumStringMetricState & setActiveDeterminationPeriod(const Duration & value);
-	Duration getActiveDeterminationPeriod() const;
-	bool getActiveDeterminationPeriod(Duration & out) const;
-	bool hasActiveDeterminationPeriod() const;
-
-	EnumStringMetricState & setObservedValue(const StringMetricValue & value);
-	StringMetricValue getObservedValue() const;
-	bool getObservedValue(StringMetricValue & out) const;
-	bool hasObservedValue() const;
+	EnumStringMetricState & addBodySite(const CodedValue & value);
+	std::vector<CodedValue> getBodySites() const;
+	void clearBodySites();
+	
+	EnumStringMetricState & setMetricValue(const StringMetricValue & value);
+	StringMetricValue getMetricValue() const;
+	bool getMetricValue(StringMetricValue & out) const;
+	bool hasMetricValue() const;
 
 private:
 	std::shared_ptr<CDM::EnumStringMetricState> data;

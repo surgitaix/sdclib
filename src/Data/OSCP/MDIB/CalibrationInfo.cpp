@@ -30,13 +30,12 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 
 namespace OSCLib {
 namespace Data {
@@ -76,41 +75,9 @@ CalibrationInfo & CalibrationInfo::setComponentCalibrationState(const Calibratio
 	return *this;
 }
 
-bool CalibrationInfo::getComponentCalibrationState(CalibrationState & out) const {
-	if (data->ComponentCalibrationState().present()) {
-		out = ConvertFromCDM::convert(data->ComponentCalibrationState().get());
-		return true;
-	}
-	return false;
-}
 
 CalibrationState CalibrationInfo::getComponentCalibrationState() const {
-	return ConvertFromCDM::convert(data->ComponentCalibrationState().get());
-}
-	
-bool CalibrationInfo::hasComponentCalibrationState() const {
-	return data->ComponentCalibrationState().present();
-}
-	
-CalibrationInfo & CalibrationInfo::setTime(const Timestamp & value) {
-	data->Time(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool CalibrationInfo::getTime(Timestamp & out) const {
-	if (data->Time().present()) {
-		out = ConvertFromCDM::convert(data->Time().get());
-		return true;
-	}
-	return false;
-}
-
-Timestamp CalibrationInfo::getTime() const {
-	return ConvertFromCDM::convert(data->Time().get());
-}
-	
-bool CalibrationInfo::hasTime() const {
-	return data->Time().present();
+	return ConvertFromCDM::convert(data->ComponentCalibrationState());
 }
 	
 CalibrationInfo & CalibrationInfo::setType(const CalibrationType & value) {
@@ -132,6 +99,27 @@ CalibrationType CalibrationInfo::getType() const {
 	
 bool CalibrationInfo::hasType() const {
 	return data->Type().present();
+}
+	
+CalibrationInfo & CalibrationInfo::setTime(const Timestamp & value) {
+	data->Time(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool CalibrationInfo::getTime(Timestamp & out) const {
+	if (data->Time().present()) {
+		out = ConvertFromCDM::convert(data->Time().get());
+		return true;
+	}
+	return false;
+}
+
+Timestamp CalibrationInfo::getTime() const {
+	return ConvertFromCDM::convert(data->Time().get());
+}
+	
+bool CalibrationInfo::hasTime() const {
+	return data->Time().present();
 }
 	
 

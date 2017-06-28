@@ -30,16 +30,18 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -95,13 +97,13 @@ bool BatteryDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-BatteryDescriptor & BatteryDescriptor::setHandle(const std::string & value) {
+BatteryDescriptor & BatteryDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string BatteryDescriptor::getHandle() const {
+Handle BatteryDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -147,24 +149,47 @@ bool BatteryDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-BatteryDescriptor & BatteryDescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+BatteryDescriptor & BatteryDescriptor::setSpecType(const CodedValue & value) {
+	data->SpecType(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<ProductionSpecification> BatteryDescriptor::getProductionSpecifications() const {
-	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
-		result.push_back(ConvertFromCDM::convert(value));
+
+CodedValue BatteryDescriptor::getSpecType() const {
+	return ConvertFromCDM::convert(data->SpecType());
+}
+	
+BatteryDescriptor & BatteryDescriptor::setProductionSpec(const std::string & value) {
+	data->ProductionSpec(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+std::string BatteryDescriptor::getProductionSpec() const {
+	return ConvertFromCDM::convert(data->ProductionSpec());
+}
+	
+BatteryDescriptor & BatteryDescriptor::setComponentId(const InstanceIdentifier & value) {
+	data->ComponentId(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool BatteryDescriptor::getComponentId(InstanceIdentifier & out) const {
+	if (data->ComponentId().present()) {
+		out = ConvertFromCDM::convert(data->ComponentId().get());
+		return true;
 	}
-	return result;
+	return false;
 }
 
-void BatteryDescriptor::clearProductionSpecifications() {
-	data->ProductionSpecification().clear();
+InstanceIdentifier BatteryDescriptor::getComponentId() const {
+	return ConvertFromCDM::convert(data->ComponentId().get());
 }
-
+	
+bool BatteryDescriptor::hasComponentId() const {
+	return data->ComponentId().present();
+}
+	
 BatteryDescriptor & BatteryDescriptor::setCapacityFullCharge(const Measurement & value) {
 	data->CapacityFullCharge(ConvertToCDM::convert(value));
 	return *this;

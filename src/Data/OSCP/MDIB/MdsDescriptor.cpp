@@ -30,23 +30,23 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
+#include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
-#include "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -102,13 +102,13 @@ bool MdsDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-MdsDescriptor & MdsDescriptor::setHandle(const std::string & value) {
+MdsDescriptor & MdsDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string MdsDescriptor::getHandle() const {
+Handle MdsDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -154,24 +154,47 @@ bool MdsDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-MdsDescriptor & MdsDescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+MdsDescriptor & MdsDescriptor::setSpecType(const CodedValue & value) {
+	data->SpecType(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<ProductionSpecification> MdsDescriptor::getProductionSpecifications() const {
-	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
-		result.push_back(ConvertFromCDM::convert(value));
+
+CodedValue MdsDescriptor::getSpecType() const {
+	return ConvertFromCDM::convert(data->SpecType());
+}
+	
+MdsDescriptor & MdsDescriptor::setProductionSpec(const std::string & value) {
+	data->ProductionSpec(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+std::string MdsDescriptor::getProductionSpec() const {
+	return ConvertFromCDM::convert(data->ProductionSpec());
+}
+	
+MdsDescriptor & MdsDescriptor::setComponentId(const InstanceIdentifier & value) {
+	data->ComponentId(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MdsDescriptor::getComponentId(InstanceIdentifier & out) const {
+	if (data->ComponentId().present()) {
+		out = ConvertFromCDM::convert(data->ComponentId().get());
+		return true;
 	}
-	return result;
+	return false;
 }
 
-void MdsDescriptor::clearProductionSpecifications() {
-	data->ProductionSpecification().clear();
+InstanceIdentifier MdsDescriptor::getComponentId() const {
+	return ConvertFromCDM::convert(data->ComponentId().get());
 }
-
+	
+bool MdsDescriptor::hasComponentId() const {
+	return data->ComponentId().present();
+}
+	
 MdsDescriptor & MdsDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
 	data->AlertSystem(ConvertToCDM::convert(value));
 	return *this;
@@ -193,35 +216,67 @@ bool MdsDescriptor::hasAlertSystem() const {
 	return data->AlertSystem().present();
 }
 	
-MdsDescriptor & MdsDescriptor::setMetaData(const MetaData & value) {
-	data->MetaData(ConvertToCDM::convert(value));
+MdsDescriptor & MdsDescriptor::setUdi(const std::string & value) {
+	data->Udi(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool MdsDescriptor::getMetaData(MetaData & out) const {
-	if (data->MetaData().present()) {
-		out = ConvertFromCDM::convert(data->MetaData().get());
+bool MdsDescriptor::getUdi(std::string & out) const {
+	if (data->Udi().present()) {
+		out = ConvertFromCDM::convert(data->Udi().get());
 		return true;
 	}
 	return false;
 }
 
-MetaData MdsDescriptor::getMetaData() const {
-	return ConvertFromCDM::convert(data->MetaData().get());
+std::string MdsDescriptor::getUdi() const {
+	return ConvertFromCDM::convert(data->Udi().get());
 }
 	
-bool MdsDescriptor::hasMetaData() const {
-	return data->MetaData().present();
+bool MdsDescriptor::hasUdi() const {
+	return data->Udi().present();
 }
 	
-MdsDescriptor & MdsDescriptor::setContext(const SystemContextDescriptor & value) {
-	data->Context(ConvertToCDM::convert(value));
+MdsDescriptor & MdsDescriptor::setModelNumber(const std::string & value) {
+	data->ModelNumber(ConvertToCDM::convert(value));
 	return *this;
 }
 
+bool MdsDescriptor::getModelNumber(std::string & out) const {
+	if (data->ModelNumber().present()) {
+		out = ConvertFromCDM::convert(data->ModelNumber().get());
+		return true;
+	}
+	return false;
+}
 
-SystemContextDescriptor MdsDescriptor::getContext() const {
-	return ConvertFromCDM::convert(data->Context());
+std::string MdsDescriptor::getModelNumber() const {
+	return ConvertFromCDM::convert(data->ModelNumber().get());
+}
+	
+bool MdsDescriptor::hasModelNumber() const {
+	return data->ModelNumber().present();
+}
+	
+MdsDescriptor & MdsDescriptor::setSystemContext(const SystemContextDescriptor & value) {
+	data->SystemContext(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MdsDescriptor::getSystemContext(SystemContextDescriptor & out) const {
+	if (data->SystemContext().present()) {
+		out = ConvertFromCDM::convert(data->SystemContext().get());
+		return true;
+	}
+	return false;
+}
+
+SystemContextDescriptor MdsDescriptor::getSystemContext() const {
+	return ConvertFromCDM::convert(data->SystemContext().get());
+}
+	
+bool MdsDescriptor::hasSystemContext() const {
+	return data->SystemContext().present();
 }
 	
 MdsDescriptor & MdsDescriptor::setClock(const ClockDescriptor & value) {
@@ -245,27 +300,6 @@ bool MdsDescriptor::hasClock() const {
 	return data->Clock().present();
 }
 	
-MdsDescriptor & MdsDescriptor::setSco(const ScoDescriptor & value) {
-	data->Sco(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool MdsDescriptor::getSco(ScoDescriptor & out) const {
-	if (data->Sco().present()) {
-		out = ConvertFromCDM::convert(data->Sco().get());
-		return true;
-	}
-	return false;
-}
-
-ScoDescriptor MdsDescriptor::getSco() const {
-	return ConvertFromCDM::convert(data->Sco().get());
-}
-	
-bool MdsDescriptor::hasSco() const {
-	return data->Sco().present();
-}
-	
 MdsDescriptor & MdsDescriptor::setBattery(const BatteryDescriptor & value) {
 	data->Battery(ConvertToCDM::convert(value));
 	return *this;
@@ -287,22 +321,97 @@ bool MdsDescriptor::hasBattery() const {
 	return data->Battery().present();
 }
 	
-MdsDescriptor & MdsDescriptor::addVMD(const VmdDescriptor & value) {
-	data->VMD().push_back(ConvertToCDM::convert(value));
+MdsDescriptor & MdsDescriptor::setSco(const ScoDescriptor & value) {
+	data->Sco(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<VmdDescriptor> MdsDescriptor::getVMDs() const {
-	std::vector<VmdDescriptor> result;
-	result.reserve(data->VMD().size());
-	for (const auto & value: data->VMD()) {
+bool MdsDescriptor::getSco(ScoDescriptor & out) const {
+	if (data->Sco().present()) {
+		out = ConvertFromCDM::convert(data->Sco().get());
+		return true;
+	}
+	return false;
+}
+
+ScoDescriptor MdsDescriptor::getSco() const {
+	return ConvertFromCDM::convert(data->Sco().get());
+}
+	
+bool MdsDescriptor::hasSco() const {
+	return data->Sco().present();
+}
+	
+MdsDescriptor & MdsDescriptor::addManufacturer(const LocalizedText & value) {
+	data->Manufacturer().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<LocalizedText> MdsDescriptor::getManufacturers() const {
+	std::vector<LocalizedText> result;
+	result.reserve(data->Manufacturer().size());
+	for (const auto & value: data->Manufacturer()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
-void MdsDescriptor::clearVMDs() {
-	data->VMD().clear();
+void MdsDescriptor::clearManufacturers() {
+	data->Manufacturer().clear();
+}
+
+MdsDescriptor & MdsDescriptor::addModelName(const LocalizedText & value) {
+	data->ModelName().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<LocalizedText> MdsDescriptor::getModelNames() const {
+	std::vector<LocalizedText> result;
+	result.reserve(data->ModelName().size());
+	for (const auto & value: data->ModelName()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void MdsDescriptor::clearModelNames() {
+	data->ModelName().clear();
+}
+
+MdsDescriptor & MdsDescriptor::addSerialNumber(const std::string & value) {
+	data->SerialNumber().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<std::string> MdsDescriptor::getSerialNumbers() const {
+	std::vector<std::string> result;
+	result.reserve(data->SerialNumber().size());
+	for (const auto & value: data->SerialNumber()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void MdsDescriptor::clearSerialNumbers() {
+	data->SerialNumber().clear();
+}
+
+MdsDescriptor & MdsDescriptor::addVmd(const VmdDescriptor & value) {
+	data->Vmd().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<VmdDescriptor> MdsDescriptor::getVmds() const {
+	std::vector<VmdDescriptor> result;
+	result.reserve(data->Vmd().size());
+	for (const auto & value: data->Vmd()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void MdsDescriptor::clearVmds() {
+	data->Vmd().clear();
 }
 
 

@@ -30,15 +30,14 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -94,13 +93,13 @@ bool ActivateOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-ActivateOperationDescriptor & ActivateOperationDescriptor::setHandle(const std::string & value) {
+ActivateOperationDescriptor & ActivateOperationDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string ActivateOperationDescriptor::getHandle() const {
+Handle ActivateOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -146,35 +145,72 @@ bool ActivateOperationDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-ActivateOperationDescriptor & ActivateOperationDescriptor::setOperationTarget(const std::string & value) {
+ActivateOperationDescriptor & ActivateOperationDescriptor::setOperationTarget(const HandleRef & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string ActivateOperationDescriptor::getOperationTarget() const {
+HandleRef ActivateOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
 	
-ActivateOperationDescriptor & ActivateOperationDescriptor::setActivationDuration(const Duration & value) {
+ActivateOperationDescriptor & ActivateOperationDescriptor::addModifiableElement(const std::string & value) {
+	data->ModifiableElement().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<std::string> ActivateOperationDescriptor::getModifiableElements() const {
+	std::vector<std::string> result;
+	result.reserve(data->ModifiableElement().size());
+	for (const auto & value: data->ModifiableElement()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ActivateOperationDescriptor::clearModifiableElements() {
+	data->ModifiableElement().clear();
+}
+
+ActivateOperationDescriptor & ActivateOperationDescriptor::setArgName(const CodedValue & value) {
+	data->ArgName(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+CodedValue ActivateOperationDescriptor::getArgName() const {
+	return ConvertFromCDM::convert(data->ArgName());
+}
+	
+ActivateOperationDescriptor & ActivateOperationDescriptor::setArg(const std::string & value) {
+	data->Arg(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+std::string ActivateOperationDescriptor::getArg() const {
+	return ConvertFromCDM::convert(data->Arg());
+}
+	
+ActivateOperationDescriptor & ActivateOperationDescriptor::setActivationDuration(const duration & value) {
 	data->ActivationDuration(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ActivateOperationDescriptor::getActivationDuration(Duration & out) const {
-	if (data->ActivationDuration().present()) {
-		out = ConvertFromCDM::convert(data->ActivationDuration().get());
-		return true;
-	}
-	return false;
-}
 
-Duration ActivateOperationDescriptor::getActivationDuration() const {
-	return ConvertFromCDM::convert(data->ActivationDuration().get());
+duration ActivateOperationDescriptor::getActivationDuration() const {
+	return ConvertFromCDM::convert(data->ActivationDuration());
 }
 	
-bool ActivateOperationDescriptor::hasActivationDuration() const {
-	return data->ActivationDuration().present();
+ActivateOperationDescriptor & ActivateOperationDescriptor::setRetriggerable(const boolean & value) {
+	data->Retriggerable(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+boolean ActivateOperationDescriptor::getRetriggerable() const {
+	return ConvertFromCDM::convert(data->Retriggerable());
 }
 	
 

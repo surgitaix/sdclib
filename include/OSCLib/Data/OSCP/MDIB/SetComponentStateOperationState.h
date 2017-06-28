@@ -32,7 +32,7 @@
 #ifndef SETCOMPONENTSTATEOPERATIONSTATE_H_
 #define SETCOMPONENTSTATEOPERATIONSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,18 +56,14 @@ public:
     
     typedef CDM::SetComponentStateOperationState WrappedType;
 
-	SetComponentStateOperationState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	SetComponentStateOperationState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	SetComponentStateOperationState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	SetComponentStateOperationState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	SetComponentStateOperationState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	SetComponentStateOperationState & setOperatingMode(const OperatingMode & value);
 	OperatingMode getOperatingMode() const;

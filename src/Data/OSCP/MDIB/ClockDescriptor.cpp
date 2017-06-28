@@ -30,16 +30,16 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -95,13 +95,13 @@ bool ClockDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-ClockDescriptor & ClockDescriptor::setHandle(const std::string & value) {
+ClockDescriptor & ClockDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string ClockDescriptor::getHandle() const {
+Handle ClockDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -147,25 +147,55 @@ bool ClockDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-ClockDescriptor & ClockDescriptor::setResolution(const Duration & value) {
-	data->Resolution(ConvertToCDM::convert(value));
+ClockDescriptor & ClockDescriptor::setSpecType(const CodedValue & value) {
+	data->SpecType(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ClockDescriptor::getResolution(Duration & out) const {
-	if (data->Resolution().present()) {
-		out = ConvertFromCDM::convert(data->Resolution().get());
+
+CodedValue ClockDescriptor::getSpecType() const {
+	return ConvertFromCDM::convert(data->SpecType());
+}
+	
+ClockDescriptor & ClockDescriptor::setProductionSpec(const std::string & value) {
+	data->ProductionSpec(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+std::string ClockDescriptor::getProductionSpec() const {
+	return ConvertFromCDM::convert(data->ProductionSpec());
+}
+	
+ClockDescriptor & ClockDescriptor::setComponentId(const InstanceIdentifier & value) {
+	data->ComponentId(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockDescriptor::getComponentId(InstanceIdentifier & out) const {
+	if (data->ComponentId().present()) {
+		out = ConvertFromCDM::convert(data->ComponentId().get());
 		return true;
 	}
 	return false;
 }
 
-Duration ClockDescriptor::getResolution() const {
-	return ConvertFromCDM::convert(data->Resolution().get());
+InstanceIdentifier ClockDescriptor::getComponentId() const {
+	return ConvertFromCDM::convert(data->ComponentId().get());
 }
 	
-bool ClockDescriptor::hasResolution() const {
-	return data->Resolution().present();
+bool ClockDescriptor::hasComponentId() const {
+	return data->ComponentId().present();
+}
+	
+ClockDescriptor & ClockDescriptor::setResolution(const duration & value) {
+	data->Resolution(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+duration ClockDescriptor::getResolution() const {
+	return ConvertFromCDM::convert(data->Resolution());
 }
 	
 ClockDescriptor & ClockDescriptor::addTimeProtocol(const CodedValue & value) {

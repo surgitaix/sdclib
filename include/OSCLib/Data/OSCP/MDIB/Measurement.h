@@ -32,7 +32,7 @@
 #ifndef MEASUREMENT_H_
 #define MEASUREMENT_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -59,10 +59,8 @@ public:
 	Measurement & setMeasurementUnit(const CodedValue & value);
 	CodedValue getMeasurementUnit() const;
 
-	Measurement & setMeasuredValue(const double & value);
-	double getMeasuredValue() const;
-	bool getMeasuredValue(double & out) const;
-	bool hasMeasuredValue() const;
+	Measurement & setMeasuredValue(const decimal & value);
+	decimal getMeasuredValue() const;
 
 private:
 	std::shared_ptr<CDM::Measurement> data;

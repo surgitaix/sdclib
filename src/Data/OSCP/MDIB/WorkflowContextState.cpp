@@ -30,20 +30,25 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Order.h"
+#include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationReference.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
+#include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -78,56 +83,65 @@ WorkflowContextState & WorkflowContextState:: operator=(const WorkflowContextSta
 }
 
 
-WorkflowContextState & WorkflowContextState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool WorkflowContextState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-ReferencedVersion WorkflowContextState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool WorkflowContextState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-WorkflowContextState & WorkflowContextState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string WorkflowContextState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 WorkflowContextState & WorkflowContextState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool WorkflowContextState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+
+VersionCounter WorkflowContextState::getStateVersion() const {
+	return ConvertFromCDM::convert(data->StateVersion());
+}
+	
+WorkflowContextState & WorkflowContextState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef WorkflowContextState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+WorkflowContextState & WorkflowContextState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion WorkflowContextState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
+}
+	
+WorkflowContextState & WorkflowContextState::setCategory(const CodedValue & value) {
+	data->Category(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowContextState::getCategory(CodedValue & out) const {
+	if (data->Category().present()) {
+		out = ConvertFromCDM::convert(data->Category().get());
 		return true;
 	}
 	return false;
 }
 
-VersionCounter WorkflowContextState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+CodedValue WorkflowContextState::getCategory() const {
+	return ConvertFromCDM::convert(data->Category().get());
 }
 	
-bool WorkflowContextState::hasStateVersion() const {
-	return data->StateVersion().present();
+bool WorkflowContextState::hasCategory() const {
+	return data->Category().present();
+}
+	
+WorkflowContextState & WorkflowContextState::setHandle(const Handle & value) {
+	data->Handle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Handle WorkflowContextState::getHandle() const {
+	return ConvertFromCDM::convert(data->Handle());
 }
 	
 WorkflowContextState & WorkflowContextState::setContextAssociation(const ContextAssociation & value) {
@@ -135,51 +149,40 @@ WorkflowContextState & WorkflowContextState::setContextAssociation(const Context
 	return *this;
 }
 
-bool WorkflowContextState::getContextAssociation(ContextAssociation & out) const {
-	if (data->ContextAssociation().present()) {
-		out = ConvertFromCDM::convert(data->ContextAssociation().get());
-		return true;
-	}
-	return false;
-}
 
 ContextAssociation WorkflowContextState::getContextAssociation() const {
-	return ConvertFromCDM::convert(data->ContextAssociation().get());
+	return ConvertFromCDM::convert(data->ContextAssociation());
 }
 	
-bool WorkflowContextState::hasContextAssociation() const {
-	return data->ContextAssociation().present();
-}
-	
-WorkflowContextState & WorkflowContextState::setBindingMDIBVersion(const ReferencedVersion & value) {
-	data->BindingMDIBVersion(ConvertToCDM::convert(value));
+WorkflowContextState & WorkflowContextState::setBindingMdibVersion(const ReferencedVersion & value) {
+	data->BindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-
-ReferencedVersion WorkflowContextState::getBindingMDIBVersion() const {
-	return ConvertFromCDM::convert(data->BindingMDIBVersion());
-}
-	
-WorkflowContextState & WorkflowContextState::setUnbindingMDIBVersion(const ReferencedVersion & value) {
-	data->UnbindingMDIBVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool WorkflowContextState::getUnbindingMDIBVersion(ReferencedVersion & out) const {
-	if (data->UnbindingMDIBVersion().present()) {
-		out = ConvertFromCDM::convert(data->UnbindingMDIBVersion().get());
+bool WorkflowContextState::getBindingMdibVersion(ReferencedVersion & out) const {
+	if (data->BindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->BindingMdibVersion().get());
 		return true;
 	}
 	return false;
 }
 
-ReferencedVersion WorkflowContextState::getUnbindingMDIBVersion() const {
-	return ConvertFromCDM::convert(data->UnbindingMDIBVersion().get());
+ReferencedVersion WorkflowContextState::getBindingMdibVersion() const {
+	return ConvertFromCDM::convert(data->BindingMdibVersion().get());
 }
 	
-bool WorkflowContextState::hasUnbindingMDIBVersion() const {
-	return data->UnbindingMDIBVersion().present();
+bool WorkflowContextState::hasBindingMdibVersion() const {
+	return data->BindingMdibVersion().present();
+}
+	
+WorkflowContextState & WorkflowContextState::setUnbindingMdibVersion(const ReferencedVersion & value) {
+	data->UnbindingMdibVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion WorkflowContextState::getUnbindingMdibVersion() const {
+	return ConvertFromCDM::convert(data->UnbindingMdibVersion());
 }
 	
 WorkflowContextState & WorkflowContextState::setBindingStartTime(const Timestamp & value) {
@@ -187,20 +190,9 @@ WorkflowContextState & WorkflowContextState::setBindingStartTime(const Timestamp
 	return *this;
 }
 
-bool WorkflowContextState::getBindingStartTime(Timestamp & out) const {
-	if (data->BindingStartTime().present()) {
-		out = ConvertFromCDM::convert(data->BindingStartTime().get());
-		return true;
-	}
-	return false;
-}
 
 Timestamp WorkflowContextState::getBindingStartTime() const {
-	return ConvertFromCDM::convert(data->BindingStartTime().get());
-}
-	
-bool WorkflowContextState::hasBindingStartTime() const {
-	return data->BindingStartTime().present();
+	return ConvertFromCDM::convert(data->BindingStartTime());
 }
 	
 WorkflowContextState & WorkflowContextState::setBindingEndTime(const Timestamp & value) {
@@ -208,20 +200,9 @@ WorkflowContextState & WorkflowContextState::setBindingEndTime(const Timestamp &
 	return *this;
 }
 
-bool WorkflowContextState::getBindingEndTime(Timestamp & out) const {
-	if (data->BindingEndTime().present()) {
-		out = ConvertFromCDM::convert(data->BindingEndTime().get());
-		return true;
-	}
-	return false;
-}
 
 Timestamp WorkflowContextState::getBindingEndTime() const {
-	return ConvertFromCDM::convert(data->BindingEndTime().get());
-}
-	
-bool WorkflowContextState::hasBindingEndTime() const {
-	return data->BindingEndTime().present();
+	return ConvertFromCDM::convert(data->BindingEndTime());
 }
 	
 WorkflowContextState & WorkflowContextState::addValidator(const InstanceIdentifier & value) {
@@ -260,27 +241,185 @@ void WorkflowContextState::clearIdentifications() {
 	data->Identification().clear();
 }
 
-WorkflowContextState & WorkflowContextState::setOrderDetail(const Order & value) {
-	data->OrderDetail(ConvertToCDM::convert(value));
+WorkflowContextState & WorkflowContextState::setPatient(const PersonReference & value) {
+	data->Patient(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool WorkflowContextState::getOrderDetail(Order & out) const {
-	if (data->OrderDetail().present()) {
-		out = ConvertFromCDM::convert(data->OrderDetail().get());
+
+PersonReference WorkflowContextState::getPatient() const {
+	return ConvertFromCDM::convert(data->Patient());
+}
+	
+WorkflowContextState & WorkflowContextState::setAssignedLocation(const LocationReference & value) {
+	data->AssignedLocation(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowContextState::getAssignedLocation(LocationReference & out) const {
+	if (data->AssignedLocation().present()) {
+		out = ConvertFromCDM::convert(data->AssignedLocation().get());
 		return true;
 	}
 	return false;
 }
 
-Order WorkflowContextState::getOrderDetail() const {
-	return ConvertFromCDM::convert(data->OrderDetail().get());
+LocationReference WorkflowContextState::getAssignedLocation() const {
+	return ConvertFromCDM::convert(data->AssignedLocation().get());
 }
 	
-bool WorkflowContextState::hasOrderDetail() const {
-	return data->OrderDetail().present();
+bool WorkflowContextState::hasAssignedLocation() const {
+	return data->AssignedLocation().present();
 }
 	
+WorkflowContextState & WorkflowContextState::setVisitNumber(const InstanceIdentifier & value) {
+	data->VisitNumber(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowContextState::getVisitNumber(InstanceIdentifier & out) const {
+	if (data->VisitNumber().present()) {
+		out = ConvertFromCDM::convert(data->VisitNumber().get());
+		return true;
+	}
+	return false;
+}
+
+InstanceIdentifier WorkflowContextState::getVisitNumber() const {
+	return ConvertFromCDM::convert(data->VisitNumber().get());
+}
+	
+bool WorkflowContextState::hasVisitNumber() const {
+	return data->VisitNumber().present();
+}
+	
+WorkflowContextState & WorkflowContextState::setReferringPhysician(const PersonReference & value) {
+	data->ReferringPhysician(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowContextState::getReferringPhysician(PersonReference & out) const {
+	if (data->ReferringPhysician().present()) {
+		out = ConvertFromCDM::convert(data->ReferringPhysician().get());
+		return true;
+	}
+	return false;
+}
+
+PersonReference WorkflowContextState::getReferringPhysician() const {
+	return ConvertFromCDM::convert(data->ReferringPhysician().get());
+}
+	
+bool WorkflowContextState::hasReferringPhysician() const {
+	return data->ReferringPhysician().present();
+}
+	
+WorkflowContextState & WorkflowContextState::setRequestingPhysician(const PersonReference & value) {
+	data->RequestingPhysician(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowContextState::getRequestingPhysician(PersonReference & out) const {
+	if (data->RequestingPhysician().present()) {
+		out = ConvertFromCDM::convert(data->RequestingPhysician().get());
+		return true;
+	}
+	return false;
+}
+
+PersonReference WorkflowContextState::getRequestingPhysician() const {
+	return ConvertFromCDM::convert(data->RequestingPhysician().get());
+}
+	
+bool WorkflowContextState::hasRequestingPhysician() const {
+	return data->RequestingPhysician().present();
+}
+	
+WorkflowContextState & WorkflowContextState::setPlacerOrderNumber(const InstanceIdentifier & value) {
+	data->PlacerOrderNumber(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+InstanceIdentifier WorkflowContextState::getPlacerOrderNumber() const {
+	return ConvertFromCDM::convert(data->PlacerOrderNumber());
+}
+	
+WorkflowContextState & WorkflowContextState::setFillerOrderNumber(const InstanceIdentifier & value) {
+	data->FillerOrderNumber(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowContextState::getFillerOrderNumber(InstanceIdentifier & out) const {
+	if (data->FillerOrderNumber().present()) {
+		out = ConvertFromCDM::convert(data->FillerOrderNumber().get());
+		return true;
+	}
+	return false;
+}
+
+InstanceIdentifier WorkflowContextState::getFillerOrderNumber() const {
+	return ConvertFromCDM::convert(data->FillerOrderNumber().get());
+}
+	
+bool WorkflowContextState::hasFillerOrderNumber() const {
+	return data->FillerOrderNumber().present();
+}
+	
+WorkflowContextState & WorkflowContextState::addDangerCode(const CodedValue & value) {
+	data->DangerCode().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<CodedValue> WorkflowContextState::getDangerCodes() const {
+	std::vector<CodedValue> result;
+	result.reserve(data->DangerCode().size());
+	for (const auto & value: data->DangerCode()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void WorkflowContextState::clearDangerCodes() {
+	data->DangerCode().clear();
+}
+
+WorkflowContextState & WorkflowContextState::addRelevantClinicalInfo(const ClinicalInfo & value) {
+	data->RelevantClinicalInfo().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ClinicalInfo> WorkflowContextState::getRelevantClinicalInfos() const {
+	std::vector<ClinicalInfo> result;
+	result.reserve(data->RelevantClinicalInfo().size());
+	for (const auto & value: data->RelevantClinicalInfo()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void WorkflowContextState::clearRelevantClinicalInfos() {
+	data->RelevantClinicalInfo().clear();
+}
+
+WorkflowContextState & WorkflowContextState::addResultingClinicalInfo(const ClinicalInfo & value) {
+	data->ResultingClinicalInfo().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ClinicalInfo> WorkflowContextState::getResultingClinicalInfos() const {
+	std::vector<ClinicalInfo> result;
+	result.reserve(data->ResultingClinicalInfo().size());
+	for (const auto & value: data->ResultingClinicalInfo()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void WorkflowContextState::clearResultingClinicalInfos() {
+	data->ResultingClinicalInfo().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

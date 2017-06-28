@@ -30,8 +30,8 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/LocationReference.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
@@ -98,7 +98,7 @@ LocationReference & LocationReference::addIdentification(const InstanceIdentifie
 	return *this;
 }
 
-std::vector<InstanceIdentifier> LocationReference::getIdentifiers() const {
+std::vector<InstanceIdentifier> LocationReference::getIdentifications() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -107,7 +107,7 @@ std::vector<InstanceIdentifier> LocationReference::getIdentifiers() const {
 	return result;
 }
 
-void LocationReference::clearIdentifiers() {
+void LocationReference::clearIdentifications() {
 	data->Identification().clear();
 }
 

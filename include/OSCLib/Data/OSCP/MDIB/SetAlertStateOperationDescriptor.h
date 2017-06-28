@@ -32,7 +32,7 @@
 #ifndef SETALERTSTATEOPERATIONDESCRIPTOR_H_
 #define SETALERTSTATEOPERATIONDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	SetAlertStateOperationDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	SetAlertStateOperationDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	SetAlertStateOperationDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -74,9 +74,13 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	SetAlertStateOperationDescriptor & setOperationTarget(const std::string & value);
-	std::string getOperationTarget() const;
+	SetAlertStateOperationDescriptor & setOperationTarget(const HandleRef & value);
+	HandleRef getOperationTarget() const;
 
+	SetAlertStateOperationDescriptor & addModifiableElement(const std::string & value);
+	std::vector<std::string> getModifiableElements() const;
+	void clearModifiableElements();
+	
 private:
 	std::shared_ptr<CDM::SetAlertStateOperationDescriptor> data;
 };

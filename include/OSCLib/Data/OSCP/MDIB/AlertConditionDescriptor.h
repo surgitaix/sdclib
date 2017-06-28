@@ -32,7 +32,7 @@
 #ifndef ALERTCONDITIONDESCRIPTOR_H_
 #define ALERTCONDITIONDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,8 +61,8 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	AlertConditionDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	AlertConditionDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	AlertConditionDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
@@ -80,13 +80,13 @@ public:
 	AlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getPriority() const;
 
-	AlertConditionDescriptor & addSource(const std::string & value);
-	std::vector<std::string> getSources() const;
+	AlertConditionDescriptor & addSource(const HandleRef & value);
+	std::vector<HandleRef> getSources() const;
 	void clearSources();
 	
 	AlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
-	std::vector<CauseInfo> getCauseInfo() const;
-	void clearCauseInfo();
+	std::vector<CauseInfo> getCauseInfos() const;
+	void clearCauseInfos();
 	
 private:
 	std::shared_ptr<CDM::AlertConditionDescriptor> data;

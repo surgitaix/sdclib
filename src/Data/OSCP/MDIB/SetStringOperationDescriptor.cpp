@@ -30,14 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -93,13 +92,13 @@ bool SetStringOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-SetStringOperationDescriptor & SetStringOperationDescriptor::setHandle(const std::string & value) {
+SetStringOperationDescriptor & SetStringOperationDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetStringOperationDescriptor::getHandle() const {
+Handle SetStringOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -145,14 +144,35 @@ bool SetStringOperationDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-SetStringOperationDescriptor & SetStringOperationDescriptor::setOperationTarget(const std::string & value) {
+SetStringOperationDescriptor & SetStringOperationDescriptor::setOperationTarget(const HandleRef & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetStringOperationDescriptor::getOperationTarget() const {
+HandleRef SetStringOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
+}
+	
+SetStringOperationDescriptor & SetStringOperationDescriptor::setMaxLength(const unsignedLong & value) {
+	data->MaxLength(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SetStringOperationDescriptor::getMaxLength(unsignedLong & out) const {
+	if (data->MaxLength().present()) {
+		out = ConvertFromCDM::convert(data->MaxLength().get());
+		return true;
+	}
+	return false;
+}
+
+unsignedLong SetStringOperationDescriptor::getMaxLength() const {
+	return ConvertFromCDM::convert(data->MaxLength().get());
+}
+	
+bool SetStringOperationDescriptor::hasMaxLength() const {
+	return data->MaxLength().present();
 }
 	
 

@@ -32,7 +32,7 @@
 #ifndef ENSEMBLECONTEXTDESCRIPTOR_H_
 #define ENSEMBLECONTEXTDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,15 +55,14 @@ public:
     EnsembleContextDescriptor & operator=(const EnsembleContextDescriptor & object);
     
     typedef CDM::EnsembleContextDescriptor WrappedType;
-    typedef EnsembleContextState StateType;
 
 	EnsembleContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	EnsembleContextDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	EnsembleContextDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	EnsembleContextDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;

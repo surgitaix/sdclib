@@ -30,14 +30,13 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -72,56 +71,86 @@ StringMetricValue & StringMetricValue:: operator=(const StringMetricValue & obje
 }
 
 
-StringMetricValue & StringMetricValue::setMetricQuality(const MetricQuality & value) {
-	data->MetricQuality(ConvertToCDM::convert(value));
+StringMetricValue & StringMetricValue::setType(const CodedValue & value) {
+	data->Type(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MetricQuality StringMetricValue::getMetricQuality() const {
-	return ConvertFromCDM::convert(data->MetricQuality());
+CodedValue StringMetricValue::getType() const {
+	return ConvertFromCDM::convert(data->Type());
 }
 	
-StringMetricValue & StringMetricValue::setStart_Time(const Timestamp & value) {
-	data->Start_Time(ConvertToCDM::convert(value));
+StringMetricValue & StringMetricValue::setValidity(const MeasurementValidity & value) {
+	data->Validity(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricValue::getStart_Time(Timestamp & out) const {
-	if (data->Start_Time().present()) {
-		out = ConvertFromCDM::convert(data->Start_Time().get());
+
+MeasurementValidity StringMetricValue::getValidity() const {
+	return ConvertFromCDM::convert(data->Validity());
+}
+	
+StringMetricValue & StringMetricValue::setMode(const GenerationMode & value) {
+	data->Mode(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+GenerationMode StringMetricValue::getMode() const {
+	return ConvertFromCDM::convert(data->Mode());
+}
+	
+StringMetricValue & StringMetricValue::setQi(const QualityIndicator & value) {
+	data->Qi(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+QualityIndicator StringMetricValue::getQi() const {
+	return ConvertFromCDM::convert(data->Qi());
+}
+	
+StringMetricValue & StringMetricValue::setStartTime(const Timestamp & value) {
+	data->StartTime(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricValue::getStartTime(Timestamp & out) const {
+	if (data->StartTime().present()) {
+		out = ConvertFromCDM::convert(data->StartTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp StringMetricValue::getStart_Time() const {
-	return ConvertFromCDM::convert(data->Start_Time().get());
+Timestamp StringMetricValue::getStartTime() const {
+	return ConvertFromCDM::convert(data->StartTime().get());
 }
 	
-bool StringMetricValue::hasStart_Time() const {
-	return data->Start_Time().present();
+bool StringMetricValue::hasStartTime() const {
+	return data->StartTime().present();
 }
 	
-StringMetricValue & StringMetricValue::setStop_Time(const Timestamp & value) {
-	data->Stop_Time(ConvertToCDM::convert(value));
+StringMetricValue & StringMetricValue::setStopTime(const Timestamp & value) {
+	data->StopTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricValue::getStop_Time(Timestamp & out) const {
-	if (data->Stop_Time().present()) {
-		out = ConvertFromCDM::convert(data->Stop_Time().get());
+bool StringMetricValue::getStopTime(Timestamp & out) const {
+	if (data->StopTime().present()) {
+		out = ConvertFromCDM::convert(data->StopTime().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp StringMetricValue::getStop_Time() const {
-	return ConvertFromCDM::convert(data->Stop_Time().get());
+Timestamp StringMetricValue::getStopTime() const {
+	return ConvertFromCDM::convert(data->StopTime().get());
 }
 	
-bool StringMetricValue::hasStop_Time() const {
-	return data->Stop_Time().present();
+bool StringMetricValue::hasStopTime() const {
+	return data->StopTime().present();
 }
 	
 StringMetricValue & StringMetricValue::setDeterminationTime(const Timestamp & value) {
@@ -145,12 +174,12 @@ bool StringMetricValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
-StringMetricValue & StringMetricValue::setValue(const std::string & value) {
+StringMetricValue & StringMetricValue::setValue(const string & value) {
 	data->Value(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricValue::getValue(std::string & out) const {
+bool StringMetricValue::getValue(string & out) const {
 	if (data->Value().present()) {
 		out = ConvertFromCDM::convert(data->Value().get());
 		return true;
@@ -158,7 +187,7 @@ bool StringMetricValue::getValue(std::string & out) const {
 	return false;
 }
 
-std::string StringMetricValue::getValue() const {
+string StringMetricValue::getValue() const {
 	return ConvertFromCDM::convert(data->Value().get());
 }
 	

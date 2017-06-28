@@ -32,7 +32,7 @@
 #ifndef NUMERICMETRICSTATE_H_
 #define NUMERICMETRICSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -55,40 +55,40 @@ public:
     NumericMetricState & operator=(const NumericMetricState & object);
     
     typedef CDM::NumericMetricState WrappedType;
-    typedef NumericMetricDescriptor DescriptorType;
-    typedef OSCPProviderNumericMetricStateHandler ProviderHandlerType;
-    typedef OSCPConsumerNumericMetricStateHandler ConsumerHandlerType;
-
-	NumericMetricState & setDescriptorVersion(const ReferencedVersion & value);
-	ReferencedVersion getDescriptorVersion() const;
-	bool getDescriptorVersion(ReferencedVersion & out) const;
-	bool hasDescriptorVersion() const;
-
-	NumericMetricState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
 
 	NumericMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+
+	NumericMetricState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	NumericMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
 
 	NumericMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	NumericMetricState & setLifeTimePeriod(const Duration & value);
-	Duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(Duration & out) const;
+	NumericMetricState & setActiveDeterminationPeriod(const duration & value);
+	duration getActiveDeterminationPeriod() const;
+
+	NumericMetricState & setLifeTimePeriod(const duration & value);
+	duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(duration & out) const;
 	bool hasLifeTimePeriod() const;
 
-	NumericMetricState & setActiveDeterminationPeriod(const Duration & value);
-	Duration getActiveDeterminationPeriod() const;
-	bool getActiveDeterminationPeriod(Duration & out) const;
-	bool hasActiveDeterminationPeriod() const;
+	NumericMetricState & addBodySite(const CodedValue & value);
+	std::vector<CodedValue> getBodySites() const;
+	void clearBodySites();
+	
+	NumericMetricState & setMetricValue(const NumericMetricValue & value);
+	NumericMetricValue getMetricValue() const;
+	bool getMetricValue(NumericMetricValue & out) const;
+	bool hasMetricValue() const;
 
-	NumericMetricState & setObservedValue(const NumericMetricValue & value);
-	NumericMetricValue getObservedValue() const;
-	bool getObservedValue(NumericMetricValue & out) const;
-	bool hasObservedValue() const;
+	NumericMetricState & setActiveAveragingPeriod(const duration & value);
+	duration getActiveAveragingPeriod() const;
+	bool getActiveAveragingPeriod(duration & out) const;
+	bool hasActiveAveragingPeriod() const;
 
 	NumericMetricState & addPhysiologicalRange(const Range & value);
 	std::vector<Range> getPhysiologicalRanges() const;

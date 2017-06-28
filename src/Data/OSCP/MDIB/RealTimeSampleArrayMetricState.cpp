@@ -30,16 +30,15 @@
  */
 
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Range.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -74,56 +73,34 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState:: operator=(cons
 }
 
 
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool RealTimeSampleArrayMetricState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
-		return true;
-	}
-	return false;
-}
-
-ReferencedVersion RealTimeSampleArrayMetricState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
-}
-	
-bool RealTimeSampleArrayMetricState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
-}
-	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string RealTimeSampleArrayMetricState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool RealTimeSampleArrayMetricState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
-		return true;
-	}
-	return false;
-}
 
 VersionCounter RealTimeSampleArrayMetricState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->StateVersion());
 }
 	
-bool RealTimeSampleArrayMetricState::hasStateVersion() const {
-	return data->StateVersion().present();
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef RealTimeSampleArrayMetricState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+ReferencedVersion RealTimeSampleArrayMetricState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion());
 }
 	
 RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActivationState(const ComponentActivation & value) {
@@ -136,12 +113,22 @@ ComponentActivation RealTimeSampleArrayMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setLifeTimePeriod(const Duration & value) {
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActiveDeterminationPeriod(const duration & value) {
+	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+duration RealTimeSampleArrayMetricState::getActiveDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
+}
+	
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setLifeTimePeriod(const duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool RealTimeSampleArrayMetricState::getLifeTimePeriod(Duration & out) const {
+bool RealTimeSampleArrayMetricState::getLifeTimePeriod(duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -149,7 +136,7 @@ bool RealTimeSampleArrayMetricState::getLifeTimePeriod(Duration & out) const {
 	return false;
 }
 
-Duration RealTimeSampleArrayMetricState::getLifeTimePeriod() const {
+duration RealTimeSampleArrayMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -157,48 +144,63 @@ bool RealTimeSampleArrayMetricState::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
 	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActiveDeterminationPeriod(const Duration & value) {
-	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::addBodySite(const CodedValue & value) {
+	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool RealTimeSampleArrayMetricState::getActiveDeterminationPeriod(Duration & out) const {
-	if (data->ActiveDeterminationPeriod().present()) {
-		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+std::vector<CodedValue> RealTimeSampleArrayMetricState::getBodySites() const {
+	std::vector<CodedValue> result;
+	result.reserve(data->BodySite().size());
+	for (const auto & value: data->BodySite()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void RealTimeSampleArrayMetricState::clearBodySites() {
+	data->BodySite().clear();
+}
+
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setMetricValue(const SampleArrayValue & value) {
+	data->MetricValue(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool RealTimeSampleArrayMetricState::getMetricValue(SampleArrayValue & out) const {
+	if (data->MetricValue().present()) {
+		out = ConvertFromCDM::convert(data->MetricValue().get());
 		return true;
 	}
 	return false;
 }
 
-Duration RealTimeSampleArrayMetricState::getActiveDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+SampleArrayValue RealTimeSampleArrayMetricState::getMetricValue() const {
+	return ConvertFromCDM::convert(data->MetricValue().get());
 }
 	
-bool RealTimeSampleArrayMetricState::hasActiveDeterminationPeriod() const {
-	return data->ActiveDeterminationPeriod().present();
+bool RealTimeSampleArrayMetricState::hasMetricValue() const {
+	return data->MetricValue().present();
 }
 	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setObservedValue(const RealTimeSampleArrayValue & value) {
-	data->ObservedValue(ConvertToCDM::convert(value));
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::addPhysiologicalRange(const Range & value) {
+	data->PhysiologicalRange().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool RealTimeSampleArrayMetricState::getObservedValue(RealTimeSampleArrayValue & out) const {
-	if (data->ObservedValue().present()) {
-		out = ConvertFromCDM::convert(data->ObservedValue().get());
-		return true;
+std::vector<Range> RealTimeSampleArrayMetricState::getPhysiologicalRanges() const {
+	std::vector<Range> result;
+	result.reserve(data->PhysiologicalRange().size());
+	for (const auto & value: data->PhysiologicalRange()) {
+		result.push_back(ConvertFromCDM::convert(value));
 	}
-	return false;
+	return result;
 }
 
-RealTimeSampleArrayValue RealTimeSampleArrayMetricState::getObservedValue() const {
-	return ConvertFromCDM::convert(data->ObservedValue().get());
+void RealTimeSampleArrayMetricState::clearPhysiologicalRanges() {
+	data->PhysiologicalRange().clear();
 }
-	
-bool RealTimeSampleArrayMetricState::hasObservedValue() const {
-	return data->ObservedValue().present();
-}
-	
+
 
 } /* namespace OSCP */
 } /* namespace Data */
