@@ -130,13 +130,13 @@ int AlertConditionState::getRank() const {
 	return ConvertFromCDM::convert(data->Rank());
 }
 	
-AlertConditionState & AlertConditionState::setPresence(const boolean & value) {
+AlertConditionState & AlertConditionState::setPresence(const bool & value) {
 	data->Presence(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-boolean AlertConditionState::getPresence() const {
+bool AlertConditionState::getPresence() const {
 	return ConvertFromCDM::convert(data->Presence());
 }
 	

@@ -113,22 +113,22 @@ ComponentActivation DistributionSampleArrayMetricState::getActivationState() con
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActiveDeterminationPeriod(const duration & value) {
+DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
 	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-duration DistributionSampleArrayMetricState::getActiveDeterminationPeriod() const {
+xml_schema::Duration DistributionSampleArrayMetricState::getActiveDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
 }
 	
-DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setLifeTimePeriod(const duration & value) {
+DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool DistributionSampleArrayMetricState::getLifeTimePeriod(duration & out) const {
+bool DistributionSampleArrayMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -136,7 +136,7 @@ bool DistributionSampleArrayMetricState::getLifeTimePeriod(duration & out) const
 	return false;
 }
 
-duration DistributionSampleArrayMetricState::getLifeTimePeriod() const {
+xml_schema::Duration DistributionSampleArrayMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -149,7 +149,7 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::addBody
 	return *this;
 }
 
-std::vector<CodedValue> DistributionSampleArrayMetricState::getBodySites() const {
+std::vector<CodedValue> DistributionSampleArrayMetricState::getBodySiteLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -158,7 +158,7 @@ std::vector<CodedValue> DistributionSampleArrayMetricState::getBodySites() const
 	return result;
 }
 
-void DistributionSampleArrayMetricState::clearBodySites() {
+void DistributionSampleArrayMetricState::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 
@@ -188,7 +188,7 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::addPhys
 	return *this;
 }
 
-std::vector<Range> DistributionSampleArrayMetricState::getPhysiologicalRanges() const {
+std::vector<Range> DistributionSampleArrayMetricState::getPhysiologicalRangeLists() const {
 	std::vector<Range> result;
 	result.reserve(data->PhysiologicalRange().size());
 	for (const auto & value: data->PhysiologicalRange()) {
@@ -197,7 +197,7 @@ std::vector<Range> DistributionSampleArrayMetricState::getPhysiologicalRanges() 
 	return result;
 }
 
-void DistributionSampleArrayMetricState::clearPhysiologicalRanges() {
+void DistributionSampleArrayMetricState::clearPhysiologicalRangeLists() {
 	data->PhysiologicalRange().clear();
 }
 

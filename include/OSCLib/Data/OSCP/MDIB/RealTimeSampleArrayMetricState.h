@@ -55,6 +55,9 @@ public:
     RealTimeSampleArrayMetricState & operator=(const RealTimeSampleArrayMetricState & object);
     
     typedef CDM::RealTimeSampleArrayMetricState WrappedType;
+    typedef RealTimeSampleArrayMetricDescriptor DescriptorType;
+    typedef ProviderHandlerType RealTimeSampleArrayMetricDescriptor;
+    typedef OSCPProviderRealTimeSampleArrayMetricStateHandler ProviderHandlerType;
 
 	RealTimeSampleArrayMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -68,17 +71,17 @@ public:
 	RealTimeSampleArrayMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	RealTimeSampleArrayMetricState & setActiveDeterminationPeriod(const duration & value);
-	duration getActiveDeterminationPeriod() const;
+	RealTimeSampleArrayMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveDeterminationPeriod() const;
 
-	RealTimeSampleArrayMetricState & setLifeTimePeriod(const duration & value);
-	duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(duration & out) const;
+	RealTimeSampleArrayMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
 	RealTimeSampleArrayMetricState & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteLists() const;
+	void clearBodySiteLists();
 	
 	RealTimeSampleArrayMetricState & setMetricValue(const SampleArrayValue & value);
 	SampleArrayValue getMetricValue() const;
@@ -86,8 +89,8 @@ public:
 	bool hasMetricValue() const;
 
 	RealTimeSampleArrayMetricState & addPhysiologicalRange(const Range & value);
-	std::vector<Range> getPhysiologicalRanges() const;
-	void clearPhysiologicalRanges();
+	std::vector<Range> getPhysiologicalRangeLists() const;
+	void clearPhysiologicalRangeLists();
 	
 private:
 	std::shared_ptr<CDM::RealTimeSampleArrayMetricState> data;

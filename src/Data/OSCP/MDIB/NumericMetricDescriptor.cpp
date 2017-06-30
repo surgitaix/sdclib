@@ -187,12 +187,12 @@ MetricAvailability NumericMetricDescriptor::getMetricAvailability() const {
 	return ConvertFromCDM::convert(data->MetricAvailability());
 }
 	
-NumericMetricDescriptor & NumericMetricDescriptor::setMaxMeasurementTime(const duration & value) {
+NumericMetricDescriptor & NumericMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
 	data->MaxMeasurementTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricDescriptor::getMaxMeasurementTime(duration & out) const {
+bool NumericMetricDescriptor::getMaxMeasurementTime(xml_schema::Duration & out) const {
 	if (data->MaxMeasurementTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 		return true;
@@ -200,7 +200,7 @@ bool NumericMetricDescriptor::getMaxMeasurementTime(duration & out) const {
 	return false;
 }
 
-duration NumericMetricDescriptor::getMaxMeasurementTime() const {
+xml_schema::Duration NumericMetricDescriptor::getMaxMeasurementTime() const {
 	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 }
 	
@@ -208,12 +208,12 @@ bool NumericMetricDescriptor::hasMaxMeasurementTime() const {
 	return data->MaxMeasurementTime().present();
 }
 	
-NumericMetricDescriptor & NumericMetricDescriptor::setMaxDelayTime(const duration & value) {
+NumericMetricDescriptor & NumericMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricDescriptor::getMaxDelayTime(duration & out) const {
+bool NumericMetricDescriptor::getMaxDelayTime(xml_schema::Duration & out) const {
 	if (data->MaxDelayTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxDelayTime().get());
 		return true;
@@ -221,7 +221,7 @@ bool NumericMetricDescriptor::getMaxDelayTime(duration & out) const {
 	return false;
 }
 
-duration NumericMetricDescriptor::getMaxDelayTime() const {
+xml_schema::Duration NumericMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
 	
@@ -229,12 +229,12 @@ bool NumericMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
 }
 	
-NumericMetricDescriptor & NumericMetricDescriptor::setDeterminationPeriod(const duration & value) {
+NumericMetricDescriptor & NumericMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
 	data->DeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricDescriptor::getDeterminationPeriod(duration & out) const {
+bool NumericMetricDescriptor::getDeterminationPeriod(xml_schema::Duration & out) const {
 	if (data->DeterminationPeriod().present()) {
 		out = ConvertFromCDM::convert(data->DeterminationPeriod().get());
 		return true;
@@ -242,7 +242,7 @@ bool NumericMetricDescriptor::getDeterminationPeriod(duration & out) const {
 	return false;
 }
 
-duration NumericMetricDescriptor::getDeterminationPeriod() const {
+xml_schema::Duration NumericMetricDescriptor::getDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
 }
 	
@@ -250,12 +250,12 @@ bool NumericMetricDescriptor::hasDeterminationPeriod() const {
 	return data->DeterminationPeriod().present();
 }
 	
-NumericMetricDescriptor & NumericMetricDescriptor::setLifeTimePeriod(const duration & value) {
+NumericMetricDescriptor & NumericMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricDescriptor::getLifeTimePeriod(duration & out) const {
+bool NumericMetricDescriptor::getLifeTimePeriod(xml_schema::Duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -263,7 +263,7 @@ bool NumericMetricDescriptor::getLifeTimePeriod(duration & out) const {
 	return false;
 }
 
-duration NumericMetricDescriptor::getLifeTimePeriod() const {
+xml_schema::Duration NumericMetricDescriptor::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -276,7 +276,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::addBodySite(const CodedValue 
 	return *this;
 }
 
-std::vector<CodedValue> NumericMetricDescriptor::getBodySites() const {
+std::vector<CodedValue> NumericMetricDescriptor::getBodySiteLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -285,27 +285,27 @@ std::vector<CodedValue> NumericMetricDescriptor::getBodySites() const {
 	return result;
 }
 
-void NumericMetricDescriptor::clearBodySites() {
+void NumericMetricDescriptor::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 
-NumericMetricDescriptor & NumericMetricDescriptor::setResolution(const decimal & value) {
+NumericMetricDescriptor & NumericMetricDescriptor::setResolution(const double & value) {
 	data->Resolution(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-decimal NumericMetricDescriptor::getResolution() const {
+double NumericMetricDescriptor::getResolution() const {
 	return ConvertFromCDM::convert(data->Resolution());
 }
 	
-NumericMetricDescriptor & NumericMetricDescriptor::setAveragingPeriod(const duration & value) {
+NumericMetricDescriptor & NumericMetricDescriptor::setAveragingPeriod(const xml_schema::Duration & value) {
 	data->AveragingPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-duration NumericMetricDescriptor::getAveragingPeriod() const {
+xml_schema::Duration NumericMetricDescriptor::getAveragingPeriod() const {
 	return ConvertFromCDM::convert(data->AveragingPeriod());
 }
 	
@@ -314,7 +314,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::addTechnicalRange(const Range
 	return *this;
 }
 
-std::vector<Range> NumericMetricDescriptor::getTechnicalRanges() const {
+std::vector<Range> NumericMetricDescriptor::getTechnicalRangeLists() const {
 	std::vector<Range> result;
 	result.reserve(data->TechnicalRange().size());
 	for (const auto & value: data->TechnicalRange()) {
@@ -323,7 +323,7 @@ std::vector<Range> NumericMetricDescriptor::getTechnicalRanges() const {
 	return result;
 }
 
-void NumericMetricDescriptor::clearTechnicalRanges() {
+void NumericMetricDescriptor::clearTechnicalRangeLists() {
 	data->TechnicalRange().clear();
 }
 

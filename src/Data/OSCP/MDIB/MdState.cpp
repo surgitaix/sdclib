@@ -97,7 +97,7 @@ MdState & MdState::addState(const AbstractState & value) {
 	return *this;
 }
 
-std::vector<AbstractState> MdState::getStates() const {
+std::vector<AbstractState> MdState::getStateLists() const {
 	std::vector<AbstractState> result;
 	result.reserve(data->State().size());
 	for (const auto & value: data->State()) {
@@ -106,7 +106,7 @@ std::vector<AbstractState> MdState::getStates() const {
 	return result;
 }
 
-void MdState::clearStates() {
+void MdState::clearStateLists() {
 	data->State().clear();
 }
 

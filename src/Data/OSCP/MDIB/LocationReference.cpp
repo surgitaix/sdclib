@@ -98,7 +98,7 @@ LocationReference & LocationReference::addIdentification(const InstanceIdentifie
 	return *this;
 }
 
-std::vector<InstanceIdentifier> LocationReference::getIdentifications() const {
+std::vector<InstanceIdentifier> LocationReference::getIdentificationLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -107,7 +107,7 @@ std::vector<InstanceIdentifier> LocationReference::getIdentifications() const {
 	return result;
 }
 
-void LocationReference::clearIdentifications() {
+void LocationReference::clearIdentificationLists() {
 	data->Identification().clear();
 }
 

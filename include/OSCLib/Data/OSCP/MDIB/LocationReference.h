@@ -62,8 +62,8 @@ public:
 	bool hasLocationDetail() const;
 
 	LocationReference & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationLists() const;
+	void clearIdentificationLists();
 	
 private:
 	std::shared_ptr<CDM::LocationReference> data;

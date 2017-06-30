@@ -61,17 +61,17 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	InstanceIdentifier & setRoot(const anyURI & value);
-	anyURI getRoot() const;
+	InstanceIdentifier & setRoot(const std::string & value);
+	std::string getRoot() const;
 
-	InstanceIdentifier & setExtension(const string & value);
-	string getExtension() const;
-	bool getExtension(string & out) const;
+	InstanceIdentifier & setExtension(const std::string & value);
+	std::string getExtension() const;
+	bool getExtension(std::string & out) const;
 	bool hasExtension() const;
 
 	InstanceIdentifier & addIdentifierName(const LocalizedText & value);
-	std::vector<LocalizedText> getIdentifierNames() const;
-	void clearIdentifierNames();
+	std::vector<LocalizedText> getIdentifierNameLists() const;
+	void clearIdentifierNameLists();
 	
 private:
 	std::shared_ptr<CDM::InstanceIdentifier> data;

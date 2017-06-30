@@ -68,17 +68,17 @@ public:
 	DistributionSampleArrayMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	DistributionSampleArrayMetricState & setActiveDeterminationPeriod(const duration & value);
-	duration getActiveDeterminationPeriod() const;
+	DistributionSampleArrayMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveDeterminationPeriod() const;
 
-	DistributionSampleArrayMetricState & setLifeTimePeriod(const duration & value);
-	duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(duration & out) const;
+	DistributionSampleArrayMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
 	DistributionSampleArrayMetricState & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteLists() const;
+	void clearBodySiteLists();
 	
 	DistributionSampleArrayMetricState & setMetricValue(const SampleArrayValue & value);
 	SampleArrayValue getMetricValue() const;
@@ -86,8 +86,8 @@ public:
 	bool hasMetricValue() const;
 
 	DistributionSampleArrayMetricState & addPhysiologicalRange(const Range & value);
-	std::vector<Range> getPhysiologicalRanges() const;
-	void clearPhysiologicalRanges();
+	std::vector<Range> getPhysiologicalRangeLists() const;
+	void clearPhysiologicalRangeLists();
 	
 private:
 	std::shared_ptr<CDM::DistributionSampleArrayMetricState> data;

@@ -159,7 +159,7 @@ SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::addModifi
 	return *this;
 }
 
-std::vector<std::string> SetMetricStateOperationDescriptor::getModifiableElements() const {
+std::vector<std::string> SetMetricStateOperationDescriptor::getModifiableElementLists() const {
 	std::vector<std::string> result;
 	result.reserve(data->ModifiableElement().size());
 	for (const auto & value: data->ModifiableElement()) {
@@ -168,7 +168,7 @@ std::vector<std::string> SetMetricStateOperationDescriptor::getModifiableElement
 	return result;
 }
 
-void SetMetricStateOperationDescriptor::clearModifiableElements() {
+void SetMetricStateOperationDescriptor::clearModifiableElementLists() {
 	data->ModifiableElement().clear();
 }
 

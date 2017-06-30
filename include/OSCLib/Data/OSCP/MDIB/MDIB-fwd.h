@@ -22,21 +22,6 @@ namespace OSCP {
 	class OperationInvocationContext;
 
 	// classes, that are generated
-	class InvocationInfo;
-	class AbstractGet;
-	class AbstractGetResponse;
-	class AbstractReportPart;
-	class AbstractReport;
-	class AbstractSet;
-	class AbstractSetResponse;
-	class AbstractContextReport;
-	class VersionFrame;
-	class TimeFrame;
-	class AbstractMetricReport;
-	class AbstractComponentReport;
-	class AbstractAlertReport;
-	class AbstractOperationalStateReport;
-	class RetrievabilityInfo;
 	class Mdib;
 	class MdDescription;
 	class MdState;
@@ -139,7 +124,6 @@ namespace OSCP {
 	class EnsembleContextState;
 	class ContainmentTree;
 	class ContainmentTreeEntry;
-	class ExtensionType;
 
 
 }

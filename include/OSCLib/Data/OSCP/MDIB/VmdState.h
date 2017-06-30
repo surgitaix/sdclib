@@ -78,8 +78,8 @@ public:
 	VmdState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	VmdState & setOperatingHours(const unsignedInt & value);
-	unsignedInt getOperatingHours() const;
+	VmdState & setOperatingHours(const unsigned int & value);
+	unsigned int getOperatingHours() const;
 
 	VmdState & setOperatingCycles(const int & value);
 	int getOperatingCycles() const;

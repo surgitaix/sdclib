@@ -55,6 +55,7 @@ public:
     OperatorContextDescriptor & operator=(const OperatorContextDescriptor & object);
     
     typedef CDM::OperatorContextDescriptor WrappedType;
+    typedef OperatorContextState StateType;
 
 	OperatorContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;

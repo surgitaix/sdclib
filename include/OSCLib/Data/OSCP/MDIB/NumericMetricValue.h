@@ -83,9 +83,9 @@ public:
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
-	NumericMetricValue & setValue(const decimal & value);
-	decimal getValue() const;
-	bool getValue(decimal & out) const;
+	NumericMetricValue & setValue(const double & value);
+	double getValue() const;
+	bool getValue(double & out) const;
 	bool hasValue() const;
 
 private:

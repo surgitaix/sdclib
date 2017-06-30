@@ -85,12 +85,12 @@ public:
 	bool getComponentId(InstanceIdentifier & out) const;
 	bool hasComponentId() const;
 
-	ClockDescriptor & setResolution(const duration & value);
-	duration getResolution() const;
+	ClockDescriptor & setResolution(const xml_schema::Duration & value);
+	xml_schema::Duration getResolution() const;
 
 	ClockDescriptor & addTimeProtocol(const CodedValue & value);
-	std::vector<CodedValue> getTimeProtocols() const;
-	void clearTimeProtocols();
+	std::vector<CodedValue> getTimeProtocolLists() const;
+	void clearTimeProtocolLists();
 	
 private:
 	std::shared_ptr<CDM::ClockDescriptor> data;

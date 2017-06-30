@@ -215,7 +215,7 @@ ChannelDescriptor & ChannelDescriptor::addMetric(const AbstractMetricDescriptor 
 	return *this;
 }
 
-std::vector<AbstractMetricDescriptor> ChannelDescriptor::getMetrics() const {
+std::vector<AbstractMetricDescriptor> ChannelDescriptor::getMetricLists() const {
 	std::vector<AbstractMetricDescriptor> result;
 	result.reserve(data->Metric().size());
 	for (const auto & value: data->Metric()) {
@@ -224,7 +224,7 @@ std::vector<AbstractMetricDescriptor> ChannelDescriptor::getMetrics() const {
 	return result;
 }
 
-void ChannelDescriptor::clearMetrics() {
+void ChannelDescriptor::clearMetricLists() {
 	data->Metric().clear();
 }
 

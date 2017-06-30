@@ -171,7 +171,7 @@ LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addSource(const H
 	return *this;
 }
 
-std::vector<HandleRef> LimitAlertConditionDescriptor::getSources() const {
+std::vector<HandleRef> LimitAlertConditionDescriptor::getSourceLists() const {
 	std::vector<HandleRef> result;
 	result.reserve(data->Source().size());
 	for (const auto & value: data->Source()) {
@@ -180,7 +180,7 @@ std::vector<HandleRef> LimitAlertConditionDescriptor::getSources() const {
 	return result;
 }
 
-void LimitAlertConditionDescriptor::clearSources() {
+void LimitAlertConditionDescriptor::clearSourceLists() {
 	data->Source().clear();
 }
 
@@ -189,7 +189,7 @@ LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addCauseInfo(cons
 	return *this;
 }
 
-std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfos() const {
+std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfoLists() const {
 	std::vector<CauseInfo> result;
 	result.reserve(data->CauseInfo().size());
 	for (const auto & value: data->CauseInfo()) {
@@ -198,7 +198,7 @@ std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfos() const {
 	return result;
 }
 
-void LimitAlertConditionDescriptor::clearCauseInfos() {
+void LimitAlertConditionDescriptor::clearCauseInfoLists() {
 	data->CauseInfo().clear();
 }
 
@@ -212,13 +212,13 @@ Range LimitAlertConditionDescriptor::getMaxLimits() const {
 	return ConvertFromCDM::convert(data->MaxLimits());
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setAutoLimitSupported(const boolean & value) {
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setAutoLimitSupported(const bool & value) {
 	data->AutoLimitSupported(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-boolean LimitAlertConditionDescriptor::getAutoLimitSupported() const {
+bool LimitAlertConditionDescriptor::getAutoLimitSupported() const {
 	return ConvertFromCDM::convert(data->AutoLimitSupported());
 }
 	

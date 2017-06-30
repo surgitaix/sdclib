@@ -187,12 +187,12 @@ MetricAvailability EnumStringMetricDescriptor::getMetricAvailability() const {
 	return ConvertFromCDM::convert(data->MetricAvailability());
 }
 	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMaxMeasurementTime(const duration & value) {
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
 	data->MaxMeasurementTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricDescriptor::getMaxMeasurementTime(duration & out) const {
+bool EnumStringMetricDescriptor::getMaxMeasurementTime(xml_schema::Duration & out) const {
 	if (data->MaxMeasurementTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 		return true;
@@ -200,7 +200,7 @@ bool EnumStringMetricDescriptor::getMaxMeasurementTime(duration & out) const {
 	return false;
 }
 
-duration EnumStringMetricDescriptor::getMaxMeasurementTime() const {
+xml_schema::Duration EnumStringMetricDescriptor::getMaxMeasurementTime() const {
 	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 }
 	
@@ -208,12 +208,12 @@ bool EnumStringMetricDescriptor::hasMaxMeasurementTime() const {
 	return data->MaxMeasurementTime().present();
 }
 	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMaxDelayTime(const duration & value) {
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricDescriptor::getMaxDelayTime(duration & out) const {
+bool EnumStringMetricDescriptor::getMaxDelayTime(xml_schema::Duration & out) const {
 	if (data->MaxDelayTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxDelayTime().get());
 		return true;
@@ -221,7 +221,7 @@ bool EnumStringMetricDescriptor::getMaxDelayTime(duration & out) const {
 	return false;
 }
 
-duration EnumStringMetricDescriptor::getMaxDelayTime() const {
+xml_schema::Duration EnumStringMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
 	
@@ -229,12 +229,12 @@ bool EnumStringMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
 }
 	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setDeterminationPeriod(const duration & value) {
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
 	data->DeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricDescriptor::getDeterminationPeriod(duration & out) const {
+bool EnumStringMetricDescriptor::getDeterminationPeriod(xml_schema::Duration & out) const {
 	if (data->DeterminationPeriod().present()) {
 		out = ConvertFromCDM::convert(data->DeterminationPeriod().get());
 		return true;
@@ -242,7 +242,7 @@ bool EnumStringMetricDescriptor::getDeterminationPeriod(duration & out) const {
 	return false;
 }
 
-duration EnumStringMetricDescriptor::getDeterminationPeriod() const {
+xml_schema::Duration EnumStringMetricDescriptor::getDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
 }
 	
@@ -250,12 +250,12 @@ bool EnumStringMetricDescriptor::hasDeterminationPeriod() const {
 	return data->DeterminationPeriod().present();
 }
 	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setLifeTimePeriod(const duration & value) {
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricDescriptor::getLifeTimePeriod(duration & out) const {
+bool EnumStringMetricDescriptor::getLifeTimePeriod(xml_schema::Duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -263,7 +263,7 @@ bool EnumStringMetricDescriptor::getLifeTimePeriod(duration & out) const {
 	return false;
 }
 
-duration EnumStringMetricDescriptor::getLifeTimePeriod() const {
+xml_schema::Duration EnumStringMetricDescriptor::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -276,7 +276,7 @@ EnumStringMetricDescriptor & EnumStringMetricDescriptor::addBodySite(const Coded
 	return *this;
 }
 
-std::vector<CodedValue> EnumStringMetricDescriptor::getBodySites() const {
+std::vector<CodedValue> EnumStringMetricDescriptor::getBodySiteLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -285,7 +285,7 @@ std::vector<CodedValue> EnumStringMetricDescriptor::getBodySites() const {
 	return result;
 }
 
-void EnumStringMetricDescriptor::clearBodySites() {
+void EnumStringMetricDescriptor::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 

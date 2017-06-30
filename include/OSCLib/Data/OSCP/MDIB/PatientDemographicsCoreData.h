@@ -77,8 +77,8 @@ public:
 	bool hasTitle() const;
 
 	PatientDemographicsCoreData & addMiddlename(const std::string & value);
-	std::vector<std::string> getMiddlenames() const;
-	void clearMiddlenames();
+	std::vector<std::string> getMiddlenameLists() const;
+	void clearMiddlenameLists();
 	
 	PatientDemographicsCoreData & setSex(const Sex & value);
 	Sex getSex() const;

@@ -146,33 +146,33 @@ bool AlertSystemDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-AlertSystemDescriptor & AlertSystemDescriptor::setMaxPhysiologicalParallelAlarms(const unsignedInt & value) {
+AlertSystemDescriptor & AlertSystemDescriptor::setMaxPhysiologicalParallelAlarms(const unsigned int & value) {
 	data->MaxPhysiologicalParallelAlarms(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt AlertSystemDescriptor::getMaxPhysiologicalParallelAlarms() const {
+unsigned int AlertSystemDescriptor::getMaxPhysiologicalParallelAlarms() const {
 	return ConvertFromCDM::convert(data->MaxPhysiologicalParallelAlarms());
 }
 	
-AlertSystemDescriptor & AlertSystemDescriptor::setMaxTechnicalParallelAlarms(const unsignedInt & value) {
+AlertSystemDescriptor & AlertSystemDescriptor::setMaxTechnicalParallelAlarms(const unsigned int & value) {
 	data->MaxTechnicalParallelAlarms(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt AlertSystemDescriptor::getMaxTechnicalParallelAlarms() const {
+unsigned int AlertSystemDescriptor::getMaxTechnicalParallelAlarms() const {
 	return ConvertFromCDM::convert(data->MaxTechnicalParallelAlarms());
 }
 	
-AlertSystemDescriptor & AlertSystemDescriptor::setSelfCheckPeriod(const duration & value) {
+AlertSystemDescriptor & AlertSystemDescriptor::setSelfCheckPeriod(const xml_schema::Duration & value) {
 	data->SelfCheckPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-duration AlertSystemDescriptor::getSelfCheckPeriod() const {
+xml_schema::Duration AlertSystemDescriptor::getSelfCheckPeriod() const {
 	return ConvertFromCDM::convert(data->SelfCheckPeriod());
 }
 	
@@ -181,7 +181,7 @@ AlertSystemDescriptor & AlertSystemDescriptor::addAlertCondition(const AlertCond
 	return *this;
 }
 
-std::vector<AlertConditionDescriptor> AlertSystemDescriptor::getAlertConditions() const {
+std::vector<AlertConditionDescriptor> AlertSystemDescriptor::getAlertConditionLists() const {
 	std::vector<AlertConditionDescriptor> result;
 	result.reserve(data->AlertCondition().size());
 	for (const auto & value: data->AlertCondition()) {
@@ -190,7 +190,7 @@ std::vector<AlertConditionDescriptor> AlertSystemDescriptor::getAlertConditions(
 	return result;
 }
 
-void AlertSystemDescriptor::clearAlertConditions() {
+void AlertSystemDescriptor::clearAlertConditionLists() {
 	data->AlertCondition().clear();
 }
 
@@ -199,7 +199,7 @@ AlertSystemDescriptor & AlertSystemDescriptor::addAlertSignal(const AlertSignalD
 	return *this;
 }
 
-std::vector<AlertSignalDescriptor> AlertSystemDescriptor::getAlertSignals() const {
+std::vector<AlertSignalDescriptor> AlertSystemDescriptor::getAlertSignalLists() const {
 	std::vector<AlertSignalDescriptor> result;
 	result.reserve(data->AlertSignal().size());
 	for (const auto & value: data->AlertSignal()) {
@@ -208,7 +208,7 @@ std::vector<AlertSignalDescriptor> AlertSystemDescriptor::getAlertSignals() cons
 	return result;
 }
 
-void AlertSystemDescriptor::clearAlertSignals() {
+void AlertSystemDescriptor::clearAlertSignalLists() {
 	data->AlertSignal().clear();
 }
 

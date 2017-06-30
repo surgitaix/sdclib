@@ -121,13 +121,13 @@ Timestamp AlertSystemState::getLastSelfCheck() const {
 	return ConvertFromCDM::convert(data->LastSelfCheck());
 }
 	
-AlertSystemState & AlertSystemState::setSelfCheckCount(const long & value) {
+AlertSystemState & AlertSystemState::setSelfCheckCount(const long long & value) {
 	data->SelfCheckCount(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-long AlertSystemState::getSelfCheckCount() const {
+long long AlertSystemState::getSelfCheckCount() const {
 	return ConvertFromCDM::convert(data->SelfCheckCount());
 }
 	
@@ -156,7 +156,7 @@ AlertSystemState & AlertSystemState::addSystemSignalActivation(const SystemSigna
 	return *this;
 }
 
-std::vector<SystemSignalActivation> AlertSystemState::getSystemSignalActivations() const {
+std::vector<SystemSignalActivation> AlertSystemState::getSystemSignalActivationLists() const {
 	std::vector<SystemSignalActivation> result;
 	result.reserve(data->SystemSignalActivation().size());
 	for (const auto & value: data->SystemSignalActivation()) {
@@ -165,7 +165,7 @@ std::vector<SystemSignalActivation> AlertSystemState::getSystemSignalActivations
 	return result;
 }
 
-void AlertSystemState::clearSystemSignalActivations() {
+void AlertSystemState::clearSystemSignalActivationLists() {
 	data->SystemSignalActivation().clear();
 }
 

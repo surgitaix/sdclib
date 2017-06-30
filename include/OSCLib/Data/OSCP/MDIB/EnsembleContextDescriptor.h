@@ -55,6 +55,7 @@ public:
     EnsembleContextDescriptor & operator=(const EnsembleContextDescriptor & object);
     
     typedef CDM::EnsembleContextDescriptor WrappedType;
+    typedef EnsembleContextState StateType;
 
 	EnsembleContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;

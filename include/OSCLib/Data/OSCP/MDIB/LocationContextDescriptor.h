@@ -55,6 +55,7 @@ public:
     LocationContextDescriptor & operator=(const LocationContextDescriptor & object);
     
     typedef CDM::LocationContextDescriptor WrappedType;
+    typedef LocationContextState StateType;
 
 	LocationContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;

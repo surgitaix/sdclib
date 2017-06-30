@@ -112,22 +112,22 @@ ComponentActivation StringMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-StringMetricState & StringMetricState::setActiveDeterminationPeriod(const duration & value) {
+StringMetricState & StringMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
 	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-duration StringMetricState::getActiveDeterminationPeriod() const {
+xml_schema::Duration StringMetricState::getActiveDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
 }
 	
-StringMetricState & StringMetricState::setLifeTimePeriod(const duration & value) {
+StringMetricState & StringMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricState::getLifeTimePeriod(duration & out) const {
+bool StringMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -135,7 +135,7 @@ bool StringMetricState::getLifeTimePeriod(duration & out) const {
 	return false;
 }
 
-duration StringMetricState::getLifeTimePeriod() const {
+xml_schema::Duration StringMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -148,7 +148,7 @@ StringMetricState & StringMetricState::addBodySite(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> StringMetricState::getBodySites() const {
+std::vector<CodedValue> StringMetricState::getBodySiteLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -157,7 +157,7 @@ std::vector<CodedValue> StringMetricState::getBodySites() const {
 	return result;
 }
 
-void StringMetricState::clearBodySites() {
+void StringMetricState::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 

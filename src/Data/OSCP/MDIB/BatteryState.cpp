@@ -159,13 +159,13 @@ ComponentActivation BatteryState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-BatteryState & BatteryState::setOperatingHours(const unsignedInt & value) {
+BatteryState & BatteryState::setOperatingHours(const unsigned int & value) {
 	data->OperatingHours(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt BatteryState::getOperatingHours() const {
+unsigned int BatteryState::getOperatingHours() const {
 	return ConvertFromCDM::convert(data->OperatingHours());
 }
 	
@@ -284,13 +284,13 @@ bool BatteryState::hasRemainingBatteryTime() const {
 	return data->RemainingBatteryTime().present();
 }
 	
-BatteryState & BatteryState::setChargeCycles(const unsignedInt & value) {
+BatteryState & BatteryState::setChargeCycles(const unsigned int & value) {
 	data->ChargeCycles(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt BatteryState::getChargeCycles() const {
+unsigned int BatteryState::getChargeCycles() const {
 	return ConvertFromCDM::convert(data->ChargeCycles());
 }
 	

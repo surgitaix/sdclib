@@ -78,20 +78,20 @@ public:
 	HandleRef getOperationTarget() const;
 
 	ActivateOperationDescriptor & addModifiableElement(const std::string & value);
-	std::vector<std::string> getModifiableElements() const;
-	void clearModifiableElements();
+	std::vector<std::string> getModifiableElementLists() const;
+	void clearModifiableElementLists();
 	
 	ActivateOperationDescriptor & setArgName(const CodedValue & value);
 	CodedValue getArgName() const;
 
-	ActivateOperationDescriptor & setArg(const std::string & value);
-	std::string getArg() const;
+	ActivateOperationDescriptor & setArg(const xml_schema::Qname & value);
+	xml_schema::Qname getArg() const;
 
-	ActivateOperationDescriptor & setActivationDuration(const duration & value);
-	duration getActivationDuration() const;
+	ActivateOperationDescriptor & setActivationDuration(const xml_schema::Duration & value);
+	xml_schema::Duration getActivationDuration() const;
 
-	ActivateOperationDescriptor & setRetriggerable(const boolean & value);
-	boolean getRetriggerable() const;
+	ActivateOperationDescriptor & setRetriggerable(const bool & value);
+	bool getRetriggerable() const;
 
 private:
 	std::shared_ptr<CDM::ActivateOperationDescriptor> data;

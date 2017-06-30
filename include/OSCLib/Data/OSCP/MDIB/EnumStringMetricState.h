@@ -55,6 +55,9 @@ public:
     EnumStringMetricState & operator=(const EnumStringMetricState & object);
     
     typedef CDM::EnumStringMetricState WrappedType;
+    typedef EnumStringMetricDescriptor DescriptorType;
+    typedef ProviderHandlerType EnumStringMetricDescriptor;
+    typedef OSCPProviderEnumStringMetricStateHandler ProviderHandlerType;
 
 	EnumStringMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -68,17 +71,17 @@ public:
 	EnumStringMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	EnumStringMetricState & setActiveDeterminationPeriod(const duration & value);
-	duration getActiveDeterminationPeriod() const;
+	EnumStringMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveDeterminationPeriod() const;
 
-	EnumStringMetricState & setLifeTimePeriod(const duration & value);
-	duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(duration & out) const;
+	EnumStringMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
 	EnumStringMetricState & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteLists() const;
+	void clearBodySiteLists();
 	
 	EnumStringMetricState & setMetricValue(const StringMetricValue & value);
 	StringMetricValue getMetricValue() const;

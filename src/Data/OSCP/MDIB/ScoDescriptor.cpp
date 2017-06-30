@@ -150,7 +150,7 @@ ScoDescriptor & ScoDescriptor::addOperation(const AbstractOperationDescriptor & 
 	return *this;
 }
 
-std::vector<AbstractOperationDescriptor> ScoDescriptor::getOperations() const {
+std::vector<AbstractOperationDescriptor> ScoDescriptor::getOperationLists() const {
 	std::vector<AbstractOperationDescriptor> result;
 	result.reserve(data->Operation().size());
 	for (const auto & value: data->Operation()) {
@@ -159,7 +159,7 @@ std::vector<AbstractOperationDescriptor> ScoDescriptor::getOperations() const {
 	return result;
 }
 
-void ScoDescriptor::clearOperations() {
+void ScoDescriptor::clearOperationLists() {
 	data->Operation().clear();
 }
 

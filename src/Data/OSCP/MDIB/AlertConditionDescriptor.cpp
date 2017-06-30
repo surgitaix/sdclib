@@ -170,7 +170,7 @@ AlertConditionDescriptor & AlertConditionDescriptor::addSource(const HandleRef &
 	return *this;
 }
 
-std::vector<HandleRef> AlertConditionDescriptor::getSources() const {
+std::vector<HandleRef> AlertConditionDescriptor::getSourceLists() const {
 	std::vector<HandleRef> result;
 	result.reserve(data->Source().size());
 	for (const auto & value: data->Source()) {
@@ -179,7 +179,7 @@ std::vector<HandleRef> AlertConditionDescriptor::getSources() const {
 	return result;
 }
 
-void AlertConditionDescriptor::clearSources() {
+void AlertConditionDescriptor::clearSourceLists() {
 	data->Source().clear();
 }
 
@@ -188,7 +188,7 @@ AlertConditionDescriptor & AlertConditionDescriptor::addCauseInfo(const CauseInf
 	return *this;
 }
 
-std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfos() const {
+std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfoLists() const {
 	std::vector<CauseInfo> result;
 	result.reserve(data->CauseInfo().size());
 	for (const auto & value: data->CauseInfo()) {
@@ -197,7 +197,7 @@ std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfos() const {
 	return result;
 }
 
-void AlertConditionDescriptor::clearCauseInfos() {
+void AlertConditionDescriptor::clearCauseInfoLists() {
 	data->CauseInfo().clear();
 }
 

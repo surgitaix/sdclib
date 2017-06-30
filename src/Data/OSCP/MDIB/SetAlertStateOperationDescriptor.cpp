@@ -159,7 +159,7 @@ SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::addModifiab
 	return *this;
 }
 
-std::vector<std::string> SetAlertStateOperationDescriptor::getModifiableElements() const {
+std::vector<std::string> SetAlertStateOperationDescriptor::getModifiableElementLists() const {
 	std::vector<std::string> result;
 	result.reserve(data->ModifiableElement().size());
 	for (const auto & value: data->ModifiableElement()) {
@@ -168,7 +168,7 @@ std::vector<std::string> SetAlertStateOperationDescriptor::getModifiableElements
 	return result;
 }
 
-void SetAlertStateOperationDescriptor::clearModifiableElements() {
+void SetAlertStateOperationDescriptor::clearModifiableElementLists() {
 	data->ModifiableElement().clear();
 }
 

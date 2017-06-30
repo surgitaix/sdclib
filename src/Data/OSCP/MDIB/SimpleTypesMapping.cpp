@@ -26,48 +26,6 @@ EnumToString::EnumToString() {
 EnumToString::~EnumToString() {
 
 }
-std::string EnumToString::convert(InvocationState source) {
-	switch (source) {
-		case InvocationState::Wait: return "Wait"
-		case InvocationState::Start: return "Start"
-		case InvocationState::Cnclld: return "Cnclld"
-		case InvocationState::CnclldMan: return "CnclldMan"
-		case InvocationState::Fin: return "Fin"
-		case InvocationState::FinMod: return "FinMod"
-		case InvocationState::Fail: return "Fail"
-	}
-	throw std::runtime_error("Illegal value for InvocationState");
-}
-
-std::string EnumToString::convert(InvocationError source) {
-	switch (source) {
-		case InvocationError::Unspec: return "Unspec"
-		case InvocationError::Unkn: return "Unkn"
-		case InvocationError::Inv: return "Inv"
-		case InvocationError::Oth: return "Oth"
-	}
-	throw std::runtime_error("Illegal value for InvocationError");
-}
-
-std::string EnumToString::convert(DescriptionModificationType source) {
-	switch (source) {
-		case DescriptionModificationType::Crt: return "Crt"
-		case DescriptionModificationType::Upt: return "Upt"
-		case DescriptionModificationType::Del: return "Del"
-	}
-	throw std::runtime_error("Illegal value for DescriptionModificationType");
-}
-
-std::string EnumToString::convert(RetrievabilityMethod source) {
-	switch (source) {
-		case RetrievabilityMethod::Get: return "Get"
-		case RetrievabilityMethod::Per: return "Per"
-		case RetrievabilityMethod::Ep: return "Ep"
-		case RetrievabilityMethod::Strm: return "Strm"
-	}
-	throw std::runtime_error("Illegal value for RetrievabilityMethod");
-}
-
 std::string EnumToString::convert(MeasurementValidity source) {
 	switch (source) {
 		case MeasurementValidity::Vld: return "Vld"

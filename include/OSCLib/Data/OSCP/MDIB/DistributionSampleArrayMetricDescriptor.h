@@ -86,29 +86,29 @@ public:
 	DistributionSampleArrayMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
 	MetricAvailability getMetricAvailability() const;
 
-	DistributionSampleArrayMetricDescriptor & setMaxMeasurementTime(const duration & value);
-	duration getMaxMeasurementTime() const;
-	bool getMaxMeasurementTime(duration & out) const;
+	DistributionSampleArrayMetricDescriptor & setMaxMeasurementTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxMeasurementTime() const;
+	bool getMaxMeasurementTime(xml_schema::Duration & out) const;
 	bool hasMaxMeasurementTime() const;
 
-	DistributionSampleArrayMetricDescriptor & setMaxDelayTime(const duration & value);
-	duration getMaxDelayTime() const;
-	bool getMaxDelayTime(duration & out) const;
+	DistributionSampleArrayMetricDescriptor & setMaxDelayTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxDelayTime() const;
+	bool getMaxDelayTime(xml_schema::Duration & out) const;
 	bool hasMaxDelayTime() const;
 
-	DistributionSampleArrayMetricDescriptor & setDeterminationPeriod(const duration & value);
-	duration getDeterminationPeriod() const;
-	bool getDeterminationPeriod(duration & out) const;
+	DistributionSampleArrayMetricDescriptor & setDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getDeterminationPeriod() const;
+	bool getDeterminationPeriod(xml_schema::Duration & out) const;
 	bool hasDeterminationPeriod() const;
 
-	DistributionSampleArrayMetricDescriptor & setLifeTimePeriod(const duration & value);
-	duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(duration & out) const;
+	DistributionSampleArrayMetricDescriptor & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
 	DistributionSampleArrayMetricDescriptor & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteLists() const;
+	void clearBodySiteLists();
 	
 	DistributionSampleArrayMetricDescriptor & setDomainUnit(const CodedValue & value);
 	CodedValue getDomainUnit() const;
@@ -116,12 +116,12 @@ public:
 	DistributionSampleArrayMetricDescriptor & setDistributionRange(const Range & value);
 	Range getDistributionRange() const;
 
-	DistributionSampleArrayMetricDescriptor & setResolution(const decimal & value);
-	decimal getResolution() const;
+	DistributionSampleArrayMetricDescriptor & setResolution(const double & value);
+	double getResolution() const;
 
 	DistributionSampleArrayMetricDescriptor & addTechnicalRange(const Range & value);
-	std::vector<Range> getTechnicalRanges() const;
-	void clearTechnicalRanges();
+	std::vector<Range> getTechnicalRangeLists() const;
+	void clearTechnicalRangeLists();
 	
 private:
 	std::shared_ptr<CDM::DistributionSampleArrayMetricDescriptor> data;

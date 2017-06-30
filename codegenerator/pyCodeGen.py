@@ -12,6 +12,48 @@
 from lxml import etree
 from io import StringIO, BytesIO
 
+
+##
+## Setup
+##
+# mapping of basetypes:xsd -> cpp
+basetype_map = {'xsd:unsignedLong' : 'unsigned long', 'pm:VersionCounter' : 'unsigned long', 'xsd:string' : 'std::string', 
+                'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'xml_schema::Qname', 'xsd:dateTime' : 'xml_schema::DateTime', 'xsd:boolean' : 'bool', 
+                'xsd:duration' : 'xml_schema::Duration', 'xsd:language' : 'xml_schema::Language', 'xsd:anyURI' : 'std::string', 'xsd:int' : 'int' , 'xsd:long' : 'long long', 
+                'pm:HandleRef' : 'std::string' }
+# apiInterfaces_global structure: 1. Classname, 2. name of typedef 3. type of typedef
+# if list consists of more than three values the following entries refer to additional typdefs listed in the same 
+# manner; 4. name of typedef, 5. type of typedef ...
+apiInterfaces_global = [
+                           ['EnsembleContextDescriptor', 'StateType', 'EnsembleContextState'],
+                           ['LocationContextDescriptor', 'StateType', 'LocationContextState'],
+                           ['NumericMetricDescriptor', 'StateType', 'NumericMetricState'],
+                           ['OperatorContextDescriptor', 'StateType', 'OperatorContextState'],
+                           ['PatientContextDescriptor', 'StateType', 'PatientContextState'],
+                           ['RealTimeSampleArrayMetricDescriptor', 'StateType', 'RealTimeSampleArrayMetricState'],
+                           ['StringMetricDescriptor', 'StateType', 'StringMetricState'],
+                           ['WorkflowContextDescriptor', 'StateType', 'WorkflowContextState'],
+                           
+                           ['AlertConditionState', 'DescriptorType', 'AlertConditionDescriptor', 'ProviderHandlerType', 'OSCPProviderAlertConditionStateHandler', 'ConsumerHandlerType', 'OSCPConsumerAlertConditionStateHandler'],
+                           ['AlertSignalState', 'DescriptorType', 'AlertSignalDescriptor', 'ProviderHandlerType', 'OSCPProviderAlertSignalStateHandler', 'ConsumerHandlerType', 'OSCPConsumerAlertSignalStateHandler'],
+                           ['AlertSystemState', 'DescriptorType', 'AlertSystemDescriptor', 'ProviderHandlerType', 'OSCPProviderAlertSignalStateHandler', 'ConsumerHandlerType', 'OSCPConsumerAlertSignalStateHandler'],
+                           ['ClockState', 'DescriptorType', 'ClockDescriptor'],
+                           ['EnsembleContextState', 'DescriptorType', 'EnsembleContextDescriptor'],
+                           ['EnumStringMetricState', 'DescriptorType', 'EnumStringMetricDescriptor', 'ProviderHandlerType', 'OSCPProviderEnumStringMetricStateHandler', 'ConsumerHandlerType', 'OSCPConsumerEnumStringMetricStateHandler'],
+                           ['MdsState', 'DescriptorType', 'MdsDescriptor', 'ProviderHandlerType', 'OSCPProviderHydraMDSStateHandler'],
+                           ['LimitAlertConditionState', 'DescriptorType', 'EnumStringMetricDescriptor', 'ProviderHandlerType', 'OSCPProviderEnumStringMetricStateHandler', 'ConsumerHandlerType', 'OSCPConsumerLimitAlertConditionStateHandler'],
+                           ['LocationContextState', 'DescriptorType', 'LocationContextDescriptor'],
+                           ['NumericMetricState', 'DescriptorType', 'NumericMetricDescriptor', 'ProviderHandlerType', 'OSCPProviderNumericMetricStateHandler', 'ConsumerHandlerType', 'OSCPConsumerNumericMetricStateHandler'],
+                           ['OperatorContextState', 'DescriptorType', 'OperatorContextDescriptor'],
+                           ['RealTimeSampleArrayMetricState', 'DescriptorType', 'RealTimeSampleArrayMetricDescriptor', 'ProviderHandlerType', 'OSCPProviderRealTimeSampleArrayMetricStateHandler', 'ConsumerHandlerType', 'OSCPConsumerRealTimeSampleArrayMetricStateHandler'],
+                           ['StringMetricState', 'DescriptorType', 'StringMetricDescriptor', 'ProviderHandlerType', 'OSCPProviderStringMetricStateHandler', 'ConsumerHandlerType', 'OSCPConsumerStringMetricStateHandler'],
+                           ['PatientContextState', 'DescriptorType', 'PatientContextDescriptor'],
+                           ['WorkflowContextState', 'DescriptorType', 'WorkflowContextDescriptor']
+                           ] 
+
+
+
+
 # typedefs
 class CppTypdefStringBuilder(object):
     
@@ -23,7 +65,11 @@ class CppTypdefStringBuilder(object):
     
     def addTypedef(self, simpleType_name, baseTypeName_xsd):
         self.__content = self.__content + 'typedef ' + self.__basetype_map[baseTypeName_xsd] + ' ' + simpleType_name + ';\n';
-         
+    
+    # item list are always of basetype
+    def addItemListTypedef(self, simpleType_name, baseTypeName_xsd):
+        self.__content = self.__content + 'typedef std::vector<' + self.__basetype_map[baseTypeName_xsd] + '> ' + simpleType_name + ';\n';
+    
     def getCppTypedefString(self):
         return self.__content + '\n\n'
         
@@ -96,6 +142,8 @@ class CppConvertFromCDMClassDefinitionBuilder(object):
         self.__enums = ''
         self.__includes = ''
         self.__complex = ''
+        self.__itemList = ''
+        self.__basetype_map = basetype_map
     
     def addComplexType(self, type_name):
         self.__complex = self.__complex + type_name + 'ConvertFromCDM::convert(const CDM::' + type_name +' & source) {\n\treturn ' + type_name + '(source);\n}\n\n'
@@ -103,6 +151,9 @@ class CppConvertFromCDMClassDefinitionBuilder(object):
         
     def addEnumConverterFunctionAsString(self,enumConverterFunction_string):
         self.__enums = self.__enums + enumConverterFunction_string;
+        
+    def addItemList(self,simpleType_name):
+        self.__itemList = self.__itemList + simpleType_name + ' ConvertFromCDM::convert(const CDM::' + simpleType_name + ' & source) {\n\t' + simpleType_name + ' list;\n' + '\tfor (const auto & element : source) {\n\t\tlist.push_back(element);\n\t}\n\treturn list;\n}\n\n'
 
     def getEnumsAsString(self):
         return self.__enums;
@@ -112,6 +163,9 @@ class CppConvertFromCDMClassDefinitionBuilder(object):
     
     def getComplexTypeFuctionsAsString(self):
         return self.__complex
+    
+    def getItemListAsString(self):
+        return self.__itemList
     
 # ConvertToCDM header - simpleTypes only. complex types are transformed only in the definition via template method
 class CppConvertToCDMClassDeclarationBuilder(object):
@@ -145,6 +199,7 @@ class CppConvertToCDMClassDefinitionBuilder(object):
         self.__enums = ''
         self.__includes = ''
         self.__complex = ''
+        self.__itemList = ''
     
     def addComplexType(self, type_name):
         self.__complex = self.__complex + 'template\nstd::unique_ptr<typename ' + type_name + '::WrappedType> ConvertToCDM::convert(const '+ type_name + '&source);\n\n'
@@ -152,6 +207,9 @@ class CppConvertToCDMClassDefinitionBuilder(object):
         
     def addEnumConverterFunctionAsString(self,enumConverterFunction_string):
         self.__enums = self.__enums + enumConverterFunction_string;
+
+    def addItemList(self,simpleType_name):
+        self.__itemList = self.__itemList + 'CDM::' + simpleType_name + ' ConvertToCDM::convert(const ' + simpleType_name + ' & source) {\n\tCDM::' + simpleType_name + ' list;\n' + '\tfor (const auto & element : source) {\n\t\tlist.push_back(element);\n\t}\n\treturn list;\n}\n\n'
 
     def getEnumsAsString(self):
         return self.__enums;
@@ -162,14 +220,27 @@ class CppConvertToCDMClassDefinitionBuilder(object):
     def getComplexAsString(self):
         return self.__complex
 
+    def getItemListAsString(self):
+        return self.__itemList
+
 class GSLClassBuilder(object):    
     
     def __init__(self, class_name, parent_name, abstract_string):
+        # __apiInterfaces is a list of lists corresponding to a class. Each of these lists contains the classes' interfaces to the api. E.g. some 
+        # states needs to be accessed by the provider while others do not (e.g. context states do not)
+        self.__apiInterfaces = apiInterfaces_global
         self.__includes = ''
         self.__properties = ''
         self.__propertylists = ''
         self.__typedefs = ''
         self.__classdeclaration = '\t<class name = \"' + class_name + '\" parent = \"' + parent_name + '\" abstract = \"' + abstract_string + '\">\n'
+        self.checkAndAddAPIInterface(class_name)
+        
+    def checkAndAddAPIInterface(self, class_name):
+        for classInterfaceDescription in self.__apiInterfaces:
+            if class_name == classInterfaceDescription[0]:
+                for i in range(0,(len(classInterfaceDescription)-1)/2):
+                    self.addTypedef(classInterfaceDescription[1+i], classInterfaceDescription[2+i])
         
     def addInclude(self,complexType_name):
         self.__includes = self.__includes + '\t\t<include path = \"OSCLib/Data/OSCP/MDIB/' + complexType_name + '.h\" />\n'
@@ -179,7 +250,7 @@ class GSLClassBuilder(object):
     
     def addPropertyList(self, property_name, property_type):
         # automatically names nameServeral attaching a 's' to property_name
-        self.__propertylists = self.__propertylists + '\t\t<propertyList nameSingle = \"' + property_name + '\" nameSeveral = \"' + property_name + 's\" type = \"' + property_type + '\" />\n'
+        self.__propertylists = self.__propertylists + '\t\t<propertyList nameSingle = \"' + property_name + '\" nameSeveral = \"' + property_name + 'Lists\" type = \"' + property_type + '\" />\n'
         
     def addTypedef(self, typedef_name, typedef_type):
         self.__typedefs = self.__typedefs + '\t\t<typedef name = \"' + typedef_name + '\" type = \"' + typedef_type + '\" />\n'
@@ -281,10 +352,6 @@ def make_MDIBDeclacationsBuilder():
     return l_mdibDeclarationsBuilder
 
 ## init
-# orientation:https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.3.0/com.ibm.cics.ts.applicationprogramming.doc/datamapping/dfhws_wsdl2c.html
-basetype_map = {'xsd:unsignedLong' : 'unsigned long', 'pm:VersionCounter' : 'unsigned long', 'xsd:string' : 'std::string', 
-                'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'std::string', 'xsd:dateTime' : 'char[40]', 'xsd:boolean' : 'bool', 
-                'xsd:duration' : 'std::string', 'xsd:language' : 'std::string', 'xsd:anyURI' : 'std::string', 'xsd:int' : 'int' , 'xsd:long' : 'long long' }
 simpleTypes_set = set()
 complexTypes_set = set()
 enumClasses_cppCode = ''
@@ -299,11 +366,12 @@ gslFileBuilder = make_GSLFileBuilder()
 mdibDeclacationsBuilder = make_MDIBDeclacationsBuilder()
 
 
+
 ###
 ### SimpleTypes
 ###
 print '--- simple types ---'
-for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse('../datamodel/BICEPS_MessageModel.xsd'),  etree.parse('../datamodel/ExtensionPoint.xsd') }:
+for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd') }:
     # search for simple type and go deeper
     # orientation: https://stackoverflow.com/questions/12657043/parse-xml-with-lxml-extract-element-value
     for simpleType_node in tree.xpath('//xsd:simpleType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
@@ -337,13 +405,28 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
                 cppConvertToCDMClassEnumConverterFunctionBuilder.addConvertEnumEntry(enum_entry)
                 
                 
-            # basetypes
+            # non enums
             if not enum_flag:
+                # basetypes
                 for basetype_node in simpleType_node.xpath('./xsd:restriction', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                    basetype_name = basetype_node.attrib['base']
-                    print 'base-type>>' + basetype_name
-                    cppTypdefStringBuilder.addTypedef(simpleType_name, basetype_name)
-                
+                    if 'base' in basetype_node.attrib:
+                        basetype_name = basetype_node.attrib['base']
+                        print 'base-type>>' + basetype_name
+                        cppTypdefStringBuilder.addTypedef(simpleType_name, basetype_name)
+            
+                # item lists
+                for itemList_node in simpleType_node.xpath('./xsd:list', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                    if 'itemType' in itemList_node.attrib:
+                        itemList_name = itemList_node.attrib['itemType']
+                        print 'itemList-type>>' + itemList_name
+                        cppTypdefStringBuilder.addItemListTypedef(simpleType_name, itemList_name)
+                        cppConvertFromCDMClassDeclarationBuilder.addType(simpleType_name)
+                        cppConvertFromCDMClassDefinitionBuilder.addItemList(simpleType_name)
+                        cppConvertToCDMClassDeclarationBuilder.addType(simpleType_name)
+                        cppConvertToCDMClassDefinitionBuilder.addItemList(simpleType_name)
+                        
+            
+            
             # append code for each enum class
             if enum_flag:
                 enumClasses_cppCode = enumClasses_cppCode + cppEnumClassBuilder.getEnumClassAsString()
@@ -362,7 +445,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
 print '--- complexTypes ---'
 
 ## write all complex types to set -> later needed to add include file for entries of complexType
-for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse('../datamodel/BICEPS_MessageModel.xsd'),  etree.parse('../datamodel/ExtensionPoint.xsd') }:
+for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         # only take nodes that have an attribute
         for attribute_name in complexType_node.attrib:
@@ -371,7 +454,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.pars
             complexTypes_set.add(complexType_name)
         
 # analyse complex types
-for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse('../datamodel/BICEPS_MessageModel.xsd'),  etree.parse('../datamodel/ExtensionPoint.xsd') }:
+for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         # only take nodes that have an attribute
         for attribute_name in complexType_node.attrib:
@@ -519,7 +602,7 @@ cppFileBuilder.writeToFile('ConvertFromCDM.h', contentBeginning + cppConvertFrom
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertFromCDM_beginning.cxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertFromCDM_ending.cxx')
-cppFileBuilder.writeToFile('ConvertFromCDM.cpp', cppConvertFromCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertFromCDMClassDefinitionBuilder.getEnumsAsString() + cppConvertFromCDMClassDefinitionBuilder.getComplexTypeFuctionsAsString() + contentEnding)
+cppFileBuilder.writeToFile('ConvertFromCDM.cpp', cppConvertFromCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertFromCDMClassDefinitionBuilder.getEnumsAsString() + cppConvertFromCDMClassDefinitionBuilder.getComplexTypeFuctionsAsString() + cppConvertFromCDMClassDefinitionBuilder.getItemListAsString() + contentEnding)
 
 # build ConvertToCDM.h
 cppFileBuilder = make_FileManager()
@@ -531,7 +614,7 @@ cppFileBuilder.writeToFile('ConvertToCDM.h', contentBeginning + cppConvertToCDMC
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertToCDM_beginning.cxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertToCDM_ending.cxx')
-cppFileBuilder.writeToFile('ConvertToCDM.cpp', cppConvertToCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertToCDMClassDefinitionBuilder.getEnumsAsString() + cppConvertToCDMClassDefinitionBuilder.getComplexAsString() + contentEnding)
+cppFileBuilder.writeToFile('ConvertToCDM.cpp', cppConvertToCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertToCDMClassDefinitionBuilder.getEnumsAsString() + cppConvertToCDMClassDefinitionBuilder.getComplexAsString() + cppConvertToCDMClassDefinitionBuilder.getItemListAsString() + contentEnding)
 
 
 ## complex types

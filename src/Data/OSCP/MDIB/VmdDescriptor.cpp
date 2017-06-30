@@ -237,7 +237,7 @@ VmdDescriptor & VmdDescriptor::addChannel(const ChannelDescriptor & value) {
 	return *this;
 }
 
-std::vector<ChannelDescriptor> VmdDescriptor::getChannels() const {
+std::vector<ChannelDescriptor> VmdDescriptor::getChannelLists() const {
 	std::vector<ChannelDescriptor> result;
 	result.reserve(data->Channel().size());
 	for (const auto & value: data->Channel()) {
@@ -246,7 +246,7 @@ std::vector<ChannelDescriptor> VmdDescriptor::getChannels() const {
 	return result;
 }
 
-void VmdDescriptor::clearChannels() {
+void VmdDescriptor::clearChannelLists() {
 	data->Channel().clear();
 }
 

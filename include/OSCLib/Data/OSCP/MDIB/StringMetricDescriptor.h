@@ -55,6 +55,7 @@ public:
     StringMetricDescriptor & operator=(const StringMetricDescriptor & object);
     
     typedef CDM::StringMetricDescriptor WrappedType;
+    typedef StringMetricState StateType;
 
 	StringMetricDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
@@ -86,29 +87,29 @@ public:
 	StringMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
 	MetricAvailability getMetricAvailability() const;
 
-	StringMetricDescriptor & setMaxMeasurementTime(const duration & value);
-	duration getMaxMeasurementTime() const;
-	bool getMaxMeasurementTime(duration & out) const;
+	StringMetricDescriptor & setMaxMeasurementTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxMeasurementTime() const;
+	bool getMaxMeasurementTime(xml_schema::Duration & out) const;
 	bool hasMaxMeasurementTime() const;
 
-	StringMetricDescriptor & setMaxDelayTime(const duration & value);
-	duration getMaxDelayTime() const;
-	bool getMaxDelayTime(duration & out) const;
+	StringMetricDescriptor & setMaxDelayTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxDelayTime() const;
+	bool getMaxDelayTime(xml_schema::Duration & out) const;
 	bool hasMaxDelayTime() const;
 
-	StringMetricDescriptor & setDeterminationPeriod(const duration & value);
-	duration getDeterminationPeriod() const;
-	bool getDeterminationPeriod(duration & out) const;
+	StringMetricDescriptor & setDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getDeterminationPeriod() const;
+	bool getDeterminationPeriod(xml_schema::Duration & out) const;
 	bool hasDeterminationPeriod() const;
 
-	StringMetricDescriptor & setLifeTimePeriod(const duration & value);
-	duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(duration & out) const;
+	StringMetricDescriptor & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
 	StringMetricDescriptor & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteLists() const;
+	void clearBodySiteLists();
 	
 private:
 	std::shared_ptr<CDM::StringMetricDescriptor> data;

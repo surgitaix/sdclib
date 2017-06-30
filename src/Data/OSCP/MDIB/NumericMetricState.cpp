@@ -113,22 +113,22 @@ ComponentActivation NumericMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-NumericMetricState & NumericMetricState::setActiveDeterminationPeriod(const duration & value) {
+NumericMetricState & NumericMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
 	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-duration NumericMetricState::getActiveDeterminationPeriod() const {
+xml_schema::Duration NumericMetricState::getActiveDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
 }
 	
-NumericMetricState & NumericMetricState::setLifeTimePeriod(const duration & value) {
+NumericMetricState & NumericMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getLifeTimePeriod(duration & out) const {
+bool NumericMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -136,7 +136,7 @@ bool NumericMetricState::getLifeTimePeriod(duration & out) const {
 	return false;
 }
 
-duration NumericMetricState::getLifeTimePeriod() const {
+xml_schema::Duration NumericMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -149,7 +149,7 @@ NumericMetricState & NumericMetricState::addBodySite(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> NumericMetricState::getBodySites() const {
+std::vector<CodedValue> NumericMetricState::getBodySiteLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -158,7 +158,7 @@ std::vector<CodedValue> NumericMetricState::getBodySites() const {
 	return result;
 }
 
-void NumericMetricState::clearBodySites() {
+void NumericMetricState::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 
@@ -183,12 +183,12 @@ bool NumericMetricState::hasMetricValue() const {
 	return data->MetricValue().present();
 }
 	
-NumericMetricState & NumericMetricState::setActiveAveragingPeriod(const duration & value) {
+NumericMetricState & NumericMetricState::setActiveAveragingPeriod(const xml_schema::Duration & value) {
 	data->ActiveAveragingPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getActiveAveragingPeriod(duration & out) const {
+bool NumericMetricState::getActiveAveragingPeriod(xml_schema::Duration & out) const {
 	if (data->ActiveAveragingPeriod().present()) {
 		out = ConvertFromCDM::convert(data->ActiveAveragingPeriod().get());
 		return true;
@@ -196,7 +196,7 @@ bool NumericMetricState::getActiveAveragingPeriod(duration & out) const {
 	return false;
 }
 
-duration NumericMetricState::getActiveAveragingPeriod() const {
+xml_schema::Duration NumericMetricState::getActiveAveragingPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveAveragingPeriod().get());
 }
 	
@@ -209,7 +209,7 @@ NumericMetricState & NumericMetricState::addPhysiologicalRange(const Range & val
 	return *this;
 }
 
-std::vector<Range> NumericMetricState::getPhysiologicalRanges() const {
+std::vector<Range> NumericMetricState::getPhysiologicalRangeLists() const {
 	std::vector<Range> result;
 	result.reserve(data->PhysiologicalRange().size());
 	for (const auto & value: data->PhysiologicalRange()) {
@@ -218,7 +218,7 @@ std::vector<Range> NumericMetricState::getPhysiologicalRanges() const {
 	return result;
 }
 
-void NumericMetricState::clearPhysiologicalRanges() {
+void NumericMetricState::clearPhysiologicalRangeLists() {
 	data->PhysiologicalRange().clear();
 }
 

@@ -186,12 +186,12 @@ MetricAvailability StringMetricDescriptor::getMetricAvailability() const {
 	return ConvertFromCDM::convert(data->MetricAvailability());
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setMaxMeasurementTime(const duration & value) {
+StringMetricDescriptor & StringMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
 	data->MaxMeasurementTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricDescriptor::getMaxMeasurementTime(duration & out) const {
+bool StringMetricDescriptor::getMaxMeasurementTime(xml_schema::Duration & out) const {
 	if (data->MaxMeasurementTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 		return true;
@@ -199,7 +199,7 @@ bool StringMetricDescriptor::getMaxMeasurementTime(duration & out) const {
 	return false;
 }
 
-duration StringMetricDescriptor::getMaxMeasurementTime() const {
+xml_schema::Duration StringMetricDescriptor::getMaxMeasurementTime() const {
 	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 }
 	
@@ -207,12 +207,12 @@ bool StringMetricDescriptor::hasMaxMeasurementTime() const {
 	return data->MaxMeasurementTime().present();
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setMaxDelayTime(const duration & value) {
+StringMetricDescriptor & StringMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricDescriptor::getMaxDelayTime(duration & out) const {
+bool StringMetricDescriptor::getMaxDelayTime(xml_schema::Duration & out) const {
 	if (data->MaxDelayTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxDelayTime().get());
 		return true;
@@ -220,7 +220,7 @@ bool StringMetricDescriptor::getMaxDelayTime(duration & out) const {
 	return false;
 }
 
-duration StringMetricDescriptor::getMaxDelayTime() const {
+xml_schema::Duration StringMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
 	
@@ -228,12 +228,12 @@ bool StringMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setDeterminationPeriod(const duration & value) {
+StringMetricDescriptor & StringMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
 	data->DeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricDescriptor::getDeterminationPeriod(duration & out) const {
+bool StringMetricDescriptor::getDeterminationPeriod(xml_schema::Duration & out) const {
 	if (data->DeterminationPeriod().present()) {
 		out = ConvertFromCDM::convert(data->DeterminationPeriod().get());
 		return true;
@@ -241,7 +241,7 @@ bool StringMetricDescriptor::getDeterminationPeriod(duration & out) const {
 	return false;
 }
 
-duration StringMetricDescriptor::getDeterminationPeriod() const {
+xml_schema::Duration StringMetricDescriptor::getDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
 }
 	
@@ -249,12 +249,12 @@ bool StringMetricDescriptor::hasDeterminationPeriod() const {
 	return data->DeterminationPeriod().present();
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setLifeTimePeriod(const duration & value) {
+StringMetricDescriptor & StringMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricDescriptor::getLifeTimePeriod(duration & out) const {
+bool StringMetricDescriptor::getLifeTimePeriod(xml_schema::Duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -262,7 +262,7 @@ bool StringMetricDescriptor::getLifeTimePeriod(duration & out) const {
 	return false;
 }
 
-duration StringMetricDescriptor::getLifeTimePeriod() const {
+xml_schema::Duration StringMetricDescriptor::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -275,7 +275,7 @@ StringMetricDescriptor & StringMetricDescriptor::addBodySite(const CodedValue & 
 	return *this;
 }
 
-std::vector<CodedValue> StringMetricDescriptor::getBodySites() const {
+std::vector<CodedValue> StringMetricDescriptor::getBodySiteLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -284,7 +284,7 @@ std::vector<CodedValue> StringMetricDescriptor::getBodySites() const {
 	return result;
 }
 
-void StringMetricDescriptor::clearBodySites() {
+void StringMetricDescriptor::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 

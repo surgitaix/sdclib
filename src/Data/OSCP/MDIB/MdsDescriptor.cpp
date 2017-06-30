@@ -347,7 +347,7 @@ MdsDescriptor & MdsDescriptor::addManufacturer(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> MdsDescriptor::getManufacturers() const {
+std::vector<LocalizedText> MdsDescriptor::getManufacturerLists() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Manufacturer().size());
 	for (const auto & value: data->Manufacturer()) {
@@ -356,7 +356,7 @@ std::vector<LocalizedText> MdsDescriptor::getManufacturers() const {
 	return result;
 }
 
-void MdsDescriptor::clearManufacturers() {
+void MdsDescriptor::clearManufacturerLists() {
 	data->Manufacturer().clear();
 }
 
@@ -365,7 +365,7 @@ MdsDescriptor & MdsDescriptor::addModelName(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> MdsDescriptor::getModelNames() const {
+std::vector<LocalizedText> MdsDescriptor::getModelNameLists() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->ModelName().size());
 	for (const auto & value: data->ModelName()) {
@@ -374,7 +374,7 @@ std::vector<LocalizedText> MdsDescriptor::getModelNames() const {
 	return result;
 }
 
-void MdsDescriptor::clearModelNames() {
+void MdsDescriptor::clearModelNameLists() {
 	data->ModelName().clear();
 }
 
@@ -383,7 +383,7 @@ MdsDescriptor & MdsDescriptor::addSerialNumber(const std::string & value) {
 	return *this;
 }
 
-std::vector<std::string> MdsDescriptor::getSerialNumbers() const {
+std::vector<std::string> MdsDescriptor::getSerialNumberLists() const {
 	std::vector<std::string> result;
 	result.reserve(data->SerialNumber().size());
 	for (const auto & value: data->SerialNumber()) {
@@ -392,7 +392,7 @@ std::vector<std::string> MdsDescriptor::getSerialNumbers() const {
 	return result;
 }
 
-void MdsDescriptor::clearSerialNumbers() {
+void MdsDescriptor::clearSerialNumberLists() {
 	data->SerialNumber().clear();
 }
 
@@ -401,7 +401,7 @@ MdsDescriptor & MdsDescriptor::addVmd(const VmdDescriptor & value) {
 	return *this;
 }
 
-std::vector<VmdDescriptor> MdsDescriptor::getVmds() const {
+std::vector<VmdDescriptor> MdsDescriptor::getVmdLists() const {
 	std::vector<VmdDescriptor> result;
 	result.reserve(data->Vmd().size());
 	for (const auto & value: data->Vmd()) {
@@ -410,7 +410,7 @@ std::vector<VmdDescriptor> MdsDescriptor::getVmds() const {
 	return result;
 }
 
-void MdsDescriptor::clearVmds() {
+void MdsDescriptor::clearVmdLists() {
 	data->Vmd().clear();
 }
 

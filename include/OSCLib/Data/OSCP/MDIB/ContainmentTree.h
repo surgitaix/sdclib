@@ -57,8 +57,8 @@ public:
     typedef CDM::ContainmentTree WrappedType;
 
 	ContainmentTree & addEntry(const ContainmentTreeEntry & value);
-	std::vector<ContainmentTreeEntry> getEntrys() const;
-	void clearEntrys();
+	std::vector<ContainmentTreeEntry> getEntryLists() const;
+	void clearEntryLists();
 	
 private:
 	std::shared_ptr<CDM::ContainmentTree> data;

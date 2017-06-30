@@ -121,20 +121,20 @@ public:
 	bool hasSco() const;
 
 	MdsDescriptor & addManufacturer(const LocalizedText & value);
-	std::vector<LocalizedText> getManufacturers() const;
-	void clearManufacturers();
+	std::vector<LocalizedText> getManufacturerLists() const;
+	void clearManufacturerLists();
 	
 	MdsDescriptor & addModelName(const LocalizedText & value);
-	std::vector<LocalizedText> getModelNames() const;
-	void clearModelNames();
+	std::vector<LocalizedText> getModelNameLists() const;
+	void clearModelNameLists();
 	
 	MdsDescriptor & addSerialNumber(const std::string & value);
-	std::vector<std::string> getSerialNumbers() const;
-	void clearSerialNumbers();
+	std::vector<std::string> getSerialNumberLists() const;
+	void clearSerialNumberLists();
 	
 	MdsDescriptor & addVmd(const VmdDescriptor & value);
-	std::vector<VmdDescriptor> getVmds() const;
-	void clearVmds();
+	std::vector<VmdDescriptor> getVmdLists() const;
+	void clearVmdLists();
 	
 private:
 	std::shared_ptr<CDM::MdsDescriptor> data;

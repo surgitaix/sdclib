@@ -97,7 +97,7 @@ MdDescription & MdDescription::addMds(const MdsDescriptor & value) {
 	return *this;
 }
 
-std::vector<MdsDescriptor> MdDescription::getMdss() const {
+std::vector<MdsDescriptor> MdDescription::getMdsLists() const {
 	std::vector<MdsDescriptor> result;
 	result.reserve(data->Mds().size());
 	for (const auto & value: data->Mds()) {
@@ -106,7 +106,7 @@ std::vector<MdsDescriptor> MdDescription::getMdss() const {
 	return result;
 }
 
-void MdDescription::clearMdss() {
+void MdDescription::clearMdsLists() {
 	data->Mds().clear();
 }
 

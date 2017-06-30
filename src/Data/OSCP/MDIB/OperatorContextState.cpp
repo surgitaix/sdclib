@@ -201,7 +201,7 @@ OperatorContextState & OperatorContextState::addValidator(const InstanceIdentifi
 	return *this;
 }
 
-std::vector<InstanceIdentifier> OperatorContextState::getValidators() const {
+std::vector<InstanceIdentifier> OperatorContextState::getValidatorLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Validator().size());
 	for (const auto & value: data->Validator()) {
@@ -210,7 +210,7 @@ std::vector<InstanceIdentifier> OperatorContextState::getValidators() const {
 	return result;
 }
 
-void OperatorContextState::clearValidators() {
+void OperatorContextState::clearValidatorLists() {
 	data->Validator().clear();
 }
 
@@ -219,7 +219,7 @@ OperatorContextState & OperatorContextState::addIdentification(const InstanceIde
 	return *this;
 }
 
-std::vector<InstanceIdentifier> OperatorContextState::getIdentifications() const {
+std::vector<InstanceIdentifier> OperatorContextState::getIdentificationLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -228,7 +228,7 @@ std::vector<InstanceIdentifier> OperatorContextState::getIdentifications() const
 	return result;
 }
 
-void OperatorContextState::clearIdentifications() {
+void OperatorContextState::clearIdentificationLists() {
 	data->Identification().clear();
 }
 

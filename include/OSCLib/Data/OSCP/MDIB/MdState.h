@@ -62,8 +62,8 @@ public:
 	bool hasStateVersion() const;
 
 	MdState & addState(const AbstractState & value);
-	std::vector<AbstractState> getStates() const;
-	void clearStates();
+	std::vector<AbstractState> getStateLists() const;
+	void clearStateLists();
 	
 private:
 	std::shared_ptr<CDM::MdState> data;

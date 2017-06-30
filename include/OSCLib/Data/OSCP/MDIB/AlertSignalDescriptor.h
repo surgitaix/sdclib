@@ -80,23 +80,23 @@ public:
 	AlertSignalDescriptor & setManifestation(const AlertSignalManifestation & value);
 	AlertSignalManifestation getManifestation() const;
 
-	AlertSignalDescriptor & setLatching(const boolean & value);
-	boolean getLatching() const;
+	AlertSignalDescriptor & setLatching(const bool & value);
+	bool getLatching() const;
 
-	AlertSignalDescriptor & setDefaultSignalGenerationDelay(const duration & value);
-	duration getDefaultSignalGenerationDelay() const;
+	AlertSignalDescriptor & setDefaultSignalGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getDefaultSignalGenerationDelay() const;
 
-	AlertSignalDescriptor & setSignalDelegationSupported(const boolean & value);
-	boolean getSignalDelegationSupported() const;
+	AlertSignalDescriptor & setSignalDelegationSupported(const bool & value);
+	bool getSignalDelegationSupported() const;
 
-	AlertSignalDescriptor & setAcknowledgementSupported(const boolean & value);
-	boolean getAcknowledgementSupported() const;
-	bool getAcknowledgementSupported(boolean & out) const;
+	AlertSignalDescriptor & setAcknowledgementSupported(const bool & value);
+	bool getAcknowledgementSupported() const;
+	bool getAcknowledgementSupported(bool & out) const;
 	bool hasAcknowledgementSupported() const;
 
-	AlertSignalDescriptor & setAcknowledgeTimeout(const duration & value);
-	duration getAcknowledgeTimeout() const;
-	bool getAcknowledgeTimeout(duration & out) const;
+	AlertSignalDescriptor & setAcknowledgeTimeout(const xml_schema::Duration & value);
+	xml_schema::Duration getAcknowledgeTimeout() const;
+	bool getAcknowledgeTimeout(xml_schema::Duration & out) const;
 	bool hasAcknowledgeTimeout() const;
 
 private:

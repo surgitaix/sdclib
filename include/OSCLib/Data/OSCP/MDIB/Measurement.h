@@ -59,8 +59,8 @@ public:
 	Measurement & setMeasurementUnit(const CodedValue & value);
 	CodedValue getMeasurementUnit() const;
 
-	Measurement & setMeasuredValue(const decimal & value);
-	decimal getMeasuredValue() const;
+	Measurement & setMeasuredValue(const double & value);
+	double getMeasuredValue() const;
 
 private:
 	std::shared_ptr<CDM::Measurement> data;

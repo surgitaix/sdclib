@@ -154,12 +154,12 @@ HandleRef SetStringOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
 	
-SetStringOperationDescriptor & SetStringOperationDescriptor::setMaxLength(const unsignedLong & value) {
+SetStringOperationDescriptor & SetStringOperationDescriptor::setMaxLength(const unsigned long & value) {
 	data->MaxLength(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetStringOperationDescriptor::getMaxLength(unsignedLong & out) const {
+bool SetStringOperationDescriptor::getMaxLength(unsigned long & out) const {
 	if (data->MaxLength().present()) {
 		out = ConvertFromCDM::convert(data->MaxLength().get());
 		return true;
@@ -167,7 +167,7 @@ bool SetStringOperationDescriptor::getMaxLength(unsignedLong & out) const {
 	return false;
 }
 
-unsignedLong SetStringOperationDescriptor::getMaxLength() const {
+unsigned long SetStringOperationDescriptor::getMaxLength() const {
 	return ConvertFromCDM::convert(data->MaxLength().get());
 }
 	

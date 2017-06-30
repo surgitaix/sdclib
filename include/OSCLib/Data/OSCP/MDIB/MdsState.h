@@ -55,6 +55,8 @@ public:
     MdsState & operator=(const MdsState & object);
     
     typedef CDM::MdsState WrappedType;
+    typedef MdsDescriptor DescriptorType;
+    typedef ProviderHandlerType MdsDescriptor;
 
 	MdsState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -78,14 +80,14 @@ public:
 	MdsState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	MdsState & setOperatingHours(const unsignedInt & value);
-	unsignedInt getOperatingHours() const;
+	MdsState & setOperatingHours(const unsigned int & value);
+	unsigned int getOperatingHours() const;
 
 	MdsState & setOperatingCycles(const int & value);
 	int getOperatingCycles() const;
 
-	MdsState & setLang(const language & value);
-	language getLang() const;
+	MdsState & setLang(const xml_schema::Language & value);
+	xml_schema::Language getLang() const;
 
 	MdsState & setOperatingMode(const MdsOperatingMode & value);
 	MdsOperatingMode getOperatingMode() const;

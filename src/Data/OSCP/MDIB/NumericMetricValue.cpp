@@ -174,12 +174,12 @@ bool NumericMetricValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
-NumericMetricValue & NumericMetricValue::setValue(const decimal & value) {
+NumericMetricValue & NumericMetricValue::setValue(const double & value) {
 	data->Value(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricValue::getValue(decimal & out) const {
+bool NumericMetricValue::getValue(double & out) const {
 	if (data->Value().present()) {
 		out = ConvertFromCDM::convert(data->Value().get());
 		return true;
@@ -187,7 +187,7 @@ bool NumericMetricValue::getValue(decimal & out) const {
 	return false;
 }
 
-decimal NumericMetricValue::getValue() const {
+double NumericMetricValue::getValue() const {
 	return ConvertFromCDM::convert(data->Value().get());
 }
 	

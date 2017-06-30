@@ -78,8 +78,8 @@ public:
 	BatteryState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	BatteryState & setOperatingHours(const unsignedInt & value);
-	unsignedInt getOperatingHours() const;
+	BatteryState & setOperatingHours(const unsigned int & value);
+	unsigned int getOperatingHours() const;
 
 	BatteryState & setOperatingCycles(const int & value);
 	int getOperatingCycles() const;
@@ -109,8 +109,8 @@ public:
 	bool getRemainingBatteryTime(Measurement & out) const;
 	bool hasRemainingBatteryTime() const;
 
-	BatteryState & setChargeCycles(const unsignedInt & value);
-	unsignedInt getChargeCycles() const;
+	BatteryState & setChargeCycles(const unsigned int & value);
+	unsigned int getChargeCycles() const;
 
 private:
 	std::shared_ptr<CDM::BatteryState> data;

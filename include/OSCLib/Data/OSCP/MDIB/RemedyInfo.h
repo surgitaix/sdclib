@@ -57,8 +57,8 @@ public:
     typedef CDM::RemedyInfo WrappedType;
 
 	RemedyInfo & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptions() const;
-	void clearDescriptions();
+	std::vector<LocalizedText> getDescriptionLists() const;
+	void clearDescriptionLists();
 	
 private:
 	std::shared_ptr<CDM::RemedyInfo> data;

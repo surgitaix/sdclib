@@ -201,7 +201,7 @@ PatientContextState & PatientContextState::addValidator(const InstanceIdentifier
 	return *this;
 }
 
-std::vector<InstanceIdentifier> PatientContextState::getValidators() const {
+std::vector<InstanceIdentifier> PatientContextState::getValidatorLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Validator().size());
 	for (const auto & value: data->Validator()) {
@@ -210,7 +210,7 @@ std::vector<InstanceIdentifier> PatientContextState::getValidators() const {
 	return result;
 }
 
-void PatientContextState::clearValidators() {
+void PatientContextState::clearValidatorLists() {
 	data->Validator().clear();
 }
 
@@ -219,7 +219,7 @@ PatientContextState & PatientContextState::addIdentification(const InstanceIdent
 	return *this;
 }
 
-std::vector<InstanceIdentifier> PatientContextState::getIdentifications() const {
+std::vector<InstanceIdentifier> PatientContextState::getIdentificationLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -228,7 +228,7 @@ std::vector<InstanceIdentifier> PatientContextState::getIdentifications() const 
 	return result;
 }
 
-void PatientContextState::clearIdentifications() {
+void PatientContextState::clearIdentificationLists() {
 	data->Identification().clear();
 }
 

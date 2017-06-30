@@ -167,7 +167,7 @@ NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::addMi
 	return *this;
 }
 
-std::vector<std::string> NeonatalPatientDemographicsCoreData::getMiddlenames() const {
+std::vector<std::string> NeonatalPatientDemographicsCoreData::getMiddlenameLists() const {
 	std::vector<std::string> result;
 	result.reserve(data->Middlename().size());
 	for (const auto & value: data->Middlename()) {
@@ -176,7 +176,7 @@ std::vector<std::string> NeonatalPatientDemographicsCoreData::getMiddlenames() c
 	return result;
 }
 
-void NeonatalPatientDemographicsCoreData::clearMiddlenames() {
+void NeonatalPatientDemographicsCoreData::clearMiddlenameLists() {
 	data->Middlename().clear();
 }
 

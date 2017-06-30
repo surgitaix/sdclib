@@ -62,8 +62,8 @@ public:
 	bool hasDescriptionVersion() const;
 
 	MdDescription & addMds(const MdsDescriptor & value);
-	std::vector<MdsDescriptor> getMdss() const;
-	void clearMdss();
+	std::vector<MdsDescriptor> getMdsLists() const;
+	void clearMdsLists();
 	
 private:
 	std::shared_ptr<CDM::MdDescription> data;

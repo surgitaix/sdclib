@@ -55,6 +55,9 @@ public:
     AlertConditionState & operator=(const AlertConditionState & object);
     
     typedef CDM::AlertConditionState WrappedType;
+    typedef AlertConditionDescriptor DescriptorType;
+    typedef ProviderHandlerType AlertConditionDescriptor;
+    typedef OSCPProviderAlertConditionStateHandler ProviderHandlerType;
 
 	AlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -74,8 +77,8 @@ public:
 	AlertConditionState & setRank(const int & value);
 	int getRank() const;
 
-	AlertConditionState & setPresence(const boolean & value);
-	boolean getPresence() const;
+	AlertConditionState & setPresence(const bool & value);
+	bool getPresence() const;
 
 	AlertConditionState & setDeterminationTime(const Timestamp & value);
 	Timestamp getDeterminationTime() const;

@@ -56,27 +56,27 @@ public:
     
     typedef CDM::OrderDetail WrappedType;
 
-	OrderDetail & setStart(const std::string & value);
-	std::string getStart() const;
-	bool getStart(std::string & out) const;
+	OrderDetail & setStart(const xml_schema::DateTime & value);
+	xml_schema::DateTime getStart() const;
+	bool getStart(xml_schema::DateTime & out) const;
 	bool hasStart() const;
 
-	OrderDetail & setEnd(const std::string & value);
-	std::string getEnd() const;
-	bool getEnd(std::string & out) const;
+	OrderDetail & setEnd(const xml_schema::DateTime & value);
+	xml_schema::DateTime getEnd() const;
+	bool getEnd(xml_schema::DateTime & out) const;
 	bool hasEnd() const;
 
 	OrderDetail & addPerformer(const PersonParticipation & value);
-	std::vector<PersonParticipation> getPerformers() const;
-	void clearPerformers();
+	std::vector<PersonParticipation> getPerformerLists() const;
+	void clearPerformerLists();
 	
 	OrderDetail & addService(const CodedValue & value);
-	std::vector<CodedValue> getServices() const;
-	void clearServices();
+	std::vector<CodedValue> getServiceLists() const;
+	void clearServiceLists();
 	
 	OrderDetail & addImagingProcedure(const ImagingProcedure & value);
-	std::vector<ImagingProcedure> getImagingProcedures() const;
-	void clearImagingProcedures();
+	std::vector<ImagingProcedure> getImagingProcedureLists() const;
+	void clearImagingProcedureLists();
 	
 private:
 	std::shared_ptr<CDM::OrderDetail> data;

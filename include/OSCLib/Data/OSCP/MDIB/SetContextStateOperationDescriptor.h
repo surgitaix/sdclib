@@ -78,8 +78,8 @@ public:
 	HandleRef getOperationTarget() const;
 
 	SetContextStateOperationDescriptor & addModifiableElement(const std::string & value);
-	std::vector<std::string> getModifiableElements() const;
-	void clearModifiableElements();
+	std::vector<std::string> getModifiableElementLists() const;
+	void clearModifiableElementLists();
 	
 private:
 	std::shared_ptr<CDM::SetContextStateOperationDescriptor> data;

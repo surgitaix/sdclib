@@ -116,7 +116,7 @@ SetValueOperationState & SetValueOperationState::addallowedRange(const Range & v
 	return *this;
 }
 
-std::vector<Range> SetValueOperationState::getallowedRanges() const {
+std::vector<Range> SetValueOperationState::getallowedRangeLists() const {
 	std::vector<Range> result;
 	result.reserve(data->allowedRange().size());
 	for (const auto & value: data->allowedRange()) {
@@ -125,7 +125,7 @@ std::vector<Range> SetValueOperationState::getallowedRanges() const {
 	return result;
 }
 
-void SetValueOperationState::clearallowedRanges() {
+void SetValueOperationState::clearallowedRangeLists() {
 	data->allowedRange().clear();
 }
 

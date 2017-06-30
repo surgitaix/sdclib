@@ -1,6 +1,0 @@
-var struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_periodic_metric_report_traits_1_1_report_type_01_4 =
-[
-    [ "get", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_periodic_metric_report_traits_1_1_report_type_01_4.html#ab48b4c4677483b2c581cabf748c72354", null ],
-    [ "present", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_periodic_metric_report_traits_1_1_report_type_01_4.html#a2138d84a7c461bbea8ec35fbe668035e", null ],
-    [ "set", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_periodic_metric_report_traits_1_1_report_type_01_4.html#abb1ad1f3142dae96d5ec2a5161b3f07e", null ]
-];

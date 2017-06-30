@@ -55,6 +55,9 @@ public:
     LimitAlertConditionState & operator=(const LimitAlertConditionState & object);
     
     typedef CDM::LimitAlertConditionState WrappedType;
+    typedef EnumStringMetricDescriptor DescriptorType;
+    typedef ProviderHandlerType EnumStringMetricDescriptor;
+    typedef OSCPProviderEnumStringMetricStateHandler ProviderHandlerType;
 
 	LimitAlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -74,8 +77,8 @@ public:
 	LimitAlertConditionState & setRank(const int & value);
 	int getRank() const;
 
-	LimitAlertConditionState & setPresence(const boolean & value);
-	boolean getPresence() const;
+	LimitAlertConditionState & setPresence(const bool & value);
+	bool getPresence() const;
 
 	LimitAlertConditionState & setDeterminationTime(const Timestamp & value);
 	Timestamp getDeterminationTime() const;

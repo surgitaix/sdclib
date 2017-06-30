@@ -1,6 +1,0 @@
-var struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_get_context_states_traits_1_1_request_01_4 =
-[
-    [ "get", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_get_context_states_traits_1_1_request_01_4.html#acb56a19dde53d8b142c7429bef47c513", null ],
-    [ "present", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_get_context_states_traits_1_1_request_01_4.html#a7eb75f2c1f031bce4a1362d58791a19d", null ],
-    [ "set", "struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_get_context_states_traits_1_1_request_01_4.html#a3460ceaaecd86dc1374d199f43915aca", null ]
-];

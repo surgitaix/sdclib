@@ -83,11 +83,11 @@ public:
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
-	SampleArrayValue & setAnnotationIndex(const unsignedInt & value);
-	unsignedInt getAnnotationIndex() const;
+	SampleArrayValue & setAnnotationIndex(const unsigned int & value);
+	unsigned int getAnnotationIndex() const;
 
-	SampleArrayValue & setSampleIndex(const unsignedInt & value);
-	unsignedInt getSampleIndex() const;
+	SampleArrayValue & setSampleIndex(const unsigned int & value);
+	unsigned int getSampleIndex() const;
 
 	SampleArrayValue & setSamples(const RealTimeValueType & value);
 	RealTimeValueType getSamples() const;

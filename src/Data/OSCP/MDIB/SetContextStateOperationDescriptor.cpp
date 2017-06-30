@@ -159,7 +159,7 @@ SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::addModi
 	return *this;
 }
 
-std::vector<std::string> SetContextStateOperationDescriptor::getModifiableElements() const {
+std::vector<std::string> SetContextStateOperationDescriptor::getModifiableElementLists() const {
 	std::vector<std::string> result;
 	result.reserve(data->ModifiableElement().size());
 	for (const auto & value: data->ModifiableElement()) {
@@ -168,7 +168,7 @@ std::vector<std::string> SetContextStateOperationDescriptor::getModifiableElemen
 	return result;
 }
 
-void SetContextStateOperationDescriptor::clearModifiableElements() {
+void SetContextStateOperationDescriptor::clearModifiableElementLists() {
 	data->ModifiableElement().clear();
 }
 

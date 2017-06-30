@@ -55,6 +55,7 @@ public:
     PatientContextDescriptor & operator=(const PatientContextDescriptor & object);
     
     typedef CDM::PatientContextDescriptor WrappedType;
+    typedef PatientContextState StateType;
 
 	PatientContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;

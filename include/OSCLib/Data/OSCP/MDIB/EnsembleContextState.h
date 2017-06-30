@@ -55,6 +55,7 @@ public:
     EnsembleContextState & operator=(const EnsembleContextState & object);
     
     typedef CDM::EnsembleContextState WrappedType;
+    typedef EnsembleContextDescriptor DescriptorType;
 
 	EnsembleContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -91,12 +92,12 @@ public:
 	Timestamp getBindingEndTime() const;
 
 	EnsembleContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidators() const;
-	void clearValidators();
+	std::vector<InstanceIdentifier> getValidatorLists() const;
+	void clearValidatorLists();
 	
 	EnsembleContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationLists() const;
+	void clearIdentificationLists();
 	
 private:
 	std::shared_ptr<CDM::EnsembleContextState> data;

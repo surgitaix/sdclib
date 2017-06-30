@@ -59,26 +59,26 @@ public:
 	CodedValue & setCode(const CodeIdentifier & value);
 	CodeIdentifier getCode() const;
 
-	CodedValue & setCodingSystem(const anyURI & value);
-	anyURI getCodingSystem() const;
+	CodedValue & setCodingSystem(const std::string & value);
+	std::string getCodingSystem() const;
 
-	CodedValue & setCodingSystemVersion(const string & value);
-	string getCodingSystemVersion() const;
+	CodedValue & setCodingSystemVersion(const std::string & value);
+	std::string getCodingSystemVersion() const;
 
 	CodedValue & setSymbolicCodeName(const SymbolicCodeName & value);
 	SymbolicCodeName getSymbolicCodeName() const;
 
 	CodedValue & addCodingSystemName(const LocalizedText & value);
-	std::vector<LocalizedText> getCodingSystemNames() const;
-	void clearCodingSystemNames();
+	std::vector<LocalizedText> getCodingSystemNameLists() const;
+	void clearCodingSystemNameLists();
 	
 	CodedValue & addConceptDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getConceptDescriptions() const;
-	void clearConceptDescriptions();
+	std::vector<LocalizedText> getConceptDescriptionLists() const;
+	void clearConceptDescriptionLists();
 	
 	CodedValue & addTranslation(const CodedValue & value);
-	std::vector<CodedValue> getTranslations() const;
-	void clearTranslations();
+	std::vector<CodedValue> getTranslationLists() const;
+	void clearTranslationLists();
 	
 private:
 	std::shared_ptr<CDM::CodedValue> data;

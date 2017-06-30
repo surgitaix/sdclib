@@ -78,8 +78,8 @@ public:
 	ChannelState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	ChannelState & setOperatingHours(const unsignedInt & value);
-	unsignedInt getOperatingHours() const;
+	ChannelState & setOperatingHours(const unsigned int & value);
+	unsigned int getOperatingHours() const;
 
 	ChannelState & setOperatingCycles(const int & value);
 	int getOperatingCycles() const;

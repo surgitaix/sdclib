@@ -81,18 +81,18 @@ public:
 	AlertConditionPriority getPriority() const;
 
 	LimitAlertConditionDescriptor & addSource(const HandleRef & value);
-	std::vector<HandleRef> getSources() const;
-	void clearSources();
+	std::vector<HandleRef> getSourceLists() const;
+	void clearSourceLists();
 	
 	LimitAlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
-	std::vector<CauseInfo> getCauseInfos() const;
-	void clearCauseInfos();
+	std::vector<CauseInfo> getCauseInfoLists() const;
+	void clearCauseInfoLists();
 	
 	LimitAlertConditionDescriptor & setMaxLimits(const Range & value);
 	Range getMaxLimits() const;
 
-	LimitAlertConditionDescriptor & setAutoLimitSupported(const boolean & value);
-	boolean getAutoLimitSupported() const;
+	LimitAlertConditionDescriptor & setAutoLimitSupported(const bool & value);
+	bool getAutoLimitSupported() const;
 
 private:
 	std::shared_ptr<CDM::LimitAlertConditionDescriptor> data;

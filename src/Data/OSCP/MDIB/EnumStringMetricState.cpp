@@ -112,22 +112,22 @@ ComponentActivation EnumStringMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-EnumStringMetricState & EnumStringMetricState::setActiveDeterminationPeriod(const duration & value) {
+EnumStringMetricState & EnumStringMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
 	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-duration EnumStringMetricState::getActiveDeterminationPeriod() const {
+xml_schema::Duration EnumStringMetricState::getActiveDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
 }
 	
-EnumStringMetricState & EnumStringMetricState::setLifeTimePeriod(const duration & value) {
+EnumStringMetricState & EnumStringMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricState::getLifeTimePeriod(duration & out) const {
+bool EnumStringMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -135,7 +135,7 @@ bool EnumStringMetricState::getLifeTimePeriod(duration & out) const {
 	return false;
 }
 
-duration EnumStringMetricState::getLifeTimePeriod() const {
+xml_schema::Duration EnumStringMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -148,7 +148,7 @@ EnumStringMetricState & EnumStringMetricState::addBodySite(const CodedValue & va
 	return *this;
 }
 
-std::vector<CodedValue> EnumStringMetricState::getBodySites() const {
+std::vector<CodedValue> EnumStringMetricState::getBodySiteLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -157,7 +157,7 @@ std::vector<CodedValue> EnumStringMetricState::getBodySites() const {
 	return result;
 }
 
-void EnumStringMetricState::clearBodySites() {
+void EnumStringMetricState::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 

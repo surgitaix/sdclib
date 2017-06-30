@@ -56,29 +56,29 @@ public:
     
     typedef CDM::Range WrappedType;
 
-	Range & setLower(const decimal & value);
-	decimal getLower() const;
-	bool getLower(decimal & out) const;
+	Range & setLower(const double & value);
+	double getLower() const;
+	bool getLower(double & out) const;
 	bool hasLower() const;
 
-	Range & setUpper(const decimal & value);
-	decimal getUpper() const;
-	bool getUpper(decimal & out) const;
+	Range & setUpper(const double & value);
+	double getUpper() const;
+	bool getUpper(double & out) const;
 	bool hasUpper() const;
 
-	Range & setStepWidth(const decimal & value);
-	decimal getStepWidth() const;
-	bool getStepWidth(decimal & out) const;
+	Range & setStepWidth(const double & value);
+	double getStepWidth() const;
+	bool getStepWidth(double & out) const;
 	bool hasStepWidth() const;
 
-	Range & setRelativeAccuracy(const decimal & value);
-	decimal getRelativeAccuracy() const;
-	bool getRelativeAccuracy(decimal & out) const;
+	Range & setRelativeAccuracy(const double & value);
+	double getRelativeAccuracy() const;
+	bool getRelativeAccuracy(double & out) const;
 	bool hasRelativeAccuracy() const;
 
-	Range & setAbsoluteAccuracy(const decimal & value);
-	decimal getAbsoluteAccuracy() const;
-	bool getAbsoluteAccuracy(decimal & out) const;
+	Range & setAbsoluteAccuracy(const double & value);
+	double getAbsoluteAccuracy() const;
+	bool getAbsoluteAccuracy(double & out) const;
 	bool hasAbsoluteAccuracy() const;
 
 private:

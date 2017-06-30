@@ -96,8 +96,8 @@ public:
 	bool hasSco() const;
 
 	VmdDescriptor & addChannel(const ChannelDescriptor & value);
-	std::vector<ChannelDescriptor> getChannels() const;
-	void clearChannels();
+	std::vector<ChannelDescriptor> getChannelLists() const;
+	void clearChannelLists();
 	
 private:
 	std::shared_ptr<CDM::VmdDescriptor> data;

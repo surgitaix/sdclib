@@ -55,6 +55,7 @@ public:
     WorkflowContextState & operator=(const WorkflowContextState & object);
     
     typedef CDM::WorkflowContextState WrappedType;
+    typedef WorkflowContextDescriptor DescriptorType;
 
 	WorkflowContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -91,12 +92,12 @@ public:
 	Timestamp getBindingEndTime() const;
 
 	WorkflowContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidators() const;
-	void clearValidators();
+	std::vector<InstanceIdentifier> getValidatorLists() const;
+	void clearValidatorLists();
 	
 	WorkflowContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationLists() const;
+	void clearIdentificationLists();
 	
 	WorkflowContextState & setPatient(const PersonReference & value);
 	PersonReference getPatient() const;
@@ -130,16 +131,16 @@ public:
 	bool hasFillerOrderNumber() const;
 
 	WorkflowContextState & addDangerCode(const CodedValue & value);
-	std::vector<CodedValue> getDangerCodes() const;
-	void clearDangerCodes();
+	std::vector<CodedValue> getDangerCodeLists() const;
+	void clearDangerCodeLists();
 	
 	WorkflowContextState & addRelevantClinicalInfo(const ClinicalInfo & value);
-	std::vector<ClinicalInfo> getRelevantClinicalInfos() const;
-	void clearRelevantClinicalInfos();
+	std::vector<ClinicalInfo> getRelevantClinicalInfoLists() const;
+	void clearRelevantClinicalInfoLists();
 	
 	WorkflowContextState & addResultingClinicalInfo(const ClinicalInfo & value);
-	std::vector<ClinicalInfo> getResultingClinicalInfos() const;
-	void clearResultingClinicalInfos();
+	std::vector<ClinicalInfo> getResultingClinicalInfoLists() const;
+	void clearResultingClinicalInfoLists();
 	
 private:
 	std::shared_ptr<CDM::WorkflowContextState> data;

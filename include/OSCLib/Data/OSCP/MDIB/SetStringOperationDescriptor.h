@@ -77,9 +77,9 @@ public:
 	SetStringOperationDescriptor & setOperationTarget(const HandleRef & value);
 	HandleRef getOperationTarget() const;
 
-	SetStringOperationDescriptor & setMaxLength(const unsignedLong & value);
-	unsignedLong getMaxLength() const;
-	bool getMaxLength(unsignedLong & out) const;
+	SetStringOperationDescriptor & setMaxLength(const unsigned long & value);
+	unsigned long getMaxLength() const;
+	bool getMaxLength(unsigned long & out) const;
 	bool hasMaxLength() const;
 
 private:

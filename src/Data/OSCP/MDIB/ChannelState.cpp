@@ -154,13 +154,13 @@ ComponentActivation ChannelState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-ChannelState & ChannelState::setOperatingHours(const unsignedInt & value) {
+ChannelState & ChannelState::setOperatingHours(const unsigned int & value) {
 	data->OperatingHours(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt ChannelState::getOperatingHours() const {
+unsigned int ChannelState::getOperatingHours() const {
 	return ConvertFromCDM::convert(data->OperatingHours());
 }
 	

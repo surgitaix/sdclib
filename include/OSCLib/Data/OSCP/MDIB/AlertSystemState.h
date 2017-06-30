@@ -55,6 +55,9 @@ public:
     AlertSystemState & operator=(const AlertSystemState & object);
     
     typedef CDM::AlertSystemState WrappedType;
+    typedef AlertSystemDescriptor DescriptorType;
+    typedef ProviderHandlerType AlertSystemDescriptor;
+    typedef OSCPProviderAlertSignalStateHandler ProviderHandlerType;
 
 	AlertSystemState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -71,8 +74,8 @@ public:
 	AlertSystemState & setLastSelfCheck(const Timestamp & value);
 	Timestamp getLastSelfCheck() const;
 
-	AlertSystemState & setSelfCheckCount(const long & value);
-	long getSelfCheckCount() const;
+	AlertSystemState & setSelfCheckCount(const long long & value);
+	long long getSelfCheckCount() const;
 
 	AlertSystemState & setPresentPhysiologicalAlarmConditions(const AlertConditionReference & value);
 	AlertConditionReference getPresentPhysiologicalAlarmConditions() const;
@@ -81,8 +84,8 @@ public:
 	AlertConditionReference getPresentTechnicalAlarmConditions() const;
 
 	AlertSystemState & addSystemSignalActivation(const SystemSignalActivation & value);
-	std::vector<SystemSignalActivation> getSystemSignalActivations() const;
-	void clearSystemSignalActivations();
+	std::vector<SystemSignalActivation> getSystemSignalActivationLists() const;
+	void clearSystemSignalActivationLists();
 	
 private:
 	std::shared_ptr<CDM::AlertSystemState> data;

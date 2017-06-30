@@ -113,22 +113,22 @@ ComponentActivation RealTimeSampleArrayMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActiveDeterminationPeriod(const duration & value) {
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
 	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-duration RealTimeSampleArrayMetricState::getActiveDeterminationPeriod() const {
+xml_schema::Duration RealTimeSampleArrayMetricState::getActiveDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
 }
 	
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setLifeTimePeriod(const duration & value) {
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool RealTimeSampleArrayMetricState::getLifeTimePeriod(duration & out) const {
+bool RealTimeSampleArrayMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -136,7 +136,7 @@ bool RealTimeSampleArrayMetricState::getLifeTimePeriod(duration & out) const {
 	return false;
 }
 
-duration RealTimeSampleArrayMetricState::getLifeTimePeriod() const {
+xml_schema::Duration RealTimeSampleArrayMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -149,7 +149,7 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::addBodySite(con
 	return *this;
 }
 
-std::vector<CodedValue> RealTimeSampleArrayMetricState::getBodySites() const {
+std::vector<CodedValue> RealTimeSampleArrayMetricState::getBodySiteLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -158,7 +158,7 @@ std::vector<CodedValue> RealTimeSampleArrayMetricState::getBodySites() const {
 	return result;
 }
 
-void RealTimeSampleArrayMetricState::clearBodySites() {
+void RealTimeSampleArrayMetricState::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 
@@ -188,7 +188,7 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::addPhysiologica
 	return *this;
 }
 
-std::vector<Range> RealTimeSampleArrayMetricState::getPhysiologicalRanges() const {
+std::vector<Range> RealTimeSampleArrayMetricState::getPhysiologicalRangeLists() const {
 	std::vector<Range> result;
 	result.reserve(data->PhysiologicalRange().size());
 	for (const auto & value: data->PhysiologicalRange()) {
@@ -197,7 +197,7 @@ std::vector<Range> RealTimeSampleArrayMetricState::getPhysiologicalRanges() cons
 	return result;
 }
 
-void RealTimeSampleArrayMetricState::clearPhysiologicalRanges() {
+void RealTimeSampleArrayMetricState::clearPhysiologicalRangeLists() {
 	data->PhysiologicalRange().clear();
 }
 

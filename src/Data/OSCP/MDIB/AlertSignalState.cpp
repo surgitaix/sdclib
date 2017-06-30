@@ -152,12 +152,12 @@ bool AlertSignalState::hasLocation() const {
 	return data->Location().present();
 }
 	
-AlertSignalState & AlertSignalState::setSlot(const unsignedInt & value) {
+AlertSignalState & AlertSignalState::setSlot(const unsigned int & value) {
 	data->Slot(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalState::getSlot(unsignedInt & out) const {
+bool AlertSignalState::getSlot(unsigned int & out) const {
 	if (data->Slot().present()) {
 		out = ConvertFromCDM::convert(data->Slot().get());
 		return true;
@@ -165,7 +165,7 @@ bool AlertSignalState::getSlot(unsignedInt & out) const {
 	return false;
 }
 
-unsignedInt AlertSignalState::getSlot() const {
+unsigned int AlertSignalState::getSlot() const {
 	return ConvertFromCDM::convert(data->Slot().get());
 }
 	

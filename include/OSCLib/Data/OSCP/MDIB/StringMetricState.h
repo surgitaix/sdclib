@@ -55,6 +55,9 @@ public:
     StringMetricState & operator=(const StringMetricState & object);
     
     typedef CDM::StringMetricState WrappedType;
+    typedef StringMetricDescriptor DescriptorType;
+    typedef ProviderHandlerType StringMetricDescriptor;
+    typedef OSCPProviderStringMetricStateHandler ProviderHandlerType;
 
 	StringMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -68,17 +71,17 @@ public:
 	StringMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	StringMetricState & setActiveDeterminationPeriod(const duration & value);
-	duration getActiveDeterminationPeriod() const;
+	StringMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveDeterminationPeriod() const;
 
-	StringMetricState & setLifeTimePeriod(const duration & value);
-	duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(duration & out) const;
+	StringMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
 	StringMetricState & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteLists() const;
+	void clearBodySiteLists();
 	
 	StringMetricState & setMetricValue(const StringMetricValue & value);
 	StringMetricValue getMetricValue() const;

@@ -210,7 +210,7 @@ WorkflowContextState & WorkflowContextState::addValidator(const InstanceIdentifi
 	return *this;
 }
 
-std::vector<InstanceIdentifier> WorkflowContextState::getValidators() const {
+std::vector<InstanceIdentifier> WorkflowContextState::getValidatorLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Validator().size());
 	for (const auto & value: data->Validator()) {
@@ -219,7 +219,7 @@ std::vector<InstanceIdentifier> WorkflowContextState::getValidators() const {
 	return result;
 }
 
-void WorkflowContextState::clearValidators() {
+void WorkflowContextState::clearValidatorLists() {
 	data->Validator().clear();
 }
 
@@ -228,7 +228,7 @@ WorkflowContextState & WorkflowContextState::addIdentification(const InstanceIde
 	return *this;
 }
 
-std::vector<InstanceIdentifier> WorkflowContextState::getIdentifications() const {
+std::vector<InstanceIdentifier> WorkflowContextState::getIdentificationLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -237,7 +237,7 @@ std::vector<InstanceIdentifier> WorkflowContextState::getIdentifications() const
 	return result;
 }
 
-void WorkflowContextState::clearIdentifications() {
+void WorkflowContextState::clearIdentificationLists() {
 	data->Identification().clear();
 }
 
@@ -371,7 +371,7 @@ WorkflowContextState & WorkflowContextState::addDangerCode(const CodedValue & va
 	return *this;
 }
 
-std::vector<CodedValue> WorkflowContextState::getDangerCodes() const {
+std::vector<CodedValue> WorkflowContextState::getDangerCodeLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->DangerCode().size());
 	for (const auto & value: data->DangerCode()) {
@@ -380,7 +380,7 @@ std::vector<CodedValue> WorkflowContextState::getDangerCodes() const {
 	return result;
 }
 
-void WorkflowContextState::clearDangerCodes() {
+void WorkflowContextState::clearDangerCodeLists() {
 	data->DangerCode().clear();
 }
 
@@ -389,7 +389,7 @@ WorkflowContextState & WorkflowContextState::addRelevantClinicalInfo(const Clini
 	return *this;
 }
 
-std::vector<ClinicalInfo> WorkflowContextState::getRelevantClinicalInfos() const {
+std::vector<ClinicalInfo> WorkflowContextState::getRelevantClinicalInfoLists() const {
 	std::vector<ClinicalInfo> result;
 	result.reserve(data->RelevantClinicalInfo().size());
 	for (const auto & value: data->RelevantClinicalInfo()) {
@@ -398,7 +398,7 @@ std::vector<ClinicalInfo> WorkflowContextState::getRelevantClinicalInfos() const
 	return result;
 }
 
-void WorkflowContextState::clearRelevantClinicalInfos() {
+void WorkflowContextState::clearRelevantClinicalInfoLists() {
 	data->RelevantClinicalInfo().clear();
 }
 
@@ -407,7 +407,7 @@ WorkflowContextState & WorkflowContextState::addResultingClinicalInfo(const Clin
 	return *this;
 }
 
-std::vector<ClinicalInfo> WorkflowContextState::getResultingClinicalInfos() const {
+std::vector<ClinicalInfo> WorkflowContextState::getResultingClinicalInfoLists() const {
 	std::vector<ClinicalInfo> result;
 	result.reserve(data->ResultingClinicalInfo().size());
 	for (const auto & value: data->ResultingClinicalInfo()) {
@@ -416,7 +416,7 @@ std::vector<ClinicalInfo> WorkflowContextState::getResultingClinicalInfos() cons
 	return result;
 }
 
-void WorkflowContextState::clearResultingClinicalInfos() {
+void WorkflowContextState::clearResultingClinicalInfoLists() {
 	data->ResultingClinicalInfo().clear();
 }
 

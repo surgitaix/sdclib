@@ -1,3 +1,91 @@
+var NAVTREE =
+[
+  [ "OSCLib", "index.html", [
+    [ "OSCLib documentation", "index.html", null ],
+    [ "Introduction", "d3/d15/introductionpage.html", [
+      [ "Introduction", "d3/d15/introductionpage.html#intro", null ],
+      [ "Setting up the development environment", "d3/d15/introductionpage.html#setup", [
+        [ "CMAKE on linux (examples for Ubuntu or Debian, which are recommended)", "d3/d15/introductionpage.html#linuxspecificcmake", [
+          [ "Installing XSD and XERCES", "d3/d15/introductionpage.html#linuxdependenciesxsd", null ],
+          [ "Building OSCLib using cmake", "d3/d15/introductionpage.html#buildcmake", null ]
+        ] ],
+        [ "Integrating compiled binaries in your project (eclipse CDT)", "d3/d15/introductionpage.html#integrating", null ]
+      ] ]
+    ] ],
+    [ "Open Surgical Communication Protocol", "d1/d18/oscppage.html", [
+      [ "Framework startup and shutdown", "d1/d18/oscppage.html#oscpstartup", null ],
+      [ "Overview", "d1/d18/oscppage.html#oscpoverview", [
+        [ "The MDIB structure", "d1/d18/oscppage.html#oscp_mbid", null ]
+      ] ],
+      [ "The EndoTAIX OSCP Provider example", "d1/d18/oscppage.html#oscp_provider", [
+        [ "Implementation - The descriptive part", "d1/d18/oscppage.html#oscp_provider_basics_descriptive", null ],
+        [ "Implementation - The dynamic part", "d1/d18/oscppage.html#oscp_provider_basics_dynamic", null ],
+        [ "Implementation - Start the provider", "d1/d18/oscppage.html#oscp_provider_start", null ]
+      ] ],
+      [ "The EndoTAIX OSCP Consumer example", "d1/d18/oscppage.html#oscp_consumer", [
+        [ "Discovery using the ServiceManager", "d1/d18/oscppage.html#oscp_consumer_servicemanager", null ],
+        [ "Using the consumer - reception of events", "d1/d18/oscppage.html#oscp_consumer_events", null ],
+        [ "Using the consumer - Request and commit states", "d1/d18/oscppage.html#oscp_consumer_request_commit", [
+          [ "Handling async commits", "d1/d18/oscppage.html#oscp_consumer_request_commit_async", null ]
+        ] ],
+        [ "Disconnecting the consumer", "d1/d18/oscppage.html#oscp_consumer_close", null ]
+      ] ],
+      [ "The alarm system", "d1/d18/oscppage.html#oscp_alarm_system", [
+        [ "The provider", "d1/d18/oscppage.html#oscp_alarm_system_provide", null ],
+        [ "The consumer", "d1/d18/oscppage.html#oscp_alarm_system_consumer", null ]
+      ] ],
+      [ "Useful code snippets and recipes", "d1/d18/oscppage.html#oscp_code_snippets", [
+        [ "Streaming", "d1/d18/oscppage.html#oscp_streaming", null ],
+        [ "Custom commands using activations", "d1/d18/oscppage.html#oscp_activation", null ],
+        [ "Using contexts", "d1/d18/oscppage.html#oscp_contexts", null ],
+        [ "Using string enums", "d1/d18/oscppage.html#oscp_stringenums", null ]
+      ] ]
+    ] ],
+    [ "Namespaces", null, [
+      [ "Namespace List", "namespaces.html", "namespaces" ]
+    ] ],
+    [ "Classes", null, [
+      [ "Class List", "annotated.html", "annotated" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
+    ] ],
+    [ "Files", null, [
+      [ "File List", "files.html", "files" ]
+    ] ]
+  ] ]
+];
+
+var NAVTREEINDEX =
+[
+".html",
+"d0/d34/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_channel_descriptor.html#ae60e74dd6e7c7aa83240c34747f1d363",
+"d0/dc8/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_limit_alert_condition_descriptor.html#ac459cf54739547efaf0c7d7a654196c3",
+"d2/d97/class_o_s_e_lib_1_1_o_s_c_p_1_1_i_get_service.html#aabb7b7dcf9e8dcb047c45d711949e102",
+"d3/da1/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_set_string_operation_state.html#ad2aabffae5d5394ea3d772c0886fd2bf",
+"d4/d58/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_set_alert_state_operation_descriptor.html#af47201c2946c741127d6fdc68a8c7619",
+"d4/dcb/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_workflow_context_state.html#a8db4063ed82fd607e66d02c86eb33be0",
+"d5/d5f/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_o_s_c_p_provider_hydra_m_d_s_state_handler.html",
+"d7/d02/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_string_metric_value.html#a743ed259cefa34ee3f9fc8631a901950",
+"d8/d59/struct_o_s_e_lib_1_1_s_o_a_p_1_1_normalized_message_adapter_3_01_o_s_c_p_1_1_get_m_d_state_traits_1_1_response_01_4.html#a28306ad069fd62df28a3ed6d95624f68",
+"d9/d09/class_o_s_e_lib_1_1_s_o_a_p_1_1_h_t_t_p_request_handler_exception_trap.html#acaa63e829551d5dff3a5c34d226667fd",
+"d9/d9f/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_mdib.html#a8a6169abf6474d8b55b617ca9f3c3f27",
+"db/d02/class_o_s_e_lib_1_1_s_o_a_p_1_1_generic_soap_action_command.html#a4abf7e3f41262ff7fe43ccd358ca2d17",
+"db/dde/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_string_metric_state.html#a711e2754239786cb83884368f1cff85b",
+"dc/d98/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_means_context_state.html#ae3262aacc75abb1281df71b3edf02ece",
+"dd/d03/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_version_frame.html#af163fcdd85763522f11aa2f1827d7682",
+"dd/dd4/_o_s_c_p_provider_enum_string_metric_state_handler_8h_source.html",
+"df/d29/class_o_s_c_lib_1_1_data_1_1_o_s_c_p_1_1_person_participation.html"
+];
+
+var SYNCONMSG = 'click to disable panel synchronisation';
+var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronisation';
+var SYNCOFFMSG = 'click to enable panel synchronisation';
 var navTreeSubIndices = new Array();
 
 function getData(varName)
@@ -18,21 +106,6 @@ function stripPath2(uri)
   var s = uri.substring(i+1);
   var m = uri.substring(0,i+1).match(/\/d\w\/d\w\w\/$/);
   return m ? uri.substring(i-6) : s;
-}
-
-function hashValue()
-{
-  return $(location).attr('hash').substring(1).replace(/[^\w\-]/g,'');
-}
-
-function hashUrl()
-{
-  return '#'+hashValue();
-}
-
-function pathName()
-{
-  return $(location).attr('pathname').replace(/[^-A-Za-z0-9+&@#/%?=~_|!:,.;\(\)]/g, '');
 }
 
 function localStorageSupported()
@@ -57,7 +130,7 @@ function deleteLink()
 {
   if (localStorageSupported()) {
     window.localStorage.setItem('navpath','');
-  }
+  } 
 }
 
 function cachedLink()
@@ -105,7 +178,7 @@ function createIndent(o,domNode,node,level)
     node.expandToggle.onclick = function() {
       if (node.expanded) {
         $(node.getChildrenUL()).slideUp("fast");
-        node.plus_img.src = node.relpath+"arrowright.png";
+        node.plus_img.src = node.relpath+"ftv2pnode.png";
         node.expanded = false;
       } else {
         expandNode(o, node, false, false);
@@ -113,7 +186,7 @@ function createIndent(o,domNode,node,level)
     }
     node.expandToggle.appendChild(imgNode);
     domNode.appendChild(node.expandToggle);
-    imgNode.src = node.relpath+"arrowright.png";
+    imgNode.src = node.relpath+"ftv2pnode.png";
   } else {
     var span = document.createElement("span");
     span.style.display = 'inline-block';
@@ -129,13 +202,11 @@ var animationInProgress = false;
 function gotoAnchor(anchor,aname,updateLocation)
 {
   var pos, docContent = $('#doc-content');
-  var ancParent = $(anchor.parent());
-  if (ancParent.hasClass('memItemLeft') ||
-      ancParent.hasClass('fieldname') ||
-      ancParent.hasClass('fieldtype') ||
-      ancParent.is(':header'))
+  if (anchor.parent().attr('class')=='memItemLeft' ||
+      anchor.parent().attr('class')=='fieldtype' ||
+      anchor.parent().is(':header')) 
   {
-    pos = ancParent.position().top;
+    pos = anchor.parent().position().top;
   } else if (anchor.position()) {
     pos = anchor.position().top;
   }
@@ -193,7 +264,7 @@ function newNode(o, po, text, link, childrenData, lastNode)
     a.className = stripPath(link.replace('#',':'));
     if (link.indexOf('#')!=-1) {
       var aname = '#'+link.split('#')[1];
-      var srcPage = stripPath(pathName());
+      var srcPage = stripPath($(location).attr('pathname'));
       var targetPage = stripPath(link.split('#')[0]);
       a.href = srcPage!=targetPage ? url : "javascript:void(0)"; 
       a.onclick = function(){
@@ -269,9 +340,9 @@ function expandNode(o, node, imm, showRoot)
         $(node.getChildrenUL()).slideDown("fast");
       }
       if (node.isLast) {
-        node.plus_img.src = node.relpath+"arrowdown.png";
+        node.plus_img.src = node.relpath+"ftv2mlastnode.png";
       } else {
-        node.plus_img.src = node.relpath+"arrowdown.png";
+        node.plus_img.src = node.relpath+"ftv2mnode.png";
       }
       node.expanded = true;
     }
@@ -287,13 +358,14 @@ function glowEffect(n,duration)
 
 function highlightAnchor()
 {
-  var aname = hashUrl();
+  var aname = $(location).attr('hash');
   var anchor = $(aname);
   if (anchor.parent().attr('class')=='memItemLeft'){
-    var rows = $('.memberdecls tr[class$="'+hashValue()+'"]');
+    var rows = $('.memberdecls tr[class$="'+
+               window.location.hash.substring(1)+'"]');
     glowEffect(rows.children(),300); // member without details
-  } else if (anchor.parent().attr('class')=='fieldname'){
-    glowEffect(anchor.parent().parent(),1000); // enum value
+  } else if (anchor.parents().slice(2).prop('tagName')=='TR') {
+    glowEffect(anchor.parents('div.memitem'),1000); // enum value
   } else if (anchor.parent().attr('class')=='fieldtype'){
     glowEffect(anchor.parent().parent(),1000); // struct field
   } else if (anchor.parent().is(":header")) {
@@ -308,7 +380,7 @@ function selectAndHighlight(hash,n)
 {
   var a;
   if (hash) {
-    var link=stripPath(pathName())+':'+hash.substring(1);
+    var link=stripPath($(location).attr('pathname'))+':'+hash.substring(1);
     a=$('.item a[class$="'+link+'"]');
   }
   if (a && a.length) {
@@ -341,7 +413,11 @@ function showNode(o, node, index, hash)
         getNode(o, node);
       }
       $(node.getChildrenUL()).css({'display':'block'});
-      node.plus_img.src = node.relpath+"arrowdown.png";
+      if (node.isLast) {
+        node.plus_img.src = node.relpath+"ftv2mlastnode.png";
+      } else {
+        node.plus_img.src = node.relpath+"ftv2mnode.png";
+      }
       node.expanded = true;
       var n = node.children[o.breadcrumbs[index]];
       if (index+1<o.breadcrumbs.length) {
@@ -415,13 +491,14 @@ function navTo(o,root,hash,relpath)
   if (link) {
     var parts = link.split('#');
     root = parts[0];
-    if (parts.length>1) hash = '#'+parts[1].replace(/[^\w\-]/g,'');
+    if (parts.length>1) hash = '#'+parts[1];
     else hash='';
   }
   if (hash.match(/^#l\d+$/)) {
     var anchor=$('a[name='+hash.substring(1)+']');
     glowEffect(anchor.parent(),1000); // line number
     hash=''; // strip line number anchors
+    //root=root.replace(/_source\./,'.'); // source link to doc link
   }
   var url=root+hash;
   var i=-1;
@@ -455,7 +532,7 @@ function toggleSyncButton(relpath)
   if (navSync.hasClass('sync')) {
     navSync.removeClass('sync');
     showSyncOff(navSync,relpath);
-    storeLink(stripPath2(pathName())+hashUrl());
+    storeLink(stripPath2($(location).attr('pathname'))+$(location).attr('hash'));
   } else {
     navSync.addClass('sync');
     showSyncOn(navSync,relpath);
@@ -479,7 +556,7 @@ function initNavTree(toroot,relpath)
   o.node.expanded = false;
   o.node.isLast = true;
   o.node.plus_img = document.createElement("img");
-  o.node.plus_img.src = relpath+"arrowright.png";
+  o.node.plus_img.src = relpath+"ftv2pnode.png";
   o.node.plus_img.width = 16;
   o.node.plus_img.height = 22;
 
@@ -495,7 +572,7 @@ function initNavTree(toroot,relpath)
   }
 
   $(window).load(function(){
-    navTo(o,toroot,hashUrl(),relpath);
+    navTo(o,toroot,window.location.hash,relpath);
     showRoot();
   });
 
@@ -503,20 +580,21 @@ function initNavTree(toroot,relpath)
      if (window.location.hash && window.location.hash.length>1){
        var a;
        if ($(location).attr('hash')){
-         var clslink=stripPath(pathName())+':'+hashValue();
-         a=$('.item a[class$="'+clslink.replace(/</g,'\\3c ')+'"]');
+         var clslink=stripPath($(location).attr('pathname'))+':'+
+                               $(location).attr('hash').substring(1);
+         a=$('.item a[class$="'+clslink+'"]');
        }
        if (a==null || !$(a).parent().parent().hasClass('selected')){
          $('.item').removeClass('selected');
          $('.item').removeAttr('id');
        }
-       var link=stripPath2(pathName());
-       navTo(o,link,hashUrl(),relpath);
+       var link=stripPath2($(location).attr('pathname'));
+       navTo(o,link,$(location).attr('hash'),relpath);
      } else if (!animationInProgress) {
        $('#doc-content').scrollTop(0);
        $('.item').removeClass('selected');
        $('.item').removeAttr('id');
-       navTo(o,toroot,hashUrl(),relpath);
+       navTo(o,toroot,window.location.hash,relpath);
      }
   })
 }

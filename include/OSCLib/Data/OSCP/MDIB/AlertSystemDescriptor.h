@@ -74,22 +74,22 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	AlertSystemDescriptor & setMaxPhysiologicalParallelAlarms(const unsignedInt & value);
-	unsignedInt getMaxPhysiologicalParallelAlarms() const;
+	AlertSystemDescriptor & setMaxPhysiologicalParallelAlarms(const unsigned int & value);
+	unsigned int getMaxPhysiologicalParallelAlarms() const;
 
-	AlertSystemDescriptor & setMaxTechnicalParallelAlarms(const unsignedInt & value);
-	unsignedInt getMaxTechnicalParallelAlarms() const;
+	AlertSystemDescriptor & setMaxTechnicalParallelAlarms(const unsigned int & value);
+	unsigned int getMaxTechnicalParallelAlarms() const;
 
-	AlertSystemDescriptor & setSelfCheckPeriod(const duration & value);
-	duration getSelfCheckPeriod() const;
+	AlertSystemDescriptor & setSelfCheckPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getSelfCheckPeriod() const;
 
 	AlertSystemDescriptor & addAlertCondition(const AlertConditionDescriptor & value);
-	std::vector<AlertConditionDescriptor> getAlertConditions() const;
-	void clearAlertConditions();
+	std::vector<AlertConditionDescriptor> getAlertConditionLists() const;
+	void clearAlertConditionLists();
 	
 	AlertSystemDescriptor & addAlertSignal(const AlertSignalDescriptor & value);
-	std::vector<AlertSignalDescriptor> getAlertSignals() const;
-	void clearAlertSignals();
+	std::vector<AlertSignalDescriptor> getAlertSignalLists() const;
+	void clearAlertSignalLists();
 	
 private:
 	std::shared_ptr<CDM::AlertSystemDescriptor> data;

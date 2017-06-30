@@ -55,6 +55,9 @@ public:
     AlertSignalState & operator=(const AlertSignalState & object);
     
     typedef CDM::AlertSignalState WrappedType;
+    typedef AlertSignalDescriptor DescriptorType;
+    typedef ProviderHandlerType AlertSignalDescriptor;
+    typedef OSCPProviderAlertSignalStateHandler ProviderHandlerType;
 
 	AlertSignalState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -78,9 +81,9 @@ public:
 	bool getLocation(AlertSignalPrimaryLocation & out) const;
 	bool hasLocation() const;
 
-	AlertSignalState & setSlot(const unsignedInt & value);
-	unsignedInt getSlot() const;
-	bool getSlot(unsignedInt & out) const;
+	AlertSignalState & setSlot(const unsigned int & value);
+	unsigned int getSlot() const;
+	bool getSlot(unsigned int & out) const;
 	bool hasSlot() const;
 
 private:

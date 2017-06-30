@@ -81,13 +81,13 @@ CodedValue Measurement::getMeasurementUnit() const {
 	return ConvertFromCDM::convert(data->MeasurementUnit());
 }
 	
-Measurement & Measurement::setMeasuredValue(const decimal & value) {
+Measurement & Measurement::setMeasuredValue(const double & value) {
 	data->MeasuredValue(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-decimal Measurement::getMeasuredValue() const {
+double Measurement::getMeasuredValue() const {
 	return ConvertFromCDM::convert(data->MeasuredValue());
 }
 	

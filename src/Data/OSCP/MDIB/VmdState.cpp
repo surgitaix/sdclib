@@ -154,13 +154,13 @@ ComponentActivation VmdState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-VmdState & VmdState::setOperatingHours(const unsignedInt & value) {
+VmdState & VmdState::setOperatingHours(const unsigned int & value) {
 	data->OperatingHours(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt VmdState::getOperatingHours() const {
+unsigned int VmdState::getOperatingHours() const {
 	return ConvertFromCDM::convert(data->OperatingHours());
 }
 	

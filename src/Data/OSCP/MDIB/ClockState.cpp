@@ -155,13 +155,13 @@ ComponentActivation ClockState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-ClockState & ClockState::setOperatingHours(const unsignedInt & value) {
+ClockState & ClockState::setOperatingHours(const unsigned int & value) {
 	data->OperatingHours(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt ClockState::getOperatingHours() const {
+unsigned int ClockState::getOperatingHours() const {
 	return ConvertFromCDM::convert(data->OperatingHours());
 }
 	
@@ -206,32 +206,32 @@ Timestamp ClockState::getDateAndTime() const {
 	return ConvertFromCDM::convert(data->DateAndTime());
 }
 	
-ClockState & ClockState::setRemoteSync(const boolean & value) {
+ClockState & ClockState::setRemoteSync(const bool & value) {
 	data->RemoteSync(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-boolean ClockState::getRemoteSync() const {
+bool ClockState::getRemoteSync() const {
 	return ConvertFromCDM::convert(data->RemoteSync());
 }
 	
-ClockState & ClockState::setReferenceSource(const string & value) {
+ClockState & ClockState::setReferenceSource(const std::string & value) {
 	data->ReferenceSource(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-string ClockState::getReferenceSource() const {
+std::string ClockState::getReferenceSource() const {
 	return ConvertFromCDM::convert(data->ReferenceSource());
 }
 	
-ClockState & ClockState::setAccuracy(const decimal & value) {
+ClockState & ClockState::setAccuracy(const double & value) {
 	data->Accuracy(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ClockState::getAccuracy(decimal & out) const {
+bool ClockState::getAccuracy(double & out) const {
 	if (data->Accuracy().present()) {
 		out = ConvertFromCDM::convert(data->Accuracy().get());
 		return true;
@@ -239,7 +239,7 @@ bool ClockState::getAccuracy(decimal & out) const {
 	return false;
 }
 
-decimal ClockState::getAccuracy() const {
+double ClockState::getAccuracy() const {
 	return ConvertFromCDM::convert(data->Accuracy().get());
 }
 	
@@ -278,12 +278,12 @@ bool ClockState::hasTimeZone() const {
 	return data->TimeZone().present();
 }
 	
-ClockState & ClockState::setCriticalUse(const boolean & value) {
+ClockState & ClockState::setCriticalUse(const bool & value) {
 	data->CriticalUse(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ClockState::getCriticalUse(boolean & out) const {
+bool ClockState::getCriticalUse(bool & out) const {
 	if (data->CriticalUse().present()) {
 		out = ConvertFromCDM::convert(data->CriticalUse().get());
 		return true;
@@ -291,7 +291,7 @@ bool ClockState::getCriticalUse(boolean & out) const {
 	return false;
 }
 
-boolean ClockState::getCriticalUse() const {
+bool ClockState::getCriticalUse() const {
 	return ConvertFromCDM::convert(data->CriticalUse().get());
 }
 	

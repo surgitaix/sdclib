@@ -189,12 +189,12 @@ MetricAvailability DistributionSampleArrayMetricDescriptor::getMetricAvailabilit
 	return ConvertFromCDM::convert(data->MetricAvailability());
 }
 	
-DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setMaxMeasurementTime(const duration & value) {
+DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
 	data->MaxMeasurementTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool DistributionSampleArrayMetricDescriptor::getMaxMeasurementTime(duration & out) const {
+bool DistributionSampleArrayMetricDescriptor::getMaxMeasurementTime(xml_schema::Duration & out) const {
 	if (data->MaxMeasurementTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 		return true;
@@ -202,7 +202,7 @@ bool DistributionSampleArrayMetricDescriptor::getMaxMeasurementTime(duration & o
 	return false;
 }
 
-duration DistributionSampleArrayMetricDescriptor::getMaxMeasurementTime() const {
+xml_schema::Duration DistributionSampleArrayMetricDescriptor::getMaxMeasurementTime() const {
 	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 }
 	
@@ -210,12 +210,12 @@ bool DistributionSampleArrayMetricDescriptor::hasMaxMeasurementTime() const {
 	return data->MaxMeasurementTime().present();
 }
 	
-DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setMaxDelayTime(const duration & value) {
+DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool DistributionSampleArrayMetricDescriptor::getMaxDelayTime(duration & out) const {
+bool DistributionSampleArrayMetricDescriptor::getMaxDelayTime(xml_schema::Duration & out) const {
 	if (data->MaxDelayTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxDelayTime().get());
 		return true;
@@ -223,7 +223,7 @@ bool DistributionSampleArrayMetricDescriptor::getMaxDelayTime(duration & out) co
 	return false;
 }
 
-duration DistributionSampleArrayMetricDescriptor::getMaxDelayTime() const {
+xml_schema::Duration DistributionSampleArrayMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
 	
@@ -231,12 +231,12 @@ bool DistributionSampleArrayMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
 }
 	
-DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setDeterminationPeriod(const duration & value) {
+DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
 	data->DeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool DistributionSampleArrayMetricDescriptor::getDeterminationPeriod(duration & out) const {
+bool DistributionSampleArrayMetricDescriptor::getDeterminationPeriod(xml_schema::Duration & out) const {
 	if (data->DeterminationPeriod().present()) {
 		out = ConvertFromCDM::convert(data->DeterminationPeriod().get());
 		return true;
@@ -244,7 +244,7 @@ bool DistributionSampleArrayMetricDescriptor::getDeterminationPeriod(duration & 
 	return false;
 }
 
-duration DistributionSampleArrayMetricDescriptor::getDeterminationPeriod() const {
+xml_schema::Duration DistributionSampleArrayMetricDescriptor::getDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
 }
 	
@@ -252,12 +252,12 @@ bool DistributionSampleArrayMetricDescriptor::hasDeterminationPeriod() const {
 	return data->DeterminationPeriod().present();
 }
 	
-DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setLifeTimePeriod(const duration & value) {
+DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool DistributionSampleArrayMetricDescriptor::getLifeTimePeriod(duration & out) const {
+bool DistributionSampleArrayMetricDescriptor::getLifeTimePeriod(xml_schema::Duration & out) const {
 	if (data->LifeTimePeriod().present()) {
 		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
@@ -265,7 +265,7 @@ bool DistributionSampleArrayMetricDescriptor::getLifeTimePeriod(duration & out) 
 	return false;
 }
 
-duration DistributionSampleArrayMetricDescriptor::getLifeTimePeriod() const {
+xml_schema::Duration DistributionSampleArrayMetricDescriptor::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
@@ -278,7 +278,7 @@ DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescripto
 	return *this;
 }
 
-std::vector<CodedValue> DistributionSampleArrayMetricDescriptor::getBodySites() const {
+std::vector<CodedValue> DistributionSampleArrayMetricDescriptor::getBodySiteLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -287,7 +287,7 @@ std::vector<CodedValue> DistributionSampleArrayMetricDescriptor::getBodySites() 
 	return result;
 }
 
-void DistributionSampleArrayMetricDescriptor::clearBodySites() {
+void DistributionSampleArrayMetricDescriptor::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 
@@ -311,13 +311,13 @@ Range DistributionSampleArrayMetricDescriptor::getDistributionRange() const {
 	return ConvertFromCDM::convert(data->DistributionRange());
 }
 	
-DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setResolution(const decimal & value) {
+DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setResolution(const double & value) {
 	data->Resolution(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-decimal DistributionSampleArrayMetricDescriptor::getResolution() const {
+double DistributionSampleArrayMetricDescriptor::getResolution() const {
 	return ConvertFromCDM::convert(data->Resolution());
 }
 	
@@ -326,7 +326,7 @@ DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescripto
 	return *this;
 }
 
-std::vector<Range> DistributionSampleArrayMetricDescriptor::getTechnicalRanges() const {
+std::vector<Range> DistributionSampleArrayMetricDescriptor::getTechnicalRangeLists() const {
 	std::vector<Range> result;
 	result.reserve(data->TechnicalRange().size());
 	for (const auto & value: data->TechnicalRange()) {
@@ -335,7 +335,7 @@ std::vector<Range> DistributionSampleArrayMetricDescriptor::getTechnicalRanges()
 	return result;
 }
 
-void DistributionSampleArrayMetricDescriptor::clearTechnicalRanges() {
+void DistributionSampleArrayMetricDescriptor::clearTechnicalRangeLists() {
 	data->TechnicalRange().clear();
 }
 

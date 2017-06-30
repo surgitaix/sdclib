@@ -55,6 +55,7 @@ public:
     WorkflowContextDescriptor & operator=(const WorkflowContextDescriptor & object);
     
     typedef CDM::WorkflowContextDescriptor WrappedType;
+    typedef WorkflowContextState StateType;
 
 	WorkflowContextDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;

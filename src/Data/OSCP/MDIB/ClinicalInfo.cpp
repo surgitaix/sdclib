@@ -152,7 +152,7 @@ ClinicalInfo & ClinicalInfo::addDescription(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> ClinicalInfo::getDescriptions() const {
+std::vector<LocalizedText> ClinicalInfo::getDescriptionLists() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Description().size());
 	for (const auto & value: data->Description()) {
@@ -161,7 +161,7 @@ std::vector<LocalizedText> ClinicalInfo::getDescriptions() const {
 	return result;
 }
 
-void ClinicalInfo::clearDescriptions() {
+void ClinicalInfo::clearDescriptionLists() {
 	data->Description().clear();
 }
 

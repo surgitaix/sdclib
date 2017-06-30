@@ -86,29 +86,29 @@ public:
 	EnumStringMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
 	MetricAvailability getMetricAvailability() const;
 
-	EnumStringMetricDescriptor & setMaxMeasurementTime(const duration & value);
-	duration getMaxMeasurementTime() const;
-	bool getMaxMeasurementTime(duration & out) const;
+	EnumStringMetricDescriptor & setMaxMeasurementTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxMeasurementTime() const;
+	bool getMaxMeasurementTime(xml_schema::Duration & out) const;
 	bool hasMaxMeasurementTime() const;
 
-	EnumStringMetricDescriptor & setMaxDelayTime(const duration & value);
-	duration getMaxDelayTime() const;
-	bool getMaxDelayTime(duration & out) const;
+	EnumStringMetricDescriptor & setMaxDelayTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxDelayTime() const;
+	bool getMaxDelayTime(xml_schema::Duration & out) const;
 	bool hasMaxDelayTime() const;
 
-	EnumStringMetricDescriptor & setDeterminationPeriod(const duration & value);
-	duration getDeterminationPeriod() const;
-	bool getDeterminationPeriod(duration & out) const;
+	EnumStringMetricDescriptor & setDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getDeterminationPeriod() const;
+	bool getDeterminationPeriod(xml_schema::Duration & out) const;
 	bool hasDeterminationPeriod() const;
 
-	EnumStringMetricDescriptor & setLifeTimePeriod(const duration & value);
-	duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(duration & out) const;
+	EnumStringMetricDescriptor & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
 	EnumStringMetricDescriptor & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteLists() const;
+	void clearBodySiteLists();
 	
 	EnumStringMetricDescriptor & setValue(const std::string & value);
 	std::string getValue() const;

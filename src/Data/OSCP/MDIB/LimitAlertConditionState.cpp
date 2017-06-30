@@ -131,13 +131,13 @@ int LimitAlertConditionState::getRank() const {
 	return ConvertFromCDM::convert(data->Rank());
 }
 	
-LimitAlertConditionState & LimitAlertConditionState::setPresence(const boolean & value) {
+LimitAlertConditionState & LimitAlertConditionState::setPresence(const bool & value) {
 	data->Presence(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-boolean LimitAlertConditionState::getPresence() const {
+bool LimitAlertConditionState::getPresence() const {
 	return ConvertFromCDM::convert(data->Presence());
 }
 	

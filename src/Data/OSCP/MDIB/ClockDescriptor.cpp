@@ -188,13 +188,13 @@ bool ClockDescriptor::hasComponentId() const {
 	return data->ComponentId().present();
 }
 	
-ClockDescriptor & ClockDescriptor::setResolution(const duration & value) {
+ClockDescriptor & ClockDescriptor::setResolution(const xml_schema::Duration & value) {
 	data->Resolution(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-duration ClockDescriptor::getResolution() const {
+xml_schema::Duration ClockDescriptor::getResolution() const {
 	return ConvertFromCDM::convert(data->Resolution());
 }
 	
@@ -203,7 +203,7 @@ ClockDescriptor & ClockDescriptor::addTimeProtocol(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> ClockDescriptor::getTimeProtocols() const {
+std::vector<CodedValue> ClockDescriptor::getTimeProtocolLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->TimeProtocol().size());
 	for (const auto & value: data->TimeProtocol()) {
@@ -212,7 +212,7 @@ std::vector<CodedValue> ClockDescriptor::getTimeProtocols() const {
 	return result;
 }
 
-void ClockDescriptor::clearTimeProtocols() {
+void ClockDescriptor::clearTimeProtocolLists() {
 	data->TimeProtocol().clear();
 }
 

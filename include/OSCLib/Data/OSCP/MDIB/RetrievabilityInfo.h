@@ -59,8 +59,8 @@ public:
 	RetrievabilityInfo & setMethod(const RetrievabilityMethod & value);
 	RetrievabilityMethod getMethod() const;
 
-	RetrievabilityInfo & setUpdatePeriod(const duration & value);
-	duration getUpdatePeriod() const;
+	RetrievabilityInfo & setUpdatePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getUpdatePeriod() const;
 
 private:
 	std::shared_ptr<CDM::RetrievabilityInfo> data;

@@ -81,12 +81,12 @@ public:
 	AlertConditionPriority getPriority() const;
 
 	AlertConditionDescriptor & addSource(const HandleRef & value);
-	std::vector<HandleRef> getSources() const;
-	void clearSources();
+	std::vector<HandleRef> getSourceLists() const;
+	void clearSourceLists();
 	
 	AlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
-	std::vector<CauseInfo> getCauseInfos() const;
-	void clearCauseInfos();
+	std::vector<CauseInfo> getCauseInfoLists() const;
+	void clearCauseInfoLists();
 	
 private:
 	std::shared_ptr<CDM::AlertConditionDescriptor> data;

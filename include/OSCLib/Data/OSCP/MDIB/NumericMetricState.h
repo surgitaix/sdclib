@@ -55,6 +55,9 @@ public:
     NumericMetricState & operator=(const NumericMetricState & object);
     
     typedef CDM::NumericMetricState WrappedType;
+    typedef NumericMetricDescriptor DescriptorType;
+    typedef ProviderHandlerType NumericMetricDescriptor;
+    typedef OSCPProviderNumericMetricStateHandler ProviderHandlerType;
 
 	NumericMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -68,31 +71,31 @@ public:
 	NumericMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	NumericMetricState & setActiveDeterminationPeriod(const duration & value);
-	duration getActiveDeterminationPeriod() const;
+	NumericMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveDeterminationPeriod() const;
 
-	NumericMetricState & setLifeTimePeriod(const duration & value);
-	duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(duration & out) const;
+	NumericMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
 	NumericMetricState & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteLists() const;
+	void clearBodySiteLists();
 	
 	NumericMetricState & setMetricValue(const NumericMetricValue & value);
 	NumericMetricValue getMetricValue() const;
 	bool getMetricValue(NumericMetricValue & out) const;
 	bool hasMetricValue() const;
 
-	NumericMetricState & setActiveAveragingPeriod(const duration & value);
-	duration getActiveAveragingPeriod() const;
-	bool getActiveAveragingPeriod(duration & out) const;
+	NumericMetricState & setActiveAveragingPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveAveragingPeriod() const;
+	bool getActiveAveragingPeriod(xml_schema::Duration & out) const;
 	bool hasActiveAveragingPeriod() const;
 
 	NumericMetricState & addPhysiologicalRange(const Range & value);
-	std::vector<Range> getPhysiologicalRanges() const;
-	void clearPhysiologicalRanges();
+	std::vector<Range> getPhysiologicalRangeLists() const;
+	void clearPhysiologicalRangeLists();
 	
 private:
 	std::shared_ptr<CDM::NumericMetricState> data;

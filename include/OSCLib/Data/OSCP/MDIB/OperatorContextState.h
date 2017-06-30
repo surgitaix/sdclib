@@ -55,6 +55,7 @@ public:
     OperatorContextState & operator=(const OperatorContextState & object);
     
     typedef CDM::OperatorContextState WrappedType;
+    typedef OperatorContextDescriptor DescriptorType;
 
 	OperatorContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -91,12 +92,12 @@ public:
 	Timestamp getBindingEndTime() const;
 
 	OperatorContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidators() const;
-	void clearValidators();
+	std::vector<InstanceIdentifier> getValidatorLists() const;
+	void clearValidatorLists();
 	
 	OperatorContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationLists() const;
+	void clearIdentificationLists();
 	
 	OperatorContextState & setOperatorDetails(const BaseDemographics & value);
 	BaseDemographics getOperatorDetails() const;

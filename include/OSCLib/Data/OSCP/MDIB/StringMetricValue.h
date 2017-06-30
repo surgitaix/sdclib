@@ -83,9 +83,9 @@ public:
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
-	StringMetricValue & setValue(const string & value);
-	string getValue() const;
-	bool getValue(string & out) const;
+	StringMetricValue & setValue(const std::string & value);
+	std::string getValue() const;
+	bool getValue(std::string & out) const;
 	bool hasValue() const;
 
 private:

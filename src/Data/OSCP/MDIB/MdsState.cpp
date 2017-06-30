@@ -154,13 +154,13 @@ ComponentActivation MdsState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
-MdsState & MdsState::setOperatingHours(const unsignedInt & value) {
+MdsState & MdsState::setOperatingHours(const unsigned int & value) {
 	data->OperatingHours(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt MdsState::getOperatingHours() const {
+unsigned int MdsState::getOperatingHours() const {
 	return ConvertFromCDM::convert(data->OperatingHours());
 }
 	
@@ -174,13 +174,13 @@ int MdsState::getOperatingCycles() const {
 	return ConvertFromCDM::convert(data->OperatingCycles());
 }
 	
-MdsState & MdsState::setLang(const language & value) {
+MdsState & MdsState::setLang(const xml_schema::Language & value) {
 	data->Lang(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-language MdsState::getLang() const {
+xml_schema::Language MdsState::getLang() const {
 	return ConvertFromCDM::convert(data->Lang());
 }
 	

@@ -80,13 +80,13 @@ RetrievabilityMethod RetrievabilityInfo::getMethod() const {
 	return ConvertFromCDM::convert(data->Method());
 }
 	
-RetrievabilityInfo & RetrievabilityInfo::setUpdatePeriod(const duration & value) {
+RetrievabilityInfo & RetrievabilityInfo::setUpdatePeriod(const xml_schema::Duration & value) {
 	data->UpdatePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-duration RetrievabilityInfo::getUpdatePeriod() const {
+xml_schema::Duration RetrievabilityInfo::getUpdatePeriod() const {
 	return ConvertFromCDM::convert(data->UpdatePeriod());
 }
 	

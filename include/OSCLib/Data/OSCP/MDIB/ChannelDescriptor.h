@@ -91,8 +91,8 @@ public:
 	bool hasAlertSystem() const;
 
 	ChannelDescriptor & addMetric(const AbstractMetricDescriptor & value);
-	std::vector<AbstractMetricDescriptor> getMetrics() const;
-	void clearMetrics();
+	std::vector<AbstractMetricDescriptor> getMetricLists() const;
+	void clearMetricLists();
 	
 private:
 	std::shared_ptr<CDM::ChannelDescriptor> data;

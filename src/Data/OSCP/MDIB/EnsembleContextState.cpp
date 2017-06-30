@@ -200,7 +200,7 @@ EnsembleContextState & EnsembleContextState::addValidator(const InstanceIdentifi
 	return *this;
 }
 
-std::vector<InstanceIdentifier> EnsembleContextState::getValidators() const {
+std::vector<InstanceIdentifier> EnsembleContextState::getValidatorLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Validator().size());
 	for (const auto & value: data->Validator()) {
@@ -209,7 +209,7 @@ std::vector<InstanceIdentifier> EnsembleContextState::getValidators() const {
 	return result;
 }
 
-void EnsembleContextState::clearValidators() {
+void EnsembleContextState::clearValidatorLists() {
 	data->Validator().clear();
 }
 
@@ -218,7 +218,7 @@ EnsembleContextState & EnsembleContextState::addIdentification(const InstanceIde
 	return *this;
 }
 
-std::vector<InstanceIdentifier> EnsembleContextState::getIdentifications() const {
+std::vector<InstanceIdentifier> EnsembleContextState::getIdentificationLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -227,7 +227,7 @@ std::vector<InstanceIdentifier> EnsembleContextState::getIdentifications() const
 	return result;
 }
 
-void EnsembleContextState::clearIdentifications() {
+void EnsembleContextState::clearIdentificationLists() {
 	data->Identification().clear();
 }
 

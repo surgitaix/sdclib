@@ -75,8 +75,8 @@ public:
 	bool hasSafetyClassification() const;
 
 	ScoDescriptor & addOperation(const AbstractOperationDescriptor & value);
-	std::vector<AbstractOperationDescriptor> getOperations() const;
-	void clearOperations();
+	std::vector<AbstractOperationDescriptor> getOperationLists() const;
+	void clearOperationLists();
 	
 private:
 	std::shared_ptr<CDM::ScoDescriptor> data;

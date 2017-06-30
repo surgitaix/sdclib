@@ -174,23 +174,23 @@ bool SampleArrayValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
-SampleArrayValue & SampleArrayValue::setAnnotationIndex(const unsignedInt & value) {
+SampleArrayValue & SampleArrayValue::setAnnotationIndex(const unsigned int & value) {
 	data->AnnotationIndex(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt SampleArrayValue::getAnnotationIndex() const {
+unsigned int SampleArrayValue::getAnnotationIndex() const {
 	return ConvertFromCDM::convert(data->AnnotationIndex());
 }
 	
-SampleArrayValue & SampleArrayValue::setSampleIndex(const unsignedInt & value) {
+SampleArrayValue & SampleArrayValue::setSampleIndex(const unsigned int & value) {
 	data->SampleIndex(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsignedInt SampleArrayValue::getSampleIndex() const {
+unsigned int SampleArrayValue::getSampleIndex() const {
 	return ConvertFromCDM::convert(data->SampleIndex());
 }
 	

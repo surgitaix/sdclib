@@ -98,7 +98,7 @@ CauseInfo & CauseInfo::addDescription(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> CauseInfo::getDescriptions() const {
+std::vector<LocalizedText> CauseInfo::getDescriptionLists() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Description().size());
 	for (const auto & value: data->Description()) {
@@ -107,7 +107,7 @@ std::vector<LocalizedText> CauseInfo::getDescriptions() const {
 	return result;
 }
 
-void CauseInfo::clearDescriptions() {
+void CauseInfo::clearDescriptionLists() {
 	data->Description().clear();
 }
 

@@ -99,7 +99,7 @@ PersonParticipation & PersonParticipation::addIdentification(const InstanceIdent
 	return *this;
 }
 
-std::vector<InstanceIdentifier> PersonParticipation::getIdentifications() const {
+std::vector<InstanceIdentifier> PersonParticipation::getIdentificationLists() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -108,7 +108,7 @@ std::vector<InstanceIdentifier> PersonParticipation::getIdentifications() const 
 	return result;
 }
 
-void PersonParticipation::clearIdentifications() {
+void PersonParticipation::clearIdentificationLists() {
 	data->Identification().clear();
 }
 
@@ -117,7 +117,7 @@ PersonParticipation & PersonParticipation::addRole(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> PersonParticipation::getRoles() const {
+std::vector<CodedValue> PersonParticipation::getRoleLists() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->Role().size());
 	for (const auto & value: data->Role()) {
@@ -126,7 +126,7 @@ std::vector<CodedValue> PersonParticipation::getRoles() const {
 	return result;
 }
 
-void PersonParticipation::clearRoles() {
+void PersonParticipation::clearRoleLists() {
 	data->Role().clear();
 }
 

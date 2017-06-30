@@ -55,6 +55,7 @@ public:
     LocationContextState & operator=(const LocationContextState & object);
     
     typedef CDM::LocationContextState WrappedType;
+    typedef LocationContextDescriptor DescriptorType;
 
 	LocationContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -91,12 +92,12 @@ public:
 	Timestamp getBindingEndTime() const;
 
 	LocationContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidators() const;
-	void clearValidators();
+	std::vector<InstanceIdentifier> getValidatorLists() const;
+	void clearValidatorLists();
 	
 	LocationContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationLists() const;
+	void clearIdentificationLists();
 	
 	LocationContextState & setLocationDetail(const LocationDetail & value);
 	LocationDetail getLocationDetail() const;

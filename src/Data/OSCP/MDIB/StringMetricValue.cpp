@@ -174,12 +174,12 @@ bool StringMetricValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
-StringMetricValue & StringMetricValue::setValue(const string & value) {
+StringMetricValue & StringMetricValue::setValue(const std::string & value) {
 	data->Value(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricValue::getValue(string & out) const {
+bool StringMetricValue::getValue(std::string & out) const {
 	if (data->Value().present()) {
 		out = ConvertFromCDM::convert(data->Value().get());
 		return true;
@@ -187,7 +187,7 @@ bool StringMetricValue::getValue(string & out) const {
 	return false;
 }
 
-string StringMetricValue::getValue() const {
+std::string StringMetricValue::getValue() const {
 	return ConvertFromCDM::convert(data->Value().get());
 }
 	

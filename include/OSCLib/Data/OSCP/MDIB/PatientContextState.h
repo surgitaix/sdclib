@@ -55,6 +55,7 @@ public:
     PatientContextState & operator=(const PatientContextState & object);
     
     typedef CDM::PatientContextState WrappedType;
+    typedef PatientContextDescriptor DescriptorType;
 
 	PatientContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -91,12 +92,12 @@ public:
 	Timestamp getBindingEndTime() const;
 
 	PatientContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidators() const;
-	void clearValidators();
+	std::vector<InstanceIdentifier> getValidatorLists() const;
+	void clearValidatorLists();
 	
 	PatientContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationLists() const;
+	void clearIdentificationLists();
 	
 	PatientContextState & setCoreData(const PatientDemographicsCoreData & value);
 	PatientDemographicsCoreData getCoreData() const;

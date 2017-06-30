@@ -93,22 +93,22 @@ bool InstanceIdentifier::hasType() const {
 	return data->Type().present();
 }
 	
-InstanceIdentifier & InstanceIdentifier::setRoot(const anyURI & value) {
+InstanceIdentifier & InstanceIdentifier::setRoot(const std::string & value) {
 	data->Root(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-anyURI InstanceIdentifier::getRoot() const {
+std::string InstanceIdentifier::getRoot() const {
 	return ConvertFromCDM::convert(data->Root());
 }
 	
-InstanceIdentifier & InstanceIdentifier::setExtension(const string & value) {
+InstanceIdentifier & InstanceIdentifier::setExtension(const std::string & value) {
 	data->Extension(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool InstanceIdentifier::getExtension(string & out) const {
+bool InstanceIdentifier::getExtension(std::string & out) const {
 	if (data->Extension().present()) {
 		out = ConvertFromCDM::convert(data->Extension().get());
 		return true;
@@ -116,7 +116,7 @@ bool InstanceIdentifier::getExtension(string & out) const {
 	return false;
 }
 
-string InstanceIdentifier::getExtension() const {
+std::string InstanceIdentifier::getExtension() const {
 	return ConvertFromCDM::convert(data->Extension().get());
 }
 	
@@ -129,7 +129,7 @@ InstanceIdentifier & InstanceIdentifier::addIdentifierName(const LocalizedText &
 	return *this;
 }
 
-std::vector<LocalizedText> InstanceIdentifier::getIdentifierNames() const {
+std::vector<LocalizedText> InstanceIdentifier::getIdentifierNameLists() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->IdentifierName().size());
 	for (const auto & value: data->IdentifierName()) {
@@ -138,7 +138,7 @@ std::vector<LocalizedText> InstanceIdentifier::getIdentifierNames() const {
 	return result;
 }
 
-void InstanceIdentifier::clearIdentifierNames() {
+void InstanceIdentifier::clearIdentifierNameLists() {
 	data->IdentifierName().clear();
 }
 

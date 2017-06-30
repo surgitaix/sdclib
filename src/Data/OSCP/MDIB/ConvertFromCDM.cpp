@@ -1,18 +1,3 @@
-#include "OSCLib/Data/OSCP/MDIB/InvocationInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractGet.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractGetResponse.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractReportPart.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractReport.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractSet.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractSetResponse.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractContextReport.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionFrame.h"
-#include "OSCLib/Data/OSCP/MDIB/TimeFrame.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractMetricReport.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractComponentReport.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractAlertReport.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractOperationalStateReport.h"
-#include "OSCLib/Data/OSCP/MDIB/RetrievabilityInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/Mdib.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/MdState.h"
@@ -115,7 +100,6 @@
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTree.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h"
-#include "OSCLib/Data/OSCP/MDIB/ExtensionType.h"
 
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "osdm.hxx"
@@ -177,48 +161,6 @@ std::string ConvertFromCDM::convert(const std::string & source) {
 	return source;
 }
 
-
-InvocationState ConvertFromCDM::convert(const CDM::InvocationState & source) {
-	switch (source) {
-		case CDM::InvocationState::Wait: return InvocationState::Wait;
-		case CDM::InvocationState::Start: return InvocationState::Start;
-		case CDM::InvocationState::Cnclld: return InvocationState::Cnclld;
-		case CDM::InvocationState::CnclldMan: return InvocationState::CnclldMan;
-		case CDM::InvocationState::Fin: return InvocationState::Fin;
-		case CDM::InvocationState::FinMod: return InvocationState::FinMod;
-		case CDM::InvocationState::Fail: return InvocationState::Fail;
-	}
-	throw std::runtime_error("Illegal value for InvocationState");
-}
-
-InvocationError ConvertFromCDM::convert(const CDM::InvocationError & source) {
-	switch (source) {
-		case CDM::InvocationError::Unspec: return InvocationError::Unspec;
-		case CDM::InvocationError::Unkn: return InvocationError::Unkn;
-		case CDM::InvocationError::Inv: return InvocationError::Inv;
-		case CDM::InvocationError::Oth: return InvocationError::Oth;
-	}
-	throw std::runtime_error("Illegal value for InvocationError");
-}
-
-DescriptionModificationType ConvertFromCDM::convert(const CDM::DescriptionModificationType & source) {
-	switch (source) {
-		case CDM::DescriptionModificationType::Crt: return DescriptionModificationType::Crt;
-		case CDM::DescriptionModificationType::Upt: return DescriptionModificationType::Upt;
-		case CDM::DescriptionModificationType::Del: return DescriptionModificationType::Del;
-	}
-	throw std::runtime_error("Illegal value for DescriptionModificationType");
-}
-
-RetrievabilityMethod ConvertFromCDM::convert(const CDM::RetrievabilityMethod & source) {
-	switch (source) {
-		case CDM::RetrievabilityMethod::Get: return RetrievabilityMethod::Get;
-		case CDM::RetrievabilityMethod::Per: return RetrievabilityMethod::Per;
-		case CDM::RetrievabilityMethod::Ep: return RetrievabilityMethod::Ep;
-		case CDM::RetrievabilityMethod::Strm: return RetrievabilityMethod::Strm;
-	}
-	throw std::runtime_error("Illegal value for RetrievabilityMethod");
-}
 
 MeasurementValidity ConvertFromCDM::convert(const CDM::MeasurementValidity & source) {
 	switch (source) {
@@ -426,66 +368,6 @@ PatientType ConvertFromCDM::convert(const CDM::PatientType & source) {
 		case CDM::PatientType::Neo: return PatientType::Neo;
 	}
 	throw std::runtime_error("Illegal value for PatientType");
-}
-
-InvocationInfoConvertFromCDM::convert(const CDM::InvocationInfo & source) {
-	return InvocationInfo(source);
-}
-
-AbstractGetConvertFromCDM::convert(const CDM::AbstractGet & source) {
-	return AbstractGet(source);
-}
-
-AbstractGetResponseConvertFromCDM::convert(const CDM::AbstractGetResponse & source) {
-	return AbstractGetResponse(source);
-}
-
-AbstractReportPartConvertFromCDM::convert(const CDM::AbstractReportPart & source) {
-	return AbstractReportPart(source);
-}
-
-AbstractReportConvertFromCDM::convert(const CDM::AbstractReport & source) {
-	return AbstractReport(source);
-}
-
-AbstractSetConvertFromCDM::convert(const CDM::AbstractSet & source) {
-	return AbstractSet(source);
-}
-
-AbstractSetResponseConvertFromCDM::convert(const CDM::AbstractSetResponse & source) {
-	return AbstractSetResponse(source);
-}
-
-AbstractContextReportConvertFromCDM::convert(const CDM::AbstractContextReport & source) {
-	return AbstractContextReport(source);
-}
-
-VersionFrameConvertFromCDM::convert(const CDM::VersionFrame & source) {
-	return VersionFrame(source);
-}
-
-TimeFrameConvertFromCDM::convert(const CDM::TimeFrame & source) {
-	return TimeFrame(source);
-}
-
-AbstractMetricReportConvertFromCDM::convert(const CDM::AbstractMetricReport & source) {
-	return AbstractMetricReport(source);
-}
-
-AbstractComponentReportConvertFromCDM::convert(const CDM::AbstractComponentReport & source) {
-	return AbstractComponentReport(source);
-}
-
-AbstractAlertReportConvertFromCDM::convert(const CDM::AbstractAlertReport & source) {
-	return AbstractAlertReport(source);
-}
-
-AbstractOperationalStateReportConvertFromCDM::convert(const CDM::AbstractOperationalStateReport & source) {
-	return AbstractOperationalStateReport(source);
-}
-
-RetrievabilityInfoConvertFromCDM::convert(const CDM::RetrievabilityInfo & source) {
-	return RetrievabilityInfo(source);
 }
 
 MdibConvertFromCDM::convert(const CDM::Mdib & source) {
@@ -896,8 +778,20 @@ ContainmentTreeEntryConvertFromCDM::convert(const CDM::ContainmentTreeEntry & so
 	return ContainmentTreeEntry(source);
 }
 
-ExtensionTypeConvertFromCDM::convert(const CDM::ExtensionType & source) {
-	return ExtensionType(source);
+AlertConditionReference ConvertFromCDM::convert(const CDM::AlertConditionReference & source) {
+	AlertConditionReference list;
+	for (const auto & element : source) {
+		list.push_back(element);
+	}
+	return list;
+}
+
+RealTimeValueType ConvertFromCDM::convert(const CDM::RealTimeValueType & source) {
+	RealTimeValueType list;
+	for (const auto & element : source) {
+		list.push_back(element);
+	}
+	return list;
 }
 
 

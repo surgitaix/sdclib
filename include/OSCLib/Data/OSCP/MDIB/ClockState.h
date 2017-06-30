@@ -55,6 +55,7 @@ public:
     ClockState & operator=(const ClockState & object);
     
     typedef CDM::ClockState WrappedType;
+    typedef ClockDescriptor DescriptorType;
 
 	ClockState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
@@ -78,8 +79,8 @@ public:
 	ClockState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 
-	ClockState & setOperatingHours(const unsignedInt & value);
-	unsignedInt getOperatingHours() const;
+	ClockState & setOperatingHours(const unsigned int & value);
+	unsigned int getOperatingHours() const;
 
 	ClockState & setOperatingCycles(const int & value);
 	int getOperatingCycles() const;
@@ -92,15 +93,15 @@ public:
 	ClockState & setDateAndTime(const Timestamp & value);
 	Timestamp getDateAndTime() const;
 
-	ClockState & setRemoteSync(const boolean & value);
-	boolean getRemoteSync() const;
+	ClockState & setRemoteSync(const bool & value);
+	bool getRemoteSync() const;
 
-	ClockState & setReferenceSource(const string & value);
-	string getReferenceSource() const;
+	ClockState & setReferenceSource(const std::string & value);
+	std::string getReferenceSource() const;
 
-	ClockState & setAccuracy(const decimal & value);
-	decimal getAccuracy() const;
-	bool getAccuracy(decimal & out) const;
+	ClockState & setAccuracy(const double & value);
+	double getAccuracy() const;
+	bool getAccuracy(double & out) const;
 	bool hasAccuracy() const;
 
 	ClockState & setLastSet(const Timestamp & value);
@@ -111,9 +112,9 @@ public:
 	bool getTimeZone(TimeZone & out) const;
 	bool hasTimeZone() const;
 
-	ClockState & setCriticalUse(const boolean & value);
-	boolean getCriticalUse() const;
-	bool getCriticalUse(boolean & out) const;
+	ClockState & setCriticalUse(const bool & value);
+	bool getCriticalUse() const;
+	bool getCriticalUse(bool & out) const;
 	bool hasCriticalUse() const;
 
 private:

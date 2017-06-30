@@ -55,6 +55,7 @@ public:
     NumericMetricDescriptor & operator=(const NumericMetricDescriptor & object);
     
     typedef CDM::NumericMetricDescriptor WrappedType;
+    typedef NumericMetricState StateType;
 
 	NumericMetricDescriptor & setType(const CodedValue & value);
 	CodedValue getType() const;
@@ -86,39 +87,39 @@ public:
 	NumericMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
 	MetricAvailability getMetricAvailability() const;
 
-	NumericMetricDescriptor & setMaxMeasurementTime(const duration & value);
-	duration getMaxMeasurementTime() const;
-	bool getMaxMeasurementTime(duration & out) const;
+	NumericMetricDescriptor & setMaxMeasurementTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxMeasurementTime() const;
+	bool getMaxMeasurementTime(xml_schema::Duration & out) const;
 	bool hasMaxMeasurementTime() const;
 
-	NumericMetricDescriptor & setMaxDelayTime(const duration & value);
-	duration getMaxDelayTime() const;
-	bool getMaxDelayTime(duration & out) const;
+	NumericMetricDescriptor & setMaxDelayTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxDelayTime() const;
+	bool getMaxDelayTime(xml_schema::Duration & out) const;
 	bool hasMaxDelayTime() const;
 
-	NumericMetricDescriptor & setDeterminationPeriod(const duration & value);
-	duration getDeterminationPeriod() const;
-	bool getDeterminationPeriod(duration & out) const;
+	NumericMetricDescriptor & setDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getDeterminationPeriod() const;
+	bool getDeterminationPeriod(xml_schema::Duration & out) const;
 	bool hasDeterminationPeriod() const;
 
-	NumericMetricDescriptor & setLifeTimePeriod(const duration & value);
-	duration getLifeTimePeriod() const;
-	bool getLifeTimePeriod(duration & out) const;
+	NumericMetricDescriptor & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
 	NumericMetricDescriptor & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteLists() const;
+	void clearBodySiteLists();
 	
-	NumericMetricDescriptor & setResolution(const decimal & value);
-	decimal getResolution() const;
+	NumericMetricDescriptor & setResolution(const double & value);
+	double getResolution() const;
 
-	NumericMetricDescriptor & setAveragingPeriod(const duration & value);
-	duration getAveragingPeriod() const;
+	NumericMetricDescriptor & setAveragingPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getAveragingPeriod() const;
 
 	NumericMetricDescriptor & addTechnicalRange(const Range & value);
-	std::vector<Range> getTechnicalRanges() const;
-	void clearTechnicalRanges();
+	std::vector<Range> getTechnicalRangeLists() const;
+	void clearTechnicalRangeLists();
 	
 private:
 	std::shared_ptr<CDM::NumericMetricDescriptor> data;

@@ -59,8 +59,8 @@ public:
 	LocalizedText & setRef(const LocalizedTextRef & value);
 	LocalizedTextRef getRef() const;
 
-	LocalizedText & setLang(const language & value);
-	language getLang() const;
+	LocalizedText & setLang(const xml_schema::Language & value);
+	xml_schema::Language getLang() const;
 
 	LocalizedText & setVersion(const ReferencedVersion & value);
 	ReferencedVersion getVersion() const;

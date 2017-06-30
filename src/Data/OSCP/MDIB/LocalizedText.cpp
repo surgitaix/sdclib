@@ -80,13 +80,13 @@ LocalizedTextRef LocalizedText::getRef() const {
 	return ConvertFromCDM::convert(data->Ref());
 }
 	
-LocalizedText & LocalizedText::setLang(const language & value) {
+LocalizedText & LocalizedText::setLang(const xml_schema::Language & value) {
 	data->Lang(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-language LocalizedText::getLang() const {
+xml_schema::Language LocalizedText::getLang() const {
 	return ConvertFromCDM::convert(data->Lang());
 }
 	

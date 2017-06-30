@@ -62,12 +62,12 @@ public:
 	bool hasName() const;
 
 	PersonParticipation & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationLists() const;
+	void clearIdentificationLists();
 	
 	PersonParticipation & addRole(const CodedValue & value);
-	std::vector<CodedValue> getRoles() const;
-	void clearRoles();
+	std::vector<CodedValue> getRoleLists() const;
+	void clearRoleLists();
 	
 private:
 	std::shared_ptr<CDM::PersonParticipation> data;
