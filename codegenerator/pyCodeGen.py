@@ -20,7 +20,7 @@ from io import StringIO, BytesIO
 basetype_map = {'xsd:unsignedLong' : 'unsigned long', 'pm:VersionCounter' : 'unsigned long', 'xsd:string' : 'std::string', 
                 'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'xml_schema::Qname', 'xsd:dateTime' : 'xml_schema::DateTime', 'xsd:boolean' : 'bool', 
                 'xsd:duration' : 'xml_schema::Duration', 'xsd:language' : 'xml_schema::Language', 'xsd:anyURI' : 'std::string', 'xsd:int' : 'int' , 'xsd:long' : 'long long', 
-                'pm:HandleRef' : 'std::string' }
+                'pm:HandleRef' : 'std::string' , 'xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear' : 'std::string'}
 # apiInterfaces_global structure: 1. Classname, 2. name of typedef 3. type of typedef
 # if list consists of more than three values the following entries refer to additional typdefs listed in the same 
 # manner; 4. name of typedef, 5. type of typedef ...
@@ -252,6 +252,7 @@ class GSLClassBuilder(object):
         self.__properties = ''
         self.__propertylists = ''
         self.__typedefs = ''
+        self.__includedComplexTypes_list = list()
         self.__classdeclaration = '\t<class name = \"' + class_name + '\" parent = \"' + parent_name + '\" abstract = \"' + abstract_string + '\">\n'
         self.checkAndAddAPIInterface(class_name)
         
@@ -262,7 +263,9 @@ class GSLClassBuilder(object):
                     self.addTypedef(classInterfaceDescription[1+i], classInterfaceDescription[2+i])
         
     def addInclude(self,complexType_name):
-        self.__includes = self.__includes + '\t\t<include path = \"OSCLib/Data/OSCP/MDIB/' + complexType_name + '.h\" />\n'
+        if not (complexType_name in self.__includedComplexTypes_list):
+            self.__includes = self.__includes + '\t\t<include path = \"OSCLib/Data/OSCP/MDIB/' + complexType_name + '.h\" />\n'
+            self.__includedComplexTypes_list.append(complexType_name)
         
     def addProperty(self, property_name, property_type, optionality_string):
         self.__properties = self.__properties + '\t\t<property name = \"' + property_name + '\" type = \"' + property_type + '\" optional = \"' + optionality_string + '\" />\n'
@@ -409,8 +412,6 @@ def make_MDIBDeclacationsBuilder():
 
 
 ## init
-counter = 0
-
 simpleTypes_set = set()
 complexTypes_set = set()
 enumClasses_cppCode = ''
@@ -552,7 +553,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
             else:
                 abstract_string = 'false'
             
-            glsClassBuilder = make_GSLClassBuilder(complexType_name, parentName, abstract_string)
+            gslClassBuilder = make_GSLClassBuilder(complexType_name, parentName, abstract_string)
             print complexType_name + ', parent= ' + parentName + ', abstract= ' + abstract_string
 
             ## depending on the occurence, the datatyp's fields for xsd:elements are defined
@@ -568,7 +569,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
                         # check if linked to a complexType -> include is necessarygetEnumCounter
                         if elem_type in complexTypes_set:
                             isLinkedTo = 'complexType'
-                            glsClassBuilder.addInclude(elem_type)
+                            gslClassBuilder.addInclude(elem_type)
                         elif elem_type in simpleTypes_set:
                             isLinkedTo = 'simpleType'
                         else:
@@ -580,7 +581,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
                         # element + max occurence = unbounded -> propertyList
                         if 'maxOccurs' in element_node.attrib:
                             if element_node.attrib['maxOccurs'] == 'unbounded':
-                                glsClassBuilder.addPropertyList(element_name, elem_type)
+                                gslClassBuilder.addPropertyList(element_name, elem_type)
                                 print '>> PropertyList: ' + element_name + ', type= ' + elem_type
                         
                         else:
@@ -594,42 +595,46 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
                                 elem_optional = 'false'
                         
                             # add class
-                            glsClassBuilder.addProperty(element_name, elem_type, elem_optional)
+                            gslClassBuilder.addProperty(element_name, elem_type, elem_optional)
                             print '>> Element -> Property: ' + element_name + ', type= ' + elem_type + ', optional= ' + elem_optional + ', linkedToComplexType= ' + isLinkedTo
                     
                     # check for embedded types in elements with no 'type' attribute
                     else:
                         if element_node.xpath('./xsd:complexType/xsd:attribute', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                            counter = counter + 1
-                            glsEmbeddedClass = make_GSLClassBuilder(element_name, "NULL", 'False')
+                            # embedded complex classes do not have an own type name, thus named with a Type prefix
+                            gslEmbeddedClass = make_GSLClassBuilder(element_name + 'Type', "NULL", 'False')
+                            print 'Embedded complexType ' + element_name + 'Type'
                             # complex types have allways attributes
                             for embedded_attribute_node in element_node.xpath('./xsd:complexType/xsd:attribute', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                                print '++Embedded complexType with attribute: ' + embedded_attribute_node.attrib['name'] + ', is contained in the element named: ' + element_name
-                                glsEmbeddedClass.addXSDAttribute_node(embedded_attribute_node)
+                                print '+> ' + embedded_attribute_node.attrib['name']
+                                gslEmbeddedClass.addXSDAttribute_node(embedded_attribute_node)
                                 
                                 embeddedAttributesNamesList.append(embedded_attribute_node.attrib['name'])
-                                # associate element with class name
-                                ''
-                                #
-                                #ä
-                                
-                            gslFileBuilder.addClassAsString(glsEmbeddedClass.getGSLClassAsString())
                             
-                        for embedded_union_node in element_node.xpath('./xsd:simpleType/xsd:union', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                            print '++Embedded simpleType with union'   + ', is contained in the element named: ' + element_name
+                            gslFileBuilder.addClassAsString(gslEmbeddedClass.getGSLClassAsString())
+                            # associate parent element with the new type
+                            gslClassBuilder.addProperty(element_name, element_name + 'Type', "False")
+                            
+                            
+                        if element_node.xpath('./xsd:simpleType/xsd:union', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                            for embeddedUnion_node in element_node.xpath('./xsd:simpleType/xsd:union', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                                # handle as basetype
+                                print '++Embedded simpleType with union: '   + ', is contained in the element named: ' + element_name
+                                cppTypdefStringBuilder.addTypedef(element_name + 'Type', embeddedUnion_node.attrib['memberTypes'])
+                                
+                            gslClassBuilder.addProperty(element_name, element_name + 'Type', "False")
                     
                     
             # add attributes entries -> attributes are properties
             for attribute_node in complexType_node.xpath('.//xsd:attribute', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
                 # do not consider embedded attributes from this node
                 if not attribute_node.attrib['name'] in embeddedAttributesNamesList:
-                    glsClassBuilder.addXSDAttribute_node(attribute_node)
+                    gslClassBuilder.addXSDAttribute_node(attribute_node)
 
             # add class to fileBuilderClass
-            gslFileBuilder.addClassAsString(glsClassBuilder.getGSLClassAsString())
+            gslFileBuilder.addClassAsString(gslClassBuilder.getGSLClassAsString())
 
 
-print counter
 # build SimpleTypesMapping.h
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('SimpleTypesMapping_beginning.hxx')

@@ -27,7 +27,6 @@
 
 	<class name = "CodedValue" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Code" type = "CodeIdentifier" optional = "false" />
 		<property name = "CodingSystem" type = "std::string" optional = "false" />
@@ -102,7 +101,6 @@
 
 	<class name = "AbstractDeviceComponentState" parent = "AbstractState" abstract = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h" />
 		<property name = "CalibrationInfo" type = "CalibrationInfo" optional = "true" />
 		<property name = "NextCalibration" type = "CalibrationInfo" optional = "true" />
 		<property name = "ActivationState" type = "ComponentActivation" optional = "false" />
@@ -114,7 +112,6 @@
 	</class>
 
 	<class name = "MdsDescriptor" parent = "AbstractAlertingDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h" />
@@ -257,7 +254,7 @@
 		<property name = "Slot" type = "unsigned int" optional = "true" />
 	</class>
 
-	<class name = "MetricQuality" parent = "NULL" abstract = "False">
+	<class name = "MetricQualityType" parent = "NULL" abstract = "False">
 		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
 		<property name = "Mode" type = "GenerationMode" optional = "false" />
 		<property name = "Qi" type = "QualityIndicator" optional = "false" />
@@ -265,6 +262,7 @@
 
 	<class name = "AbstractMetricValue" parent = "NULL" abstract = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<property name = "MetricQuality" type = "MetricQualityType" optional = "False" />
 		<property name = "Type" type = "CodedValue" optional = "false" />
 		<property name = "StartTime" type = "Timestamp" optional = "true" />
 		<property name = "StopTime" type = "Timestamp" optional = "true" />
@@ -279,17 +277,17 @@
 		<property name = "Value" type = "std::string" optional = "true" />
 	</class>
 
-	<class name = "ApplyAnnotation" parent = "NULL" abstract = "False">
+	<class name = "ApplyAnnotationType" parent = "NULL" abstract = "False">
 		<property name = "AnnotationIndex" type = "unsigned int" optional = "false" />
 		<property name = "SampleIndex" type = "unsigned int" optional = "false" />
 	</class>
 
 	<class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false">
+		<property name = "ApplyAnnotation" type = "ApplyAnnotationType" optional = "False" />
 		<property name = "Samples" type = "RealTimeValueType" optional = "false" />
 	</class>
 
 	<class name = "AbstractMetricDescriptor" parent = "AbstractDescriptor" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Unit" type = "CodedValue" optional = "false" />
 		<property name = "MetricCategory" type = "MetricCategory" optional = "false" />
@@ -374,7 +372,6 @@
 	<class name = "DistributionSampleArrayMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<property name = "DomainUnit" type = "CodedValue" optional = "false" />
 		<property name = "DistributionRange" type = "Range" optional = "false" />
 		<property name = "Resolution" type = "double" optional = "false" />
@@ -479,18 +476,12 @@
 
 	<class name = "BatteryDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<property name = "CapacityFullCharge" type = "Measurement" optional = "true" />
 		<property name = "CapacitySpecified" type = "Measurement" optional = "true" />
 		<property name = "VoltageSpecified" type = "Measurement" optional = "true" />
 	</class>
 
 	<class name = "BatteryState" parent = "AbstractDeviceComponentState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<property name = "CapacityRemaining" type = "Measurement" optional = "true" />
 		<property name = "Voltage" type = "Measurement" optional = "true" />
@@ -522,7 +513,6 @@
 	</class>
 
 	<class name = "AbstractContextState" parent = "AbstractMultiState" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<property name = "ContextAssociation" type = "ContextAssociation" optional = "false" />
 		<property name = "BindingMdibVersion" type = "ReferencedVersion" optional = "true" />
@@ -563,19 +553,16 @@
 
 	<class name = "PatientDemographicsCoreData" parent = "BaseDemographics" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Sex" type = "Sex" optional = "true" />
 		<property name = "PatientType" type = "PatientType" optional = "true" />
+		<property name = "DateOfBirth" type = "DateOfBirthType" optional = "False" />
 		<property name = "Height" type = "Measurement" optional = "true" />
 		<property name = "Weight" type = "Measurement" optional = "true" />
 		<property name = "Race" type = "CodedValue" optional = "true" />
 	</class>
 
 	<class name = "NeonatalPatientDemographicsCoreData" parent = "PatientDemographicsCoreData" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
 		<property name = "GestationalAge" type = "Measurement" optional = "true" />
@@ -605,7 +592,7 @@
 		<typedef name = "StateType" type = "WorkflowContextState" />
 	</class>
 
-	<class name = "RelatedMeasurement" parent = "NULL" abstract = "False">
+	<class name = "RelatedMeasurementType" parent = "NULL" abstract = "False">
 		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
 	</class>
 
@@ -614,8 +601,8 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
+		<property name = "RelatedMeasurement" type = "RelatedMeasurementType" optional = "False" />
 		<property name = "Value" type = "Measurement" optional = "false" />
 		<property name = "Range" type = "Range" optional = "false" />
 		<property name = "Meaning" type = "CodedValue" optional = "true" />
@@ -624,10 +611,6 @@
 
 	<class name = "ImagingProcedure" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "AccessionIdentifier" type = "InstanceIdentifier" optional = "false" />
 		<property name = "RequestedProcedureId" type = "InstanceIdentifier" optional = "false" />
@@ -665,11 +648,6 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/LocationReference.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
 		<typedef name = "DescriptorType" type = "WorkflowContextDescriptor" />
 		<property name = "Patient" type = "PersonReference" optional = "false" />
