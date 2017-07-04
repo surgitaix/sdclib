@@ -257,12 +257,15 @@
 		<property name = "Slot" type = "unsigned int" optional = "true" />
 	</class>
 
-	<class name = "AbstractMetricValue" parent = "NULL" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<property name = "Type" type = "CodedValue" optional = "false" />
+	<class name = "MetricQuality" parent = "NULL" abstract = "False">
 		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
 		<property name = "Mode" type = "GenerationMode" optional = "false" />
 		<property name = "Qi" type = "QualityIndicator" optional = "false" />
+	</class>
+
+	<class name = "AbstractMetricValue" parent = "NULL" abstract = "true">
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<property name = "Type" type = "CodedValue" optional = "false" />
 		<property name = "StartTime" type = "Timestamp" optional = "true" />
 		<property name = "StopTime" type = "Timestamp" optional = "true" />
 		<property name = "DeterminationTime" type = "Timestamp" optional = "true" />
@@ -276,9 +279,12 @@
 		<property name = "Value" type = "std::string" optional = "true" />
 	</class>
 
-	<class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false">
+	<class name = "ApplyAnnotation" parent = "NULL" abstract = "False">
 		<property name = "AnnotationIndex" type = "unsigned int" optional = "false" />
 		<property name = "SampleIndex" type = "unsigned int" optional = "false" />
+	</class>
+
+	<class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false">
 		<property name = "Samples" type = "RealTimeValueType" optional = "false" />
 	</class>
 
@@ -599,6 +605,10 @@
 		<typedef name = "StateType" type = "WorkflowContextState" />
 	</class>
 
+	<class name = "RelatedMeasurement" parent = "NULL" abstract = "False">
+		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
+	</class>
+
 	<class name = "ClinicalInfo" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
@@ -609,7 +619,6 @@
 		<property name = "Value" type = "Measurement" optional = "false" />
 		<property name = "Range" type = "Range" optional = "false" />
 		<property name = "Meaning" type = "CodedValue" optional = "true" />
-		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
 		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
 	</class>
 

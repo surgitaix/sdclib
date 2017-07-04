@@ -61,17 +61,27 @@ class CppTypdefStringBuilder(object):
         ## init basetype_map for converting xsd-basetypes to cpp-basetypes
         # if a type is unknown the compiler throws a KeyError!
         self.__basetype_map = basetype_map
+        self.__itemListCounter = 0
+        self.__basetypeCounter = 0
         self.__content = ''
     
     def addTypedef(self, simpleType_name, baseTypeName_xsd):
         self.__content = self.__content + 'typedef ' + self.__basetype_map[baseTypeName_xsd] + ' ' + simpleType_name + ';\n';
+        self.__basetypeCounter = self.__basetypeCounter + 1
     
     # item list are always of basetype
     def addItemListTypedef(self, simpleType_name, baseTypeName_xsd):
         self.__content = self.__content + 'typedef std::vector<' + self.__basetype_map[baseTypeName_xsd] + '> ' + simpleType_name + ';\n';
+        self.__itemListCounter = self.__itemListCounter + 1
     
     def getCppTypedefString(self):
         return self.__content + '\n\n'
+    
+    def getItemListCounter(self):
+        return self.__itemListCounter
+    
+    def getBasetypeCounter(self):
+        return self.__basetypeCounter
         
 # enums
 class CppEnumClassBuilder(object):
@@ -84,18 +94,27 @@ class CppEnumClassBuilder(object):
         
     def getEnumClassAsString(self):
         return self.__content[:-2] + '\n};\n\n'
+        
+
     
 # EnumToStringClass declarations
+# contains enum - counter
 class CppEnumToStringClassDeclarationBuilder(object):
     
     def __init__(self):
         self.__content = 'class EnumToString {\npublic:\n'
+        self.__enumCounter = 0
         
     def addConvertFunctionDeclarationForSimpleType(self, simpleType_name):
         self.__content = self.__content + '\tstatic std::string convert(' + simpleType_name + ' source);\n'
+        self.__enumCounter = self.__enumCounter + 1
     
     def getEnumToStringClassDeclarationAsString(self):
         return self.__content + '};\n\n';
+
+    def getEnumCounter(self):
+        return self.__enumCounter
+    
     
 # EnumToStringClass definition
 class CppEnumToStringClassDefinitionBuilder(object):
@@ -223,7 +242,7 @@ class CppConvertToCDMClassDefinitionBuilder(object):
     def getItemListAsString(self):
         return self.__itemList
 
-class GSLClassBuilder(object):    
+class GSLClassBuilder(object):
     
     def __init__(self, class_name, parent_name, abstract_string):
         # __apiInterfaces is a list of lists corresponding to a class. Each of these lists contains the classes' interfaces to the api. E.g. some 
@@ -255,19 +274,56 @@ class GSLClassBuilder(object):
     def addTypedef(self, typedef_name, typedef_type):
         self.__typedefs = self.__typedefs + '\t\t<typedef name = \"' + typedef_name + '\" type = \"' + typedef_type + '\" />\n'
 
+    def addXSDAttribute_node(self,attribute_node):
+        # check if element is a valid node by checking if attr. name exists
+        if 'name' in attribute_node.attrib:
+            attribute_name = attribute_node.attrib['name']
+            if 'type' in attribute_node.attrib:                    
+                attribute_type_xsd = attribute_node.attrib['type']
+                # get rid of the namespace prefix
+                attribute_type = attribute_type_xsd[(attribute_type_xsd.index(':')+1):]
+                
+                # check if linked to a complexType -> include is necessary
+                if attribute_type in complexTypes_set:
+                    isLinkedTo = 'complexType'
+                    self.addInclude(attribute_type)
+                elif attribute_type in simpleTypes_set:
+                    isLinkedTo = 'simpleType'
+                else:
+                    isLinkedTo = 'baseType'                            
+                    # check if datatype is a basetype -> transform in case of
+                    # this is done after the checking for the complexTypes to assure that the compiler complains when a new unknown basetype occurs
+                    attribute_type = basetype_map[attribute_type_xsd]
+                
+                optionality_string = 'false'
+                if 'use' in attribute_node.attrib:
+                    if attribute_node.attrib['use'] == 'optional':
+                        optionality_string = 'true'
+        
+                # add class
+                self.addProperty(attribute_name, attribute_type, optionality_string)
+                print '>> Attribute -> Property: ' + attribute_name + ', type= ' + attribute_type + ', optional= ' + optionality_string + ', linked to: ' + isLinkedTo
+
     def getGSLClassAsString(self):
         return self.__classdeclaration + self.__includes + self.__typedefs + self.__properties + self.__propertylists + '\t</class>\n\n' 
 
+    
 # contains the gsl descriptions
 class GSLFileBuilder(object):
     def __init__(self):
+        self.__numOfClasses = 0
         self.__content = '<?xml version="1.0"?>\n<classes script = \"generate.gsl\" >\n'
 
     def addClassAsString(self, class_string):
         self.__content = self.__content + class_string
+        self.__numOfClasses = self.__numOfClasses + 1
         
     def getContent(self):
         return self.__content + '</classes>'
+    
+    def getNumOfClasses(self):
+        return self.__numOfClasses
+    
     
 # MDIB forward declarations
 class MDIBDeclacationsBuilder(object):
@@ -343,15 +399,18 @@ def make_GSLFileBuilder():
     l_gslFileBuilder = GSLFileBuilder()
     return l_gslFileBuilder
 
-def make_GSLClassBuilder(class_name, parent_name, abstract_bool):
-    l_gslClassBuilder = GSLClassBuilder(class_name, parent_name, abstract_bool)
+def make_GSLClassBuilder(class_name, parent_name, abstract_string):
+    l_gslClassBuilder = GSLClassBuilder(class_name, parent_name, abstract_string)
     return l_gslClassBuilder
 
 def make_MDIBDeclacationsBuilder():
     l_mdibDeclarationsBuilder = MDIBDeclacationsBuilder()
     return l_mdibDeclarationsBuilder
 
+
 ## init
+counter = 0
+
 simpleTypes_set = set()
 complexTypes_set = set()
 enumClasses_cppCode = ''
@@ -364,7 +423,7 @@ cppConvertToCDMClassDeclarationBuilder = make_CppConvertToCDMClassDeclarationBui
 cppConvertToCDMClassDefinitionBuilder = make_CppConvertToCDMClassDefinitionBuilder()
 gslFileBuilder = make_GSLFileBuilder()
 mdibDeclacationsBuilder = make_MDIBDeclacationsBuilder()
-
+embeddedAttributesNamesList = list()
 
 
 ###
@@ -456,10 +515,10 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
 # analyse complex types
 for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-        # only take nodes that have an attribute
-        for attribute_name in complexType_node.attrib:
+        # only take nodes that have a 'name' attribute
+        if 'name' in complexType_node.attrib:
             # get name
-            complexType_name = complexType_node.attrib[attribute_name]
+            complexType_name = complexType_node.attrib['name']
             
             ### non-gsl files
             # add to ConverterClasses
@@ -496,7 +555,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
             glsClassBuilder = make_GSLClassBuilder(complexType_name, parentName, abstract_string)
             print complexType_name + ', parent= ' + parentName + ', abstract= ' + abstract_string
 
-            ## depending on the occurence, the datatyps fields for xsd:elements are defined
+            ## depending on the occurence, the datatyp's fields for xsd:elements are defined
             for element_node in complexType_node.xpath('.//xsd:element', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
                 # check if element is a valid node by checking if attr. name exists
                 if 'name' in element_node.attrib:
@@ -506,7 +565,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
                         # get rid of the namespace prefix
                         elem_type = elem_type_xsd[(elem_type_xsd.index(':')+1):]
                         
-                        # check if linked to a complexType -> include is necessary
+                        # check if linked to a complexType -> include is necessarygetEnumCounter
                         if elem_type in complexTypes_set:
                             isLinkedTo = 'complexType'
                             glsClassBuilder.addInclude(elem_type)
@@ -537,50 +596,41 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
                             # add class
                             glsClassBuilder.addProperty(element_name, elem_type, elem_optional)
                             print '>> Element -> Property: ' + element_name + ', type= ' + elem_type + ', optional= ' + elem_optional + ', linkedToComplexType= ' + isLinkedTo
-            
-            # add attributes entries -> attributes are properties  
+                    
+                    # check for embedded types in elements with no 'type' attribute
+                    else:
+                        if element_node.xpath('./xsd:complexType/xsd:attribute', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                            counter = counter + 1
+                            glsEmbeddedClass = make_GSLClassBuilder(element_name, "NULL", 'False')
+                            # complex types have allways attributes
+                            for embedded_attribute_node in element_node.xpath('./xsd:complexType/xsd:attribute', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                                print '++Embedded complexType with attribute: ' + embedded_attribute_node.attrib['name'] + ', is contained in the element named: ' + element_name
+                                glsEmbeddedClass.addXSDAttribute_node(embedded_attribute_node)
+                                
+                                embeddedAttributesNamesList.append(embedded_attribute_node.attrib['name'])
+                                # associate element with class name
+                                ''
+                                #
+                                #ä
+                                
+                            gslFileBuilder.addClassAsString(glsEmbeddedClass.getGSLClassAsString())
+                            
+                        for embedded_union_node in element_node.xpath('./xsd:simpleType/xsd:union', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                            print '++Embedded simpleType with union'   + ', is contained in the element named: ' + element_name
+                    
+                    
+            # add attributes entries -> attributes are properties
             for attribute_node in complexType_node.xpath('.//xsd:attribute', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                # check if element is a valid node by checking if attr. name exists
-                if 'name' in attribute_node.attrib:
-                    attribute_name = attribute_node.attrib['name']
-                    if 'type' in attribute_node.attrib:                    
-                        attribute_type_xsd = attribute_node.attrib['type']
-                        # get rid of the namespace prefix
-                        attribute_type = attribute_type_xsd[(attribute_type_xsd.index(':')+1):]
-                        
-                        # check if linked to a complexType -> include is necessary
-                        if attribute_type in complexTypes_set:
-                            isLinkedTo = 'complexType'
-                            glsClassBuilder.addInclude(attribute_type)
-                        elif attribute_type in simpleTypes_set:
-                            isLinkedTo = 'simpleType'
-                        else:
-                            isLinkedTo = 'baseType'                            
-                            # check if datatype is a basetype -> transform in case of
-                            # this is done after the checking for the complexTypes to assure that the compiler complains when a new unknown basetype occurs
-                            attribute_type = basetype_map[attribute_type_xsd]
-                        
-                        optionality_string = 'false'
-                        if 'use' in attribute_node.attrib:
-                            if attribute_node.attrib['use'] == 'optional':
-                                optionality_string = 'true'
-                            
-                        # add class
-                        glsClassBuilder.addProperty(attribute_name, attribute_type, optionality_string)
-                        print '>> Attribute -> Property: ' + attribute_name + ', type= ' + attribute_type + ', optional= ' + optionality_string + ', linkedToComplexType= ' + isLinkedTo
-                            
-                            
-                                
-                                
+                # do not consider embedded attributes from this node
+                if not attribute_node.attrib['name'] in embeddedAttributesNamesList:
+                    glsClassBuilder.addXSDAttribute_node(attribute_node)
+
             # add class to fileBuilderClass
             gslFileBuilder.addClassAsString(glsClassBuilder.getGSLClassAsString())
-            
-            
-                ##
-                ## what to do with extensions: <xsd:element ref="ext:Extension" minOccurs="0"/> 
-                ##
 
-# build SimpleTypesMapping.h 
+
+print counter
+# build SimpleTypesMapping.h
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('SimpleTypesMapping_beginning.hxx')
 contentEnding = cppFileBuilder.readFileToStr('SimpleTypesMapping_ending.hxx')
@@ -629,4 +679,12 @@ contentEnding = cppFileBuilder.readFileToStr('MDIB-fwd_ending.hxx')
 cppFileBuilder.writeToFile('MDIB-fwd.h', contentBeginning + mdibDeclacationsBuilder.getDeclarationsAsString() + contentEnding)
 
 
+# ---- Statistics -----
+print ' '
+print '----- Statistics -----'
+print ' '
+print 'Basetypes: ' + str(cppTypdefStringBuilder.getBasetypeCounter())
+print 'ItemLists: ' + str(cppTypdefStringBuilder.getItemListCounter())
+print 'Enums: ' + str(cppEnumToStringClassBuilder.getEnumCounter())
+print 'ComplexTypes: ' + str(gslFileBuilder.getNumOfClasses())
 
