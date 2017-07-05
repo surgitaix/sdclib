@@ -71,6 +71,16 @@ SampleArrayValue & SampleArrayValue:: operator=(const SampleArrayValue & object)
 }
 
 
+SampleArrayValue & SampleArrayValue::setMetricQuality(const MetricQualityType & value) {
+	data->MetricQuality(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+MetricQualityType SampleArrayValue::getMetricQuality() const {
+	return ConvertFromCDM::convert(data->MetricQuality());
+}
+	
 SampleArrayValue & SampleArrayValue::setType(const CodedValue & value) {
 	data->Type(ConvertToCDM::convert(value));
 	return *this;
@@ -79,36 +89,6 @@ SampleArrayValue & SampleArrayValue::setType(const CodedValue & value) {
 
 CodedValue SampleArrayValue::getType() const {
 	return ConvertFromCDM::convert(data->Type());
-}
-	
-SampleArrayValue & SampleArrayValue::setValidity(const MeasurementValidity & value) {
-	data->Validity(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-MeasurementValidity SampleArrayValue::getValidity() const {
-	return ConvertFromCDM::convert(data->Validity());
-}
-	
-SampleArrayValue & SampleArrayValue::setMode(const GenerationMode & value) {
-	data->Mode(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-GenerationMode SampleArrayValue::getMode() const {
-	return ConvertFromCDM::convert(data->Mode());
-}
-	
-SampleArrayValue & SampleArrayValue::setQi(const QualityIndicator & value) {
-	data->Qi(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-QualityIndicator SampleArrayValue::getQi() const {
-	return ConvertFromCDM::convert(data->Qi());
 }
 	
 SampleArrayValue & SampleArrayValue::setStartTime(const Timestamp & value) {
@@ -174,24 +154,14 @@ bool SampleArrayValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
-SampleArrayValue & SampleArrayValue::setAnnotationIndex(const unsigned int & value) {
-	data->AnnotationIndex(ConvertToCDM::convert(value));
+SampleArrayValue & SampleArrayValue::setApplyAnnotation(const ApplyAnnotationType & value) {
+	data->ApplyAnnotation(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-unsigned int SampleArrayValue::getAnnotationIndex() const {
-	return ConvertFromCDM::convert(data->AnnotationIndex());
-}
-	
-SampleArrayValue & SampleArrayValue::setSampleIndex(const unsigned int & value) {
-	data->SampleIndex(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-unsigned int SampleArrayValue::getSampleIndex() const {
-	return ConvertFromCDM::convert(data->SampleIndex());
+ApplyAnnotationType SampleArrayValue::getApplyAnnotation() const {
+	return ConvertFromCDM::convert(data->ApplyAnnotation());
 }
 	
 SampleArrayValue & SampleArrayValue::setSamples(const RealTimeValueType & value) {

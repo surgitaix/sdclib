@@ -37,7 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h"

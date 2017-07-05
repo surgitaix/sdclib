@@ -15,7 +15,7 @@
   */
 
 /*
- *  ClinicalInfo.h
+ *  ApplyAnnotationType.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef CLINICALINFO_H_
-#define CLINICALINFO_H_
+#ifndef APPLYANNOTATIONTYPE_H_
+#define APPLYANNOTATIONTYPE_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,50 +40,33 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class ClinicalInfo {
+class ApplyAnnotationType {
 private:
-	ClinicalInfo(const CDM::ClinicalInfo & object);
-	operator CDM::ClinicalInfo() const;
+	ApplyAnnotationType(const CDM::ApplyAnnotationType & object);
+	operator CDM::ApplyAnnotationType() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ClinicalInfo();
-	ClinicalInfo(const ClinicalInfo & object);
-	virtual ~ClinicalInfo();
+	ApplyAnnotationType();
+	ApplyAnnotationType(const ApplyAnnotationType & object);
+	virtual ~ApplyAnnotationType();
     
-    void copyFrom(const ClinicalInfo & object);
-    ClinicalInfo & operator=(const ClinicalInfo & object);
+    void copyFrom(const ApplyAnnotationType & object);
+    ApplyAnnotationType & operator=(const ApplyAnnotationType & object);
     
-    typedef CDM::ClinicalInfo WrappedType;
+    typedef CDM::ApplyAnnotationType WrappedType;
 
-	ClinicalInfo & setType(const CodedValue & value);
-	CodedValue getType() const;
-	bool getType(CodedValue & out) const;
-	bool hasType() const;
+	ApplyAnnotationType & setAnnotationIndex(const unsigned int & value);
+	unsigned int getAnnotationIndex() const;
 
-	ClinicalInfo & setRelatedMeasurement(const RelatedMeasurementType & value);
-	RelatedMeasurementType getRelatedMeasurement() const;
+	ApplyAnnotationType & setSampleIndex(const unsigned int & value);
+	unsigned int getSampleIndex() const;
 
-	ClinicalInfo & setValue(const Measurement & value);
-	Measurement getValue() const;
-
-	ClinicalInfo & setRange(const Range & value);
-	Range getRange() const;
-
-	ClinicalInfo & setMeaning(const CodedValue & value);
-	CodedValue getMeaning() const;
-	bool getMeaning(CodedValue & out) const;
-	bool hasMeaning() const;
-
-	ClinicalInfo & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptionLists() const;
-	void clearDescriptionLists();
-	
 private:
-	std::shared_ptr<CDM::ClinicalInfo> data;
+	std::shared_ptr<CDM::ApplyAnnotationType> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* CLINICALINFO_H_ */
+#endif /* APPLYANNOTATIONTYPE_H_ */

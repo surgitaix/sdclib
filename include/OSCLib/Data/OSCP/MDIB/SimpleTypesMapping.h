@@ -32,6 +32,7 @@ typedef std::vector<std::string> AlertConditionReference;
 typedef double QualityIndicator;
 typedef std::vector<double> RealTimeValueType;
 typedef std::string TimeZone;
+typedef std::string DateOfBirthType;
 
 
 enum class MeasurementValidity

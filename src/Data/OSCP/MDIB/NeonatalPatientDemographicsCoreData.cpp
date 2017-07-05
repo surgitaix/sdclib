@@ -37,11 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
@@ -220,6 +216,16 @@ PatientType NeonatalPatientDemographicsCoreData::getPatientType() const {
 	
 bool NeonatalPatientDemographicsCoreData::hasPatientType() const {
 	return data->PatientType().present();
+}
+	
+NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setDateOfBirth(const DateOfBirthType & value) {
+	data->DateOfBirth(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+DateOfBirthType NeonatalPatientDemographicsCoreData::getDateOfBirth() const {
+	return ConvertFromCDM::convert(data->DateOfBirth());
 }
 	
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setHeight(const Measurement & value) {

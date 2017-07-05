@@ -456,7 +456,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd') }:
                     cppEnumToStringClassDefinitionBuilder = make_CppEnumToStringClassDefinitionBuilder(simpleType_name)
                     cppConvertFromCDMClassEnumConverterFunctionBuilder = make_CppConvertFromCDMClassEnumConverterFunctionBuilder(simpleType_name)
                     cppConvertToCDMClassEnumConverterFunctionBuilder = make_CppConvertToCDMClassEnumConverterFunctionBuilder(simpleType_name)
-                    
+
                 # flag as enum
                 enum_flag = True
                 cppEnumClassBuilder.appendEnumEntry(enum_entry)

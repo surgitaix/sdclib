@@ -37,7 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {

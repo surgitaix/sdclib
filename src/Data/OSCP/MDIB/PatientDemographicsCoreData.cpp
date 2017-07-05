@@ -37,7 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -215,6 +214,16 @@ PatientType PatientDemographicsCoreData::getPatientType() const {
 	
 bool PatientDemographicsCoreData::hasPatientType() const {
 	return data->PatientType().present();
+}
+	
+PatientDemographicsCoreData & PatientDemographicsCoreData::setDateOfBirth(const DateOfBirthType & value) {
+	data->DateOfBirth(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+DateOfBirthType PatientDemographicsCoreData::getDateOfBirth() const {
+	return ConvertFromCDM::convert(data->DateOfBirth());
 }
 	
 PatientDemographicsCoreData & PatientDemographicsCoreData::setHeight(const Measurement & value) {

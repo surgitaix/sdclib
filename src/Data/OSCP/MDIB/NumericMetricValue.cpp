@@ -71,6 +71,16 @@ NumericMetricValue & NumericMetricValue:: operator=(const NumericMetricValue & o
 }
 
 
+NumericMetricValue & NumericMetricValue::setMetricQuality(const MetricQualityType & value) {
+	data->MetricQuality(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+MetricQualityType NumericMetricValue::getMetricQuality() const {
+	return ConvertFromCDM::convert(data->MetricQuality());
+}
+	
 NumericMetricValue & NumericMetricValue::setType(const CodedValue & value) {
 	data->Type(ConvertToCDM::convert(value));
 	return *this;
@@ -79,36 +89,6 @@ NumericMetricValue & NumericMetricValue::setType(const CodedValue & value) {
 
 CodedValue NumericMetricValue::getType() const {
 	return ConvertFromCDM::convert(data->Type());
-}
-	
-NumericMetricValue & NumericMetricValue::setValidity(const MeasurementValidity & value) {
-	data->Validity(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-MeasurementValidity NumericMetricValue::getValidity() const {
-	return ConvertFromCDM::convert(data->Validity());
-}
-	
-NumericMetricValue & NumericMetricValue::setMode(const GenerationMode & value) {
-	data->Mode(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-GenerationMode NumericMetricValue::getMode() const {
-	return ConvertFromCDM::convert(data->Mode());
-}
-	
-NumericMetricValue & NumericMetricValue::setQi(const QualityIndicator & value) {
-	data->Qi(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-QualityIndicator NumericMetricValue::getQi() const {
-	return ConvertFromCDM::convert(data->Qi());
 }
 	
 NumericMetricValue & NumericMetricValue::setStartTime(const Timestamp & value) {

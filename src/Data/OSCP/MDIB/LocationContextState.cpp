@@ -38,7 +38,6 @@
 
 #include "OSCLib/Data/OSCP/MDIB/LocationDetail.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {

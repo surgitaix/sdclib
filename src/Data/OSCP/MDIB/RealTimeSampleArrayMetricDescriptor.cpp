@@ -39,7 +39,6 @@
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {

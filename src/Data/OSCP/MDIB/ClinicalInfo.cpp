@@ -40,7 +40,6 @@
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -96,6 +95,16 @@ bool ClinicalInfo::hasType() const {
 	return data->Type().present();
 }
 	
+ClinicalInfo & ClinicalInfo::setRelatedMeasurement(const RelatedMeasurementType & value) {
+	data->RelatedMeasurement(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+RelatedMeasurementType ClinicalInfo::getRelatedMeasurement() const {
+	return ConvertFromCDM::convert(data->RelatedMeasurement());
+}
+	
 ClinicalInfo & ClinicalInfo::setValue(const Measurement & value) {
 	data->Value(ConvertToCDM::convert(value));
 	return *this;
@@ -135,16 +144,6 @@ CodedValue ClinicalInfo::getMeaning() const {
 	
 bool ClinicalInfo::hasMeaning() const {
 	return data->Meaning().present();
-}
-	
-ClinicalInfo & ClinicalInfo::setValidity(const MeasurementValidity & value) {
-	data->Validity(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-MeasurementValidity ClinicalInfo::getValidity() const {
-	return ConvertFromCDM::convert(data->Validity());
 }
 	
 ClinicalInfo & ClinicalInfo::addDescription(const LocalizedText & value) {

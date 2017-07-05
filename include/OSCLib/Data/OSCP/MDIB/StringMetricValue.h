@@ -56,17 +56,11 @@ public:
     
     typedef CDM::StringMetricValue WrappedType;
 
+	StringMetricValue & setMetricQuality(const MetricQualityType & value);
+	MetricQualityType getMetricQuality() const;
+
 	StringMetricValue & setType(const CodedValue & value);
 	CodedValue getType() const;
-
-	StringMetricValue & setValidity(const MeasurementValidity & value);
-	MeasurementValidity getValidity() const;
-
-	StringMetricValue & setMode(const GenerationMode & value);
-	GenerationMode getMode() const;
-
-	StringMetricValue & setQi(const QualityIndicator & value);
-	QualityIndicator getQi() const;
 
 	StringMetricValue & setStartTime(const Timestamp & value);
 	Timestamp getStartTime() const;

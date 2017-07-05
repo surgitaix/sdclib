@@ -15,7 +15,7 @@
   */
 
 /*
- *  ClinicalInfo.h
+ *  RelatedMeasurementType.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef CLINICALINFO_H_
-#define CLINICALINFO_H_
+#ifndef RELATEDMEASUREMENTTYPE_H_
+#define RELATEDMEASUREMENTTYPE_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,50 +40,30 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class ClinicalInfo {
+class RelatedMeasurementType {
 private:
-	ClinicalInfo(const CDM::ClinicalInfo & object);
-	operator CDM::ClinicalInfo() const;
+	RelatedMeasurementType(const CDM::RelatedMeasurementType & object);
+	operator CDM::RelatedMeasurementType() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ClinicalInfo();
-	ClinicalInfo(const ClinicalInfo & object);
-	virtual ~ClinicalInfo();
+	RelatedMeasurementType();
+	RelatedMeasurementType(const RelatedMeasurementType & object);
+	virtual ~RelatedMeasurementType();
     
-    void copyFrom(const ClinicalInfo & object);
-    ClinicalInfo & operator=(const ClinicalInfo & object);
+    void copyFrom(const RelatedMeasurementType & object);
+    RelatedMeasurementType & operator=(const RelatedMeasurementType & object);
     
-    typedef CDM::ClinicalInfo WrappedType;
+    typedef CDM::RelatedMeasurementType WrappedType;
 
-	ClinicalInfo & setType(const CodedValue & value);
-	CodedValue getType() const;
-	bool getType(CodedValue & out) const;
-	bool hasType() const;
+	RelatedMeasurementType & setValidity(const MeasurementValidity & value);
+	MeasurementValidity getValidity() const;
 
-	ClinicalInfo & setRelatedMeasurement(const RelatedMeasurementType & value);
-	RelatedMeasurementType getRelatedMeasurement() const;
-
-	ClinicalInfo & setValue(const Measurement & value);
-	Measurement getValue() const;
-
-	ClinicalInfo & setRange(const Range & value);
-	Range getRange() const;
-
-	ClinicalInfo & setMeaning(const CodedValue & value);
-	CodedValue getMeaning() const;
-	bool getMeaning(CodedValue & out) const;
-	bool hasMeaning() const;
-
-	ClinicalInfo & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptionLists() const;
-	void clearDescriptionLists();
-	
 private:
-	std::shared_ptr<CDM::ClinicalInfo> data;
+	std::shared_ptr<CDM::RelatedMeasurementType> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* CLINICALINFO_H_ */
+#endif /* RELATEDMEASUREMENTTYPE_H_ */

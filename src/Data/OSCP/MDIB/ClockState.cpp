@@ -38,7 +38,6 @@
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
 
 namespace OSCLib {
 namespace Data {

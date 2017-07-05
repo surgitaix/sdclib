@@ -76,6 +76,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/AlertSignalState.cpp
 ./src/Data/OSCP/MDIB/AlertSystemDescriptor.cpp
 ./src/Data/OSCP/MDIB/AlertSystemState.cpp
+./src/Data/OSCP/MDIB/ApplyAnnotationType.cpp
 ./src/Data/OSCP/MDIB/BaseDemographics.cpp
 ./src/Data/OSCP/MDIB/BatteryDescriptor.cpp
 ./src/Data/OSCP/MDIB/BatteryState.cpp
@@ -116,6 +117,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/MeansContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/MeansContextState.cpp
 ./src/Data/OSCP/MDIB/Measurement.cpp
+./src/Data/OSCP/MDIB/MetricQualityType.cpp
 ./src/Data/OSCP/MDIB/NeonatalPatientDemographicsCoreData.cpp
 ./src/Data/OSCP/MDIB/NumericMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/NumericMetricState.cpp
@@ -131,6 +133,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/Range.cpp
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.cpp
+./src/Data/OSCP/MDIB/RelatedMeasurementType.cpp
 ./src/Data/OSCP/MDIB/RemedyInfo.cpp
 ./src/Data/OSCP/MDIB/RetrievabilityInfo.cpp
 ./src/Data/OSCP/MDIB/SampleArrayValue.cpp

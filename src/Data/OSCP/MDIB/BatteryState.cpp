@@ -37,11 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
 
 namespace OSCLib {

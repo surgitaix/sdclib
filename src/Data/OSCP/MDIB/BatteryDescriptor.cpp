@@ -37,8 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"

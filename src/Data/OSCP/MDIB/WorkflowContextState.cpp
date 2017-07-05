@@ -41,12 +41,6 @@
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
-#include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
