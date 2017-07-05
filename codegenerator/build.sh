@@ -1,6 +1,8 @@
 #!/bin/bash
 python pyCodeGen.py
 gsl complexTypesGSLformated.xml
+rm ../include/OSCLib/Data/OSCP/MDIB/*.h
+rm ../src/Data/OSCP/MDIB/*.cpp
 mv *.h ../include/OSCLib/Data/OSCP/MDIB/
 mv *.cpp ../src/Data/OSCP/MDIB/
 # generate CMakeLists.txt block

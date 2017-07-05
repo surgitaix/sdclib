@@ -56,8 +56,8 @@ public:
     
     typedef CDM::LimitAlertConditionState WrappedType;
     typedef EnumStringMetricDescriptor DescriptorType;
-    typedef ProviderHandlerType EnumStringMetricDescriptor;
     typedef OSCPProviderEnumStringMetricStateHandler ProviderHandlerType;
+    typedef OSCPConsumerLimitAlertConditionStateHandler ConsumerHandlerType;
 
 	LimitAlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

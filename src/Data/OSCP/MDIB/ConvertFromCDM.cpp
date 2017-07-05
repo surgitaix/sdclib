@@ -6,22 +6,13 @@
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractState.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractMultiState.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractDeviceComponentDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractAlertingDeviceComponentDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractDeviceComponentState.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractAlertingDeviceComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdState.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelState.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractAlertDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractAlertState.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemSignalActivation.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
@@ -33,12 +24,9 @@
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
@@ -51,9 +39,6 @@
 #include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ScoState.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractSetStateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractOperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/SetValueOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetValueOperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
@@ -74,8 +59,6 @@
 #include "OSCLib/Data/OSCP/MDIB/BatteryState.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AbstractContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/BaseDemographics.h"
 #include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationDetail.h"
@@ -129,38 +112,46 @@ ConvertFromCDM::~ConvertFromCDM() {
 
 }
 
-bool ConvertFromCDM::convert(const bool & source) {
+
+Timestamp ConvertFromCDM::convert(const Timestamp & source) {
 	return source;
 }
 
-double ConvertFromCDM::convert(const double & source) {
+VersionCounter ConvertFromCDM::convert(const VersionCounter & source) {
 	return source;
 }
 
-unsigned short int ConvertFromCDM::convert(const unsigned short int & source) {
+ReferencedVersion ConvertFromCDM::convert(const ReferencedVersion & source) {
 	return source;
 }
 
-unsigned int ConvertFromCDM::convert(const unsigned int & source) {
+CodeIdentifier ConvertFromCDM::convert(const CodeIdentifier & source) {
 	return source;
 }
 
-int ConvertFromCDM::convert(const int & source) {
+SymbolicCodeName ConvertFromCDM::convert(const SymbolicCodeName & source) {
 	return source;
 }
 
-long ConvertFromCDM::convert(const long & source) {
+LocalizedTextRef ConvertFromCDM::convert(const LocalizedTextRef & source) {
 	return source;
 }
 
-long long ConvertFromCDM::convert(const long long & source) {
+Handle ConvertFromCDM::convert(const Handle & source) {
 	return source;
 }
 
-std::string ConvertFromCDM::convert(const std::string & source) {
+HandleRef ConvertFromCDM::convert(const HandleRef & source) {
 	return source;
 }
 
+QualityIndicator ConvertFromCDM::convert(const QualityIndicator & source) {
+	return source;
+}
+
+TimeZone ConvertFromCDM::convert(const TimeZone & source) {
+	return source;
+}
 
 MeasurementValidity ConvertFromCDM::convert(const CDM::MeasurementValidity & source) {
 	switch (source) {

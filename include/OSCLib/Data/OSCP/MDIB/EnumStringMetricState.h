@@ -56,8 +56,8 @@ public:
     
     typedef CDM::EnumStringMetricState WrappedType;
     typedef EnumStringMetricDescriptor DescriptorType;
-    typedef ProviderHandlerType EnumStringMetricDescriptor;
     typedef OSCPProviderEnumStringMetricStateHandler ProviderHandlerType;
+    typedef OSCPConsumerEnumStringMetricStateHandler ConsumerHandlerType;
 
 	EnumStringMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

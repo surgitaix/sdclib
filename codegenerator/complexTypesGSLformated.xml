@@ -132,7 +132,7 @@
 
 	<class name = "MdsState" parent = "AbstractAlertingDeviceComponentState" abstract = "false">
 		<typedef name = "DescriptorType" type = "MdsDescriptor" />
-		<typedef name = "MdsDescriptor" type = "ProviderHandlerType" />
+		<typedef name = "ProviderHandlerType" type = "OSCPProviderHydraMDSStateHandler" />
 		<property name = "Lang" type = "xml_schema::Language" optional = "false" />
 		<property name = "OperatingMode" type = "MdsOperatingMode" optional = "true" />
 	</class>
@@ -180,8 +180,8 @@
 	<class name = "AlertSystemState" parent = "AbstractAlertState" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/SystemSignalActivation.h" />
 		<typedef name = "DescriptorType" type = "AlertSystemDescriptor" />
-		<typedef name = "AlertSystemDescriptor" type = "ProviderHandlerType" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSignalStateHandler" />
+		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSignalStateHandler" />
 		<property name = "LastSelfCheck" type = "Timestamp" optional = "false" />
 		<property name = "SelfCheckCount" type = "long long" optional = "false" />
 		<property name = "PresentPhysiologicalAlarmConditions" type = "AlertConditionReference" optional = "false" />
@@ -211,8 +211,8 @@
 
 	<class name = "AlertConditionState" parent = "AbstractAlertState" abstract = "false">
 		<typedef name = "DescriptorType" type = "AlertConditionDescriptor" />
-		<typedef name = "AlertConditionDescriptor" type = "ProviderHandlerType" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderAlertConditionStateHandler" />
+		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertConditionStateHandler" />
 		<property name = "ActualPriority" type = "AlertConditionPriority" optional = "false" />
 		<property name = "Rank" type = "int" optional = "false" />
 		<property name = "Presence" type = "bool" optional = "false" />
@@ -228,8 +228,8 @@
 	<class name = "LimitAlertConditionState" parent = "AlertConditionState" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<typedef name = "DescriptorType" type = "EnumStringMetricDescriptor" />
-		<typedef name = "EnumStringMetricDescriptor" type = "ProviderHandlerType" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderEnumStringMetricStateHandler" />
+		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerLimitAlertConditionStateHandler" />
 		<property name = "Limits" type = "Range" optional = "false" />
 		<property name = "MonitoredAlertLimits" type = "AlertConditionMonitoredLimits" optional = "false" />
 		<property name = "AutoLimitActivationState" type = "AlertActivation" optional = "true" />
@@ -247,14 +247,14 @@
 
 	<class name = "AlertSignalState" parent = "AbstractAlertState" abstract = "false">
 		<typedef name = "DescriptorType" type = "AlertSignalDescriptor" />
-		<typedef name = "AlertSignalDescriptor" type = "ProviderHandlerType" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSignalStateHandler" />
+		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSignalStateHandler" />
 		<property name = "Presence" type = "AlertSignalPresence" optional = "true" />
 		<property name = "Location" type = "AlertSignalPrimaryLocation" optional = "true" />
 		<property name = "Slot" type = "unsigned int" optional = "true" />
 	</class>
 
-	<class name = "MetricQualityType" parent = "NULL" abstract = "False">
+	<class name = "MetricQualityType" parent = "NULL" abstract = "false">
 		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
 		<property name = "Mode" type = "GenerationMode" optional = "false" />
 		<property name = "Qi" type = "QualityIndicator" optional = "false" />
@@ -277,7 +277,7 @@
 		<property name = "Value" type = "std::string" optional = "true" />
 	</class>
 
-	<class name = "ApplyAnnotationType" parent = "NULL" abstract = "False">
+	<class name = "ApplyAnnotationType" parent = "NULL" abstract = "false">
 		<property name = "AnnotationIndex" type = "unsigned int" optional = "false" />
 		<property name = "SampleIndex" type = "unsigned int" optional = "false" />
 	</class>
@@ -320,8 +320,8 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<typedef name = "DescriptorType" type = "NumericMetricDescriptor" />
-		<typedef name = "NumericMetricDescriptor" type = "ProviderHandlerType" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderNumericMetricStateHandler" />
+		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerNumericMetricStateHandler" />
 		<property name = "MetricValue" type = "NumericMetricValue" optional = "true" />
 		<property name = "ActiveAveragingPeriod" type = "xml_schema::Duration" optional = "true" />
 		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeLists" type = "Range" />
@@ -334,8 +334,8 @@
 	<class name = "StringMetricState" parent = "AbstractMetricState" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/StringMetricValue.h" />
 		<typedef name = "DescriptorType" type = "StringMetricDescriptor" />
-		<typedef name = "StringMetricDescriptor" type = "ProviderHandlerType" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderStringMetricStateHandler" />
+		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerStringMetricStateHandler" />
 		<property name = "MetricValue" type = "StringMetricValue" optional = "true" />
 	</class>
 
@@ -347,8 +347,8 @@
 
 	<class name = "EnumStringMetricState" parent = "StringMetricState" abstract = "false">
 		<typedef name = "DescriptorType" type = "EnumStringMetricDescriptor" />
-		<typedef name = "EnumStringMetricDescriptor" type = "ProviderHandlerType" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderEnumStringMetricStateHandler" />
+		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerEnumStringMetricStateHandler" />
 	</class>
 
 	<class name = "RealTimeSampleArrayMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
@@ -363,8 +363,8 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<typedef name = "DescriptorType" type = "RealTimeSampleArrayMetricDescriptor" />
-		<typedef name = "RealTimeSampleArrayMetricDescriptor" type = "ProviderHandlerType" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderRealTimeSampleArrayMetricStateHandler" />
+		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerRealTimeSampleArrayMetricStateHandler" />
 		<property name = "MetricValue" type = "SampleArrayValue" optional = "true" />
 		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeLists" type = "Range" />
 	</class>
@@ -592,7 +592,7 @@
 		<typedef name = "StateType" type = "WorkflowContextState" />
 	</class>
 
-	<class name = "RelatedMeasurementType" parent = "NULL" abstract = "False">
+	<class name = "RelatedMeasurementType" parent = "NULL" abstract = "false">
 		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
 	</class>
 

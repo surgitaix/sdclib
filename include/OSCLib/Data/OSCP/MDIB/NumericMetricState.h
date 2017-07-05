@@ -56,8 +56,8 @@ public:
     
     typedef CDM::NumericMetricState WrappedType;
     typedef NumericMetricDescriptor DescriptorType;
-    typedef ProviderHandlerType NumericMetricDescriptor;
     typedef OSCPProviderNumericMetricStateHandler ProviderHandlerType;
+    typedef OSCPConsumerNumericMetricStateHandler ConsumerHandlerType;
 
 	NumericMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

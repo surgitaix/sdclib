@@ -56,7 +56,7 @@ public:
     
     typedef CDM::MdsState WrappedType;
     typedef MdsDescriptor DescriptorType;
-    typedef ProviderHandlerType MdsDescriptor;
+    typedef OSCPProviderHydraMDSStateHandler ProviderHandlerType;
 
 	MdsState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
