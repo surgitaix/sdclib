@@ -81,6 +81,9 @@
 	</class>
 
 	<class name = "AbstractDeviceComponentDescriptor" parent = "AbstractDescriptor" abstract = "true">
+	</class>
+
+	<class name = "ProductionSpecificationType" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<property name = "SpecType" type = "CodedValue" optional = "false" />
@@ -112,22 +115,25 @@
 	</class>
 
 	<class name = "MdsDescriptor" parent = "AbstractAlertingDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h" />
-		<property name = "Udi" type = "std::string" optional = "true" />
-		<property name = "ModelNumber" type = "std::string" optional = "true" />
 		<property name = "SystemContext" type = "SystemContextDescriptor" optional = "true" />
 		<property name = "Clock" type = "ClockDescriptor" optional = "true" />
 		<property name = "Battery" type = "BatteryDescriptor" optional = "true" />
 		<property name = "Sco" type = "ScoDescriptor" optional = "true" />
+		<propertyList nameSingle = "Vmd" nameSeveral = "VmdLists" type = "VmdDescriptor" />
+	</class>
+
+	<class name = "MetaDataType" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "Udi" type = "std::string" optional = "true" />
+		<property name = "ModelNumber" type = "std::string" optional = "true" />
 		<propertyList nameSingle = "Manufacturer" nameSeveral = "ManufacturerLists" type = "LocalizedText" />
 		<propertyList nameSingle = "ModelName" nameSeveral = "ModelNameLists" type = "LocalizedText" />
 		<propertyList nameSingle = "SerialNumber" nameSeveral = "SerialNumberLists" type = "std::string" />
-		<propertyList nameSingle = "Vmd" nameSeveral = "VmdLists" type = "VmdDescriptor" />
 	</class>
 
 	<class name = "MdsState" parent = "AbstractAlertingDeviceComponentState" abstract = "false">
@@ -254,19 +260,21 @@
 		<property name = "Slot" type = "unsigned int" optional = "true" />
 	</class>
 
+	<class name = "AbstractMetricValue" parent = "NULL" abstract = "true">
+		<property name = "StartTime" type = "Timestamp" optional = "true" />
+		<property name = "StopTime" type = "Timestamp" optional = "true" />
+		<property name = "DeterminationTime" type = "Timestamp" optional = "true" />
+	</class>
+
 	<class name = "MetricQualityType" parent = "NULL" abstract = "false">
 		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
 		<property name = "Mode" type = "GenerationMode" optional = "false" />
 		<property name = "Qi" type = "QualityIndicator" optional = "false" />
 	</class>
 
-	<class name = "AbstractMetricValue" parent = "NULL" abstract = "true">
+	<class name = "AnnotationType" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<property name = "MetricQuality" type = "MetricQualityType" optional = "False" />
 		<property name = "Type" type = "CodedValue" optional = "false" />
-		<property name = "StartTime" type = "Timestamp" optional = "true" />
-		<property name = "StopTime" type = "Timestamp" optional = "true" />
-		<property name = "DeterminationTime" type = "Timestamp" optional = "true" />
 	</class>
 
 	<class name = "NumericMetricValue" parent = "AbstractMetricValue" abstract = "false">
@@ -277,14 +285,13 @@
 		<property name = "Value" type = "std::string" optional = "true" />
 	</class>
 
+	<class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false">
+		<property name = "Samples" type = "RealTimeValueType" optional = "false" />
+	</class>
+
 	<class name = "ApplyAnnotationType" parent = "NULL" abstract = "false">
 		<property name = "AnnotationIndex" type = "unsigned int" optional = "false" />
 		<property name = "SampleIndex" type = "unsigned int" optional = "false" />
-	</class>
-
-	<class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false">
-		<property name = "ApplyAnnotation" type = "ApplyAnnotationType" optional = "False" />
-		<property name = "Samples" type = "RealTimeValueType" optional = "false" />
 	</class>
 
 	<class name = "AbstractMetricDescriptor" parent = "AbstractDescriptor" abstract = "true">
@@ -340,6 +347,9 @@
 	</class>
 
 	<class name = "EnumStringMetricDescriptor" parent = "StringMetricDescriptor" abstract = "false">
+	</class>
+
+	<class name = "AllowedValueType" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Value" type = "std::string" optional = "false" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
@@ -421,11 +431,14 @@
 	</class>
 
 	<class name = "ActivateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false">
+		<property name = "ActivationDuration" type = "xml_schema::Duration" optional = "false" />
+		<property name = "Retriggerable" type = "bool" optional = "false" />
+	</class>
+
+	<class name = "ArgumentType" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "ArgName" type = "CodedValue" optional = "false" />
 		<property name = "Arg" type = "xml_schema::Qname" optional = "false" />
-		<property name = "ActivationDuration" type = "xml_schema::Duration" optional = "false" />
-		<property name = "Retriggerable" type = "bool" optional = "false" />
 	</class>
 
 	<class name = "ActivateOperationState" parent = "AbstractOperationState" abstract = "false">
@@ -556,7 +569,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Sex" type = "Sex" optional = "true" />
 		<property name = "PatientType" type = "PatientType" optional = "true" />
-		<property name = "DateOfBirth" type = "DateOfBirthType" optional = "False" />
+		<property name = "DateOfBirth" type = "DateOfBirthType" optional = "true" />
 		<property name = "Height" type = "Measurement" optional = "true" />
 		<property name = "Weight" type = "Measurement" optional = "true" />
 		<property name = "Race" type = "CodedValue" optional = "true" />
@@ -592,21 +605,24 @@
 		<typedef name = "StateType" type = "WorkflowContextState" />
 	</class>
 
-	<class name = "RelatedMeasurementType" parent = "NULL" abstract = "false">
-		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
-	</class>
-
 	<class name = "ClinicalInfo" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
-		<property name = "RelatedMeasurement" type = "RelatedMeasurementType" optional = "False" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+	</class>
+
+	<class name = "RelatedMeasurementType" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<property name = "Value" type = "Measurement" optional = "false" />
+		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
+	</class>
+
+	<class name = "ReferenceRangeType" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Range" type = "Range" optional = "false" />
 		<property name = "Meaning" type = "CodedValue" optional = "true" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
 	</class>
 
 	<class name = "ImagingProcedure" parent = "NULL" abstract = "false">
@@ -644,21 +660,34 @@
 	</class>
 
 	<class name = "WorkflowContextState" parent = "AbstractContextState" abstract = "false">
+		<typedef name = "DescriptorType" type = "WorkflowContextDescriptor" />
+	</class>
+
+	<class name = "WorkflowDetailType" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocationReference.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
-		<typedef name = "DescriptorType" type = "WorkflowContextDescriptor" />
 		<property name = "Patient" type = "PersonReference" optional = "false" />
 		<property name = "AssignedLocation" type = "LocationReference" optional = "true" />
 		<property name = "VisitNumber" type = "InstanceIdentifier" optional = "true" />
+		<propertyList nameSingle = "DangerCode" nameSeveral = "DangerCodeLists" type = "CodedValue" />
+		<propertyList nameSingle = "RelevantClinicalInfo" nameSeveral = "RelevantClinicalInfoLists" type = "ClinicalInfo" />
+	</class>
+
+	<class name = "RequestedOrderDetailType" parent = "OrderDetail" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<property name = "ReferringPhysician" type = "PersonReference" optional = "true" />
 		<property name = "RequestingPhysician" type = "PersonReference" optional = "true" />
 		<property name = "PlacerOrderNumber" type = "InstanceIdentifier" optional = "false" />
+	</class>
+
+	<class name = "PerformedOrderDetailType" parent = "OrderDetail" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
 		<property name = "FillerOrderNumber" type = "InstanceIdentifier" optional = "true" />
-		<propertyList nameSingle = "DangerCode" nameSeveral = "DangerCodeLists" type = "CodedValue" />
-		<propertyList nameSingle = "RelevantClinicalInfo" nameSeveral = "RelevantClinicalInfoLists" type = "ClinicalInfo" />
 		<propertyList nameSingle = "ResultingClinicalInfo" nameSeveral = "ResultingClinicalInfoLists" type = "ClinicalInfo" />
 	</class>
 
