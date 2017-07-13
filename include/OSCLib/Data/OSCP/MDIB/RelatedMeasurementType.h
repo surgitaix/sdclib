@@ -56,6 +56,9 @@ public:
     
     typedef CDM::RelatedMeasurementType WrappedType;
 
+	RelatedMeasurementType & setValue(const Measurement & value);
+	Measurement getValue() const;
+
 	RelatedMeasurementType & setValidity(const MeasurementValidity & value);
 	MeasurementValidity getValidity() const;
 

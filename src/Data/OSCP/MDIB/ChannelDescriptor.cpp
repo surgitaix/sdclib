@@ -39,8 +39,6 @@
 #include "OSCLib/Data/OSCP/MDIB/AbstractMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -146,47 +144,6 @@ SafetyClassification ChannelDescriptor::getSafetyClassification() const {
 	
 bool ChannelDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
-}
-	
-ChannelDescriptor & ChannelDescriptor::setSpecType(const CodedValue & value) {
-	data->SpecType(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-CodedValue ChannelDescriptor::getSpecType() const {
-	return ConvertFromCDM::convert(data->SpecType());
-}
-	
-ChannelDescriptor & ChannelDescriptor::setProductionSpec(const std::string & value) {
-	data->ProductionSpec(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string ChannelDescriptor::getProductionSpec() const {
-	return ConvertFromCDM::convert(data->ProductionSpec());
-}
-	
-ChannelDescriptor & ChannelDescriptor::setComponentId(const InstanceIdentifier & value) {
-	data->ComponentId(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ChannelDescriptor::getComponentId(InstanceIdentifier & out) const {
-	if (data->ComponentId().present()) {
-		out = ConvertFromCDM::convert(data->ComponentId().get());
-		return true;
-	}
-	return false;
-}
-
-InstanceIdentifier ChannelDescriptor::getComponentId() const {
-	return ConvertFromCDM::convert(data->ComponentId().get());
-}
-	
-bool ChannelDescriptor::hasComponentId() const {
-	return data->ComponentId().present();
 }
 	
 ChannelDescriptor & ChannelDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {

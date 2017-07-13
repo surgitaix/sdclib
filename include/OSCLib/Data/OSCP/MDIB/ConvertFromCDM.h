@@ -61,11 +61,13 @@ public:
 	static AbstractState convert(const CDM::AbstractState & source);
 	static AbstractMultiState convert(const CDM::AbstractMultiState & source);
 	static AbstractDeviceComponentDescriptor convert(const CDM::AbstractDeviceComponentDescriptor & source);
+	static ProductionSpecificationType convert(const CDM::ProductionSpecificationType & source);
 	static AbstractAlertingDeviceComponentDescriptor convert(const CDM::AbstractAlertingDeviceComponentDescriptor & source);
 	static CalibrationInfo convert(const CDM::CalibrationInfo & source);
 	static AbstractDeviceComponentState convert(const CDM::AbstractDeviceComponentState & source);
 	static AbstractAlertingDeviceComponentState convert(const CDM::AbstractAlertingDeviceComponentState & source);
 	static MdsDescriptor convert(const CDM::MdsDescriptor & source);
+	static MetaDataType convert(const CDM::MetaDataType & source);
 	static MdsState convert(const CDM::MdsState & source);
 	static VmdDescriptor convert(const CDM::VmdDescriptor & source);
 	static VmdState convert(const CDM::VmdState & source);
@@ -85,9 +87,12 @@ public:
 	static AlertSignalDescriptor convert(const CDM::AlertSignalDescriptor & source);
 	static AlertSignalState convert(const CDM::AlertSignalState & source);
 	static AbstractMetricValue convert(const CDM::AbstractMetricValue & source);
+	static MetricQualityType convert(const CDM::MetricQualityType & source);
+	static AnnotationType convert(const CDM::AnnotationType & source);
 	static NumericMetricValue convert(const CDM::NumericMetricValue & source);
 	static StringMetricValue convert(const CDM::StringMetricValue & source);
 	static SampleArrayValue convert(const CDM::SampleArrayValue & source);
+	static ApplyAnnotationType convert(const CDM::ApplyAnnotationType & source);
 	static AbstractMetricDescriptor convert(const CDM::AbstractMetricDescriptor & source);
 	static AbstractMetricState convert(const CDM::AbstractMetricState & source);
 	static NumericMetricDescriptor convert(const CDM::NumericMetricDescriptor & source);
@@ -95,6 +100,7 @@ public:
 	static StringMetricDescriptor convert(const CDM::StringMetricDescriptor & source);
 	static StringMetricState convert(const CDM::StringMetricState & source);
 	static EnumStringMetricDescriptor convert(const CDM::EnumStringMetricDescriptor & source);
+	static AllowedValueType convert(const CDM::AllowedValueType & source);
 	static EnumStringMetricState convert(const CDM::EnumStringMetricState & source);
 	static RealTimeSampleArrayMetricDescriptor convert(const CDM::RealTimeSampleArrayMetricDescriptor & source);
 	static RealTimeSampleArrayMetricState convert(const CDM::RealTimeSampleArrayMetricState & source);
@@ -110,6 +116,7 @@ public:
 	static SetStringOperationDescriptor convert(const CDM::SetStringOperationDescriptor & source);
 	static SetStringOperationState convert(const CDM::SetStringOperationState & source);
 	static ActivateOperationDescriptor convert(const CDM::ActivateOperationDescriptor & source);
+	static ArgumentType convert(const CDM::ArgumentType & source);
 	static ActivateOperationState convert(const CDM::ActivateOperationState & source);
 	static SetContextStateOperationDescriptor convert(const CDM::SetContextStateOperationDescriptor & source);
 	static SetContextStateOperationState convert(const CDM::SetContextStateOperationState & source);
@@ -122,6 +129,7 @@ public:
 	static ClockDescriptor convert(const CDM::ClockDescriptor & source);
 	static ClockState convert(const CDM::ClockState & source);
 	static BatteryDescriptor convert(const CDM::BatteryDescriptor & source);
+	static ChargeStatusType convert(const CDM::ChargeStatusType & source);
 	static BatteryState convert(const CDM::BatteryState & source);
 	static SystemContextDescriptor convert(const CDM::SystemContextDescriptor & source);
 	static SystemContextState convert(const CDM::SystemContextState & source);
@@ -138,11 +146,16 @@ public:
 	static LocationContextState convert(const CDM::LocationContextState & source);
 	static WorkflowContextDescriptor convert(const CDM::WorkflowContextDescriptor & source);
 	static ClinicalInfo convert(const CDM::ClinicalInfo & source);
+	static RelatedMeasurementType convert(const CDM::RelatedMeasurementType & source);
+	static ReferenceRangeType convert(const CDM::ReferenceRangeType & source);
 	static ImagingProcedure convert(const CDM::ImagingProcedure & source);
 	static LocationReference convert(const CDM::LocationReference & source);
 	static OrderDetail convert(const CDM::OrderDetail & source);
 	static PersonParticipation convert(const CDM::PersonParticipation & source);
 	static WorkflowContextState convert(const CDM::WorkflowContextState & source);
+	static WorkflowDetailType convert(const CDM::WorkflowDetailType & source);
+	static RequestedOrderDetailType convert(const CDM::RequestedOrderDetailType & source);
+	static PerformedOrderDetailType convert(const CDM::PerformedOrderDetailType & source);
 	static OperatorContextDescriptor convert(const CDM::OperatorContextDescriptor & source);
 	static OperatorContextState convert(const CDM::OperatorContextState & source);
 	static MeansContextDescriptor convert(const CDM::MeansContextDescriptor & source);
@@ -161,6 +174,7 @@ public:
 	static HandleRef convert(const HandleRef & source);
 	static QualityIndicator convert(const QualityIndicator & source);
 	static TimeZone convert(const TimeZone & source);
+	static DateOfBirthType convert(const DateOfBirthType & source);
 };
 
 } /* namespace OSCP */

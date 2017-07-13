@@ -74,17 +74,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	VmdDescriptor & setSpecType(const CodedValue & value);
-	CodedValue getSpecType() const;
-
-	VmdDescriptor & setProductionSpec(const std::string & value);
-	std::string getProductionSpec() const;
-
-	VmdDescriptor & setComponentId(const InstanceIdentifier & value);
-	InstanceIdentifier getComponentId() const;
-	bool getComponentId(InstanceIdentifier & out) const;
-	bool hasComponentId() const;
-
 	VmdDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;

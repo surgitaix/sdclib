@@ -40,8 +40,6 @@
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -147,47 +145,6 @@ SafetyClassification VmdDescriptor::getSafetyClassification() const {
 	
 bool VmdDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
-}
-	
-VmdDescriptor & VmdDescriptor::setSpecType(const CodedValue & value) {
-	data->SpecType(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-CodedValue VmdDescriptor::getSpecType() const {
-	return ConvertFromCDM::convert(data->SpecType());
-}
-	
-VmdDescriptor & VmdDescriptor::setProductionSpec(const std::string & value) {
-	data->ProductionSpec(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string VmdDescriptor::getProductionSpec() const {
-	return ConvertFromCDM::convert(data->ProductionSpec());
-}
-	
-VmdDescriptor & VmdDescriptor::setComponentId(const InstanceIdentifier & value) {
-	data->ComponentId(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool VmdDescriptor::getComponentId(InstanceIdentifier & out) const {
-	if (data->ComponentId().present()) {
-		out = ConvertFromCDM::convert(data->ComponentId().get());
-		return true;
-	}
-	return false;
-}
-
-InstanceIdentifier VmdDescriptor::getComponentId() const {
-	return ConvertFromCDM::convert(data->ComponentId().get());
-}
-	
-bool VmdDescriptor::hasComponentId() const {
-	return data->ComponentId().present();
 }
 	
 VmdDescriptor & VmdDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {

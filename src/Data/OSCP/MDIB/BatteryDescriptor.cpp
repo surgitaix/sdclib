@@ -38,8 +38,6 @@
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -145,47 +143,6 @@ SafetyClassification BatteryDescriptor::getSafetyClassification() const {
 	
 bool BatteryDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
-}
-	
-BatteryDescriptor & BatteryDescriptor::setSpecType(const CodedValue & value) {
-	data->SpecType(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-CodedValue BatteryDescriptor::getSpecType() const {
-	return ConvertFromCDM::convert(data->SpecType());
-}
-	
-BatteryDescriptor & BatteryDescriptor::setProductionSpec(const std::string & value) {
-	data->ProductionSpec(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string BatteryDescriptor::getProductionSpec() const {
-	return ConvertFromCDM::convert(data->ProductionSpec());
-}
-	
-BatteryDescriptor & BatteryDescriptor::setComponentId(const InstanceIdentifier & value) {
-	data->ComponentId(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool BatteryDescriptor::getComponentId(InstanceIdentifier & out) const {
-	if (data->ComponentId().present()) {
-		out = ConvertFromCDM::convert(data->ComponentId().get());
-		return true;
-	}
-	return false;
-}
-
-InstanceIdentifier BatteryDescriptor::getComponentId() const {
-	return ConvertFromCDM::convert(data->ComponentId().get());
-}
-	
-bool BatteryDescriptor::hasComponentId() const {
-	return data->ComponentId().present();
 }
 	
 BatteryDescriptor & BatteryDescriptor::setCapacityFullCharge(const Measurement & value) {

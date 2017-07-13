@@ -81,13 +81,39 @@ class FileManager(object):
 class ClassBuilderForwarding(object):
     def __init__(self):
         self.__cppEnumToStringClassBuilder =  CppEnumToStringClassDeclarationBuilder()
+        self.__cppConvertFromCDMClassDeclarationBuilder = CppConvertFromCDMClassDeclarationBuilder()
+        self.__cppConvertFromCDMClassDefinitionBuilder = CppConvertFromCDMClassDefinitionBuilder(g_basetype_map)
+        self.__cppConvertToCDMClassDeclarationBuilder = CppConvertToCDMClassDeclarationBuilder()
+        self.__cppConvertToCDMClassDefinitionBuilder = CppConvertToCDMClassDefinitionBuilder()
+        self.__cppTypdefStringBuilder = CppTypdefStringBuilder(g_basetype_map)
+        self.__mdibDeclacationsBuilder = MDIBDeclacationsBuilder()
         self.__cppEnumClassBuilder = None
         self.__cppEnumToStringClassDefinitionBuilder = None
         self.__cppConvertFromCDMClassEnumConverterFunctionBuilder = None
         self.__cppConvertToCDMClassEnumConverterFunctionBuilder = None
+        self.__enumClasses_cppCode = ''
+        self.__enumToStringClassMethods_cppCode = ''
+                    
+    def addComplexType(self, complexTypeName, abstractBool):
+        self.__cppConvertFromCDMClassDefinitionBuilder.addComplexType(complexTypeName, abstractBool)
+        self.__cppConvertFromCDMClassDeclarationBuilder.addNonBasetype(complexTypeName)
+        self.__cppConvertToCDMClassDefinitionBuilder.addComplexType(complexTypeName, abstractBool)
+        self.__mdibDeclacationsBuilder.addType(complexTypeName)
         
-    def addBasetype(self):
-        pass
+    def addItemlist(self, simpleTypeName, itemListName):
+        self.__cppTypdefStringBuilder.addItemListTypedef(simpleTypeName, itemListName)
+        self.__cppConvertFromCDMClassDeclarationBuilder.addNonBasetype(simpleTypeName)
+        self.__cppConvertFromCDMClassDefinitionBuilder.addItemList(simpleTypeName)
+        self.__cppConvertToCDMClassDeclarationBuilder.addNonBasetype(simpleTypeName)
+        self.__cppConvertToCDMClassDefinitionBuilder.addItemList(simpleTypeName)
+        
+        
+    def addBasetype(self, simpleTypeName, basetypeType):
+        self.__cppTypdefStringBuilder.addTypedef(simpleTypeName, basetypeType)
+        self.__cppConvertFromCDMClassDeclarationBuilder.addBasetype(simpleTypeName)
+        self.__cppConvertFromCDMClassDefinitionBuilder.addBasetype(simpleTypeName)
+        self.__cppConvertToCDMClassDeclarationBuilder.addBasetype(simpleTypeName)
+        self.__cppConvertToCDMClassDefinitionBuilder.addBasetype(simpleTypeName)
     
     def initEnumClassBuilders(self, simpleTypeName):
         self.__cppEnumToStringClassBuilder.addConvertFunctionDeclarationForSimpleType(simpleTypeName)
@@ -103,41 +129,111 @@ class ClassBuilderForwarding(object):
         self.__cppConvertToCDMClassEnumConverterFunctionBuilder.addConvertEnumEntry(enumEntry)
 
     def finalizeEnumClass(self,simpleTypeName):
-        self.__enumClasses_cppCode = self.__enumClasses_cppCode + cppEnumClassBuilder.getEnumClassAsString()
-        enumToStringClassMethods_cppCode = enumToStringClassMethods_cppCode + cppEnumToStringClassDefinitionBuilder.getEnumToStringClassDefinitionsAsString()
-        cppConvertFromCDMClassDeclarationBuilder.addNonBasetype(simpleTypeName)
-        cppConvertFromCDMClassDefinitionBuilder.addEnumConverterFunctionAsString(cppConvertFromCDMClassEnumConverterFunctionBuilder.getEnumConverterFunction())
-        cppConvertToCDMClassDeclarationBuilder.addNonBasetype(simpleTypeName)
-        cppConvertToCDMClassDefinitionBuilder.addEnumConverterFunctionAsString(cppConvertToCDMClassEnumConverterFunctionBuilder.getEnumConverterFunction())
-            
-    def addItemlist(self):
-        pass
+        self.__enumClasses_cppCode = self.__enumClasses_cppCode + self.__cppEnumClassBuilder.getEnumClassAsString()
+        self.__enumToStringClassMethods_cppCode = self.__enumToStringClassMethods_cppCode + self.__cppEnumToStringClassDefinitionBuilder.getEnumToStringClassDefinitionsAsString()
+        self.__cppConvertFromCDMClassDeclarationBuilder.addNonBasetype(simpleTypeName)
+        self.__cppConvertFromCDMClassDefinitionBuilder.addEnumConverterFunctionAsString(self.__cppConvertFromCDMClassEnumConverterFunctionBuilder.getEnumConverterFunction())
+        self.__cppConvertToCDMClassDeclarationBuilder.addNonBasetype(simpleTypeName)
+        self.__cppConvertToCDMClassDefinitionBuilder.addEnumConverterFunctionAsString(self.__cppConvertToCDMClassEnumConverterFunctionBuilder.getEnumConverterFunction())
 
-    def addComplexType(self):
-        pass
-
-    def getConvertFromCDMClassDeclarationCppCode(self):
-        pass
+    def getSimpleTypesMappingDeclaration(self):
+        return self.__cppTypdefStringBuilder.getCppTypedefString() + self.__enumClasses_cppCode  + self.__cppEnumToStringClassBuilder.getEnumToStringClassDeclarationAsString()
     
+    def getSimpleTypesMappingDefintion(self):
+        return self.__enumToStringClassMethods_cppCode
+    
+    def getConvertFromCDMDeclaration(self):
+        return  self.__cppConvertFromCDMClassDeclarationBuilder.getNonBasetypeCoverterFunctionsDeclarations() + self.__cppConvertFromCDMClassDeclarationBuilder.getBasetypeCoverterFunctionsDeclarations()
+    
+    def getConvertFromCDMDefinition(self):
+        return self.__cppConvertFromCDMClassDefinitionBuilder.getIncludesAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getBaseTypesAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getEnumsAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getComplexTypeFuctionsAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getItemListAsString()
+    
+    def getConvertToCDMDeclaration(self):
+        return self.__cppConvertToCDMClassDeclarationBuilder.getNonBasetypeCoverterFunctionsDeclarations() + self.__cppConvertToCDMClassDeclarationBuilder.getBasetypeCoverterFunctionsDeclarations()
+    
+    def getConvertToCDMDefinition(self):
+        return self.__cppConvertToCDMClassDefinitionBuilder.getIncludesAsString() + self.__cppConvertToCDMClassDefinitionBuilder.getBasetype() + self.__cppConvertToCDMClassDefinitionBuilder.getEnumsAsString() + self.__cppConvertToCDMClassDefinitionBuilder.getComplexAsString() + self.__cppConvertToCDMClassDefinitionBuilder.getItemListAsString()
+        
+    def getMdibForward(self):
+        return self.__mdibDeclacationsBuilder.getDeclarationsAsString()    
+    
+    def getBaseTypeCounter(self):
+        return self.__cppTypdefStringBuilder.getBasetypeCounter()
+    
+    def getItemListCoutner(self):
+        return self.__cppTypdefStringBuilder.getItemListCounter()
+    
+    def getEnumCounter(self):
+        return self.__cppEnumToStringClassBuilder.getEnumCounter()
 
-def make_CppEnumToStringClassBuilder():
-    l_cppEnumToStringClassBuilder = CppEnumToStringClassDeclarationBuilder()
-    return l_cppEnumToStringClassBuilder
+class SimpleTypeNodeParser(object):
+    def __init__(self, classBuilderForwarder, simpleTypes_set):
+        self.__classBuilderForwarder = classBuilderForwarder
+        self.__simpleTypes_set = simpleTypes_set 
+        
+    def parseSimpleTypeNode(self, simpleTypeNode):
+        # get the name of the simple type
+        enumInit_flag = False
+        isEnum = False
+        if 'name' in simpleTypeNode.attrib:
+            simpleTypeName = simpleTypeNode.attrib['name'] # attribute_name = 'name'
+            self.__simpleTypes_set.add(simpleTypeName)
+            print simpleTypeName
+            
+            # destinguish between enums and basetypes/itemlists
+            # enums
+            for enumNode in simpleTypeNode.xpath('./xsd:restriction/xsd:enumeration', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):    
+                enumEntry = enumNode.attrib['value']
+                print 'enum-type>>' + enumEntry
+                # enum_Flag is False at the beginning of a new enum class -> reset classes
+                if not enumInit_flag:
+                    enumInit_flag = True
+                    isEnum = True
+                    self.__classBuilderForwarder.initEnumClassBuilders(simpleTypeName)
 
-
+                self.__classBuilderForwarder.addEnumEntry(enumEntry)
+            
+            # append code for each enum class
+            if isEnum:
+                self.__classBuilderForwarder.finalizeEnumClass(simpleTypeName)
+            
+            # non enums
+            if not isEnum:
+                # basetypes
+                for baseTypeNode in simpleTypeNode.xpath('./xsd:restriction', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                    if 'base' in baseTypeNode.attrib:
+                        basetypeType = baseTypeNode.attrib['base']
+                        print 'base-type>>' + basetypeType
+                        self.__classBuilderForwarder.addBasetype(simpleTypeName,basetypeType)
+                        
+                # item lists
+                for itemListNode in simpleTypeNode.xpath('./xsd:list', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                    if 'itemType' in itemListNode.attrib:
+                        itemListName = itemListNode.attrib['itemType']
+                        print 'itemList-type>>' + itemListName
+                        self.__classBuilderForwarder.addItemlist(simpleTypeName, itemListName)
+                        
+                for unionTypeNode in simpleTypeNode.xpath('./xsd:union', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                    if 'memberTypes' in unionTypeNode.attrib:
+                        # handle as basetype
+                        basetypeType = unionTypeNode.attrib['memberTypes']
+                        self.__classBuilderForwarder.addBasetype(simpleTypeName,basetypeType)
+                        print 'union-type>>' + basetypeType
+                    
 # parses one complex type node
 # build the gslFile, available via getGslClassBuilder
 class ComplexTypeNodeParser(object):
     #static list of embedded nodes against double treatment
     __embeddedNodesNamesList = list()
     
-    def __init__(self, simpleTypes_set, complexTypes_set, basetype_map, apiInterface):
+    def __init__(self, simpleTypes_set, complexTypes_set, basetype_map, apiInterface, simpleTypeNodeParser):
         # complexTypes_set: a set of all existing complexTypes. Complex types get own C++ Classes, thus they need to be references
         # simpleTypes_set: a set of all existing simpleTypes. simple types are all connected in simpleTypesMapping.cpp and are referenced to all complex classes by gsl script
         self.__simpleTypes_set = simpleTypes_set
         self.__complexTypes_set = complexTypes_set
         self.__basetype_map = basetype_map
         self.__apiInterface = apiInterface 
+        self.__simpleTypeNodeParser = simpleTypeNodeParser
         self.__complexTypeName = ''
         self.__abstract_bool = False
         self.__parentTypeName = 'NULL'
@@ -217,26 +313,29 @@ class ComplexTypeNodeParser(object):
                     # add name attribute to embedded type node to convert it in the non-embedded form
                     # since the node is a mutable object this is done at the original node which is going to be parsed the next time.
                     # this approach is more efficient then working with recursion
-                    embeddedComplexTypeNode[0].set('name', nodeName + 'Type')
+                    embeddedComplexTypeNode[0].set('name', nodeName)
+#                     embeddedComplexTypeNode[0].set('name', nodeName + 'Type')
                     ComplexTypeNodeParser.__embeddedNodesNamesList.append(nodeName)
-                    print 'embbeded node created: ' +  nodeName + 'Type'
+#                     print 'embedded complex type node created: ' +  nodeName + 'Type'
+                    print 'embedded complex type node created: ' +  nodeName
+                    return nodeName, nodeName
+#                     return nodeName, nodeName + 'Type'
                     
-                
-                embeddedSimpleUnionType = xmlNode_xpath.xpath('./xsd:simpleType/xsd:union', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'})
-                if embeddedSimpleUnionType:
-                    for embeddedUnion_node in embeddedSimpleUnionType:
-                        # handle as basetype
-                        #TODO: do element parsing
-                        #>>>cppTypdefStringBuilder.addTypedef(element_name + 'Type', embeddedUnion_node.attrib['memberTypes'])
-                        print '++Embedded simpleType with union: '   + ', is contained in the element named: ' + nodeName + 'Type'
-                    return nodeName, nodeName + 'Type'
+                embeddedSimpleTypeNode = xmlNode_xpath.xpath('./xsd:simpleType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'})
+                if embeddedSimpleTypeNode:
+#                     embeddedSimpleTypeNode[0].set('name', nodeName + 'Type')
+                    embeddedSimpleTypeNode[0].set('name', nodeName)
+                    self.__simpleTypeNodeParser.parseSimpleTypeNode(embeddedSimpleTypeNode[0])
+                    ComplexTypeNodeParser.__embeddedNodesNamesList.append(nodeName)
+                    print 'embedded simple type node created: ' +  nodeName
+#                     print 'embedded simple type node created: ' +  nodeName + 'Type'
+                    return nodeName, nodeName
+#                     return nodeName, nodeName + 'Type'
                 
                 # Errorcase if control gets here
                 raise ValueError('WARNING: Property ' + nodeName + ' has no attribute type defined.') 
         else:
             raise ValueError('WARNING: Property has no attribute name defined.') 
-
-
     
     def __parseAttributesOptionality(self, attribute_node, attribute_name, attribute_type):
         optionality_string = 'false'
@@ -269,7 +368,6 @@ class ComplexTypeNodeParser(object):
             self.__gslClassBuilder.addProperty(element_name, element_type, elementOptional)
             print '>> Element -> Property: ' + element_name + ', type= ' + element_type + ', optional= ' + elementOptional 
 
-    
     def getGSLClassBuilder(self):
         return self.__gslClassBuilder
 
@@ -282,7 +380,7 @@ class ComplexTypeNodeParser(object):
     def hasEmbeddedType(self):
         return self.__hasEmbeddedComplexType
 
-    # debug. TODO delete    
+    # debug. TODO delete
     def getEmbeddedAttributesNamesList(self):
         return self.__embeddedNodesNamesList
     
@@ -292,48 +390,10 @@ def make_FileManager():
     l_cppFileBuilder = FileManager()
     return l_cppFileBuilder
 
-def make_CppTypdefStringBuilder(basetype_map):
-    l_cppTypdefStringBuilder = CppTypdefStringBuilder(basetype_map)
-    return l_cppTypdefStringBuilder
-
-def make_CppConvertFromCDMClassDeclarationBuilder():
-    l_cppConvertFromCDMClassDeclarationBuilder = CppConvertFromCDMClassDeclarationBuilder()
-    return l_cppConvertFromCDMClassDeclarationBuilder
-
-def make_CppConvertFromCDMClassDefinitionBuilder(basetype_map):
-    l_cppConvertFromCDMClassDefinitionBuilder = CppConvertFromCDMClassDefinitionBuilder(basetype_map)
-    return l_cppConvertFromCDMClassDefinitionBuilder
-
-def make_CppConvertToCDMClassDeclarationBuilder():
-    l_cppConvertToCDMClassDeclarationBuilder = CppConvertToCDMClassDeclarationBuilder()
-    return l_cppConvertToCDMClassDeclarationBuilder
-
-def make_CppConvertToCDMClassDefinitionBuilder():
-    l_cppConvertToCDMClassDefinitionBuilder = CppConvertToCDMClassDefinitionBuilder()
-    return l_cppConvertToCDMClassDefinitionBuilder
-
-def make_GSLFileBuilder():
-    l_gslFileBuilder = GSLFileBuilder()
-    return l_gslFileBuilder
-
-def make_MDIBDeclacationsBuilder():
-    l_mdibDeclarationsBuilder = MDIBDeclacationsBuilder()
-    return l_mdibDeclarationsBuilder
-
-
-
 ## init
-g_simpleTypes_set = set()
+simpleTypes_set = set()
 g_complexTypes_set = set()
-self.__enumClasses_cppCode = ''
-enumToStringClassMethods_cppCode = ''
-cppTypdefStringBuilder = make_CppTypdefStringBuilder(g_basetype_map)
-cppConvertFromCDMClassDeclarationBuilder = make_CppConvertFromCDMClassDeclarationBuilder()
-cppConvertFromCDMClassDefinitionBuilder = make_CppConvertFromCDMClassDefinitionBuilder(g_basetype_map)
-cppConvertToCDMClassDeclarationBuilder = make_CppConvertToCDMClassDeclarationBuilder()
-cppConvertToCDMClassDefinitionBuilder = make_CppConvertToCDMClassDefinitionBuilder()
-gslFileBuilder = make_GSLFileBuilder()
-mdibDeclacationsBuilder = make_MDIBDeclacationsBuilder()
+gslFileBuilder =  GSLFileBuilder()
 g_embeddedAttributesNamesList = list()
 classBuilderForwarder = ClassBuilderForwarding()
 
@@ -343,64 +403,9 @@ classBuilderForwarder = ClassBuilderForwarding()
 ###
 print '--- simple types ---'
 for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd') }:
-    # search for simple type and go deeper
-    # orientation: https://stackoverflow.com/questions/12657043/parse-xml-with-lxml-extract-element-value
-    for simpleType_node in tree.xpath('//xsd:simpleType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-        enum_flag = False
-        # only take nodes that have an attribute
-        for attribute_name in simpleType_node.attrib:
-            # get the name of the simple type
-            simpleTypeName = simpleType_node.attrib[attribute_name] # attribute_name = 'name'
-            g_simpleTypes_set.add(simpleTypeName)
-            print simpleTypeName
-            
-            # destinguish between enums and basetypes
-            # enums
-            for enum_node in simpleType_node.xpath('./xsd:restriction/xsd:enumeration', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                
-                enumEntry = enum_node.attrib['value']
-                print 'enum-type>>' + enumEntry
-                # enum_Flag is False at the beginning of a new enum class -> reset classes
-                if not enum_flag:
-                    classBuilderForwarder.addEnum(simpleTypeName)
-
-                # flag as enum
-                enum_flag = True
-                classBuilderForwarder.addEnumEntry(enumEntry)
-                
-                
-            # non enums
-            if not enum_flag:
-                # basetypes
-                for basetype_node in simpleType_node.xpath('./xsd:restriction', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                    if 'base' in basetype_node.attrib:
-                        basetypeType = basetype_node.attrib['base']
-                        print 'base-type>>' + basetypeType
-                        cppTypdefStringBuilder.addTypedef(simpleTypeName, basetypeType)
-                        cppConvertFromCDMClassDeclarationBuilder.addBasetype(simpleTypeName)
-                        cppConvertFromCDMClassDefinitionBuilder.addBasetype(simpleTypeName)
-                        cppConvertToCDMClassDeclarationBuilder.addBasetype(simpleTypeName)
-                        cppConvertToCDMClassDefinitionBuilder.addBasetype(simpleTypeName)
-                        
-                # item lists
-                for itemList_node in simpleType_node.xpath('./xsd:list', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                    if 'itemType' in itemList_node.attrib:
-                        itemList_name = itemList_node.attrib['itemType']
-                        print 'itemList-type>>' + itemList_name
-                        cppTypdefStringBuilder.addItemListTypedef(simpleTypeName, itemList_name)
-                        cppConvertFromCDMClassDeclarationBuilder.addNonBasetype(simpleTypeName)
-                        cppConvertFromCDMClassDefinitionBuilder.addItemList(simpleTypeName)
-                        cppConvertToCDMClassDeclarationBuilder.addNonBasetype(simpleTypeName)
-                        cppConvertToCDMClassDefinitionBuilder.addItemList(simpleTypeName)
-                        
-            
-            
-            # append code for each enum class
-            if enum_flag:
-                classBuilderForwarder.finalizeEnumClass(simpleTypeName)
-                
-                
-
+    for simpleTypeNode in tree.xpath('//xsd:simpleType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+        simpleTypeNodeParser = SimpleTypeNodeParser(classBuilderForwarder, simpleTypes_set)
+        simpleTypeNodeParser.parseSimpleTypeNode(simpleTypeNode)
 ###
 ### ComplexTypes
 ###
@@ -418,25 +423,14 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
 for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         
-        complexNodeParser = ComplexTypeNodeParser(g_simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces)        
+        complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, simpleTypeNodeParser)   
         complexNodeParser.parseComplexTypeNode(complexType_node)
-        
-        # TODO: move maybe
         ### non-gsl files
         # add to ConverterClasses
-        
-        cppConvertFromCDMClassDefinitionBuilder.addComplexType(complexNodeParser.getComplexTypeName(), complexNodeParser.getAbstractBool())
-        cppConvertFromCDMClassDeclarationBuilder.addNonBasetype(complexNodeParser.getComplexTypeName())
-        cppConvertToCDMClassDefinitionBuilder.addComplexType(complexNodeParser.getComplexTypeName(), complexNodeParser.getAbstractBool())
-        # add to mdib-fws
-        mdibDeclacationsBuilder.addType(complexNodeParser.getComplexTypeName())
-       
-         
-        # add class to fileBuilderClass
+        classBuilderForwarder.addComplexType(complexNodeParser.getComplexTypeName(), complexNodeParser.getAbstractBool())         
+        # GSL files
         if complexNodeParser.getGSLClassBuilder():
             gslFileBuilder.addClassAsString(complexNodeParser.getGSLClassBuilder().getGSLClassAsString())
-            
-            
         print complexNodeParser.getEmbeddedAttributesNamesList()
         
 
@@ -444,37 +438,37 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('SimpleTypesMapping_beginning.hxx')
 contentEnding = cppFileBuilder.readFileToStr('SimpleTypesMapping_ending.hxx')
-cppFileBuilder.writeToFile('SimpleTypesMapping.h', contentBeginning + cppTypdefStringBuilder.getCppTypedefString() + self.__enumClasses_cppCode  + cppEnumToStringClassBuilder.getEnumToStringClassDeclarationAsString() + contentEnding)
+cppFileBuilder.writeToFile('SimpleTypesMapping.h', contentBeginning + classBuilderForwarder.getSimpleTypesMappingDeclaration() + contentEnding)
 
 #build SimpleTypesMapping.cpp 
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('SimpleTypesMapping_beginning.cxx')
 contentEnding = cppFileBuilder.readFileToStr('SimpleTypesMapping_ending.cxx')
-cppFileBuilder.writeToFile('SimpleTypesMapping.cpp', contentBeginning + enumToStringClassMethods_cppCode + contentEnding)
+cppFileBuilder.writeToFile('SimpleTypesMapping.cpp', contentBeginning + classBuilderForwarder.getSimpleTypesMappingDefintion() + contentEnding)
 
 #build ConvertFromCDM.h
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertFromCDM_beginning.hxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertFromCDM_ending.hxx')
-cppFileBuilder.writeToFile('ConvertFromCDM.h', contentBeginning + cppConvertFromCDMClassDeclarationBuilder.getNonBasetypeCoverterFunctionsDeclarations() + cppConvertFromCDMClassDeclarationBuilder.getBasetypeCoverterFunctionsDeclarations() + contentEnding)
+cppFileBuilder.writeToFile('ConvertFromCDM.h', contentBeginning + classBuilderForwarder.getConvertFromCDMDeclaration()+ contentEnding)
 
 #build ConvertFromCDM.cpp
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertFromCDM_beginning.cxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertFromCDM_ending.cxx')
-cppFileBuilder.writeToFile('ConvertFromCDM.cpp', cppConvertFromCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertFromCDMClassDefinitionBuilder.getBaseTypesAsString() + cppConvertFromCDMClassDefinitionBuilder.getEnumsAsString() + cppConvertFromCDMClassDefinitionBuilder.getComplexTypeFuctionsAsString() + cppConvertFromCDMClassDefinitionBuilder.getItemListAsString() + contentEnding)
+cppFileBuilder.writeToFile('ConvertFromCDM.cpp', contentBeginning +  classBuilderForwarder.getConvertFromCDMDefinition() + contentEnding)
 
 # build ConvertToCDM.h
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertToCDM_beginning.hxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertToCDM_ending.hxx')
-cppFileBuilder.writeToFile('ConvertToCDM.h', contentBeginning + cppConvertToCDMClassDeclarationBuilder.getNonBasetypeCoverterFunctionsDeclarations() + cppConvertToCDMClassDeclarationBuilder.getBasetypeCoverterFunctionsDeclarations() + contentEnding)
+cppFileBuilder.writeToFile('ConvertToCDM.h', contentBeginning + classBuilderForwarder.getConvertToCDMDeclaration() + contentEnding)
 
 #build ConvertToCDM.cpp
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertToCDM_beginning.cxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertToCDM_ending.cxx')
-cppFileBuilder.writeToFile('ConvertToCDM.cpp', cppConvertToCDMClassDefinitionBuilder.getIncludesAsString() + contentBeginning + cppConvertToCDMClassDefinitionBuilder.getBasetype() + cppConvertToCDMClassDefinitionBuilder.getEnumsAsString() + cppConvertToCDMClassDefinitionBuilder.getComplexAsString() + cppConvertToCDMClassDefinitionBuilder.getItemListAsString() + contentEnding)
+cppFileBuilder.writeToFile('ConvertToCDM.cpp', contentBeginning + classBuilderForwarder.getConvertToCDMDefinition()+ contentEnding)
 
 
 ## complex types
@@ -486,16 +480,16 @@ cppFileBuilder.writeToFile('complexTypesGSLformated.xml', gslFileBuilder.getCont
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('MDIB-fwd_beginning.hxx')
 contentEnding = cppFileBuilder.readFileToStr('MDIB-fwd_ending.hxx')
-cppFileBuilder.writeToFile('MDIB-fwd.h', contentBeginning + mdibDeclacationsBuilder.getDeclarationsAsString() + contentEnding)
+cppFileBuilder.writeToFile('MDIB-fwd.h', contentBeginning + classBuilderForwarder.getMdibForward() + contentEnding)
 
 
 # ---- Statistics -----
 print ' '
 print '----- Statistics -----'
 print ' '
-print 'Basetypes: ' + str(cppTypdefStringBuilder.getBasetypeCounter())
-print 'ItemLists: ' + str(cppTypdefStringBuilder.getItemListCounter())
-print 'Enums: ' + str(cppEnumToStringClassBuilder.getEnumCounter())
+print 'Basetypes: ' + str(classBuilderForwarder.getBaseTypeCounter())
+print 'ItemLists: ' + str(classBuilderForwarder.getItemListCoutner())
+print 'Enums: ' + str(classBuilderForwarder.getEnumCounter())
 print 'ComplexTypes: ' + str(gslFileBuilder.getNumOfClasses())
 
 

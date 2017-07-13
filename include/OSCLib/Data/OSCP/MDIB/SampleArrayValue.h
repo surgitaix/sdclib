@@ -56,12 +56,6 @@ public:
     
     typedef CDM::SampleArrayValue WrappedType;
 
-	SampleArrayValue & setMetricQuality(const MetricQualityType & value);
-	MetricQualityType getMetricQuality() const;
-
-	SampleArrayValue & setType(const CodedValue & value);
-	CodedValue getType() const;
-
 	SampleArrayValue & setStartTime(const Timestamp & value);
 	Timestamp getStartTime() const;
 	bool getStartTime(Timestamp & out) const;
@@ -76,9 +70,6 @@ public:
 	Timestamp getDeterminationTime() const;
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
-
-	SampleArrayValue & setApplyAnnotation(const ApplyAnnotationType & value);
-	ApplyAnnotationType getApplyAnnotation() const;
 
 	SampleArrayValue & setSamples(const RealTimeValueType & value);
 	RealTimeValueType getSamples() const;

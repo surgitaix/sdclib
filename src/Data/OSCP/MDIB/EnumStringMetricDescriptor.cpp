@@ -38,7 +38,6 @@
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -288,37 +287,6 @@ void EnumStringMetricDescriptor::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setValue(const std::string & value) {
-	data->Value(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string EnumStringMetricDescriptor::getValue() const {
-	return ConvertFromCDM::convert(data->Value());
-}
-	
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool EnumStringMetricDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
-		return true;
-	}
-	return false;
-}
-
-CodedValue EnumStringMetricDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
-}
-	
-bool EnumStringMetricDescriptor::hasType() const {
-	return data->Type().present();
-}
-	
 
 } /* namespace OSCP */
 } /* namespace Data */

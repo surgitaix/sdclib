@@ -201,6 +201,14 @@ enum class PatientType
 	Neo
 };
 
+enum class ChargeStatusType
+{
+	Ful,
+	ChB,
+	DisChB,
+	DEB
+};
+
 class EnumToString {
 public:
 	static std::string convert(MeasurementValidity source);
@@ -224,6 +232,7 @@ public:
 	static std::string convert(ContextAssociation source);
 	static std::string convert(Sex source);
 	static std::string convert(PatientType source);
+	static std::string convert(ChargeStatusType source);
 };
 
 

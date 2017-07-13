@@ -38,8 +38,6 @@
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/Range.h"
 
 namespace OSCLib {
 namespace Data {
@@ -93,57 +91,6 @@ CodedValue ClinicalInfo::getType() const {
 	
 bool ClinicalInfo::hasType() const {
 	return data->Type().present();
-}
-	
-ClinicalInfo & ClinicalInfo::setRelatedMeasurement(const RelatedMeasurementType & value) {
-	data->RelatedMeasurement(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-RelatedMeasurementType ClinicalInfo::getRelatedMeasurement() const {
-	return ConvertFromCDM::convert(data->RelatedMeasurement());
-}
-	
-ClinicalInfo & ClinicalInfo::setValue(const Measurement & value) {
-	data->Value(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-Measurement ClinicalInfo::getValue() const {
-	return ConvertFromCDM::convert(data->Value());
-}
-	
-ClinicalInfo & ClinicalInfo::setRange(const Range & value) {
-	data->Range(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-Range ClinicalInfo::getRange() const {
-	return ConvertFromCDM::convert(data->Range());
-}
-	
-ClinicalInfo & ClinicalInfo::setMeaning(const CodedValue & value) {
-	data->Meaning(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ClinicalInfo::getMeaning(CodedValue & out) const {
-	if (data->Meaning().present()) {
-		out = ConvertFromCDM::convert(data->Meaning().get());
-		return true;
-	}
-	return false;
-}
-
-CodedValue ClinicalInfo::getMeaning() const {
-	return ConvertFromCDM::convert(data->Meaning().get());
-}
-	
-bool ClinicalInfo::hasMeaning() const {
-	return data->Meaning().present();
 }
 	
 ClinicalInfo & ClinicalInfo::addDescription(const LocalizedText & value) {

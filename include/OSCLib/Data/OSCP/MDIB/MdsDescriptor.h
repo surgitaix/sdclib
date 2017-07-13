@@ -74,31 +74,10 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	MdsDescriptor & setSpecType(const CodedValue & value);
-	CodedValue getSpecType() const;
-
-	MdsDescriptor & setProductionSpec(const std::string & value);
-	std::string getProductionSpec() const;
-
-	MdsDescriptor & setComponentId(const InstanceIdentifier & value);
-	InstanceIdentifier getComponentId() const;
-	bool getComponentId(InstanceIdentifier & out) const;
-	bool hasComponentId() const;
-
 	MdsDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;
 	bool hasAlertSystem() const;
-
-	MdsDescriptor & setUdi(const std::string & value);
-	std::string getUdi() const;
-	bool getUdi(std::string & out) const;
-	bool hasUdi() const;
-
-	MdsDescriptor & setModelNumber(const std::string & value);
-	std::string getModelNumber() const;
-	bool getModelNumber(std::string & out) const;
-	bool hasModelNumber() const;
 
 	MdsDescriptor & setSystemContext(const SystemContextDescriptor & value);
 	SystemContextDescriptor getSystemContext() const;
@@ -120,18 +99,6 @@ public:
 	bool getSco(ScoDescriptor & out) const;
 	bool hasSco() const;
 
-	MdsDescriptor & addManufacturer(const LocalizedText & value);
-	std::vector<LocalizedText> getManufacturerLists() const;
-	void clearManufacturerLists();
-	
-	MdsDescriptor & addModelName(const LocalizedText & value);
-	std::vector<LocalizedText> getModelNameLists() const;
-	void clearModelNameLists();
-	
-	MdsDescriptor & addSerialNumber(const std::string & value);
-	std::vector<std::string> getSerialNumberLists() const;
-	void clearSerialNumberLists();
-	
 	MdsDescriptor & addVmd(const VmdDescriptor & value);
 	std::vector<VmdDescriptor> getVmdLists() const;
 	void clearVmdLists();

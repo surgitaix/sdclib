@@ -74,17 +74,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	ChannelDescriptor & setSpecType(const CodedValue & value);
-	CodedValue getSpecType() const;
-
-	ChannelDescriptor & setProductionSpec(const std::string & value);
-	std::string getProductionSpec() const;
-
-	ChannelDescriptor & setComponentId(const InstanceIdentifier & value);
-	InstanceIdentifier getComponentId() const;
-	bool getComponentId(InstanceIdentifier & out) const;
-	bool hasComponentId() const;
-
 	ChannelDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;

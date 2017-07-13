@@ -61,20 +61,6 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	ClinicalInfo & setRelatedMeasurement(const RelatedMeasurementType & value);
-	RelatedMeasurementType getRelatedMeasurement() const;
-
-	ClinicalInfo & setValue(const Measurement & value);
-	Measurement getValue() const;
-
-	ClinicalInfo & setRange(const Range & value);
-	Range getRange() const;
-
-	ClinicalInfo & setMeaning(const CodedValue & value);
-	CodedValue getMeaning() const;
-	bool getMeaning(CodedValue & out) const;
-	bool hasMeaning() const;
-
 	ClinicalInfo & addDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getDescriptionLists() const;
 	void clearDescriptionLists();

@@ -49,6 +49,7 @@ public:
 	static CDM::ContextAssociation convert(const ContextAssociation & source);
 	static CDM::Sex convert(const Sex & source);
 	static CDM::PatientType convert(const PatientType & source);
+	static CDM::ChargeStatus convert(const ChargeStatusType & source);
 	static Timestamp convert(const Timestamp & source);
 	static VersionCounter convert(const VersionCounter & source);
 	static ReferencedVersion convert(const ReferencedVersion & source);
@@ -59,6 +60,7 @@ public:
 	static HandleRef convert(const HandleRef & source);
 	static QualityIndicator convert(const QualityIndicator & source);
 	static TimeZone convert(const TimeZone & source);
+	static DateOfBirthType convert(const DateOfBirthType & source);
 
 	template <class WrapperType>
 	static std::unique_ptr<typename WrapperType::WrappedType> convert(const WrapperType & source);

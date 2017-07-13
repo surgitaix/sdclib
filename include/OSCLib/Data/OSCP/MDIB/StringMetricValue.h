@@ -56,12 +56,6 @@ public:
     
     typedef CDM::StringMetricValue WrappedType;
 
-	StringMetricValue & setMetricQuality(const MetricQualityType & value);
-	MetricQualityType getMetricQuality() const;
-
-	StringMetricValue & setType(const CodedValue & value);
-	CodedValue getType() const;
-
 	StringMetricValue & setStartTime(const Timestamp & value);
 	Timestamp getStartTime() const;
 	bool getStartTime(Timestamp & out) const;

@@ -36,7 +36,6 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -71,26 +70,6 @@ NumericMetricValue & NumericMetricValue:: operator=(const NumericMetricValue & o
 }
 
 
-NumericMetricValue & NumericMetricValue::setMetricQuality(const MetricQualityType & value) {
-	data->MetricQuality(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-MetricQualityType NumericMetricValue::getMetricQuality() const {
-	return ConvertFromCDM::convert(data->MetricQuality());
-}
-	
-NumericMetricValue & NumericMetricValue::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-CodedValue NumericMetricValue::getType() const {
-	return ConvertFromCDM::convert(data->Type());
-}
-	
 NumericMetricValue & NumericMetricValue::setStartTime(const Timestamp & value) {
 	data->StartTime(ConvertToCDM::convert(value));
 	return *this;

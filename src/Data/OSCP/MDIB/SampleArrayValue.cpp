@@ -36,7 +36,6 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -71,26 +70,6 @@ SampleArrayValue & SampleArrayValue:: operator=(const SampleArrayValue & object)
 }
 
 
-SampleArrayValue & SampleArrayValue::setMetricQuality(const MetricQualityType & value) {
-	data->MetricQuality(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-MetricQualityType SampleArrayValue::getMetricQuality() const {
-	return ConvertFromCDM::convert(data->MetricQuality());
-}
-	
-SampleArrayValue & SampleArrayValue::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-CodedValue SampleArrayValue::getType() const {
-	return ConvertFromCDM::convert(data->Type());
-}
-	
 SampleArrayValue & SampleArrayValue::setStartTime(const Timestamp & value) {
 	data->StartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -152,16 +131,6 @@ Timestamp SampleArrayValue::getDeterminationTime() const {
 	
 bool SampleArrayValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
-}
-	
-SampleArrayValue & SampleArrayValue::setApplyAnnotation(const ApplyAnnotationType & value) {
-	data->ApplyAnnotation(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-ApplyAnnotationType SampleArrayValue::getApplyAnnotation() const {
-	return ConvertFromCDM::convert(data->ApplyAnnotation());
 }
 	
 SampleArrayValue & SampleArrayValue::setSamples(const RealTimeValueType & value) {

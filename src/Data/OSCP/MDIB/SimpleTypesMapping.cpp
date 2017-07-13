@@ -28,210 +28,220 @@ EnumToString::~EnumToString() {
 }
 std::string EnumToString::convert(MeasurementValidity source) {
 	switch (source) {
-		case MeasurementValidity::Vld: return "Vld"
-		case MeasurementValidity::Vldated: return "Vldated"
-		case MeasurementValidity::Ong: return "Ong"
-		case MeasurementValidity::Qst: return "Qst"
-		case MeasurementValidity::Calib: return "Calib"
-		case MeasurementValidity::Inv: return "Inv"
-		case MeasurementValidity::Oflw: return "Oflw"
-		case MeasurementValidity::Uflw: return "Uflw"
-		case MeasurementValidity::NA: return "NA"
+		case MeasurementValidity::Vld: return "Vld";
+		case MeasurementValidity::Vldated: return "Vldated";
+		case MeasurementValidity::Ong: return "Ong";
+		case MeasurementValidity::Qst: return "Qst";
+		case MeasurementValidity::Calib: return "Calib";
+		case MeasurementValidity::Inv: return "Inv";
+		case MeasurementValidity::Oflw: return "Oflw";
+		case MeasurementValidity::Uflw: return "Uflw";
+		case MeasurementValidity::NA: return "NA";
 	}
 	throw std::runtime_error("Illegal value for MeasurementValidity");
 }
 
 std::string EnumToString::convert(SafetyClassification source) {
 	switch (source) {
-		case SafetyClassification::Inf: return "Inf"
-		case SafetyClassification::MedA: return "MedA"
-		case SafetyClassification::MedB: return "MedB"
-		case SafetyClassification::MedC: return "MedC"
+		case SafetyClassification::Inf: return "Inf";
+		case SafetyClassification::MedA: return "MedA";
+		case SafetyClassification::MedB: return "MedB";
+		case SafetyClassification::MedC: return "MedC";
 	}
 	throw std::runtime_error("Illegal value for SafetyClassification");
 }
 
 std::string EnumToString::convert(ComponentActivation source) {
 	switch (source) {
-		case ComponentActivation::On: return "On"
-		case ComponentActivation::NotRdy: return "NotRdy"
-		case ComponentActivation::StndBy: return "StndBy"
-		case ComponentActivation::Off: return "Off"
-		case ComponentActivation::Shtdn: return "Shtdn"
-		case ComponentActivation::Fail: return "Fail"
+		case ComponentActivation::On: return "On";
+		case ComponentActivation::NotRdy: return "NotRdy";
+		case ComponentActivation::StndBy: return "StndBy";
+		case ComponentActivation::Off: return "Off";
+		case ComponentActivation::Shtdn: return "Shtdn";
+		case ComponentActivation::Fail: return "Fail";
 	}
 	throw std::runtime_error("Illegal value for ComponentActivation");
 }
 
 std::string EnumToString::convert(CalibrationState source) {
 	switch (source) {
-		case CalibrationState::No: return "No"
-		case CalibrationState::Req: return "Req"
-		case CalibrationState::Cal: return "Cal"
+		case CalibrationState::No: return "No";
+		case CalibrationState::Req: return "Req";
+		case CalibrationState::Cal: return "Cal";
 	}
 	throw std::runtime_error("Illegal value for CalibrationState");
 }
 
 std::string EnumToString::convert(CalibrationType source) {
 	switch (source) {
-		case CalibrationType::Offset: return "Offset"
-		case CalibrationType::Gain: return "Gain"
-		case CalibrationType::TP: return "TP"
-		case CalibrationType::Unspec: return "Unspec"
+		case CalibrationType::Offset: return "Offset";
+		case CalibrationType::Gain: return "Gain";
+		case CalibrationType::TP: return "TP";
+		case CalibrationType::Unspec: return "Unspec";
 	}
 	throw std::runtime_error("Illegal value for CalibrationType");
 }
 
 std::string EnumToString::convert(MdsOperatingMode source) {
 	switch (source) {
-		case MdsOperatingMode::Nml: return "Nml"
-		case MdsOperatingMode::Dmo: return "Dmo"
-		case MdsOperatingMode::Srv: return "Srv"
-		case MdsOperatingMode::Mtn: return "Mtn"
+		case MdsOperatingMode::Nml: return "Nml";
+		case MdsOperatingMode::Dmo: return "Dmo";
+		case MdsOperatingMode::Srv: return "Srv";
+		case MdsOperatingMode::Mtn: return "Mtn";
 	}
 	throw std::runtime_error("Illegal value for MdsOperatingMode");
 }
 
 std::string EnumToString::convert(AlertActivation source) {
 	switch (source) {
-		case AlertActivation::On: return "On"
-		case AlertActivation::Off: return "Off"
-		case AlertActivation::Psd: return "Psd"
+		case AlertActivation::On: return "On";
+		case AlertActivation::Off: return "Off";
+		case AlertActivation::Psd: return "Psd";
 	}
 	throw std::runtime_error("Illegal value for AlertActivation");
 }
 
 std::string EnumToString::convert(AlertConditionKind source) {
 	switch (source) {
-		case AlertConditionKind::Phy: return "Phy"
-		case AlertConditionKind::Tec: return "Tec"
-		case AlertConditionKind::Oth: return "Oth"
+		case AlertConditionKind::Phy: return "Phy";
+		case AlertConditionKind::Tec: return "Tec";
+		case AlertConditionKind::Oth: return "Oth";
 	}
 	throw std::runtime_error("Illegal value for AlertConditionKind");
 }
 
 std::string EnumToString::convert(AlertConditionPriority source) {
 	switch (source) {
-		case AlertConditionPriority::Lo: return "Lo"
-		case AlertConditionPriority::Me: return "Me"
-		case AlertConditionPriority::Hi: return "Hi"
-		case AlertConditionPriority::None: return "None"
+		case AlertConditionPriority::Lo: return "Lo";
+		case AlertConditionPriority::Me: return "Me";
+		case AlertConditionPriority::Hi: return "Hi";
+		case AlertConditionPriority::None: return "None";
 	}
 	throw std::runtime_error("Illegal value for AlertConditionPriority");
 }
 
 std::string EnumToString::convert(AlertConditionMonitoredLimits source) {
 	switch (source) {
-		case AlertConditionMonitoredLimits::All: return "All"
-		case AlertConditionMonitoredLimits::LoOff: return "LoOff"
-		case AlertConditionMonitoredLimits::HiOff: return "HiOff"
-		case AlertConditionMonitoredLimits::None: return "None"
+		case AlertConditionMonitoredLimits::All: return "All";
+		case AlertConditionMonitoredLimits::LoOff: return "LoOff";
+		case AlertConditionMonitoredLimits::HiOff: return "HiOff";
+		case AlertConditionMonitoredLimits::None: return "None";
 	}
 	throw std::runtime_error("Illegal value for AlertConditionMonitoredLimits");
 }
 
 std::string EnumToString::convert(AlertSignalManifestation source) {
 	switch (source) {
-		case AlertSignalManifestation::Aud: return "Aud"
-		case AlertSignalManifestation::Vis: return "Vis"
-		case AlertSignalManifestation::Tan: return "Tan"
-		case AlertSignalManifestation::Oth: return "Oth"
+		case AlertSignalManifestation::Aud: return "Aud";
+		case AlertSignalManifestation::Vis: return "Vis";
+		case AlertSignalManifestation::Tan: return "Tan";
+		case AlertSignalManifestation::Oth: return "Oth";
 	}
 	throw std::runtime_error("Illegal value for AlertSignalManifestation");
 }
 
 std::string EnumToString::convert(AlertSignalPresence source) {
 	switch (source) {
-		case AlertSignalPresence::On: return "On"
-		case AlertSignalPresence::Off: return "Off"
-		case AlertSignalPresence::Latch: return "Latch"
-		case AlertSignalPresence::Ack: return "Ack"
+		case AlertSignalPresence::On: return "On";
+		case AlertSignalPresence::Off: return "Off";
+		case AlertSignalPresence::Latch: return "Latch";
+		case AlertSignalPresence::Ack: return "Ack";
 	}
 	throw std::runtime_error("Illegal value for AlertSignalPresence");
 }
 
 std::string EnumToString::convert(AlertSignalPrimaryLocation source) {
 	switch (source) {
-		case AlertSignalPrimaryLocation::Loc: return "Loc"
-		case AlertSignalPrimaryLocation::Rem: return "Rem"
+		case AlertSignalPrimaryLocation::Loc: return "Loc";
+		case AlertSignalPrimaryLocation::Rem: return "Rem";
 	}
 	throw std::runtime_error("Illegal value for AlertSignalPrimaryLocation");
 }
 
 std::string EnumToString::convert(GenerationMode source) {
 	switch (source) {
-		case GenerationMode::Real: return "Real"
-		case GenerationMode::Test: return "Test"
-		case GenerationMode::Demo: return "Demo"
+		case GenerationMode::Real: return "Real";
+		case GenerationMode::Test: return "Test";
+		case GenerationMode::Demo: return "Demo";
 	}
 	throw std::runtime_error("Illegal value for GenerationMode");
 }
 
 std::string EnumToString::convert(MetricCategory source) {
 	switch (source) {
-		case MetricCategory::Unspec: return "Unspec"
-		case MetricCategory::Msrmt: return "Msrmt"
-		case MetricCategory::Clc: return "Clc"
-		case MetricCategory::Set: return "Set"
-		case MetricCategory::Preset: return "Preset"
-		case MetricCategory::Rcmm: return "Rcmm"
+		case MetricCategory::Unspec: return "Unspec";
+		case MetricCategory::Msrmt: return "Msrmt";
+		case MetricCategory::Clc: return "Clc";
+		case MetricCategory::Set: return "Set";
+		case MetricCategory::Preset: return "Preset";
+		case MetricCategory::Rcmm: return "Rcmm";
 	}
 	throw std::runtime_error("Illegal value for MetricCategory");
 }
 
 std::string EnumToString::convert(DerivationMethod source) {
 	switch (source) {
-		case DerivationMethod::Auto: return "Auto"
-		case DerivationMethod::Man: return "Man"
+		case DerivationMethod::Auto: return "Auto";
+		case DerivationMethod::Man: return "Man";
 	}
 	throw std::runtime_error("Illegal value for DerivationMethod");
 }
 
 std::string EnumToString::convert(MetricAvailability source) {
 	switch (source) {
-		case MetricAvailability::Intr: return "Intr"
-		case MetricAvailability::Cont: return "Cont"
+		case MetricAvailability::Intr: return "Intr";
+		case MetricAvailability::Cont: return "Cont";
 	}
 	throw std::runtime_error("Illegal value for MetricAvailability");
 }
 
 std::string EnumToString::convert(OperatingMode source) {
 	switch (source) {
-		case OperatingMode::Dis: return "Dis"
-		case OperatingMode::En: return "En"
-		case OperatingMode::NA: return "NA"
+		case OperatingMode::Dis: return "Dis";
+		case OperatingMode::En: return "En";
+		case OperatingMode::NA: return "NA";
 	}
 	throw std::runtime_error("Illegal value for OperatingMode");
 }
 
 std::string EnumToString::convert(ContextAssociation source) {
 	switch (source) {
-		case ContextAssociation::No: return "No"
-		case ContextAssociation::Pre: return "Pre"
-		case ContextAssociation::Assoc: return "Assoc"
-		case ContextAssociation::Dis: return "Dis"
+		case ContextAssociation::No: return "No";
+		case ContextAssociation::Pre: return "Pre";
+		case ContextAssociation::Assoc: return "Assoc";
+		case ContextAssociation::Dis: return "Dis";
 	}
 	throw std::runtime_error("Illegal value for ContextAssociation");
 }
 
 std::string EnumToString::convert(Sex source) {
 	switch (source) {
-		case Sex::Unspec: return "Unspec"
-		case Sex::M: return "M"
-		case Sex::F: return "F"
-		case Sex::Unkn: return "Unkn"
+		case Sex::Unspec: return "Unspec";
+		case Sex::M: return "M";
+		case Sex::F: return "F";
+		case Sex::Unkn: return "Unkn";
 	}
 	throw std::runtime_error("Illegal value for Sex");
 }
 
 std::string EnumToString::convert(PatientType source) {
 	switch (source) {
-		case PatientType::Unspec: return "Unspec"
-		case PatientType::Ad: return "Ad"
-		case PatientType::Ped: return "Ped"
-		case PatientType::Neo: return "Neo"
+		case PatientType::Unspec: return "Unspec";
+		case PatientType::Ad: return "Ad";
+		case PatientType::Ped: return "Ped";
+		case PatientType::Neo: return "Neo";
 	}
 	throw std::runtime_error("Illegal value for PatientType");
+}
+
+std::string EnumToString::convert(ChargeStatusType source) {
+	switch (source) {
+		case ChargeStatusType::Ful: return "Ful";
+		case ChargeStatusType::ChB: return "ChB";
+		case ChargeStatusType::DisChB: return "DisChB";
+		case ChargeStatusType::DEB: return "DEB";
+	}
+	throw std::runtime_error("Illegal value for ChargeStatusType");
 }
 
 

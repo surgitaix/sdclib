@@ -99,49 +99,6 @@ public:
 	std::vector<InstanceIdentifier> getIdentificationLists() const;
 	void clearIdentificationLists();
 	
-	WorkflowContextState & setPatient(const PersonReference & value);
-	PersonReference getPatient() const;
-
-	WorkflowContextState & setAssignedLocation(const LocationReference & value);
-	LocationReference getAssignedLocation() const;
-	bool getAssignedLocation(LocationReference & out) const;
-	bool hasAssignedLocation() const;
-
-	WorkflowContextState & setVisitNumber(const InstanceIdentifier & value);
-	InstanceIdentifier getVisitNumber() const;
-	bool getVisitNumber(InstanceIdentifier & out) const;
-	bool hasVisitNumber() const;
-
-	WorkflowContextState & setReferringPhysician(const PersonReference & value);
-	PersonReference getReferringPhysician() const;
-	bool getReferringPhysician(PersonReference & out) const;
-	bool hasReferringPhysician() const;
-
-	WorkflowContextState & setRequestingPhysician(const PersonReference & value);
-	PersonReference getRequestingPhysician() const;
-	bool getRequestingPhysician(PersonReference & out) const;
-	bool hasRequestingPhysician() const;
-
-	WorkflowContextState & setPlacerOrderNumber(const InstanceIdentifier & value);
-	InstanceIdentifier getPlacerOrderNumber() const;
-
-	WorkflowContextState & setFillerOrderNumber(const InstanceIdentifier & value);
-	InstanceIdentifier getFillerOrderNumber() const;
-	bool getFillerOrderNumber(InstanceIdentifier & out) const;
-	bool hasFillerOrderNumber() const;
-
-	WorkflowContextState & addDangerCode(const CodedValue & value);
-	std::vector<CodedValue> getDangerCodeLists() const;
-	void clearDangerCodeLists();
-	
-	WorkflowContextState & addRelevantClinicalInfo(const ClinicalInfo & value);
-	std::vector<ClinicalInfo> getRelevantClinicalInfoLists() const;
-	void clearRelevantClinicalInfoLists();
-	
-	WorkflowContextState & addResultingClinicalInfo(const ClinicalInfo & value);
-	std::vector<ClinicalInfo> getResultingClinicalInfoLists() const;
-	void clearResultingClinicalInfoLists();
-	
 private:
 	std::shared_ptr<CDM::WorkflowContextState> data;
 };

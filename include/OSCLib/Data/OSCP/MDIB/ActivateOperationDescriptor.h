@@ -81,12 +81,6 @@ public:
 	std::vector<std::string> getModifiableElementLists() const;
 	void clearModifiableElementLists();
 	
-	ActivateOperationDescriptor & setArgName(const CodedValue & value);
-	CodedValue getArgName() const;
-
-	ActivateOperationDescriptor & setArg(const xml_schema::Qname & value);
-	xml_schema::Qname getArg() const;
-
 	ActivateOperationDescriptor & setActivationDuration(const xml_schema::Duration & value);
 	xml_schema::Duration getActivationDuration() const;
 

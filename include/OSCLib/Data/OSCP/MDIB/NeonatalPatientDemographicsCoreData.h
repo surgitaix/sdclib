@@ -92,6 +92,8 @@ public:
 
 	NeonatalPatientDemographicsCoreData & setDateOfBirth(const DateOfBirthType & value);
 	DateOfBirthType getDateOfBirth() const;
+	bool getDateOfBirth(DateOfBirthType & out) const;
+	bool hasDateOfBirth() const;
 
 	NeonatalPatientDemographicsCoreData & setHeight(const Measurement & value);
 	Measurement getHeight() const;

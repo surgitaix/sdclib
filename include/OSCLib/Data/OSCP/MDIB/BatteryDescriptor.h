@@ -74,17 +74,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	BatteryDescriptor & setSpecType(const CodedValue & value);
-	CodedValue getSpecType() const;
-
-	BatteryDescriptor & setProductionSpec(const std::string & value);
-	std::string getProductionSpec() const;
-
-	BatteryDescriptor & setComponentId(const InstanceIdentifier & value);
-	InstanceIdentifier getComponentId() const;
-	bool getComponentId(InstanceIdentifier & out) const;
-	bool hasComponentId() const;
-
 	BatteryDescriptor & setCapacityFullCharge(const Measurement & value);
 	Measurement getCapacityFullCharge() const;
 	bool getCapacityFullCharge(Measurement & out) const;

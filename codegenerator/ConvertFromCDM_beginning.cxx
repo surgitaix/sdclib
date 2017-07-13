@@ -1,9 +1,4 @@
 
-#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "osdm.hxx"
-
-#include <stdexcept>
-
 /*
  * ConvertFromCDM.cpp
  *
@@ -27,4 +22,7 @@ ConvertFromCDM::~ConvertFromCDM() {
 
 }
 
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
+#include "osdm.hxx"
 
+#include <stdexcept>

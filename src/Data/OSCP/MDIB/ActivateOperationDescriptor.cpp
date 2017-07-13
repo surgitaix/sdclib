@@ -37,7 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -173,26 +172,6 @@ void ActivateOperationDescriptor::clearModifiableElementLists() {
 	data->ModifiableElement().clear();
 }
 
-ActivateOperationDescriptor & ActivateOperationDescriptor::setArgName(const CodedValue & value) {
-	data->ArgName(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-CodedValue ActivateOperationDescriptor::getArgName() const {
-	return ConvertFromCDM::convert(data->ArgName());
-}
-	
-ActivateOperationDescriptor & ActivateOperationDescriptor::setArg(const xml_schema::Qname & value) {
-	data->Arg(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-xml_schema::Qname ActivateOperationDescriptor::getArg() const {
-	return ConvertFromCDM::convert(data->Arg());
-}
-	
 ActivateOperationDescriptor & ActivateOperationDescriptor::setActivationDuration(const xml_schema::Duration & value) {
 	data->ActivationDuration(ConvertToCDM::convert(value));
 	return *this;

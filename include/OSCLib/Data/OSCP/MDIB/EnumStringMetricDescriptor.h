@@ -110,14 +110,6 @@ public:
 	std::vector<CodedValue> getBodySiteLists() const;
 	void clearBodySiteLists();
 	
-	EnumStringMetricDescriptor & setValue(const std::string & value);
-	std::string getValue() const;
-
-	EnumStringMetricDescriptor & setType(const CodedValue & value);
-	CodedValue getType() const;
-	bool getType(CodedValue & out) const;
-	bool hasType() const;
-
 private:
 	std::shared_ptr<CDM::EnumStringMetricDescriptor> data;
 };

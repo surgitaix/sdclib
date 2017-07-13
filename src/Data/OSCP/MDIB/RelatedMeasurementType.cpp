@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 
 namespace OSCLib {
 namespace Data {
@@ -70,6 +71,16 @@ RelatedMeasurementType & RelatedMeasurementType:: operator=(const RelatedMeasure
 }
 
 
+RelatedMeasurementType & RelatedMeasurementType::setValue(const Measurement & value) {
+	data->Value(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Measurement RelatedMeasurementType::getValue() const {
+	return ConvertFromCDM::convert(data->Value());
+}
+	
 RelatedMeasurementType & RelatedMeasurementType::setValidity(const MeasurementValidity & value) {
 	data->Validity(ConvertToCDM::convert(value));
 	return *this;

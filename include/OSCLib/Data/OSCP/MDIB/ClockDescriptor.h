@@ -74,17 +74,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	ClockDescriptor & setSpecType(const CodedValue & value);
-	CodedValue getSpecType() const;
-
-	ClockDescriptor & setProductionSpec(const std::string & value);
-	std::string getProductionSpec() const;
-
-	ClockDescriptor & setComponentId(const InstanceIdentifier & value);
-	InstanceIdentifier getComponentId() const;
-	bool getComponentId(InstanceIdentifier & out) const;
-	bool hasComponentId() const;
-
 	ClockDescriptor & setResolution(const xml_schema::Duration & value);
 	xml_schema::Duration getResolution() const;
 
