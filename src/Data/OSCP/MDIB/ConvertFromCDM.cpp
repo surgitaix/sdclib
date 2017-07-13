@@ -34,10 +34,10 @@ ConvertFromCDM::~ConvertFromCDM() {
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecificationType.h"
+#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/MetaDataType.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdState.h"
@@ -54,18 +54,18 @@ ConvertFromCDM::~ConvertFromCDM() {
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
-#include "OSCLib/Data/OSCP/MDIB/MetricQualityType.h"
-#include "OSCLib/Data/OSCP/MDIB/AnnotationType.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
+#include "OSCLib/Data/OSCP/MDIB/Annotation.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotationType.h"
+#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AllowedValueType.h"
+#include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
@@ -78,7 +78,7 @@ ConvertFromCDM::~ConvertFromCDM() {
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ArgumentType.h"
+#include "OSCLib/Data/OSCP/MDIB/Argument.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationState.h"
@@ -105,16 +105,16 @@ ConvertFromCDM::~ConvertFromCDM() {
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurementType.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferenceRangeType.h"
+#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferenceRange.h"
 #include "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationReference.h"
 #include "OSCLib/Data/OSCP/MDIB/OrderDetail.h"
 #include "OSCLib/Data/OSCP/MDIB/PersonParticipation.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/WorkflowDetailType.h"
-#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetailType.h"
-#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetailType.h"
+#include "OSCLib/Data/OSCP/MDIB/WorkflowDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h"
@@ -123,49 +123,11 @@ ConvertFromCDM::~ConvertFromCDM() {
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTree.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h"
-Timestamp ConvertFromCDM::convert(const Timestamp & source) {
-	return source;
-}
 
-VersionCounter ConvertFromCDM::convert(const VersionCounter & source) {
-	return source;
-}
 
-ReferencedVersion ConvertFromCDM::convert(const ReferencedVersion & source) {
-	return source;
-}
 
-CodeIdentifier ConvertFromCDM::convert(const CodeIdentifier & source) {
-	return source;
-}
 
-SymbolicCodeName ConvertFromCDM::convert(const SymbolicCodeName & source) {
-	return source;
-}
 
-LocalizedTextRef ConvertFromCDM::convert(const LocalizedTextRef & source) {
-	return source;
-}
-
-Handle ConvertFromCDM::convert(const Handle & source) {
-	return source;
-}
-
-HandleRef ConvertFromCDM::convert(const HandleRef & source) {
-	return source;
-}
-
-QualityIndicator ConvertFromCDM::convert(const QualityIndicator & source) {
-	return source;
-}
-
-TimeZone ConvertFromCDM::convert(const TimeZone & source) {
-	return source;
-}
-
-DateOfBirthType ConvertFromCDM::convert(const DateOfBirthType & source) {
-	return source;
-}
 
 MeasurementValidity ConvertFromCDM::convert(const CDM::MeasurementValidity & source) {
 	switch (source) {
@@ -375,14 +337,14 @@ PatientType ConvertFromCDM::convert(const CDM::PatientType & source) {
 	throw std::runtime_error("Illegal value for PatientType");
 }
 
-ChargeStatusType ConvertFromCDM::convert(const CDM::ChargeStatusType & source) {
+ChargeStatus ConvertFromCDM::convert(const CDM::ChargeStatus & source) {
 	switch (source) {
-		case CDM::ChargeStatusType::Ful: return ChargeStatusType::Ful;
-		case CDM::ChargeStatusType::ChB: return ChargeStatusType::ChB;
-		case CDM::ChargeStatusType::DisChB: return ChargeStatusType::DisChB;
-		case CDM::ChargeStatusType::DEB: return ChargeStatusType::DEB;
+		case CDM::ChargeStatus::Ful: return ChargeStatus::Ful;
+		case CDM::ChargeStatus::ChB: return ChargeStatus::ChB;
+		case CDM::ChargeStatus::DisChB: return ChargeStatus::DisChB;
+		case CDM::ChargeStatus::DEB: return ChargeStatus::DEB;
 	}
-	throw std::runtime_error("Illegal value for ChargeStatusType");
+	throw std::runtime_error("Illegal value for ChargeStatus");
 }
 
 MdibConvertFromCDM::convert(const CDM::Mdib & source) {
@@ -433,8 +395,8 @@ AbstractDeviceComponentDescriptorConvertFromCDM::convert(const CDM::AbstractDevi
 	return AbstractDeviceComponentDescriptor(source);
 }
 
-ProductionSpecificationTypeConvertFromCDM::convert(const CDM::ProductionSpecificationType & source) {
-	return ProductionSpecificationType(source);
+ProductionSpecificationConvertFromCDM::convert(const CDM::ProductionSpecification & source) {
+	return ProductionSpecification(source);
 }
 
 AbstractAlertingDeviceComponentDescriptorConvertFromCDM::convert(const CDM::AbstractAlertingDeviceComponentDescriptor & source) {
@@ -457,8 +419,8 @@ MdsDescriptorConvertFromCDM::convert(const CDM::MdsDescriptor & source) {
 	return MdsDescriptor(source);
 }
 
-MetaDataTypeConvertFromCDM::convert(const CDM::MetaDataType & source) {
-	return MetaDataType(source);
+MetaDataConvertFromCDM::convert(const CDM::MetaData & source) {
+	return MetaData(source);
 }
 
 MdsStateConvertFromCDM::convert(const CDM::MdsState & source) {
@@ -537,12 +499,12 @@ AbstractMetricValueConvertFromCDM::convert(const CDM::AbstractMetricValue & sour
 	return AbstractMetricValue(source);
 }
 
-MetricQualityTypeConvertFromCDM::convert(const CDM::MetricQualityType & source) {
-	return MetricQualityType(source);
+MetricQualityConvertFromCDM::convert(const CDM::MetricQuality & source) {
+	return MetricQuality(source);
 }
 
-AnnotationTypeConvertFromCDM::convert(const CDM::AnnotationType & source) {
-	return AnnotationType(source);
+AnnotationConvertFromCDM::convert(const CDM::Annotation & source) {
+	return Annotation(source);
 }
 
 NumericMetricValueConvertFromCDM::convert(const CDM::NumericMetricValue & source) {
@@ -557,8 +519,8 @@ SampleArrayValueConvertFromCDM::convert(const CDM::SampleArrayValue & source) {
 	return SampleArrayValue(source);
 }
 
-ApplyAnnotationTypeConvertFromCDM::convert(const CDM::ApplyAnnotationType & source) {
-	return ApplyAnnotationType(source);
+ApplyAnnotationConvertFromCDM::convert(const CDM::ApplyAnnotation & source) {
+	return ApplyAnnotation(source);
 }
 
 AbstractMetricDescriptorConvertFromCDM::convert(const CDM::AbstractMetricDescriptor & source) {
@@ -589,8 +551,8 @@ EnumStringMetricDescriptorConvertFromCDM::convert(const CDM::EnumStringMetricDes
 	return EnumStringMetricDescriptor(source);
 }
 
-AllowedValueTypeConvertFromCDM::convert(const CDM::AllowedValueType & source) {
-	return AllowedValueType(source);
+AllowedValueConvertFromCDM::convert(const CDM::AllowedValue & source) {
+	return AllowedValue(source);
 }
 
 EnumStringMetricStateConvertFromCDM::convert(const CDM::EnumStringMetricState & source) {
@@ -653,8 +615,8 @@ ActivateOperationDescriptorConvertFromCDM::convert(const CDM::ActivateOperationD
 	return ActivateOperationDescriptor(source);
 }
 
-ArgumentTypeConvertFromCDM::convert(const CDM::ArgumentType & source) {
-	return ArgumentType(source);
+ArgumentConvertFromCDM::convert(const CDM::Argument & source) {
+	return Argument(source);
 }
 
 ActivateOperationStateConvertFromCDM::convert(const CDM::ActivateOperationState & source) {
@@ -769,12 +731,12 @@ ClinicalInfoConvertFromCDM::convert(const CDM::ClinicalInfo & source) {
 	return ClinicalInfo(source);
 }
 
-RelatedMeasurementTypeConvertFromCDM::convert(const CDM::RelatedMeasurementType & source) {
-	return RelatedMeasurementType(source);
+RelatedMeasurementConvertFromCDM::convert(const CDM::RelatedMeasurement & source) {
+	return RelatedMeasurement(source);
 }
 
-ReferenceRangeTypeConvertFromCDM::convert(const CDM::ReferenceRangeType & source) {
-	return ReferenceRangeType(source);
+ReferenceRangeConvertFromCDM::convert(const CDM::ReferenceRange & source) {
+	return ReferenceRange(source);
 }
 
 ImagingProcedureConvertFromCDM::convert(const CDM::ImagingProcedure & source) {
@@ -797,16 +759,16 @@ WorkflowContextStateConvertFromCDM::convert(const CDM::WorkflowContextState & so
 	return WorkflowContextState(source);
 }
 
-WorkflowDetailTypeConvertFromCDM::convert(const CDM::WorkflowDetailType & source) {
-	return WorkflowDetailType(source);
+WorkflowDetailConvertFromCDM::convert(const CDM::WorkflowDetail & source) {
+	return WorkflowDetail(source);
 }
 
-RequestedOrderDetailTypeConvertFromCDM::convert(const CDM::RequestedOrderDetailType & source) {
-	return RequestedOrderDetailType(source);
+RequestedOrderDetailConvertFromCDM::convert(const CDM::RequestedOrderDetail & source) {
+	return RequestedOrderDetail(source);
 }
 
-PerformedOrderDetailTypeConvertFromCDM::convert(const CDM::PerformedOrderDetailType & source) {
-	return PerformedOrderDetailType(source);
+PerformedOrderDetailConvertFromCDM::convert(const CDM::PerformedOrderDetail & source) {
+	return PerformedOrderDetail(source);
 }
 
 OperatorContextDescriptorConvertFromCDM::convert(const CDM::OperatorContextDescriptor & source) {

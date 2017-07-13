@@ -192,6 +192,24 @@ bool ActivateOperationDescriptor::getRetriggerable() const {
 	return ConvertFromCDM::convert(data->Retriggerable());
 }
 	
+ActivateOperationDescriptor & ActivateOperationDescriptor::addArgument(const Argument & value) {
+	data->Argument().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Argument> ActivateOperationDescriptor::getArgumentLists() const {
+	std::vector<Argument> result;
+	result.reserve(data->Argument().size());
+	for (const auto & value: data->Argument()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ActivateOperationDescriptor::clearArgumentLists() {
+	data->Argument().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

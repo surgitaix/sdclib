@@ -56,6 +56,9 @@ public:
     
     typedef CDM::NumericMetricValue WrappedType;
 
+	NumericMetricValue & setMetricQuality(const MetricQuality & value);
+	MetricQuality getMetricQuality() const;
+
 	NumericMetricValue & setStartTime(const Timestamp & value);
 	Timestamp getStartTime() const;
 	bool getStartTime(Timestamp & out) const;
@@ -71,6 +74,10 @@ public:
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
+	NumericMetricValue & addAnnotation(const Annotation & value);
+	std::vector<Annotation> getAnnotationLists() const;
+	void clearAnnotationLists();
+	
 	NumericMetricValue & setValue(const double & value);
 	double getValue() const;
 	bool getValue(double & out) const;

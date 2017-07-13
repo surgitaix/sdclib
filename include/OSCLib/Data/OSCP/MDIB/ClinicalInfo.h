@@ -65,6 +65,10 @@ public:
 	std::vector<LocalizedText> getDescriptionLists() const;
 	void clearDescriptionLists();
 	
+	ClinicalInfo & addRelatedMeasurement(const RelatedMeasurement & value);
+	std::vector<RelatedMeasurement> getRelatedMeasurementLists() const;
+	void clearRelatedMeasurementLists();
+	
 private:
 	std::shared_ptr<CDM::ClinicalInfo> data;
 };

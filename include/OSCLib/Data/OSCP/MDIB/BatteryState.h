@@ -109,8 +109,8 @@ public:
 	bool getRemainingBatteryTime(Measurement & out) const;
 	bool hasRemainingBatteryTime() const;
 
-	BatteryState & setChargeStatus(const ChargeStatusType & value);
-	ChargeStatusType getChargeStatus() const;
+	BatteryState & setChargeStatus(const ChargeStatus & value);
+	ChargeStatus getChargeStatus() const;
 
 	BatteryState & setChargeCycles(const unsigned int & value);
 	unsigned int getChargeCycles() const;

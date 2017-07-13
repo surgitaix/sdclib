@@ -35,10 +35,10 @@ ConvertToCDM::~ConvertToCDM() {
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecificationType.h"
+#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/MetaDataType.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdState.h"
@@ -55,18 +55,18 @@ ConvertToCDM::~ConvertToCDM() {
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
-#include "OSCLib/Data/OSCP/MDIB/MetricQualityType.h"
-#include "OSCLib/Data/OSCP/MDIB/AnnotationType.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
+#include "OSCLib/Data/OSCP/MDIB/Annotation.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotationType.h"
+#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AllowedValueType.h"
+#include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
@@ -79,7 +79,7 @@ ConvertToCDM::~ConvertToCDM() {
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ArgumentType.h"
+#include "OSCLib/Data/OSCP/MDIB/Argument.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationState.h"
@@ -106,16 +106,16 @@ ConvertToCDM::~ConvertToCDM() {
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurementType.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferenceRangeType.h"
+#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferenceRange.h"
 #include "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationReference.h"
 #include "OSCLib/Data/OSCP/MDIB/OrderDetail.h"
 #include "OSCLib/Data/OSCP/MDIB/PersonParticipation.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/WorkflowDetailType.h"
-#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetailType.h"
-#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetailType.h"
+#include "OSCLib/Data/OSCP/MDIB/WorkflowDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h"
@@ -124,47 +124,37 @@ ConvertToCDM::~ConvertToCDM() {
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTree.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h"
-Timestamp ConvertToCDM::convert(const Timestamp & source) {
+
+
+bool ConvertToCDM::convert(const bool & source) {
 	return source;
 }
 
-VersionCounter ConvertToCDM::convert(const VersionCounter & source) {
+double ConvertToCDM::convert(const double & source) {
 	return source;
 }
 
-ReferencedVersion ConvertToCDM::convert(const ReferencedVersion & source) {
+unsigned int ConvertToCDM::convert(const unsigned int & source) {
 	return source;
 }
 
-CodeIdentifier ConvertToCDM::convert(const CodeIdentifier & source) {
+int ConvertToCDM::convert(const int & source) {
 	return source;
 }
 
-SymbolicCodeName ConvertToCDM::convert(const SymbolicCodeName & source) {
+long ConvertToCDM::convert(const long & source) {
 	return source;
 }
 
-LocalizedTextRef ConvertToCDM::convert(const LocalizedTextRef & source) {
+long long ConvertToCDM::convert(const long long & source) {
 	return source;
 }
 
-Handle ConvertToCDM::convert(const Handle & source) {
+std::string ConvertToCDM::convert(const std::string & source) {
 	return source;
 }
 
-HandleRef ConvertToCDM::convert(const HandleRef & source) {
-	return source;
-}
-
-QualityIndicator ConvertToCDM::convert(const QualityIndicator & source) {
-	return source;
-}
-
-TimeZone ConvertToCDM::convert(const TimeZone & source) {
-	return source;
-}
-
-DateOfBirthType ConvertToCDM::convert(const DateOfBirthType & source) {
+unsigned short int ConvertToCDM::convert(const unsigned short int & source) {
 	return source;
 }
 
@@ -376,14 +366,14 @@ CDM::PatientType ConvertToCDM::convert(const PatientType & source) {
 	throw std::runtime_error("Illegal value for PatientType");
 }
 
-CDM::ChargeStatusType ConvertToCDM::convert(const ChargeStatusType & source) {
+CDM::ChargeStatus ConvertToCDM::convert(const ChargeStatus & source) {
 	switch (source) {
-		case ChargeStatusType::Ful: return CDM::ChargeStatusType::Ful;
-		case ChargeStatusType::ChB: return CDM::ChargeStatusType::ChB;
-		case ChargeStatusType::DisChB: return CDM::ChargeStatusType::DisChB;
-		case ChargeStatusType::DEB: return CDM::ChargeStatusType::DEB;
+		case ChargeStatus::Ful: return CDM::ChargeStatus::Ful;
+		case ChargeStatus::ChB: return CDM::ChargeStatus::ChB;
+		case ChargeStatus::DisChB: return CDM::ChargeStatus::DisChB;
+		case ChargeStatus::DEB: return CDM::ChargeStatus::DEB;
 	}
-	throw std::runtime_error("Illegal value for ChargeStatusType");
+	throw std::runtime_error("Illegal value for ChargeStatus");
 }
 
 template
@@ -423,7 +413,7 @@ template
 std::unique_ptr<typename AbstractDeviceComponentDescriptor::WrappedType> ConvertToCDM::convert(const AbstractDeviceComponentDescriptor&source);
 
 template
-std::unique_ptr<typename ProductionSpecificationType::WrappedType> ConvertToCDM::convert(const ProductionSpecificationType&source);
+std::unique_ptr<typename ProductionSpecification::WrappedType> ConvertToCDM::convert(const ProductionSpecification&source);
 
 template
 std::unique_ptr<typename AbstractAlertingDeviceComponentDescriptor::WrappedType> ConvertToCDM::convert(const AbstractAlertingDeviceComponentDescriptor&source);
@@ -441,7 +431,7 @@ template
 std::unique_ptr<typename MdsDescriptor::WrappedType> ConvertToCDM::convert(const MdsDescriptor&source);
 
 template
-std::unique_ptr<typename MetaDataType::WrappedType> ConvertToCDM::convert(const MetaDataType&source);
+std::unique_ptr<typename MetaData::WrappedType> ConvertToCDM::convert(const MetaData&source);
 
 template
 std::unique_ptr<typename MdsState::WrappedType> ConvertToCDM::convert(const MdsState&source);
@@ -501,10 +491,10 @@ template
 std::unique_ptr<typename AbstractMetricValue::WrappedType> ConvertToCDM::convert(const AbstractMetricValue&source);
 
 template
-std::unique_ptr<typename MetricQualityType::WrappedType> ConvertToCDM::convert(const MetricQualityType&source);
+std::unique_ptr<typename MetricQuality::WrappedType> ConvertToCDM::convert(const MetricQuality&source);
 
 template
-std::unique_ptr<typename AnnotationType::WrappedType> ConvertToCDM::convert(const AnnotationType&source);
+std::unique_ptr<typename Annotation::WrappedType> ConvertToCDM::convert(const Annotation&source);
 
 template
 std::unique_ptr<typename NumericMetricValue::WrappedType> ConvertToCDM::convert(const NumericMetricValue&source);
@@ -516,7 +506,7 @@ template
 std::unique_ptr<typename SampleArrayValue::WrappedType> ConvertToCDM::convert(const SampleArrayValue&source);
 
 template
-std::unique_ptr<typename ApplyAnnotationType::WrappedType> ConvertToCDM::convert(const ApplyAnnotationType&source);
+std::unique_ptr<typename ApplyAnnotation::WrappedType> ConvertToCDM::convert(const ApplyAnnotation&source);
 
 template
 std::unique_ptr<typename AbstractMetricDescriptor::WrappedType> ConvertToCDM::convert(const AbstractMetricDescriptor&source);
@@ -540,7 +530,7 @@ template
 std::unique_ptr<typename EnumStringMetricDescriptor::WrappedType> ConvertToCDM::convert(const EnumStringMetricDescriptor&source);
 
 template
-std::unique_ptr<typename AllowedValueType::WrappedType> ConvertToCDM::convert(const AllowedValueType&source);
+std::unique_ptr<typename AllowedValue::WrappedType> ConvertToCDM::convert(const AllowedValue&source);
 
 template
 std::unique_ptr<typename EnumStringMetricState::WrappedType> ConvertToCDM::convert(const EnumStringMetricState&source);
@@ -588,7 +578,7 @@ template
 std::unique_ptr<typename ActivateOperationDescriptor::WrappedType> ConvertToCDM::convert(const ActivateOperationDescriptor&source);
 
 template
-std::unique_ptr<typename ArgumentType::WrappedType> ConvertToCDM::convert(const ArgumentType&source);
+std::unique_ptr<typename Argument::WrappedType> ConvertToCDM::convert(const Argument&source);
 
 template
 std::unique_ptr<typename ActivateOperationState::WrappedType> ConvertToCDM::convert(const ActivateOperationState&source);
@@ -675,10 +665,10 @@ template
 std::unique_ptr<typename ClinicalInfo::WrappedType> ConvertToCDM::convert(const ClinicalInfo&source);
 
 template
-std::unique_ptr<typename RelatedMeasurementType::WrappedType> ConvertToCDM::convert(const RelatedMeasurementType&source);
+std::unique_ptr<typename RelatedMeasurement::WrappedType> ConvertToCDM::convert(const RelatedMeasurement&source);
 
 template
-std::unique_ptr<typename ReferenceRangeType::WrappedType> ConvertToCDM::convert(const ReferenceRangeType&source);
+std::unique_ptr<typename ReferenceRange::WrappedType> ConvertToCDM::convert(const ReferenceRange&source);
 
 template
 std::unique_ptr<typename ImagingProcedure::WrappedType> ConvertToCDM::convert(const ImagingProcedure&source);
@@ -696,13 +686,13 @@ template
 std::unique_ptr<typename WorkflowContextState::WrappedType> ConvertToCDM::convert(const WorkflowContextState&source);
 
 template
-std::unique_ptr<typename WorkflowDetailType::WrappedType> ConvertToCDM::convert(const WorkflowDetailType&source);
+std::unique_ptr<typename WorkflowDetail::WrappedType> ConvertToCDM::convert(const WorkflowDetail&source);
 
 template
-std::unique_ptr<typename RequestedOrderDetailType::WrappedType> ConvertToCDM::convert(const RequestedOrderDetailType&source);
+std::unique_ptr<typename RequestedOrderDetail::WrappedType> ConvertToCDM::convert(const RequestedOrderDetail&source);
 
 template
-std::unique_ptr<typename PerformedOrderDetailType::WrappedType> ConvertToCDM::convert(const PerformedOrderDetailType&source);
+std::unique_ptr<typename PerformedOrderDetail::WrappedType> ConvertToCDM::convert(const PerformedOrderDetail&source);
 
 template
 std::unique_ptr<typename OperatorContextDescriptor::WrappedType> ConvertToCDM::convert(const OperatorContextDescriptor&source);

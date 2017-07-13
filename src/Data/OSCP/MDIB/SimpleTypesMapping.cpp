@@ -234,14 +234,14 @@ std::string EnumToString::convert(PatientType source) {
 	throw std::runtime_error("Illegal value for PatientType");
 }
 
-std::string EnumToString::convert(ChargeStatusType source) {
+std::string EnumToString::convert(ChargeStatus source) {
 	switch (source) {
-		case ChargeStatusType::Ful: return "Ful";
-		case ChargeStatusType::ChB: return "ChB";
-		case ChargeStatusType::DisChB: return "DisChB";
-		case ChargeStatusType::DEB: return "DEB";
+		case ChargeStatus::Ful: return "Ful";
+		case ChargeStatus::ChB: return "ChB";
+		case ChargeStatus::DisChB: return "DisChB";
+		case ChargeStatus::DEB: return "DEB";
 	}
-	throw std::runtime_error("Illegal value for ChargeStatusType");
+	throw std::runtime_error("Illegal value for ChargeStatus");
 }
 
 

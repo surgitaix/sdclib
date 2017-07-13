@@ -218,12 +218,12 @@ bool NeonatalPatientDemographicsCoreData::hasPatientType() const {
 	return data->PatientType().present();
 }
 	
-NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setDateOfBirth(const DateOfBirthType & value) {
+NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setDateOfBirth(const DateOfBirth & value) {
 	data->DateOfBirth(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NeonatalPatientDemographicsCoreData::getDateOfBirth(DateOfBirthType & out) const {
+bool NeonatalPatientDemographicsCoreData::getDateOfBirth(DateOfBirth & out) const {
 	if (data->DateOfBirth().present()) {
 		out = ConvertFromCDM::convert(data->DateOfBirth().get());
 		return true;
@@ -231,7 +231,7 @@ bool NeonatalPatientDemographicsCoreData::getDateOfBirth(DateOfBirthType & out) 
 	return false;
 }
 
-DateOfBirthType NeonatalPatientDemographicsCoreData::getDateOfBirth() const {
+DateOfBirth NeonatalPatientDemographicsCoreData::getDateOfBirth() const {
 	return ConvertFromCDM::convert(data->DateOfBirth().get());
 }
 	

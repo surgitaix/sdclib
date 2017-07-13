@@ -87,6 +87,10 @@ public:
 	ActivateOperationDescriptor & setRetriggerable(const bool & value);
 	bool getRetriggerable() const;
 
+	ActivateOperationDescriptor & addArgument(const Argument & value);
+	std::vector<Argument> getArgumentLists() const;
+	void clearArgumentLists();
+	
 private:
 	std::shared_ptr<CDM::ActivateOperationDescriptor> data;
 };

@@ -150,6 +150,24 @@ bool MdsDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
+MdsDescriptor & MdsDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> MdsDescriptor::getProductionSpecificationLists() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void MdsDescriptor::clearProductionSpecificationLists() {
+	data->ProductionSpecification().clear();
+}
+
 MdsDescriptor & MdsDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
 	data->AlertSystem(ConvertToCDM::convert(value));
 	return *this;
@@ -169,6 +187,27 @@ AlertSystemDescriptor MdsDescriptor::getAlertSystem() const {
 	
 bool MdsDescriptor::hasAlertSystem() const {
 	return data->AlertSystem().present();
+}
+	
+MdsDescriptor & MdsDescriptor::setMetaData(const MetaData & value) {
+	data->MetaData(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MdsDescriptor::getMetaData(MetaData & out) const {
+	if (data->MetaData().present()) {
+		out = ConvertFromCDM::convert(data->MetaData().get());
+		return true;
+	}
+	return false;
+}
+
+MetaData MdsDescriptor::getMetaData() const {
+	return ConvertFromCDM::convert(data->MetaData().get());
+}
+	
+bool MdsDescriptor::hasMetaData() const {
+	return data->MetaData().present();
 }
 	
 MdsDescriptor & MdsDescriptor::setSystemContext(const SystemContextDescriptor & value) {

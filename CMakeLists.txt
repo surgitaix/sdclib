@@ -24,7 +24,7 @@ SET(XSDCXX_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xsd/include" CACHE PATH "Path t
 SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
 SET(XERCES_LIB_DIR "${PROJECT_SOURCE_DIR}/../xerces/lib/" CACHE PATH "Path to XERCES-C libraries.")
 
-INCLUDE_DIRECTORIES("include" "datamodel" "swig" ${XSDCXX_INCLUDE_DIR} ${XERCES_INCLUDE_DIR} ${PTHREAD_INCLUDE_DIR})
+INCLUDE_DIRECTORIES("include" "datamodel" ${XSDCXX_INCLUDE_DIR} ${XERCES_INCLUDE_DIR} ${PTHREAD_INCLUDE_DIR})
 LINK_DIRECTORIES(${PTHREAD_LIB_DIR} ${XERCES_LIB_DIR})
 
 # Debug or Release build
@@ -76,10 +76,10 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/AlertSignalState.cpp
 ./src/Data/OSCP/MDIB/AlertSystemDescriptor.cpp
 ./src/Data/OSCP/MDIB/AlertSystemState.cpp
-./src/Data/OSCP/MDIB/AllowedValueType.cpp
-./src/Data/OSCP/MDIB/AnnotationType.cpp
-./src/Data/OSCP/MDIB/ApplyAnnotationType.cpp
-./src/Data/OSCP/MDIB/ArgumentType.cpp
+./src/Data/OSCP/MDIB/AllowedValue.cpp
+./src/Data/OSCP/MDIB/Annotation.cpp
+./src/Data/OSCP/MDIB/ApplyAnnotation.cpp
+./src/Data/OSCP/MDIB/Argument.cpp
 ./src/Data/OSCP/MDIB/BaseDemographics.cpp
 ./src/Data/OSCP/MDIB/BatteryDescriptor.cpp
 ./src/Data/OSCP/MDIB/BatteryState.cpp
@@ -118,8 +118,8 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/MeansContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/MeansContextState.cpp
 ./src/Data/OSCP/MDIB/Measurement.cpp
-./src/Data/OSCP/MDIB/MetaDataType.cpp
-./src/Data/OSCP/MDIB/MetricQualityType.cpp
+./src/Data/OSCP/MDIB/MetaData.cpp
+./src/Data/OSCP/MDIB/MetricQuality.cpp
 ./src/Data/OSCP/MDIB/NeonatalPatientDemographicsCoreData.cpp
 ./src/Data/OSCP/MDIB/NumericMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/NumericMetricState.cpp
@@ -130,17 +130,17 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/PatientContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/PatientContextState.cpp
 ./src/Data/OSCP/MDIB/PatientDemographicsCoreData.cpp
-./src/Data/OSCP/MDIB/PerformedOrderDetailType.cpp
+./src/Data/OSCP/MDIB/PerformedOrderDetail.cpp
 ./src/Data/OSCP/MDIB/PersonParticipation.cpp
 ./src/Data/OSCP/MDIB/PersonReference.cpp
-./src/Data/OSCP/MDIB/ProductionSpecificationType.cpp
+./src/Data/OSCP/MDIB/ProductionSpecification.cpp
 ./src/Data/OSCP/MDIB/Range.cpp
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.cpp
-./src/Data/OSCP/MDIB/ReferenceRangeType.cpp
-./src/Data/OSCP/MDIB/RelatedMeasurementType.cpp
+./src/Data/OSCP/MDIB/ReferenceRange.cpp
+./src/Data/OSCP/MDIB/RelatedMeasurement.cpp
 ./src/Data/OSCP/MDIB/RemedyInfo.cpp
-./src/Data/OSCP/MDIB/RequestedOrderDetailType.cpp
+./src/Data/OSCP/MDIB/RequestedOrderDetail.cpp
 ./src/Data/OSCP/MDIB/SampleArrayValue.cpp
 ./src/Data/OSCP/MDIB/ScoDescriptor.cpp
 ./src/Data/OSCP/MDIB/ScoState.cpp
@@ -167,7 +167,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/VmdState.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextState.cpp
-./src/Data/OSCP/MDIB/WorkflowDetailType.cpp
+./src/Data/OSCP/MDIB/WorkflowDetail.cpp
 ./src/Data/OSCP/MDIB/custom/AlertConditionReferenceCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/AlertSystemDescriptorCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/Base64BinaryCustomImpl.cxx

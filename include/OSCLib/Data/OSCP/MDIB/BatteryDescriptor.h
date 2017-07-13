@@ -74,6 +74,10 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
+	BatteryDescriptor & addProductionSpecification(const ProductionSpecification & value);
+	std::vector<ProductionSpecification> getProductionSpecificationLists() const;
+	void clearProductionSpecificationLists();
+	
 	BatteryDescriptor & setCapacityFullCharge(const Measurement & value);
 	Measurement getCapacityFullCharge() const;
 	bool getCapacityFullCharge(Measurement & out) const;

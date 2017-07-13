@@ -146,6 +146,24 @@ bool ChannelDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
+ChannelDescriptor & ChannelDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecificationLists() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ChannelDescriptor::clearProductionSpecificationLists() {
+	data->ProductionSpecification().clear();
+}
+
 ChannelDescriptor & ChannelDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
 	data->AlertSystem(ConvertToCDM::convert(value));
 	return *this;

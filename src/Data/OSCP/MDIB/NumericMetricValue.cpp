@@ -70,6 +70,16 @@ NumericMetricValue & NumericMetricValue:: operator=(const NumericMetricValue & o
 }
 
 
+NumericMetricValue & NumericMetricValue::setMetricQuality(const MetricQuality & value) {
+	data->MetricQuality(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+MetricQuality NumericMetricValue::getMetricQuality() const {
+	return ConvertFromCDM::convert(data->MetricQuality());
+}
+	
 NumericMetricValue & NumericMetricValue::setStartTime(const Timestamp & value) {
 	data->StartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -133,6 +143,24 @@ bool NumericMetricValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
+NumericMetricValue & NumericMetricValue::addAnnotation(const Annotation & value) {
+	data->Annotation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Annotation> NumericMetricValue::getAnnotationLists() const {
+	std::vector<Annotation> result;
+	result.reserve(data->Annotation().size());
+	for (const auto & value: data->Annotation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void NumericMetricValue::clearAnnotationLists() {
+	data->Annotation().clear();
+}
+
 NumericMetricValue & NumericMetricValue::setValue(const double & value) {
 	data->Value(ConvertToCDM::convert(value));
 	return *this;

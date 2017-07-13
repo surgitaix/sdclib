@@ -32,7 +32,7 @@ typedef std::vector<std::string> AlertConditionReference;
 typedef double QualityIndicator;
 typedef std::vector<double> RealTimeValueType;
 typedef std::string TimeZone;
-typedef std::string DateOfBirthType;
+typedef std::string DateOfBirth;
 
 
 enum class MeasurementValidity
@@ -201,7 +201,7 @@ enum class PatientType
 	Neo
 };
 
-enum class ChargeStatusType
+enum class ChargeStatus
 {
 	Ful,
 	ChB,
@@ -232,7 +232,7 @@ public:
 	static std::string convert(ContextAssociation source);
 	static std::string convert(Sex source);
 	static std::string convert(PatientType source);
-	static std::string convert(ChargeStatusType source);
+	static std::string convert(ChargeStatus source);
 };
 
 

@@ -70,6 +70,16 @@ SampleArrayValue & SampleArrayValue:: operator=(const SampleArrayValue & object)
 }
 
 
+SampleArrayValue & SampleArrayValue::setMetricQuality(const MetricQuality & value) {
+	data->MetricQuality(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+MetricQuality SampleArrayValue::getMetricQuality() const {
+	return ConvertFromCDM::convert(data->MetricQuality());
+}
+	
 SampleArrayValue & SampleArrayValue::setStartTime(const Timestamp & value) {
 	data->StartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -133,6 +143,24 @@ bool SampleArrayValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
+SampleArrayValue & SampleArrayValue::addAnnotation(const Annotation & value) {
+	data->Annotation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Annotation> SampleArrayValue::getAnnotationLists() const {
+	std::vector<Annotation> result;
+	result.reserve(data->Annotation().size());
+	for (const auto & value: data->Annotation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void SampleArrayValue::clearAnnotationLists() {
+	data->Annotation().clear();
+}
+
 SampleArrayValue & SampleArrayValue::setSamples(const RealTimeValueType & value) {
 	data->Samples(ConvertToCDM::convert(value));
 	return *this;
@@ -143,6 +171,24 @@ RealTimeValueType SampleArrayValue::getSamples() const {
 	return ConvertFromCDM::convert(data->Samples());
 }
 	
+SampleArrayValue & SampleArrayValue::addApplyAnnotation(const ApplyAnnotation & value) {
+	data->ApplyAnnotation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ApplyAnnotation> SampleArrayValue::getApplyAnnotationLists() const {
+	std::vector<ApplyAnnotation> result;
+	result.reserve(data->ApplyAnnotation().size());
+	for (const auto & value: data->ApplyAnnotation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void SampleArrayValue::clearApplyAnnotationLists() {
+	data->ApplyAnnotation().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

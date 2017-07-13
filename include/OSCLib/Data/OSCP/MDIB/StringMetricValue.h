@@ -56,6 +56,9 @@ public:
     
     typedef CDM::StringMetricValue WrappedType;
 
+	StringMetricValue & setMetricQuality(const MetricQuality & value);
+	MetricQuality getMetricQuality() const;
+
 	StringMetricValue & setStartTime(const Timestamp & value);
 	Timestamp getStartTime() const;
 	bool getStartTime(Timestamp & out) const;
@@ -71,6 +74,10 @@ public:
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
+	StringMetricValue & addAnnotation(const Annotation & value);
+	std::vector<Annotation> getAnnotationLists() const;
+	void clearAnnotationLists();
+	
 	StringMetricValue & setValue(const std::string & value);
 	std::string getValue() const;
 	bool getValue(std::string & out) const;

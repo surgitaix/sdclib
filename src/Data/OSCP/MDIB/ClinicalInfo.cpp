@@ -111,6 +111,24 @@ void ClinicalInfo::clearDescriptionLists() {
 	data->Description().clear();
 }
 
+ClinicalInfo & ClinicalInfo::addRelatedMeasurement(const RelatedMeasurement & value) {
+	data->RelatedMeasurement().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<RelatedMeasurement> ClinicalInfo::getRelatedMeasurementLists() const {
+	std::vector<RelatedMeasurement> result;
+	result.reserve(data->RelatedMeasurement().size());
+	for (const auto & value: data->RelatedMeasurement()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ClinicalInfo::clearRelatedMeasurementLists() {
+	data->RelatedMeasurement().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

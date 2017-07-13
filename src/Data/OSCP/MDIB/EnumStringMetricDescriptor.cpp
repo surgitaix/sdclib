@@ -287,6 +287,24 @@ void EnumStringMetricDescriptor::clearBodySiteLists() {
 	data->BodySite().clear();
 }
 
+EnumStringMetricDescriptor & EnumStringMetricDescriptor::addAllowedValue(const AllowedValue & value) {
+	data->AllowedValue().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<AllowedValue> EnumStringMetricDescriptor::getAllowedValueLists() const {
+	std::vector<AllowedValue> result;
+	result.reserve(data->AllowedValue().size());
+	for (const auto & value: data->AllowedValue()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void EnumStringMetricDescriptor::clearAllowedValueLists() {
+	data->AllowedValue().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

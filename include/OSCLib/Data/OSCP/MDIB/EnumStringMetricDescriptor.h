@@ -110,6 +110,10 @@ public:
 	std::vector<CodedValue> getBodySiteLists() const;
 	void clearBodySiteLists();
 	
+	EnumStringMetricDescriptor & addAllowedValue(const AllowedValue & value);
+	std::vector<AllowedValue> getAllowedValueLists() const;
+	void clearAllowedValueLists();
+	
 private:
 	std::shared_ptr<CDM::EnumStringMetricDescriptor> data;
 };

@@ -56,6 +56,9 @@ public:
     
     typedef CDM::SampleArrayValue WrappedType;
 
+	SampleArrayValue & setMetricQuality(const MetricQuality & value);
+	MetricQuality getMetricQuality() const;
+
 	SampleArrayValue & setStartTime(const Timestamp & value);
 	Timestamp getStartTime() const;
 	bool getStartTime(Timestamp & out) const;
@@ -71,9 +74,17 @@ public:
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
+	SampleArrayValue & addAnnotation(const Annotation & value);
+	std::vector<Annotation> getAnnotationLists() const;
+	void clearAnnotationLists();
+	
 	SampleArrayValue & setSamples(const RealTimeValueType & value);
 	RealTimeValueType getSamples() const;
 
+	SampleArrayValue & addApplyAnnotation(const ApplyAnnotation & value);
+	std::vector<ApplyAnnotation> getApplyAnnotationLists() const;
+	void clearApplyAnnotationLists();
+	
 private:
 	std::shared_ptr<CDM::SampleArrayValue> data;
 };
