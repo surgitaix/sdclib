@@ -93,6 +93,8 @@ public:
 
 	LimitAlertConditionDescriptor & setAutoLimitSupported(const bool & value);
 	bool getAutoLimitSupported() const;
+	bool getAutoLimitSupported(bool & out) const;
+	bool hasAutoLimitSupported() const;
 
 private:
 	std::shared_ptr<CDM::LimitAlertConditionDescriptor> data;

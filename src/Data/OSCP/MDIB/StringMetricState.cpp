@@ -77,9 +77,20 @@ StringMetricState & StringMetricState::setStateVersion(const VersionCounter & va
 	return *this;
 }
 
+bool StringMetricState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter StringMetricState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool StringMetricState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 StringMetricState & StringMetricState::setDescriptorHandle(const HandleRef & value) {
@@ -97,9 +108,20 @@ StringMetricState & StringMetricState::setDescriptorVersion(const ReferencedVers
 	return *this;
 }
 
+bool StringMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion StringMetricState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool StringMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 StringMetricState & StringMetricState::setActivationState(const ComponentActivation & value) {
@@ -107,9 +129,20 @@ StringMetricState & StringMetricState::setActivationState(const ComponentActivat
 	return *this;
 }
 
+bool StringMetricState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
 
 ComponentActivation StringMetricState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool StringMetricState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
 StringMetricState & StringMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
@@ -117,9 +150,20 @@ StringMetricState & StringMetricState::setActiveDeterminationPeriod(const xml_sc
 	return *this;
 }
 
+bool StringMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out) const {
+	if (data->ActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration StringMetricState::getActiveDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+}
+	
+bool StringMetricState::hasActiveDeterminationPeriod() const {
+	return data->ActiveDeterminationPeriod().present();
 }
 	
 StringMetricState & StringMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {

@@ -58,12 +58,16 @@ public:
 
 	BatteryState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	BatteryState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	BatteryState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	BatteryState & setCalibrationInfo(const CalibrationInfo & value);
 	CalibrationInfo getCalibrationInfo() const;
@@ -77,12 +81,18 @@ public:
 
 	BatteryState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
 
 	BatteryState & setOperatingHours(const unsigned int & value);
 	unsigned int getOperatingHours() const;
+	bool getOperatingHours(unsigned int & out) const;
+	bool hasOperatingHours() const;
 
 	BatteryState & setOperatingCycles(const int & value);
 	int getOperatingCycles() const;
+	bool getOperatingCycles(int & out) const;
+	bool hasOperatingCycles() const;
 
 	BatteryState & setCapacityRemaining(const Measurement & value);
 	Measurement getCapacityRemaining() const;
@@ -111,9 +121,13 @@ public:
 
 	BatteryState & setChargeStatus(const ChargeStatus & value);
 	ChargeStatus getChargeStatus() const;
+	bool getChargeStatus(ChargeStatus & out) const;
+	bool hasChargeStatus() const;
 
 	BatteryState & setChargeCycles(const unsigned int & value);
 	unsigned int getChargeCycles() const;
+	bool getChargeCycles(unsigned int & out) const;
+	bool hasChargeCycles() const;
 
 private:
 	std::shared_ptr<CDM::BatteryState> data;

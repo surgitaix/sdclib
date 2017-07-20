@@ -82,6 +82,8 @@ public:
 
 	DistributionSampleArrayMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
 	DerivationMethod getDerivationMethod() const;
+	bool getDerivationMethod(DerivationMethod & out) const;
+	bool hasDerivationMethod() const;
 
 	DistributionSampleArrayMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
 	MetricAvailability getMetricAvailability() const;
@@ -118,6 +120,8 @@ public:
 
 	DistributionSampleArrayMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
+	bool getResolution(double & out) const;
+	bool hasResolution() const;
 
 	DistributionSampleArrayMetricDescriptor & addTechnicalRange(const Range & value);
 	std::vector<Range> getTechnicalRangeLists() const;

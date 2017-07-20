@@ -170,9 +170,20 @@ StringMetricDescriptor & StringMetricDescriptor::setDerivationMethod(const Deriv
 	return *this;
 }
 
+bool StringMetricDescriptor::getDerivationMethod(DerivationMethod & out) const {
+	if (data->DerivationMethod().present()) {
+		out = ConvertFromCDM::convert(data->DerivationMethod().get());
+		return true;
+	}
+	return false;
+}
 
 DerivationMethod StringMetricDescriptor::getDerivationMethod() const {
-	return ConvertFromCDM::convert(data->DerivationMethod());
+	return ConvertFromCDM::convert(data->DerivationMethod().get());
+}
+	
+bool StringMetricDescriptor::hasDerivationMethod() const {
+	return data->DerivationMethod().present();
 }
 	
 StringMetricDescriptor & StringMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {

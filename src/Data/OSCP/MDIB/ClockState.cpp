@@ -77,9 +77,20 @@ ClockState & ClockState::setStateVersion(const VersionCounter & value) {
 	return *this;
 }
 
+bool ClockState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter ClockState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool ClockState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 ClockState & ClockState::setDescriptorHandle(const HandleRef & value) {
@@ -97,9 +108,20 @@ ClockState & ClockState::setDescriptorVersion(const ReferencedVersion & value) {
 	return *this;
 }
 
+bool ClockState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion ClockState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool ClockState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 ClockState & ClockState::setCalibrationInfo(const CalibrationInfo & value) {
@@ -149,9 +171,20 @@ ClockState & ClockState::setActivationState(const ComponentActivation & value) {
 	return *this;
 }
 
+bool ClockState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
 
 ComponentActivation ClockState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool ClockState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
 ClockState & ClockState::setOperatingHours(const unsigned int & value) {
@@ -159,9 +192,20 @@ ClockState & ClockState::setOperatingHours(const unsigned int & value) {
 	return *this;
 }
 
+bool ClockState::getOperatingHours(unsigned int & out) const {
+	if (data->OperatingHours().present()) {
+		out = ConvertFromCDM::convert(data->OperatingHours().get());
+		return true;
+	}
+	return false;
+}
 
 unsigned int ClockState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours());
+	return ConvertFromCDM::convert(data->OperatingHours().get());
+}
+	
+bool ClockState::hasOperatingHours() const {
+	return data->OperatingHours().present();
 }
 	
 ClockState & ClockState::setOperatingCycles(const int & value) {
@@ -169,9 +213,20 @@ ClockState & ClockState::setOperatingCycles(const int & value) {
 	return *this;
 }
 
+bool ClockState::getOperatingCycles(int & out) const {
+	if (data->OperatingCycles().present()) {
+		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+		return true;
+	}
+	return false;
+}
 
 int ClockState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles());
+	return ConvertFromCDM::convert(data->OperatingCycles().get());
+}
+	
+bool ClockState::hasOperatingCycles() const {
+	return data->OperatingCycles().present();
 }
 	
 ClockState & ClockState::setActiveSyncProtocol(const CodedValue & value) {
@@ -200,9 +255,20 @@ ClockState & ClockState::setDateAndTime(const Timestamp & value) {
 	return *this;
 }
 
+bool ClockState::getDateAndTime(Timestamp & out) const {
+	if (data->DateAndTime().present()) {
+		out = ConvertFromCDM::convert(data->DateAndTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp ClockState::getDateAndTime() const {
-	return ConvertFromCDM::convert(data->DateAndTime());
+	return ConvertFromCDM::convert(data->DateAndTime().get());
+}
+	
+bool ClockState::hasDateAndTime() const {
+	return data->DateAndTime().present();
 }
 	
 ClockState & ClockState::setRemoteSync(const bool & value) {
@@ -220,9 +286,20 @@ ClockState & ClockState::setReferenceSource(const std::string & value) {
 	return *this;
 }
 
+bool ClockState::getReferenceSource(std::string & out) const {
+	if (data->ReferenceSource().present()) {
+		out = ConvertFromCDM::convert(data->ReferenceSource().get());
+		return true;
+	}
+	return false;
+}
 
 std::string ClockState::getReferenceSource() const {
-	return ConvertFromCDM::convert(data->ReferenceSource());
+	return ConvertFromCDM::convert(data->ReferenceSource().get());
+}
+	
+bool ClockState::hasReferenceSource() const {
+	return data->ReferenceSource().present();
 }
 	
 ClockState & ClockState::setAccuracy(const double & value) {
@@ -251,9 +328,20 @@ ClockState & ClockState::setLastSet(const Timestamp & value) {
 	return *this;
 }
 
+bool ClockState::getLastSet(Timestamp & out) const {
+	if (data->LastSet().present()) {
+		out = ConvertFromCDM::convert(data->LastSet().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp ClockState::getLastSet() const {
-	return ConvertFromCDM::convert(data->LastSet());
+	return ConvertFromCDM::convert(data->LastSet().get());
+}
+	
+bool ClockState::hasLastSet() const {
+	return data->LastSet().present();
 }
 	
 ClockState & ClockState::setTimeZone(const TimeZone & value) {

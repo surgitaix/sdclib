@@ -76,9 +76,20 @@ MdsState & MdsState::setStateVersion(const VersionCounter & value) {
 	return *this;
 }
 
+bool MdsState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter MdsState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool MdsState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 MdsState & MdsState::setDescriptorHandle(const HandleRef & value) {
@@ -96,9 +107,20 @@ MdsState & MdsState::setDescriptorVersion(const ReferencedVersion & value) {
 	return *this;
 }
 
+bool MdsState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion MdsState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool MdsState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 MdsState & MdsState::setCalibrationInfo(const CalibrationInfo & value) {
@@ -148,9 +170,20 @@ MdsState & MdsState::setActivationState(const ComponentActivation & value) {
 	return *this;
 }
 
+bool MdsState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
 
 ComponentActivation MdsState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool MdsState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
 MdsState & MdsState::setOperatingHours(const unsigned int & value) {
@@ -158,9 +191,20 @@ MdsState & MdsState::setOperatingHours(const unsigned int & value) {
 	return *this;
 }
 
+bool MdsState::getOperatingHours(unsigned int & out) const {
+	if (data->OperatingHours().present()) {
+		out = ConvertFromCDM::convert(data->OperatingHours().get());
+		return true;
+	}
+	return false;
+}
 
 unsigned int MdsState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours());
+	return ConvertFromCDM::convert(data->OperatingHours().get());
+}
+	
+bool MdsState::hasOperatingHours() const {
+	return data->OperatingHours().present();
 }
 	
 MdsState & MdsState::setOperatingCycles(const int & value) {
@@ -168,9 +212,20 @@ MdsState & MdsState::setOperatingCycles(const int & value) {
 	return *this;
 }
 
+bool MdsState::getOperatingCycles(int & out) const {
+	if (data->OperatingCycles().present()) {
+		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+		return true;
+	}
+	return false;
+}
 
 int MdsState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles());
+	return ConvertFromCDM::convert(data->OperatingCycles().get());
+}
+	
+bool MdsState::hasOperatingCycles() const {
+	return data->OperatingCycles().present();
 }
 	
 MdsState & MdsState::setLang(const xml_schema::Language & value) {
@@ -178,9 +233,20 @@ MdsState & MdsState::setLang(const xml_schema::Language & value) {
 	return *this;
 }
 
+bool MdsState::getLang(xml_schema::Language & out) const {
+	if (data->Lang().present()) {
+		out = ConvertFromCDM::convert(data->Lang().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Language MdsState::getLang() const {
-	return ConvertFromCDM::convert(data->Lang());
+	return ConvertFromCDM::convert(data->Lang().get());
+}
+	
+bool MdsState::hasLang() const {
+	return data->Lang().present();
 }
 	
 MdsState & MdsState::setOperatingMode(const MdsOperatingMode & value) {

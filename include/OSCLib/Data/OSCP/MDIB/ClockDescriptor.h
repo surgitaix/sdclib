@@ -80,6 +80,8 @@ public:
 	
 	ClockDescriptor & setResolution(const xml_schema::Duration & value);
 	xml_schema::Duration getResolution() const;
+	bool getResolution(xml_schema::Duration & out) const;
+	bool hasResolution() const;
 
 	ClockDescriptor & addTimeProtocol(const CodedValue & value);
 	std::vector<CodedValue> getTimeProtocolLists() const;

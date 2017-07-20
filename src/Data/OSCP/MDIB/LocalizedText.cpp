@@ -75,9 +75,20 @@ LocalizedText & LocalizedText::setRef(const LocalizedTextRef & value) {
 	return *this;
 }
 
+bool LocalizedText::getRef(LocalizedTextRef & out) const {
+	if (data->Ref().present()) {
+		out = ConvertFromCDM::convert(data->Ref().get());
+		return true;
+	}
+	return false;
+}
 
 LocalizedTextRef LocalizedText::getRef() const {
-	return ConvertFromCDM::convert(data->Ref());
+	return ConvertFromCDM::convert(data->Ref().get());
+}
+	
+bool LocalizedText::hasRef() const {
+	return data->Ref().present();
 }
 	
 LocalizedText & LocalizedText::setLang(const xml_schema::Language & value) {
@@ -85,9 +96,20 @@ LocalizedText & LocalizedText::setLang(const xml_schema::Language & value) {
 	return *this;
 }
 
+bool LocalizedText::getLang(xml_schema::Language & out) const {
+	if (data->Lang().present()) {
+		out = ConvertFromCDM::convert(data->Lang().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Language LocalizedText::getLang() const {
-	return ConvertFromCDM::convert(data->Lang());
+	return ConvertFromCDM::convert(data->Lang().get());
+}
+	
+bool LocalizedText::hasLang() const {
+	return data->Lang().present();
 }
 	
 LocalizedText & LocalizedText::setVersion(const ReferencedVersion & value) {
@@ -95,9 +117,20 @@ LocalizedText & LocalizedText::setVersion(const ReferencedVersion & value) {
 	return *this;
 }
 
+bool LocalizedText::getVersion(ReferencedVersion & out) const {
+	if (data->Version().present()) {
+		out = ConvertFromCDM::convert(data->Version().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion LocalizedText::getVersion() const {
-	return ConvertFromCDM::convert(data->Version());
+	return ConvertFromCDM::convert(data->Version().get());
+}
+	
+bool LocalizedText::hasVersion() const {
+	return data->Version().present();
 }
 	
 

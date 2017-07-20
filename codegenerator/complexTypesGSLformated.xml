@@ -20,18 +20,18 @@
 	</class>
 
 	<class name = "LocalizedText" parent = "string" abstract = "false">
-		<property name = "Ref" type = "LocalizedTextRef" optional = "false" />
-		<property name = "Lang" type = "xml_schema::Language" optional = "false" />
-		<property name = "Version" type = "ReferencedVersion" optional = "false" />
+		<property name = "Ref" type = "LocalizedTextRef" optional = "true" />
+		<property name = "Lang" type = "xml_schema::Language" optional = "true" />
+		<property name = "Version" type = "ReferencedVersion" optional = "true" />
 	</class>
 
 	<class name = "CodedValue" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Code" type = "CodeIdentifier" optional = "false" />
-		<property name = "CodingSystem" type = "std::string" optional = "false" />
-		<property name = "CodingSystemVersion" type = "std::string" optional = "false" />
-		<property name = "SymbolicCodeName" type = "SymbolicCodeName" optional = "false" />
+		<property name = "CodingSystem" type = "std::string" optional = "true" />
+		<property name = "CodingSystemVersion" type = "std::string" optional = "true" />
+		<property name = "SymbolicCodeName" type = "SymbolicCodeName" optional = "true" />
 		<propertyList nameSingle = "CodingSystemName" nameSeveral = "CodingSystemNameLists" type = "LocalizedText" />
 		<propertyList nameSingle = "ConceptDescription" nameSeveral = "ConceptDescriptionLists" type = "LocalizedText" />
 		<propertyList nameSingle = "Translation" nameSeveral = "TranslationLists" type = "CodedValue" />
@@ -69,9 +69,9 @@
 	</class>
 
 	<class name = "AbstractState" parent = "NULL" abstract = "true">
-		<property name = "StateVersion" type = "VersionCounter" optional = "false" />
+		<property name = "StateVersion" type = "VersionCounter" optional = "true" />
 		<property name = "DescriptorHandle" type = "HandleRef" optional = "false" />
-		<property name = "DescriptorVersion" type = "ReferencedVersion" optional = "false" />
+		<property name = "DescriptorVersion" type = "ReferencedVersion" optional = "true" />
 	</class>
 
 	<class name = "AbstractMultiState" parent = "AbstractState" abstract = "true">
@@ -98,7 +98,7 @@
 	</class>
 
 	<class name = "CalibrationInfo" parent = "NULL" abstract = "false">
-		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "false" />
+		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "true" />
 		<property name = "Type" type = "CalibrationType" optional = "true" />
 		<property name = "Time" type = "Timestamp" optional = "true" />
 	</class>
@@ -107,9 +107,9 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h" />
 		<property name = "CalibrationInfo" type = "CalibrationInfo" optional = "true" />
 		<property name = "NextCalibration" type = "CalibrationInfo" optional = "true" />
-		<property name = "ActivationState" type = "ComponentActivation" optional = "false" />
-		<property name = "OperatingHours" type = "unsigned int" optional = "false" />
-		<property name = "OperatingCycles" type = "int" optional = "false" />
+		<property name = "ActivationState" type = "ComponentActivation" optional = "true" />
+		<property name = "OperatingHours" type = "unsigned int" optional = "true" />
+		<property name = "OperatingCycles" type = "int" optional = "true" />
 	</class>
 
 	<class name = "AbstractAlertingDeviceComponentState" parent = "AbstractDeviceComponentState" abstract = "true">
@@ -141,7 +141,7 @@
 	<class name = "MdsState" parent = "AbstractAlertingDeviceComponentState" abstract = "false">
 		<typedef name = "DescriptorType" type = "MdsDescriptor" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderHydraMDSStateHandler" />
-		<property name = "Lang" type = "xml_schema::Language" optional = "false" />
+		<property name = "Lang" type = "xml_schema::Language" optional = "true" />
 		<property name = "OperatingMode" type = "MdsOperatingMode" optional = "true" />
 	</class>
 
@@ -178,9 +178,9 @@
 	<class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h" />
-		<property name = "MaxPhysiologicalParallelAlarms" type = "unsigned int" optional = "false" />
-		<property name = "MaxTechnicalParallelAlarms" type = "unsigned int" optional = "false" />
-		<property name = "SelfCheckPeriod" type = "xml_schema::Duration" optional = "false" />
+		<property name = "MaxPhysiologicalParallelAlarms" type = "unsigned int" optional = "true" />
+		<property name = "MaxTechnicalParallelAlarms" type = "unsigned int" optional = "true" />
+		<property name = "SelfCheckPeriod" type = "xml_schema::Duration" optional = "true" />
 		<propertyList nameSingle = "AlertCondition" nameSeveral = "AlertConditionLists" type = "AlertConditionDescriptor" />
 		<propertyList nameSingle = "AlertSignal" nameSeveral = "AlertSignalLists" type = "AlertSignalDescriptor" />
 	</class>
@@ -190,10 +190,10 @@
 		<typedef name = "DescriptorType" type = "AlertSystemDescriptor" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSignalStateHandler" />
 		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSignalStateHandler" />
-		<property name = "LastSelfCheck" type = "Timestamp" optional = "false" />
-		<property name = "SelfCheckCount" type = "long long" optional = "false" />
-		<property name = "PresentPhysiologicalAlarmConditions" type = "AlertConditionReference" optional = "false" />
-		<property name = "PresentTechnicalAlarmConditions" type = "AlertConditionReference" optional = "false" />
+		<property name = "LastSelfCheck" type = "Timestamp" optional = "true" />
+		<property name = "SelfCheckCount" type = "long long" optional = "true" />
+		<property name = "PresentPhysiologicalAlarmConditions" type = "AlertConditionReference" optional = "true" />
+		<property name = "PresentTechnicalAlarmConditions" type = "AlertConditionReference" optional = "true" />
 		<propertyList nameSingle = "SystemSignalActivation" nameSeveral = "SystemSignalActivationLists" type = "SystemSignalActivation" />
 	</class>
 
@@ -221,16 +221,16 @@
 		<typedef name = "DescriptorType" type = "AlertConditionDescriptor" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderAlertConditionStateHandler" />
 		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertConditionStateHandler" />
-		<property name = "ActualPriority" type = "AlertConditionPriority" optional = "false" />
-		<property name = "Rank" type = "int" optional = "false" />
+		<property name = "ActualPriority" type = "AlertConditionPriority" optional = "true" />
+		<property name = "Rank" type = "int" optional = "true" />
 		<property name = "Presence" type = "bool" optional = "false" />
-		<property name = "DeterminationTime" type = "Timestamp" optional = "false" />
+		<property name = "DeterminationTime" type = "Timestamp" optional = "true" />
 	</class>
 
 	<class name = "LimitAlertConditionDescriptor" parent = "AlertConditionDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<property name = "MaxLimits" type = "Range" optional = "false" />
-		<property name = "AutoLimitSupported" type = "bool" optional = "false" />
+		<property name = "AutoLimitSupported" type = "bool" optional = "true" />
 	</class>
 
 	<class name = "LimitAlertConditionState" parent = "AlertConditionState" abstract = "false">
@@ -247,8 +247,8 @@
 		<property name = "ConditionSignaled" type = "HandleRef" optional = "false" />
 		<property name = "Manifestation" type = "AlertSignalManifestation" optional = "false" />
 		<property name = "Latching" type = "bool" optional = "false" />
-		<property name = "DefaultSignalGenerationDelay" type = "xml_schema::Duration" optional = "false" />
-		<property name = "SignalDelegationSupported" type = "bool" optional = "false" />
+		<property name = "DefaultSignalGenerationDelay" type = "xml_schema::Duration" optional = "true" />
+		<property name = "SignalDelegationSupported" type = "bool" optional = "true" />
 		<property name = "AcknowledgementSupported" type = "bool" optional = "true" />
 		<property name = "AcknowledgeTimeout" type = "xml_schema::Duration" optional = "true" />
 	</class>
@@ -272,8 +272,8 @@
 
 	<class name = "MetricQuality" parent = "NULL" abstract = "false">
 		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
-		<property name = "Mode" type = "GenerationMode" optional = "false" />
-		<property name = "Qi" type = "QualityIndicator" optional = "false" />
+		<property name = "Mode" type = "GenerationMode" optional = "true" />
+		<property name = "Qi" type = "QualityIndicator" optional = "true" />
 	</class>
 
 	<class name = "Annotation" parent = "NULL" abstract = "false">
@@ -290,7 +290,7 @@
 	</class>
 
 	<class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false">
-		<property name = "Samples" type = "RealTimeValueType" optional = "false" />
+		<property name = "Samples" type = "RealTimeValueType" optional = "true" />
 		<propertyList nameSingle = "ApplyAnnotation" nameSeveral = "ApplyAnnotationLists" type = "ApplyAnnotation" />
 	</class>
 
@@ -303,7 +303,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Unit" type = "CodedValue" optional = "false" />
 		<property name = "MetricCategory" type = "MetricCategory" optional = "false" />
-		<property name = "DerivationMethod" type = "DerivationMethod" optional = "false" />
+		<property name = "DerivationMethod" type = "DerivationMethod" optional = "true" />
 		<property name = "MetricAvailability" type = "MetricAvailability" optional = "false" />
 		<property name = "MaxMeasurementTime" type = "xml_schema::Duration" optional = "true" />
 		<property name = "MaxDelayTime" type = "xml_schema::Duration" optional = "true" />
@@ -314,8 +314,8 @@
 
 	<class name = "AbstractMetricState" parent = "AbstractState" abstract = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<property name = "ActivationState" type = "ComponentActivation" optional = "false" />
-		<property name = "ActiveDeterminationPeriod" type = "xml_schema::Duration" optional = "false" />
+		<property name = "ActivationState" type = "ComponentActivation" optional = "true" />
+		<property name = "ActiveDeterminationPeriod" type = "xml_schema::Duration" optional = "true" />
 		<property name = "LifeTimePeriod" type = "xml_schema::Duration" optional = "true" />
 		<propertyList nameSingle = "BodySite" nameSeveral = "BodySiteLists" type = "CodedValue" />
 	</class>
@@ -323,8 +323,8 @@
 	<class name = "NumericMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<typedef name = "StateType" type = "NumericMetricState" />
-		<property name = "Resolution" type = "double" optional = "false" />
-		<property name = "AveragingPeriod" type = "xml_schema::Duration" optional = "false" />
+		<property name = "Resolution" type = "double" optional = "true" />
+		<property name = "AveragingPeriod" type = "xml_schema::Duration" optional = "true" />
 		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeLists" type = "Range" />
 	</class>
 
@@ -370,7 +370,7 @@
 	<class name = "RealTimeSampleArrayMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<typedef name = "StateType" type = "RealTimeSampleArrayMetricState" />
-		<property name = "Resolution" type = "double" optional = "false" />
+		<property name = "Resolution" type = "double" optional = "true" />
 		<property name = "SamplePeriod" type = "xml_schema::Duration" optional = "false" />
 		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeLists" type = "Range" />
 	</class>
@@ -390,7 +390,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "DomainUnit" type = "CodedValue" optional = "false" />
 		<property name = "DistributionRange" type = "Range" optional = "false" />
-		<property name = "Resolution" type = "double" optional = "false" />
+		<property name = "Resolution" type = "double" optional = "true" />
 		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeLists" type = "Range" />
 	</class>
 
@@ -437,8 +437,8 @@
 	</class>
 
 	<class name = "ActivateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false">
-		<property name = "ActivationDuration" type = "xml_schema::Duration" optional = "false" />
-		<property name = "Retriggerable" type = "bool" optional = "false" />
+		<property name = "ActivationDuration" type = "xml_schema::Duration" optional = "true" />
+		<property name = "Retriggerable" type = "bool" optional = "true" />
 		<propertyList nameSingle = "Argument" nameSeveral = "ArgumentLists" type = "Argument" />
 	</class>
 
@@ -477,7 +477,7 @@
 
 	<class name = "ClockDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<property name = "Resolution" type = "xml_schema::Duration" optional = "false" />
+		<property name = "Resolution" type = "xml_schema::Duration" optional = "true" />
 		<propertyList nameSingle = "TimeProtocol" nameSeveral = "TimeProtocolLists" type = "CodedValue" />
 	</class>
 
@@ -485,11 +485,11 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<typedef name = "DescriptorType" type = "ClockDescriptor" />
 		<property name = "ActiveSyncProtocol" type = "CodedValue" optional = "true" />
-		<property name = "DateAndTime" type = "Timestamp" optional = "false" />
+		<property name = "DateAndTime" type = "Timestamp" optional = "true" />
 		<property name = "RemoteSync" type = "bool" optional = "false" />
-		<property name = "ReferenceSource" type = "std::string" optional = "false" />
+		<property name = "ReferenceSource" type = "std::string" optional = "true" />
 		<property name = "Accuracy" type = "double" optional = "true" />
-		<property name = "LastSet" type = "Timestamp" optional = "false" />
+		<property name = "LastSet" type = "Timestamp" optional = "true" />
 		<property name = "TimeZone" type = "TimeZone" optional = "true" />
 		<property name = "CriticalUse" type = "bool" optional = "true" />
 	</class>
@@ -508,8 +508,8 @@
 		<property name = "Current" type = "Measurement" optional = "true" />
 		<property name = "Temperature" type = "Measurement" optional = "true" />
 		<property name = "RemainingBatteryTime" type = "Measurement" optional = "true" />
-		<property name = "ChargeStatus" type = "ChargeStatus" optional = "false" />
-		<property name = "ChargeCycles" type = "unsigned int" optional = "false" />
+		<property name = "ChargeStatus" type = "ChargeStatus" optional = "true" />
+		<property name = "ChargeCycles" type = "unsigned int" optional = "true" />
 	</class>
 
 	<class name = "SystemContextDescriptor" parent = "AbstractDescriptor" abstract = "false">
@@ -535,11 +535,11 @@
 
 	<class name = "AbstractContextState" parent = "AbstractMultiState" abstract = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<property name = "ContextAssociation" type = "ContextAssociation" optional = "false" />
+		<property name = "ContextAssociation" type = "ContextAssociation" optional = "true" />
 		<property name = "BindingMdibVersion" type = "ReferencedVersion" optional = "true" />
-		<property name = "UnbindingMdibVersion" type = "ReferencedVersion" optional = "false" />
-		<property name = "BindingStartTime" type = "Timestamp" optional = "false" />
-		<property name = "BindingEndTime" type = "Timestamp" optional = "false" />
+		<property name = "UnbindingMdibVersion" type = "ReferencedVersion" optional = "true" />
+		<property name = "BindingStartTime" type = "Timestamp" optional = "true" />
+		<property name = "BindingEndTime" type = "Timestamp" optional = "true" />
 		<propertyList nameSingle = "Validator" nameSeveral = "ValidatorLists" type = "InstanceIdentifier" />
 		<propertyList nameSingle = "Identification" nameSeveral = "IdentificationLists" type = "InstanceIdentifier" />
 	</class>
@@ -624,7 +624,7 @@
 	<class name = "RelatedMeasurement" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
 		<property name = "Value" type = "Measurement" optional = "false" />
-		<property name = "Validity" type = "MeasurementValidity" optional = "false" />
+		<property name = "Validity" type = "MeasurementValidity" optional = "true" />
 		<propertyList nameSingle = "ReferenceRange" nameSeveral = "ReferenceRangeLists" type = "ReferenceRange" />
 	</class>
 

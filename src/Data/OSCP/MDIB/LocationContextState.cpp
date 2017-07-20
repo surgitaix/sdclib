@@ -78,9 +78,20 @@ LocationContextState & LocationContextState::setStateVersion(const VersionCounte
 	return *this;
 }
 
+bool LocationContextState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter LocationContextState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool LocationContextState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 LocationContextState & LocationContextState::setDescriptorHandle(const HandleRef & value) {
@@ -98,9 +109,20 @@ LocationContextState & LocationContextState::setDescriptorVersion(const Referenc
 	return *this;
 }
 
+bool LocationContextState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion LocationContextState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool LocationContextState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 LocationContextState & LocationContextState::setCategory(const CodedValue & value) {
@@ -139,9 +161,20 @@ LocationContextState & LocationContextState::setContextAssociation(const Context
 	return *this;
 }
 
+bool LocationContextState::getContextAssociation(ContextAssociation & out) const {
+	if (data->ContextAssociation().present()) {
+		out = ConvertFromCDM::convert(data->ContextAssociation().get());
+		return true;
+	}
+	return false;
+}
 
 ContextAssociation LocationContextState::getContextAssociation() const {
-	return ConvertFromCDM::convert(data->ContextAssociation());
+	return ConvertFromCDM::convert(data->ContextAssociation().get());
+}
+	
+bool LocationContextState::hasContextAssociation() const {
+	return data->ContextAssociation().present();
 }
 	
 LocationContextState & LocationContextState::setBindingMdibVersion(const ReferencedVersion & value) {
@@ -170,9 +203,20 @@ LocationContextState & LocationContextState::setUnbindingMdibVersion(const Refer
 	return *this;
 }
 
+bool LocationContextState::getUnbindingMdibVersion(ReferencedVersion & out) const {
+	if (data->UnbindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion LocationContextState::getUnbindingMdibVersion() const {
-	return ConvertFromCDM::convert(data->UnbindingMdibVersion());
+	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+}
+	
+bool LocationContextState::hasUnbindingMdibVersion() const {
+	return data->UnbindingMdibVersion().present();
 }
 	
 LocationContextState & LocationContextState::setBindingStartTime(const Timestamp & value) {
@@ -180,9 +224,20 @@ LocationContextState & LocationContextState::setBindingStartTime(const Timestamp
 	return *this;
 }
 
+bool LocationContextState::getBindingStartTime(Timestamp & out) const {
+	if (data->BindingStartTime().present()) {
+		out = ConvertFromCDM::convert(data->BindingStartTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp LocationContextState::getBindingStartTime() const {
-	return ConvertFromCDM::convert(data->BindingStartTime());
+	return ConvertFromCDM::convert(data->BindingStartTime().get());
+}
+	
+bool LocationContextState::hasBindingStartTime() const {
+	return data->BindingStartTime().present();
 }
 	
 LocationContextState & LocationContextState::setBindingEndTime(const Timestamp & value) {
@@ -190,9 +245,20 @@ LocationContextState & LocationContextState::setBindingEndTime(const Timestamp &
 	return *this;
 }
 
+bool LocationContextState::getBindingEndTime(Timestamp & out) const {
+	if (data->BindingEndTime().present()) {
+		out = ConvertFromCDM::convert(data->BindingEndTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp LocationContextState::getBindingEndTime() const {
-	return ConvertFromCDM::convert(data->BindingEndTime());
+	return ConvertFromCDM::convert(data->BindingEndTime().get());
+}
+	
+bool LocationContextState::hasBindingEndTime() const {
+	return data->BindingEndTime().present();
 }
 	
 LocationContextState & LocationContextState::addValidator(const InstanceIdentifier & value) {

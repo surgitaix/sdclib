@@ -58,12 +58,16 @@ public:
 
 	SetAlertStateOperationState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	SetAlertStateOperationState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	SetAlertStateOperationState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	SetAlertStateOperationState & setOperatingMode(const OperatingMode & value);
 	OperatingMode getOperatingMode() const;

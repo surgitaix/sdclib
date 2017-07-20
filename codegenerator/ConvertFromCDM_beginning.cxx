@@ -30,10 +30,6 @@ double ConvertFromCDM::convert(const double & source) {
 	return source;
 }
 
-unsigned short int ConvertFromCDM::convert(const unsigned short int & source) {
-	return source;
-}
-
 unsigned int ConvertFromCDM::convert(const unsigned int & source) {
 	return source;
 }
@@ -59,6 +55,23 @@ unsigned short int ConvertFromCDM::convert(const unsigned short int & source) {
 }
 
 unsigned long ConvertFromCDM::convert(const unsigned long & source) {
+	return source;
+}
+
+unsigned long long ConvertFromCDM::convert(const unsigned long long & source) {
+	return source;
+}
+
+xml_schema::Duration ConvertFromCDM::convert(const xml_schema::Duration & source) {
+	return source;
+}
+
+
+xml_schema::Qname ConvertFromCDM::convert(const xml_schema::Qname & source) {
+	return source;
+}
+
+xml_schema::Language ConvertFromCDM::convert(const xml_schema::Language & source) {
 	return source;
 }
 

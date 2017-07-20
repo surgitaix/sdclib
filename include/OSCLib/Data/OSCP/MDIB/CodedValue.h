@@ -61,12 +61,18 @@ public:
 
 	CodedValue & setCodingSystem(const std::string & value);
 	std::string getCodingSystem() const;
+	bool getCodingSystem(std::string & out) const;
+	bool hasCodingSystem() const;
 
 	CodedValue & setCodingSystemVersion(const std::string & value);
 	std::string getCodingSystemVersion() const;
+	bool getCodingSystemVersion(std::string & out) const;
+	bool hasCodingSystemVersion() const;
 
 	CodedValue & setSymbolicCodeName(const SymbolicCodeName & value);
 	SymbolicCodeName getSymbolicCodeName() const;
+	bool getSymbolicCodeName(SymbolicCodeName & out) const;
+	bool hasSymbolicCodeName() const;
 
 	CodedValue & addCodingSystemName(const LocalizedText & value);
 	std::vector<LocalizedText> getCodingSystemNameLists() const;

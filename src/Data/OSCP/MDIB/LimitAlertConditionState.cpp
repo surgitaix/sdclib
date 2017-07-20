@@ -76,9 +76,20 @@ LimitAlertConditionState & LimitAlertConditionState::setStateVersion(const Versi
 	return *this;
 }
 
+bool LimitAlertConditionState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter LimitAlertConditionState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool LimitAlertConditionState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setDescriptorHandle(const HandleRef & value) {
@@ -96,9 +107,20 @@ LimitAlertConditionState & LimitAlertConditionState::setDescriptorVersion(const 
 	return *this;
 }
 
+bool LimitAlertConditionState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion LimitAlertConditionState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool LimitAlertConditionState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setActivationState(const AlertActivation & value) {
@@ -116,9 +138,20 @@ LimitAlertConditionState & LimitAlertConditionState::setActualPriority(const Ale
 	return *this;
 }
 
+bool LimitAlertConditionState::getActualPriority(AlertConditionPriority & out) const {
+	if (data->ActualPriority().present()) {
+		out = ConvertFromCDM::convert(data->ActualPriority().get());
+		return true;
+	}
+	return false;
+}
 
 AlertConditionPriority LimitAlertConditionState::getActualPriority() const {
-	return ConvertFromCDM::convert(data->ActualPriority());
+	return ConvertFromCDM::convert(data->ActualPriority().get());
+}
+	
+bool LimitAlertConditionState::hasActualPriority() const {
+	return data->ActualPriority().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setRank(const int & value) {
@@ -126,9 +159,20 @@ LimitAlertConditionState & LimitAlertConditionState::setRank(const int & value) 
 	return *this;
 }
 
+bool LimitAlertConditionState::getRank(int & out) const {
+	if (data->Rank().present()) {
+		out = ConvertFromCDM::convert(data->Rank().get());
+		return true;
+	}
+	return false;
+}
 
 int LimitAlertConditionState::getRank() const {
-	return ConvertFromCDM::convert(data->Rank());
+	return ConvertFromCDM::convert(data->Rank().get());
+}
+	
+bool LimitAlertConditionState::hasRank() const {
+	return data->Rank().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setPresence(const bool & value) {
@@ -146,9 +190,20 @@ LimitAlertConditionState & LimitAlertConditionState::setDeterminationTime(const 
 	return *this;
 }
 
+bool LimitAlertConditionState::getDeterminationTime(Timestamp & out) const {
+	if (data->DeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp LimitAlertConditionState::getDeterminationTime() const {
-	return ConvertFromCDM::convert(data->DeterminationTime());
+	return ConvertFromCDM::convert(data->DeterminationTime().get());
+}
+	
+bool LimitAlertConditionState::hasDeterminationTime() const {
+	return data->DeterminationTime().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setLimits(const Range & value) {

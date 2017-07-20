@@ -76,9 +76,20 @@ AlertSystemState & AlertSystemState::setStateVersion(const VersionCounter & valu
 	return *this;
 }
 
+bool AlertSystemState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter AlertSystemState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool AlertSystemState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 AlertSystemState & AlertSystemState::setDescriptorHandle(const HandleRef & value) {
@@ -96,9 +107,20 @@ AlertSystemState & AlertSystemState::setDescriptorVersion(const ReferencedVersio
 	return *this;
 }
 
+bool AlertSystemState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion AlertSystemState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool AlertSystemState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 AlertSystemState & AlertSystemState::setActivationState(const AlertActivation & value) {
@@ -116,9 +138,20 @@ AlertSystemState & AlertSystemState::setLastSelfCheck(const Timestamp & value) {
 	return *this;
 }
 
+bool AlertSystemState::getLastSelfCheck(Timestamp & out) const {
+	if (data->LastSelfCheck().present()) {
+		out = ConvertFromCDM::convert(data->LastSelfCheck().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp AlertSystemState::getLastSelfCheck() const {
-	return ConvertFromCDM::convert(data->LastSelfCheck());
+	return ConvertFromCDM::convert(data->LastSelfCheck().get());
+}
+	
+bool AlertSystemState::hasLastSelfCheck() const {
+	return data->LastSelfCheck().present();
 }
 	
 AlertSystemState & AlertSystemState::setSelfCheckCount(const long long & value) {
@@ -126,9 +159,20 @@ AlertSystemState & AlertSystemState::setSelfCheckCount(const long long & value) 
 	return *this;
 }
 
+bool AlertSystemState::getSelfCheckCount(long long & out) const {
+	if (data->SelfCheckCount().present()) {
+		out = ConvertFromCDM::convert(data->SelfCheckCount().get());
+		return true;
+	}
+	return false;
+}
 
 long long AlertSystemState::getSelfCheckCount() const {
-	return ConvertFromCDM::convert(data->SelfCheckCount());
+	return ConvertFromCDM::convert(data->SelfCheckCount().get());
+}
+	
+bool AlertSystemState::hasSelfCheckCount() const {
+	return data->SelfCheckCount().present();
 }
 	
 AlertSystemState & AlertSystemState::setPresentPhysiologicalAlarmConditions(const AlertConditionReference & value) {
@@ -136,9 +180,20 @@ AlertSystemState & AlertSystemState::setPresentPhysiologicalAlarmConditions(cons
 	return *this;
 }
 
+bool AlertSystemState::getPresentPhysiologicalAlarmConditions(AlertConditionReference & out) const {
+	if (data->PresentPhysiologicalAlarmConditions().present()) {
+		out = ConvertFromCDM::convert(data->PresentPhysiologicalAlarmConditions().get());
+		return true;
+	}
+	return false;
+}
 
 AlertConditionReference AlertSystemState::getPresentPhysiologicalAlarmConditions() const {
-	return ConvertFromCDM::convert(data->PresentPhysiologicalAlarmConditions());
+	return ConvertFromCDM::convert(data->PresentPhysiologicalAlarmConditions().get());
+}
+	
+bool AlertSystemState::hasPresentPhysiologicalAlarmConditions() const {
+	return data->PresentPhysiologicalAlarmConditions().present();
 }
 	
 AlertSystemState & AlertSystemState::setPresentTechnicalAlarmConditions(const AlertConditionReference & value) {
@@ -146,9 +201,20 @@ AlertSystemState & AlertSystemState::setPresentTechnicalAlarmConditions(const Al
 	return *this;
 }
 
+bool AlertSystemState::getPresentTechnicalAlarmConditions(AlertConditionReference & out) const {
+	if (data->PresentTechnicalAlarmConditions().present()) {
+		out = ConvertFromCDM::convert(data->PresentTechnicalAlarmConditions().get());
+		return true;
+	}
+	return false;
+}
 
 AlertConditionReference AlertSystemState::getPresentTechnicalAlarmConditions() const {
-	return ConvertFromCDM::convert(data->PresentTechnicalAlarmConditions());
+	return ConvertFromCDM::convert(data->PresentTechnicalAlarmConditions().get());
+}
+	
+bool AlertSystemState::hasPresentTechnicalAlarmConditions() const {
+	return data->PresentTechnicalAlarmConditions().present();
 }
 	
 AlertSystemState & AlertSystemState::addSystemSignalActivation(const SystemSignalActivation & value) {

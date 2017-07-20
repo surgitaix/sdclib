@@ -58,6 +58,8 @@ public:
 
 	CalibrationInfo & setComponentCalibrationState(const CalibrationState & value);
 	CalibrationState getComponentCalibrationState() const;
+	bool getComponentCalibrationState(CalibrationState & out) const;
+	bool hasComponentCalibrationState() const;
 
 	CalibrationInfo & setType(const CalibrationType & value);
 	CalibrationType getType() const;

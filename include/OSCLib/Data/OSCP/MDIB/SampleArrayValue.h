@@ -80,6 +80,8 @@ public:
 	
 	SampleArrayValue & setSamples(const RealTimeValueType & value);
 	RealTimeValueType getSamples() const;
+	bool getSamples(RealTimeValueType & out) const;
+	bool hasSamples() const;
 
 	SampleArrayValue & addApplyAnnotation(const ApplyAnnotation & value);
 	std::vector<ApplyAnnotation> getApplyAnnotationLists() const;

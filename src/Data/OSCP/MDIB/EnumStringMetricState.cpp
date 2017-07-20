@@ -77,9 +77,20 @@ EnumStringMetricState & EnumStringMetricState::setStateVersion(const VersionCoun
 	return *this;
 }
 
+bool EnumStringMetricState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter EnumStringMetricState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool EnumStringMetricState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 EnumStringMetricState & EnumStringMetricState::setDescriptorHandle(const HandleRef & value) {
@@ -97,9 +108,20 @@ EnumStringMetricState & EnumStringMetricState::setDescriptorVersion(const Refere
 	return *this;
 }
 
+bool EnumStringMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion EnumStringMetricState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool EnumStringMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 EnumStringMetricState & EnumStringMetricState::setActivationState(const ComponentActivation & value) {
@@ -107,9 +129,20 @@ EnumStringMetricState & EnumStringMetricState::setActivationState(const Componen
 	return *this;
 }
 
+bool EnumStringMetricState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
 
 ComponentActivation EnumStringMetricState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool EnumStringMetricState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
 EnumStringMetricState & EnumStringMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
@@ -117,9 +150,20 @@ EnumStringMetricState & EnumStringMetricState::setActiveDeterminationPeriod(cons
 	return *this;
 }
 
+bool EnumStringMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out) const {
+	if (data->ActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration EnumStringMetricState::getActiveDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+}
+	
+bool EnumStringMetricState::hasActiveDeterminationPeriod() const {
+	return data->ActiveDeterminationPeriod().present();
 }
 	
 EnumStringMetricState & EnumStringMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {

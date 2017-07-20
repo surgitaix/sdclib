@@ -75,9 +75,20 @@ CalibrationInfo & CalibrationInfo::setComponentCalibrationState(const Calibratio
 	return *this;
 }
 
+bool CalibrationInfo::getComponentCalibrationState(CalibrationState & out) const {
+	if (data->ComponentCalibrationState().present()) {
+		out = ConvertFromCDM::convert(data->ComponentCalibrationState().get());
+		return true;
+	}
+	return false;
+}
 
 CalibrationState CalibrationInfo::getComponentCalibrationState() const {
-	return ConvertFromCDM::convert(data->ComponentCalibrationState());
+	return ConvertFromCDM::convert(data->ComponentCalibrationState().get());
+}
+	
+bool CalibrationInfo::hasComponentCalibrationState() const {
+	return data->ComponentCalibrationState().present();
 }
 	
 CalibrationInfo & CalibrationInfo::setType(const CalibrationType & value) {

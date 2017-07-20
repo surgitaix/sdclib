@@ -171,9 +171,20 @@ NumericMetricDescriptor & NumericMetricDescriptor::setDerivationMethod(const Der
 	return *this;
 }
 
+bool NumericMetricDescriptor::getDerivationMethod(DerivationMethod & out) const {
+	if (data->DerivationMethod().present()) {
+		out = ConvertFromCDM::convert(data->DerivationMethod().get());
+		return true;
+	}
+	return false;
+}
 
 DerivationMethod NumericMetricDescriptor::getDerivationMethod() const {
-	return ConvertFromCDM::convert(data->DerivationMethod());
+	return ConvertFromCDM::convert(data->DerivationMethod().get());
+}
+	
+bool NumericMetricDescriptor::hasDerivationMethod() const {
+	return data->DerivationMethod().present();
 }
 	
 NumericMetricDescriptor & NumericMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
@@ -293,9 +304,20 @@ NumericMetricDescriptor & NumericMetricDescriptor::setResolution(const double & 
 	return *this;
 }
 
+bool NumericMetricDescriptor::getResolution(double & out) const {
+	if (data->Resolution().present()) {
+		out = ConvertFromCDM::convert(data->Resolution().get());
+		return true;
+	}
+	return false;
+}
 
 double NumericMetricDescriptor::getResolution() const {
-	return ConvertFromCDM::convert(data->Resolution());
+	return ConvertFromCDM::convert(data->Resolution().get());
+}
+	
+bool NumericMetricDescriptor::hasResolution() const {
+	return data->Resolution().present();
 }
 	
 NumericMetricDescriptor & NumericMetricDescriptor::setAveragingPeriod(const xml_schema::Duration & value) {
@@ -303,9 +325,20 @@ NumericMetricDescriptor & NumericMetricDescriptor::setAveragingPeriod(const xml_
 	return *this;
 }
 
+bool NumericMetricDescriptor::getAveragingPeriod(xml_schema::Duration & out) const {
+	if (data->AveragingPeriod().present()) {
+		out = ConvertFromCDM::convert(data->AveragingPeriod().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration NumericMetricDescriptor::getAveragingPeriod() const {
-	return ConvertFromCDM::convert(data->AveragingPeriod());
+	return ConvertFromCDM::convert(data->AveragingPeriod().get());
+}
+	
+bool NumericMetricDescriptor::hasAveragingPeriod() const {
+	return data->AveragingPeriod().present();
 }
 	
 NumericMetricDescriptor & NumericMetricDescriptor::addTechnicalRange(const Range & value) {

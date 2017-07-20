@@ -78,9 +78,20 @@ OperatorContextState & OperatorContextState::setStateVersion(const VersionCounte
 	return *this;
 }
 
+bool OperatorContextState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter OperatorContextState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool OperatorContextState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 OperatorContextState & OperatorContextState::setDescriptorHandle(const HandleRef & value) {
@@ -98,9 +109,20 @@ OperatorContextState & OperatorContextState::setDescriptorVersion(const Referenc
 	return *this;
 }
 
+bool OperatorContextState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion OperatorContextState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool OperatorContextState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 OperatorContextState & OperatorContextState::setCategory(const CodedValue & value) {
@@ -139,9 +161,20 @@ OperatorContextState & OperatorContextState::setContextAssociation(const Context
 	return *this;
 }
 
+bool OperatorContextState::getContextAssociation(ContextAssociation & out) const {
+	if (data->ContextAssociation().present()) {
+		out = ConvertFromCDM::convert(data->ContextAssociation().get());
+		return true;
+	}
+	return false;
+}
 
 ContextAssociation OperatorContextState::getContextAssociation() const {
-	return ConvertFromCDM::convert(data->ContextAssociation());
+	return ConvertFromCDM::convert(data->ContextAssociation().get());
+}
+	
+bool OperatorContextState::hasContextAssociation() const {
+	return data->ContextAssociation().present();
 }
 	
 OperatorContextState & OperatorContextState::setBindingMdibVersion(const ReferencedVersion & value) {
@@ -170,9 +203,20 @@ OperatorContextState & OperatorContextState::setUnbindingMdibVersion(const Refer
 	return *this;
 }
 
+bool OperatorContextState::getUnbindingMdibVersion(ReferencedVersion & out) const {
+	if (data->UnbindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion OperatorContextState::getUnbindingMdibVersion() const {
-	return ConvertFromCDM::convert(data->UnbindingMdibVersion());
+	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+}
+	
+bool OperatorContextState::hasUnbindingMdibVersion() const {
+	return data->UnbindingMdibVersion().present();
 }
 	
 OperatorContextState & OperatorContextState::setBindingStartTime(const Timestamp & value) {
@@ -180,9 +224,20 @@ OperatorContextState & OperatorContextState::setBindingStartTime(const Timestamp
 	return *this;
 }
 
+bool OperatorContextState::getBindingStartTime(Timestamp & out) const {
+	if (data->BindingStartTime().present()) {
+		out = ConvertFromCDM::convert(data->BindingStartTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp OperatorContextState::getBindingStartTime() const {
-	return ConvertFromCDM::convert(data->BindingStartTime());
+	return ConvertFromCDM::convert(data->BindingStartTime().get());
+}
+	
+bool OperatorContextState::hasBindingStartTime() const {
+	return data->BindingStartTime().present();
 }
 	
 OperatorContextState & OperatorContextState::setBindingEndTime(const Timestamp & value) {
@@ -190,9 +245,20 @@ OperatorContextState & OperatorContextState::setBindingEndTime(const Timestamp &
 	return *this;
 }
 
+bool OperatorContextState::getBindingEndTime(Timestamp & out) const {
+	if (data->BindingEndTime().present()) {
+		out = ConvertFromCDM::convert(data->BindingEndTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp OperatorContextState::getBindingEndTime() const {
-	return ConvertFromCDM::convert(data->BindingEndTime());
+	return ConvertFromCDM::convert(data->BindingEndTime().get());
+}
+	
+bool OperatorContextState::hasBindingEndTime() const {
+	return data->BindingEndTime().present();
 }
 	
 OperatorContextState & OperatorContextState::addValidator(const InstanceIdentifier & value) {

@@ -77,9 +77,20 @@ WorkflowContextState & WorkflowContextState::setStateVersion(const VersionCounte
 	return *this;
 }
 
+bool WorkflowContextState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter WorkflowContextState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool WorkflowContextState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 WorkflowContextState & WorkflowContextState::setDescriptorHandle(const HandleRef & value) {
@@ -97,9 +108,20 @@ WorkflowContextState & WorkflowContextState::setDescriptorVersion(const Referenc
 	return *this;
 }
 
+bool WorkflowContextState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion WorkflowContextState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool WorkflowContextState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 WorkflowContextState & WorkflowContextState::setCategory(const CodedValue & value) {
@@ -138,9 +160,20 @@ WorkflowContextState & WorkflowContextState::setContextAssociation(const Context
 	return *this;
 }
 
+bool WorkflowContextState::getContextAssociation(ContextAssociation & out) const {
+	if (data->ContextAssociation().present()) {
+		out = ConvertFromCDM::convert(data->ContextAssociation().get());
+		return true;
+	}
+	return false;
+}
 
 ContextAssociation WorkflowContextState::getContextAssociation() const {
-	return ConvertFromCDM::convert(data->ContextAssociation());
+	return ConvertFromCDM::convert(data->ContextAssociation().get());
+}
+	
+bool WorkflowContextState::hasContextAssociation() const {
+	return data->ContextAssociation().present();
 }
 	
 WorkflowContextState & WorkflowContextState::setBindingMdibVersion(const ReferencedVersion & value) {
@@ -169,9 +202,20 @@ WorkflowContextState & WorkflowContextState::setUnbindingMdibVersion(const Refer
 	return *this;
 }
 
+bool WorkflowContextState::getUnbindingMdibVersion(ReferencedVersion & out) const {
+	if (data->UnbindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion WorkflowContextState::getUnbindingMdibVersion() const {
-	return ConvertFromCDM::convert(data->UnbindingMdibVersion());
+	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+}
+	
+bool WorkflowContextState::hasUnbindingMdibVersion() const {
+	return data->UnbindingMdibVersion().present();
 }
 	
 WorkflowContextState & WorkflowContextState::setBindingStartTime(const Timestamp & value) {
@@ -179,9 +223,20 @@ WorkflowContextState & WorkflowContextState::setBindingStartTime(const Timestamp
 	return *this;
 }
 
+bool WorkflowContextState::getBindingStartTime(Timestamp & out) const {
+	if (data->BindingStartTime().present()) {
+		out = ConvertFromCDM::convert(data->BindingStartTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp WorkflowContextState::getBindingStartTime() const {
-	return ConvertFromCDM::convert(data->BindingStartTime());
+	return ConvertFromCDM::convert(data->BindingStartTime().get());
+}
+	
+bool WorkflowContextState::hasBindingStartTime() const {
+	return data->BindingStartTime().present();
 }
 	
 WorkflowContextState & WorkflowContextState::setBindingEndTime(const Timestamp & value) {
@@ -189,9 +244,20 @@ WorkflowContextState & WorkflowContextState::setBindingEndTime(const Timestamp &
 	return *this;
 }
 
+bool WorkflowContextState::getBindingEndTime(Timestamp & out) const {
+	if (data->BindingEndTime().present()) {
+		out = ConvertFromCDM::convert(data->BindingEndTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp WorkflowContextState::getBindingEndTime() const {
-	return ConvertFromCDM::convert(data->BindingEndTime());
+	return ConvertFromCDM::convert(data->BindingEndTime().get());
+}
+	
+bool WorkflowContextState::hasBindingEndTime() const {
+	return data->BindingEndTime().present();
 }
 	
 WorkflowContextState & WorkflowContextState::addValidator(const InstanceIdentifier & value) {

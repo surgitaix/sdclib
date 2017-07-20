@@ -83,6 +83,8 @@ public:
 
 	StringMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
 	DerivationMethod getDerivationMethod() const;
+	bool getDerivationMethod(DerivationMethod & out) const;
+	bool hasDerivationMethod() const;
 
 	StringMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
 	MetricAvailability getMetricAvailability() const;

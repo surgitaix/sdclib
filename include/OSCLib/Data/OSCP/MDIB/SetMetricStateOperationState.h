@@ -58,12 +58,16 @@ public:
 
 	SetMetricStateOperationState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	SetMetricStateOperationState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	SetMetricStateOperationState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	SetMetricStateOperationState & setOperatingMode(const OperatingMode & value);
 	OperatingMode getOperatingMode() const;

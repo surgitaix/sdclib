@@ -59,12 +59,16 @@ public:
 
 	LocationContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	LocationContextState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	LocationContextState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	LocationContextState & setCategory(const CodedValue & value);
 	CodedValue getCategory() const;
@@ -76,6 +80,8 @@ public:
 
 	LocationContextState & setContextAssociation(const ContextAssociation & value);
 	ContextAssociation getContextAssociation() const;
+	bool getContextAssociation(ContextAssociation & out) const;
+	bool hasContextAssociation() const;
 
 	LocationContextState & setBindingMdibVersion(const ReferencedVersion & value);
 	ReferencedVersion getBindingMdibVersion() const;
@@ -84,12 +90,18 @@ public:
 
 	LocationContextState & setUnbindingMdibVersion(const ReferencedVersion & value);
 	ReferencedVersion getUnbindingMdibVersion() const;
+	bool getUnbindingMdibVersion(ReferencedVersion & out) const;
+	bool hasUnbindingMdibVersion() const;
 
 	LocationContextState & setBindingStartTime(const Timestamp & value);
 	Timestamp getBindingStartTime() const;
+	bool getBindingStartTime(Timestamp & out) const;
+	bool hasBindingStartTime() const;
 
 	LocationContextState & setBindingEndTime(const Timestamp & value);
 	Timestamp getBindingEndTime() const;
+	bool getBindingEndTime(Timestamp & out) const;
+	bool hasBindingEndTime() const;
 
 	LocationContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidatorLists() const;

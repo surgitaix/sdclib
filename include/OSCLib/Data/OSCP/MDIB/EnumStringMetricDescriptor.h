@@ -82,6 +82,8 @@ public:
 
 	EnumStringMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
 	DerivationMethod getDerivationMethod() const;
+	bool getDerivationMethod(DerivationMethod & out) const;
+	bool hasDerivationMethod() const;
 
 	EnumStringMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
 	MetricAvailability getMetricAvailability() const;

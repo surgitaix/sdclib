@@ -171,9 +171,20 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setDe
 	return *this;
 }
 
+bool RealTimeSampleArrayMetricDescriptor::getDerivationMethod(DerivationMethod & out) const {
+	if (data->DerivationMethod().present()) {
+		out = ConvertFromCDM::convert(data->DerivationMethod().get());
+		return true;
+	}
+	return false;
+}
 
 DerivationMethod RealTimeSampleArrayMetricDescriptor::getDerivationMethod() const {
-	return ConvertFromCDM::convert(data->DerivationMethod());
+	return ConvertFromCDM::convert(data->DerivationMethod().get());
+}
+	
+bool RealTimeSampleArrayMetricDescriptor::hasDerivationMethod() const {
+	return data->DerivationMethod().present();
 }
 	
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
@@ -293,9 +304,20 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setRe
 	return *this;
 }
 
+bool RealTimeSampleArrayMetricDescriptor::getResolution(double & out) const {
+	if (data->Resolution().present()) {
+		out = ConvertFromCDM::convert(data->Resolution().get());
+		return true;
+	}
+	return false;
+}
 
 double RealTimeSampleArrayMetricDescriptor::getResolution() const {
-	return ConvertFromCDM::convert(data->Resolution());
+	return ConvertFromCDM::convert(data->Resolution().get());
+}
+	
+bool RealTimeSampleArrayMetricDescriptor::hasResolution() const {
+	return data->Resolution().present();
 }
 	
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setSamplePeriod(const xml_schema::Duration & value) {

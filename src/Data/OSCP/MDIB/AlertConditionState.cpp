@@ -75,9 +75,20 @@ AlertConditionState & AlertConditionState::setStateVersion(const VersionCounter 
 	return *this;
 }
 
+bool AlertConditionState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter AlertConditionState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool AlertConditionState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 AlertConditionState & AlertConditionState::setDescriptorHandle(const HandleRef & value) {
@@ -95,9 +106,20 @@ AlertConditionState & AlertConditionState::setDescriptorVersion(const Referenced
 	return *this;
 }
 
+bool AlertConditionState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion AlertConditionState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool AlertConditionState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 AlertConditionState & AlertConditionState::setActivationState(const AlertActivation & value) {
@@ -115,9 +137,20 @@ AlertConditionState & AlertConditionState::setActualPriority(const AlertConditio
 	return *this;
 }
 
+bool AlertConditionState::getActualPriority(AlertConditionPriority & out) const {
+	if (data->ActualPriority().present()) {
+		out = ConvertFromCDM::convert(data->ActualPriority().get());
+		return true;
+	}
+	return false;
+}
 
 AlertConditionPriority AlertConditionState::getActualPriority() const {
-	return ConvertFromCDM::convert(data->ActualPriority());
+	return ConvertFromCDM::convert(data->ActualPriority().get());
+}
+	
+bool AlertConditionState::hasActualPriority() const {
+	return data->ActualPriority().present();
 }
 	
 AlertConditionState & AlertConditionState::setRank(const int & value) {
@@ -125,9 +158,20 @@ AlertConditionState & AlertConditionState::setRank(const int & value) {
 	return *this;
 }
 
+bool AlertConditionState::getRank(int & out) const {
+	if (data->Rank().present()) {
+		out = ConvertFromCDM::convert(data->Rank().get());
+		return true;
+	}
+	return false;
+}
 
 int AlertConditionState::getRank() const {
-	return ConvertFromCDM::convert(data->Rank());
+	return ConvertFromCDM::convert(data->Rank().get());
+}
+	
+bool AlertConditionState::hasRank() const {
+	return data->Rank().present();
 }
 	
 AlertConditionState & AlertConditionState::setPresence(const bool & value) {
@@ -145,9 +189,20 @@ AlertConditionState & AlertConditionState::setDeterminationTime(const Timestamp 
 	return *this;
 }
 
+bool AlertConditionState::getDeterminationTime(Timestamp & out) const {
+	if (data->DeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp AlertConditionState::getDeterminationTime() const {
-	return ConvertFromCDM::convert(data->DeterminationTime());
+	return ConvertFromCDM::convert(data->DeterminationTime().get());
+}
+	
+bool AlertConditionState::hasDeterminationTime() const {
+	return data->DeterminationTime().present();
 }
 	
 

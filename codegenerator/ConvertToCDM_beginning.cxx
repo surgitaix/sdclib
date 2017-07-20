@@ -32,10 +32,6 @@ double ConvertToCDM::convert(const double & source) {
 	return source;
 }
 
-unsigned short int ConvertToCDM::convert(unsigned short int & source) {
-	return source;
-}
-
 unsigned int ConvertToCDM::convert(const unsigned int & source) {
 	return source;
 }
@@ -62,6 +58,27 @@ unsigned short int ConvertToCDM::convert(const unsigned short int & source) {
 
 unsigned long ConvertToCDM::convert(const unsigned long & source){
 	return source;
+}
+
+unsigned long long ConvertToCDM::convert(const unsigned long long & source) {
+	return source;
+}
+
+xml_schema::Duration ConvertToCDM::convert(const xml_schema::Duration & source) {
+	return source;
+}
+
+xml_schema::Qname ConvertToCDM::convert(const xml_schema::Qname & source) {
+	return source;
+}
+
+xml_schema::Language ConvertToCDM::convert(const xml_schema::Language & source) {
+	return source;
+}
+
+template <class WrapperType>
+std::unique_ptr<typename WrapperType::WrappedType> ConvertToCDM::convert(const WrapperType & source) {
+	return std::unique_ptr<typename WrapperType::WrappedType>(source.data->_clone());
 }
 
 #include "osdm.hxx"

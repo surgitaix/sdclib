@@ -76,12 +76,18 @@ public:
 
 	AlertSystemDescriptor & setMaxPhysiologicalParallelAlarms(const unsigned int & value);
 	unsigned int getMaxPhysiologicalParallelAlarms() const;
+	bool getMaxPhysiologicalParallelAlarms(unsigned int & out) const;
+	bool hasMaxPhysiologicalParallelAlarms() const;
 
 	AlertSystemDescriptor & setMaxTechnicalParallelAlarms(const unsigned int & value);
 	unsigned int getMaxTechnicalParallelAlarms() const;
+	bool getMaxTechnicalParallelAlarms(unsigned int & out) const;
+	bool hasMaxTechnicalParallelAlarms() const;
 
 	AlertSystemDescriptor & setSelfCheckPeriod(const xml_schema::Duration & value);
 	xml_schema::Duration getSelfCheckPeriod() const;
+	bool getSelfCheckPeriod(xml_schema::Duration & out) const;
+	bool hasSelfCheckPeriod() const;
 
 	AlertSystemDescriptor & addAlertCondition(const AlertConditionDescriptor & value);
 	std::vector<AlertConditionDescriptor> getAlertConditionLists() const;

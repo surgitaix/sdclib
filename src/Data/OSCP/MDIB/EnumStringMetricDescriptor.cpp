@@ -170,9 +170,20 @@ EnumStringMetricDescriptor & EnumStringMetricDescriptor::setDerivationMethod(con
 	return *this;
 }
 
+bool EnumStringMetricDescriptor::getDerivationMethod(DerivationMethod & out) const {
+	if (data->DerivationMethod().present()) {
+		out = ConvertFromCDM::convert(data->DerivationMethod().get());
+		return true;
+	}
+	return false;
+}
 
 DerivationMethod EnumStringMetricDescriptor::getDerivationMethod() const {
-	return ConvertFromCDM::convert(data->DerivationMethod());
+	return ConvertFromCDM::convert(data->DerivationMethod().get());
+}
+	
+bool EnumStringMetricDescriptor::hasDerivationMethod() const {
+	return data->DerivationMethod().present();
 }
 	
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {

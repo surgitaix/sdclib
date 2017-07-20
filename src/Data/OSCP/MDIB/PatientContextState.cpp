@@ -78,9 +78,20 @@ PatientContextState & PatientContextState::setStateVersion(const VersionCounter 
 	return *this;
 }
 
+bool PatientContextState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter PatientContextState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool PatientContextState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 PatientContextState & PatientContextState::setDescriptorHandle(const HandleRef & value) {
@@ -98,9 +109,20 @@ PatientContextState & PatientContextState::setDescriptorVersion(const Referenced
 	return *this;
 }
 
+bool PatientContextState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion PatientContextState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool PatientContextState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 PatientContextState & PatientContextState::setCategory(const CodedValue & value) {
@@ -139,9 +161,20 @@ PatientContextState & PatientContextState::setContextAssociation(const ContextAs
 	return *this;
 }
 
+bool PatientContextState::getContextAssociation(ContextAssociation & out) const {
+	if (data->ContextAssociation().present()) {
+		out = ConvertFromCDM::convert(data->ContextAssociation().get());
+		return true;
+	}
+	return false;
+}
 
 ContextAssociation PatientContextState::getContextAssociation() const {
-	return ConvertFromCDM::convert(data->ContextAssociation());
+	return ConvertFromCDM::convert(data->ContextAssociation().get());
+}
+	
+bool PatientContextState::hasContextAssociation() const {
+	return data->ContextAssociation().present();
 }
 	
 PatientContextState & PatientContextState::setBindingMdibVersion(const ReferencedVersion & value) {
@@ -170,9 +203,20 @@ PatientContextState & PatientContextState::setUnbindingMdibVersion(const Referen
 	return *this;
 }
 
+bool PatientContextState::getUnbindingMdibVersion(ReferencedVersion & out) const {
+	if (data->UnbindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion PatientContextState::getUnbindingMdibVersion() const {
-	return ConvertFromCDM::convert(data->UnbindingMdibVersion());
+	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+}
+	
+bool PatientContextState::hasUnbindingMdibVersion() const {
+	return data->UnbindingMdibVersion().present();
 }
 	
 PatientContextState & PatientContextState::setBindingStartTime(const Timestamp & value) {
@@ -180,9 +224,20 @@ PatientContextState & PatientContextState::setBindingStartTime(const Timestamp &
 	return *this;
 }
 
+bool PatientContextState::getBindingStartTime(Timestamp & out) const {
+	if (data->BindingStartTime().present()) {
+		out = ConvertFromCDM::convert(data->BindingStartTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp PatientContextState::getBindingStartTime() const {
-	return ConvertFromCDM::convert(data->BindingStartTime());
+	return ConvertFromCDM::convert(data->BindingStartTime().get());
+}
+	
+bool PatientContextState::hasBindingStartTime() const {
+	return data->BindingStartTime().present();
 }
 	
 PatientContextState & PatientContextState::setBindingEndTime(const Timestamp & value) {
@@ -190,9 +245,20 @@ PatientContextState & PatientContextState::setBindingEndTime(const Timestamp & v
 	return *this;
 }
 
+bool PatientContextState::getBindingEndTime(Timestamp & out) const {
+	if (data->BindingEndTime().present()) {
+		out = ConvertFromCDM::convert(data->BindingEndTime().get());
+		return true;
+	}
+	return false;
+}
 
 Timestamp PatientContextState::getBindingEndTime() const {
-	return ConvertFromCDM::convert(data->BindingEndTime());
+	return ConvertFromCDM::convert(data->BindingEndTime().get());
+}
+	
+bool PatientContextState::hasBindingEndTime() const {
+	return data->BindingEndTime().present();
 }
 	
 PatientContextState & PatientContextState::addValidator(const InstanceIdentifier & value) {

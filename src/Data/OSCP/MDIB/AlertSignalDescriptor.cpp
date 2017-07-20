@@ -179,9 +179,20 @@ AlertSignalDescriptor & AlertSignalDescriptor::setDefaultSignalGenerationDelay(c
 	return *this;
 }
 
+bool AlertSignalDescriptor::getDefaultSignalGenerationDelay(xml_schema::Duration & out) const {
+	if (data->DefaultSignalGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->DefaultSignalGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration AlertSignalDescriptor::getDefaultSignalGenerationDelay() const {
-	return ConvertFromCDM::convert(data->DefaultSignalGenerationDelay());
+	return ConvertFromCDM::convert(data->DefaultSignalGenerationDelay().get());
+}
+	
+bool AlertSignalDescriptor::hasDefaultSignalGenerationDelay() const {
+	return data->DefaultSignalGenerationDelay().present();
 }
 	
 AlertSignalDescriptor & AlertSignalDescriptor::setSignalDelegationSupported(const bool & value) {
@@ -189,9 +200,20 @@ AlertSignalDescriptor & AlertSignalDescriptor::setSignalDelegationSupported(cons
 	return *this;
 }
 
+bool AlertSignalDescriptor::getSignalDelegationSupported(bool & out) const {
+	if (data->SignalDelegationSupported().present()) {
+		out = ConvertFromCDM::convert(data->SignalDelegationSupported().get());
+		return true;
+	}
+	return false;
+}
 
 bool AlertSignalDescriptor::getSignalDelegationSupported() const {
-	return ConvertFromCDM::convert(data->SignalDelegationSupported());
+	return ConvertFromCDM::convert(data->SignalDelegationSupported().get());
+}
+	
+bool AlertSignalDescriptor::hasSignalDelegationSupported() const {
+	return data->SignalDelegationSupported().present();
 }
 	
 AlertSignalDescriptor & AlertSignalDescriptor::setAcknowledgementSupported(const bool & value) {

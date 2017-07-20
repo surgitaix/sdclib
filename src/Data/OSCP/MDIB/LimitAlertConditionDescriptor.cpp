@@ -217,9 +217,20 @@ LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setAutoLimitSuppo
 	return *this;
 }
 
+bool LimitAlertConditionDescriptor::getAutoLimitSupported(bool & out) const {
+	if (data->AutoLimitSupported().present()) {
+		out = ConvertFromCDM::convert(data->AutoLimitSupported().get());
+		return true;
+	}
+	return false;
+}
 
 bool LimitAlertConditionDescriptor::getAutoLimitSupported() const {
-	return ConvertFromCDM::convert(data->AutoLimitSupported());
+	return ConvertFromCDM::convert(data->AutoLimitSupported().get());
+}
+	
+bool LimitAlertConditionDescriptor::hasAutoLimitSupported() const {
+	return data->AutoLimitSupported().present();
 }
 	
 

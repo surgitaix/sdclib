@@ -61,27 +61,37 @@ public:
 
 	AlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	AlertConditionState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	AlertConditionState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	AlertConditionState & setActivationState(const AlertActivation & value);
 	AlertActivation getActivationState() const;
 
 	AlertConditionState & setActualPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getActualPriority() const;
+	bool getActualPriority(AlertConditionPriority & out) const;
+	bool hasActualPriority() const;
 
 	AlertConditionState & setRank(const int & value);
 	int getRank() const;
+	bool getRank(int & out) const;
+	bool hasRank() const;
 
 	AlertConditionState & setPresence(const bool & value);
 	bool getPresence() const;
 
 	AlertConditionState & setDeterminationTime(const Timestamp & value);
 	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
 
 private:
 	std::shared_ptr<CDM::AlertConditionState> data;

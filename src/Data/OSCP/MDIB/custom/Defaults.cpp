@@ -10,10 +10,10 @@
 #include "OSCLib/Data/OSCP/MDIB/Annotation.h"
 #include "OSCLib/Data/OSCP/MDIB/BaseDemographics.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
@@ -21,8 +21,6 @@
 #include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 #include "osdm.hxx"
 
@@ -38,6 +36,10 @@ Defaults::Defaults() {
 
 Defaults::~Defaults() {
 
+}
+
+CDM::Argument * Defaults::Argument() {
+	return new CDM::Argument(Defaults::CodedValue(), xml_schema::Qname(NOT_ASSIGNED));
 }
 
 CDM::ActivateOperationDescriptor * Defaults::ActivateOperationDescriptor() {

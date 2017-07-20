@@ -83,6 +83,8 @@ public:
 
 	NumericMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
 	DerivationMethod getDerivationMethod() const;
+	bool getDerivationMethod(DerivationMethod & out) const;
+	bool hasDerivationMethod() const;
 
 	NumericMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
 	MetricAvailability getMetricAvailability() const;
@@ -113,9 +115,13 @@ public:
 	
 	NumericMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
+	bool getResolution(double & out) const;
+	bool hasResolution() const;
 
 	NumericMetricDescriptor & setAveragingPeriod(const xml_schema::Duration & value);
 	xml_schema::Duration getAveragingPeriod() const;
+	bool getAveragingPeriod(xml_schema::Duration & out) const;
+	bool hasAveragingPeriod() const;
 
 	NumericMetricDescriptor & addTechnicalRange(const Range & value);
 	std::vector<Range> getTechnicalRangeLists() const;

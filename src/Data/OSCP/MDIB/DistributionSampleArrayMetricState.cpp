@@ -78,9 +78,20 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setStat
 	return *this;
 }
 
+bool DistributionSampleArrayMetricState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter DistributionSampleArrayMetricState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool DistributionSampleArrayMetricState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setDescriptorHandle(const HandleRef & value) {
@@ -98,9 +109,20 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setDesc
 	return *this;
 }
 
+bool DistributionSampleArrayMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion DistributionSampleArrayMetricState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool DistributionSampleArrayMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActivationState(const ComponentActivation & value) {
@@ -108,9 +130,20 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActi
 	return *this;
 }
 
+bool DistributionSampleArrayMetricState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
 
 ComponentActivation DistributionSampleArrayMetricState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool DistributionSampleArrayMetricState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
@@ -118,9 +151,20 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActi
 	return *this;
 }
 
+bool DistributionSampleArrayMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out) const {
+	if (data->ActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration DistributionSampleArrayMetricState::getActiveDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+}
+	
+bool DistributionSampleArrayMetricState::hasActiveDeterminationPeriod() const {
+	return data->ActiveDeterminationPeriod().present();
 }
 	
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {

@@ -61,27 +61,37 @@ public:
 
 	LimitAlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	LimitAlertConditionState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	LimitAlertConditionState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	LimitAlertConditionState & setActivationState(const AlertActivation & value);
 	AlertActivation getActivationState() const;
 
 	LimitAlertConditionState & setActualPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getActualPriority() const;
+	bool getActualPriority(AlertConditionPriority & out) const;
+	bool hasActualPriority() const;
 
 	LimitAlertConditionState & setRank(const int & value);
 	int getRank() const;
+	bool getRank(int & out) const;
+	bool hasRank() const;
 
 	LimitAlertConditionState & setPresence(const bool & value);
 	bool getPresence() const;
 
 	LimitAlertConditionState & setDeterminationTime(const Timestamp & value);
 	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
 
 	LimitAlertConditionState & setLimits(const Range & value);
 	Range getLimits() const;

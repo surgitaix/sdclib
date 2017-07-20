@@ -78,9 +78,20 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setStateVersion
 	return *this;
 }
 
+bool RealTimeSampleArrayMetricState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter RealTimeSampleArrayMetricState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool RealTimeSampleArrayMetricState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setDescriptorHandle(const HandleRef & value) {
@@ -98,9 +109,20 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setDescriptorVe
 	return *this;
 }
 
+bool RealTimeSampleArrayMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion RealTimeSampleArrayMetricState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool RealTimeSampleArrayMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActivationState(const ComponentActivation & value) {
@@ -108,9 +130,20 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActivationSt
 	return *this;
 }
 
+bool RealTimeSampleArrayMetricState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
 
 ComponentActivation RealTimeSampleArrayMetricState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool RealTimeSampleArrayMetricState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
 RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
@@ -118,9 +151,20 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setActiveDeterm
 	return *this;
 }
 
+bool RealTimeSampleArrayMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out) const {
+	if (data->ActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration RealTimeSampleArrayMetricState::getActiveDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+}
+	
+bool RealTimeSampleArrayMetricState::hasActiveDeterminationPeriod() const {
+	return data->ActiveDeterminationPeriod().present();
 }
 	
 RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {

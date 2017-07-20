@@ -58,12 +58,16 @@ public:
 
 	ChannelState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	ChannelState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	ChannelState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	ChannelState & setCalibrationInfo(const CalibrationInfo & value);
 	CalibrationInfo getCalibrationInfo() const;
@@ -77,12 +81,18 @@ public:
 
 	ChannelState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
 
 	ChannelState & setOperatingHours(const unsigned int & value);
 	unsigned int getOperatingHours() const;
+	bool getOperatingHours(unsigned int & out) const;
+	bool hasOperatingHours() const;
 
 	ChannelState & setOperatingCycles(const int & value);
 	int getOperatingCycles() const;
+	bool getOperatingCycles(int & out) const;
+	bool hasOperatingCycles() const;
 
 private:
 	std::shared_ptr<CDM::ChannelState> data;

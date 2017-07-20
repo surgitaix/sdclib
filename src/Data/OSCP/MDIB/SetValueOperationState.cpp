@@ -76,9 +76,20 @@ SetValueOperationState & SetValueOperationState::setStateVersion(const VersionCo
 	return *this;
 }
 
+bool SetValueOperationState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter SetValueOperationState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool SetValueOperationState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 SetValueOperationState & SetValueOperationState::setDescriptorHandle(const HandleRef & value) {
@@ -96,9 +107,20 @@ SetValueOperationState & SetValueOperationState::setDescriptorVersion(const Refe
 	return *this;
 }
 
+bool SetValueOperationState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion SetValueOperationState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool SetValueOperationState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 SetValueOperationState & SetValueOperationState::setOperatingMode(const OperatingMode & value) {

@@ -58,18 +58,26 @@ public:
 
 	DistributionSampleArrayMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	DistributionSampleArrayMetricState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	DistributionSampleArrayMetricState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	DistributionSampleArrayMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
 
 	DistributionSampleArrayMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
 	xml_schema::Duration getActiveDeterminationPeriod() const;
+	bool getActiveDeterminationPeriod(xml_schema::Duration & out) const;
+	bool hasActiveDeterminationPeriod() const;
 
 	DistributionSampleArrayMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
 	xml_schema::Duration getLifeTimePeriod() const;

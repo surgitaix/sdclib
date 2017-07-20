@@ -61,27 +61,39 @@ public:
 
 	AlertSystemState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	AlertSystemState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	AlertSystemState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	AlertSystemState & setActivationState(const AlertActivation & value);
 	AlertActivation getActivationState() const;
 
 	AlertSystemState & setLastSelfCheck(const Timestamp & value);
 	Timestamp getLastSelfCheck() const;
+	bool getLastSelfCheck(Timestamp & out) const;
+	bool hasLastSelfCheck() const;
 
 	AlertSystemState & setSelfCheckCount(const long long & value);
 	long long getSelfCheckCount() const;
+	bool getSelfCheckCount(long long & out) const;
+	bool hasSelfCheckCount() const;
 
 	AlertSystemState & setPresentPhysiologicalAlarmConditions(const AlertConditionReference & value);
 	AlertConditionReference getPresentPhysiologicalAlarmConditions() const;
+	bool getPresentPhysiologicalAlarmConditions(AlertConditionReference & out) const;
+	bool hasPresentPhysiologicalAlarmConditions() const;
 
 	AlertSystemState & setPresentTechnicalAlarmConditions(const AlertConditionReference & value);
 	AlertConditionReference getPresentTechnicalAlarmConditions() const;
+	bool getPresentTechnicalAlarmConditions(AlertConditionReference & out) const;
+	bool hasPresentTechnicalAlarmConditions() const;
 
 	AlertSystemState & addSystemSignalActivation(const SystemSignalActivation & value);
 	std::vector<SystemSignalActivation> getSystemSignalActivationLists() const;

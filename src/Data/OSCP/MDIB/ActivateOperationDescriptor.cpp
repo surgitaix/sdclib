@@ -177,9 +177,20 @@ ActivateOperationDescriptor & ActivateOperationDescriptor::setActivationDuration
 	return *this;
 }
 
+bool ActivateOperationDescriptor::getActivationDuration(xml_schema::Duration & out) const {
+	if (data->ActivationDuration().present()) {
+		out = ConvertFromCDM::convert(data->ActivationDuration().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration ActivateOperationDescriptor::getActivationDuration() const {
-	return ConvertFromCDM::convert(data->ActivationDuration());
+	return ConvertFromCDM::convert(data->ActivationDuration().get());
+}
+	
+bool ActivateOperationDescriptor::hasActivationDuration() const {
+	return data->ActivationDuration().present();
 }
 	
 ActivateOperationDescriptor & ActivateOperationDescriptor::setRetriggerable(const bool & value) {
@@ -187,9 +198,20 @@ ActivateOperationDescriptor & ActivateOperationDescriptor::setRetriggerable(cons
 	return *this;
 }
 
+bool ActivateOperationDescriptor::getRetriggerable(bool & out) const {
+	if (data->Retriggerable().present()) {
+		out = ConvertFromCDM::convert(data->Retriggerable().get());
+		return true;
+	}
+	return false;
+}
 
 bool ActivateOperationDescriptor::getRetriggerable() const {
-	return ConvertFromCDM::convert(data->Retriggerable());
+	return ConvertFromCDM::convert(data->Retriggerable().get());
+}
+	
+bool ActivateOperationDescriptor::hasRetriggerable() const {
+	return data->Retriggerable().present();
 }
 	
 ActivateOperationDescriptor & ActivateOperationDescriptor::addArgument(const Argument & value) {

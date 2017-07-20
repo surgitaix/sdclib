@@ -83,9 +83,13 @@ public:
 	
 	ActivateOperationDescriptor & setActivationDuration(const xml_schema::Duration & value);
 	xml_schema::Duration getActivationDuration() const;
+	bool getActivationDuration(xml_schema::Duration & out) const;
+	bool hasActivationDuration() const;
 
 	ActivateOperationDescriptor & setRetriggerable(const bool & value);
 	bool getRetriggerable() const;
+	bool getRetriggerable(bool & out) const;
+	bool hasRetriggerable() const;
 
 	ActivateOperationDescriptor & addArgument(const Argument & value);
 	std::vector<Argument> getArgumentLists() const;

@@ -87,9 +87,20 @@ CodedValue & CodedValue::setCodingSystem(const std::string & value) {
 	return *this;
 }
 
+bool CodedValue::getCodingSystem(std::string & out) const {
+	if (data->CodingSystem().present()) {
+		out = ConvertFromCDM::convert(data->CodingSystem().get());
+		return true;
+	}
+	return false;
+}
 
 std::string CodedValue::getCodingSystem() const {
-	return ConvertFromCDM::convert(data->CodingSystem());
+	return ConvertFromCDM::convert(data->CodingSystem().get());
+}
+	
+bool CodedValue::hasCodingSystem() const {
+	return data->CodingSystem().present();
 }
 	
 CodedValue & CodedValue::setCodingSystemVersion(const std::string & value) {
@@ -97,9 +108,20 @@ CodedValue & CodedValue::setCodingSystemVersion(const std::string & value) {
 	return *this;
 }
 
+bool CodedValue::getCodingSystemVersion(std::string & out) const {
+	if (data->CodingSystemVersion().present()) {
+		out = ConvertFromCDM::convert(data->CodingSystemVersion().get());
+		return true;
+	}
+	return false;
+}
 
 std::string CodedValue::getCodingSystemVersion() const {
-	return ConvertFromCDM::convert(data->CodingSystemVersion());
+	return ConvertFromCDM::convert(data->CodingSystemVersion().get());
+}
+	
+bool CodedValue::hasCodingSystemVersion() const {
+	return data->CodingSystemVersion().present();
 }
 	
 CodedValue & CodedValue::setSymbolicCodeName(const SymbolicCodeName & value) {
@@ -107,9 +129,20 @@ CodedValue & CodedValue::setSymbolicCodeName(const SymbolicCodeName & value) {
 	return *this;
 }
 
+bool CodedValue::getSymbolicCodeName(SymbolicCodeName & out) const {
+	if (data->SymbolicCodeName().present()) {
+		out = ConvertFromCDM::convert(data->SymbolicCodeName().get());
+		return true;
+	}
+	return false;
+}
 
 SymbolicCodeName CodedValue::getSymbolicCodeName() const {
-	return ConvertFromCDM::convert(data->SymbolicCodeName());
+	return ConvertFromCDM::convert(data->SymbolicCodeName().get());
+}
+	
+bool CodedValue::hasSymbolicCodeName() const {
+	return data->SymbolicCodeName().present();
 }
 	
 CodedValue & CodedValue::addCodingSystemName(const LocalizedText & value) {

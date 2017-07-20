@@ -77,9 +77,20 @@ BatteryState & BatteryState::setStateVersion(const VersionCounter & value) {
 	return *this;
 }
 
+bool BatteryState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter BatteryState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool BatteryState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 BatteryState & BatteryState::setDescriptorHandle(const HandleRef & value) {
@@ -97,9 +108,20 @@ BatteryState & BatteryState::setDescriptorVersion(const ReferencedVersion & valu
 	return *this;
 }
 
+bool BatteryState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion BatteryState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool BatteryState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 BatteryState & BatteryState::setCalibrationInfo(const CalibrationInfo & value) {
@@ -149,9 +171,20 @@ BatteryState & BatteryState::setActivationState(const ComponentActivation & valu
 	return *this;
 }
 
+bool BatteryState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
 
 ComponentActivation BatteryState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool BatteryState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
 BatteryState & BatteryState::setOperatingHours(const unsigned int & value) {
@@ -159,9 +192,20 @@ BatteryState & BatteryState::setOperatingHours(const unsigned int & value) {
 	return *this;
 }
 
+bool BatteryState::getOperatingHours(unsigned int & out) const {
+	if (data->OperatingHours().present()) {
+		out = ConvertFromCDM::convert(data->OperatingHours().get());
+		return true;
+	}
+	return false;
+}
 
 unsigned int BatteryState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours());
+	return ConvertFromCDM::convert(data->OperatingHours().get());
+}
+	
+bool BatteryState::hasOperatingHours() const {
+	return data->OperatingHours().present();
 }
 	
 BatteryState & BatteryState::setOperatingCycles(const int & value) {
@@ -169,9 +213,20 @@ BatteryState & BatteryState::setOperatingCycles(const int & value) {
 	return *this;
 }
 
+bool BatteryState::getOperatingCycles(int & out) const {
+	if (data->OperatingCycles().present()) {
+		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+		return true;
+	}
+	return false;
+}
 
 int BatteryState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles());
+	return ConvertFromCDM::convert(data->OperatingCycles().get());
+}
+	
+bool BatteryState::hasOperatingCycles() const {
+	return data->OperatingCycles().present();
 }
 	
 BatteryState & BatteryState::setCapacityRemaining(const Measurement & value) {
@@ -284,9 +339,20 @@ BatteryState & BatteryState::setChargeStatus(const ChargeStatus & value) {
 	return *this;
 }
 
+bool BatteryState::getChargeStatus(ChargeStatus & out) const {
+	if (data->ChargeStatus().present()) {
+		out = ConvertFromCDM::convert(data->ChargeStatus().get());
+		return true;
+	}
+	return false;
+}
 
 ChargeStatus BatteryState::getChargeStatus() const {
-	return ConvertFromCDM::convert(data->ChargeStatus());
+	return ConvertFromCDM::convert(data->ChargeStatus().get());
+}
+	
+bool BatteryState::hasChargeStatus() const {
+	return data->ChargeStatus().present();
 }
 	
 BatteryState & BatteryState::setChargeCycles(const unsigned int & value) {
@@ -294,9 +360,20 @@ BatteryState & BatteryState::setChargeCycles(const unsigned int & value) {
 	return *this;
 }
 
+bool BatteryState::getChargeCycles(unsigned int & out) const {
+	if (data->ChargeCycles().present()) {
+		out = ConvertFromCDM::convert(data->ChargeCycles().get());
+		return true;
+	}
+	return false;
+}
 
 unsigned int BatteryState::getChargeCycles() const {
-	return ConvertFromCDM::convert(data->ChargeCycles());
+	return ConvertFromCDM::convert(data->ChargeCycles().get());
+}
+	
+bool BatteryState::hasChargeCycles() const {
+	return data->ChargeCycles().present();
 }
 	
 

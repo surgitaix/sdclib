@@ -83,6 +83,8 @@ public:
 
 	RealTimeSampleArrayMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
 	DerivationMethod getDerivationMethod() const;
+	bool getDerivationMethod(DerivationMethod & out) const;
+	bool hasDerivationMethod() const;
 
 	RealTimeSampleArrayMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
 	MetricAvailability getMetricAvailability() const;
@@ -113,6 +115,8 @@ public:
 	
 	RealTimeSampleArrayMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
+	bool getResolution(double & out) const;
+	bool hasResolution() const;
 
 	RealTimeSampleArrayMetricDescriptor & setSamplePeriod(const xml_schema::Duration & value);
 	xml_schema::Duration getSamplePeriod() const;

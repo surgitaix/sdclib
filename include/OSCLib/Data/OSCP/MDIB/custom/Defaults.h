@@ -21,7 +21,7 @@ class Defaults {
 public:
 	Defaults();
 	virtual ~Defaults();
-
+	static CDM::Argument * Argument();
 	static CDM::ActivateOperationDescriptor * ActivateOperationDescriptor();
 	static CDM::ActivateOperationState* ActivateOperationState();
 	static CDM::AlertConditionDescriptor * AlertConditionDescriptor();
@@ -70,7 +70,6 @@ public:
 	static CDM::NumericMetricDescriptor * NumericMetricDescriptor();
 	static CDM::NumericMetricState * NumericMetricState();
 	static CDM::NumericMetricValue * NumericMetricValue();
-	static CDM::AbstractOperationState * AbstractOperationState();
 	static CDM::OperatorContextDescriptor * OperatorContextDescriptor();
 	static CDM::OperatorContextState * OperatorContextState();
 	static CDM::PatientContextDescriptor * PatientContextDescriptor();

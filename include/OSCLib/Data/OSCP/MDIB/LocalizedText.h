@@ -58,12 +58,18 @@ public:
 
 	LocalizedText & setRef(const LocalizedTextRef & value);
 	LocalizedTextRef getRef() const;
+	bool getRef(LocalizedTextRef & out) const;
+	bool hasRef() const;
 
 	LocalizedText & setLang(const xml_schema::Language & value);
 	xml_schema::Language getLang() const;
+	bool getLang(xml_schema::Language & out) const;
+	bool hasLang() const;
 
 	LocalizedText & setVersion(const ReferencedVersion & value);
 	ReferencedVersion getVersion() const;
+	bool getVersion(ReferencedVersion & out) const;
+	bool hasVersion() const;
 
 private:
 	std::shared_ptr<CDM::LocalizedText> data;

@@ -78,9 +78,20 @@ NumericMetricState & NumericMetricState::setStateVersion(const VersionCounter & 
 	return *this;
 }
 
+bool NumericMetricState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter NumericMetricState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool NumericMetricState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 NumericMetricState & NumericMetricState::setDescriptorHandle(const HandleRef & value) {
@@ -98,9 +109,20 @@ NumericMetricState & NumericMetricState::setDescriptorVersion(const ReferencedVe
 	return *this;
 }
 
+bool NumericMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion NumericMetricState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool NumericMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 NumericMetricState & NumericMetricState::setActivationState(const ComponentActivation & value) {
@@ -108,9 +130,20 @@ NumericMetricState & NumericMetricState::setActivationState(const ComponentActiv
 	return *this;
 }
 
+bool NumericMetricState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
 
 ComponentActivation NumericMetricState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool NumericMetricState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
 NumericMetricState & NumericMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
@@ -118,9 +151,20 @@ NumericMetricState & NumericMetricState::setActiveDeterminationPeriod(const xml_
 	return *this;
 }
 
+bool NumericMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out) const {
+	if (data->ActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration NumericMetricState::getActiveDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod());
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+}
+	
+bool NumericMetricState::hasActiveDeterminationPeriod() const {
+	return data->ActiveDeterminationPeriod().present();
 }
 	
 NumericMetricState & NumericMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {

@@ -22,7 +22,7 @@ namespace OSCP {
 
 typedef unsigned long Timestamp;
 typedef unsigned long VersionCounter;
-typedef unsigned long ReferencedVersion;
+typedef unsigned long long ReferencedVersion;
 typedef std::string CodeIdentifier;
 typedef std::string SymbolicCodeName;
 typedef std::string LocalizedTextRef;

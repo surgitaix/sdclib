@@ -61,18 +61,26 @@ public:
 
 	EnumStringMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	EnumStringMetricState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	EnumStringMetricState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	EnumStringMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
 
 	EnumStringMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
 	xml_schema::Duration getActiveDeterminationPeriod() const;
+	bool getActiveDeterminationPeriod(xml_schema::Duration & out) const;
+	bool hasActiveDeterminationPeriod() const;
 
 	EnumStringMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
 	xml_schema::Duration getLifeTimePeriod() const;

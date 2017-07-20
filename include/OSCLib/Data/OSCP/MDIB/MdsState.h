@@ -60,12 +60,16 @@ public:
 
 	MdsState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	MdsState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	MdsState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	MdsState & setCalibrationInfo(const CalibrationInfo & value);
 	CalibrationInfo getCalibrationInfo() const;
@@ -79,15 +83,23 @@ public:
 
 	MdsState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
 
 	MdsState & setOperatingHours(const unsigned int & value);
 	unsigned int getOperatingHours() const;
+	bool getOperatingHours(unsigned int & out) const;
+	bool hasOperatingHours() const;
 
 	MdsState & setOperatingCycles(const int & value);
 	int getOperatingCycles() const;
+	bool getOperatingCycles(int & out) const;
+	bool hasOperatingCycles() const;
 
 	MdsState & setLang(const xml_schema::Language & value);
 	xml_schema::Language getLang() const;
+	bool getLang(xml_schema::Language & out) const;
+	bool hasLang() const;
 
 	MdsState & setOperatingMode(const MdsOperatingMode & value);
 	MdsOperatingMode getOperatingMode() const;

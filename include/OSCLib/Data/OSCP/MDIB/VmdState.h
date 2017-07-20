@@ -58,12 +58,16 @@ public:
 
 	VmdState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	VmdState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	VmdState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	VmdState & setCalibrationInfo(const CalibrationInfo & value);
 	CalibrationInfo getCalibrationInfo() const;
@@ -77,12 +81,18 @@ public:
 
 	VmdState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
 
 	VmdState & setOperatingHours(const unsigned int & value);
 	unsigned int getOperatingHours() const;
+	bool getOperatingHours(unsigned int & out) const;
+	bool hasOperatingHours() const;
 
 	VmdState & setOperatingCycles(const int & value);
 	int getOperatingCycles() const;
+	bool getOperatingCycles(int & out) const;
+	bool hasOperatingCycles() const;
 
 private:
 	std::shared_ptr<CDM::VmdState> data;

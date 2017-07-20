@@ -151,9 +151,20 @@ AlertSystemDescriptor & AlertSystemDescriptor::setMaxPhysiologicalParallelAlarms
 	return *this;
 }
 
+bool AlertSystemDescriptor::getMaxPhysiologicalParallelAlarms(unsigned int & out) const {
+	if (data->MaxPhysiologicalParallelAlarms().present()) {
+		out = ConvertFromCDM::convert(data->MaxPhysiologicalParallelAlarms().get());
+		return true;
+	}
+	return false;
+}
 
 unsigned int AlertSystemDescriptor::getMaxPhysiologicalParallelAlarms() const {
-	return ConvertFromCDM::convert(data->MaxPhysiologicalParallelAlarms());
+	return ConvertFromCDM::convert(data->MaxPhysiologicalParallelAlarms().get());
+}
+	
+bool AlertSystemDescriptor::hasMaxPhysiologicalParallelAlarms() const {
+	return data->MaxPhysiologicalParallelAlarms().present();
 }
 	
 AlertSystemDescriptor & AlertSystemDescriptor::setMaxTechnicalParallelAlarms(const unsigned int & value) {
@@ -161,9 +172,20 @@ AlertSystemDescriptor & AlertSystemDescriptor::setMaxTechnicalParallelAlarms(con
 	return *this;
 }
 
+bool AlertSystemDescriptor::getMaxTechnicalParallelAlarms(unsigned int & out) const {
+	if (data->MaxTechnicalParallelAlarms().present()) {
+		out = ConvertFromCDM::convert(data->MaxTechnicalParallelAlarms().get());
+		return true;
+	}
+	return false;
+}
 
 unsigned int AlertSystemDescriptor::getMaxTechnicalParallelAlarms() const {
-	return ConvertFromCDM::convert(data->MaxTechnicalParallelAlarms());
+	return ConvertFromCDM::convert(data->MaxTechnicalParallelAlarms().get());
+}
+	
+bool AlertSystemDescriptor::hasMaxTechnicalParallelAlarms() const {
+	return data->MaxTechnicalParallelAlarms().present();
 }
 	
 AlertSystemDescriptor & AlertSystemDescriptor::setSelfCheckPeriod(const xml_schema::Duration & value) {
@@ -171,9 +193,20 @@ AlertSystemDescriptor & AlertSystemDescriptor::setSelfCheckPeriod(const xml_sche
 	return *this;
 }
 
+bool AlertSystemDescriptor::getSelfCheckPeriod(xml_schema::Duration & out) const {
+	if (data->SelfCheckPeriod().present()) {
+		out = ConvertFromCDM::convert(data->SelfCheckPeriod().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration AlertSystemDescriptor::getSelfCheckPeriod() const {
-	return ConvertFromCDM::convert(data->SelfCheckPeriod());
+	return ConvertFromCDM::convert(data->SelfCheckPeriod().get());
+}
+	
+bool AlertSystemDescriptor::hasSelfCheckPeriod() const {
+	return data->SelfCheckPeriod().present();
 }
 	
 AlertSystemDescriptor & AlertSystemDescriptor::addAlertCondition(const AlertConditionDescriptor & value) {

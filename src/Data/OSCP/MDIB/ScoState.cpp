@@ -75,9 +75,20 @@ ScoState & ScoState::setStateVersion(const VersionCounter & value) {
 	return *this;
 }
 
+bool ScoState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter ScoState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool ScoState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 ScoState & ScoState::setDescriptorHandle(const HandleRef & value) {
@@ -95,9 +106,20 @@ ScoState & ScoState::setDescriptorVersion(const ReferencedVersion & value) {
 	return *this;
 }
 
+bool ScoState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion ScoState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool ScoState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 

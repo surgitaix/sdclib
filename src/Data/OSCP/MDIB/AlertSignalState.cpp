@@ -75,9 +75,20 @@ AlertSignalState & AlertSignalState::setStateVersion(const VersionCounter & valu
 	return *this;
 }
 
+bool AlertSignalState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter AlertSignalState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool AlertSignalState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 AlertSignalState & AlertSignalState::setDescriptorHandle(const HandleRef & value) {
@@ -95,9 +106,20 @@ AlertSignalState & AlertSignalState::setDescriptorVersion(const ReferencedVersio
 	return *this;
 }
 
+bool AlertSignalState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion AlertSignalState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool AlertSignalState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 AlertSignalState & AlertSignalState::setActivationState(const AlertActivation & value) {

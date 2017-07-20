@@ -172,9 +172,20 @@ DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescripto
 	return *this;
 }
 
+bool DistributionSampleArrayMetricDescriptor::getDerivationMethod(DerivationMethod & out) const {
+	if (data->DerivationMethod().present()) {
+		out = ConvertFromCDM::convert(data->DerivationMethod().get());
+		return true;
+	}
+	return false;
+}
 
 DerivationMethod DistributionSampleArrayMetricDescriptor::getDerivationMethod() const {
-	return ConvertFromCDM::convert(data->DerivationMethod());
+	return ConvertFromCDM::convert(data->DerivationMethod().get());
+}
+	
+bool DistributionSampleArrayMetricDescriptor::hasDerivationMethod() const {
+	return data->DerivationMethod().present();
 }
 	
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
@@ -314,9 +325,20 @@ DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescripto
 	return *this;
 }
 
+bool DistributionSampleArrayMetricDescriptor::getResolution(double & out) const {
+	if (data->Resolution().present()) {
+		out = ConvertFromCDM::convert(data->Resolution().get());
+		return true;
+	}
+	return false;
+}
 
 double DistributionSampleArrayMetricDescriptor::getResolution() const {
-	return ConvertFromCDM::convert(data->Resolution());
+	return ConvertFromCDM::convert(data->Resolution().get());
+}
+	
+bool DistributionSampleArrayMetricDescriptor::hasResolution() const {
+	return data->Resolution().present();
 }
 	
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::addTechnicalRange(const Range & value) {

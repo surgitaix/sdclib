@@ -76,9 +76,20 @@ VmdState & VmdState::setStateVersion(const VersionCounter & value) {
 	return *this;
 }
 
+bool VmdState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter VmdState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool VmdState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 VmdState & VmdState::setDescriptorHandle(const HandleRef & value) {
@@ -96,9 +107,20 @@ VmdState & VmdState::setDescriptorVersion(const ReferencedVersion & value) {
 	return *this;
 }
 
+bool VmdState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion VmdState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool VmdState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 VmdState & VmdState::setCalibrationInfo(const CalibrationInfo & value) {
@@ -148,9 +170,20 @@ VmdState & VmdState::setActivationState(const ComponentActivation & value) {
 	return *this;
 }
 
+bool VmdState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
 
 ComponentActivation VmdState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool VmdState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
 VmdState & VmdState::setOperatingHours(const unsigned int & value) {
@@ -158,9 +191,20 @@ VmdState & VmdState::setOperatingHours(const unsigned int & value) {
 	return *this;
 }
 
+bool VmdState::getOperatingHours(unsigned int & out) const {
+	if (data->OperatingHours().present()) {
+		out = ConvertFromCDM::convert(data->OperatingHours().get());
+		return true;
+	}
+	return false;
+}
 
 unsigned int VmdState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours());
+	return ConvertFromCDM::convert(data->OperatingHours().get());
+}
+	
+bool VmdState::hasOperatingHours() const {
+	return data->OperatingHours().present();
 }
 	
 VmdState & VmdState::setOperatingCycles(const int & value) {
@@ -168,9 +212,20 @@ VmdState & VmdState::setOperatingCycles(const int & value) {
 	return *this;
 }
 
+bool VmdState::getOperatingCycles(int & out) const {
+	if (data->OperatingCycles().present()) {
+		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+		return true;
+	}
+	return false;
+}
 
 int VmdState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles());
+	return ConvertFromCDM::convert(data->OperatingCycles().get());
+}
+	
+bool VmdState::hasOperatingCycles() const {
+	return data->OperatingCycles().present();
 }
 	
 

@@ -75,9 +75,20 @@ SetAlertStateOperationState & SetAlertStateOperationState::setStateVersion(const
 	return *this;
 }
 
+bool SetAlertStateOperationState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter SetAlertStateOperationState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool SetAlertStateOperationState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorHandle(const HandleRef & value) {
@@ -95,9 +106,20 @@ SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorVersion(
 	return *this;
 }
 
+bool SetAlertStateOperationState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion SetAlertStateOperationState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool SetAlertStateOperationState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 SetAlertStateOperationState & SetAlertStateOperationState::setOperatingMode(const OperatingMode & value) {

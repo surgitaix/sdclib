@@ -68,7 +68,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 set(OSCLibSOURCES
-./src/Data/OSCP/MDIB/ActivateOperationDescriptor.cpp
+#./src/Data/OSCP/MDIB/ActivateOperationDescriptor.cpp
 ./src/Data/OSCP/MDIB/ActivateOperationState.cpp
 ./src/Data/OSCP/MDIB/AlertConditionDescriptor.cpp
 ./src/Data/OSCP/MDIB/AlertConditionState.cpp

@@ -59,12 +59,16 @@ public:
 
 	PatientContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
+	bool getStateVersion(VersionCounter & out) const;
+	bool hasStateVersion() const;
 
 	PatientContextState & setDescriptorHandle(const HandleRef & value);
 	HandleRef getDescriptorHandle() const;
 
 	PatientContextState & setDescriptorVersion(const ReferencedVersion & value);
 	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
 	PatientContextState & setCategory(const CodedValue & value);
 	CodedValue getCategory() const;
@@ -76,6 +80,8 @@ public:
 
 	PatientContextState & setContextAssociation(const ContextAssociation & value);
 	ContextAssociation getContextAssociation() const;
+	bool getContextAssociation(ContextAssociation & out) const;
+	bool hasContextAssociation() const;
 
 	PatientContextState & setBindingMdibVersion(const ReferencedVersion & value);
 	ReferencedVersion getBindingMdibVersion() const;
@@ -84,12 +90,18 @@ public:
 
 	PatientContextState & setUnbindingMdibVersion(const ReferencedVersion & value);
 	ReferencedVersion getUnbindingMdibVersion() const;
+	bool getUnbindingMdibVersion(ReferencedVersion & out) const;
+	bool hasUnbindingMdibVersion() const;
 
 	PatientContextState & setBindingStartTime(const Timestamp & value);
 	Timestamp getBindingStartTime() const;
+	bool getBindingStartTime(Timestamp & out) const;
+	bool hasBindingStartTime() const;
 
 	PatientContextState & setBindingEndTime(const Timestamp & value);
 	Timestamp getBindingEndTime() const;
+	bool getBindingEndTime(Timestamp & out) const;
+	bool hasBindingEndTime() const;
 
 	PatientContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidatorLists() const;

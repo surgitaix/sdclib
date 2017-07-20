@@ -168,9 +168,20 @@ ClockDescriptor & ClockDescriptor::setResolution(const xml_schema::Duration & va
 	return *this;
 }
 
+bool ClockDescriptor::getResolution(xml_schema::Duration & out) const {
+	if (data->Resolution().present()) {
+		out = ConvertFromCDM::convert(data->Resolution().get());
+		return true;
+	}
+	return false;
+}
 
 xml_schema::Duration ClockDescriptor::getResolution() const {
-	return ConvertFromCDM::convert(data->Resolution());
+	return ConvertFromCDM::convert(data->Resolution().get());
+}
+	
+bool ClockDescriptor::hasResolution() const {
+	return data->Resolution().present();
 }
 	
 ClockDescriptor & ClockDescriptor::addTimeProtocol(const CodedValue & value) {

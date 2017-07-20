@@ -85,9 +85,13 @@ public:
 
 	AlertSignalDescriptor & setDefaultSignalGenerationDelay(const xml_schema::Duration & value);
 	xml_schema::Duration getDefaultSignalGenerationDelay() const;
+	bool getDefaultSignalGenerationDelay(xml_schema::Duration & out) const;
+	bool hasDefaultSignalGenerationDelay() const;
 
 	AlertSignalDescriptor & setSignalDelegationSupported(const bool & value);
 	bool getSignalDelegationSupported() const;
+	bool getSignalDelegationSupported(bool & out) const;
+	bool hasSignalDelegationSupported() const;
 
 	AlertSignalDescriptor & setAcknowledgementSupported(const bool & value);
 	bool getAcknowledgementSupported() const;

@@ -75,9 +75,20 @@ SystemContextState & SystemContextState::setStateVersion(const VersionCounter & 
 	return *this;
 }
 
+bool SystemContextState::getStateVersion(VersionCounter & out) const {
+	if (data->StateVersion().present()) {
+		out = ConvertFromCDM::convert(data->StateVersion().get());
+		return true;
+	}
+	return false;
+}
 
 VersionCounter SystemContextState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion());
+	return ConvertFromCDM::convert(data->StateVersion().get());
+}
+	
+bool SystemContextState::hasStateVersion() const {
+	return data->StateVersion().present();
 }
 	
 SystemContextState & SystemContextState::setDescriptorHandle(const HandleRef & value) {
@@ -95,9 +106,20 @@ SystemContextState & SystemContextState::setDescriptorVersion(const ReferencedVe
 	return *this;
 }
 
+bool SystemContextState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
 
 ReferencedVersion SystemContextState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion());
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool SystemContextState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
 

@@ -166,9 +166,20 @@ SampleArrayValue & SampleArrayValue::setSamples(const RealTimeValueType & value)
 	return *this;
 }
 
+bool SampleArrayValue::getSamples(RealTimeValueType & out) const {
+	if (data->Samples().present()) {
+		out = ConvertFromCDM::convert(data->Samples().get());
+		return true;
+	}
+	return false;
+}
 
 RealTimeValueType SampleArrayValue::getSamples() const {
-	return ConvertFromCDM::convert(data->Samples());
+	return ConvertFromCDM::convert(data->Samples().get());
+}
+	
+bool SampleArrayValue::hasSamples() const {
+	return data->Samples().present();
 }
 	
 SampleArrayValue & SampleArrayValue::addApplyAnnotation(const ApplyAnnotation & value) {
