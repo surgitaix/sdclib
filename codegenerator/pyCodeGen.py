@@ -9,6 +9,8 @@
 # to make changes in the generated files please edit the corresponding *_beginning, *_ending files
 
 
+SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION = 1
+
 from lxml import etree
 from io import StringIO, BytesIO
 
@@ -16,7 +18,7 @@ from pyclassgenerators.simpletypeshandling import CppTypdefStringBuilder, CppEnu
 from pyclassgenerators.converterclasses import CppConvertFromCDMClassDeclarationBuilder, CppConvertFromCDMClassEnumConverterFunctionBuilder, CppConvertFromCDMClassDefinitionBuilder, CppConvertToCDMClassDeclarationBuilder, CppConvertToCDMClassEnumConverterFunctionBuilder, CppConvertToCDMClassDefinitionBuilder
 from pyclassgenerators.gslmacrogenerator import GSLClassBuilder, GSLFileBuilder
 from pyclassgenerators.xmlnodeparser import ComplexTypeNodeParser,  SimpleTypeNodeParser
-
+from pyclassgenerators.defaultgenerator import DefaultDeclarationBuilder, DefaultDefinitionBuilder
 ##
 ## Setup
 ##
@@ -88,6 +90,8 @@ class ClassBuilderForwarding(object):
         self.__cppConvertToCDMClassDeclarationBuilder = CppConvertToCDMClassDeclarationBuilder()
         self.__cppConvertToCDMClassDefinitionBuilder = CppConvertToCDMClassDefinitionBuilder()
         self.__cppTypdefStringBuilder = CppTypdefStringBuilder(g_basetype_map)
+        self.__defaultDeclarationBuilder = DefaultDeclarationBuilder()
+        self.__defaultDefinitionBuilder = DefaultDefinitionBuilder()
         self.__mdibDeclacationsBuilder = MDIBDeclacationsBuilder()
         self.__cppEnumClassBuilder = None
         self.__cppEnumToStringClassDefinitionBuilder = None
@@ -96,11 +100,14 @@ class ClassBuilderForwarding(object):
         self.__enumClasses_cppCode = ''
         self.__enumToStringClassMethods_cppCode = ''
                     
-    def addComplexType(self, complexTypeName, abstractBool):
+    def addComplexType(self, complexTypeName, abstractBool, switch_enable_default_generation):
         self.__cppConvertFromCDMClassDefinitionBuilder.addComplexType(complexTypeName, abstractBool)
         self.__cppConvertFromCDMClassDeclarationBuilder.addNonBasetype(complexTypeName, abstractBool)
         self.__cppConvertToCDMClassDefinitionBuilder.addComplexType(complexTypeName, abstractBool)
         self.__mdibDeclacationsBuilder.addType(complexTypeName)
+        if switch_enable_default_generation:
+            self.__defaultDeclarationBuilder.addFunction(complexTypeName,abstractBool)
+            self.__defaultDefinitionBuilder.addFunction(complexTypeName,abstractBool)
         
     def addItemlist(self, simpleTypeName, itemListName):
         self.__cppTypdefStringBuilder.addItemListTypedef(simpleTypeName, itemListName)
@@ -162,8 +169,14 @@ class ClassBuilderForwarding(object):
     
     def getEnumCounter(self):
         return self.__cppEnumToStringClassBuilder.getEnumCounter()
-
-
+    
+    def getDefaultDeclarationGenerator(self):
+        return self.__defaultDeclarationBuilder.getContent()
+    
+    def getDefaultDefinitionGenerator(self):
+        return self.__defaultDefinitionBuilder.getContent()
+    
+    
 ## factories
 def make_FileManager():
     l_cppFileBuilder = FileManager()
@@ -206,7 +219,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
         complexNodeParser.parseComplexTypeNode(complexType_node)
         ### non-gsl files
         # add to ConverterClasses
-        classBuilderForwarder.addComplexType(complexNodeParser.getComplexTypeName(), complexNodeParser.getAbstractBool())         
+        classBuilderForwarder.addComplexType(complexNodeParser.getComplexTypeName(), complexNodeParser.getAbstractBool(), SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION)         
         # GSL files
         if complexNodeParser.getGSLClassBuilder():
             gslFileBuilder.addClassAsString(complexNodeParser.getGSLClassBuilder().getGSLClassAsString())
@@ -260,6 +273,20 @@ cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('MDIB-fwd_beginning.hxx')
 contentEnding = cppFileBuilder.readFileToStr('MDIB-fwd_ending.hxx')
 cppFileBuilder.writeToFile('MDIB-fwd.h', contentBeginning + classBuilderForwarder.getMdibForward() + contentEnding)
+
+## build defaults.h
+#build mdib-fwd.h
+cppFileBuilder = make_FileManager()
+contentBeginning = cppFileBuilder.readFileToStr('Defaults_beginning.hxx')
+contentEnding = cppFileBuilder.readFileToStr('Defaults_ending.hxx')
+cppFileBuilder.writeToFile('Defaults.h', contentBeginning + classBuilderForwarder.getDefaultDeclarationGenerator() + contentEnding)
+
+## build defaults.h
+#build mdib-fwd.h
+cppFileBuilder = make_FileManager()
+contentBeginning = cppFileBuilder.readFileToStr('Defaults_beginning.cxx')
+contentEnding = cppFileBuilder.readFileToStr('Defaults_ending.cxx')
+cppFileBuilder.writeToFile('Defaults.cpp', contentBeginning + classBuilderForwarder.getDefaultDefinitionGenerator() + contentEnding)
 
 
 # ---- Statistics -----

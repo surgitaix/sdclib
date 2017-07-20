@@ -8,7 +8,6 @@
 
  
 from gslmacrogenerator import GSLClassBuilder
-from defaultgenerator import DefaultDeclarationBuilder, DefaultDefinitionBuilder
  
 # parses one complex type node
 # build the gslFile, available via getGslClassBuilder
