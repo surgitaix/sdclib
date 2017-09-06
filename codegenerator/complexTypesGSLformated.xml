@@ -14,7 +14,6 @@
 	</class>
 
 	<class name = "MdState" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/AbstractState.h" />
 		<property name = "StateVersion" type = "VersionCounter" optional = "true" />
 		<propertyList nameSingle = "State" nameSeveral = "StateLists" type = "AbstractState" />
 	</class>
@@ -156,7 +155,6 @@
 	</class>
 
 	<class name = "ChannelDescriptor" parent = "AbstractAlertingDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/AbstractMetricDescriptor.h" />
 		<propertyList nameSingle = "Metric" nameSeveral = "MetricLists" type = "AbstractMetricDescriptor" />
 	</class>
 
@@ -402,7 +400,6 @@
 	</class>
 
 	<class name = "ScoDescriptor" parent = "AbstractDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/AbstractOperationDescriptor.h" />
 		<propertyList nameSingle = "Operation" nameSeveral = "OperationLists" type = "AbstractOperationDescriptor" />
 	</class>
 

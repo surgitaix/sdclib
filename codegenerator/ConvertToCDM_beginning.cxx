@@ -82,6 +82,8 @@ std::unique_ptr<typename WrapperType::WrappedType> ConvertToCDM::convert(const W
 }
 
 #include "osdm.hxx"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 
 #include <stdexcept>
 

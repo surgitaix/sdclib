@@ -68,7 +68,9 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 set(OSCLibSOURCES
-#./src/Data/OSCP/MDIB/ActivateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/ProductionSpecification.cpp
+./src/Data/OSCP/MDIB/Defaults.cpp
+./src/Data/OSCP/MDIB/ActivateOperationDescriptor.cpp
 ./src/Data/OSCP/MDIB/ActivateOperationState.cpp
 ./src/Data/OSCP/MDIB/AlertConditionDescriptor.cpp
 ./src/Data/OSCP/MDIB/AlertConditionState.cpp
@@ -168,20 +170,8 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/WorkflowContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextState.cpp
 ./src/Data/OSCP/MDIB/WorkflowDetail.cpp
-./src/Data/OSCP/MDIB/custom/AlertConditionReferenceCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/AlertSystemDescriptorCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/Base64BinaryCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/ChannelDescriptorCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/Defaults.cpp
-./src/Data/OSCP/MDIB/custom/MdDescriptionCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/MDIBContainer.cpp
-./src/Data/OSCP/MDIB/custom/MdStateCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/OperationInvocationContext.cpp
-./src/Data/OSCP/MDIB/custom/PersonParticipationCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/PersonReferenceCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/RealTimeValueTypeCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/ScoDescriptorCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/TimeZoneCustomImpl.cxx
 ./src/Data/OSCP/FutureInvocationState.cpp
 ./src/Data/OSCP/OSCPConsumer.cpp
 ./src/Data/OSCP/OSCPConsumerEventHandler.cpp

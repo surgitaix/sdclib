@@ -62,7 +62,6 @@ namespace OSCP {
 	class AbstractMetricValue;
 	class MetricQuality;
 	class Annotation;
-	class Argument;
 	class NumericMetricValue;
 	class StringMetricValue;
 	class SampleArrayValue;
@@ -90,6 +89,7 @@ namespace OSCP {
 	class SetStringOperationDescriptor;
 	class SetStringOperationState;
 	class ActivateOperationDescriptor;
+	class Argument;
 	class ActivateOperationState;
 	class SetContextStateOperationDescriptor;
 	class SetContextStateOperationState;

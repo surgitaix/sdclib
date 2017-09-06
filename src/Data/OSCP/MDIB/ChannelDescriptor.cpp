@@ -32,11 +32,10 @@
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/Defaults.h"
+#include "OSCLib/Data/OSCP/MDIB/Defaults.h"
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/AbstractMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 

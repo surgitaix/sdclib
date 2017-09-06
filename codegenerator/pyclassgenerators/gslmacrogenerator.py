@@ -35,9 +35,11 @@ class GSLClassBuilder(object):
                     self.addTypedef(classInterfaceDescription[1+(2*i)], classInterfaceDescription[2+(2*i)])
         
     def addInclude(self,complexTypeName):
-        if not (complexTypeName in self.__includedComplexTypes_list):
-            self.__includes = self.__includes + '\t\t<include path = \"OSCLib/Data/OSCP/MDIB/' + complexTypeName + '.h\" />\n'
-            self.__includedComplexTypes_list.append(complexTypeName)
+        # consider those types abstract that are named that way:
+        if not (complexTypeName.find('Abstract') != -1):
+            if not (complexTypeName in self.__includedComplexTypes_list):
+                self.__includes = self.__includes + '\t\t<include path = \"OSCLib/Data/OSCP/MDIB/' + complexTypeName + '.h\" />\n'
+                self.__includedComplexTypes_list.append(complexTypeName)
         
     def addProperty(self, property_name, property_type, optionality_string):
         self.__properties = self.__properties + '\t\t<property name = \"' + property_name + '\" type = \"' + property_type + '\" optional = \"' + optionality_string + '\" />\n'

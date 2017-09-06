@@ -8,7 +8,9 @@
 #
 # to make changes in the generated files please edit the corresponding *_beginning, *_ending files
 
-
+# use this switch to generate a template for the Default.h/.cpp 
+# the according default values have to be filled in by hand. 
+# thus be careful not to overwrite an already filled out file
 SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION = 1
 
 from lxml import etree
@@ -100,14 +102,13 @@ class ClassBuilderForwarding(object):
         self.__enumClasses_cppCode = ''
         self.__enumToStringClassMethods_cppCode = ''
                     
-    def addComplexType(self, complexTypeName, abstractBool, switch_enable_default_generation):
+    def addComplexType(self, complexTypeName, abstractBool):
         self.__cppConvertFromCDMClassDefinitionBuilder.addComplexType(complexTypeName, abstractBool)
         self.__cppConvertFromCDMClassDeclarationBuilder.addNonBasetype(complexTypeName, abstractBool)
         self.__cppConvertToCDMClassDefinitionBuilder.addComplexType(complexTypeName, abstractBool)
         self.__mdibDeclacationsBuilder.addType(complexTypeName)
-        if switch_enable_default_generation:
-            self.__defaultDeclarationBuilder.addFunction(complexTypeName,abstractBool)
-            self.__defaultDefinitionBuilder.addFunction(complexTypeName,abstractBool)
+        self.__defaultDeclarationBuilder.addFunction(complexTypeName,abstractBool)
+        self.__defaultDefinitionBuilder.addFunction(complexTypeName,abstractBool)
         
     def addItemlist(self, simpleTypeName, itemListName):
         self.__cppTypdefStringBuilder.addItemListTypedef(simpleTypeName, itemListName)
@@ -219,7 +220,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
         complexNodeParser.parseComplexTypeNode(complexType_node)
         ### non-gsl files
         # add to ConverterClasses
-        classBuilderForwarder.addComplexType(complexNodeParser.getComplexTypeName(), complexNodeParser.getAbstractBool(), SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION)         
+        classBuilderForwarder.addComplexType(complexNodeParser.getComplexTypeName(), complexNodeParser.getAbstractBool())         
         # GSL files
         if complexNodeParser.getGSLClassBuilder():
             gslFileBuilder.addClassAsString(complexNodeParser.getGSLClassBuilder().getGSLClassAsString())
@@ -274,19 +275,21 @@ contentBeginning = cppFileBuilder.readFileToStr('MDIB-fwd_beginning.hxx')
 contentEnding = cppFileBuilder.readFileToStr('MDIB-fwd_ending.hxx')
 cppFileBuilder.writeToFile('MDIB-fwd.h', contentBeginning + classBuilderForwarder.getMdibForward() + contentEnding)
 
-## build defaults.h
-#build mdib-fwd.h
-cppFileBuilder = make_FileManager()
-contentBeginning = cppFileBuilder.readFileToStr('Defaults_beginning.hxx')
-contentEnding = cppFileBuilder.readFileToStr('Defaults_ending.hxx')
-cppFileBuilder.writeToFile('Defaults.h', contentBeginning + classBuilderForwarder.getDefaultDeclarationGenerator() + contentEnding)
 
-## build defaults.h
-#build mdib-fwd.h
-cppFileBuilder = make_FileManager()
-contentBeginning = cppFileBuilder.readFileToStr('Defaults_beginning.cxx')
-contentEnding = cppFileBuilder.readFileToStr('Defaults_ending.cxx')
-cppFileBuilder.writeToFile('Defaults.cpp', contentBeginning + classBuilderForwarder.getDefaultDefinitionGenerator() + contentEnding)
+if SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION:
+    ## build defaults.h
+    #build mdib-fwd.h
+    cppFileBuilder = make_FileManager()
+    contentBeginning = cppFileBuilder.readFileToStr('Defaults_beginning.hxx')
+    contentEnding = cppFileBuilder.readFileToStr('Defaults_ending.hxx')
+    cppFileBuilder.writeToFile('Defaults.h', contentBeginning + classBuilderForwarder.getDefaultDeclarationGenerator() + contentEnding)
+    
+    ## build defaults.h
+    #build mdib-fwd.h
+    cppFileBuilder = make_FileManager()
+    contentBeginning = cppFileBuilder.readFileToStr('Defaults_beginning.cxx')
+    contentEnding = cppFileBuilder.readFileToStr('Defaults_ending.cxx')
+    cppFileBuilder.writeToFile('Defaults.cpp', contentBeginning + classBuilderForwarder.getDefaultDefinitionGenerator() + contentEnding)
 
 
 # ---- Statistics -----
