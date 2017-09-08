@@ -80,6 +80,7 @@
 	</class>
 
 	<class name = "AbstractDeviceComponentDescriptor" parent = "AbstractDescriptor" abstract = "true">
+		<include path = "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h" />
 		<propertyList nameSingle = "ProductionSpecification" nameSeveral = "ProductionSpecificationLists" type = "ProductionSpecification" />
 	</class>
 
@@ -115,6 +116,7 @@
 	</class>
 
 	<class name = "MdsDescriptor" parent = "AbstractAlertingDeviceComponentDescriptor" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/MetaData.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h" />
@@ -261,6 +263,8 @@
 	</class>
 
 	<class name = "AbstractMetricValue" parent = "NULL" abstract = "true">
+		<include path = "OSCLib/Data/OSCP/MDIB/MetricQuality.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Annotation.h" />
 		<property name = "MetricQuality" type = "MetricQuality" optional = "false" />
 		<property name = "StartTime" type = "Timestamp" optional = "true" />
 		<property name = "StopTime" type = "Timestamp" optional = "true" />
@@ -288,6 +292,7 @@
 	</class>
 
 	<class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h" />
 		<property name = "Samples" type = "RealTimeValueType" optional = "true" />
 		<propertyList nameSingle = "ApplyAnnotation" nameSeveral = "ApplyAnnotationLists" type = "ApplyAnnotation" />
 	</class>
@@ -350,6 +355,7 @@
 	</class>
 
 	<class name = "EnumStringMetricDescriptor" parent = "StringMetricDescriptor" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/AllowedValue.h" />
 		<propertyList nameSingle = "AllowedValue" nameSeveral = "AllowedValueLists" type = "AllowedValue" />
 	</class>
 
@@ -434,6 +440,7 @@
 	</class>
 
 	<class name = "ActivateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/Argument.h" />
 		<property name = "ActivationDuration" type = "xml_schema::Duration" optional = "true" />
 		<property name = "Retriggerable" type = "bool" optional = "true" />
 		<propertyList nameSingle = "Argument" nameSeveral = "ArgumentLists" type = "Argument" />
@@ -613,6 +620,7 @@
 	<class name = "ClinicalInfo" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
 		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
 		<propertyList nameSingle = "RelatedMeasurement" nameSeveral = "RelatedMeasurementLists" type = "RelatedMeasurement" />
@@ -620,6 +628,7 @@
 
 	<class name = "RelatedMeasurement" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/ReferenceRange.h" />
 		<property name = "Value" type = "Measurement" optional = "false" />
 		<property name = "Validity" type = "MeasurementValidity" optional = "true" />
 		<propertyList nameSingle = "ReferenceRange" nameSeveral = "ReferenceRangeLists" type = "ReferenceRange" />
@@ -667,6 +676,7 @@
 	</class>
 
 	<class name = "WorkflowContextState" parent = "AbstractContextState" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/WorkflowDetail.h" />
 		<typedef name = "DescriptorType" type = "WorkflowContextDescriptor" />
 		<property name = "WorkflowDetail" type = "WorkflowDetail" optional = "true" />
 	</class>
@@ -677,6 +687,8 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h" />
 		<property name = "Patient" type = "PersonReference" optional = "false" />
 		<property name = "AssignedLocation" type = "LocationReference" optional = "true" />
 		<property name = "VisitNumber" type = "InstanceIdentifier" optional = "true" />

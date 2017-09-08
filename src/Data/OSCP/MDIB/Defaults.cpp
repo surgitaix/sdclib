@@ -239,11 +239,18 @@ CDM::LimitAlertConditionDescriptor  * Defaults::LimitAlertConditionDescriptor() 
 }
 
 CDM::LimitAlertConditionState  * Defaults::LimitAlertConditionState() {
-	return new CDM::LimitAlertConditionState(NOT_ASSIGNED, NOT_ASSIGNED);
+	return new CDM::LimitAlertConditionState(NOT_ASSIGNED,
+			NOT_ASSIGNED,
+			CDM::LimitAlertConditionState::PresenceType(false),
+			ConvertToCDM::convert(OSCP::Range()),
+			NOT_ASSIGNED);
 }
 
 CDM::AlertSignalDescriptor  * Defaults::AlertSignalDescriptor() {
-	return new CDM::AlertSignalDescriptor(NOT_ASSIGNED);
+	return new CDM::AlertSignalDescriptor(NOT_ASSIGNED,
+			NOT_ASSIGNED,
+			NOT_ASSIGNED,
+			false);
 }
 
 CDM::AlertSignalState  * Defaults::AlertSignalState() {

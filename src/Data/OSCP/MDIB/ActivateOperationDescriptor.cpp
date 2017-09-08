@@ -35,7 +35,7 @@
 #include "OSCLib/Data/OSCP/MDIB/Defaults.h"
 
 #include "osdm.hxx"
-
+#include "OSCLib/Data/OSCP/MDIB/Argument.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {

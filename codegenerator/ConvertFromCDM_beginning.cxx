@@ -75,7 +75,8 @@ xml_schema::Language ConvertFromCDM::convert(const xml_schema::Language & source
 	return source;
 }
 
-
+// needed SimpleTypes?
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "osdm.hxx"
 

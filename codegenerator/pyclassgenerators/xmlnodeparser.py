@@ -101,10 +101,13 @@ class ComplexTypeNodeParser(object):
                     # embedded complex classes do not have an own type name, thus named with a Type prefix
                     # add name attribute to embedded type node to convert it in the non-embedded form
                     # since the node is a mutable object this is done at the original node which is going to be parsed the next time.
-                    # this approach is more efficient then working with recursion
+                    # this approach is more efficient then utilizing recursion
                     embeddedComplexTypeNode[0].set('name', nodeName)
 #                     embeddedComplexTypeNode[0].set('name', nodeName + 'Type')
                     ComplexTypeNodeParser.__embeddedNodesNamesList.append(nodeName)
+                    # add include
+                    self.__gslClassBuilder.addInclude(nodeName)
+                    self.__complexTypes_set.add(nodeName)
                     print 'embedded complex type node created: ' +  nodeName
                     return nodeName, nodeName
 #                     return nodeName, nodeName + 'Type'
@@ -117,7 +120,6 @@ class ComplexTypeNodeParser(object):
                     ComplexTypeNodeParser.__embeddedNodesNamesList.append(nodeName)
                     print 'embedded simple type node created: ' +  nodeName
                     return nodeName, nodeName
-#                     return nodeName, nodeName + 'Type'
                 
                 # Errorcase if control gets here
                 raise ValueError('WARNING: Property ' + nodeName + ' has no attribute type defined.') 

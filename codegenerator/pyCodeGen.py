@@ -11,7 +11,7 @@
 # use this switch to generate a template for the Default.h/.cpp 
 # the according default values have to be filled in by hand. 
 # thus be careful not to overwrite an already filled out file
-SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION = 1
+SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION = 0
 
 from lxml import etree
 from io import StringIO, BytesIO
