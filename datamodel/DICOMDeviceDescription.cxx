@@ -1284,7 +1284,7 @@ namespace CDM
 
   DicomDeviceDescriptor::
   DicomDeviceDescriptor (const HandleType& Handle)
-  : ::CDM::MdsDescriptor (Handle),
+  : ::CDM::AbstractComplexDeviceComponentDescriptor (Handle),
     NetworkAe_ (this),
     NetworkConnection_ (this),
     SoftwareVersion_ (this),
@@ -1303,7 +1303,7 @@ namespace CDM
   DicomDeviceDescriptor (const DicomDeviceDescriptor& x,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::MdsDescriptor (x, f, c),
+  : ::CDM::AbstractComplexDeviceComponentDescriptor (x, f, c),
     NetworkAe_ (x.NetworkAe_, f, this),
     NetworkConnection_ (x.NetworkConnection_, f, this),
     SoftwareVersion_ (x.SoftwareVersion_, f, this),
@@ -1322,7 +1322,7 @@ namespace CDM
   DicomDeviceDescriptor (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::MdsDescriptor (e, f | ::xml_schema::Flags::base, c),
+  : ::CDM::AbstractComplexDeviceComponentDescriptor (e, f | ::xml_schema::Flags::base, c),
     NetworkAe_ (this),
     NetworkConnection_ (this),
     SoftwareVersion_ (this),
@@ -1346,7 +1346,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::MdsDescriptor::parse (p, f);
+    this->::CDM::AbstractComplexDeviceComponentDescriptor::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -1635,7 +1635,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::MdsDescriptor& > (*this) = x;
+      static_cast< ::CDM::AbstractComplexDeviceComponentDescriptor& > (*this) = x;
       this->NetworkAe_ = x.NetworkAe_;
       this->NetworkConnection_ = x.NetworkConnection_;
       this->SoftwareVersion_ = x.SoftwareVersion_;
@@ -2023,7 +2023,7 @@ namespace CDM
   void
   operator<< (::xercesc::DOMElement& e, const DicomDeviceDescriptor& i)
   {
-    e << static_cast< const ::CDM::MdsDescriptor& > (i);
+    e << static_cast< const ::CDM::AbstractComplexDeviceComponentDescriptor& > (i);
 
     // NetworkAe
     //

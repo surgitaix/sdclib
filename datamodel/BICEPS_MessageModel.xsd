@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Please start and end a documentation by directly beginning after/ending before the opening/closing tag. Example:
-	<xsd:documentation>Here the doc starts [...] and ends.</document>
+	<xsd:documentation>Here the doc starts [..SHAL.] and ends.</document>
 
 	Do not do something like this:
 	<xsd:documentation>
@@ -32,9 +32,9 @@ and the doc ends.</document>
 	Information: - Search for "TODO: add documentation" for missing documentation items.
 	             - Search for "[TODO: clarification]" for documentation items that have to clarified
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://p11073-10207/draft7/ext/2017/03/17" xmlns:pm="http://p11073-10207/draft7/pm/2017/03/17" xmlns:msg="http://p11073-10207/draft7/msg/2017/03/17" targetNamespace="http://p11073-10207/draft7/msg/2017/03/17" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft7" xml:lang="en">
-	<xsd:import namespace="http://p11073-10207/draft7/ext/2017/03/17" schemaLocation="ExtensionPoint.xsd"/>
-	<xsd:import namespace="http://p11073-10207/draft7/pm/2017/03/17" schemaLocation="BICEPS_ParticipantModel.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://p11073-10207/draft8/ext/2017/08/07" xmlns:pm="http://p11073-10207/draft8/pm/2017/08/07" xmlns:msg="http://p11073-10207/draft8/msg/2017/08/07" targetNamespace="http://p11073-10207/draft8/msg/2017/08/07" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft8" xml:lang="en">
+	<xsd:import namespace="http://p11073-10207/draft8/ext/2017/08/07" schemaLocation="ExtensionPoint.xsd"/>
+	<xsd:import namespace="http://p11073-10207/draft8/pm/2017/08/07" schemaLocation="BICEPS_ParticipantModel.xsd"/>
 	<xsd:annotation>
 		<xsd:documentation>This XML schema defines the 'Basic Integrated Clinical Environment Protocol Specification' (BICEPS) that is a Domain Information Model (DIM) for point of care medical device communication.
 			It encompasses the device model and the corresponding messages.
@@ -115,7 +115,7 @@ and the doc ends.</document>
 				<xsd:annotation>
 					<xsd:documentation>Inv = Invalid Value. The HANDLE to the operation object does not match the invocation request MESSAGE.
 
-Example: if a msg:SetString MESSAGE is received, in which the msg:SetString/msg:OperationHandleRef points to a msg:SetValue MESSAGE, the receiver SHALL reply with InvocationError "Inv".</xsd:documentation>
+Example: if a msg:SetString MESSAGE is received, in which the msg:SetString/msg:OperationHandleRef points to a msg:SetValue MESSAGE, the receiver replies with InvocationError "Inv".</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Oth">
@@ -210,7 +210,7 @@ Per convention any response MESSAGE ends up with "Response", whereas request MES
 				<xsd:annotation>
 					<xsd:documentation>Handle of the set operation to invoke. 
 
-NOTE—Only valid operation HANDLEs are allowed. A SERVICE PROVIDER SHALL accept a set request only if at least the operation target HANDLE is valid and the operation is enabled according to the POC MEDICAL DEVICE's MDIB. A target HANDLE is valid if the operation to invoke can be applied on the object referenced by the target HANDLE. An operation can be considered as enabled if pm:AbstractOperationStateType/@OperatingMode equals "En".</xsd:documentation>
+A SERVICE PROVIDER SHALL accept a set request only if at least the operation target HANDLE is valid and the operation is enabled according to the POC MEDICAL DEVICE's MDIB. A target HANDLE is valid if the operation to invoke can be applied on the object referenced by the target HANDLE. An operation can be considered as enabled if pm:AbstractOperationStateType/@OperatingMode equals "En".</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
@@ -223,7 +223,11 @@ Per convention any response MESSAGE ends up with "Response", whereas request MES
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element ref="ext:Extension" minOccurs="0"/>
-			<xsd:element name="InvocationInfo" type="msg:InvocationInfo"/>
+			<xsd:element name="InvocationInfo" type="msg:InvocationInfo">
+				<xsd:annotation>
+					<xsd:documentation>Information set regarding the returned transaction. See pm:InvocationInfo.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
 		</xsd:sequence>
 		<xsd:attributeGroup ref="pm:MdibVersionGroup"/>
 	</xsd:complexType>
@@ -268,7 +272,7 @@ Since contexts might include privacy-related information, a SERVICE PROVIDER MAY
 					<xsd:sequence>
 						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of HANDLEs that specify which descriptors SHALL be returned. See msg:GetMdDescriptionResponse/msg:MdDescription.</xsd:documentation>
+								<xsd:documentation>List of HANDLEs that specify which descriptors are requested. See msg:GetMdDescriptionResponse/msg:MdDescription.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -286,10 +290,11 @@ Since contexts might include privacy-related information, a SERVICE PROVIDER MAY
 					<xsd:sequence>
 						<xsd:element name="MdDescription" type="pm:MdDescription">
 							<xsd:annotation>
-								<xsd:documentation>MdDescription comprises the requested set of MDS descriptors. Which MDS descriptors are included depends on the msg:GetMdDescription/msg:HandleRef list:
-- If the HANDLE reference list is empty, all MDS descriptors SHALL be included in the result list.
-- If a HANDLE reference does match an MDS descriptor, it SHALL be included in the result list.
-- If a HANDLE reference does not match an MDS descriptor (any other descriptor), the MDS descriptor that is in the parent tree of the HANDLE reference SHOULD be included in the result list.</xsd:documentation>
+								<xsd:documentation>MdDescription comprises the requested set of MDS descriptors. Which MDS descriptors SHALL be included depends on the msg:GetMdDescription/msg:HandleRef list:
+
+- If the HANDLE reference list is empty, all MDS descriptors are included in the result list.
+- If a HANDLE reference does match an MDS descriptor, it is included in the result list.
+- If a HANDLE reference does not match an MDS descriptor (i.e., any other descriptor), the MDS descriptor that is in the parent tree of the HANDLE reference is included in the result list.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -307,7 +312,7 @@ Since contexts might include privacy-related information, a SERVICE PROVIDER MAY
 					<xsd:sequence>
 						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of HANDLEs that specify which states SHALL be returned. See msg:GetMdStateResponse/msg:MdState.</xsd:documentation>
+								<xsd:documentation>List of HANDLEs that specify which states are requested. See msg:GetMdStateResponse/msg:MdState.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -325,13 +330,13 @@ Since contexts might include privacy-related information, a SERVICE PROVIDER MAY
 					<xsd:sequence>
 						<xsd:element name="MdState" type="pm:MdState">
 							<xsd:annotation>
-								<xsd:documentation>MdState comprises the requested set of MDS states. Which MDS states are included depends on the msg:GetMdState/msg:HandleRef list:
+								<xsd:documentation>MdState comprises the requested set of MDS states. Which MDS states SHALL be included depends on the msg:GetMdState/msg:HandleRef list:
 
-- If the HANDLE reference list is empty, all states in the MDIB SHALL be included in the result list.
-- If a HANDLE reference does match a multi state HANDLE, the corresponding multi state SHALL be included in the result list.
-- If a HANDLE reference does match a descriptor HANDLE, all states that belong to the corresponding descriptor SHALL be included in the result list.
+- If the HANDLE reference list is empty, all states in the MDIB are included in the result list.
+- If a HANDLE reference does match a multi state HANDLE, the corresponding multi state is included in the result list.
+- If a HANDLE reference does match a descriptor HANDLE, all states that belong to the corresponding descriptor are included in the result list.
 
-Since context states might include privacy-related information, a SERVICE PROVIDER MAY decide to skip any contexts states. These have to be requested by sending a msg:GetContextStates request.</xsd:documentation>
+Since context states might include privacy-related information, a SERVICE PROVIDER can decide to skip any contexts states. Context states have to be requested by sending a msg:GetContextStates request.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -342,7 +347,7 @@ Since context states might include privacy-related information, a SERVICE PROVID
 	<!--Section: Context-->
 	<xsd:element name="GetContextStates">
 		<xsd:annotation>
-			<xsd:documentation>GetContextStates is the request to a msg:GetContextStates.</xsd:documentation>
+			<xsd:documentation>GetContextStates is the request to a msg:GetContextStatesResponse MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -350,7 +355,7 @@ Since context states might include privacy-related information, a SERVICE PROVID
 					<xsd:sequence>
 						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of HANDLEs that specify which context states SHALL be returned. See msg:GetContextStatesResponse/msg:ContextState.</xsd:documentation>
+								<xsd:documentation>List of HANDLEs that specify which context states are requested. See msg:GetContextStatesResponse/msg:ContextState.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -368,12 +373,110 @@ Since context states might include privacy-related information, a SERVICE PROVID
 					<xsd:sequence>
 						<xsd:element name="ContextState" type="pm:AbstractContextState" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>ContextState comprises the requested set of context states. Which context states are included depends on the msg:GetContextStates/msg:HandleRef list:
+								<xsd:documentation>ContextState comprises the requested set of context states.
 
-- If the HANDLE reference list is empty, all context states in the MDIB SHALL be included in the result list.
-- If a HANDLE reference does match a context descriptor HANDLE, all context states that belong to the corresponding context descriptor SHOULD be included in the result list.
-- If a HANDLE reference does match a context state HANDLE, the corresponding context state SHALL be included in the result list.
-- If a HANDLE reference does match an MDS descriptor, all context states that are part of this MDS SHALL be included in the result list.</xsd:documentation>
+__R5039: If the msg:GetContextStates/msg:HandleRef list is empty, all context states in the MDIB SHALL be included in the result list.__
+
+__R5040: If a HANDLE reference from the msg:GetContextStates/msg:HandleRef list does match a context descriptor HANDLE, then all context states that belong to the corresponding context descriptor SHALL be included in the result list.__
+
+__R5041: If a HANDLE reference from the msg:GetContextStates/msg:HandleRef list does match a context state HANDLE, then the corresponding context state SHALL be included in the result list.__
+
+__R5042: If a HANDLE reference from the msg:GetContextStates/msg:HandleRef list does match an MDS descriptor, then all context states that are part of this MDS SHALL be included in the result list.__</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetContextStatesByIdentification">
+		<xsd:annotation>
+			<xsd:documentation>GetContextStatesByIdentification is the request to a msg:GetContextStatesByIdentificationResponse MESSAGE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGet">
+					<xsd:sequence>
+						<xsd:element name="Identification" type="pm:InstanceIdentifier" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>List of pm:InstanceIdentifier ELEMENTs that specify which context states are requested based on their pm:AbstractContextState/pm:Identification. See msg:GetContextStatesByIdentificationResponse/msg:ContextState.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="ContextType" type="xsd:QName">
+						<xsd:annotation>
+							<xsd:documentation>ContextType defines the type of context to return (e.g., pm:LocationContextState or pm:PatientContextState).</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetContextStatesByIdentificationResponse">
+		<xsd:annotation>
+			<xsd:documentation>GetContextStatesByIdentificationResponse is the response to a msg:GetContextStatesByIdentification MESSAGE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGetResponse">
+					<xsd:sequence>
+						<xsd:element name="ContextState" type="pm:AbstractContextState" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>ContextState comprises the requested set of context states.
+
+__R5036: If the msg:GetContextStates/msg:Identification list is empty, then no context states SHALL be included in the result list.__
+
+__R5037: The result list SHALL enclose all context states of the requested msg:GetContextStates/@ContextType that match at least all ELEMENTs from the msg:GetContextStates/msg:Identification list.__</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetContextStatesByFilter">
+		<xsd:annotation>
+			<xsd:documentation>GetContextStatesByFilter is the request to a msg:GetContextStatesByFilterResponse.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGet">
+					<xsd:sequence>
+						<xsd:element name="Filter" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>List of XPath expressions that specify which context states are requested based on XPath expressions. See msg:GetContextStatesByFilterResponse/msg:ContextState.
+
+__R5045: The root node of the XPath expression SHALL be the pm:MdState ELEMENT of the target MDIB.__</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="ContextType" type="xsd:QName">
+						<xsd:annotation>
+							<xsd:documentation>ContextType defines the type of context to return (e.g., pm:LocationContextState or pm:PatientContextState).</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetContextStatesByFilterResponse">
+		<xsd:annotation>
+			<xsd:documentation>GetContextStatesByFilterResponse is the response to a msg:GetContextStatesByFilter MESSAGE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGetResponse">
+					<xsd:sequence>
+						<xsd:element name="ContextState" type="pm:AbstractContextState" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>ContextState comprises the requested set of context states.
+
+__R5043: If the msg:GetContextStates/msg:Filter list is empty, then no context states SHALL be included in the result list.__
+
+__R5044: The result SHALL enclose all context states of the requested msg:GetContextStates/@ContextType that match the filter criteria from the msg:GetContextStates/msg:Filter list where all filter criteria are concatenated by a logical "and".__
+
+NOTE—For a logical "or" concatenation a SERVICE CONSUMER has to send multiple requests. This is similar to the Types and Scopes filtering mechanism of WS-Discovery [WS-Discovery].
+</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -384,7 +487,7 @@ Since context states might include privacy-related information, a SERVICE PROVID
 	<xsd:element name="SetContextState">
 		<xsd:annotation>
 			<xsd:documentation>SetContextState is the request to a msg:SetContextStateResponse MESSAGE. Its function is to insert a new or modify an existing context state.
-			
+
 The corresponding operation description is defined by pm:SetContextStateOperationDescriptor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
@@ -473,9 +576,12 @@ The corresponding operation description is defined by pm:SetContextStateOperatio
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGet">
 					<xsd:sequence>
-						<xsd:element name="Ref" type="pm:LocalizedTextRef">
+						<xsd:element name="Ref" type="pm:LocalizedTextRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>Referenced name of the text that is requested.</xsd:documentation>
+								<xsd:documentation>Zero or more reference names of the texts that are requested. The ATTRIBUTE SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+
+- If there is no Ref ELEMENT given in the request MESSAGE, all texts are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one Ref ELEMENT given, msg:GetLocalizedTextResponse/msg:Text contains all texts that match the Ref ELEMENTs of the msg:GetLocalizedText request MESSAGE.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="Version" type="pm:ReferencedVersion" minOccurs="0">
@@ -490,8 +596,10 @@ The corresponding operation description is defined by pm:SetContextStateOperatio
 							<xsd:annotation>
 								<xsd:documentation>Zero or more language identifiers according to RFC 5646 (see http://tools.ietf.org/html/rfc5646) to get different translations of the requested text. The ATTRIBUTE SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
 
-- If there is no Lang ELEMENT given in the request MESSAGE, all translations SHALL be returned in msg:GetLocalizedTextResponse/msg:Text.
-- If there is at least one Lang ELEMENT given, msg:GetLocalizedTextResponse/msg:Text SHALL contain translations in all languages matching the Lang ELEMENTs of the msg:GetLocalizedText request MESSAGE. If a text is not available in a specific language, the result for that specific language SHALL be omitted. A set of supported languages MAY be retrievable using msg:GetSupportedLanguages.</xsd:documentation>
+- If there is no Lang ELEMENT given in the request MESSAGE, all translations are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one Lang ELEMENT given, msg:GetLocalizedTextResponse/msg:Text contains translations in all languages matching the Lang ELEMENTs of the msg:GetLocalizedText request MESSAGE. If a text is not available in a specific language, the result for that specific language is omitted.
+
+NOTE—A set of supported languages is retrievable using msg:GetSupportedLanguages.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -514,6 +622,11 @@ The corresponding operation description is defined by pm:SetContextStateOperatio
 							<xsd:complexType>
 								<xsd:simpleContent>
 									<xsd:extension base="xsd:string">
+										<xsd:attribute name="Ref" type="xsd:language">
+											<xsd:annotation>
+												<xsd:documentation>The reference that the given text belongs to.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:attribute>
 										<xsd:attribute name="Lang" type="xsd:language">
 											<xsd:annotation>
 												<xsd:documentation>The language of the underlying text in accordance to RFC 5646 (see http://tools.ietf.org/html/rfc5646).</xsd:documentation>
@@ -542,7 +655,7 @@ The corresponding operation description is defined by pm:SetContextStateOperatio
 	</xsd:element>
 	<xsd:element name="GetSupportedLanguagesResponse">
 		<xsd:annotation>
-			<xsd:documentation>GetSupportedLanguagesResponse is the response to a msg:GetSupportedLanguagesResponse MESSAGE.A GetSupportedLanguagesResponse MESSAGE SHALL be send in answer to a GetSupportedLanguages request MESSAGE. The GetSupportedLanguagesResponse MESSAGE SHALL contain all language identifiers available for referenced localized texts.</xsd:documentation>
+			<xsd:documentation>GetSupportedLanguagesResponse is the response to a msg:GetSupportedLanguagesResponse MESSAGE. A GetSupportedLanguagesResponse MESSAGE SHALL be send in answer to a GetSupportedLanguages request MESSAGE and contains all language identifiers available for referenced localized texts.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -593,7 +706,9 @@ The corresponding operation description is defined by pm:SetContextStateOperatio
 		<xsd:annotation>
 			<xsd:documentation>GetDescriptorsFromArchive is the request to a msg:GetDescriptorsFromArchiveResponse MESSAGE. Its intended use is used to request descriptors from the MDIB archive related to a specific descriptor version and/or time frame.
 
-GetDescriptorsFromArchive SHALL at least expect ./msg:DescriptorRevisions or ./msg:TimeFrame as a filter condition. If both ./msg:DescriptorRevisions and ./msg:TimeFrame are given, the filter SHALL be applied by conjunct both information. If none are defined, the MESSAGE is invalid.</xsd:documentation>
+__R5015: GetDescriptorsFromArchive SHALL at least expect ./msg:DescriptorRevisions or ./msg:TimeFrame as a filter condition.__
+
+__R5016: If both ./msg:DescriptorRevisions and ./msg:TimeFrame are given, the filter SHALL be applied by conjunction. If none are defined, the MESSAGE is invalid.__</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -606,14 +721,16 @@ GetDescriptorsFromArchive SHALL at least expect ./msg:DescriptorRevisions or ./m
 						</xsd:element>
 						<xsd:element name="TimeFrame" type="msg:TimeFrame" minOccurs="0">
 							<xsd:annotation>
-								<xsd:documentation>TimeFrame defines a time-based filter. By adding this OPTIONAL ELEMENT to the request, msg:GetDescriptorsFromArchiveResponse SHALL only respond with descriptors that matches this time frame.</xsd:documentation>
+								<xsd:documentation>TimeFrame defines a time-based filter. By adding this ELEMENT to the request, msg:GetDescriptorsFromArchiveResponse SHALL only respond with descriptors that matches this time frame.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="Handle" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
 								<xsd:documentation>A list of HANDLE references that serve as a filter for the response.
 
-If one or more HANDLE references are defined, msg:GetDescriptorsFromArchiveResponse SHALL respond only with descriptors that match these HANDLE references at the given revision and/or time frame. If no HANDLE references are defined, msg:GetDescriptorsFromArchiveResponse SHALL respond with all descriptors at the given revision and/or time frame.</xsd:documentation>
+__R5017: If one or more HANDLE references are defined, msg:GetDescriptorsFromArchiveResponse SHALL respond only with descriptors that match these HANDLE references at the given revision and/or time frame.__
+
+__R5018: If no HANDLE references are defined, msg:GetDescriptorsFromArchiveResponse SHALL respond with all descriptors at the given revision and/or time frame.__</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -643,7 +760,9 @@ If one or more HANDLE references are defined, msg:GetDescriptorsFromArchiveRespo
 		<xsd:annotation>
 			<xsd:documentation>GetStatesFromArchive MESSAGE is used by the ARCHIVE SERVICE to request states related to a specific state version and/or time frame.
 
-GetStatesFromArchive SHALL at least expect a version or a time frame filter. If both a version and a time frame are defined, the filter SHALL apply by conjunction. If none are defined, the MESSAGE is invalid.
+__R5019: GetStatesFromArchive SHALL at least expect a version or a time frame filter.__
+
+__R5020: If both a version and a time frame are defined, the filter SHALL apply by conjunction. If none are defined, the MESSAGE is invalid.__
 
 NOTE—It is not sufficient to provide HANDLEs only.</xsd:documentation>
 		</xsd:annotation>
@@ -665,7 +784,11 @@ NOTE—It is not sufficient to provide HANDLEs only.</xsd:documentation>
 							<xsd:annotation>
 								<xsd:documentation>A list of HANDLE references which serve as a filter for the response.
 
-If one or more HANDLE references are defined, GetStatesFromArchiveResponse SHALL respond only with states matching these HANDLE references at the given revision and/or time frame. If no HANDLE references are defined, GetStatesFromArchiveResponse SHALL respond with all states at the given revision and/or time frame. If a HANDLE is a descriptor HANDLE that points to a multi state, GetStatesFromArchiveResponse SHALL respond with all states referring to the descriptor HANDLE.</xsd:documentation>
+__R5021: If one or more HANDLE references are defined, GetStatesFromArchiveResponse SHALL respond only with states matching these HANDLE references at the given revision and/or time frame.__
+
+__R5022: If no HANDLE references are defined, GetStatesFromArchiveResponse SHALL respond with all states at the given revision and/or time frame.__
+
+__R5023: If a HANDLE is a descriptor HANDLE that points to a multi state, GetStatesFromArchiveResponse SHALL respond with all states referring to the descriptor HANDLE.__</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -886,7 +1009,7 @@ The corresponding operation description is defined by pm:SetMetricStateOperation
 		<xsd:annotation>
 			<xsd:documentation>OperationInvokedReport is a change report that contains updated invocation information. It is delivered if the state of the execution of a remote operation request has changed.
 
-To identify which state of a multi state is changed or created, operation-invoked reports SHALL include msg:OperationInvokedReportPart/@OperationTarget. This ATTRIBUTE defines the multi state that is created or updated.</xsd:documentation>
+To identify which state of a multi state is changed or created, OperationInvokedReport SHALL include msg:OperationInvokedReportPart/@OperationTarget. This ATTRIBUTE defines the multi state that is created or updated.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -900,7 +1023,18 @@ To identify which state of a multi state is changed or created, operation-invoke
 								<xsd:complexContent>
 									<xsd:extension base="msg:AbstractReportPart">
 										<xsd:sequence>
-											<xsd:element name="InvocationInfo" type="msg:InvocationInfo"/>
+											<xsd:element name="InvocationInfo" type="msg:InvocationInfo">
+												<xsd:annotation>
+													<xsd:documentation>Information set regarding the report's transaction status. See pm:InvocationInfo.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+											<xsd:element name="InvocationSource" type="pm:InstanceIdentifier">
+												<xsd:annotation>
+													<xsd:documentation>Identifies the PARTICIPANT that has requested the execution of the operation.
+
+NOTE—If another PARTICIPANT is interested in who requested a certain operation, it is able to track that information by means of InvocationSource.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
 										</xsd:sequence>
 										<xsd:attribute name="OperationHandleRef" type="pm:HandleRef" use="required">
 											<xsd:annotation>
@@ -909,7 +1043,7 @@ To identify which state of a multi state is changed or created, operation-invoke
 										</xsd:attribute>
 										<xsd:attribute name="OperationTarget" type="pm:HandleRef">
 											<xsd:annotation>
-												<xsd:documentation>An OPTIONAL HANDLE reference that provides a link to the entity affected by the transaction.</xsd:documentation>
+												<xsd:documentation>An OPTIONAL HANDLE reference that provides a link to the CONTAINMENT TREE ENTRY affected by the transaction.</xsd:documentation>
 											</xsd:annotation>
 										</xsd:attribute>
 									</xsd:extension>
@@ -924,7 +1058,7 @@ To identify which state of a multi state is changed or created, operation-invoke
 	<!--Section: ContainmentTree-->
 	<xsd:element name="GetContainmentTree">
 		<xsd:annotation>
-			<xsd:documentation>GetContainmentTree is the request to a msg:GetContainmentTreeResponse MESSAGE. It is intended to be used as a tool to navigate through the MDIB CONTAINMENT TREE.</xsd:documentation>
+			<xsd:documentation>GetContainmentTree is the request to a msg:GetContainmentTreeResponse MESSAGE. It is intended to be used as a tool to navigate through the CONTAINMENT TREE of an MDIB.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -932,10 +1066,9 @@ To identify which state of a multi state is changed or created, operation-invoke
 					<xsd:sequence>
 						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of HANDLE references that specify which CONTAINMENT TREE ELEMENTs to request.
+								<xsd:documentation>List of HANDLE references that specify which CONTAINMENT TREE ELEMENTs are requested.
 
-- If no HANDLE reference is provided, all CONTAINMENT TREE ELEMENTs on MDS level are requested.
-- All HANDLE references SHALL share the same parent. Otherwise, the result of GetContainmentTree is undefined.</xsd:documentation>
+__R5030: All HANDLE references SHALL share the same parent. Otherwise, the result of GetContainmentTree is undefined.__</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -945,7 +1078,7 @@ To identify which state of a multi state is changed or created, operation-invoke
 	</xsd:element>
 	<xsd:element name="GetContainmentTreeResponse">
 		<xsd:annotation>
-			<xsd:documentation>GetContainmentTreeResponse is the response to a msg:GetContainmentTree MESSAGE. It provides CONTAINMENT TREE information of all ELEMENTs that are matched by msg:GetContainmentTree/msg:HandleRef.</xsd:documentation>
+			<xsd:documentation>GetContainmentTreeResponse is the response to a msg:GetContainmentTree MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -953,7 +1086,11 @@ To identify which state of a multi state is changed or created, operation-invoke
 					<xsd:sequence>
 						<xsd:element name="ContainmentTree" type="pm:ContainmentTree">
 							<xsd:annotation>
-								<xsd:documentation>ContainmentTreeInfo as described in pm:ContainmentTree.</xsd:documentation>
+								<xsd:documentation>ContainmentTreeInfo as described in pm:ContainmentTree.
+
+__R5031: The result SHALL contain CONTAINMENT TREE information of all ELEMENTs that are matched by msg:GetContainmentTree/msg:HandleRef.__
+
+__R5032: If no HANDLE reference is provided, all CONTAINMENT TREE ELEMENTs on MDS level SHALL be returned.__</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -971,7 +1108,7 @@ To identify which state of a multi state is changed or created, operation-invoke
 					<xsd:sequence>
 						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of HANDLE references that specify which descriptors to request. If no HANDLE is provided, all descriptors SHALL be returned.</xsd:documentation>
+								<xsd:documentation>List of HANDLE references that specify which descriptors are requested.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -989,7 +1126,13 @@ To identify which state of a multi state is changed or created, operation-invoke
 					<xsd:sequence>
 						<xsd:element name="Descriptor" type="pm:AbstractDescriptor" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of pm:AbstractDescriptor instances without child descriptors.</xsd:documentation>
+								<xsd:documentation>List of pm:AbstractDescriptor ELEMENTs.
+
+__R5033: Resulting descriptors SHALL NOT contain child descriptors.__
+
+__R5034: The result SHALL contain CONTAINMENT TREE information of all descriptors that are matched by msg:GetDescriptor/msg:HandleRef.__
+
+__R5035: If no HANDLE is provided, all descriptors SHALL be returned.__</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -1222,7 +1365,7 @@ To identify which state of a multi state is changed or created, operation-invoke
 											</xsd:element>
 											<xsd:element name="ErrorInfo" type="pm:LocalizedText" minOccurs="0">
 												<xsd:annotation>
-													<xsd:documentation>OPTIONAL additional textual information. ErrorInfo SHALL not make use of the pm:LocalizedTextType/@Ref ATTRIBUTE.</xsd:documentation>
+													<xsd:documentation>Additional textual information. ErrorInfo SHALL NOT make use of the pm:LocalizedTextType/@Ref ATTRIBUTE.</xsd:documentation>
 												</xsd:annotation>
 											</xsd:element>
 										</xsd:sequence>
@@ -1279,17 +1422,20 @@ To identify which state of a multi state is changed or created, operation-invoke
 												<xsd:annotation>
 													<xsd:documentation>Descriptor that was inserted into, updated from or deleted from the MDIB. The mode is stored in the ./@ModificationType ATTRIBUTE.
 
-Descriptors in this list SHALL not include nested descriptors. If nested descriptors are also modified, they SHALL be included as children of the report part.
+__R5024: Descriptors in this list SHALL not include nested descriptors.__
 
-Updated descriptors SHALL be ordered in the way that parent descriptors appear before child descriptors.</xsd:documentation>
+NOTE—If nested descriptors are also modified, they can be included as children of the report part.
+
+__R5025: Updated descriptors SHALL be ordered in the way that parent descriptors appear before child descriptors.__</xsd:documentation>
 												</xsd:annotation>
 											</xsd:element>
 											<xsd:element name="State" type="pm:AbstractState" minOccurs="0" maxOccurs="unbounded">
 												<xsd:annotation>
-													<xsd:documentation>The descriptor's corresponding state(s).
-- If ./@ModificationType is "Crt", the descriptor version referenced by State SHALL match the descriptor given in ./Descriptor.
-- If ./@ModificationType is "Upt", the descriptor version referenced by State SHALL match the descriptor given in ./Descriptor or the descriptor that is currently related to the descriptor's state.
-- If ./@ModificationType is "Del", State SHALL be omitted from the MESSAGE.</xsd:documentation>
+													<xsd:documentation>The descriptor's corresponding state(s). The following statements SHALL apply.
+
+- If ./@ModificationType is "Crt", the descriptor version referenced by State matches the descriptor given in ./Descriptor.
+- If ./@ModificationType is "Upt", the descriptor version referenced by State matches the descriptor given in ./Descriptor or the descriptor that is currently related to the descriptor's state.
+- If ./@ModificationType is "Del", State is omitted from the MESSAGE.</xsd:documentation>
 												</xsd:annotation>
 											</xsd:element>
 										</xsd:sequence>
@@ -1333,7 +1479,9 @@ Updated descriptors SHALL be ordered in the way that parent descriptors appear b
 	</xsd:element>
 	<xsd:element name="ObservedValueStream">
 		<xsd:annotation>
-			<xsd:documentation>The ObservedValueStream MESSAGE is sent in order to transmit observed values of one or more waveforms. This object MAY be used for optimized waveform value transmission. If ObservedValueStream is supported, any changes to the observed value of pm:RealTimeSampleArrayMetricState SHALL be reported by ObservedValueStream. Other changes SHALL be reported through pm:WaveformStream.</xsd:documentation>
+			<xsd:documentation>The ObservedValueStream MESSAGE is sent in order to transmit observed values of one or more waveforms. This object MAY be used for optimized waveform value transmission.
+
+__R5026: If ObservedValueStream is supported, any changes to the observed value of pm:RealTimeSampleArrayMetricState SHALL be reported by ObservedValueStream while other changes are reported through pm:WaveformStream.__</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -1403,7 +1551,7 @@ Updated descriptors SHALL be ordered in the way that parent descriptors appear b
 		</xsd:attribute>
 		<xsd:attribute name="UpdatePeriod" type="xsd:duration">
 			<xsd:annotation>
-				<xsd:documentation>The periodicity in which updates can be expected to be communicated as a periodic event. If information is retrievable periodically, UpdatePeriod SHALL be set to a meaningful value. If UpdatePeriod is not set, the implied value is "PT1S".</xsd:documentation>
+				<xsd:documentation>The periodicity in which updates can be expected to be communicated as a periodic event. The implied value SHALL be "PT1S".</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>

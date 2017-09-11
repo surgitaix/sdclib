@@ -288,6 +288,10 @@ namespace MDM
   class GetMdStateResponse;
   class GetContextStates;
   class GetContextStatesResponse;
+  class GetContextStatesByIdentification;
+  class GetContextStatesByIdentificationResponse;
+  class GetContextStatesByFilter;
+  class GetContextStatesByFilterResponse;
   class SetContextState;
   class SetContextStateResponse;
   class ReportPart;

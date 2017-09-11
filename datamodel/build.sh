@@ -10,9 +10,9 @@ xsd cxx-tree \
 	--hxx-suffix ".hxx" \
 	--cxx-suffix ".cxx" \
 	--ixx-suffix ".ixx" \
-	--namespace-map http://p11073-10207/draft7/ext/2017/03/17=CDM \
-	--namespace-map http://p11073-10207/draft7/pm/2017/03/17=CDM \
-	--namespace-map http://p11073-10207/draft7/msg/2017/03/17=MDM \
+	--namespace-map http://p11073-10207/draft8/pm/2017/08/07=CDM \
+	--namespace-map http://p11073-10207/draft8/ext/2017/08/07=CDM \
+	--namespace-map http://p11073-10207/draft8/msg/2017/08/07=MDM \
 	\
 	--namespace-map http://www.w3.org/2005/08/addressing=WS::ADDRESSING \
 	--namespace-map http://schemas.xmlsoap.org/ws/2004/09/mex=WS::MEX \

@@ -119,7 +119,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ExtensionType >
   _xsd_ExtensionType_type_factory_init (
     "ExtensionType",
-    "http://p11073-10207/draft7/ext/2017/03/17");
+    "http://p11073-10207/draft8/ext/2017/08/07");
 }
 
 #include <istream>
@@ -343,7 +343,7 @@ namespace CDM
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "Extension",
-        "http://p11073-10207/draft7/ext/2017/03/17",
+        "http://p11073-10207/draft8/ext/2017/08/07",
         &::xsd::cxx::tree::factory_impl< ::CDM::ExtensionType >,
         true, true, e, n, f, 0));
 
@@ -364,7 +364,7 @@ namespace CDM
       n.name (),
       n.namespace_ (),
       "Extension",
-      "http://p11073-10207/draft7/ext/2017/03/17");
+      "http://p11073-10207/draft8/ext/2017/08/07");
   }
 
   ::std::unique_ptr< ::CDM::ExtensionType >
@@ -392,7 +392,7 @@ namespace CDM
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "Extension",
-        "http://p11073-10207/draft7/ext/2017/03/17",
+        "http://p11073-10207/draft8/ext/2017/08/07",
         &::xsd::cxx::tree::factory_impl< ::CDM::ExtensionType >,
         true, true, e, n, f, 0));
 
@@ -414,7 +414,7 @@ namespace CDM
       n.name (),
       n.namespace_ (),
       "Extension",
-      "http://p11073-10207/draft7/ext/2017/03/17");
+      "http://p11073-10207/draft8/ext/2017/08/07");
   }
 }
 
@@ -554,7 +554,7 @@ namespace CDM
     if (typeid (::CDM::ExtensionType) == typeid (s))
     {
       if (n.name () == "Extension" &&
-          n.namespace_ () == "http://p11073-10207/draft7/ext/2017/03/17")
+          n.namespace_ () == "http://p11073-10207/draft8/ext/2017/08/07")
       {
         e << s;
       }
@@ -564,14 +564,14 @@ namespace CDM
           n.name (),
           n.namespace_ (),
           "Extension",
-          "http://p11073-10207/draft7/ext/2017/03/17");
+          "http://p11073-10207/draft8/ext/2017/08/07");
       }
     }
     else
     {
       ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "Extension",
-        "http://p11073-10207/draft7/ext/2017/03/17",
+        "http://p11073-10207/draft8/ext/2017/08/07",
         e, n, s);
     }
   }
@@ -587,14 +587,14 @@ namespace CDM
     {
       d = ::xsd::cxx::xml::dom::serialize< char > (
         "Extension",
-        "http://p11073-10207/draft7/ext/2017/03/17",
+        "http://p11073-10207/draft8/ext/2017/08/07",
         m, f);
     }
     else
     {
       d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "Extension",
-        "http://p11073-10207/draft7/ext/2017/03/17",
+        "http://p11073-10207/draft8/ext/2017/08/07",
         m, s, f);
     }
 
@@ -612,7 +612,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ExtensionType >
   _xsd_ExtensionType_type_serializer_init (
     "ExtensionType",
-    "http://p11073-10207/draft7/ext/2017/03/17");
+    "http://p11073-10207/draft8/ext/2017/08/07");
 }
 
 #include <xsd/cxx/post.hxx>

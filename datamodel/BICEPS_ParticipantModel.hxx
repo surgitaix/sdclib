@@ -760,6 +760,27 @@ namespace CDM
     void
     Version (::std::unique_ptr< VersionType > p);
 
+    // TextWidth
+    //
+    typedef ::CDM::TextWidth TextWidthType;
+    typedef ::xsd::cxx::tree::optional< TextWidthType > TextWidthOptional;
+    typedef ::xsd::cxx::tree::traits< TextWidthType, char > TextWidthTraits;
+
+    const TextWidthOptional&
+    TextWidth () const;
+
+    TextWidthOptional&
+    TextWidth ();
+
+    void
+    TextWidth (const TextWidthType& x);
+
+    void
+    TextWidth (const TextWidthOptional& x);
+
+    void
+    TextWidth (::std::unique_ptr< TextWidthType > p);
+
     // Constructors.
     //
     LocalizedText ();
@@ -799,6 +820,7 @@ namespace CDM
     RefOptional Ref_;
     LangOptional Lang_;
     VersionOptional Version_;
+    TextWidthOptional TextWidth_;
   };
 
   class CodedValue: public ::xml_schema::Type
@@ -1060,24 +1082,28 @@ namespace CDM
 
     // Root
     //
-    typedef ::xml_schema::Uri RootType;
+    typedef ::CDM::Root RootType;
+    typedef ::xsd::cxx::tree::optional< RootType > RootOptional;
     typedef ::xsd::cxx::tree::traits< RootType, char > RootTraits;
 
-    const RootType&
+    const RootOptional&
     Root () const;
 
-    RootType&
+    RootOptional&
     Root ();
 
     void
     Root (const RootType& x);
 
     void
+    Root (const RootOptional& x);
+
+    void
     Root (::std::unique_ptr< RootType > p);
 
     // Extension
     //
-    typedef ::xml_schema::String Extension1Type;
+    typedef ::CDM::Extension Extension1Type;
     typedef ::xsd::cxx::tree::optional< Extension1Type > Extension1Optional;
     typedef ::xsd::cxx::tree::traits< Extension1Type, char > Extension1Traits;
 
@@ -1098,7 +1124,7 @@ namespace CDM
 
     // Constructors.
     //
-    InstanceIdentifier (const RootType&);
+    InstanceIdentifier ();
 
     InstanceIdentifier (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f = 0,
@@ -1129,7 +1155,7 @@ namespace CDM
     ExtensionOptional Extension_;
     TypeOptional Type_;
     IdentifierNameSequence IdentifierName_;
-    ::xsd::cxx::tree::one< RootType > Root_;
+    RootOptional Root_;
     Extension1Optional Extension1_;
   };
 
@@ -1495,6 +1521,82 @@ namespace CDM
     public:
     static const char* const _xsd_ComponentActivation_literals_[6];
     static const Value _xsd_ComponentActivation_indexes_[6];
+  };
+
+  class ApprovedJurisdictions: public ::xml_schema::Type
+  {
+    public:
+    // ApprovedJurisdiction
+    //
+    typedef ::CDM::InstanceIdentifier ApprovedJurisdictionType;
+    typedef ::xsd::cxx::tree::sequence< ApprovedJurisdictionType > ApprovedJurisdictionSequence;
+    typedef ApprovedJurisdictionSequence::iterator ApprovedJurisdictionIterator;
+    typedef ApprovedJurisdictionSequence::const_iterator ApprovedJurisdictionConstIterator;
+    typedef ::xsd::cxx::tree::traits< ApprovedJurisdictionType, char > ApprovedJurisdictionTraits;
+
+    const ApprovedJurisdictionSequence&
+    ApprovedJurisdiction () const;
+
+    ApprovedJurisdictionSequence&
+    ApprovedJurisdiction ();
+
+    void
+    ApprovedJurisdiction (const ApprovedJurisdictionSequence& s);
+
+    // Constructors.
+    //
+    ApprovedJurisdictions ();
+
+    ApprovedJurisdictions (const ::xercesc::DOMElement& e,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    ApprovedJurisdictions (const ApprovedJurisdictions& x,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    virtual ApprovedJurisdictions*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    ApprovedJurisdictions&
+    operator= (const ApprovedJurisdictions& x);
+
+    virtual 
+    ~ApprovedJurisdictions ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ApprovedJurisdictionSequence ApprovedJurisdiction_;
+  };
+
+  class OperatingJurisdiction: public ::CDM::InstanceIdentifier
+  {
+    public:
+    // Constructors.
+    //
+    OperatingJurisdiction ();
+
+    OperatingJurisdiction (const ::xercesc::DOMElement& e,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    OperatingJurisdiction (const OperatingJurisdiction& x,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    virtual OperatingJurisdiction*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~OperatingJurisdiction ();
   };
 
   class Handle: public ::xml_schema::String
@@ -1962,7 +2064,7 @@ namespace CDM
     ProductionSpecificationSequence ProductionSpecification_;
   };
 
-  class AbstractAlertingDeviceComponentDescriptor: public ::CDM::AbstractDeviceComponentDescriptor
+  class AbstractComplexDeviceComponentDescriptor: public ::CDM::AbstractDeviceComponentDescriptor
   {
     public:
     // AlertSystem
@@ -1986,27 +2088,48 @@ namespace CDM
     void
     AlertSystem (::std::unique_ptr< AlertSystemType > p);
 
+    // Sco
+    //
+    typedef ::CDM::ScoDescriptor ScoType;
+    typedef ::xsd::cxx::tree::optional< ScoType > ScoOptional;
+    typedef ::xsd::cxx::tree::traits< ScoType, char > ScoTraits;
+
+    const ScoOptional&
+    Sco () const;
+
+    ScoOptional&
+    Sco ();
+
+    void
+    Sco (const ScoType& x);
+
+    void
+    Sco (const ScoOptional& x);
+
+    void
+    Sco (::std::unique_ptr< ScoType > p);
+
     // Constructors.
     //
-    AbstractAlertingDeviceComponentDescriptor (const HandleType&);
+    AbstractComplexDeviceComponentDescriptor (const HandleType&);
 
-    AbstractAlertingDeviceComponentDescriptor (const ::xercesc::DOMElement& e,
-                                               ::xml_schema::Flags f = 0,
-                                               ::xml_schema::Container* c = 0);
+    AbstractComplexDeviceComponentDescriptor (const ::xercesc::DOMElement& e,
+                                              ::xml_schema::Flags f = 0,
+                                              ::xml_schema::Container* c = 0);
 
-    AbstractAlertingDeviceComponentDescriptor (const AbstractAlertingDeviceComponentDescriptor& x,
-                                               ::xml_schema::Flags f = 0,
-                                               ::xml_schema::Container* c = 0);
+    AbstractComplexDeviceComponentDescriptor (const AbstractComplexDeviceComponentDescriptor& x,
+                                              ::xml_schema::Flags f = 0,
+                                              ::xml_schema::Container* c = 0);
 
-    virtual AbstractAlertingDeviceComponentDescriptor*
+    virtual AbstractComplexDeviceComponentDescriptor*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    AbstractAlertingDeviceComponentDescriptor&
-    operator= (const AbstractAlertingDeviceComponentDescriptor& x);
+    AbstractComplexDeviceComponentDescriptor&
+    operator= (const AbstractComplexDeviceComponentDescriptor& x);
 
     virtual 
-    ~AbstractAlertingDeviceComponentDescriptor ();
+    ~AbstractComplexDeviceComponentDescriptor ();
 
     // Implementation.
     //
@@ -2017,6 +2140,7 @@ namespace CDM
 
     protected:
     AlertSystemOptional AlertSystem_;
+    ScoOptional Sco_;
   };
 
   class CalibrationState: public ::xml_schema::String
@@ -2396,30 +2520,30 @@ namespace CDM
     OperatingCyclesOptional OperatingCycles_;
   };
 
-  class AbstractAlertingDeviceComponentState: public ::CDM::AbstractDeviceComponentState
+  class AbstractComplexDeviceComponentState: public ::CDM::AbstractDeviceComponentState
   {
     public:
     // Constructors.
     //
-    AbstractAlertingDeviceComponentState (const DescriptorHandleType&);
+    AbstractComplexDeviceComponentState (const DescriptorHandleType&);
 
-    AbstractAlertingDeviceComponentState (const ::xercesc::DOMElement& e,
-                                          ::xml_schema::Flags f = 0,
-                                          ::xml_schema::Container* c = 0);
+    AbstractComplexDeviceComponentState (const ::xercesc::DOMElement& e,
+                                         ::xml_schema::Flags f = 0,
+                                         ::xml_schema::Container* c = 0);
 
-    AbstractAlertingDeviceComponentState (const AbstractAlertingDeviceComponentState& x,
-                                          ::xml_schema::Flags f = 0,
-                                          ::xml_schema::Container* c = 0);
+    AbstractComplexDeviceComponentState (const AbstractComplexDeviceComponentState& x,
+                                         ::xml_schema::Flags f = 0,
+                                         ::xml_schema::Container* c = 0);
 
-    virtual AbstractAlertingDeviceComponentState*
+    virtual AbstractComplexDeviceComponentState*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
     virtual 
-    ~AbstractAlertingDeviceComponentState ();
+    ~AbstractComplexDeviceComponentState ();
   };
 
-  class MdsDescriptor: public ::CDM::AbstractAlertingDeviceComponentDescriptor
+  class MdsDescriptor: public ::CDM::AbstractComplexDeviceComponentDescriptor
   {
     public:
     // MetaData
@@ -2488,44 +2612,40 @@ namespace CDM
     // Battery
     //
     typedef ::CDM::BatteryDescriptor BatteryType;
-    typedef ::xsd::cxx::tree::optional< BatteryType > BatteryOptional;
+    typedef ::xsd::cxx::tree::sequence< BatteryType > BatterySequence;
+    typedef BatterySequence::iterator BatteryIterator;
+    typedef BatterySequence::const_iterator BatteryConstIterator;
     typedef ::xsd::cxx::tree::traits< BatteryType, char > BatteryTraits;
 
-    const BatteryOptional&
+    const BatterySequence&
     Battery () const;
 
-    BatteryOptional&
+    BatterySequence&
     Battery ();
 
     void
-    Battery (const BatteryType& x);
+    Battery (const BatterySequence& s);
 
-    void
-    Battery (const BatteryOptional& x);
-
-    void
-    Battery (::std::unique_ptr< BatteryType > p);
-
-    // Sco
+    // ApprovedJurisdictions
     //
-    typedef ::CDM::ScoDescriptor ScoType;
-    typedef ::xsd::cxx::tree::optional< ScoType > ScoOptional;
-    typedef ::xsd::cxx::tree::traits< ScoType, char > ScoTraits;
+    typedef ::CDM::ApprovedJurisdictions ApprovedJurisdictionsType;
+    typedef ::xsd::cxx::tree::optional< ApprovedJurisdictionsType > ApprovedJurisdictionsOptional;
+    typedef ::xsd::cxx::tree::traits< ApprovedJurisdictionsType, char > ApprovedJurisdictionsTraits;
 
-    const ScoOptional&
-    Sco () const;
+    const ApprovedJurisdictionsOptional&
+    ApprovedJurisdictions () const;
 
-    ScoOptional&
-    Sco ();
-
-    void
-    Sco (const ScoType& x);
+    ApprovedJurisdictionsOptional&
+    ApprovedJurisdictions ();
 
     void
-    Sco (const ScoOptional& x);
+    ApprovedJurisdictions (const ApprovedJurisdictionsType& x);
 
     void
-    Sco (::std::unique_ptr< ScoType > p);
+    ApprovedJurisdictions (const ApprovedJurisdictionsOptional& x);
+
+    void
+    ApprovedJurisdictions (::std::unique_ptr< ApprovedJurisdictionsType > p);
 
     // Vmd
     //
@@ -2577,8 +2697,8 @@ namespace CDM
     MetaDataOptional MetaData_;
     SystemContextOptional SystemContext_;
     ClockOptional Clock_;
-    BatteryOptional Battery_;
-    ScoOptional Sco_;
+    BatterySequence Battery_;
+    ApprovedJurisdictionsOptional ApprovedJurisdictions_;
     VmdSequence Vmd_;
   };
 
@@ -2640,9 +2760,30 @@ namespace CDM
     static const Value _xsd_MdsOperatingMode_indexes_[4];
   };
 
-  class MdsState: public ::CDM::AbstractAlertingDeviceComponentState
+  class MdsState: public ::CDM::AbstractComplexDeviceComponentState
   {
     public:
+    // OperatingJurisdiction
+    //
+    typedef ::xml_schema::Type OperatingJurisdictionType;
+    typedef ::xsd::cxx::tree::optional< OperatingJurisdictionType > OperatingJurisdictionOptional;
+    typedef ::xsd::cxx::tree::traits< OperatingJurisdictionType, char > OperatingJurisdictionTraits;
+
+    const OperatingJurisdictionOptional&
+    OperatingJurisdiction () const;
+
+    OperatingJurisdictionOptional&
+    OperatingJurisdiction ();
+
+    void
+    OperatingJurisdiction (const OperatingJurisdictionType& x);
+
+    void
+    OperatingJurisdiction (const OperatingJurisdictionOptional& x);
+
+    void
+    OperatingJurisdiction (::std::unique_ptr< OperatingJurisdictionType > p);
+
     // Lang
     //
     typedef ::xml_schema::Language LangType;
@@ -2715,33 +2856,34 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
+    OperatingJurisdictionOptional OperatingJurisdiction_;
     LangOptional Lang_;
     OperatingModeOptional OperatingMode_;
   };
 
-  class VmdDescriptor: public ::CDM::AbstractAlertingDeviceComponentDescriptor
+  class VmdDescriptor: public ::CDM::AbstractComplexDeviceComponentDescriptor
   {
     public:
-    // Sco
+    // ApprovedJurisdictions
     //
-    typedef ::CDM::ScoDescriptor ScoType;
-    typedef ::xsd::cxx::tree::optional< ScoType > ScoOptional;
-    typedef ::xsd::cxx::tree::traits< ScoType, char > ScoTraits;
+    typedef ::CDM::ApprovedJurisdictions ApprovedJurisdictionsType;
+    typedef ::xsd::cxx::tree::optional< ApprovedJurisdictionsType > ApprovedJurisdictionsOptional;
+    typedef ::xsd::cxx::tree::traits< ApprovedJurisdictionsType, char > ApprovedJurisdictionsTraits;
 
-    const ScoOptional&
-    Sco () const;
+    const ApprovedJurisdictionsOptional&
+    ApprovedJurisdictions () const;
 
-    ScoOptional&
-    Sco ();
-
-    void
-    Sco (const ScoType& x);
+    ApprovedJurisdictionsOptional&
+    ApprovedJurisdictions ();
 
     void
-    Sco (const ScoOptional& x);
+    ApprovedJurisdictions (const ApprovedJurisdictionsType& x);
 
     void
-    Sco (::std::unique_ptr< ScoType > p);
+    ApprovedJurisdictions (const ApprovedJurisdictionsOptional& x);
+
+    void
+    ApprovedJurisdictions (::std::unique_ptr< ApprovedJurisdictionsType > p);
 
     // Channel
     //
@@ -2790,13 +2932,34 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ScoOptional Sco_;
+    ApprovedJurisdictionsOptional ApprovedJurisdictions_;
     ChannelSequence Channel_;
   };
 
-  class VmdState: public ::CDM::AbstractAlertingDeviceComponentState
+  class VmdState: public ::CDM::AbstractComplexDeviceComponentState
   {
     public:
+    // OperatingJurisdiction
+    //
+    typedef ::xml_schema::Type OperatingJurisdictionType;
+    typedef ::xsd::cxx::tree::optional< OperatingJurisdictionType > OperatingJurisdictionOptional;
+    typedef ::xsd::cxx::tree::traits< OperatingJurisdictionType, char > OperatingJurisdictionTraits;
+
+    const OperatingJurisdictionOptional&
+    OperatingJurisdiction () const;
+
+    OperatingJurisdictionOptional&
+    OperatingJurisdiction ();
+
+    void
+    OperatingJurisdiction (const OperatingJurisdictionType& x);
+
+    void
+    OperatingJurisdiction (const OperatingJurisdictionOptional& x);
+
+    void
+    OperatingJurisdiction (::std::unique_ptr< OperatingJurisdictionType > p);
+
     // Constructors.
     //
     VmdState (const DescriptorHandleType&);
@@ -2813,11 +2976,24 @@ namespace CDM
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    VmdState&
+    operator= (const VmdState& x);
+
     virtual 
     ~VmdState ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    OperatingJurisdictionOptional OperatingJurisdiction_;
   };
 
-  class ChannelDescriptor: public ::CDM::AbstractAlertingDeviceComponentDescriptor
+  class ChannelDescriptor: public ::CDM::AbstractDeviceComponentDescriptor
   {
     public:
     // Metric
@@ -2870,7 +3046,7 @@ namespace CDM
     MetricSequence Metric_;
   };
 
-  class ChannelState: public ::CDM::AbstractAlertingDeviceComponentState
+  class ChannelState: public ::CDM::AbstractDeviceComponentState
   {
     public:
     // Constructors.
@@ -3727,6 +3903,69 @@ namespace CDM
     void
     Priority (::std::unique_ptr< PriorityType > p);
 
+    // DefaultConditionGenerationDelay
+    //
+    typedef ::xml_schema::Duration DefaultConditionGenerationDelayType;
+    typedef ::xsd::cxx::tree::optional< DefaultConditionGenerationDelayType > DefaultConditionGenerationDelayOptional;
+    typedef ::xsd::cxx::tree::traits< DefaultConditionGenerationDelayType, char > DefaultConditionGenerationDelayTraits;
+
+    const DefaultConditionGenerationDelayOptional&
+    DefaultConditionGenerationDelay () const;
+
+    DefaultConditionGenerationDelayOptional&
+    DefaultConditionGenerationDelay ();
+
+    void
+    DefaultConditionGenerationDelay (const DefaultConditionGenerationDelayType& x);
+
+    void
+    DefaultConditionGenerationDelay (const DefaultConditionGenerationDelayOptional& x);
+
+    void
+    DefaultConditionGenerationDelay (::std::unique_ptr< DefaultConditionGenerationDelayType > p);
+
+    // CanEscalate
+    //
+    typedef ::CDM::CanEscalate CanEscalateType;
+    typedef ::xsd::cxx::tree::optional< CanEscalateType > CanEscalateOptional;
+    typedef ::xsd::cxx::tree::traits< CanEscalateType, char > CanEscalateTraits;
+
+    const CanEscalateOptional&
+    CanEscalate () const;
+
+    CanEscalateOptional&
+    CanEscalate ();
+
+    void
+    CanEscalate (const CanEscalateType& x);
+
+    void
+    CanEscalate (const CanEscalateOptional& x);
+
+    void
+    CanEscalate (::std::unique_ptr< CanEscalateType > p);
+
+    // CanDeescalate
+    //
+    typedef ::CDM::CanDeescalate CanDeescalateType;
+    typedef ::xsd::cxx::tree::optional< CanDeescalateType > CanDeescalateOptional;
+    typedef ::xsd::cxx::tree::traits< CanDeescalateType, char > CanDeescalateTraits;
+
+    const CanDeescalateOptional&
+    CanDeescalate () const;
+
+    CanDeescalateOptional&
+    CanDeescalate ();
+
+    void
+    CanDeescalate (const CanDeescalateType& x);
+
+    void
+    CanDeescalate (const CanDeescalateOptional& x);
+
+    void
+    CanDeescalate (::std::unique_ptr< CanDeescalateType > p);
+
     // Constructors.
     //
     AlertConditionDescriptor (const HandleType&,
@@ -3763,6 +4002,9 @@ namespace CDM
     CauseInfoSequence CauseInfo_;
     ::xsd::cxx::tree::one< KindType > Kind_;
     ::xsd::cxx::tree::one< PriorityType > Priority_;
+    DefaultConditionGenerationDelayOptional DefaultConditionGenerationDelay_;
+    CanEscalateOptional CanEscalate_;
+    CanDeescalateOptional CanDeescalate_;
   };
 
   class AlertConditionReference: public ::xml_schema::SimpleType,
@@ -3807,6 +4049,27 @@ namespace CDM
   class AlertConditionState: public ::CDM::AbstractAlertState
   {
     public:
+    // ActualConditionGenerationDelay
+    //
+    typedef ::xml_schema::Duration ActualConditionGenerationDelayType;
+    typedef ::xsd::cxx::tree::optional< ActualConditionGenerationDelayType > ActualConditionGenerationDelayOptional;
+    typedef ::xsd::cxx::tree::traits< ActualConditionGenerationDelayType, char > ActualConditionGenerationDelayTraits;
+
+    const ActualConditionGenerationDelayOptional&
+    ActualConditionGenerationDelay () const;
+
+    ActualConditionGenerationDelayOptional&
+    ActualConditionGenerationDelay ();
+
+    void
+    ActualConditionGenerationDelay (const ActualConditionGenerationDelayType& x);
+
+    void
+    ActualConditionGenerationDelay (const ActualConditionGenerationDelayOptional& x);
+
+    void
+    ActualConditionGenerationDelay (::std::unique_ptr< ActualConditionGenerationDelayType > p);
+
     // ActualPriority
     //
     typedef ::CDM::AlertConditionPriority ActualPriorityType;
@@ -3913,6 +4176,7 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
+    ActualConditionGenerationDelayOptional ActualConditionGenerationDelay_;
     ActualPriorityOptional ActualPriority_;
     RankOptional Rank_;
     ::xsd::cxx::tree::one< PresenceType > Presence_;
@@ -4506,6 +4770,27 @@ namespace CDM
   class AlertSignalState: public ::CDM::AbstractAlertState
   {
     public:
+    // ActualSignalGenerationDelay
+    //
+    typedef ::xml_schema::Duration ActualSignalGenerationDelayType;
+    typedef ::xsd::cxx::tree::optional< ActualSignalGenerationDelayType > ActualSignalGenerationDelayOptional;
+    typedef ::xsd::cxx::tree::traits< ActualSignalGenerationDelayType, char > ActualSignalGenerationDelayTraits;
+
+    const ActualSignalGenerationDelayOptional&
+    ActualSignalGenerationDelay () const;
+
+    ActualSignalGenerationDelayOptional&
+    ActualSignalGenerationDelay ();
+
+    void
+    ActualSignalGenerationDelay (const ActualSignalGenerationDelayType& x);
+
+    void
+    ActualSignalGenerationDelay (const ActualSignalGenerationDelayOptional& x);
+
+    void
+    ActualSignalGenerationDelay (::std::unique_ptr< ActualSignalGenerationDelayType > p);
+
     // Presence
     //
     typedef ::CDM::AlertSignalPresence PresenceType;
@@ -4597,6 +4882,7 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
+    ActualSignalGenerationDelayOptional ActualSignalGenerationDelay_;
     PresenceOptional Presence_;
     LocationOptional Location_;
     SlotOptional Slot_;
@@ -5292,6 +5578,23 @@ namespace CDM
     void
     BodySite (const BodySiteSequence& s);
 
+    // Relation
+    //
+    typedef ::CDM::Relation RelationType;
+    typedef ::xsd::cxx::tree::sequence< RelationType > RelationSequence;
+    typedef RelationSequence::iterator RelationIterator;
+    typedef RelationSequence::const_iterator RelationConstIterator;
+    typedef ::xsd::cxx::tree::traits< RelationType, char > RelationTraits;
+
+    const RelationSequence&
+    Relation () const;
+
+    RelationSequence&
+    Relation ();
+
+    void
+    Relation (const RelationSequence& s);
+
     // MetricCategory
     //
     typedef ::CDM::MetricCategory MetricCategoryType;
@@ -5431,6 +5734,27 @@ namespace CDM
     void
     LifeTimePeriod (::std::unique_ptr< LifeTimePeriodType > p);
 
+    // ActivationDuration
+    //
+    typedef ::xml_schema::Duration ActivationDurationType;
+    typedef ::xsd::cxx::tree::optional< ActivationDurationType > ActivationDurationOptional;
+    typedef ::xsd::cxx::tree::traits< ActivationDurationType, char > ActivationDurationTraits;
+
+    const ActivationDurationOptional&
+    ActivationDuration () const;
+
+    ActivationDurationOptional&
+    ActivationDuration ();
+
+    void
+    ActivationDuration (const ActivationDurationType& x);
+
+    void
+    ActivationDuration (const ActivationDurationOptional& x);
+
+    void
+    ActivationDuration (::std::unique_ptr< ActivationDurationType > p);
+
     // Constructors.
     //
     AbstractMetricDescriptor (const HandleType&,
@@ -5471,6 +5795,7 @@ namespace CDM
     protected:
     ::xsd::cxx::tree::one< UnitType > Unit_;
     BodySiteSequence BodySite_;
+    RelationSequence Relation_;
     ::xsd::cxx::tree::one< MetricCategoryType > MetricCategory_;
     DerivationMethodOptional DerivationMethod_;
     ::xsd::cxx::tree::one< MetricAvailabilityType > MetricAvailability_;
@@ -5478,6 +5803,7 @@ namespace CDM
     MaxDelayTimeOptional MaxDelayTime_;
     DeterminationPeriodOptional DeterminationPeriod_;
     LifeTimePeriodOptional LifeTimePeriod_;
+    ActivationDurationOptional ActivationDuration_;
   };
 
   class AbstractMetricState: public ::CDM::AbstractState
@@ -6436,6 +6762,69 @@ namespace CDM
     void
     OperationTarget (::std::unique_ptr< OperationTargetType > p);
 
+    // MaxTimeToFinish
+    //
+    typedef ::xml_schema::Duration MaxTimeToFinishType;
+    typedef ::xsd::cxx::tree::optional< MaxTimeToFinishType > MaxTimeToFinishOptional;
+    typedef ::xsd::cxx::tree::traits< MaxTimeToFinishType, char > MaxTimeToFinishTraits;
+
+    const MaxTimeToFinishOptional&
+    MaxTimeToFinish () const;
+
+    MaxTimeToFinishOptional&
+    MaxTimeToFinish ();
+
+    void
+    MaxTimeToFinish (const MaxTimeToFinishType& x);
+
+    void
+    MaxTimeToFinish (const MaxTimeToFinishOptional& x);
+
+    void
+    MaxTimeToFinish (::std::unique_ptr< MaxTimeToFinishType > p);
+
+    // InvocationEffectiveTimeout
+    //
+    typedef ::xml_schema::Duration InvocationEffectiveTimeoutType;
+    typedef ::xsd::cxx::tree::optional< InvocationEffectiveTimeoutType > InvocationEffectiveTimeoutOptional;
+    typedef ::xsd::cxx::tree::traits< InvocationEffectiveTimeoutType, char > InvocationEffectiveTimeoutTraits;
+
+    const InvocationEffectiveTimeoutOptional&
+    InvocationEffectiveTimeout () const;
+
+    InvocationEffectiveTimeoutOptional&
+    InvocationEffectiveTimeout ();
+
+    void
+    InvocationEffectiveTimeout (const InvocationEffectiveTimeoutType& x);
+
+    void
+    InvocationEffectiveTimeout (const InvocationEffectiveTimeoutOptional& x);
+
+    void
+    InvocationEffectiveTimeout (::std::unique_ptr< InvocationEffectiveTimeoutType > p);
+
+    // Retriggerable
+    //
+    typedef ::xml_schema::Duration RetriggerableType;
+    typedef ::xsd::cxx::tree::optional< RetriggerableType > RetriggerableOptional;
+    typedef ::xsd::cxx::tree::traits< RetriggerableType, char > RetriggerableTraits;
+
+    const RetriggerableOptional&
+    Retriggerable () const;
+
+    RetriggerableOptional&
+    Retriggerable ();
+
+    void
+    Retriggerable (const RetriggerableType& x);
+
+    void
+    Retriggerable (const RetriggerableOptional& x);
+
+    void
+    Retriggerable (::std::unique_ptr< RetriggerableType > p);
+
     // Constructors.
     //
     AbstractOperationDescriptor (const HandleType&,
@@ -6468,6 +6857,9 @@ namespace CDM
 
     protected:
     ::xsd::cxx::tree::one< OperationTargetType > OperationTarget_;
+    MaxTimeToFinishOptional MaxTimeToFinish_;
+    InvocationEffectiveTimeoutOptional InvocationEffectiveTimeout_;
+    RetriggerableOptional Retriggerable_;
   };
 
   class AbstractSetStateOperationDescriptor: public ::CDM::AbstractOperationDescriptor
@@ -6662,7 +7054,7 @@ namespace CDM
   class SetValueOperationState: public ::CDM::AbstractOperationState
   {
     public:
-    // allowedRange
+    // AllowedRange
     //
     typedef ::CDM::Range AllowedRangeType;
     typedef ::xsd::cxx::tree::sequence< AllowedRangeType > AllowedRangeSequence;
@@ -6671,13 +7063,13 @@ namespace CDM
     typedef ::xsd::cxx::tree::traits< AllowedRangeType, char > AllowedRangeTraits;
 
     const AllowedRangeSequence&
-    allowedRange () const;
+    AllowedRange () const;
 
     AllowedRangeSequence&
-    allowedRange ();
+    AllowedRange ();
 
     void
-    allowedRange (const AllowedRangeSequence& s);
+    AllowedRange (const AllowedRangeSequence& s);
 
     // Constructors.
     //
@@ -6710,7 +7102,7 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    AllowedRangeSequence allowedRange_;
+    AllowedRangeSequence AllowedRange_;
   };
 
   class SetStringOperationDescriptor: public ::CDM::AbstractOperationDescriptor
@@ -6771,6 +7163,27 @@ namespace CDM
   class SetStringOperationState: public ::CDM::AbstractOperationState
   {
     public:
+    // AllowedValues
+    //
+    typedef ::CDM::AllowedValues AllowedValuesType;
+    typedef ::xsd::cxx::tree::optional< AllowedValuesType > AllowedValuesOptional;
+    typedef ::xsd::cxx::tree::traits< AllowedValuesType, char > AllowedValuesTraits;
+
+    const AllowedValuesOptional&
+    AllowedValues () const;
+
+    AllowedValuesOptional&
+    AllowedValues ();
+
+    void
+    AllowedValues (const AllowedValuesType& x);
+
+    void
+    AllowedValues (const AllowedValuesOptional& x);
+
+    void
+    AllowedValues (::std::unique_ptr< AllowedValuesType > p);
+
     // Constructors.
     //
     SetStringOperationState (const DescriptorHandleType&,
@@ -6788,8 +7201,21 @@ namespace CDM
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    SetStringOperationState&
+    operator= (const SetStringOperationState& x);
+
     virtual 
     ~SetStringOperationState ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    AllowedValuesOptional AllowedValues_;
   };
 
   class ActivateOperationDescriptor: public ::CDM::AbstractSetStateOperationDescriptor
@@ -6811,45 +7237,6 @@ namespace CDM
 
     void
     Argument (const ArgumentSequence& s);
-
-    // ActivationDuration
-    //
-    typedef ::xml_schema::Duration ActivationDurationType;
-    typedef ::xsd::cxx::tree::optional< ActivationDurationType > ActivationDurationOptional;
-    typedef ::xsd::cxx::tree::traits< ActivationDurationType, char > ActivationDurationTraits;
-
-    const ActivationDurationOptional&
-    ActivationDuration () const;
-
-    ActivationDurationOptional&
-    ActivationDuration ();
-
-    void
-    ActivationDuration (const ActivationDurationType& x);
-
-    void
-    ActivationDuration (const ActivationDurationOptional& x);
-
-    void
-    ActivationDuration (::std::unique_ptr< ActivationDurationType > p);
-
-    // Retriggerable
-    //
-    typedef ::xml_schema::Boolean RetriggerableType;
-    typedef ::xsd::cxx::tree::optional< RetriggerableType > RetriggerableOptional;
-    typedef ::xsd::cxx::tree::traits< RetriggerableType, char > RetriggerableTraits;
-
-    const RetriggerableOptional&
-    Retriggerable () const;
-
-    RetriggerableOptional&
-    Retriggerable ();
-
-    void
-    Retriggerable (const RetriggerableType& x);
-
-    void
-    Retriggerable (const RetriggerableOptional& x);
 
     // Constructors.
     //
@@ -6883,8 +7270,6 @@ namespace CDM
 
     protected:
     ArgumentSequence Argument_;
-    ActivationDurationOptional ActivationDuration_;
-    RetriggerableOptional Retriggerable_;
   };
 
   class ActivateOperationState: public ::CDM::AbstractOperationState
@@ -7750,86 +8135,70 @@ namespace CDM
     // EnsembleContext
     //
     typedef ::CDM::EnsembleContextDescriptor EnsembleContextType;
-    typedef ::xsd::cxx::tree::optional< EnsembleContextType > EnsembleContextOptional;
+    typedef ::xsd::cxx::tree::sequence< EnsembleContextType > EnsembleContextSequence;
+    typedef EnsembleContextSequence::iterator EnsembleContextIterator;
+    typedef EnsembleContextSequence::const_iterator EnsembleContextConstIterator;
     typedef ::xsd::cxx::tree::traits< EnsembleContextType, char > EnsembleContextTraits;
 
-    const EnsembleContextOptional&
+    const EnsembleContextSequence&
     EnsembleContext () const;
 
-    EnsembleContextOptional&
+    EnsembleContextSequence&
     EnsembleContext ();
 
     void
-    EnsembleContext (const EnsembleContextType& x);
-
-    void
-    EnsembleContext (const EnsembleContextOptional& x);
-
-    void
-    EnsembleContext (::std::unique_ptr< EnsembleContextType > p);
+    EnsembleContext (const EnsembleContextSequence& s);
 
     // OperatorContext
     //
     typedef ::CDM::OperatorContextDescriptor OperatorContextType;
-    typedef ::xsd::cxx::tree::optional< OperatorContextType > OperatorContextOptional;
+    typedef ::xsd::cxx::tree::sequence< OperatorContextType > OperatorContextSequence;
+    typedef OperatorContextSequence::iterator OperatorContextIterator;
+    typedef OperatorContextSequence::const_iterator OperatorContextConstIterator;
     typedef ::xsd::cxx::tree::traits< OperatorContextType, char > OperatorContextTraits;
 
-    const OperatorContextOptional&
+    const OperatorContextSequence&
     OperatorContext () const;
 
-    OperatorContextOptional&
+    OperatorContextSequence&
     OperatorContext ();
 
     void
-    OperatorContext (const OperatorContextType& x);
-
-    void
-    OperatorContext (const OperatorContextOptional& x);
-
-    void
-    OperatorContext (::std::unique_ptr< OperatorContextType > p);
+    OperatorContext (const OperatorContextSequence& s);
 
     // WorkflowContext
     //
     typedef ::CDM::WorkflowContextDescriptor WorkflowContextType;
-    typedef ::xsd::cxx::tree::optional< WorkflowContextType > WorkflowContextOptional;
+    typedef ::xsd::cxx::tree::sequence< WorkflowContextType > WorkflowContextSequence;
+    typedef WorkflowContextSequence::iterator WorkflowContextIterator;
+    typedef WorkflowContextSequence::const_iterator WorkflowContextConstIterator;
     typedef ::xsd::cxx::tree::traits< WorkflowContextType, char > WorkflowContextTraits;
 
-    const WorkflowContextOptional&
+    const WorkflowContextSequence&
     WorkflowContext () const;
 
-    WorkflowContextOptional&
+    WorkflowContextSequence&
     WorkflowContext ();
 
     void
-    WorkflowContext (const WorkflowContextType& x);
-
-    void
-    WorkflowContext (const WorkflowContextOptional& x);
-
-    void
-    WorkflowContext (::std::unique_ptr< WorkflowContextType > p);
+    WorkflowContext (const WorkflowContextSequence& s);
 
     // MeansContext
     //
     typedef ::CDM::MeansContextDescriptor MeansContextType;
-    typedef ::xsd::cxx::tree::optional< MeansContextType > MeansContextOptional;
+    typedef ::xsd::cxx::tree::sequence< MeansContextType > MeansContextSequence;
+    typedef MeansContextSequence::iterator MeansContextIterator;
+    typedef MeansContextSequence::const_iterator MeansContextConstIterator;
     typedef ::xsd::cxx::tree::traits< MeansContextType, char > MeansContextTraits;
 
-    const MeansContextOptional&
+    const MeansContextSequence&
     MeansContext () const;
 
-    MeansContextOptional&
+    MeansContextSequence&
     MeansContext ();
 
     void
-    MeansContext (const MeansContextType& x);
-
-    void
-    MeansContext (const MeansContextOptional& x);
-
-    void
-    MeansContext (::std::unique_ptr< MeansContextType > p);
+    MeansContext (const MeansContextSequence& s);
 
     // Constructors.
     //
@@ -7863,10 +8232,10 @@ namespace CDM
     protected:
     PatientContextOptional PatientContext_;
     LocationContextOptional LocationContext_;
-    EnsembleContextOptional EnsembleContext_;
-    OperatorContextOptional OperatorContext_;
-    WorkflowContextOptional WorkflowContext_;
-    MeansContextOptional MeansContext_;
+    EnsembleContextSequence EnsembleContext_;
+    OperatorContextSequence OperatorContext_;
+    WorkflowContextSequence WorkflowContext_;
+    MeansContextSequence MeansContext_;
   };
 
   class SystemContextState: public ::CDM::AbstractState
@@ -8692,8 +9061,11 @@ namespace CDM
     {
       Unspec,
       Ad,
+      Ado,
       Ped,
-      Neo
+      Inf,
+      Neo,
+      Oth
     };
 
     PatientType (Value v);
@@ -8739,8 +9111,8 @@ namespace CDM
     _xsd_PatientType_convert () const;
 
     public:
-    static const char* const _xsd_PatientType_literals_[4];
-    static const Value _xsd_PatientType_indexes_[4];
+    static const char* const _xsd_PatientType_literals_[7];
+    static const Value _xsd_PatientType_indexes_[7];
   };
 
   class PatientDemographicsCoreData: public ::CDM::BaseDemographics
@@ -9262,6 +9634,48 @@ namespace CDM
     void
     Type (::std::unique_ptr< TypeType > p);
 
+    // Code
+    //
+    typedef ::CDM::CodedValue CodeType;
+    typedef ::xsd::cxx::tree::optional< CodeType > CodeOptional;
+    typedef ::xsd::cxx::tree::traits< CodeType, char > CodeTraits;
+
+    const CodeOptional&
+    Code () const;
+
+    CodeOptional&
+    Code ();
+
+    void
+    Code (const CodeType& x);
+
+    void
+    Code (const CodeOptional& x);
+
+    void
+    Code (::std::unique_ptr< CodeType > p);
+
+    // Criticality
+    //
+    typedef ::CDM::Criticality CriticalityType;
+    typedef ::xsd::cxx::tree::optional< CriticalityType > CriticalityOptional;
+    typedef ::xsd::cxx::tree::traits< CriticalityType, char > CriticalityTraits;
+
+    const CriticalityOptional&
+    Criticality () const;
+
+    CriticalityOptional&
+    Criticality ();
+
+    void
+    Criticality (const CriticalityType& x);
+
+    void
+    Criticality (const CriticalityOptional& x);
+
+    void
+    Criticality (::std::unique_ptr< CriticalityType > p);
+
     // Description
     //
     typedef ::CDM::LocalizedText DescriptionType;
@@ -9328,6 +9742,8 @@ namespace CDM
     protected:
     ExtensionOptional Extension_;
     TypeOptional Type_;
+    CodeOptional Code_;
+    CriticalityOptional Criticality_;
     DescriptionSequence Description_;
     RelatedMeasurementSequence RelatedMeasurement_;
   };
@@ -9905,16 +10321,20 @@ namespace CDM
     // OperatorDetails
     //
     typedef ::CDM::BaseDemographics OperatorDetailsType;
+    typedef ::xsd::cxx::tree::optional< OperatorDetailsType > OperatorDetailsOptional;
     typedef ::xsd::cxx::tree::traits< OperatorDetailsType, char > OperatorDetailsTraits;
 
-    const OperatorDetailsType&
+    const OperatorDetailsOptional&
     OperatorDetails () const;
 
-    OperatorDetailsType&
+    OperatorDetailsOptional&
     OperatorDetails ();
 
     void
     OperatorDetails (const OperatorDetailsType& x);
+
+    void
+    OperatorDetails (const OperatorDetailsOptional& x);
 
     void
     OperatorDetails (::std::unique_ptr< OperatorDetailsType > p);
@@ -9922,12 +10342,7 @@ namespace CDM
     // Constructors.
     //
     OperatorContextState (const DescriptorHandleType&,
-                          const HandleType&,
-                          const OperatorDetailsType&);
-
-    OperatorContextState (const DescriptorHandleType&,
-                          const HandleType&,
-                          ::std::unique_ptr< OperatorDetailsType >);
+                          const HandleType&);
 
     OperatorContextState (const ::xercesc::DOMElement& e,
                           ::xml_schema::Flags f = 0,
@@ -9955,7 +10370,7 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< OperatorDetailsType > OperatorDetails_;
+    OperatorDetailsOptional OperatorDetails_;
   };
 
   class MeansContextDescriptor: public ::CDM::AbstractContextDescriptor
@@ -10376,6 +10791,133 @@ namespace CDM
     ChildrenCountOptional ChildrenCount_;
   };
 
+  class TextWidth: public ::xml_schema::String
+  {
+    public:
+    enum Value
+    {
+      Shrt,
+      Nml,
+      Lng
+    };
+
+    TextWidth (Value v);
+
+    TextWidth (const char* v);
+
+    TextWidth (const ::std::string& v);
+
+    TextWidth (const ::xml_schema::String& v);
+
+    TextWidth (const ::xercesc::DOMElement& e,
+               ::xml_schema::Flags f = 0,
+               ::xml_schema::Container* c = 0);
+
+    TextWidth (const ::xercesc::DOMAttr& a,
+               ::xml_schema::Flags f = 0,
+               ::xml_schema::Container* c = 0);
+
+    TextWidth (const ::std::string& s,
+               const ::xercesc::DOMElement* e,
+               ::xml_schema::Flags f = 0,
+               ::xml_schema::Container* c = 0);
+
+    TextWidth (const TextWidth& x,
+               ::xml_schema::Flags f = 0,
+               ::xml_schema::Container* c = 0);
+
+    virtual TextWidth*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    TextWidth&
+    operator= (Value v);
+
+    virtual
+    operator Value () const
+    {
+      return _xsd_TextWidth_convert ();
+    }
+
+    protected:
+    Value
+    _xsd_TextWidth_convert () const;
+
+    public:
+    static const char* const _xsd_TextWidth_literals_[3];
+    static const Value _xsd_TextWidth_indexes_[3];
+  };
+
+  class Root: public ::xml_schema::Uri
+  {
+    public:
+    // Constructors.
+    //
+    Root (const ::xml_schema::Uri&);
+
+    Root (const ::xercesc::DOMElement& e,
+          ::xml_schema::Flags f = 0,
+          ::xml_schema::Container* c = 0);
+
+    Root (const ::xercesc::DOMAttr& a,
+          ::xml_schema::Flags f = 0,
+          ::xml_schema::Container* c = 0);
+
+    Root (const ::std::string& s,
+          const ::xercesc::DOMElement* e,
+          ::xml_schema::Flags f = 0,
+          ::xml_schema::Container* c = 0);
+
+    Root (const Root& x,
+          ::xml_schema::Flags f = 0,
+          ::xml_schema::Container* c = 0);
+
+    virtual Root*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~Root ();
+  };
+
+  class Extension: public ::xml_schema::String
+  {
+    public:
+    // Constructors.
+    //
+    Extension ();
+
+    Extension (const char*);
+
+    Extension (const ::std::string&);
+
+    Extension (const ::xml_schema::String&);
+
+    Extension (const ::xercesc::DOMElement& e,
+               ::xml_schema::Flags f = 0,
+               ::xml_schema::Container* c = 0);
+
+    Extension (const ::xercesc::DOMAttr& a,
+               ::xml_schema::Flags f = 0,
+               ::xml_schema::Container* c = 0);
+
+    Extension (const ::std::string& s,
+               const ::xercesc::DOMElement* e,
+               ::xml_schema::Flags f = 0,
+               ::xml_schema::Container* c = 0);
+
+    Extension (const Extension& x,
+               ::xml_schema::Flags f = 0,
+               ::xml_schema::Container* c = 0);
+
+    virtual Extension*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~Extension ();
+  };
+
   class ProductionSpecification: public ::xml_schema::Type
   {
     public:
@@ -10502,24 +11044,20 @@ namespace CDM
 
     // Udi
     //
-    typedef ::xml_schema::String UdiType;
-    typedef ::xsd::cxx::tree::optional< UdiType > UdiOptional;
+    typedef ::CDM::Udi UdiType;
+    typedef ::xsd::cxx::tree::sequence< UdiType > UdiSequence;
+    typedef UdiSequence::iterator UdiIterator;
+    typedef UdiSequence::const_iterator UdiConstIterator;
     typedef ::xsd::cxx::tree::traits< UdiType, char > UdiTraits;
 
-    const UdiOptional&
+    const UdiSequence&
     Udi () const;
 
-    UdiOptional&
+    UdiSequence&
     Udi ();
 
     void
-    Udi (const UdiType& x);
-
-    void
-    Udi (const UdiOptional& x);
-
-    void
-    Udi (::std::unique_ptr< UdiType > p);
+    Udi (const UdiSequence& s);
 
     // Manufacturer
     //
@@ -10624,11 +11162,115 @@ namespace CDM
 
     protected:
     ExtensionOptional Extension_;
-    UdiOptional Udi_;
+    UdiSequence Udi_;
     ManufacturerSequence Manufacturer_;
     ModelNameSequence ModelName_;
     ModelNumberOptional ModelNumber_;
     SerialNumberSequence SerialNumber_;
+  };
+
+  class CanEscalate: public ::CDM::AlertConditionPriority
+  {
+    public:
+    typedef ::CDM::AlertConditionPriority::Value Value;
+
+    CanEscalate (Value v);
+
+    CanEscalate (const char* v);
+
+    CanEscalate (const ::std::string& v);
+
+    CanEscalate (const ::CDM::AlertConditionPriority& v);
+
+    CanEscalate (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    CanEscalate (const ::xercesc::DOMAttr& a,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    CanEscalate (const ::std::string& s,
+                 const ::xercesc::DOMElement* e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    CanEscalate (const CanEscalate& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual CanEscalate*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    CanEscalate&
+    operator= (Value v);
+
+    virtual
+    operator Value () const
+    {
+      return _xsd_CanEscalate_convert ();
+    }
+
+    protected:
+    Value
+    _xsd_CanEscalate_convert () const;
+
+    public:
+    static const char* const* _xsd_CanEscalate_literals_;
+    static const Value _xsd_CanEscalate_indexes_[2];
+  };
+
+  class CanDeescalate: public ::CDM::AlertConditionPriority
+  {
+    public:
+    typedef ::CDM::AlertConditionPriority::Value Value;
+
+    CanDeescalate (Value v);
+
+    CanDeescalate (const char* v);
+
+    CanDeescalate (const ::std::string& v);
+
+    CanDeescalate (const ::CDM::AlertConditionPriority& v);
+
+    CanDeescalate (const ::xercesc::DOMElement& e,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    CanDeescalate (const ::xercesc::DOMAttr& a,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    CanDeescalate (const ::std::string& s,
+                   const ::xercesc::DOMElement* e,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    CanDeescalate (const CanDeescalate& x,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    virtual CanDeescalate*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    CanDeescalate&
+    operator= (Value v);
+
+    virtual
+    operator Value () const
+    {
+      return _xsd_CanDeescalate_convert ();
+    }
+
+    protected:
+    Value
+    _xsd_CanDeescalate_convert () const;
+
+    public:
+    static const char* const* _xsd_CanDeescalate_literals_;
+    static const Value _xsd_CanDeescalate_indexes_[2];
   };
 
   class MetricQuality: public ::xml_schema::Type
@@ -10893,6 +11535,122 @@ namespace CDM
     ::xsd::cxx::tree::one< SampleIndexType > SampleIndex_;
   };
 
+  class Relation: public ::xml_schema::Type
+  {
+    public:
+    // Extension
+    //
+    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
+    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
+
+    const ExtensionOptional&
+    Extension () const;
+
+    ExtensionOptional&
+    Extension ();
+
+    void
+    Extension (const ExtensionType& x);
+
+    void
+    Extension (const ExtensionOptional& x);
+
+    void
+    Extension (::std::unique_ptr< ExtensionType > p);
+
+    // Code
+    //
+    typedef ::CDM::CodedValue CodeType;
+    typedef ::xsd::cxx::tree::optional< CodeType > CodeOptional;
+    typedef ::xsd::cxx::tree::traits< CodeType, char > CodeTraits;
+
+    const CodeOptional&
+    Code () const;
+
+    CodeOptional&
+    Code ();
+
+    void
+    Code (const CodeType& x);
+
+    void
+    Code (const CodeOptional& x);
+
+    void
+    Code (::std::unique_ptr< CodeType > p);
+
+    // Kind
+    //
+    typedef ::CDM::Kind KindType;
+    typedef ::xsd::cxx::tree::traits< KindType, char > KindTraits;
+
+    const KindType&
+    Kind () const;
+
+    KindType&
+    Kind ();
+
+    void
+    Kind (const KindType& x);
+
+    void
+    Kind (::std::unique_ptr< KindType > p);
+
+    // Entries
+    //
+    typedef ::xml_schema::SimpleType EntriesType;
+    typedef ::xsd::cxx::tree::traits< EntriesType, char > EntriesTraits;
+
+    const EntriesType&
+    Entries () const;
+
+    EntriesType&
+    Entries ();
+
+    void
+    Entries (const EntriesType& x);
+
+    void
+    Entries (::std::unique_ptr< EntriesType > p);
+
+    // Constructors.
+    //
+    Relation (const KindType&,
+              const EntriesType&);
+
+    Relation (const ::xercesc::DOMElement& e,
+              ::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0);
+
+    Relation (const Relation& x,
+              ::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0);
+
+    virtual Relation*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    Relation&
+    operator= (const Relation& x);
+
+    virtual 
+    ~Relation ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ExtensionOptional Extension_;
+    CodeOptional Code_;
+    ::xsd::cxx::tree::one< KindType > Kind_;
+    ::xsd::cxx::tree::one< EntriesType > Entries_;
+  };
+
   class AllowedValue: public ::xml_schema::Type
   {
     public:
@@ -10934,6 +11692,48 @@ namespace CDM
     void
     Type (::std::unique_ptr< TypeType > p);
 
+    // Identification
+    //
+    typedef ::CDM::InstanceIdentifier IdentificationType;
+    typedef ::xsd::cxx::tree::optional< IdentificationType > IdentificationOptional;
+    typedef ::xsd::cxx::tree::traits< IdentificationType, char > IdentificationTraits;
+
+    const IdentificationOptional&
+    Identification () const;
+
+    IdentificationOptional&
+    Identification ();
+
+    void
+    Identification (const IdentificationType& x);
+
+    void
+    Identification (const IdentificationOptional& x);
+
+    void
+    Identification (::std::unique_ptr< IdentificationType > p);
+
+    // Characteristic
+    //
+    typedef ::CDM::Measurement CharacteristicType;
+    typedef ::xsd::cxx::tree::optional< CharacteristicType > CharacteristicOptional;
+    typedef ::xsd::cxx::tree::traits< CharacteristicType, char > CharacteristicTraits;
+
+    const CharacteristicOptional&
+    Characteristic () const;
+
+    CharacteristicOptional&
+    Characteristic ();
+
+    void
+    Characteristic (const CharacteristicType& x);
+
+    void
+    Characteristic (const CharacteristicOptional& x);
+
+    void
+    Characteristic (::std::unique_ptr< CharacteristicType > p);
+
     // Constructors.
     //
     AllowedValue (const ValueType&);
@@ -10968,6 +11768,63 @@ namespace CDM
     protected:
     ::xsd::cxx::tree::one< ValueType > Value_;
     TypeOptional Type_;
+    IdentificationOptional Identification_;
+    CharacteristicOptional Characteristic_;
+  };
+
+  class AllowedValues: public ::xml_schema::Type
+  {
+    public:
+    // Value
+    //
+    typedef ::xml_schema::String ValueType;
+    typedef ::xsd::cxx::tree::traits< ValueType, char > ValueTraits;
+
+    const ValueType&
+    Value () const;
+
+    ValueType&
+    Value ();
+
+    void
+    Value (const ValueType& x);
+
+    void
+    Value (::std::unique_ptr< ValueType > p);
+
+    // Constructors.
+    //
+    AllowedValues (const ValueType&);
+
+    AllowedValues (::std::unique_ptr< ValueType >);
+
+    AllowedValues (const ::xercesc::DOMElement& e,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    AllowedValues (const AllowedValues& x,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    virtual AllowedValues*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    AllowedValues&
+    operator= (const AllowedValues& x);
+
+    virtual 
+    ~AllowedValues ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ::xsd::cxx::tree::one< ValueType > Value_;
   };
 
   class Argument: public ::xml_schema::Type
@@ -11134,6 +11991,62 @@ namespace CDM
     virtual DateOfBirth*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
+  };
+
+  class Criticality: public ::xml_schema::String
+  {
+    public:
+    enum Value
+    {
+      Lo,
+      Hi
+    };
+
+    Criticality (Value v);
+
+    Criticality (const char* v);
+
+    Criticality (const ::std::string& v);
+
+    Criticality (const ::xml_schema::String& v);
+
+    Criticality (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    Criticality (const ::xercesc::DOMAttr& a,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    Criticality (const ::std::string& s,
+                 const ::xercesc::DOMElement* e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    Criticality (const Criticality& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual Criticality*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    Criticality&
+    operator= (Value v);
+
+    virtual
+    operator Value () const
+    {
+      return _xsd_Criticality_convert ();
+    }
+
+    protected:
+    Value
+    _xsd_Criticality_convert () const;
+
+    public:
+    static const char* const _xsd_Criticality_literals_[2];
+    static const Value _xsd_Criticality_indexes_[2];
   };
 
   class RelatedMeasurement: public ::xml_schema::Type
@@ -11430,6 +12343,208 @@ namespace CDM
     RelevantClinicalInfoSequence RelevantClinicalInfo_;
     RequestedOrderDetailOptional RequestedOrderDetail_;
     PerformedOrderDetailOptional PerformedOrderDetail_;
+  };
+
+  class Udi: public ::xml_schema::Type
+  {
+    public:
+    // Extension
+    //
+    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
+    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
+
+    const ExtensionOptional&
+    Extension () const;
+
+    ExtensionOptional&
+    Extension ();
+
+    void
+    Extension (const ExtensionType& x);
+
+    void
+    Extension (const ExtensionOptional& x);
+
+    void
+    Extension (::std::unique_ptr< ExtensionType > p);
+
+    // DeviceIdentifier
+    //
+    typedef ::xml_schema::String DeviceIdentifierType;
+    typedef ::xsd::cxx::tree::traits< DeviceIdentifierType, char > DeviceIdentifierTraits;
+
+    const DeviceIdentifierType&
+    DeviceIdentifier () const;
+
+    DeviceIdentifierType&
+    DeviceIdentifier ();
+
+    void
+    DeviceIdentifier (const DeviceIdentifierType& x);
+
+    void
+    DeviceIdentifier (::std::unique_ptr< DeviceIdentifierType > p);
+
+    // HumanReadableForm
+    //
+    typedef ::xml_schema::String HumanReadableFormType;
+    typedef ::xsd::cxx::tree::traits< HumanReadableFormType, char > HumanReadableFormTraits;
+
+    const HumanReadableFormType&
+    HumanReadableForm () const;
+
+    HumanReadableFormType&
+    HumanReadableForm ();
+
+    void
+    HumanReadableForm (const HumanReadableFormType& x);
+
+    void
+    HumanReadableForm (::std::unique_ptr< HumanReadableFormType > p);
+
+    // Issuer
+    //
+    typedef ::CDM::InstanceIdentifier IssuerType;
+    typedef ::xsd::cxx::tree::traits< IssuerType, char > IssuerTraits;
+
+    const IssuerType&
+    Issuer () const;
+
+    IssuerType&
+    Issuer ();
+
+    void
+    Issuer (const IssuerType& x);
+
+    void
+    Issuer (::std::unique_ptr< IssuerType > p);
+
+    // Jurisdiction
+    //
+    typedef ::CDM::InstanceIdentifier JurisdictionType;
+    typedef ::xsd::cxx::tree::optional< JurisdictionType > JurisdictionOptional;
+    typedef ::xsd::cxx::tree::traits< JurisdictionType, char > JurisdictionTraits;
+
+    const JurisdictionOptional&
+    Jurisdiction () const;
+
+    JurisdictionOptional&
+    Jurisdiction ();
+
+    void
+    Jurisdiction (const JurisdictionType& x);
+
+    void
+    Jurisdiction (const JurisdictionOptional& x);
+
+    void
+    Jurisdiction (::std::unique_ptr< JurisdictionType > p);
+
+    // Constructors.
+    //
+    Udi (const DeviceIdentifierType&,
+         const HumanReadableFormType&,
+         const IssuerType&);
+
+    Udi (const DeviceIdentifierType&,
+         const HumanReadableFormType&,
+         ::std::unique_ptr< IssuerType >);
+
+    Udi (::std::unique_ptr< DeviceIdentifierType >,
+         ::std::unique_ptr< HumanReadableFormType >,
+         ::std::unique_ptr< IssuerType >);
+
+    Udi (const ::xercesc::DOMElement& e,
+         ::xml_schema::Flags f = 0,
+         ::xml_schema::Container* c = 0);
+
+    Udi (const Udi& x,
+         ::xml_schema::Flags f = 0,
+         ::xml_schema::Container* c = 0);
+
+    virtual Udi*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    Udi&
+    operator= (const Udi& x);
+
+    virtual 
+    ~Udi ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ExtensionOptional Extension_;
+    ::xsd::cxx::tree::one< DeviceIdentifierType > DeviceIdentifier_;
+    ::xsd::cxx::tree::one< HumanReadableFormType > HumanReadableForm_;
+    ::xsd::cxx::tree::one< IssuerType > Issuer_;
+    JurisdictionOptional Jurisdiction_;
+  };
+
+  class Kind: public ::xml_schema::String
+  {
+    public:
+    enum Value
+    {
+      Rcm,
+      PS,
+      SST,
+      ECE,
+      Oth
+    };
+
+    Kind (Value v);
+
+    Kind (const char* v);
+
+    Kind (const ::std::string& v);
+
+    Kind (const ::xml_schema::String& v);
+
+    Kind (const ::xercesc::DOMElement& e,
+          ::xml_schema::Flags f = 0,
+          ::xml_schema::Container* c = 0);
+
+    Kind (const ::xercesc::DOMAttr& a,
+          ::xml_schema::Flags f = 0,
+          ::xml_schema::Container* c = 0);
+
+    Kind (const ::std::string& s,
+          const ::xercesc::DOMElement* e,
+          ::xml_schema::Flags f = 0,
+          ::xml_schema::Container* c = 0);
+
+    Kind (const Kind& x,
+          ::xml_schema::Flags f = 0,
+          ::xml_schema::Container* c = 0);
+
+    virtual Kind*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    Kind&
+    operator= (Value v);
+
+    virtual
+    operator Value () const
+    {
+      return _xsd_Kind_convert ();
+    }
+
+    protected:
+    Value
+    _xsd_Kind_convert () const;
+
+    public:
+    static const char* const _xsd_Kind_literals_[5];
+    static const Value _xsd_Kind_indexes_[5];
   };
 
   class ReferenceRange: public ::xml_schema::Type
@@ -11819,6 +12934,12 @@ namespace CDM
               const ComponentActivation&);
 
   void
+  operator<< (::xercesc::DOMElement&, const ApprovedJurisdictions&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const OperatingJurisdiction&);
+
+  void
   operator<< (::xercesc::DOMElement&, const Handle&);
 
   void
@@ -11851,7 +12972,7 @@ namespace CDM
   operator<< (::xercesc::DOMElement&, const AbstractDeviceComponentDescriptor&);
 
   void
-  operator<< (::xercesc::DOMElement&, const AbstractAlertingDeviceComponentDescriptor&);
+  operator<< (::xercesc::DOMElement&, const AbstractComplexDeviceComponentDescriptor&);
 
   void
   operator<< (::xercesc::DOMElement&, const CalibrationState&);
@@ -11880,7 +13001,7 @@ namespace CDM
   operator<< (::xercesc::DOMElement&, const AbstractDeviceComponentState&);
 
   void
-  operator<< (::xercesc::DOMElement&, const AbstractAlertingDeviceComponentState&);
+  operator<< (::xercesc::DOMElement&, const AbstractComplexDeviceComponentState&);
 
   void
   operator<< (::xercesc::DOMElement&, const MdsDescriptor&);
@@ -12341,10 +13462,60 @@ namespace CDM
   operator<< (::xercesc::DOMElement&, const ContainmentTreeEntry&);
 
   void
+  operator<< (::xercesc::DOMElement&, const TextWidth&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const TextWidth&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const TextWidth&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const Root&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const Root&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const Root&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const Extension&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const Extension&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const Extension&);
+
+  void
   operator<< (::xercesc::DOMElement&, const ProductionSpecification&);
 
   void
   operator<< (::xercesc::DOMElement&, const MetaData&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const CanEscalate&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const CanEscalate&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const CanEscalate&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const CanDeescalate&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const CanDeescalate&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const CanDeescalate&);
 
   void
   operator<< (::xercesc::DOMElement&, const MetricQuality&);
@@ -12356,7 +13527,13 @@ namespace CDM
   operator<< (::xercesc::DOMElement&, const ApplyAnnotation&);
 
   void
+  operator<< (::xercesc::DOMElement&, const Relation&);
+
+  void
   operator<< (::xercesc::DOMElement&, const AllowedValue&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const AllowedValues&);
 
   void
   operator<< (::xercesc::DOMElement&, const Argument&);
@@ -12382,10 +13559,33 @@ namespace CDM
               const DateOfBirth&);
 
   void
+  operator<< (::xercesc::DOMElement&, const Criticality&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const Criticality&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const Criticality&);
+
+  void
   operator<< (::xercesc::DOMElement&, const RelatedMeasurement&);
 
   void
   operator<< (::xercesc::DOMElement&, const WorkflowDetail&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const Udi&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const Kind&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const Kind&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const Kind&);
 
   void
   operator<< (::xercesc::DOMElement&, const ReferenceRange&);

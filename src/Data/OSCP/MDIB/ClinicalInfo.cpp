@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
+#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h"
 
 namespace OSCLib {
 namespace Data {

@@ -1,5 +1,5 @@
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dicom-extension-uri/09/08" xmlns:dom="http://p11073-10207/draft7/pm/2017/03/17" targetNamespace="http://dicom-extension-uri/09/08" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
-	<xsd:import namespace="http://p11073-10207/draft7/pm/2017/03/17" schemaLocation="BICEPS_ParticipantModel.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dicom-extension-uri/09/08" xmlns:pm="http://p11073-10207/draft8/pm/2017/08/07" targetNamespace="http://dicom-extension-uri/09/08" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
+	<xsd:import namespace="http://p11073-10207/draft8/pm/2017/08/07" schemaLocation="BICEPS_ParticipantModel.xsd"/>
 	<xsd:simpleType name="DicomTransferRole">
 		<xsd:annotation>
 			<xsd:documentation>Role can be either server (SCP) or client (SCU)</xsd:documentation>
@@ -46,7 +46,7 @@
 		<xsd:sequence>
 			<xsd:element name="TransferCapability" type="tns:DicomTransferCapability" maxOccurs="unbounded"/>
 			<xsd:choice minOccurs="0" maxOccurs="unbounded">
-				<xsd:element name="ApplicationCluster" type="dom:LocalizedText">
+				<xsd:element name="ApplicationCluster" type="pm:LocalizedText">
 					<xsd:annotation>
 						<xsd:documentation>Can be used to group DICOM Application Entities into a DICOM Application Clusters</xsd:documentation>
 					</xsd:annotation>
@@ -57,7 +57,7 @@
 					</xsd:annotation>
 				</xsd:element>
 			</xsd:choice>
-			<xsd:element name="Description" type="dom:LocalizedText" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Description" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation>Free text description of this Application Entity</xsd:documentation>
 				</xsd:annotation>
@@ -116,24 +116,24 @@
 			<xsd:documentation> General description of a DICOM device. Includes basic description of the device which may also be taken over into any DICOM objects created by the device.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="dom:MdsDescriptor">
+			<xsd:extension base="pm:AbstractComplexDeviceComponentDescriptor">
 				<xsd:sequence>
 					<xsd:element name="NetworkAe" type="tns:DicomNetworkAe" maxOccurs="unbounded"/>
 					<xsd:element name="NetworkConnection" type="tns:DicomNetworkConnection" maxOccurs="unbounded"/>
 					<xsd:choice minOccurs="0" maxOccurs="unbounded">
 						<xsd:element name="SoftwareVersion" type="xsd:string"/>
-						<xsd:element name="InstitutionName" type="dom:LocalizedText"/>
-						<xsd:element name="InstitutionAddress" type="dom:LocalizedText"/>
-						<xsd:element name="InstitutionalDepartmentName" type="dom:LocalizedText"/>
-						<xsd:element name="PrimaryDeviceType" type="dom:LocalizedText"/>
+						<xsd:element name="InstitutionName" type="pm:LocalizedText"/>
+						<xsd:element name="InstitutionAddress" type="pm:LocalizedText"/>
+						<xsd:element name="InstitutionalDepartmentName" type="pm:LocalizedText"/>
+						<xsd:element name="PrimaryDeviceType" type="pm:LocalizedText"/>
 						<xsd:element name="PublicCertificate" type="xsd:base64Binary"/>
 					</xsd:choice>
-					<xsd:element name="Description" type="dom:LocalizedText" minOccurs="0" maxOccurs="unbounded">
+					<xsd:element name="Description" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
 							<xsd:documentation>Free text description of this device</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
-					<xsd:element name="StationName" type="dom:LocalizedText" minOccurs="0" maxOccurs="unbounded">
+					<xsd:element name="StationName" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
 							<xsd:documentation>Free text station name, e.g. "High resolution CT 1"</xsd:documentation>
 						</xsd:annotation>

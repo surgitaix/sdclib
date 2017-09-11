@@ -16,9 +16,6 @@
 #include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
 #include "osdm-fwd.hxx"
 
-
-
-
 namespace OSCLib {
 namespace Data {
 namespace OSCP {

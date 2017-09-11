@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://p11073-10207/draft7/ext/2017/03/17" targetNamespace="http://p11073-10207/draft7/ext/2017/03/17" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft7">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://p11073-10207/draft8/ext/2017/08/07" targetNamespace="http://p11073-10207/draft8/ext/2017/08/07" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft8">
 	<xsd:element name="Extension" type="tns:ExtensionType"/>
 	<xsd:complexType name="ExtensionType">
 		<xsd:annotation>
@@ -20,7 +20,7 @@ Here ext:AdditionalInfo is the wrapper element containing the extension's inform
 	</xsd:complexType>
 	<xsd:attribute name="MustUnderstand" type="xsd:boolean" default="false">
 		<xsd:annotation>
-			<xsd:documentation>In cases where an extension modifies the meaning of the element that contains it, a MustUnderstand attribute is senseful. This means that the data cannot safely be processed unless the application knows the meaning of the extension. A MustUnderstand signed extension could be look like this:
+			<xsd:documentation>In cases where an extension modifies the meaning of the element that contains it, a MustUnderstand attribute is senseful. This means that the data cannot safely be processed unless the application knows the meaning of the extension. A MustUnderstand marked extension could be look like this:
 
 tns:Extension xmlns:tns="http://extension-point-uri/15/03" xmlns:ext="http://concrete-extension-namespace"
   ext:AdditionalInfo tns:MustUnderstand="true"

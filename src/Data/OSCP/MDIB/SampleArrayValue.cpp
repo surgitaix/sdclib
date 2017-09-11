@@ -36,6 +36,9 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
+#include "OSCLib/Data/OSCP/MDIB/Annotation.h"
 
 namespace OSCLib {
 namespace Data {

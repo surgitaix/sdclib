@@ -41,6 +41,8 @@
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h"
 
 namespace OSCLib {
 namespace Data {

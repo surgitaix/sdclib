@@ -1981,6 +1981,262 @@ namespace MDM
     ContextStateSequence ContextState_;
   };
 
+  class GetContextStatesByIdentification: public ::MDM::AbstractGet
+  {
+    public:
+    // Identification
+    //
+    typedef ::CDM::InstanceIdentifier IdentificationType;
+    typedef ::xsd::cxx::tree::sequence< IdentificationType > IdentificationSequence;
+    typedef IdentificationSequence::iterator IdentificationIterator;
+    typedef IdentificationSequence::const_iterator IdentificationConstIterator;
+    typedef ::xsd::cxx::tree::traits< IdentificationType, char > IdentificationTraits;
+
+    const IdentificationSequence&
+    Identification () const;
+
+    IdentificationSequence&
+    Identification ();
+
+    void
+    Identification (const IdentificationSequence& s);
+
+    // ContextType
+    //
+    typedef ::xml_schema::Qname ContextTypeType;
+    typedef ::xsd::cxx::tree::optional< ContextTypeType > ContextTypeOptional;
+    typedef ::xsd::cxx::tree::traits< ContextTypeType, char > ContextTypeTraits;
+
+    const ContextTypeOptional&
+    ContextType () const;
+
+    ContextTypeOptional&
+    ContextType ();
+
+    void
+    ContextType (const ContextTypeType& x);
+
+    void
+    ContextType (const ContextTypeOptional& x);
+
+    void
+    ContextType (::std::unique_ptr< ContextTypeType > p);
+
+    // Constructors.
+    //
+    GetContextStatesByIdentification ();
+
+    GetContextStatesByIdentification (const ::xercesc::DOMElement& e,
+                                      ::xml_schema::Flags f = 0,
+                                      ::xml_schema::Container* c = 0);
+
+    GetContextStatesByIdentification (const GetContextStatesByIdentification& x,
+                                      ::xml_schema::Flags f = 0,
+                                      ::xml_schema::Container* c = 0);
+
+    virtual GetContextStatesByIdentification*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetContextStatesByIdentification&
+    operator= (const GetContextStatesByIdentification& x);
+
+    virtual 
+    ~GetContextStatesByIdentification ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    IdentificationSequence Identification_;
+    ContextTypeOptional ContextType_;
+  };
+
+  class GetContextStatesByIdentificationResponse: public ::MDM::AbstractGetResponse
+  {
+    public:
+    // ContextState
+    //
+    typedef ::CDM::AbstractContextState ContextStateType;
+    typedef ::xsd::cxx::tree::sequence< ContextStateType > ContextStateSequence;
+    typedef ContextStateSequence::iterator ContextStateIterator;
+    typedef ContextStateSequence::const_iterator ContextStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< ContextStateType, char > ContextStateTraits;
+
+    const ContextStateSequence&
+    ContextState () const;
+
+    ContextStateSequence&
+    ContextState ();
+
+    void
+    ContextState (const ContextStateSequence& s);
+
+    // Constructors.
+    //
+    GetContextStatesByIdentificationResponse (const SequenceIdType&);
+
+    GetContextStatesByIdentificationResponse (const ::xercesc::DOMElement& e,
+                                              ::xml_schema::Flags f = 0,
+                                              ::xml_schema::Container* c = 0);
+
+    GetContextStatesByIdentificationResponse (const GetContextStatesByIdentificationResponse& x,
+                                              ::xml_schema::Flags f = 0,
+                                              ::xml_schema::Container* c = 0);
+
+    virtual GetContextStatesByIdentificationResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetContextStatesByIdentificationResponse&
+    operator= (const GetContextStatesByIdentificationResponse& x);
+
+    virtual 
+    ~GetContextStatesByIdentificationResponse ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ContextStateSequence ContextState_;
+  };
+
+  class GetContextStatesByFilter: public ::MDM::AbstractGet
+  {
+    public:
+    // Filter
+    //
+    typedef ::xml_schema::String FilterType;
+    typedef ::xsd::cxx::tree::sequence< FilterType > FilterSequence;
+    typedef FilterSequence::iterator FilterIterator;
+    typedef FilterSequence::const_iterator FilterConstIterator;
+    typedef ::xsd::cxx::tree::traits< FilterType, char > FilterTraits;
+
+    const FilterSequence&
+    Filter () const;
+
+    FilterSequence&
+    Filter ();
+
+    void
+    Filter (const FilterSequence& s);
+
+    // ContextType
+    //
+    typedef ::xml_schema::Qname ContextTypeType;
+    typedef ::xsd::cxx::tree::optional< ContextTypeType > ContextTypeOptional;
+    typedef ::xsd::cxx::tree::traits< ContextTypeType, char > ContextTypeTraits;
+
+    const ContextTypeOptional&
+    ContextType () const;
+
+    ContextTypeOptional&
+    ContextType ();
+
+    void
+    ContextType (const ContextTypeType& x);
+
+    void
+    ContextType (const ContextTypeOptional& x);
+
+    void
+    ContextType (::std::unique_ptr< ContextTypeType > p);
+
+    // Constructors.
+    //
+    GetContextStatesByFilter ();
+
+    GetContextStatesByFilter (const ::xercesc::DOMElement& e,
+                              ::xml_schema::Flags f = 0,
+                              ::xml_schema::Container* c = 0);
+
+    GetContextStatesByFilter (const GetContextStatesByFilter& x,
+                              ::xml_schema::Flags f = 0,
+                              ::xml_schema::Container* c = 0);
+
+    virtual GetContextStatesByFilter*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetContextStatesByFilter&
+    operator= (const GetContextStatesByFilter& x);
+
+    virtual 
+    ~GetContextStatesByFilter ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    FilterSequence Filter_;
+    ContextTypeOptional ContextType_;
+  };
+
+  class GetContextStatesByFilterResponse: public ::MDM::AbstractGetResponse
+  {
+    public:
+    // ContextState
+    //
+    typedef ::CDM::AbstractContextState ContextStateType;
+    typedef ::xsd::cxx::tree::sequence< ContextStateType > ContextStateSequence;
+    typedef ContextStateSequence::iterator ContextStateIterator;
+    typedef ContextStateSequence::const_iterator ContextStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< ContextStateType, char > ContextStateTraits;
+
+    const ContextStateSequence&
+    ContextState () const;
+
+    ContextStateSequence&
+    ContextState ();
+
+    void
+    ContextState (const ContextStateSequence& s);
+
+    // Constructors.
+    //
+    GetContextStatesByFilterResponse (const SequenceIdType&);
+
+    GetContextStatesByFilterResponse (const ::xercesc::DOMElement& e,
+                                      ::xml_schema::Flags f = 0,
+                                      ::xml_schema::Container* c = 0);
+
+    GetContextStatesByFilterResponse (const GetContextStatesByFilterResponse& x,
+                                      ::xml_schema::Flags f = 0,
+                                      ::xml_schema::Container* c = 0);
+
+    virtual GetContextStatesByFilterResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetContextStatesByFilterResponse&
+    operator= (const GetContextStatesByFilterResponse& x);
+
+    virtual 
+    ~GetContextStatesByFilterResponse ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ContextStateSequence ContextState_;
+  };
+
   class SetContextState: public ::MDM::AbstractSet
   {
     public:
@@ -2168,19 +2424,19 @@ namespace MDM
     // Ref
     //
     typedef ::CDM::LocalizedTextRef RefType;
+    typedef ::xsd::cxx::tree::sequence< RefType > RefSequence;
+    typedef RefSequence::iterator RefIterator;
+    typedef RefSequence::const_iterator RefConstIterator;
     typedef ::xsd::cxx::tree::traits< RefType, char > RefTraits;
 
-    const RefType&
+    const RefSequence&
     Ref () const;
 
-    RefType&
+    RefSequence&
     Ref ();
 
     void
-    Ref (const RefType& x);
-
-    void
-    Ref (::std::unique_ptr< RefType > p);
+    Ref (const RefSequence& s);
 
     // Version
     //
@@ -2222,9 +2478,7 @@ namespace MDM
 
     // Constructors.
     //
-    GetLocalizedText (const RefType&);
-
-    GetLocalizedText (::std::unique_ptr< RefType >);
+    GetLocalizedText ();
 
     GetLocalizedText (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f = 0,
@@ -2252,7 +2506,7 @@ namespace MDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< RefType > Ref_;
+    RefSequence Ref_;
     VersionOptional Version_;
     LangSequence Lang_;
   };
@@ -4117,6 +4371,27 @@ namespace MDM
   class Text: public ::xml_schema::String
   {
     public:
+    // Ref
+    //
+    typedef ::xml_schema::Language RefType;
+    typedef ::xsd::cxx::tree::optional< RefType > RefOptional;
+    typedef ::xsd::cxx::tree::traits< RefType, char > RefTraits;
+
+    const RefOptional&
+    Ref () const;
+
+    RefOptional&
+    Ref ();
+
+    void
+    Ref (const RefType& x);
+
+    void
+    Ref (const RefOptional& x);
+
+    void
+    Ref (::std::unique_ptr< RefType > p);
+
     // Lang
     //
     typedef ::xml_schema::Language LangType;
@@ -4174,6 +4449,7 @@ namespace MDM
            ::xml_schema::Flags);
 
     protected:
+    RefOptional Ref_;
     LangOptional Lang_;
   };
 
@@ -4274,6 +4550,23 @@ namespace MDM
     void
     InvocationInfo (::std::unique_ptr< InvocationInfoType > p);
 
+    // InvocationSource
+    //
+    typedef ::CDM::InstanceIdentifier InvocationSourceType;
+    typedef ::xsd::cxx::tree::traits< InvocationSourceType, char > InvocationSourceTraits;
+
+    const InvocationSourceType&
+    InvocationSource () const;
+
+    InvocationSourceType&
+    InvocationSource ();
+
+    void
+    InvocationSource (const InvocationSourceType& x);
+
+    void
+    InvocationSource (::std::unique_ptr< InvocationSourceType > p);
+
     // OperationHandleRef
     //
     typedef ::CDM::HandleRef OperationHandleRefType;
@@ -4315,9 +4608,11 @@ namespace MDM
     // Constructors.
     //
     ReportPart5 (const InvocationInfoType&,
+                 const InvocationSourceType&,
                  const OperationHandleRefType&);
 
     ReportPart5 (::std::unique_ptr< InvocationInfoType >,
+                 ::std::unique_ptr< InvocationSourceType >,
                  const OperationHandleRefType&);
 
     ReportPart5 (const ::xercesc::DOMElement& e,
@@ -4347,6 +4642,7 @@ namespace MDM
 
     protected:
     ::xsd::cxx::tree::one< InvocationInfoType > InvocationInfo_;
+    ::xsd::cxx::tree::one< InvocationSourceType > InvocationSource_;
     ::xsd::cxx::tree::one< OperationHandleRefType > OperationHandleRef_;
     OperationTargetOptional OperationTarget_;
   };
@@ -5370,6 +5666,378 @@ namespace MDM
   GetContextStatesResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (const ::std::string& uri,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (const ::std::string& uri,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (const ::std::string& uri,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::xercesc::InputSource& is,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::xercesc::InputSource& is,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::xercesc::InputSource& is,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (const ::xercesc::DOMDocument& d,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (const ::std::string& uri,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (const ::std::string& uri,
+                                             ::xml_schema::ErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (const ::std::string& uri,
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             ::xml_schema::ErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             const ::std::string& id,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             const ::std::string& id,
+                                             ::xml_schema::ErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             const ::std::string& id,
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::xercesc::InputSource& is,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::xercesc::InputSource& is,
+                                             ::xml_schema::ErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::xercesc::InputSource& is,
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (const ::xercesc::DOMDocument& d,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (const ::std::string& uri,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (const ::std::string& uri,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (const ::std::string& uri,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             const ::std::string& id,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             const ::std::string& id,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             const ::std::string& id,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::xercesc::InputSource& is,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::xercesc::InputSource& is,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::xercesc::InputSource& is,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (const ::xercesc::DOMDocument& d,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (const ::std::string& uri,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (const ::std::string& uri,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (const ::std::string& uri,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::xercesc::InputSource& is,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::xercesc::InputSource& is,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::xercesc::InputSource& is,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (const ::xercesc::DOMDocument& d,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
@@ -9887,6 +10555,278 @@ namespace MDM
   //
 
   void
+  GetContextStatesByIdentification_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentification_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentification_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetContextStatesByIdentification_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentification_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentification_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetContextStatesByIdentification_ (::xercesc::DOMDocument& d,
+                                     const ::MDM::GetContextStatesByIdentification& x,
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetContextStatesByIdentification_ (const ::MDM::GetContextStatesByIdentification& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetContextStatesByIdentificationResponse_ (::std::ostream& os,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentificationResponse_ (::std::ostream& os,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             ::xml_schema::ErrorHandler& eh,
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentificationResponse_ (::std::ostream& os,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetContextStatesByIdentificationResponse_ (::xercesc::XMLFormatTarget& ft,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentificationResponse_ (::xercesc::XMLFormatTarget& ft,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             ::xml_schema::ErrorHandler& eh,
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentificationResponse_ (::xercesc::XMLFormatTarget& ft,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetContextStatesByIdentificationResponse_ (::xercesc::DOMDocument& d,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x,
+                                             ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetContextStatesByIdentificationResponse_ (const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetContextStatesByFilter_ (::std::ostream& os,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilter_ (::std::ostream& os,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             ::xml_schema::ErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilter_ (::std::ostream& os,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             ::xercesc::DOMErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetContextStatesByFilter_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilter_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             ::xml_schema::ErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilter_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             ::xercesc::DOMErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetContextStatesByFilter_ (::xercesc::DOMDocument& d,
+                             const ::MDM::GetContextStatesByFilter& x,
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetContextStatesByFilter_ (const ::MDM::GetContextStatesByFilter& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetContextStatesByFilterResponse_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilterResponse_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilterResponse_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetContextStatesByFilterResponse_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilterResponse_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilterResponse_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetContextStatesByFilterResponse_ (::xercesc::DOMDocument& d,
+                                     const ::MDM::GetContextStatesByFilterResponse& x,
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetContextStatesByFilterResponse_ (const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
   SetContextState_ (::std::ostream& os,
                     const ::MDM::SetContextState& x, 
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
@@ -12806,6 +13746,18 @@ namespace MDM
 
   void
   operator<< (::xercesc::DOMElement&, const GetContextStatesResponse&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStatesByIdentification&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStatesByIdentificationResponse&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStatesByFilter&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStatesByFilterResponse&);
 
   void
   operator<< (::xercesc::DOMElement&, const SetContextState&);

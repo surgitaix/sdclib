@@ -11,7 +11,7 @@
 # use this switch to generate a template for the Default.h/.cpp 
 # the according default values have to be filled in by hand. 
 # thus be careful not to overwrite an already filled out file
-SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION = 0
+SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION = 1
 
 from lxml import etree
 from io import StringIO, BytesIO
@@ -278,14 +278,12 @@ cppFileBuilder.writeToFile('MDIB-fwd.h', contentBeginning + classBuilderForwarde
 
 if SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION:
     ## build defaults.h
-    #build mdib-fwd.h
     cppFileBuilder = make_FileManager()
     contentBeginning = cppFileBuilder.readFileToStr('Defaults_beginning.hxx')
     contentEnding = cppFileBuilder.readFileToStr('Defaults_ending.hxx')
     cppFileBuilder.writeToFile('Defaults.h', contentBeginning + classBuilderForwarder.getDefaultDeclarationGenerator() + contentEnding)
     
-    ## build defaults.h
-    #build mdib-fwd.h
+    ## build defaults.cpp
     cppFileBuilder = make_FileManager()
     contentBeginning = cppFileBuilder.readFileToStr('Defaults_beginning.cxx')
     contentEnding = cppFileBuilder.readFileToStr('Defaults_ending.cxx')

@@ -498,7 +498,7 @@ namespace CDM
     PortOptional Port_;
   };
 
-  class DicomDeviceDescriptor: public ::CDM::MdsDescriptor
+  class DicomDeviceDescriptor: public ::CDM::AbstractComplexDeviceComponentDescriptor
   {
     public:
     // NetworkAe
