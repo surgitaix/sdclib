@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -281,6 +282,27 @@ bool NumericMetricDescriptor::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
 	
+NumericMetricDescriptor & NumericMetricDescriptor::setActivationDuration(const xml_schema::Duration & value) {
+	data->ActivationDuration(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NumericMetricDescriptor::getActivationDuration(xml_schema::Duration & out) const {
+	if (data->ActivationDuration().present()) {
+		out = ConvertFromCDM::convert(data->ActivationDuration().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration NumericMetricDescriptor::getActivationDuration() const {
+	return ConvertFromCDM::convert(data->ActivationDuration().get());
+}
+	
+bool NumericMetricDescriptor::hasActivationDuration() const {
+	return data->ActivationDuration().present();
+}
+	
 NumericMetricDescriptor & NumericMetricDescriptor::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -297,6 +319,24 @@ std::vector<CodedValue> NumericMetricDescriptor::getBodySiteLists() const {
 
 void NumericMetricDescriptor::clearBodySiteLists() {
 	data->BodySite().clear();
+}
+
+NumericMetricDescriptor & NumericMetricDescriptor::addRelation(const Relation & value) {
+	data->Relation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Relation> NumericMetricDescriptor::getRelationLists() const {
+	std::vector<Relation> result;
+	result.reserve(data->Relation().size());
+	for (const auto & value: data->Relation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void NumericMetricDescriptor::clearRelationLists() {
+	data->Relation().clear();
 }
 
 NumericMetricDescriptor & NumericMetricDescriptor::setResolution(const double & value) {

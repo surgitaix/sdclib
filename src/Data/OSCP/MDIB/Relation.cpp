@@ -15,7 +15,7 @@
   */
 
 /*
- *  MdState.cpp
+ *  Relation.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,66 +29,77 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/MdState.h"
+#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/Defaults.h"
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MdState::MdState() : data(Defaults::MdState()) {
+Relation::Relation() : data(Defaults::Relation()) {
 }
 
-MdState::operator CDM::MdState() const {
+Relation::operator CDM::Relation() const {
 	return *data;
 }
 
-MdState::MdState(const CDM::MdState & object) : data(new CDM::MdState(object)) {
+Relation::Relation(const CDM::Relation & object) : data(new CDM::Relation(object)) {
 
 }
 
-MdState::MdState(const MdState & object) : data(new CDM::MdState(*object.data)) {
+Relation::Relation(const Relation & object) : data(new CDM::Relation(*object.data)) {
 
 }
 
-MdState::~MdState() {
+Relation::~Relation() {
 
 }
 
-void MdState::copyFrom(const MdState & object) {
+void Relation::copyFrom(const Relation & object) {
 	*data = *object.data;
 }
 
-MdState & MdState:: operator=(const MdState & object) {
+Relation & Relation:: operator=(const Relation & object) {
 	copyFrom(object);
 	return *this;
 }
 
 
-MdState & MdState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+Relation & Relation::setCode(const CodedValue & value) {
+	data->Code(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool MdState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+bool Relation::getCode(CodedValue & out) const {
+	if (data->Code().present()) {
+		out = ConvertFromCDM::convert(data->Code().get());
 		return true;
 	}
 	return false;
 }
 
-VersionCounter MdState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+CodedValue Relation::getCode() const {
+	return ConvertFromCDM::convert(data->Code().get());
 }
 	
-bool MdState::hasStateVersion() const {
-	return data->StateVersion().present();
+bool Relation::hasCode() const {
+	return data->Code().present();
+}
+	
+Relation & Relation::setKind(const Kind & value) {
+	data->Kind(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Kind Relation::getKind() const {
+	return ConvertFromCDM::convert(data->Kind());
 }
 	
 

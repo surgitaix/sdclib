@@ -15,7 +15,7 @@
   */
 
 /*
- *  MdState.h
+ *  Relation.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef MDSTATE_H_
-#define MDSTATE_H_
+#ifndef RELATION_H_
+#define RELATION_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,32 +40,35 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class MdState {
+class Relation {
 private:
-	MdState(const CDM::MdState & object);
-	operator CDM::MdState() const;
+	Relation(const CDM::Relation & object);
+	operator CDM::Relation() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	MdState();
-	MdState(const MdState & object);
-	virtual ~MdState();
+	Relation();
+	Relation(const Relation & object);
+	virtual ~Relation();
     
-    void copyFrom(const MdState & object);
-    MdState & operator=(const MdState & object);
+    void copyFrom(const Relation & object);
+    Relation & operator=(const Relation & object);
     
-    typedef CDM::MdState WrappedType;
+    typedef CDM::Relation WrappedType;
 
-	MdState & setStateVersion(const VersionCounter & value);
-	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+	Relation & setCode(const CodedValue & value);
+	CodedValue getCode() const;
+	bool getCode(CodedValue & out) const;
+	bool hasCode() const;
+
+	Relation & setKind(const Kind & value);
+	Kind getKind() const;
 
 private:
-	std::shared_ptr<CDM::MdState> data;
+	std::shared_ptr<CDM::Relation> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* MDSTATE_H_ */
+#endif /* RELATION_H_ */

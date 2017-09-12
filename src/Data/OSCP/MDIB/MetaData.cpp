@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/Udi.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 
 namespace OSCLib {
@@ -71,27 +72,6 @@ MetaData & MetaData:: operator=(const MetaData & object) {
 }
 
 
-MetaData & MetaData::setUdi(const std::string & value) {
-	data->Udi(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool MetaData::getUdi(std::string & out) const {
-	if (data->Udi().present()) {
-		out = ConvertFromCDM::convert(data->Udi().get());
-		return true;
-	}
-	return false;
-}
-
-std::string MetaData::getUdi() const {
-	return ConvertFromCDM::convert(data->Udi().get());
-}
-	
-bool MetaData::hasUdi() const {
-	return data->Udi().present();
-}
-	
 MetaData & MetaData::setModelNumber(const std::string & value) {
 	data->ModelNumber(ConvertToCDM::convert(value));
 	return *this;
@@ -113,6 +93,24 @@ bool MetaData::hasModelNumber() const {
 	return data->ModelNumber().present();
 }
 	
+MetaData & MetaData::addUdi(const Udi & value) {
+	data->Udi().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Udi> MetaData::getUdiLists() const {
+	std::vector<Udi> result;
+	result.reserve(data->Udi().size());
+	for (const auto & value: data->Udi()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void MetaData::clearUdiLists() {
+	data->Udi().clear();
+}
+
 MetaData & MetaData::addManufacturer(const LocalizedText & value) {
 	data->Manufacturer().push_back(ConvertToCDM::convert(value));
 	return *this;

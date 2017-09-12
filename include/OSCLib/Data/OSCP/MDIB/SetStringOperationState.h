@@ -72,6 +72,11 @@ public:
 	SetStringOperationState & setOperatingMode(const OperatingMode & value);
 	OperatingMode getOperatingMode() const;
 
+	SetStringOperationState & setAllowedValues(const AllowedValues & value);
+	AllowedValues getAllowedValues() const;
+	bool getAllowedValues(AllowedValues & out) const;
+	bool hasAllowedValues() const;
+
 private:
 	std::shared_ptr<CDM::SetStringOperationState> data;
 };

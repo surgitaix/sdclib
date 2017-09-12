@@ -80,6 +80,21 @@ public:
 	LimitAlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getPriority() const;
 
+	LimitAlertConditionDescriptor & setDefaultConditionGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getDefaultConditionGenerationDelay() const;
+	bool getDefaultConditionGenerationDelay(xml_schema::Duration & out) const;
+	bool hasDefaultConditionGenerationDelay() const;
+
+	LimitAlertConditionDescriptor & setCanEscalate(const CanEscalate & value);
+	CanEscalate getCanEscalate() const;
+	bool getCanEscalate(CanEscalate & out) const;
+	bool hasCanEscalate() const;
+
+	LimitAlertConditionDescriptor & setCanDeescalate(const CanDeescalate & value);
+	CanDeescalate getCanDeescalate() const;
+	bool getCanDeescalate(CanDeescalate & out) const;
+	bool hasCanDeescalate() const;
+
 	LimitAlertConditionDescriptor & addSource(const HandleRef & value);
 	std::vector<HandleRef> getSourceLists() const;
 	void clearSourceLists();

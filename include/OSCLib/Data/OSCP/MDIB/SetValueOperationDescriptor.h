@@ -77,6 +77,21 @@ public:
 	SetValueOperationDescriptor & setOperationTarget(const HandleRef & value);
 	HandleRef getOperationTarget() const;
 
+	SetValueOperationDescriptor & setMaxTimeToFinish(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxTimeToFinish() const;
+	bool getMaxTimeToFinish(xml_schema::Duration & out) const;
+	bool hasMaxTimeToFinish() const;
+
+	SetValueOperationDescriptor & setInvocationEffectiveTimeout(const xml_schema::Duration & value);
+	xml_schema::Duration getInvocationEffectiveTimeout() const;
+	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
+	bool hasInvocationEffectiveTimeout() const;
+
+	SetValueOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
+	xml_schema::Duration getRetriggerable() const;
+	bool getRetriggerable(xml_schema::Duration & out) const;
+	bool hasRetriggerable() const;
+
 private:
 	std::shared_ptr<CDM::SetValueOperationDescriptor> data;
 };

@@ -133,6 +133,27 @@ AlertActivation LimitAlertConditionState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
+LimitAlertConditionState & LimitAlertConditionState::setActualConditionGenerationDelay(const xml_schema::Duration & value) {
+	data->ActualConditionGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionState::getActualConditionGenerationDelay(xml_schema::Duration & out) const {
+	if (data->ActualConditionGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->ActualConditionGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration LimitAlertConditionState::getActualConditionGenerationDelay() const {
+	return ConvertFromCDM::convert(data->ActualConditionGenerationDelay().get());
+}
+	
+bool LimitAlertConditionState::hasActualConditionGenerationDelay() const {
+	return data->ActualConditionGenerationDelay().present();
+}
+	
 LimitAlertConditionState & LimitAlertConditionState::setActualPriority(const AlertConditionPriority & value) {
 	data->ActualPriority(ConvertToCDM::convert(value));
 	return *this;

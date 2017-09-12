@@ -77,20 +77,25 @@ public:
 	ActivateOperationDescriptor & setOperationTarget(const HandleRef & value);
 	HandleRef getOperationTarget() const;
 
+	ActivateOperationDescriptor & setMaxTimeToFinish(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxTimeToFinish() const;
+	bool getMaxTimeToFinish(xml_schema::Duration & out) const;
+	bool hasMaxTimeToFinish() const;
+
+	ActivateOperationDescriptor & setInvocationEffectiveTimeout(const xml_schema::Duration & value);
+	xml_schema::Duration getInvocationEffectiveTimeout() const;
+	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
+	bool hasInvocationEffectiveTimeout() const;
+
+	ActivateOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
+	xml_schema::Duration getRetriggerable() const;
+	bool getRetriggerable(xml_schema::Duration & out) const;
+	bool hasRetriggerable() const;
+
 	ActivateOperationDescriptor & addModifiableElement(const std::string & value);
 	std::vector<std::string> getModifiableElementLists() const;
 	void clearModifiableElementLists();
 	
-	ActivateOperationDescriptor & setActivationDuration(const xml_schema::Duration & value);
-	xml_schema::Duration getActivationDuration() const;
-	bool getActivationDuration(xml_schema::Duration & out) const;
-	bool hasActivationDuration() const;
-
-	ActivateOperationDescriptor & setRetriggerable(const bool & value);
-	bool getRetriggerable() const;
-	bool getRetriggerable(bool & out) const;
-	bool hasRetriggerable() const;
-
 	ActivateOperationDescriptor & addArgument(const Argument & value);
 	std::vector<Argument> getArgumentLists() const;
 	void clearArgumentLists();

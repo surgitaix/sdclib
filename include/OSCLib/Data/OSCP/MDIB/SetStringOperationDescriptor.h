@@ -77,6 +77,21 @@ public:
 	SetStringOperationDescriptor & setOperationTarget(const HandleRef & value);
 	HandleRef getOperationTarget() const;
 
+	SetStringOperationDescriptor & setMaxTimeToFinish(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxTimeToFinish() const;
+	bool getMaxTimeToFinish(xml_schema::Duration & out) const;
+	bool hasMaxTimeToFinish() const;
+
+	SetStringOperationDescriptor & setInvocationEffectiveTimeout(const xml_schema::Duration & value);
+	xml_schema::Duration getInvocationEffectiveTimeout() const;
+	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
+	bool hasInvocationEffectiveTimeout() const;
+
+	SetStringOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
+	xml_schema::Duration getRetriggerable() const;
+	bool getRetriggerable(xml_schema::Duration & out) const;
+	bool hasRetriggerable() const;
+
 	SetStringOperationDescriptor & setMaxLength(const unsigned long & value);
 	unsigned long getMaxLength() const;
 	bool getMaxLength(unsigned long & out) const;

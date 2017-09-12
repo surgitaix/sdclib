@@ -15,7 +15,7 @@
   */
 
 /*
- *  MdState.cpp
+ *  AllowedValues.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,7 +29,7 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/MdState.h"
+#include "OSCLib/Data/OSCP/MDIB/AllowedValues.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/Defaults.h"
@@ -41,54 +41,43 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MdState::MdState() : data(Defaults::MdState()) {
+AllowedValues::AllowedValues() : data(Defaults::AllowedValues()) {
 }
 
-MdState::operator CDM::MdState() const {
+AllowedValues::operator CDM::AllowedValues() const {
 	return *data;
 }
 
-MdState::MdState(const CDM::MdState & object) : data(new CDM::MdState(object)) {
+AllowedValues::AllowedValues(const CDM::AllowedValues & object) : data(new CDM::AllowedValues(object)) {
 
 }
 
-MdState::MdState(const MdState & object) : data(new CDM::MdState(*object.data)) {
+AllowedValues::AllowedValues(const AllowedValues & object) : data(new CDM::AllowedValues(*object.data)) {
 
 }
 
-MdState::~MdState() {
+AllowedValues::~AllowedValues() {
 
 }
 
-void MdState::copyFrom(const MdState & object) {
+void AllowedValues::copyFrom(const AllowedValues & object) {
 	*data = *object.data;
 }
 
-MdState & MdState:: operator=(const MdState & object) {
+AllowedValues & AllowedValues:: operator=(const AllowedValues & object) {
 	copyFrom(object);
 	return *this;
 }
 
 
-MdState & MdState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+AllowedValues & AllowedValues::setValue(const std::string & value) {
+	data->Value(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool MdState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
-		return true;
-	}
-	return false;
-}
 
-VersionCounter MdState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
-}
-	
-bool MdState::hasStateVersion() const {
-	return data->StateVersion().present();
+std::string AllowedValues::getValue() const {
+	return ConvertFromCDM::convert(data->Value());
 }
 	
 

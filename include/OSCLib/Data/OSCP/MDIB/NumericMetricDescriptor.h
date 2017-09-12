@@ -109,9 +109,18 @@ public:
 	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
+	NumericMetricDescriptor & setActivationDuration(const xml_schema::Duration & value);
+	xml_schema::Duration getActivationDuration() const;
+	bool getActivationDuration(xml_schema::Duration & out) const;
+	bool hasActivationDuration() const;
+
 	NumericMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteLists() const;
 	void clearBodySiteLists();
+	
+	NumericMetricDescriptor & addRelation(const Relation & value);
+	std::vector<Relation> getRelationLists() const;
+	void clearRelationLists();
 	
 	NumericMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;

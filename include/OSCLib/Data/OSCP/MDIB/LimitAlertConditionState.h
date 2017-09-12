@@ -75,6 +75,11 @@ public:
 	LimitAlertConditionState & setActivationState(const AlertActivation & value);
 	AlertActivation getActivationState() const;
 
+	LimitAlertConditionState & setActualConditionGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getActualConditionGenerationDelay() const;
+	bool getActualConditionGenerationDelay(xml_schema::Duration & out) const;
+	bool hasActualConditionGenerationDelay() const;
+
 	LimitAlertConditionState & setActualPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getActualPriority() const;
 	bool getActualPriority(AlertConditionPriority & out) const;

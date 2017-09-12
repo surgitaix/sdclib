@@ -133,6 +133,27 @@ bool LocalizedText::hasVersion() const {
 	return data->Version().present();
 }
 	
+LocalizedText & LocalizedText::setTextWidth(const TextWidth & value) {
+	data->TextWidth(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LocalizedText::getTextWidth(TextWidth & out) const {
+	if (data->TextWidth().present()) {
+		out = ConvertFromCDM::convert(data->TextWidth().get());
+		return true;
+	}
+	return false;
+}
+
+TextWidth LocalizedText::getTextWidth() const {
+	return ConvertFromCDM::convert(data->TextWidth().get());
+}
+	
+bool LocalizedText::hasTextWidth() const {
+	return data->TextWidth().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

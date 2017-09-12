@@ -37,6 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -280,6 +281,27 @@ bool StringMetricDescriptor::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
 	
+StringMetricDescriptor & StringMetricDescriptor::setActivationDuration(const xml_schema::Duration & value) {
+	data->ActivationDuration(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricDescriptor::getActivationDuration(xml_schema::Duration & out) const {
+	if (data->ActivationDuration().present()) {
+		out = ConvertFromCDM::convert(data->ActivationDuration().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration StringMetricDescriptor::getActivationDuration() const {
+	return ConvertFromCDM::convert(data->ActivationDuration().get());
+}
+	
+bool StringMetricDescriptor::hasActivationDuration() const {
+	return data->ActivationDuration().present();
+}
+	
 StringMetricDescriptor & StringMetricDescriptor::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -296,6 +318,24 @@ std::vector<CodedValue> StringMetricDescriptor::getBodySiteLists() const {
 
 void StringMetricDescriptor::clearBodySiteLists() {
 	data->BodySite().clear();
+}
+
+StringMetricDescriptor & StringMetricDescriptor::addRelation(const Relation & value) {
+	data->Relation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Relation> StringMetricDescriptor::getRelationLists() const {
+	std::vector<Relation> result;
+	result.reserve(data->Relation().size());
+	for (const auto & value: data->Relation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void StringMetricDescriptor::clearRelationLists() {
+	data->Relation().clear();
 }
 
 

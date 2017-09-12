@@ -77,6 +77,21 @@ public:
 	SetMetricStateOperationDescriptor & setOperationTarget(const HandleRef & value);
 	HandleRef getOperationTarget() const;
 
+	SetMetricStateOperationDescriptor & setMaxTimeToFinish(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxTimeToFinish() const;
+	bool getMaxTimeToFinish(xml_schema::Duration & out) const;
+	bool hasMaxTimeToFinish() const;
+
+	SetMetricStateOperationDescriptor & setInvocationEffectiveTimeout(const xml_schema::Duration & value);
+	xml_schema::Duration getInvocationEffectiveTimeout() const;
+	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
+	bool hasInvocationEffectiveTimeout() const;
+
+	SetMetricStateOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
+	xml_schema::Duration getRetriggerable() const;
+	bool getRetriggerable(xml_schema::Duration & out) const;
+	bool hasRetriggerable() const;
+
 	SetMetricStateOperationDescriptor & addModifiableElement(const std::string & value);
 	std::vector<std::string> getModifiableElementLists() const;
 	void clearModifiableElementLists();

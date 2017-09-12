@@ -1,3 +1,115 @@
+#include "OSCLib/Data/OSCP/MDIB/Mdib.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdState.h"
+#include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/Range.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
+#include "OSCLib/Data/OSCP/MDIB/ApprovedJurisdictions.h"
+#include "OSCLib/Data/OSCP/MDIB/OperatingJurisdiction.h"
+#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
+#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/Udi.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdState.h"
+#include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ChannelState.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemSignalActivation.h"
+#include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
+#include "OSCLib/Data/OSCP/MDIB/CauseInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/RemedyInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
+#include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
+#include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
+#include "OSCLib/Data/OSCP/MDIB/Annotation.h"
+#include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
+#include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
+#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h"
+#include "OSCLib/Data/OSCP/MDIB/Relation.h"
+#include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ScoState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetValueOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetValueOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetStringOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/AllowedValues.h"
+#include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/Argument.h"
+#include "OSCLib/Data/OSCP/MDIB/ActivateOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetMetricStateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetMetricStateOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetComponentStateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetComponentStateOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationState.h"
+#include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ClockState.h"
+#include "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/BatteryState.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/BaseDemographics.h"
+#include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/PatientDemographicsCoreData.h"
+#include "OSCLib/Data/OSCP/MDIB/NeonatalPatientDemographicsCoreData.h"
+#include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h"
+#include "OSCLib/Data/OSCP/MDIB/ReferenceRange.h"
+#include "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationReference.h"
+#include "OSCLib/Data/OSCP/MDIB/OrderDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/PersonParticipation.h"
+#include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/WorkflowDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MeansContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/ContainmentTree.h"
+#include "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h"
+
+
+// needed SimpleTypes?
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
+#include "osdm.hxx"
+
+#include <stdexcept>
+
+
 
 /*
  * ConvertFromCDM.cpp
@@ -75,113 +187,10 @@ xml_schema::Language ConvertFromCDM::convert(const xml_schema::Language & source
 	return source;
 }
 
-// needed SimpleTypes?
-#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "osdm.hxx"
-
-#include <stdexcept>
-
 
 // autogenerated code
 
-#include "OSCLib/Data/OSCP/MDIB/Mdib.h"
-#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
-#include "OSCLib/Data/OSCP/MDIB/MdState.h"
-#include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
-#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
-#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
-#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/VmdState.h"
-#include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ChannelState.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemSignalActivation.h"
-#include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
-#include "OSCLib/Data/OSCP/MDIB/CauseInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/RemedyInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
-#include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
-#include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
-#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
-#include "OSCLib/Data/OSCP/MDIB/Annotation.h"
-#include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h"
-#include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ScoState.h"
-#include "OSCLib/Data/OSCP/MDIB/SetValueOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetValueOperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetStringOperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/Argument.h"
-#include "OSCLib/Data/OSCP/MDIB/ActivateOperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/SetMetricStateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetMetricStateOperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/SetComponentStateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetComponentStateOperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationState.h"
-#include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ClockState.h"
-#include "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/BatteryState.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/BaseDemographics.h"
-#include "OSCLib/Data/OSCP/MDIB/PersonReference.h"
-#include "OSCLib/Data/OSCP/MDIB/LocationDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/PatientDemographicsCoreData.h"
-#include "OSCLib/Data/OSCP/MDIB/NeonatalPatientDemographicsCoreData.h"
-#include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferenceRange.h"
-#include "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h"
-#include "OSCLib/Data/OSCP/MDIB/LocationReference.h"
-#include "OSCLib/Data/OSCP/MDIB/OrderDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/PersonParticipation.h"
-#include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/WorkflowDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h"
-#include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/MeansContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/ContainmentTree.h"
-#include "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h"
+
 MeasurementValidity ConvertFromCDM::convert(const CDM::MeasurementValidity & source) {
 	switch (source) {
 		case CDM::MeasurementValidity::Vld: return MeasurementValidity::Vld;
@@ -384,10 +393,49 @@ PatientType ConvertFromCDM::convert(const CDM::PatientType & source) {
 	switch (source) {
 		case CDM::PatientType::Unspec: return PatientType::Unspec;
 		case CDM::PatientType::Ad: return PatientType::Ad;
+		case CDM::PatientType::Ado: return PatientType::Ado;
 		case CDM::PatientType::Ped: return PatientType::Ped;
+		case CDM::PatientType::Inf: return PatientType::Inf;
 		case CDM::PatientType::Neo: return PatientType::Neo;
+		case CDM::PatientType::Oth: return PatientType::Oth;
 	}
 	throw std::runtime_error("Illegal value for PatientType");
+}
+
+TextWidth ConvertFromCDM::convert(const CDM::TextWidth & source) {
+	switch (source) {
+		case CDM::TextWidth::Shrt: return TextWidth::Shrt;
+		case CDM::TextWidth::Nml: return TextWidth::Nml;
+		case CDM::TextWidth::Lng: return TextWidth::Lng;
+	}
+	throw std::runtime_error("Illegal value for TextWidth");
+}
+
+CanEscalate ConvertFromCDM::convert(const CDM::CanEscalate & source) {
+	switch (source) {
+		case CDM::CanEscalate::Me: return CanEscalate::Me;
+		case CDM::CanEscalate::Hi: return CanEscalate::Hi;
+	}
+	throw std::runtime_error("Illegal value for CanEscalate");
+}
+
+CanDeescalate ConvertFromCDM::convert(const CDM::CanDeescalate & source) {
+	switch (source) {
+		case CDM::CanDeescalate::Me: return CanDeescalate::Me;
+		case CDM::CanDeescalate::Lo: return CanDeescalate::Lo;
+	}
+	throw std::runtime_error("Illegal value for CanDeescalate");
+}
+
+Kind ConvertFromCDM::convert(const CDM::Kind & source) {
+	switch (source) {
+		case CDM::Kind::Rcm: return Kind::Rcm;
+		case CDM::Kind::PS: return Kind::PS;
+		case CDM::Kind::SST: return Kind::SST;
+		case CDM::Kind::ECE: return Kind::ECE;
+		case CDM::Kind::Oth: return Kind::Oth;
+	}
+	throw std::runtime_error("Illegal value for Kind");
 }
 
 ChargeStatus ConvertFromCDM::convert(const CDM::ChargeStatus & source) {
@@ -398,6 +446,14 @@ ChargeStatus ConvertFromCDM::convert(const CDM::ChargeStatus & source) {
 		case CDM::ChargeStatus::DEB: return ChargeStatus::DEB;
 	}
 	throw std::runtime_error("Illegal value for ChargeStatus");
+}
+
+Criticality ConvertFromCDM::convert(const CDM::Criticality & source) {
+	switch (source) {
+		case CDM::Criticality::Lo: return Criticality::Lo;
+		case CDM::Criticality::Hi: return Criticality::Hi;
+	}
+	throw std::runtime_error("Illegal value for Criticality");
 }
 
 Mdib ConvertFromCDM::convert(const CDM::Mdib & source) {
@@ -432,6 +488,14 @@ Measurement ConvertFromCDM::convert(const CDM::Measurement & source) {
 	return Measurement(source);
 }
 
+ApprovedJurisdictions ConvertFromCDM::convert(const CDM::ApprovedJurisdictions & source) {
+	return ApprovedJurisdictions(source);
+}
+
+OperatingJurisdiction ConvertFromCDM::convert(const CDM::OperatingJurisdiction & source) {
+	return OperatingJurisdiction(source);
+}
+
 AbstractDescriptor ConvertFromCDM::convert(const CDM::AbstractDescriptor & source) {
 	return AbstractDescriptor(source);
 }
@@ -452,8 +516,8 @@ ProductionSpecification ConvertFromCDM::convert(const CDM::ProductionSpecificati
 	return ProductionSpecification(source);
 }
 
-AbstractAlertingDeviceComponentDescriptor ConvertFromCDM::convert(const CDM::AbstractAlertingDeviceComponentDescriptor & source) {
-	return AbstractAlertingDeviceComponentDescriptor(source);
+AbstractComplexDeviceComponentDescriptor ConvertFromCDM::convert(const CDM::AbstractComplexDeviceComponentDescriptor & source) {
+	return AbstractComplexDeviceComponentDescriptor(source);
 }
 
 CalibrationInfo ConvertFromCDM::convert(const CDM::CalibrationInfo & source) {
@@ -464,8 +528,8 @@ AbstractDeviceComponentState ConvertFromCDM::convert(const CDM::AbstractDeviceCo
 	return AbstractDeviceComponentState(source);
 }
 
-AbstractAlertingDeviceComponentState ConvertFromCDM::convert(const CDM::AbstractAlertingDeviceComponentState & source) {
-	return AbstractAlertingDeviceComponentState(source);
+AbstractComplexDeviceComponentState ConvertFromCDM::convert(const CDM::AbstractComplexDeviceComponentState & source) {
+	return AbstractComplexDeviceComponentState(source);
 }
 
 MdsDescriptor ConvertFromCDM::convert(const CDM::MdsDescriptor & source) {
@@ -474,6 +538,10 @@ MdsDescriptor ConvertFromCDM::convert(const CDM::MdsDescriptor & source) {
 
 MetaData ConvertFromCDM::convert(const CDM::MetaData & source) {
 	return MetaData(source);
+}
+
+Udi ConvertFromCDM::convert(const CDM::Udi & source) {
+	return Udi(source);
 }
 
 MdsState ConvertFromCDM::convert(const CDM::MdsState & source) {
@@ -580,6 +648,10 @@ AbstractMetricDescriptor ConvertFromCDM::convert(const CDM::AbstractMetricDescri
 	return AbstractMetricDescriptor(source);
 }
 
+Relation ConvertFromCDM::convert(const CDM::Relation & source) {
+	return Relation(source);
+}
+
 AbstractMetricState ConvertFromCDM::convert(const CDM::AbstractMetricState & source) {
 	return AbstractMetricState(source);
 }
@@ -662,6 +734,10 @@ SetStringOperationDescriptor ConvertFromCDM::convert(const CDM::SetStringOperati
 
 SetStringOperationState ConvertFromCDM::convert(const CDM::SetStringOperationState & source) {
 	return SetStringOperationState(source);
+}
+
+AllowedValues ConvertFromCDM::convert(const CDM::AllowedValues & source) {
+	return AllowedValues(source);
 }
 
 ActivateOperationDescriptor ConvertFromCDM::convert(const CDM::ActivateOperationDescriptor & source) {

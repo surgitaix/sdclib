@@ -39,6 +39,7 @@
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -282,6 +283,27 @@ bool DistributionSampleArrayMetricDescriptor::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
 	
+DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setActivationDuration(const xml_schema::Duration & value) {
+	data->ActivationDuration(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool DistributionSampleArrayMetricDescriptor::getActivationDuration(xml_schema::Duration & out) const {
+	if (data->ActivationDuration().present()) {
+		out = ConvertFromCDM::convert(data->ActivationDuration().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration DistributionSampleArrayMetricDescriptor::getActivationDuration() const {
+	return ConvertFromCDM::convert(data->ActivationDuration().get());
+}
+	
+bool DistributionSampleArrayMetricDescriptor::hasActivationDuration() const {
+	return data->ActivationDuration().present();
+}
+	
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -298,6 +320,24 @@ std::vector<CodedValue> DistributionSampleArrayMetricDescriptor::getBodySiteList
 
 void DistributionSampleArrayMetricDescriptor::clearBodySiteLists() {
 	data->BodySite().clear();
+}
+
+DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::addRelation(const Relation & value) {
+	data->Relation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Relation> DistributionSampleArrayMetricDescriptor::getRelationLists() const {
+	std::vector<Relation> result;
+	result.reserve(data->Relation().size());
+	for (const auto & value: data->Relation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void DistributionSampleArrayMetricDescriptor::clearRelationLists() {
+	data->Relation().clear();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setDomainUnit(const CodedValue & value) {

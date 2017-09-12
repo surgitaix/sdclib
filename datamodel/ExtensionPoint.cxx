@@ -40,7 +40,7 @@
 
 #include "ExtensionPoint.hxx"
 
-namespace CDM
+namespace EXT
 {
   // ExtensionType
   // 
@@ -57,7 +57,7 @@ namespace _xsd
   type_factory_plate_init;
 }
 
-namespace CDM
+namespace EXT
 {
   // ExtensionType
   //
@@ -126,9 +126,9 @@ namespace CDM
 #include <xsd/cxx/xml/sax/std-input-source.hxx>
 #include <xsd/cxx/tree/error-handler.hxx>
 
-namespace CDM
+namespace EXT
 {
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (const ::std::string& u,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -145,12 +145,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::ExtensionType > (
-      ::CDM::Extension (
+    return ::std::unique_ptr< ::EXT::ExtensionType > (
+      ::EXT::Extension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (const ::std::string& u,
              ::xml_schema::ErrorHandler& h,
              ::xml_schema::Flags f,
@@ -167,12 +167,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ExtensionType > (
-      ::CDM::Extension (
+    return ::std::unique_ptr< ::EXT::ExtensionType > (
+      ::EXT::Extension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (const ::std::string& u,
              ::xercesc::DOMErrorHandler& h,
              ::xml_schema::Flags f,
@@ -185,12 +185,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ExtensionType > (
-      ::CDM::Extension (
+    return ::std::unique_ptr< ::EXT::ExtensionType > (
+      ::EXT::Extension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::std::istream& is,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -200,10 +200,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::Extension (isrc, f, p);
+    return ::EXT::Extension (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::std::istream& is,
              ::xml_schema::ErrorHandler& h,
              ::xml_schema::Flags f,
@@ -214,20 +214,20 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::Extension (isrc, h, f, p);
+    return ::EXT::Extension (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::std::istream& is,
              ::xercesc::DOMErrorHandler& h,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::Extension (isrc, h, f, p);
+    return ::EXT::Extension (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::std::istream& is,
              const ::std::string& sid,
              ::xml_schema::Flags f,
@@ -238,10 +238,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::Extension (isrc, f, p);
+    return ::EXT::Extension (isrc, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::std::istream& is,
              const ::std::string& sid,
              ::xml_schema::ErrorHandler& h,
@@ -253,10 +253,10 @@ namespace CDM
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::Extension (isrc, h, f, p);
+    return ::EXT::Extension (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::std::istream& is,
              const ::std::string& sid,
              ::xercesc::DOMErrorHandler& h,
@@ -264,10 +264,10 @@ namespace CDM
              const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::Extension (isrc, h, f, p);
+    return ::EXT::Extension (isrc, h, f, p);
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::xercesc::InputSource& i,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -280,12 +280,12 @@ namespace CDM
 
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
-    return ::std::unique_ptr< ::CDM::ExtensionType > (
-      ::CDM::Extension (
+    return ::std::unique_ptr< ::EXT::ExtensionType > (
+      ::EXT::Extension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::xercesc::InputSource& i,
              ::xml_schema::ErrorHandler& h,
              ::xml_schema::Flags f,
@@ -298,12 +298,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ExtensionType > (
-      ::CDM::Extension (
+    return ::std::unique_ptr< ::EXT::ExtensionType > (
+      ::EXT::Extension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::xercesc::InputSource& i,
              ::xercesc::DOMErrorHandler& h,
              ::xml_schema::Flags f,
@@ -316,12 +316,12 @@ namespace CDM
     if (!d.get ())
       throw ::xsd::cxx::tree::parsing< char > ();
 
-    return ::std::unique_ptr< ::CDM::ExtensionType > (
-      ::CDM::Extension (
+    return ::std::unique_ptr< ::EXT::ExtensionType > (
+      ::EXT::Extension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (const ::xercesc::DOMDocument& doc,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties& p)
@@ -331,8 +331,8 @@ namespace CDM
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
-      return ::std::unique_ptr< ::CDM::ExtensionType > (
-        ::CDM::Extension (
+      return ::std::unique_ptr< ::EXT::ExtensionType > (
+        ::EXT::Extension (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -344,13 +344,13 @@ namespace CDM
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "Extension",
         "http://p11073-10207/draft8/ext/2017/08/07",
-        &::xsd::cxx::tree::factory_impl< ::CDM::ExtensionType >,
+        &::xsd::cxx::tree::factory_impl< ::EXT::ExtensionType >,
         true, true, e, n, f, 0));
 
     if (tmp.get () != 0)
     {
-      ::std::unique_ptr< ::CDM::ExtensionType > r (
-        dynamic_cast< ::CDM::ExtensionType* > (tmp.get ()));
+      ::std::unique_ptr< ::EXT::ExtensionType > r (
+        dynamic_cast< ::EXT::ExtensionType* > (tmp.get ()));
 
       if (r.get ())
         tmp.release ();
@@ -367,7 +367,7 @@ namespace CDM
       "http://p11073-10207/draft8/ext/2017/08/07");
   }
 
-  ::std::unique_ptr< ::CDM::ExtensionType >
+  ::std::unique_ptr< ::EXT::ExtensionType >
   Extension (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties&)
@@ -393,14 +393,14 @@ namespace CDM
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "Extension",
         "http://p11073-10207/draft8/ext/2017/08/07",
-        &::xsd::cxx::tree::factory_impl< ::CDM::ExtensionType >,
+        &::xsd::cxx::tree::factory_impl< ::EXT::ExtensionType >,
         true, true, e, n, f, 0));
 
     if (tmp.get () != 0)
     {
 
-      ::std::unique_ptr< ::CDM::ExtensionType > r (
-        dynamic_cast< ::CDM::ExtensionType* > (tmp.get ()));
+      ::std::unique_ptr< ::EXT::ExtensionType > r (
+        dynamic_cast< ::EXT::ExtensionType* > (tmp.get ()));
 
       if (r.get ())
         tmp.release ();
@@ -431,11 +431,11 @@ namespace _xsd
   type_serializer_plate_init;
 }
 
-namespace CDM
+namespace EXT
 {
   void
   Extension (::std::ostream& o,
-             const ::CDM::ExtensionType& s,
+             const ::EXT::ExtensionType& s,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
@@ -444,7 +444,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Extension (s, m, f));
+      ::EXT::Extension (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -457,7 +457,7 @@ namespace CDM
 
   void
   Extension (::std::ostream& o,
-             const ::CDM::ExtensionType& s,
+             const ::EXT::ExtensionType& s,
              ::xml_schema::ErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
@@ -467,7 +467,7 @@ namespace CDM
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Extension (s, m, f));
+      ::EXT::Extension (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -477,14 +477,14 @@ namespace CDM
 
   void
   Extension (::std::ostream& o,
-             const ::CDM::ExtensionType& s,
+             const ::EXT::ExtensionType& s,
              ::xercesc::DOMErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Extension (s, m, f));
+      ::EXT::Extension (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -494,13 +494,13 @@ namespace CDM
 
   void
   Extension (::xercesc::XMLFormatTarget& t,
-             const ::CDM::ExtensionType& s,
+             const ::EXT::ExtensionType& s,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Extension (s, m, f));
+      ::EXT::Extension (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -512,14 +512,14 @@ namespace CDM
 
   void
   Extension (::xercesc::XMLFormatTarget& t,
-             const ::CDM::ExtensionType& s,
+             const ::EXT::ExtensionType& s,
              ::xml_schema::ErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Extension (s, m, f));
+      ::EXT::Extension (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -528,14 +528,14 @@ namespace CDM
 
   void
   Extension (::xercesc::XMLFormatTarget& t,
-             const ::CDM::ExtensionType& s,
+             const ::EXT::ExtensionType& s,
              ::xercesc::DOMErrorHandler& h,
              const ::xml_schema::NamespaceInfomap& m,
              const ::std::string& e,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::Extension (s, m, f));
+      ::EXT::Extension (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -544,14 +544,14 @@ namespace CDM
 
   void
   Extension (::xercesc::DOMDocument& d,
-             const ::CDM::ExtensionType& s,
+             const ::EXT::ExtensionType& s,
              ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
     const ::xsd::cxx::xml::qualified_name< char > n (
       ::xsd::cxx::xml::dom::name< char > (e));
 
-    if (typeid (::CDM::ExtensionType) == typeid (s))
+    if (typeid (::EXT::ExtensionType) == typeid (s))
     {
       if (n.name () == "Extension" &&
           n.namespace_ () == "http://p11073-10207/draft8/ext/2017/08/07")
@@ -577,13 +577,13 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Extension (const ::CDM::ExtensionType& s,
+  Extension (const ::EXT::ExtensionType& s,
              const ::xml_schema::NamespaceInfomap& m,
              ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
-    if (typeid (::CDM::ExtensionType) == typeid (s))
+    if (typeid (::EXT::ExtensionType) == typeid (s))
     {
       d = ::xsd::cxx::xml::dom::serialize< char > (
         "Extension",
@@ -598,7 +598,7 @@ namespace CDM
         m, s, f);
     }
 
-    ::CDM::Extension (*d, s, f);
+    ::EXT::Extension (*d, s, f);
     return d;
   }
 

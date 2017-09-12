@@ -228,10 +228,49 @@ std::string EnumToString::convert(PatientType source) {
 	switch (source) {
 		case PatientType::Unspec: return "Unspec";
 		case PatientType::Ad: return "Ad";
+		case PatientType::Ado: return "Ado";
 		case PatientType::Ped: return "Ped";
+		case PatientType::Inf: return "Inf";
 		case PatientType::Neo: return "Neo";
+		case PatientType::Oth: return "Oth";
 	}
 	throw std::runtime_error("Illegal value for PatientType");
+}
+
+std::string EnumToString::convert(TextWidth source) {
+	switch (source) {
+		case TextWidth::Shrt: return "Shrt";
+		case TextWidth::Nml: return "Nml";
+		case TextWidth::Lng: return "Lng";
+	}
+	throw std::runtime_error("Illegal value for TextWidth");
+}
+
+std::string EnumToString::convert(CanEscalate source) {
+	switch (source) {
+		case CanEscalate::Me: return "Me";
+		case CanEscalate::Hi: return "Hi";
+	}
+	throw std::runtime_error("Illegal value for CanEscalate");
+}
+
+std::string EnumToString::convert(CanDeescalate source) {
+	switch (source) {
+		case CanDeescalate::Me: return "Me";
+		case CanDeescalate::Lo: return "Lo";
+	}
+	throw std::runtime_error("Illegal value for CanDeescalate");
+}
+
+std::string EnumToString::convert(Kind source) {
+	switch (source) {
+		case Kind::Rcm: return "Rcm";
+		case Kind::PS: return "PS";
+		case Kind::SST: return "SST";
+		case Kind::ECE: return "ECE";
+		case Kind::Oth: return "Oth";
+	}
+	throw std::runtime_error("Illegal value for Kind");
 }
 
 std::string EnumToString::convert(ChargeStatus source) {
@@ -242,6 +281,14 @@ std::string EnumToString::convert(ChargeStatus source) {
 		case ChargeStatus::DEB: return "DEB";
 	}
 	throw std::runtime_error("Illegal value for ChargeStatus");
+}
+
+std::string EnumToString::convert(Criticality source) {
+	switch (source) {
+		case Criticality::Lo: return "Lo";
+		case Criticality::Hi: return "Hi";
+	}
+	throw std::runtime_error("Illegal value for Criticality");
 }
 
 

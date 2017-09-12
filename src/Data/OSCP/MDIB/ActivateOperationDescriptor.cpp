@@ -155,6 +155,69 @@ HandleRef ActivateOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
 	
+ActivateOperationDescriptor & ActivateOperationDescriptor::setMaxTimeToFinish(const xml_schema::Duration & value) {
+	data->MaxTimeToFinish(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ActivateOperationDescriptor::getMaxTimeToFinish(xml_schema::Duration & out) const {
+	if (data->MaxTimeToFinish().present()) {
+		out = ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration ActivateOperationDescriptor::getMaxTimeToFinish() const {
+	return ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+}
+	
+bool ActivateOperationDescriptor::hasMaxTimeToFinish() const {
+	return data->MaxTimeToFinish().present();
+}
+	
+ActivateOperationDescriptor & ActivateOperationDescriptor::setInvocationEffectiveTimeout(const xml_schema::Duration & value) {
+	data->InvocationEffectiveTimeout(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ActivateOperationDescriptor::getInvocationEffectiveTimeout(xml_schema::Duration & out) const {
+	if (data->InvocationEffectiveTimeout().present()) {
+		out = ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration ActivateOperationDescriptor::getInvocationEffectiveTimeout() const {
+	return ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+}
+	
+bool ActivateOperationDescriptor::hasInvocationEffectiveTimeout() const {
+	return data->InvocationEffectiveTimeout().present();
+}
+	
+ActivateOperationDescriptor & ActivateOperationDescriptor::setRetriggerable(const xml_schema::Duration & value) {
+	data->Retriggerable(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ActivateOperationDescriptor::getRetriggerable(xml_schema::Duration & out) const {
+	if (data->Retriggerable().present()) {
+		out = ConvertFromCDM::convert(data->Retriggerable().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration ActivateOperationDescriptor::getRetriggerable() const {
+	return ConvertFromCDM::convert(data->Retriggerable().get());
+}
+	
+bool ActivateOperationDescriptor::hasRetriggerable() const {
+	return data->Retriggerable().present();
+}
+	
 ActivateOperationDescriptor & ActivateOperationDescriptor::addModifiableElement(const std::string & value) {
 	data->ModifiableElement().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -173,48 +236,6 @@ void ActivateOperationDescriptor::clearModifiableElementLists() {
 	data->ModifiableElement().clear();
 }
 
-ActivateOperationDescriptor & ActivateOperationDescriptor::setActivationDuration(const xml_schema::Duration & value) {
-	data->ActivationDuration(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ActivateOperationDescriptor::getActivationDuration(xml_schema::Duration & out) const {
-	if (data->ActivationDuration().present()) {
-		out = ConvertFromCDM::convert(data->ActivationDuration().get());
-		return true;
-	}
-	return false;
-}
-
-xml_schema::Duration ActivateOperationDescriptor::getActivationDuration() const {
-	return ConvertFromCDM::convert(data->ActivationDuration().get());
-}
-	
-bool ActivateOperationDescriptor::hasActivationDuration() const {
-	return data->ActivationDuration().present();
-}
-	
-ActivateOperationDescriptor & ActivateOperationDescriptor::setRetriggerable(const bool & value) {
-	data->Retriggerable(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ActivateOperationDescriptor::getRetriggerable(bool & out) const {
-	if (data->Retriggerable().present()) {
-		out = ConvertFromCDM::convert(data->Retriggerable().get());
-		return true;
-	}
-	return false;
-}
-
-bool ActivateOperationDescriptor::getRetriggerable() const {
-	return ConvertFromCDM::convert(data->Retriggerable().get());
-}
-	
-bool ActivateOperationDescriptor::hasRetriggerable() const {
-	return data->Retriggerable().present();
-}
-	
 ActivateOperationDescriptor & ActivateOperationDescriptor::addArgument(const Argument & value) {
 	data->Argument().push_back(ConvertToCDM::convert(value));
 	return *this;

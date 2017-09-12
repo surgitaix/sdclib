@@ -71,6 +71,11 @@ public:
 	bool getVersion(ReferencedVersion & out) const;
 	bool hasVersion() const;
 
+	LocalizedText & setTextWidth(const TextWidth & value);
+	TextWidth getTextWidth() const;
+	bool getTextWidth(TextWidth & out) const;
+	bool hasTextWidth() const;
+
 private:
 	std::shared_ptr<CDM::LocalizedText> data;
 };

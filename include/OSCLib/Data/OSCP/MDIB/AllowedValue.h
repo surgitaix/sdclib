@@ -64,6 +64,16 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
+	AllowedValue & setIdentification(const InstanceIdentifier & value);
+	InstanceIdentifier getIdentification() const;
+	bool getIdentification(InstanceIdentifier & out) const;
+	bool hasIdentification() const;
+
+	AllowedValue & setCharacteristic(const Measurement & value);
+	Measurement getCharacteristic() const;
+	bool getCharacteristic(Measurement & out) const;
+	bool hasCharacteristic() const;
+
 private:
 	std::shared_ptr<CDM::AllowedValue> data;
 };

@@ -75,6 +75,11 @@ public:
 	AlertSignalState & setActivationState(const AlertActivation & value);
 	AlertActivation getActivationState() const;
 
+	AlertSignalState & setActualSignalGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getActualSignalGenerationDelay() const;
+	bool getActualSignalGenerationDelay(xml_schema::Duration & out) const;
+	bool hasActualSignalGenerationDelay() const;
+
 	AlertSignalState & setPresence(const AlertSignalPresence & value);
 	AlertSignalPresence getPresence() const;
 	bool getPresence(AlertSignalPresence & out) const;

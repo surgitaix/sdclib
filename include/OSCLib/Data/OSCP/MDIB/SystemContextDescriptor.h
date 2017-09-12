@@ -84,26 +84,22 @@ public:
 	bool getLocationContext(LocationContextDescriptor & out) const;
 	bool hasLocationContext() const;
 
-	SystemContextDescriptor & setEnsembleContext(const EnsembleContextDescriptor & value);
-	EnsembleContextDescriptor getEnsembleContext() const;
-	bool getEnsembleContext(EnsembleContextDescriptor & out) const;
-	bool hasEnsembleContext() const;
-
-	SystemContextDescriptor & setOperatorContext(const OperatorContextDescriptor & value);
-	OperatorContextDescriptor getOperatorContext() const;
-	bool getOperatorContext(OperatorContextDescriptor & out) const;
-	bool hasOperatorContext() const;
-
-	SystemContextDescriptor & setWorkflowContext(const WorkflowContextDescriptor & value);
-	WorkflowContextDescriptor getWorkflowContext() const;
-	bool getWorkflowContext(WorkflowContextDescriptor & out) const;
-	bool hasWorkflowContext() const;
-
-	SystemContextDescriptor & setMeansContext(const MeansContextDescriptor & value);
-	MeansContextDescriptor getMeansContext() const;
-	bool getMeansContext(MeansContextDescriptor & out) const;
-	bool hasMeansContext() const;
-
+	SystemContextDescriptor & addEnsembleContext(const EnsembleContextDescriptor & value);
+	std::vector<EnsembleContextDescriptor> getEnsembleContextLists() const;
+	void clearEnsembleContextLists();
+	
+	SystemContextDescriptor & addOperatorContext(const OperatorContextDescriptor & value);
+	std::vector<OperatorContextDescriptor> getOperatorContextLists() const;
+	void clearOperatorContextLists();
+	
+	SystemContextDescriptor & addWorkflowContext(const WorkflowContextDescriptor & value);
+	std::vector<WorkflowContextDescriptor> getWorkflowContextLists() const;
+	void clearWorkflowContextLists();
+	
+	SystemContextDescriptor & addMeansContext(const MeansContextDescriptor & value);
+	std::vector<MeansContextDescriptor> getMeansContextLists() const;
+	void clearMeansContextLists();
+	
 private:
 	std::shared_ptr<CDM::SystemContextDescriptor> data;
 };

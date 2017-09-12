@@ -166,6 +166,69 @@ AlertConditionPriority LimitAlertConditionDescriptor::getPriority() const {
 	return ConvertFromCDM::convert(data->Priority());
 }
 	
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setDefaultConditionGenerationDelay(const xml_schema::Duration & value) {
+	data->DefaultConditionGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionDescriptor::getDefaultConditionGenerationDelay(xml_schema::Duration & out) const {
+	if (data->DefaultConditionGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration LimitAlertConditionDescriptor::getDefaultConditionGenerationDelay() const {
+	return ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+}
+	
+bool LimitAlertConditionDescriptor::hasDefaultConditionGenerationDelay() const {
+	return data->DefaultConditionGenerationDelay().present();
+}
+	
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setCanEscalate(const CanEscalate & value) {
+	data->CanEscalate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionDescriptor::getCanEscalate(CanEscalate & out) const {
+	if (data->CanEscalate().present()) {
+		out = ConvertFromCDM::convert(data->CanEscalate().get());
+		return true;
+	}
+	return false;
+}
+
+CanEscalate LimitAlertConditionDescriptor::getCanEscalate() const {
+	return ConvertFromCDM::convert(data->CanEscalate().get());
+}
+	
+bool LimitAlertConditionDescriptor::hasCanEscalate() const {
+	return data->CanEscalate().present();
+}
+	
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setCanDeescalate(const CanDeescalate & value) {
+	data->CanDeescalate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionDescriptor::getCanDeescalate(CanDeescalate & out) const {
+	if (data->CanDeescalate().present()) {
+		out = ConvertFromCDM::convert(data->CanDeescalate().get());
+		return true;
+	}
+	return false;
+}
+
+CanDeescalate LimitAlertConditionDescriptor::getCanDeescalate() const {
+	return ConvertFromCDM::convert(data->CanDeescalate().get());
+}
+	
+bool LimitAlertConditionDescriptor::hasCanDeescalate() const {
+	return data->CanDeescalate().present();
+}
+	
 LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addSource(const HandleRef & value) {
 	data->Source().push_back(ConvertToCDM::convert(value));
 	return *this;

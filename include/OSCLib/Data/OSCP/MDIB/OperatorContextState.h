@@ -113,6 +113,8 @@ public:
 	
 	OperatorContextState & setOperatorDetails(const BaseDemographics & value);
 	BaseDemographics getOperatorDetails() const;
+	bool getOperatorDetails(BaseDemographics & out) const;
+	bool hasOperatorDetails() const;
 
 private:
 	std::shared_ptr<CDM::OperatorContextState> data;

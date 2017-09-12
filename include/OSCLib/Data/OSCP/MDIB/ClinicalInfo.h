@@ -61,6 +61,16 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
+	ClinicalInfo & setCode(const CodedValue & value);
+	CodedValue getCode() const;
+	bool getCode(CodedValue & out) const;
+	bool hasCode() const;
+
+	ClinicalInfo & setCriticality(const Criticality & value);
+	Criticality getCriticality() const;
+	bool getCriticality(Criticality & out) const;
+	bool hasCriticality() const;
+
 	ClinicalInfo & addDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getDescriptionLists() const;
 	void clearDescriptionLists();

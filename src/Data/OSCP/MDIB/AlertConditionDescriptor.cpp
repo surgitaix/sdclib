@@ -165,6 +165,69 @@ AlertConditionPriority AlertConditionDescriptor::getPriority() const {
 	return ConvertFromCDM::convert(data->Priority());
 }
 	
+AlertConditionDescriptor & AlertConditionDescriptor::setDefaultConditionGenerationDelay(const xml_schema::Duration & value) {
+	data->DefaultConditionGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionDescriptor::getDefaultConditionGenerationDelay(xml_schema::Duration & out) const {
+	if (data->DefaultConditionGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration AlertConditionDescriptor::getDefaultConditionGenerationDelay() const {
+	return ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+}
+	
+bool AlertConditionDescriptor::hasDefaultConditionGenerationDelay() const {
+	return data->DefaultConditionGenerationDelay().present();
+}
+	
+AlertConditionDescriptor & AlertConditionDescriptor::setCanEscalate(const CanEscalate & value) {
+	data->CanEscalate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionDescriptor::getCanEscalate(CanEscalate & out) const {
+	if (data->CanEscalate().present()) {
+		out = ConvertFromCDM::convert(data->CanEscalate().get());
+		return true;
+	}
+	return false;
+}
+
+CanEscalate AlertConditionDescriptor::getCanEscalate() const {
+	return ConvertFromCDM::convert(data->CanEscalate().get());
+}
+	
+bool AlertConditionDescriptor::hasCanEscalate() const {
+	return data->CanEscalate().present();
+}
+	
+AlertConditionDescriptor & AlertConditionDescriptor::setCanDeescalate(const CanDeescalate & value) {
+	data->CanDeescalate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionDescriptor::getCanDeescalate(CanDeescalate & out) const {
+	if (data->CanDeescalate().present()) {
+		out = ConvertFromCDM::convert(data->CanDeescalate().get());
+		return true;
+	}
+	return false;
+}
+
+CanDeescalate AlertConditionDescriptor::getCanDeescalate() const {
+	return ConvertFromCDM::convert(data->CanDeescalate().get());
+}
+	
+bool AlertConditionDescriptor::hasCanDeescalate() const {
+	return data->CanDeescalate().present();
+}
+	
 AlertConditionDescriptor & AlertConditionDescriptor::addSource(const HandleRef & value) {
 	data->Source().push_back(ConvertToCDM::convert(value));
 	return *this;

@@ -83,6 +83,11 @@ public:
 	bool getAlertSystem(AlertSystemDescriptor & out) const;
 	bool hasAlertSystem() const;
 
+	MdsDescriptor & setSco(const ScoDescriptor & value);
+	ScoDescriptor getSco() const;
+	bool getSco(ScoDescriptor & out) const;
+	bool hasSco() const;
+
 	MdsDescriptor & setMetaData(const MetaData & value);
 	MetaData getMetaData() const;
 	bool getMetaData(MetaData & out) const;
@@ -98,16 +103,15 @@ public:
 	bool getClock(ClockDescriptor & out) const;
 	bool hasClock() const;
 
-	MdsDescriptor & setBattery(const BatteryDescriptor & value);
-	BatteryDescriptor getBattery() const;
-	bool getBattery(BatteryDescriptor & out) const;
-	bool hasBattery() const;
+	MdsDescriptor & setApprovedJurisdictions(const ApprovedJurisdictions & value);
+	ApprovedJurisdictions getApprovedJurisdictions() const;
+	bool getApprovedJurisdictions(ApprovedJurisdictions & out) const;
+	bool hasApprovedJurisdictions() const;
 
-	MdsDescriptor & setSco(const ScoDescriptor & value);
-	ScoDescriptor getSco() const;
-	bool getSco(ScoDescriptor & out) const;
-	bool hasSco() const;
-
+	MdsDescriptor & addBattery(const BatteryDescriptor & value);
+	std::vector<BatteryDescriptor> getBatteryLists() const;
+	void clearBatteryLists();
+	
 	MdsDescriptor & addVmd(const VmdDescriptor & value);
 	std::vector<VmdDescriptor> getVmdLists() const;
 	void clearVmdLists();

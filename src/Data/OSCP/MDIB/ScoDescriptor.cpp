@@ -144,24 +144,6 @@ bool ScoDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-ScoDescriptor & ScoDescriptor::addOperation(const AbstractOperationDescriptor & value) {
-	data->Operation().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<AbstractOperationDescriptor> ScoDescriptor::getOperationLists() const {
-	std::vector<AbstractOperationDescriptor> result;
-	result.reserve(data->Operation().size());
-	for (const auto & value: data->Operation()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void ScoDescriptor::clearOperationLists() {
-	data->Operation().clear();
-}
-
 
 } /* namespace OSCP */
 } /* namespace Data */

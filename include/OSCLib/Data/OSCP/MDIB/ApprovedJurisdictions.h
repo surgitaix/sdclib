@@ -15,7 +15,7 @@
   */
 
 /*
- *  MdState.h
+ *  ApprovedJurisdictions.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef MDSTATE_H_
-#define MDSTATE_H_
+#ifndef APPROVEDJURISDICTIONS_H_
+#define APPROVEDJURISDICTIONS_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,32 +40,31 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class MdState {
+class ApprovedJurisdictions {
 private:
-	MdState(const CDM::MdState & object);
-	operator CDM::MdState() const;
+	ApprovedJurisdictions(const CDM::ApprovedJurisdictions & object);
+	operator CDM::ApprovedJurisdictions() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	MdState();
-	MdState(const MdState & object);
-	virtual ~MdState();
+	ApprovedJurisdictions();
+	ApprovedJurisdictions(const ApprovedJurisdictions & object);
+	virtual ~ApprovedJurisdictions();
     
-    void copyFrom(const MdState & object);
-    MdState & operator=(const MdState & object);
+    void copyFrom(const ApprovedJurisdictions & object);
+    ApprovedJurisdictions & operator=(const ApprovedJurisdictions & object);
     
-    typedef CDM::MdState WrappedType;
+    typedef CDM::ApprovedJurisdictions WrappedType;
 
-	MdState & setStateVersion(const VersionCounter & value);
-	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
-
+	ApprovedJurisdictions & addApprovedJurisdiction(const InstanceIdentifier & value);
+	std::vector<InstanceIdentifier> getApprovedJurisdictionLists() const;
+	void clearApprovedJurisdictionLists();
+	
 private:
-	std::shared_ptr<CDM::MdState> data;
+	std::shared_ptr<CDM::ApprovedJurisdictions> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* MDSTATE_H_ */
+#endif /* APPROVEDJURISDICTIONS_H_ */

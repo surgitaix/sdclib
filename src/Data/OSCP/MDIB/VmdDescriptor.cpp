@@ -36,9 +36,10 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ApprovedJurisdictions.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
@@ -206,6 +207,27 @@ ScoDescriptor VmdDescriptor::getSco() const {
 	
 bool VmdDescriptor::hasSco() const {
 	return data->Sco().present();
+}
+	
+VmdDescriptor & VmdDescriptor::setApprovedJurisdictions(const ApprovedJurisdictions & value) {
+	data->ApprovedJurisdictions(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool VmdDescriptor::getApprovedJurisdictions(ApprovedJurisdictions & out) const {
+	if (data->ApprovedJurisdictions().present()) {
+		out = ConvertFromCDM::convert(data->ApprovedJurisdictions().get());
+		return true;
+	}
+	return false;
+}
+
+ApprovedJurisdictions VmdDescriptor::getApprovedJurisdictions() const {
+	return ConvertFromCDM::convert(data->ApprovedJurisdictions().get());
+}
+	
+bool VmdDescriptor::hasApprovedJurisdictions() const {
+	return data->ApprovedJurisdictions().present();
 }
 	
 VmdDescriptor & VmdDescriptor::addChannel(const ChannelDescriptor & value) {

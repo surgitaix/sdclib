@@ -88,6 +88,11 @@ public:
 	bool getSco(ScoDescriptor & out) const;
 	bool hasSco() const;
 
+	VmdDescriptor & setApprovedJurisdictions(const ApprovedJurisdictions & value);
+	ApprovedJurisdictions getApprovedJurisdictions() const;
+	bool getApprovedJurisdictions(ApprovedJurisdictions & out) const;
+	bool hasApprovedJurisdictions() const;
+
 	VmdDescriptor & addChannel(const ChannelDescriptor & value);
 	std::vector<ChannelDescriptor> getChannelLists() const;
 	void clearChannelLists();

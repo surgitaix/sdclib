@@ -192,90 +192,78 @@ bool SystemContextDescriptor::hasLocationContext() const {
 	return data->LocationContext().present();
 }
 	
-SystemContextDescriptor & SystemContextDescriptor::setEnsembleContext(const EnsembleContextDescriptor & value) {
-	data->EnsembleContext(ConvertToCDM::convert(value));
+SystemContextDescriptor & SystemContextDescriptor::addEnsembleContext(const EnsembleContextDescriptor & value) {
+	data->EnsembleContext().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContextDescriptor::getEnsembleContext(EnsembleContextDescriptor & out) const {
-	if (data->EnsembleContext().present()) {
-		out = ConvertFromCDM::convert(data->EnsembleContext().get());
-		return true;
+std::vector<EnsembleContextDescriptor> SystemContextDescriptor::getEnsembleContextLists() const {
+	std::vector<EnsembleContextDescriptor> result;
+	result.reserve(data->EnsembleContext().size());
+	for (const auto & value: data->EnsembleContext()) {
+		result.push_back(ConvertFromCDM::convert(value));
 	}
-	return false;
+	return result;
 }
 
-EnsembleContextDescriptor SystemContextDescriptor::getEnsembleContext() const {
-	return ConvertFromCDM::convert(data->EnsembleContext().get());
+void SystemContextDescriptor::clearEnsembleContextLists() {
+	data->EnsembleContext().clear();
 }
-	
-bool SystemContextDescriptor::hasEnsembleContext() const {
-	return data->EnsembleContext().present();
-}
-	
-SystemContextDescriptor & SystemContextDescriptor::setOperatorContext(const OperatorContextDescriptor & value) {
-	data->OperatorContext(ConvertToCDM::convert(value));
+
+SystemContextDescriptor & SystemContextDescriptor::addOperatorContext(const OperatorContextDescriptor & value) {
+	data->OperatorContext().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContextDescriptor::getOperatorContext(OperatorContextDescriptor & out) const {
-	if (data->OperatorContext().present()) {
-		out = ConvertFromCDM::convert(data->OperatorContext().get());
-		return true;
+std::vector<OperatorContextDescriptor> SystemContextDescriptor::getOperatorContextLists() const {
+	std::vector<OperatorContextDescriptor> result;
+	result.reserve(data->OperatorContext().size());
+	for (const auto & value: data->OperatorContext()) {
+		result.push_back(ConvertFromCDM::convert(value));
 	}
-	return false;
+	return result;
 }
 
-OperatorContextDescriptor SystemContextDescriptor::getOperatorContext() const {
-	return ConvertFromCDM::convert(data->OperatorContext().get());
+void SystemContextDescriptor::clearOperatorContextLists() {
+	data->OperatorContext().clear();
 }
-	
-bool SystemContextDescriptor::hasOperatorContext() const {
-	return data->OperatorContext().present();
-}
-	
-SystemContextDescriptor & SystemContextDescriptor::setWorkflowContext(const WorkflowContextDescriptor & value) {
-	data->WorkflowContext(ConvertToCDM::convert(value));
+
+SystemContextDescriptor & SystemContextDescriptor::addWorkflowContext(const WorkflowContextDescriptor & value) {
+	data->WorkflowContext().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContextDescriptor::getWorkflowContext(WorkflowContextDescriptor & out) const {
-	if (data->WorkflowContext().present()) {
-		out = ConvertFromCDM::convert(data->WorkflowContext().get());
-		return true;
+std::vector<WorkflowContextDescriptor> SystemContextDescriptor::getWorkflowContextLists() const {
+	std::vector<WorkflowContextDescriptor> result;
+	result.reserve(data->WorkflowContext().size());
+	for (const auto & value: data->WorkflowContext()) {
+		result.push_back(ConvertFromCDM::convert(value));
 	}
-	return false;
+	return result;
 }
 
-WorkflowContextDescriptor SystemContextDescriptor::getWorkflowContext() const {
-	return ConvertFromCDM::convert(data->WorkflowContext().get());
+void SystemContextDescriptor::clearWorkflowContextLists() {
+	data->WorkflowContext().clear();
 }
-	
-bool SystemContextDescriptor::hasWorkflowContext() const {
-	return data->WorkflowContext().present();
-}
-	
-SystemContextDescriptor & SystemContextDescriptor::setMeansContext(const MeansContextDescriptor & value) {
-	data->MeansContext(ConvertToCDM::convert(value));
+
+SystemContextDescriptor & SystemContextDescriptor::addMeansContext(const MeansContextDescriptor & value) {
+	data->MeansContext().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SystemContextDescriptor::getMeansContext(MeansContextDescriptor & out) const {
-	if (data->MeansContext().present()) {
-		out = ConvertFromCDM::convert(data->MeansContext().get());
-		return true;
+std::vector<MeansContextDescriptor> SystemContextDescriptor::getMeansContextLists() const {
+	std::vector<MeansContextDescriptor> result;
+	result.reserve(data->MeansContext().size());
+	for (const auto & value: data->MeansContext()) {
+		result.push_back(ConvertFromCDM::convert(value));
 	}
-	return false;
+	return result;
 }
 
-MeansContextDescriptor SystemContextDescriptor::getMeansContext() const {
-	return ConvertFromCDM::convert(data->MeansContext().get());
+void SystemContextDescriptor::clearMeansContextLists() {
+	data->MeansContext().clear();
 }
-	
-bool SystemContextDescriptor::hasMeansContext() const {
-	return data->MeansContext().present();
-}
-	
+
 
 } /* namespace OSCP */
 } /* namespace Data */

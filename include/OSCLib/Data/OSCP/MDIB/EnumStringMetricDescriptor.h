@@ -108,9 +108,18 @@ public:
 	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
+	EnumStringMetricDescriptor & setActivationDuration(const xml_schema::Duration & value);
+	xml_schema::Duration getActivationDuration() const;
+	bool getActivationDuration(xml_schema::Duration & out) const;
+	bool hasActivationDuration() const;
+
 	EnumStringMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteLists() const;
 	void clearBodySiteLists();
+	
+	EnumStringMetricDescriptor & addRelation(const Relation & value);
+	std::vector<Relation> getRelationLists() const;
+	void clearRelationLists();
 	
 	EnumStringMetricDescriptor & addAllowedValue(const AllowedValue & value);
 	std::vector<AllowedValue> getAllowedValueLists() const;

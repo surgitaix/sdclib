@@ -79,21 +79,30 @@ class ComplexTypeNodeParser(object):
         # check if element is a valid node by checking if attr. name exists
         if 'name' in xmlNode_xpath.attrib:
             nodeName = xmlNode_xpath.attrib['name']
+            
             if 'type' in xmlNode_xpath.attrib:
+                # EXCLUDE abstract elements from being added
+                # include those in the corresponding customImpls
+                # the GSL implementaion can not handle abstract classes
                 nodeType_xsd = xmlNode_xpath.attrib['type']
-                # get rid of the namespace prefix
-                nodeType = nodeType_xsd[(nodeType_xsd.index(':')+1):]
+                if (nodeType_xsd.find('Abstract') == -1):
                 
-                # check if linked to a complexType -> include is necessary
-                if nodeType in self.__complexTypes_set:
-                    self.__gslClassBuilder.addInclude(nodeType)
-                elif not (nodeType in self.__simpleTypes_set):
-                    # check if datatype is a basetype -> transform in case of
-                    # this is done after the checking for the complexTypes to assure that the compiler complains when a new unknown basetype occurs
-                    nodeType = self.__basetype_map[nodeType_xsd]
+                    # get rid of the namespace prefix
+                    nodeType = nodeType_xsd[(nodeType_xsd.index(':')+1):]
+                    
+                    # check if linked to a complexType -> include is necessary
+                    if nodeType in self.__complexTypes_set:
+                        self.__gslClassBuilder.addInclude(nodeType)
+                    elif not (nodeType in self.__simpleTypes_set):
+                        # check if datatype is a basetype -> transform in case of
+                        # this is done after the checking for the complexTypes to assure that the compiler complains when a new unknown basetype occurs
+                        nodeType = self.__basetype_map[nodeType_xsd]
+                    
+                    return nodeName, nodeType
                 
-                return nodeName, nodeType
-
+                # throw warning if referencing an abstract type
+                raise ValueError('Info linking an abstract type: Property ' + nodeName + '. Please ensure a proper implementation in the customImpl.') 
+                
             # check for embedded types in elements with no 'type' attribute
             else:
                 embeddedComplexTypeNode = xmlNode_xpath.xpath('./xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'})
@@ -110,7 +119,7 @@ class ComplexTypeNodeParser(object):
                     self.__complexTypes_set.add(nodeName)
                     print 'embedded complex type node created: ' +  nodeName
                     return nodeName, nodeName
-#                     return nodeName, nodeName + 'Type'
+#                     return nodeName, nodeName + 'Type'w
                     
                 embeddedSimpleTypeNode = xmlNode_xpath.xpath('./xsd:simpleType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'})
                 if embeddedSimpleTypeNode:
@@ -121,7 +130,7 @@ class ComplexTypeNodeParser(object):
                     print 'embedded simple type node created: ' +  nodeName
                     return nodeName, nodeName
                 
-                # Errorcase if control gets here
+                # throw error if control gets here
                 raise ValueError('WARNING: Property ' + nodeName + ' has no attribute type defined.') 
         else:
             raise ValueError('WARNING: Property has no attribute name defined.') 

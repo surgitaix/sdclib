@@ -132,6 +132,27 @@ AlertActivation AlertSignalState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
 	
+AlertSignalState & AlertSignalState::setActualSignalGenerationDelay(const xml_schema::Duration & value) {
+	data->ActualSignalGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSignalState::getActualSignalGenerationDelay(xml_schema::Duration & out) const {
+	if (data->ActualSignalGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->ActualSignalGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration AlertSignalState::getActualSignalGenerationDelay() const {
+	return ConvertFromCDM::convert(data->ActualSignalGenerationDelay().get());
+}
+	
+bool AlertSignalState::hasActualSignalGenerationDelay() const {
+	return data->ActualSignalGenerationDelay().present();
+}
+	
 AlertSignalState & AlertSignalState::setPresence(const AlertSignalPresence & value) {
 	data->Presence(ConvertToCDM::convert(value));
 	return *this;

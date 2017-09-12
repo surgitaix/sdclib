@@ -109,9 +109,18 @@ public:
 	bool getLifeTimePeriod(xml_schema::Duration & out) const;
 	bool hasLifeTimePeriod() const;
 
+	StringMetricDescriptor & setActivationDuration(const xml_schema::Duration & value);
+	xml_schema::Duration getActivationDuration() const;
+	bool getActivationDuration(xml_schema::Duration & out) const;
+	bool hasActivationDuration() const;
+
 	StringMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteLists() const;
 	void clearBodySiteLists();
+	
+	StringMetricDescriptor & addRelation(const Relation & value);
+	std::vector<Relation> getRelationLists() const;
+	void clearRelationLists();
 	
 private:
 	std::shared_ptr<CDM::StringMetricDescriptor> data;

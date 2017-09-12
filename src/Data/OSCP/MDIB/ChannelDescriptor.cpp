@@ -36,7 +36,6 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
@@ -162,45 +161,6 @@ std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecificati
 
 void ChannelDescriptor::clearProductionSpecificationLists() {
 	data->ProductionSpecification().clear();
-}
-
-ChannelDescriptor & ChannelDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
-	data->AlertSystem(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ChannelDescriptor::getAlertSystem(AlertSystemDescriptor & out) const {
-	if (data->AlertSystem().present()) {
-		out = ConvertFromCDM::convert(data->AlertSystem().get());
-		return true;
-	}
-	return false;
-}
-
-AlertSystemDescriptor ChannelDescriptor::getAlertSystem() const {
-	return ConvertFromCDM::convert(data->AlertSystem().get());
-}
-	
-bool ChannelDescriptor::hasAlertSystem() const {
-	return data->AlertSystem().present();
-}
-	
-ChannelDescriptor & ChannelDescriptor::addMetric(const AbstractMetricDescriptor & value) {
-	data->Metric().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<AbstractMetricDescriptor> ChannelDescriptor::getMetricLists() const {
-	std::vector<AbstractMetricDescriptor> result;
-	result.reserve(data->Metric().size());
-	for (const auto & value: data->Metric()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void ChannelDescriptor::clearMetricLists() {
-	data->Metric().clear();
 }
 
 

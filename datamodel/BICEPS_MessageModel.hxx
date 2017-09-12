@@ -225,7 +225,7 @@ namespace MDM
     public:
     // Extension
     //
-    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -362,7 +362,7 @@ namespace MDM
     public:
     // Extension
     //
-    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -419,7 +419,7 @@ namespace MDM
     public:
     // Extension
     //
-    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -535,7 +535,7 @@ namespace MDM
     public:
     // Extension
     //
-    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -614,7 +614,7 @@ namespace MDM
     public:
     // Extension
     //
-    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -730,7 +730,7 @@ namespace MDM
     public:
     // Extension
     //
-    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -807,7 +807,7 @@ namespace MDM
     public:
     // Extension
     //
-    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -1483,7 +1483,7 @@ namespace MDM
     public:
     // Extension
     //
-    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -4458,7 +4458,7 @@ namespace MDM
     public:
     // Extension
     //
-    typedef ::CDM::ExtensionType ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 

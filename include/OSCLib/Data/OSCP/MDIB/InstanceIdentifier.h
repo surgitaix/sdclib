@@ -61,12 +61,14 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	InstanceIdentifier & setRoot(const std::string & value);
-	std::string getRoot() const;
+	InstanceIdentifier & setRoot(const Root & value);
+	Root getRoot() const;
+	bool getRoot(Root & out) const;
+	bool hasRoot() const;
 
-	InstanceIdentifier & setExtension(const std::string & value);
-	std::string getExtension() const;
-	bool getExtension(std::string & out) const;
+	InstanceIdentifier & setExtension(const Extension & value);
+	Extension getExtension() const;
+	bool getExtension(Extension & out) const;
 	bool hasExtension() const;
 
 	InstanceIdentifier & addIdentifierName(const LocalizedText & value);

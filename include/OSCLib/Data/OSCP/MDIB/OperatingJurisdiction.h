@@ -15,7 +15,7 @@
   */
 
 /*
- *  MdState.h
+ *  OperatingJurisdiction.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef MDSTATE_H_
-#define MDSTATE_H_
+#ifndef OPERATINGJURISDICTION_H_
+#define OPERATINGJURISDICTION_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,32 +40,46 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class MdState {
+class OperatingJurisdiction {
 private:
-	MdState(const CDM::MdState & object);
-	operator CDM::MdState() const;
+	OperatingJurisdiction(const CDM::OperatingJurisdiction & object);
+	operator CDM::OperatingJurisdiction() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	MdState();
-	MdState(const MdState & object);
-	virtual ~MdState();
+	OperatingJurisdiction();
+	OperatingJurisdiction(const OperatingJurisdiction & object);
+	virtual ~OperatingJurisdiction();
     
-    void copyFrom(const MdState & object);
-    MdState & operator=(const MdState & object);
+    void copyFrom(const OperatingJurisdiction & object);
+    OperatingJurisdiction & operator=(const OperatingJurisdiction & object);
     
-    typedef CDM::MdState WrappedType;
+    typedef CDM::OperatingJurisdiction WrappedType;
 
-	MdState & setStateVersion(const VersionCounter & value);
-	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+	OperatingJurisdiction & setType(const CodedValue & value);
+	CodedValue getType() const;
+	bool getType(CodedValue & out) const;
+	bool hasType() const;
 
+	OperatingJurisdiction & setRoot(const Root & value);
+	Root getRoot() const;
+	bool getRoot(Root & out) const;
+	bool hasRoot() const;
+
+	OperatingJurisdiction & setExtension(const Extension & value);
+	Extension getExtension() const;
+	bool getExtension(Extension & out) const;
+	bool hasExtension() const;
+
+	OperatingJurisdiction & addIdentifierName(const LocalizedText & value);
+	std::vector<LocalizedText> getIdentifierNameLists() const;
+	void clearIdentifierNameLists();
+	
 private:
-	std::shared_ptr<CDM::MdState> data;
+	std::shared_ptr<CDM::OperatingJurisdiction> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* MDSTATE_H_ */
+#endif /* OPERATINGJURISDICTION_H_ */

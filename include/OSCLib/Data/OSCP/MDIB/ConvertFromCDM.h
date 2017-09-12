@@ -67,15 +67,19 @@ public:
 	static Mdib convert(const CDM::Mdib & source);
 	static MdDescription convert(const CDM::MdDescription & source);
 	static MdState convert(const CDM::MdState & source);
+	static TextWidth convert(const CDM::TextWidth & source);
 	static LocalizedText convert(const CDM::LocalizedText & source);
 	static CodedValue convert(const CDM::CodedValue & source);
 	static InstanceIdentifier convert(const CDM::InstanceIdentifier & source);
 	static Range convert(const CDM::Range & source);
 	static Measurement convert(const CDM::Measurement & source);
+	static ApprovedJurisdictions convert(const CDM::ApprovedJurisdictions & source);
+	static OperatingJurisdiction convert(const CDM::OperatingJurisdiction & source);
 	static ProductionSpecification convert(const CDM::ProductionSpecification & source);
 	static CalibrationInfo convert(const CDM::CalibrationInfo & source);
 	static MdsDescriptor convert(const CDM::MdsDescriptor & source);
 	static MetaData convert(const CDM::MetaData & source);
+	static Udi convert(const CDM::Udi & source);
 	static MdsState convert(const CDM::MdsState & source);
 	static VmdDescriptor convert(const CDM::VmdDescriptor & source);
 	static VmdState convert(const CDM::VmdState & source);
@@ -86,6 +90,8 @@ public:
 	static AlertSystemState convert(const CDM::AlertSystemState & source);
 	static CauseInfo convert(const CDM::CauseInfo & source);
 	static RemedyInfo convert(const CDM::RemedyInfo & source);
+	static CanEscalate convert(const CDM::CanEscalate & source);
+	static CanDeescalate convert(const CDM::CanDeescalate & source);
 	static AlertConditionDescriptor convert(const CDM::AlertConditionDescriptor & source);
 	static AlertConditionState convert(const CDM::AlertConditionState & source);
 	static LimitAlertConditionDescriptor convert(const CDM::LimitAlertConditionDescriptor & source);
@@ -98,6 +104,8 @@ public:
 	static StringMetricValue convert(const CDM::StringMetricValue & source);
 	static SampleArrayValue convert(const CDM::SampleArrayValue & source);
 	static ApplyAnnotation convert(const CDM::ApplyAnnotation & source);
+	static Kind convert(const CDM::Kind & source);
+	static Relation convert(const CDM::Relation & source);
 	static NumericMetricDescriptor convert(const CDM::NumericMetricDescriptor & source);
 	static NumericMetricState convert(const CDM::NumericMetricState & source);
 	static StringMetricDescriptor convert(const CDM::StringMetricDescriptor & source);
@@ -115,6 +123,7 @@ public:
 	static SetValueOperationState convert(const CDM::SetValueOperationState & source);
 	static SetStringOperationDescriptor convert(const CDM::SetStringOperationDescriptor & source);
 	static SetStringOperationState convert(const CDM::SetStringOperationState & source);
+	static AllowedValues convert(const CDM::AllowedValues & source);
 	static ActivateOperationDescriptor convert(const CDM::ActivateOperationDescriptor & source);
 	static Argument convert(const CDM::Argument & source);
 	static ActivateOperationState convert(const CDM::ActivateOperationState & source);
@@ -143,6 +152,7 @@ public:
 	static LocationContextDescriptor convert(const CDM::LocationContextDescriptor & source);
 	static LocationContextState convert(const CDM::LocationContextState & source);
 	static WorkflowContextDescriptor convert(const CDM::WorkflowContextDescriptor & source);
+	static Criticality convert(const CDM::Criticality & source);
 	static ClinicalInfo convert(const CDM::ClinicalInfo & source);
 	static RelatedMeasurement convert(const CDM::RelatedMeasurement & source);
 	static ReferenceRange convert(const CDM::ReferenceRange & source);

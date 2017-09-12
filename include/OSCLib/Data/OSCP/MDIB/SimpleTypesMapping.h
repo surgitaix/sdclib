@@ -32,6 +32,8 @@ typedef std::vector<std::string> AlertConditionReference;
 typedef double QualityIndicator;
 typedef std::vector<double> RealTimeValueType;
 typedef std::string TimeZone;
+typedef std::string Root;
+typedef std::string Extension;
 typedef std::string DateOfBirth;
 
 
@@ -197,8 +199,39 @@ enum class PatientType
 {
 	Unspec,
 	Ad,
+	Ado,
 	Ped,
-	Neo
+	Inf,
+	Neo,
+	Oth
+};
+
+enum class TextWidth
+{
+	Shrt,
+	Nml,
+	Lng
+};
+
+enum class CanEscalate
+{
+	Me,
+	Hi
+};
+
+enum class CanDeescalate
+{
+	Me,
+	Lo
+};
+
+enum class Kind
+{
+	Rcm,
+	PS,
+	SST,
+	ECE,
+	Oth
 };
 
 enum class ChargeStatus
@@ -207,6 +240,12 @@ enum class ChargeStatus
 	ChB,
 	DisChB,
 	DEB
+};
+
+enum class Criticality
+{
+	Lo,
+	Hi
 };
 
 class EnumToString {
@@ -232,7 +271,12 @@ public:
 	static std::string convert(ContextAssociation source);
 	static std::string convert(Sex source);
 	static std::string convert(PatientType source);
+	static std::string convert(TextWidth source);
+	static std::string convert(CanEscalate source);
+	static std::string convert(CanDeescalate source);
+	static std::string convert(Kind source);
 	static std::string convert(ChargeStatus source);
+	static std::string convert(Criticality source);
 };
 
 

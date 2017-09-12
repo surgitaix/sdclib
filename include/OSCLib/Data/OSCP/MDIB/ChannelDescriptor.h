@@ -78,15 +78,6 @@ public:
 	std::vector<ProductionSpecification> getProductionSpecificationLists() const;
 	void clearProductionSpecificationLists();
 	
-	ChannelDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
-	AlertSystemDescriptor getAlertSystem() const;
-	bool getAlertSystem(AlertSystemDescriptor & out) const;
-	bool hasAlertSystem() const;
-
-	ChannelDescriptor & addMetric(const AbstractMetricDescriptor & value);
-	std::vector<AbstractMetricDescriptor> getMetricLists() const;
-	void clearMetricLists();
-	
 private:
 	std::shared_ptr<CDM::ChannelDescriptor> data;
 };

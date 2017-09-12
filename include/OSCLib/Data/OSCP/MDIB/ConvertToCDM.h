@@ -65,7 +65,12 @@ public:
 	static CDM::ContextAssociation convert(const ContextAssociation & source);
 	static CDM::Sex convert(const Sex & source);
 	static CDM::PatientType convert(const PatientType & source);
+	static CDM::TextWidth convert(const TextWidth & source);
+	static CDM::CanEscalate convert(const CanEscalate & source);
+	static CDM::CanDeescalate convert(const CanDeescalate & source);
+	static CDM::Kind convert(const Kind & source);
 	static CDM::ChargeStatus convert(const ChargeStatus & source);
+	static CDM::Criticality convert(const Criticality & source);
 
 	template <class WrapperType>
 	static std::unique_ptr<typename WrapperType::WrappedType> convert(const WrapperType & source);

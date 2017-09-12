@@ -40,9 +40,10 @@
 #include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ApprovedJurisdictions.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
@@ -191,6 +192,27 @@ bool MdsDescriptor::hasAlertSystem() const {
 	return data->AlertSystem().present();
 }
 	
+MdsDescriptor & MdsDescriptor::setSco(const ScoDescriptor & value) {
+	data->Sco(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MdsDescriptor::getSco(ScoDescriptor & out) const {
+	if (data->Sco().present()) {
+		out = ConvertFromCDM::convert(data->Sco().get());
+		return true;
+	}
+	return false;
+}
+
+ScoDescriptor MdsDescriptor::getSco() const {
+	return ConvertFromCDM::convert(data->Sco().get());
+}
+	
+bool MdsDescriptor::hasSco() const {
+	return data->Sco().present();
+}
+	
 MdsDescriptor & MdsDescriptor::setMetaData(const MetaData & value) {
 	data->MetaData(ConvertToCDM::convert(value));
 	return *this;
@@ -254,48 +276,45 @@ bool MdsDescriptor::hasClock() const {
 	return data->Clock().present();
 }
 	
-MdsDescriptor & MdsDescriptor::setBattery(const BatteryDescriptor & value) {
-	data->Battery(ConvertToCDM::convert(value));
+MdsDescriptor & MdsDescriptor::setApprovedJurisdictions(const ApprovedJurisdictions & value) {
+	data->ApprovedJurisdictions(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool MdsDescriptor::getBattery(BatteryDescriptor & out) const {
-	if (data->Battery().present()) {
-		out = ConvertFromCDM::convert(data->Battery().get());
+bool MdsDescriptor::getApprovedJurisdictions(ApprovedJurisdictions & out) const {
+	if (data->ApprovedJurisdictions().present()) {
+		out = ConvertFromCDM::convert(data->ApprovedJurisdictions().get());
 		return true;
 	}
 	return false;
 }
 
-BatteryDescriptor MdsDescriptor::getBattery() const {
-	return ConvertFromCDM::convert(data->Battery().get());
+ApprovedJurisdictions MdsDescriptor::getApprovedJurisdictions() const {
+	return ConvertFromCDM::convert(data->ApprovedJurisdictions().get());
 }
 	
-bool MdsDescriptor::hasBattery() const {
-	return data->Battery().present();
+bool MdsDescriptor::hasApprovedJurisdictions() const {
+	return data->ApprovedJurisdictions().present();
 }
 	
-MdsDescriptor & MdsDescriptor::setSco(const ScoDescriptor & value) {
-	data->Sco(ConvertToCDM::convert(value));
+MdsDescriptor & MdsDescriptor::addBattery(const BatteryDescriptor & value) {
+	data->Battery().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool MdsDescriptor::getSco(ScoDescriptor & out) const {
-	if (data->Sco().present()) {
-		out = ConvertFromCDM::convert(data->Sco().get());
-		return true;
+std::vector<BatteryDescriptor> MdsDescriptor::getBatteryLists() const {
+	std::vector<BatteryDescriptor> result;
+	result.reserve(data->Battery().size());
+	for (const auto & value: data->Battery()) {
+		result.push_back(ConvertFromCDM::convert(value));
 	}
-	return false;
+	return result;
 }
 
-ScoDescriptor MdsDescriptor::getSco() const {
-	return ConvertFromCDM::convert(data->Sco().get());
+void MdsDescriptor::clearBatteryLists() {
+	data->Battery().clear();
 }
-	
-bool MdsDescriptor::hasSco() const {
-	return data->Sco().present();
-}
-	
+
 MdsDescriptor & MdsDescriptor::addVmd(const VmdDescriptor & value) {
 	data->Vmd().push_back(ConvertToCDM::convert(value));
 	return *this;

@@ -15,7 +15,7 @@
   */
 
 /*
- *  MdState.h
+ *  AllowedValues.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef MDSTATE_H_
-#define MDSTATE_H_
+#ifndef ALLOWEDVALUES_H_
+#define ALLOWEDVALUES_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,32 +40,30 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class MdState {
+class AllowedValues {
 private:
-	MdState(const CDM::MdState & object);
-	operator CDM::MdState() const;
+	AllowedValues(const CDM::AllowedValues & object);
+	operator CDM::AllowedValues() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	MdState();
-	MdState(const MdState & object);
-	virtual ~MdState();
+	AllowedValues();
+	AllowedValues(const AllowedValues & object);
+	virtual ~AllowedValues();
     
-    void copyFrom(const MdState & object);
-    MdState & operator=(const MdState & object);
+    void copyFrom(const AllowedValues & object);
+    AllowedValues & operator=(const AllowedValues & object);
     
-    typedef CDM::MdState WrappedType;
+    typedef CDM::AllowedValues WrappedType;
 
-	MdState & setStateVersion(const VersionCounter & value);
-	VersionCounter getStateVersion() const;
-	bool getStateVersion(VersionCounter & out) const;
-	bool hasStateVersion() const;
+	AllowedValues & setValue(const std::string & value);
+	std::string getValue() const;
 
 private:
-	std::shared_ptr<CDM::MdState> data;
+	std::shared_ptr<CDM::AllowedValues> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* MDSTATE_H_ */
+#endif /* ALLOWEDVALUES_H_ */

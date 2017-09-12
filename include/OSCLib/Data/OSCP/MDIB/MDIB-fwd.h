@@ -30,17 +30,20 @@ namespace OSCP {
 	class InstanceIdentifier;
 	class Range;
 	class Measurement;
+	class ApprovedJurisdictions;
+	class OperatingJurisdiction;
 	class AbstractDescriptor;
 	class AbstractState;
 	class AbstractMultiState;
 	class AbstractDeviceComponentDescriptor;
 	class ProductionSpecification;
-	class AbstractAlertingDeviceComponentDescriptor;
+	class AbstractComplexDeviceComponentDescriptor;
 	class CalibrationInfo;
 	class AbstractDeviceComponentState;
-	class AbstractAlertingDeviceComponentState;
+	class AbstractComplexDeviceComponentState;
 	class MdsDescriptor;
 	class MetaData;
+	class Udi;
 	class MdsState;
 	class VmdDescriptor;
 	class VmdState;
@@ -67,6 +70,7 @@ namespace OSCP {
 	class SampleArrayValue;
 	class ApplyAnnotation;
 	class AbstractMetricDescriptor;
+	class Relation;
 	class AbstractMetricState;
 	class NumericMetricDescriptor;
 	class NumericMetricState;
@@ -88,6 +92,7 @@ namespace OSCP {
 	class SetValueOperationState;
 	class SetStringOperationDescriptor;
 	class SetStringOperationState;
+	class AllowedValues;
 	class ActivateOperationDescriptor;
 	class Argument;
 	class ActivateOperationState;

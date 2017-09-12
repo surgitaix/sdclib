@@ -150,14 +150,24 @@ class ClassBuilderForwarding(object):
     def getConvertFromCDMDeclaration(self):
         return  self.__cppConvertFromCDMClassDeclarationBuilder.getNonBasetypeCoverterFunctionsDeclarations() + self.__cppConvertFromCDMClassDeclarationBuilder.getBasetypeCoverterFunctionsDeclarations()
     
+    # get includes
+    def getConvertFromCDMDefinitionIncludes(self):
+        return self.__cppConvertFromCDMClassDefinitionBuilder.getIncludesAsString();
+    
+    # get the rest of the class definition
     def getConvertFromCDMDefinition(self):
-        return self.__cppConvertFromCDMClassDefinitionBuilder.getIncludesAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getBaseTypesAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getEnumsAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getComplexTypeFuctionsAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getItemListAsString()
+        return self.__cppConvertFromCDMClassDefinitionBuilder.getBaseTypesAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getEnumsAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getComplexTypeFuctionsAsString() + self.__cppConvertFromCDMClassDefinitionBuilder.getItemListAsString()
     
     def getConvertToCDMDeclaration(self):
         return self.__cppConvertToCDMClassDeclarationBuilder.getNonBasetypeCoverterFunctionsDeclarations() + self.__cppConvertToCDMClassDeclarationBuilder.getBasetypeCoverterFunctionsDeclarations()
     
+    # get includes
+    def getConvertToCDMDefinitionIncludes(self):
+        return self.__cppConvertToCDMClassDefinitionBuilder.getIncludesAsString()
+    
+    # get rest
     def getConvertToCDMDefinition(self):
-        return self.__cppConvertToCDMClassDefinitionBuilder.getIncludesAsString() + self.__cppConvertToCDMClassDefinitionBuilder.getBasetype() + self.__cppConvertToCDMClassDefinitionBuilder.getEnumsAsString() + self.__cppConvertToCDMClassDefinitionBuilder.getComplexAsString() + self.__cppConvertToCDMClassDefinitionBuilder.getItemListAsString()
+        return self.__cppConvertToCDMClassDefinitionBuilder.getBasetype() + self.__cppConvertToCDMClassDefinitionBuilder.getEnumsAsString() + self.__cppConvertToCDMClassDefinitionBuilder.getComplexAsString() + self.__cppConvertToCDMClassDefinitionBuilder.getItemListAsString()
         
     def getMdibForward(self):
         return self.__mdibDeclacationsBuilder.getDeclarationsAsString()    
@@ -249,7 +259,7 @@ cppFileBuilder.writeToFile('ConvertFromCDM.h', contentBeginning + classBuilderFo
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertFromCDM_beginning.cxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertFromCDM_ending.cxx')
-cppFileBuilder.writeToFile('ConvertFromCDM.cpp', contentBeginning +  classBuilderForwarder.getConvertFromCDMDefinition() + contentEnding)
+cppFileBuilder.writeToFile('ConvertFromCDM.cpp', classBuilderForwarder.getConvertFromCDMDefinitionIncludes() + contentBeginning +  classBuilderForwarder.getConvertFromCDMDefinition() + contentEnding)
 
 # build ConvertToCDM.h
 cppFileBuilder = make_FileManager()
@@ -261,7 +271,7 @@ cppFileBuilder.writeToFile('ConvertToCDM.h', contentBeginning + classBuilderForw
 cppFileBuilder = make_FileManager()
 contentBeginning = cppFileBuilder.readFileToStr('ConvertToCDM_beginning.cxx')
 contentEnding = cppFileBuilder.readFileToStr('ConvertToCDM_ending.cxx')
-cppFileBuilder.writeToFile('ConvertToCDM.cpp', contentBeginning + classBuilderForwarder.getConvertToCDMDefinition()+ contentEnding)
+cppFileBuilder.writeToFile('ConvertToCDM.cpp', classBuilderForwarder.getConvertToCDMDefinitionIncludes() + contentBeginning + classBuilderForwarder.getConvertToCDMDefinition()+ contentEnding)
 
 
 ## complex types

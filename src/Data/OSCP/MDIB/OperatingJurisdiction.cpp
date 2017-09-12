@@ -15,7 +15,7 @@
   */
 
 /*
- *  InstanceIdentifier.cpp
+ *  OperatingJurisdiction.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,7 +29,7 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/OperatingJurisdiction.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/Defaults.h"
@@ -43,41 +43,41 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-InstanceIdentifier::InstanceIdentifier() : data(Defaults::InstanceIdentifier()) {
+OperatingJurisdiction::OperatingJurisdiction() : data(Defaults::OperatingJurisdiction()) {
 }
 
-InstanceIdentifier::operator CDM::InstanceIdentifier() const {
+OperatingJurisdiction::operator CDM::OperatingJurisdiction() const {
 	return *data;
 }
 
-InstanceIdentifier::InstanceIdentifier(const CDM::InstanceIdentifier & object) : data(new CDM::InstanceIdentifier(object)) {
+OperatingJurisdiction::OperatingJurisdiction(const CDM::OperatingJurisdiction & object) : data(new CDM::OperatingJurisdiction(object)) {
 
 }
 
-InstanceIdentifier::InstanceIdentifier(const InstanceIdentifier & object) : data(new CDM::InstanceIdentifier(*object.data)) {
+OperatingJurisdiction::OperatingJurisdiction(const OperatingJurisdiction & object) : data(new CDM::OperatingJurisdiction(*object.data)) {
 
 }
 
-InstanceIdentifier::~InstanceIdentifier() {
+OperatingJurisdiction::~OperatingJurisdiction() {
 
 }
 
-void InstanceIdentifier::copyFrom(const InstanceIdentifier & object) {
+void OperatingJurisdiction::copyFrom(const OperatingJurisdiction & object) {
 	*data = *object.data;
 }
 
-InstanceIdentifier & InstanceIdentifier:: operator=(const InstanceIdentifier & object) {
+OperatingJurisdiction & OperatingJurisdiction:: operator=(const OperatingJurisdiction & object) {
 	copyFrom(object);
 	return *this;
 }
 
 
-InstanceIdentifier & InstanceIdentifier::setType(const CodedValue & value) {
+OperatingJurisdiction & OperatingJurisdiction::setType(const CodedValue & value) {
 	data->Type(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool InstanceIdentifier::getType(CodedValue & out) const {
+bool OperatingJurisdiction::getType(CodedValue & out) const {
 	if (data->Type().present()) {
 		out = ConvertFromCDM::convert(data->Type().get());
 		return true;
@@ -85,20 +85,20 @@ bool InstanceIdentifier::getType(CodedValue & out) const {
 	return false;
 }
 
-CodedValue InstanceIdentifier::getType() const {
+CodedValue OperatingJurisdiction::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
 	
-bool InstanceIdentifier::hasType() const {
+bool OperatingJurisdiction::hasType() const {
 	return data->Type().present();
 }
 	
-InstanceIdentifier & InstanceIdentifier::setRoot(const Root & value) {
+OperatingJurisdiction & OperatingJurisdiction::setRoot(const Root & value) {
 	data->Root(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool InstanceIdentifier::getRoot(Root & out) const {
+bool OperatingJurisdiction::getRoot(Root & out) const {
 	if (data->Root().present()) {
 		out = ConvertFromCDM::convert(data->Root().get());
 		return true;
@@ -106,20 +106,20 @@ bool InstanceIdentifier::getRoot(Root & out) const {
 	return false;
 }
 
-Root InstanceIdentifier::getRoot() const {
+Root OperatingJurisdiction::getRoot() const {
 	return ConvertFromCDM::convert(data->Root().get());
 }
 	
-bool InstanceIdentifier::hasRoot() const {
+bool OperatingJurisdiction::hasRoot() const {
 	return data->Root().present();
 }
 	
-InstanceIdentifier & InstanceIdentifier::setExtension(const Extension & value) {
+OperatingJurisdiction & OperatingJurisdiction::setExtension(const Extension & value) {
 	data->Extension(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool InstanceIdentifier::getExtension(Extension & out) const {
+bool OperatingJurisdiction::getExtension(Extension & out) const {
 	if (data->Extension().present()) {
 		out = ConvertFromCDM::convert(data->Extension().get());
 		return true;
@@ -127,20 +127,20 @@ bool InstanceIdentifier::getExtension(Extension & out) const {
 	return false;
 }
 
-Extension InstanceIdentifier::getExtension() const {
+Extension OperatingJurisdiction::getExtension() const {
 	return ConvertFromCDM::convert(data->Extension().get());
 }
 	
-bool InstanceIdentifier::hasExtension() const {
+bool OperatingJurisdiction::hasExtension() const {
 	return data->Extension().present();
 }
 	
-InstanceIdentifier & InstanceIdentifier::addIdentifierName(const LocalizedText & value) {
+OperatingJurisdiction & OperatingJurisdiction::addIdentifierName(const LocalizedText & value) {
 	data->IdentifierName().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<LocalizedText> InstanceIdentifier::getIdentifierNameLists() const {
+std::vector<LocalizedText> OperatingJurisdiction::getIdentifierNameLists() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->IdentifierName().size());
 	for (const auto & value: data->IdentifierName()) {
@@ -149,7 +149,7 @@ std::vector<LocalizedText> InstanceIdentifier::getIdentifierNameLists() const {
 	return result;
 }
 
-void InstanceIdentifier::clearIdentifierNameLists() {
+void OperatingJurisdiction::clearIdentifierNameLists() {
 	data->IdentifierName().clear();
 }
 

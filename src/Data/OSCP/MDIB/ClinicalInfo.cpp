@@ -94,6 +94,48 @@ bool ClinicalInfo::hasType() const {
 	return data->Type().present();
 }
 	
+ClinicalInfo & ClinicalInfo::setCode(const CodedValue & value) {
+	data->Code(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClinicalInfo::getCode(CodedValue & out) const {
+	if (data->Code().present()) {
+		out = ConvertFromCDM::convert(data->Code().get());
+		return true;
+	}
+	return false;
+}
+
+CodedValue ClinicalInfo::getCode() const {
+	return ConvertFromCDM::convert(data->Code().get());
+}
+	
+bool ClinicalInfo::hasCode() const {
+	return data->Code().present();
+}
+	
+ClinicalInfo & ClinicalInfo::setCriticality(const Criticality & value) {
+	data->Criticality(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClinicalInfo::getCriticality(Criticality & out) const {
+	if (data->Criticality().present()) {
+		out = ConvertFromCDM::convert(data->Criticality().get());
+		return true;
+	}
+	return false;
+}
+
+Criticality ClinicalInfo::getCriticality() const {
+	return ConvertFromCDM::convert(data->Criticality().get());
+}
+	
+bool ClinicalInfo::hasCriticality() const {
+	return data->Criticality().present();
+}
+	
 ClinicalInfo & ClinicalInfo::addDescription(const LocalizedText & value) {
 	data->Description().push_back(ConvertToCDM::convert(value));
 	return *this;

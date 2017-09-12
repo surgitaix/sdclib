@@ -72,9 +72,9 @@ public:
 	SetValueOperationState & setOperatingMode(const OperatingMode & value);
 	OperatingMode getOperatingMode() const;
 
-	SetValueOperationState & addallowedRange(const Range & value);
-	std::vector<Range> getallowedRangeLists() const;
-	void clearallowedRangeLists();
+	SetValueOperationState & addAllowedRange(const Range & value);
+	std::vector<Range> getAllowedRangeLists() const;
+	void clearAllowedRangeLists();
 	
 private:
 	std::shared_ptr<CDM::SetValueOperationState> data;

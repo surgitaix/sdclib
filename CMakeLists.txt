@@ -68,8 +68,6 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 set(OSCLibSOURCES
-./src/Data/OSCP/MDIB/ProductionSpecification.cpp
-./src/Data/OSCP/MDIB/Defaults.cpp
 ./src/Data/OSCP/MDIB/ActivateOperationDescriptor.cpp
 ./src/Data/OSCP/MDIB/ActivateOperationState.cpp
 ./src/Data/OSCP/MDIB/AlertConditionDescriptor.cpp
@@ -79,8 +77,10 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/AlertSystemDescriptor.cpp
 ./src/Data/OSCP/MDIB/AlertSystemState.cpp
 ./src/Data/OSCP/MDIB/AllowedValue.cpp
+./src/Data/OSCP/MDIB/AllowedValues.cpp
 ./src/Data/OSCP/MDIB/Annotation.cpp
 ./src/Data/OSCP/MDIB/ApplyAnnotation.cpp
+./src/Data/OSCP/MDIB/ApprovedJurisdictions.cpp
 ./src/Data/OSCP/MDIB/Argument.cpp
 ./src/Data/OSCP/MDIB/BaseDemographics.cpp
 ./src/Data/OSCP/MDIB/BatteryDescriptor.cpp
@@ -97,6 +97,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/ContainmentTreeEntry.cpp
 ./src/Data/OSCP/MDIB/ConvertFromCDM.cpp
 ./src/Data/OSCP/MDIB/ConvertToCDM.cpp
+./src/Data/OSCP/MDIB/Defaults.cpp
 ./src/Data/OSCP/MDIB/DistributionSampleArrayMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/DistributionSampleArrayMetricState.cpp
 ./src/Data/OSCP/MDIB/EnsembleContextDescriptor.cpp
@@ -126,6 +127,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/NumericMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/NumericMetricState.cpp
 ./src/Data/OSCP/MDIB/NumericMetricValue.cpp
+./src/Data/OSCP/MDIB/OperatingJurisdiction.cpp
 ./src/Data/OSCP/MDIB/OperatorContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/OperatorContextState.cpp
 ./src/Data/OSCP/MDIB/OrderDetail.cpp
@@ -141,6 +143,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.cpp
 ./src/Data/OSCP/MDIB/ReferenceRange.cpp
 ./src/Data/OSCP/MDIB/RelatedMeasurement.cpp
+./src/Data/OSCP/MDIB/Relation.cpp
 ./src/Data/OSCP/MDIB/RemedyInfo.cpp
 ./src/Data/OSCP/MDIB/RequestedOrderDetail.cpp
 ./src/Data/OSCP/MDIB/SampleArrayValue.cpp
@@ -165,6 +168,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/SystemContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/SystemContextState.cpp
 ./src/Data/OSCP/MDIB/SystemSignalActivation.cpp
+./src/Data/OSCP/MDIB/Udi.cpp
 ./src/Data/OSCP/MDIB/VmdDescriptor.cpp
 ./src/Data/OSCP/MDIB/VmdState.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextDescriptor.cpp

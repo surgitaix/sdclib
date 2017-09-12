@@ -302,9 +302,20 @@ OperatorContextState & OperatorContextState::setOperatorDetails(const BaseDemogr
 	return *this;
 }
 
+bool OperatorContextState::getOperatorDetails(BaseDemographics & out) const {
+	if (data->OperatorDetails().present()) {
+		out = ConvertFromCDM::convert(data->OperatorDetails().get());
+		return true;
+	}
+	return false;
+}
 
 BaseDemographics OperatorContextState::getOperatorDetails() const {
-	return ConvertFromCDM::convert(data->OperatorDetails());
+	return ConvertFromCDM::convert(data->OperatorDetails().get());
+}
+	
+bool OperatorContextState::hasOperatorDetails() const {
+	return data->OperatorDetails().present();
 }
 	
 

@@ -37,6 +37,8 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 
 namespace OSCLib {
 namespace Data {
@@ -100,6 +102,48 @@ CodedValue AllowedValue::getType() const {
 	
 bool AllowedValue::hasType() const {
 	return data->Type().present();
+}
+	
+AllowedValue & AllowedValue::setIdentification(const InstanceIdentifier & value) {
+	data->Identification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AllowedValue::getIdentification(InstanceIdentifier & out) const {
+	if (data->Identification().present()) {
+		out = ConvertFromCDM::convert(data->Identification().get());
+		return true;
+	}
+	return false;
+}
+
+InstanceIdentifier AllowedValue::getIdentification() const {
+	return ConvertFromCDM::convert(data->Identification().get());
+}
+	
+bool AllowedValue::hasIdentification() const {
+	return data->Identification().present();
+}
+	
+AllowedValue & AllowedValue::setCharacteristic(const Measurement & value) {
+	data->Characteristic(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AllowedValue::getCharacteristic(Measurement & out) const {
+	if (data->Characteristic().present()) {
+		out = ConvertFromCDM::convert(data->Characteristic().get());
+		return true;
+	}
+	return false;
+}
+
+Measurement AllowedValue::getCharacteristic() const {
+	return ConvertFromCDM::convert(data->Characteristic().get());
+}
+	
+bool AllowedValue::hasCharacteristic() const {
+	return data->Characteristic().present();
 }
 	
 

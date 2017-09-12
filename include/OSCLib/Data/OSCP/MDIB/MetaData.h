@@ -56,16 +56,15 @@ public:
     
     typedef CDM::MetaData WrappedType;
 
-	MetaData & setUdi(const std::string & value);
-	std::string getUdi() const;
-	bool getUdi(std::string & out) const;
-	bool hasUdi() const;
-
 	MetaData & setModelNumber(const std::string & value);
 	std::string getModelNumber() const;
 	bool getModelNumber(std::string & out) const;
 	bool hasModelNumber() const;
 
+	MetaData & addUdi(const Udi & value);
+	std::vector<Udi> getUdiLists() const;
+	void clearUdiLists();
+	
 	MetaData & addManufacturer(const LocalizedText & value);
 	std::vector<LocalizedText> getManufacturerLists() const;
 	void clearManufacturerLists();

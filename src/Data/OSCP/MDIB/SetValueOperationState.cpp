@@ -133,22 +133,22 @@ OperatingMode SetValueOperationState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode());
 }
 	
-SetValueOperationState & SetValueOperationState::addallowedRange(const Range & value) {
-	data->allowedRange().push_back(ConvertToCDM::convert(value));
+SetValueOperationState & SetValueOperationState::addAllowedRange(const Range & value) {
+	data->AllowedRange().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<Range> SetValueOperationState::getallowedRangeLists() const {
+std::vector<Range> SetValueOperationState::getAllowedRangeLists() const {
 	std::vector<Range> result;
-	result.reserve(data->allowedRange().size());
-	for (const auto & value: data->allowedRange()) {
+	result.reserve(data->AllowedRange().size());
+	for (const auto & value: data->AllowedRange()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
-void SetValueOperationState::clearallowedRangeLists() {
-	data->allowedRange().clear();
+void SetValueOperationState::clearAllowedRangeLists() {
+	data->AllowedRange().clear();
 }
 
 
