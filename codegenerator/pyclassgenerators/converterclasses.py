@@ -49,8 +49,8 @@ class CppConvertFromCDMClassDefinitionBuilder(object):
         self.__basetype_map = basetype_map
     
     def addComplexType(self, typeName, abstractBool):
-        self.__complex = self.__complex + typeName + ' ConvertFromCDM::convert(const CDM::' + typeName +' & source) {\n\treturn ' + typeName + '(source);\n}\n\n'
         if not abstractBool:
+            self.__complex = self.__complex + typeName + ' ConvertFromCDM::convert(const CDM::' + typeName +' & source) {\n\treturn ' + typeName + '(source);\n}\n\n'
             self.__includes = self.__includes + '#include \"OSCLib/Data/OSCP/MDIB/'+ typeName + '.h\"\n'
         
     def addEnumConverterFunctionAsString(self,enumConverterFunction_string):

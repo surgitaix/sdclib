@@ -59,9 +59,9 @@ public:
 	CodedValue & setCode(const CodeIdentifier & value);
 	CodeIdentifier getCode() const;
 
-	CodedValue & setCodingSystem(const std::string & value);
-	std::string getCodingSystem() const;
-	bool getCodingSystem(std::string & out) const;
+	CodedValue & setCodingSystem(const xml_schema::Uri & value);
+	xml_schema::Uri getCodingSystem() const;
+	bool getCodingSystem(xml_schema::Uri & out) const;
 	bool hasCodingSystem() const;
 
 	CodedValue & setCodingSystemVersion(const std::string & value);

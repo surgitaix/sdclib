@@ -28,7 +28,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Code" type = "CodeIdentifier" optional = "false" />
-		<property name = "CodingSystem" type = "std::string" optional = "true" />
+		<property name = "CodingSystem" type = "xml_schema::Uri" optional = "true" />
 		<property name = "CodingSystemVersion" type = "std::string" optional = "true" />
 		<property name = "SymbolicCodeName" type = "SymbolicCodeName" optional = "true" />
 		<propertyList nameSingle = "CodingSystemName" nameSeveral = "CodingSystemNameLists" type = "LocalizedText" />

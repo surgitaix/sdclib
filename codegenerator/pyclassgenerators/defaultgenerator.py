@@ -32,4 +32,7 @@ class DefaultDefinitionBuilder(object):
             self.__functionDefinition = self.__functionDefinition + 'CDM::' + complexTypeName + '  * Defaults::' + complexTypeName + '() {\n\treturn new CDM::' + complexTypeName + '();\n}\n\n'
                 
     def getContent(self):
-        return self.__includes + '\n\n' + self.__functionDefinition 
+        return self.__functionDefinition 
+    
+    def getIncludes(self):
+        return self.__includes + '\n\n'

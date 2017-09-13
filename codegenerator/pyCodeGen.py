@@ -28,7 +28,7 @@ from pyclassgenerators.defaultgenerator import DefaultDeclarationBuilder, Defaul
 # mapping of basetypes:xsd -> cpp
 g_basetype_map = {'xsd:unsignedLong' : 'unsigned long', 'pm:VersionCounter' : 'unsigned long long', 'xsd:string' : 'std::string', 
                 'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'xml_schema::Qname', 'xsd:dateTime' : 'xml_schema::DateTime', 'xsd:boolean' : 'bool', 
-                'xsd:duration' : 'xml_schema::Duration', 'xsd:language' : 'xml_schema::Language', 'xsd:anyURI' : 'std::string', 'xsd:int' : 'int' , 'xsd:long' : 'long long', 
+                'xsd:duration' : 'xml_schema::Duration', 'xsd:language' : 'xml_schema::Language', 'xsd:anyURI' : 'xml_schema::Uri', 'xsd:int' : 'int' , 'xsd:long' : 'long long', 
                 'pm:HandleRef' : 'std::string' , 'xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear' : 'std::string'}
 # apiInterfaces_global structure: 1. Classname, 2. name of typedef 3. type of typedef
 # if list consists of more than three values the following entries refer to additional typdefs listed in the same 
@@ -184,6 +184,11 @@ class ClassBuilderForwarding(object):
     def getDefaultDeclarationGenerator(self):
         return self.__defaultDeclarationBuilder.getContent()
     
+    
+    def getDefaultDefinitionIncludesGenerator(self):
+        return self.__defaultDefinitionBuilder.getIncludes()
+    
+    # get rest of definition
     def getDefaultDefinitionGenerator(self):
         return self.__defaultDefinitionBuilder.getContent()
     
@@ -297,7 +302,7 @@ if SWITCH_ENABLE_DEFAULT_H_CPP_GENERATION:
     cppFileBuilder = make_FileManager()
     contentBeginning = cppFileBuilder.readFileToStr('Defaults_beginning.cxx')
     contentEnding = cppFileBuilder.readFileToStr('Defaults_ending.cxx')
-    cppFileBuilder.writeToFile('Defaults.cpp', contentBeginning + classBuilderForwarder.getDefaultDefinitionGenerator() + contentEnding)
+    cppFileBuilder.writeToFile('Defaults.cpp', classBuilderForwarder.getDefaultDefinitionIncludesGenerator() + contentBeginning + classBuilderForwarder.getDefaultDefinitionGenerator() + contentEnding)
 
 
 # ---- Statistics -----

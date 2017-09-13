@@ -32,7 +32,7 @@ typedef std::vector<std::string> AlertConditionReference;
 typedef double QualityIndicator;
 typedef std::vector<double> RealTimeValueType;
 typedef std::string TimeZone;
-typedef std::string Root;
+typedef xml_schema::Uri Root;
 typedef std::string Extension;
 typedef std::string DateOfBirth;
 

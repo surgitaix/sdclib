@@ -82,12 +82,12 @@ CodeIdentifier CodedValue::getCode() const {
 	return ConvertFromCDM::convert(data->Code());
 }
 	
-CodedValue & CodedValue::setCodingSystem(const std::string & value) {
+CodedValue & CodedValue::setCodingSystem(const xml_schema::Uri & value) {
 	data->CodingSystem(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool CodedValue::getCodingSystem(std::string & out) const {
+bool CodedValue::getCodingSystem(xml_schema::Uri & out) const {
 	if (data->CodingSystem().present()) {
 		out = ConvertFromCDM::convert(data->CodingSystem().get());
 		return true;
@@ -95,7 +95,7 @@ bool CodedValue::getCodingSystem(std::string & out) const {
 	return false;
 }
 
-std::string CodedValue::getCodingSystem() const {
+xml_schema::Uri CodedValue::getCodingSystem() const {
 	return ConvertFromCDM::convert(data->CodingSystem().get());
 }
 	
