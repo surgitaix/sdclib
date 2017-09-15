@@ -24,14 +24,14 @@
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertFromCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
-#include "OSCLib/Data/OSCP/MDIB/MDState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MDIBContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/MdState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
@@ -46,8 +46,8 @@ namespace Data {
 namespace OSCP {
 
 MDIBContainer::MDIBContainer() :
-		mddescription(new MDDescription()),
-		mdstate(new MDState()),
+		mddescription(new MdDescription()),
+		mdstate(new MdState()),
 		mdibVersion(0) {
 
 }
@@ -56,19 +56,19 @@ MDIBContainer::~MDIBContainer() {
 
 }
 
-void MDIBContainer::setMDDescription(const MDDescription & source) {
+void MDIBContainer::setMdDescription(const MdDescription & source) {
     *mddescription = source;
 }
 
-MDDescription MDIBContainer::getMDDescription() const {
+MdDescription MDIBContainer::getMdDescription() const {
     return *mddescription;
 }
 
-void MDIBContainer::setMDState(const MDState & source) {
+void MDIBContainer::setMdState(const MdState & source) {
     *mdstate = source;
 }
 
-MDState MDIBContainer::getMDState() const {
+MdState MDIBContainer::getMdState() const {
     return *mdstate;
 }
 

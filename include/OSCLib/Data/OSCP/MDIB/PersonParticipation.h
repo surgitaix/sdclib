@@ -69,6 +69,8 @@ public:
 	std::vector<CodedValue> getRoleLists() const;
 	void clearRoleLists();
 	
+	PersonParticipation & addIdentification(const InstanceIdentifier & value);
+	std::vector<InstanceIdentifier> getIdentifications() const;
 private:
 	std::shared_ptr<CDM::PersonParticipation> data;
 };

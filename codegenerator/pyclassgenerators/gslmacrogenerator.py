@@ -8,7 +8,7 @@
 
 # builds a macro for one class
 class GSLClassBuilder(object):
-    def __init__(self, class_name, parent_name, abstract_bool, apiInterfaces):
+    def __init__(self, class_name, parent_name, abstract_bool, customImpl_bool, apiInterfaces):
         # class_name: the name of the class / complex type
         # parent_name: the name of the class this class is derived from. 'NULL' if not derived
         # abstract_bool: true if class is abstract, false in the other case
@@ -25,7 +25,10 @@ class GSLClassBuilder(object):
         
         abstractConv = ['false', 'true']
         self.__abstract_string = abstractConv[abstract_bool]
-        self.__classdeclaration = '\t<class name = \"' + class_name + '\" parent = \"' + parent_name + '\" abstract = \"' + self.__abstract_string + '\">\n'
+        self.__classdeclaration = '\t<class name = \"' + class_name + '\" parent = \"' + parent_name + '\" abstract = \"' + self.__abstract_string + '\"'
+        if customImpl_bool:
+            self.__classdeclaration = self.__classdeclaration + ' customImpl = \"true\"'        
+        self.__classdeclaration = self.__classdeclaration + '>\n'
         self.checkAndAddAPIInterface(class_name)
         
     def checkAndAddAPIInterface(self, class_name):

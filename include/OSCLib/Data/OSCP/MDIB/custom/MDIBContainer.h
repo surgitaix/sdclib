@@ -24,7 +24,7 @@
 #ifndef MDIBCONTAINER_H_
 #define MDIBCONTAINER_H_
 
-#include "MDIB-fwd.h"
+#include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
 
 #include <string>
 
@@ -37,10 +37,10 @@ public:
     MDIBContainer();
     virtual ~MDIBContainer();
 
-    void setMDDescription(const MdDescription & mdd);
-    MdDescription getMDDescription() const;
-    void setMDState(const MdState & mds);
-    MdState getMDState() const;
+    void setMdDescription(const MdDescription & mdd);
+    MdDescription getMdDescription() const;
+    void setMdState(const MdState & mds);
+    MdState getMdState() const;
     void setMDIBVersion(const unsigned long long int version);
     unsigned long long int getMDIBVersion() const;
 

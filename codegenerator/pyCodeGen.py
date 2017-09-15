@@ -59,6 +59,8 @@ g_apiInterfaces = [
                            ['PatientContextState', 'DescriptorType', 'PatientContextDescriptor'],
                            ['WorkflowContextState', 'DescriptorType', 'WorkflowContextDescriptor']
                            ] 
+# only applicable for complex types
+g_customImplList = ['AlertSystemDescriptor', 'ChannelDescriptor', 'MdDescription', 'MdState', 'PersonParticipation', 'PersonReference', 'ScoDescriptor']
 
 # MDIB forward declarations
 class MDIBDeclacationsBuilder(object):
@@ -231,7 +233,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
 for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         
-        complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, simpleTypeNodeParser)   
+        complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, g_customImplList, simpleTypeNodeParser)   
         complexNodeParser.parseComplexTypeNode(complexType_node)
         ### non-gsl files
         # add to ConverterClasses

@@ -56,7 +56,7 @@ class CppEnumClassBuilder(object):
 class CppEnumToStringClassDeclarationBuilder(object):
     
     def __init__(self):
-        self.__content = 'class EnumToString {\npublic:\n'
+        self.__content = 'class EnumToString {\npublic:\n\tEnumToString();\n\tvirtual ~EnumToString();\n'
         self.__enumCounter = 0
         
     def addConvertFunctionDeclarationForSimpleType(self, simpleTypeName):

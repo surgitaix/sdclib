@@ -82,6 +82,15 @@ xml_schema::Language ConvertToCDM::convert(const xml_schema::Language & source) 
 	return source;
 }
 
+xml_schema::Uri ConvertToCDM::convert(const xml_schema::Uri & source) {
+	return source;
+}
+
+xml_schema::DateTime ConvertToCDM::convert(const xml_schema::DateTime & source) {
+	return source;
+}
+
+
 template <class WrapperType>
 std::unique_ptr<typename WrapperType::WrappedType> ConvertToCDM::convert(const WrapperType & source) {
 	return std::unique_ptr<typename WrapperType::WrappedType>(source.data->_clone());

@@ -7,13 +7,13 @@
 		<property name = "MdState" type = "MdState" optional = "true" />
 	</class>
 
-	<class name = "MdDescription" parent = "NULL" abstract = "false">
+	<class name = "MdDescription" parent = "NULL" abstract = "false" customImpl = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h" />
 		<property name = "DescriptionVersion" type = "VersionCounter" optional = "true" />
 		<propertyList nameSingle = "Mds" nameSeveral = "MdsLists" type = "MdsDescriptor" />
 	</class>
 
-	<class name = "MdState" parent = "NULL" abstract = "false">
+	<class name = "MdState" parent = "NULL" abstract = "false" customImpl = "true">
 		<property name = "StateVersion" type = "VersionCounter" optional = "true" />
 	</class>
 
@@ -175,7 +175,7 @@
 	<class name = "VmdState" parent = "AbstractComplexDeviceComponentState" abstract = "false">
 	</class>
 
-	<class name = "ChannelDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false">
+	<class name = "ChannelDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false" customImpl = "true">
 	</class>
 
 	<class name = "ChannelState" parent = "AbstractDeviceComponentState" abstract = "false">
@@ -193,7 +193,7 @@
 		<property name = "State" type = "AlertActivation" optional = "false" />
 	</class>
 
-	<class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false">
+	<class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false" customImpl = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h" />
 		<property name = "MaxPhysiologicalParallelAlarms" type = "unsigned int" optional = "true" />
@@ -441,7 +441,7 @@
 		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeLists" type = "Range" />
 	</class>
 
-	<class name = "ScoDescriptor" parent = "AbstractDescriptor" abstract = "false">
+	<class name = "ScoDescriptor" parent = "AbstractDescriptor" abstract = "false" customImpl = "true">
 	</class>
 
 	<class name = "ScoState" parent = "AbstractState" abstract = "false">
@@ -598,7 +598,7 @@
 		<propertyList nameSingle = "Middlename" nameSeveral = "MiddlenameLists" type = "std::string" />
 	</class>
 
-	<class name = "PersonReference" parent = "NULL" abstract = "false">
+	<class name = "PersonReference" parent = "NULL" abstract = "false" customImpl = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/BaseDemographics.h" />
 		<property name = "Name" type = "BaseDemographics" optional = "true" />
@@ -714,7 +714,7 @@
 		<propertyList nameSingle = "ImagingProcedure" nameSeveral = "ImagingProcedureLists" type = "ImagingProcedure" />
 	</class>
 
-	<class name = "PersonParticipation" parent = "PersonReference" abstract = "false">
+	<class name = "PersonParticipation" parent = "PersonReference" abstract = "false" customImpl = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<propertyList nameSingle = "Role" nameSeveral = "RoleLists" type = "CodedValue" />
 	</class>

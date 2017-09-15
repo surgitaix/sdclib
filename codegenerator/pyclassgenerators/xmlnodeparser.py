@@ -15,7 +15,7 @@ class ComplexTypeNodeParser(object):
     #static list of embedded nodes against double treatment
     __embeddedNodesNamesList = list()
     
-    def __init__(self, simpleTypes_set, complexTypes_set, basetype_map, apiInterface, simpleTypeNodeParser):
+    def __init__(self, simpleTypes_set, complexTypes_set, basetype_map, apiInterface, customImplList, simpleTypeNodeParser):
         # complexTypes_set: a set of all existing complexTypes. Complex types get own C++ Classes, thus they need to be references
         # simpleTypes_set: a set of all existing simpleTypes. simple types are all connected in simpleTypesMapping.cpp and are referenced to all complex classes by gsl script
         self.__simpleTypes_set = simpleTypes_set
@@ -28,6 +28,7 @@ class ComplexTypeNodeParser(object):
         self.__parentTypeName = 'NULL'
         # classes are None from the beginning. Check before usage
         self.__gslClassBuilder = None
+        self.__customImplList = customImplList
            
     def parseComplexTypeNode(self, cTNode_xpath):
         # only take nodes that have a 'name' attribute
@@ -47,7 +48,9 @@ class ComplexTypeNodeParser(object):
             # consider only those types abstract that are named that way:
             self.__abstract_bool =  (self.__complexTypeName.find('Abstract') != -1)
              # gsl-file
-            self.__gslClassBuilder = GSLClassBuilder(self.__complexTypeName, self.__parentTypeName, self.__abstract_bool, self.__apiInterface)      
+            
+            customImpl_bool = (self.__complexTypeName in self.__customImplList) 
+            self.__gslClassBuilder = GSLClassBuilder(self.__complexTypeName, self.__parentTypeName, self.__abstract_bool, customImpl_bool, self.__apiInterface)      
             print 'debug: ' + self.__complexTypeName + ', parent= ' + self.__parentTypeName + ', abstract= ' + str(self.__abstract_bool)
 
             ## elements

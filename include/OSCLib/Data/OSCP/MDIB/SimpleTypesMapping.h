@@ -250,6 +250,8 @@ enum class Criticality
 
 class EnumToString {
 public:
+	EnumToString();
+	virtual ~EnumToString();
 	static std::string convert(MeasurementValidity source);
 	static std::string convert(SafetyClassification source);
 	static std::string convert(ComponentActivation source);

@@ -97,6 +97,11 @@ public:
 	std::vector<AlertSignalDescriptor> getAlertSignalLists() const;
 	void clearAlertSignalLists();
 	
+	AlertSystemDescriptor & addAlertCondition(const AlertConditionDescriptor & value);
+	std::vector<AlertConditionDescriptor> getAlertConditions() const;
+
+	AlertSystemDescriptor & addLimitAlertCondition(const LimitAlertConditionDescriptor & source);
+	std::vector<LimitAlertConditionDescriptor> getLimitAlertConditions() const;
 private:
 	std::shared_ptr<CDM::AlertSystemDescriptor> data;
 };
