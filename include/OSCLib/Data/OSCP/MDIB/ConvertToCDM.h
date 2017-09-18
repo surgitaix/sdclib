@@ -67,6 +67,7 @@ public:
 	static CDM::ContextAssociation convert(const ContextAssociation & source);
 	static CDM::Sex convert(const Sex & source);
 	static CDM::PatientType convert(const PatientType & source);
+	static CDM::DicomTransferRole convert(const DicomTransferRole & source);
 	static CDM::TextWidth convert(const TextWidth & source);
 	static CDM::CanEscalate convert(const CanEscalate & source);
 	static CDM::CanDeescalate convert(const CanDeescalate & source);

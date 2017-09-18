@@ -54,7 +54,7 @@ class ComplexTypeNodeParser(object):
             print 'debug: ' + self.__complexTypeName + ', parent= ' + self.__parentTypeName + ', abstract= ' + str(self.__abstract_bool)
 
             ## elements
-            # elements have to be parsed before the attribute to provide a list of all embedded attributes
+            # elements have to be parsed before the attributes to provide a list of all embedded attributes
             elements_list = cTNode_xpath.xpath('./xsd:sequence/xsd:element', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'})   + cTNode_xpath.xpath('./xsd:all/xsd:element', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}) + cTNode_xpath.xpath('./xsd:choice/xsd:element', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}) + cTNode_xpath.xpath('./xsd:complexContent/xsd:extension/xsd:sequence/xsd:element', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'})
             for elementNode in elements_list:
                 if 'name' in elementNode.attrib:

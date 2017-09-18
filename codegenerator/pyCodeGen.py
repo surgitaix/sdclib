@@ -24,12 +24,15 @@ from pyclassgenerators.defaultgenerator import DefaultDeclarationBuilder, Defaul
 ##
 ## Setup
 ##
+xsdFiles = {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse('../datamodel/DICOMDeviceDescription.xsd') };
+
 #xsd:duration' : 'std::string''
 # mapping of basetypes:xsd -> cpp
 g_basetype_map = {'xsd:unsignedLong' : 'unsigned long', 'pm:VersionCounter' : 'unsigned long long', 'xsd:string' : 'std::string', 
                 'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'xml_schema::Qname', 'xsd:dateTime' : 'xml_schema::DateTime', 'xsd:boolean' : 'bool', 
                 'xsd:duration' : 'xml_schema::Duration', 'xsd:language' : 'xml_schema::Language', 'xsd:anyURI' : 'xml_schema::Uri', 'xsd:int' : 'int' , 'xsd:long' : 'long long', 
-                'pm:HandleRef' : 'std::string' , 'xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear' : 'std::string'}
+                'pm:HandleRef' : 'std::string' , 'xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear' : 'std::string', 'xsd:IDREFS' : 'std::string', 'xsd:ID' : 'std::string', 
+                'xsd:unsignedShort' : 'unsigned short'}
 # apiInterfaces_global structure: 1. Classname, 2. name of typedef 3. type of typedef
 # if list consists of more than three values the following entries refer to additional typdefs listed in the same 
 # manner; 4. name of typedef, 5. type of typedef ...
@@ -60,7 +63,7 @@ g_apiInterfaces = [
                            ['WorkflowContextState', 'DescriptorType', 'WorkflowContextDescriptor']
                            ] 
 # only applicable for complex types
-g_customImplList = ['AlertSystemDescriptor', 'ChannelDescriptor', 'MdDescription', 'MdState', 'PersonParticipation', 'PersonReference', 'ScoDescriptor']
+g_customImplList = ['ChannelDescriptor', 'MdDescription', 'MdState', 'ScoDescriptor']
 
 # MDIB forward declarations
 class MDIBDeclacationsBuilder(object):
@@ -212,7 +215,7 @@ classBuilderForwarder = ClassBuilderForwarding()
 ### SimpleTypes
 ###
 print '--- simple types ---'
-for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd') }:
+for tree in xsdFiles:
     for simpleTypeNode in tree.xpath('//xsd:simpleType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         simpleTypeNodeParser = SimpleTypeNodeParser(classBuilderForwarder, simpleTypes_set)
         simpleTypeNodeParser.parseSimpleTypeNode(simpleTypeNode)
@@ -222,7 +225,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd') }:
 print '--- complexTypes ---'
 
 ## write all complex types to set -> later needed to add include file for entries of complexType
-for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
+for tree in xsdFiles:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         # only take nodes that have an attribute
         if 'name' in complexType_node.attrib:
@@ -230,7 +233,7 @@ for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
             g_complexTypes_set.add(complexType_node.attrib['name'])
         
 # analyse complex types
-for tree in {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd')}:
+for tree in xsdFiles:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         
         complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, g_customImplList, simpleTypeNodeParser)   

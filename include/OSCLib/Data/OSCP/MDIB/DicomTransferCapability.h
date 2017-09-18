@@ -15,7 +15,7 @@
   */
 
 /*
- *  PersonParticipation.h
+ *  DicomTransferCapability.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef PERSONPARTICIPATION_H_
-#define PERSONPARTICIPATION_H_
+#ifndef DICOMTRANSFERCAPABILITY_H_
+#define DICOMTRANSFERCAPABILITY_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,40 +40,37 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class PersonParticipation {
+class DicomTransferCapability {
 private:
-	PersonParticipation(const CDM::PersonParticipation & object);
-	operator CDM::PersonParticipation() const;
+	DicomTransferCapability(const CDM::DicomTransferCapability & object);
+	operator CDM::DicomTransferCapability() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	PersonParticipation();
-	PersonParticipation(const PersonParticipation & object);
-	virtual ~PersonParticipation();
+	DicomTransferCapability();
+	DicomTransferCapability(const DicomTransferCapability & object);
+	virtual ~DicomTransferCapability();
     
-    void copyFrom(const PersonParticipation & object);
-    PersonParticipation & operator=(const PersonParticipation & object);
+    void copyFrom(const DicomTransferCapability & object);
+    DicomTransferCapability & operator=(const DicomTransferCapability & object);
     
-    typedef CDM::PersonParticipation WrappedType;
+    typedef CDM::DicomTransferCapability WrappedType;
 
-	PersonParticipation & setName(const BaseDemographics & value);
-	BaseDemographics getName() const;
-	bool getName(BaseDemographics & out) const;
-	bool hasName() const;
+	DicomTransferCapability & setSopClass(const std::string & value);
+	std::string getSopClass() const;
 
-	PersonParticipation & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentificationLists() const;
-	void clearIdentificationLists();
-	
-	PersonParticipation & addRole(const CodedValue & value);
-	std::vector<CodedValue> getRoleLists() const;
-	void clearRoleLists();
+	DicomTransferCapability & setTransferRole(const DicomTransferRole & value);
+	DicomTransferRole getTransferRole() const;
+
+	DicomTransferCapability & addTransferSyntax(const std::string & value);
+	std::vector<std::string> getTransferSyntaxLists() const;
+	void clearTransferSyntaxLists();
 	
 private:
-	std::shared_ptr<CDM::PersonParticipation> data;
+	std::shared_ptr<CDM::DicomTransferCapability> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* PERSONPARTICIPATION_H_ */
+#endif /* DICOMTRANSFERCAPABILITY_H_ */

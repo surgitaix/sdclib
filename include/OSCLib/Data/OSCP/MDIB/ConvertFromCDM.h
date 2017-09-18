@@ -66,6 +66,7 @@ public:
 	static ContextAssociation convert(const CDM::ContextAssociation & source);
 	static Sex convert(const CDM::Sex & source);
 	static PatientType convert(const CDM::PatientType & source);
+	static DicomTransferRole convert(const CDM::DicomTransferRole & source);
 	static Mdib convert(const CDM::Mdib & source);
 	static MdDescription convert(const CDM::MdDescription & source);
 	static MdState convert(const CDM::MdState & source);
@@ -174,6 +175,10 @@ public:
 	static EnsembleContextState convert(const CDM::EnsembleContextState & source);
 	static ContainmentTree convert(const CDM::ContainmentTree & source);
 	static ContainmentTreeEntry convert(const CDM::ContainmentTreeEntry & source);
+	static DicomTransferCapability convert(const CDM::DicomTransferCapability & source);
+	static DicomNetworkAe convert(const CDM::DicomNetworkAe & source);
+	static DicomNetworkConnection convert(const CDM::DicomNetworkConnection & source);
+	static DicomDeviceDescriptor convert(const CDM::DicomDeviceDescriptor & source);
 };
 
 } /* namespace OSCP */

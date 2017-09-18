@@ -65,8 +65,6 @@ public:
 	std::vector<InstanceIdentifier> getIdentificationLists() const;
 	void clearIdentificationLists();
 	
-	PersonReference & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
 private:
 	std::shared_ptr<CDM::PersonReference> data;
 };

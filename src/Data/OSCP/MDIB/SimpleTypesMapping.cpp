@@ -237,6 +237,14 @@ std::string EnumToString::convert(PatientType source) {
 	throw std::runtime_error("Illegal value for PatientType");
 }
 
+std::string EnumToString::convert(DicomTransferRole source) {
+	switch (source) {
+		case DicomTransferRole::Scu: return "Scu";
+		case DicomTransferRole::Scp: return "Scp";
+	}
+	throw std::runtime_error("Illegal value for DicomTransferRole");
+}
+
 std::string EnumToString::convert(TextWidth source) {
 	switch (source) {
 		case TextWidth::Shrt: return "Shrt";

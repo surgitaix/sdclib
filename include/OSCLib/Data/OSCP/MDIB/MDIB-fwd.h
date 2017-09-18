@@ -141,6 +141,10 @@ namespace OSCP {
 	class EnsembleContextState;
 	class ContainmentTree;
 	class ContainmentTreeEntry;
+	class DicomTransferCapability;
+	class DicomNetworkAe;
+	class DicomNetworkConnection;
+	class DicomDeviceDescriptor;
 
 
 }

@@ -1,9 +1,10 @@
 
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/SCODescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SetContextOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationDescriptor.h"
+//??
 #include "OSCLib/Data/OSCP/MDIB/SetRangeOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetValueOperationDescriptor.h"
@@ -36,9 +37,9 @@ std::vector<SetAlertStateOperationDescriptor> SCODescriptor::collectAllSetAlertS
 	return result;
 }
 
-std::vector<SetContextOperationDescriptor> SCODescriptor::collectAllSetContextOperationDescriptors() const {
-	std::vector<SetContextOperationDescriptor> result;
-	collectOperationDescriptorImpl<SetContextOperationDescriptor>(result);
+std::vector<SetContextStateOperationDescriptor> SCODescriptor::collectAllSetContextOperationDescriptors() const {
+	std::vector<SetContextStateOperationDescriptor> result;
+	collectOperationDescriptorImpl<SetContextStateOperationDescriptor>(result);
 	return result;
 }
 

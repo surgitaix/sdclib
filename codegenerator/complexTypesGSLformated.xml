@@ -193,7 +193,7 @@
 		<property name = "State" type = "AlertActivation" optional = "false" />
 	</class>
 
-	<class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false" customImpl = "true">
+	<class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h" />
 		<property name = "MaxPhysiologicalParallelAlarms" type = "unsigned int" optional = "true" />
@@ -598,7 +598,7 @@
 		<propertyList nameSingle = "Middlename" nameSeveral = "MiddlenameLists" type = "std::string" />
 	</class>
 
-	<class name = "PersonReference" parent = "NULL" abstract = "false" customImpl = "true">
+	<class name = "PersonReference" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/BaseDemographics.h" />
 		<property name = "Name" type = "BaseDemographics" optional = "true" />
@@ -714,7 +714,7 @@
 		<propertyList nameSingle = "ImagingProcedure" nameSeveral = "ImagingProcedureLists" type = "ImagingProcedure" />
 	</class>
 
-	<class name = "PersonParticipation" parent = "PersonReference" abstract = "false" customImpl = "true">
+	<class name = "PersonParticipation" parent = "PersonReference" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<propertyList nameSingle = "Role" nameSeveral = "RoleLists" type = "CodedValue" />
 	</class>
@@ -789,6 +789,41 @@
 	<class name = "ContainmentTreeEntry" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
+	</class>
+
+	<class name = "DicomTransferCapability" parent = "NULL" abstract = "false">
+		<property name = "SopClass" type = "std::string" optional = "false" />
+		<property name = "TransferRole" type = "DicomTransferRole" optional = "false" />
+		<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxLists" type = "std::string" />
+	</class>
+
+	<class name = "DicomNetworkAe" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "AeTitle" type = "std::string" optional = "false" />
+		<property name = "NetworkConnectionReference" type = "std::string" optional = "false" />
+		<property name = "AssociationInitiator" type = "bool" optional = "false" />
+		<property name = "AssociationAcceptor" type = "bool" optional = "false" />
+		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityLists" type = "DicomTransferCapability" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+	</class>
+
+	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
+		<property name = "id" type = "std::string" optional = "false" />
+		<property name = "Hostname" type = "std::string" optional = "false" />
+		<property name = "Port" type = "unsigned short" optional = "true" />
+		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteLists" type = "std::string" />
+	</class>
+
+	<class name = "DicomDeviceDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "IssuerOfPatientID" type = "std::string" optional = "true" />
+		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeLists" type = "DicomNetworkAe" />
+		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionLists" type = "DicomNetworkConnection" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+		<propertyList nameSingle = "StationName" nameSeveral = "StationNameLists" type = "LocalizedText" />
 	</class>
 
 </classes>

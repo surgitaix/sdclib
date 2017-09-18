@@ -100,6 +100,10 @@
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTree.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
 
 
 // needed SimpleTypes?
@@ -408,6 +412,14 @@ PatientType ConvertFromCDM::convert(const CDM::PatientType & source) {
 		case CDM::PatientType::Oth: return PatientType::Oth;
 	}
 	throw std::runtime_error("Illegal value for PatientType");
+}
+
+DicomTransferRole ConvertFromCDM::convert(const CDM::DicomTransferRole & source) {
+	switch (source) {
+		case CDM::DicomTransferRole::Scu: return DicomTransferRole::Scu;
+		case CDM::DicomTransferRole::Scp: return DicomTransferRole::Scp;
+	}
+	throw std::runtime_error("Illegal value for DicomTransferRole");
 }
 
 TextWidth ConvertFromCDM::convert(const CDM::TextWidth & source) {
@@ -870,6 +882,22 @@ ContainmentTree ConvertFromCDM::convert(const CDM::ContainmentTree & source) {
 
 ContainmentTreeEntry ConvertFromCDM::convert(const CDM::ContainmentTreeEntry & source) {
 	return ContainmentTreeEntry(source);
+}
+
+DicomTransferCapability ConvertFromCDM::convert(const CDM::DicomTransferCapability & source) {
+	return DicomTransferCapability(source);
+}
+
+DicomNetworkAe ConvertFromCDM::convert(const CDM::DicomNetworkAe & source) {
+	return DicomNetworkAe(source);
+}
+
+DicomNetworkConnection ConvertFromCDM::convert(const CDM::DicomNetworkConnection & source) {
+	return DicomNetworkConnection(source);
+}
+
+DicomDeviceDescriptor ConvertFromCDM::convert(const CDM::DicomDeviceDescriptor & source) {
+	return DicomDeviceDescriptor(source);
 }
 
 AlertConditionReference ConvertFromCDM::convert(const CDM::AlertConditionReference & source) {

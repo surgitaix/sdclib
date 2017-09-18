@@ -15,7 +15,7 @@
   */
 
 /*
- *  PersonParticipation.h
+ *  DicomNetworkConnection.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef PERSONPARTICIPATION_H_
-#define PERSONPARTICIPATION_H_
+#ifndef DICOMNETWORKCONNECTION_H_
+#define DICOMNETWORKCONNECTION_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,40 +40,42 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class PersonParticipation {
+class DicomNetworkConnection {
 private:
-	PersonParticipation(const CDM::PersonParticipation & object);
-	operator CDM::PersonParticipation() const;
+	DicomNetworkConnection(const CDM::DicomNetworkConnection & object);
+	operator CDM::DicomNetworkConnection() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	PersonParticipation();
-	PersonParticipation(const PersonParticipation & object);
-	virtual ~PersonParticipation();
+	DicomNetworkConnection();
+	DicomNetworkConnection(const DicomNetworkConnection & object);
+	virtual ~DicomNetworkConnection();
     
-    void copyFrom(const PersonParticipation & object);
-    PersonParticipation & operator=(const PersonParticipation & object);
+    void copyFrom(const DicomNetworkConnection & object);
+    DicomNetworkConnection & operator=(const DicomNetworkConnection & object);
     
-    typedef CDM::PersonParticipation WrappedType;
+    typedef CDM::DicomNetworkConnection WrappedType;
 
-	PersonParticipation & setName(const BaseDemographics & value);
-	BaseDemographics getName() const;
-	bool getName(BaseDemographics & out) const;
-	bool hasName() const;
+	DicomNetworkConnection & setid(const std::string & value);
+	std::string getid() const;
 
-	PersonParticipation & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentificationLists() const;
-	void clearIdentificationLists();
-	
-	PersonParticipation & addRole(const CodedValue & value);
-	std::vector<CodedValue> getRoleLists() const;
-	void clearRoleLists();
+	DicomNetworkConnection & setHostname(const std::string & value);
+	std::string getHostname() const;
+
+	DicomNetworkConnection & setPort(const unsigned short & value);
+	unsigned short getPort() const;
+	bool getPort(unsigned short & out) const;
+	bool hasPort() const;
+
+	DicomNetworkConnection & addTlsCipherSuite(const std::string & value);
+	std::vector<std::string> getTlsCipherSuiteLists() const;
+	void clearTlsCipherSuiteLists();
 	
 private:
-	std::shared_ptr<CDM::PersonParticipation> data;
+	std::shared_ptr<CDM::DicomNetworkConnection> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* PERSONPARTICIPATION_H_ */
+#endif /* DICOMNETWORKCONNECTION_H_ */

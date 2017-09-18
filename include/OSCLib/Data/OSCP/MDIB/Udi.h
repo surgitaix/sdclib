@@ -15,7 +15,7 @@
   */
 
 /*
- *  PersonParticipation.h
+ *  Udi.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef PERSONPARTICIPATION_H_
-#define PERSONPARTICIPATION_H_
+#ifndef UDI_H_
+#define UDI_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,40 +40,41 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class PersonParticipation {
+class Udi {
 private:
-	PersonParticipation(const CDM::PersonParticipation & object);
-	operator CDM::PersonParticipation() const;
+	Udi(const CDM::Udi & object);
+	operator CDM::Udi() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	PersonParticipation();
-	PersonParticipation(const PersonParticipation & object);
-	virtual ~PersonParticipation();
+	Udi();
+	Udi(const Udi & object);
+	virtual ~Udi();
     
-    void copyFrom(const PersonParticipation & object);
-    PersonParticipation & operator=(const PersonParticipation & object);
+    void copyFrom(const Udi & object);
+    Udi & operator=(const Udi & object);
     
-    typedef CDM::PersonParticipation WrappedType;
+    typedef CDM::Udi WrappedType;
 
-	PersonParticipation & setName(const BaseDemographics & value);
-	BaseDemographics getName() const;
-	bool getName(BaseDemographics & out) const;
-	bool hasName() const;
+	Udi & setDeviceIdentifier(const std::string & value);
+	std::string getDeviceIdentifier() const;
 
-	PersonParticipation & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentificationLists() const;
-	void clearIdentificationLists();
-	
-	PersonParticipation & addRole(const CodedValue & value);
-	std::vector<CodedValue> getRoleLists() const;
-	void clearRoleLists();
-	
+	Udi & setHumanReadableForm(const std::string & value);
+	std::string getHumanReadableForm() const;
+
+	Udi & setIssuer(const InstanceIdentifier & value);
+	InstanceIdentifier getIssuer() const;
+
+	Udi & setJurisdiction(const InstanceIdentifier & value);
+	InstanceIdentifier getJurisdiction() const;
+	bool getJurisdiction(InstanceIdentifier & out) const;
+	bool hasJurisdiction() const;
+
 private:
-	std::shared_ptr<CDM::PersonParticipation> data;
+	std::shared_ptr<CDM::Udi> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* PERSONPARTICIPATION_H_ */
+#endif /* UDI_H_ */

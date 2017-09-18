@@ -100,6 +100,10 @@
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTree.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
 #include "osdm.hxx"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
@@ -411,6 +415,14 @@ CDM::PatientType ConvertToCDM::convert(const PatientType & source) {
 		case PatientType::Oth: return CDM::PatientType::Oth;
 	}
 	throw std::runtime_error("Illegal value for PatientType");
+}
+
+CDM::DicomTransferRole ConvertToCDM::convert(const DicomTransferRole & source) {
+	switch (source) {
+		case DicomTransferRole::Scu: return CDM::DicomTransferRole::Scu;
+		case DicomTransferRole::Scp: return CDM::DicomTransferRole::Scp;
+	}
+	throw std::runtime_error("Illegal value for DicomTransferRole");
 }
 
 CDM::TextWidth ConvertToCDM::convert(const TextWidth & source) {
@@ -772,6 +784,18 @@ std::unique_ptr<typename ContainmentTree::WrappedType> ConvertToCDM::convert(con
 
 template
 std::unique_ptr<typename ContainmentTreeEntry::WrappedType> ConvertToCDM::convert(const ContainmentTreeEntry & source);
+
+template
+std::unique_ptr<typename DicomTransferCapability::WrappedType> ConvertToCDM::convert(const DicomTransferCapability & source);
+
+template
+std::unique_ptr<typename DicomNetworkAe::WrappedType> ConvertToCDM::convert(const DicomNetworkAe & source);
+
+template
+std::unique_ptr<typename DicomNetworkConnection::WrappedType> ConvertToCDM::convert(const DicomNetworkConnection & source);
+
+template
+std::unique_ptr<typename DicomDeviceDescriptor::WrappedType> ConvertToCDM::convert(const DicomDeviceDescriptor & source);
 
 CDM::AlertConditionReference ConvertToCDM::convert(const AlertConditionReference & source) {
 	CDM::AlertConditionReference list;

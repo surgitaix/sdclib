@@ -98,6 +98,10 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/ConvertFromCDM.cpp
 ./src/Data/OSCP/MDIB/ConvertToCDM.cpp
 ./src/Data/OSCP/MDIB/Defaults.cpp
+./src/Data/OSCP/MDIB/DicomDeviceDescriptor.cpp
+./src/Data/OSCP/MDIB/DicomNetworkAe.cpp
+./src/Data/OSCP/MDIB/DicomNetworkConnection.cpp
+./src/Data/OSCP/MDIB/DicomTransferCapability.cpp
 ./src/Data/OSCP/MDIB/DistributionSampleArrayMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/DistributionSampleArrayMetricState.cpp
 ./src/Data/OSCP/MDIB/EnsembleContextDescriptor.cpp
@@ -174,8 +178,12 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/WorkflowContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextState.cpp
 ./src/Data/OSCP/MDIB/WorkflowDetail.cpp
+./src/Data/OSCP/MDIB/custom/ChannelDescriptorCustomImpl.cxx
+./src/Data/OSCP/MDIB/custom/MdDescriptionCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/MDIBContainer.cpp
+./src/Data/OSCP/MDIB/custom/MdStateCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/OperationInvocationContext.cpp
+./src/Data/OSCP/MDIB/custom/ScoDescriptorCustomImpl.cxx
 ./src/Data/OSCP/FutureInvocationState.cpp
 ./src/Data/OSCP/OSCPConsumer.cpp
 ./src/Data/OSCP/OSCPConsumerEventHandler.cpp
