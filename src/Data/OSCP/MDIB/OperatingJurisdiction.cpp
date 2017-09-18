@@ -115,24 +115,24 @@ bool OperatingJurisdiction::hasRoot() const {
 }
 	
 OperatingJurisdiction & OperatingJurisdiction::setExtension(const Extension & value) {
-	data->Extension(ConvertToCDM::convert(value));
+	data->Extension1(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatingJurisdiction::getExtension(Extension & out) const {
-	if (data->Extension().present()) {
-		out = ConvertFromCDM::convert(data->Extension().get());
+	if (data->Extension1().present()) {
+		out = ConvertFromCDM::convert(data->Extension1().get());
 		return true;
 	}
 	return false;
 }
 
 Extension OperatingJurisdiction::getExtension() const {
-	return ConvertFromCDM::convert(data->Extension().get());
+	return ConvertFromCDM::convert(data->Extension1().get());
 }
 	
 bool OperatingJurisdiction::hasExtension() const {
-	return data->Extension().present();
+	return data->Extension1().present();
 }
 	
 OperatingJurisdiction & OperatingJurisdiction::addIdentifierName(const LocalizedText & value) {
