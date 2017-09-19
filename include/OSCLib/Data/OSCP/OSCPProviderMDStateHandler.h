@@ -30,7 +30,7 @@
 #include "Poco/Mutex.h"
 
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 
 #include "OSELib/Helper/WithLogger.h"
 

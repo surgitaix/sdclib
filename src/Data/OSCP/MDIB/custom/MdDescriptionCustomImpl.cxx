@@ -267,20 +267,20 @@ bool MdDescription::findDescriptor(const std::string & handle, EnsembleContextDe
 }
 
 
-template <class MDSDescriptor>
-void MdDescription::addMDSDescriptor(const MDSDescriptor & source) {
+template <class MdsDescriptor>
+void MdDescription::addMdsDescriptor(const MdsDescriptor & source) {
 	CDM::MdDescription & mddescription(*this->data);
 	mddescription.Mds().push_back(ConvertToCDM::convert(source));
 }
 
-template void MdDescription::addMDSDescriptor<MdsDescriptor>(const MdsDescriptor & source);
+template void MdDescription::addMdsDescriptor<MdsDescriptor>(const MdsDescriptor & source);
 
 // not abstractMDSDevice in MdDescription, thus no DicomDeviceDescriptor realized
-//template void MdDescription::addMDSDescriptor<DicomDeviceDescriptor>(const DicomDeviceDescriptor & source);
+//template void MdDescription::addMdsDescriptor<DicomDeviceDescriptor>(const DicomDeviceDescriptor & source);
 
 
-template <class MDSDescriptor>
-bool MdDescription::removeMDSDescriptor(const MDSDescriptor & object) {
+template <class MdsDescriptor>
+bool MdDescription::removeMdsDescriptor(const MdsDescriptor & object) {
 	CDM::MdDescription & mddescription(*this->data);
 	for (auto iter = mddescription.Mds().begin(); iter != mddescription.Mds().end(); iter++) {
 		if (iter->Handle() == object.getHandle()) {
@@ -290,8 +290,8 @@ bool MdDescription::removeMDSDescriptor(const MDSDescriptor & object) {
 	}
 }
 
-template bool MdDescription::removeMDSDescriptor<MdsDescriptor>(const MdsDescriptor & source);
-template bool MdDescription::removeMDSDescriptor<DicomDeviceDescriptor>(const DicomDeviceDescriptor & source);
+template bool MdDescription::removeMdsDescriptor<MdsDescriptor>(const MdsDescriptor & source);
+template bool MdDescription::removeMdsDescriptor<DicomDeviceDescriptor>(const DicomDeviceDescriptor & source);
 
 
 bool MdDescription::findDescriptor(const std::string & handle, LocationContextDescriptor & outDescriptor) const {

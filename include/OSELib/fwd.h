@@ -8,7 +8,7 @@
 #ifndef OSELIB_FWD_H_
 #define OSELIB_FWD_H_
 
-#include "BICEPS_DomainModel-fwd.hxx"
+#include "BICEPS_ParticipantModel-fwd.hxx"
 #include "BICEPS_MessageModel-fwd.hxx"
 #include "ExtensionPoint-fwd.hxx"
 #include "eventing-fwd.hxx"

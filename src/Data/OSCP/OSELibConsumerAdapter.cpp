@@ -15,7 +15,7 @@
 #include "Poco/Net/ServerSocket.h"
 #include "Poco/Net/MulticastSocket.h"
 
-#include "BICEPS_DomainModel.hxx"
+#include "BICEPS_ParticipantModel.hxx"
 #include "BICEPS_MessageModel.hxx"
 #include "eventing.hxx"
 #include "NormalizedMessageModel.hxx"
@@ -24,7 +24,7 @@
 #include "OSCLib/OSCLibrary.h"
 
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationInvocationContext.h"
+//#include "OSCLib/Data/OSCP/MDIB/OperationInvocationContext.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"

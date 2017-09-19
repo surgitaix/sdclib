@@ -33,7 +33,7 @@ typedef WS::DISCOVERY::ByeType ByeType;
 typedef WS::DISCOVERY::HelloType HelloType;
 typedef WS::DISCOVERY::ProbeMatchType ProbeMatchType;
 typedef WS::DISCOVERY::ResolveMatchType ResolveMatchType;
-typedef CDM::WaveformStream WaveformStreamType;
+typedef MDM::WaveformStream WaveformStreamType;
 
 class ByeNotificationDispatcher {
 protected:

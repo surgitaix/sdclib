@@ -36,7 +36,7 @@
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "OSCLib/Data/OSCP/OSELibProviderAdapter.h"
 #include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/MDState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdState.h"
 
 #include "OSELib/Helper/WithLogger.h"
 
@@ -55,7 +55,7 @@ namespace OSCP {
 class OSCPProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
 
-    friend class OSCPProviderMDStateHandler;
+    friend class OSCPProviderMdStateHandler;
     
     // todo replace by friend class OSELibProviderAdapter
     friend struct OSELib::ContextReportServiceImpl;
@@ -76,33 +76,33 @@ public:
     /**
     * @brief Get the Medical Device Description.
     *
-    * @return The MDDescription container
+    * @return The MdDescription container
     */
 
-    void setMDDescription(const MDDescription & mdDescription);
+    void setMDDescription(const MdDescription & mdDescription);
     void setMDDescription(std::string xml);
-    MDDescription getMDDescription() const;
+    MdDescription getMdDescription() const;
 
     /**
     * @brief Get all states as part of the MDIB.
     *
     * @return The MD state container
     */
-    MDState getMDState();
+    MdState getMdState();
 
-    void addActivateOperationForDescriptor(const ActivateOperationDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const AlertConditionDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const AlertSignalDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const AlertSystemDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const EnumStringMetricDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const LimitAlertConditionDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const NumericMetricDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const StringMetricDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const PatientContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const LocationContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const EnsembleContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const OperatorContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const WorkflowContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
+    void addActivateOperationForDescriptor(const ActivateOperationDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const AlertConditionDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const AlertSignalDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const AlertSystemDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const EnumStringMetricDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const LimitAlertConditionDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const NumericMetricDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const StringMetricDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const PatientContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const LocationContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const EnsembleContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const OperatorContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const WorkflowContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
 
     /**
     * @brief Notify all registered consumers about a changed MDIB object (fires episodic metric changed event).
@@ -235,34 +235,34 @@ private:
 	void notifyEpisodicMetricImpl(const T & object);
 
     template<class T>
-    void createSetOperationForContextDescriptor(const T & descriptor, HydraMDSDescriptor & ownerMDS);
+    void createSetOperationForContextDescriptor(const T & descriptor, MdsDescriptor & ownerMDS);
 
-	CDM::SetValueResponse SetValueAsync(const CDM::SetValue & request);
-    void SetValue(const CDM::SetValue & request, const OperationInvocationContext & oic);
+	MDM::SetValueResponse SetValueAsync(const MDM::SetValue & request);
+    void SetValue(const MDM::SetValue & request, const OperationInvocationContext & oic);
 
-    CDM::ActivateResponse OnActivateAsync(const CDM::Activate & request);
+    MDM::ActivateResponse OnActivateAsync(const MDM::Activate & request);
     void OnActivate(const OperationInvocationContext & oic);
 
-    CDM::SetStringResponse SetStringAsync(const CDM::SetString & request);
-    void SetString(const CDM::SetString & request, const OperationInvocationContext & oic);
+    MDM::SetStringResponse SetStringAsync(const MDM::SetString & request);
+    void SetString(const MDM::SetString & request, const OperationInvocationContext & oic);
     template<class T>
     void SetStringImpl(const T & state, const OperationInvocationContext & oic);
 
-    CDM::SetAlertStateResponse SetAlertStateAsync(const CDM::SetAlertState & request);
-    void SetAlertState(const CDM::SetAlertState & request, const OperationInvocationContext & oic);
+    MDM::SetAlertStateResponse SetAlertStateAsync(const MDM::SetAlertState & request);
+    void SetAlertState(const MDM::SetAlertState & request, const OperationInvocationContext & oic);
     template<typename StateType>
     void SetAlertStateImpl(const StateType & state, const OperationInvocationContext & oic);
 
-    CDM::GetMDIBResponse GetMDIB(const CDM::GetMDIB & request);
-    CDM::GetMDDescriptionResponse GetMDDescription(const CDM::GetMDDescription & request);
-    CDM::GetMDStateResponse GetMDState(const CDM::GetMDState & request);
+    MDM::GetMdibResponse GetMDIB(const MDM::GetMdib & request);
+    MDM::GetMdDescriptionResponse GetMdDescription(const MDM::GetMdDescription & request);
+    MDM::GetMdStateResponse GetMdState(const MDM::GetMdState & request);
 
-    CDM::GetContextStatesResponse GetContextStates(const CDM::GetContextStates & request);
-    CDM::SetContextStateResponse SetContextStateAsync(const CDM::SetContextState & request);
-    void SetContextState(const CDM::SetContextState & request, const OperationInvocationContext & oic);
+    MDM::GetContextStatesResponse GetContextStates(const MDM::GetContextStates & request);
+    MDM::SetContextStateResponse SetContextStateAsync(const MDM::SetContextState & request);
+    void SetContextState(const MDM::SetContextState & request, const OperationInvocationContext & oic);
 
     template<class T>
-    void addSetOperationToSCOObjectImpl(const T & source, HydraMDSDescriptor & ownerMDS);
+    void addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor & ownerMDS);
 
     template<class T>
     void enqueueInvokeNotification(const T & request, const OperationInvocationContext & oic);
@@ -272,17 +272,17 @@ private:
 
     std::atomic_ullong mdibVersion;
 
-    std::map<std::string, OSCPProviderMDStateHandler *> stateHandlers;
+    std::map<std::string, OSCPProviderMdStateHandler *> stateHandlers;
 
-	std::shared_ptr<MDDescription> m_mdDescription;
+	std::shared_ptr<MdDescription> m_mdDescription;
     std::unique_ptr<OSELibProviderAdapter> _adapter;
     Dev::DeviceCharacteristics devicecharacteristics;
 	Poco::Mutex mutex;
 
     std::string endpointReference;
 
-	MDState mdibStates;
-    MDState operationStates;
+	MdState mdibStates;
+    MdState operationStates;
     Poco::NotificationQueue invokeQueue;
     std::shared_ptr<AsyncProviderInvoker> providerInvoker;
 

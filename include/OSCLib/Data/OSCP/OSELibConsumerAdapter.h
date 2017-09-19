@@ -37,16 +37,16 @@ public:
 	void start();
 	void stop();
 
-	std::unique_ptr<CDM::GetMDDescriptionResponse> invoke(const CDM::GetMDDescription & request);
-	std::unique_ptr<CDM::GetMDIBResponse> invoke(const CDM::GetMDIB & request);
-	std::unique_ptr<CDM::GetMDStateResponse> invoke(const CDM::GetMDState & request);
+	std::unique_ptr<MDM::GetMdDescriptionResponse> invoke(const MDM::GetMdDescription & request);
+	std::unique_ptr<MDM::GetMdibResponse> invoke(const MDM::GetMdib & request);
+	std::unique_ptr<MDM::GetMdStateResponse> invoke(const MDM::GetMdState & request);
 
-	std::unique_ptr<CDM::ActivateResponse> invoke(const CDM::Activate & request);
-	std::unique_ptr<CDM::SetAlertStateResponse> invoke(const CDM::SetAlertState & request);
-	std::unique_ptr<CDM::SetValueResponse> invoke(const CDM::SetValue & request);
-	std::unique_ptr<CDM::SetStringResponse> invoke(const CDM::SetString & request);
+	std::unique_ptr<MDM::ActivateResponse> invoke(const MDM::Activate & request);
+	std::unique_ptr<MDM::SetAlertStateResponse> invoke(const MDM::SetAlertState & request);
+	std::unique_ptr<MDM::SetValueResponse> invoke(const MDM::SetValue & request);
+	std::unique_ptr<MDM::SetStringResponse> invoke(const MDM::SetString & request);
 
-	std::unique_ptr<CDM::SetContextStateResponse> invoke(const CDM::SetContextState & request);
+	std::unique_ptr<MDM::SetContextStateResponse> invoke(const MDM::SetContextState & request);
 
 	void subscribeEvents();
 	void unsubscribeEvents();

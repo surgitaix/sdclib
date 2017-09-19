@@ -67,11 +67,11 @@ public:
 	
 
 	template <class MdsDescriptor>
-	void addMDSDescriptor(const MdsDescriptor & source);
+	void addMdsDescriptor(const MdsDescriptor & source);
 	template <class MdsDescriptor>
-	bool removeMDSDescriptor(const MdsDescriptor & object);
+	bool removeMdsDescriptor(const MdsDescriptor & object);
 
-	bool getFirstHydraMDSDescriptor(MdsDescriptor & outDescriptor) const;
+	bool getFirstMdsDescriptor(MdsDescriptor & outDescriptor) const;
 
 	bool findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const;
@@ -101,13 +101,13 @@ public:
 
 	std::vector<ChannelDescriptor> collectAllChannelDescriptors() const;
 	std::vector<ClockDescriptor> collectAllClockDescriptors() const;
-	std::vector<DicomDeviceDescriptor> collectAllDICOMDeviceDescriptors() const;
+	std::vector<DicomDeviceDescriptor> collectAllDicomDeviceDescriptors() const;
 	std::vector<EnumStringMetricDescriptor> collectAllEnumStringMetricDescriptors() const;
-	std::vector<MdsDescriptor> collectAllHydraMDSDescriptors() const;
+	std::vector<MdsDescriptor> collectAllMdsDescriptors() const;
 	std::vector<NumericMetricDescriptor> collectAllNumericMetricDescriptors() const;
 	std::vector<RealTimeSampleArrayMetricDescriptor> collectAllRealTimeSampleArrayMetricDescriptors() const;
 	std::vector<StringMetricDescriptor> collectAllStringMetricDescriptors() const;
-	std::vector<VmdDescriptor> collectAllVMDDescriptors() const;
+	std::vector<VmdDescriptor> collectAllVmdDescriptors() const;
 
 private:
 	template <class WrapperMetricDescriptorType>

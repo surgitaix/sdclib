@@ -29,7 +29,7 @@
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MDIBContainer.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 
 namespace OSCLib {
@@ -46,7 +46,7 @@ OSCPProviderActivateOperationHandler::~OSCPProviderActivateOperationHandler() {
 
 InvocationState OSCPProviderActivateOperationHandler::onActivateRequest(const MDIBContainer & , const OperationInvocationContext & ) {
 	log_error([] { return "Method not overridden: onActivateRequest()!"; });
-    return InvocationState::FAILED;
+    return InvocationState::Fail;
 }
 
 void OSCPProviderActivateOperationHandler::updateState(const OSCLib::Data::OSCP::NumericMetricState & object) {
