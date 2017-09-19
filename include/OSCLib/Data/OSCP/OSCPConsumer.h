@@ -25,8 +25,8 @@
 #define OSCPCONSUMER_H_
 
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MDIBContainer.h"
 
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSCLib/Data/OSCP/OSELibConsumerAdapter.h"
