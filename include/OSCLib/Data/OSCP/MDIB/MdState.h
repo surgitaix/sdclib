@@ -66,7 +66,6 @@ public:
 	bool findState(const std::string & handle, AlertSignalState & outState) const;
 	bool findState(const std::string & handle, AlertSystemState & outState) const;
 	bool findState(const std::string & handle, ClockState & outState) const;
-	bool findState(const std::string & handle, ComponentState & outState) const;
 	bool findState(const std::string & handle, EnsembleContextState & outState) const;
 	bool findState(const std::string & handle, EnumStringMetricState & outState) const;
     bool findState(const std::string & handle, MdsState & outState) const;
@@ -83,7 +82,6 @@ public:
 	std::vector<AlertSignalState> findAlertSignalStates() const;
 	std::vector<AlertSystemState> findAlertSystemStates() const;
 	std::vector<ClockState> findClockStates() const;
-	std::vector<ComponentState> findComponentStates() const;
 	std::vector<EnsembleContextState> findEnsembleContextStates() const;
 	std::vector<EnumStringMetricState> findEnumStringMetricStates() const;
 	std::vector<MdsState> findHydraMDSStates() const;
@@ -100,7 +98,6 @@ public:
     MdState & addState(const AlertSignalState & source);
     MdState & addState(const AlertSystemState & source);
     MdState & addState(const ClockState & source);
-    MdState & addState(const ComponentState & source);
     MdState & addState(const EnsembleContextState & source);
     MdState & addState(const EnumStringMetricState & source);
     MdState & addState(const LocationContextState & source);

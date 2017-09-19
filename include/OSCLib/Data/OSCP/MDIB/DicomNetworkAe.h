@@ -59,8 +59,8 @@ public:
 	DicomNetworkAe & setAeTitle(const std::string & value);
 	std::string getAeTitle() const;
 
-	DicomNetworkAe & setNetworkConnectionReference(const std::string & value);
-	std::string getNetworkConnectionReference() const;
+	DicomNetworkAe & setNetworkConnectionReference(const xml_schema::Idrefs & value);
+	xml_schema::Idrefs getNetworkConnectionReference() const;
 
 	DicomNetworkAe & setAssociationInitiator(const bool & value);
 	bool getAssociationInitiator() const;

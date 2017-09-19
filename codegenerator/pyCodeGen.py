@@ -31,7 +31,7 @@ xsdFiles = {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse
 g_basetype_map = {'xsd:unsignedLong' : 'unsigned long', 'pm:VersionCounter' : 'unsigned long long', 'xsd:string' : 'std::string', 
                 'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'xml_schema::Qname', 'xsd:dateTime' : 'xml_schema::DateTime', 'xsd:boolean' : 'bool', 
                 'xsd:duration' : 'xml_schema::Duration', 'xsd:language' : 'xml_schema::Language', 'xsd:anyURI' : 'xml_schema::Uri', 'xsd:int' : 'int' , 'xsd:long' : 'long long', 
-                'pm:HandleRef' : 'std::string' , 'xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear' : 'std::string', 'xsd:IDREFS' : 'std::string', 'xsd:ID' : 'std::string', 
+                'pm:HandleRef' : 'std::string' , 'xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear' : 'std::string', 'xsd:IDREFS' : 'xml_schema::Idrefs', 'xsd:ID' : 'xml_schema::Id', 
                 'xsd:unsignedShort' : 'unsigned short'}
 # apiInterfaces_global structure: 1. Classname, 2. name of typedef 3. type of typedef
 # if list consists of more than three values the following entries refer to additional typdefs listed in the same 

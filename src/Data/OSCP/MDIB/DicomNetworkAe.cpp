@@ -82,13 +82,13 @@ std::string DicomNetworkAe::getAeTitle() const {
 	return ConvertFromCDM::convert(data->AeTitle());
 }
 	
-DicomNetworkAe & DicomNetworkAe::setNetworkConnectionReference(const std::string & value) {
+DicomNetworkAe & DicomNetworkAe::setNetworkConnectionReference(const xml_schema::Idrefs & value) {
 	data->NetworkConnectionReference(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string DicomNetworkAe::getNetworkConnectionReference() const {
+xml_schema::Idrefs DicomNetworkAe::getNetworkConnectionReference() const {
 	return ConvertFromCDM::convert(data->NetworkConnectionReference());
 }
 	

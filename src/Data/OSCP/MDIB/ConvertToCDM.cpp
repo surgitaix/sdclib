@@ -196,6 +196,14 @@ xml_schema::DateTime ConvertToCDM::convert(const xml_schema::DateTime & source) 
 	return source;
 }
 
+xml_schema::Idrefs ConvertToCDM::convert(const xml_schema::Idrefs & source) {
+	return source;
+}
+
+xml_schema::Id ConvertToCDM::convert(const xml_schema::Id & source) {
+	return source;
+}
+
 
 template <class WrapperType>
 std::unique_ptr<typename WrapperType::WrappedType> ConvertToCDM::convert(const WrapperType & source) {

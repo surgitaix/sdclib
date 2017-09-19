@@ -801,7 +801,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<property name = "AeTitle" type = "std::string" optional = "false" />
-		<property name = "NetworkConnectionReference" type = "std::string" optional = "false" />
+		<property name = "NetworkConnectionReference" type = "xml_schema::Idrefs" optional = "false" />
 		<property name = "AssociationInitiator" type = "bool" optional = "false" />
 		<property name = "AssociationAcceptor" type = "bool" optional = "false" />
 		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityLists" type = "DicomTransferCapability" />
@@ -809,7 +809,7 @@
 	</class>
 
 	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
-		<property name = "id" type = "std::string" optional = "false" />
+		<property name = "id" type = "xml_schema::Id" optional = "false" />
 		<property name = "Hostname" type = "std::string" optional = "false" />
 		<property name = "Port" type = "unsigned short" optional = "true" />
 		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteLists" type = "std::string" />
