@@ -50,6 +50,17 @@ enum class MeasurementValidity
 	NA
 };
 
+enum class InvocationState
+{
+	Wait,
+	Start,
+	Cnclld,
+	CnclldMan,
+	Fin,
+	FinMod,
+	Fail
+};
+
 enum class SafetyClassification
 {
 	Inf,
@@ -259,6 +270,7 @@ public:
 	EnumToString();
 	virtual ~EnumToString();
 	static std::string convert(MeasurementValidity source);
+	static std::string convert(InvocationState source);
 	static std::string convert(SafetyClassification source);
 	static std::string convert(ComponentActivation source);
 	static std::string convert(CalibrationState source);

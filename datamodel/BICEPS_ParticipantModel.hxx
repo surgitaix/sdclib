@@ -484,6 +484,67 @@ namespace CDM
     static const Value _xsd_MeasurementValidity_indexes_[9];
   };
 
+  class InvocationState: public ::xml_schema::String
+  {
+    public:
+    enum Value
+    {
+      Wait,
+      Start,
+      Cnclld,
+      CnclldMan,
+      Fin,
+      FinMod,
+      Fail
+    };
+
+    InvocationState (Value v);
+
+    InvocationState (const char* v);
+
+    InvocationState (const ::std::string& v);
+
+    InvocationState (const ::xml_schema::String& v);
+
+    InvocationState (const ::xercesc::DOMElement& e,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    InvocationState (const ::xercesc::DOMAttr& a,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    InvocationState (const ::std::string& s,
+                     const ::xercesc::DOMElement* e,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    InvocationState (const InvocationState& x,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    virtual InvocationState*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    InvocationState&
+    operator= (Value v);
+
+    virtual
+    operator Value () const
+    {
+      return _xsd_InvocationState_convert ();
+    }
+
+    protected:
+    Value
+    _xsd_InvocationState_convert () const;
+
+    public:
+    static const char* const _xsd_InvocationState_literals_[7];
+    static const Value _xsd_InvocationState_indexes_[7];
+  };
+
   class Timestamp: public ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType >
   {
     public:
@@ -12837,6 +12898,16 @@ namespace CDM
   void
   operator<< (::xml_schema::ListStream&,
               const MeasurementValidity&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const InvocationState&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const InvocationState&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const InvocationState&);
 
   void
   operator<< (::xercesc::DOMElement&, const Timestamp&);

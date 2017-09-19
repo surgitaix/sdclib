@@ -179,6 +179,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/WorkflowContextState.cpp
 ./src/Data/OSCP/MDIB/WorkflowDetail.cpp
 ./src/Data/OSCP/MDIB/custom/ChannelDescriptorCustomImpl.cxx
+./src/Data/OSCP/MDIB/custom/Defaults.cpp
 ./src/Data/OSCP/MDIB/custom/MdDescriptionCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/MDIBContainer.cpp
 ./src/Data/OSCP/MDIB/custom/MdStateCustomImpl.cxx

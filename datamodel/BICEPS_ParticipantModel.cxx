@@ -423,6 +423,51 @@ namespace CDM
   }
 
 
+  // InvocationState
+  // 
+
+  InvocationState::
+  InvocationState (Value v)
+  : ::xml_schema::String (_xsd_InvocationState_literals_[v])
+  {
+  }
+
+  InvocationState::
+  InvocationState (const char* v)
+  : ::xml_schema::String (v)
+  {
+  }
+
+  InvocationState::
+  InvocationState (const ::std::string& v)
+  : ::xml_schema::String (v)
+  {
+  }
+
+  InvocationState::
+  InvocationState (const ::xml_schema::String& v)
+  : ::xml_schema::String (v)
+  {
+  }
+
+  InvocationState::
+  InvocationState (const InvocationState& v,
+                   ::xml_schema::Flags f,
+                   ::xml_schema::Container* c)
+  : ::xml_schema::String (v, f, c)
+  {
+  }
+
+  InvocationState& InvocationState::
+  operator= (Value v)
+  {
+    static_cast< ::xml_schema::String& > (*this) = 
+    ::xml_schema::String (_xsd_InvocationState_literals_[v]);
+
+    return *this;
+  }
+
+
   // Timestamp
   // 
 
@@ -11022,6 +11067,92 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MeasurementValidity >
   _xsd_MeasurementValidity_type_factory_init (
     "MeasurementValidity",
+    "http://p11073-10207/draft8/pm/2017/08/07");
+
+  // InvocationState
+  //
+
+  InvocationState::
+  InvocationState (const ::xercesc::DOMElement& e,
+                   ::xml_schema::Flags f,
+                   ::xml_schema::Container* c)
+  : ::xml_schema::String (e, f, c)
+  {
+    _xsd_InvocationState_convert ();
+  }
+
+  InvocationState::
+  InvocationState (const ::xercesc::DOMAttr& a,
+                   ::xml_schema::Flags f,
+                   ::xml_schema::Container* c)
+  : ::xml_schema::String (a, f, c)
+  {
+    _xsd_InvocationState_convert ();
+  }
+
+  InvocationState::
+  InvocationState (const ::std::string& s,
+                   const ::xercesc::DOMElement* e,
+                   ::xml_schema::Flags f,
+                   ::xml_schema::Container* c)
+  : ::xml_schema::String (s, e, f, c)
+  {
+    _xsd_InvocationState_convert ();
+  }
+
+  InvocationState* InvocationState::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class InvocationState (*this, f, c);
+  }
+
+  InvocationState::Value InvocationState::
+  _xsd_InvocationState_convert () const
+  {
+    ::xsd::cxx::tree::enum_comparator< char > c (_xsd_InvocationState_literals_);
+    const Value* i (::std::lower_bound (
+                      _xsd_InvocationState_indexes_,
+                      _xsd_InvocationState_indexes_ + 7,
+                      *this,
+                      c));
+
+    if (i == _xsd_InvocationState_indexes_ + 7 || _xsd_InvocationState_literals_[*i] != *this)
+    {
+      throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
+    }
+
+    return *i;
+  }
+
+  const char* const InvocationState::
+  _xsd_InvocationState_literals_[7] =
+  {
+    "Wait",
+    "Start",
+    "Cnclld",
+    "CnclldMan",
+    "Fin",
+    "FinMod",
+    "Fail"
+  };
+
+  const InvocationState::Value InvocationState::
+  _xsd_InvocationState_indexes_[7] =
+  {
+    ::CDM::InvocationState::Cnclld,
+    ::CDM::InvocationState::CnclldMan,
+    ::CDM::InvocationState::Fail,
+    ::CDM::InvocationState::Fin,
+    ::CDM::InvocationState::FinMod,
+    ::CDM::InvocationState::Start,
+    ::CDM::InvocationState::Wait
+  };
+
+  static
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, InvocationState >
+  _xsd_InvocationState_type_factory_init (
+    "InvocationState",
     "http://p11073-10207/draft8/pm/2017/08/07");
 
   // Timestamp
@@ -29853,6 +29984,32 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MeasurementValidity >
   _xsd_MeasurementValidity_type_serializer_init (
     "MeasurementValidity",
+    "http://p11073-10207/draft8/pm/2017/08/07");
+
+
+  void
+  operator<< (::xercesc::DOMElement& e, const InvocationState& i)
+  {
+    e << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  void
+  operator<< (::xercesc::DOMAttr& a, const InvocationState& i)
+  {
+    a << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  void
+  operator<< (::xml_schema::ListStream& l,
+              const InvocationState& i)
+  {
+    l << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  static
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, InvocationState >
+  _xsd_InvocationState_type_serializer_init (
+    "InvocationState",
     "http://p11073-10207/draft8/pm/2017/08/07");
 
 
