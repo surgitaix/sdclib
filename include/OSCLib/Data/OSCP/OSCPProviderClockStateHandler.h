@@ -8,13 +8,13 @@
 #ifndef DATA_OSCP_OSCPPROVIDERCLOCKSTATEHANDLER_H_
 #define DATA_OSCP_OSCPPROVIDERCLOCKSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPProviderMDStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderClockStateHandler : public OSCPProviderMDStateHandler {
+class OSCPProviderClockStateHandler : public OSCPProviderMdStateHandler {
 public:
 	OSCPProviderClockStateHandler();
 	virtual ~OSCPProviderClockStateHandler();

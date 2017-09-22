@@ -240,15 +240,15 @@ void OSCPConsumer::onSubscriptionLost() {
     }
 }
 
-MDIBContainer OSCPConsumer::getMDIB() {
+MdibContainer OSCPConsumer::getMDIB() {
 	if (!requestMDIB()) {
 		onConnectionLost();
 	}
     return *mdib;
 }
 
-MdDescription OSCPConsumer::getMDDescription() {
-    const MDM::GetMDDescription request;
+MdDescription OSCPConsumer::getMdDescription() {
+    const MDM::GetMdDescription request;
     auto response(_adapter->invoke(request));
 
 	if (response == nullptr) {
@@ -259,15 +259,15 @@ MdDescription OSCPConsumer::getMDDescription() {
 	const MdDescription description(ConvertFromCDM::convert(response->StaticDescription()));
 
 	// refresh cashed version
-	mdib->setMDDescription(description);
-	mdib->setMDIBVersion(response->MDIBVersion());
+	mdib->setMdDescription(description);
+	mdib->setMdibVersion(response->MdibVersion());
 
     return description;
 }
 
-MdDescription OSCPConsumer::getCachedMDDescription() {
+MdDescription OSCPConsumer::getCachedMdDescription() {
 	if (mdib) {
-		return mdib->getMDDescription();
+		return mdib->getMdDescription();
 	} else {
 		return MdDescription();
 	}
@@ -318,10 +318,10 @@ bool OSCPConsumer::requestMDIB() {
 	}
 
 	Poco::Mutex::ScopedLock lock(requestMutex);
-	mdib.reset(new MDIBContainer());
+	mdib.reset(new MdibContainer());
 	mdib->setMDState(ConvertFromCDM::convert(response->MDIB().MdState()));
 	mdib->setMDDescription(ConvertFromCDM::convert(response->MDIB().MdDescription()));
-	mdib->setMDIBVersion(response->MDIBVersion());
+	mdib->setMdibVersion(response->MDIBVersion());
 	return true;
 }
 
@@ -340,7 +340,7 @@ std::string OSCPConsumer::requestRawMDIB() {
 		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
 		std::ostringstream result;
 		xml_schema::NamespaceInfomap map;
-		MDM::MDIBContainer(result, response->MDIB(), map, OSELib::XML_ENCODING, xercesFlags);
+		MDM::MdibContainer(result, response->MDIB(), map, OSELib::XML_ENCODING, xercesFlags);
 		return result.str();
 	}
 }
@@ -480,7 +480,7 @@ InvocationState OSCPConsumer::commitStateImpl(const StateType & state, FutureInv
 		return InvocationState::Fail;
 	}
 
-	const MdDescription mddescription(getCachedMDDescription());
+	const MdDescription mddescription(getCachedMdDescription());
 
 	typename StateType::DescriptorType descriptor;
 	if (!mddescription.findDescriptor(state.getDescriptorHandle(), descriptor)) {
@@ -533,7 +533,7 @@ InvocationState OSCPConsumer::activate(const std::string & handle) {
 
 InvocationState OSCPConsumer::activate(const std::string & handle, FutureInvocationState & fis) {
 
-    const MdDescription mdd(getCachedMDDescription());
+    const MdDescription mdd(getCachedMdDescription());
 
 	const MDM::Activate request(createRequestMessage(handle));
 	std::unique_ptr<const MDM::ActivateResponse> response(_adapter->invoke(request));
@@ -549,13 +549,11 @@ template bool OSCPConsumer::requestState<AlertConditionState>(const std::string 
 template bool OSCPConsumer::requestState<AlertSignalState>(const std::string & handle, AlertSignalState & outState);
 template bool OSCPConsumer::requestState<AlertSystemState>(const std::string & handle, AlertSystemState & outState);
 template bool OSCPConsumer::requestState<ClockState>(const std::string & handle, ClockState & outState);
-template bool OSCPConsumer::requestState<ComponentState>(const std::string & handle, ComponentState & outState);
 template bool OSCPConsumer::requestState<EnsembleContextState>(const std::string & handle, EnsembleContextState & outState);
 template bool OSCPConsumer::requestState<EnumStringMetricState>(const std::string & handle, EnumStringMetricState & outState);
 template bool OSCPConsumer::requestState<LimitAlertConditionState>(const std::string & handle, LimitAlertConditionState & outState);
 template bool OSCPConsumer::requestState<LocationContextState>(const std::string & handle, LocationContextState & outState);
 template bool OSCPConsumer::requestState<NumericMetricState>(const std::string & handle, NumericMetricState & outState);
-template bool OSCPConsumer::requestState<OperationState>(const std::string & handle, OperationState & outState);
 template bool OSCPConsumer::requestState<OperatorContextState>(const std::string & handle, OperatorContextState & outState);
 template bool OSCPConsumer::requestState<PatientContextState>(const std::string & handle, PatientContextState & outState);
 template bool OSCPConsumer::requestState<StringMetricState>(const std::string & handle, StringMetricState & outState);
@@ -620,7 +618,7 @@ void OSCPConsumer::onOperationInvoked(const OperationInvocationContext & oic, In
     Poco::Mutex::ScopedLock lock(eventMutex);
     // If operation handle belongs to ActivateOperationDescriptor, use operation handle as target handle in case of operation invoked events!
 
-    const MdDescription mdd(getCachedMDDescription());
+    const MdDescription mdd(getCachedMdDescription());
     std::string targetHandle;
     const std::vector<MdsDescriptor> mdss(mdd.collectAllHydraMDSDescriptors());
     for (const auto & mds : mdss) {

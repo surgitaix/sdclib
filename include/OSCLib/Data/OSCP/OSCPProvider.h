@@ -71,7 +71,7 @@ public:
     *
     * @return The MDIB container
     */
-    MDIBContainer getMDIB();
+    MdibContainer getMDIB();
 
     /**
     * @brief Get the Medical Device Description.
@@ -165,14 +165,14 @@ public:
     *
     * @param handler The handler
     */
-    void addMDStateHandler(OSCPProviderMDStateHandler * handler);
+    void addMDStateHandler(OSCPProviderMdStateHandler * handler);
 
     /**
     * @brief Remove a request handler which provides states and processes incoming change requests from a consumer.
     *
     * @param handler The handler
     */
-    void removeMDStateHandler(OSCPProviderMDStateHandler * handler);
+    void removeMDStateHandler(OSCPProviderMdStateHandler * handler);
 
 	void setEndpointReference(const std::string & epr);
 	const std::string getEndpointReference() const;
@@ -180,7 +180,7 @@ public:
 	const Dev::DeviceCharacteristics& getDeviceCharacteristics() const;
 	void setDeviceCharacteristics(const Dev::DeviceCharacteristics& deviceCharacteristics);
 
-    unsigned long long int getMDIBVersion() const;
+    unsigned long long int getMdibVersion() const;
     void incrementMDIBVersion();
 
     Poco::Mutex & getMutex();

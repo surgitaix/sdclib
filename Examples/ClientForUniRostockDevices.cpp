@@ -1,24 +1,22 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
-#include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
@@ -200,8 +198,8 @@ int main() {
 			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
-				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDDescription():";
-				const auto mddescription = consumer.getMDDescription();
+				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMdDescription():";
+				const auto mddescription = consumer.getMdDescription();
 				if (!mddescription.collectAllHydraMDSDescriptors().empty()
 						&& !mddescription.collectAllNumericMetricDescriptors().empty()
 						&& !mddescription.collectAllStringMetricDescriptors().empty()) {
@@ -210,7 +208,7 @@ int main() {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
 				}
 
-				additionalResults << "Testing getMDDescription():" << std::endl;
+				additionalResults << "Testing getMdDescription():" << std::endl;
 				additionalResults << "Found " << mddescription.collectAllEnumStringMetricDescriptors().size() << " EnumStringMetricDescriptors." << std::endl;
 				additionalResults << "Found " << mddescription.collectAllHydraMDSDescriptors().size() << " HydraMDSDescriptors." << std::endl;
 				additionalResults << "Found " << mddescription.collectAllNumericMetricDescriptors().size() << " NumericMetricDescriptors." << std::endl;
@@ -224,7 +222,7 @@ int main() {
 				nms	.setDescriptorHandle(handle_m1_get_and_episodic)
 					.setObservedValue(NumericMetricValue().setValue(numeric_some_value));
 				FutureInvocationState fut;
-				if (consumer.commitState(nms, fut) == InvocationState::WAITING) {
+				if (consumer.commitState(nms, fut) == InvocationState::Wait) {
 					additionalResults << "Request accepted." << std::endl;
 				} else {
 					additionalResults << "Request rejected." << std::endl;
@@ -245,7 +243,7 @@ int main() {
 				sms	.setDescriptorHandle(handle_sm1_get_and_episodic_and_periodic)
 					.setObservedValue(StringMetricValue().setValue(string_some_value));
 				FutureInvocationState fut;
-				if (consumer.commitState(sms, fut) == InvocationState::WAITING) {
+				if (consumer.commitState(sms, fut) == InvocationState::Wait) {
 					additionalResults << "Request accepted." << std::endl;
 				} else {
 					additionalResults << "Request rejected." << std::endl;

@@ -9,7 +9,7 @@
 #include "OSCLib/Data/OSCP/MDIB/DICOMNetworkConnection.h"
 #include "OSCLib/Data/OSCP/MDIB/DICOMTransferCapability.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
@@ -120,10 +120,10 @@ TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
 		if (c != nullptr) {
 			OSCPConsumer & consumer = *c;
             // MDIB test
-            MDIBContainer mdib(consumer.getMDIB());
+            MdibContainer mdib(consumer.getMDIB());
 
             { // test access to some member of the dicom device.
-            	std::vector<DICOMDeviceDescriptor> dicomDevices(mdib.getMDDescription().collectAllDICOMDeviceDescriptors());
+            	std::vector<DICOMDeviceDescriptor> dicomDevices(mdib.getMdDescription().collectAllDICOMDeviceDescriptors());
 
             	CHECK_EQUAL(false, dicomDevices.empty());
             	if (!dicomDevices.empty()) {

@@ -64,7 +64,7 @@ class CppEnumToStringClassDeclarationBuilder(object):
         self.__enumCounter = self.__enumCounter + 1
     
     def getEnumToStringClassDeclarationAsString(self):
-        return self.__content + '};\n\n';
+        return self.__content + '\n';
 
     def getEnumCounter(self):
         return self.__enumCounter

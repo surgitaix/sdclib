@@ -32,17 +32,17 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class MDIBContainer {
+class MdibContainer {
 public:
-    MDIBContainer();
-    virtual ~MDIBContainer();
+    MdibContainer();
+    virtual ~MdibContainer();
 
     void setMdDescription(const MdDescription & mdd);
     MdDescription getMdDescription() const;
     void setMdState(const MdState & mds);
     MdState getMdState() const;
-    void setMDIBVersion(const unsigned long long int version);
-    unsigned long long int getMDIBVersion() const;
+    void setMdibVersion(const unsigned long long int version);
+    unsigned long long int getMdibVersion() const;
 
     typedef CDM::Mdib WrappedType;
 

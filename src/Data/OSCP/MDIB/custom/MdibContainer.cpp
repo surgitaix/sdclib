@@ -30,7 +30,7 @@
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/MDIBContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
 #include "OSCLib/Data/OSCP/MDIB/MdState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
@@ -45,85 +45,85 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MDIBContainer::MDIBContainer() :
+MdibContainer::MdibContainer() :
 		mddescription(new MdDescription()),
 		mdstate(new MdState()),
 		mdibVersion(0) {
 
 }
 
-MDIBContainer::~MDIBContainer() {
+MdibContainer::~MdibContainer() {
 
 }
 
-void MDIBContainer::setMdDescription(const MdDescription & source) {
+void MdibContainer::setMdDescription(const MdDescription & source) {
     *mddescription = source;
 }
 
-MdDescription MDIBContainer::getMdDescription() const {
+MdDescription MdibContainer::getMdDescription() const {
     return *mddescription;
 }
 
-void MDIBContainer::setMdState(const MdState & source) {
+void MdibContainer::setMdState(const MdState & source) {
     *mdstate = source;
 }
 
-MdState MDIBContainer::getMdState() const {
+MdState MdibContainer::getMdState() const {
     return *mdstate;
 }
 
-void MDIBContainer::setMDIBVersion(const unsigned long long int version) {
+void MdibContainer::setMdibVersion(const unsigned long long int version) {
 	mdibVersion = version;
 }
-unsigned long long int MDIBContainer::getMDIBVersion() const {
+unsigned long long int MdibContainer::getMdibVersion() const {
 	return mdibVersion;
 }
 
-bool MDIBContainer::findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const {
+bool MdibContainer::findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const {
 	return mddescription->findDescriptor(handle, outDescriptor);
 }
 
-bool MDIBContainer::findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const {
+bool MdibContainer::findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const {
 	return mddescription->findDescriptor(handle, outDescriptor);
 }
 
-bool MDIBContainer::findDescriptor(const std::string & handle, AlertSystemDescriptor & outDescriptor) const {
+bool MdibContainer::findDescriptor(const std::string & handle, AlertSystemDescriptor & outDescriptor) const {
 	return mddescription->findDescriptor(handle, outDescriptor);
 }
 
-bool MDIBContainer::findDescriptor(const std::string & handle, LimitAlertConditionDescriptor & outDescriptor) const {
+bool MdibContainer::findDescriptor(const std::string & handle, LimitAlertConditionDescriptor & outDescriptor) const {
 	return mddescription->findDescriptor(handle, outDescriptor);
 }
 
-bool MDIBContainer::findDescriptor(const std::string & handle, EnumStringMetricDescriptor & outDescriptor) const {
+bool MdibContainer::findDescriptor(const std::string & handle, EnumStringMetricDescriptor & outDescriptor) const {
 	return mddescription->findDescriptor(handle, outDescriptor);
 }
 
-bool MDIBContainer::findDescriptor(const std::string & handle, NumericMetricDescriptor & outDescriptor) const {
+bool MdibContainer::findDescriptor(const std::string & handle, NumericMetricDescriptor & outDescriptor) const {
 	return mddescription->findDescriptor(handle, outDescriptor);
 }
 
-bool MDIBContainer::findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const {
+bool MdibContainer::findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const {
 	return mddescription->findDescriptor(handle, outDescriptor);
 }
 
-bool MDIBContainer::findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const {
+bool MdibContainer::findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const {
 	return mddescription->findDescriptor(handle, outDescriptor);
 }
 
-bool MDIBContainer::findState(const std::string & handle, EnumStringMetricState & outState) const {
+bool MdibContainer::findState(const std::string & handle, EnumStringMetricState & outState) const {
 	return mdstate->findState(handle, outState);
 }
 
-bool MDIBContainer::findState(const std::string & handle, NumericMetricState & outState) const {
+bool MdibContainer::findState(const std::string & handle, NumericMetricState & outState) const {
 	return mdstate->findState(handle, outState);
 }
 
-bool MDIBContainer::findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const {
+bool MdibContainer::findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const {
 	return mdstate->findState(handle, outState);
 }
 
-bool MDIBContainer::findState(const std::string & handle, StringMetricState & outState) const {
+bool MdibContainer::findState(const std::string & handle, StringMetricState & outState) const {
 	return mdstate->findState(handle, outState);
 }
 

@@ -32,13 +32,13 @@
 #include "OSCLib/Data/OSCP/MDIB/DateTime.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
@@ -292,12 +292,12 @@ public:
 		const OperationInvocationContext & ) override {
 
 		if (lcStates.empty() && pcStates.empty()) {
-			return InvocationState::FAILED;
+			return InvocationState::Fail;
 		}
 
 		if ((lcStates.size() > 0 && lcStates[0].getDescriptorHandle() != "location_context")
 			|| (pcStates.size() > 0 && pcStates[0].getDescriptorHandle() != "patient_context")) {
-			return InvocationState::FAILED;
+			return InvocationState::Fail;
 		}
 
 		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: ContextHandler received state change request" << std::endl;
@@ -677,7 +677,7 @@ public:
 	CommandHandler() {
     }
 
-	InvocationState onActivateRequest(const MDIBContainer & , const OperationInvocationContext & ) override {
+	InvocationState onActivateRequest(const MdibContainer & , const OperationInvocationContext & ) override {
 		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: Received command!" << std::endl;
 		return InvocationState::FINISHED;
 	}
@@ -924,8 +924,8 @@ public:
 		oscpProvider.addMDStateHandler(&vmdState);
 	}
 
-    MDDescription getMDDescription() {
-    	return oscpProvider.getMDDescription();
+    MDDescription getMdDescription() {
+    	return oscpProvider.getMdDescription();
     }
 
     void startup() {
@@ -1021,7 +1021,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         provider.start();
 
         // MDDescription test
-        MDDescription mdDescription =  provider.getMDDescription();
+        MDDescription mdDescription =  provider.getMdDescription();
         // add and remove a test MDS
         HydraMDSDescriptor hydraMDS_test;
         mdDescription.addMDSDescriptor(hydraMDS_test);
@@ -1047,11 +1047,11 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 		if (c != nullptr) {
 			OSCPConsumer & consumer = *c;
             // MDIB test
-            MDIBContainer mdib(consumer.getMDIB());
+            MdibContainer mdib(consumer.getMDIB());
 
             { // test access to system metadata of mds implemented by provider above
             	HydraMDSDescriptor mds;
-            	if (mdib.getMDDescription().findDescriptor(Tests::SimpleOSCP::MDS_HANDLE, mds)) {
+            	if (mdib.getMdDescription().findDescriptor(Tests::SimpleOSCP::MDS_HANDLE, mds)) {
             		if (mds.hasMetaData()) {
             			const SystemMetaData metadata(mds.getMetaData());
             			if (metadata.hasUDI()) {
@@ -1063,7 +1063,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             }
             { // test presence of system context descriptors
             	HydraMDSDescriptor mds;
-            	if (mdib.getMDDescription().findDescriptor(Tests::SimpleOSCP::MDS_HANDLE, mds)) {
+            	if (mdib.getMdDescription().findDescriptor(Tests::SimpleOSCP::MDS_HANDLE, mds)) {
             		SystemContext sc(mds.getContext());
             		CHECK_EQUAL(true, sc.hasPatientContext());
             		CHECK_EQUAL(false, sc.hasOperatorContext());
@@ -1071,12 +1071,12 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             }
             {	// lookup descriptors that should exist for the provider implemented above
             	NumericMetricDescriptor curMetric;
-				mdib.getMDDescription().findDescriptor("handle_cur", curMetric);
+				mdib.getMdDescription().findDescriptor("handle_cur", curMetric);
 				CHECK_EQUAL("Current weight", curMetric.getType().getConceptDescriptions().at(0).get());
 				CHECK_EQUAL("handle_cur", curMetric.getHandle());
 
 				StringMetricDescriptor strMetric;
-				CHECK_EQUAL(true, mdib.getMDDescription().findDescriptor("handle_str", strMetric));
+				CHECK_EQUAL(true, mdib.getMdDescription().findDescriptor("handle_str", strMetric));
 				CHECK_EQUAL("handle_str", strMetric.getHandle());
             }
 
@@ -1112,7 +1112,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             	DebugOut(DebugOut::Default, "SimpleOSCP") << "SHOULD FAIL: " << std::endl;
             	NumericMetricState currentWeightState;
 				CHECK_EQUAL(true, consumer.requestState("handle_cur", currentWeightState));
-            	CHECK_EQUAL(true, InvocationState::FAILED == consumer.commitState(currentWeightState));
+            	CHECK_EQUAL(true, InvocationState::Fail == consumer.commitState(currentWeightState));
             }
             {	// Get state of maximum weight
 				NumericMetricState maxWeightState;
@@ -1132,7 +1132,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 
 				enumState.setObservedValue(StringMetricValue().setValue("bon jour"));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::WAITING == consumer.commitState(enumState, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(enumState, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
             {	// Set state of test enum with illegal enum value
@@ -1144,7 +1144,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 				enumState.setObservedValue(StringMetricValue().setValue("bye"));
 				FutureInvocationState fis;
 				consumer.commitState(enumState, fis);
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FAILED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fail, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
 
             // Wait here and let the current value exceed max value. This will trigger alert condition presence which in turn
@@ -1158,7 +1158,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 				// Here, we increase max weight to switch condition presence => results in alert signal presence
 				maxWeightState.setObservedValue(NumericMetricValue().setValue(10));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::WAITING == consumer.commitState(maxWeightState, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(maxWeightState, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 			}
 
@@ -1168,14 +1168,14 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 				stringState.setDescriptorHandle("handle_str");
 				stringState.setObservedValue(StringMetricValue().setValue("Test2"));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::WAITING == consumer.commitState(stringState, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(stringState, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
 
             {	// Activate test
                 DebugOut(DebugOut::Default, "SimpleOSCP") << "Activate test...";
                 FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::WAITING == c->activate("handle_cmd", fis));
+				CHECK_EQUAL(true, InvocationState::Wait == c->activate("handle_cmd", fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
 
@@ -1188,7 +1188,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
                 lcs.addIdentification(InstanceIdentifier().setroot("hello").setextension("world"));
                 FutureInvocationState fis;
                 ceh.getEventEMR().reset();
-                CHECK_EQUAL(true, InvocationState::WAITING == consumer.commitState(lcs, fis));
+                CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(lcs, fis));
 				CHECK_EQUAL(true, ceh.getEventEMR().tryWait(3000));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "Location context test done...";
@@ -1207,7 +1207,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 						.setDateOfBirth(DateTime().setyear(1982).setmonth(1).setday(1)));
 				FutureInvocationState fis;
 				ceh.getEventEMR().reset();
-				CHECK_EQUAL(true, InvocationState::WAITING == consumer.commitState(pcs, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(pcs, fis));
 				CHECK_EQUAL(true, ceh.getEventEMR().tryWait(3000));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "Patient context test done...";
@@ -1224,7 +1224,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 
 				alertSignal.setPresence(SignalPresence::Off);
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::WAITING == consumer.commitState(alertSignal, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(alertSignal, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 			}
 

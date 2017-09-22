@@ -22,7 +22,7 @@ OSCPProviderAlertSignalStateHandler::~OSCPProviderAlertSignalStateHandler() {
 
 InvocationState OSCPProviderAlertSignalStateHandler::onStateChangeRequest(const AlertSignalState & , const OperationInvocationContext & ) {
 	log_error([] { return "Method not overridden: onStateChangeRequest(AlertSignalState)!"; });
-    return InvocationState::FAILED;
+    return InvocationState::Fail;
 }
 
 void OSCPProviderAlertSignalStateHandler::updateState(const OSCLib::Data::OSCP::AlertSignalState & object) {

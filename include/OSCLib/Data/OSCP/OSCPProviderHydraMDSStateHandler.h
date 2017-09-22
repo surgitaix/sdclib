@@ -8,18 +8,18 @@
 #ifndef DATA_OSCP_OSCPPROVIDERHYDRAMDSSTATEHANDLER_H_
 #define DATA_OSCP_OSCPPROVIDERHYDRAMDSSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPProviderMDStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderHydraMDSStateHandler : public OSCPProviderMDStateHandler {
+class OSCPProviderHydraMDSStateHandler : public OSCPProviderMdStateHandler {
 public:
 	OSCPProviderHydraMDSStateHandler();
 	virtual ~OSCPProviderHydraMDSStateHandler();
 
-    virtual HydraMDSState getInitialState() = 0;
+    virtual MdsState getInitialState() = 0;
 
     /**
     * @brief Return the handle of this handler's state.

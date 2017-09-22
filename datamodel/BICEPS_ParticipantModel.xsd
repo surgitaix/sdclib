@@ -158,48 +158,6 @@ The Domain Information model is subdivided into two parts, a static part (referr
 			</xsd:enumeration>
 		</xsd:restriction>
 	</xsd:simpleType>
-	<xsd:simpleType name="InvocationState">
-		<xsd:annotation>
-			<xsd:documentation>Transaction state of an invoked operation.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="Wait">
-				<xsd:annotation>
-					<xsd:documentation>Wait = Waiting. The operation has been queued and waits for execution.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Start">
-				<xsd:annotation>
-					<xsd:documentation>Start = Started. The execution of the operation has been started.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Cnclld">
-				<xsd:annotation>
-					<xsd:documentation>Cnclld = Cancelled. The execution has been cancelled by the SERVICE PROVIDER.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="CnclldMan">
-				<xsd:annotation>
-					<xsd:documentation>CnclldMan = Cancelled Manually. The execution has been cancelled by the operator.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Fin">
-				<xsd:annotation>
-					<xsd:documentation>Fin = Finished. The execution has been finished.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="FinMod">
-				<xsd:annotation>
-					<xsd:documentation>FinMod = Finished with modification. As the requested target value could not be reached, the next best value has been chosen and used as target value.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Fail">
-				<xsd:annotation>
-					<xsd:documentation>The execution has been failed.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
 	<xsd:simpleType name="Timestamp">
 		<xsd:annotation>
 			<xsd:documentation>An unsigned 64-bit integer value that represents a timestamp.

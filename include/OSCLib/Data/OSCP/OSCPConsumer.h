@@ -26,7 +26,7 @@
 
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/MDIBContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
 
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSCLib/Data/OSCP/OSELibConsumerAdapter.h"
@@ -80,21 +80,21 @@ public:
     *
     * @return The MDIB container
     */
-    MDIBContainer getMDIB();
+    MdibContainer getMDIB();
 
     /**
     * @brief Get the Medical Device Description.
     *
     * @return The MDD container
     */
-    MDDescription getMDDescription();
+    MdDescription getMdDescription();
 
     /**
     * @brief Get all states as part of the MDIB.
     *
     * @return The MD state container
     */
-    MDState getMDState();
+    MdState getMdState();
 
     /**
     * @brief Register to be notified if a state changes.
@@ -224,9 +224,9 @@ private:
     * @param True, if MDIB updated successfully.
     */
     bool requestMDIB();
-    std::unique_ptr<CDM::GetMDIBResponse> requestCDMMDIB();
+    std::unique_ptr<MDM::GetMdibResponse> requestCDMMDIB();
 
-    MDDescription getCachedMDDescription();
+    MdDescription getCachedMdDescription();
 
     bool unregisterFutureInvocationListener(int transactionId);
 
@@ -249,7 +249,7 @@ private:
     std::map<int, FutureInvocationState *> fisMap;
     Poco::Mutex transactionMutex;
 
-    std::shared_ptr<MDIBContainer> mdib;
+    std::shared_ptr<MdibContainer> mdib;
     std::deque<TransactionState> transactionQueue;
 	Poco::Mutex mdibVersionMutex;
 	Poco::Mutex requestMutex;

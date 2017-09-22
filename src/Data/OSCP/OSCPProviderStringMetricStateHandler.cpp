@@ -22,7 +22,7 @@ OSCPProviderStringMetricStateHandler::~OSCPProviderStringMetricStateHandler() {
 
 InvocationState OSCPProviderStringMetricStateHandler::onStateChangeRequest(const StringMetricState & , const OperationInvocationContext & ) {
 	log_error([] { return "Method not overridden: onStateChangeRequest(StringMetricState)!"; });
-    return InvocationState::FAILED;
+    return InvocationState::Fail;
 }
 
 void OSCPProviderStringMetricStateHandler::updateState(const OSCLib::Data::OSCP::StringMetricState & object) {

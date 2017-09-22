@@ -521,17 +521,17 @@ if (consumer.requestState("handle_cur", currentWeightState)) {
 
 @subsubsection oscp_consumer_request_commit_async Handling async commits
 
-<p>Committing states takes place <b>asynchronously</b>, which means the method always returns at once, independently from how long the actual change process takes to complete on the Provider's side. The default return value for a change process that has preliminary been accepted, is InvocationState::WAITING.</p>
+<p>Committing states takes place <b>asynchronously</b>, which means the method always returns at once, independently from how long the actual change process takes to complete on the Provider's side. The default return value for a change process that has preliminary been accepted, is InvocationState::Wait.</p>
 However, in some cases like the currentweight metric, the invocation state will indicate a failure because this metric is read-only:
 
 @code
 NumericMetricState currentWeightStateResult;
 InvocationState::Value is = consumer.commitState(currentWeightState);
-// is == InvocationState::FAILED
+// is == InvocationState::Fail
 @endcode
 
-<p>Please note that in this case the framework itself makes this determination and returns this value in the response. If for example InvocationState::FAILED is returned by the provider handler's user code,
-it can only be detected by evaluating the results later, because the immediate return value will still be InvocationState::WAITING (remember that the user code on the provider's side will be executed asynchronously).</p>
+<p>Please note that in this case the framework itself makes this determination and returns this value in the response. If for example InvocationState::Fail is returned by the provider handler's user code,
+it can only be detected by evaluating the results later, because the immediate return value will still be InvocationState::Wait (remember that the user code on the provider's side will be executed asynchronously).</p>
 There are two possibilities of how to handle results of asynchronously committed states:
 
 <ul>
@@ -547,7 +547,7 @@ NumericMetricState maxWeightState;
 maxWeightState.setDescriptorHandle("handle_max");
 maxWeightState.setObservedValue(NumericMetricValue(3.0));
 FutureInvocationState fis;
-if (consumer.commitState(maxWeightState, fis) == InvocationState::WAITING) {
+if (consumer.commitState(maxWeightState, fis) == InvocationState::Wait) {
   cout << "Commit in progress..." << endl;
   // Wait FINISHED to be signaled in the next 1000 milliseconds
   if (fis.waitReceived(InvocationState::FINISHED, 1000)) {
@@ -838,7 +838,7 @@ if (consumer.requestState("handle_alert_signal", alertSignal)) {
   // Switch alert signal off
   alertSignal.setPresence(SignalPresence::Off);
   FutureInvocationState fis;
-  if (consumer.commitState(alertSignal) == InvocationState::WAITING && fis.waitReceived(InvocationState::FINISHED, 1000)) {
+  if (consumer.commitState(alertSignal) == InvocationState::Wait && fis.waitReceived(InvocationState::FINISHED, 1000)) {
     cout << "Success! Alarm has been switched off." << endl;
   }
 }
@@ -1021,7 +1021,7 @@ public:
     const OperationInvocationContext & oic) override {
     
     notifyOperationInvoked(oic, InvocationState::STARTED);
-    // TODO: check handles and return InvocationState::FAILED;
+    // TODO: check handles and return InvocationState::Fail;
 		
     cout << "Provider: ContextHandler received state change request" << endl;
 	

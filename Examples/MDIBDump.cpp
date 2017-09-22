@@ -1,8 +1,8 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
@@ -15,11 +15,11 @@
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/SCODescriptor.h"
@@ -168,11 +168,11 @@ void validateStates(const MDDescription & mdd, const std::vector<ComponentState>
 	}
 }
 
-void validate(const MDIBContainer & mdib) {
+void validate(const MdibContainer & mdib) {
 	std::vector<std::string> descriptorHandles;
 	std::vector<std::string> stateHandles;
 
-	const MDDescription mdd(mdib.getMDDescription());
+	const MDDescription mdd(mdib.getMdDescription());
 	const MDState mdstate(mdib.getMDState());
 
 	{
@@ -316,7 +316,7 @@ int main (int argc, char * argv[])
 				DebugOut(DebugOut::Default, "MDIBDump") << "Error writing file." << std::endl;
 			}
 
-			const MDIBContainer mdib(consumer->getMDIB());
+			const MdibContainer mdib(consumer->getMDIB());
 			validate(mdib);
 		}
 

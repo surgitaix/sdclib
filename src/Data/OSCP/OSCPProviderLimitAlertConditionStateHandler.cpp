@@ -22,7 +22,7 @@ OSCPProviderLimitAlertConditionStateHandler::~OSCPProviderLimitAlertConditionSta
 
 InvocationState OSCPProviderLimitAlertConditionStateHandler::onStateChangeRequest(const LimitAlertConditionState & , const OperationInvocationContext & ) {
 	log_error([] { return "Method not overridden: onStateChangeRequest(LimitAlertConditionState)!"; });
-    return InvocationState::FAILED;
+    return InvocationState::Fail;
 }
 
 void OSCPProviderLimitAlertConditionStateHandler::sourceHasChanged(const std::string & ) {

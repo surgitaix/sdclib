@@ -40,7 +40,7 @@ InvocationState OSCPProviderContextStateHandler::onStateChangeRequest(
 		const std::vector<WorkflowContextState> &,
 		const OperationInvocationContext &) {
 	log_error([] { return "Method not overridden: onStateChangeRequest(AlertSignalState)!"; });
-    return InvocationState::FAILED;
+    return InvocationState::Fail;
 }
 
 std::vector<EnsembleContextState> OSCPProviderContextStateHandler::getEnsembleContextStates() {

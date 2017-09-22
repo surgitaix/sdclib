@@ -11,9 +11,9 @@
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
@@ -404,7 +404,7 @@ int main()
 			DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
 
 			// MDIB test
-			MDIBContainer mdib = consumer.getMDIB();
+			MdibContainer mdib = consumer.getMDIB();
 
 			// Register for metric event
 			consumer.registerStateEventHandler(eces1.get());
@@ -421,7 +421,7 @@ int main()
 			// Set state test (must fail due to read-only)
 			InvocationState invocationStateFirst = consumer.commitState(currentWeightState);
 			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (1st commit): " << Data::OSCP::EnumToString::convert(invocationStateFirst);
-			if (InvocationState::FAILED == invocationStateFirst) {
+			if (InvocationState::Fail == invocationStateFirst) {
 				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state failed as expected.";
 			} else {
 				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state succeeded. This is an error, because it should be read-only.";

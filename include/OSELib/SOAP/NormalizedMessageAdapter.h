@@ -198,15 +198,15 @@ struct NormalizedMessageAdapter<WS::MEX::Metadata> {
 template<>
 struct NormalizedMessageAdapter<OSCP::GetMDDescriptionTraits::Request> {
 	const OSCP::GetMDDescriptionTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDDescription().get();
+		return message.Body().getMdDescription().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMDDescriptionTraits::Request> source) {
-		message.Body().GetMDDescription().set(std::move(source));
+		message.Body().getMdDescription().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDDescription().present();
+		return message.Body().getMdDescription().present();
 	}
 };
 

@@ -97,7 +97,6 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/ContainmentTreeEntry.cpp
 ./src/Data/OSCP/MDIB/ConvertFromCDM.cpp
 ./src/Data/OSCP/MDIB/ConvertToCDM.cpp
-./src/Data/OSCP/MDIB/Defaults.cpp
 ./src/Data/OSCP/MDIB/DicomDeviceDescriptor.cpp
 ./src/Data/OSCP/MDIB/DicomNetworkAe.cpp
 ./src/Data/OSCP/MDIB/DicomNetworkConnection.cpp
@@ -181,7 +180,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/custom/ChannelDescriptorCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/Defaults.cpp
 ./src/Data/OSCP/MDIB/custom/MdDescriptionCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/MDIBContainer.cpp
+./src/Data/OSCP/MDIB/custom/MdibContainer.cpp
 ./src/Data/OSCP/MDIB/custom/MdStateCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/OperationInvocationContext.cpp
 ./src/Data/OSCP/MDIB/custom/ScoDescriptorCustomImpl.cxx
@@ -194,12 +193,11 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/OSCPProviderAlertSignalStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderAlertSystemStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderClockStateHandler.cpp
-./src/Data/OSCP/OSCPProviderComponentStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderContextStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderHydraMDSStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.cpp
-./src/Data/OSCP/OSCPProviderMDStateHandler.cpp
+./src/Data/OSCP/OSCPProviderMdStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderNumericMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderStringMetricStateHandler.cpp

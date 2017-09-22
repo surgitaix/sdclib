@@ -1,3 +1,7 @@
+	// non-auto generated ending
+	static std::string convert(InvocationState source);
+
+};
 
 } /* namespace OSCP */
 } /* namespace Data */

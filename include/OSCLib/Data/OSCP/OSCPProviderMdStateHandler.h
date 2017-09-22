@@ -38,11 +38,11 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderMDStateHandler : public OSELib::WithLogger {
+class OSCPProviderMdStateHandler : public OSELib::WithLogger {
 	friend class OSCPProvider;
 public:
-	OSCPProviderMDStateHandler();
-	virtual ~OSCPProviderMDStateHandler();
+	OSCPProviderMdStateHandler();
+	virtual ~OSCPProviderMdStateHandler();
 
     /**
     * @brief Return the handle of this handler's state.

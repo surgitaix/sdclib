@@ -34,22 +34,22 @@
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPProviderMDStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSCPProviderMDStateHandler::OSCPProviderMDStateHandler() :
+OSCPProviderMdStateHandler::OSCPProviderMdStateHandler() :
 	WithLogger(OSELib::Log::OSCPPROVIDER),
 	parentProvider(nullptr)
 {
 }
 
-OSCPProviderMDStateHandler::~OSCPProviderMDStateHandler() {
+OSCPProviderMdStateHandler::~OSCPProviderMdStateHandler() {
 }
 
-void OSCPProviderMDStateHandler::notifyOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
+void OSCPProviderMdStateHandler::notifyOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
     if (parentProvider == nullptr) {
     	log_error([] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
     } else {
@@ -57,7 +57,7 @@ void OSCPProviderMDStateHandler::notifyOperationInvoked(const OperationInvocatio
     }
 }
 
-void OSCPProviderMDStateHandler::setAlertConditionPresence(const std::string alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
+void OSCPProviderMdStateHandler::setAlertConditionPresence(const std::string alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
     if (parentProvider == nullptr) {
     	log_error([&] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
     } else {
@@ -65,21 +65,21 @@ void OSCPProviderMDStateHandler::setAlertConditionPresence(const std::string ale
     }
 }
 
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const AlertConditionState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const AlertSignalState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const AlertSystemState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const EnsembleContextState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const EnumStringMetricState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const LimitAlertConditionState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const LocationContextState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const NumericMetricState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const OperatorContextState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const PatientContextState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const RealTimeSampleArrayMetricState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const StringMetricState & object);
-template void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const WorkflowContextState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const AlertConditionState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const AlertSignalState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const AlertSystemState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const EnsembleContextState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const EnumStringMetricState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const LimitAlertConditionState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const LocationContextState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const NumericMetricState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const OperatorContextState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const PatientContextState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const RealTimeSampleArrayMetricState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const StringMetricState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const WorkflowContextState & object);
 
-template<class T> void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(const T & object) {
+template<class T> void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const T & object) {
     if (parentProvider == nullptr) {
     	log_error([&] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
     } else {
@@ -87,7 +87,7 @@ template<class T> void OSCPProviderMDStateHandler::notifyMDIBObjectChangedImpl(c
     }
 }
 
-OSCPProvider & OSCPProviderMDStateHandler::getParentProvider() {
+OSCPProvider & OSCPProviderMdStateHandler::getParentProvider() {
 	return *parentProvider;
 }
 

@@ -228,19 +228,6 @@ MeasurementValidity ConvertFromCDM::convert(const CDM::MeasurementValidity & sou
 	throw std::runtime_error("Illegal value for MeasurementValidity");
 }
 
-InvocationState ConvertFromCDM::convert(const CDM::InvocationState & source) {
-	switch (source) {
-		case CDM::InvocationState::Wait: return InvocationState::Wait;
-		case CDM::InvocationState::Start: return InvocationState::Start;
-		case CDM::InvocationState::Cnclld: return InvocationState::Cnclld;
-		case CDM::InvocationState::CnclldMan: return InvocationState::CnclldMan;
-		case CDM::InvocationState::Fin: return InvocationState::Fin;
-		case CDM::InvocationState::FinMod: return InvocationState::FinMod;
-		case CDM::InvocationState::Fail: return InvocationState::Fail;
-	}
-	throw std::runtime_error("Illegal value for InvocationState");
-}
-
 SafetyClassification ConvertFromCDM::convert(const CDM::SafetyClassification & source) {
 	switch (source) {
 		case CDM::SafetyClassification::Inf: return SafetyClassification::Inf;
@@ -939,6 +926,20 @@ RealTimeValueType ConvertFromCDM::convert(const CDM::RealTimeValueType & source)
 	return list;
 }
 
+
+
+InvocationState ConvertFromCDM::convert(const MDM::InvocationState & source) {
+	switch (source) {
+		case MDM::InvocationState::Wait: return InvocationState::Wait;
+		case MDM::InvocationState::Start: return InvocationState::Start;
+		case MDM::InvocationState::Cnclld: return InvocationState::Cnclld;
+		case MDM::InvocationState::CnclldMan: return InvocationState::CnclldMan;
+		case MDM::InvocationState::Fin: return InvocationState::Fin;
+		case MDM::InvocationState::FinMod: return InvocationState::FinMod;
+		case MDM::InvocationState::Fail: return InvocationState::Fail;
+	}
+	throw std::runtime_error("Illegal value for InvocationState");
+}
 
 
 } /* namespace OSCP */

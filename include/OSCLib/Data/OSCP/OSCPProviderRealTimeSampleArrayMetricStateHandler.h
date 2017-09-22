@@ -8,13 +8,13 @@
 #ifndef DATA_OSCP_OSCPPROVIDERREALTIMESAMPLEARRAYMETRICSTATEHANDLER_H_
 #define DATA_OSCP_OSCPPROVIDERREALTIMESAMPLEARRAYMETRICSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPProviderMDStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderRealTimeSampleArrayMetricStateHandler : public OSCPProviderMDStateHandler {
+class OSCPProviderRealTimeSampleArrayMetricStateHandler : public OSCPProviderMdStateHandler {
 public:
 	OSCPProviderRealTimeSampleArrayMetricStateHandler();
 	virtual ~OSCPProviderRealTimeSampleArrayMetricStateHandler();

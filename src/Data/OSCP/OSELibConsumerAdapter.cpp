@@ -401,7 +401,7 @@ std::unique_ptr<CDM::GetMDDescriptionResponse> OSELibConsumerAdapter::invoke(con
 	return invokeImpl<OSELib::OSCP::GetMDDescriptionTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<CDM::GetMDIBResponse> OSELibConsumerAdapter::invoke(const CDM::GetMDIB & request) {
+std::unique_ptr<MDM::GetMdibResponse> OSELibConsumerAdapter::invoke(const CDM::GetMDIB & request) {
 	return invokeImpl<OSELib::OSCP::GetMDIBTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 

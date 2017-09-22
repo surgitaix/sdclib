@@ -6,7 +6,7 @@
  */
 
 #include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 
 namespace OSCLib {
 namespace Data {

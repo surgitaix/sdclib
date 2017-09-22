@@ -22,7 +22,7 @@ OSCPProviderEnumStringMetricStateHandler::~OSCPProviderEnumStringMetricStateHand
 
 InvocationState OSCPProviderEnumStringMetricStateHandler::onStateChangeRequest(const EnumStringMetricState & , const OperationInvocationContext & ) {
 	log_error([] { return "Method not overridden: onStateChangeRequest(EnumStringMetricState)!"; });
-    return InvocationState::FAILED;
+    return InvocationState::Fail;
 }
 
 void OSCPProviderEnumStringMetricStateHandler::updateState(const OSCLib::Data::OSCP::EnumStringMetricState & object) {

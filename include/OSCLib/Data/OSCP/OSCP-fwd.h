@@ -32,7 +32,7 @@ namespace OSCP {
 	class OSCPConsumerSubscriptionLostHandler;
 
 	class OSCPProvider;
-	class OSCPProviderMDStateHandler;
+	class OSCPProviderMdStateHandler;
 	class OSCPProviderAlertConditionStateHandler;
 	class OSCPProviderAlertSignalStateHandler;
 	class OSCPProviderAlertSystemStateHandler;

@@ -9,14 +9,14 @@
 #define DATA_OSCP_OSCPPROVIDERCONTEXTSTATEHANDLER_H_
 
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "OSCLib/Data/OSCP/OSCPProviderMDStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 #include<vector>
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderContextStateHandler : public OSCPProviderMDStateHandler {
+class OSCPProviderContextStateHandler : public OSCPProviderMdStateHandler {
 public:
 	OSCPProviderContextStateHandler();
 	virtual ~OSCPProviderContextStateHandler();
