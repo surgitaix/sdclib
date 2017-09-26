@@ -262,7 +262,6 @@ namespace CDM
   class MdDescription;
   class MdState;
   class MeasurementValidity;
-  class InvocationState;
   class Timestamp;
   class VersionCounter;
   class ReferencedVersion;

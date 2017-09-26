@@ -126,13 +126,13 @@ int main() {
 			{
         		// TODO MDIBVersion in GetMDIBResponse/MDIB node is missing so the messages fails validation.
 //				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDIB:";
-//				const auto mdib = consumer.getMDIB();
+//				const auto mdib = consumer.getMdib();
 //				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Done.";
 			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
-				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState():";
-				const auto mdstate = consumer.getMDState();
+				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMdState():";
+				const auto mdstate = consumer.getMdState();
 				if (!mdstate.findComponentStates().empty()
 					&& !mdstate.findNumericMetricStates().empty()
 					&& !mdstate.findStringMetricStates().empty()) {
@@ -141,7 +141,7 @@ int main() {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
 				}
 
-				additionalResults << "Testing getMDState():" << std::endl;
+				additionalResults << "Testing getMdState():" << std::endl;
 				additionalResults << "Found " << mdstate.findComponentStates().size() << " ComponentStates." << std::endl;
 				additionalResults << "Found " << mdstate.findEnumStringMetricStates().size() << " EnumStringMetricStates." << std::endl;
 				additionalResults << "Found " << mdstate.findNumericMetricStates().size() << " NumericMetricStates." << std::endl;

@@ -280,7 +280,7 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
 	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> result(new OSCLib::Data::OSCP::OSCPConsumer(deviceDescription));
-	if (!result->requestMDIB()) {
+	if (!result->requestMdib()) {
 		result->disconnect();
 		return nullptr;
 	}

@@ -13,7 +13,7 @@
 #include "Poco/Net/NetworkInterface.h"
 #include "Poco/Net/ServerSocket.h"
 
-#include "BICEPS_DomainModel.hxx"
+#include "BICEPS_ParticipantModel.hxx"
 #include "BICEPS_MessageModel.hxx"
 #include "MetadataExchange.hxx"
 #include "NormalizedMessageModel.hxx"
@@ -229,7 +229,7 @@ struct GetServiceImpl : public OSCP::IGetService {
 		WSDL::WSDLBuilder builder(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_GETSERVICE_PORTTYPE);
 		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMDDescriptionTraits> GetMDDescriptionTraitsAdapter(builder);
 		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMDIBTraits> GetMDIBTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMDStateTraits> GetMDStateOperationAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMdStateTraits> GetMDStateOperationAdapter(builder);
 		return builder.serialize();
 	}
 
@@ -246,9 +246,9 @@ struct GetServiceImpl : public OSCP::IGetService {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<OSCP::GetMDIBTraits::Response>(new OSCP::GetMDIBTraits::Response(_provider.GetMDIB(request)));
 	}
-	virtual std::unique_ptr<OSCP::GetMDStateTraits::Response> dispatch(const OSCP::GetMDStateTraits::Request & request) override {
+	virtual std::unique_ptr<OSCP::GetMdStateTraits::Response> dispatch(const OSCP::GetMdStateTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::GetMDStateTraits::Response>(new OSCP::GetMDStateTraits::Response(_provider.GetMDState(request)));
+		return std::unique_ptr<OSCP::GetMdStateTraits::Response>(new OSCP::GetMdStateTraits::Response(_provider.GetMDState(request)));
 	}
 
 private:

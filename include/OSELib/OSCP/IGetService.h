@@ -21,7 +21,7 @@ public:
 
 	virtual std::unique_ptr<GetMDDescriptionTraits::Response> dispatch(const GetMDDescriptionTraits::Request & request) = 0;
 	virtual std::unique_ptr<GetMDIBTraits::Response> dispatch(const GetMDIBTraits::Request & request) = 0;
-	virtual std::unique_ptr<GetMDStateTraits::Response> dispatch(const GetMDStateTraits::Request & request) = 0;
+	virtual std::unique_ptr<GetMdStateTraits::Response> dispatch(const GetMdStateTraits::Request & request) = 0;
 };
 
 } /* namespace OSCP */

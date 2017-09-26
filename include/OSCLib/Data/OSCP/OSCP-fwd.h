@@ -37,7 +37,6 @@ namespace OSCP {
 	class OSCPProviderAlertSignalStateHandler;
 	class OSCPProviderAlertSystemStateHandler;
 	class OSCPProviderClockStateHandler;
-	class OSCPProviderComponentStateHandler;
 	class OSCPProviderHydraMDSStateHandler;
 	class OSCPProviderEnumStringMetricStateHandler;
 	class OSCPProviderLimitAlertConditionStateHandler;

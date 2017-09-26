@@ -171,8 +171,9 @@ bool isMetricChangeAllowed(const StateType & state, OSCPProvider & provider) {
 	if (descriptor.getMetricCategory() == MetricCategory::Msrmt) {
 		return false;
 	}
-	if (state.hasComponentActivationState()) {
-		return state.getComponentActivationState() == ComponentActivation::On;
+
+	if (state.hasActivationState()) {
+		return state.getActivationState() == ComponentActivation::On;
 	} else {
 		return true;
 	}
@@ -210,13 +211,10 @@ MDM::SetValueResponse OSCPProvider::SetValueAsync(const MDM::SetValue & request)
 
 	auto genResponse = [this, &oic](InvocationState v) {
 		notifyOperationInvoked(oic, v);
-		MDM::InvocationState ivs(ConvertToCDM(v));
-		MDM::InvocationInfo ii(oic.transactionId,ivs);
-//		MDM::InvocationInfo ii(oic.transactionId,ivs);
-		MDM::SetValueResponse svr(ii,0);
-
-		svr.MdibVersion(getMdibVersion());
 		// TODO: 0 = replace with real sequence ID
+		MDM::SetValueResponse svr(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(v))),0);
+		svr.MdibVersion(getMdibVersion());
+
 		return svr;
 	};
 
@@ -244,8 +242,7 @@ void OSCPProvider::SetValue(const MDM::SetValue & request, const OperationInvoca
 		notifyOperationInvoked(oic, InvocationState::Fail);
 		return;
 	}
-
-	nms.setObservedValue(NumericMetricValue().setValue(request.RequestedNumericValue()));
+	nms.setMetricValue(NumericMetricValue().setValue(request.RequestedNumericValue()));
 
 	const InvocationState outState(onStateChangeRequest(nms, oic));
 	notifyOperationInvoked(oic, outState);
@@ -260,14 +257,18 @@ MDM::ActivateResponse OSCPProvider::OnActivateAsync(const MDM::Activate & reques
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 	notifyOperationInvoked(oic, InvocationState::Wait);
 	enqueueInvokeNotification(request, oic);
-	return MDM::ActivateResponse(oic.transactionId, ConvertToCDM::convert(InvocationState::Wait), getMdibVersion());
+
+	MDM::ActivateResponse ar(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(InvocationState::Wait))),0);
+	ar.MdibVersion(getMdibVersion());
+
+	return ar;
 }
 
 void OSCPProvider::OnActivate(const OperationInvocationContext & oic) {
 	std::map<std::string, OSCPProviderMdStateHandler *>::iterator it = stateHandlers.find(oic.operationHandle);
     if (it != stateHandlers.end()) {
     	if (OSCPProviderActivateOperationHandler * handler = dynamic_cast<OSCPProviderActivateOperationHandler *>(it->second)) {
-    		const InvocationState isVal(handler->onActivateRequest(getMDIB(), oic));
+    		const InvocationState isVal(handler->onActivateRequest(getMdib(), oic));
     		notifyOperationInvoked(oic, isVal);
     		return;
     	}
@@ -284,7 +285,9 @@ MDM::SetStringResponse OSCPProvider::SetStringAsync(const MDM::SetString & reque
 
 	auto genResponse = [this, &oic](InvocationState v) {
 		notifyOperationInvoked(oic, v);
-		return MDM::SetStringResponse(oic.transactionId, ConvertToCDM::convert(v), getMdibVersion());
+		MDM::SetStringResponse ssr(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(v))),0);
+		ssr.MdibVersion(getMdibVersion());
+		return ssr;
 	};
 
 	{
@@ -307,14 +310,13 @@ MDM::SetStringResponse OSCPProvider::SetStringAsync(const MDM::SetString & reque
             if (!isMetricChangeAllowed(state, *this)) {
                 return genResponse(InvocationState::Fail);
             }
+			const std::vector<AllowedValue> allowedValues(descriptor.getAllowedValueLists());
 
-			const std::vector<std::string> allowedValues(descriptor.getAllowedValues());
 			const std::string & requestedStringVal(request.RequestedStringValue());
-			std::vector<std::string>::const_iterator it = std::find(allowedValues.begin(), allowedValues.end(), requestedStringVal);
+			std::vector<AllowedValue>::const_iterator it = std::find(allowedValues.begin(), allowedValues.end(), requestedStringVal);
 			if (it == allowedValues.end()) {
 				return genResponse(InvocationState::Fail);
 			}
-
 			enqueueInvokeNotification(request, oic);
 			return genResponse(InvocationState::Wait);
 		}
@@ -347,7 +349,7 @@ void OSCPProvider::SetString(const MDM::SetString & request, const OperationInvo
 	{
 		StringMetricState sms;
 		if (mdsc.findState(metricHandle, sms)) {
-			sms.setObservedValue(StringMetricValue().setValue(requestedStringVal));
+			sms.setMetricValue(StringMetricValue().setValue(requestedStringVal));
 			SetStringImpl(sms, oic);
 			return;
 		}
@@ -361,12 +363,12 @@ void OSCPProvider::SetString(const MDM::SetString & request, const OperationInvo
 				return;
 			}
 
-			const std::vector<std::string> allowedValues(descriptor.getAllowedValues());
-			std::vector<std::string>::const_iterator it = std::find(allowedValues.begin(), allowedValues.end(), requestedStringVal);
+			const std::vector<AllowedValue> allowedValues(descriptor.getAllowedValueLists());
+			std::vector<AllowedValue>::const_iterator it = std::find(allowedValues.begin(), allowedValues.end(), requestedStringVal);
 			if (it == allowedValues.end()) {
 				notifyOperationInvoked(oic, InvocationState::Fail);
 			} else {
-				state.setObservedValue(StringMetricValue().setValue(*it));
+				state.setMetricValue(StringMetricValue().setValue(it->getValue()));
 				SetStringImpl(state, oic);
 			}
 
@@ -400,33 +402,36 @@ void OSCPProvider::SetAlertStateImpl(const StateType & state, const OperationInv
 
 MDM::SetAlertStateResponse OSCPProvider::SetAlertStateAsync(const MDM::SetAlertState & request) {
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
-	const MDM::AbstractAlertState * incomingCDMState = &(request.RequestedAlertState());
+	const CDM::AbstractAlertState * incomingCDMState = &(request.ProposedAlertState());
 
 	auto genResponse = [this, &oic](InvocationState v) {
 		notifyOperationInvoked(oic, v);
-		return MDM::SetAlertStateResponse(oic.transactionId, ConvertToCDM::convert(v), getMdibVersion());
+		// TODO: 0 = replace with real sequence ID
+		MDM::SetAlertStateResponse sasr(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(v))),0);
+		sasr.MdibVersion(getMdibVersion());
+
+		return sasr;
 	};
 
 	const std::string targetHandle(getMdDescription().getOperationTargetForOperationHandle(oic.operationHandle));
 	if (targetHandle.empty()) {
 		return genResponse(InvocationState::Fail);
 	}
-	if ((incomingCDMState->DescriptorHandle() != targetHandle) &&
-		(incomingCDMState->Handle().present() == false || incomingCDMState->Handle().get() != targetHandle)) {
+	if ((incomingCDMState->DescriptorHandle() != targetHandle)) {
 		return genResponse(InvocationState::Fail);
 	}
 
 	// Cast and convert, then call into user code
-	if (dynamic_cast<const MDM::AlertConditionState *>(incomingCDMState)) {
+	if (dynamic_cast<const CDM::AlertConditionState *>(incomingCDMState)) {
 		enqueueInvokeNotification(request, oic);
 		return genResponse(InvocationState::Wait);
-	} else if (dynamic_cast<const MDM::AlertSignalState *>(incomingCDMState)) {
+	} else if (dynamic_cast<const CDM::AlertSignalState *>(incomingCDMState)) {
 		enqueueInvokeNotification(request, oic);
 		return genResponse(InvocationState::Wait);
-	} else if (dynamic_cast<const MDM::AlertSystemState *>(incomingCDMState)) {
+	} else if (dynamic_cast<const CDM::AlertSystemState *>(incomingCDMState)) {
 		enqueueInvokeNotification(request, oic);
 		return genResponse(InvocationState::Wait);
-	} else if (dynamic_cast<const MDM::LimitAlertConditionState *>(incomingCDMState)) {
+	} else if (dynamic_cast<const CDM::LimitAlertConditionState *>(incomingCDMState)) {
 		enqueueInvokeNotification(request, oic);
 		return genResponse(InvocationState::Wait);
 	} else {
@@ -437,25 +442,24 @@ MDM::SetAlertStateResponse OSCPProvider::SetAlertStateAsync(const MDM::SetAlertS
 
 void OSCPProvider::SetAlertState(const MDM::SetAlertState & request, const OperationInvocationContext & oic) {
 
-	const MDM::AbstractAlertState * incomingCDMState = &(request.RequestedAlertState());
+	const CDM::AbstractAlertState * incomingCDMState = &(request.ProposedAlertState());
 
 	const std::string targetHandle(getMdDescription().getOperationTargetForOperationHandle(oic.operationHandle));
 	if (targetHandle.empty()) {
 		return notifyOperationInvoked(oic, InvocationState::Fail);
 	}
-	if ((incomingCDMState->DescriptorHandle() != targetHandle) &&
-		(incomingCDMState->Handle().present() == false || incomingCDMState->Handle().get() != targetHandle)) {
+	if ((incomingCDMState->DescriptorHandle() != targetHandle)) {
 		return notifyOperationInvoked(oic, InvocationState::Fail);
 	}
 
 	// Cast and convert, then call into user code
-	if (const MDM::AlertConditionState * state = dynamic_cast<const MDM::AlertConditionState *>(incomingCDMState)) {
+	if (const CDM::AlertConditionState * state = dynamic_cast<const CDM::AlertConditionState *>(incomingCDMState)) {
 		SetAlertStateImpl(ConvertFromCDM::convert(*state), oic);
-	} else if (const MDM::AlertSignalState * state = dynamic_cast<const MDM::AlertSignalState *>(incomingCDMState)) {
+	} else if (const CDM::AlertSignalState * state = dynamic_cast<const CDM::AlertSignalState *>(incomingCDMState)) {
 		SetAlertStateImpl(ConvertFromCDM::convert(*state), oic);
-	} else if (const MDM::AlertSystemState * state = dynamic_cast<const MDM::AlertSystemState *>(incomingCDMState)) {
+	} else if (const CDM::AlertSystemState * state = dynamic_cast<const CDM::AlertSystemState *>(incomingCDMState)) {
 		SetAlertStateImpl(ConvertFromCDM::convert(*state), oic);
-	} else if (const MDM::LimitAlertConditionState * state = dynamic_cast<const MDM::LimitAlertConditionState *>(incomingCDMState)) {
+	} else if (const CDM::LimitAlertConditionState * state = dynamic_cast<const CDM::LimitAlertConditionState *>(incomingCDMState)) {
 		SetAlertStateImpl(ConvertFromCDM::convert(*state), oic);
 	} else {
 		// cast failed.
@@ -468,34 +472,36 @@ MDM::GetMdStateResponse OSCPProvider::GetMdState(const MDM::GetMdState & request
     auto sdmMdStates(ConvertToCDM::convert(getMdState()));
 
     if (request.HandleRef().empty()) {
-        return MDM::GetMdStateResponse(getMdibVersion(), std::move(sdmMdStates));
+    	//TODO: use real SequenceID, not 0
+        return MDM::GetMdStateResponse(xml_schema::Uri("0"), std::move(sdmMdStates));
     } else {
-    	MDM::MdState tmpmds;
+    	CDM::MdState tmpmds;
     	const std::set<std::string> reqHandles(request.HandleRef().begin(), request.HandleRef().end());
     	for (const auto & nextState : sdmMdStates->State()) {
-			if ((nextState.Handle().present() && reqHandles.find(nextState.Handle().get()) != reqHandles.end()) ||
-				reqHandles.find(nextState.DescriptorHandle()) != reqHandles.end()) {
+			if (reqHandles.find(nextState.DescriptorHandle()) != reqHandles.end()) {
 				tmpmds.State().push_back(nextState);
 			}
     	}
-    	return MDM::GetMdStateResponse(getMdibVersion(), tmpmds);
+    	//TODO: use real SequenceID, not 0
+    	return MDM::GetMdStateResponse(xml_schema::Uri("0"), tmpmds);
     }
 }
 
 MDM::GetContextStatesResponse OSCPProvider::GetContextStates(const MDM::GetContextStates & request) {
 	const auto states(ConvertToCDM::convert(getMdState()));
 
-	MDM::GetContextStatesResponse contextStates(getMdibVersion());
+	//TODO: use real SequenceID, not 0
+	MDM::GetContextStatesResponse contextStates(xml_schema::Uri("0"));
 	for (const auto & state : states->State()) {
-		if (const MDM::EnsembleContextState * s = dynamic_cast<const MDM::EnsembleContextState *>(&state)) {
+		if (const CDM::EnsembleContextState * s = dynamic_cast<const CDM::EnsembleContextState *>(&state)) {
 			contextStates.ContextState().push_back(*s);
-		} else if (const MDM::LocationContextState * s = dynamic_cast<const MDM::LocationContextState *>(&state)) {
+		} else if (const CDM::LocationContextState * s = dynamic_cast<const CDM::LocationContextState *>(&state)) {
 			contextStates.ContextState().push_back(*s);
-		} else if (const MDM::OperatorContextState * s = dynamic_cast<const MDM::OperatorContextState *>(&state)) {
+		} else if (const CDM::OperatorContextState * s = dynamic_cast<const CDM::OperatorContextState *>(&state)) {
 			contextStates.ContextState().push_back(*s);
-		} else if (const MDM::PatientContextState * s = dynamic_cast<const MDM::PatientContextState *>(&state)) {
+		} else if (const CDM::PatientContextState * s = dynamic_cast<const CDM::PatientContextState *>(&state)) {
 			contextStates.ContextState().push_back(*s);
-		} else if (const MDM::WorkflowContextState * s = dynamic_cast<const MDM::WorkflowContextState *>(&state)) {
+		} else if (const CDM::WorkflowContextState * s = dynamic_cast<const CDM::WorkflowContextState *>(&state)) {
 			contextStates.ContextState().push_back(*s);
 		}
 	}
@@ -510,8 +516,7 @@ MDM::GetContextStatesResponse OSCPProvider::GetContextStates(const MDM::GetConte
 		MDM::GetContextStatesResponse result(getMdibVersion());
 		const std::set<std::string> reqHandles(request.HandleRef().begin(), request.HandleRef().end());
 		for (const auto & state : contextStates.ContextState()) {
-			if ((state.Handle().present() && reqHandles.find(state.Handle().get()) != reqHandles.end()) ||
-				reqHandles.find(state.DescriptorHandle()) != reqHandles.end()) {
+			if (reqHandles.find(state.DescriptorHandle()) != reqHandles.end()) {
 				result.ContextState().push_back(state);
 			}
 		}
@@ -546,19 +551,19 @@ void OSCPProvider::SetContextState(const MDM::SetContextState & request, const O
 	std::vector<WorkflowContextState> wcStates;
 
 	for (const auto & nextState : request.ProposedContextState()) {
-		if (const MDM::PatientContextState * state = dynamic_cast<const MDM::PatientContextState *>(&nextState)) {
+		if (const CDM::PatientContextState * state = dynamic_cast<const CDM::PatientContextState *>(&nextState)) {
 			pcStates.push_back(ConvertFromCDM::convert(*state));
 		}
-		else if (const MDM::LocationContextState * state = dynamic_cast<const MDM::LocationContextState *>(&nextState)) {
+		else if (const CDM::LocationContextState * state = dynamic_cast<const CDM::LocationContextState *>(&nextState)) {
 			lcStates.push_back(ConvertFromCDM::convert(*state));
 		}
-		else if (const MDM::EnsembleContextState * state = dynamic_cast<const MDM::EnsembleContextState *>(&nextState)) {
+		else if (const CDM::EnsembleContextState * state = dynamic_cast<const CDM::EnsembleContextState *>(&nextState)) {
 			ecStates.push_back(ConvertFromCDM::convert(*state));
 		}
-		else if (const MDM::OperatorContextState * state = dynamic_cast<const MDM::OperatorContextState *>(&nextState)) {
+		else if (const CDM::OperatorContextState * state = dynamic_cast<const CDM::OperatorContextState *>(&nextState)) {
 			ocStates.push_back(ConvertFromCDM::convert(*state));
 		}
-		else if (const MDM::WorkflowContextState * state = dynamic_cast<const MDM::WorkflowContextState *>(&nextState)) {
+		else if (const CDM::WorkflowContextState * state = dynamic_cast<const CDM::WorkflowContextState *>(&nextState)) {
 			wcStates.push_back(ConvertFromCDM::convert(*state));
 		}
 	}
@@ -575,11 +580,11 @@ void OSCPProvider::SetContextState(const MDM::SetContextState & request, const O
 	notifyOperationInvoked(oic, InvocationState::Fail);
 }
 
-MDM::GetMDIBResponse OSCPProvider::GetMDIB(const MDM::GetMDIB & ) {
-    return MDM::GetMDIBResponse(getMdibVersion(), ConvertToCDM::convert(getMDIB()));
+MDM::GetMdibResponse OSCPProvider::GetMDIB(const MDM::GetMdib & ) {
+    return MDM::GetMDIBResponse(getMdibVersion(), ConvertToCDM::convert(getMdib()));
 }
 
-MDM::GetMdDescriptionResponse OSCPProvider::GetMDDescription(const MDM::GetMdDescription & request) {
+MDM::GetMdDescriptionResponse OSCPProvider::GetMdDescription(const MDM::GetMdDescription & request) {
 	auto cdmMdd(ConvertToCDM::convert(getMdDescription()));
 
 	if (request.HandleRef().empty()) {
@@ -870,7 +875,7 @@ void OSCPProvider::evaluateAlertConditions(const std::string & source) {
 	}
 }
 
-MdibContainer OSCPProvider::getMDIB() {
+MdibContainer OSCPProvider::getMdib() {
     MdibContainer container;
 	Poco::Mutex::ScopedLock lock(mutex);
     container.setMDDescription(getMdDescription());
@@ -963,7 +968,7 @@ void OSCPProvider::startup() {
 		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
 		std::ostringstream xml;
 		xml_schema::NamespaceInfomap map;
-		MDM::MdibContainer(xml, *ConvertToCDM::convert(getMDIB()), map, OSELib::XML_ENCODING, xercesFlags);
+		MDM::MdibContainer(xml, *ConvertToCDM::convert(getMdib()), map, OSELib::XML_ENCODING, xercesFlags);
 
 		OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
 		auto rawMessage = OSELib::Helper::Message::create(xml.str());

@@ -120,7 +120,7 @@ public:
     float getMaxWeight() {
         NumericMetricState result;
         // TODO: in real applications, check if findState returns true!
-        getParentProvider().getMDState().findState("handle_set", result);
+        getParentProvider().getMdState().findState("handle_set", result);
         // TODO: in real applications, check if state has an observed value and if the observed value has a value!
         return (float)result.getObservedValue().getValue();
     }

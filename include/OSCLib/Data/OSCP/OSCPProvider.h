@@ -71,7 +71,7 @@ public:
     *
     * @return The MDIB container
     */
-    MdibContainer getMDIB();
+    MdibContainer getMdib();
 
     /**
     * @brief Get the Medical Device Description.

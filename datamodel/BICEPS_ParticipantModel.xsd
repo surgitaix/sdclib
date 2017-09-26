@@ -3675,4 +3675,5 @@ A limit of sixty-four (64) characters is required to allow compatibility with DI
 		</xsd:sequence>
 		<xsd:attributeGroup ref="pm:ContainmentTreeInfo"/>
 	</xsd:complexType>
+	<xsd:element name="MdibContainer" type="pm:Mdib"></xsd:element>
 </xsd:schema>

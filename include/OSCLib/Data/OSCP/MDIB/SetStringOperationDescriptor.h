@@ -92,9 +92,9 @@ public:
 	bool getRetriggerable(xml_schema::Duration & out) const;
 	bool hasRetriggerable() const;
 
-	SetStringOperationDescriptor & setMaxLength(const unsigned long & value);
-	unsigned long getMaxLength() const;
-	bool getMaxLength(unsigned long & out) const;
+	SetStringOperationDescriptor & setMaxLength(const unsigned long long & value);
+	unsigned long long getMaxLength() const;
+	bool getMaxLength(unsigned long long & out) const;
 	bool hasMaxLength() const;
 
 private:

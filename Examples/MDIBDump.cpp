@@ -173,7 +173,7 @@ void validate(const MdibContainer & mdib) {
 	std::vector<std::string> stateHandles;
 
 	const MDDescription mdd(mdib.getMdDescription());
-	const MDState mdstate(mdib.getMDState());
+	const MDState mdstate(mdib.getMdState());
 
 	{
 		HydraMDSDescriptor mds;
@@ -309,14 +309,14 @@ int main (int argc, char * argv[])
 				std::ofstream outFile;
 				outFile.open(filename, std::ios::trunc);
 				Poco::Timestamp dumpStarted;
-				outFile << consumer->requestRawMDIB();
+				outFile << consumer->requestRawMdib();
 				DebugOut(DebugOut::Default, "MDIBDump") << "   -> took " << Poco::DateTimeFormatter::format(Poco::Timespan(dumpStarted.elapsed()), "%s:%i") << " s:ms." << std::endl;
 				outFile.close();
 			} catch (...) {
 				DebugOut(DebugOut::Default, "MDIBDump") << "Error writing file." << std::endl;
 			}
 
-			const MdibContainer mdib(consumer->getMDIB());
+			const MdibContainer mdib(consumer->getMdib());
 			validate(mdib);
 		}
 

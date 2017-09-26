@@ -423,51 +423,6 @@ namespace CDM
   }
 
 
-  // InvocationState
-  // 
-
-  InvocationState::
-  InvocationState (Value v)
-  : ::xml_schema::String (_xsd_InvocationState_literals_[v])
-  {
-  }
-
-  InvocationState::
-  InvocationState (const char* v)
-  : ::xml_schema::String (v)
-  {
-  }
-
-  InvocationState::
-  InvocationState (const ::std::string& v)
-  : ::xml_schema::String (v)
-  {
-  }
-
-  InvocationState::
-  InvocationState (const ::xml_schema::String& v)
-  : ::xml_schema::String (v)
-  {
-  }
-
-  InvocationState::
-  InvocationState (const InvocationState& v,
-                   ::xml_schema::Flags f,
-                   ::xml_schema::Container* c)
-  : ::xml_schema::String (v, f, c)
-  {
-  }
-
-  InvocationState& InvocationState::
-  operator= (Value v)
-  {
-    static_cast< ::xml_schema::String& > (*this) = 
-    ::xml_schema::String (_xsd_InvocationState_literals_[v]);
-
-    return *this;
-  }
-
-
   // Timestamp
   // 
 
@@ -11067,92 +11022,6 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MeasurementValidity >
   _xsd_MeasurementValidity_type_factory_init (
     "MeasurementValidity",
-    "http://p11073-10207/draft8/pm/2017/08/07");
-
-  // InvocationState
-  //
-
-  InvocationState::
-  InvocationState (const ::xercesc::DOMElement& e,
-                   ::xml_schema::Flags f,
-                   ::xml_schema::Container* c)
-  : ::xml_schema::String (e, f, c)
-  {
-    _xsd_InvocationState_convert ();
-  }
-
-  InvocationState::
-  InvocationState (const ::xercesc::DOMAttr& a,
-                   ::xml_schema::Flags f,
-                   ::xml_schema::Container* c)
-  : ::xml_schema::String (a, f, c)
-  {
-    _xsd_InvocationState_convert ();
-  }
-
-  InvocationState::
-  InvocationState (const ::std::string& s,
-                   const ::xercesc::DOMElement* e,
-                   ::xml_schema::Flags f,
-                   ::xml_schema::Container* c)
-  : ::xml_schema::String (s, e, f, c)
-  {
-    _xsd_InvocationState_convert ();
-  }
-
-  InvocationState* InvocationState::
-  _clone (::xml_schema::Flags f,
-          ::xml_schema::Container* c) const
-  {
-    return new class InvocationState (*this, f, c);
-  }
-
-  InvocationState::Value InvocationState::
-  _xsd_InvocationState_convert () const
-  {
-    ::xsd::cxx::tree::enum_comparator< char > c (_xsd_InvocationState_literals_);
-    const Value* i (::std::lower_bound (
-                      _xsd_InvocationState_indexes_,
-                      _xsd_InvocationState_indexes_ + 7,
-                      *this,
-                      c));
-
-    if (i == _xsd_InvocationState_indexes_ + 7 || _xsd_InvocationState_literals_[*i] != *this)
-    {
-      throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
-    }
-
-    return *i;
-  }
-
-  const char* const InvocationState::
-  _xsd_InvocationState_literals_[7] =
-  {
-    "Wait",
-    "Start",
-    "Cnclld",
-    "CnclldMan",
-    "Fin",
-    "FinMod",
-    "Fail"
-  };
-
-  const InvocationState::Value InvocationState::
-  _xsd_InvocationState_indexes_[7] =
-  {
-    ::CDM::InvocationState::Cnclld,
-    ::CDM::InvocationState::CnclldMan,
-    ::CDM::InvocationState::Fail,
-    ::CDM::InvocationState::Fin,
-    ::CDM::InvocationState::FinMod,
-    ::CDM::InvocationState::Start,
-    ::CDM::InvocationState::Wait
-  };
-
-  static
-  const ::xsd::cxx::tree::type_factory_initializer< 0, char, InvocationState >
-  _xsd_InvocationState_type_factory_init (
-    "InvocationState",
     "http://p11073-10207/draft8/pm/2017/08/07");
 
   // Timestamp
@@ -29655,6 +29524,294 @@ namespace CDM
 
 namespace CDM
 {
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (const ::std::string& u,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xsd::cxx::xml::auto_initializer i (
+      (f & ::xml_schema::Flags::dont_initialize) == 0,
+      (f & ::xml_schema::Flags::keep_dom) == 0);
+
+    ::xsd::cxx::tree::error_handler< char > h;
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::xsd::cxx::xml::dom::parse< char > (
+        u, h, p, f));
+
+    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+    return ::std::unique_ptr< ::CDM::Mdib > (
+      ::CDM::MdibContainer (
+        std::move (d), f | ::xml_schema::Flags::own_dom, p));
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (const ::std::string& u,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xsd::cxx::xml::auto_initializer i (
+      (f & ::xml_schema::Flags::dont_initialize) == 0,
+      (f & ::xml_schema::Flags::keep_dom) == 0);
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::xsd::cxx::xml::dom::parse< char > (
+        u, h, p, f));
+
+    if (!d.get ())
+      throw ::xsd::cxx::tree::parsing< char > ();
+
+    return ::std::unique_ptr< ::CDM::Mdib > (
+      ::CDM::MdibContainer (
+        std::move (d), f | ::xml_schema::Flags::own_dom, p));
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (const ::std::string& u,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::xsd::cxx::xml::dom::parse< char > (
+        u, h, p, f));
+
+    if (!d.get ())
+      throw ::xsd::cxx::tree::parsing< char > ();
+
+    return ::std::unique_ptr< ::CDM::Mdib > (
+      ::CDM::MdibContainer (
+        std::move (d), f | ::xml_schema::Flags::own_dom, p));
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xsd::cxx::xml::auto_initializer i (
+      (f & ::xml_schema::Flags::dont_initialize) == 0,
+      (f & ::xml_schema::Flags::keep_dom) == 0);
+
+    ::xsd::cxx::xml::sax::std_input_source isrc (is);
+    return ::CDM::MdibContainer (isrc, f, p);
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xsd::cxx::xml::auto_initializer i (
+      (f & ::xml_schema::Flags::dont_initialize) == 0,
+      (f & ::xml_schema::Flags::keep_dom) == 0);
+
+    ::xsd::cxx::xml::sax::std_input_source isrc (is);
+    return ::CDM::MdibContainer (isrc, h, f, p);
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xsd::cxx::xml::sax::std_input_source isrc (is);
+    return ::CDM::MdibContainer (isrc, h, f, p);
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xsd::cxx::xml::auto_initializer i (
+      (f & ::xml_schema::Flags::dont_initialize) == 0,
+      (f & ::xml_schema::Flags::keep_dom) == 0);
+
+    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+    return ::CDM::MdibContainer (isrc, f, p);
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xsd::cxx::xml::auto_initializer i (
+      (f & ::xml_schema::Flags::dont_initialize) == 0,
+      (f & ::xml_schema::Flags::keep_dom) == 0);
+
+    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+    return ::CDM::MdibContainer (isrc, h, f, p);
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+    return ::CDM::MdibContainer (isrc, h, f, p);
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::xercesc::InputSource& i,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xsd::cxx::tree::error_handler< char > h;
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::xsd::cxx::xml::dom::parse< char > (
+        i, h, p, f));
+
+    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+    return ::std::unique_ptr< ::CDM::Mdib > (
+      ::CDM::MdibContainer (
+        std::move (d), f | ::xml_schema::Flags::own_dom, p));
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::xercesc::InputSource& i,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::xsd::cxx::xml::dom::parse< char > (
+        i, h, p, f));
+
+    if (!d.get ())
+      throw ::xsd::cxx::tree::parsing< char > ();
+
+    return ::std::unique_ptr< ::CDM::Mdib > (
+      ::CDM::MdibContainer (
+        std::move (d), f | ::xml_schema::Flags::own_dom, p));
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::xercesc::InputSource& i,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::xsd::cxx::xml::dom::parse< char > (
+        i, h, p, f));
+
+    if (!d.get ())
+      throw ::xsd::cxx::tree::parsing< char > ();
+
+    return ::std::unique_ptr< ::CDM::Mdib > (
+      ::CDM::MdibContainer (
+        std::move (d), f | ::xml_schema::Flags::own_dom, p));
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (const ::xercesc::DOMDocument& doc,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
+  {
+    if (f & ::xml_schema::Flags::keep_dom)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
+
+      return ::std::unique_ptr< ::CDM::Mdib > (
+        ::CDM::MdibContainer (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+    const ::xsd::cxx::xml::qualified_name< char > n (
+      ::xsd::cxx::xml::dom::name< char > (e));
+
+    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+        "MdibContainer",
+        "http://p11073-10207/draft8/pm/2017/08/07",
+        &::xsd::cxx::tree::factory_impl< ::CDM::Mdib >,
+        true, true, e, n, f, 0));
+
+    if (tmp.get () != 0)
+    {
+      ::std::unique_ptr< ::CDM::Mdib > r (
+        dynamic_cast< ::CDM::Mdib* > (tmp.get ()));
+
+      if (r.get ())
+        tmp.release ();
+      else
+        throw ::xsd::cxx::tree::not_derived< char > ();
+
+      return r;
+    }
+
+    throw ::xsd::cxx::tree::unexpected_element < char > (
+      n.name (),
+      n.namespace_ (),
+      "MdibContainer",
+      "http://p11073-10207/draft8/pm/2017/08/07");
+  }
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties&)
+  {
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
+      ((f & ::xml_schema::Flags::keep_dom) &&
+       !(f & ::xml_schema::Flags::own_dom))
+      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
+      : 0);
+
+    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
+    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+
+    const ::xsd::cxx::xml::qualified_name< char > n (
+      ::xsd::cxx::xml::dom::name< char > (e));
+
+    if (f & ::xml_schema::Flags::keep_dom)
+      doc.setUserData (::xml_schema::dom::tree_node_key,
+                       (c.get () ? &c : &d),
+                       0);
+
+    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+        "MdibContainer",
+        "http://p11073-10207/draft8/pm/2017/08/07",
+        &::xsd::cxx::tree::factory_impl< ::CDM::Mdib >,
+        true, true, e, n, f, 0));
+
+    if (tmp.get () != 0)
+    {
+
+      ::std::unique_ptr< ::CDM::Mdib > r (
+        dynamic_cast< ::CDM::Mdib* > (tmp.get ()));
+
+      if (r.get ())
+        tmp.release ();
+      else
+        throw ::xsd::cxx::tree::not_derived< char > ();
+
+      return r;
+    }
+
+    throw ::xsd::cxx::tree::unexpected_element < char > (
+      n.name (),
+      n.namespace_ (),
+      "MdibContainer",
+      "http://p11073-10207/draft8/pm/2017/08/07");
+  }
 }
 
 #include <ostream>
@@ -29984,32 +30141,6 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MeasurementValidity >
   _xsd_MeasurementValidity_type_serializer_init (
     "MeasurementValidity",
-    "http://p11073-10207/draft8/pm/2017/08/07");
-
-
-  void
-  operator<< (::xercesc::DOMElement& e, const InvocationState& i)
-  {
-    e << static_cast< const ::xml_schema::String& > (i);
-  }
-
-  void
-  operator<< (::xercesc::DOMAttr& a, const InvocationState& i)
-  {
-    a << static_cast< const ::xml_schema::String& > (i);
-  }
-
-  void
-  operator<< (::xml_schema::ListStream& l,
-              const InvocationState& i)
-  {
-    l << static_cast< const ::xml_schema::String& > (i);
-  }
-
-  static
-  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, InvocationState >
-  _xsd_InvocationState_type_serializer_init (
-    "InvocationState",
     "http://p11073-10207/draft8/pm/2017/08/07");
 
 
@@ -37236,6 +37367,175 @@ namespace CDM
     "ContainmentTreeEntry",
     "http://p11073-10207/draft8/pm/2017/08/07");
 
+
+  void
+  MdibContainer (::std::ostream& o,
+                 const ::CDM::Mdib& s,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
+  {
+    ::xsd::cxx::xml::auto_initializer i (
+      (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::CDM::MdibContainer (s, m, f));
+
+    ::xsd::cxx::tree::error_handler< char > h;
+
+    ::xsd::cxx::xml::dom::ostream_format_target t (o);
+    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+    {
+      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+    }
+  }
+
+  void
+  MdibContainer (::std::ostream& o,
+                 const ::CDM::Mdib& s,
+                 ::xml_schema::ErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
+  {
+    ::xsd::cxx::xml::auto_initializer i (
+      (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::CDM::MdibContainer (s, m, f));
+    ::xsd::cxx::xml::dom::ostream_format_target t (o);
+    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+    {
+      throw ::xsd::cxx::tree::serialization< char > ();
+    }
+  }
+
+  void
+  MdibContainer (::std::ostream& o,
+                 const ::CDM::Mdib& s,
+                 ::xercesc::DOMErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
+  {
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::CDM::MdibContainer (s, m, f));
+    ::xsd::cxx::xml::dom::ostream_format_target t (o);
+    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+    {
+      throw ::xsd::cxx::tree::serialization< char > ();
+    }
+  }
+
+  void
+  MdibContainer (::xercesc::XMLFormatTarget& t,
+                 const ::CDM::Mdib& s,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
+  {
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::CDM::MdibContainer (s, m, f));
+
+    ::xsd::cxx::tree::error_handler< char > h;
+
+    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+    {
+      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+    }
+  }
+
+  void
+  MdibContainer (::xercesc::XMLFormatTarget& t,
+                 const ::CDM::Mdib& s,
+                 ::xml_schema::ErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
+  {
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::CDM::MdibContainer (s, m, f));
+    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+    {
+      throw ::xsd::cxx::tree::serialization< char > ();
+    }
+  }
+
+  void
+  MdibContainer (::xercesc::XMLFormatTarget& t,
+                 const ::CDM::Mdib& s,
+                 ::xercesc::DOMErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
+  {
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+      ::CDM::MdibContainer (s, m, f));
+    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+    {
+      throw ::xsd::cxx::tree::serialization< char > ();
+    }
+  }
+
+  void
+  MdibContainer (::xercesc::DOMDocument& d,
+                 const ::CDM::Mdib& s,
+                 ::xml_schema::Flags)
+  {
+    ::xercesc::DOMElement& e (*d.getDocumentElement ());
+    const ::xsd::cxx::xml::qualified_name< char > n (
+      ::xsd::cxx::xml::dom::name< char > (e));
+
+    if (typeid (::CDM::Mdib) == typeid (s))
+    {
+      if (n.name () == "MdibContainer" &&
+          n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      {
+        e << s;
+      }
+      else
+      {
+        throw ::xsd::cxx::tree::unexpected_element < char > (
+          n.name (),
+          n.namespace_ (),
+          "MdibContainer",
+          "http://p11073-10207/draft8/pm/2017/08/07");
+      }
+    }
+    else
+    {
+      ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+        "MdibContainer",
+        "http://p11073-10207/draft8/pm/2017/08/07",
+        e, n, s);
+    }
+  }
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  MdibContainer (const ::CDM::Mdib& s,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 ::xml_schema::Flags f)
+  {
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+    if (typeid (::CDM::Mdib) == typeid (s))
+    {
+      d = ::xsd::cxx::xml::dom::serialize< char > (
+        "MdibContainer",
+        "http://p11073-10207/draft8/pm/2017/08/07",
+        m, f);
+    }
+    else
+    {
+      d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+        "MdibContainer",
+        "http://p11073-10207/draft8/pm/2017/08/07",
+        m, s, f);
+    }
+
+    ::CDM::MdibContainer (*d, s, f);
+    return d;
+  }
 
   void
   operator<< (::xercesc::DOMElement& e, const TextWidth& i)

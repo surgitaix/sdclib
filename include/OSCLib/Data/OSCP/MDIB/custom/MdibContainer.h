@@ -41,7 +41,7 @@ public:
     MdDescription getMdDescription() const;
     void setMdState(const MdState & mds);
     MdState getMdState() const;
-    void setMdibVersion(const unsigned long long int version);
+    void setMdibVersion(const unsigned long long version);
     unsigned long long int getMdibVersion() const;
 
     typedef CDM::Mdib WrappedType;

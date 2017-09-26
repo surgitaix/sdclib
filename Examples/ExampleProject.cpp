@@ -80,7 +80,7 @@ public:
     // Convenience value getter
     float getMaxWeight() {
         NumericMetricState result;
-        if (getParentProvider().getMDState().findState("handle_max", result) && result.hasObservedValue()) {
+        if (getParentProvider().getMdState().findState("handle_max", result) && result.hasObservedValue()) {
         	return (float)result.getObservedValue().getValue();
         } else {
         	DebugOut(DebugOut::Default, "ExampleProject") << "No observed value" << std::endl;
@@ -404,7 +404,7 @@ int main()
 			DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
 
 			// MDIB test
-			MdibContainer mdib = consumer.getMDIB();
+			MdibContainer mdib = consumer.getMdib();
 
 			// Register for metric event
 			consumer.registerStateEventHandler(eces1.get());

@@ -228,15 +228,15 @@ struct NormalizedMessageAdapter<OSCP::GetMDDescriptionTraits::Response> {
 template<>
 struct NormalizedMessageAdapter<OSCP::GetMDIBTraits::Request> {
 	const OSCP::GetMDIBTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDIB().get();
+		return message.Body().getMdib().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMDIBTraits::Request> source) {
-		message.Body().GetMDIB().set(std::move(source));
+		message.Body().getMdib().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDIB().present();
+		return message.Body().getMdib().present();
 	}
 };
 
@@ -256,27 +256,27 @@ struct NormalizedMessageAdapter<OSCP::GetMDIBTraits::Response> {
 };
 
 template<>
-struct NormalizedMessageAdapter<OSCP::GetMDStateTraits::Request> {
-	const OSCP::GetMDStateTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDState().get();
+struct NormalizedMessageAdapter<OSCP::GetMdStateTraits::Request> {
+	const OSCP::GetMdStateTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().getMdState().get();
 	}
 
-	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMDStateTraits::Request> source) {
-		message.Body().GetMDState().set(std::move(source));
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMdStateTraits::Request> source) {
+		message.Body().getMdState().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDState().present();
+		return message.Body().getMdState().present();
 	}
 };
 
 template<>
-struct NormalizedMessageAdapter<OSCP::GetMDStateTraits::Response> {
-	const OSCP::GetMDStateTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
+struct NormalizedMessageAdapter<OSCP::GetMdStateTraits::Response> {
+	const OSCP::GetMdStateTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
 		return message.Body().GetMDStateResponse().get();
 	}
 
-	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMDStateTraits::Response> source) {
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMdStateTraits::Response> source) {
 		message.Body().GetMDStateResponse().set(std::move(source));
 	}
 

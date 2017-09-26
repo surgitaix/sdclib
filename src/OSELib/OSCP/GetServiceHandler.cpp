@@ -50,8 +50,8 @@ void GetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpReq
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMDIBTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else if (soapAction == GetMDDescriptionTraits::RequestAction()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMDDescriptionTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == GetMDStateTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMDStateTraits>(std::move(soapHandling.normalizedMessage), _service));
+	} else if (soapAction == GetMdStateTraits::RequestAction()) {
+		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMdStateTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else {
 		log_error([&] { return "GetServiceHandler can't handle action: " + soapAction; });
 	}

@@ -484,67 +484,6 @@ namespace CDM
     static const Value _xsd_MeasurementValidity_indexes_[9];
   };
 
-  class InvocationState: public ::xml_schema::String
-  {
-    public:
-    enum Value
-    {
-      Wait,
-      Start,
-      Cnclld,
-      CnclldMan,
-      Fin,
-      FinMod,
-      Fail
-    };
-
-    InvocationState (Value v);
-
-    InvocationState (const char* v);
-
-    InvocationState (const ::std::string& v);
-
-    InvocationState (const ::xml_schema::String& v);
-
-    InvocationState (const ::xercesc::DOMElement& e,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    InvocationState (const ::xercesc::DOMAttr& a,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    InvocationState (const ::std::string& s,
-                     const ::xercesc::DOMElement* e,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    InvocationState (const InvocationState& x,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    virtual InvocationState*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    InvocationState&
-    operator= (Value v);
-
-    virtual
-    operator Value () const
-    {
-      return _xsd_InvocationState_convert ();
-    }
-
-    protected:
-    Value
-    _xsd_InvocationState_convert () const;
-
-    public:
-    static const char* const _xsd_InvocationState_literals_[7];
-    static const Value _xsd_InvocationState_indexes_[7];
-  };
-
   class Timestamp: public ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType >
   {
     public:
@@ -12868,6 +12807,98 @@ namespace CDM
 
 namespace CDM
 {
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (const ::std::string& uri,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (const ::std::string& uri,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (const ::std::string& uri,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::std::istream& is,
+                 const ::std::string& id,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::xercesc::InputSource& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::xercesc::InputSource& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::xercesc::InputSource& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (const ::xercesc::DOMDocument& d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::CDM::Mdib >
+  MdibContainer (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 }
 
 #include <iosfwd>
@@ -12898,16 +12929,6 @@ namespace CDM
   void
   operator<< (::xml_schema::ListStream&,
               const MeasurementValidity&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const InvocationState&);
-
-  void
-  operator<< (::xercesc::DOMAttr&, const InvocationState&);
-
-  void
-  operator<< (::xml_schema::ListStream&,
-              const InvocationState&);
 
   void
   operator<< (::xercesc::DOMElement&, const Timestamp&);
@@ -13531,6 +13552,74 @@ namespace CDM
 
   void
   operator<< (::xercesc::DOMElement&, const ContainmentTreeEntry&);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  MdibContainer (::std::ostream& os,
+                 const ::CDM::Mdib& x, 
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+  void
+  MdibContainer (::std::ostream& os,
+                 const ::CDM::Mdib& x, 
+                 ::xml_schema::ErrorHandler& eh,
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+  void
+  MdibContainer (::std::ostream& os,
+                 const ::CDM::Mdib& x, 
+                 ::xercesc::DOMErrorHandler& eh,
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  MdibContainer (::xercesc::XMLFormatTarget& ft,
+                 const ::CDM::Mdib& x, 
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+  void
+  MdibContainer (::xercesc::XMLFormatTarget& ft,
+                 const ::CDM::Mdib& x, 
+                 ::xml_schema::ErrorHandler& eh,
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+  void
+  MdibContainer (::xercesc::XMLFormatTarget& ft,
+                 const ::CDM::Mdib& x, 
+                 ::xercesc::DOMErrorHandler& eh,
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 const ::std::string& e = "UTF-8",
+                 ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  MdibContainer (::xercesc::DOMDocument& d,
+                 const ::CDM::Mdib& x,
+                 ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  MdibContainer (const ::CDM::Mdib& x, 
+                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                 ::xml_schema::Flags f = 0);
 
   void
   operator<< (::xercesc::DOMElement&, const TextWidth&);

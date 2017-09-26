@@ -28,7 +28,7 @@ xsdFiles = {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse
 
 #xsd:duration' : 'std::string''
 # mapping of basetypes:xsd -> cpp
-g_basetype_map = {'xsd:unsignedLong' : 'unsigned long', 'pm:VersionCounter' : 'unsigned long long', 'xsd:string' : 'std::string', 
+g_basetype_map = {'xsd:unsignedLong' : 'unsigned long long', 'pm:VersionCounter' : 'unsigned long long', 'xsd:string' : 'std::string', 
                 'xsd:decimal' : 'double', 'xsd:unsignedInt' : 'unsigned int', 'xsd:QName' : 'xml_schema::Qname', 'xsd:dateTime' : 'xml_schema::DateTime', 'xsd:boolean' : 'bool', 
                 'xsd:duration' : 'xml_schema::Duration', 'xsd:language' : 'xml_schema::Language', 'xsd:anyURI' : 'xml_schema::Uri', 'xsd:int' : 'int' , 'xsd:long' : 'long long', 
                 'pm:HandleRef' : 'std::string' , 'xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear' : 'std::string', 'xsd:IDREFS' : 'xml_schema::Idrefs', 'xsd:ID' : 'xml_schema::Id', 
@@ -48,7 +48,7 @@ g_apiInterfaces = [
                            
                            ['AlertConditionState', 'DescriptorType', 'AlertConditionDescriptor', 'ProviderHandlerType', 'OSCPProviderAlertConditionStateHandler', 'ConsumerHandlerType', 'OSCPConsumerAlertConditionStateHandler'],
                            ['AlertSignalState', 'DescriptorType', 'AlertSignalDescriptor', 'ProviderHandlerType', 'OSCPProviderAlertSignalStateHandler', 'ConsumerHandlerType', 'OSCPConsumerAlertSignalStateHandler'],
-                           ['AlertSystemState', 'DescriptorType', 'AlertSystemDescriptor', 'ProviderHandlerType', 'OSCPProviderAlertSignalStateHandler', 'ConsumerHandlerType', 'OSCPConsumerAlertSignalStateHandler'],
+                           ['AlertSystemState', 'DescriptorType', 'AlertSystemDescriptor', 'ProviderHandlerType', 'OSCPProviderAlertSignalStateHandler', 'ConsumerHandlerType', 'OSCPConsumerAlertSystemStateHandler'],
                            ['ClockState', 'DescriptorType', 'ClockDescriptor'],
                            ['EnsembleContextState', 'DescriptorType', 'EnsembleContextDescriptor'],
                            ['EnumStringMetricState', 'DescriptorType', 'EnumStringMetricDescriptor', 'ProviderHandlerType', 'OSCPProviderEnumStringMetricStateHandler', 'ConsumerHandlerType', 'OSCPConsumerEnumStringMetricStateHandler'],

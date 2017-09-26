@@ -207,7 +207,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/SystemSignalActivation.h" />
 		<typedef name = "DescriptorType" type = "AlertSystemDescriptor" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSignalStateHandler" />
-		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSignalStateHandler" />
+		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSystemStateHandler" />
 		<property name = "LastSelfCheck" type = "Timestamp" optional = "true" />
 		<property name = "SelfCheckCount" type = "long long" optional = "true" />
 		<property name = "PresentPhysiologicalAlarmConditions" type = "AlertConditionReference" optional = "true" />
@@ -471,7 +471,7 @@
 	</class>
 
 	<class name = "SetStringOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "false">
-		<property name = "MaxLength" type = "unsigned long" optional = "true" />
+		<property name = "MaxLength" type = "unsigned long long" optional = "true" />
 	</class>
 
 	<class name = "SetStringOperationState" parent = "AbstractOperationState" abstract = "false">

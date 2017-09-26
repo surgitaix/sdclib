@@ -930,7 +930,7 @@ int main()
 				Poco::Timestamp now;
 
 				OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
-				auto rawMessage = OSELib::Helper::Message::create(consumer->requestRawMDIB());
+				auto rawMessage = OSELib::Helper::Message::create(consumer->requestRawMdib());
 				auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 
 				std::unique_ptr<CDM::MDIB> mdib(CDM::MDIBContainer(xercesDocument->getDocument()));

@@ -43,6 +43,7 @@ FutureInvocationState::~FutureInvocationState() {
 	}
 }
 
+
 bool FutureInvocationState::waitReceived(InvocationState expected, int timeout) {
 	std::shared_ptr<Poco::Event> event;
 	{

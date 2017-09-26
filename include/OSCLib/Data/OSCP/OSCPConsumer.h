@@ -80,7 +80,7 @@ public:
     *
     * @return The MDIB container
     */
-    MdibContainer getMDIB();
+    MdibContainer getMdib();
 
     /**
     * @brief Get the Medical Device Description.
@@ -209,11 +209,11 @@ public:
     */
     void setSubscriptionLostHandler(OSCPConsumerSubscriptionLostHandler * handler);
 
-    std::string requestRawMDIB();
+    std::string requestRawMdib();
 
     std::string getEndpointReference();
 
-    unsigned long long int getLastKnownMDIBVersion();
+    unsigned long long int getLastKnownMdibVersion();
 
 private:
     OSCPConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription);
@@ -223,8 +223,8 @@ private:
     *
     * @param True, if MDIB updated successfully.
     */
-    bool requestMDIB();
-    std::unique_ptr<MDM::GetMdibResponse> requestCDMMDIB();
+    bool requestMdib();
+    std::unique_ptr<MDM::GetMdibResponse> requestCDMMdib();
 
     MdDescription getCachedMdDescription();
 
@@ -241,7 +241,7 @@ private:
     void onConnectionLost();
     void onSubscriptionLost();
     void onContextStateChanged(const std::vector<std::string> & handle);
-    void updateLastKnownMDIBVersion(unsigned long long int newVersion);
+    void updateLastKnownMdibVersion(unsigned long long int newVersion);
 
     //
     //Variables

@@ -61,7 +61,7 @@ struct GetMDIBTraits {
 	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
 };
 
-struct GetMDStateTraits {
+struct GetMdStateTraits {
 	typedef MDM::GetMdState Request;
 	typedef MDM::GetMdStateResponse Response;
 	typedef IGetService Dispatcher;

@@ -217,12 +217,12 @@ bool SetStringOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
 	
-SetStringOperationDescriptor & SetStringOperationDescriptor::setMaxLength(const unsigned long & value) {
+SetStringOperationDescriptor & SetStringOperationDescriptor::setMaxLength(const unsigned long long & value) {
 	data->MaxLength(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetStringOperationDescriptor::getMaxLength(unsigned long & out) const {
+bool SetStringOperationDescriptor::getMaxLength(unsigned long long & out) const {
 	if (data->MaxLength().present()) {
 		out = ConvertFromCDM::convert(data->MaxLength().get());
 		return true;
@@ -230,7 +230,7 @@ bool SetStringOperationDescriptor::getMaxLength(unsigned long & out) const {
 	return false;
 }
 
-unsigned long SetStringOperationDescriptor::getMaxLength() const {
+unsigned long long SetStringOperationDescriptor::getMaxLength() const {
 	return ConvertFromCDM::convert(data->MaxLength().get());
 }
 	

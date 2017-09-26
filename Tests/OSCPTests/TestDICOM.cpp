@@ -120,7 +120,7 @@ TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
 		if (c != nullptr) {
 			OSCPConsumer & consumer = *c;
             // MDIB test
-            MdibContainer mdib(consumer.getMDIB());
+            MdibContainer mdib(consumer.getMdib());
 
             { // test access to some member of the dicom device.
             	std::vector<DICOMDeviceDescriptor> dicomDevices(mdib.getMdDescription().collectAllDICOMDeviceDescriptors());

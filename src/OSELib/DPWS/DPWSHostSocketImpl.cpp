@@ -53,7 +53,7 @@ const MESSAGEMODEL::Envelope buildHelloMessage(const HelloType & notification) {
 	return MESSAGEMODEL::Envelope(header, body);
 }
 
-const MESSAGEMODEL::Envelope buildStreamMessage(const CDM::WaveformStream  & notification, const AddressType epr) {
+const MESSAGEMODEL::Envelope buildStreamMessage(const MDM::WaveformStream  & notification, const AddressType epr) {
 	MESSAGEMODEL::Envelope::HeaderType header;
 	{
 		header.Action(streamUri);

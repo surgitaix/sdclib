@@ -361,7 +361,7 @@ public:
     float getMaxWeight() {
       NumericMetricState result;
       // TODO: in real applications, check if findState returns true!
-      getParentProvider().getMDState().findState("handle_max", result);
+      getParentProvider().getMdState().findState("handle_max", result);
       // TODO: in real applications, check if state has an observed value and if the observed value has a value!
       return (float)result.getObservedValue().getValue();
     }
@@ -653,7 +653,7 @@ public:
   InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & ) override {
     // Invocation has been fired as WAITING when entering this method
     LimitAlertConditionState currentState;
-    getParentProvider().getMDState().findState(state.getDescriptorHandle(), currentState);
+    getParentProvider().getMdState().findState(state.getDescriptorHandle(), currentState);
 
   	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
     if (state.getPresence() != currentState.getPresence()) {
@@ -672,9 +672,9 @@ public:
 
     // Check limit and trigger alarm condition, if needed (this method will then take care of handling all signal states)
     NumericMetricState sourceState;
-    getParentProvider().getMDState().findState(sourceHandle, sourceState);
+    getParentProvider().getMdState().findState(sourceHandle, sourceState);
     LimitAlertConditionState limitAlertConditionState;
-    getParentProvider().getMDState().findState("handle_alert_condition", limitAlertConditionState);
+    getParentProvider().getMdState().findState("handle_alert_condition", limitAlertConditionState);
     if (sourceState.getDescriptorHandle() != sourceHandle) {
       return;
     }
