@@ -235,7 +235,7 @@ void DPWSHostSocketImpl::sendBye(const ByeType & bye) {
 }
 
 
-void DPWSHostSocketImpl::sendStream(const CDM::WaveformStream & stream, const AddressType epr) {
+void DPWSHostSocketImpl::sendStream(const MDM::WaveformStream & stream, const AddressType epr) {
 	MESSAGEMODEL::Envelope message(buildStreamMessage(stream, epr));
 	MESSAGEMODEL::Envelope::HeaderType::AppSequenceType appSequence(context.getInstanceId(), context.getNextMessageCounter());
 	message.Header().AppSequence(appSequence);

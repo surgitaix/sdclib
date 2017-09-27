@@ -6,22 +6,21 @@
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationInvocationContext.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Util/DebugOut.h"
 
@@ -53,22 +52,21 @@ public:
         // Invocation has been fired as WAITING when entering this method
         DebugOut(DebugOut::Default, "ExampleProject") << "Provider: MaxValueStateHandler received state change request" << std::endl;
 
-        notifyOperationInvoked(oic, InvocationState::STARTED);
+        notifyOperationInvoked(oic, InvocationState::Start);
 
         // we can update here, but if we return FINISHED, the framework will also update
         //updateState(state);
 
-        return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
     NumericMetricState createState() {
         NumericMetricState result;
         result
-            .setObservedValue(NumericMetricValue().setValue(2.0))
-            .setComponentActivationState(ComponentActivation::ON)
-            .setDescriptorHandle("handle_max")
-            .setHandle("handle_max_state");
+            .setMetricValue(NumericMetricValue().setValue(2.0))
+            .setActivationState(ComponentActivation::On)
+            .setDescriptorHandle("handle_max");
         return result;
     }
 
@@ -80,8 +78,8 @@ public:
     // Convenience value getter
     float getMaxWeight() {
         NumericMetricState result;
-        if (getParentProvider().getMdState().findState("handle_max", result) && result.hasObservedValue()) {
-        	return (float)result.getObservedValue().getValue();
+        if (getParentProvider().getMdState().findState("handle_max", result) && result.hasMetricValue()) {
+        	return (float)result.getMetricValue().getValue();
         } else {
         	DebugOut(DebugOut::Default, "ExampleProject") << "No observed value" << std::endl;
         	return 0;
@@ -102,8 +100,8 @@ public:
     NumericMetricState createState(float value) {
         NumericMetricState result;
         result
-            .setObservedValue(NumericMetricValue().setValue(value))
-            .setComponentActivationState(ComponentActivation::ON)
+            .setMetricValue(NumericMetricValue().setValue(value))
+            .setActivationState(ComponentActivation::On)
             .setDescriptorHandle("handle_cur");
         return result;
     }
@@ -120,29 +118,6 @@ public:
 
 };
 
-class AlwaysOnComponentStateHandler : public OSCPProviderComponentStateHandler {
-public:
-    AlwaysOnComponentStateHandler(const std::string & descriptorHandle) {
-        this->descriptorHandle = descriptorHandle;
-    }
-
-    // Helper method
-    ComponentState createState() {
-        ComponentState result;
-        result
-            .setDescriptorHandle(descriptorHandle)
-            .setComponentActivationState(ComponentActivation::ON);
-        return result;
-    }
-
-    virtual ComponentState getInitialState() override {
-        ComponentState state = createState();
-        return state;
-    }
-
-private:
-    std::string descriptorHandle;
-};
 
 class AlwaysOnHydraMDSStateHandler : public OSCPProviderHydraMDSStateHandler {
 public:
@@ -151,16 +126,13 @@ public:
     }
 
     // Helper method
-    HydraMDSState createState() {
-        HydraMDSState result;
-        result
-            .setDescriptorHandle(descriptorHandle)
-            .setComponentActivationState(ComponentActivation::ON);
+    MdsState createState() {
+    	MdsState result;
         return result;
     }
 
-    virtual HydraMDSState getInitialState() override {
-        HydraMDSState state = createState();
+    virtual MdsState getInitialState() override {
+    	MdsState state = createState();
         return state;
     }
 
@@ -169,7 +141,7 @@ private:
 };
 
 
-// This example shows one elegant way of implementing the Provider
+// This example shows one way of implementing the Provider
 // Since the OSCPProvider class is final, it is recommended to implement the OSCPProvider as a member variable of a container class to expand the OSCPProvider in a clear and convinient fashion
 class OSCPHoldingDeviceProvider {
 public:
@@ -177,17 +149,17 @@ public:
     OSCPHoldingDeviceProvider() :
     	oscpProvider(),
 		currentWeight(0),
-		channelState(CHANNEL_DESCRIPTOR_HANDLE),
-    	hydraMDSState(MDS_HANDLE),
-    	vmdState(VMD_DESCRIPTOR_HANDLE)
+//		channelState(CHANNEL_DESCRIPTOR_HANDLE),
+    	mdsState(MDS_HANDLE)
+//    	vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
     	oscpProvider.setEndpointReference(deviceEPR);
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
         CodedValue unit;
-        unit	.setCodeId("MDCX_CODE_ID_KG")
-				.setCodingSystemId("OR.NET.Codings")
-        		.addConceptDescription(LocalizedText().set("Weight in kg"));
+        unit	.setCode("MDCX_CODE_ID_KG")
+				.setCodingSystem("OR.NET.Codings");
+//        		.addConceptDescription(LocalizedText().set("Weight in kg"));
 
     	//
         // Setup metric descriptors
@@ -195,24 +167,23 @@ public:
 
         // define properties of current weight metric
         currentWeightMetric
-			.setMetricCategory(MetricCategory::MEASUREMENT)
-        	.setAvailability(MetricAvailability::CONTINUOUS)
-			.setUnit(unit)
-			.setType(
-				CodedValue()
-				.setCodeId("MDCX_CODE_ID_WEIGHT")
-				.addConceptDescription(LocalizedText().set("Current weight")))
-	        .setHandle("handle_cur");
+			.setMetricCategory(MetricCategory::Msrmt)
+        	.setMetricAvailability(MetricAvailability::Cont)
+			.setUnit(unit);
+//			.setType(
+//				CodedValue().addConceptDescription(LocalizedText().setLang("en").setVersion(1))
+//					.setCodingSystem("OR.NET.Codings")
+//					.setCode("MDCX_CODE_ID_MDS"))
+//					.setHandle("handle_cur"));
 
         // define properties of max weight metric
         maxWeightMetric
-			.setMetricCategory(MetricCategory::SETTING)
-        	.setAvailability(MetricAvailability::CONTINUOUS)
-        	.setUnit(unit)
-			.setType(
-        		CodedValue()
-				.addConceptDescription(LocalizedText().set("Maximum weight")))
-        	.setHandle("handle_max");
+			.setMetricCategory(MetricCategory::Set)
+        	.setMetricAvailability(MetricAvailability::Cont)
+        	.setUnit(unit);
+//			.setType(
+//        		CodedValue().addConceptDescription(LocalizedText().setLang("en").setVersion(1))
+//        		.setHandle("handle_max"));
 
         // Channel
         ChannelDescriptor holdingDeviceChannel;
@@ -220,31 +191,31 @@ public:
 			.setHandle(CHANNEL_DESCRIPTOR_HANDLE)
 			.addMetric(currentWeightMetric)
         	.addMetric(maxWeightMetric)
-			.setIntendedUse(IntendedUse::MEDICAL_A);
+        	.setSafetyClassification(SafetyClassification::MedA);
 
         // VMD
-        VMDDescriptor holdingDeviceModule;
+        VmdDescriptor holdingDeviceModule;
         holdingDeviceModule
 			.setHandle(VMD_DESCRIPTOR_HANDLE)
 			.addChannel(holdingDeviceChannel);
 
         // MDS
-        HydraMDSDescriptor holdingDeviceSystem;
+        MdsDescriptor holdingDeviceSystem;
         holdingDeviceSystem
 			.setHandle(MDS_HANDLE)
-			.addVMD(holdingDeviceModule)
+			.addVmd(holdingDeviceModule)
 			.setType(
 				CodedValue()
-				.setCodingSystemId("OR.NET.Codings")
-				.setCodeId("MDCX_CODE_ID_MDS"));
+					.setCodingSystem("OR.NET.Codings")
+					.setCode("MDCX_CODE_ID_MDS"));
 
-        // the set operations have to be defined before adding the MDDescription
+        // the set operations have to be defined before adding the MdDescription
         oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
         // add descriptor to description
         // the description contains all the devices static information
-        MDDescription holdingDeviceDescription;
-        holdingDeviceDescription.addMDSDescriptor(holdingDeviceSystem);
+        MdDescription holdingDeviceDescription;
+        holdingDeviceDescription.addMdsDescriptor(holdingDeviceSystem);
 
 
         // set the providers description
@@ -254,9 +225,9 @@ public:
 		// State handler
         oscpProvider.addMDStateHandler(&maxValueState);
         oscpProvider.addMDStateHandler(&curValueState);
-        oscpProvider.addMDStateHandler(&channelState);
-        oscpProvider.addMDStateHandler(&hydraMDSState);
-        oscpProvider.addMDStateHandler(&vmdState);
+//        oscpProvider.addMDStateHandler(&channelState);
+        oscpProvider.addMDStateHandler(&mdsState);
+//        oscpProvider.addMDStateHandler(&vmdState);
 
 
     }
@@ -292,9 +263,7 @@ private:
     MaxValueStateHandler maxValueState;
     CurValueStateHandler curValueState;
 
-    AlwaysOnComponentStateHandler channelState;
-    AlwaysOnHydraMDSStateHandler hydraMDSState;
-    AlwaysOnComponentStateHandler vmdState;
+    AlwaysOnHydraMDSStateHandler mdsState;
 };
 
 class DummyValueProducer : public Poco::Runnable {
@@ -341,7 +310,7 @@ public:
     }
 
     void onStateChanged(const NumericMetricState & state) override {
-        double val = state.getObservedValue().getValue();
+        double val = state.getMetricValue().getValue();
         DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
         currentWeight = (float)val;
     }
@@ -415,7 +384,7 @@ int main()
 			// Get state test (current weight)
 			NumericMetricState currentWeightState;
 			consumer.requestState("handle_cur", currentWeightState);
-			double curWeight = currentWeightState.getObservedValue().getValue();
+			double curWeight = currentWeightState.getMetricValue().getValue();
 			DebugOut(DebugOut::Default, "ExampleProject") << "Observed Weight " << curWeight;
 
 			// Set state test (must fail due to read-only)
@@ -430,7 +399,7 @@ int main()
 			// Get state test (maximum weight)
 			NumericMetricState maxWeightState;
 			consumer.requestState("handle_max", maxWeightState);
-			double maxWeight = maxWeightState.getObservedValue().getValue();
+			double maxWeight = maxWeightState.getMetricValue().getValue();
 			DebugOut(DebugOut::Default, "ExampleProject") << "Max weight value: "<< maxWeight;
 
 			// Set state test (must succeed)

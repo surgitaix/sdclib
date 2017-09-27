@@ -55,8 +55,8 @@ public:
     LimitAlertConditionState & operator=(const LimitAlertConditionState & object);
     
     typedef CDM::LimitAlertConditionState WrappedType;
-    typedef EnumStringMetricDescriptor DescriptorType;
-    typedef OSCPProviderEnumStringMetricStateHandler ProviderHandlerType;
+    typedef LimitAlertConditionDescriptor DescriptorType;
+    typedef OSCPProviderLimitAlertConditionStateHandler ProviderHandlerType;
     typedef OSCPConsumerLimitAlertConditionStateHandler ConsumerHandlerType;
 
 	LimitAlertConditionState & setStateVersion(const VersionCounter & value);

@@ -253,7 +253,7 @@ private:
     template<typename StateType>
     void SetAlertStateImpl(const StateType & state, const OperationInvocationContext & oic);
 
-    MDM::GetMdibResponse GetMDIB(const MDM::GetMdib & request);
+    MDM::GetMdibResponse GetMdib(const MDM::GetMdib & request);
     MDM::GetMdDescriptionResponse GetMdDescription(const MDM::GetMdDescription & request);
     MDM::GetMdStateResponse GetMdState(const MDM::GetMdState & request);
 

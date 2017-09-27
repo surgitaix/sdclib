@@ -1,5 +1,40 @@
 <?xml version="1.0"?>
 <classes script = "generate.gsl" >
+	<class name = "DicomTransferCapability" parent = "NULL" abstract = "false">
+		<property name = "SopClass" type = "std::string" optional = "false" />
+		<property name = "TransferRole" type = "DicomTransferRole" optional = "false" />
+		<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxLists" type = "std::string" />
+	</class>
+
+	<class name = "DicomNetworkAe" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "AeTitle" type = "std::string" optional = "false" />
+		<property name = "NetworkConnectionReference" type = "xml_schema::Idrefs" optional = "false" />
+		<property name = "AssociationInitiator" type = "bool" optional = "false" />
+		<property name = "AssociationAcceptor" type = "bool" optional = "false" />
+		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityLists" type = "DicomTransferCapability" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+	</class>
+
+	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
+		<property name = "id" type = "xml_schema::Id" optional = "false" />
+		<property name = "Hostname" type = "std::string" optional = "false" />
+		<property name = "Port" type = "unsigned short" optional = "true" />
+		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteLists" type = "std::string" />
+	</class>
+
+	<class name = "DicomDeviceDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "IssuerOfPatientID" type = "std::string" optional = "true" />
+		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeLists" type = "DicomNetworkAe" />
+		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionLists" type = "DicomNetworkConnection" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+		<propertyList nameSingle = "StationName" nameSeveral = "StationNameLists" type = "LocalizedText" />
+	</class>
+
 	<class name = "Mdib" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/MdDescription.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/MdState.h" />
@@ -206,7 +241,7 @@
 	<class name = "AlertSystemState" parent = "AbstractAlertState" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/SystemSignalActivation.h" />
 		<typedef name = "DescriptorType" type = "AlertSystemDescriptor" />
-		<typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSignalStateHandler" />
+		<typedef name = "ProviderHandlerType" type = "OSCPProviderAlertSystemStateHandler" />
 		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerAlertSystemStateHandler" />
 		<property name = "LastSelfCheck" type = "Timestamp" optional = "true" />
 		<property name = "SelfCheckCount" type = "long long" optional = "true" />
@@ -257,8 +292,8 @@
 
 	<class name = "LimitAlertConditionState" parent = "AlertConditionState" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
-		<typedef name = "DescriptorType" type = "EnumStringMetricDescriptor" />
-		<typedef name = "ProviderHandlerType" type = "OSCPProviderEnumStringMetricStateHandler" />
+		<typedef name = "DescriptorType" type = "LimitAlertConditionDescriptor" />
+		<typedef name = "ProviderHandlerType" type = "OSCPProviderLimitAlertConditionStateHandler" />
 		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerLimitAlertConditionStateHandler" />
 		<property name = "Limits" type = "Range" optional = "false" />
 		<property name = "MonitoredAlertLimits" type = "AlertConditionMonitoredLimits" optional = "false" />
@@ -789,41 +824,6 @@
 	<class name = "ContainmentTreeEntry" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
-	</class>
-
-	<class name = "DicomTransferCapability" parent = "NULL" abstract = "false">
-		<property name = "SopClass" type = "std::string" optional = "false" />
-		<property name = "TransferRole" type = "DicomTransferRole" optional = "false" />
-		<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxLists" type = "std::string" />
-	</class>
-
-	<class name = "DicomNetworkAe" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<property name = "AeTitle" type = "std::string" optional = "false" />
-		<property name = "NetworkConnectionReference" type = "xml_schema::Idrefs" optional = "false" />
-		<property name = "AssociationInitiator" type = "bool" optional = "false" />
-		<property name = "AssociationAcceptor" type = "bool" optional = "false" />
-		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityLists" type = "DicomTransferCapability" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
-	</class>
-
-	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
-		<property name = "id" type = "xml_schema::Id" optional = "false" />
-		<property name = "Hostname" type = "std::string" optional = "false" />
-		<property name = "Port" type = "unsigned short" optional = "true" />
-		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteLists" type = "std::string" />
-	</class>
-
-	<class name = "DicomDeviceDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<property name = "IssuerOfPatientID" type = "std::string" optional = "true" />
-		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeLists" type = "DicomNetworkAe" />
-		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionLists" type = "DicomNetworkConnection" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
-		<propertyList nameSingle = "StationName" nameSeveral = "StationNameLists" type = "LocalizedText" />
 	</class>
 
 </classes>

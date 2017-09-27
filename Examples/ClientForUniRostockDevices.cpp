@@ -133,8 +133,7 @@ int main() {
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMdState():";
 				const auto mdstate = consumer.getMdState();
-				if (!mdstate.findComponentStates().empty()
-					&& !mdstate.findNumericMetricStates().empty()
+				if (!mdstate.findNumericMetricStates().empty()
 					&& !mdstate.findStringMetricStates().empty()) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 				} else {
@@ -142,55 +141,44 @@ int main() {
 				}
 
 				additionalResults << "Testing getMdState():" << std::endl;
-				additionalResults << "Found " << mdstate.findComponentStates().size() << " ComponentStates." << std::endl;
 				additionalResults << "Found " << mdstate.findEnumStringMetricStates().size() << " EnumStringMetricStates." << std::endl;
 				additionalResults << "Found " << mdstate.findNumericMetricStates().size() << " NumericMetricStates." << std::endl;
 				additionalResults << "Found " << mdstate.findStringMetricStates().size() << " StringMetricStates." << std::endl;
 			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
-			{
-				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for component state:";
-				ComponentState cs;
-				if (consumer.requestState(handle_channel1_vmd0, cs)
-						&& cs.hasComponentActivationState()
-						&& cs.getComponentActivationState() == ComponentActivation::ON) {
-					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
-				} else {
-					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
-				}
-			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for numeric metric:";
 				NumericMetricState nms;
 				if (consumer.requestState(handle_m1_get_and_episodic, nms)
-						&& nms.hasObservedValue()
-						&& (nms.getObservedValue().getValue() == numeric_initial_value
-								|| nms.getObservedValue().getValue() == numeric_some_value)) {
+						&& nms.hasMetricValue()
+						&& (nms.getMetricValue().getValue() == numeric_initial_value
+								|| nms.getMetricValue().getValue() == numeric_some_value)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 				} else {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
 				}
 			}
-			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
-			{
-				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for operation state:";
-				OperationState os;
-				if (consumer.requestState(handle_setString_operation, os)
-						&& os.getOperatingMode() == OperatingMode::Enabled) {
-					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
-				} else {
-					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
-				}
-			}
+			// todo: reimplement for all OpertionStates
+//			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
+//			{
+//				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for operation state:";
+//				OperationState os;
+//				if (consumer.requestState(handle_setString_operation, os)
+//						&& os.getOperatingMode() == OperatingMode::En) {
+//					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
+//				} else {
+//					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
+//				}
+//			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for string metric:";
 				StringMetricState sms;
 				if (consumer.requestState(handle_sm1_get_and_episodic_and_periodic, sms)
-						&& sms.hasObservedValue()
-						&& (sms.getObservedValue().getValue() == string_initial_value
-								|| sms.getObservedValue().getValue() == string_some_value)) {
+						&& sms.hasMetricValue()
+						&& (sms.getMetricValue().getValue() == string_initial_value
+								|| sms.getMetricValue().getValue() == string_some_value)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 				} else {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
@@ -200,7 +188,7 @@ int main() {
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMdDescription():";
 				const auto mddescription = consumer.getMdDescription();
-				if (!mddescription.collectAllHydraMDSDescriptors().empty()
+				if (!mddescription.collectAllMdsDescriptors().empty()
 						&& !mddescription.collectAllNumericMetricDescriptors().empty()
 						&& !mddescription.collectAllStringMetricDescriptors().empty()) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
@@ -210,7 +198,7 @@ int main() {
 
 				additionalResults << "Testing getMdDescription():" << std::endl;
 				additionalResults << "Found " << mddescription.collectAllEnumStringMetricDescriptors().size() << " EnumStringMetricDescriptors." << std::endl;
-				additionalResults << "Found " << mddescription.collectAllHydraMDSDescriptors().size() << " HydraMDSDescriptors." << std::endl;
+				additionalResults << "Found " << mddescription.collectAllMdsDescriptors().size() << " HydraMDSDescriptors." << std::endl;
 				additionalResults << "Found " << mddescription.collectAllNumericMetricDescriptors().size() << " NumericMetricDescriptors." << std::endl;
 				additionalResults << "Found " << mddescription.collectAllStringMetricDescriptors().size() << " StringMetricDescriptors." << std::endl;
 			}
@@ -220,14 +208,14 @@ int main() {
 				additionalResults << "Testing setValue():" << std::endl;
 				NumericMetricState nms;
 				nms	.setDescriptorHandle(handle_m1_get_and_episodic)
-					.setObservedValue(NumericMetricValue().setValue(numeric_some_value));
+					.setMetricValue(NumericMetricValue().setValue(numeric_some_value));
 				FutureInvocationState fut;
 				if (consumer.commitState(nms, fut) == InvocationState::Wait) {
 					additionalResults << "Request accepted." << std::endl;
 				} else {
 					additionalResults << "Request rejected." << std::endl;
 				}
-				if (fut.waitReceived(InvocationState::FINISHED, 1000)) {
+				if (fut.waitReceived(InvocationState::Fin, 1000)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 					additionalResults << "Request successful." << std::endl;
 				} else {
@@ -241,14 +229,14 @@ int main() {
 				additionalResults << "Testing setString():" << std::endl;
 				StringMetricState sms;
 				sms	.setDescriptorHandle(handle_sm1_get_and_episodic_and_periodic)
-					.setObservedValue(StringMetricValue().setValue(string_some_value));
+					.setMetricValue(StringMetricValue().setValue(string_some_value));
 				FutureInvocationState fut;
 				if (consumer.commitState(sms, fut) == InvocationState::Wait) {
 					additionalResults << "Request accepted." << std::endl;
 				} else {
 					additionalResults << "Request rejected." << std::endl;
 				}
-				if (fut.waitReceived(InvocationState::FINISHED, 1000)) {
+				if (fut.waitReceived(InvocationState::Fin, 1000)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 					additionalResults << "Request successful." << std::endl;
 				} else {
@@ -265,10 +253,10 @@ int main() {
 				Poco::Thread::sleep(1000);
 				NumericMetricState nms;
 				nms	.setDescriptorHandle(handle_m1_get_and_episodic)
-					.setObservedValue(NumericMetricValue().setValue(numeric_initial_value));
+					.setMetricValue(NumericMetricValue().setValue(numeric_initial_value));
 				FutureInvocationState fut;
 				consumer.commitState(nms, fut);
-				fut.waitReceived(InvocationState::FINISHED, 1000);
+				fut.waitReceived(InvocationState::Fin, 1000);
 				Poco::Thread::sleep(1000);
 
 				const unsigned int after(episodicHandler.receivedEventsCounter);
@@ -302,10 +290,10 @@ int main() {
 				Poco::Thread::sleep(1000);
 				StringMetricState sms;
 				sms	.setDescriptorHandle(handle_sm1_get_and_episodic_and_periodic)
-					.setObservedValue(StringMetricValue().setValue(string_some_value));
+					.setMetricValue(StringMetricValue().setValue(string_some_value));
 				FutureInvocationState fut;
 				consumer.commitState(sms, fut);
-				fut.waitReceived(InvocationState::FINISHED, 1000);
+				fut.waitReceived(InvocationState::Fin, 1000);
 				Poco::Thread::sleep(5000);
 
 				const unsigned int after(combinedHandler.receivedEventsCounter);

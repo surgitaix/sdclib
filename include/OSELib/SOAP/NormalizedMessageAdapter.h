@@ -198,90 +198,90 @@ struct NormalizedMessageAdapter<WS::MEX::Metadata> {
 template<>
 struct NormalizedMessageAdapter<OSCP::GetMDDescriptionTraits::Request> {
 	const OSCP::GetMDDescriptionTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().getMdDescription().get();
+		return message.Body().GetMdDescription().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMDDescriptionTraits::Request> source) {
-		message.Body().getMdDescription().set(std::move(source));
+		message.Body().GetMdDescription().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().getMdDescription().present();
+		return message.Body().GetMdDescription().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<OSCP::GetMDDescriptionTraits::Response> {
 	const OSCP::GetMDDescriptionTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDDescriptionResponse().get();
+		return message.Body().GetMdDescriptionResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMDDescriptionTraits::Response> source) {
-		message.Body().GetMDDescriptionResponse().set(std::move(source));
+		message.Body().GetMdDescriptionResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDDescriptionResponse().present();
+		return message.Body().GetMdDescriptionResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<OSCP::GetMDIBTraits::Request> {
 	const OSCP::GetMDIBTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().getMdib().get();
+		return message.Body().GetMdib().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMDIBTraits::Request> source) {
-		message.Body().getMdib().set(std::move(source));
+		message.Body().GetMdib().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().getMdib().present();
+		return message.Body().GetMdib().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<OSCP::GetMDIBTraits::Response> {
 	const OSCP::GetMDIBTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDIBResponse().get();
+		return message.Body().GetMdibResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMDIBTraits::Response> source) {
-		message.Body().GetMDIBResponse().set(std::move(source));
+		message.Body().GetMdibResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDIBResponse().present();
+		return message.Body().GetMdibResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<OSCP::GetMdStateTraits::Request> {
 	const OSCP::GetMdStateTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().getMdState().get();
+		return message.Body().GetMdState().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMdStateTraits::Request> source) {
-		message.Body().getMdState().set(std::move(source));
+		message.Body().GetMdState().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().getMdState().present();
+		return message.Body().GetMdState().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<OSCP::GetMdStateTraits::Response> {
 	const OSCP::GetMdStateTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDStateResponse().get();
+		return message.Body().GetMdStateResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::GetMdStateTraits::Response> source) {
-		message.Body().GetMDStateResponse().set(std::move(source));
+		message.Body().GetMdStateResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMDStateResponse().present();
+		return message.Body().GetMdStateResponse().present();
 	}
 };
 
@@ -486,15 +486,15 @@ struct NormalizedMessageAdapter<OSCP::EpisodicAlertReportTraits::ReportType> {
 template<>
 struct NormalizedMessageAdapter<OSCP::EpisodicContextChangedReportTraits::ReportType> {
 	const OSCP::EpisodicContextChangedReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().EpisodicContextChangedReport().get();
+		return message.Body().EpisodicContextReport().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::EpisodicContextChangedReportTraits::ReportType> source) {
-		message.Body().EpisodicContextChangedReport().set(std::move(source));
+		message.Body().EpisodicContextReport().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().EpisodicContextChangedReport().present();
+		return message.Body().EpisodicContextReport().present();
 	}
 };
 
@@ -531,15 +531,15 @@ struct NormalizedMessageAdapter<OSCP::PeriodicAlertReportTraits::ReportType> {
 template<>
 struct NormalizedMessageAdapter<OSCP::PeriodicContextChangedReportTraits::ReportType> {
 	const OSCP::PeriodicContextChangedReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().PeriodicContextChangedReport().get();
+		return message.Body().PeriodicContextReport().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<OSCP::PeriodicContextChangedReportTraits::ReportType> source) {
-		message.Body().PeriodicContextChangedReport().set(std::move(source));
+		message.Body().PeriodicContextReport().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().PeriodicContextChangedReport().present();
+		return message.Body().PeriodicContextReport().present();
 	}
 };
 

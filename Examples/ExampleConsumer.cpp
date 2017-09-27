@@ -28,7 +28,7 @@ public:
     }
 
     void onStateChanged(const Data::OSCP::NumericMetricState & state) override {
-        const double val(state.getObservedValue().getValue());
+        const double val(state.getMetricValue().getValue());
         Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
     }
 
@@ -105,10 +105,10 @@ int main() {
         consumer.requestState("handle_metric", metricState);
 
         // Here, we increase max weight to switch condition presence => results in alert signal presence
-        metricState.setObservedValue(NumericMetricValue().setValue(10));
+        metricState.setMetricValue(NumericMetricValue().setValue(10));
         FutureInvocationState fis;
         consumer.commitState(metricState, fis);
-        Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::FINISHED, 2000);
+        Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 2000);
 
         waitForUserInput();
         consumer.unregisterStateEventHandler(eh.get());

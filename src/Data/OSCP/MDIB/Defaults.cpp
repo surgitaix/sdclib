@@ -1,3 +1,7 @@
+#include "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/Mdib.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/MdState.h"
@@ -100,10 +104,6 @@
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTree.h"
 #include "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h"
-#include "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h"
-#include "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h"
-#include "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h"
-#include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
 
 
 /*
@@ -139,6 +139,22 @@ Defaults::~Defaults() {
 
 }
 
+
+CDM::DicomTransferCapability  * Defaults::DicomTransferCapability() {
+	return new CDM::DicomTransferCapability();
+}
+
+CDM::DicomNetworkAe  * Defaults::DicomNetworkAe() {
+	return new CDM::DicomNetworkAe();
+}
+
+CDM::DicomNetworkConnection  * Defaults::DicomNetworkConnection() {
+	return new CDM::DicomNetworkConnection();
+}
+
+CDM::DicomDeviceDescriptor  * Defaults::DicomDeviceDescriptor() {
+	return new CDM::DicomDeviceDescriptor();
+}
 
 CDM::Mdib  * Defaults::Mdib() {
 	return new CDM::Mdib();
@@ -546,22 +562,6 @@ CDM::ContainmentTree  * Defaults::ContainmentTree() {
 
 CDM::ContainmentTreeEntry  * Defaults::ContainmentTreeEntry() {
 	return new CDM::ContainmentTreeEntry();
-}
-
-CDM::DicomTransferCapability  * Defaults::DicomTransferCapability() {
-	return new CDM::DicomTransferCapability();
-}
-
-CDM::DicomNetworkAe  * Defaults::DicomNetworkAe() {
-	return new CDM::DicomNetworkAe();
-}
-
-CDM::DicomNetworkConnection  * Defaults::DicomNetworkConnection() {
-	return new CDM::DicomNetworkConnection();
-}
-
-CDM::DicomDeviceDescriptor  * Defaults::DicomDeviceDescriptor() {
-	return new CDM::DicomDeviceDescriptor();
 }
 
 

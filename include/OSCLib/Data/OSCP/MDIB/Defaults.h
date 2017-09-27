@@ -25,6 +25,10 @@ class Defaults {
 public:
 	Defaults();
 	virtual ~Defaults();
+	static CDM::DicomTransferCapability * DicomTransferCapability();
+	static CDM::DicomNetworkAe * DicomNetworkAe();
+	static CDM::DicomNetworkConnection * DicomNetworkConnection();
+	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptor();
 	static CDM::Mdib * Mdib();
 	static CDM::MdDescription * MdDescription();
 	static CDM::MdState * MdState();
@@ -127,10 +131,6 @@ public:
 	static CDM::EnsembleContextState * EnsembleContextState();
 	static CDM::ContainmentTree * ContainmentTree();
 	static CDM::ContainmentTreeEntry * ContainmentTreeEntry();
-	static CDM::DicomTransferCapability * DicomTransferCapability();
-	static CDM::DicomNetworkAe * DicomNetworkAe();
-	static CDM::DicomNetworkConnection * DicomNetworkConnection();
-	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptor();
 };
 
 } /* namespace OSCP */

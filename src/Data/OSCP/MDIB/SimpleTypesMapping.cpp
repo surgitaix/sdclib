@@ -26,6 +26,14 @@ EnumToString::EnumToString() {
 EnumToString::~EnumToString() {
 
 }
+std::string EnumToString::convert(DicomTransferRole source) {
+	switch (source) {
+		case DicomTransferRole::Scu: return "Scu";
+		case DicomTransferRole::Scp: return "Scp";
+	}
+	throw std::runtime_error("Illegal value for DicomTransferRole");
+}
+
 std::string EnumToString::convert(MeasurementValidity source) {
 	switch (source) {
 		case MeasurementValidity::Vld: return "Vld";
@@ -235,14 +243,6 @@ std::string EnumToString::convert(PatientType source) {
 		case PatientType::Oth: return "Oth";
 	}
 	throw std::runtime_error("Illegal value for PatientType");
-}
-
-std::string EnumToString::convert(DicomTransferRole source) {
-	switch (source) {
-		case DicomTransferRole::Scu: return "Scu";
-		case DicomTransferRole::Scp: return "Scp";
-	}
-	throw std::runtime_error("Illegal value for DicomTransferRole");
 }
 
 std::string EnumToString::convert(TextWidth source) {
