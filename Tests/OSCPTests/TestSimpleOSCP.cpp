@@ -16,7 +16,7 @@
 #include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
@@ -711,7 +711,7 @@ private:
     std::string descriptorHandle;
 };
 
-class AlwaysOnHydraMDSStateHandler : public OSCPProviderHydraMDSStateHandler {
+class AlwaysOnHydraMDSStateHandler : public OSCPProviderMdsStateHandler {
 public:
     AlwaysOnHydraMDSStateHandler(const std::string & descriptorHandle) {
         this->descriptorHandle = descriptorHandle;

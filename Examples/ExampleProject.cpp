@@ -6,7 +6,7 @@
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -48,6 +48,7 @@ public:
     MaxValueStateHandler() {
     }
 
+    // called when the consumer is requesting to set the MaxValueStateHandler
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
         DebugOut(DebugOut::Default, "ExampleProject") << "Provider: MaxValueStateHandler received state change request" << std::endl;
@@ -119,7 +120,7 @@ public:
 };
 
 
-class AlwaysOnHydraMDSStateHandler : public OSCPProviderHydraMDSStateHandler {
+class AlwaysOnHydraMDSStateHandler : public OSCPProviderMdsStateHandler {
 public:
     AlwaysOnHydraMDSStateHandler(const std::string & descriptorHandle) {
         this->descriptorHandle = descriptorHandle;
@@ -158,8 +159,8 @@ public:
         // current weight and the max weight below.
         CodedValue unit;
         unit	.setCode("MDCX_CODE_ID_KG")
-				.setCodingSystem("OR.NET.Codings");
-//        		.addConceptDescription(LocalizedText().set("Weight in kg"));
+				.setCodingSystem("OR.NET.Codings")
+        		.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"));
 
     	//
         // Setup metric descriptors
@@ -167,23 +168,19 @@ public:
 
         // define properties of current weight metric
         currentWeightMetric
+        	.setHandle("handle_cur")
 			.setMetricCategory(MetricCategory::Msrmt)
         	.setMetricAvailability(MetricAvailability::Cont)
-			.setUnit(unit);
-//			.setType(
-//				CodedValue().addConceptDescription(LocalizedText().setLang("en").setVersion(1))
-//					.setCodingSystem("OR.NET.Codings")
-//					.setCode("MDCX_CODE_ID_MDS"))
-//					.setHandle("handle_cur"));
+			.setUnit(unit)
+        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
 
         // define properties of max weight metric
         maxWeightMetric
+        	.setHandle("handle_max")
 			.setMetricCategory(MetricCategory::Set)
         	.setMetricAvailability(MetricAvailability::Cont)
-        	.setUnit(unit);
-//			.setType(
-//        		CodedValue().addConceptDescription(LocalizedText().setLang("en").setVersion(1))
-//        		.setHandle("handle_max"));
+        	.setUnit(unit)
+        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
 
         // Channel
         ChannelDescriptor holdingDeviceChannel;
@@ -357,12 +354,16 @@ int main()
 		DummyValueProducer dummyValueProducer(&provider);
 		dummyValueProducer.start();
 
-		int temp;
+		std::string temp;
 		DebugOut(DebugOut::Default, "ExampleProject") << "Press key to proceed test (until then, provider will keep running indefinitely).";
 		std::cin >> temp;
 
 		// Discovery
 		std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+//		std::vector<std::unique_ptr<OSCPConsumer>> consumers(oscpsm.discoverOSCP());
+
+
+
 
 		std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler("handle_cur"));
 		std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler("handle_max"));

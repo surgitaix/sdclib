@@ -82,7 +82,7 @@
 #include "OSCLib/Data/OSCP/OSCPProviderClockStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
@@ -213,7 +213,7 @@ MDM::SetValueResponse OSCPProvider::SetValueAsync(const MDM::SetValue & request)
 	auto genResponse = [this, &oic](InvocationState v) {
 		notifyOperationInvoked(oic, v);
 		// TODO: 0 = replace with real sequence ID
-		MDM::SetValueResponse svr(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(v))),0);
+		MDM::SetValueResponse svr(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(v))),xml_schema::Uri("0"));
 		svr.MdibVersion(getMdibVersion());
 
 		return svr;
@@ -259,7 +259,7 @@ MDM::ActivateResponse OSCPProvider::OnActivateAsync(const MDM::Activate & reques
 	notifyOperationInvoked(oic, InvocationState::Wait);
 	enqueueInvokeNotification(request, oic);
 
-	MDM::ActivateResponse ar(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(InvocationState::Wait))),0);
+	MDM::ActivateResponse ar(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(InvocationState::Wait))),xml_schema::Uri("0"));
 	ar.MdibVersion(getMdibVersion());
 
 	return ar;
@@ -286,7 +286,7 @@ MDM::SetStringResponse OSCPProvider::SetStringAsync(const MDM::SetString & reque
 
 	auto genResponse = [this, &oic](InvocationState v) {
 		notifyOperationInvoked(oic, v);
-		MDM::SetStringResponse ssr(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(v))),0);
+		MDM::SetStringResponse ssr(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(v))),xml_schema::Uri("0"));
 		ssr.MdibVersion(getMdibVersion());
 		return ssr;
 	};
@@ -420,7 +420,7 @@ MDM::SetAlertStateResponse OSCPProvider::SetAlertStateAsync(const MDM::SetAlertS
 	auto genResponse = [this, &oic](InvocationState v) {
 		notifyOperationInvoked(oic, v);
 		// TODO: 0 = replace with real sequence ID
-		MDM::SetAlertStateResponse sasr(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(v))),0);
+		MDM::SetAlertStateResponse sasr(MDM::InvocationInfo(oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(v))),xml_schema::Uri("0"));
 		sasr.MdibVersion(getMdibVersion());
 
 		return sasr;
@@ -521,7 +521,7 @@ MDM::GetContextStatesResponse OSCPProvider::GetContextStates(const MDM::GetConte
 
 	if (request.HandleRef().empty()) {
 		// TODO: 0 = replace with real sequence ID
-		MDM::GetContextStatesResponse result("0");
+		MDM::GetContextStatesResponse result(xml_schema::Uri("0"));
 		result.MdibVersion(getMdibVersion());
 		for (const auto & state : contextStates.ContextState()) {
 			result.ContextState().push_back(state);
@@ -529,7 +529,7 @@ MDM::GetContextStatesResponse OSCPProvider::GetContextStates(const MDM::GetConte
 		return result;
 	} else {
 		// TODO: 0 = replace with real sequence ID
-		MDM::GetContextStatesResponse result("0");
+		MDM::GetContextStatesResponse result(xml_schema::Uri("0"));
 		result.MdibVersion(getMdibVersion());
 		const std::set<std::string> reqHandles(request.HandleRef().begin(), request.HandleRef().end());
 		for (const auto & state : contextStates.ContextState()) {
@@ -540,7 +540,7 @@ MDM::GetContextStatesResponse OSCPProvider::GetContextStates(const MDM::GetConte
 		return result;
 	}
 	// TODO: 0 = replace with real sequence ID
-	MDM::GetContextStatesResponse result("0");
+	MDM::GetContextStatesResponse result(xml_schema::Uri("0"));
 	result.MdibVersion(getMdibVersion());
 	return result;
 }
@@ -551,7 +551,7 @@ MDM::SetContextStateResponse OSCPProvider::SetContextStateAsync(const MDM::SetCo
 	auto genResponse = [this, &oic](InvocationState v) {
 		notifyOperationInvoked(oic, v);
 		// TODO: 0 = replace with real sequence ID
-		MDM::SetContextStateResponse scsr(MDM::InvocationInfo(oic.transactionId, ConvertToCDM::convert(v)),0);
+		MDM::SetContextStateResponse scsr(MDM::InvocationInfo(oic.transactionId, ConvertToCDM::convert(v)),xml_schema::Uri("0"));
 		scsr.MdibVersion(getMdibVersion());
 		return scsr;
 	};
@@ -604,7 +604,7 @@ void OSCPProvider::SetContextState(const MDM::SetContextState & request, const O
 
 MDM::GetMdibResponse OSCPProvider::GetMdib(const MDM::GetMdib & ) {
 	// TODO: 0 = replace with real sequence ID
-	MDM::GetMdibResponse mdib(0,ConvertToCDM::convert(getMdib()));
+	MDM::GetMdibResponse mdib(xml_schema::Uri("0"),ConvertToCDM::convert(getMdib()));
 	mdib.MdibVersion(getMdibVersion());
     return mdib;
 }
@@ -960,7 +960,7 @@ void OSCPProvider::startup() {
 			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderClockStateHandler * h = dynamic_cast<OSCPProviderClockStateHandler *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderHydraMDSStateHandler * h = dynamic_cast<OSCPProviderHydraMDSStateHandler*>(handler.second)) {
+		} else if (OSCPProviderMdsStateHandler * h = dynamic_cast<OSCPProviderMdsStateHandler*>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
 		} else if (dynamic_cast<OSCPProviderActivateOperationHandler *>(handler.second)) {
 			// NOOP

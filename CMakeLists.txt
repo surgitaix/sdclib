@@ -195,7 +195,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/OSCPProviderClockStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderContextStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.cpp
-./src/Data/OSCP/OSCPProviderHydraMDSStateHandler.cpp
+./src/Data/OSCP/OSCPProviderMdsStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderMdStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderNumericMetricStateHandler.cpp
@@ -480,13 +480,66 @@ list(APPEND OSCLibSOURCES ${PocoSOURCES})
 add_library(OSCLib SHARED ${OSCLibSOURCES})
 
 
+add_executable(ExampleConsumer
+Examples/ExampleConsumer.cpp
+)
 
 add_executable(ExampleProject
 Examples/ExampleProject.cpp
 )
 
+add_executable(ExampleProvider4SoftICEStreaming
+Examples/ExampleProvider4SoftICEStreaming.cpp
+)
+
+add_executable(ExampleConsumer4SoftICEStreaming
+Examples/ExampleConsumer4SoftICEStreaming.cpp
+)
+
+
+
+add_executable(SimpleServiceDiscovery
+Examples/SimpleServiceDiscovery.cpp
+)
+
+add_executable(MDIBVisualizer
+Examples/MDIBVisualizer.cpp
+)
+
+#add_executable(MDIBDump
+#Examples/MDIBDump.cpp
+#)
+
+#add_executable(GenericSubscription
+#Examples/GenericSubscription.cpp
+#)
+
+#add_executable(DPWSDiscoveryClient
+#Tests/Tools/DPWSDiscoveryClient.cpp
+#)
+
+#add_executable(DPWSDiscoveryListener
+#Tests/Tools/DPWSDiscoveryListener.cpp
+#)
+
+#add_executable(ClientForUniRostockDevices
+#Examples/ClientForUniRostockDevices.cpp
+#)
+
 
 SET(ADDITIONAL_LIBS "")
 
+target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleProvider4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(GenericSubscription OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(DPWSDiscoveryClient OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(DPWSDiscoveryListener OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ClientForUniRostockDevices OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 

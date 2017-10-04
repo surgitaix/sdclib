@@ -19,22 +19,17 @@
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-//#include "OSCLib/Data/OSCP/MDIB/Measure.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeValueType.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
-
-#include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
@@ -146,9 +141,9 @@ public:
     RealTimeSampleArrayMetricState createState() {
         RealTimeSampleArrayMetricState realTimeSampleArrayState;
         realTimeSampleArrayState
-            .setComponentActivationState(ComponentActivation::ON)
-            .setDescriptorHandle(descriptorHandle)
-            .setHandle(descriptorHandle + "_state");
+            .setActivationState(ComponentActivation::On)
+            .setDescriptorHandle(descriptorHandle);
+
         return realTimeSampleArrayState;
     }
 
@@ -157,10 +152,10 @@ public:
         return createState();
     }
 
-    void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
+    void updateStateValue(const SampleArrayValue & sav) {
         RealTimeSampleArrayMetricState realTimeSampleArrayState = createState();
         realTimeSampleArrayState
-            .setObservedValue(rtsav);
+            .setMetricValue(sav);
         updateState(realTimeSampleArrayState);
     }
 
@@ -201,8 +196,8 @@ public:
     	oscpProvider.shutdown();
     }
 
-    void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
-        streamHandler.updateStateValue(rtsav); // updates handles and the parent provider
+    void updateStateValue(const SampleArrayValue & sav) {
+        streamHandler.updateStateValue(sav); // updates handles and the parent provider
     }
 
 private:

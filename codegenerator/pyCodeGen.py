@@ -52,7 +52,7 @@ g_apiInterfaces = [
                            ['ClockState', 'DescriptorType', 'ClockDescriptor'],
                            ['EnsembleContextState', 'DescriptorType', 'EnsembleContextDescriptor'],
                            ['EnumStringMetricState', 'DescriptorType', 'EnumStringMetricDescriptor', 'ProviderHandlerType', 'OSCPProviderEnumStringMetricStateHandler', 'ConsumerHandlerType', 'OSCPConsumerEnumStringMetricStateHandler'],
-                           ['MdsState', 'DescriptorType', 'MdsDescriptor', 'ProviderHandlerType', 'OSCPProviderHydraMDSStateHandler'],
+                           ['MdsState', 'DescriptorType', 'MdsDescriptor', 'ProviderHandlerType', 'OSCPProviderMdsStateHandler'],
                            ['LimitAlertConditionState', 'DescriptorType', 'LimitAlertConditionDescriptor', 'ProviderHandlerType', 'OSCPProviderLimitAlertConditionStateHandler', 'ConsumerHandlerType', 'OSCPConsumerLimitAlertConditionStateHandler'],
                            ['LocationContextState', 'DescriptorType', 'LocationContextDescriptor'],
                            ['NumericMetricState', 'DescriptorType', 'NumericMetricDescriptor', 'ProviderHandlerType', 'OSCPProviderNumericMetricStateHandler', 'ConsumerHandlerType', 'OSCPConsumerNumericMetricStateHandler'],

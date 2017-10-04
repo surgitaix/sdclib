@@ -14,25 +14,22 @@
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
-#include "OSCLib/Data/OSCP/MDIB/custom/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-//#include "OSCLib/Data/OSCP/MDIB/Measure.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeValueType.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
-
-#include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+#include "OSCLib/Dev/DeviceCharacteristics.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
+
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
@@ -48,8 +45,10 @@ using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
 
-const std::string deviceEPR("UDI-1234567890");
-
+const std::string DEVICE_EPR("UDI-1234567890");
+const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
+const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
+const std::string MDS_DESCRIPTOR_HANDLE("holdingDevice_mds");
 
 class GetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
 public:
@@ -62,10 +61,9 @@ public:
 	NumericMetricState createState(double value) {
 		NumericMetricState result;
 		result
-			.setObservedValue(NumericMetricValue().setValue(value))
-			.setComponentActivationState(ComponentActivation::ON)
-			.setDescriptorHandle("handle_get")
-			.setHandle("handle_get_state");
+			.setMetricValue(NumericMetricValue().setValue(value))
+			.setActivationState(ComponentActivation::On)
+			.setDescriptorHandle("handle_get");
 		return result;
 	}
 
@@ -93,21 +91,21 @@ public:
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: handle_set received state change request. State's value: " << state.getObservedValue().getValue() << std::endl;
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
 
-        notifyOperationInvoked(oic, InvocationState::STARTED);
+        notifyOperationInvoked(oic, InvocationState::Start);
 
-        return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
     NumericMetricState createState() {
         NumericMetricState result;
         result
-            .setObservedValue(NumericMetricValue().setValue(2.0))
-            .setComponentActivationState(ComponentActivation::ON)
-            .setDescriptorHandle("handle_set")
-            .setHandle("handle_set_state");
+            .setMetricValue(NumericMetricValue().setValue(2.0))
+            .setActivationState(ComponentActivation::On)
+            .setDescriptorHandle("handle_set");
+
         return result;
     }
 
@@ -122,7 +120,7 @@ public:
         // TODO: in real applications, check if findState returns true!
         getParentProvider().getMdState().findState("handle_set", result);
         // TODO: in real applications, check if state has an observed value and if the observed value has a value!
-        return (float)result.getObservedValue().getValue();
+        return (float)result.getMetricValue().getValue();
     }
 
 private:
@@ -141,9 +139,9 @@ public:
     RealTimeSampleArrayMetricState createState() {
         RealTimeSampleArrayMetricState realTimeSampleArrayState;
         realTimeSampleArrayState
-            .setComponentActivationState(ComponentActivation::ON)
-            .setDescriptorHandle(descriptorHandle)
-            .setHandle(descriptorHandle + "_state");
+            .setActivationState(ComponentActivation::On)
+            .setDescriptorHandle(descriptorHandle);
+
         return realTimeSampleArrayState;
     }
 
@@ -152,10 +150,11 @@ public:
         return createState();
     }
 
-    void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
+
+    void updateStateValue(const SampleArrayValue & sav) {
         RealTimeSampleArrayMetricState realTimeSampleArrayState = createState();
         realTimeSampleArrayState
-            .setObservedValue(rtsav);
+            .setMetricValue(sav);
         updateState(realTimeSampleArrayState);
     }
 
@@ -164,76 +163,75 @@ private:
     std::string descriptorHandle;
 };
 
+//
+//class StringMetricStateHandlerProvider : public OSCPProviderStringMetricStateHandler {
+//public:
+//	StringMetricStateHandlerProvier(std::string & handle) : handle(handle) {}
+//
+//};
+
+
 class OSCPStreamProvider : public Util::Task {
 public:
 
     OSCPStreamProvider() : oscpProvider(), streamHandler("handle_stream"), getNumericHandler("handle_get"), setNumericHandler("handle_set") {
 
-		oscpProvider.setEndpointReference(deviceEPR);
+		oscpProvider.setEndpointReference(DEVICE_EPR);
+		Dev::DeviceCharacteristics devChar;
+		devChar.addFriendlyName("en", "OSCLib ExampleProvider");
+		oscpProvider.setDeviceCharacteristics(devChar);
 
         // handle references of their states
         streamMetricDescriptor.setHandle("handle_stream");
 
         // metric stream metric (read-only)
         streamMetricDescriptor
-			.setSamplePeriod(
-					Duration()
-					.setseconds(0.001)
-					)
-			.setResolution(1.0)
-			.addTechnicalRange(Range()
-					.setUpper(2)
-					.setLower(0))
-			.setMetricCategory(MetricCategory::MEASUREMENT)
-			.setAvailability(MetricAvailability::CONTINUOUS)
-			.setType(CodedValue()
-                    .setCodeId("MDCX_XXX"));
+        	.setMetricAvailability(MetricAvailability::Cont)
+        	.setResolution(1.0)
+        	.setType(CodedValue().setCode("MDCX_XXX"))
+        	.setMetricCategory(MetricCategory::Msrmt)
+        	.addTechnicalRange(Range().setLower(0).setUpper(2));
 
         setMetricDescriptor
         	.setHandle("handle_set")
-        	.setMetricCategory(MetricCategory::SETTING)
-        	.setAvailability(MetricAvailability::CONTINUOUS)
-        	.setType(CodedValue().addConceptDescription(LocalizedText().set("Maximum weight")));
-
-
-
+        	.setMetricCategory(MetricCategory::Set)
+        	.setMetricAvailability(MetricAvailability::Cont)
+        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
 
 
 
         // Channel
         ChannelDescriptor holdingDeviceParameters;
         holdingDeviceParameters
+        	.setHandle(CHANNEL_DESCRIPTOR_HANDLE)
 			.addMetric(streamMetricDescriptor)
 			.addMetric(setMetricDescriptor)
-			.setIntendedUse(IntendedUse::INFORMATIONAL);
+			.setSafetyClassification(SafetyClassification::MedB);
 
         // VMD
-        VMDDescriptor holdingDeviceModule;
-        holdingDeviceModule.addChannel(holdingDeviceParameters);
+        VmdDescriptor holdingDeviceModule;
+        holdingDeviceModule
+        	.setHandle(VMD_DESCRIPTOR_HANDLE)
+        	.addChannel(holdingDeviceParameters);
 
         // MDS
-        HydraMDSDescriptor holdingDeviceSystem;
+        MdsDescriptor holdingDeviceSystem;
         holdingDeviceSystem
-			.setMetaData(
-				SystemMetaData()
-				.addManufacturer(
-					LocalizedText()
-					.set("SurgiTAIX AG"))
-				.addModelName(
-					LocalizedText()
-					.set("ChipOx"))
-				.addModelNumber("1")
-				.addSerialNumber("1234")
-				)
-            .setType(CodedValue()
-                .setCodeId("MDC_DEV_ANALY_SAT_O2_MDS"))
-			.addVMD(holdingDeviceModule);
+        	.setHandle(MDS_DESCRIPTOR_HANDLE)
+        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
+        	.setMetaData(
+        		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
+        		.setModelNumber("1")
+        		.addModelName(LocalizedText().setRef("EndoTAIX"))
+        		.addSerialNumber("1234"))
+        	.addVmd(holdingDeviceModule);
+
 
         oscpProvider.createSetOperationForDescriptor(setMetricDescriptor, holdingDeviceSystem);
 
         // create and add description
-		MDDescription mdDescription;
-		mdDescription.addMDSDescriptor(holdingDeviceSystem);
+		MdDescription mdDescription;
+		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
 		oscpProvider.setMDDescription(mdDescription);
 
@@ -251,8 +249,8 @@ public:
     	oscpProvider.shutdown();
     }
 
-    void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
-        streamHandler.updateStateValue(rtsav); // updates handles and the parent provider
+    void updateStateValue(const SampleArrayValue & sav) {
+        streamHandler.updateStateValue(sav); // updates handles and the parent provider
     }
 
 private:
@@ -272,20 +270,15 @@ public:
 
     	// RealTimeArray
 		const std::size_t size(1000);
-		std::vector<double> samples;
+		RealTimeValueType samples;
 		for (std::size_t i = 0; i < size; i++) {
 			samples.push_back(i);
 		}
 		long index(0);
+
 		while (!isInterrupted()) {
 			{
-                updateStateValue(
-						RealTimeSampleArrayValue()
-						.setSamples(
-							RTValueType()
-							.setValues(samples))
-						);
-
+                updateStateValue(SampleArrayValue().setSamples(samples));
 			}
 			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 

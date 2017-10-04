@@ -5,22 +5,22 @@
  *      Author: roehser
  */
 
-#include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSCPProviderHydraMDSStateHandler::OSCPProviderHydraMDSStateHandler() {
+OSCPProviderMdsStateHandler::OSCPProviderMdsStateHandler() {
 
 }
 
-OSCPProviderHydraMDSStateHandler::~OSCPProviderHydraMDSStateHandler() {
+OSCPProviderMdsStateHandler::~OSCPProviderMdsStateHandler() {
 
 }
 
-std::string OSCPProviderHydraMDSStateHandler::getDescriptorHandle() {
+std::string OSCPProviderMdsStateHandler::getDescriptorHandle() {
     return getInitialState().getDescriptorHandle();
 }
 

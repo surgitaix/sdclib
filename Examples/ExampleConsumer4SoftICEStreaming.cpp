@@ -4,8 +4,7 @@
 #include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Util/DebugOut.h"
@@ -23,7 +22,7 @@ using namespace OSCLib;
 using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
-const std::string deviceEPR("DEMO-123");
+const std::string deviceEPR("UDI-1234567890");
 
 const std::string streamHandle("handle_stream");
 
@@ -38,7 +37,7 @@ public:
 
     void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
     	Poco::Mutex::ScopedLock lock(mutex);
-        std::vector<double> values = state.getObservedValue().getSamples().getValues();
+        std::vector<double> values = state.getMetricValue().getSamples();
 
         // simple check if the data is valid:
         // assumption: sequence of values, increased by 1
@@ -74,7 +73,7 @@ public:
 	}
 
 	void onStateChanged(const NumericMetricState & state) override {
-		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Recieved Value: " << state.getObservedValue().getValue() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Recieved Value: " << state.getMetricValue().getValue() << std::endl;
 	}
 
 	std::string getHandle() override {
@@ -87,14 +86,13 @@ private:
 
 
 
-
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Startup";
     OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
     OSCLibrary::getInstance().setIP4enabled(true);
     OSCLibrary::getInstance().setIP6enabled(false);
 
-    // Consumer
+    // Consumer is build via discovery
 	OSELib::OSCP::ServiceManager oscpsm;
 	DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Consumer discovery..." << std::endl;
 
@@ -113,7 +111,7 @@ int main() {
 //		set the providers value for the NMS: handle_set
 		NumericMetricState nms;
 		nms
-			.setObservedValue(NumericMetricValue().setValue(84.0))
+			.setMetricValue(NumericMetricValue().setValue(84.0))
 			.setDescriptorHandle("handle_set");
 		Poco::Thread::sleep(1000);
 		c->commitState(nms);

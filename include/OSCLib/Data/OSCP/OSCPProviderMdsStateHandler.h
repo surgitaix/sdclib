@@ -5,8 +5,8 @@
  *      Author: roehser
  */
 
-#ifndef DATA_OSCP_OSCPPROVIDERHYDRAMDSSTATEHANDLER_H_
-#define DATA_OSCP_OSCPPROVIDERHYDRAMDSSTATEHANDLER_H_
+#ifndef DATA_OSCP_OSCPProviderMdsStateHandler_H_
+#define DATA_OSCP_OSCPProviderMdsStateHandler_H_
 
 #include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 
@@ -14,10 +14,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderHydraMDSStateHandler : public OSCPProviderMdStateHandler {
+class OSCPProviderMdsStateHandler : public OSCPProviderMdStateHandler {
 public:
-	OSCPProviderHydraMDSStateHandler();
-	virtual ~OSCPProviderHydraMDSStateHandler();
+	OSCPProviderMdsStateHandler();
+	virtual ~OSCPProviderMdsStateHandler();
 
     virtual MdsState getInitialState() = 0;
 
@@ -33,4 +33,4 @@ public:
 } /* namespace Data */
 } /* namespace OSCLib */
 
-#endif /* DATA_OSCP_OSCPPROVIDERHYDRAMDSSTATEHANDLER_H_ */
+#endif /* DATA_OSCP_OSCPProviderMdsStateHandler_H_ */

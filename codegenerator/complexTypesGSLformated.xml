@@ -195,7 +195,7 @@
 
 	<class name = "MdsState" parent = "AbstractComplexDeviceComponentState" abstract = "false">
 		<typedef name = "DescriptorType" type = "MdsDescriptor" />
-		<typedef name = "ProviderHandlerType" type = "OSCPProviderHydraMDSStateHandler" />
+		<typedef name = "ProviderHandlerType" type = "OSCPProviderMdsStateHandler" />
 		<property name = "Lang" type = "xml_schema::Language" optional = "true" />
 		<property name = "OperatingMode" type = "MdsOperatingMode" optional = "true" />
 	</class>
