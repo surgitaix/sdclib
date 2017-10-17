@@ -186,8 +186,8 @@ public:
 		oscpProvider.setMDDescription(mdDescription);
 
         // Add handler
-        oscpProvider.addMDStateHandler(&streamHandler);
-        oscpProvider.addMDStateHandler(&streamHandlerAlt);
+        oscpProvider.addMdSateHandler(&streamHandler);
+        oscpProvider.addMdSateHandler(&streamHandlerAlt);
     }
 
     void startup() {

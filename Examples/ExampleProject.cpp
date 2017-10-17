@@ -220,10 +220,10 @@ public:
 
 
 		// State handler
-        oscpProvider.addMDStateHandler(&maxValueState);
-        oscpProvider.addMDStateHandler(&curValueState);
+        oscpProvider.addMdSateHandler(&maxValueState);
+        oscpProvider.addMdSateHandler(&curValueState);
 //        oscpProvider.addMDStateHandler(&channelState);
-        oscpProvider.addMDStateHandler(&mdsState);
+        oscpProvider.addMdSateHandler(&mdsState);
 //        oscpProvider.addMDStateHandler(&vmdState);
 
 

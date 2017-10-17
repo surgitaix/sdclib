@@ -368,13 +368,13 @@ public:
 		oscpProvider.setMDDescription(mdDescription);
 
         // State handlers
-        oscpProvider.addMDStateHandler(&alertSystemState);
-        oscpProvider.addMDStateHandler(&alertConditionState);
-        oscpProvider.addMDStateHandler(&channelState);
-        oscpProvider.addMDStateHandler(&contextStates);
-        oscpProvider.addMDStateHandler(&dummyState);
-        oscpProvider.addMDStateHandler(&hydraMDSState);
-        oscpProvider.addMDStateHandler(&vmdState);
+        oscpProvider.addMdSateHandler(&alertSystemState);
+        oscpProvider.addMdSateHandler(&alertConditionState);
+        oscpProvider.addMdSateHandler(&channelState);
+        oscpProvider.addMdSateHandler(&contextStates);
+        oscpProvider.addMdSateHandler(&dummyState);
+        oscpProvider.addMdSateHandler(&hydraMDSState);
+        oscpProvider.addMdSateHandler(&vmdState);
 	}
 
 	void startup() {

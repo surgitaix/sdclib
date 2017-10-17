@@ -1358,7 +1358,11 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 					metricStateNodes.push_back(currentNode);
 					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
 					result << makeFormat(*casted, currentNode);
-				}
+
+					// todo continue: write name of Sco States
+				} else if (auto casted = dynamic_cast<const CDM::SetMetricStateOperationState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
+					result << makeFormat(*casted, currentNode);
 			}
 		}
 

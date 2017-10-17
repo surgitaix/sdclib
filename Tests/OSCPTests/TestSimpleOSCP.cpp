@@ -909,19 +909,19 @@ public:
 
         // State handlers
 
-		oscpProvider.addMDStateHandler(&contextStates);
-		oscpProvider.addMDStateHandler(&curValueState);
-		oscpProvider.addMDStateHandler(&enumState);
-		oscpProvider.addMDStateHandler(&maxValueState);
-		oscpProvider.addMDStateHandler(&strValueState);
-		oscpProvider.addMDStateHandler(&limitAlertConditionHandler);
-		oscpProvider.addMDStateHandler(&alertSigHandler);
-		oscpProvider.addMDStateHandler(&latchingAlertSigHandler);
-		oscpProvider.addMDStateHandler(&alertSysHandler);
-		oscpProvider.addMDStateHandler(&cmdHandler);
-		oscpProvider.addMDStateHandler(&channelState);
-		oscpProvider.addMDStateHandler(&hydraMDSState);
-		oscpProvider.addMDStateHandler(&vmdState);
+		oscpProvider.addMdSateHandler(&contextStates);
+		oscpProvider.addMdSateHandler(&curValueState);
+		oscpProvider.addMdSateHandler(&enumState);
+		oscpProvider.addMdSateHandler(&maxValueState);
+		oscpProvider.addMdSateHandler(&strValueState);
+		oscpProvider.addMdSateHandler(&limitAlertConditionHandler);
+		oscpProvider.addMdSateHandler(&alertSigHandler);
+		oscpProvider.addMdSateHandler(&latchingAlertSigHandler);
+		oscpProvider.addMdSateHandler(&alertSysHandler);
+		oscpProvider.addMdSateHandler(&cmdHandler);
+		oscpProvider.addMdSateHandler(&channelState);
+		oscpProvider.addMdSateHandler(&hydraMDSState);
+		oscpProvider.addMdSateHandler(&vmdState);
 	}
 
     MDDescription getMdDescription() {

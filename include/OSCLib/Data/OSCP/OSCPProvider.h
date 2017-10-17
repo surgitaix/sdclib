@@ -165,7 +165,7 @@ public:
     *
     * @param handler The handler
     */
-    void addMDStateHandler(OSCPProviderMdStateHandler * handler);
+    void addMdSateHandler(OSCPProviderMdStateHandler * handler);
 
     /**
     * @brief Remove a request handler which provides states and processes incoming change requests from a consumer.

@@ -1034,7 +1034,7 @@ template<class T> void OSCPProvider::replaceState(const T & object) {
 }
 
 
-void OSCPProvider::addMDStateHandler(OSCPProviderMdStateHandler * handler) {
+void OSCPProvider::addMdSateHandler(OSCPProviderMdStateHandler * handler) {
     handler->parentProvider = this;
 
     if (stateHandlers.find(handler->getDescriptorHandle()) != stateHandlers.end()) {

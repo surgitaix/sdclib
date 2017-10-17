@@ -12,6 +12,7 @@
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
@@ -25,6 +26,9 @@
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Dev/DeviceCharacteristics.h"
@@ -50,10 +54,10 @@ const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
 const std::string MDS_DESCRIPTOR_HANDLE("holdingDevice_mds");
 
-class GetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
+class NumericProviderStateHandlerGet : public OSCPProviderNumericMetricStateHandler {
 public:
 
-	GetNumericMetricStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+	NumericProviderStateHandlerGet(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
 	}
 
 
@@ -83,18 +87,18 @@ private:
 
 
 
-class SetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
+class NumericProviderStateHandlerSet : public OSCPProviderNumericMetricStateHandler {
 public:
 
-    SetNumericMetricStateHandler(const std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+    NumericProviderStateHandlerSet(const std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
-        // Invocation has been fired as WAITING when entering this method
+    	// Invocation has been fired as WAITING when entering this method
+    	notifyOperationInvoked(oic, InvocationState::Start);
+    	// Do stuff
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
-
-        notifyOperationInvoked(oic, InvocationState::Start);
-
+        // if success return Finished
         return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
@@ -163,26 +167,58 @@ private:
     std::string descriptorHandle;
 };
 
-//
-//class StringMetricStateHandlerProvider : public OSCPProviderStringMetricStateHandler {
-//public:
-//	StringMetricStateHandlerProvier(std::string & handle) : handle(handle) {}
-//
-//};
+
+class StringProviderStateHandler : public OSCPProviderStringMetricStateHandler {
+public:
+	StringProviderStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+
+	}
+
+	InvocationState onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic) override {
+		notifyOperationInvoked(oic, InvocationState::Start);
+		// Do something if a state change is requested
+		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "String state of provider state changed to " << state.getMetricValue().getValue() << std::endl;
+		// return Finished if successful
+		return InvocationState::Fin;
+	}
+
+
+	// Helper method
+	StringMetricState createState() {
+		StringMetricState result;
+		result
+			.setDescriptorHandle("handle_string")
+			.setMetricValue(StringMetricValue().setValue("StringMetricValueInit"));
+
+	    return result;
+	}
+
+	StringMetricState getInitialState() override {
+		StringMetricState result = createState();
+	        return result;
+	    }
+
+private:
+	std::string descriptorHandle;
+};
 
 
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() : oscpProvider(), streamHandler("handle_stream"), getNumericHandler("handle_get"), setNumericHandler("handle_set") {
+    OSCPStreamProvider() : oscpProvider(), streamProviderStateHandler("handle_stream"), stringProviderStateHandler("handle_string"), numericProviderStateHandlerGet("handle_get"), numericProviderStateHandlerSet("handle_set") {
 
 		oscpProvider.setEndpointReference(DEVICE_EPR);
 		Dev::DeviceCharacteristics devChar;
 		devChar.addFriendlyName("en", "OSCLib ExampleProvider");
 		oscpProvider.setDeviceCharacteristics(devChar);
 
-        // handle references of their states
+		// Important:
+        // each handle references its state
         streamMetricDescriptor.setHandle("handle_stream");
+        setMetricDescriptor.setHandle("handle_set");
+        getMetricDescriptor.setHandle("handle_get");
+        stringMetricDescriptor.setHandle("handle_string");
 
         // metric stream metric (read-only)
         streamMetricDescriptor
@@ -193,20 +229,28 @@ public:
         	.addTechnicalRange(Range().setLower(0).setUpper(2));
 
         setMetricDescriptor
-        	.setHandle("handle_set")
         	.setMetricCategory(MetricCategory::Set)
         	.setMetricAvailability(MetricAvailability::Cont)
         	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
 
+        getMetricDescriptor
+			.setMetricAvailability(MetricAvailability::Cont)
+			.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
 
+        stringMetricDescriptor
+        	.setMetricAvailability(MetricAvailability::Cont)
+        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
 
         // Channel
         ChannelDescriptor holdingDeviceParameters;
         holdingDeviceParameters
         	.setHandle(CHANNEL_DESCRIPTOR_HANDLE)
+        	.setSafetyClassification(SafetyClassification::MedB)
 			.addMetric(streamMetricDescriptor)
 			.addMetric(setMetricDescriptor)
-			.setSafetyClassification(SafetyClassification::MedB);
+			.addMetric(getMetricDescriptor)
+			.addMetric(stringMetricDescriptor);
+
 
         // VMD
         VmdDescriptor holdingDeviceModule;
@@ -236,9 +280,11 @@ public:
 		oscpProvider.setMDDescription(mdDescription);
 
         // Add handler
-		oscpProvider.addMDStateHandler(&streamHandler);
-		oscpProvider.addMDStateHandler(&getNumericHandler);
-		oscpProvider.addMDStateHandler(&setNumericHandler);
+		oscpProvider.addMdSateHandler(&streamProviderStateHandler);
+		oscpProvider.addMdSateHandler(&numericProviderStateHandlerGet);
+		oscpProvider.addMdSateHandler(&numericProviderStateHandlerSet);
+		oscpProvider.addMdSateHandler(&stringProviderStateHandler);
+
     }
 
     void startup() {
@@ -250,7 +296,7 @@ public:
     }
 
     void updateStateValue(const SampleArrayValue & sav) {
-        streamHandler.updateStateValue(sav); // updates handles and the parent provider
+        streamProviderStateHandler.updateStateValue(sav); // updates handles and the parent provider
     }
 
 private:
@@ -258,9 +304,13 @@ private:
     OSCPProvider oscpProvider;
 	RealTimeSampleArrayMetricDescriptor streamMetricDescriptor;
 	NumericMetricDescriptor setMetricDescriptor;
-    StreamProviderStateHandler streamHandler;
-    GetNumericMetricStateHandler getNumericHandler;
-    SetNumericMetricStateHandler setNumericHandler;
+	NumericMetricDescriptor getMetricDescriptor;
+	StringMetricDescriptor stringMetricDescriptor;
+
+    StreamProviderStateHandler streamProviderStateHandler;
+    NumericProviderStateHandlerGet numericProviderStateHandlerGet;
+    NumericProviderStateHandlerSet numericProviderStateHandlerSet;
+    StringProviderStateHandler stringProviderStateHandler;
 
 public:
 
@@ -283,7 +333,7 @@ public:
 			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
 			// NumericMetricState
-			getNumericHandler.setNumericValue(42.0);
+			numericProviderStateHandlerGet.setNumericValue(42.0);
 //			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "NumericMetric: value changed to 42.0" << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
