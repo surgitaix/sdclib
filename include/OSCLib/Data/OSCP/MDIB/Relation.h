@@ -61,6 +61,11 @@ public:
 	bool getCode(CodedValue & out) const;
 	bool hasCode() const;
 
+	Relation & setIdentification(const InstanceIdentifier & value);
+	InstanceIdentifier getIdentification() const;
+	bool getIdentification(InstanceIdentifier & out) const;
+	bool hasIdentification() const;
+
 	Relation & setKind(const Kind & value);
 	Kind getKind() const;
 

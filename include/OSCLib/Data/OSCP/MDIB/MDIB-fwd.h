@@ -22,20 +22,18 @@ namespace OSCP {
 	class OperationInvocationContext;
 
 	// classes, that are generated
-	class DicomTransferCapability;
-	class DicomNetworkAe;
-	class DicomNetworkConnection;
-	class DicomDeviceDescriptor;
 	class Mdib;
 	class MdDescription;
 	class MdState;
 	class LocalizedText;
 	class CodedValue;
+	class Translation;
 	class InstanceIdentifier;
 	class Range;
 	class Measurement;
 	class ApprovedJurisdictions;
 	class OperatingJurisdiction;
+	class PhysicalConnectorInfo;
 	class AbstractDescriptor;
 	class AbstractState;
 	class AbstractMultiState;
@@ -43,6 +41,8 @@ namespace OSCP {
 	class ProductionSpecification;
 	class AbstractComplexDeviceComponentDescriptor;
 	class CalibrationInfo;
+	class CalibrationDocumentation;
+	class CalibrationResult;
 	class AbstractDeviceComponentState;
 	class AbstractComplexDeviceComponentState;
 	class MdsDescriptor;
@@ -89,6 +89,7 @@ namespace OSCP {
 	class DistributionSampleArrayMetricState;
 	class ScoDescriptor;
 	class ScoState;
+	class OperationGroup;
 	class AbstractOperationDescriptor;
 	class AbstractSetStateOperationDescriptor;
 	class AbstractOperationState;
@@ -145,6 +146,10 @@ namespace OSCP {
 	class EnsembleContextState;
 	class ContainmentTree;
 	class ContainmentTreeEntry;
+	class DicomTransferCapability;
+	class DicomNetworkAe;
+	class DicomNetworkConnection;
+	class DicomDeviceDescriptor;
 
 
 }

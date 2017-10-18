@@ -79,6 +79,11 @@ public:
 	bool getNextCalibration(CalibrationInfo & out) const;
 	bool hasNextCalibration() const;
 
+	ChannelState & setPhysicalConnector(const PhysicalConnectorInfo & value);
+	PhysicalConnectorInfo getPhysicalConnector() const;
+	bool getPhysicalConnector(PhysicalConnectorInfo & out) const;
+	bool hasPhysicalConnector() const;
+
 	ChannelState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 	bool getActivationState(ComponentActivation & out) const;

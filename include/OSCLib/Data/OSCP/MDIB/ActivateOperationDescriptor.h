@@ -92,9 +92,14 @@ public:
 	bool getRetriggerable(xml_schema::Duration & out) const;
 	bool hasRetriggerable() const;
 
-	ActivateOperationDescriptor & addModifiableElement(const std::string & value);
-	std::vector<std::string> getModifiableElementLists() const;
-	void clearModifiableElementLists();
+	ActivateOperationDescriptor & setAccessLevel(const AccessLevel & value);
+	AccessLevel getAccessLevel() const;
+	bool getAccessLevel(AccessLevel & out) const;
+	bool hasAccessLevel() const;
+
+	ActivateOperationDescriptor & addModifiableData(const std::string & value);
+	std::vector<std::string> getModifiableDataLists() const;
+	void clearModifiableDataLists();
 	
 	ActivateOperationDescriptor & addArgument(const Argument & value);
 	std::vector<Argument> getArgumentLists() const;

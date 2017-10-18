@@ -26,14 +26,6 @@ EnumToString::EnumToString() {
 EnumToString::~EnumToString() {
 
 }
-std::string EnumToString::convert(DicomTransferRole source) {
-	switch (source) {
-		case DicomTransferRole::Scu: return "Scu";
-		case DicomTransferRole::Scp: return "Scp";
-	}
-	throw std::runtime_error("Illegal value for DicomTransferRole");
-}
-
 std::string EnumToString::convert(MeasurementValidity source) {
 	switch (source) {
 		case MeasurementValidity::Vld: return "Vld";
@@ -47,6 +39,18 @@ std::string EnumToString::convert(MeasurementValidity source) {
 		case MeasurementValidity::NA: return "NA";
 	}
 	throw std::runtime_error("Illegal value for MeasurementValidity");
+}
+
+std::string EnumToString::convert(LocalizedTextWidth source) {
+	switch (source) {
+		case LocalizedTextWidth::xs: return "xs";
+		case LocalizedTextWidth::s: return "s";
+		case LocalizedTextWidth::m: return "m";
+		case LocalizedTextWidth::l: return "l";
+		case LocalizedTextWidth::xl: return "xl";
+		case LocalizedTextWidth::xxl: return "xxl";
+	}
+	throw std::runtime_error("Illegal value for LocalizedTextWidth");
 }
 
 std::string EnumToString::convert(SafetyClassification source) {
@@ -245,17 +249,17 @@ std::string EnumToString::convert(PatientType source) {
 	throw std::runtime_error("Illegal value for PatientType");
 }
 
-std::string EnumToString::convert(TextWidth source) {
+std::string EnumToString::convert(DicomTransferRole source) {
 	switch (source) {
-		case TextWidth::Shrt: return "Shrt";
-		case TextWidth::Nml: return "Nml";
-		case TextWidth::Lng: return "Lng";
+		case DicomTransferRole::Scu: return "Scu";
+		case DicomTransferRole::Scp: return "Scp";
 	}
-	throw std::runtime_error("Illegal value for TextWidth");
+	throw std::runtime_error("Illegal value for DicomTransferRole");
 }
 
 std::string EnumToString::convert(CanEscalate source) {
 	switch (source) {
+		case CanEscalate::Lo: return "Lo";
 		case CanEscalate::Me: return "Me";
 		case CanEscalate::Hi: return "Hi";
 	}
@@ -266,6 +270,7 @@ std::string EnumToString::convert(CanDeescalate source) {
 	switch (source) {
 		case CanDeescalate::Me: return "Me";
 		case CanDeescalate::Lo: return "Lo";
+		case CanDeescalate::None: return "None";
 	}
 	throw std::runtime_error("Illegal value for CanDeescalate");
 }
@@ -276,9 +281,20 @@ std::string EnumToString::convert(Kind source) {
 		case Kind::PS: return "PS";
 		case Kind::SST: return "SST";
 		case Kind::ECE: return "ECE";
+		case Kind::DCE: return "DCE";
 		case Kind::Oth: return "Oth";
 	}
 	throw std::runtime_error("Illegal value for Kind");
+}
+
+std::string EnumToString::convert(AccessLevel source) {
+	switch (source) {
+		case AccessLevel::Usr: return "Usr";
+		case AccessLevel::CSUsr: return "CSUsr";
+		case AccessLevel::RO: return "RO";
+		case AccessLevel::SP: return "SP";
+	}
+	throw std::runtime_error("Illegal value for AccessLevel");
 }
 
 std::string EnumToString::convert(ChargeStatus source) {

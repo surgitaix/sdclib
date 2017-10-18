@@ -2476,6 +2476,40 @@ namespace MDM
     void
     Lang (const LangSequence& s);
 
+    // TextWidth
+    //
+    typedef ::CDM::LocalizedTextWidth TextWidthType;
+    typedef ::xsd::cxx::tree::sequence< TextWidthType > TextWidthSequence;
+    typedef TextWidthSequence::iterator TextWidthIterator;
+    typedef TextWidthSequence::const_iterator TextWidthConstIterator;
+    typedef ::xsd::cxx::tree::traits< TextWidthType, char > TextWidthTraits;
+
+    const TextWidthSequence&
+    TextWidth () const;
+
+    TextWidthSequence&
+    TextWidth ();
+
+    void
+    TextWidth (const TextWidthSequence& s);
+
+    // NumberOfLines
+    //
+    typedef ::xml_schema::Integer NumberOfLinesType;
+    typedef ::xsd::cxx::tree::sequence< NumberOfLinesType > NumberOfLinesSequence;
+    typedef NumberOfLinesSequence::iterator NumberOfLinesIterator;
+    typedef NumberOfLinesSequence::const_iterator NumberOfLinesConstIterator;
+    typedef ::xsd::cxx::tree::traits< NumberOfLinesType, char > NumberOfLinesTraits;
+
+    const NumberOfLinesSequence&
+    NumberOfLines () const;
+
+    NumberOfLinesSequence&
+    NumberOfLines ();
+
+    void
+    NumberOfLines (const NumberOfLinesSequence& s);
+
     // Constructors.
     //
     GetLocalizedText ();
@@ -2509,6 +2543,8 @@ namespace MDM
     RefSequence Ref_;
     VersionOptional Version_;
     LangSequence Lang_;
+    TextWidthSequence TextWidth_;
+    NumberOfLinesSequence NumberOfLines_;
   };
 
   class GetLocalizedTextResponse: public ::MDM::AbstractGetResponse
@@ -2516,7 +2552,7 @@ namespace MDM
     public:
     // Text
     //
-    typedef ::MDM::Text TextType;
+    typedef ::CDM::LocalizedText TextType;
     typedef ::xsd::cxx::tree::sequence< TextType > TextSequence;
     typedef TextSequence::iterator TextIterator;
     typedef TextSequence::const_iterator TextConstIterator;
@@ -4368,91 +4404,6 @@ namespace MDM
     BySequence By_;
   };
 
-  class Text: public ::xml_schema::String
-  {
-    public:
-    // Ref
-    //
-    typedef ::xml_schema::Language RefType;
-    typedef ::xsd::cxx::tree::optional< RefType > RefOptional;
-    typedef ::xsd::cxx::tree::traits< RefType, char > RefTraits;
-
-    const RefOptional&
-    Ref () const;
-
-    RefOptional&
-    Ref ();
-
-    void
-    Ref (const RefType& x);
-
-    void
-    Ref (const RefOptional& x);
-
-    void
-    Ref (::std::unique_ptr< RefType > p);
-
-    // Lang
-    //
-    typedef ::xml_schema::Language LangType;
-    typedef ::xsd::cxx::tree::optional< LangType > LangOptional;
-    typedef ::xsd::cxx::tree::traits< LangType, char > LangTraits;
-
-    const LangOptional&
-    Lang () const;
-
-    LangOptional&
-    Lang ();
-
-    void
-    Lang (const LangType& x);
-
-    void
-    Lang (const LangOptional& x);
-
-    void
-    Lang (::std::unique_ptr< LangType > p);
-
-    // Constructors.
-    //
-    Text ();
-
-    Text (const char*);
-
-    Text (const ::std::string&);
-
-    Text (const ::xml_schema::String&);
-
-    Text (const ::xercesc::DOMElement& e,
-          ::xml_schema::Flags f = 0,
-          ::xml_schema::Container* c = 0);
-
-    Text (const Text& x,
-          ::xml_schema::Flags f = 0,
-          ::xml_schema::Container* c = 0);
-
-    virtual Text*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    Text&
-    operator= (const Text& x);
-
-    virtual 
-    ~Text ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    RefOptional Ref_;
-    LangOptional Lang_;
-  };
-
   class Argument: public ::xml_schema::Type
   {
     public:
@@ -4880,6 +4831,27 @@ namespace MDM
     void
     Metric (::std::unique_ptr< MetricType > p);
 
+    // StateVersion
+    //
+    typedef ::CDM::VersionCounter StateVersionType;
+    typedef ::xsd::cxx::tree::optional< StateVersionType > StateVersionOptional;
+    typedef ::xsd::cxx::tree::traits< StateVersionType, char > StateVersionTraits;
+
+    const StateVersionOptional&
+    StateVersion () const;
+
+    StateVersionOptional&
+    StateVersion ();
+
+    void
+    StateVersion (const StateVersionType& x);
+
+    void
+    StateVersion (const StateVersionOptional& x);
+
+    void
+    StateVersion (::std::unique_ptr< StateVersionType > p);
+
     // Constructors.
     //
     Value (const MetricType&);
@@ -4912,6 +4884,7 @@ namespace MDM
     protected:
     Value1Optional Value1_;
     ::xsd::cxx::tree::one< MetricType > Metric_;
+    StateVersionOptional StateVersion_;
   };
 }
 
@@ -13899,9 +13872,6 @@ namespace MDM
 
   void
   operator<< (::xercesc::DOMElement&, const Retrievability&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const Text&);
 
   void
   operator<< (::xercesc::DOMElement&, const Argument&);

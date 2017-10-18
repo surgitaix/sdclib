@@ -1,40 +1,5 @@
 <?xml version="1.0"?>
 <classes script = "generate.gsl" >
-	<class name = "DicomTransferCapability" parent = "NULL" abstract = "false">
-		<property name = "SopClass" type = "std::string" optional = "false" />
-		<property name = "TransferRole" type = "DicomTransferRole" optional = "false" />
-		<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxLists" type = "std::string" />
-	</class>
-
-	<class name = "DicomNetworkAe" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<property name = "AeTitle" type = "std::string" optional = "false" />
-		<property name = "NetworkConnectionReference" type = "xml_schema::Idrefs" optional = "false" />
-		<property name = "AssociationInitiator" type = "bool" optional = "false" />
-		<property name = "AssociationAcceptor" type = "bool" optional = "false" />
-		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityLists" type = "DicomTransferCapability" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
-	</class>
-
-	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
-		<property name = "id" type = "xml_schema::Id" optional = "false" />
-		<property name = "Hostname" type = "std::string" optional = "false" />
-		<property name = "Port" type = "unsigned short" optional = "true" />
-		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteLists" type = "std::string" />
-	</class>
-
-	<class name = "DicomDeviceDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<property name = "IssuerOfPatientID" type = "std::string" optional = "true" />
-		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeLists" type = "DicomNetworkAe" />
-		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionLists" type = "DicomNetworkConnection" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
-		<propertyList nameSingle = "StationName" nameSeveral = "StationNameLists" type = "LocalizedText" />
-	</class>
-
 	<class name = "Mdib" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/MdDescription.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/MdState.h" />
@@ -52,23 +17,29 @@
 		<property name = "StateVersion" type = "VersionCounter" optional = "true" />
 	</class>
 
-	<class name = "LocalizedText" parent = "string" abstract = "false">
+	<class name = "LocalizedText" parent = "LocalizedTextContent" abstract = "false">
 		<property name = "Ref" type = "LocalizedTextRef" optional = "true" />
 		<property name = "Lang" type = "xml_schema::Language" optional = "true" />
 		<property name = "Version" type = "ReferencedVersion" optional = "true" />
-		<property name = "TextWidth" type = "TextWidth" optional = "true" />
+		<property name = "TextWidth" type = "LocalizedTextWidth" optional = "true" />
 	</class>
 
 	<class name = "CodedValue" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Translation.h" />
 		<property name = "Code" type = "CodeIdentifier" optional = "false" />
 		<property name = "CodingSystem" type = "xml_schema::Uri" optional = "true" />
 		<property name = "CodingSystemVersion" type = "std::string" optional = "true" />
 		<property name = "SymbolicCodeName" type = "SymbolicCodeName" optional = "true" />
 		<propertyList nameSingle = "CodingSystemName" nameSeveral = "CodingSystemNameLists" type = "LocalizedText" />
 		<propertyList nameSingle = "ConceptDescription" nameSeveral = "ConceptDescriptionLists" type = "LocalizedText" />
-		<propertyList nameSingle = "Translation" nameSeveral = "TranslationLists" type = "CodedValue" />
+		<propertyList nameSingle = "Translation" nameSeveral = "TranslationLists" type = "Translation" />
+	</class>
+
+	<class name = "Translation" parent = "NULL" abstract = "false">
+		<property name = "Code" type = "CodeIdentifier" optional = "false" />
+		<property name = "CodingSystem" type = "xml_schema::Uri" optional = "true" />
+		<property name = "CodingSystemVersion" type = "std::string" optional = "true" />
 	</class>
 
 	<class name = "InstanceIdentifier" parent = "NULL" abstract = "false">
@@ -100,6 +71,12 @@
 	</class>
 
 	<class name = "OperatingJurisdiction" parent = "InstanceIdentifier" abstract = "false">
+	</class>
+
+	<class name = "PhysicalConnectorInfo" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "Number" type = "int" optional = "true" />
+		<propertyList nameSingle = "Label" nameSeveral = "LabelLists" type = "LocalizedText" />
 	</class>
 
 	<class name = "AbstractDescriptor" parent = "NULL" abstract = "true">
@@ -143,15 +120,33 @@
 	</class>
 
 	<class name = "CalibrationInfo" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationDocumentation.h" />
 		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "true" />
 		<property name = "Type" type = "CalibrationType" optional = "true" />
 		<property name = "Time" type = "Timestamp" optional = "true" />
+		<propertyList nameSingle = "CalibrationDocumentation" nameSeveral = "CalibrationDocumentationLists" type = "CalibrationDocumentation" />
+	</class>
+
+	<class name = "CalibrationDocumentation" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationResult.h" />
+		<propertyList nameSingle = "Documentation" nameSeveral = "DocumentationLists" type = "LocalizedText" />
+		<propertyList nameSingle = "CalibrationResult" nameSeveral = "CalibrationResultLists" type = "CalibrationResult" />
+	</class>
+
+	<class name = "CalibrationResult" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
+		<property name = "Code" type = "CodedValue" optional = "false" />
+		<property name = "Value" type = "Measurement" optional = "false" />
 	</class>
 
 	<class name = "AbstractDeviceComponentState" parent = "AbstractState" abstract = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h" />
 		<property name = "CalibrationInfo" type = "CalibrationInfo" optional = "true" />
 		<property name = "NextCalibration" type = "CalibrationInfo" optional = "true" />
+		<property name = "PhysicalConnector" type = "PhysicalConnectorInfo" optional = "true" />
 		<property name = "ActivationState" type = "ComponentActivation" optional = "true" />
 		<property name = "OperatingHours" type = "unsigned int" optional = "true" />
 		<property name = "OperatingCycles" type = "int" optional = "true" />
@@ -178,6 +173,9 @@
 	<class name = "MetaData" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Udi.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "LotNumber" type = "std::string" optional = "true" />
+		<property name = "ManufactureDate" type = "xml_schema::DateTime" optional = "true" />
+		<property name = "ExpirationDate" type = "xml_schema::DateTime" optional = "true" />
 		<property name = "ModelNumber" type = "std::string" optional = "true" />
 		<propertyList nameSingle = "Udi" nameSeveral = "UdiLists" type = "Udi" />
 		<propertyList nameSingle = "Manufacturer" nameSeveral = "ManufacturerLists" type = "LocalizedText" />
@@ -280,7 +278,7 @@
 		<property name = "ActualConditionGenerationDelay" type = "xml_schema::Duration" optional = "true" />
 		<property name = "ActualPriority" type = "AlertConditionPriority" optional = "true" />
 		<property name = "Rank" type = "int" optional = "true" />
-		<property name = "Presence" type = "bool" optional = "false" />
+		<property name = "Presence" type = "bool" optional = "true" />
 		<property name = "DeterminationTime" type = "Timestamp" optional = "true" />
 	</class>
 
@@ -301,10 +299,12 @@
 	</class>
 
 	<class name = "AlertSignalDescriptor" parent = "AbstractAlertDescriptor" abstract = "false">
-		<property name = "ConditionSignaled" type = "HandleRef" optional = "false" />
+		<property name = "ConditionSignaled" type = "HandleRef" optional = "true" />
 		<property name = "Manifestation" type = "AlertSignalManifestation" optional = "false" />
 		<property name = "Latching" type = "bool" optional = "false" />
 		<property name = "DefaultSignalGenerationDelay" type = "xml_schema::Duration" optional = "true" />
+		<property name = "MinSignalGenerationDelay" type = "xml_schema::Duration" optional = "true" />
+		<property name = "MaxSignalGenerationDelay" type = "xml_schema::Duration" optional = "true" />
 		<property name = "SignalDelegationSupported" type = "bool" optional = "true" />
 		<property name = "AcknowledgementSupported" type = "bool" optional = "true" />
 		<property name = "AcknowledgeTimeout" type = "xml_schema::Duration" optional = "true" />
@@ -378,12 +378,16 @@
 
 	<class name = "Relation" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<property name = "Code" type = "CodedValue" optional = "true" />
+		<property name = "Identification" type = "InstanceIdentifier" optional = "true" />
 		<property name = "Kind" type = "Kind" optional = "false" />
 	</class>
 
 	<class name = "AbstractMetricState" parent = "AbstractState" abstract = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h" />
+		<property name = "PhysicalConnector" type = "PhysicalConnectorInfo" optional = "true" />
 		<property name = "ActivationState" type = "ComponentActivation" optional = "true" />
 		<property name = "ActiveDeterminationPeriod" type = "xml_schema::Duration" optional = "true" />
 		<property name = "LifeTimePeriod" type = "xml_schema::Duration" optional = "true" />
@@ -393,7 +397,7 @@
 	<class name = "NumericMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<typedef name = "StateType" type = "NumericMetricState" />
-		<property name = "Resolution" type = "double" optional = "true" />
+		<property name = "Resolution" type = "double" optional = "false" />
 		<property name = "AveragingPeriod" type = "xml_schema::Duration" optional = "true" />
 		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeLists" type = "Range" />
 	</class>
@@ -445,7 +449,7 @@
 	<class name = "RealTimeSampleArrayMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<typedef name = "StateType" type = "RealTimeSampleArrayMetricState" />
-		<property name = "Resolution" type = "double" optional = "true" />
+		<property name = "Resolution" type = "double" optional = "false" />
 		<property name = "SamplePeriod" type = "xml_schema::Duration" optional = "false" />
 		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeLists" type = "Range" />
 	</class>
@@ -465,7 +469,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "DomainUnit" type = "CodedValue" optional = "false" />
 		<property name = "DistributionRange" type = "Range" optional = "false" />
-		<property name = "Resolution" type = "double" optional = "true" />
+		<property name = "Resolution" type = "double" optional = "false" />
 		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeLists" type = "Range" />
 	</class>
 
@@ -480,6 +484,17 @@
 	</class>
 
 	<class name = "ScoState" parent = "AbstractState" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/OperationGroup.h" />
+		<property name = "InvocationRequested" type = "OperationRef" optional = "true" />
+		<property name = "InvocationRequired" type = "OperationRef" optional = "true" />
+		<propertyList nameSingle = "OperationGroup" nameSeveral = "OperationGroupLists" type = "OperationGroup" />
+	</class>
+
+	<class name = "OperationGroup" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<property name = "Type" type = "CodedValue" optional = "false" />
+		<property name = "OperatingMode" type = "OperatingMode" optional = "true" />
+		<property name = "Operations" type = "OperationRef" optional = "true" />
 	</class>
 
 	<class name = "AbstractOperationDescriptor" parent = "AbstractDescriptor" abstract = "true">
@@ -487,10 +502,11 @@
 		<property name = "MaxTimeToFinish" type = "xml_schema::Duration" optional = "true" />
 		<property name = "InvocationEffectiveTimeout" type = "xml_schema::Duration" optional = "true" />
 		<property name = "Retriggerable" type = "xml_schema::Duration" optional = "true" />
+		<property name = "AccessLevel" type = "AccessLevel" optional = "true" />
 	</class>
 
 	<class name = "AbstractSetStateOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "true">
-		<propertyList nameSingle = "ModifiableElement" nameSeveral = "ModifiableElementLists" type = "std::string" />
+		<propertyList nameSingle = "ModifiableData" nameSeveral = "ModifiableDataLists" type = "std::string" />
 	</class>
 
 	<class name = "AbstractOperationState" parent = "AbstractState" abstract = "true">
@@ -568,11 +584,11 @@
 		<property name = "ActiveSyncProtocol" type = "CodedValue" optional = "true" />
 		<property name = "DateAndTime" type = "Timestamp" optional = "true" />
 		<property name = "RemoteSync" type = "bool" optional = "false" />
-		<property name = "ReferenceSource" type = "std::string" optional = "true" />
 		<property name = "Accuracy" type = "double" optional = "true" />
 		<property name = "LastSet" type = "Timestamp" optional = "true" />
 		<property name = "TimeZone" type = "TimeZone" optional = "true" />
 		<property name = "CriticalUse" type = "bool" optional = "true" />
+		<propertyList nameSingle = "ReferenceSource" nameSeveral = "ReferenceSourceLists" type = "std::string" />
 	</class>
 
 	<class name = "BatteryDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false">
@@ -824,6 +840,41 @@
 	<class name = "ContainmentTreeEntry" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
+	</class>
+
+	<class name = "DicomTransferCapability" parent = "NULL" abstract = "false">
+		<property name = "SopClass" type = "std::string" optional = "false" />
+		<property name = "TransferRole" type = "DicomTransferRole" optional = "false" />
+		<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxLists" type = "std::string" />
+	</class>
+
+	<class name = "DicomNetworkAe" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "AeTitle" type = "std::string" optional = "false" />
+		<property name = "NetworkConnectionReference" type = "xml_schema::Idrefs" optional = "false" />
+		<property name = "AssociationInitiator" type = "bool" optional = "false" />
+		<property name = "AssociationAcceptor" type = "bool" optional = "false" />
+		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityLists" type = "DicomTransferCapability" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+	</class>
+
+	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
+		<property name = "id" type = "xml_schema::Id" optional = "false" />
+		<property name = "Hostname" type = "std::string" optional = "false" />
+		<property name = "Port" type = "unsigned short" optional = "true" />
+		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteLists" type = "std::string" />
+	</class>
+
+	<class name = "DicomDeviceDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h" />
+		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<property name = "IssuerOfPatientID" type = "std::string" optional = "true" />
+		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeLists" type = "DicomNetworkAe" />
+		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionLists" type = "DicomNetworkConnection" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+		<propertyList nameSingle = "StationName" nameSeveral = "StationNameLists" type = "LocalizedText" />
 	</class>
 
 </classes>

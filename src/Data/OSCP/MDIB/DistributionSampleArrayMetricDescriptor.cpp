@@ -365,20 +365,9 @@ DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescripto
 	return *this;
 }
 
-bool DistributionSampleArrayMetricDescriptor::getResolution(double & out) const {
-	if (data->Resolution().present()) {
-		out = ConvertFromCDM::convert(data->Resolution().get());
-		return true;
-	}
-	return false;
-}
 
 double DistributionSampleArrayMetricDescriptor::getResolution() const {
-	return ConvertFromCDM::convert(data->Resolution().get());
-}
-	
-bool DistributionSampleArrayMetricDescriptor::hasResolution() const {
-	return data->Resolution().present();
+	return ConvertFromCDM::convert(data->Resolution());
 }
 	
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::addTechnicalRange(const Range & value) {

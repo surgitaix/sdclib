@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -122,6 +123,27 @@ ReferencedVersion StringMetricState::getDescriptorVersion() const {
 	
 bool StringMetricState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
+}
+	
+StringMetricState & StringMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
+	data->PhysicalConnector(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
+	if (data->PhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+		return true;
+	}
+	return false;
+}
+
+PhysicalConnectorInfo StringMetricState::getPhysicalConnector() const {
+	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+}
+	
+bool StringMetricState::hasPhysicalConnector() const {
+	return data->PhysicalConnector().present();
 }
 	
 StringMetricState & StringMetricState::setActivationState(const ComponentActivation & value) {

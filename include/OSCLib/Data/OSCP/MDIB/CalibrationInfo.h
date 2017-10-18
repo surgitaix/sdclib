@@ -71,6 +71,10 @@ public:
 	bool getTime(Timestamp & out) const;
 	bool hasTime() const;
 
+	CalibrationInfo & addCalibrationDocumentation(const CalibrationDocumentation & value);
+	std::vector<CalibrationDocumentation> getCalibrationDocumentationLists() const;
+	void clearCalibrationDocumentationLists();
+	
 private:
 	std::shared_ptr<CDM::CalibrationInfo> data;
 };

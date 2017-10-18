@@ -92,9 +92,14 @@ public:
 	bool getRetriggerable(xml_schema::Duration & out) const;
 	bool hasRetriggerable() const;
 
-	SetAlertStateOperationDescriptor & addModifiableElement(const std::string & value);
-	std::vector<std::string> getModifiableElementLists() const;
-	void clearModifiableElementLists();
+	SetAlertStateOperationDescriptor & setAccessLevel(const AccessLevel & value);
+	AccessLevel getAccessLevel() const;
+	bool getAccessLevel(AccessLevel & out) const;
+	bool hasAccessLevel() const;
+
+	SetAlertStateOperationDescriptor & addModifiableData(const std::string & value);
+	std::vector<std::string> getModifiableDataLists() const;
+	void clearModifiableDataLists();
 	
 private:
 	std::shared_ptr<CDM::SetAlertStateOperationDescriptor> data;

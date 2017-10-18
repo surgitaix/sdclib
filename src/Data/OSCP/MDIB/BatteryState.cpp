@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -164,6 +165,27 @@ CalibrationInfo BatteryState::getNextCalibration() const {
 	
 bool BatteryState::hasNextCalibration() const {
 	return data->NextCalibration().present();
+}
+	
+BatteryState & BatteryState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
+	data->PhysicalConnector(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool BatteryState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
+	if (data->PhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+		return true;
+	}
+	return false;
+}
+
+PhysicalConnectorInfo BatteryState::getPhysicalConnector() const {
+	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+}
+	
+bool BatteryState::hasPhysicalConnector() const {
+	return data->PhysicalConnector().present();
 }
 	
 BatteryState & BatteryState::setActivationState(const ComponentActivation & value) {

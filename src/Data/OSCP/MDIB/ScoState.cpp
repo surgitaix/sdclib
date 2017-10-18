@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/OperationGroup.h"
 
 namespace OSCLib {
 namespace Data {
@@ -122,6 +123,66 @@ bool ScoState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
+ScoState & ScoState::setInvocationRequested(const OperationRef & value) {
+	data->InvocationRequested(ConvertToCDM::convert1(value));
+	return *this;
+}
+
+bool ScoState::getInvocationRequested(OperationRef & out) const {
+	if (data->InvocationRequested().present()) {
+		out = ConvertFromCDM::convert(data->InvocationRequested().get());
+		return true;
+	}
+	return false;
+}
+
+OperationRef ScoState::getInvocationRequested() const {
+	return ConvertFromCDM::convert(data->InvocationRequested().get());
+}
+	
+bool ScoState::hasInvocationRequested() const {
+	return data->InvocationRequested().present();
+}
+	
+ScoState & ScoState::setInvocationRequired(const OperationRef & value) {
+	data->InvocationRequired(ConvertToCDM::convert1(value));
+	return *this;
+}
+
+bool ScoState::getInvocationRequired(OperationRef & out) const {
+	if (data->InvocationRequired().present()) {
+		out = ConvertFromCDM::convert(data->InvocationRequired().get());
+		return true;
+	}
+	return false;
+}
+
+OperationRef ScoState::getInvocationRequired() const {
+	return ConvertFromCDM::convert(data->InvocationRequired().get());
+}
+	
+bool ScoState::hasInvocationRequired() const {
+	return data->InvocationRequired().present();
+}
+	
+ScoState & ScoState::addOperationGroup(const OperationGroup & value) {
+	data->OperationGroup().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<OperationGroup> ScoState::getOperationGroupLists() const {
+	std::vector<OperationGroup> result;
+	result.reserve(data->OperationGroup().size());
+	for (const auto & value: data->OperationGroup()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ScoState::clearOperationGroupLists() {
+	data->OperationGroup().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

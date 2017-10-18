@@ -133,12 +133,12 @@ bool LocalizedText::hasVersion() const {
 	return data->Version().present();
 }
 	
-LocalizedText & LocalizedText::setTextWidth(const TextWidth & value) {
+LocalizedText & LocalizedText::setTextWidth(const LocalizedTextWidth & value) {
 	data->TextWidth(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocalizedText::getTextWidth(TextWidth & out) const {
+bool LocalizedText::getTextWidth(LocalizedTextWidth & out) const {
 	if (data->TextWidth().present()) {
 		out = ConvertFromCDM::convert(data->TextWidth().get());
 		return true;
@@ -146,7 +146,7 @@ bool LocalizedText::getTextWidth(TextWidth & out) const {
 	return false;
 }
 
-TextWidth LocalizedText::getTextWidth() const {
+LocalizedTextWidth LocalizedText::getTextWidth() const {
 	return ConvertFromCDM::convert(data->TextWidth().get());
 }
 	

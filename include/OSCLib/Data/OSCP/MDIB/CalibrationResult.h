@@ -15,7 +15,7 @@
   */
 
 /*
- *  LocalizedText.h
+ *  CalibrationResult.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef LOCALIZEDTEXT_H_
-#define LOCALIZEDTEXT_H_
+#ifndef CALIBRATIONRESULT_H_
+#define CALIBRATIONRESULT_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,47 +40,33 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class LocalizedText {
+class CalibrationResult {
 private:
-	LocalizedText(const CDM::LocalizedText & object);
-	operator CDM::LocalizedText() const;
+	CalibrationResult(const CDM::CalibrationResult & object);
+	operator CDM::CalibrationResult() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	LocalizedText();
-	LocalizedText(const LocalizedText & object);
-	virtual ~LocalizedText();
+	CalibrationResult();
+	CalibrationResult(const CalibrationResult & object);
+	virtual ~CalibrationResult();
     
-    void copyFrom(const LocalizedText & object);
-    LocalizedText & operator=(const LocalizedText & object);
+    void copyFrom(const CalibrationResult & object);
+    CalibrationResult & operator=(const CalibrationResult & object);
     
-    typedef CDM::LocalizedText WrappedType;
+    typedef CDM::CalibrationResult WrappedType;
 
-	LocalizedText & setRef(const LocalizedTextRef & value);
-	LocalizedTextRef getRef() const;
-	bool getRef(LocalizedTextRef & out) const;
-	bool hasRef() const;
+	CalibrationResult & setCode(const CodedValue & value);
+	CodedValue getCode() const;
 
-	LocalizedText & setLang(const xml_schema::Language & value);
-	xml_schema::Language getLang() const;
-	bool getLang(xml_schema::Language & out) const;
-	bool hasLang() const;
-
-	LocalizedText & setVersion(const ReferencedVersion & value);
-	ReferencedVersion getVersion() const;
-	bool getVersion(ReferencedVersion & out) const;
-	bool hasVersion() const;
-
-	LocalizedText & setTextWidth(const LocalizedTextWidth & value);
-	LocalizedTextWidth getTextWidth() const;
-	bool getTextWidth(LocalizedTextWidth & out) const;
-	bool hasTextWidth() const;
+	CalibrationResult & setValue(const Measurement & value);
+	Measurement getValue() const;
 
 private:
-	std::shared_ptr<CDM::LocalizedText> data;
+	std::shared_ptr<CDM::CalibrationResult> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* LOCALIZEDTEXT_H_ */
+#endif /* CALIBRATIONRESULT_H_ */

@@ -15,7 +15,7 @@
   */
 
 /*
- *  CodedValue.h
+ *  Translation.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef CODEDVALUE_H_
-#define CODEDVALUE_H_
+#ifndef TRANSLATION_H_
+#define TRANSLATION_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,57 +40,40 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class CodedValue {
+class Translation {
 private:
-	CodedValue(const CDM::CodedValue & object);
-	operator CDM::CodedValue() const;
+	Translation(const CDM::Translation & object);
+	operator CDM::Translation() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	CodedValue();
-	CodedValue(const CodedValue & object);
-	virtual ~CodedValue();
+	Translation();
+	Translation(const Translation & object);
+	virtual ~Translation();
     
-    void copyFrom(const CodedValue & object);
-    CodedValue & operator=(const CodedValue & object);
+    void copyFrom(const Translation & object);
+    Translation & operator=(const Translation & object);
     
-    typedef CDM::CodedValue WrappedType;
+    typedef CDM::Translation WrappedType;
 
-	CodedValue & setCode(const CodeIdentifier & value);
+	Translation & setCode(const CodeIdentifier & value);
 	CodeIdentifier getCode() const;
 
-	CodedValue & setCodingSystem(const xml_schema::Uri & value);
+	Translation & setCodingSystem(const xml_schema::Uri & value);
 	xml_schema::Uri getCodingSystem() const;
 	bool getCodingSystem(xml_schema::Uri & out) const;
 	bool hasCodingSystem() const;
 
-	CodedValue & setCodingSystemVersion(const std::string & value);
+	Translation & setCodingSystemVersion(const std::string & value);
 	std::string getCodingSystemVersion() const;
 	bool getCodingSystemVersion(std::string & out) const;
 	bool hasCodingSystemVersion() const;
 
-	CodedValue & setSymbolicCodeName(const SymbolicCodeName & value);
-	SymbolicCodeName getSymbolicCodeName() const;
-	bool getSymbolicCodeName(SymbolicCodeName & out) const;
-	bool hasSymbolicCodeName() const;
-
-	CodedValue & addCodingSystemName(const LocalizedText & value);
-	std::vector<LocalizedText> getCodingSystemNameLists() const;
-	void clearCodingSystemNameLists();
-	
-	CodedValue & addConceptDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getConceptDescriptionLists() const;
-	void clearConceptDescriptionLists();
-	
-	CodedValue & addTranslation(const Translation & value);
-	std::vector<Translation> getTranslationLists() const;
-	void clearTranslationLists();
-	
 private:
-	std::shared_ptr<CDM::CodedValue> data;
+	std::shared_ptr<CDM::Translation> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* CODEDVALUE_H_ */
+#endif /* TRANSLATION_H_ */

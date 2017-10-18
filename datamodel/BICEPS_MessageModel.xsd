@@ -32,9 +32,9 @@ and the doc ends.</document>
 	Information: - Search for "TODO: add documentation" for missing documentation items.
 	             - Search for "[TODO: clarification]" for documentation items that have to clarified
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://p11073-10207/draft8/ext/2017/08/07" xmlns:pm="http://p11073-10207/draft8/pm/2017/08/07" xmlns:msg="http://p11073-10207/draft8/msg/2017/08/07" targetNamespace="http://p11073-10207/draft8/msg/2017/08/07" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft8" xml:lang="en">
-	<xsd:import namespace="http://p11073-10207/draft8/ext/2017/08/07" schemaLocation="ExtensionPoint.xsd"/>
-	<xsd:import namespace="http://p11073-10207/draft8/pm/2017/08/07" schemaLocation="BICEPS_ParticipantModel.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://p11073-10207/draft10/ext/2017/10/05" xmlns:pm="http://p11073-10207/draft10/pm/2017/10/05" xmlns:msg="http://p11073-10207/draft10/msg/2017/10/05" targetNamespace="http://p11073-10207/draft10/msg/2017/10/05" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft10-Revision2" xml:lang="en">
+	<xsd:import namespace="http://p11073-10207/draft10/ext/2017/10/05" schemaLocation="ExtensionPoint.xsd"/>
+	<xsd:import namespace="http://p11073-10207/draft10/pm/2017/10/05" schemaLocation="BICEPS_ParticipantModel.xsd"/>
 	<xsd:annotation>
 		<xsd:documentation>This XML schema defines the 'Basic Integrated Clinical Environment Protocol Specification' (BICEPS) that is a Domain Information Model (DIM) for point of care medical device communication.
 			It encompasses the device model and the corresponding messages.
@@ -578,28 +578,44 @@ The corresponding operation description is defined by pm:SetContextStateOperatio
 					<xsd:sequence>
 						<xsd:element name="Ref" type="pm:LocalizedTextRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>Zero or more reference names of the texts that are requested. The ATTRIBUTE SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+								<xsd:documentation>Zero or more reference names of the texts that are requested. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
 
-- If there is no Ref ELEMENT given in the request MESSAGE, all texts are returned in msg:GetLocalizedTextResponse/msg:Text.
-- If there is at least one Ref ELEMENT given, msg:GetLocalizedTextResponse/msg:Text contains all texts that match the Ref ELEMENTs of the msg:GetLocalizedText request MESSAGE.</xsd:documentation>
+- If there is no Ref ELEMENT given in the request MESSAGE, then all texts are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one Ref ELEMENT given, then msg:GetLocalizedTextResponse/msg:Text contains all texts that match the Ref ELEMENTs of the msg:GetLocalizedText request MESSAGE.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="Version" type="pm:ReferencedVersion" minOccurs="0">
 							<xsd:annotation>
-								<xsd:documentation>Revision of the referenced text that is requested. The ATTRIBUTE SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+								<xsd:documentation>Revision of the referenced text that is requested. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
 
-- If the referenced text is not available in the specific version, includes msg:GetLocalizedTextResponse/msg:Text is empty.
-- If Version is not specified, msg:GetLocalizedTextResponse contains the latest version of the text in msg:GetLocalizedTextResponse/msg:Text.</xsd:documentation>
+- If the referenced text is not available in the specific version, then msg:GetLocalizedTextResponse/msg:Text is empty.
+- If Version is not specified, then msg:GetLocalizedTextResponse contains the latest version of the text in msg:GetLocalizedTextResponse/msg:Text.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="Lang" type="xsd:language" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>Zero or more language identifiers according to RFC 5646 (see http://tools.ietf.org/html/rfc5646) to get different translations of the requested text. The ATTRIBUTE SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+								<xsd:documentation>Zero or more language identifiers according to RFC 5646 (see http://tools.ietf.org/html/rfc5646) to get different translations of the requested text. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
 
-- If there is no Lang ELEMENT given in the request MESSAGE, all translations are returned in msg:GetLocalizedTextResponse/msg:Text.
-- If there is at least one Lang ELEMENT given, msg:GetLocalizedTextResponse/msg:Text contains translations in all languages matching the Lang ELEMENTs of the msg:GetLocalizedText request MESSAGE. If a text is not available in a specific language, the result for that specific language is omitted.
+- If there is no Lang ELEMENT given in the request MESSAGE, then all translations are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one Lang ELEMENT given, then msg:GetLocalizedTextResponse/msg:Text contains translations in all languages matching the Lang ELEMENTs of the msg:GetLocalizedText request MESSAGE. If a text is not available in a specific language, the result for that specific language is omitted.
 
 NOTE—A set of supported languages is retrievable using msg:GetSupportedLanguages.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="TextWidth" type="pm:LocalizedTextWidth" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Zero or more pm:LocalizedTextWidth itentifiers to filter for different text widths. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+
+- If there is no TextWidth ELEMENT given in the request MESSAGE, then all text widths are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one TextWidth ELEMENT given, then msg:GetLocalizedTextResponse/msg:Text contains texts with all text widths matching the TextWidth ELEMENTs of the msg:GetLocalizedText request MESSAGE. Matching in this case means that the number of full width characters in the text is less or equal to the TextWidth ELEMENTs.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="NumberOfLines" type="xsd:integer" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Zero or more numbers to filter for number of lines. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+
+- If there is no NumberOfLines ELEMENT given in the request MESSAGE, then all texts independent of the number of lines are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one NumberOfLines ELEMENT given, msg:GetLocalizedTextResponse/msg:Text contains texts that match the number of lines defined by the NumberOfLines ELEMENTs of the msg:GetLocalizedText request MESSAGE. Matching in this case means that the number of lines in the text is less or equal to the NumberOfLines ELEMENTs.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -615,26 +631,10 @@ NOTE—A set of supported languages is retrievable using msg:GetSupportedLanguag
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGetResponse">
 					<xsd:sequence>
-						<xsd:element name="Text" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="Text" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
 								<xsd:documentation>A list of texts that SHALL contain a result according to the selection constituted by msg:GetLocalizedText/msg:Ref, msg:GetLocalizedText/msg:Version, and msg:GetLocalizedText/msg:Lang.</xsd:documentation>
 							</xsd:annotation>
-							<xsd:complexType>
-								<xsd:simpleContent>
-									<xsd:extension base="xsd:string">
-										<xsd:attribute name="Ref" type="xsd:language">
-											<xsd:annotation>
-												<xsd:documentation>The reference that the given text belongs to.</xsd:documentation>
-											</xsd:annotation>
-										</xsd:attribute>
-										<xsd:attribute name="Lang" type="xsd:language">
-											<xsd:annotation>
-												<xsd:documentation>The language of the underlying text in accordance to RFC 5646 (see http://tools.ietf.org/html/rfc5646).</xsd:documentation>
-											</xsd:annotation>
-										</xsd:attribute>
-									</xsd:extension>
-								</xsd:simpleContent>
-							</xsd:complexType>
 						</xsd:element>
 					</xsd:sequence>
 				</xsd:extension>
@@ -1066,7 +1066,7 @@ NOTE—If another PARTICIPANT is interested in who requested a certain operation
 					<xsd:sequence>
 						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of HANDLE references that specify which CONTAINMENT TREE ELEMENTs are requested.
+								<xsd:documentation>List of HANDLE references that specify which CONTAINMENT TREE ENTRYs are requested.
 
 __R5030: All HANDLE references SHALL share the same parent. Otherwise, the result of GetContainmentTree is undefined.__</xsd:documentation>
 							</xsd:annotation>
@@ -1403,7 +1403,7 @@ __R5035: If no HANDLE is provided, all descriptors SHALL be returned.__</xsd:doc
 	</xsd:simpleType>
 	<xsd:element name="DescriptionModificationReport">
 		<xsd:annotation>
-			<xsd:documentation>DescriptionModificationReport is an msg:AbstractReport that is delivered episodically. It is sent if at least one pm:AbstractDescriptor has changed. It SHALL contain only pm:AbstractDescriptor instances where at least one child ELEMENT or ATTRIBUTE have changed, i.e. inserted, updated, or deleted.</xsd:documentation>
+			<xsd:documentation>DescriptionModificationReport is an msg:AbstractReport that is delivered episodically. It is sent if at least one pm:AbstractDescriptor has changed. It SHALL contain only pm:AbstractDescriptor instances where at least one child ELEMENT or ATTRIBUTE have changed, i.e., inserted, updated, or deleted.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -1424,18 +1424,22 @@ __R5035: If no HANDLE is provided, all descriptors SHALL be returned.__</xsd:doc
 
 __R5024: Descriptors in this list SHALL not include nested descriptors.__
 
-NOTE—If nested descriptors are also modified, they can be included as children of the report part.
+NOTE—If nested descriptors are also modified, then they can be included as children of the report part.
 
-__R5025: Updated descriptors SHALL be ordered in the way that parent descriptors appear before child descriptors.__</xsd:documentation>
+__R5025: Updated descriptors SHALL be ordered in the way that parent descriptors appear before child descriptors.__
+
+__R5046: If a parent descriptor is deleted, then all child descriptors of that parent SHALL communicated as deleted in advance.__</xsd:documentation>
 												</xsd:annotation>
 											</xsd:element>
 											<xsd:element name="State" type="pm:AbstractState" minOccurs="0" maxOccurs="unbounded">
 												<xsd:annotation>
-													<xsd:documentation>The descriptor's corresponding state(s). The following statements SHALL apply.
+													<xsd:documentation>The descriptor's corresponding state(s).
 
-- If ./@ModificationType is "Crt", the descriptor version referenced by State matches the descriptor given in ./Descriptor.
-- If ./@ModificationType is "Upt", the descriptor version referenced by State matches the descriptor given in ./Descriptor or the descriptor that is currently related to the descriptor's state.
-- If ./@ModificationType is "Del", State is omitted from the MESSAGE.</xsd:documentation>
+__R5051: If ./@ModificationType is "Crt", then the descriptor version referenced by State SHALL match the descriptor given in ./Descriptor.__
+
+__R5052: If ./@ModificationType is "Upt", then the descriptor version referenced by State SHALL match the descriptor given in ./Descriptor.__
+
+__R5053: If ./@ModificationType is "Del", then State SHALL be omitted from the MESSAGE.__</xsd:documentation>
 												</xsd:annotation>
 											</xsd:element>
 										</xsd:sequence>
@@ -1500,6 +1504,11 @@ __R5026: If ObservedValueStream is supported, any changes to the observed value 
 										<xsd:documentation>Handle reference to the descriptor the observed values belong to.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:attribute>
+								<xsd:attribute name="StateVersion" type="pm:VersionCounter" use="optional">
+									<xsd:annotation>
+										<xsd:documentation>Version number of the state. The implied value SHALL be "0".</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
 							</xsd:complexType>
 						</xsd:element>
 					</xsd:sequence>
@@ -1515,22 +1524,22 @@ __R5026: If ObservedValueStream is supported, any changes to the observed value 
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Get">
 				<xsd:annotation>
-					<xsd:documentation>The METRIC is retrievable via a get request. Use the corresponding get MESSAGE.</xsd:documentation>
+					<xsd:documentation>The CONTAINMENT TREE ENTRY is retrievable via a get request. Use the corresponding get MESSAGE.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Per">
 				<xsd:annotation>
-					<xsd:documentation>Per = Periodic. The METRIC is retrievable via a periodic event report. Use the corresponding periodic event report MESSAGE (e.g., pm:PeriodicMetricReport).</xsd:documentation>
+					<xsd:documentation>Per = Periodic. The CONTAINMENT TREE ENTRY is retrievable via a periodic event report. Use the corresponding periodic event report MESSAGE (e.g., pm:PeriodicMetricReport).</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Ep">
 				<xsd:annotation>
-					<xsd:documentation>Ep = Episodic. The METRIC is retrievable via an episodic event report. Use the corresponding episodic event report MESSAGE (e.g., pm:EpisodicMetricReport).</xsd:documentation>
+					<xsd:documentation>Ep = Episodic. The CONTAINMENT TREE ENTRY is retrievable via an episodic event report. Use the corresponding episodic event report MESSAGE (e.g., pm:EpisodicMetricReport).</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Strm">
 				<xsd:annotation>
-					<xsd:documentation>Strm = Stream. The METRIC is retrievable via a waveform stream. Use the msg:WaveformStream or msg:ObservedValueStream MESSAGE.</xsd:documentation>
+					<xsd:documentation>Strm = Stream. The CONTAINMENT TREE ENTRY is retrievable via a waveform stream. Use the msg:WaveformStream or msg:ObservedValueStream MESSAGE.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 		</xsd:restriction>

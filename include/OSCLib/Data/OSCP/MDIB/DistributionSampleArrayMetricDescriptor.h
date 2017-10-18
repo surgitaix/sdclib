@@ -129,8 +129,6 @@ public:
 
 	DistributionSampleArrayMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
-	bool getResolution(double & out) const;
-	bool hasResolution() const;
 
 	DistributionSampleArrayMetricDescriptor & addTechnicalRange(const Range & value);
 	std::vector<Range> getTechnicalRangeLists() const;

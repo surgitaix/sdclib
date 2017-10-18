@@ -4,7 +4,7 @@
 	xmlns:wsd="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01"
 	xmlns:wse="http://schemas.xmlsoap.org/ws/2004/08/eventing"
 	xmlns:mex="http://schemas.xmlsoap.org/ws/2004/09/mex"
-	xmlns:mm="http://p11073-10207/draft8/msg/2017/08/07"
+	xmlns:mm="http://p11073-10207/draft10/msg/2017/10/05"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing"
 	xmlns:wsstm="http://standardized.namespace.org/ws-streaming"
 	xmlns:tns="http://www.w3.org/2003/05/soap-envelope"
@@ -18,7 +18,7 @@
 	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/09/mex" schemaLocation="MetadataExchange.xsd"/>
 	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" schemaLocation="eventing.xsd"/>
 	<xs:import namespace="http://standardized.namespace.org/ws-streaming" schemaLocation="ws-streaming.xsd"/>
-	<xs:import namespace="http://p11073-10207/draft8/msg/2017/08/07" schemaLocation="BICEPS_MessageModel.xsd"/>
+	<xs:import namespace="http://p11073-10207/draft10/msg/2017/10/05" schemaLocation="BICEPS_MessageModel.xsd"/>
 	<xs:import namespace="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01" schemaLocation="wsdd-discovery-1.1-schema-os.xsd"/>
 
 	<xs:element name="Header">

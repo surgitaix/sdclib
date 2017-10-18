@@ -15,7 +15,7 @@
   */
 
 /*
- *  LocalizedText.h
+ *  OperationGroup.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, roehser
@@ -29,8 +29,8 @@
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
-#ifndef LOCALIZEDTEXT_H_
-#define LOCALIZEDTEXT_H_
+#ifndef OPERATIONGROUP_H_
+#define OPERATIONGROUP_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
@@ -40,47 +40,40 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class LocalizedText {
+class OperationGroup {
 private:
-	LocalizedText(const CDM::LocalizedText & object);
-	operator CDM::LocalizedText() const;
+	OperationGroup(const CDM::OperationGroup & object);
+	operator CDM::OperationGroup() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	LocalizedText();
-	LocalizedText(const LocalizedText & object);
-	virtual ~LocalizedText();
+	OperationGroup();
+	OperationGroup(const OperationGroup & object);
+	virtual ~OperationGroup();
     
-    void copyFrom(const LocalizedText & object);
-    LocalizedText & operator=(const LocalizedText & object);
+    void copyFrom(const OperationGroup & object);
+    OperationGroup & operator=(const OperationGroup & object);
     
-    typedef CDM::LocalizedText WrappedType;
+    typedef CDM::OperationGroup WrappedType;
 
-	LocalizedText & setRef(const LocalizedTextRef & value);
-	LocalizedTextRef getRef() const;
-	bool getRef(LocalizedTextRef & out) const;
-	bool hasRef() const;
+	OperationGroup & setType(const CodedValue & value);
+	CodedValue getType() const;
 
-	LocalizedText & setLang(const xml_schema::Language & value);
-	xml_schema::Language getLang() const;
-	bool getLang(xml_schema::Language & out) const;
-	bool hasLang() const;
+	OperationGroup & setOperatingMode(const OperatingMode & value);
+	OperatingMode getOperatingMode() const;
+	bool getOperatingMode(OperatingMode & out) const;
+	bool hasOperatingMode() const;
 
-	LocalizedText & setVersion(const ReferencedVersion & value);
-	ReferencedVersion getVersion() const;
-	bool getVersion(ReferencedVersion & out) const;
-	bool hasVersion() const;
-
-	LocalizedText & setTextWidth(const LocalizedTextWidth & value);
-	LocalizedTextWidth getTextWidth() const;
-	bool getTextWidth(LocalizedTextWidth & out) const;
-	bool hasTextWidth() const;
+	OperationGroup & setOperations(const OperationRef & value);
+	OperationRef getOperations() const;
+	bool getOperations(OperationRef & out) const;
+	bool hasOperations() const;
 
 private:
-	std::shared_ptr<CDM::LocalizedText> data;
+	std::shared_ptr<CDM::OperationGroup> data;
 };
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* LOCALIZEDTEXT_H_ */
+#endif /* OPERATIONGROUP_H_ */

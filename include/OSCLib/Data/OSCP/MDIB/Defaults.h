@@ -25,22 +25,22 @@ class Defaults {
 public:
 	Defaults();
 	virtual ~Defaults();
-	static CDM::DicomTransferCapability * DicomTransferCapability();
-	static CDM::DicomNetworkAe * DicomNetworkAe();
-	static CDM::DicomNetworkConnection * DicomNetworkConnection();
-	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptor();
 	static CDM::Mdib * Mdib();
 	static CDM::MdDescription * MdDescription();
 	static CDM::MdState * MdState();
 	static CDM::LocalizedText * LocalizedText();
 	static CDM::CodedValue * CodedValue();
+	static CDM::Translation * Translation();
 	static CDM::InstanceIdentifier * InstanceIdentifier();
 	static CDM::Range * Range();
 	static CDM::Measurement * Measurement();
 	static CDM::ApprovedJurisdictions * ApprovedJurisdictions();
 	static CDM::OperatingJurisdiction * OperatingJurisdiction();
+	static CDM::PhysicalConnectorInfo * PhysicalConnectorInfo();
 	static CDM::ProductionSpecification * ProductionSpecification();
 	static CDM::CalibrationInfo * CalibrationInfo();
+	static CDM::CalibrationDocumentation * CalibrationDocumentation();
+	static CDM::CalibrationResult * CalibrationResult();
 	static CDM::MdsDescriptor * MdsDescriptor();
 	static CDM::MetaData * MetaData();
 	static CDM::Udi * Udi();
@@ -80,6 +80,7 @@ public:
 	static CDM::DistributionSampleArrayMetricState * DistributionSampleArrayMetricState();
 	static CDM::ScoDescriptor * ScoDescriptor();
 	static CDM::ScoState * ScoState();
+	static CDM::OperationGroup * OperationGroup();
 	static CDM::SetValueOperationDescriptor * SetValueOperationDescriptor();
 	static CDM::SetValueOperationState * SetValueOperationState();
 	static CDM::SetStringOperationDescriptor * SetStringOperationDescriptor();
@@ -131,6 +132,10 @@ public:
 	static CDM::EnsembleContextState * EnsembleContextState();
 	static CDM::ContainmentTree * ContainmentTree();
 	static CDM::ContainmentTreeEntry * ContainmentTreeEntry();
+	static CDM::DicomTransferCapability * DicomTransferCapability();
+	static CDM::DicomNetworkAe * DicomNetworkAe();
+	static CDM::DicomNetworkConnection * DicomNetworkConnection();
+	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptor();
 };
 
 } /* namespace OSCP */

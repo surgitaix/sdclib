@@ -217,6 +217,27 @@ bool SetValueOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
 	
+SetValueOperationDescriptor & SetValueOperationDescriptor::setAccessLevel(const AccessLevel & value) {
+	data->AccessLevel(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SetValueOperationDescriptor::getAccessLevel(AccessLevel & out) const {
+	if (data->AccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->AccessLevel().get());
+		return true;
+	}
+	return false;
+}
+
+AccessLevel SetValueOperationDescriptor::getAccessLevel() const {
+	return ConvertFromCDM::convert(data->AccessLevel().get());
+}
+	
+bool SetValueOperationDescriptor::hasAccessLevel() const {
+	return data->AccessLevel().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

@@ -76,6 +76,8 @@ public:
 
 	AlertSignalDescriptor & setConditionSignaled(const HandleRef & value);
 	HandleRef getConditionSignaled() const;
+	bool getConditionSignaled(HandleRef & out) const;
+	bool hasConditionSignaled() const;
 
 	AlertSignalDescriptor & setManifestation(const AlertSignalManifestation & value);
 	AlertSignalManifestation getManifestation() const;
@@ -87,6 +89,16 @@ public:
 	xml_schema::Duration getDefaultSignalGenerationDelay() const;
 	bool getDefaultSignalGenerationDelay(xml_schema::Duration & out) const;
 	bool hasDefaultSignalGenerationDelay() const;
+
+	AlertSignalDescriptor & setMinSignalGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getMinSignalGenerationDelay() const;
+	bool getMinSignalGenerationDelay(xml_schema::Duration & out) const;
+	bool hasMinSignalGenerationDelay() const;
+
+	AlertSignalDescriptor & setMaxSignalGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxSignalGenerationDelay() const;
+	bool getMaxSignalGenerationDelay(xml_schema::Duration & out) const;
+	bool hasMaxSignalGenerationDelay() const;
 
 	AlertSignalDescriptor & setSignalDelegationSupported(const bool & value);
 	bool getSignalDelegationSupported() const;

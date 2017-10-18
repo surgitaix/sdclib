@@ -268,6 +268,8 @@ namespace CDM
   class CodeIdentifier;
   class SymbolicCodeName;
   class LocalizedTextRef;
+  class LocalizedTextContent;
+  class LocalizedTextWidth;
   class LocalizedText;
   class CodedValue;
   class InstanceIdentifier;
@@ -279,6 +281,7 @@ namespace CDM
   class OperatingJurisdiction;
   class Handle;
   class HandleRef;
+  class PhysicalConnectorInfo;
   class AbstractDescriptor;
   class AbstractState;
   class AbstractMultiState;
@@ -339,6 +342,7 @@ namespace CDM
   class RealTimeSampleArrayMetricState;
   class DistributionSampleArrayMetricDescriptor;
   class DistributionSampleArrayMetricState;
+  class OperationRef;
   class ScoDescriptor;
   class ScoState;
   class AbstractOperationDescriptor;
@@ -395,10 +399,11 @@ namespace CDM
   class EnsembleContextState;
   class ContainmentTree;
   class ContainmentTreeEntry;
-  class TextWidth;
+  class Translation;
   class Root;
   class Extension;
   class ProductionSpecification;
+  class CalibrationDocumentation;
   class MetaData;
   class CanEscalate;
   class CanDeescalate;
@@ -407,6 +412,8 @@ namespace CDM
   class ApplyAnnotation;
   class Relation;
   class AllowedValue;
+  class OperationGroup;
+  class AccessLevel;
   class AllowedValues;
   class Argument;
   class ChargeStatus;
@@ -414,6 +421,7 @@ namespace CDM
   class Criticality;
   class RelatedMeasurement;
   class WorkflowDetail;
+  class CalibrationResult;
   class Udi;
   class Kind;
   class ReferenceRange;

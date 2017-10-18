@@ -344,20 +344,9 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setRe
 	return *this;
 }
 
-bool RealTimeSampleArrayMetricDescriptor::getResolution(double & out) const {
-	if (data->Resolution().present()) {
-		out = ConvertFromCDM::convert(data->Resolution().get());
-		return true;
-	}
-	return false;
-}
 
 double RealTimeSampleArrayMetricDescriptor::getResolution() const {
-	return ConvertFromCDM::convert(data->Resolution().get());
-}
-	
-bool RealTimeSampleArrayMetricDescriptor::hasResolution() const {
-	return data->Resolution().present();
+	return ConvertFromCDM::convert(data->Resolution());
 }
 	
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setSamplePeriod(const xml_schema::Duration & value) {

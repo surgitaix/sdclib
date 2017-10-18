@@ -37,6 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -163,6 +164,27 @@ CalibrationInfo ChannelState::getNextCalibration() const {
 	
 bool ChannelState::hasNextCalibration() const {
 	return data->NextCalibration().present();
+}
+	
+ChannelState & ChannelState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
+	data->PhysicalConnector(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ChannelState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
+	if (data->PhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+		return true;
+	}
+	return false;
+}
+
+PhysicalConnectorInfo ChannelState::getPhysicalConnector() const {
+	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+}
+	
+bool ChannelState::hasPhysicalConnector() const {
+	return data->PhysicalConnector().present();
 }
 	
 ChannelState & ChannelState::setActivationState(const ComponentActivation & value) {

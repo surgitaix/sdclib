@@ -1357,7 +1357,7 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 				} else if (auto casted = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(&state)) {
 					metricStateNodes.push_back(currentNode);
 					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
+					result << makeFormat(*casted, xlocurrentNode);
 
 					// todo continue: write name of Sco States
 				} else if (auto casted = dynamic_cast<const CDM::SetMetricStateOperationState *>(&state)) {
@@ -1384,8 +1384,7 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 	}
 }
 
-int main()
-{
+int main() {
 	const std::string testname("Create graphvis/dot files of all MDIBs of all found devices");
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Startup: " << testname;
 	OSCLibrary::getInstance().startup();

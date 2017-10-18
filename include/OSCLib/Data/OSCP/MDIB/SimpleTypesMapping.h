@@ -40,22 +40,18 @@ typedef unsigned long long ReferencedVersion;
 typedef std::string CodeIdentifier;
 typedef std::string SymbolicCodeName;
 typedef std::string LocalizedTextRef;
+typedef std::string LocalizedTextContent;
 typedef std::string Handle;
 typedef std::string HandleRef;
 typedef std::vector<std::string> AlertConditionReference;
 typedef double QualityIndicator;
 typedef std::vector<double> RealTimeValueType;
+typedef std::vector<std::string> OperationRef;
 typedef std::string TimeZone;
 typedef xml_schema::Uri Root;
 typedef std::string Extension;
 typedef std::string DateOfBirth;
 
-
-enum class DicomTransferRole
-{
-	Scu,
-	Scp
-};
 
 enum class MeasurementValidity
 {
@@ -68,6 +64,16 @@ enum class MeasurementValidity
 	Oflw,
 	Uflw,
 	NA
+};
+
+enum class LocalizedTextWidth
+{
+	xs,
+	s,
+	m,
+	l,
+	xl,
+	xxl
 };
 
 enum class SafetyClassification
@@ -226,15 +232,15 @@ enum class PatientType
 	Oth
 };
 
-enum class TextWidth
+enum class DicomTransferRole
 {
-	Shrt,
-	Nml,
-	Lng
+	Scu,
+	Scp
 };
 
 enum class CanEscalate
 {
+	Lo,
 	Me,
 	Hi
 };
@@ -242,7 +248,8 @@ enum class CanEscalate
 enum class CanDeescalate
 {
 	Me,
-	Lo
+	Lo,
+	None
 };
 
 enum class Kind
@@ -251,7 +258,16 @@ enum class Kind
 	PS,
 	SST,
 	ECE,
+	DCE,
 	Oth
+};
+
+enum class AccessLevel
+{
+	Usr,
+	CSUsr,
+	RO,
+	SP
 };
 
 enum class ChargeStatus
@@ -272,8 +288,8 @@ class EnumToString {
 public:
 	EnumToString();
 	virtual ~EnumToString();
-	static std::string convert(DicomTransferRole source);
 	static std::string convert(MeasurementValidity source);
+	static std::string convert(LocalizedTextWidth source);
 	static std::string convert(SafetyClassification source);
 	static std::string convert(ComponentActivation source);
 	static std::string convert(CalibrationState source);
@@ -294,10 +310,11 @@ public:
 	static std::string convert(ContextAssociation source);
 	static std::string convert(Sex source);
 	static std::string convert(PatientType source);
-	static std::string convert(TextWidth source);
+	static std::string convert(DicomTransferRole source);
 	static std::string convert(CanEscalate source);
 	static std::string convert(CanDeescalate source);
 	static std::string convert(Kind source);
+	static std::string convert(AccessLevel source);
 	static std::string convert(ChargeStatus source);
 	static std::string convert(Criticality source);
 

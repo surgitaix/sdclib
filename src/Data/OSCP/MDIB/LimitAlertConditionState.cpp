@@ -201,9 +201,20 @@ LimitAlertConditionState & LimitAlertConditionState::setPresence(const bool & va
 	return *this;
 }
 
+bool LimitAlertConditionState::getPresence(bool & out) const {
+	if (data->Presence().present()) {
+		out = ConvertFromCDM::convert(data->Presence().get());
+		return true;
+	}
+	return false;
+}
 
 bool LimitAlertConditionState::getPresence() const {
-	return ConvertFromCDM::convert(data->Presence());
+	return ConvertFromCDM::convert(data->Presence().get());
+}
+	
+bool LimitAlertConditionState::hasPresence() const {
+	return data->Presence().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setDeterminationTime(const Timestamp & value) {

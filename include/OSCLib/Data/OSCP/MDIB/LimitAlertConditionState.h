@@ -92,6 +92,8 @@ public:
 
 	LimitAlertConditionState & setPresence(const bool & value);
 	bool getPresence() const;
+	bool getPresence(bool & out) const;
+	bool hasPresence() const;
 
 	LimitAlertConditionState & setDeterminationTime(const Timestamp & value);
 	Timestamp getDeterminationTime() const;

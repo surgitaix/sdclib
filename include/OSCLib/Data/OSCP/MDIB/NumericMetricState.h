@@ -72,6 +72,11 @@ public:
 	bool getDescriptorVersion(ReferencedVersion & out) const;
 	bool hasDescriptorVersion() const;
 
+	NumericMetricState & setPhysicalConnector(const PhysicalConnectorInfo & value);
+	PhysicalConnectorInfo getPhysicalConnector() const;
+	bool getPhysicalConnector(PhysicalConnectorInfo & out) const;
+	bool hasPhysicalConnector() const;
+
 	NumericMetricState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 	bool getActivationState(ComponentActivation & out) const;

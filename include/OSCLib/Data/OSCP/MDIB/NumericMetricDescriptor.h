@@ -124,8 +124,6 @@ public:
 	
 	NumericMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
-	bool getResolution(double & out) const;
-	bool hasResolution() const;
 
 	NumericMetricDescriptor & setAveragingPeriod(const xml_schema::Duration & value);
 	xml_schema::Duration getAveragingPeriod() const;

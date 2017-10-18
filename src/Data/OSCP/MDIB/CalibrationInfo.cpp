@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/CalibrationDocumentation.h"
 
 namespace OSCLib {
 namespace Data {
@@ -133,6 +134,24 @@ bool CalibrationInfo::hasTime() const {
 	return data->Time().present();
 }
 	
+CalibrationInfo & CalibrationInfo::addCalibrationDocumentation(const CalibrationDocumentation & value) {
+	data->CalibrationDocumentation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<CalibrationDocumentation> CalibrationInfo::getCalibrationDocumentationLists() const {
+	std::vector<CalibrationDocumentation> result;
+	result.reserve(data->CalibrationDocumentation().size());
+	for (const auto & value: data->CalibrationDocumentation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void CalibrationInfo::clearCalibrationDocumentationLists() {
+	data->CalibrationDocumentation().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

@@ -56,6 +56,21 @@ public:
     
     typedef CDM::MetaData WrappedType;
 
+	MetaData & setLotNumber(const std::string & value);
+	std::string getLotNumber() const;
+	bool getLotNumber(std::string & out) const;
+	bool hasLotNumber() const;
+
+	MetaData & setManufactureDate(const xml_schema::DateTime & value);
+	xml_schema::DateTime getManufactureDate() const;
+	bool getManufactureDate(xml_schema::DateTime & out) const;
+	bool hasManufactureDate() const;
+
+	MetaData & setExpirationDate(const xml_schema::DateTime & value);
+	xml_schema::DateTime getExpirationDate() const;
+	bool getExpirationDate(xml_schema::DateTime & out) const;
+	bool hasExpirationDate() const;
+
 	MetaData & setModelNumber(const std::string & value);
 	std::string getModelNumber() const;
 	bool getModelNumber(std::string & out) const;

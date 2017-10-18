@@ -50,8 +50,8 @@ PV = Patient Visit
 PL = Person Location
 MRN = Medical Record Number
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://p11073-10207/draft8/ext/2017/08/07" xmlns:pm="http://p11073-10207/draft8/pm/2017/08/07" targetNamespace="http://p11073-10207/draft8/pm/2017/08/07" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft8" xml:lang="en">
-	<xsd:import namespace="http://p11073-10207/draft8/ext/2017/08/07" schemaLocation="ExtensionPoint.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://p11073-10207/draft10/ext/2017/10/05" xmlns:pm="http://p11073-10207/draft10/pm/2017/10/05" targetNamespace="http://p11073-10207/draft10/pm/2017/10/05" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft10-Revision2" xml:lang="en">
+	<xsd:import namespace="http://p11073-10207/draft10/ext/2017/10/05" schemaLocation="ExtensionPoint.xsd"/>
 	<xsd:annotation>
 		<xsd:documentation>This XML schema defines the 'Basic Integrated Clinical Environment Protocol Specification' (BICEPS) that is a Domain Information Model (DIM) for point of care medical device communication. It encompasses the device model and the corresponding messages. This XML Schema is based on the ISO/IEEE 11073-10201 Domain Information Model standard, which belongs to the "Point-of-care medical device communication" standard family in ISO/IEEE 11073. This standard family should not to be confused with the ISO/IEEE 11073 "Personal Health Device" standard family.
 While former is based on the standards ISO/IEEE 11073-10101, 11073-10201, 11073-20101, and 11073-30200, the latter is based on ISO/IEEE 11073-20601 and ISO/IEEE 11073-104xx.
@@ -166,8 +166,8 @@ __R5001: A timestamp SHALL count the milliseconds between the current time and m
 
 __R5002: Timestamps are an optional feature of the MDIB. If anywhere in the MDIB a timestamp is used, the SERVICE PROVIDER SHALL provide a pm:ClockDescriptor ELEMENT.__
 
-NOTE1—Typically all systems assume that a day has 86400 seconds.
-NOTE2—While the unit of time of pm:Timestamp is a millisecond, the granularity of the value depends on the hardware/software system and might be larger (e.g., tens of milliseconds).</xsd:documentation>
+NOTE 1—Typically all systems assume that a day has 86400 seconds.
+NOTE 2—While the unit of time of pm:Timestamp is a millisecond, the granularity of the value depends on the hardware/software system and might be larger (e.g., tens of milliseconds).</xsd:documentation>
 		</xsd:annotation>
 		<xsd:restriction base="xsd:unsignedLong"/>
 	</xsd:simpleType>
@@ -213,12 +213,12 @@ NOTE—This occurs each time the POC MEDICAL DEVICE has gone down, lost state, a
 
 __R5005: InstanceId SHOULD NOT be incremented otherwise than defined in R5004.__
 
-NOTE1—Means to set this value include, but are not limited to:
+NOTE 1—Means to set this value include, but are not limited to:
 
 - A counter that is incremented on each cold boot
 - The boot time of the POC MEDICAL DEVICE, expressed as seconds elapsed since midnight January 1, 1970
 
-NOTE2—The MDIB version's instance id is different to the pm:InstanceIdentifier data type.</xsd:documentation>
+NOTE 2—The MDIB version's instance id is different to the pm:InstanceIdentifier data type.</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:attributeGroup>
@@ -248,21 +248,69 @@ NOTE—SymbolicCodeName is the equivalent of the Reference ID attribute that is 
 			<xsd:minLength value="1"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+	<xsd:simpleType name="LocalizedTextContent">
+		<xsd:annotation>
+			<xsd:documentation>Content restriction for pm:LocalizedText ELEMENTs.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LocalizedTextWidth">
+		<xsd:annotation>
+			<xsd:documentation>LocalizedTextWidth indicates the width of a localized text based on the number of fullwidth characters in order to allow a SERVICE CONSUMER an effective filtering and querying for translations.
+
+In the following, a line is defined as the content of the text from either the beginning of the text or the beginning of a previous line until the next occurance of period mark, question mark, exclamation mark, or paragraph.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="xs">
+				<xsd:annotation>
+					<xsd:documentation>A line has 4 or less fullwidth characters.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="s">
+				<xsd:annotation>
+					<xsd:documentation>A line has 8 or less fullwidth characters.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="m">
+				<xsd:annotation>
+					<xsd:documentation>A line has 12 or less fullwidth characters.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="l">
+				<xsd:annotation>
+					<xsd:documentation>A line has 16 or less fullwidth characters.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="xl">
+				<xsd:annotation>
+					<xsd:documentation>A line has 20 or less fullwidth characters.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="xxl">
+				<xsd:annotation>
+					<xsd:documentation>A line has 21 or more fullwidth characters.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
 	<xsd:complexType name="LocalizedText">
 		<xsd:annotation>
 			<xsd:documentation>LocalizedText is a bundled ELEMENT to reference texts in different languages or to provide a text in a specific language.
 
 The goal of text references is to shrink the overall size of the MDIB by only providing a single reference to a text file that translates a text into multiple languages instead of flooding the MDIB with all translated texts. Referenced texts can be requested by the LOCALIZATION SERVICE. If no LOCALIZATION SERVICE exist, the application can make use of LocalizedText to represent a text in a single language.
 
-The following statements SHALL apply:
+__R5047: If ./@Lang and ./@Ref are present, then the text SHALL be only available in the language specified by ./@Lang.__
 
-- If ./@Lang and ./@Ref are present, then the text is only available in the language specified by ./@Lang.
-- If ./@Lang is present and ./@Ref is not present, then ./@Lang specifies the language of the LocalizedText's content. The Text is not available through the LOCALIZATION SERVICE.
-- If ./@Lang is not present and ./@Ref is present, then the text is available through the LOCALIZATION SERVICE.
-- If ./@Lang and ./@Ref are not present, then the language of the LocalizedText's content is unknown. The text is not available through the LOCALIZATION SERVICE.</xsd:documentation>
+__R5048: If ./@Lang is present and ./@Ref is not present, then ./@Lang SHALL specify the language of the LocalizedText's content. The Text is not available through the LOCALIZATION SERVICE.__
+
+__R5049: If ./@Lang is not present and ./@Ref is present, then the text SHALL be available through the LOCALIZATION SERVICE.__
+
+__R5050: If ./@Lang and ./@Ref are not present, then the language of the LocalizedText's content is unknown. The text SHALL NOT be available through the LOCALIZATION SERVICE.__</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleContent>
-			<xsd:extension base="xsd:string">
+			<xsd:extension base="pm:LocalizedTextContent">
 				<xsd:attribute name="Ref" type="pm:LocalizedTextRef">
 					<xsd:annotation>
 						<xsd:documentation>References a text in a localized text file.
@@ -288,31 +336,10 @@ __R5007: To keep things simple, every translated text in a localized text file t
 NOTE—From this it follows that if Version has changed, every translation of a referenced text is obsolete even if only a single translation has changed.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
-				<xsd:attribute name="TextWidth">
+				<xsd:attribute name="TextWidth" type="pm:LocalizedTextWidth">
 					<xsd:annotation>
-						<xsd:documentation>TextWidth indicates the width of the given localized text based on the number of fullwidth characters in order to allow a SERVICE CONSUMER an effective filtering and querying for translations.
-
-In the following, a line is defined as the content of the text from either the beginning of the text or the beginning of a previous line until the next occurance of period mark, question mark, exclamation mark, or paragraph.</xsd:documentation>
+						<xsd:documentation>Text width as defined in pm:LocalizedTextWidth.</xsd:documentation>
 					</xsd:annotation>
-					<xsd:simpleType>
-						<xsd:restriction base="xsd:string">
-							<xsd:enumeration value="Shrt">
-								<xsd:annotation>
-									<xsd:documentation>A line has 8 or less fullwidth characters.</xsd:documentation>
-								</xsd:annotation>
-							</xsd:enumeration>
-							<xsd:enumeration value="Nml">
-								<xsd:annotation>
-									<xsd:documentation>A line has 20 or less fullwidth characters.</xsd:documentation>
-								</xsd:annotation>
-							</xsd:enumeration>
-							<xsd:enumeration value="Lng">
-								<xsd:annotation>
-									<xsd:documentation>A line has more than 20 fullwidth characters.</xsd:documentation>
-								</xsd:annotation>
-							</xsd:enumeration>
-						</xsd:restriction>
-					</xsd:simpleType>
 				</xsd:attribute>
 			</xsd:extension>
 		</xsd:simpleContent>
@@ -328,9 +355,9 @@ Two CodedValue objects C1 and C2 are equivalent, if
 - C1/@CodingSystemVersion equals C2/@CodingSystemVersion
 - If there exists a CodedValue object T1 in C1/pm:Translation and a CodedValue object T2 in C2/pm:Translation such that T1 and T2 are equivalent, C1 and T2 are equivalent, or C2 and T1 are equivalent.
 
-NOTE1—In case that ./@CodingSystem is not explicitly defined in CodedValue, it is replaced implicitly by a default identifier. The ./@CodingSystem ATTRIBUTE is then called "expanded". 
-NOTE2—As prescribed in ./@CodingSystemVersion, a version is set only if a unique version identification through ./@CodingSystem is not possible. Hence, there can be no implicit version mismatch.
-NOTE3—Equivalence between CodedValue objects is not necessarily transitive.
+NOTE 1—In case that ./@CodingSystem is not explicitly defined in CodedValue, it is replaced implicitly by a default identifier. The ./@CodingSystem ATTRIBUTE is then called "expanded". 
+NOTE 2—As prescribed in ./@CodingSystemVersion, a version is set only if a unique version identification by ./@CodingSystem is not possible. Hence, there can be no implicit version mismatch.
+NOTE 3—Equivalence between CodedValue objects is not necessarily transitive.
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
@@ -345,10 +372,30 @@ NOTE3—Equivalence between CodedValue objects is not necessarily transitive.
 					<xsd:documentation>Multiple OPTIONAL human-readable texts that describe the CODE in more detail.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="Translation" type="pm:CodedValue" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Translation" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation>Set of alternative or equivalent representations.</xsd:documentation>
 				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element ref="ext:Extension" minOccurs="0"/>
+					</xsd:sequence>
+					<xsd:attribute name="Code" type="pm:CodeIdentifier" use="required">
+						<xsd:annotation>
+							<xsd:documentation>A code as defined by pm:CodedValue/@Code.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="CodingSystem" type="xsd:anyURI">
+						<xsd:annotation>
+							<xsd:documentation>A coding system as defined by pm:CodedValue/@CodingSystem.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="CodingSystemVersion" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>A coding system version as defined by pm:CodedValue/@CodingSystemVersion.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
 			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="Code" type="pm:CodeIdentifier" use="required">
@@ -497,34 +544,29 @@ Example: Weight of a patient.</xsd:documentation>
 	</xsd:complexType>
 	<xsd:simpleType name="SafetyClassification">
 		<xsd:annotation>
-			<xsd:documentation>SafetyClassification allows POC MEDICAL DEVICE manufacturers to limit their responsibility for the provided objects that allow informational use or use in clinical functions. It reflects the quality of the respective data from the risk management perspective of the data provider. It may take different values, which refer to the classes defined by [IEC62304].
+			<xsd:documentation>SafetyClassification allows POC MEDICAL DEVICE manufacturers to limit their responsibility for the provided objects that allow informational use or use in clinical functions. It reflects the quality of the respective data from the risk management perspective of the data provider.
 
-Enumeration values prefixed with "Med" indicate the maximum acceptable "severity" the information is suitable to support. The severity levels refer to the levels given in IEC 62304.
-Example: a manufacturer flags an information as suitable to contribute to hazards with severity "No injury or damage to health is possible". Within his risk assessment the manufacturer may assume that erroneous information does not lead to harm and the associated risk is acceptable.</xsd:documentation>
+Enumeration values prefixed with "Med" indicate that the manufacturer has considered a clinical function related to the object in its development process, particularly the risk management, software development, usability, and verification process.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Inf">
 				<xsd:annotation>
-					<xsd:documentation>Inf = Informational. The descriptor and the related state information SHALL be used for information purposes only. They are not intended to be used in clinical functions.</xsd:documentation>
+					<xsd:documentation>Inf = Informational. The descriptor and the related state information are intended to be used for information purposes only. They are not intended to be used in clinical functions.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="MedA">
 				<xsd:annotation>
-					<xsd:documentation>MedA = Medical Class A. The descriptor and related state information are intended to be used in clinical functions. They are not intended to contribute to a HAZARDOUS SITUATION, which results in unacceptable risk if the descriptor and/or related state information is erroneous. The rate of occurrence of erroneous information is less than 1*10-4 per POC MEDICAL DEVICE per operating hour.</xsd:documentation>
+					<xsd:documentation>MedA = Medical Class A. The descriptor and related state information are intended to be used in clinical functions, specifically for general display in order to support patient and device monitoring. The displayed data is not intended to be used as sole source for diagnostic or therapeutic decisions. Deviations from this intended use are in the sole responsibility of the SERVICE CONSUMER.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="MedB">
 				<xsd:annotation>
-					<xsd:documentation>MedB = Medical Class B. The descriptor and related state information are intended to be used in clinical functions. The associated risk has been considered in the risk management process of the POC MEDICAL DEVICE and all related processes, e.g., software development, usability, verification. The rate of occurrence of erroneous information is less than 3*10-6 per POC MEDICAL DEVICE per operating hour.
-
-MedB REQUIRES a POC MEDICAL DEVICE manufacturer that the associated risk has been considered in the risk management process of the device and all related processes, e.g., software development, usability, and verification.</xsd:documentation>
+					<xsd:documentation>MedB = Medical Class B. The descriptor and related state information are intended to be used in clinical functions. The manufacturer has specified and considered a specific intended use for the data, which could result in non-serious injury. Deviations from this intended use are in the sole responsibility of the SERVICE CONSUMER.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="MedC">
 				<xsd:annotation>
-					<xsd:documentation>MedC = Medical Class C. The descriptor and related state information are intended to be used in clinical functions. They are intended to be used in a way that may result in death or serious injury if the descriptor and/or related state information is erroneous. The rate of occurrence of erroneous information is less than 3*10-7 per device per operating hour.
-
-MedC REQUIRES a POC MEDICAL DEVICE manufacturer that the associated risk has been considered in the risk management process of the device and all related processes, e.g., software development, usability, and verification.</xsd:documentation>
+					<xsd:documentation>MedC = Medical Class C. The descriptor and related state information are intended to be used in clinical functions. The manufacturer has specified and considered a specific intended use for the data, which could result in serious injury. Deviations from this intended use are in the sole responsibility of the SERVICE CONSUMER.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 		</xsd:restriction>
@@ -607,6 +649,24 @@ Example: a METRIC state is associated with a METRIC descriptor (pm:AbstractDescr
 			<xsd:minLength value="1"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+	<xsd:complexType name="PhysicalConnectorInfo">
+		<xsd:annotation>
+			<xsd:documentation>PhysicalConnectorInfo defines a number in order to allow to guide the clinical user for a failure, e.g., in case of a disconnection of a sensor or an ultrasonic handpiece.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="ext:Extension" minOccurs="0"/>
+			<xsd:element name="Label" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A human-readable label that describes the physical connector.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="Number" type="xsd:int">
+			<xsd:annotation>
+				<xsd:documentation>Number designates the connector number of the physical connector.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
 	<xsd:complexType name="AbstractDescriptor">
 		<xsd:annotation>
 			<xsd:documentation>AbstractDescriptor defines foundational meta information of any object that is included in the descriptive part of the MDIB. Any descriptor object is derived from pm:AbstractDescriptor. The AbstractDescriptor's counterpart is pm:AbstractState.</xsd:documentation>
@@ -667,7 +727,8 @@ Example: a METRIC state is associated with a METRIC descriptor (pm:AbstractDescr
 				<xsd:sequence>
 					<xsd:element name="Category" type="pm:CodedValue" minOccurs="0">
 						<xsd:annotation>
-							<xsd:documentation>A CODED VALUE that allows to categorize a multi state inside the set of multi states that belong to a descriptor of a certain type.</xsd:documentation>
+							<xsd:documentation>A CODED VALUE that allows to categorize a multi state inside the set of multi states that belong to a descriptor of a certain type.
+NOTE—Using the pm:AbstractMultiState/pm:Category it is possible to represent, e.g., different steps in a workflow (multiple states) with different association states. This is in contrast to the pm:WorkflowContextDescriptor/pm:Type where different workflow types are described that the POC MEDICAL DEVICE supports. See Clause 5.2.6 for more details.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -793,6 +854,39 @@ NOTE—In modular systems, dynamically plugged-in modules would typically be mod
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element ref="ext:Extension" minOccurs="0"/>
+			<xsd:element name="CalibrationDocumentation" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>CalibrationDocumentation provides information regarding necessary or performed calibration steps including potential calibration results like accuracy.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Documentation" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Human-readable documentation of a CalibrationDocumentation entry.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="CalibrationResult" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation/>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Code" type="pm:CodedValue">
+										<xsd:annotation>
+											<xsd:documentation>Code that semantically describes the calibration result.</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="Value" type="pm:Measurement">
+										<xsd:annotation>
+											<xsd:documentation>Measurement that represents the value related to that specific calibration result.</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="ComponentCalibrationState" type="pm:CalibrationState">
 			<xsd:annotation>
@@ -825,6 +919,11 @@ NOTE—In modular systems, dynamically plugged-in modules would typically be mod
 					<xsd:element name="NextCalibration" type="pm:CalibrationInfo" minOccurs="0">
 						<xsd:annotation>
 							<xsd:documentation>Provides information about the next calibration that will be performed.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="PhysicalConnector" type="pm:PhysicalConnectorInfo" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The physical connector number for this component, see pm:PhysicalConnectorInfo.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -874,7 +973,8 @@ NOTE—The IEEE 11073-10201 has different specializations that are all represent
 									<xsd:annotation>
 										<xsd:documentation>UDI fragments as defined by the FDA.
 
-NOTE—The amount of ELEMENTs is unbounded in order to support the provision of UDIs from different jurisdictions.</xsd:documentation>
+NOTE 1—The amount of ELEMENTs is unbounded in order to support the provision of UDIs from different jurisdictions.
+NOTE 2—If needed, the UDI's distinct identification code can be inserted as an extension to the MetaData object.</xsd:documentation>
 									</xsd:annotation>
 									<xsd:complexType>
 										<xsd:sequence>
@@ -902,9 +1002,24 @@ NOTE—The amount of ELEMENTs is unbounded in order to support the provision of 
 										</xsd:sequence>
 									</xsd:complexType>
 								</xsd:element>
+								<xsd:element name="LotNumber" type="xsd:string" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>OPTIONAL lot number of manufacturer.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
 								<xsd:element name="Manufacturer" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
 									<xsd:annotation>
 										<xsd:documentation>OPTIONAL texts that describe the manufacturer name.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ManufactureDate" type="xsd:dateTime" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>OPTIONAL date when the device was made.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ExpirationDate" type="xsd:dateTime" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>OPTIONAL date and time of expiry of the device (if applicable).</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="ModelName" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
@@ -914,7 +1029,7 @@ NOTE—The amount of ELEMENTs is unbounded in order to support the provision of 
 								</xsd:element>
 								<xsd:element name="ModelNumber" type="xsd:string" minOccurs="0">
 									<xsd:annotation>
-										<xsd:documentation>OPTIONAL model numbers of the MDS.</xsd:documentation>
+										<xsd:documentation>OPTIONAL model number of the MDS.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="SerialNumber" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
@@ -1188,16 +1303,17 @@ ALERT CONDITIONs are represented by a list of pm:AlertConditionDescriptor ELEMEN
 						<xsd:annotation>
 							<xsd:documentation>Describes a compound ALERT SIGNAL activation for local audible, visible, and tangible ALERT SIGNALs within the ALERT SYSTEM.
 
-If a SystemSignalActivation SSA is set for any ALERT SIGNAL manifestation within an ALERT SYSTEM, then the following rules SHALL apply for any local ALERT SIGNAL ASi where SSA/@Manifestation is equal to ASi/@Manifestation:
+If a SystemSignalActivation SSA is set for any ALERT SIGNAL manifestation within an ALERT SYSTEM, then the following rules SHALL apply for any local ALERT SIGNAL ASi within the ALERT SYSTEM where SSA/@Manifestation is equal to ASi/@Manifestation:
 
-- If SSA/@State is "On", any ASi/@State is "On", "Off", or "Psd"
-- If SSA/@State is "Psd", any ASi/@State is "Psd" or "Off"
-- If SSA/@State is "Off", any ASi/@State is "Off"
-- If all ASi/@State are "On" then SSA/@State is "On"
-- If all ASi/@State are "Psd" then SSA/@State is "Psd"
-- If all ASi/@State are "Off" then SSA/@State is "Off"
+- If SSA/@State is "On", any ASi/@ActivationState is "On", "Off", or "Psd"
+- If SSA/@State is "Psd", any ASi/@ActivationState is "Psd" or "Off"
+- If SSA/@State is "Off", all ASi/@ActivationState are "Off"
+- If any ASi/@ActivationState is "On" then SSA/@State is "On"
+- If all ASi/@ActivationState are "Psd" then SSA/@State is "Psd"
+- If all ASi/@ActivationState are "Off" then SSA/@State is "Off"
 
-NOTE—This does not apply for remote signals.</xsd:documentation>
+NOTE 1—A local ALERT SIGNAL is an ALERT SIGNAL where pm:AlertSignalState/@Location is set to "Loc", whereas a remote ALERT SIGNAL is an ALERT SIGNAL where pm:AlertSignalState/@Location is set to "Rem".
+NOTE 2—Remote signals are not considered by SystemSignalActivation.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -1357,6 +1473,11 @@ NOTE—If the ATTRIBUTE pm:AlertConditionState/@ActualPriority is present, the p
 					</xsd:annotation>
 					<xsd:simpleType>
 						<xsd:restriction base="pm:AlertConditionPriority">
+							<xsd:enumeration value="Lo">
+								<xsd:annotation>
+									<xsd:documentation>Lo = Low. Alert condition can escalate to low priority.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
 							<xsd:enumeration value="Me">
 								<xsd:annotation>
 									<xsd:documentation>Me = Medium. Alert condition can escalate to medium priority.</xsd:documentation>
@@ -1384,6 +1505,11 @@ NOTE—If the ATTRIBUTE pm:AlertConditionState/@ActualPriority is present, the p
 							<xsd:enumeration value="Lo">
 								<xsd:annotation>
 									<xsd:documentation>Lo = Low. Alert condition can deescalate to low priority.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+							<xsd:enumeration value="None">
+								<xsd:annotation>
+									<xsd:documentation>No = None. Alert condition can deescalate to condition with no priority.</xsd:documentation>
 								</xsd:annotation>
 							</xsd:enumeration>
 						</xsd:restriction>
@@ -1421,9 +1547,9 @@ NOTE—If this ATTRIBUTE is present in an pm:AlertConditonState ELEMENT, the rel
 						<xsd:documentation>The rank is an optional ATTRIBUTE allowing finer distinction of ALERT CONDITION priorities. A ranking is a relationship between a set of items such that, for any two items, the first is either "ranked higher than", "ranked lower than" or "ranked equal to" the second.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
-				<xsd:attribute name="Presence" type="xsd:boolean" use="required">
+				<xsd:attribute name="Presence" type="xsd:boolean">
 					<xsd:annotation>
-						<xsd:documentation>The Presence ATTRIBUTE is set to "true" if the ALERT CONDITION has been detected and is still present. Otherwise it is set to "false".</xsd:documentation>
+						<xsd:documentation>The Presence ATTRIBUTE is set to "true" if the ALERT CONDITION has been detected and is still present. Otherwise it is set to "false". The implied value SHALL be "false".</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
 				<xsd:attribute name="DeterminationTime" type="pm:Timestamp">
@@ -1558,9 +1684,9 @@ Example: a signal could be a lamp (see pm:AlertSignalDescriptor/pm:Manifestation
 		</xsd:annotation>
 		<xsd:complexContent>
 			<xsd:extension base="pm:AbstractAlertDescriptor">
-				<xsd:attribute name="ConditionSignaled" type="pm:HandleRef" use="required">
+				<xsd:attribute name="ConditionSignaled" type="pm:HandleRef">
 					<xsd:annotation>
-						<xsd:documentation>Reference to the ALERT CONDITION communicated by the ALERT SIGNAL. The ALERT CONDITION signaled has to be in the same ALERT SYSTEM or in an ALERT SYSTEM that is underneath the ALERT SYSTEM of this ALERT SIGNAL in the CONTAINMENT TREE.
+						<xsd:documentation>Reference to an ALERT CONDITION communicated by the ALERT SIGNAL. The ALERT CONDITION signaled has to be in the same ALERT SYSTEM or in an ALERT SYSTEM that is underneath the ALERT SYSTEM of this ALERT SIGNAL in the CONTAINMENT TREE.
 
 Example: assume an MDS possesses two VMDs and an ALERT SYSTEM A, and each of these VMDs possess itself an ALERT SYSTEM (B and C). An ALERT SIGNAL from the ALERT SYSTEM A of the MDS is allowed to reference an ALERT CONDITION from the ALERT SYSTEMs A, B and C. In contrast to this an ALERT SIGNAL from the ALERT SYSTEM B is allowed to reference only ALERT CONDITIONs from the ALERT SYSTEM B and not from the ALERT SYSTEM A or C.</xsd:documentation>
 					</xsd:annotation>
@@ -1581,7 +1707,19 @@ Example: if the patient's heart rate exceeds a given limit for a certain time, b
 					<xsd:annotation>
 						<xsd:documentation>DefaultSignalGenerationDelay is the default period from the onset of an ALERT CONDITION to the generation of the ALERT SIGNAL. The implied value SHALL be "PT0S".
 
-Example: if the heart rate exceeds a limit periodically as the actual rate oscillates around the limit value, it might be desirable to not directly generate the ALERT SIGNAL whenever the limit is exceeded, but to wait for the given delay first.</xsd:documentation>
+Example: if the heart rate exceeds a limit periodically as the actual rate oscillates around the limit value, it might be desirable to not directly generate the ALERT SIGNAL whenever the limit is exceeded, but to wait for the given delay first.
+
+In the case of a FALLBACK ALERT SIGNAL, DefaultSignalGenerationDelay is the default period of time from when a PARTICIPANT last retriggered the SetAlertStateOperation to the generation of the FALLBACK ALERT SIGNAL.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="MinSignalGenerationDelay" type="xsd:duration">
+					<xsd:annotation>
+						<xsd:documentation>OPTIONAL minimum delay of pm:AlertSignalState/@ActualSignalGenerationDelay.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="MaxSignalGenerationDelay" type="xsd:duration">
+					<xsd:annotation>
+						<xsd:documentation>OPTIONAL maximum delay of pm:AlertSignalState/@ActualSignalGenerationDelay.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
 				<xsd:attribute name="SignalDelegationSupported" type="xsd:boolean">
@@ -1821,8 +1959,8 @@ Example: attach triggers in waveform curves.</xsd:documentation>
 
 The ./pmMetricQuality ELEMENT relates to all samples.
 
-NOTE1—pm:Timestamp (see base: pm:AbstractMetricValue) refers to the first value of the array. The individual timestamps of the values can thus be computed from the sample rate (see pm:RealTimeSampleArrayMetricDescriptor).
-NOTE2—If ./pmMetricQuality cannot be applied to all samples due to, e.g., some invalid values, a SERVICE PROVIDER can decide to set ./pmMetricQuality/@Validity to "Qst" or "Inv".</xsd:documentation>
+NOTE 1—pm:Timestamp (see base: pm:AbstractMetricValue) refers to the first value of the array. The individual timestamps of the values can thus be computed from the sample rate (see pm:RealTimeSampleArrayMetricDescriptor).
+NOTE 2—If ./pmMetricQuality cannot be applied to all samples due to, e.g., some invalid values, a SERVICE PROVIDER can decide to set ./pmMetricQuality/@Validity to "Qst" or "Inv".</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
 			<xsd:extension base="pm:AbstractMetricValue">
@@ -1944,7 +2082,7 @@ Example: non-invasive blood pressure measurement.</xsd:documentation>
 						<xsd:annotation>
 							<xsd:documentation>CODED VALUE for the unit of a METRIC.
 
-NOTE—If the METRIC is dimensionless and has no unit, use the corresponding CODE from the CODING SYSTEM (e.g., 512 for IEEE 11073-10101 MDC_DIM_DIMLESS).</xsd:documentation>
+NOTE—If the METRIC is dimensionless and has no unit, use the corresponding CODE from the CODING SYSTEM (e.g., 262656 (4::512) for IEEE 11073-10101 MDC_DIM_DIMLESS).</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 					<xsd:element name="BodySite" type="pm:CodedValue" minOccurs="0" maxOccurs="unbounded">
@@ -1966,6 +2104,13 @@ NOTE—Example: some settings of high frequency cutting devices cause changes in
 								<xsd:element name="Code" type="pm:CodedValue" minOccurs="0">
 									<xsd:annotation>
 										<xsd:documentation>Code allows to semantically describe the relationship between the METRIC and the list of related containment tree entries defined in ./pm:Relation/@Entries.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="Identification" type="pm:InstanceIdentifier" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>Identification allow relations to be grouped by instance identifiers.
+
+NOTE—By that a SERVICE PROVIDER can, e.g., group sets of recommendations or presettings in order to allow easy identification.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 							</xsd:sequence>
@@ -1993,6 +2138,11 @@ NOTE—Example: some settings of high frequency cutting devices cause changes in
 										<xsd:enumeration value="ECE">
 											<xsd:annotation>
 												<xsd:documentation>ECE = Effect on containment tree entries. When changed, the METRIC has an effect on the containment tree entries defined in ./pm:Relation/@Entries. If Kind is "ECE", ./pm:Relation/pm:Code SHOULD be set to classify the effect.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:enumeration>
+										<xsd:enumeration value="DCE">
+											<xsd:annotation>
+												<xsd:documentation>DCE = Derived from containment tree entries. The METRIC is derived from the containment tree entries defined in ./pm:Relation/@Entries. If Kind is "DCE", ./pm:Relation/pm:Code MAY be set to classify the form of derivation.</xsd:documentation>
 											</xsd:annotation>
 										</xsd:enumeration>
 										<xsd:enumeration value="Oth">
@@ -2084,6 +2234,11 @@ This list of body sites MAY provide more details to location of the measurement 
 Example: if in the descriptor the location "Upper Abdomen" is defined, than the state's body site give more details to where the measurement is performed like "Upper Right Quadrant" and "Liver".</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
+					<xsd:element name="PhysicalConnector" type="pm:PhysicalConnectorInfo" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The physical connector number for this METRIC, see pm:PhysicalConnectorInfo.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
 				</xsd:sequence>
 				<xsd:attribute name="ActivationState" type="pm:ComponentActivation">
 					<xsd:annotation>
@@ -2117,7 +2272,7 @@ Example: if in the descriptor the location "Upper Abdomen" is defined, than the 
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
-				<xsd:attribute name="Resolution" type="xsd:decimal">
+				<xsd:attribute name="Resolution" type="xsd:decimal" use="required">
 					<xsd:annotation>
 						<xsd:documentation>The resolution of the means to determine the METRIC's value. The resolution is the minimum determinable difference between two determined values.</xsd:documentation>
 					</xsd:annotation>
@@ -2247,7 +2402,7 @@ Example: a ventilation mode.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
-				<xsd:attribute name="Resolution" type="xsd:decimal">
+				<xsd:attribute name="Resolution" type="xsd:decimal" use="required">
 					<xsd:annotation>
 						<xsd:documentation>The resolution of the means to determine the METRIC's value. The Resolution is the minimum determinable difference between two determined values.</xsd:documentation>
 					</xsd:annotation>
@@ -2308,7 +2463,7 @@ NOTE—An example for a distribution sample array metric might be a fourier-tran
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
-				<xsd:attribute name="Resolution" type="xsd:decimal">
+				<xsd:attribute name="Resolution" type="xsd:decimal" use="required">
 					<xsd:annotation>
 						<xsd:documentation>The resolution of the means to determine the METRIC's value. Resolution is the minimum determinable difference between two determined values.</xsd:documentation>
 					</xsd:annotation>
@@ -2341,6 +2496,12 @@ NOTE—This is not an alarming range.</xsd:documentation>
 	</xsd:complexType>
 	<!--Section: Remote Control-->
 	<!--Sub-section: Base Types-->
+	<xsd:simpleType name="OperationRef">
+		<xsd:annotation>
+			<xsd:documentation>A list of operation handle references.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:list itemType="pm:HandleRef"/>
+	</xsd:simpleType>
 	<xsd:complexType name="ScoDescriptor">
 		<xsd:annotation>
 			<xsd:documentation>ScoDescriptor describes the capabilities of the SCO.</xsd:documentation>
@@ -2359,10 +2520,48 @@ NOTE—This is not an alarming range.</xsd:documentation>
 	</xsd:complexType>
 	<xsd:complexType name="ScoState">
 		<xsd:annotation>
-			<xsd:documentation>Corresponding state of pm:ScoDescriptor. This state comes with no additional attributes.</xsd:documentation>
+			<xsd:documentation>Corresponding state of pm:ScoDescriptor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="pm:AbstractState"/>
+			<xsd:extension base="pm:AbstractState">
+				<xsd:sequence>
+					<xsd:element name="OperationGroup" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>OperationGroup defines groups of operations in order to allow clinical grouping and prioritization of operations.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element ref="ext:Extension" minOccurs="0"/>
+								<xsd:element name="Type" type="pm:CodedValue">
+									<xsd:annotation>
+										<xsd:documentation>Type sematically describes the operation group.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+							<xsd:attribute name="OperatingMode" type="pm:OperatingMode">
+								<xsd:annotation>
+									<xsd:documentation>OperatingMode defines the operating mode of the whole operation group, see also pm:OperatingMode.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="Operations" type="pm:OperationRef">
+								<xsd:annotation>
+									<xsd:documentation>Handle references to all operations enclosed by the operation group.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="InvocationRequested" type="pm:OperationRef">
+					<xsd:annotation>
+						<xsd:documentation>Prioritized list of operations that are requested to be invoked by a SERVICE CONSUMER.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="InvocationRequired" type="pm:OperationRef">
+					<xsd:annotation>
+						<xsd:documentation>Prioritized list of operations that are required to be invoked by a SERVICE CONSUMER.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="AbstractOperationDescriptor">
@@ -2395,6 +2594,37 @@ NOTE—Example: if an arbitrary client remotely controls the cutter of a high fr
 The implied value SHALL be "true".</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
+				<xsd:attribute name="AccessLevel">
+					<xsd:annotation>
+						<xsd:documentation>AccessLevel defines a user group to whom access to the operation is granted. The implied value SHALL be "Usr".
+						
+__R5054: Access to the invocation of the operation SHALL be restricted to the defined user group by a SERVICE CONSUMER.__</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="Usr">
+								<xsd:annotation>
+									<xsd:documentation>Usr = User. Any person interacting with (i.e., operating or handling) the POC MEDICAL DEVICE.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+							<xsd:enumeration value="CSUsr">
+								<xsd:annotation>
+									<xsd:documentation>CSUsr = Clinical Super User. Individuals or entity accountable to the RESPONSIBLE ORGANIZATION that configure clinical relevant settings of a POC MEDICAL DEVICE.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+							<xsd:enumeration value="RO">
+								<xsd:annotation>
+									<xsd:documentation>RO = Responsible Organization. Access is restricted to a RESPONSIBLE ORGANIZATION.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+							<xsd:enumeration value="SP">
+								<xsd:annotation>
+									<xsd:documentation>SP = Service Personnel. Access is restricted to SERVICE PERSONNEL.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -2405,13 +2635,13 @@ The implied value SHALL be "true".</xsd:documentation>
 		<xsd:complexContent>
 			<xsd:extension base="pm:AbstractOperationDescriptor">
 				<xsd:sequence>
-					<xsd:element name="ModifiableElement" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+					<xsd:element name="ModifiableData" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
-							<xsd:documentation>ModifiableElement describes a list of ATTRIBUTEs and ELEMENTs the underlying operation modifies on invocation by means of XPath expressions.
+							<xsd:documentation>ModifiableData describes a list of ATTRIBUTEs and ELEMENTs the underlying operation modifies on invocation by means of XPath expressions.
 
-__R5010: If the ModifiableElement list is empty, all ELEMENTs/ATTRIBUTEs SHALL be modified, except for pm:AbstractMultiState/@Handle, pm:AbstractState/@DescriptorHandle, pm:AbstractState/@StateVersion, and pm:AbstractState/@DescriptorVersion.__
+__R5010: If the ModifiableData list is empty, then all ELEMENTs/ATTRIBUTEs SHALL be modifiable except for pm:AbstractMultiState/@Handle, pm:AbstractState/@DescriptorHandle, pm:AbstractState/@StateVersion, and pm:AbstractState/@DescriptorVersion.__
 
-__R5011: The root ELEMENT of the XPath expressions SHALL be pm:MdState.__</xsd:documentation>
+__R5011: The root ELEMENT of the XPath expressions SHALL be the state of the CONTAINMENT TREE ENTRY referenced by pm:AbstractOperationDescriptor/@OperationTarget.__</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -2472,7 +2702,9 @@ __R5011: The root ELEMENT of the XPath expressions SHALL be pm:MdState.__</xsd:d
 				<xsd:sequence>
 					<xsd:element name="AllowedRange" type="pm:Range" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
-							<xsd:documentation>The currently allowed ranges that can be requested.</xsd:documentation>
+							<xsd:documentation>The currently allowed ranges that can be requested.
+
+NOTE—The given ranges need to be a (strict or non-strict) subset of the technical range of the referenced descriptor.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -2665,6 +2897,11 @@ Example: {MDC:MDC_TIME_SYNC_EBWW, MDC:MDC_TIME_SYNC_SNTPV4, MDC:MDC_TIME_SYNC_NT
 Examples: MDC:MDC_TIME_SYNC_NTPV3 if the clock is synchronized using NTP v3.0 (RFC 1305) or MDC:MDC_TIME_SYNC_NONE if the clock is not synchronized.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
+					<xsd:element name="ReferenceSource" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Identifies the clock's external reference source(s), e.g., NTP server addresses.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
 				</xsd:sequence>
 				<xsd:attribute name="DateAndTime" type="pm:Timestamp">
 					<xsd:annotation>
@@ -2676,22 +2913,19 @@ Examples: MDC:MDC_TIME_SYNC_NTPV3 if the clock is synchronized using NTP v3.0 (R
 						<xsd:documentation>Indicates if the time is synchronized to an external source or set by an operator.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
-				<xsd:attribute name="ReferenceSource" type="xsd:string">
-					<xsd:annotation>
-						<xsd:documentation>Identifies the clock's external reference source, e.g., an NTP server address.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:attribute>
 				<xsd:attribute name="Accuracy" type="xsd:decimal" use="optional">
 					<xsd:annotation>
-						<xsd:documentation>Accuracy is a decimal number indicating the "accuracy" or maximum error of the absolute time relative to a primary reference clock source (in seconds).
-In systems where time synchronization is not used (EBWW is source) this SHOULD be initialized to two or three minutes when the clock time is set. If NTP used, this is equivalent to Root Dispersion + ½ Root Delay.</xsd:documentation>
+						<xsd:documentation>Accuracy is a decimal number indicating the maximum error in seconds of the absolute time relative to a primary reference clock source.
+
+In systems where time synchronization is not used and the clock is set manually by "eyeball and wristwatch" (EBWW), this SHALL be initialized to three minutes when the clock time is set. If NTP is used, this is equivalent to Root Dispersion + 1⁄2 Root Delay.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
 				<xsd:attribute name="LastSet" type="pm:Timestamp">
 					<xsd:annotation>
-						<xsd:documentation>Time point when the absolute time was last set.
+						<xsd:documentation>Time point when the absolute time was set or synchronized.
 
-NOTE—If a time synchronization protocol is used that "changes" the time and date at a high frequency, it is proposed to update this value at a lower periodicity (e.g., once every 10 minutes or once an hour), so as not to consume communications bandwidth unnecessarily.</xsd:documentation>
+NOTE 1—If a time synchronization protocol is used that "changes" the time and date at a high frequency, it is proposed to update this value at a lower periodicity (e.g., once every 10 minutes or once an hour), so as not to consume communications bandwidth unnecessarily.
+NOTE 2—Synchronization might be achieved by slewing the time. This means that the virtual frequency of the software clock is adjusted to make the clock go faster or slower until it is corrected.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
 				<xsd:attribute name="TimeZone" type="pm:TimeZone" use="optional">
@@ -2928,8 +3162,8 @@ A SERVICE PROVIDER SHALL NOT insert or delete the context descriptor ELEMENT dur
 						<xsd:annotation>
 							<xsd:documentation>OPTIONAL ordered list of identifiers for the context. The list is ordered by the position of the identifiers in the list where the ELEMENT with the lower list index has a higher relevance then any entry with a higher list index. The SERVICE PROVIDER defines the relevance and may reorder the list at any time.
 
-NOTE1—Identification can be used to span a communication context between SERVICE PROVIDERs and SERVICE CONSUMERs.
-NOTE2—Identification can be empty, e.g., if pm:AbstractContextState/@ContextAssociation is "No".</xsd:documentation>
+NOTE 1—Identification can be used to span a communication context between SERVICE PROVIDERs and SERVICE CONSUMERs.
+NOTE 2—Identification can be empty, e.g., if pm:AbstractContextState/@ContextAssociation is "No".</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -3655,7 +3889,7 @@ A limit of sixty-four (64) characters is required to allow compatibility with DI
 			<xsd:element ref="ext:Extension" minOccurs="0"/>
 			<xsd:element name="Entry" type="pm:ContainmentTreeEntry" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>An entry of a CONTAINMENT TREE ELEMENT.</xsd:documentation>
+					<xsd:documentation>An entry of a CONTAINMENT TREE ENTRY.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>

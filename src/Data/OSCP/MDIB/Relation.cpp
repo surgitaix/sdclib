@@ -37,6 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 
 namespace OSCLib {
 namespace Data {
@@ -90,6 +91,27 @@ CodedValue Relation::getCode() const {
 	
 bool Relation::hasCode() const {
 	return data->Code().present();
+}
+	
+Relation & Relation::setIdentification(const InstanceIdentifier & value) {
+	data->Identification(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool Relation::getIdentification(InstanceIdentifier & out) const {
+	if (data->Identification().present()) {
+		out = ConvertFromCDM::convert(data->Identification().get());
+		return true;
+	}
+	return false;
+}
+
+InstanceIdentifier Relation::getIdentification() const {
+	return ConvertFromCDM::convert(data->Identification().get());
+}
+	
+bool Relation::hasIdentification() const {
+	return data->Identification().present();
 }
 	
 Relation & Relation::setKind(const Kind & value) {

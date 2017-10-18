@@ -344,20 +344,9 @@ NumericMetricDescriptor & NumericMetricDescriptor::setResolution(const double & 
 	return *this;
 }
 
-bool NumericMetricDescriptor::getResolution(double & out) const {
-	if (data->Resolution().present()) {
-		out = ConvertFromCDM::convert(data->Resolution().get());
-		return true;
-	}
-	return false;
-}
 
 double NumericMetricDescriptor::getResolution() const {
-	return ConvertFromCDM::convert(data->Resolution().get());
-}
-	
-bool NumericMetricDescriptor::hasResolution() const {
-	return data->Resolution().present();
+	return ConvertFromCDM::convert(data->Resolution());
 }
 	
 NumericMetricDescriptor & NumericMetricDescriptor::setAveragingPeriod(const xml_schema::Duration & value) {

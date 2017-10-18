@@ -447,6 +447,55 @@ namespace CDM
   // 
 
 
+  // LocalizedTextContent
+  // 
+
+
+  // LocalizedTextWidth
+  // 
+
+  LocalizedTextWidth::
+  LocalizedTextWidth (Value v)
+  : ::xml_schema::String (_xsd_LocalizedTextWidth_literals_[v])
+  {
+  }
+
+  LocalizedTextWidth::
+  LocalizedTextWidth (const char* v)
+  : ::xml_schema::String (v)
+  {
+  }
+
+  LocalizedTextWidth::
+  LocalizedTextWidth (const ::std::string& v)
+  : ::xml_schema::String (v)
+  {
+  }
+
+  LocalizedTextWidth::
+  LocalizedTextWidth (const ::xml_schema::String& v)
+  : ::xml_schema::String (v)
+  {
+  }
+
+  LocalizedTextWidth::
+  LocalizedTextWidth (const LocalizedTextWidth& v,
+                      ::xml_schema::Flags f,
+                      ::xml_schema::Container* c)
+  : ::xml_schema::String (v, f, c)
+  {
+  }
+
+  LocalizedTextWidth& LocalizedTextWidth::
+  operator= (Value v)
+  {
+    static_cast< ::xml_schema::String& > (*this) = 
+    ::xml_schema::String (_xsd_LocalizedTextWidth_literals_[v]);
+
+    return *this;
+  }
+
+
   // LocalizedText
   // 
 
@@ -1269,6 +1318,82 @@ namespace CDM
   // 
 
 
+  // PhysicalConnectorInfo
+  // 
+
+  const PhysicalConnectorInfo::ExtensionOptional& PhysicalConnectorInfo::
+  Extension () const
+  {
+    return this->Extension_;
+  }
+
+  PhysicalConnectorInfo::ExtensionOptional& PhysicalConnectorInfo::
+  Extension ()
+  {
+    return this->Extension_;
+  }
+
+  void PhysicalConnectorInfo::
+  Extension (const ExtensionType& x)
+  {
+    this->Extension_.set (x);
+  }
+
+  void PhysicalConnectorInfo::
+  Extension (const ExtensionOptional& x)
+  {
+    this->Extension_ = x;
+  }
+
+  void PhysicalConnectorInfo::
+  Extension (::std::unique_ptr< ExtensionType > x)
+  {
+    this->Extension_.set (std::move (x));
+  }
+
+  const PhysicalConnectorInfo::LabelSequence& PhysicalConnectorInfo::
+  Label () const
+  {
+    return this->Label_;
+  }
+
+  PhysicalConnectorInfo::LabelSequence& PhysicalConnectorInfo::
+  Label ()
+  {
+    return this->Label_;
+  }
+
+  void PhysicalConnectorInfo::
+  Label (const LabelSequence& s)
+  {
+    this->Label_ = s;
+  }
+
+  const PhysicalConnectorInfo::NumberOptional& PhysicalConnectorInfo::
+  Number () const
+  {
+    return this->Number_;
+  }
+
+  PhysicalConnectorInfo::NumberOptional& PhysicalConnectorInfo::
+  Number ()
+  {
+    return this->Number_;
+  }
+
+  void PhysicalConnectorInfo::
+  Number (const NumberType& x)
+  {
+    this->Number_.set (x);
+  }
+
+  void PhysicalConnectorInfo::
+  Number (const NumberOptional& x)
+  {
+    this->Number_ = x;
+  }
+
+
   // AbstractDescriptor
   // 
 
@@ -1802,6 +1927,24 @@ namespace CDM
     this->Extension_.set (std::move (x));
   }
 
+  const CalibrationInfo::CalibrationDocumentationSequence& CalibrationInfo::
+  CalibrationDocumentation () const
+  {
+    return this->CalibrationDocumentation_;
+  }
+
+  CalibrationInfo::CalibrationDocumentationSequence& CalibrationInfo::
+  CalibrationDocumentation ()
+  {
+    return this->CalibrationDocumentation_;
+  }
+
+  void CalibrationInfo::
+  CalibrationDocumentation (const CalibrationDocumentationSequence& s)
+  {
+    this->CalibrationDocumentation_ = s;
+  }
+
   const CalibrationInfo::ComponentCalibrationStateOptional& CalibrationInfo::
   ComponentCalibrationState () const
   {
@@ -1954,6 +2097,36 @@ namespace CDM
   NextCalibration (::std::unique_ptr< NextCalibrationType > x)
   {
     this->NextCalibration_.set (std::move (x));
+  }
+
+  const AbstractDeviceComponentState::PhysicalConnectorOptional& AbstractDeviceComponentState::
+  PhysicalConnector () const
+  {
+    return this->PhysicalConnector_;
+  }
+
+  AbstractDeviceComponentState::PhysicalConnectorOptional& AbstractDeviceComponentState::
+  PhysicalConnector ()
+  {
+    return this->PhysicalConnector_;
+  }
+
+  void AbstractDeviceComponentState::
+  PhysicalConnector (const PhysicalConnectorType& x)
+  {
+    this->PhysicalConnector_.set (x);
+  }
+
+  void AbstractDeviceComponentState::
+  PhysicalConnector (const PhysicalConnectorOptional& x)
+  {
+    this->PhysicalConnector_ = x;
+  }
+
+  void AbstractDeviceComponentState::
+  PhysicalConnector (::std::unique_ptr< PhysicalConnectorType > x)
+  {
+    this->PhysicalConnector_.set (std::move (x));
   }
 
   const AbstractDeviceComponentState::ActivationStateOptional& AbstractDeviceComponentState::
@@ -3346,22 +3519,28 @@ namespace CDM
     this->Rank_ = x;
   }
 
-  const AlertConditionState::PresenceType& AlertConditionState::
+  const AlertConditionState::PresenceOptional& AlertConditionState::
   Presence () const
   {
-    return this->Presence_.get ();
+    return this->Presence_;
   }
 
-  AlertConditionState::PresenceType& AlertConditionState::
+  AlertConditionState::PresenceOptional& AlertConditionState::
   Presence ()
   {
-    return this->Presence_.get ();
+    return this->Presence_;
   }
 
   void AlertConditionState::
   Presence (const PresenceType& x)
   {
     this->Presence_.set (x);
+  }
+
+  void AlertConditionState::
+  Presence (const PresenceOptional& x)
+  {
+    this->Presence_ = x;
   }
 
   const AlertConditionState::DeterminationTimeOptional& AlertConditionState::
@@ -3622,22 +3801,28 @@ namespace CDM
   // AlertSignalDescriptor
   // 
 
-  const AlertSignalDescriptor::ConditionSignaledType& AlertSignalDescriptor::
+  const AlertSignalDescriptor::ConditionSignaledOptional& AlertSignalDescriptor::
   ConditionSignaled () const
   {
-    return this->ConditionSignaled_.get ();
+    return this->ConditionSignaled_;
   }
 
-  AlertSignalDescriptor::ConditionSignaledType& AlertSignalDescriptor::
+  AlertSignalDescriptor::ConditionSignaledOptional& AlertSignalDescriptor::
   ConditionSignaled ()
   {
-    return this->ConditionSignaled_.get ();
+    return this->ConditionSignaled_;
   }
 
   void AlertSignalDescriptor::
   ConditionSignaled (const ConditionSignaledType& x)
   {
     this->ConditionSignaled_.set (x);
+  }
+
+  void AlertSignalDescriptor::
+  ConditionSignaled (const ConditionSignaledOptional& x)
+  {
+    this->ConditionSignaled_ = x;
   }
 
   void AlertSignalDescriptor::
@@ -3716,6 +3901,66 @@ namespace CDM
   DefaultSignalGenerationDelay (::std::unique_ptr< DefaultSignalGenerationDelayType > x)
   {
     this->DefaultSignalGenerationDelay_.set (std::move (x));
+  }
+
+  const AlertSignalDescriptor::MinSignalGenerationDelayOptional& AlertSignalDescriptor::
+  MinSignalGenerationDelay () const
+  {
+    return this->MinSignalGenerationDelay_;
+  }
+
+  AlertSignalDescriptor::MinSignalGenerationDelayOptional& AlertSignalDescriptor::
+  MinSignalGenerationDelay ()
+  {
+    return this->MinSignalGenerationDelay_;
+  }
+
+  void AlertSignalDescriptor::
+  MinSignalGenerationDelay (const MinSignalGenerationDelayType& x)
+  {
+    this->MinSignalGenerationDelay_.set (x);
+  }
+
+  void AlertSignalDescriptor::
+  MinSignalGenerationDelay (const MinSignalGenerationDelayOptional& x)
+  {
+    this->MinSignalGenerationDelay_ = x;
+  }
+
+  void AlertSignalDescriptor::
+  MinSignalGenerationDelay (::std::unique_ptr< MinSignalGenerationDelayType > x)
+  {
+    this->MinSignalGenerationDelay_.set (std::move (x));
+  }
+
+  const AlertSignalDescriptor::MaxSignalGenerationDelayOptional& AlertSignalDescriptor::
+  MaxSignalGenerationDelay () const
+  {
+    return this->MaxSignalGenerationDelay_;
+  }
+
+  AlertSignalDescriptor::MaxSignalGenerationDelayOptional& AlertSignalDescriptor::
+  MaxSignalGenerationDelay ()
+  {
+    return this->MaxSignalGenerationDelay_;
+  }
+
+  void AlertSignalDescriptor::
+  MaxSignalGenerationDelay (const MaxSignalGenerationDelayType& x)
+  {
+    this->MaxSignalGenerationDelay_.set (x);
+  }
+
+  void AlertSignalDescriptor::
+  MaxSignalGenerationDelay (const MaxSignalGenerationDelayOptional& x)
+  {
+    this->MaxSignalGenerationDelay_ = x;
+  }
+
+  void AlertSignalDescriptor::
+  MaxSignalGenerationDelay (::std::unique_ptr< MaxSignalGenerationDelayType > x)
+  {
+    this->MaxSignalGenerationDelay_.set (std::move (x));
   }
 
   const AlertSignalDescriptor::SignalDelegationSupportedOptional& AlertSignalDescriptor::
@@ -4806,6 +5051,36 @@ namespace CDM
     this->BodySite_ = s;
   }
 
+  const AbstractMetricState::PhysicalConnectorOptional& AbstractMetricState::
+  PhysicalConnector () const
+  {
+    return this->PhysicalConnector_;
+  }
+
+  AbstractMetricState::PhysicalConnectorOptional& AbstractMetricState::
+  PhysicalConnector ()
+  {
+    return this->PhysicalConnector_;
+  }
+
+  void AbstractMetricState::
+  PhysicalConnector (const PhysicalConnectorType& x)
+  {
+    this->PhysicalConnector_.set (x);
+  }
+
+  void AbstractMetricState::
+  PhysicalConnector (const PhysicalConnectorOptional& x)
+  {
+    this->PhysicalConnector_ = x;
+  }
+
+  void AbstractMetricState::
+  PhysicalConnector (::std::unique_ptr< PhysicalConnectorType > x)
+  {
+    this->PhysicalConnector_.set (std::move (x));
+  }
+
   const AbstractMetricState::ActivationStateOptional& AbstractMetricState::
   ActivationState () const
   {
@@ -4918,28 +5193,22 @@ namespace CDM
     this->TechnicalRange_ = s;
   }
 
-  const NumericMetricDescriptor::ResolutionOptional& NumericMetricDescriptor::
+  const NumericMetricDescriptor::ResolutionType& NumericMetricDescriptor::
   Resolution () const
   {
-    return this->Resolution_;
+    return this->Resolution_.get ();
   }
 
-  NumericMetricDescriptor::ResolutionOptional& NumericMetricDescriptor::
+  NumericMetricDescriptor::ResolutionType& NumericMetricDescriptor::
   Resolution ()
   {
-    return this->Resolution_;
+    return this->Resolution_.get ();
   }
 
   void NumericMetricDescriptor::
   Resolution (const ResolutionType& x)
   {
     this->Resolution_.set (x);
-  }
-
-  void NumericMetricDescriptor::
-  Resolution (const ResolutionOptional& x)
-  {
-    this->Resolution_ = x;
   }
 
   const NumericMetricDescriptor::AveragingPeriodOptional& NumericMetricDescriptor::
@@ -5140,28 +5409,22 @@ namespace CDM
     this->TechnicalRange_ = s;
   }
 
-  const RealTimeSampleArrayMetricDescriptor::ResolutionOptional& RealTimeSampleArrayMetricDescriptor::
+  const RealTimeSampleArrayMetricDescriptor::ResolutionType& RealTimeSampleArrayMetricDescriptor::
   Resolution () const
   {
-    return this->Resolution_;
+    return this->Resolution_.get ();
   }
 
-  RealTimeSampleArrayMetricDescriptor::ResolutionOptional& RealTimeSampleArrayMetricDescriptor::
+  RealTimeSampleArrayMetricDescriptor::ResolutionType& RealTimeSampleArrayMetricDescriptor::
   Resolution ()
   {
-    return this->Resolution_;
+    return this->Resolution_.get ();
   }
 
   void RealTimeSampleArrayMetricDescriptor::
   Resolution (const ResolutionType& x)
   {
     this->Resolution_.set (x);
-  }
-
-  void RealTimeSampleArrayMetricDescriptor::
-  Resolution (const ResolutionOptional& x)
-  {
-    this->Resolution_ = x;
   }
 
   const RealTimeSampleArrayMetricDescriptor::SamplePeriodType& RealTimeSampleArrayMetricDescriptor::
@@ -5310,28 +5573,22 @@ namespace CDM
     this->DistributionRange_.set (std::move (x));
   }
 
-  const DistributionSampleArrayMetricDescriptor::ResolutionOptional& DistributionSampleArrayMetricDescriptor::
+  const DistributionSampleArrayMetricDescriptor::ResolutionType& DistributionSampleArrayMetricDescriptor::
   Resolution () const
   {
-    return this->Resolution_;
+    return this->Resolution_.get ();
   }
 
-  DistributionSampleArrayMetricDescriptor::ResolutionOptional& DistributionSampleArrayMetricDescriptor::
+  DistributionSampleArrayMetricDescriptor::ResolutionType& DistributionSampleArrayMetricDescriptor::
   Resolution ()
   {
-    return this->Resolution_;
+    return this->Resolution_.get ();
   }
 
   void DistributionSampleArrayMetricDescriptor::
   Resolution (const ResolutionType& x)
   {
     this->Resolution_.set (x);
-  }
-
-  void DistributionSampleArrayMetricDescriptor::
-  Resolution (const ResolutionOptional& x)
-  {
-    this->Resolution_ = x;
   }
 
 
@@ -5387,6 +5644,30 @@ namespace CDM
   }
 
 
+  // OperationRef
+  //
+
+  OperationRef::
+  OperationRef ()
+  : ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (this)
+  {
+  }
+
+  OperationRef::
+  OperationRef (size_type n, const ::CDM::HandleRef& x)
+  : ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (n, x, this)
+  {
+  }
+
+  OperationRef::
+  OperationRef (const OperationRef& o,
+                ::xml_schema::Flags f,
+                ::xml_schema::Container* c)
+  : ::xml_schema::SimpleType (o, f, c),
+    ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (o, f, this)
+  {
+  }
+
   // ScoDescriptor
   // 
 
@@ -5411,6 +5692,84 @@ namespace CDM
 
   // ScoState
   // 
+
+  const ScoState::OperationGroupSequence& ScoState::
+  OperationGroup () const
+  {
+    return this->OperationGroup_;
+  }
+
+  ScoState::OperationGroupSequence& ScoState::
+  OperationGroup ()
+  {
+    return this->OperationGroup_;
+  }
+
+  void ScoState::
+  OperationGroup (const OperationGroupSequence& s)
+  {
+    this->OperationGroup_ = s;
+  }
+
+  const ScoState::InvocationRequestedOptional& ScoState::
+  InvocationRequested () const
+  {
+    return this->InvocationRequested_;
+  }
+
+  ScoState::InvocationRequestedOptional& ScoState::
+  InvocationRequested ()
+  {
+    return this->InvocationRequested_;
+  }
+
+  void ScoState::
+  InvocationRequested (const InvocationRequestedType& x)
+  {
+    this->InvocationRequested_.set (x);
+  }
+
+  void ScoState::
+  InvocationRequested (const InvocationRequestedOptional& x)
+  {
+    this->InvocationRequested_ = x;
+  }
+
+  void ScoState::
+  InvocationRequested (::std::unique_ptr< InvocationRequestedType > x)
+  {
+    this->InvocationRequested_.set (std::move (x));
+  }
+
+  const ScoState::InvocationRequiredOptional& ScoState::
+  InvocationRequired () const
+  {
+    return this->InvocationRequired_;
+  }
+
+  ScoState::InvocationRequiredOptional& ScoState::
+  InvocationRequired ()
+  {
+    return this->InvocationRequired_;
+  }
+
+  void ScoState::
+  InvocationRequired (const InvocationRequiredType& x)
+  {
+    this->InvocationRequired_.set (x);
+  }
+
+  void ScoState::
+  InvocationRequired (const InvocationRequiredOptional& x)
+  {
+    this->InvocationRequired_ = x;
+  }
+
+  void ScoState::
+  InvocationRequired (::std::unique_ptr< InvocationRequiredType > x)
+  {
+    this->InvocationRequired_.set (std::move (x));
+  }
 
 
   // AbstractOperationDescriptor
@@ -5530,26 +5889,56 @@ namespace CDM
     this->Retriggerable_.set (std::move (x));
   }
 
+  const AbstractOperationDescriptor::AccessLevelOptional& AbstractOperationDescriptor::
+  AccessLevel () const
+  {
+    return this->AccessLevel_;
+  }
+
+  AbstractOperationDescriptor::AccessLevelOptional& AbstractOperationDescriptor::
+  AccessLevel ()
+  {
+    return this->AccessLevel_;
+  }
+
+  void AbstractOperationDescriptor::
+  AccessLevel (const AccessLevelType& x)
+  {
+    this->AccessLevel_.set (x);
+  }
+
+  void AbstractOperationDescriptor::
+  AccessLevel (const AccessLevelOptional& x)
+  {
+    this->AccessLevel_ = x;
+  }
+
+  void AbstractOperationDescriptor::
+  AccessLevel (::std::unique_ptr< AccessLevelType > x)
+  {
+    this->AccessLevel_.set (std::move (x));
+  }
+
 
   // AbstractSetStateOperationDescriptor
   // 
 
-  const AbstractSetStateOperationDescriptor::ModifiableElementSequence& AbstractSetStateOperationDescriptor::
-  ModifiableElement () const
+  const AbstractSetStateOperationDescriptor::ModifiableDataSequence& AbstractSetStateOperationDescriptor::
+  ModifiableData () const
   {
-    return this->ModifiableElement_;
+    return this->ModifiableData_;
   }
 
-  AbstractSetStateOperationDescriptor::ModifiableElementSequence& AbstractSetStateOperationDescriptor::
-  ModifiableElement ()
+  AbstractSetStateOperationDescriptor::ModifiableDataSequence& AbstractSetStateOperationDescriptor::
+  ModifiableData ()
   {
-    return this->ModifiableElement_;
+    return this->ModifiableData_;
   }
 
   void AbstractSetStateOperationDescriptor::
-  ModifiableElement (const ModifiableElementSequence& s)
+  ModifiableData (const ModifiableDataSequence& s)
   {
-    this->ModifiableElement_ = s;
+    this->ModifiableData_ = s;
   }
 
 
@@ -5861,6 +6250,24 @@ namespace CDM
     this->ActiveSyncProtocol_.set (std::move (x));
   }
 
+  const ClockState::ReferenceSourceSequence& ClockState::
+  ReferenceSource () const
+  {
+    return this->ReferenceSource_;
+  }
+
+  ClockState::ReferenceSourceSequence& ClockState::
+  ReferenceSource ()
+  {
+    return this->ReferenceSource_;
+  }
+
+  void ClockState::
+  ReferenceSource (const ReferenceSourceSequence& s)
+  {
+    this->ReferenceSource_ = s;
+  }
+
   const ClockState::DateAndTimeOptional& ClockState::
   DateAndTime () const
   {
@@ -5907,36 +6314,6 @@ namespace CDM
   RemoteSync (const RemoteSyncType& x)
   {
     this->RemoteSync_.set (x);
-  }
-
-  const ClockState::ReferenceSourceOptional& ClockState::
-  ReferenceSource () const
-  {
-    return this->ReferenceSource_;
-  }
-
-  ClockState::ReferenceSourceOptional& ClockState::
-  ReferenceSource ()
-  {
-    return this->ReferenceSource_;
-  }
-
-  void ClockState::
-  ReferenceSource (const ReferenceSourceType& x)
-  {
-    this->ReferenceSource_.set (x);
-  }
-
-  void ClockState::
-  ReferenceSource (const ReferenceSourceOptional& x)
-  {
-    this->ReferenceSource_ = x;
-  }
-
-  void ClockState::
-  ReferenceSource (::std::unique_ptr< ReferenceSourceType > x)
-  {
-    this->ReferenceSource_.set (std::move (x));
   }
 
   const ClockState::AccuracyOptional& ClockState::
@@ -8739,48 +9116,121 @@ namespace CDM
   }
 
 
-  // TextWidth
+  // Translation
   // 
 
-  TextWidth::
-  TextWidth (Value v)
-  : ::xml_schema::String (_xsd_TextWidth_literals_[v])
+  const Translation::ExtensionOptional& Translation::
+  Extension () const
   {
+    return this->Extension_;
   }
 
-  TextWidth::
-  TextWidth (const char* v)
-  : ::xml_schema::String (v)
+  Translation::ExtensionOptional& Translation::
+  Extension ()
   {
+    return this->Extension_;
   }
 
-  TextWidth::
-  TextWidth (const ::std::string& v)
-  : ::xml_schema::String (v)
+  void Translation::
+  Extension (const ExtensionType& x)
   {
+    this->Extension_.set (x);
   }
 
-  TextWidth::
-  TextWidth (const ::xml_schema::String& v)
-  : ::xml_schema::String (v)
+  void Translation::
+  Extension (const ExtensionOptional& x)
   {
+    this->Extension_ = x;
   }
 
-  TextWidth::
-  TextWidth (const TextWidth& v,
-             ::xml_schema::Flags f,
-             ::xml_schema::Container* c)
-  : ::xml_schema::String (v, f, c)
+  void Translation::
+  Extension (::std::unique_ptr< ExtensionType > x)
   {
+    this->Extension_.set (std::move (x));
   }
 
-  TextWidth& TextWidth::
-  operator= (Value v)
+  const Translation::CodeType& Translation::
+  Code () const
   {
-    static_cast< ::xml_schema::String& > (*this) = 
-    ::xml_schema::String (_xsd_TextWidth_literals_[v]);
+    return this->Code_.get ();
+  }
 
-    return *this;
+  Translation::CodeType& Translation::
+  Code ()
+  {
+    return this->Code_.get ();
+  }
+
+  void Translation::
+  Code (const CodeType& x)
+  {
+    this->Code_.set (x);
+  }
+
+  void Translation::
+  Code (::std::unique_ptr< CodeType > x)
+  {
+    this->Code_.set (std::move (x));
+  }
+
+  const Translation::CodingSystemOptional& Translation::
+  CodingSystem () const
+  {
+    return this->CodingSystem_;
+  }
+
+  Translation::CodingSystemOptional& Translation::
+  CodingSystem ()
+  {
+    return this->CodingSystem_;
+  }
+
+  void Translation::
+  CodingSystem (const CodingSystemType& x)
+  {
+    this->CodingSystem_.set (x);
+  }
+
+  void Translation::
+  CodingSystem (const CodingSystemOptional& x)
+  {
+    this->CodingSystem_ = x;
+  }
+
+  void Translation::
+  CodingSystem (::std::unique_ptr< CodingSystemType > x)
+  {
+    this->CodingSystem_.set (std::move (x));
+  }
+
+  const Translation::CodingSystemVersionOptional& Translation::
+  CodingSystemVersion () const
+  {
+    return this->CodingSystemVersion_;
+  }
+
+  Translation::CodingSystemVersionOptional& Translation::
+  CodingSystemVersion ()
+  {
+    return this->CodingSystemVersion_;
+  }
+
+  void Translation::
+  CodingSystemVersion (const CodingSystemVersionType& x)
+  {
+    this->CodingSystemVersion_.set (x);
+  }
+
+  void Translation::
+  CodingSystemVersion (const CodingSystemVersionOptional& x)
+  {
+    this->CodingSystemVersion_ = x;
+  }
+
+  void Translation::
+  CodingSystemVersion (::std::unique_ptr< CodingSystemVersionType > x)
+  {
+    this->CodingSystemVersion_.set (std::move (x));
   }
 
 
@@ -8874,6 +9324,46 @@ namespace CDM
   }
 
 
+  // CalibrationDocumentation
+  // 
+
+  const CalibrationDocumentation::DocumentationSequence& CalibrationDocumentation::
+  Documentation () const
+  {
+    return this->Documentation_;
+  }
+
+  CalibrationDocumentation::DocumentationSequence& CalibrationDocumentation::
+  Documentation ()
+  {
+    return this->Documentation_;
+  }
+
+  void CalibrationDocumentation::
+  Documentation (const DocumentationSequence& s)
+  {
+    this->Documentation_ = s;
+  }
+
+  const CalibrationDocumentation::CalibrationResultSequence& CalibrationDocumentation::
+  CalibrationResult () const
+  {
+    return this->CalibrationResult_;
+  }
+
+  CalibrationDocumentation::CalibrationResultSequence& CalibrationDocumentation::
+  CalibrationResult ()
+  {
+    return this->CalibrationResult_;
+  }
+
+  void CalibrationDocumentation::
+  CalibrationResult (const CalibrationResultSequence& s)
+  {
+    this->CalibrationResult_ = s;
+  }
+
+
   // MetaData
   // 
 
@@ -8925,6 +9415,36 @@ namespace CDM
     this->Udi_ = s;
   }
 
+  const MetaData::LotNumberOptional& MetaData::
+  LotNumber () const
+  {
+    return this->LotNumber_;
+  }
+
+  MetaData::LotNumberOptional& MetaData::
+  LotNumber ()
+  {
+    return this->LotNumber_;
+  }
+
+  void MetaData::
+  LotNumber (const LotNumberType& x)
+  {
+    this->LotNumber_.set (x);
+  }
+
+  void MetaData::
+  LotNumber (const LotNumberOptional& x)
+  {
+    this->LotNumber_ = x;
+  }
+
+  void MetaData::
+  LotNumber (::std::unique_ptr< LotNumberType > x)
+  {
+    this->LotNumber_.set (std::move (x));
+  }
+
   const MetaData::ManufacturerSequence& MetaData::
   Manufacturer () const
   {
@@ -8941,6 +9461,66 @@ namespace CDM
   Manufacturer (const ManufacturerSequence& s)
   {
     this->Manufacturer_ = s;
+  }
+
+  const MetaData::ManufactureDateOptional& MetaData::
+  ManufactureDate () const
+  {
+    return this->ManufactureDate_;
+  }
+
+  MetaData::ManufactureDateOptional& MetaData::
+  ManufactureDate ()
+  {
+    return this->ManufactureDate_;
+  }
+
+  void MetaData::
+  ManufactureDate (const ManufactureDateType& x)
+  {
+    this->ManufactureDate_.set (x);
+  }
+
+  void MetaData::
+  ManufactureDate (const ManufactureDateOptional& x)
+  {
+    this->ManufactureDate_ = x;
+  }
+
+  void MetaData::
+  ManufactureDate (::std::unique_ptr< ManufactureDateType > x)
+  {
+    this->ManufactureDate_.set (std::move (x));
+  }
+
+  const MetaData::ExpirationDateOptional& MetaData::
+  ExpirationDate () const
+  {
+    return this->ExpirationDate_;
+  }
+
+  MetaData::ExpirationDateOptional& MetaData::
+  ExpirationDate ()
+  {
+    return this->ExpirationDate_;
+  }
+
+  void MetaData::
+  ExpirationDate (const ExpirationDateType& x)
+  {
+    this->ExpirationDate_.set (x);
+  }
+
+  void MetaData::
+  ExpirationDate (const ExpirationDateOptional& x)
+  {
+    this->ExpirationDate_ = x;
+  }
+
+  void MetaData::
+  ExpirationDate (::std::unique_ptr< ExpirationDateType > x)
+  {
+    this->ExpirationDate_.set (std::move (x));
   }
 
   const MetaData::ModelNameSequence& MetaData::
@@ -9377,6 +9957,36 @@ namespace CDM
     this->Code_.set (std::move (x));
   }
 
+  const Relation::IdentificationOptional& Relation::
+  Identification () const
+  {
+    return this->Identification_;
+  }
+
+  Relation::IdentificationOptional& Relation::
+  Identification ()
+  {
+    return this->Identification_;
+  }
+
+  void Relation::
+  Identification (const IdentificationType& x)
+  {
+    this->Identification_.set (x);
+  }
+
+  void Relation::
+  Identification (const IdentificationOptional& x)
+  {
+    this->Identification_ = x;
+  }
+
+  void Relation::
+  Identification (::std::unique_ptr< IdentificationType > x)
+  {
+    this->Identification_.set (std::move (x));
+  }
+
   const Relation::KindType& Relation::
   Kind () const
   {
@@ -9541,6 +10151,169 @@ namespace CDM
   Characteristic (::std::unique_ptr< CharacteristicType > x)
   {
     this->Characteristic_.set (std::move (x));
+  }
+
+
+  // OperationGroup
+  // 
+
+  const OperationGroup::ExtensionOptional& OperationGroup::
+  Extension () const
+  {
+    return this->Extension_;
+  }
+
+  OperationGroup::ExtensionOptional& OperationGroup::
+  Extension ()
+  {
+    return this->Extension_;
+  }
+
+  void OperationGroup::
+  Extension (const ExtensionType& x)
+  {
+    this->Extension_.set (x);
+  }
+
+  void OperationGroup::
+  Extension (const ExtensionOptional& x)
+  {
+    this->Extension_ = x;
+  }
+
+  void OperationGroup::
+  Extension (::std::unique_ptr< ExtensionType > x)
+  {
+    this->Extension_.set (std::move (x));
+  }
+
+  const OperationGroup::TypeType& OperationGroup::
+  Type () const
+  {
+    return this->Type_.get ();
+  }
+
+  OperationGroup::TypeType& OperationGroup::
+  Type ()
+  {
+    return this->Type_.get ();
+  }
+
+  void OperationGroup::
+  Type (const TypeType& x)
+  {
+    this->Type_.set (x);
+  }
+
+  void OperationGroup::
+  Type (::std::unique_ptr< TypeType > x)
+  {
+    this->Type_.set (std::move (x));
+  }
+
+  const OperationGroup::OperatingModeOptional& OperationGroup::
+  OperatingMode () const
+  {
+    return this->OperatingMode_;
+  }
+
+  OperationGroup::OperatingModeOptional& OperationGroup::
+  OperatingMode ()
+  {
+    return this->OperatingMode_;
+  }
+
+  void OperationGroup::
+  OperatingMode (const OperatingModeType& x)
+  {
+    this->OperatingMode_.set (x);
+  }
+
+  void OperationGroup::
+  OperatingMode (const OperatingModeOptional& x)
+  {
+    this->OperatingMode_ = x;
+  }
+
+  void OperationGroup::
+  OperatingMode (::std::unique_ptr< OperatingModeType > x)
+  {
+    this->OperatingMode_.set (std::move (x));
+  }
+
+  const OperationGroup::OperationsOptional& OperationGroup::
+  Operations () const
+  {
+    return this->Operations_;
+  }
+
+  OperationGroup::OperationsOptional& OperationGroup::
+  Operations ()
+  {
+    return this->Operations_;
+  }
+
+  void OperationGroup::
+  Operations (const OperationsType& x)
+  {
+    this->Operations_.set (x);
+  }
+
+  void OperationGroup::
+  Operations (const OperationsOptional& x)
+  {
+    this->Operations_ = x;
+  }
+
+  void OperationGroup::
+  Operations (::std::unique_ptr< OperationsType > x)
+  {
+    this->Operations_.set (std::move (x));
+  }
+
+
+  // AccessLevel
+  // 
+
+  AccessLevel::
+  AccessLevel (Value v)
+  : ::xml_schema::String (_xsd_AccessLevel_literals_[v])
+  {
+  }
+
+  AccessLevel::
+  AccessLevel (const char* v)
+  : ::xml_schema::String (v)
+  {
+  }
+
+  AccessLevel::
+  AccessLevel (const ::std::string& v)
+  : ::xml_schema::String (v)
+  {
+  }
+
+  AccessLevel::
+  AccessLevel (const ::xml_schema::String& v)
+  : ::xml_schema::String (v)
+  {
+  }
+
+  AccessLevel::
+  AccessLevel (const AccessLevel& v,
+               ::xml_schema::Flags f,
+               ::xml_schema::Container* c)
+  : ::xml_schema::String (v, f, c)
+  {
+  }
+
+  AccessLevel& AccessLevel::
+  operator= (Value v)
+  {
+    static_cast< ::xml_schema::String& > (*this) = 
+    ::xml_schema::String (_xsd_AccessLevel_literals_[v]);
+
+    return *this;
   }
 
 
@@ -10027,6 +10800,58 @@ namespace CDM
   }
 
 
+  // CalibrationResult
+  // 
+
+  const CalibrationResult::CodeType& CalibrationResult::
+  Code () const
+  {
+    return this->Code_.get ();
+  }
+
+  CalibrationResult::CodeType& CalibrationResult::
+  Code ()
+  {
+    return this->Code_.get ();
+  }
+
+  void CalibrationResult::
+  Code (const CodeType& x)
+  {
+    this->Code_.set (x);
+  }
+
+  void CalibrationResult::
+  Code (::std::unique_ptr< CodeType > x)
+  {
+    this->Code_.set (std::move (x));
+  }
+
+  const CalibrationResult::ValueType& CalibrationResult::
+  Value () const
+  {
+    return this->Value_.get ();
+  }
+
+  CalibrationResult::ValueType& CalibrationResult::
+  Value ()
+  {
+    return this->Value_.get ();
+  }
+
+  void CalibrationResult::
+  Value (const ValueType& x)
+  {
+    this->Value_.set (x);
+  }
+
+  void CalibrationResult::
+  Value (::std::unique_ptr< ValueType > x)
+  {
+    this->Value_.set (std::move (x));
+  }
+
+
   // Udi
   // 
 
@@ -10483,7 +11308,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -10511,7 +11336,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MdDescription",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MdDescriptionType >,
             false, true, i, n, f, this));
 
@@ -10539,7 +11364,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MdState",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MdStateType >,
             false, true, i, n, f, this));
 
@@ -10630,7 +11455,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Mdib >
   _xsd_Mdib_type_factory_init (
     "Mdib",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MdDescription
   //
@@ -10687,7 +11512,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -10715,7 +11540,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Mds",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MdsType >,
             false, true, i, n, f, this));
 
@@ -10781,7 +11606,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdDescription >
   _xsd_MdDescription_type_factory_init (
     "MdDescription",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MdState
   //
@@ -10838,7 +11663,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -10866,7 +11691,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "State",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< StateType >,
             false, true, i, n, f, this));
 
@@ -10932,7 +11757,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdState >
   _xsd_MdState_type_factory_init (
     "MdState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MeasurementValidity
   //
@@ -11022,7 +11847,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MeasurementValidity >
   _xsd_MeasurementValidity_type_factory_init (
     "MeasurementValidity",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // Timestamp
   //
@@ -11082,7 +11907,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Timestamp >
   _xsd_Timestamp_type_factory_init (
     "Timestamp",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // VersionCounter
   //
@@ -11142,7 +11967,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, VersionCounter >
   _xsd_VersionCounter_type_factory_init (
     "VersionCounter",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ReferencedVersion
   //
@@ -11202,7 +12027,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ReferencedVersion >
   _xsd_ReferencedVersion_type_factory_init (
     "ReferencedVersion",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // CodeIdentifier
   //
@@ -11280,7 +12105,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CodeIdentifier >
   _xsd_CodeIdentifier_type_factory_init (
     "CodeIdentifier",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SymbolicCodeName
   //
@@ -11358,7 +12183,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SymbolicCodeName >
   _xsd_SymbolicCodeName_type_factory_init (
     "SymbolicCodeName",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // LocalizedTextRef
   //
@@ -11436,14 +12261,176 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocalizedTextRef >
   _xsd_LocalizedTextRef_type_factory_init (
     "LocalizedTextRef",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
+
+  // LocalizedTextContent
+  //
+
+  LocalizedTextContent::
+  LocalizedTextContent ()
+  : ::xml_schema::String ()
+  {
+  }
+
+  LocalizedTextContent::
+  LocalizedTextContent (const char* _xsd_String_base)
+  : ::xml_schema::String (_xsd_String_base)
+  {
+  }
+
+  LocalizedTextContent::
+  LocalizedTextContent (const ::std::string& _xsd_String_base)
+  : ::xml_schema::String (_xsd_String_base)
+  {
+  }
+
+  LocalizedTextContent::
+  LocalizedTextContent (const ::xml_schema::String& _xsd_String_base)
+  : ::xml_schema::String (_xsd_String_base)
+  {
+  }
+
+  LocalizedTextContent::
+  LocalizedTextContent (const LocalizedTextContent& x,
+                        ::xml_schema::Flags f,
+                        ::xml_schema::Container* c)
+  : ::xml_schema::String (x, f, c)
+  {
+  }
+
+  LocalizedTextContent::
+  LocalizedTextContent (const ::xercesc::DOMElement& e,
+                        ::xml_schema::Flags f,
+                        ::xml_schema::Container* c)
+  : ::xml_schema::String (e, f, c)
+  {
+  }
+
+  LocalizedTextContent::
+  LocalizedTextContent (const ::xercesc::DOMAttr& a,
+                        ::xml_schema::Flags f,
+                        ::xml_schema::Container* c)
+  : ::xml_schema::String (a, f, c)
+  {
+  }
+
+  LocalizedTextContent::
+  LocalizedTextContent (const ::std::string& s,
+                        const ::xercesc::DOMElement* e,
+                        ::xml_schema::Flags f,
+                        ::xml_schema::Container* c)
+  : ::xml_schema::String (s, e, f, c)
+  {
+  }
+
+  LocalizedTextContent* LocalizedTextContent::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class LocalizedTextContent (*this, f, c);
+  }
+
+  LocalizedTextContent::
+  ~LocalizedTextContent ()
+  {
+  }
+
+  static
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocalizedTextContent >
+  _xsd_LocalizedTextContent_type_factory_init (
+    "LocalizedTextContent",
+    "http://p11073-10207/draft10/pm/2017/10/05");
+
+  // LocalizedTextWidth
+  //
+
+  LocalizedTextWidth::
+  LocalizedTextWidth (const ::xercesc::DOMElement& e,
+                      ::xml_schema::Flags f,
+                      ::xml_schema::Container* c)
+  : ::xml_schema::String (e, f, c)
+  {
+    _xsd_LocalizedTextWidth_convert ();
+  }
+
+  LocalizedTextWidth::
+  LocalizedTextWidth (const ::xercesc::DOMAttr& a,
+                      ::xml_schema::Flags f,
+                      ::xml_schema::Container* c)
+  : ::xml_schema::String (a, f, c)
+  {
+    _xsd_LocalizedTextWidth_convert ();
+  }
+
+  LocalizedTextWidth::
+  LocalizedTextWidth (const ::std::string& s,
+                      const ::xercesc::DOMElement* e,
+                      ::xml_schema::Flags f,
+                      ::xml_schema::Container* c)
+  : ::xml_schema::String (s, e, f, c)
+  {
+    _xsd_LocalizedTextWidth_convert ();
+  }
+
+  LocalizedTextWidth* LocalizedTextWidth::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class LocalizedTextWidth (*this, f, c);
+  }
+
+  LocalizedTextWidth::Value LocalizedTextWidth::
+  _xsd_LocalizedTextWidth_convert () const
+  {
+    ::xsd::cxx::tree::enum_comparator< char > c (_xsd_LocalizedTextWidth_literals_);
+    const Value* i (::std::lower_bound (
+                      _xsd_LocalizedTextWidth_indexes_,
+                      _xsd_LocalizedTextWidth_indexes_ + 6,
+                      *this,
+                      c));
+
+    if (i == _xsd_LocalizedTextWidth_indexes_ + 6 || _xsd_LocalizedTextWidth_literals_[*i] != *this)
+    {
+      throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
+    }
+
+    return *i;
+  }
+
+  const char* const LocalizedTextWidth::
+  _xsd_LocalizedTextWidth_literals_[6] =
+  {
+    "xs",
+    "s",
+    "m",
+    "l",
+    "xl",
+    "xxl"
+  };
+
+  const LocalizedTextWidth::Value LocalizedTextWidth::
+  _xsd_LocalizedTextWidth_indexes_[6] =
+  {
+    ::CDM::LocalizedTextWidth::l,
+    ::CDM::LocalizedTextWidth::m,
+    ::CDM::LocalizedTextWidth::s,
+    ::CDM::LocalizedTextWidth::xl,
+    ::CDM::LocalizedTextWidth::xs,
+    ::CDM::LocalizedTextWidth::xxl
+  };
+
+  static
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocalizedTextWidth >
+  _xsd_LocalizedTextWidth_type_factory_init (
+    "LocalizedTextWidth",
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // LocalizedText
   //
 
   LocalizedText::
   LocalizedText ()
-  : ::xml_schema::String (),
+  : ::CDM::LocalizedTextContent (),
     Ref_ (this),
     Lang_ (this),
     Version_ (this),
@@ -11453,7 +12440,7 @@ namespace CDM
 
   LocalizedText::
   LocalizedText (const char* _xsd_String_base)
-  : ::xml_schema::String (_xsd_String_base),
+  : ::CDM::LocalizedTextContent (_xsd_String_base),
     Ref_ (this),
     Lang_ (this),
     Version_ (this),
@@ -11463,7 +12450,7 @@ namespace CDM
 
   LocalizedText::
   LocalizedText (const ::std::string& _xsd_String_base)
-  : ::xml_schema::String (_xsd_String_base),
+  : ::CDM::LocalizedTextContent (_xsd_String_base),
     Ref_ (this),
     Lang_ (this),
     Version_ (this),
@@ -11473,7 +12460,7 @@ namespace CDM
 
   LocalizedText::
   LocalizedText (const ::xml_schema::String& _xsd_String_base)
-  : ::xml_schema::String (_xsd_String_base),
+  : ::CDM::LocalizedTextContent (_xsd_String_base),
     Ref_ (this),
     Lang_ (this),
     Version_ (this),
@@ -11485,7 +12472,7 @@ namespace CDM
   LocalizedText (const LocalizedText& x,
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
-  : ::xml_schema::String (x, f, c),
+  : ::CDM::LocalizedTextContent (x, f, c),
     Ref_ (x.Ref_, f, this),
     Lang_ (x.Lang_, f, this),
     Version_ (x.Version_, f, this),
@@ -11497,7 +12484,7 @@ namespace CDM
   LocalizedText (const ::xercesc::DOMElement& e,
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
-  : ::xml_schema::String (e, f | ::xml_schema::Flags::base, c),
+  : ::CDM::LocalizedTextContent (e, f | ::xml_schema::Flags::base, c),
     Ref_ (this),
     Lang_ (this),
     Version_ (this),
@@ -11558,7 +12545,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::xml_schema::String& > (*this) = x;
+      static_cast< ::CDM::LocalizedTextContent& > (*this) = x;
       this->Ref_ = x.Ref_;
       this->Lang_ = x.Lang_;
       this->Version_ = x.Version_;
@@ -11577,7 +12564,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocalizedText >
   _xsd_LocalizedText_type_factory_init (
     "LocalizedText",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // CodedValue
   //
@@ -11649,7 +12636,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -11677,7 +12664,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CodingSystemName",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CodingSystemNameType >,
             false, true, i, n, f, this));
 
@@ -11702,7 +12689,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ConceptDescription",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ConceptDescriptionType >,
             false, true, i, n, f, this));
 
@@ -11723,27 +12710,13 @@ namespace CDM
 
       // Translation
       //
+      if (n.name () == "Translation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "Translation",
-            "http://p11073-10207/draft8/pm/2017/08/07",
-            &::xsd::cxx::tree::factory_impl< TranslationType >,
-            false, true, i, n, f, this));
+        ::std::unique_ptr< TranslationType > r (
+          TranslationTraits::create (i, f, this));
 
-        if (tmp.get () != 0)
-        {
-          ::std::unique_ptr< TranslationType > r (
-            dynamic_cast< TranslationType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          this->Translation_.push_back (::std::move (r));
-          continue;
-        }
+        this->Translation_.push_back (::std::move (r));
+        continue;
       }
 
       break;
@@ -11823,7 +12796,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CodedValue >
   _xsd_CodedValue_type_factory_init (
     "CodedValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // InstanceIdentifier
   //
@@ -11886,7 +12859,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -11914,7 +12887,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -11942,7 +12915,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "IdentifierName",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< IdentifierNameType >,
             false, true, i, n, f, this));
 
@@ -12016,7 +12989,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, InstanceIdentifier >
   _xsd_InstanceIdentifier_type_factory_init (
     "InstanceIdentifier",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // Range
   //
@@ -12082,7 +13055,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -12178,7 +13151,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Range >
   _xsd_Range_type_factory_init (
     "Range",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // Measurement
   //
@@ -12246,7 +13219,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -12274,7 +13247,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MeasurementUnit",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MeasurementUnitType >,
             false, true, i, n, f, this));
 
@@ -12303,7 +13276,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "MeasurementUnit",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     while (p.more_attributes ())
@@ -12357,7 +13330,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Measurement >
   _xsd_Measurement_type_factory_init (
     "Measurement",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SafetyClassification
   //
@@ -12437,7 +13410,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SafetyClassification >
   _xsd_SafetyClassification_type_factory_init (
     "SafetyClassification",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ComponentActivation
   //
@@ -12521,7 +13494,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ComponentActivation >
   _xsd_ComponentActivation_type_factory_init (
     "ComponentActivation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ApprovedJurisdictions
   //
@@ -12572,7 +13545,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ApprovedJurisdiction",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ApprovedJurisdictionType >,
             false, true, i, n, f, this));
 
@@ -12623,7 +13596,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ApprovedJurisdictions >
   _xsd_ApprovedJurisdictions_type_factory_init (
     "ApprovedJurisdictions",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // OperatingJurisdiction
   //
@@ -12666,7 +13639,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperatingJurisdiction >
   _xsd_OperatingJurisdiction_type_factory_init (
     "OperatingJurisdiction",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // Handle
   //
@@ -12744,7 +13717,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Handle >
   _xsd_Handle_type_factory_init (
     "Handle",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // HandleRef
   //
@@ -12822,7 +13795,158 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, HandleRef >
   _xsd_HandleRef_type_factory_init (
     "HandleRef",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
+
+  // PhysicalConnectorInfo
+  //
+
+  PhysicalConnectorInfo::
+  PhysicalConnectorInfo ()
+  : ::xml_schema::Type (),
+    Extension_ (this),
+    Label_ (this),
+    Number_ (this)
+  {
+  }
+
+  PhysicalConnectorInfo::
+  PhysicalConnectorInfo (const PhysicalConnectorInfo& x,
+                         ::xml_schema::Flags f,
+                         ::xml_schema::Container* c)
+  : ::xml_schema::Type (x, f, c),
+    Extension_ (x.Extension_, f, this),
+    Label_ (x.Label_, f, this),
+    Number_ (x.Number_, f, this)
+  {
+  }
+
+  PhysicalConnectorInfo::
+  PhysicalConnectorInfo (const ::xercesc::DOMElement& e,
+                         ::xml_schema::Flags f,
+                         ::xml_schema::Container* c)
+  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    Extension_ (this),
+    Label_ (this),
+    Number_ (this)
+  {
+    if ((f & ::xml_schema::Flags::base) == 0)
+    {
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
+      this->parse (p, f);
+    }
+  }
+
+  void PhysicalConnectorInfo::
+  parse (::xsd::cxx::xml::dom::parser< char >& p,
+         ::xml_schema::Flags f)
+  {
+    for (; p.more_content (); p.next_content (false))
+    {
+      const ::xercesc::DOMElement& i (p.cur_element ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // Extension
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Extension",
+            "http://p11073-10207/draft10/ext/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< ExtensionType >,
+            true, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!this->Extension_)
+          {
+            ::std::unique_ptr< ExtensionType > r (
+              dynamic_cast< ExtensionType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->Extension_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
+      // Label
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Label",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< LabelType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          ::std::unique_ptr< LabelType > r (
+            dynamic_cast< LabelType* > (tmp.get ()));
+
+          if (r.get ())
+            tmp.release ();
+          else
+            throw ::xsd::cxx::tree::not_derived< char > ();
+
+          this->Label_.push_back (::std::move (r));
+          continue;
+        }
+      }
+
+      break;
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      if (n.name () == "Number" && n.namespace_ ().empty ())
+      {
+        this->Number_.set (NumberTraits::create (i, f, this));
+        continue;
+      }
+    }
+  }
+
+  PhysicalConnectorInfo* PhysicalConnectorInfo::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class PhysicalConnectorInfo (*this, f, c);
+  }
+
+  PhysicalConnectorInfo& PhysicalConnectorInfo::
+  operator= (const PhysicalConnectorInfo& x)
+  {
+    if (this != &x)
+    {
+      static_cast< ::xml_schema::Type& > (*this) = x;
+      this->Extension_ = x.Extension_;
+      this->Label_ = x.Label_;
+      this->Number_ = x.Number_;
+    }
+
+    return *this;
+  }
+
+  PhysicalConnectorInfo::
+  ~PhysicalConnectorInfo ()
+  {
+  }
+
+  static
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, PhysicalConnectorInfo >
+  _xsd_PhysicalConnectorInfo_type_factory_init (
+    "PhysicalConnectorInfo",
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractDescriptor
   //
@@ -12885,7 +14009,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -12913,7 +14037,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -13003,7 +14127,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractDescriptor >
   _xsd_AbstractDescriptor_type_factory_init (
     "AbstractDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractState
   //
@@ -13063,7 +14187,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -13152,7 +14276,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractState >
   _xsd_AbstractState_type_factory_init (
     "AbstractState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractMultiState
   //
@@ -13209,7 +14333,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Category",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CategoryType >,
             false, true, i, n, f, this));
 
@@ -13286,7 +14410,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractMultiState >
   _xsd_AbstractMultiState_type_factory_init (
     "AbstractMultiState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractDeviceComponentDescriptor
   //
@@ -13335,7 +14459,7 @@ namespace CDM
 
       // ProductionSpecification
       //
-      if (n.name () == "ProductionSpecification" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "ProductionSpecification" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< ProductionSpecificationType > r (
           ProductionSpecificationTraits::create (i, f, this));
@@ -13376,7 +14500,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractDeviceComponentDescriptor >
   _xsd_AbstractDeviceComponentDescriptor_type_factory_init (
     "AbstractDeviceComponentDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractComplexDeviceComponentDescriptor
   //
@@ -13432,7 +14556,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AlertSystem",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< AlertSystemType >,
             false, true, i, n, f, this));
 
@@ -13460,7 +14584,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Sco",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ScoType >,
             false, true, i, n, f, this));
 
@@ -13515,7 +14639,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractComplexDeviceComponentDescriptor >
   _xsd_AbstractComplexDeviceComponentDescriptor_type_factory_init (
     "AbstractComplexDeviceComponentDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // CalibrationState
   //
@@ -13593,7 +14717,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CalibrationState >
   _xsd_CalibrationState_type_factory_init (
     "CalibrationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // CalibrationType
   //
@@ -13673,7 +14797,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CalibrationType >
   _xsd_CalibrationType_type_factory_init (
     "CalibrationType",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // CalibrationInfo
   //
@@ -13682,6 +14806,7 @@ namespace CDM
   CalibrationInfo ()
   : ::xml_schema::Type (),
     Extension_ (this),
+    CalibrationDocumentation_ (this),
     ComponentCalibrationState_ (this),
     Type_ (this),
     Time_ (this)
@@ -13694,6 +14819,7 @@ namespace CDM
                    ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
     Extension_ (x.Extension_, f, this),
+    CalibrationDocumentation_ (x.CalibrationDocumentation_, f, this),
     ComponentCalibrationState_ (x.ComponentCalibrationState_, f, this),
     Type_ (x.Type_, f, this),
     Time_ (x.Time_, f, this)
@@ -13706,6 +14832,7 @@ namespace CDM
                    ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
     Extension_ (this),
+    CalibrationDocumentation_ (this),
     ComponentCalibrationState_ (this),
     Type_ (this),
     Time_ (this)
@@ -13733,7 +14860,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -13753,6 +14880,17 @@ namespace CDM
             continue;
           }
         }
+      }
+
+      // CalibrationDocumentation
+      //
+      if (n.name () == "CalibrationDocumentation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      {
+        ::std::unique_ptr< CalibrationDocumentationType > r (
+          CalibrationDocumentationTraits::create (i, f, this));
+
+        this->CalibrationDocumentation_.push_back (::std::move (r));
+        continue;
       }
 
       break;
@@ -13798,6 +14936,7 @@ namespace CDM
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->Extension_ = x.Extension_;
+      this->CalibrationDocumentation_ = x.CalibrationDocumentation_;
       this->ComponentCalibrationState_ = x.ComponentCalibrationState_;
       this->Type_ = x.Type_;
       this->Time_ = x.Time_;
@@ -13815,7 +14954,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CalibrationInfo >
   _xsd_CalibrationInfo_type_factory_init (
     "CalibrationInfo",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractDeviceComponentState
   //
@@ -13825,6 +14964,7 @@ namespace CDM
   : ::CDM::AbstractState (DescriptorHandle),
     CalibrationInfo_ (this),
     NextCalibration_ (this),
+    PhysicalConnector_ (this),
     ActivationState_ (this),
     OperatingHours_ (this),
     OperatingCycles_ (this)
@@ -13838,6 +14978,7 @@ namespace CDM
   : ::CDM::AbstractState (x, f, c),
     CalibrationInfo_ (x.CalibrationInfo_, f, this),
     NextCalibration_ (x.NextCalibration_, f, this),
+    PhysicalConnector_ (x.PhysicalConnector_, f, this),
     ActivationState_ (x.ActivationState_, f, this),
     OperatingHours_ (x.OperatingHours_, f, this),
     OperatingCycles_ (x.OperatingCycles_, f, this)
@@ -13851,6 +14992,7 @@ namespace CDM
   : ::CDM::AbstractState (e, f | ::xml_schema::Flags::base, c),
     CalibrationInfo_ (this),
     NextCalibration_ (this),
+    PhysicalConnector_ (this),
     ActivationState_ (this),
     OperatingHours_ (this),
     OperatingCycles_ (this)
@@ -13880,7 +15022,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CalibrationInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CalibrationInfoType >,
             false, true, i, n, f, this));
 
@@ -13908,7 +15050,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "NextCalibration",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< NextCalibrationType >,
             false, true, i, n, f, this));
 
@@ -13925,6 +15067,34 @@ namespace CDM
               throw ::xsd::cxx::tree::not_derived< char > ();
 
             this->NextCalibration_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
+      // PhysicalConnector
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "PhysicalConnector",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< PhysicalConnectorType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!this->PhysicalConnector_)
+          {
+            ::std::unique_ptr< PhysicalConnectorType > r (
+              dynamic_cast< PhysicalConnectorType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->PhysicalConnector_.set (::std::move (r));
             continue;
           }
         }
@@ -13976,6 +15146,7 @@ namespace CDM
       static_cast< ::CDM::AbstractState& > (*this) = x;
       this->CalibrationInfo_ = x.CalibrationInfo_;
       this->NextCalibration_ = x.NextCalibration_;
+      this->PhysicalConnector_ = x.PhysicalConnector_;
       this->ActivationState_ = x.ActivationState_;
       this->OperatingHours_ = x.OperatingHours_;
       this->OperatingCycles_ = x.OperatingCycles_;
@@ -13993,7 +15164,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractDeviceComponentState >
   _xsd_AbstractDeviceComponentState_type_factory_init (
     "AbstractDeviceComponentState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractComplexDeviceComponentState
   //
@@ -14036,7 +15207,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractComplexDeviceComponentState >
   _xsd_AbstractComplexDeviceComponentState_type_factory_init (
     "AbstractComplexDeviceComponentState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MdsDescriptor
   //
@@ -14100,7 +15271,7 @@ namespace CDM
 
       // MetaData
       //
-      if (n.name () == "MetaData" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "MetaData" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< MetaDataType > r (
           MetaDataTraits::create (i, f, this));
@@ -14118,7 +15289,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SystemContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< SystemContextType >,
             false, true, i, n, f, this));
 
@@ -14146,7 +15317,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Clock",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ClockType >,
             false, true, i, n, f, this));
 
@@ -14174,7 +15345,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Battery",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< BatteryType >,
             false, true, i, n, f, this));
 
@@ -14199,7 +15370,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ApprovedJurisdictions",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ApprovedJurisdictionsType >,
             false, true, i, n, f, this));
 
@@ -14227,7 +15398,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Vmd",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< VmdType >,
             false, true, i, n, f, this));
 
@@ -14283,7 +15454,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdsDescriptor >
   _xsd_MdsDescriptor_type_factory_init (
     "MdsDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MdsOperatingMode
   //
@@ -14363,7 +15534,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdsOperatingMode >
   _xsd_MdsOperatingMode_type_factory_init (
     "MdsOperatingMode",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MdsState
   //
@@ -14422,7 +15593,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperatingJurisdiction",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< OperatingJurisdictionType >,
             false, true, i, n, f, this));
 
@@ -14499,7 +15670,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdsState >
   _xsd_MdsState_type_factory_init (
     "MdsState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // VmdDescriptor
   //
@@ -14555,7 +15726,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ApprovedJurisdictions",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ApprovedJurisdictionsType >,
             false, true, i, n, f, this));
 
@@ -14583,7 +15754,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Channel",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ChannelType >,
             false, true, i, n, f, this));
 
@@ -14635,7 +15806,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, VmdDescriptor >
   _xsd_VmdDescriptor_type_factory_init (
     "VmdDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // VmdState
   //
@@ -14688,7 +15859,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperatingJurisdiction",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< OperatingJurisdictionType >,
             false, true, i, n, f, this));
 
@@ -14742,7 +15913,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, VmdState >
   _xsd_VmdState_type_factory_init (
     "VmdState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ChannelDescriptor
   //
@@ -14795,7 +15966,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Metric",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MetricType >,
             false, true, i, n, f, this));
 
@@ -14846,7 +16017,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ChannelDescriptor >
   _xsd_ChannelDescriptor_type_factory_init (
     "ChannelDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ChannelState
   //
@@ -14889,7 +16060,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ChannelState >
   _xsd_ChannelState_type_factory_init (
     "ChannelState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractAlertDescriptor
   //
@@ -14932,7 +16103,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractAlertDescriptor >
   _xsd_AbstractAlertDescriptor_type_factory_init (
     "AbstractAlertDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractAlertState
   //
@@ -15025,7 +16196,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractAlertState >
   _xsd_AbstractAlertState_type_factory_init (
     "AbstractAlertState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertActivation
   //
@@ -15103,7 +16274,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertActivation >
   _xsd_AlertActivation_type_factory_init (
     "AlertActivation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SystemSignalActivation
   //
@@ -15209,7 +16380,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SystemSignalActivation >
   _xsd_SystemSignalActivation_type_factory_init (
     "SystemSignalActivation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertSystemDescriptor
   //
@@ -15274,7 +16445,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AlertCondition",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< AlertConditionType >,
             false, true, i, n, f, this));
 
@@ -15299,7 +16470,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AlertSignal",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< AlertSignalType >,
             false, true, i, n, f, this));
 
@@ -15381,7 +16552,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSystemDescriptor >
   _xsd_AlertSystemDescriptor_type_factory_init (
     "AlertSystemDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertSystemState
   //
@@ -15448,7 +16619,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SystemSignalActivation",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< SystemSignalActivationType >,
             false, true, i, n, f, this));
 
@@ -15536,7 +16707,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSystemState >
   _xsd_AlertSystemState_type_factory_init (
     "AlertSystemState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // CauseInfo
   //
@@ -15593,7 +16764,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -15621,7 +16792,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RemedyInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< RemedyInfoType >,
             false, true, i, n, f, this));
 
@@ -15649,7 +16820,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Description",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< DescriptionType >,
             false, true, i, n, f, this));
 
@@ -15702,7 +16873,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CauseInfo >
   _xsd_CauseInfo_type_factory_init (
     "CauseInfo",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // RemedyInfo
   //
@@ -15756,7 +16927,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -15784,7 +16955,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Description",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< DescriptionType >,
             false, true, i, n, f, this));
 
@@ -15836,7 +17007,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RemedyInfo >
   _xsd_RemedyInfo_type_factory_init (
     "RemedyInfo",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertConditionKind
   //
@@ -15914,7 +17085,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionKind >
   _xsd_AlertConditionKind_type_factory_init (
     "AlertConditionKind",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertConditionPriority
   //
@@ -15994,7 +17165,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionPriority >
   _xsd_AlertConditionPriority_type_factory_init (
     "AlertConditionPriority",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertConditionDescriptor
   //
@@ -16067,7 +17238,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Source",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< SourceType >,
             false, true, i, n, f, this));
 
@@ -16092,7 +17263,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CauseInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CauseInfoType >,
             false, true, i, n, f, this));
 
@@ -16202,7 +17373,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionDescriptor >
   _xsd_AlertConditionDescriptor_type_factory_init (
     "AlertConditionDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertConditionReference
   //
@@ -16251,21 +17422,20 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionReference >
   _xsd_AlertConditionReference_type_factory_init (
     "AlertConditionReference",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertConditionState
   //
 
   AlertConditionState::
   AlertConditionState (const DescriptorHandleType& DescriptorHandle,
-                       const ActivationStateType& ActivationState,
-                       const PresenceType& Presence)
+                       const ActivationStateType& ActivationState)
   : ::CDM::AbstractAlertState (DescriptorHandle,
                                ActivationState),
     ActualConditionGenerationDelay_ (this),
     ActualPriority_ (this),
     Rank_ (this),
-    Presence_ (Presence, this),
+    Presence_ (this),
     DeterminationTime_ (this)
   {
   }
@@ -16345,13 +17515,6 @@ namespace CDM
         continue;
       }
     }
-
-    if (!Presence_.present ())
-    {
-      throw ::xsd::cxx::tree::expected_attribute< char > (
-        "Presence",
-        "");
-    }
   }
 
   AlertConditionState* AlertConditionState::
@@ -16386,7 +17549,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionState >
   _xsd_AlertConditionState_type_factory_init (
     "AlertConditionState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // LimitAlertConditionDescriptor
   //
@@ -16460,7 +17623,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MaxLimits",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MaxLimitsType >,
             false, true, i, n, f, this));
 
@@ -16489,7 +17652,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "MaxLimits",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     p.reset_attributes ();
@@ -16537,7 +17700,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LimitAlertConditionDescriptor >
   _xsd_LimitAlertConditionDescriptor_type_factory_init (
     "LimitAlertConditionDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertConditionMonitoredLimits
   //
@@ -16617,7 +17780,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionMonitoredLimits >
   _xsd_AlertConditionMonitoredLimits_type_factory_init (
     "AlertConditionMonitoredLimits",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // LimitAlertConditionState
   //
@@ -16625,12 +17788,10 @@ namespace CDM
   LimitAlertConditionState::
   LimitAlertConditionState (const DescriptorHandleType& DescriptorHandle,
                             const ActivationStateType& ActivationState,
-                            const PresenceType& Presence,
                             const LimitsType& Limits,
                             const MonitoredAlertLimitsType& MonitoredAlertLimits)
   : ::CDM::AlertConditionState (DescriptorHandle,
-                                ActivationState,
-                                Presence),
+                                ActivationState),
     Limits_ (Limits, this),
     MonitoredAlertLimits_ (MonitoredAlertLimits, this),
     AutoLimitActivationState_ (this)
@@ -16640,12 +17801,10 @@ namespace CDM
   LimitAlertConditionState::
   LimitAlertConditionState (const DescriptorHandleType& DescriptorHandle,
                             const ActivationStateType& ActivationState,
-                            const PresenceType& Presence,
                             ::std::unique_ptr< LimitsType > Limits,
                             const MonitoredAlertLimitsType& MonitoredAlertLimits)
   : ::CDM::AlertConditionState (DescriptorHandle,
-                                ActivationState,
-                                Presence),
+                                ActivationState),
     Limits_ (std::move (Limits), this),
     MonitoredAlertLimits_ (MonitoredAlertLimits, this),
     AutoLimitActivationState_ (this)
@@ -16697,7 +17856,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Limits",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< LimitsType >,
             false, true, i, n, f, this));
 
@@ -16726,7 +17885,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Limits",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     p.reset_attributes ();
@@ -16788,7 +17947,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LimitAlertConditionState >
   _xsd_LimitAlertConditionState_type_factory_init (
     "LimitAlertConditionState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertSignalManifestation
   //
@@ -16868,21 +18027,22 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalManifestation >
   _xsd_AlertSignalManifestation_type_factory_init (
     "AlertSignalManifestation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertSignalDescriptor
   //
 
   AlertSignalDescriptor::
   AlertSignalDescriptor (const HandleType& Handle,
-                         const ConditionSignaledType& ConditionSignaled,
                          const ManifestationType& Manifestation,
                          const LatchingType& Latching)
   : ::CDM::AbstractAlertDescriptor (Handle),
-    ConditionSignaled_ (ConditionSignaled, this),
+    ConditionSignaled_ (this),
     Manifestation_ (Manifestation, this),
     Latching_ (Latching, this),
     DefaultSignalGenerationDelay_ (this),
+    MinSignalGenerationDelay_ (this),
+    MaxSignalGenerationDelay_ (this),
     SignalDelegationSupported_ (this),
     AcknowledgementSupported_ (this),
     AcknowledgeTimeout_ (this)
@@ -16898,6 +18058,8 @@ namespace CDM
     Manifestation_ (x.Manifestation_, f, this),
     Latching_ (x.Latching_, f, this),
     DefaultSignalGenerationDelay_ (x.DefaultSignalGenerationDelay_, f, this),
+    MinSignalGenerationDelay_ (x.MinSignalGenerationDelay_, f, this),
+    MaxSignalGenerationDelay_ (x.MaxSignalGenerationDelay_, f, this),
     SignalDelegationSupported_ (x.SignalDelegationSupported_, f, this),
     AcknowledgementSupported_ (x.AcknowledgementSupported_, f, this),
     AcknowledgeTimeout_ (x.AcknowledgeTimeout_, f, this)
@@ -16913,6 +18075,8 @@ namespace CDM
     Manifestation_ (this),
     Latching_ (this),
     DefaultSignalGenerationDelay_ (this),
+    MinSignalGenerationDelay_ (this),
+    MaxSignalGenerationDelay_ (this),
     SignalDelegationSupported_ (this),
     AcknowledgementSupported_ (this),
     AcknowledgeTimeout_ (this)
@@ -16962,6 +18126,18 @@ namespace CDM
         continue;
       }
 
+      if (n.name () == "MinSignalGenerationDelay" && n.namespace_ ().empty ())
+      {
+        this->MinSignalGenerationDelay_.set (MinSignalGenerationDelayTraits::create (i, f, this));
+        continue;
+      }
+
+      if (n.name () == "MaxSignalGenerationDelay" && n.namespace_ ().empty ())
+      {
+        this->MaxSignalGenerationDelay_.set (MaxSignalGenerationDelayTraits::create (i, f, this));
+        continue;
+      }
+
       if (n.name () == "SignalDelegationSupported" && n.namespace_ ().empty ())
       {
         this->SignalDelegationSupported_.set (SignalDelegationSupportedTraits::create (i, f, this));
@@ -16979,13 +18155,6 @@ namespace CDM
         this->AcknowledgeTimeout_.set (AcknowledgeTimeoutTraits::create (i, f, this));
         continue;
       }
-    }
-
-    if (!ConditionSignaled_.present ())
-    {
-      throw ::xsd::cxx::tree::expected_attribute< char > (
-        "ConditionSignaled",
-        "");
     }
 
     if (!Manifestation_.present ())
@@ -17020,6 +18189,8 @@ namespace CDM
       this->Manifestation_ = x.Manifestation_;
       this->Latching_ = x.Latching_;
       this->DefaultSignalGenerationDelay_ = x.DefaultSignalGenerationDelay_;
+      this->MinSignalGenerationDelay_ = x.MinSignalGenerationDelay_;
+      this->MaxSignalGenerationDelay_ = x.MaxSignalGenerationDelay_;
       this->SignalDelegationSupported_ = x.SignalDelegationSupported_;
       this->AcknowledgementSupported_ = x.AcknowledgementSupported_;
       this->AcknowledgeTimeout_ = x.AcknowledgeTimeout_;
@@ -17037,7 +18208,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalDescriptor >
   _xsd_AlertSignalDescriptor_type_factory_init (
     "AlertSignalDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertSignalPresence
   //
@@ -17117,7 +18288,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalPresence >
   _xsd_AlertSignalPresence_type_factory_init (
     "AlertSignalPresence",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertSignalPrimaryLocation
   //
@@ -17193,7 +18364,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalPrimaryLocation >
   _xsd_AlertSignalPrimaryLocation_type_factory_init (
     "AlertSignalPrimaryLocation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AlertSignalState
   //
@@ -17310,7 +18481,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalState >
   _xsd_AlertSignalState_type_factory_init (
     "AlertSignalState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // QualityIndicator
   //
@@ -17370,7 +18541,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, QualityIndicator >
   _xsd_QualityIndicator_type_factory_init (
     "QualityIndicator",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // GenerationMode
   //
@@ -17448,7 +18619,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, GenerationMode >
   _xsd_GenerationMode_type_factory_init (
     "GenerationMode",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractMetricValue
   //
@@ -17526,7 +18697,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -17550,7 +18721,7 @@ namespace CDM
 
       // MetricQuality
       //
-      if (n.name () == "MetricQuality" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "MetricQuality" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< MetricQualityType > r (
           MetricQualityTraits::create (i, f, this));
@@ -17564,7 +18735,7 @@ namespace CDM
 
       // Annotation
       //
-      if (n.name () == "Annotation" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "Annotation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< AnnotationType > r (
           AnnotationTraits::create (i, f, this));
@@ -17580,7 +18751,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "MetricQuality",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     while (p.more_attributes ())
@@ -17642,7 +18813,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractMetricValue >
   _xsd_AbstractMetricValue_type_factory_init (
     "AbstractMetricValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // NumericMetricValue
   //
@@ -17734,7 +18905,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, NumericMetricValue >
   _xsd_NumericMetricValue_type_factory_init (
     "NumericMetricValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // StringMetricValue
   //
@@ -17826,7 +18997,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StringMetricValue >
   _xsd_StringMetricValue_type_factory_init (
     "StringMetricValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // RealTimeValueType
   //
@@ -17875,7 +19046,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RealTimeValueType >
   _xsd_RealTimeValueType_type_factory_init (
     "RealTimeValueType",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SampleArrayValue
   //
@@ -17935,7 +19106,7 @@ namespace CDM
 
       // ApplyAnnotation
       //
-      if (n.name () == "ApplyAnnotation" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "ApplyAnnotation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< ApplyAnnotationType > r (
           ApplyAnnotationTraits::create (i, f, this));
@@ -17992,7 +19163,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SampleArrayValue >
   _xsd_SampleArrayValue_type_factory_init (
     "SampleArrayValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MetricCategory
   //
@@ -18076,7 +19247,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MetricCategory >
   _xsd_MetricCategory_type_factory_init (
     "MetricCategory",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // DerivationMethod
   //
@@ -18152,7 +19323,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DerivationMethod >
   _xsd_DerivationMethod_type_factory_init (
     "DerivationMethod",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MetricAvailability
   //
@@ -18228,7 +19399,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MetricAvailability >
   _xsd_MetricAvailability_type_factory_init (
     "MetricAvailability",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractMetricDescriptor
   //
@@ -18334,7 +19505,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Unit",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< UnitType >,
             false, true, i, n, f, this));
 
@@ -18362,7 +19533,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "BodySite",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< BodySiteType >,
             false, true, i, n, f, this));
 
@@ -18383,7 +19554,7 @@ namespace CDM
 
       // Relation
       //
-      if (n.name () == "Relation" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "Relation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< RelationType > r (
           RelationTraits::create (i, f, this));
@@ -18399,7 +19570,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Unit",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     p.reset_attributes ();
@@ -18512,7 +19683,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractMetricDescriptor >
   _xsd_AbstractMetricDescriptor_type_factory_init (
     "AbstractMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractMetricState
   //
@@ -18521,6 +19692,7 @@ namespace CDM
   AbstractMetricState (const DescriptorHandleType& DescriptorHandle)
   : ::CDM::AbstractState (DescriptorHandle),
     BodySite_ (this),
+    PhysicalConnector_ (this),
     ActivationState_ (this),
     ActiveDeterminationPeriod_ (this),
     LifeTimePeriod_ (this)
@@ -18533,6 +19705,7 @@ namespace CDM
                        ::xml_schema::Container* c)
   : ::CDM::AbstractState (x, f, c),
     BodySite_ (x.BodySite_, f, this),
+    PhysicalConnector_ (x.PhysicalConnector_, f, this),
     ActivationState_ (x.ActivationState_, f, this),
     ActiveDeterminationPeriod_ (x.ActiveDeterminationPeriod_, f, this),
     LifeTimePeriod_ (x.LifeTimePeriod_, f, this)
@@ -18545,6 +19718,7 @@ namespace CDM
                        ::xml_schema::Container* c)
   : ::CDM::AbstractState (e, f | ::xml_schema::Flags::base, c),
     BodySite_ (this),
+    PhysicalConnector_ (this),
     ActivationState_ (this),
     ActiveDeterminationPeriod_ (this),
     LifeTimePeriod_ (this)
@@ -18574,7 +19748,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "BodySite",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< BodySiteType >,
             false, true, i, n, f, this));
 
@@ -18590,6 +19764,34 @@ namespace CDM
 
           this->BodySite_.push_back (::std::move (r));
           continue;
+        }
+      }
+
+      // PhysicalConnector
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "PhysicalConnector",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< PhysicalConnectorType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!this->PhysicalConnector_)
+          {
+            ::std::unique_ptr< PhysicalConnectorType > r (
+              dynamic_cast< PhysicalConnectorType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->PhysicalConnector_.set (::std::move (r));
+            continue;
+          }
         }
       }
 
@@ -18638,6 +19840,7 @@ namespace CDM
     {
       static_cast< ::CDM::AbstractState& > (*this) = x;
       this->BodySite_ = x.BodySite_;
+      this->PhysicalConnector_ = x.PhysicalConnector_;
       this->ActivationState_ = x.ActivationState_;
       this->ActiveDeterminationPeriod_ = x.ActiveDeterminationPeriod_;
       this->LifeTimePeriod_ = x.LifeTimePeriod_;
@@ -18655,7 +19858,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractMetricState >
   _xsd_AbstractMetricState_type_factory_init (
     "AbstractMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // NumericMetricDescriptor
   //
@@ -18664,13 +19867,14 @@ namespace CDM
   NumericMetricDescriptor (const HandleType& Handle,
                            const UnitType& Unit,
                            const MetricCategoryType& MetricCategory,
-                           const MetricAvailabilityType& MetricAvailability)
+                           const MetricAvailabilityType& MetricAvailability,
+                           const ResolutionType& Resolution)
   : ::CDM::AbstractMetricDescriptor (Handle,
                                      Unit,
                                      MetricCategory,
                                      MetricAvailability),
     TechnicalRange_ (this),
-    Resolution_ (this),
+    Resolution_ (Resolution, this),
     AveragingPeriod_ (this)
   {
   }
@@ -18679,13 +19883,14 @@ namespace CDM
   NumericMetricDescriptor (const HandleType& Handle,
                            ::std::unique_ptr< UnitType > Unit,
                            const MetricCategoryType& MetricCategory,
-                           const MetricAvailabilityType& MetricAvailability)
+                           const MetricAvailabilityType& MetricAvailability,
+                           const ResolutionType& Resolution)
   : ::CDM::AbstractMetricDescriptor (Handle,
                                      std::move (Unit),
                                      MetricCategory,
                                      MetricAvailability),
     TechnicalRange_ (this),
-    Resolution_ (this),
+    Resolution_ (Resolution, this),
     AveragingPeriod_ (this)
   {
   }
@@ -18735,7 +19940,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TechnicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TechnicalRangeType >,
             false, true, i, n, f, this));
 
@@ -18777,6 +19982,13 @@ namespace CDM
         continue;
       }
     }
+
+    if (!Resolution_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_attribute< char > (
+        "Resolution",
+        "");
+    }
   }
 
   NumericMetricDescriptor* NumericMetricDescriptor::
@@ -18809,7 +20021,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, NumericMetricDescriptor >
   _xsd_NumericMetricDescriptor_type_factory_init (
     "NumericMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // NumericMetricState
   //
@@ -18868,7 +20080,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MetricValue",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MetricValueType >,
             false, true, i, n, f, this));
 
@@ -18896,7 +20108,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PhysiologicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< PhysiologicalRangeType >,
             false, true, i, n, f, this));
 
@@ -18964,7 +20176,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, NumericMetricState >
   _xsd_NumericMetricState_type_factory_init (
     "NumericMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // StringMetricDescriptor
   //
@@ -19025,7 +20237,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StringMetricDescriptor >
   _xsd_StringMetricDescriptor_type_factory_init (
     "StringMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // StringMetricState
   //
@@ -19078,7 +20290,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MetricValue",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MetricValueType >,
             false, true, i, n, f, this));
 
@@ -19132,7 +20344,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StringMetricState >
   _xsd_StringMetricState_type_factory_init (
     "StringMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // EnumStringMetricDescriptor
   //
@@ -19200,7 +20412,7 @@ namespace CDM
 
       // AllowedValue
       //
-      if (n.name () == "AllowedValue" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "AllowedValue" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< AllowedValueType > r (
           AllowedValueTraits::create (i, f, this));
@@ -19241,7 +20453,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, EnumStringMetricDescriptor >
   _xsd_EnumStringMetricDescriptor_type_factory_init (
     "EnumStringMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // EnumStringMetricState
   //
@@ -19284,7 +20496,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, EnumStringMetricState >
   _xsd_EnumStringMetricState_type_factory_init (
     "EnumStringMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // RealTimeSampleArrayMetricDescriptor
   //
@@ -19294,13 +20506,14 @@ namespace CDM
                                        const UnitType& Unit,
                                        const MetricCategoryType& MetricCategory,
                                        const MetricAvailabilityType& MetricAvailability,
+                                       const ResolutionType& Resolution,
                                        const SamplePeriodType& SamplePeriod)
   : ::CDM::AbstractMetricDescriptor (Handle,
                                      Unit,
                                      MetricCategory,
                                      MetricAvailability),
     TechnicalRange_ (this),
-    Resolution_ (this),
+    Resolution_ (Resolution, this),
     SamplePeriod_ (SamplePeriod, this)
   {
   }
@@ -19310,13 +20523,14 @@ namespace CDM
                                        ::std::unique_ptr< UnitType > Unit,
                                        const MetricCategoryType& MetricCategory,
                                        const MetricAvailabilityType& MetricAvailability,
+                                       const ResolutionType& Resolution,
                                        const SamplePeriodType& SamplePeriod)
   : ::CDM::AbstractMetricDescriptor (Handle,
                                      std::move (Unit),
                                      MetricCategory,
                                      MetricAvailability),
     TechnicalRange_ (this),
-    Resolution_ (this),
+    Resolution_ (Resolution, this),
     SamplePeriod_ (SamplePeriod, this)
   {
   }
@@ -19366,7 +20580,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TechnicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TechnicalRangeType >,
             false, true, i, n, f, this));
 
@@ -19409,6 +20623,13 @@ namespace CDM
       }
     }
 
+    if (!Resolution_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_attribute< char > (
+        "Resolution",
+        "");
+    }
+
     if (!SamplePeriod_.present ())
     {
       throw ::xsd::cxx::tree::expected_attribute< char > (
@@ -19447,7 +20668,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RealTimeSampleArrayMetricDescriptor >
   _xsd_RealTimeSampleArrayMetricDescriptor_type_factory_init (
     "RealTimeSampleArrayMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // RealTimeSampleArrayMetricState
   //
@@ -19503,7 +20724,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MetricValue",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MetricValueType >,
             false, true, i, n, f, this));
 
@@ -19531,7 +20752,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PhysiologicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< PhysiologicalRangeType >,
             false, true, i, n, f, this));
 
@@ -19583,7 +20804,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RealTimeSampleArrayMetricState >
   _xsd_RealTimeSampleArrayMetricState_type_factory_init (
     "RealTimeSampleArrayMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // DistributionSampleArrayMetricDescriptor
   //
@@ -19594,7 +20815,8 @@ namespace CDM
                                            const MetricCategoryType& MetricCategory,
                                            const MetricAvailabilityType& MetricAvailability,
                                            const DomainUnitType& DomainUnit,
-                                           const DistributionRangeType& DistributionRange)
+                                           const DistributionRangeType& DistributionRange,
+                                           const ResolutionType& Resolution)
   : ::CDM::AbstractMetricDescriptor (Handle,
                                      Unit,
                                      MetricCategory,
@@ -19602,7 +20824,7 @@ namespace CDM
     TechnicalRange_ (this),
     DomainUnit_ (DomainUnit, this),
     DistributionRange_ (DistributionRange, this),
-    Resolution_ (this)
+    Resolution_ (Resolution, this)
   {
   }
 
@@ -19612,7 +20834,8 @@ namespace CDM
                                            const MetricCategoryType& MetricCategory,
                                            const MetricAvailabilityType& MetricAvailability,
                                            ::std::unique_ptr< DomainUnitType > DomainUnit,
-                                           ::std::unique_ptr< DistributionRangeType > DistributionRange)
+                                           ::std::unique_ptr< DistributionRangeType > DistributionRange,
+                                           const ResolutionType& Resolution)
   : ::CDM::AbstractMetricDescriptor (Handle,
                                      std::move (Unit),
                                      MetricCategory,
@@ -19620,7 +20843,7 @@ namespace CDM
     TechnicalRange_ (this),
     DomainUnit_ (std::move (DomainUnit), this),
     DistributionRange_ (std::move (DistributionRange), this),
-    Resolution_ (this)
+    Resolution_ (Resolution, this)
   {
   }
 
@@ -19671,7 +20894,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TechnicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TechnicalRangeType >,
             false, true, i, n, f, this));
 
@@ -19696,7 +20919,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DomainUnit",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< DomainUnitType >,
             false, true, i, n, f, this));
 
@@ -19724,7 +20947,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DistributionRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< DistributionRangeType >,
             false, true, i, n, f, this));
 
@@ -19753,14 +20976,14 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "DomainUnit",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     if (!DistributionRange_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "DistributionRange",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     p.reset_attributes ();
@@ -19776,6 +20999,13 @@ namespace CDM
         this->Resolution_.set (ResolutionTraits::create (i, f, this));
         continue;
       }
+    }
+
+    if (!Resolution_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_attribute< char > (
+        "Resolution",
+        "");
     }
   }
 
@@ -19810,7 +21040,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DistributionSampleArrayMetricDescriptor >
   _xsd_DistributionSampleArrayMetricDescriptor_type_factory_init (
     "DistributionSampleArrayMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // DistributionSampleArrayMetricState
   //
@@ -19866,7 +21096,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MetricValue",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MetricValueType >,
             false, true, i, n, f, this));
 
@@ -19894,7 +21124,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PhysiologicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< PhysiologicalRangeType >,
             false, true, i, n, f, this));
 
@@ -19946,7 +21176,56 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DistributionSampleArrayMetricState >
   _xsd_DistributionSampleArrayMetricState_type_factory_init (
     "DistributionSampleArrayMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
+
+  // OperationRef
+  //
+
+  OperationRef::
+  OperationRef (const ::xercesc::DOMElement& e,
+                ::xml_schema::Flags f,
+                ::xml_schema::Container* c)
+  : ::xml_schema::SimpleType (e, f, c),
+    ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (e, f, this)
+  {
+  }
+
+  OperationRef::
+  OperationRef (const ::xercesc::DOMAttr& a,
+                ::xml_schema::Flags f,
+                ::xml_schema::Container* c)
+  : ::xml_schema::SimpleType (a, f, c),
+    ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (a, f, this)
+  {
+  }
+
+  OperationRef::
+  OperationRef (const ::std::string& s,
+                const ::xercesc::DOMElement* e,
+                ::xml_schema::Flags f,
+                ::xml_schema::Container* c)
+  : ::xml_schema::SimpleType (s, e, f, c),
+    ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (s, e, f, this)
+  {
+  }
+
+  OperationRef* OperationRef::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class OperationRef (*this, f, c);
+  }
+
+  OperationRef::
+  ~OperationRef ()
+  {
+  }
+
+  static
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperationRef >
+  _xsd_OperationRef_type_factory_init (
+    "OperationRef",
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ScoDescriptor
   //
@@ -19999,7 +21278,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Operation",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< OperationType >,
             false, true, i, n, f, this));
 
@@ -20050,14 +21329,17 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ScoDescriptor >
   _xsd_ScoDescriptor_type_factory_init (
     "ScoDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ScoState
   //
 
   ScoState::
   ScoState (const DescriptorHandleType& DescriptorHandle)
-  : ::CDM::AbstractState (DescriptorHandle)
+  : ::CDM::AbstractState (DescriptorHandle),
+    OperationGroup_ (this),
+    InvocationRequested_ (this),
+    InvocationRequired_ (this)
   {
   }
 
@@ -20065,7 +21347,10 @@ namespace CDM
   ScoState (const ScoState& x,
             ::xml_schema::Flags f,
             ::xml_schema::Container* c)
-  : ::CDM::AbstractState (x, f, c)
+  : ::CDM::AbstractState (x, f, c),
+    OperationGroup_ (x.OperationGroup_, f, this),
+    InvocationRequested_ (x.InvocationRequested_, f, this),
+    InvocationRequired_ (x.InvocationRequired_, f, this)
   {
   }
 
@@ -20073,8 +21358,64 @@ namespace CDM
   ScoState (const ::xercesc::DOMElement& e,
             ::xml_schema::Flags f,
             ::xml_schema::Container* c)
-  : ::CDM::AbstractState (e, f, c)
+  : ::CDM::AbstractState (e, f | ::xml_schema::Flags::base, c),
+    OperationGroup_ (this),
+    InvocationRequested_ (this),
+    InvocationRequired_ (this)
   {
+    if ((f & ::xml_schema::Flags::base) == 0)
+    {
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
+      this->parse (p, f);
+    }
+  }
+
+  void ScoState::
+  parse (::xsd::cxx::xml::dom::parser< char >& p,
+         ::xml_schema::Flags f)
+  {
+    this->::CDM::AbstractState::parse (p, f);
+
+    for (; p.more_content (); p.next_content (false))
+    {
+      const ::xercesc::DOMElement& i (p.cur_element ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // OperationGroup
+      //
+      if (n.name () == "OperationGroup" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      {
+        ::std::unique_ptr< OperationGroupType > r (
+          OperationGroupTraits::create (i, f, this));
+
+        this->OperationGroup_.push_back (::std::move (r));
+        continue;
+      }
+
+      break;
+    }
+
+    p.reset_attributes ();
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      if (n.name () == "InvocationRequested" && n.namespace_ ().empty ())
+      {
+        this->InvocationRequested_.set (InvocationRequestedTraits::create (i, f, this));
+        continue;
+      }
+
+      if (n.name () == "InvocationRequired" && n.namespace_ ().empty ())
+      {
+        this->InvocationRequired_.set (InvocationRequiredTraits::create (i, f, this));
+        continue;
+      }
+    }
   }
 
   ScoState* ScoState::
@@ -20082,6 +21423,20 @@ namespace CDM
           ::xml_schema::Container* c) const
   {
     return new class ScoState (*this, f, c);
+  }
+
+  ScoState& ScoState::
+  operator= (const ScoState& x)
+  {
+    if (this != &x)
+    {
+      static_cast< ::CDM::AbstractState& > (*this) = x;
+      this->OperationGroup_ = x.OperationGroup_;
+      this->InvocationRequested_ = x.InvocationRequested_;
+      this->InvocationRequired_ = x.InvocationRequired_;
+    }
+
+    return *this;
   }
 
   ScoState::
@@ -20093,7 +21448,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ScoState >
   _xsd_ScoState_type_factory_init (
     "ScoState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractOperationDescriptor
   //
@@ -20105,7 +21460,8 @@ namespace CDM
     OperationTarget_ (OperationTarget, this),
     MaxTimeToFinish_ (this),
     InvocationEffectiveTimeout_ (this),
-    Retriggerable_ (this)
+    Retriggerable_ (this),
+    AccessLevel_ (this)
   {
   }
 
@@ -20117,7 +21473,8 @@ namespace CDM
     OperationTarget_ (x.OperationTarget_, f, this),
     MaxTimeToFinish_ (x.MaxTimeToFinish_, f, this),
     InvocationEffectiveTimeout_ (x.InvocationEffectiveTimeout_, f, this),
-    Retriggerable_ (x.Retriggerable_, f, this)
+    Retriggerable_ (x.Retriggerable_, f, this),
+    AccessLevel_ (x.AccessLevel_, f, this)
   {
   }
 
@@ -20129,7 +21486,8 @@ namespace CDM
     OperationTarget_ (this),
     MaxTimeToFinish_ (this),
     InvocationEffectiveTimeout_ (this),
-    Retriggerable_ (this)
+    Retriggerable_ (this),
+    AccessLevel_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
@@ -20175,6 +21533,12 @@ namespace CDM
         this->Retriggerable_.set (RetriggerableTraits::create (i, f, this));
         continue;
       }
+
+      if (n.name () == "AccessLevel" && n.namespace_ ().empty ())
+      {
+        this->AccessLevel_.set (AccessLevelTraits::create (i, f, this));
+        continue;
+      }
     }
 
     if (!OperationTarget_.present ())
@@ -20202,6 +21566,7 @@ namespace CDM
       this->MaxTimeToFinish_ = x.MaxTimeToFinish_;
       this->InvocationEffectiveTimeout_ = x.InvocationEffectiveTimeout_;
       this->Retriggerable_ = x.Retriggerable_;
+      this->AccessLevel_ = x.AccessLevel_;
     }
 
     return *this;
@@ -20216,7 +21581,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractOperationDescriptor >
   _xsd_AbstractOperationDescriptor_type_factory_init (
     "AbstractOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractSetStateOperationDescriptor
   //
@@ -20226,7 +21591,7 @@ namespace CDM
                                        const OperationTargetType& OperationTarget)
   : ::CDM::AbstractOperationDescriptor (Handle,
                                         OperationTarget),
-    ModifiableElement_ (this)
+    ModifiableData_ (this)
   {
   }
 
@@ -20235,7 +21600,7 @@ namespace CDM
                                        ::xml_schema::Flags f,
                                        ::xml_schema::Container* c)
   : ::CDM::AbstractOperationDescriptor (x, f, c),
-    ModifiableElement_ (x.ModifiableElement_, f, this)
+    ModifiableData_ (x.ModifiableData_, f, this)
   {
   }
 
@@ -20244,7 +21609,7 @@ namespace CDM
                                        ::xml_schema::Flags f,
                                        ::xml_schema::Container* c)
   : ::CDM::AbstractOperationDescriptor (e, f | ::xml_schema::Flags::base, c),
-    ModifiableElement_ (this)
+    ModifiableData_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
@@ -20265,27 +21630,27 @@ namespace CDM
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
-      // ModifiableElement
+      // ModifiableData
       //
       {
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "ModifiableElement",
-            "http://p11073-10207/draft8/pm/2017/08/07",
-            &::xsd::cxx::tree::factory_impl< ModifiableElementType >,
+            "ModifiableData",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< ModifiableDataType >,
             false, true, i, n, f, this));
 
         if (tmp.get () != 0)
         {
-          ::std::unique_ptr< ModifiableElementType > r (
-            dynamic_cast< ModifiableElementType* > (tmp.get ()));
+          ::std::unique_ptr< ModifiableDataType > r (
+            dynamic_cast< ModifiableDataType* > (tmp.get ()));
 
           if (r.get ())
             tmp.release ();
           else
             throw ::xsd::cxx::tree::not_derived< char > ();
 
-          this->ModifiableElement_.push_back (::std::move (r));
+          this->ModifiableData_.push_back (::std::move (r));
           continue;
         }
       }
@@ -20307,7 +21672,7 @@ namespace CDM
     if (this != &x)
     {
       static_cast< ::CDM::AbstractOperationDescriptor& > (*this) = x;
-      this->ModifiableElement_ = x.ModifiableElement_;
+      this->ModifiableData_ = x.ModifiableData_;
     }
 
     return *this;
@@ -20322,7 +21687,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractSetStateOperationDescriptor >
   _xsd_AbstractSetStateOperationDescriptor_type_factory_init (
     "AbstractSetStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // OperatingMode
   //
@@ -20400,7 +21765,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperatingMode >
   _xsd_OperatingMode_type_factory_init (
     "OperatingMode",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractOperationState
   //
@@ -20493,7 +21858,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractOperationState >
   _xsd_AbstractOperationState_type_factory_init (
     "AbstractOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetValueOperationDescriptor
   //
@@ -20538,7 +21903,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetValueOperationDescriptor >
   _xsd_SetValueOperationDescriptor_type_factory_init (
     "SetValueOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetValueOperationState
   //
@@ -20593,7 +21958,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AllowedRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< AllowedRangeType >,
             false, true, i, n, f, this));
 
@@ -20644,7 +22009,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetValueOperationState >
   _xsd_SetValueOperationState_type_factory_init (
     "SetValueOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetStringOperationDescriptor
   //
@@ -20731,7 +22096,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetStringOperationDescriptor >
   _xsd_SetStringOperationDescriptor_type_factory_init (
     "SetStringOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetStringOperationState
   //
@@ -20782,7 +22147,7 @@ namespace CDM
 
       // AllowedValues
       //
-      if (n.name () == "AllowedValues" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "AllowedValues" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< AllowedValuesType > r (
           AllowedValuesTraits::create (i, f, this));
@@ -20826,7 +22191,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetStringOperationState >
   _xsd_SetStringOperationState_type_factory_init (
     "SetStringOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ActivateOperationDescriptor
   //
@@ -20877,7 +22242,7 @@ namespace CDM
 
       // Argument
       //
-      if (n.name () == "Argument" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "Argument" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< ArgumentType > r (
           ArgumentTraits::create (i, f, this));
@@ -20918,7 +22283,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ActivateOperationDescriptor >
   _xsd_ActivateOperationDescriptor_type_factory_init (
     "ActivateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ActivateOperationState
   //
@@ -20963,7 +22328,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ActivateOperationState >
   _xsd_ActivateOperationState_type_factory_init (
     "ActivateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetContextStateOperationDescriptor
   //
@@ -21008,7 +22373,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetContextStateOperationDescriptor >
   _xsd_SetContextStateOperationDescriptor_type_factory_init (
     "SetContextStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetContextStateOperationState
   //
@@ -21053,7 +22418,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetContextStateOperationState >
   _xsd_SetContextStateOperationState_type_factory_init (
     "SetContextStateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetMetricStateOperationDescriptor
   //
@@ -21098,7 +22463,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetMetricStateOperationDescriptor >
   _xsd_SetMetricStateOperationDescriptor_type_factory_init (
     "SetMetricStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetMetricStateOperationState
   //
@@ -21143,7 +22508,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetMetricStateOperationState >
   _xsd_SetMetricStateOperationState_type_factory_init (
     "SetMetricStateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetComponentStateOperationDescriptor
   //
@@ -21188,7 +22553,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetComponentStateOperationDescriptor >
   _xsd_SetComponentStateOperationDescriptor_type_factory_init (
     "SetComponentStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetComponentStateOperationState
   //
@@ -21233,7 +22598,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetComponentStateOperationState >
   _xsd_SetComponentStateOperationState_type_factory_init (
     "SetComponentStateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetAlertStateOperationDescriptor
   //
@@ -21278,7 +22643,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetAlertStateOperationDescriptor >
   _xsd_SetAlertStateOperationDescriptor_type_factory_init (
     "SetAlertStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SetAlertStateOperationState
   //
@@ -21323,7 +22688,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetAlertStateOperationState >
   _xsd_SetAlertStateOperationState_type_factory_init (
     "SetAlertStateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // TimeZone
   //
@@ -21401,7 +22766,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, TimeZone >
   _xsd_TimeZone_type_factory_init (
     "TimeZone",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ClockDescriptor
   //
@@ -21457,7 +22822,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TimeProtocol",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TimeProtocolType >,
             false, true, i, n, f, this));
 
@@ -21524,7 +22889,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ClockDescriptor >
   _xsd_ClockDescriptor_type_factory_init (
     "ClockDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ClockState
   //
@@ -21534,9 +22899,9 @@ namespace CDM
               const RemoteSyncType& RemoteSync)
   : ::CDM::AbstractDeviceComponentState (DescriptorHandle),
     ActiveSyncProtocol_ (this),
+    ReferenceSource_ (this),
     DateAndTime_ (this),
     RemoteSync_ (RemoteSync, this),
-    ReferenceSource_ (this),
     Accuracy_ (this),
     LastSet_ (this),
     TimeZone_ (this),
@@ -21550,9 +22915,9 @@ namespace CDM
               ::xml_schema::Container* c)
   : ::CDM::AbstractDeviceComponentState (x, f, c),
     ActiveSyncProtocol_ (x.ActiveSyncProtocol_, f, this),
+    ReferenceSource_ (x.ReferenceSource_, f, this),
     DateAndTime_ (x.DateAndTime_, f, this),
     RemoteSync_ (x.RemoteSync_, f, this),
-    ReferenceSource_ (x.ReferenceSource_, f, this),
     Accuracy_ (x.Accuracy_, f, this),
     LastSet_ (x.LastSet_, f, this),
     TimeZone_ (x.TimeZone_, f, this),
@@ -21566,9 +22931,9 @@ namespace CDM
               ::xml_schema::Container* c)
   : ::CDM::AbstractDeviceComponentState (e, f | ::xml_schema::Flags::base, c),
     ActiveSyncProtocol_ (this),
+    ReferenceSource_ (this),
     DateAndTime_ (this),
     RemoteSync_ (this),
-    ReferenceSource_ (this),
     Accuracy_ (this),
     LastSet_ (this),
     TimeZone_ (this),
@@ -21599,7 +22964,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ActiveSyncProtocol",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ActiveSyncProtocolType >,
             false, true, i, n, f, this));
 
@@ -21618,6 +22983,31 @@ namespace CDM
             this->ActiveSyncProtocol_.set (::std::move (r));
             continue;
           }
+        }
+      }
+
+      // ReferenceSource
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "ReferenceSource",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< ReferenceSourceType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          ::std::unique_ptr< ReferenceSourceType > r (
+            dynamic_cast< ReferenceSourceType* > (tmp.get ()));
+
+          if (r.get ())
+            tmp.release ();
+          else
+            throw ::xsd::cxx::tree::not_derived< char > ();
+
+          this->ReferenceSource_.push_back (::std::move (r));
+          continue;
         }
       }
 
@@ -21641,12 +23031,6 @@ namespace CDM
       if (n.name () == "RemoteSync" && n.namespace_ ().empty ())
       {
         this->RemoteSync_.set (RemoteSyncTraits::create (i, f, this));
-        continue;
-      }
-
-      if (n.name () == "ReferenceSource" && n.namespace_ ().empty ())
-      {
-        this->ReferenceSource_.set (ReferenceSourceTraits::create (i, f, this));
         continue;
       }
 
@@ -21697,9 +23081,9 @@ namespace CDM
     {
       static_cast< ::CDM::AbstractDeviceComponentState& > (*this) = x;
       this->ActiveSyncProtocol_ = x.ActiveSyncProtocol_;
+      this->ReferenceSource_ = x.ReferenceSource_;
       this->DateAndTime_ = x.DateAndTime_;
       this->RemoteSync_ = x.RemoteSync_;
-      this->ReferenceSource_ = x.ReferenceSource_;
       this->Accuracy_ = x.Accuracy_;
       this->LastSet_ = x.LastSet_;
       this->TimeZone_ = x.TimeZone_;
@@ -21718,7 +23102,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ClockState >
   _xsd_ClockState_type_factory_init (
     "ClockState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // BatteryDescriptor
   //
@@ -21777,7 +23161,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CapacityFullCharge",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CapacityFullChargeType >,
             false, true, i, n, f, this));
 
@@ -21805,7 +23189,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CapacitySpecified",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CapacitySpecifiedType >,
             false, true, i, n, f, this));
 
@@ -21833,7 +23217,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "VoltageSpecified",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< VoltageSpecifiedType >,
             false, true, i, n, f, this));
 
@@ -21889,7 +23273,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, BatteryDescriptor >
   _xsd_BatteryDescriptor_type_factory_init (
     "BatteryDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // BatteryState
   //
@@ -21960,7 +23344,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CapacityRemaining",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CapacityRemainingType >,
             false, true, i, n, f, this));
 
@@ -21988,7 +23372,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Voltage",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< VoltageType >,
             false, true, i, n, f, this));
 
@@ -22016,7 +23400,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Current",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CurrentType >,
             false, true, i, n, f, this));
 
@@ -22044,7 +23428,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Temperature",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TemperatureType >,
             false, true, i, n, f, this));
 
@@ -22072,7 +23456,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RemainingBatteryTime",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< RemainingBatteryTimeType >,
             false, true, i, n, f, this));
 
@@ -22153,7 +23537,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, BatteryState >
   _xsd_BatteryState_type_factory_init (
     "BatteryState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SystemContextDescriptor
   //
@@ -22221,7 +23605,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PatientContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< PatientContextType >,
             false, true, i, n, f, this));
 
@@ -22249,7 +23633,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "LocationContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< LocationContextType >,
             false, true, i, n, f, this));
 
@@ -22277,7 +23661,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "EnsembleContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< EnsembleContextType >,
             false, true, i, n, f, this));
 
@@ -22302,7 +23686,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperatorContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< OperatorContextType >,
             false, true, i, n, f, this));
 
@@ -22327,7 +23711,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "WorkflowContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< WorkflowContextType >,
             false, true, i, n, f, this));
 
@@ -22352,7 +23736,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MeansContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MeansContextType >,
             false, true, i, n, f, this));
 
@@ -22408,7 +23792,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SystemContextDescriptor >
   _xsd_SystemContextDescriptor_type_factory_init (
     "SystemContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // SystemContextState
   //
@@ -22451,7 +23835,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SystemContextState >
   _xsd_SystemContextState_type_factory_init (
     "SystemContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractContextDescriptor
   //
@@ -22494,7 +23878,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractContextDescriptor >
   _xsd_AbstractContextDescriptor_type_factory_init (
     "AbstractContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ContextAssociation
   //
@@ -22574,7 +23958,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ContextAssociation >
   _xsd_ContextAssociation_type_factory_init (
     "ContextAssociation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // AbstractContextState
   //
@@ -22647,7 +24031,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Validator",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ValidatorType >,
             false, true, i, n, f, this));
 
@@ -22672,7 +24056,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -22768,7 +24152,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractContextState >
   _xsd_AbstractContextState_type_factory_init (
     "AbstractContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // BaseDemographics
   //
@@ -22834,7 +24218,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -22862,7 +24246,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Givenname",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< GivennameType >,
             false, true, i, n, f, this));
 
@@ -22890,7 +24274,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Middlename",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MiddlenameType >,
             false, true, i, n, f, this));
 
@@ -22915,7 +24299,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Familyname",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< FamilynameType >,
             false, true, i, n, f, this));
 
@@ -22943,7 +24327,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Birthname",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< BirthnameType >,
             false, true, i, n, f, this));
 
@@ -22971,7 +24355,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Title",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TitleType >,
             false, true, i, n, f, this));
 
@@ -23030,7 +24414,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, BaseDemographics >
   _xsd_BaseDemographics_type_factory_init (
     "BaseDemographics",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // PersonReference
   //
@@ -23087,7 +24471,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -23115,7 +24499,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -23140,7 +24524,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Name",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< NameType >,
             false, true, i, n, f, this));
 
@@ -23196,7 +24580,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PersonReference >
   _xsd_PersonReference_type_factory_init (
     "PersonReference",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // LocationDetail
   //
@@ -23265,7 +24649,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -23368,7 +24752,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocationDetail >
   _xsd_LocationDetail_type_factory_init (
     "LocationDetail",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // PatientContextDescriptor
   //
@@ -23411,7 +24795,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PatientContextDescriptor >
   _xsd_PatientContextDescriptor_type_factory_init (
     "PatientContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // Sex
   //
@@ -23491,7 +24875,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Sex >
   _xsd_Sex_type_factory_init (
     "Sex",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // PatientType
   //
@@ -23577,7 +24961,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PatientType >
   _xsd_PatientType_type_factory_init (
     "PatientType",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // PatientDemographicsCoreData
   //
@@ -23645,7 +25029,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Sex",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< SexType >,
             false, true, i, n, f, this));
 
@@ -23673,7 +25057,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PatientType",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< PatientTypeType >,
             false, true, i, n, f, this));
 
@@ -23697,7 +25081,7 @@ namespace CDM
 
       // DateOfBirth
       //
-      if (n.name () == "DateOfBirth" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "DateOfBirth" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< DateOfBirthType > r (
           DateOfBirthTraits::create (i, f, this));
@@ -23715,7 +25099,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Height",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< HeightType >,
             false, true, i, n, f, this));
 
@@ -23743,7 +25127,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Weight",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< WeightType >,
             false, true, i, n, f, this));
 
@@ -23771,7 +25155,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Race",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< RaceType >,
             false, true, i, n, f, this));
 
@@ -23830,7 +25214,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PatientDemographicsCoreData >
   _xsd_PatientDemographicsCoreData_type_factory_init (
     "PatientDemographicsCoreData",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // NeonatalPatientDemographicsCoreData
   //
@@ -23895,7 +25279,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "GestationalAge",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< GestationalAgeType >,
             false, true, i, n, f, this));
 
@@ -23923,7 +25307,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "BirthLength",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< BirthLengthType >,
             false, true, i, n, f, this));
 
@@ -23951,7 +25335,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "BirthWeight",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< BirthWeightType >,
             false, true, i, n, f, this));
 
@@ -23979,7 +25363,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "HeadCircumference",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< HeadCircumferenceType >,
             false, true, i, n, f, this));
 
@@ -24007,7 +25391,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Mother",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MotherType >,
             false, true, i, n, f, this));
 
@@ -24065,7 +25449,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, NeonatalPatientDemographicsCoreData >
   _xsd_NeonatalPatientDemographicsCoreData_type_factory_init (
     "NeonatalPatientDemographicsCoreData",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // PatientContextState
   //
@@ -24120,7 +25504,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CoreData",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CoreDataType >,
             false, true, i, n, f, this));
 
@@ -24174,7 +25558,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PatientContextState >
   _xsd_PatientContextState_type_factory_init (
     "PatientContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // LocationContextDescriptor
   //
@@ -24217,7 +25601,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocationContextDescriptor >
   _xsd_LocationContextDescriptor_type_factory_init (
     "LocationContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // LocationContextState
   //
@@ -24272,7 +25656,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "LocationDetail",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< LocationDetailType >,
             false, true, i, n, f, this));
 
@@ -24326,7 +25710,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocationContextState >
   _xsd_LocationContextState_type_factory_init (
     "LocationContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // WorkflowContextDescriptor
   //
@@ -24369,7 +25753,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, WorkflowContextDescriptor >
   _xsd_WorkflowContextDescriptor_type_factory_init (
     "WorkflowContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ClinicalInfo
   //
@@ -24435,7 +25819,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -24463,7 +25847,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -24491,7 +25875,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Code",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CodeType >,
             false, true, i, n, f, this));
 
@@ -24515,7 +25899,7 @@ namespace CDM
 
       // Criticality
       //
-      if (n.name () == "Criticality" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "Criticality" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< CriticalityType > r (
           CriticalityTraits::create (i, f, this));
@@ -24533,7 +25917,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Description",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< DescriptionType >,
             false, true, i, n, f, this));
 
@@ -24554,7 +25938,7 @@ namespace CDM
 
       // RelatedMeasurement
       //
-      if (n.name () == "RelatedMeasurement" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "RelatedMeasurement" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< RelatedMeasurementType > r (
           RelatedMeasurementTraits::create (i, f, this));
@@ -24600,7 +25984,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ClinicalInfo >
   _xsd_ClinicalInfo_type_factory_init (
     "ClinicalInfo",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ImagingProcedure
   //
@@ -24688,7 +26072,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -24716,7 +26100,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AccessionIdentifier",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< AccessionIdentifierType >,
             false, true, i, n, f, this));
 
@@ -24744,7 +26128,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RequestedProcedureId",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< RequestedProcedureIdType >,
             false, true, i, n, f, this));
 
@@ -24772,7 +26156,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "StudyInstanceUid",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< StudyInstanceUidType >,
             false, true, i, n, f, this));
 
@@ -24800,7 +26184,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ScheduledProcedureStepId",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ScheduledProcedureStepIdType >,
             false, true, i, n, f, this));
 
@@ -24828,7 +26212,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Modality",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ModalityType >,
             false, true, i, n, f, this));
 
@@ -24856,7 +26240,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ProtocolCode",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ProtocolCodeType >,
             false, true, i, n, f, this));
 
@@ -24885,28 +26269,28 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "AccessionIdentifier",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     if (!RequestedProcedureId_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "RequestedProcedureId",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     if (!StudyInstanceUid_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "StudyInstanceUid",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     if (!ScheduledProcedureStepId_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ScheduledProcedureStepId",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -24944,7 +26328,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ImagingProcedure >
   _xsd_ImagingProcedure_type_factory_init (
     "ImagingProcedure",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // LocationReference
   //
@@ -25001,7 +26385,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -25029,7 +26413,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -25054,7 +26438,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "LocationDetail",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< LocationDetailType >,
             false, true, i, n, f, this));
 
@@ -25110,7 +26494,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocationReference >
   _xsd_LocationReference_type_factory_init (
     "LocationReference",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // OrderDetail
   //
@@ -25176,7 +26560,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -25204,7 +26588,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Start",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< StartType >,
             false, true, i, n, f, this));
 
@@ -25232,7 +26616,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "End",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< EndType >,
             false, true, i, n, f, this));
 
@@ -25260,7 +26644,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Performer",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< PerformerType >,
             false, true, i, n, f, this));
 
@@ -25285,7 +26669,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Service",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ServiceType >,
             false, true, i, n, f, this));
 
@@ -25310,7 +26694,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ImagingProcedure",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ImagingProcedureType >,
             false, true, i, n, f, this));
 
@@ -25366,7 +26750,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OrderDetail >
   _xsd_OrderDetail_type_factory_init (
     "OrderDetail",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // PersonParticipation
   //
@@ -25419,7 +26803,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Role",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< RoleType >,
             false, true, i, n, f, this));
 
@@ -25470,7 +26854,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PersonParticipation >
   _xsd_PersonParticipation_type_factory_init (
     "PersonParticipation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // WorkflowContextState
   //
@@ -25521,7 +26905,7 @@ namespace CDM
 
       // WorkflowDetail
       //
-      if (n.name () == "WorkflowDetail" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "WorkflowDetail" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< WorkflowDetailType > r (
           WorkflowDetailTraits::create (i, f, this));
@@ -25565,7 +26949,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, WorkflowContextState >
   _xsd_WorkflowContextState_type_factory_init (
     "WorkflowContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // OperatorContextDescriptor
   //
@@ -25608,7 +26992,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperatorContextDescriptor >
   _xsd_OperatorContextDescriptor_type_factory_init (
     "OperatorContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // OperatorContextState
   //
@@ -25663,7 +27047,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperatorDetails",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< OperatorDetailsType >,
             false, true, i, n, f, this));
 
@@ -25717,7 +27101,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperatorContextState >
   _xsd_OperatorContextState_type_factory_init (
     "OperatorContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MeansContextDescriptor
   //
@@ -25760,7 +27144,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MeansContextDescriptor >
   _xsd_MeansContextDescriptor_type_factory_init (
     "MeansContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // MeansContextState
   //
@@ -25805,7 +27189,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MeansContextState >
   _xsd_MeansContextState_type_factory_init (
     "MeansContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // EnsembleContextDescriptor
   //
@@ -25848,7 +27232,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, EnsembleContextDescriptor >
   _xsd_EnsembleContextDescriptor_type_factory_init (
     "EnsembleContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // EnsembleContextState
   //
@@ -25893,7 +27277,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, EnsembleContextState >
   _xsd_EnsembleContextState_type_factory_init (
     "EnsembleContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ContainmentTree
   //
@@ -25959,7 +27343,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -25987,7 +27371,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Entry",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< EntryType >,
             false, true, i, n, f, this));
 
@@ -26074,7 +27458,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ContainmentTree >
   _xsd_ContainmentTree_type_factory_init (
     "ContainmentTree",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
   // ContainmentTreeEntry
   //
@@ -26140,7 +27524,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -26168,7 +27552,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -26258,79 +27642,150 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ContainmentTreeEntry >
   _xsd_ContainmentTreeEntry_type_factory_init (
     "ContainmentTreeEntry",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
-  // TextWidth
+  // Translation
   //
 
-  TextWidth::
-  TextWidth (const ::xercesc::DOMElement& e,
-             ::xml_schema::Flags f,
-             ::xml_schema::Container* c)
-  : ::xml_schema::String (e, f, c)
+  Translation::
+  Translation (const CodeType& Code)
+  : ::xml_schema::Type (),
+    Extension_ (this),
+    Code_ (Code, this),
+    CodingSystem_ (this),
+    CodingSystemVersion_ (this)
   {
-    _xsd_TextWidth_convert ();
   }
 
-  TextWidth::
-  TextWidth (const ::xercesc::DOMAttr& a,
-             ::xml_schema::Flags f,
-             ::xml_schema::Container* c)
-  : ::xml_schema::String (a, f, c)
+  Translation::
+  Translation (const Translation& x,
+               ::xml_schema::Flags f,
+               ::xml_schema::Container* c)
+  : ::xml_schema::Type (x, f, c),
+    Extension_ (x.Extension_, f, this),
+    Code_ (x.Code_, f, this),
+    CodingSystem_ (x.CodingSystem_, f, this),
+    CodingSystemVersion_ (x.CodingSystemVersion_, f, this)
   {
-    _xsd_TextWidth_convert ();
   }
 
-  TextWidth::
-  TextWidth (const ::std::string& s,
-             const ::xercesc::DOMElement* e,
-             ::xml_schema::Flags f,
-             ::xml_schema::Container* c)
-  : ::xml_schema::String (s, e, f, c)
+  Translation::
+  Translation (const ::xercesc::DOMElement& e,
+               ::xml_schema::Flags f,
+               ::xml_schema::Container* c)
+  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    Extension_ (this),
+    Code_ (this),
+    CodingSystem_ (this),
+    CodingSystemVersion_ (this)
   {
-    _xsd_TextWidth_convert ();
+    if ((f & ::xml_schema::Flags::base) == 0)
+    {
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
+      this->parse (p, f);
+    }
   }
 
-  TextWidth* TextWidth::
+  void Translation::
+  parse (::xsd::cxx::xml::dom::parser< char >& p,
+         ::xml_schema::Flags f)
+  {
+    for (; p.more_content (); p.next_content (false))
+    {
+      const ::xercesc::DOMElement& i (p.cur_element ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // Extension
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Extension",
+            "http://p11073-10207/draft10/ext/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< ExtensionType >,
+            true, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!this->Extension_)
+          {
+            ::std::unique_ptr< ExtensionType > r (
+              dynamic_cast< ExtensionType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->Extension_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
+      break;
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      if (n.name () == "Code" && n.namespace_ ().empty ())
+      {
+        this->Code_.set (CodeTraits::create (i, f, this));
+        continue;
+      }
+
+      if (n.name () == "CodingSystem" && n.namespace_ ().empty ())
+      {
+        this->CodingSystem_.set (CodingSystemTraits::create (i, f, this));
+        continue;
+      }
+
+      if (n.name () == "CodingSystemVersion" && n.namespace_ ().empty ())
+      {
+        this->CodingSystemVersion_.set (CodingSystemVersionTraits::create (i, f, this));
+        continue;
+      }
+    }
+
+    if (!Code_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_attribute< char > (
+        "Code",
+        "");
+    }
+  }
+
+  Translation* Translation::
   _clone (::xml_schema::Flags f,
           ::xml_schema::Container* c) const
   {
-    return new class TextWidth (*this, f, c);
+    return new class Translation (*this, f, c);
   }
 
-  TextWidth::Value TextWidth::
-  _xsd_TextWidth_convert () const
+  Translation& Translation::
+  operator= (const Translation& x)
   {
-    ::xsd::cxx::tree::enum_comparator< char > c (_xsd_TextWidth_literals_);
-    const Value* i (::std::lower_bound (
-                      _xsd_TextWidth_indexes_,
-                      _xsd_TextWidth_indexes_ + 3,
-                      *this,
-                      c));
-
-    if (i == _xsd_TextWidth_indexes_ + 3 || _xsd_TextWidth_literals_[*i] != *this)
+    if (this != &x)
     {
-      throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
+      static_cast< ::xml_schema::Type& > (*this) = x;
+      this->Extension_ = x.Extension_;
+      this->Code_ = x.Code_;
+      this->CodingSystem_ = x.CodingSystem_;
+      this->CodingSystemVersion_ = x.CodingSystemVersion_;
     }
 
-    return *i;
+    return *this;
   }
 
-  const char* const TextWidth::
-  _xsd_TextWidth_literals_[3] =
+  Translation::
+  ~Translation ()
   {
-    "Shrt",
-    "Nml",
-    "Lng"
-  };
-
-  const TextWidth::Value TextWidth::
-  _xsd_TextWidth_indexes_[3] =
-  {
-    ::CDM::TextWidth::Lng,
-    ::CDM::TextWidth::Nml,
-    ::CDM::TextWidth::Shrt
-  };
+  }
 
   // Root
   //
@@ -26534,7 +27989,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SpecType",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< SpecTypeType >,
             false, true, i, n, f, this));
 
@@ -26562,7 +28017,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ProductionSpec",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ProductionSpecType >,
             false, true, i, n, f, this));
 
@@ -26590,7 +28045,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ComponentId",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ComponentIdType >,
             false, true, i, n, f, this));
 
@@ -26619,14 +28074,14 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "SpecType",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     if (!ProductionSpec_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ProductionSpec",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -26656,6 +28111,117 @@ namespace CDM
   {
   }
 
+  // CalibrationDocumentation
+  //
+
+  CalibrationDocumentation::
+  CalibrationDocumentation ()
+  : ::xml_schema::Type (),
+    Documentation_ (this),
+    CalibrationResult_ (this)
+  {
+  }
+
+  CalibrationDocumentation::
+  CalibrationDocumentation (const CalibrationDocumentation& x,
+                            ::xml_schema::Flags f,
+                            ::xml_schema::Container* c)
+  : ::xml_schema::Type (x, f, c),
+    Documentation_ (x.Documentation_, f, this),
+    CalibrationResult_ (x.CalibrationResult_, f, this)
+  {
+  }
+
+  CalibrationDocumentation::
+  CalibrationDocumentation (const ::xercesc::DOMElement& e,
+                            ::xml_schema::Flags f,
+                            ::xml_schema::Container* c)
+  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    Documentation_ (this),
+    CalibrationResult_ (this)
+  {
+    if ((f & ::xml_schema::Flags::base) == 0)
+    {
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      this->parse (p, f);
+    }
+  }
+
+  void CalibrationDocumentation::
+  parse (::xsd::cxx::xml::dom::parser< char >& p,
+         ::xml_schema::Flags f)
+  {
+    for (; p.more_content (); p.next_content (false))
+    {
+      const ::xercesc::DOMElement& i (p.cur_element ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // Documentation
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Documentation",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< DocumentationType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          ::std::unique_ptr< DocumentationType > r (
+            dynamic_cast< DocumentationType* > (tmp.get ()));
+
+          if (r.get ())
+            tmp.release ();
+          else
+            throw ::xsd::cxx::tree::not_derived< char > ();
+
+          this->Documentation_.push_back (::std::move (r));
+          continue;
+        }
+      }
+
+      // CalibrationResult
+      //
+      if (n.name () == "CalibrationResult" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      {
+        ::std::unique_ptr< CalibrationResultType > r (
+          CalibrationResultTraits::create (i, f, this));
+
+        this->CalibrationResult_.push_back (::std::move (r));
+        continue;
+      }
+
+      break;
+    }
+  }
+
+  CalibrationDocumentation* CalibrationDocumentation::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class CalibrationDocumentation (*this, f, c);
+  }
+
+  CalibrationDocumentation& CalibrationDocumentation::
+  operator= (const CalibrationDocumentation& x)
+  {
+    if (this != &x)
+    {
+      static_cast< ::xml_schema::Type& > (*this) = x;
+      this->Documentation_ = x.Documentation_;
+      this->CalibrationResult_ = x.CalibrationResult_;
+    }
+
+    return *this;
+  }
+
+  CalibrationDocumentation::
+  ~CalibrationDocumentation ()
+  {
+  }
+
   // MetaData
   //
 
@@ -26664,7 +28230,10 @@ namespace CDM
   : ::xml_schema::Type (),
     Extension_ (this),
     Udi_ (this),
+    LotNumber_ (this),
     Manufacturer_ (this),
+    ManufactureDate_ (this),
+    ExpirationDate_ (this),
     ModelName_ (this),
     ModelNumber_ (this),
     SerialNumber_ (this)
@@ -26678,7 +28247,10 @@ namespace CDM
   : ::xml_schema::Type (x, f, c),
     Extension_ (x.Extension_, f, this),
     Udi_ (x.Udi_, f, this),
+    LotNumber_ (x.LotNumber_, f, this),
     Manufacturer_ (x.Manufacturer_, f, this),
+    ManufactureDate_ (x.ManufactureDate_, f, this),
+    ExpirationDate_ (x.ExpirationDate_, f, this),
     ModelName_ (x.ModelName_, f, this),
     ModelNumber_ (x.ModelNumber_, f, this),
     SerialNumber_ (x.SerialNumber_, f, this)
@@ -26692,7 +28264,10 @@ namespace CDM
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
     Extension_ (this),
     Udi_ (this),
+    LotNumber_ (this),
     Manufacturer_ (this),
+    ManufactureDate_ (this),
+    ExpirationDate_ (this),
     ModelName_ (this),
     ModelNumber_ (this),
     SerialNumber_ (this)
@@ -26720,7 +28295,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -26744,7 +28319,7 @@ namespace CDM
 
       // Udi
       //
-      if (n.name () == "Udi" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "Udi" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< UdiType > r (
           UdiTraits::create (i, f, this));
@@ -26753,13 +28328,41 @@ namespace CDM
         continue;
       }
 
+      // LotNumber
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "LotNumber",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< LotNumberType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!this->LotNumber_)
+          {
+            ::std::unique_ptr< LotNumberType > r (
+              dynamic_cast< LotNumberType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->LotNumber_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
       // Manufacturer
       //
       {
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Manufacturer",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ManufacturerType >,
             false, true, i, n, f, this));
 
@@ -26778,13 +28381,69 @@ namespace CDM
         }
       }
 
+      // ManufactureDate
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "ManufactureDate",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< ManufactureDateType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!this->ManufactureDate_)
+          {
+            ::std::unique_ptr< ManufactureDateType > r (
+              dynamic_cast< ManufactureDateType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->ManufactureDate_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
+      // ExpirationDate
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "ExpirationDate",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< ExpirationDateType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!this->ExpirationDate_)
+          {
+            ::std::unique_ptr< ExpirationDateType > r (
+              dynamic_cast< ExpirationDateType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->ExpirationDate_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
       // ModelName
       //
       {
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ModelName",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ModelNameType >,
             false, true, i, n, f, this));
 
@@ -26809,7 +28468,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ModelNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ModelNumberType >,
             false, true, i, n, f, this));
 
@@ -26837,7 +28496,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SerialNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< SerialNumberType >,
             false, true, i, n, f, this));
 
@@ -26875,7 +28534,10 @@ namespace CDM
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->Extension_ = x.Extension_;
       this->Udi_ = x.Udi_;
+      this->LotNumber_ = x.LotNumber_;
       this->Manufacturer_ = x.Manufacturer_;
+      this->ManufactureDate_ = x.ManufactureDate_;
+      this->ExpirationDate_ = x.ExpirationDate_;
       this->ModelName_ = x.ModelName_;
       this->ModelNumber_ = x.ModelNumber_;
       this->SerialNumber_ = x.SerialNumber_;
@@ -26933,11 +28595,11 @@ namespace CDM
     ::xsd::cxx::tree::enum_comparator< char > c (_xsd_CanEscalate_literals_);
     const Value* i (::std::lower_bound (
                       _xsd_CanEscalate_indexes_,
-                      _xsd_CanEscalate_indexes_ + 2,
+                      _xsd_CanEscalate_indexes_ + 3,
                       *this,
                       c));
 
-    if (i == _xsd_CanEscalate_indexes_ + 2 || _xsd_CanEscalate_literals_[*i] != *this)
+    if (i == _xsd_CanEscalate_indexes_ + 3 || _xsd_CanEscalate_literals_[*i] != *this)
     {
       throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
     }
@@ -26949,9 +28611,10 @@ namespace CDM
   _xsd_CanEscalate_literals_ = ::CDM::AlertConditionPriority::_xsd_AlertConditionPriority_literals_;
 
   const CanEscalate::Value CanEscalate::
-  _xsd_CanEscalate_indexes_[2] =
+  _xsd_CanEscalate_indexes_[3] =
   {
     ::CDM::CanEscalate::Hi,
+    ::CDM::CanEscalate::Lo,
     ::CDM::CanEscalate::Me
   };
 
@@ -26999,11 +28662,11 @@ namespace CDM
     ::xsd::cxx::tree::enum_comparator< char > c (_xsd_CanDeescalate_literals_);
     const Value* i (::std::lower_bound (
                       _xsd_CanDeescalate_indexes_,
-                      _xsd_CanDeescalate_indexes_ + 2,
+                      _xsd_CanDeescalate_indexes_ + 3,
                       *this,
                       c));
 
-    if (i == _xsd_CanDeescalate_indexes_ + 2 || _xsd_CanDeescalate_literals_[*i] != *this)
+    if (i == _xsd_CanDeescalate_indexes_ + 3 || _xsd_CanDeescalate_literals_[*i] != *this)
     {
       throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
     }
@@ -27015,10 +28678,11 @@ namespace CDM
   _xsd_CanDeescalate_literals_ = ::CDM::AlertConditionPriority::_xsd_AlertConditionPriority_literals_;
 
   const CanDeescalate::Value CanDeescalate::
-  _xsd_CanDeescalate_indexes_[2] =
+  _xsd_CanDeescalate_indexes_[3] =
   {
     ::CDM::CanDeescalate::Lo,
-    ::CDM::CanDeescalate::Me
+    ::CDM::CanDeescalate::Me,
+    ::CDM::CanDeescalate::None
   };
 
   // MetricQuality
@@ -27079,7 +28743,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -27224,7 +28888,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -27252,7 +28916,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -27281,7 +28945,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Type",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -27419,6 +29083,7 @@ namespace CDM
   : ::xml_schema::Type (),
     Extension_ (this),
     Code_ (this),
+    Identification_ (this),
     Kind_ (Kind, this),
     Entries_ (Entries, this)
   {
@@ -27431,6 +29096,7 @@ namespace CDM
   : ::xml_schema::Type (x, f, c),
     Extension_ (x.Extension_, f, this),
     Code_ (x.Code_, f, this),
+    Identification_ (x.Identification_, f, this),
     Kind_ (x.Kind_, f, this),
     Entries_ (x.Entries_, f, this)
   {
@@ -27443,6 +29109,7 @@ namespace CDM
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
     Extension_ (this),
     Code_ (this),
+    Identification_ (this),
     Kind_ (this),
     Entries_ (this)
   {
@@ -27469,7 +29136,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -27497,7 +29164,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Code",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CodeType >,
             false, true, i, n, f, this));
 
@@ -27514,6 +29181,34 @@ namespace CDM
               throw ::xsd::cxx::tree::not_derived< char > ();
 
             this->Code_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
+      // Identification
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Identification",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< IdentificationType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!this->Identification_)
+          {
+            ::std::unique_ptr< IdentificationType > r (
+              dynamic_cast< IdentificationType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->Identification_.set (::std::move (r));
             continue;
           }
         }
@@ -27571,6 +29266,7 @@ namespace CDM
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->Extension_ = x.Extension_;
       this->Code_ = x.Code_;
+      this->Identification_ = x.Identification_;
       this->Kind_ = x.Kind_;
       this->Entries_ = x.Entries_;
     }
@@ -27651,7 +29347,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Value",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ValueType >,
             false, true, i, n, f, this));
 
@@ -27679,7 +29375,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -27707,7 +29403,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -27735,7 +29431,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Characteristic",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< CharacteristicType >,
             false, true, i, n, f, this));
 
@@ -27764,7 +29460,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Value",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -27794,6 +29490,255 @@ namespace CDM
   ~AllowedValue ()
   {
   }
+
+  // OperationGroup
+  //
+
+  OperationGroup::
+  OperationGroup (const TypeType& Type)
+  : ::xml_schema::Type (),
+    Extension_ (this),
+    Type_ (Type, this),
+    OperatingMode_ (this),
+    Operations_ (this)
+  {
+  }
+
+  OperationGroup::
+  OperationGroup (::std::unique_ptr< TypeType > Type)
+  : ::xml_schema::Type (),
+    Extension_ (this),
+    Type_ (std::move (Type), this),
+    OperatingMode_ (this),
+    Operations_ (this)
+  {
+  }
+
+  OperationGroup::
+  OperationGroup (const OperationGroup& x,
+                  ::xml_schema::Flags f,
+                  ::xml_schema::Container* c)
+  : ::xml_schema::Type (x, f, c),
+    Extension_ (x.Extension_, f, this),
+    Type_ (x.Type_, f, this),
+    OperatingMode_ (x.OperatingMode_, f, this),
+    Operations_ (x.Operations_, f, this)
+  {
+  }
+
+  OperationGroup::
+  OperationGroup (const ::xercesc::DOMElement& e,
+                  ::xml_schema::Flags f,
+                  ::xml_schema::Container* c)
+  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    Extension_ (this),
+    Type_ (this),
+    OperatingMode_ (this),
+    Operations_ (this)
+  {
+    if ((f & ::xml_schema::Flags::base) == 0)
+    {
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, true);
+      this->parse (p, f);
+    }
+  }
+
+  void OperationGroup::
+  parse (::xsd::cxx::xml::dom::parser< char >& p,
+         ::xml_schema::Flags f)
+  {
+    for (; p.more_content (); p.next_content (false))
+    {
+      const ::xercesc::DOMElement& i (p.cur_element ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // Extension
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Extension",
+            "http://p11073-10207/draft10/ext/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< ExtensionType >,
+            true, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!this->Extension_)
+          {
+            ::std::unique_ptr< ExtensionType > r (
+              dynamic_cast< ExtensionType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->Extension_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
+      // Type
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Type",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< TypeType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!Type_.present ())
+          {
+            ::std::unique_ptr< TypeType > r (
+              dynamic_cast< TypeType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->Type_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
+      break;
+    }
+
+    if (!Type_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_element< char > (
+        "Type",
+        "http://p11073-10207/draft10/pm/2017/10/05");
+    }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      if (n.name () == "OperatingMode" && n.namespace_ ().empty ())
+      {
+        this->OperatingMode_.set (OperatingModeTraits::create (i, f, this));
+        continue;
+      }
+
+      if (n.name () == "Operations" && n.namespace_ ().empty ())
+      {
+        this->Operations_.set (OperationsTraits::create (i, f, this));
+        continue;
+      }
+    }
+  }
+
+  OperationGroup* OperationGroup::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class OperationGroup (*this, f, c);
+  }
+
+  OperationGroup& OperationGroup::
+  operator= (const OperationGroup& x)
+  {
+    if (this != &x)
+    {
+      static_cast< ::xml_schema::Type& > (*this) = x;
+      this->Extension_ = x.Extension_;
+      this->Type_ = x.Type_;
+      this->OperatingMode_ = x.OperatingMode_;
+      this->Operations_ = x.Operations_;
+    }
+
+    return *this;
+  }
+
+  OperationGroup::
+  ~OperationGroup ()
+  {
+  }
+
+  // AccessLevel
+  //
+
+  AccessLevel::
+  AccessLevel (const ::xercesc::DOMElement& e,
+               ::xml_schema::Flags f,
+               ::xml_schema::Container* c)
+  : ::xml_schema::String (e, f, c)
+  {
+    _xsd_AccessLevel_convert ();
+  }
+
+  AccessLevel::
+  AccessLevel (const ::xercesc::DOMAttr& a,
+               ::xml_schema::Flags f,
+               ::xml_schema::Container* c)
+  : ::xml_schema::String (a, f, c)
+  {
+    _xsd_AccessLevel_convert ();
+  }
+
+  AccessLevel::
+  AccessLevel (const ::std::string& s,
+               const ::xercesc::DOMElement* e,
+               ::xml_schema::Flags f,
+               ::xml_schema::Container* c)
+  : ::xml_schema::String (s, e, f, c)
+  {
+    _xsd_AccessLevel_convert ();
+  }
+
+  AccessLevel* AccessLevel::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class AccessLevel (*this, f, c);
+  }
+
+  AccessLevel::Value AccessLevel::
+  _xsd_AccessLevel_convert () const
+  {
+    ::xsd::cxx::tree::enum_comparator< char > c (_xsd_AccessLevel_literals_);
+    const Value* i (::std::lower_bound (
+                      _xsd_AccessLevel_indexes_,
+                      _xsd_AccessLevel_indexes_ + 4,
+                      *this,
+                      c));
+
+    if (i == _xsd_AccessLevel_indexes_ + 4 || _xsd_AccessLevel_literals_[*i] != *this)
+    {
+      throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
+    }
+
+    return *i;
+  }
+
+  const char* const AccessLevel::
+  _xsd_AccessLevel_literals_[4] =
+  {
+    "Usr",
+    "CSUsr",
+    "RO",
+    "SP"
+  };
+
+  const AccessLevel::Value AccessLevel::
+  _xsd_AccessLevel_indexes_[4] =
+  {
+    ::CDM::AccessLevel::CSUsr,
+    ::CDM::AccessLevel::RO,
+    ::CDM::AccessLevel::SP,
+    ::CDM::AccessLevel::Usr
+  };
 
   // AllowedValues
   //
@@ -27851,7 +29796,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Value",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ValueType >,
             false, true, i, n, f, this));
 
@@ -27880,7 +29825,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Value",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -27979,7 +29924,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ArgName",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ArgNameType >,
             false, true, i, n, f, this));
 
@@ -28007,7 +29952,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Arg",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ArgType >,
             false, true, i, n, f, this));
 
@@ -28036,14 +29981,14 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ArgName",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     if (!Arg_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Arg",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -28315,7 +30260,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Value",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ValueType >,
             false, true, i, n, f, this));
 
@@ -28339,7 +30284,7 @@ namespace CDM
 
       // ReferenceRange
       //
-      if (n.name () == "ReferenceRange" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "ReferenceRange" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< ReferenceRangeType > r (
           ReferenceRangeTraits::create (i, f, this));
@@ -28355,7 +30300,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Value",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     while (p.more_attributes ())
@@ -28482,7 +30427,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -28510,7 +30455,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Patient",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< PatientType >,
             false, true, i, n, f, this));
 
@@ -28538,7 +30483,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AssignedLocation",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< AssignedLocationType >,
             false, true, i, n, f, this));
 
@@ -28566,7 +30511,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "VisitNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< VisitNumberType >,
             false, true, i, n, f, this));
 
@@ -28594,7 +30539,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DangerCode",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< DangerCodeType >,
             false, true, i, n, f, this));
 
@@ -28619,7 +30564,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RelevantClinicalInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< RelevantClinicalInfoType >,
             false, true, i, n, f, this));
 
@@ -28640,7 +30585,7 @@ namespace CDM
 
       // RequestedOrderDetail
       //
-      if (n.name () == "RequestedOrderDetail" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "RequestedOrderDetail" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< RequestedOrderDetailType > r (
           RequestedOrderDetailTraits::create (i, f, this));
@@ -28654,7 +30599,7 @@ namespace CDM
 
       // PerformedOrderDetail
       //
-      if (n.name () == "PerformedOrderDetail" && n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+      if (n.name () == "PerformedOrderDetail" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         ::std::unique_ptr< PerformedOrderDetailType > r (
           PerformedOrderDetailTraits::create (i, f, this));
@@ -28673,7 +30618,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Patient",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -28705,6 +30650,161 @@ namespace CDM
 
   WorkflowDetail::
   ~WorkflowDetail ()
+  {
+  }
+
+  // CalibrationResult
+  //
+
+  CalibrationResult::
+  CalibrationResult (const CodeType& Code,
+                     const ValueType& Value)
+  : ::xml_schema::Type (),
+    Code_ (Code, this),
+    Value_ (Value, this)
+  {
+  }
+
+  CalibrationResult::
+  CalibrationResult (::std::unique_ptr< CodeType > Code,
+                     ::std::unique_ptr< ValueType > Value)
+  : ::xml_schema::Type (),
+    Code_ (std::move (Code), this),
+    Value_ (std::move (Value), this)
+  {
+  }
+
+  CalibrationResult::
+  CalibrationResult (const CalibrationResult& x,
+                     ::xml_schema::Flags f,
+                     ::xml_schema::Container* c)
+  : ::xml_schema::Type (x, f, c),
+    Code_ (x.Code_, f, this),
+    Value_ (x.Value_, f, this)
+  {
+  }
+
+  CalibrationResult::
+  CalibrationResult (const ::xercesc::DOMElement& e,
+                     ::xml_schema::Flags f,
+                     ::xml_schema::Container* c)
+  : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
+    Code_ (this),
+    Value_ (this)
+  {
+    if ((f & ::xml_schema::Flags::base) == 0)
+    {
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, false, false);
+      this->parse (p, f);
+    }
+  }
+
+  void CalibrationResult::
+  parse (::xsd::cxx::xml::dom::parser< char >& p,
+         ::xml_schema::Flags f)
+  {
+    for (; p.more_content (); p.next_content (false))
+    {
+      const ::xercesc::DOMElement& i (p.cur_element ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      // Code
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Code",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< CodeType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!Code_.present ())
+          {
+            ::std::unique_ptr< CodeType > r (
+              dynamic_cast< CodeType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->Code_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
+      // Value
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Value",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            &::xsd::cxx::tree::factory_impl< ValueType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          if (!Value_.present ())
+          {
+            ::std::unique_ptr< ValueType > r (
+              dynamic_cast< ValueType* > (tmp.get ()));
+
+            if (r.get ())
+              tmp.release ();
+            else
+              throw ::xsd::cxx::tree::not_derived< char > ();
+
+            this->Value_.set (::std::move (r));
+            continue;
+          }
+        }
+      }
+
+      break;
+    }
+
+    if (!Code_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_element< char > (
+        "Code",
+        "http://p11073-10207/draft10/pm/2017/10/05");
+    }
+
+    if (!Value_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_element< char > (
+        "Value",
+        "http://p11073-10207/draft10/pm/2017/10/05");
+    }
+  }
+
+  CalibrationResult* CalibrationResult::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class CalibrationResult (*this, f, c);
+  }
+
+  CalibrationResult& CalibrationResult::
+  operator= (const CalibrationResult& x)
+  {
+    if (this != &x)
+    {
+      static_cast< ::xml_schema::Type& > (*this) = x;
+      this->Code_ = x.Code_;
+      this->Value_ = x.Value_;
+    }
+
+    return *this;
+  }
+
+  CalibrationResult::
+  ~CalibrationResult ()
   {
   }
 
@@ -28797,7 +30897,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -28825,7 +30925,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DeviceIdentifier",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< DeviceIdentifierType >,
             false, true, i, n, f, this));
 
@@ -28853,7 +30953,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "HumanReadableForm",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< HumanReadableFormType >,
             false, true, i, n, f, this));
 
@@ -28881,7 +30981,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Issuer",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< IssuerType >,
             false, true, i, n, f, this));
 
@@ -28909,7 +31009,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Jurisdiction",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< JurisdictionType >,
             false, true, i, n, f, this));
 
@@ -28938,21 +31038,21 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "DeviceIdentifier",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     if (!HumanReadableForm_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "HumanReadableForm",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
 
     if (!Issuer_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Issuer",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -29028,11 +31128,11 @@ namespace CDM
     ::xsd::cxx::tree::enum_comparator< char > c (_xsd_Kind_literals_);
     const Value* i (::std::lower_bound (
                       _xsd_Kind_indexes_,
-                      _xsd_Kind_indexes_ + 5,
+                      _xsd_Kind_indexes_ + 6,
                       *this,
                       c));
 
-    if (i == _xsd_Kind_indexes_ + 5 || _xsd_Kind_literals_[*i] != *this)
+    if (i == _xsd_Kind_indexes_ + 6 || _xsd_Kind_literals_[*i] != *this)
     {
       throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
     }
@@ -29041,18 +31141,20 @@ namespace CDM
   }
 
   const char* const Kind::
-  _xsd_Kind_literals_[5] =
+  _xsd_Kind_literals_[6] =
   {
     "Rcm",
     "PS",
     "SST",
     "ECE",
+    "DCE",
     "Oth"
   };
 
   const Kind::Value Kind::
-  _xsd_Kind_indexes_[5] =
+  _xsd_Kind_indexes_[6] =
   {
+    ::CDM::Kind::DCE,
     ::CDM::Kind::ECE,
     ::CDM::Kind::Oth,
     ::CDM::Kind::PS,
@@ -29120,7 +31222,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Range",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< RangeType >,
             false, true, i, n, f, this));
 
@@ -29148,7 +31250,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Meaning",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< MeaningType >,
             false, true, i, n, f, this));
 
@@ -29177,7 +31279,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Range",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -29272,7 +31374,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ReferringPhysician",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ReferringPhysicianType >,
             false, true, i, n, f, this));
 
@@ -29300,7 +31402,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RequestingPhysician",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< RequestingPhysicianType >,
             false, true, i, n, f, this));
 
@@ -29328,7 +31430,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PlacerOrderNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< PlacerOrderNumberType >,
             false, true, i, n, f, this));
 
@@ -29357,7 +31459,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "PlacerOrderNumber",
-        "http://p11073-10207/draft8/pm/2017/08/07");
+        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -29441,7 +31543,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "FillerOrderNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< FillerOrderNumberType >,
             false, true, i, n, f, this));
 
@@ -29469,7 +31571,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ResultingClinicalInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             &::xsd::cxx::tree::factory_impl< ResultingClinicalInfoType >,
             false, true, i, n, f, this));
 
@@ -29739,7 +31841,7 @@ namespace CDM
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "MdibContainer",
-        "http://p11073-10207/draft8/pm/2017/08/07",
+        "http://p11073-10207/draft10/pm/2017/10/05",
         &::xsd::cxx::tree::factory_impl< ::CDM::Mdib >,
         true, true, e, n, f, 0));
 
@@ -29760,7 +31862,7 @@ namespace CDM
       n.name (),
       n.namespace_ (),
       "MdibContainer",
-      "http://p11073-10207/draft8/pm/2017/08/07");
+      "http://p11073-10207/draft10/pm/2017/10/05");
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
@@ -29788,7 +31890,7 @@ namespace CDM
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "MdibContainer",
-        "http://p11073-10207/draft8/pm/2017/08/07",
+        "http://p11073-10207/draft10/pm/2017/10/05",
         &::xsd::cxx::tree::factory_impl< ::CDM::Mdib >,
         true, true, e, n, f, 0));
 
@@ -29810,7 +31912,7 @@ namespace CDM
       n.name (),
       n.namespace_ (),
       "MdibContainer",
-      "http://p11073-10207/draft8/pm/2017/08/07");
+      "http://p11073-10207/draft10/pm/2017/10/05");
   }
 }
 
@@ -29848,7 +31950,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -29856,7 +31958,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -29875,7 +31977,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MdDescription",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -29883,7 +31985,7 @@ namespace CDM
         else
           tsm.serialize (
             "MdDescription",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -29902,7 +32004,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MdState",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -29910,7 +32012,7 @@ namespace CDM
         else
           tsm.serialize (
             "MdState",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -29955,7 +32057,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Mdib >
   _xsd_Mdib_type_serializer_init (
     "Mdib",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -29977,7 +32079,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -29985,7 +32087,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -30005,7 +32107,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Mds",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -30013,7 +32115,7 @@ namespace CDM
         else
           tsm.serialize (
             "Mds",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -30035,7 +32137,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdDescription >
   _xsd_MdDescription_type_serializer_init (
     "MdDescription",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30057,7 +32159,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -30065,7 +32167,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -30085,7 +32187,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "State",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -30093,7 +32195,7 @@ namespace CDM
         else
           tsm.serialize (
             "State",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -30115,7 +32217,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdState >
   _xsd_MdState_type_serializer_init (
     "MdState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30141,7 +32243,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MeasurementValidity >
   _xsd_MeasurementValidity_type_serializer_init (
     "MeasurementValidity",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30167,7 +32269,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Timestamp >
   _xsd_Timestamp_type_serializer_init (
     "Timestamp",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30193,7 +32295,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, VersionCounter >
   _xsd_VersionCounter_type_serializer_init (
     "VersionCounter",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30219,7 +32321,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ReferencedVersion >
   _xsd_ReferencedVersion_type_serializer_init (
     "ReferencedVersion",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30245,7 +32347,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CodeIdentifier >
   _xsd_CodeIdentifier_type_serializer_init (
     "CodeIdentifier",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30271,7 +32373,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SymbolicCodeName >
   _xsd_SymbolicCodeName_type_serializer_init (
     "SymbolicCodeName",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30297,13 +32399,65 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocalizedTextRef >
   _xsd_LocalizedTextRef_type_serializer_init (
     "LocalizedTextRef",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
+
+
+  void
+  operator<< (::xercesc::DOMElement& e, const LocalizedTextContent& i)
+  {
+    e << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  void
+  operator<< (::xercesc::DOMAttr& a, const LocalizedTextContent& i)
+  {
+    a << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  void
+  operator<< (::xml_schema::ListStream& l,
+              const LocalizedTextContent& i)
+  {
+    l << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  static
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocalizedTextContent >
+  _xsd_LocalizedTextContent_type_serializer_init (
+    "LocalizedTextContent",
+    "http://p11073-10207/draft10/pm/2017/10/05");
+
+
+  void
+  operator<< (::xercesc::DOMElement& e, const LocalizedTextWidth& i)
+  {
+    e << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  void
+  operator<< (::xercesc::DOMAttr& a, const LocalizedTextWidth& i)
+  {
+    a << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  void
+  operator<< (::xml_schema::ListStream& l,
+              const LocalizedTextWidth& i)
+  {
+    l << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  static
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocalizedTextWidth >
+  _xsd_LocalizedTextWidth_type_serializer_init (
+    "LocalizedTextWidth",
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
   operator<< (::xercesc::DOMElement& e, const LocalizedText& i)
   {
-    e << static_cast< const ::xml_schema::String& > (i);
+    e << static_cast< const ::CDM::LocalizedTextContent& > (i);
 
     // Ref
     //
@@ -30358,7 +32512,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocalizedText >
   _xsd_LocalizedText_type_serializer_init (
     "LocalizedText",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30380,7 +32534,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -30388,7 +32542,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -30408,7 +32562,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CodingSystemName",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -30416,7 +32570,7 @@ namespace CDM
         else
           tsm.serialize (
             "CodingSystemName",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -30436,7 +32590,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ConceptDescription",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -30444,37 +32598,24 @@ namespace CDM
         else
           tsm.serialize (
             "ConceptDescription",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
 
     // Translation
     //
+    for (CodedValue::TranslationConstIterator
+         b (i.Translation ().begin ()), n (i.Translation ().end ());
+         b != n; ++b)
     {
-      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "Translation",
+          "http://p11073-10207/draft10/pm/2017/10/05",
+          e));
 
-      for (CodedValue::TranslationConstIterator
-           b (i.Translation ().begin ()), n (i.Translation ().end ());
-           b != n; ++b)
-      {
-        if (typeid (CodedValue::TranslationType) == typeid (*b))
-        {
-          ::xercesc::DOMElement& s (
-            ::xsd::cxx::xml::dom::create_element (
-              "Translation",
-              "http://p11073-10207/draft8/pm/2017/08/07",
-              e));
-
-          s << *b;
-        }
-        else
-          tsm.serialize (
-            "Translation",
-            "http://p11073-10207/draft8/pm/2017/08/07",
-            false, true, e, *b);
-      }
+      s << *b;
     }
 
     // Code
@@ -30529,7 +32670,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CodedValue >
   _xsd_CodedValue_type_serializer_init (
     "CodedValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30551,7 +32692,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -30559,7 +32700,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -30578,7 +32719,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -30586,7 +32727,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -30606,7 +32747,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "IdentifierName",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -30614,7 +32755,7 @@ namespace CDM
         else
           tsm.serialize (
             "IdentifierName",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -30648,7 +32789,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, InstanceIdentifier >
   _xsd_InstanceIdentifier_type_serializer_init (
     "InstanceIdentifier",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30670,7 +32811,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -30678,7 +32819,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -30748,7 +32889,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Range >
   _xsd_Range_type_serializer_init (
     "Range",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30770,7 +32911,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -30778,7 +32919,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -30795,7 +32936,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "MeasurementUnit",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -30803,7 +32944,7 @@ namespace CDM
       else
         tsm.serialize (
           "MeasurementUnit",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -30823,7 +32964,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Measurement >
   _xsd_Measurement_type_serializer_init (
     "Measurement",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30849,7 +32990,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SafetyClassification >
   _xsd_SafetyClassification_type_serializer_init (
     "SafetyClassification",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30875,7 +33016,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ComponentActivation >
   _xsd_ComponentActivation_type_serializer_init (
     "ComponentActivation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30898,7 +33039,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ApprovedJurisdiction",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -30906,7 +33047,7 @@ namespace CDM
         else
           tsm.serialize (
             "ApprovedJurisdiction",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -30916,7 +33057,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ApprovedJurisdictions >
   _xsd_ApprovedJurisdictions_type_serializer_init (
     "ApprovedJurisdictions",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30929,7 +33070,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperatingJurisdiction >
   _xsd_OperatingJurisdiction_type_serializer_init (
     "OperatingJurisdiction",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30955,7 +33096,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Handle >
   _xsd_Handle_type_serializer_init (
     "Handle",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -30981,7 +33122,87 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, HandleRef >
   _xsd_HandleRef_type_serializer_init (
     "HandleRef",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
+
+
+  void
+  operator<< (::xercesc::DOMElement& e, const PhysicalConnectorInfo& i)
+  {
+    e << static_cast< const ::xml_schema::Type& > (i);
+
+    // Extension
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      if (i.Extension ())
+      {
+        const PhysicalConnectorInfo::ExtensionType& x (*i.Extension ());
+        if (typeid (PhysicalConnectorInfo::ExtensionType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Extension",
+              "http://p11073-10207/draft10/ext/2017/10/05",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "Extension",
+            "http://p11073-10207/draft10/ext/2017/10/05",
+            true, true, e, x);
+      }
+    }
+
+    // Label
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      for (PhysicalConnectorInfo::LabelConstIterator
+           b (i.Label ().begin ()), n (i.Label ().end ());
+           b != n; ++b)
+      {
+        if (typeid (PhysicalConnectorInfo::LabelType) == typeid (*b))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Label",
+              "http://p11073-10207/draft10/pm/2017/10/05",
+              e));
+
+          s << *b;
+        }
+        else
+          tsm.serialize (
+            "Label",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            false, true, e, *b);
+      }
+    }
+
+    // Number
+    //
+    if (i.Number ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "Number",
+          e));
+
+      a << *i.Number ();
+    }
+  }
+
+  static
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PhysicalConnectorInfo >
+  _xsd_PhysicalConnectorInfo_type_serializer_init (
+    "PhysicalConnectorInfo",
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31003,7 +33224,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -31011,7 +33232,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -31030,7 +33251,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31038,7 +33259,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31083,7 +33304,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractDescriptor >
   _xsd_AbstractDescriptor_type_serializer_init (
     "AbstractDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31105,7 +33326,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -31113,7 +33334,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -31158,7 +33379,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractState >
   _xsd_AbstractState_type_serializer_init (
     "AbstractState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31180,7 +33401,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Category",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31188,7 +33409,7 @@ namespace CDM
         else
           tsm.serialize (
             "Category",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31209,7 +33430,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractMultiState >
   _xsd_AbstractMultiState_type_serializer_init (
     "AbstractMultiState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31226,7 +33447,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ProductionSpecification",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *b;
@@ -31237,7 +33458,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractDeviceComponentDescriptor >
   _xsd_AbstractDeviceComponentDescriptor_type_serializer_init (
     "AbstractDeviceComponentDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31259,7 +33480,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AlertSystem",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31267,7 +33488,7 @@ namespace CDM
         else
           tsm.serialize (
             "AlertSystem",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31286,7 +33507,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Sco",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31294,7 +33515,7 @@ namespace CDM
         else
           tsm.serialize (
             "Sco",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31304,7 +33525,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractComplexDeviceComponentDescriptor >
   _xsd_AbstractComplexDeviceComponentDescriptor_type_serializer_init (
     "AbstractComplexDeviceComponentDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31330,7 +33551,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CalibrationState >
   _xsd_CalibrationState_type_serializer_init (
     "CalibrationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31356,7 +33577,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CalibrationType >
   _xsd_CalibrationType_type_serializer_init (
     "CalibrationType",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31378,7 +33599,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -31386,9 +33607,24 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
+    }
+
+    // CalibrationDocumentation
+    //
+    for (CalibrationInfo::CalibrationDocumentationConstIterator
+         b (i.CalibrationDocumentation ().begin ()), n (i.CalibrationDocumentation ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "CalibrationDocumentation",
+          "http://p11073-10207/draft10/pm/2017/10/05",
+          e));
+
+      s << *b;
     }
 
     // ComponentCalibrationState
@@ -31432,7 +33668,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CalibrationInfo >
   _xsd_CalibrationInfo_type_serializer_init (
     "CalibrationInfo",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31454,7 +33690,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CalibrationInfo",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31462,7 +33698,7 @@ namespace CDM
         else
           tsm.serialize (
             "CalibrationInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31481,7 +33717,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "NextCalibration",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31489,7 +33725,34 @@ namespace CDM
         else
           tsm.serialize (
             "NextCalibration",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            false, true, e, x);
+      }
+    }
+
+    // PhysicalConnector
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      if (i.PhysicalConnector ())
+      {
+        const AbstractDeviceComponentState::PhysicalConnectorType& x (*i.PhysicalConnector ());
+        if (typeid (AbstractDeviceComponentState::PhysicalConnectorType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "PhysicalConnector",
+              "http://p11073-10207/draft10/pm/2017/10/05",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "PhysicalConnector",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31535,7 +33798,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractDeviceComponentState >
   _xsd_AbstractDeviceComponentState_type_serializer_init (
     "AbstractDeviceComponentState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31548,7 +33811,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractComplexDeviceComponentState >
   _xsd_AbstractComplexDeviceComponentState_type_serializer_init (
     "AbstractComplexDeviceComponentState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31563,7 +33826,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "MetaData",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *i.MetaData ();
@@ -31583,7 +33846,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SystemContext",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31591,7 +33854,7 @@ namespace CDM
         else
           tsm.serialize (
             "SystemContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31610,7 +33873,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Clock",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31618,7 +33881,7 @@ namespace CDM
         else
           tsm.serialize (
             "Clock",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31638,7 +33901,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Battery",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -31646,7 +33909,7 @@ namespace CDM
         else
           tsm.serialize (
             "Battery",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -31665,7 +33928,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ApprovedJurisdictions",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31673,7 +33936,7 @@ namespace CDM
         else
           tsm.serialize (
             "ApprovedJurisdictions",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31693,7 +33956,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Vmd",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -31701,7 +33964,7 @@ namespace CDM
         else
           tsm.serialize (
             "Vmd",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -31711,7 +33974,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdsDescriptor >
   _xsd_MdsDescriptor_type_serializer_init (
     "MdsDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31737,7 +34000,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdsOperatingMode >
   _xsd_MdsOperatingMode_type_serializer_init (
     "MdsOperatingMode",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31759,7 +34022,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "OperatingJurisdiction",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31767,7 +34030,7 @@ namespace CDM
         else
           tsm.serialize (
             "OperatingJurisdiction",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31801,7 +34064,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdsState >
   _xsd_MdsState_type_serializer_init (
     "MdsState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31823,7 +34086,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ApprovedJurisdictions",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31831,7 +34094,7 @@ namespace CDM
         else
           tsm.serialize (
             "ApprovedJurisdictions",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31851,7 +34114,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Channel",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -31859,7 +34122,7 @@ namespace CDM
         else
           tsm.serialize (
             "Channel",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -31869,7 +34132,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, VmdDescriptor >
   _xsd_VmdDescriptor_type_serializer_init (
     "VmdDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31891,7 +34154,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "OperatingJurisdiction",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -31899,7 +34162,7 @@ namespace CDM
         else
           tsm.serialize (
             "OperatingJurisdiction",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -31909,7 +34172,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, VmdState >
   _xsd_VmdState_type_serializer_init (
     "VmdState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31932,7 +34195,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Metric",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -31940,7 +34203,7 @@ namespace CDM
         else
           tsm.serialize (
             "Metric",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -31950,7 +34213,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ChannelDescriptor >
   _xsd_ChannelDescriptor_type_serializer_init (
     "ChannelDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31963,7 +34226,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ChannelState >
   _xsd_ChannelState_type_serializer_init (
     "ChannelState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -31976,7 +34239,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractAlertDescriptor >
   _xsd_AbstractAlertDescriptor_type_serializer_init (
     "AbstractAlertDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32000,7 +34263,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractAlertState >
   _xsd_AbstractAlertState_type_serializer_init (
     "AbstractAlertState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32026,7 +34289,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertActivation >
   _xsd_AlertActivation_type_serializer_init (
     "AlertActivation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32061,7 +34324,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SystemSignalActivation >
   _xsd_SystemSignalActivation_type_serializer_init (
     "SystemSignalActivation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32084,7 +34347,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AlertCondition",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -32092,7 +34355,7 @@ namespace CDM
         else
           tsm.serialize (
             "AlertCondition",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -32112,7 +34375,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AlertSignal",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -32120,7 +34383,7 @@ namespace CDM
         else
           tsm.serialize (
             "AlertSignal",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -32166,7 +34429,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSystemDescriptor >
   _xsd_AlertSystemDescriptor_type_serializer_init (
     "AlertSystemDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32189,7 +34452,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SystemSignalActivation",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -32197,7 +34460,7 @@ namespace CDM
         else
           tsm.serialize (
             "SystemSignalActivation",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -32255,7 +34518,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSystemState >
   _xsd_AlertSystemState_type_serializer_init (
     "AlertSystemState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32277,7 +34540,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -32285,7 +34548,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -32304,7 +34567,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "RemedyInfo",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -32312,7 +34575,7 @@ namespace CDM
         else
           tsm.serialize (
             "RemedyInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -32332,7 +34595,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Description",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -32340,7 +34603,7 @@ namespace CDM
         else
           tsm.serialize (
             "Description",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -32350,7 +34613,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CauseInfo >
   _xsd_CauseInfo_type_serializer_init (
     "CauseInfo",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32372,7 +34635,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -32380,7 +34643,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -32400,7 +34663,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Description",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -32408,7 +34671,7 @@ namespace CDM
         else
           tsm.serialize (
             "Description",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -32418,7 +34681,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RemedyInfo >
   _xsd_RemedyInfo_type_serializer_init (
     "RemedyInfo",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32444,7 +34707,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionKind >
   _xsd_AlertConditionKind_type_serializer_init (
     "AlertConditionKind",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32470,7 +34733,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionPriority >
   _xsd_AlertConditionPriority_type_serializer_init (
     "AlertConditionPriority",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32493,7 +34756,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Source",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -32501,7 +34764,7 @@ namespace CDM
         else
           tsm.serialize (
             "Source",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -32521,7 +34784,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CauseInfo",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -32529,7 +34792,7 @@ namespace CDM
         else
           tsm.serialize (
             "CauseInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -32597,7 +34860,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionDescriptor >
   _xsd_AlertConditionDescriptor_type_serializer_init (
     "AlertConditionDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32623,7 +34886,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionReference >
   _xsd_AlertConditionReference_type_serializer_init (
     "AlertConditionReference",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32669,13 +34932,14 @@ namespace CDM
 
     // Presence
     //
+    if (i.Presence ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Presence",
           e));
 
-      a << i.Presence ();
+      a << *i.Presence ();
     }
 
     // DeterminationTime
@@ -32695,7 +34959,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionState >
   _xsd_AlertConditionState_type_serializer_init (
     "AlertConditionState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32715,7 +34979,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "MaxLimits",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -32723,7 +34987,7 @@ namespace CDM
       else
         tsm.serialize (
           "MaxLimits",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -32744,7 +35008,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LimitAlertConditionDescriptor >
   _xsd_LimitAlertConditionDescriptor_type_serializer_init (
     "LimitAlertConditionDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32770,7 +35034,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionMonitoredLimits >
   _xsd_AlertConditionMonitoredLimits_type_serializer_init (
     "AlertConditionMonitoredLimits",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32790,7 +35054,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Limits",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -32798,7 +35062,7 @@ namespace CDM
       else
         tsm.serialize (
           "Limits",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -32830,7 +35094,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LimitAlertConditionState >
   _xsd_LimitAlertConditionState_type_serializer_init (
     "LimitAlertConditionState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32856,7 +35120,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalManifestation >
   _xsd_AlertSignalManifestation_type_serializer_init (
     "AlertSignalManifestation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32866,13 +35130,14 @@ namespace CDM
 
     // ConditionSignaled
     //
+    if (i.ConditionSignaled ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ConditionSignaled",
           e));
 
-      a << i.ConditionSignaled ();
+      a << *i.ConditionSignaled ();
     }
 
     // Manifestation
@@ -32907,6 +35172,30 @@ namespace CDM
           e));
 
       a << *i.DefaultSignalGenerationDelay ();
+    }
+
+    // MinSignalGenerationDelay
+    //
+    if (i.MinSignalGenerationDelay ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "MinSignalGenerationDelay",
+          e));
+
+      a << *i.MinSignalGenerationDelay ();
+    }
+
+    // MaxSignalGenerationDelay
+    //
+    if (i.MaxSignalGenerationDelay ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "MaxSignalGenerationDelay",
+          e));
+
+      a << *i.MaxSignalGenerationDelay ();
     }
 
     // SignalDelegationSupported
@@ -32950,7 +35239,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalDescriptor >
   _xsd_AlertSignalDescriptor_type_serializer_init (
     "AlertSignalDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -32976,7 +35265,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalPresence >
   _xsd_AlertSignalPresence_type_serializer_init (
     "AlertSignalPresence",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33002,7 +35291,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalPrimaryLocation >
   _xsd_AlertSignalPrimaryLocation_type_serializer_init (
     "AlertSignalPrimaryLocation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33063,7 +35352,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalState >
   _xsd_AlertSignalState_type_serializer_init (
     "AlertSignalState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33089,7 +35378,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, QualityIndicator >
   _xsd_QualityIndicator_type_serializer_init (
     "QualityIndicator",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33115,7 +35404,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, GenerationMode >
   _xsd_GenerationMode_type_serializer_init (
     "GenerationMode",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33137,7 +35426,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -33145,7 +35434,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -33156,7 +35445,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "MetricQuality",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << i.MetricQuality ();
@@ -33171,7 +35460,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Annotation",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *b;
@@ -33218,7 +35507,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractMetricValue >
   _xsd_AbstractMetricValue_type_serializer_init (
     "AbstractMetricValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33243,7 +35532,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, NumericMetricValue >
   _xsd_NumericMetricValue_type_serializer_init (
     "NumericMetricValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33268,7 +35557,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StringMetricValue >
   _xsd_StringMetricValue_type_serializer_init (
     "StringMetricValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33294,7 +35583,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RealTimeValueType >
   _xsd_RealTimeValueType_type_serializer_init (
     "RealTimeValueType",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33311,7 +35600,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ApplyAnnotation",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *b;
@@ -33334,7 +35623,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SampleArrayValue >
   _xsd_SampleArrayValue_type_serializer_init (
     "SampleArrayValue",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33360,7 +35649,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MetricCategory >
   _xsd_MetricCategory_type_serializer_init (
     "MetricCategory",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33386,7 +35675,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DerivationMethod >
   _xsd_DerivationMethod_type_serializer_init (
     "DerivationMethod",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33412,7 +35701,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MetricAvailability >
   _xsd_MetricAvailability_type_serializer_init (
     "MetricAvailability",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33432,7 +35721,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Unit",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -33440,7 +35729,7 @@ namespace CDM
       else
         tsm.serialize (
           "Unit",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -33459,7 +35748,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "BodySite",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -33467,7 +35756,7 @@ namespace CDM
         else
           tsm.serialize (
             "BodySite",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -33481,7 +35770,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Relation",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *b;
@@ -33586,7 +35875,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractMetricDescriptor >
   _xsd_AbstractMetricDescriptor_type_serializer_init (
     "AbstractMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33609,7 +35898,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "BodySite",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -33617,8 +35906,35 @@ namespace CDM
         else
           tsm.serialize (
             "BodySite",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
+      }
+    }
+
+    // PhysicalConnector
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      if (i.PhysicalConnector ())
+      {
+        const AbstractMetricState::PhysicalConnectorType& x (*i.PhysicalConnector ());
+        if (typeid (AbstractMetricState::PhysicalConnectorType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "PhysicalConnector",
+              "http://p11073-10207/draft10/pm/2017/10/05",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "PhysicalConnector",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            false, true, e, x);
       }
     }
 
@@ -33663,7 +35979,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractMetricState >
   _xsd_AbstractMetricState_type_serializer_init (
     "AbstractMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33686,7 +36002,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TechnicalRange",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -33694,21 +36010,20 @@ namespace CDM
         else
           tsm.serialize (
             "TechnicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
 
     // Resolution
     //
-    if (i.Resolution ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Resolution",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.Resolution ());
+      a << ::xml_schema::AsDecimal(i.Resolution ());
     }
 
     // AveragingPeriod
@@ -33728,7 +36043,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, NumericMetricDescriptor >
   _xsd_NumericMetricDescriptor_type_serializer_init (
     "NumericMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33750,7 +36065,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MetricValue",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -33758,7 +36073,7 @@ namespace CDM
         else
           tsm.serialize (
             "MetricValue",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -33778,7 +36093,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PhysiologicalRange",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -33786,7 +36101,7 @@ namespace CDM
         else
           tsm.serialize (
             "PhysiologicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -33808,7 +36123,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, NumericMetricState >
   _xsd_NumericMetricState_type_serializer_init (
     "NumericMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33821,7 +36136,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StringMetricDescriptor >
   _xsd_StringMetricDescriptor_type_serializer_init (
     "StringMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33843,7 +36158,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MetricValue",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -33851,7 +36166,7 @@ namespace CDM
         else
           tsm.serialize (
             "MetricValue",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -33861,7 +36176,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StringMetricState >
   _xsd_StringMetricState_type_serializer_init (
     "StringMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33878,7 +36193,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "AllowedValue",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *b;
@@ -33889,7 +36204,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EnumStringMetricDescriptor >
   _xsd_EnumStringMetricDescriptor_type_serializer_init (
     "EnumStringMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33902,7 +36217,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EnumStringMetricState >
   _xsd_EnumStringMetricState_type_serializer_init (
     "EnumStringMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33925,7 +36240,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TechnicalRange",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -33933,21 +36248,20 @@ namespace CDM
         else
           tsm.serialize (
             "TechnicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
 
     // Resolution
     //
-    if (i.Resolution ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Resolution",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.Resolution ());
+      a << ::xml_schema::AsDecimal(i.Resolution ());
     }
 
     // SamplePeriod
@@ -33966,7 +36280,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RealTimeSampleArrayMetricDescriptor >
   _xsd_RealTimeSampleArrayMetricDescriptor_type_serializer_init (
     "RealTimeSampleArrayMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -33988,7 +36302,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MetricValue",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -33996,7 +36310,7 @@ namespace CDM
         else
           tsm.serialize (
             "MetricValue",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -34016,7 +36330,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PhysiologicalRange",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -34024,7 +36338,7 @@ namespace CDM
         else
           tsm.serialize (
             "PhysiologicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -34034,7 +36348,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RealTimeSampleArrayMetricState >
   _xsd_RealTimeSampleArrayMetricState_type_serializer_init (
     "RealTimeSampleArrayMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34057,7 +36371,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TechnicalRange",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -34065,7 +36379,7 @@ namespace CDM
         else
           tsm.serialize (
             "TechnicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -34082,7 +36396,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "DomainUnit",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -34090,7 +36404,7 @@ namespace CDM
       else
         tsm.serialize (
           "DomainUnit",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -34106,7 +36420,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "DistributionRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -34114,20 +36428,19 @@ namespace CDM
       else
         tsm.serialize (
           "DistributionRange",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
     // Resolution
     //
-    if (i.Resolution ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Resolution",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.Resolution ());
+      a << ::xml_schema::AsDecimal(i.Resolution ());
     }
   }
 
@@ -34135,7 +36448,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DistributionSampleArrayMetricDescriptor >
   _xsd_DistributionSampleArrayMetricDescriptor_type_serializer_init (
     "DistributionSampleArrayMetricDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34157,7 +36470,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MetricValue",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -34165,7 +36478,7 @@ namespace CDM
         else
           tsm.serialize (
             "MetricValue",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -34185,7 +36498,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PhysiologicalRange",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -34193,7 +36506,7 @@ namespace CDM
         else
           tsm.serialize (
             "PhysiologicalRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -34203,7 +36516,33 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DistributionSampleArrayMetricState >
   _xsd_DistributionSampleArrayMetricState_type_serializer_init (
     "DistributionSampleArrayMetricState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
+
+
+  void
+  operator<< (::xercesc::DOMElement& e, const OperationRef& i)
+  {
+    e << static_cast< const ::xsd::cxx::tree::list< ::CDM::HandleRef, char >& > (i);
+  }
+
+  void
+  operator<< (::xercesc::DOMAttr& a, const OperationRef& i)
+  {
+    a << static_cast< const ::xsd::cxx::tree::list< ::CDM::HandleRef, char >& > (i);
+  }
+
+  void
+  operator<< (::xml_schema::ListStream& l,
+              const OperationRef& i)
+  {
+    l << static_cast< const ::xsd::cxx::tree::list< ::CDM::HandleRef, char >& > (i);
+  }
+
+  static
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperationRef >
+  _xsd_OperationRef_type_serializer_init (
+    "OperationRef",
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34226,7 +36565,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Operation",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -34234,7 +36573,7 @@ namespace CDM
         else
           tsm.serialize (
             "Operation",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -34244,20 +36583,59 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ScoDescriptor >
   _xsd_ScoDescriptor_type_serializer_init (
     "ScoDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
   operator<< (::xercesc::DOMElement& e, const ScoState& i)
   {
     e << static_cast< const ::CDM::AbstractState& > (i);
+
+    // OperationGroup
+    //
+    for (ScoState::OperationGroupConstIterator
+         b (i.OperationGroup ().begin ()), n (i.OperationGroup ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "OperationGroup",
+          "http://p11073-10207/draft10/pm/2017/10/05",
+          e));
+
+      s << *b;
+    }
+
+    // InvocationRequested
+    //
+    if (i.InvocationRequested ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "InvocationRequested",
+          e));
+
+      a << *i.InvocationRequested ();
+    }
+
+    // InvocationRequired
+    //
+    if (i.InvocationRequired ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "InvocationRequired",
+          e));
+
+      a << *i.InvocationRequired ();
+    }
   }
 
   static
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ScoState >
   _xsd_ScoState_type_serializer_init (
     "ScoState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34311,13 +36689,25 @@ namespace CDM
 
       a << *i.Retriggerable ();
     }
+
+    // AccessLevel
+    //
+    if (i.AccessLevel ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "AccessLevel",
+          e));
+
+      a << *i.AccessLevel ();
+    }
   }
 
   static
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractOperationDescriptor >
   _xsd_AbstractOperationDescriptor_type_serializer_init (
     "AbstractOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34325,30 +36715,30 @@ namespace CDM
   {
     e << static_cast< const ::CDM::AbstractOperationDescriptor& > (i);
 
-    // ModifiableElement
+    // ModifiableData
     //
     {
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (AbstractSetStateOperationDescriptor::ModifiableElementConstIterator
-           b (i.ModifiableElement ().begin ()), n (i.ModifiableElement ().end ());
+      for (AbstractSetStateOperationDescriptor::ModifiableDataConstIterator
+           b (i.ModifiableData ().begin ()), n (i.ModifiableData ().end ());
            b != n; ++b)
       {
-        if (typeid (AbstractSetStateOperationDescriptor::ModifiableElementType) == typeid (*b))
+        if (typeid (AbstractSetStateOperationDescriptor::ModifiableDataType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
-              "ModifiableElement",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "ModifiableData",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
         }
         else
           tsm.serialize (
-            "ModifiableElement",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "ModifiableData",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -34358,7 +36748,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractSetStateOperationDescriptor >
   _xsd_AbstractSetStateOperationDescriptor_type_serializer_init (
     "AbstractSetStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34384,7 +36774,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperatingMode >
   _xsd_OperatingMode_type_serializer_init (
     "OperatingMode",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34408,7 +36798,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractOperationState >
   _xsd_AbstractOperationState_type_serializer_init (
     "AbstractOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34421,7 +36811,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetValueOperationDescriptor >
   _xsd_SetValueOperationDescriptor_type_serializer_init (
     "SetValueOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34444,7 +36834,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AllowedRange",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -34452,7 +36842,7 @@ namespace CDM
         else
           tsm.serialize (
             "AllowedRange",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -34462,7 +36852,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetValueOperationState >
   _xsd_SetValueOperationState_type_serializer_init (
     "SetValueOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34487,7 +36877,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetStringOperationDescriptor >
   _xsd_SetStringOperationDescriptor_type_serializer_init (
     "SetStringOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34502,7 +36892,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "AllowedValues",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *i.AllowedValues ();
@@ -34513,7 +36903,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetStringOperationState >
   _xsd_SetStringOperationState_type_serializer_init (
     "SetStringOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34530,7 +36920,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Argument",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *b;
@@ -34541,7 +36931,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ActivateOperationDescriptor >
   _xsd_ActivateOperationDescriptor_type_serializer_init (
     "ActivateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34554,7 +36944,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ActivateOperationState >
   _xsd_ActivateOperationState_type_serializer_init (
     "ActivateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34567,7 +36957,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetContextStateOperationDescriptor >
   _xsd_SetContextStateOperationDescriptor_type_serializer_init (
     "SetContextStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34580,7 +36970,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetContextStateOperationState >
   _xsd_SetContextStateOperationState_type_serializer_init (
     "SetContextStateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34593,7 +36983,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetMetricStateOperationDescriptor >
   _xsd_SetMetricStateOperationDescriptor_type_serializer_init (
     "SetMetricStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34606,7 +36996,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetMetricStateOperationState >
   _xsd_SetMetricStateOperationState_type_serializer_init (
     "SetMetricStateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34619,7 +37009,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetComponentStateOperationDescriptor >
   _xsd_SetComponentStateOperationDescriptor_type_serializer_init (
     "SetComponentStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34632,7 +37022,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetComponentStateOperationState >
   _xsd_SetComponentStateOperationState_type_serializer_init (
     "SetComponentStateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34645,7 +37035,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetAlertStateOperationDescriptor >
   _xsd_SetAlertStateOperationDescriptor_type_serializer_init (
     "SetAlertStateOperationDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34658,7 +37048,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetAlertStateOperationState >
   _xsd_SetAlertStateOperationState_type_serializer_init (
     "SetAlertStateOperationState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34684,7 +37074,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, TimeZone >
   _xsd_TimeZone_type_serializer_init (
     "TimeZone",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34707,7 +37097,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TimeProtocol",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -34715,7 +37105,7 @@ namespace CDM
         else
           tsm.serialize (
             "TimeProtocol",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -34737,7 +37127,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ClockDescriptor >
   _xsd_ClockDescriptor_type_serializer_init (
     "ClockDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34759,7 +37149,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ActiveSyncProtocol",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -34767,8 +37157,36 @@ namespace CDM
         else
           tsm.serialize (
             "ActiveSyncProtocol",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
+      }
+    }
+
+    // ReferenceSource
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      for (ClockState::ReferenceSourceConstIterator
+           b (i.ReferenceSource ().begin ()), n (i.ReferenceSource ().end ());
+           b != n; ++b)
+      {
+        if (typeid (ClockState::ReferenceSourceType) == typeid (*b))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "ReferenceSource",
+              "http://p11073-10207/draft10/pm/2017/10/05",
+              e));
+
+          s << *b;
+        }
+        else
+          tsm.serialize (
+            "ReferenceSource",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            false, true, e, *b);
       }
     }
 
@@ -34793,18 +37211,6 @@ namespace CDM
           e));
 
       a << i.RemoteSync ();
-    }
-
-    // ReferenceSource
-    //
-    if (i.ReferenceSource ())
-    {
-      ::xercesc::DOMAttr& a (
-        ::xsd::cxx::xml::dom::create_attribute (
-          "ReferenceSource",
-          e));
-
-      a << *i.ReferenceSource ();
     }
 
     // Accuracy
@@ -34860,7 +37266,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ClockState >
   _xsd_ClockState_type_serializer_init (
     "ClockState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34882,7 +37288,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CapacityFullCharge",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -34890,7 +37296,7 @@ namespace CDM
         else
           tsm.serialize (
             "CapacityFullCharge",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -34909,7 +37315,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CapacitySpecified",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -34917,7 +37323,7 @@ namespace CDM
         else
           tsm.serialize (
             "CapacitySpecified",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -34936,7 +37342,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "VoltageSpecified",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -34944,7 +37350,7 @@ namespace CDM
         else
           tsm.serialize (
             "VoltageSpecified",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -34954,7 +37360,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, BatteryDescriptor >
   _xsd_BatteryDescriptor_type_serializer_init (
     "BatteryDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -34976,7 +37382,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CapacityRemaining",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -34984,7 +37390,7 @@ namespace CDM
         else
           tsm.serialize (
             "CapacityRemaining",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35003,7 +37409,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Voltage",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35011,7 +37417,7 @@ namespace CDM
         else
           tsm.serialize (
             "Voltage",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35030,7 +37436,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Current",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35038,7 +37444,7 @@ namespace CDM
         else
           tsm.serialize (
             "Current",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35057,7 +37463,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Temperature",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35065,7 +37471,7 @@ namespace CDM
         else
           tsm.serialize (
             "Temperature",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35084,7 +37490,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "RemainingBatteryTime",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35092,7 +37498,7 @@ namespace CDM
         else
           tsm.serialize (
             "RemainingBatteryTime",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35126,7 +37532,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, BatteryState >
   _xsd_BatteryState_type_serializer_init (
     "BatteryState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35148,7 +37554,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PatientContext",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35156,7 +37562,7 @@ namespace CDM
         else
           tsm.serialize (
             "PatientContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35175,7 +37581,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "LocationContext",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35183,7 +37589,7 @@ namespace CDM
         else
           tsm.serialize (
             "LocationContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35203,7 +37609,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "EnsembleContext",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -35211,7 +37617,7 @@ namespace CDM
         else
           tsm.serialize (
             "EnsembleContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -35231,7 +37637,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "OperatorContext",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -35239,7 +37645,7 @@ namespace CDM
         else
           tsm.serialize (
             "OperatorContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -35259,7 +37665,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "WorkflowContext",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -35267,7 +37673,7 @@ namespace CDM
         else
           tsm.serialize (
             "WorkflowContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -35287,7 +37693,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MeansContext",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -35295,7 +37701,7 @@ namespace CDM
         else
           tsm.serialize (
             "MeansContext",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -35305,7 +37711,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SystemContextDescriptor >
   _xsd_SystemContextDescriptor_type_serializer_init (
     "SystemContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35318,7 +37724,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SystemContextState >
   _xsd_SystemContextState_type_serializer_init (
     "SystemContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35331,7 +37737,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractContextDescriptor >
   _xsd_AbstractContextDescriptor_type_serializer_init (
     "AbstractContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35357,7 +37763,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ContextAssociation >
   _xsd_ContextAssociation_type_serializer_init (
     "ContextAssociation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35380,7 +37786,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Validator",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -35388,7 +37794,7 @@ namespace CDM
         else
           tsm.serialize (
             "Validator",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -35408,7 +37814,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -35416,7 +37822,7 @@ namespace CDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -35486,7 +37892,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractContextState >
   _xsd_AbstractContextState_type_serializer_init (
     "AbstractContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35508,7 +37914,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -35516,7 +37922,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -35535,7 +37941,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Givenname",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35543,7 +37949,7 @@ namespace CDM
         else
           tsm.serialize (
             "Givenname",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35563,7 +37969,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Middlename",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -35571,7 +37977,7 @@ namespace CDM
         else
           tsm.serialize (
             "Middlename",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -35590,7 +37996,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Familyname",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35598,7 +38004,7 @@ namespace CDM
         else
           tsm.serialize (
             "Familyname",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35617,7 +38023,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Birthname",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35625,7 +38031,7 @@ namespace CDM
         else
           tsm.serialize (
             "Birthname",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35644,7 +38050,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Title",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35652,7 +38058,7 @@ namespace CDM
         else
           tsm.serialize (
             "Title",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35662,7 +38068,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, BaseDemographics >
   _xsd_BaseDemographics_type_serializer_init (
     "BaseDemographics",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35684,7 +38090,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -35692,7 +38098,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -35712,7 +38118,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -35720,7 +38126,7 @@ namespace CDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -35739,7 +38145,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Name",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35747,7 +38153,7 @@ namespace CDM
         else
           tsm.serialize (
             "Name",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35757,7 +38163,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PersonReference >
   _xsd_PersonReference_type_serializer_init (
     "PersonReference",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35779,7 +38185,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -35787,7 +38193,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -35869,7 +38275,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocationDetail >
   _xsd_LocationDetail_type_serializer_init (
     "LocationDetail",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35882,7 +38288,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PatientContextDescriptor >
   _xsd_PatientContextDescriptor_type_serializer_init (
     "PatientContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35908,7 +38314,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Sex >
   _xsd_Sex_type_serializer_init (
     "Sex",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35934,7 +38340,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PatientType >
   _xsd_PatientType_type_serializer_init (
     "PatientType",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -35956,7 +38362,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Sex",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35964,7 +38370,7 @@ namespace CDM
         else
           tsm.serialize (
             "Sex",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -35983,7 +38389,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PatientType",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -35991,7 +38397,7 @@ namespace CDM
         else
           tsm.serialize (
             "PatientType",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36003,7 +38409,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "DateOfBirth",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *i.DateOfBirth ();
@@ -36023,7 +38429,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Height",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36031,7 +38437,7 @@ namespace CDM
         else
           tsm.serialize (
             "Height",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36050,7 +38456,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Weight",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36058,7 +38464,7 @@ namespace CDM
         else
           tsm.serialize (
             "Weight",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36077,7 +38483,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Race",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36085,7 +38491,7 @@ namespace CDM
         else
           tsm.serialize (
             "Race",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36095,7 +38501,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PatientDemographicsCoreData >
   _xsd_PatientDemographicsCoreData_type_serializer_init (
     "PatientDemographicsCoreData",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36117,7 +38523,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "GestationalAge",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36125,7 +38531,7 @@ namespace CDM
         else
           tsm.serialize (
             "GestationalAge",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36144,7 +38550,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "BirthLength",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36152,7 +38558,7 @@ namespace CDM
         else
           tsm.serialize (
             "BirthLength",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36171,7 +38577,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "BirthWeight",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36179,7 +38585,7 @@ namespace CDM
         else
           tsm.serialize (
             "BirthWeight",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36198,7 +38604,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "HeadCircumference",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36206,7 +38612,7 @@ namespace CDM
         else
           tsm.serialize (
             "HeadCircumference",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36225,7 +38631,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Mother",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36233,7 +38639,7 @@ namespace CDM
         else
           tsm.serialize (
             "Mother",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36243,7 +38649,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, NeonatalPatientDemographicsCoreData >
   _xsd_NeonatalPatientDemographicsCoreData_type_serializer_init (
     "NeonatalPatientDemographicsCoreData",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36265,7 +38671,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CoreData",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36273,7 +38679,7 @@ namespace CDM
         else
           tsm.serialize (
             "CoreData",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36283,7 +38689,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PatientContextState >
   _xsd_PatientContextState_type_serializer_init (
     "PatientContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36296,7 +38702,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocationContextDescriptor >
   _xsd_LocationContextDescriptor_type_serializer_init (
     "LocationContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36318,7 +38724,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "LocationDetail",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36326,7 +38732,7 @@ namespace CDM
         else
           tsm.serialize (
             "LocationDetail",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36336,7 +38742,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocationContextState >
   _xsd_LocationContextState_type_serializer_init (
     "LocationContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36349,7 +38755,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, WorkflowContextDescriptor >
   _xsd_WorkflowContextDescriptor_type_serializer_init (
     "WorkflowContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36371,7 +38777,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -36379,7 +38785,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -36398,7 +38804,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36406,7 +38812,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36425,7 +38831,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Code",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36433,7 +38839,7 @@ namespace CDM
         else
           tsm.serialize (
             "Code",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36445,7 +38851,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Criticality",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *i.Criticality ();
@@ -36466,7 +38872,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Description",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -36474,7 +38880,7 @@ namespace CDM
         else
           tsm.serialize (
             "Description",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -36488,7 +38894,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "RelatedMeasurement",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *b;
@@ -36499,7 +38905,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ClinicalInfo >
   _xsd_ClinicalInfo_type_serializer_init (
     "ClinicalInfo",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36521,7 +38927,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -36529,7 +38935,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -36546,7 +38952,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "AccessionIdentifier",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -36554,7 +38960,7 @@ namespace CDM
       else
         tsm.serialize (
           "AccessionIdentifier",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -36570,7 +38976,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "RequestedProcedureId",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -36578,7 +38984,7 @@ namespace CDM
       else
         tsm.serialize (
           "RequestedProcedureId",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -36594,7 +39000,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "StudyInstanceUid",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -36602,7 +39008,7 @@ namespace CDM
       else
         tsm.serialize (
           "StudyInstanceUid",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -36618,7 +39024,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ScheduledProcedureStepId",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -36626,7 +39032,7 @@ namespace CDM
       else
         tsm.serialize (
           "ScheduledProcedureStepId",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -36644,7 +39050,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Modality",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36652,7 +39058,7 @@ namespace CDM
         else
           tsm.serialize (
             "Modality",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36671,7 +39077,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ProtocolCode",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36679,7 +39085,7 @@ namespace CDM
         else
           tsm.serialize (
             "ProtocolCode",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36689,7 +39095,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ImagingProcedure >
   _xsd_ImagingProcedure_type_serializer_init (
     "ImagingProcedure",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36711,7 +39117,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -36719,7 +39125,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -36739,7 +39145,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -36747,7 +39153,7 @@ namespace CDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -36766,7 +39172,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "LocationDetail",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36774,7 +39180,7 @@ namespace CDM
         else
           tsm.serialize (
             "LocationDetail",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36784,7 +39190,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocationReference >
   _xsd_LocationReference_type_serializer_init (
     "LocationReference",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36806,7 +39212,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -36814,7 +39220,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -36833,7 +39239,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Start",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36841,7 +39247,7 @@ namespace CDM
         else
           tsm.serialize (
             "Start",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36860,7 +39266,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "End",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -36868,7 +39274,7 @@ namespace CDM
         else
           tsm.serialize (
             "End",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -36888,7 +39294,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Performer",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -36896,7 +39302,7 @@ namespace CDM
         else
           tsm.serialize (
             "Performer",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -36916,7 +39322,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Service",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -36924,7 +39330,7 @@ namespace CDM
         else
           tsm.serialize (
             "Service",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -36944,7 +39350,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ImagingProcedure",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -36952,7 +39358,7 @@ namespace CDM
         else
           tsm.serialize (
             "ImagingProcedure",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -36962,7 +39368,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OrderDetail >
   _xsd_OrderDetail_type_serializer_init (
     "OrderDetail",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -36985,7 +39391,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Role",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -36993,7 +39399,7 @@ namespace CDM
         else
           tsm.serialize (
             "Role",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -37003,7 +39409,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PersonParticipation >
   _xsd_PersonParticipation_type_serializer_init (
     "PersonParticipation",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37018,7 +39424,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "WorkflowDetail",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *i.WorkflowDetail ();
@@ -37029,7 +39435,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, WorkflowContextState >
   _xsd_WorkflowContextState_type_serializer_init (
     "WorkflowContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37042,7 +39448,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperatorContextDescriptor >
   _xsd_OperatorContextDescriptor_type_serializer_init (
     "OperatorContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37064,7 +39470,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "OperatorDetails",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -37072,7 +39478,7 @@ namespace CDM
         else
           tsm.serialize (
             "OperatorDetails",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -37082,7 +39488,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperatorContextState >
   _xsd_OperatorContextState_type_serializer_init (
     "OperatorContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37095,7 +39501,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MeansContextDescriptor >
   _xsd_MeansContextDescriptor_type_serializer_init (
     "MeansContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37108,7 +39514,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MeansContextState >
   _xsd_MeansContextState_type_serializer_init (
     "MeansContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37121,7 +39527,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EnsembleContextDescriptor >
   _xsd_EnsembleContextDescriptor_type_serializer_init (
     "EnsembleContextDescriptor",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37134,7 +39540,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EnsembleContextState >
   _xsd_EnsembleContextState_type_serializer_init (
     "EnsembleContextState",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37156,7 +39562,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -37164,7 +39570,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -37184,7 +39590,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Entry",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -37192,7 +39598,7 @@ namespace CDM
         else
           tsm.serialize (
             "Entry",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -37250,7 +39656,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ContainmentTree >
   _xsd_ContainmentTree_type_serializer_init (
     "ContainmentTree",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37272,7 +39678,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -37280,7 +39686,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -37299,7 +39705,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -37307,7 +39713,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -37365,7 +39771,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ContainmentTreeEntry >
   _xsd_ContainmentTreeEntry_type_serializer_init (
     "ContainmentTreeEntry",
-    "http://p11073-10207/draft8/pm/2017/08/07");
+    "http://p11073-10207/draft10/pm/2017/10/05");
 
 
   void
@@ -37489,7 +39895,7 @@ namespace CDM
     if (typeid (::CDM::Mdib) == typeid (s))
     {
       if (n.name () == "MdibContainer" &&
-          n.namespace_ () == "http://p11073-10207/draft8/pm/2017/08/07")
+          n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
       {
         e << s;
       }
@@ -37499,14 +39905,14 @@ namespace CDM
           n.name (),
           n.namespace_ (),
           "MdibContainer",
-          "http://p11073-10207/draft8/pm/2017/08/07");
+          "http://p11073-10207/draft10/pm/2017/10/05");
       }
     }
     else
     {
       ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "MdibContainer",
-        "http://p11073-10207/draft8/pm/2017/08/07",
+        "http://p11073-10207/draft10/pm/2017/10/05",
         e, n, s);
     }
   }
@@ -37522,14 +39928,14 @@ namespace CDM
     {
       d = ::xsd::cxx::xml::dom::serialize< char > (
         "MdibContainer",
-        "http://p11073-10207/draft8/pm/2017/08/07",
+        "http://p11073-10207/draft10/pm/2017/10/05",
         m, f);
     }
     else
     {
       d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "MdibContainer",
-        "http://p11073-10207/draft8/pm/2017/08/07",
+        "http://p11073-10207/draft10/pm/2017/10/05",
         m, s, f);
     }
 
@@ -37538,22 +39944,71 @@ namespace CDM
   }
 
   void
-  operator<< (::xercesc::DOMElement& e, const TextWidth& i)
+  operator<< (::xercesc::DOMElement& e, const Translation& i)
   {
-    e << static_cast< const ::xml_schema::String& > (i);
-  }
+    e << static_cast< const ::xml_schema::Type& > (i);
 
-  void
-  operator<< (::xercesc::DOMAttr& a, const TextWidth& i)
-  {
-    a << static_cast< const ::xml_schema::String& > (i);
-  }
+    // Extension
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-  void
-  operator<< (::xml_schema::ListStream& l,
-              const TextWidth& i)
-  {
-    l << static_cast< const ::xml_schema::String& > (i);
+      if (i.Extension ())
+      {
+        const Translation::ExtensionType& x (*i.Extension ());
+        if (typeid (Translation::ExtensionType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Extension",
+              "http://p11073-10207/draft10/ext/2017/10/05",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "Extension",
+            "http://p11073-10207/draft10/ext/2017/10/05",
+            true, true, e, x);
+      }
+    }
+
+    // Code
+    //
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "Code",
+          e));
+
+      a << i.Code ();
+    }
+
+    // CodingSystem
+    //
+    if (i.CodingSystem ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "CodingSystem",
+          e));
+
+      a << *i.CodingSystem ();
+    }
+
+    // CodingSystemVersion
+    //
+    if (i.CodingSystemVersion ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "CodingSystemVersion",
+          e));
+
+      a << *i.CodingSystemVersion ();
+    }
   }
 
   void
@@ -37611,7 +40066,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "SpecType",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -37619,7 +40074,7 @@ namespace CDM
       else
         tsm.serialize (
           "SpecType",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -37635,7 +40090,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ProductionSpec",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -37643,7 +40098,7 @@ namespace CDM
       else
         tsm.serialize (
           "ProductionSpec",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -37661,7 +40116,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ComponentId",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -37669,9 +40124,58 @@ namespace CDM
         else
           tsm.serialize (
             "ComponentId",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
+    }
+  }
+
+  void
+  operator<< (::xercesc::DOMElement& e, const CalibrationDocumentation& i)
+  {
+    e << static_cast< const ::xml_schema::Type& > (i);
+
+    // Documentation
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      for (CalibrationDocumentation::DocumentationConstIterator
+           b (i.Documentation ().begin ()), n (i.Documentation ().end ());
+           b != n; ++b)
+      {
+        if (typeid (CalibrationDocumentation::DocumentationType) == typeid (*b))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Documentation",
+              "http://p11073-10207/draft10/pm/2017/10/05",
+              e));
+
+          s << *b;
+        }
+        else
+          tsm.serialize (
+            "Documentation",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            false, true, e, *b);
+      }
+    }
+
+    // CalibrationResult
+    //
+    for (CalibrationDocumentation::CalibrationResultConstIterator
+         b (i.CalibrationResult ().begin ()), n (i.CalibrationResult ().end ());
+         b != n; ++b)
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "CalibrationResult",
+          "http://p11073-10207/draft10/pm/2017/10/05",
+          e));
+
+      s << *b;
     }
   }
 
@@ -37694,7 +40198,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -37702,7 +40206,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -37716,10 +40220,37 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Udi",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *b;
+    }
+
+    // LotNumber
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      if (i.LotNumber ())
+      {
+        const MetaData::LotNumberType& x (*i.LotNumber ());
+        if (typeid (MetaData::LotNumberType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "LotNumber",
+              "http://p11073-10207/draft10/pm/2017/10/05",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "LotNumber",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            false, true, e, x);
+      }
     }
 
     // Manufacturer
@@ -37737,7 +40268,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Manufacturer",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -37745,8 +40276,62 @@ namespace CDM
         else
           tsm.serialize (
             "Manufacturer",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
+      }
+    }
+
+    // ManufactureDate
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      if (i.ManufactureDate ())
+      {
+        const MetaData::ManufactureDateType& x (*i.ManufactureDate ());
+        if (typeid (MetaData::ManufactureDateType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "ManufactureDate",
+              "http://p11073-10207/draft10/pm/2017/10/05",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "ManufactureDate",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            false, true, e, x);
+      }
+    }
+
+    // ExpirationDate
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      if (i.ExpirationDate ())
+      {
+        const MetaData::ExpirationDateType& x (*i.ExpirationDate ());
+        if (typeid (MetaData::ExpirationDateType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "ExpirationDate",
+              "http://p11073-10207/draft10/pm/2017/10/05",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "ExpirationDate",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            false, true, e, x);
       }
     }
 
@@ -37765,7 +40350,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ModelName",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -37773,7 +40358,7 @@ namespace CDM
         else
           tsm.serialize (
             "ModelName",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -37792,7 +40377,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ModelNumber",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -37800,7 +40385,7 @@ namespace CDM
         else
           tsm.serialize (
             "ModelNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -37820,7 +40405,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SerialNumber",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -37828,7 +40413,7 @@ namespace CDM
         else
           tsm.serialize (
             "SerialNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -37891,7 +40476,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -37899,7 +40484,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -37959,7 +40544,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -37967,7 +40552,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -37984,7 +40569,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -37992,7 +40577,7 @@ namespace CDM
       else
         tsm.serialize (
           "Type",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
   }
@@ -38044,7 +40629,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -38052,7 +40637,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -38071,7 +40656,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Code",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38079,7 +40664,34 @@ namespace CDM
         else
           tsm.serialize (
             "Code",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            false, true, e, x);
+      }
+    }
+
+    // Identification
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      if (i.Identification ())
+      {
+        const Relation::IdentificationType& x (*i.Identification ());
+        if (typeid (Relation::IdentificationType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Identification",
+              "http://p11073-10207/draft10/pm/2017/10/05",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "Identification",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38124,7 +40736,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Value",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38132,7 +40744,7 @@ namespace CDM
       else
         tsm.serialize (
           "Value",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -38150,7 +40762,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38158,7 +40770,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38177,7 +40789,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38185,7 +40797,7 @@ namespace CDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38204,7 +40816,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Characteristic",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38212,10 +40824,110 @@ namespace CDM
         else
           tsm.serialize (
             "Characteristic",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
+  }
+
+  void
+  operator<< (::xercesc::DOMElement& e, const OperationGroup& i)
+  {
+    e << static_cast< const ::xml_schema::Type& > (i);
+
+    // Extension
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      if (i.Extension ())
+      {
+        const OperationGroup::ExtensionType& x (*i.Extension ());
+        if (typeid (OperationGroup::ExtensionType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Extension",
+              "http://p11073-10207/draft10/ext/2017/10/05",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "Extension",
+            "http://p11073-10207/draft10/ext/2017/10/05",
+            true, true, e, x);
+      }
+    }
+
+    // Type
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      const OperationGroup::TypeType& x (i.Type ());
+      if (typeid (OperationGroup::TypeType) == typeid (x))
+      {
+        ::xercesc::DOMElement& s (
+          ::xsd::cxx::xml::dom::create_element (
+            "Type",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            e));
+
+        s << x;
+      }
+      else
+        tsm.serialize (
+          "Type",
+          "http://p11073-10207/draft10/pm/2017/10/05",
+          false, true, e, x);
+    }
+
+    // OperatingMode
+    //
+    if (i.OperatingMode ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "OperatingMode",
+          e));
+
+      a << *i.OperatingMode ();
+    }
+
+    // Operations
+    //
+    if (i.Operations ())
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "Operations",
+          e));
+
+      a << *i.Operations ();
+    }
+  }
+
+  void
+  operator<< (::xercesc::DOMElement& e, const AccessLevel& i)
+  {
+    e << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  void
+  operator<< (::xercesc::DOMAttr& a, const AccessLevel& i)
+  {
+    a << static_cast< const ::xml_schema::String& > (i);
+  }
+
+  void
+  operator<< (::xml_schema::ListStream& l,
+              const AccessLevel& i)
+  {
+    l << static_cast< const ::xml_schema::String& > (i);
   }
 
   void
@@ -38235,7 +40947,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Value",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38243,7 +40955,7 @@ namespace CDM
       else
         tsm.serialize (
           "Value",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
   }
@@ -38265,7 +40977,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ArgName",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38273,7 +40985,7 @@ namespace CDM
       else
         tsm.serialize (
           "ArgName",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -38289,7 +41001,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Arg",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38297,7 +41009,7 @@ namespace CDM
       else
         tsm.serialize (
           "Arg",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
   }
@@ -38376,7 +41088,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Value",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38384,7 +41096,7 @@ namespace CDM
       else
         tsm.serialize (
           "Value",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -38397,7 +41109,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReferenceRange",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *b;
@@ -38435,7 +41147,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -38443,7 +41155,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -38460,7 +41172,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Patient",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38468,7 +41180,7 @@ namespace CDM
       else
         tsm.serialize (
           "Patient",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -38486,7 +41198,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AssignedLocation",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38494,7 +41206,7 @@ namespace CDM
         else
           tsm.serialize (
             "AssignedLocation",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38513,7 +41225,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "VisitNumber",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38521,7 +41233,7 @@ namespace CDM
         else
           tsm.serialize (
             "VisitNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38541,7 +41253,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "DangerCode",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -38549,7 +41261,7 @@ namespace CDM
         else
           tsm.serialize (
             "DangerCode",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -38569,7 +41281,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "RelevantClinicalInfo",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -38577,7 +41289,7 @@ namespace CDM
         else
           tsm.serialize (
             "RelevantClinicalInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }
@@ -38589,7 +41301,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "RequestedOrderDetail",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *i.RequestedOrderDetail ();
@@ -38602,10 +41314,64 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "PerformedOrderDetail",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           e));
 
       s << *i.PerformedOrderDetail ();
+    }
+  }
+
+  void
+  operator<< (::xercesc::DOMElement& e, const CalibrationResult& i)
+  {
+    e << static_cast< const ::xml_schema::Type& > (i);
+
+    // Code
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      const CalibrationResult::CodeType& x (i.Code ());
+      if (typeid (CalibrationResult::CodeType) == typeid (x))
+      {
+        ::xercesc::DOMElement& s (
+          ::xsd::cxx::xml::dom::create_element (
+            "Code",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            e));
+
+        s << x;
+      }
+      else
+        tsm.serialize (
+          "Code",
+          "http://p11073-10207/draft10/pm/2017/10/05",
+          false, true, e, x);
+    }
+
+    // Value
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      const CalibrationResult::ValueType& x (i.Value ());
+      if (typeid (CalibrationResult::ValueType) == typeid (x))
+      {
+        ::xercesc::DOMElement& s (
+          ::xsd::cxx::xml::dom::create_element (
+            "Value",
+            "http://p11073-10207/draft10/pm/2017/10/05",
+            e));
+
+        s << x;
+      }
+      else
+        tsm.serialize (
+          "Value",
+          "http://p11073-10207/draft10/pm/2017/10/05",
+          false, true, e, x);
     }
   }
 
@@ -38628,7 +41394,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft8/ext/2017/08/07",
+              "http://p11073-10207/draft10/ext/2017/10/05",
               e));
 
           s << x;
@@ -38636,7 +41402,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft8/ext/2017/08/07",
+            "http://p11073-10207/draft10/ext/2017/10/05",
             true, true, e, x);
       }
     }
@@ -38653,7 +41419,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "DeviceIdentifier",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38661,7 +41427,7 @@ namespace CDM
       else
         tsm.serialize (
           "DeviceIdentifier",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -38677,7 +41443,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "HumanReadableForm",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38685,7 +41451,7 @@ namespace CDM
       else
         tsm.serialize (
           "HumanReadableForm",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -38701,7 +41467,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Issuer",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38709,7 +41475,7 @@ namespace CDM
       else
         tsm.serialize (
           "Issuer",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -38727,7 +41493,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Jurisdiction",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38735,7 +41501,7 @@ namespace CDM
         else
           tsm.serialize (
             "Jurisdiction",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38777,7 +41543,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Range",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38785,7 +41551,7 @@ namespace CDM
       else
         tsm.serialize (
           "Range",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
 
@@ -38803,7 +41569,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Meaning",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38811,7 +41577,7 @@ namespace CDM
         else
           tsm.serialize (
             "Meaning",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38836,7 +41602,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ReferringPhysician",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38844,7 +41610,7 @@ namespace CDM
         else
           tsm.serialize (
             "ReferringPhysician",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38863,7 +41629,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "RequestingPhysician",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38871,7 +41637,7 @@ namespace CDM
         else
           tsm.serialize (
             "RequestingPhysician",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38888,7 +41654,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "PlacerOrderNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             e));
 
         s << x;
@@ -38896,7 +41662,7 @@ namespace CDM
       else
         tsm.serialize (
           "PlacerOrderNumber",
-          "http://p11073-10207/draft8/pm/2017/08/07",
+          "http://p11073-10207/draft10/pm/2017/10/05",
           false, true, e, x);
     }
   }
@@ -38920,7 +41686,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "FillerOrderNumber",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << x;
@@ -38928,7 +41694,7 @@ namespace CDM
         else
           tsm.serialize (
             "FillerOrderNumber",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, x);
       }
     }
@@ -38948,7 +41714,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ResultingClinicalInfo",
-              "http://p11073-10207/draft8/pm/2017/08/07",
+              "http://p11073-10207/draft10/pm/2017/10/05",
               e));
 
           s << *b;
@@ -38956,7 +41722,7 @@ namespace CDM
         else
           tsm.serialize (
             "ResultingClinicalInfo",
-            "http://p11073-10207/draft8/pm/2017/08/07",
+            "http://p11073-10207/draft10/pm/2017/10/05",
             false, true, e, *b);
       }
     }

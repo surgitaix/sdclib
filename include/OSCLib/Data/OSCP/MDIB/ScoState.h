@@ -69,6 +69,20 @@ public:
 	bool getDescriptorVersion(ReferencedVersion & out) const;
 	bool hasDescriptorVersion() const;
 
+	ScoState & setInvocationRequested(const OperationRef & value);
+	OperationRef getInvocationRequested() const;
+	bool getInvocationRequested(OperationRef & out) const;
+	bool hasInvocationRequested() const;
+
+	ScoState & setInvocationRequired(const OperationRef & value);
+	OperationRef getInvocationRequired() const;
+	bool getInvocationRequired(OperationRef & out) const;
+	bool hasInvocationRequired() const;
+
+	ScoState & addOperationGroup(const OperationGroup & value);
+	std::vector<OperationGroup> getOperationGroupLists() const;
+	void clearOperationGroupLists();
+	
 private:
 	std::shared_ptr<CDM::ScoState> data;
 };

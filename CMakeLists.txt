@@ -85,7 +85,9 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/BaseDemographics.cpp
 ./src/Data/OSCP/MDIB/BatteryDescriptor.cpp
 ./src/Data/OSCP/MDIB/BatteryState.cpp
+./src/Data/OSCP/MDIB/CalibrationDocumentation.cpp
 ./src/Data/OSCP/MDIB/CalibrationInfo.cpp
+./src/Data/OSCP/MDIB/CalibrationResult.cpp
 ./src/Data/OSCP/MDIB/CauseInfo.cpp
 ./src/Data/OSCP/MDIB/ChannelDescriptor.cpp
 ./src/Data/OSCP/MDIB/ChannelState.cpp
@@ -131,6 +133,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/NumericMetricState.cpp
 ./src/Data/OSCP/MDIB/NumericMetricValue.cpp
 ./src/Data/OSCP/MDIB/OperatingJurisdiction.cpp
+./src/Data/OSCP/MDIB/OperationGroup.cpp
 ./src/Data/OSCP/MDIB/OperatorContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/OperatorContextState.cpp
 ./src/Data/OSCP/MDIB/OrderDetail.cpp
@@ -140,6 +143,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/PerformedOrderDetail.cpp
 ./src/Data/OSCP/MDIB/PersonParticipation.cpp
 ./src/Data/OSCP/MDIB/PersonReference.cpp
+./src/Data/OSCP/MDIB/PhysicalConnectorInfo.cpp
 ./src/Data/OSCP/MDIB/ProductionSpecification.cpp
 ./src/Data/OSCP/MDIB/Range.cpp
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.cpp
@@ -171,6 +175,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/SystemContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/SystemContextState.cpp
 ./src/Data/OSCP/MDIB/SystemSignalActivation.cpp
+./src/Data/OSCP/MDIB/Translation.cpp
 ./src/Data/OSCP/MDIB/Udi.cpp
 ./src/Data/OSCP/MDIB/VmdDescriptor.cpp
 ./src/Data/OSCP/MDIB/VmdState.cpp
@@ -502,9 +507,9 @@ add_executable(SimpleServiceDiscovery
 Examples/SimpleServiceDiscovery.cpp
 )
 
-add_executable(MDIBVisualizer
-Examples/MDIBVisualizer.cpp
-)
+#add_executable(MDIBVisualizer
+#Examples/MDIBVisualizer.cpp
+#)
 
 #add_executable(MDIBDump
 #Examples/MDIBDump.cpp
@@ -537,7 +542,7 @@ target_link_libraries(ExampleProvider4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${X
 target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(GenericSubscription OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(DPWSDiscoveryClient OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(DPWSDiscoveryListener OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})

@@ -37,7 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Translation.h"
 
 namespace OSCLib {
 namespace Data {
@@ -181,13 +181,13 @@ void CodedValue::clearConceptDescriptionLists() {
 	data->ConceptDescription().clear();
 }
 
-CodedValue & CodedValue::addTranslation(const CodedValue & value) {
+CodedValue & CodedValue::addTranslation(const Translation & value) {
 	data->Translation().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<CodedValue> CodedValue::getTranslationLists() const {
-	std::vector<CodedValue> result;
+std::vector<Translation> CodedValue::getTranslationLists() const {
+	std::vector<Translation> result;
 	result.reserve(data->Translation().size());
 	for (const auto & value: data->Translation()) {
 		result.push_back(ConvertFromCDM::convert(value));

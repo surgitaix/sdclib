@@ -200,9 +200,20 @@ AlertConditionState & AlertConditionState::setPresence(const bool & value) {
 	return *this;
 }
 
+bool AlertConditionState::getPresence(bool & out) const {
+	if (data->Presence().present()) {
+		out = ConvertFromCDM::convert(data->Presence().get());
+		return true;
+	}
+	return false;
+}
 
 bool AlertConditionState::getPresence() const {
-	return ConvertFromCDM::convert(data->Presence());
+	return ConvertFromCDM::convert(data->Presence().get());
+}
+	
+bool AlertConditionState::hasPresence() const {
+	return data->Presence().present();
 }
 	
 AlertConditionState & AlertConditionState::setDeterminationTime(const Timestamp & value) {

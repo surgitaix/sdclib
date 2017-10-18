@@ -72,6 +72,69 @@ MetaData & MetaData:: operator=(const MetaData & object) {
 }
 
 
+MetaData & MetaData::setLotNumber(const std::string & value) {
+	data->LotNumber(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MetaData::getLotNumber(std::string & out) const {
+	if (data->LotNumber().present()) {
+		out = ConvertFromCDM::convert(data->LotNumber().get());
+		return true;
+	}
+	return false;
+}
+
+std::string MetaData::getLotNumber() const {
+	return ConvertFromCDM::convert(data->LotNumber().get());
+}
+	
+bool MetaData::hasLotNumber() const {
+	return data->LotNumber().present();
+}
+	
+MetaData & MetaData::setManufactureDate(const xml_schema::DateTime & value) {
+	data->ManufactureDate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MetaData::getManufactureDate(xml_schema::DateTime & out) const {
+	if (data->ManufactureDate().present()) {
+		out = ConvertFromCDM::convert(data->ManufactureDate().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::DateTime MetaData::getManufactureDate() const {
+	return ConvertFromCDM::convert(data->ManufactureDate().get());
+}
+	
+bool MetaData::hasManufactureDate() const {
+	return data->ManufactureDate().present();
+}
+	
+MetaData & MetaData::setExpirationDate(const xml_schema::DateTime & value) {
+	data->ExpirationDate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MetaData::getExpirationDate(xml_schema::DateTime & out) const {
+	if (data->ExpirationDate().present()) {
+		out = ConvertFromCDM::convert(data->ExpirationDate().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::DateTime MetaData::getExpirationDate() const {
+	return ConvertFromCDM::convert(data->ExpirationDate().get());
+}
+	
+bool MetaData::hasExpirationDate() const {
+	return data->ExpirationDate().present();
+}
+	
 MetaData & MetaData::setModelNumber(const std::string & value) {
 	data->ModelNumber(ConvertToCDM::convert(value));
 	return *this;

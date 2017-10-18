@@ -80,6 +80,11 @@ public:
 	bool getNextCalibration(CalibrationInfo & out) const;
 	bool hasNextCalibration() const;
 
+	ClockState & setPhysicalConnector(const PhysicalConnectorInfo & value);
+	PhysicalConnectorInfo getPhysicalConnector() const;
+	bool getPhysicalConnector(PhysicalConnectorInfo & out) const;
+	bool hasPhysicalConnector() const;
+
 	ClockState & setActivationState(const ComponentActivation & value);
 	ComponentActivation getActivationState() const;
 	bool getActivationState(ComponentActivation & out) const;
@@ -108,11 +113,6 @@ public:
 	ClockState & setRemoteSync(const bool & value);
 	bool getRemoteSync() const;
 
-	ClockState & setReferenceSource(const std::string & value);
-	std::string getReferenceSource() const;
-	bool getReferenceSource(std::string & out) const;
-	bool hasReferenceSource() const;
-
 	ClockState & setAccuracy(const double & value);
 	double getAccuracy() const;
 	bool getAccuracy(double & out) const;
@@ -133,6 +133,10 @@ public:
 	bool getCriticalUse(bool & out) const;
 	bool hasCriticalUse() const;
 
+	ClockState & addReferenceSource(const std::string & value);
+	std::vector<std::string> getReferenceSourceLists() const;
+	void clearReferenceSourceLists();
+	
 private:
 	std::shared_ptr<CDM::ClockState> data;
 };

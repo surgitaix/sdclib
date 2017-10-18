@@ -39,6 +39,7 @@
 #include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -123,6 +124,27 @@ ReferencedVersion DistributionSampleArrayMetricState::getDescriptorVersion() con
 	
 bool DistributionSampleArrayMetricState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
+}
+	
+DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
+	data->PhysicalConnector(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool DistributionSampleArrayMetricState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
+	if (data->PhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+		return true;
+	}
+	return false;
+}
+
+PhysicalConnectorInfo DistributionSampleArrayMetricState::getPhysicalConnector() const {
+	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+}
+	
+bool DistributionSampleArrayMetricState::hasPhysicalConnector() const {
+	return data->PhysicalConnector().present();
 }
 	
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActivationState(const ComponentActivation & value) {

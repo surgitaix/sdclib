@@ -339,7 +339,6 @@ namespace MDM
   class WaveformStream;
   class ObservedValueStream;
   class Retrievability;
-  class Text;
   class Argument;
   class ReportPart5;
   class ReportPart6;

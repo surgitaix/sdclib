@@ -39,6 +39,7 @@
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -123,6 +124,27 @@ ReferencedVersion NumericMetricState::getDescriptorVersion() const {
 	
 bool NumericMetricState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
+}
+	
+NumericMetricState & NumericMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
+	data->PhysicalConnector(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NumericMetricState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
+	if (data->PhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+		return true;
+	}
+	return false;
+}
+
+PhysicalConnectorInfo NumericMetricState::getPhysicalConnector() const {
+	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+}
+	
+bool NumericMetricState::hasPhysicalConnector() const {
+	return data->PhysicalConnector().present();
 }
 	
 NumericMetricState & NumericMetricState::setActivationState(const ComponentActivation & value) {

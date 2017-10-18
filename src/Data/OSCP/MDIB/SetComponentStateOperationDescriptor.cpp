@@ -217,22 +217,43 @@ bool SetComponentStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
 	
-SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::addModifiableElement(const std::string & value) {
-	data->ModifiableElement().push_back(ConvertToCDM::convert(value));
+SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
+	data->AccessLevel(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<std::string> SetComponentStateOperationDescriptor::getModifiableElementLists() const {
+bool SetComponentStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
+	if (data->AccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->AccessLevel().get());
+		return true;
+	}
+	return false;
+}
+
+AccessLevel SetComponentStateOperationDescriptor::getAccessLevel() const {
+	return ConvertFromCDM::convert(data->AccessLevel().get());
+}
+	
+bool SetComponentStateOperationDescriptor::hasAccessLevel() const {
+	return data->AccessLevel().present();
+}
+	
+SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::addModifiableData(const std::string & value) {
+	data->ModifiableData().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<std::string> SetComponentStateOperationDescriptor::getModifiableDataLists() const {
 	std::vector<std::string> result;
-	result.reserve(data->ModifiableElement().size());
-	for (const auto & value: data->ModifiableElement()) {
+	result.reserve(data->ModifiableData().size());
+	for (const auto & value: data->ModifiableData()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
-void SetComponentStateOperationDescriptor::clearModifiableElementLists() {
-	data->ModifiableElement().clear();
+void SetComponentStateOperationDescriptor::clearModifiableDataLists() {
+	data->ModifiableData().clear();
 }
 
 

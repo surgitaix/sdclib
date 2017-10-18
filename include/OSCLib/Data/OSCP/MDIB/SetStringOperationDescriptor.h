@@ -92,6 +92,11 @@ public:
 	bool getRetriggerable(xml_schema::Duration & out) const;
 	bool hasRetriggerable() const;
 
+	SetStringOperationDescriptor & setAccessLevel(const AccessLevel & value);
+	AccessLevel getAccessLevel() const;
+	bool getAccessLevel(AccessLevel & out) const;
+	bool hasAccessLevel() const;
+
 	SetStringOperationDescriptor & setMaxLength(const unsigned long long & value);
 	unsigned long long getMaxLength() const;
 	bool getMaxLength(unsigned long long & out) const;

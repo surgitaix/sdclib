@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://p11073-10207/draft8/ext/2017/08/07" targetNamespace="http://p11073-10207/draft8/ext/2017/08/07" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft8">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://p11073-10207/draft10/ext/2017/10/05" targetNamespace="http://p11073-10207/draft10/ext/2017/10/05" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft10-Revision2" xml:lang="en">
 	<xsd:element name="Extension" type="tns:ExtensionType"/>
 	<xsd:complexType name="ExtensionType">
 		<xsd:annotation>
@@ -7,7 +7,7 @@
 
 For better distinction extensions SHOULD be wrapped into container elements belonging to a namespace where the extension is specified. Example:
 
-tns:Extension xmlns:tns="http://p11073-10207/draft8/ext/2017/08/07" xmlns:ext="http://concrete-extension-namespace"
+tns:Extension xmlns:tns="http://extension-point-uri/15/03" xmlns:ext="http://concrete-extension-namespace"
   ext:AdditionalInfo
     ...
 
@@ -22,7 +22,7 @@ Here ext:AdditionalInfo is the wrapper element containing the extension's inform
 		<xsd:annotation>
 			<xsd:documentation>In cases where an extension modifies the meaning of the element that contains it, a MustUnderstand attribute is senseful. This means that the data cannot safely be processed unless the application knows the meaning of the extension. A MustUnderstand marked extension could be look like this:
 
-tns:Extension xmlns:tns="http://p11073-10207/draft8/ext/2017/08/07" xmlns:ext="http://concrete-extension-namespace"
+tns:Extension xmlns:tns="http://extension-point-uri/15/03" xmlns:ext="http://concrete-extension-namespace"
   ext:AdditionalInfo tns:MustUnderstand="true"
     ...
 

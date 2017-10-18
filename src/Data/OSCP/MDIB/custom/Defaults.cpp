@@ -256,7 +256,8 @@ CDM::AlertConditionDescriptor  * Defaults::AlertConditionDescriptor() {
 }
 
 CDM::AlertConditionState  * Defaults::AlertConditionState() {
-	return new CDM::AlertConditionState(NOT_ASSIGNED, CDM::AlertActivation::Off, false);
+	return new CDM::AlertConditionState(NOT_ASSIGNED,
+			CDM::AlertActivation::Off);
 }
 
 CDM::LimitAlertConditionDescriptor  * Defaults::LimitAlertConditionDescriptor() {
@@ -271,14 +272,12 @@ CDM::LimitAlertConditionDescriptor  * Defaults::LimitAlertConditionDescriptor() 
 CDM::LimitAlertConditionState  * Defaults::LimitAlertConditionState() {
 	return new CDM::LimitAlertConditionState(NOT_ASSIGNED,
 			CDM::LimitAlertConditionState::ActivationStateType::Off,
-			false,
 			ConvertToCDM::convert(OSCP::Range()),
 			CDM::LimitAlertConditionState::MonitoredAlertLimitsType::All);
 }
 
 CDM::AlertSignalDescriptor  * Defaults::AlertSignalDescriptor() {
 	return new CDM::AlertSignalDescriptor(NOT_ASSIGNED,
-			NOT_ASSIGNED,
 			CDM::AlertSignalManifestation::Oth,
 			false);
 }
@@ -322,7 +321,8 @@ CDM::NumericMetricDescriptor  * Defaults::NumericMetricDescriptor() {
 	return new CDM::NumericMetricDescriptor(NOT_ASSIGNED,
 			ConvertToCDM::convert(OSCP::CodedValue()),
 			CDM::MetricCategory::Unspec,
-			CDM::MetricAvailability::Cont);
+			CDM::MetricAvailability::Cont,
+			xml_schema::Decimal(0.0000001));
 }
 
 CDM::NumericMetricState  * Defaults::NumericMetricState() {
@@ -360,7 +360,8 @@ CDM::RealTimeSampleArrayMetricDescriptor  * Defaults::RealTimeSampleArrayMetricD
 			ConvertToCDM::convert(OSCP::CodedValue()),
 			CDM::MetricCategory::Unspec,
 			CDM::MetricAvailability::Cont,
-			xml_schema::Duration(true,0,0,0,0,0,0));
+			xml_schema::Decimal(1),
+			xml_schema::Duration(false,0,0,0,0,0,1));
 }
 
 CDM::RealTimeSampleArrayMetricState  * Defaults::RealTimeSampleArrayMetricState() {
@@ -373,7 +374,8 @@ CDM::DistributionSampleArrayMetricDescriptor  * Defaults::DistributionSampleArra
 			CDM::MetricCategory::Unspec,
 			CDM::MetricAvailability::Cont,
 			ConvertToCDM::convert(OSCP::CodedValue()),
-			ConvertToCDM::convert(OSCP::Range()));
+			ConvertToCDM::convert(OSCP::Range()),
+			xml_schema::Decimal(1));
 }
 
 CDM::DistributionSampleArrayMetricState  * Defaults::DistributionSampleArrayMetricState() {
@@ -638,6 +640,29 @@ CDM::DicomNetworkConnection  * Defaults::DicomNetworkConnection() {
 
 CDM::DicomDeviceDescriptor  * Defaults::DicomDeviceDescriptor() {
 	return new CDM::DicomDeviceDescriptor(NOT_ASSIGNED);
+}
+
+// new D10
+CDM::CalibrationResult * Defaults::CalibrationResult() {
+	return new CDM::CalibrationResult(ConvertToCDM::convert(OSCP::CodedValue()),
+			ConvertToCDM::convert(OSCP::Measurement()));
+}
+
+
+CDM::CalibrationDocumentation * Defaults::CalibrationDocumentation() {
+	return new CDM::CalibrationDocumentation();
+}
+
+CDM::Translation * Defaults::Translation() {
+	return new CDM::Translation(NOT_ASSIGNED);
+}
+
+CDM::OperationGroup * Defaults::OperationGroup() {
+	return new CDM::OperationGroup(ConvertToCDM::convert(OSCP::CodedValue()));
+}
+
+CDM::PhysicalConnectorInfo * Defaults::PhysicalConnectorInfo() {
+	return new CDM::PhysicalConnectorInfo();
 }
 
 

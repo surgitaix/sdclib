@@ -149,9 +149,20 @@ AlertSignalDescriptor & AlertSignalDescriptor::setConditionSignaled(const Handle
 	return *this;
 }
 
+bool AlertSignalDescriptor::getConditionSignaled(HandleRef & out) const {
+	if (data->ConditionSignaled().present()) {
+		out = ConvertFromCDM::convert(data->ConditionSignaled().get());
+		return true;
+	}
+	return false;
+}
 
 HandleRef AlertSignalDescriptor::getConditionSignaled() const {
-	return ConvertFromCDM::convert(data->ConditionSignaled());
+	return ConvertFromCDM::convert(data->ConditionSignaled().get());
+}
+	
+bool AlertSignalDescriptor::hasConditionSignaled() const {
+	return data->ConditionSignaled().present();
 }
 	
 AlertSignalDescriptor & AlertSignalDescriptor::setManifestation(const AlertSignalManifestation & value) {
@@ -193,6 +204,48 @@ xml_schema::Duration AlertSignalDescriptor::getDefaultSignalGenerationDelay() co
 	
 bool AlertSignalDescriptor::hasDefaultSignalGenerationDelay() const {
 	return data->DefaultSignalGenerationDelay().present();
+}
+	
+AlertSignalDescriptor & AlertSignalDescriptor::setMinSignalGenerationDelay(const xml_schema::Duration & value) {
+	data->MinSignalGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSignalDescriptor::getMinSignalGenerationDelay(xml_schema::Duration & out) const {
+	if (data->MinSignalGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->MinSignalGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration AlertSignalDescriptor::getMinSignalGenerationDelay() const {
+	return ConvertFromCDM::convert(data->MinSignalGenerationDelay().get());
+}
+	
+bool AlertSignalDescriptor::hasMinSignalGenerationDelay() const {
+	return data->MinSignalGenerationDelay().present();
+}
+	
+AlertSignalDescriptor & AlertSignalDescriptor::setMaxSignalGenerationDelay(const xml_schema::Duration & value) {
+	data->MaxSignalGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSignalDescriptor::getMaxSignalGenerationDelay(xml_schema::Duration & out) const {
+	if (data->MaxSignalGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->MaxSignalGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration AlertSignalDescriptor::getMaxSignalGenerationDelay() const {
+	return ConvertFromCDM::convert(data->MaxSignalGenerationDelay().get());
+}
+	
+bool AlertSignalDescriptor::hasMaxSignalGenerationDelay() const {
+	return data->MaxSignalGenerationDelay().present();
 }
 	
 AlertSignalDescriptor & AlertSignalDescriptor::setSignalDelegationSupported(const bool & value) {

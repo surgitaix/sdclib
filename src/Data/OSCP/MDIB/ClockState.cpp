@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -166,6 +167,27 @@ bool ClockState::hasNextCalibration() const {
 	return data->NextCalibration().present();
 }
 	
+ClockState & ClockState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
+	data->PhysicalConnector(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
+	if (data->PhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+		return true;
+	}
+	return false;
+}
+
+PhysicalConnectorInfo ClockState::getPhysicalConnector() const {
+	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+}
+	
+bool ClockState::hasPhysicalConnector() const {
+	return data->PhysicalConnector().present();
+}
+	
 ClockState & ClockState::setActivationState(const ComponentActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -281,27 +303,6 @@ bool ClockState::getRemoteSync() const {
 	return ConvertFromCDM::convert(data->RemoteSync());
 }
 	
-ClockState & ClockState::setReferenceSource(const std::string & value) {
-	data->ReferenceSource(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ClockState::getReferenceSource(std::string & out) const {
-	if (data->ReferenceSource().present()) {
-		out = ConvertFromCDM::convert(data->ReferenceSource().get());
-		return true;
-	}
-	return false;
-}
-
-std::string ClockState::getReferenceSource() const {
-	return ConvertFromCDM::convert(data->ReferenceSource().get());
-}
-	
-bool ClockState::hasReferenceSource() const {
-	return data->ReferenceSource().present();
-}
-	
 ClockState & ClockState::setAccuracy(const double & value) {
 	data->Accuracy(ConvertToCDM::convert(value));
 	return *this;
@@ -386,6 +387,24 @@ bool ClockState::hasCriticalUse() const {
 	return data->CriticalUse().present();
 }
 	
+ClockState & ClockState::addReferenceSource(const std::string & value) {
+	data->ReferenceSource().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<std::string> ClockState::getReferenceSourceLists() const {
+	std::vector<std::string> result;
+	result.reserve(data->ReferenceSource().size());
+	for (const auto & value: data->ReferenceSource()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ClockState::clearReferenceSourceLists() {
+	data->ReferenceSource().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */
