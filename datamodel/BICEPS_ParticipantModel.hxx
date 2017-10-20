@@ -2997,7 +2997,7 @@ namespace CDM
     public:
     // OperatingJurisdiction
     //
-    typedef ::xml_schema::Type OperatingJurisdictionType;
+    typedef ::CDM::OperatingJurisdiction OperatingJurisdictionType;
     typedef ::xsd::cxx::tree::optional< OperatingJurisdictionType > OperatingJurisdictionOptional;
     typedef ::xsd::cxx::tree::traits< OperatingJurisdictionType, char > OperatingJurisdictionTraits;
 
@@ -3173,7 +3173,7 @@ namespace CDM
     public:
     // OperatingJurisdiction
     //
-    typedef ::xml_schema::Type OperatingJurisdictionType;
+    typedef ::CDM::OperatingJurisdiction OperatingJurisdictionType;
     typedef ::xsd::cxx::tree::optional< OperatingJurisdictionType > OperatingJurisdictionOptional;
     typedef ::xsd::cxx::tree::traits< OperatingJurisdictionType, char > OperatingJurisdictionTraits;
 
@@ -12246,7 +12246,7 @@ namespace CDM
 
     // Entries
     //
-    typedef ::xml_schema::SimpleType EntriesType;
+    typedef ::CDM::HandleRef EntriesType;
     typedef ::xsd::cxx::tree::traits< EntriesType, char > EntriesTraits;
 
     const EntriesType&

@@ -155,6 +155,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/RequestedOrderDetail.cpp
 ./src/Data/OSCP/MDIB/SampleArrayValue.cpp
 ./src/Data/OSCP/MDIB/ScoDescriptor.cpp
+./src/Data/OSCP/MDIB/ScoDescriptor.cpp~
 ./src/Data/OSCP/MDIB/ScoState.cpp
 ./src/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.cpp
 ./src/Data/OSCP/MDIB/SetAlertStateOperationState.cpp

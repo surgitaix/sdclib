@@ -156,11 +156,11 @@ CDM::MdState  * Defaults::MdState() {
 }
 
 CDM::LocalizedText  * Defaults::LocalizedText() {
-	return new CDM::LocalizedText();
+	return new CDM::LocalizedText(NOT_ASSIGNED);
 }
 
 CDM::CodedValue  * Defaults::CodedValue() {
-	return new CDM::CodedValue("Code not assigned.");
+	return new CDM::CodedValue(NOT_ASSIGNED);
 }
 
 CDM::InstanceIdentifier  * Defaults::InstanceIdentifier() {

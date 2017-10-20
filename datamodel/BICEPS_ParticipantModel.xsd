@@ -1103,7 +1103,7 @@ NOTE 2—If needed, the UDI's distinct identification code can be inserted as an
 		<xsd:complexContent>
 			<xsd:extension base="pm:AbstractComplexDeviceComponentState">
 				<xsd:sequence>
-					<xsd:element name="OperatingJurisdiction" minOccurs="0">
+					<xsd:element name="OperatingJurisdiction" minOccurs="0" type="pm:OperatingJurisdiction">
 						<xsd:annotation>
 							<xsd:documentation>The current region information that is configured for the MDS. See also pm:OperatingJurisdiction. OperatingJurisdiction SHALL NOT be inserted if there is no pm:MdsDescriptor/pm:ApprovedJurisdictions list present.</xsd:documentation>
 						</xsd:annotation>
@@ -1152,7 +1152,7 @@ Example of a multiple purpose POC MEDICAL DEVICE: an anesthesia workstation (one
 		<xsd:complexContent>
 			<xsd:extension base="pm:AbstractComplexDeviceComponentState">
 				<xsd:sequence>
-					<xsd:element name="OperatingJurisdiction" minOccurs="0">
+					<xsd:element name="OperatingJurisdiction" minOccurs="0" type="pm:OperatingJurisdiction">
 						<xsd:annotation>
 							<xsd:documentation>The current region information that is configured for the VMD. See also pm:OperatingJurisdiction. OperatingJurisdiction SHALL NOT be inserted if there is no pm:VmdDescriptor/pm:ApprovedJurisdictions list present.</xsd:documentation>
 						</xsd:annotation>
@@ -2153,7 +2153,7 @@ NOTE—By that a SERVICE PROVIDER can, e.g., group sets of recommendations or pr
 									</xsd:restriction>
 								</xsd:simpleType>
 							</xsd:attribute>
-							<xsd:attribute name="Entries" use="required">
+							<xsd:attribute name="Entries" use="required" type="pm:HandleRef">
 								<xsd:annotation>
 									<xsd:documentation>List of HANDLE references that relate to the METRIC. The relationship flavor is defined in ./pm:Relation/@Kind.</xsd:documentation>
 								</xsd:annotation>

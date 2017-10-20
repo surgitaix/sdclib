@@ -124,6 +124,16 @@ Kind Relation::getKind() const {
 	return ConvertFromCDM::convert(data->Kind());
 }
 	
+Relation & Relation::setEntries(const HandleRef & value) {
+	data->Entries(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef Relation::getEntries() const {
+	return ConvertFromCDM::convert(data->Entries());
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

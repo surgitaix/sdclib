@@ -262,7 +262,7 @@ public:
         MdsDescriptor holdingDeviceSystem;
         holdingDeviceSystem
         	.setHandle(MDS_DESCRIPTOR_HANDLE)
-        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
+        	//.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
         	.setMetaData(
         		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
         		.setModelNumber("1")

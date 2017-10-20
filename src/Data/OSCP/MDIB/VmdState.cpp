@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/OperatingJurisdiction.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
@@ -248,6 +249,27 @@ int VmdState::getOperatingCycles() const {
 	
 bool VmdState::hasOperatingCycles() const {
 	return data->OperatingCycles().present();
+}
+	
+VmdState & VmdState::setOperatingJurisdiction(const OperatingJurisdiction & value) {
+	data->OperatingJurisdiction(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool VmdState::getOperatingJurisdiction(OperatingJurisdiction & out) const {
+	if (data->OperatingJurisdiction().present()) {
+		out = ConvertFromCDM::convert(data->OperatingJurisdiction().get());
+		return true;
+	}
+	return false;
+}
+
+OperatingJurisdiction VmdState::getOperatingJurisdiction() const {
+	return ConvertFromCDM::convert(data->OperatingJurisdiction().get());
+}
+	
+bool VmdState::hasOperatingJurisdiction() const {
+	return data->OperatingJurisdiction().present();
 }
 	
 

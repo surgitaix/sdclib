@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/OperatingJurisdiction.h"
 #include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
@@ -248,6 +249,27 @@ int MdsState::getOperatingCycles() const {
 	
 bool MdsState::hasOperatingCycles() const {
 	return data->OperatingCycles().present();
+}
+	
+MdsState & MdsState::setOperatingJurisdiction(const OperatingJurisdiction & value) {
+	data->OperatingJurisdiction(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MdsState::getOperatingJurisdiction(OperatingJurisdiction & out) const {
+	if (data->OperatingJurisdiction().present()) {
+		out = ConvertFromCDM::convert(data->OperatingJurisdiction().get());
+		return true;
+	}
+	return false;
+}
+
+OperatingJurisdiction MdsState::getOperatingJurisdiction() const {
+	return ConvertFromCDM::convert(data->OperatingJurisdiction().get());
+}
+	
+bool MdsState::hasOperatingJurisdiction() const {
+	return data->OperatingJurisdiction().present();
 }
 	
 MdsState & MdsState::setLang(const xml_schema::Language & value) {

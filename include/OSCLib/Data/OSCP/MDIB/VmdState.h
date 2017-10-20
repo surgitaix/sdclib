@@ -99,6 +99,11 @@ public:
 	bool getOperatingCycles(int & out) const;
 	bool hasOperatingCycles() const;
 
+	VmdState & setOperatingJurisdiction(const OperatingJurisdiction & value);
+	OperatingJurisdiction getOperatingJurisdiction() const;
+	bool getOperatingJurisdiction(OperatingJurisdiction & out) const;
+	bool hasOperatingJurisdiction() const;
+
 private:
 	std::shared_ptr<CDM::VmdState> data;
 };

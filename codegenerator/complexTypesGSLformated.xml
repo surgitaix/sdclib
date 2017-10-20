@@ -192,8 +192,10 @@
 	</class>
 
 	<class name = "MdsState" parent = "AbstractComplexDeviceComponentState" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/OperatingJurisdiction.h" />
 		<typedef name = "DescriptorType" type = "MdsDescriptor" />
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderMdsStateHandler" />
+		<property name = "OperatingJurisdiction" type = "OperatingJurisdiction" optional = "true" />
 		<property name = "Lang" type = "xml_schema::Language" optional = "true" />
 		<property name = "OperatingMode" type = "MdsOperatingMode" optional = "true" />
 	</class>
@@ -206,6 +208,8 @@
 	</class>
 
 	<class name = "VmdState" parent = "AbstractComplexDeviceComponentState" abstract = "false">
+		<include path = "OSCLib/Data/OSCP/MDIB/OperatingJurisdiction.h" />
+		<property name = "OperatingJurisdiction" type = "OperatingJurisdiction" optional = "true" />
 	</class>
 
 	<class name = "ChannelDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false" customImpl = "true">
@@ -382,6 +386,7 @@
 		<property name = "Code" type = "CodedValue" optional = "true" />
 		<property name = "Identification" type = "InstanceIdentifier" optional = "true" />
 		<property name = "Kind" type = "Kind" optional = "false" />
+		<property name = "Entries" type = "HandleRef" optional = "false" />
 	</class>
 
 	<class name = "AbstractMetricState" parent = "AbstractState" abstract = "true">

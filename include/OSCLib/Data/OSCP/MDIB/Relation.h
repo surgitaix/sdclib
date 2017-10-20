@@ -69,6 +69,9 @@ public:
 	Relation & setKind(const Kind & value);
 	Kind getKind() const;
 
+	Relation & setEntries(const HandleRef & value);
+	HandleRef getEntries() const;
+
 private:
 	std::shared_ptr<CDM::Relation> data;
 };

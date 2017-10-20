@@ -101,6 +101,11 @@ public:
 	bool getOperatingCycles(int & out) const;
 	bool hasOperatingCycles() const;
 
+	MdsState & setOperatingJurisdiction(const OperatingJurisdiction & value);
+	OperatingJurisdiction getOperatingJurisdiction() const;
+	bool getOperatingJurisdiction(OperatingJurisdiction & out) const;
+	bool hasOperatingJurisdiction() const;
+
 	MdsState & setLang(const xml_schema::Language & value);
 	xml_schema::Language getLang() const;
 	bool getLang(xml_schema::Language & out) const;
