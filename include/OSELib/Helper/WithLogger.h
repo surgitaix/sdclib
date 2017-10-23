@@ -20,7 +20,7 @@ namespace Log {
  * each logger later. That allows us to reconfigure each part independently.
  * For example we can get the EVENTSOURCE logger and set the log level
  * to maximum output only for log messages, that are related to the
- * event managament on the provider side.
+ * event management on the provider side.
  *
  */
 	const std::string BASE("OSCLIB");

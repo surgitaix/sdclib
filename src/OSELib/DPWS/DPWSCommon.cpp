@@ -28,7 +28,6 @@ const xml_schema::Uri byeUri("http://docs.oasis-open.org/ws-dd/ns/discovery/2009
 const xml_schema::Uri helloUri("http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01/Hello");
 const xml_schema::Uri probeUri("http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01/Probe");
 const xml_schema::Uri probeMatchesUri("http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01/ProbeMatches");
-const xml_schema::Uri streamUri("http://p11073-10207/draft8/msg/2017/08/07/WaveformStreamService/WaveformStream");
 const xml_schema::Uri resolveUri("http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01/Resolve");
 const xml_schema::Uri resolveMatchesUri("http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01/ResolveMatches");
 const xml_schema::Uri addressingAnonymousUri("http://www.w3.org/2005/08/addressing/anonymous");

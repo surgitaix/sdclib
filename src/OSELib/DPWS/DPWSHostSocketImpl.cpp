@@ -13,6 +13,7 @@
 
 #include "NormalizedMessageModel.hxx"
 
+#include "OSELib/OSCP/OSCPConstants.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/DPWS/DPWSHostSocketImpl.h"
@@ -56,7 +57,7 @@ const MESSAGEMODEL::Envelope buildHelloMessage(const HelloType & notification) {
 const MESSAGEMODEL::Envelope buildStreamMessage(const MDM::WaveformStream  & notification, const AddressType epr) {
 	MESSAGEMODEL::Envelope::HeaderType header;
 	{
-		header.Action(streamUri);
+		header.Action(xml_schema::Uri(OSCP::EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT));
 		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
 		header.From(epr);
 	}

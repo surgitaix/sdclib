@@ -1,5 +1,5 @@
 /*
- * ExampleProvider4SoftICEStreaming.cpp
+ * ExampleProvider.cpp
  *
  *  @Copyright (C) 2016, SurgiTAIX AG
  *  Author: buerger
@@ -177,7 +177,7 @@ public:
 	InvocationState onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic) override {
 		notifyOperationInvoked(oic, InvocationState::Start);
 		// Do something if a state change is requested
-		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "String state of provider state changed to " << state.getMetricValue().getValue() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleProvider") << "String state of provider state changed to " << state.getMetricValue().getValue() << std::endl;
 		// return Finished if successful
 		return InvocationState::Fin;
 	}
@@ -330,11 +330,11 @@ public:
 			{
                 updateStateValue(SampleArrayValue().setSamples(samples));
 			}
-			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+			DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
 			// NumericMetricState
 			numericProviderStateHandlerGet.setNumericValue(42.0);
-//			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "NumericMetric: value changed to 42.0" << std::endl;
+//			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to 42.0" << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
 
@@ -347,7 +347,7 @@ public:
 int main()
 {
 	// Startup
-	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Startup" << std::endl;
+	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
     OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
     OSCLibrary::getInstance().setIP6enabled(false);
     OSCLibrary::getInstance().setIP4enabled(true);
@@ -358,11 +358,11 @@ int main()
 	provider.start();
 
 	std::string temp;
-	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Press key to exit program.";
+	DebugOut(DebugOut::Default, "ExampleProvider") << "Press key to exit program.";
 	std::cin >> temp;
 
 	// Shutdown
-	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Shutdown." << std::endl;
+	DebugOut(DebugOut::Default, "ExampleProvider") << "Shutdown." << std::endl;
 	provider.shutdown();
     OSCLibrary::getInstance().shutdown();
 }

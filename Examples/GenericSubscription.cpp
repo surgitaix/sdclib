@@ -31,7 +31,7 @@
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
-#include "OSCLib/Data/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/OSCPConstants.h
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertSignalStateHandler.h"

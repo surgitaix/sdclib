@@ -351,11 +351,8 @@ void OSELibProviderAdapter::start() {
 	}
 
 	OSELib::DPWS::TypesType types;
-	// todo: set "MedicalDevice" according to DeviceCharacteristic
 	types.push_back(OSELib::DPWS::QName("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01", "MedicalDevice"));
-//	types.push_back(OSELib::DPWS::QName("http://p11073-10207/draft8/msg/2017/08/07", "MedicalDevice"));
-	types.push_back(OSELib::DPWS::QName("http://http://p11073-10207/draft8/msg/2017/08/07", "MedicalDevice"));
-//	types.push_back(OSELib::DPWS::QName("http://www.draeger.com/projects/DSC/CMDM/2012/05", "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName(OSELib::OSCP::NS_WSDL_TARGET_NAMESPACE, "MedicalDevice"));
 
 	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),

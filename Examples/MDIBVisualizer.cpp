@@ -1,9 +1,10 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "OSCLib/Data/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Util/DebugOut.h"
+#include "OSELib/Helper/WithLogger.h"
 
 #include "OSELib/OSCP/ServiceManager.h"
 
@@ -1424,9 +1425,10 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 }
 
 int main() {
+	DebugOut::DEBUG_LEVEL = DebugOut::Full;
 	const std::string testname("Create graphvis/dot files of all MDIBs of all found devices");
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Startup: " << testname;
-	OSCLibrary::getInstance().startup();
+	OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpng {} -o {}.png";
 
 	int loopcounter = 0;
@@ -1435,16 +1437,16 @@ int main() {
 	while (true) {
 		const std::string deviceEPR("UDI-1234567890");
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Refreshing ..." << std::flush;
-		std::shared_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(deviceEPR));
-//		std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> results(oscpsm.discoverOSCP());
+		//std::shared_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(deviceEPR));
+		std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> results(oscpsm.discoverOSCP());
 
-		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found devices with these EPRs: ";
+		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found devices with these EPRs: " << std::endl;
 
-//		for (auto & consumer : results) {
+		for (auto & consumer : results) {
 			const std::string epr(consumer->getEndpointReference());
 			const std::string filename("mdib" + stripCharacters(epr, "./\\!?*") + ".dot");
 
-			DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found EPR " << epr << " and dumping to file " << filename;
+			DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found EPR " << epr << " and dumping to file " << filename << std::endl;
 
 			try {
 				std::ofstream outFile;
@@ -1466,19 +1468,19 @@ int main() {
 			} catch (...) {
 				DebugOut(DebugOut::Default, "MDIBVisualizer") << "Error writing file." << std::endl;
 			}
-//		}
+		}
 
-//		for (auto & consumer : results) {
-//			consumer->disconnect();
-//			consumer.reset();
-//		}
-//		results.clear();
+		for (auto & consumer : results) {
+			consumer->disconnect();
+			consumer.reset();
+		}
+		results.clear();
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Done." << std::endl << std::flush;
 
 		++loopcounter;
 	}
 
-	Poco::Thread::sleep(2000);
+	Poco::Thread::sleep(5000);
 
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << "Shutdown: " << testname << std::endl;
 }
