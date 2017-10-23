@@ -1006,7 +1006,33 @@ std::string makeFormat(const CDM::MeansContextState & object, unsigned int id) {
 //
 // Operations
 //
+std::string makeFormat(const CDM::SetStringOperationState & object, unsigned int id) {
+	return makeMetricFormat(object, id);
+}
 
+std::string makeFormat(const CDM::SetContextStateOperationState & object, unsigned int id) {
+	return makeMetricFormat(object, id);
+}
+
+std::string makeFormat(const CDM::SetAlertStateOperationState & object, unsigned int id) {
+	return makeMetricFormat(object, id);
+}
+
+std::string makeFormat(const CDM::ActivateOperationState & object, unsigned int id) {
+	return makeMetricFormat(object, id);
+}
+
+std::string makeFormat(const CDM::SetComponentStateOperationState & object, unsigned int id) {
+	return makeMetricFormat(object, id);
+}
+
+std::string makeFormat(const CDM::SetMetricStateOperationState & object, unsigned int id) {
+	return makeMetricFormat(object, id);
+}
+
+std::string makeFormat(const CDM::SetValueOperationState & object, unsigned int id) {
+	return makeMetricFormat(object, id);
+}
 
 
 
@@ -1042,8 +1068,6 @@ std::string makeFormat(const CDM::BatteryState & object, unsigned int id) {
 //
 // ComplexDeviceComponents
 //
-
-
 std::string makeFormat(const CDM::MdsDescriptor & object, unsigned int id) {
 	return makeStructureFormat(object, id);
 }
@@ -1106,7 +1130,7 @@ std::string makeFormat(const CDM::LimitAlertConditionDescriptor & object, unsign
 //
 // Other
 //
-// NA
+
 
 
 
@@ -1118,8 +1142,6 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 	std::ostringstream result;
 	result << "digraph G {" << std::endl;
 	result << "rankdir=\"LR\"" << std::endl;
-
-	result << "unassigned;" << std::endl;
 
 	unsigned int lastNode = 0;
 
@@ -1357,12 +1379,29 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 				} else if (auto casted = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(&state)) {
 					metricStateNodes.push_back(currentNode);
 					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, xlocurrentNode);
-
-					// todo continue: write name of Sco States
+					result << makeFormat(*casted, currentNode);
+				} else if (auto casted = dynamic_cast<const CDM::SetValueOperationState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
+					result << makeFormat(*casted, currentNode);
+				} else if (auto casted = dynamic_cast<const CDM::SetStringOperationState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
+					result << makeFormat(*casted, currentNode);
+				} else if (auto casted = dynamic_cast<const CDM::SetContextStateOperationState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
+					result << makeFormat(*casted, currentNode);
+				} else if (auto casted = dynamic_cast<const CDM::SetAlertStateOperationState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
+					result << makeFormat(*casted, currentNode);
+				} else if (auto casted = dynamic_cast<const CDM::ActivateOperationState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
+					result << makeFormat(*casted, currentNode);
+				} else if (auto casted = dynamic_cast<const CDM::SetComponentStateOperationState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
+					result << makeFormat(*casted, currentNode);
 				} else if (auto casted = dynamic_cast<const CDM::SetMetricStateOperationState *>(&state)) {
 					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
 					result << makeFormat(*casted, currentNode);
+				}
 			}
 		}
 
