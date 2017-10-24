@@ -79,7 +79,7 @@ public:
     * @return The MdDescription container
     */
 
-    void setMDDescription(const MdDescription & mdDescription);
+    void setMdDescription(const MdDescription & mdDescription);
     void setMDDescription(std::string xml);
     MdDescription getMdDescription() const;
 

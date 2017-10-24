@@ -11,6 +11,8 @@
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdState.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdState.h"
+#include "OSCLib/Data/OSCP/MDIB/ChannelState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
@@ -166,6 +168,14 @@ MdState & MdState::addState(const StringMetricState & source) {
 }
 
 MdState & MdState::addState(const WorkflowContextState & source) {
+	return addStateImpl(source);
+}
+
+MdState & MdState::addState(const VmdState & source) {
+	return addStateImpl(source);
+}
+
+MdState & MdState::addState(const ChannelState & source) {
 	return addStateImpl(source);
 }
 

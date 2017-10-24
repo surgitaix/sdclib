@@ -216,7 +216,7 @@ public:
 
 
         // set the providers description
-        oscpProvider.setMDDescription(holdingDeviceDescription);
+        oscpProvider.setMdDescription(holdingDeviceDescription);
 
 
 		// State handler

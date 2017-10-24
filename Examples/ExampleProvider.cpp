@@ -279,7 +279,7 @@ public:
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
-		oscpProvider.setMDDescription(mdDescription);
+		oscpProvider.setMdDescription(mdDescription);
 
         // Add handler
 		oscpProvider.addMdSateHandler(&streamProviderStateHandler);

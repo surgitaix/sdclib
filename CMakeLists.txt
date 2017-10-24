@@ -198,6 +198,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/OSCPProviderAlertConditionStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderAlertSignalStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderAlertSystemStateHandler.cpp
+./src/Data/OSCP/OSCPProviderChannelStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderClockStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderContextStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.cpp
@@ -207,6 +208,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/OSCPProviderNumericMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderStringMetricStateHandler.cpp
+./src/Data/OSCP/OSCPProviderVmdStateHandler.cpp
 ./src/Data/OSCP/OSELibConsumerAdapter.cpp
 ./src/Data/OSCP/OSELibProviderAdapter.cpp
 ./src/Dev/DeviceCharacteristics.cpp
@@ -488,11 +490,11 @@ add_library(OSCLib SHARED ${OSCLibSOURCES})
 
 add_executable(UnitTests
 Tests/UnitTests.cpp
-#Tests/OSCPTests/TestConnectionLost.cpp
+Tests/OSCPTests/TestConnectionLost.cpp
 #Tests/OSCPTests/TestDICOM.cpp
 #Tests/OSCPTests/TestMultiOSCP.cpp
 #Tests/OSCPTests/TestSimpleOSCP.cpp
-#Tests/OSCPTests/TestPeriodicEvents.cpp
+Tests/OSCPTests/TestPeriodicEvents.cpp
 Tests/OSCPTests/TestStreamOSCP.cpp
 Tests/UnitTest++/src/Test.cpp
 Tests/UnitTest++/src/TestList.cpp

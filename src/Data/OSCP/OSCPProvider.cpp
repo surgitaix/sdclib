@@ -52,6 +52,8 @@
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdState.h"
+#include "OSCLib/Data/OSCP/MDIB/ChannelState.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
@@ -87,6 +89,8 @@
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderVmdStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderChannelStateHandler.h"
 #include "OSCLib/Dev/DeviceCharacteristics.h"
 #include "OSCLib/Util/Task.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
@@ -962,6 +966,10 @@ void OSCPProvider::startup() {
 			mdibStates.addState(h->getInitialState());
 		} else if (OSCPProviderMdsStateHandler * h = dynamic_cast<OSCPProviderMdsStateHandler*>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
+		} else if (OSCPProviderVmdStateHandler * h = dynamic_cast<OSCPProviderVmdStateHandler*>(handler.second)) {
+			mdibStates.addState(h->getInitialState());
+		} else if (OSCPProviderChannelStateHandler * h = dynamic_cast<OSCPProviderChannelStateHandler*>(handler.second)) {
+			mdibStates.addState(h->getInitialState());
 		} else if (dynamic_cast<OSCPProviderActivateOperationHandler *>(handler.second)) {
 			// NOOP
 		} else if (OSCPProviderContextStateHandler * h = dynamic_cast<OSCPProviderContextStateHandler *>(handler.second)) {
@@ -1083,7 +1091,7 @@ void OSCPProvider::setEndpointReference(const std::string & epr) {
 }
 
 
-void OSCPProvider::setMDDescription(const MdDescription & mdDescription) {
+void OSCPProvider::setMdDescription(const MdDescription & mdDescription) {
 	Poco::Mutex::ScopedLock lock(getMutex());
 	m_mdDescription = std::make_shared<MdDescription>(mdDescription);
 }

@@ -46,6 +46,8 @@
     MdState & addState(const RealTimeSampleArrayMetricState & source);
     MdState & addState(const StringMetricState & source);
     MdState & addState(const WorkflowContextState & source);
+    MdState & addState(const VmdState & source);
+    MdState & addState(const ChannelState & source);
 
 private:
     template <class WrapperStateDescriptorType>
