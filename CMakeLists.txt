@@ -486,6 +486,35 @@ list(APPEND OSCLibSOURCES ${PocoSOURCES})
 add_library(OSCLib SHARED ${OSCLibSOURCES})
 
 
+add_executable(UnitTests
+Tests/UnitTests.cpp
+#Tests/OSCPTests/TestConnectionLost.cpp
+#Tests/OSCPTests/TestDICOM.cpp
+#Tests/OSCPTests/TestMultiOSCP.cpp
+#Tests/OSCPTests/TestSimpleOSCP.cpp
+#Tests/OSCPTests/TestPeriodicEvents.cpp
+Tests/OSCPTests/TestStreamOSCP.cpp
+Tests/UnitTest++/src/Test.cpp
+Tests/UnitTest++/src/TestList.cpp
+Tests/UnitTest++/src/TestRunner.cpp
+Tests/UnitTest++/src/CurrentTest.cpp
+Tests/UnitTest++/src/TestDetails.cpp
+Tests/UnitTest++/src/TestResults.cpp
+Tests/UnitTest++/src/ReportAssert.cpp
+Tests/UnitTest++/src/TestReporter.cpp
+Tests/UnitTest++/src/TimeConstraint.cpp
+Tests/UnitTest++/src/AssertException.cpp
+Tests/UnitTest++/src/MemoryOutStream.cpp
+Tests/UnitTest++/src/XmlTestReporter.cpp
+Tests/UnitTest++/src/DeferredTestResult.cpp
+Tests/UnitTest++/src/TestReporterStdout.cpp
+Tests/UnitTest++/src/DeferredTestReporter.cpp
+Tests/UnitTest++/src/Posix/TimeHelpers.cpp
+Tests/UnitTest++/src/Win32/TimeHelpers.cpp
+Tests/UnitTest++/src/Posix/SignalTranslator.cpp
+)
+
+
 add_executable(ExampleConsumer
 Examples/ExampleConsumer.cpp
 )
@@ -536,7 +565,7 @@ Examples/MDIBVisualizer.cpp
 SET(ADDITIONAL_LIBS "")
 
 target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})

@@ -9,9 +9,9 @@
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
@@ -38,17 +38,16 @@ public:
     	oscpProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
 
         // Location context
-        SystemContext sc;
+        LocationContextDescriptor sc;
 
         // Channel
         ChannelDescriptor testChannel;
-        testChannel.setIntendedUse(IntendedUse::MEDICAL_A);
+        testChannel.setSafetyClassification(SafetyClassification::MedA);
         for (std::size_t i = 0; i < metrics; i++) {
         	NumericMetricDescriptor nmd;
-    		nmd.setMetricCategory(MetricCategory::MEASUREMENT)
-               .setAvailability(MetricAvailability::CONTINUOUS)
-    		   .setType(
-    				CodedValue()
+
+    		nmd.setMetricCategory(MetricCategory::Msrmt).setMetricAvailability(MetricAvailability::Cont)
+    			.setType(CodedValue()
     				.setCodeId("MDCX_CODE_ID_WEIGHT")
     				.addConceptDescription(LocalizedText().set("Current weight")))
     	       .setHandle("handle_cur" + std::to_string(i));
