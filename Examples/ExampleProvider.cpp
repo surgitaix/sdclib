@@ -224,18 +224,22 @@ public:
         streamMetricDescriptor
         	.setMetricAvailability(MetricAvailability::Cont)
         	.setResolution(1.0)
-        	.setType(CodedValue().setCode("MDCX_XXX"))
+        	.setType(CodedValue().setCode("MDCX_EXAMPLE_STREAM"))
         	.setMetricCategory(MetricCategory::Msrmt)
         	.addTechnicalRange(Range().setLower(0).setUpper(2));
 
         setMetricDescriptor
         	.setMetricCategory(MetricCategory::Set)
         	.setMetricAvailability(MetricAvailability::Cont)
-        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
+        	.setType(CodedValue()
+        		.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"))
+        		.setCode("MDCX_EXAMPLE_SET"));
 
         getMetricDescriptor
 			.setMetricAvailability(MetricAvailability::Cont)
-			.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
+			.setType(CodedValue()
+					.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"))
+					.setCode("MDCX_EXAMPLE_GET"));
 
         stringMetricDescriptor
         	.setMetricAvailability(MetricAvailability::Cont)

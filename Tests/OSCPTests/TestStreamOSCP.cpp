@@ -18,7 +18,6 @@
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 
-#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Util/DebugOut.h"

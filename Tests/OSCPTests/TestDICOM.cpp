@@ -2,15 +2,15 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/MDIB/Base64Binary.h"
+//#include "OSCLib/Data/OSCP/MDIB/Base64Binary.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMDeviceDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMNetworkAE.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMNetworkConnection.h"
-#include "OSCLib/Data/OSCP/MDIB/DICOMTransferCapability.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h"
+#include "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 #include "../AbstractOSCLibFixture.h"
@@ -46,11 +46,9 @@ public:
 
     	dicomDescriptor
 			.setHandle(MDS_HANDLE)
-			.setType(CodedValue()
-                .setCodingSystemId("OR.NET.Codings")
-        		.setCodeId("MDCX_CODE_ID_DICOM_GATEWAY"))
+			.setType(CodedValue().setCodingSystem("OR.NET.Codings").setCode("MDCX_CODE_ID_DICOM_GATEWAY"))
 			.addNetworkConnection(
-					DICOMNetworkConnection()
+					DicomNetworkConnection()
 					.setid("connection_1")
 					.setHostname("127.0.0.1"))
 			.addNetworkAE(DICOMNetworkAE()
@@ -62,16 +60,16 @@ public:
 							.setSOPClass("undfined SOP class")
 							.setTransferRole(DICOMTransferRole::SCP)
 							.addTransferSyntax("unknown syntax"))
-					)
-			.addPublicCertificate(
-					Base64Binary().
-					setData(fakeCert));
+					);
+//			.addPublicCertificate(
+//					Base64Binary().
+//					setData(fakeCert));
 
-    	MDDescription holdingDeviceDescription;
-    	holdingDeviceDescription.addMDSDescriptor(dicomDescriptor);
+    	MdDescription holdingDeviceDescription;
+    	holdingDeviceDescription.addMdsDescriptor(dicomDescriptor);
 
     	// set the providers description
-    	oscpProvider.setMDDescription(holdingDeviceDescription);
+    	oscpProvider.setMdDescription(holdingDeviceDescription);
 
     }
 
@@ -90,7 +88,7 @@ private:
     OSCPProvider oscpProvider;
 
     // The current weight
-    DICOMDeviceDescriptor dicomDescriptor;
+    DicomDeviceDescriptor dicomDescriptor;
 };
 
 }
@@ -123,11 +121,11 @@ TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
             MdibContainer mdib(consumer.getMdib());
 
             { // test access to some member of the dicom device.
-            	std::vector<DICOMDeviceDescriptor> dicomDevices(mdib.getMdDescription().collectAllDICOMDeviceDescriptors());
+            	std::vector<DicomDeviceDescriptor> dicomDevices(mdib.getMdDescription().collectAllDicomDeviceDescriptors());
 
             	CHECK_EQUAL(false, dicomDevices.empty());
             	if (!dicomDevices.empty()) {
-            		DICOMDeviceDescriptor & device(dicomDevices.front());
+            		DicomDeviceDescriptor & device(dicomDevices.front());
             		const std::vector<Base64Binary> certs(device.getPublicCertificates());
 
             		CHECK_EQUAL(false, certs.empty());

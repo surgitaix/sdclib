@@ -8,9 +8,9 @@
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
@@ -36,54 +36,45 @@ public:
     	oscpProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
 
         // Location context
-        SystemContext sc;
+        SystemContextDescriptor sc;
 
         // Channel
         ChannelDescriptor testChannel;
-        testChannel.setIntendedUse(IntendedUse::MEDICAL_A);
+        testChannel.setSafetyClassification(SafetyClassification::MedA);
         for (std::size_t i = 0; i < metrics; i++) {
         	NumericMetricDescriptor nmd;
-    		nmd.setMetricCategory(MetricCategory::MEASUREMENT)
-               .setAvailability(MetricAvailability::CONTINUOUS)
-    		   .setType(
-    				CodedValue()
-    				.setCodeId("MDCX_CODE_ID_WEIGHT")
-    				.addConceptDescription(LocalizedText().set("Current weight")))
+    		nmd.setMetricCategory(MetricCategory::Msrmt)
+               .setMetricAvailability(MetricAvailability::Cont)
+               .setType(CodedValue()
+            		   .addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"))
+            		   .setCode("MDCX_CODE_ID_WEIGHT"))
     	       .setHandle("handle_cur" + std::to_string(i));
     		testChannel.addMetric(nmd);
         }
 
         // VMD
-        VMDDescriptor testVMD;
-        testVMD.addChannel(testChannel);
+        VmdDescriptor testVmd;
+        testVmd.addChannel(testChannel);
 
         // MDS
-        HydraMDSDescriptor mds;
-        mds
-			.setMetaData(
-					SystemMetaData()
-					.addManufacturer(
-						LocalizedText()
-						.set("SurgiTAIX AG"))
-					.addModelName(
-						LocalizedText()
-						.set("EndoTAIX"))
-					.addModelNumber("1")
-					.addSerialNumber("1234")
-					)
-			.setContext(sc)
-			.setType(
-                CodedValue()
-                .setCodingSystemId("OR.NET.Codings")
-        		.setCodeId("MDCX_CODE_ID_MDS"));
+        MdsDescriptor mds;
+        mds.setMetaData(
+        		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
+        		.setModelNumber("1")
+        		.addModelName(LocalizedText().setRef("EndoTAIX"))
+        		.addSerialNumber("1234"))
+			.setSystemContext(sc)
+			.setType(CodedValue()
+			   .addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"))
+			   .setCode("MDCX_CODE_ID_MDS"));
 
-        mds.addVMD(testVMD);
+        mds.addVmd(testVmd);
 
         // create and add description
-		MDDescription mdDescription;
-		mdDescription.addMDSDescriptor(mds);
+		MdDescription mdDescription;
+		mdDescription.addMdsDescriptor(mds);
 
-		oscpProvider.setMDDescription(mdDescription);
+		oscpProvider.setMdDescription(mdDescription);
 
 
     }

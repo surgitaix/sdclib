@@ -98,7 +98,7 @@ public:
     }
 
     void onStateChanged(const NumericMetricState & state) override {
-        double val = state.getObservedValue().getValue();
+        double val = state.getMetricValue().getValue();
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
     	Poco::Mutex::ScopedLock lock(mutex);
         weight = (float)val;
@@ -142,7 +142,7 @@ public:
     }
 
     void onStateChanged(const EnumStringMetricState & state) override {
-    	const std::string val(state.getObservedValue().getValue());
+    	const std::string val(state.getMetricValue().getValue());
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
         eventEMR.set();
     }
@@ -176,7 +176,7 @@ public:
     }
 
     void onStateChanged(const StringMetricState & state) override {
-    	const std::string val(state.getObservedValue().getValue());
+    	const std::string val(state.getMetricValue().getValue());
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
         eventEMR.set();
     }
