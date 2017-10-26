@@ -114,16 +114,16 @@ public:
 	bool hasActivationDuration() const;
 
 	EnumStringMetricDescriptor & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySiteLists() const;
-	void clearBodySiteLists();
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
 	
 	EnumStringMetricDescriptor & addRelation(const Relation & value);
-	std::vector<Relation> getRelationLists() const;
-	void clearRelationLists();
+	std::vector<Relation> getRelationList() const;
+	void clearRelationList();
 	
 	EnumStringMetricDescriptor & addAllowedValue(const AllowedValue & value);
-	std::vector<AllowedValue> getAllowedValueLists() const;
-	void clearAllowedValueLists();
+	std::vector<AllowedValue> getAllowedValueList() const;
+	void clearAllowedValueList();
 	
 private:
 	std::shared_ptr<CDM::EnumStringMetricDescriptor> data;

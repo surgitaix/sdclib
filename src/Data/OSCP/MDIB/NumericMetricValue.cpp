@@ -150,7 +150,7 @@ NumericMetricValue & NumericMetricValue::addAnnotation(const Annotation & value)
 	return *this;
 }
 
-std::vector<Annotation> NumericMetricValue::getAnnotationLists() const {
+std::vector<Annotation> NumericMetricValue::getAnnotationList() const {
 	std::vector<Annotation> result;
 	result.reserve(data->Annotation().size());
 	for (const auto & value: data->Annotation()) {
@@ -159,7 +159,7 @@ std::vector<Annotation> NumericMetricValue::getAnnotationLists() const {
 	return result;
 }
 
-void NumericMetricValue::clearAnnotationLists() {
+void NumericMetricValue::clearAnnotationList() {
 	data->Annotation().clear();
 }
 

@@ -115,12 +115,12 @@ public:
 	bool hasActivationDuration() const;
 
 	NumericMetricDescriptor & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySiteLists() const;
-	void clearBodySiteLists();
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
 	
 	NumericMetricDescriptor & addRelation(const Relation & value);
-	std::vector<Relation> getRelationLists() const;
-	void clearRelationLists();
+	std::vector<Relation> getRelationList() const;
+	void clearRelationList();
 	
 	NumericMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
@@ -131,8 +131,8 @@ public:
 	bool hasAveragingPeriod() const;
 
 	NumericMetricDescriptor & addTechnicalRange(const Range & value);
-	std::vector<Range> getTechnicalRangeLists() const;
-	void clearTechnicalRangeLists();
+	std::vector<Range> getTechnicalRangeList() const;
+	void clearTechnicalRangeList();
 	
 private:
 	std::shared_ptr<CDM::NumericMetricDescriptor> data;

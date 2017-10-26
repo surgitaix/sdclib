@@ -72,12 +72,12 @@ public:
 	bool hasCriticality() const;
 
 	ClinicalInfo & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptionLists() const;
-	void clearDescriptionLists();
+	std::vector<LocalizedText> getDescriptionList() const;
+	void clearDescriptionList();
 	
 	ClinicalInfo & addRelatedMeasurement(const RelatedMeasurement & value);
-	std::vector<RelatedMeasurement> getRelatedMeasurementLists() const;
-	void clearRelatedMeasurementLists();
+	std::vector<RelatedMeasurement> getRelatedMeasurementList() const;
+	void clearRelatedMeasurementList();
 	
 private:
 	std::shared_ptr<CDM::ClinicalInfo> data;

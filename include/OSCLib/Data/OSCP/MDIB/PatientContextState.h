@@ -104,12 +104,12 @@ public:
 	bool hasBindingEndTime() const;
 
 	PatientContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidatorLists() const;
-	void clearValidatorLists();
+	std::vector<InstanceIdentifier> getValidatorList() const;
+	void clearValidatorList();
 	
 	PatientContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentificationLists() const;
-	void clearIdentificationLists();
+	std::vector<InstanceIdentifier> getIdentificationList() const;
+	void clearIdentificationList();
 	
 	PatientContextState & setCoreData(const PatientDemographicsCoreData & value);
 	PatientDemographicsCoreData getCoreData() const;

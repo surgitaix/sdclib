@@ -265,7 +265,7 @@ MeansContextState & MeansContextState::addValidator(const InstanceIdentifier & v
 	return *this;
 }
 
-std::vector<InstanceIdentifier> MeansContextState::getValidatorLists() const {
+std::vector<InstanceIdentifier> MeansContextState::getValidatorList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Validator().size());
 	for (const auto & value: data->Validator()) {
@@ -274,7 +274,7 @@ std::vector<InstanceIdentifier> MeansContextState::getValidatorLists() const {
 	return result;
 }
 
-void MeansContextState::clearValidatorLists() {
+void MeansContextState::clearValidatorList() {
 	data->Validator().clear();
 }
 
@@ -283,7 +283,7 @@ MeansContextState & MeansContextState::addIdentification(const InstanceIdentifie
 	return *this;
 }
 
-std::vector<InstanceIdentifier> MeansContextState::getIdentificationLists() const {
+std::vector<InstanceIdentifier> MeansContextState::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -292,7 +292,7 @@ std::vector<InstanceIdentifier> MeansContextState::getIdentificationLists() cons
 	return result;
 }
 
-void MeansContextState::clearIdentificationLists() {
+void MeansContextState::clearIdentificationList() {
 	data->Identification().clear();
 }
 

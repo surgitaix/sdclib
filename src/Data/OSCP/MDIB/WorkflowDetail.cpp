@@ -176,7 +176,7 @@ WorkflowDetail & WorkflowDetail::addDangerCode(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> WorkflowDetail::getDangerCodeLists() const {
+std::vector<CodedValue> WorkflowDetail::getDangerCodeList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->DangerCode().size());
 	for (const auto & value: data->DangerCode()) {
@@ -185,7 +185,7 @@ std::vector<CodedValue> WorkflowDetail::getDangerCodeLists() const {
 	return result;
 }
 
-void WorkflowDetail::clearDangerCodeLists() {
+void WorkflowDetail::clearDangerCodeList() {
 	data->DangerCode().clear();
 }
 
@@ -194,7 +194,7 @@ WorkflowDetail & WorkflowDetail::addRelevantClinicalInfo(const ClinicalInfo & va
 	return *this;
 }
 
-std::vector<ClinicalInfo> WorkflowDetail::getRelevantClinicalInfoLists() const {
+std::vector<ClinicalInfo> WorkflowDetail::getRelevantClinicalInfoList() const {
 	std::vector<ClinicalInfo> result;
 	result.reserve(data->RelevantClinicalInfo().size());
 	for (const auto & value: data->RelevantClinicalInfo()) {
@@ -203,7 +203,7 @@ std::vector<ClinicalInfo> WorkflowDetail::getRelevantClinicalInfoLists() const {
 	return result;
 }
 
-void WorkflowDetail::clearRelevantClinicalInfoLists() {
+void WorkflowDetail::clearRelevantClinicalInfoList() {
 	data->RelevantClinicalInfo().clear();
 }
 

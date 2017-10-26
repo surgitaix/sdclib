@@ -215,7 +215,7 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::addBodySite(con
 	return *this;
 }
 
-std::vector<CodedValue> RealTimeSampleArrayMetricState::getBodySiteLists() const {
+std::vector<CodedValue> RealTimeSampleArrayMetricState::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -224,7 +224,7 @@ std::vector<CodedValue> RealTimeSampleArrayMetricState::getBodySiteLists() const
 	return result;
 }
 
-void RealTimeSampleArrayMetricState::clearBodySiteLists() {
+void RealTimeSampleArrayMetricState::clearBodySiteList() {
 	data->BodySite().clear();
 }
 
@@ -254,7 +254,7 @@ RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState::addPhysiologica
 	return *this;
 }
 
-std::vector<Range> RealTimeSampleArrayMetricState::getPhysiologicalRangeLists() const {
+std::vector<Range> RealTimeSampleArrayMetricState::getPhysiologicalRangeList() const {
 	std::vector<Range> result;
 	result.reserve(data->PhysiologicalRange().size());
 	for (const auto & value: data->PhysiologicalRange()) {
@@ -263,7 +263,7 @@ std::vector<Range> RealTimeSampleArrayMetricState::getPhysiologicalRangeLists() 
 	return result;
 }
 
-void RealTimeSampleArrayMetricState::clearPhysiologicalRangeLists() {
+void RealTimeSampleArrayMetricState::clearPhysiologicalRangeList() {
 	data->PhysiologicalRange().clear();
 }
 

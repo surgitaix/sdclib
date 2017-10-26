@@ -243,7 +243,7 @@ SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::addModi
 	return *this;
 }
 
-std::vector<std::string> SetContextStateOperationDescriptor::getModifiableDataLists() const {
+std::vector<std::string> SetContextStateOperationDescriptor::getModifiableDataList() const {
 	std::vector<std::string> result;
 	result.reserve(data->ModifiableData().size());
 	for (const auto & value: data->ModifiableData()) {
@@ -252,7 +252,7 @@ std::vector<std::string> SetContextStateOperationDescriptor::getModifiableDataLi
 	return result;
 }
 
-void SetContextStateOperationDescriptor::clearModifiableDataLists() {
+void SetContextStateOperationDescriptor::clearModifiableDataList() {
 	data->ModifiableData().clear();
 }
 

@@ -95,7 +95,7 @@ DicomTransferCapability & DicomTransferCapability::addTransferSyntax(const std::
 	return *this;
 }
 
-std::vector<std::string> DicomTransferCapability::getTransferSyntaxLists() const {
+std::vector<std::string> DicomTransferCapability::getTransferSyntaxList() const {
 	std::vector<std::string> result;
 	result.reserve(data->TransferSyntax().size());
 	for (const auto & value: data->TransferSyntax()) {
@@ -104,7 +104,7 @@ std::vector<std::string> DicomTransferCapability::getTransferSyntaxLists() const
 	return result;
 }
 
-void DicomTransferCapability::clearTransferSyntaxLists() {
+void DicomTransferCapability::clearTransferSyntaxList() {
 	data->TransferSyntax().clear();
 }
 

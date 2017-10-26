@@ -215,7 +215,7 @@ NumericMetricState & NumericMetricState::addBodySite(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> NumericMetricState::getBodySiteLists() const {
+std::vector<CodedValue> NumericMetricState::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -224,7 +224,7 @@ std::vector<CodedValue> NumericMetricState::getBodySiteLists() const {
 	return result;
 }
 
-void NumericMetricState::clearBodySiteLists() {
+void NumericMetricState::clearBodySiteList() {
 	data->BodySite().clear();
 }
 
@@ -275,7 +275,7 @@ NumericMetricState & NumericMetricState::addPhysiologicalRange(const Range & val
 	return *this;
 }
 
-std::vector<Range> NumericMetricState::getPhysiologicalRangeLists() const {
+std::vector<Range> NumericMetricState::getPhysiologicalRangeList() const {
 	std::vector<Range> result;
 	result.reserve(data->PhysiologicalRange().size());
 	for (const auto & value: data->PhysiologicalRange()) {
@@ -284,7 +284,7 @@ std::vector<Range> NumericMetricState::getPhysiologicalRangeLists() const {
 	return result;
 }
 
-void NumericMetricState::clearPhysiologicalRangeLists() {
+void NumericMetricState::clearPhysiologicalRangeList() {
 	data->PhysiologicalRange().clear();
 }
 

@@ -5,6 +5,7 @@
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 
 #include <vector>
@@ -24,27 +25,33 @@ void ChannelDescriptor::getMetricDescriptors(std::vector<U> & result) const {
 	}
 }
 
-std::vector<NumericMetricDescriptor> ChannelDescriptor::getNumericMetricDescriptors() const {
+std::vector<NumericMetricDescriptor> ChannelDescriptor::getNumericMetricDescriptorList() const {
 	std::vector<NumericMetricDescriptor> result;
 	getMetricDescriptors<NumericMetricDescriptor, CDM::NumericMetricDescriptor>(result);
 	return result;
 }
 
-std::vector<StringMetricDescriptor> ChannelDescriptor::getStringMetricDescriptors() const {
+std::vector<StringMetricDescriptor> ChannelDescriptor::getStringMetricDescriptorList() const {
 	std::vector<StringMetricDescriptor> result;
 	getMetricDescriptors<StringMetricDescriptor, CDM::StringMetricDescriptor>(result);
 	return result;
 }
 
-std::vector<EnumStringMetricDescriptor> ChannelDescriptor::getEnumStringMetricDescriptors() const {
+std::vector<EnumStringMetricDescriptor> ChannelDescriptor::getEnumStringMetricDescriptorList() const {
 	std::vector<EnumStringMetricDescriptor> result;
 	getMetricDescriptors<EnumStringMetricDescriptor, CDM::EnumStringMetricDescriptor>(result);
 	return result;
 }
 
-std::vector<RealTimeSampleArrayMetricDescriptor> ChannelDescriptor::getRealTimeSampleArrayMetricDescriptors() const {
+std::vector<RealTimeSampleArrayMetricDescriptor> ChannelDescriptor::getRealTimeSampleArrayMetricDescriptorList() const {
 	std::vector<RealTimeSampleArrayMetricDescriptor> result;
 	getMetricDescriptors<RealTimeSampleArrayMetricDescriptor, CDM::RealTimeSampleArrayMetricDescriptor>(result);
+	return result;
+}
+
+std::vector<DistributionSampleArrayMetricDescriptor> ChannelDescriptor::getDistributionSampleArrayMetricDescriptorList() const {
+	std::vector<DistributionSampleArrayMetricDescriptor> result;
+	getMetricDescriptors<DistributionSampleArrayMetricDescriptor, CDM::DistributionSampleArrayMetricDescriptor>(result);
 	return result;
 }
 
@@ -61,6 +68,10 @@ ChannelDescriptor & ChannelDescriptor::addMetric(const StringMetricDescriptor & 
 }
 
 ChannelDescriptor & ChannelDescriptor::addMetric(const RealTimeSampleArrayMetricDescriptor & source) {
+	return addMetricImpl(source);
+}
+
+ChannelDescriptor & ChannelDescriptor::addMetric(const DistributionSampleArrayMetricDescriptor & source) {
 	return addMetricImpl(source);
 }
 

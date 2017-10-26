@@ -150,7 +150,7 @@ StringMetricValue & StringMetricValue::addAnnotation(const Annotation & value) {
 	return *this;
 }
 
-std::vector<Annotation> StringMetricValue::getAnnotationLists() const {
+std::vector<Annotation> StringMetricValue::getAnnotationList() const {
 	std::vector<Annotation> result;
 	result.reserve(data->Annotation().size());
 	for (const auto & value: data->Annotation()) {
@@ -159,7 +159,7 @@ std::vector<Annotation> StringMetricValue::getAnnotationLists() const {
 	return result;
 }
 
-void StringMetricValue::clearAnnotationLists() {
+void StringMetricValue::clearAnnotationList() {
 	data->Annotation().clear();
 }
 

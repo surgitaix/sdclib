@@ -190,6 +190,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/custom/MdStateCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/OperationInvocationContext.cpp
 ./src/Data/OSCP/MDIB/custom/ScoDescriptorCustomImpl.cxx
+./src/Data/OSCP/MDIB/custom/AlertSystemDescriptorCustomImpl.cxx
 ./src/Data/OSCP/FutureInvocationState.cpp
 ./src/Data/OSCP/OSCPConsumer.cpp
 ./src/Data/OSCP/OSCPConsumerEventHandler.cpp

@@ -244,7 +244,7 @@ ActivateOperationDescriptor & ActivateOperationDescriptor::addModifiableData(con
 	return *this;
 }
 
-std::vector<std::string> ActivateOperationDescriptor::getModifiableDataLists() const {
+std::vector<std::string> ActivateOperationDescriptor::getModifiableDataList() const {
 	std::vector<std::string> result;
 	result.reserve(data->ModifiableData().size());
 	for (const auto & value: data->ModifiableData()) {
@@ -253,7 +253,7 @@ std::vector<std::string> ActivateOperationDescriptor::getModifiableDataLists() c
 	return result;
 }
 
-void ActivateOperationDescriptor::clearModifiableDataLists() {
+void ActivateOperationDescriptor::clearModifiableDataList() {
 	data->ModifiableData().clear();
 }
 
@@ -262,7 +262,7 @@ ActivateOperationDescriptor & ActivateOperationDescriptor::addArgument(const Arg
 	return *this;
 }
 
-std::vector<Argument> ActivateOperationDescriptor::getArgumentLists() const {
+std::vector<Argument> ActivateOperationDescriptor::getArgumentList() const {
 	std::vector<Argument> result;
 	result.reserve(data->Argument().size());
 	for (const auto & value: data->Argument()) {
@@ -271,7 +271,7 @@ std::vector<Argument> ActivateOperationDescriptor::getArgumentLists() const {
 	return result;
 }
 
-void ActivateOperationDescriptor::clearArgumentLists() {
+void ActivateOperationDescriptor::clearArgumentList() {
 	data->Argument().clear();
 }
 

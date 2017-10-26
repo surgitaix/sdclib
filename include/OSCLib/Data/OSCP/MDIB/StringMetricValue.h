@@ -75,8 +75,8 @@ public:
 	bool hasDeterminationTime() const;
 
 	StringMetricValue & addAnnotation(const Annotation & value);
-	std::vector<Annotation> getAnnotationLists() const;
-	void clearAnnotationLists();
+	std::vector<Annotation> getAnnotationList() const;
+	void clearAnnotationList();
 	
 	StringMetricValue & setValue(const std::string & value);
 	std::string getValue() const;

@@ -77,7 +77,7 @@ CalibrationDocumentation & CalibrationDocumentation::addDocumentation(const Loca
 	return *this;
 }
 
-std::vector<LocalizedText> CalibrationDocumentation::getDocumentationLists() const {
+std::vector<LocalizedText> CalibrationDocumentation::getDocumentationList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Documentation().size());
 	for (const auto & value: data->Documentation()) {
@@ -86,7 +86,7 @@ std::vector<LocalizedText> CalibrationDocumentation::getDocumentationLists() con
 	return result;
 }
 
-void CalibrationDocumentation::clearDocumentationLists() {
+void CalibrationDocumentation::clearDocumentationList() {
 	data->Documentation().clear();
 }
 
@@ -95,7 +95,7 @@ CalibrationDocumentation & CalibrationDocumentation::addCalibrationResult(const 
 	return *this;
 }
 
-std::vector<CalibrationResult> CalibrationDocumentation::getCalibrationResultLists() const {
+std::vector<CalibrationResult> CalibrationDocumentation::getCalibrationResultList() const {
 	std::vector<CalibrationResult> result;
 	result.reserve(data->CalibrationResult().size());
 	for (const auto & value: data->CalibrationResult()) {
@@ -104,7 +104,7 @@ std::vector<CalibrationResult> CalibrationDocumentation::getCalibrationResultLis
 	return result;
 }
 
-void CalibrationDocumentation::clearCalibrationResultLists() {
+void CalibrationDocumentation::clearCalibrationResultList() {
 	data->CalibrationResult().clear();
 }
 

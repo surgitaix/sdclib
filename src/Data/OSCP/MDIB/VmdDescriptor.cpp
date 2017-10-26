@@ -154,7 +154,7 @@ VmdDescriptor & VmdDescriptor::addProductionSpecification(const ProductionSpecif
 	return *this;
 }
 
-std::vector<ProductionSpecification> VmdDescriptor::getProductionSpecificationLists() const {
+std::vector<ProductionSpecification> VmdDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
 	result.reserve(data->ProductionSpecification().size());
 	for (const auto & value: data->ProductionSpecification()) {
@@ -163,7 +163,7 @@ std::vector<ProductionSpecification> VmdDescriptor::getProductionSpecificationLi
 	return result;
 }
 
-void VmdDescriptor::clearProductionSpecificationLists() {
+void VmdDescriptor::clearProductionSpecificationList() {
 	data->ProductionSpecification().clear();
 }
 
@@ -235,7 +235,7 @@ VmdDescriptor & VmdDescriptor::addChannel(const ChannelDescriptor & value) {
 	return *this;
 }
 
-std::vector<ChannelDescriptor> VmdDescriptor::getChannelLists() const {
+std::vector<ChannelDescriptor> VmdDescriptor::getChannelList() const {
 	std::vector<ChannelDescriptor> result;
 	result.reserve(data->Channel().size());
 	for (const auto & value: data->Channel()) {
@@ -244,7 +244,7 @@ std::vector<ChannelDescriptor> VmdDescriptor::getChannelLists() const {
 	return result;
 }
 
-void VmdDescriptor::clearChannelLists() {
+void VmdDescriptor::clearChannelList() {
 	data->Channel().clear();
 }
 

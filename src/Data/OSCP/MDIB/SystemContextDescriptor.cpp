@@ -197,7 +197,7 @@ SystemContextDescriptor & SystemContextDescriptor::addEnsembleContext(const Ense
 	return *this;
 }
 
-std::vector<EnsembleContextDescriptor> SystemContextDescriptor::getEnsembleContextLists() const {
+std::vector<EnsembleContextDescriptor> SystemContextDescriptor::getEnsembleContextList() const {
 	std::vector<EnsembleContextDescriptor> result;
 	result.reserve(data->EnsembleContext().size());
 	for (const auto & value: data->EnsembleContext()) {
@@ -206,7 +206,7 @@ std::vector<EnsembleContextDescriptor> SystemContextDescriptor::getEnsembleConte
 	return result;
 }
 
-void SystemContextDescriptor::clearEnsembleContextLists() {
+void SystemContextDescriptor::clearEnsembleContextList() {
 	data->EnsembleContext().clear();
 }
 
@@ -215,7 +215,7 @@ SystemContextDescriptor & SystemContextDescriptor::addOperatorContext(const Oper
 	return *this;
 }
 
-std::vector<OperatorContextDescriptor> SystemContextDescriptor::getOperatorContextLists() const {
+std::vector<OperatorContextDescriptor> SystemContextDescriptor::getOperatorContextList() const {
 	std::vector<OperatorContextDescriptor> result;
 	result.reserve(data->OperatorContext().size());
 	for (const auto & value: data->OperatorContext()) {
@@ -224,7 +224,7 @@ std::vector<OperatorContextDescriptor> SystemContextDescriptor::getOperatorConte
 	return result;
 }
 
-void SystemContextDescriptor::clearOperatorContextLists() {
+void SystemContextDescriptor::clearOperatorContextList() {
 	data->OperatorContext().clear();
 }
 
@@ -233,7 +233,7 @@ SystemContextDescriptor & SystemContextDescriptor::addWorkflowContext(const Work
 	return *this;
 }
 
-std::vector<WorkflowContextDescriptor> SystemContextDescriptor::getWorkflowContextLists() const {
+std::vector<WorkflowContextDescriptor> SystemContextDescriptor::getWorkflowContextList() const {
 	std::vector<WorkflowContextDescriptor> result;
 	result.reserve(data->WorkflowContext().size());
 	for (const auto & value: data->WorkflowContext()) {
@@ -242,7 +242,7 @@ std::vector<WorkflowContextDescriptor> SystemContextDescriptor::getWorkflowConte
 	return result;
 }
 
-void SystemContextDescriptor::clearWorkflowContextLists() {
+void SystemContextDescriptor::clearWorkflowContextList() {
 	data->WorkflowContext().clear();
 }
 
@@ -251,7 +251,7 @@ SystemContextDescriptor & SystemContextDescriptor::addMeansContext(const MeansCo
 	return *this;
 }
 
-std::vector<MeansContextDescriptor> SystemContextDescriptor::getMeansContextLists() const {
+std::vector<MeansContextDescriptor> SystemContextDescriptor::getMeansContextList() const {
 	std::vector<MeansContextDescriptor> result;
 	result.reserve(data->MeansContext().size());
 	for (const auto & value: data->MeansContext()) {
@@ -260,7 +260,7 @@ std::vector<MeansContextDescriptor> SystemContextDescriptor::getMeansContextList
 	return result;
 }
 
-void SystemContextDescriptor::clearMeansContextLists() {
+void SystemContextDescriptor::clearMeansContextList() {
 	data->MeansContext().clear();
 }
 

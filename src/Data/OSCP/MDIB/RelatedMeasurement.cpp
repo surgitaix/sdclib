@@ -108,7 +108,7 @@ RelatedMeasurement & RelatedMeasurement::addReferenceRange(const ReferenceRange 
 	return *this;
 }
 
-std::vector<ReferenceRange> RelatedMeasurement::getReferenceRangeLists() const {
+std::vector<ReferenceRange> RelatedMeasurement::getReferenceRangeList() const {
 	std::vector<ReferenceRange> result;
 	result.reserve(data->ReferenceRange().size());
 	for (const auto & value: data->ReferenceRange()) {
@@ -117,7 +117,7 @@ std::vector<ReferenceRange> RelatedMeasurement::getReferenceRangeLists() const {
 	return result;
 }
 
-void RelatedMeasurement::clearReferenceRangeLists() {
+void RelatedMeasurement::clearReferenceRangeList() {
 	data->ReferenceRange().clear();
 }
 

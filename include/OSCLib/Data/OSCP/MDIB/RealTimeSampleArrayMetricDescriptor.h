@@ -115,12 +115,12 @@ public:
 	bool hasActivationDuration() const;
 
 	RealTimeSampleArrayMetricDescriptor & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySiteLists() const;
-	void clearBodySiteLists();
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
 	
 	RealTimeSampleArrayMetricDescriptor & addRelation(const Relation & value);
-	std::vector<Relation> getRelationLists() const;
-	void clearRelationLists();
+	std::vector<Relation> getRelationList() const;
+	void clearRelationList();
 	
 	RealTimeSampleArrayMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
@@ -129,8 +129,8 @@ public:
 	xml_schema::Duration getSamplePeriod() const;
 
 	RealTimeSampleArrayMetricDescriptor & addTechnicalRange(const Range & value);
-	std::vector<Range> getTechnicalRangeLists() const;
-	void clearTechnicalRangeLists();
+	std::vector<Range> getTechnicalRangeList() const;
+	void clearTechnicalRangeList();
 	
 private:
 	std::shared_ptr<CDM::RealTimeSampleArrayMetricDescriptor> data;

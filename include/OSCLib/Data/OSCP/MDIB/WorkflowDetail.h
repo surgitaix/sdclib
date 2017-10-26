@@ -80,12 +80,12 @@ public:
 	bool hasPerformedOrderDetail() const;
 
 	WorkflowDetail & addDangerCode(const CodedValue & value);
-	std::vector<CodedValue> getDangerCodeLists() const;
-	void clearDangerCodeLists();
+	std::vector<CodedValue> getDangerCodeList() const;
+	void clearDangerCodeList();
 	
 	WorkflowDetail & addRelevantClinicalInfo(const ClinicalInfo & value);
-	std::vector<ClinicalInfo> getRelevantClinicalInfoLists() const;
-	void clearRelevantClinicalInfoLists();
+	std::vector<ClinicalInfo> getRelevantClinicalInfoList() const;
+	void clearRelevantClinicalInfoList();
 	
 private:
 	std::shared_ptr<CDM::WorkflowDetail> data;

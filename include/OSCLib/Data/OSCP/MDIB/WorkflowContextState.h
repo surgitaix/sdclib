@@ -104,12 +104,12 @@ public:
 	bool hasBindingEndTime() const;
 
 	WorkflowContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidatorLists() const;
-	void clearValidatorLists();
+	std::vector<InstanceIdentifier> getValidatorList() const;
+	void clearValidatorList();
 	
 	WorkflowContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentificationLists() const;
-	void clearIdentificationLists();
+	std::vector<InstanceIdentifier> getIdentificationList() const;
+	void clearIdentificationList();
 	
 	WorkflowContextState & setWorkflowDetail(const WorkflowDetail & value);
 	WorkflowDetail getWorkflowDetail() const;

@@ -122,7 +122,7 @@ PerformedOrderDetail & PerformedOrderDetail::addPerformer(const PersonParticipat
 	return *this;
 }
 
-std::vector<PersonParticipation> PerformedOrderDetail::getPerformerLists() const {
+std::vector<PersonParticipation> PerformedOrderDetail::getPerformerList() const {
 	std::vector<PersonParticipation> result;
 	result.reserve(data->Performer().size());
 	for (const auto & value: data->Performer()) {
@@ -131,7 +131,7 @@ std::vector<PersonParticipation> PerformedOrderDetail::getPerformerLists() const
 	return result;
 }
 
-void PerformedOrderDetail::clearPerformerLists() {
+void PerformedOrderDetail::clearPerformerList() {
 	data->Performer().clear();
 }
 
@@ -140,7 +140,7 @@ PerformedOrderDetail & PerformedOrderDetail::addService(const CodedValue & value
 	return *this;
 }
 
-std::vector<CodedValue> PerformedOrderDetail::getServiceLists() const {
+std::vector<CodedValue> PerformedOrderDetail::getServiceList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->Service().size());
 	for (const auto & value: data->Service()) {
@@ -149,7 +149,7 @@ std::vector<CodedValue> PerformedOrderDetail::getServiceLists() const {
 	return result;
 }
 
-void PerformedOrderDetail::clearServiceLists() {
+void PerformedOrderDetail::clearServiceList() {
 	data->Service().clear();
 }
 
@@ -158,7 +158,7 @@ PerformedOrderDetail & PerformedOrderDetail::addImagingProcedure(const ImagingPr
 	return *this;
 }
 
-std::vector<ImagingProcedure> PerformedOrderDetail::getImagingProcedureLists() const {
+std::vector<ImagingProcedure> PerformedOrderDetail::getImagingProcedureList() const {
 	std::vector<ImagingProcedure> result;
 	result.reserve(data->ImagingProcedure().size());
 	for (const auto & value: data->ImagingProcedure()) {
@@ -167,7 +167,7 @@ std::vector<ImagingProcedure> PerformedOrderDetail::getImagingProcedureLists() c
 	return result;
 }
 
-void PerformedOrderDetail::clearImagingProcedureLists() {
+void PerformedOrderDetail::clearImagingProcedureList() {
 	data->ImagingProcedure().clear();
 }
 
@@ -197,7 +197,7 @@ PerformedOrderDetail & PerformedOrderDetail::addResultingClinicalInfo(const Clin
 	return *this;
 }
 
-std::vector<ClinicalInfo> PerformedOrderDetail::getResultingClinicalInfoLists() const {
+std::vector<ClinicalInfo> PerformedOrderDetail::getResultingClinicalInfoList() const {
 	std::vector<ClinicalInfo> result;
 	result.reserve(data->ResultingClinicalInfo().size());
 	for (const auto & value: data->ResultingClinicalInfo()) {
@@ -206,7 +206,7 @@ std::vector<ClinicalInfo> PerformedOrderDetail::getResultingClinicalInfoLists() 
 	return result;
 }
 
-void PerformedOrderDetail::clearResultingClinicalInfoLists() {
+void PerformedOrderDetail::clearResultingClinicalInfoList() {
 	data->ResultingClinicalInfo().clear();
 }
 

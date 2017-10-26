@@ -112,7 +112,6 @@ public:
     MdState & addState(const VmdState & source);
     MdState & addState(const ChannelState & source);
 
-
 private:
     template <class WrapperStateDescriptorType>
     bool findStateImpl(const std::string & handle, WrapperStateDescriptorType & out) const;

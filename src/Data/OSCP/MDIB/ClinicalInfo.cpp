@@ -141,7 +141,7 @@ ClinicalInfo & ClinicalInfo::addDescription(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> ClinicalInfo::getDescriptionLists() const {
+std::vector<LocalizedText> ClinicalInfo::getDescriptionList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Description().size());
 	for (const auto & value: data->Description()) {
@@ -150,7 +150,7 @@ std::vector<LocalizedText> ClinicalInfo::getDescriptionLists() const {
 	return result;
 }
 
-void ClinicalInfo::clearDescriptionLists() {
+void ClinicalInfo::clearDescriptionList() {
 	data->Description().clear();
 }
 
@@ -159,7 +159,7 @@ ClinicalInfo & ClinicalInfo::addRelatedMeasurement(const RelatedMeasurement & va
 	return *this;
 }
 
-std::vector<RelatedMeasurement> ClinicalInfo::getRelatedMeasurementLists() const {
+std::vector<RelatedMeasurement> ClinicalInfo::getRelatedMeasurementList() const {
 	std::vector<RelatedMeasurement> result;
 	result.reserve(data->RelatedMeasurement().size());
 	for (const auto & value: data->RelatedMeasurement()) {
@@ -168,7 +168,7 @@ std::vector<RelatedMeasurement> ClinicalInfo::getRelatedMeasurementLists() const
 	return result;
 }
 
-void ClinicalInfo::clearRelatedMeasurementLists() {
+void ClinicalInfo::clearRelatedMeasurementList() {
 	data->RelatedMeasurement().clear();
 }
 

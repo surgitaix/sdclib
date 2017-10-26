@@ -76,7 +76,7 @@ ContainmentTree & ContainmentTree::addEntry(const ContainmentTreeEntry & value) 
 	return *this;
 }
 
-std::vector<ContainmentTreeEntry> ContainmentTree::getEntryLists() const {
+std::vector<ContainmentTreeEntry> ContainmentTree::getEntryList() const {
 	std::vector<ContainmentTreeEntry> result;
 	result.reserve(data->Entry().size());
 	for (const auto & value: data->Entry()) {
@@ -85,7 +85,7 @@ std::vector<ContainmentTreeEntry> ContainmentTree::getEntryLists() const {
 	return result;
 }
 
-void ContainmentTree::clearEntryLists() {
+void ContainmentTree::clearEntryList() {
 	data->Entry().clear();
 }
 

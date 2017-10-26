@@ -170,7 +170,7 @@ ScoState & ScoState::addOperationGroup(const OperationGroup & value) {
 	return *this;
 }
 
-std::vector<OperationGroup> ScoState::getOperationGroupLists() const {
+std::vector<OperationGroup> ScoState::getOperationGroupList() const {
 	std::vector<OperationGroup> result;
 	result.reserve(data->OperationGroup().size());
 	for (const auto & value: data->OperationGroup()) {
@@ -179,7 +179,7 @@ std::vector<OperationGroup> ScoState::getOperationGroupLists() const {
 	return result;
 }
 
-void ScoState::clearOperationGroupLists() {
+void ScoState::clearOperationGroupList() {
 	data->OperationGroup().clear();
 }
 

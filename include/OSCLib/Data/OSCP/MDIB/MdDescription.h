@@ -62,8 +62,8 @@ public:
 	bool hasDescriptionVersion() const;
 
 	MdDescription & addMds(const MdsDescriptor & value);
-	std::vector<MdsDescriptor> getMdsLists() const;
-	void clearMdsLists();
+	std::vector<MdsDescriptor> getMdsList() const;
+	void clearMdsList();
 	
 
 	template <class MdsDescriptor>

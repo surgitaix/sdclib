@@ -308,7 +308,7 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::addBo
 	return *this;
 }
 
-std::vector<CodedValue> RealTimeSampleArrayMetricDescriptor::getBodySiteLists() const {
+std::vector<CodedValue> RealTimeSampleArrayMetricDescriptor::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -317,7 +317,7 @@ std::vector<CodedValue> RealTimeSampleArrayMetricDescriptor::getBodySiteLists() 
 	return result;
 }
 
-void RealTimeSampleArrayMetricDescriptor::clearBodySiteLists() {
+void RealTimeSampleArrayMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
 }
 
@@ -326,7 +326,7 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::addRe
 	return *this;
 }
 
-std::vector<Relation> RealTimeSampleArrayMetricDescriptor::getRelationLists() const {
+std::vector<Relation> RealTimeSampleArrayMetricDescriptor::getRelationList() const {
 	std::vector<Relation> result;
 	result.reserve(data->Relation().size());
 	for (const auto & value: data->Relation()) {
@@ -335,7 +335,7 @@ std::vector<Relation> RealTimeSampleArrayMetricDescriptor::getRelationLists() co
 	return result;
 }
 
-void RealTimeSampleArrayMetricDescriptor::clearRelationLists() {
+void RealTimeSampleArrayMetricDescriptor::clearRelationList() {
 	data->Relation().clear();
 }
 
@@ -364,7 +364,7 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::addTe
 	return *this;
 }
 
-std::vector<Range> RealTimeSampleArrayMetricDescriptor::getTechnicalRangeLists() const {
+std::vector<Range> RealTimeSampleArrayMetricDescriptor::getTechnicalRangeList() const {
 	std::vector<Range> result;
 	result.reserve(data->TechnicalRange().size());
 	for (const auto & value: data->TechnicalRange()) {
@@ -373,7 +373,7 @@ std::vector<Range> RealTimeSampleArrayMetricDescriptor::getTechnicalRangeLists()
 	return result;
 }
 
-void RealTimeSampleArrayMetricDescriptor::clearTechnicalRangeLists() {
+void RealTimeSampleArrayMetricDescriptor::clearTechnicalRangeList() {
 	data->TechnicalRange().clear();
 }
 

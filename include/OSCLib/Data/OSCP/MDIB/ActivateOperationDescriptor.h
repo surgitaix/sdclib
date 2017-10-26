@@ -98,12 +98,12 @@ public:
 	bool hasAccessLevel() const;
 
 	ActivateOperationDescriptor & addModifiableData(const std::string & value);
-	std::vector<std::string> getModifiableDataLists() const;
-	void clearModifiableDataLists();
+	std::vector<std::string> getModifiableDataList() const;
+	void clearModifiableDataList();
 	
 	ActivateOperationDescriptor & addArgument(const Argument & value);
-	std::vector<Argument> getArgumentLists() const;
-	void clearArgumentLists();
+	std::vector<Argument> getArgumentList() const;
+	void clearArgumentList();
 	
 private:
 	std::shared_ptr<CDM::ActivateOperationDescriptor> data;

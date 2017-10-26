@@ -308,7 +308,7 @@ EnumStringMetricDescriptor & EnumStringMetricDescriptor::addBodySite(const Coded
 	return *this;
 }
 
-std::vector<CodedValue> EnumStringMetricDescriptor::getBodySiteLists() const {
+std::vector<CodedValue> EnumStringMetricDescriptor::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -317,7 +317,7 @@ std::vector<CodedValue> EnumStringMetricDescriptor::getBodySiteLists() const {
 	return result;
 }
 
-void EnumStringMetricDescriptor::clearBodySiteLists() {
+void EnumStringMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
 }
 
@@ -326,7 +326,7 @@ EnumStringMetricDescriptor & EnumStringMetricDescriptor::addRelation(const Relat
 	return *this;
 }
 
-std::vector<Relation> EnumStringMetricDescriptor::getRelationLists() const {
+std::vector<Relation> EnumStringMetricDescriptor::getRelationList() const {
 	std::vector<Relation> result;
 	result.reserve(data->Relation().size());
 	for (const auto & value: data->Relation()) {
@@ -335,7 +335,7 @@ std::vector<Relation> EnumStringMetricDescriptor::getRelationLists() const {
 	return result;
 }
 
-void EnumStringMetricDescriptor::clearRelationLists() {
+void EnumStringMetricDescriptor::clearRelationList() {
 	data->Relation().clear();
 }
 
@@ -344,7 +344,7 @@ EnumStringMetricDescriptor & EnumStringMetricDescriptor::addAllowedValue(const A
 	return *this;
 }
 
-std::vector<AllowedValue> EnumStringMetricDescriptor::getAllowedValueLists() const {
+std::vector<AllowedValue> EnumStringMetricDescriptor::getAllowedValueList() const {
 	std::vector<AllowedValue> result;
 	result.reserve(data->AllowedValue().size());
 	for (const auto & value: data->AllowedValue()) {
@@ -353,7 +353,7 @@ std::vector<AllowedValue> EnumStringMetricDescriptor::getAllowedValueLists() con
 	return result;
 }
 
-void EnumStringMetricDescriptor::clearAllowedValueLists() {
+void EnumStringMetricDescriptor::clearAllowedValueList() {
 	data->AllowedValue().clear();
 }
 

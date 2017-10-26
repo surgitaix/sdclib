@@ -150,7 +150,7 @@ CodedValue & CodedValue::addCodingSystemName(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> CodedValue::getCodingSystemNameLists() const {
+std::vector<LocalizedText> CodedValue::getCodingSystemNameList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->CodingSystemName().size());
 	for (const auto & value: data->CodingSystemName()) {
@@ -159,7 +159,7 @@ std::vector<LocalizedText> CodedValue::getCodingSystemNameLists() const {
 	return result;
 }
 
-void CodedValue::clearCodingSystemNameLists() {
+void CodedValue::clearCodingSystemNameList() {
 	data->CodingSystemName().clear();
 }
 
@@ -168,7 +168,7 @@ CodedValue & CodedValue::addConceptDescription(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> CodedValue::getConceptDescriptionLists() const {
+std::vector<LocalizedText> CodedValue::getConceptDescriptionList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->ConceptDescription().size());
 	for (const auto & value: data->ConceptDescription()) {
@@ -177,7 +177,7 @@ std::vector<LocalizedText> CodedValue::getConceptDescriptionLists() const {
 	return result;
 }
 
-void CodedValue::clearConceptDescriptionLists() {
+void CodedValue::clearConceptDescriptionList() {
 	data->ConceptDescription().clear();
 }
 
@@ -186,7 +186,7 @@ CodedValue & CodedValue::addTranslation(const Translation & value) {
 	return *this;
 }
 
-std::vector<Translation> CodedValue::getTranslationLists() const {
+std::vector<Translation> CodedValue::getTranslationList() const {
 	std::vector<Translation> result;
 	result.reserve(data->Translation().size());
 	for (const auto & value: data->Translation()) {
@@ -195,7 +195,7 @@ std::vector<Translation> CodedValue::getTranslationLists() const {
 	return result;
 }
 
-void CodedValue::clearTranslationLists() {
+void CodedValue::clearTranslationList() {
 	data->Translation().clear();
 }
 

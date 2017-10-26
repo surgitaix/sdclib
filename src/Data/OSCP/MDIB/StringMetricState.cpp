@@ -214,7 +214,7 @@ StringMetricState & StringMetricState::addBodySite(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> StringMetricState::getBodySiteLists() const {
+std::vector<CodedValue> StringMetricState::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -223,7 +223,7 @@ std::vector<CodedValue> StringMetricState::getBodySiteLists() const {
 	return result;
 }
 
-void StringMetricState::clearBodySiteLists() {
+void StringMetricState::clearBodySiteList() {
 	data->BodySite().clear();
 }
 

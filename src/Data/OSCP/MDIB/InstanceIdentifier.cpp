@@ -140,7 +140,7 @@ InstanceIdentifier & InstanceIdentifier::addIdentifierName(const LocalizedText &
 	return *this;
 }
 
-std::vector<LocalizedText> InstanceIdentifier::getIdentifierNameLists() const {
+std::vector<LocalizedText> InstanceIdentifier::getIdentifierNameList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->IdentifierName().size());
 	for (const auto & value: data->IdentifierName()) {
@@ -149,7 +149,7 @@ std::vector<LocalizedText> InstanceIdentifier::getIdentifierNameLists() const {
 	return result;
 }
 
-void InstanceIdentifier::clearIdentifierNameLists() {
+void InstanceIdentifier::clearIdentifierNameList() {
 	data->IdentifierName().clear();
 }
 

@@ -90,8 +90,8 @@ public:
 	bool hasLifeTimePeriod() const;
 
 	DistributionSampleArrayMetricState & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySiteLists() const;
-	void clearBodySiteLists();
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
 	
 	DistributionSampleArrayMetricState & setMetricValue(const SampleArrayValue & value);
 	SampleArrayValue getMetricValue() const;
@@ -99,8 +99,8 @@ public:
 	bool hasMetricValue() const;
 
 	DistributionSampleArrayMetricState & addPhysiologicalRange(const Range & value);
-	std::vector<Range> getPhysiologicalRangeLists() const;
-	void clearPhysiologicalRangeLists();
+	std::vector<Range> getPhysiologicalRangeList() const;
+	void clearPhysiologicalRangeList();
 	
 private:
 	std::shared_ptr<CDM::DistributionSampleArrayMetricState> data;

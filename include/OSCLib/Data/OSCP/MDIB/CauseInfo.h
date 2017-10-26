@@ -62,8 +62,8 @@ public:
 	bool hasRemedyInfo() const;
 
 	CauseInfo & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptionLists() const;
-	void clearDescriptionLists();
+	std::vector<LocalizedText> getDescriptionList() const;
+	void clearDescriptionList();
 	
 private:
 	std::shared_ptr<CDM::CauseInfo> data;

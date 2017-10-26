@@ -161,7 +161,7 @@ PatientDemographicsCoreData & PatientDemographicsCoreData::addMiddlename(const s
 	return *this;
 }
 
-std::vector<std::string> PatientDemographicsCoreData::getMiddlenameLists() const {
+std::vector<std::string> PatientDemographicsCoreData::getMiddlenameList() const {
 	std::vector<std::string> result;
 	result.reserve(data->Middlename().size());
 	for (const auto & value: data->Middlename()) {
@@ -170,7 +170,7 @@ std::vector<std::string> PatientDemographicsCoreData::getMiddlenameLists() const
 	return result;
 }
 
-void PatientDemographicsCoreData::clearMiddlenameLists() {
+void PatientDemographicsCoreData::clearMiddlenameList() {
 	data->Middlename().clear();
 }
 

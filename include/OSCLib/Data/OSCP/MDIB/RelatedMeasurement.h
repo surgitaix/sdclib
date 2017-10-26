@@ -65,8 +65,8 @@ public:
 	bool hasValidity() const;
 
 	RelatedMeasurement & addReferenceRange(const ReferenceRange & value);
-	std::vector<ReferenceRange> getReferenceRangeLists() const;
-	void clearReferenceRangeLists();
+	std::vector<ReferenceRange> getReferenceRangeList() const;
+	void clearReferenceRangeList();
 	
 private:
 	std::shared_ptr<CDM::RelatedMeasurement> data;

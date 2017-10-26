@@ -75,8 +75,8 @@ public:
 	bool hasSafetyClassification() const;
 
 	DicomDeviceDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecificationLists() const;
-	void clearProductionSpecificationLists();
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
 	
 	DicomDeviceDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
@@ -94,20 +94,20 @@ public:
 	bool hasIssuerOfPatientID() const;
 
 	DicomDeviceDescriptor & addNetworkAe(const DicomNetworkAe & value);
-	std::vector<DicomNetworkAe> getNetworkAeLists() const;
-	void clearNetworkAeLists();
+	std::vector<DicomNetworkAe> getNetworkAeList() const;
+	void clearNetworkAeList();
 	
 	DicomDeviceDescriptor & addNetworkConnection(const DicomNetworkConnection & value);
-	std::vector<DicomNetworkConnection> getNetworkConnectionLists() const;
-	void clearNetworkConnectionLists();
+	std::vector<DicomNetworkConnection> getNetworkConnectionList() const;
+	void clearNetworkConnectionList();
 	
 	DicomDeviceDescriptor & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptionLists() const;
-	void clearDescriptionLists();
+	std::vector<LocalizedText> getDescriptionList() const;
+	void clearDescriptionList();
 	
 	DicomDeviceDescriptor & addStationName(const LocalizedText & value);
-	std::vector<LocalizedText> getStationNameLists() const;
-	void clearStationNameLists();
+	std::vector<LocalizedText> getStationNameList() const;
+	void clearStationNameList();
 	
 private:
 	std::shared_ptr<CDM::DicomDeviceDescriptor> data;

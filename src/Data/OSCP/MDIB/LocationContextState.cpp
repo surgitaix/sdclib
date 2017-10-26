@@ -266,7 +266,7 @@ LocationContextState & LocationContextState::addValidator(const InstanceIdentifi
 	return *this;
 }
 
-std::vector<InstanceIdentifier> LocationContextState::getValidatorLists() const {
+std::vector<InstanceIdentifier> LocationContextState::getValidatorList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Validator().size());
 	for (const auto & value: data->Validator()) {
@@ -275,7 +275,7 @@ std::vector<InstanceIdentifier> LocationContextState::getValidatorLists() const 
 	return result;
 }
 
-void LocationContextState::clearValidatorLists() {
+void LocationContextState::clearValidatorList() {
 	data->Validator().clear();
 }
 
@@ -284,7 +284,7 @@ LocationContextState & LocationContextState::addIdentification(const InstanceIde
 	return *this;
 }
 
-std::vector<InstanceIdentifier> LocationContextState::getIdentificationLists() const {
+std::vector<InstanceIdentifier> LocationContextState::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -293,7 +293,7 @@ std::vector<InstanceIdentifier> LocationContextState::getIdentificationLists() c
 	return result;
 }
 
-void LocationContextState::clearIdentificationLists() {
+void LocationContextState::clearIdentificationList() {
 	data->Identification().clear();
 }
 

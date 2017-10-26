@@ -98,8 +98,8 @@ public:
 	bool hasAccessLevel() const;
 
 	SetMetricStateOperationDescriptor & addModifiableData(const std::string & value);
-	std::vector<std::string> getModifiableDataLists() const;
-	void clearModifiableDataLists();
+	std::vector<std::string> getModifiableDataList() const;
+	void clearModifiableDataList();
 	
 private:
 	std::shared_ptr<CDM::SetMetricStateOperationDescriptor> data;

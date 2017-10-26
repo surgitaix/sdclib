@@ -115,12 +115,12 @@ public:
 	bool hasActivationDuration() const;
 
 	StringMetricDescriptor & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySiteLists() const;
-	void clearBodySiteLists();
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
 	
 	StringMetricDescriptor & addRelation(const Relation & value);
-	std::vector<Relation> getRelationLists() const;
-	void clearRelationLists();
+	std::vector<Relation> getRelationList() const;
+	void clearRelationList();
 	
 private:
 	std::shared_ptr<CDM::StringMetricDescriptor> data;

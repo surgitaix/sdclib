@@ -62,8 +62,8 @@ public:
 	bool hasNumber() const;
 
 	PhysicalConnectorInfo & addLabel(const LocalizedText & value);
-	std::vector<LocalizedText> getLabelLists() const;
-	void clearLabelLists();
+	std::vector<LocalizedText> getLabelList() const;
+	void clearLabelList();
 	
 private:
 	std::shared_ptr<CDM::PhysicalConnectorInfo> data;

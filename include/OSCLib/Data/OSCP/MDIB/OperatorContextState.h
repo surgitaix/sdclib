@@ -104,12 +104,12 @@ public:
 	bool hasBindingEndTime() const;
 
 	OperatorContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidatorLists() const;
-	void clearValidatorLists();
+	std::vector<InstanceIdentifier> getValidatorList() const;
+	void clearValidatorList();
 	
 	OperatorContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentificationLists() const;
-	void clearIdentificationLists();
+	std::vector<InstanceIdentifier> getIdentificationList() const;
+	void clearIdentificationList();
 	
 	OperatorContextState & setOperatorDetails(const BaseDemographics & value);
 	BaseDemographics getOperatorDetails() const;

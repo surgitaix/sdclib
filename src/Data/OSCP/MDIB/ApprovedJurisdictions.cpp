@@ -76,7 +76,7 @@ ApprovedJurisdictions & ApprovedJurisdictions::addApprovedJurisdiction(const Ins
 	return *this;
 }
 
-std::vector<InstanceIdentifier> ApprovedJurisdictions::getApprovedJurisdictionLists() const {
+std::vector<InstanceIdentifier> ApprovedJurisdictions::getApprovedJurisdictionList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->ApprovedJurisdiction().size());
 	for (const auto & value: data->ApprovedJurisdiction()) {
@@ -85,7 +85,7 @@ std::vector<InstanceIdentifier> ApprovedJurisdictions::getApprovedJurisdictionLi
 	return result;
 }
 
-void ApprovedJurisdictions::clearApprovedJurisdictionLists() {
+void ApprovedJurisdictions::clearApprovedJurisdictionList() {
 	data->ApprovedJurisdiction().clear();
 }
 

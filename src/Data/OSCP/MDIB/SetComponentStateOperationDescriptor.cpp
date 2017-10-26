@@ -243,7 +243,7 @@ SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::add
 	return *this;
 }
 
-std::vector<std::string> SetComponentStateOperationDescriptor::getModifiableDataLists() const {
+std::vector<std::string> SetComponentStateOperationDescriptor::getModifiableDataList() const {
 	std::vector<std::string> result;
 	result.reserve(data->ModifiableData().size());
 	for (const auto & value: data->ModifiableData()) {
@@ -252,7 +252,7 @@ std::vector<std::string> SetComponentStateOperationDescriptor::getModifiableData
 	return result;
 }
 
-void SetComponentStateOperationDescriptor::clearModifiableDataLists() {
+void SetComponentStateOperationDescriptor::clearModifiableDataList() {
 	data->ModifiableData().clear();
 }
 

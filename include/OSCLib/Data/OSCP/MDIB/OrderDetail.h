@@ -67,16 +67,16 @@ public:
 	bool hasEnd() const;
 
 	OrderDetail & addPerformer(const PersonParticipation & value);
-	std::vector<PersonParticipation> getPerformerLists() const;
-	void clearPerformerLists();
+	std::vector<PersonParticipation> getPerformerList() const;
+	void clearPerformerList();
 	
 	OrderDetail & addService(const CodedValue & value);
-	std::vector<CodedValue> getServiceLists() const;
-	void clearServiceLists();
+	std::vector<CodedValue> getServiceList() const;
+	void clearServiceList();
 	
 	OrderDetail & addImagingProcedure(const ImagingProcedure & value);
-	std::vector<ImagingProcedure> getImagingProcedureLists() const;
-	void clearImagingProcedureLists();
+	std::vector<ImagingProcedure> getImagingProcedureList() const;
+	void clearImagingProcedureList();
 	
 private:
 	std::shared_ptr<CDM::OrderDetail> data;

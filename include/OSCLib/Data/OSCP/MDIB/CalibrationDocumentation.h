@@ -57,12 +57,12 @@ public:
     typedef CDM::CalibrationDocumentation WrappedType;
 
 	CalibrationDocumentation & addDocumentation(const LocalizedText & value);
-	std::vector<LocalizedText> getDocumentationLists() const;
-	void clearDocumentationLists();
+	std::vector<LocalizedText> getDocumentationList() const;
+	void clearDocumentationList();
 	
 	CalibrationDocumentation & addCalibrationResult(const CalibrationResult & value);
-	std::vector<CalibrationResult> getCalibrationResultLists() const;
-	void clearCalibrationResultLists();
+	std::vector<CalibrationResult> getCalibrationResultList() const;
+	void clearCalibrationResultList();
 	
 private:
 	std::shared_ptr<CDM::CalibrationDocumentation> data;

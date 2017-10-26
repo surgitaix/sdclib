@@ -214,7 +214,7 @@ AlertSystemDescriptor & AlertSystemDescriptor::addAlertCondition(const AlertCond
 	return *this;
 }
 
-std::vector<AlertConditionDescriptor> AlertSystemDescriptor::getAlertConditionLists() const {
+std::vector<AlertConditionDescriptor> AlertSystemDescriptor::getAlertConditionList() const {
 	std::vector<AlertConditionDescriptor> result;
 	result.reserve(data->AlertCondition().size());
 	for (const auto & value: data->AlertCondition()) {
@@ -223,7 +223,7 @@ std::vector<AlertConditionDescriptor> AlertSystemDescriptor::getAlertConditionLi
 	return result;
 }
 
-void AlertSystemDescriptor::clearAlertConditionLists() {
+void AlertSystemDescriptor::clearAlertConditionList() {
 	data->AlertCondition().clear();
 }
 
@@ -232,7 +232,7 @@ AlertSystemDescriptor & AlertSystemDescriptor::addAlertSignal(const AlertSignalD
 	return *this;
 }
 
-std::vector<AlertSignalDescriptor> AlertSystemDescriptor::getAlertSignalLists() const {
+std::vector<AlertSignalDescriptor> AlertSystemDescriptor::getAlertSignalList() const {
 	std::vector<AlertSignalDescriptor> result;
 	result.reserve(data->AlertSignal().size());
 	for (const auto & value: data->AlertSignal()) {
@@ -241,7 +241,7 @@ std::vector<AlertSignalDescriptor> AlertSystemDescriptor::getAlertSignalLists() 
 	return result;
 }
 
-void AlertSystemDescriptor::clearAlertSignalLists() {
+void AlertSystemDescriptor::clearAlertSignalList() {
 	data->AlertSignal().clear();
 }
 

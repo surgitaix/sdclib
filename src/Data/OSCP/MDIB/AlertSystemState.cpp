@@ -222,7 +222,7 @@ AlertSystemState & AlertSystemState::addSystemSignalActivation(const SystemSigna
 	return *this;
 }
 
-std::vector<SystemSignalActivation> AlertSystemState::getSystemSignalActivationLists() const {
+std::vector<SystemSignalActivation> AlertSystemState::getSystemSignalActivationList() const {
 	std::vector<SystemSignalActivation> result;
 	result.reserve(data->SystemSignalActivation().size());
 	for (const auto & value: data->SystemSignalActivation()) {
@@ -231,7 +231,7 @@ std::vector<SystemSignalActivation> AlertSystemState::getSystemSignalActivationL
 	return result;
 }
 
-void AlertSystemState::clearSystemSignalActivationLists() {
+void AlertSystemState::clearSystemSignalActivationList() {
 	data->SystemSignalActivation().clear();
 }
 

@@ -72,8 +72,8 @@ public:
 	bool hasTime() const;
 
 	CalibrationInfo & addCalibrationDocumentation(const CalibrationDocumentation & value);
-	std::vector<CalibrationDocumentation> getCalibrationDocumentationLists() const;
-	void clearCalibrationDocumentationLists();
+	std::vector<CalibrationDocumentation> getCalibrationDocumentationList() const;
+	void clearCalibrationDocumentationList();
 	
 private:
 	std::shared_ptr<CDM::CalibrationInfo> data;

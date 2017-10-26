@@ -155,7 +155,7 @@ DicomDeviceDescriptor & DicomDeviceDescriptor::addProductionSpecification(const 
 	return *this;
 }
 
-std::vector<ProductionSpecification> DicomDeviceDescriptor::getProductionSpecificationLists() const {
+std::vector<ProductionSpecification> DicomDeviceDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
 	result.reserve(data->ProductionSpecification().size());
 	for (const auto & value: data->ProductionSpecification()) {
@@ -164,7 +164,7 @@ std::vector<ProductionSpecification> DicomDeviceDescriptor::getProductionSpecifi
 	return result;
 }
 
-void DicomDeviceDescriptor::clearProductionSpecificationLists() {
+void DicomDeviceDescriptor::clearProductionSpecificationList() {
 	data->ProductionSpecification().clear();
 }
 
@@ -236,7 +236,7 @@ DicomDeviceDescriptor & DicomDeviceDescriptor::addNetworkAe(const DicomNetworkAe
 	return *this;
 }
 
-std::vector<DicomNetworkAe> DicomDeviceDescriptor::getNetworkAeLists() const {
+std::vector<DicomNetworkAe> DicomDeviceDescriptor::getNetworkAeList() const {
 	std::vector<DicomNetworkAe> result;
 	result.reserve(data->NetworkAe().size());
 	for (const auto & value: data->NetworkAe()) {
@@ -245,7 +245,7 @@ std::vector<DicomNetworkAe> DicomDeviceDescriptor::getNetworkAeLists() const {
 	return result;
 }
 
-void DicomDeviceDescriptor::clearNetworkAeLists() {
+void DicomDeviceDescriptor::clearNetworkAeList() {
 	data->NetworkAe().clear();
 }
 
@@ -254,7 +254,7 @@ DicomDeviceDescriptor & DicomDeviceDescriptor::addNetworkConnection(const DicomN
 	return *this;
 }
 
-std::vector<DicomNetworkConnection> DicomDeviceDescriptor::getNetworkConnectionLists() const {
+std::vector<DicomNetworkConnection> DicomDeviceDescriptor::getNetworkConnectionList() const {
 	std::vector<DicomNetworkConnection> result;
 	result.reserve(data->NetworkConnection().size());
 	for (const auto & value: data->NetworkConnection()) {
@@ -263,7 +263,7 @@ std::vector<DicomNetworkConnection> DicomDeviceDescriptor::getNetworkConnectionL
 	return result;
 }
 
-void DicomDeviceDescriptor::clearNetworkConnectionLists() {
+void DicomDeviceDescriptor::clearNetworkConnectionList() {
 	data->NetworkConnection().clear();
 }
 
@@ -272,7 +272,7 @@ DicomDeviceDescriptor & DicomDeviceDescriptor::addDescription(const LocalizedTex
 	return *this;
 }
 
-std::vector<LocalizedText> DicomDeviceDescriptor::getDescriptionLists() const {
+std::vector<LocalizedText> DicomDeviceDescriptor::getDescriptionList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Description().size());
 	for (const auto & value: data->Description()) {
@@ -281,7 +281,7 @@ std::vector<LocalizedText> DicomDeviceDescriptor::getDescriptionLists() const {
 	return result;
 }
 
-void DicomDeviceDescriptor::clearDescriptionLists() {
+void DicomDeviceDescriptor::clearDescriptionList() {
 	data->Description().clear();
 }
 
@@ -290,7 +290,7 @@ DicomDeviceDescriptor & DicomDeviceDescriptor::addStationName(const LocalizedTex
 	return *this;
 }
 
-std::vector<LocalizedText> DicomDeviceDescriptor::getStationNameLists() const {
+std::vector<LocalizedText> DicomDeviceDescriptor::getStationNameList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->StationName().size());
 	for (const auto & value: data->StationName()) {
@@ -299,7 +299,7 @@ std::vector<LocalizedText> DicomDeviceDescriptor::getStationNameLists() const {
 	return result;
 }
 
-void DicomDeviceDescriptor::clearStationNameLists() {
+void DicomDeviceDescriptor::clearStationNameList() {
 	data->StationName().clear();
 }
 

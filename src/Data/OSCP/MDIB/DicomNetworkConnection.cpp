@@ -116,7 +116,7 @@ DicomNetworkConnection & DicomNetworkConnection::addTlsCipherSuite(const std::st
 	return *this;
 }
 
-std::vector<std::string> DicomNetworkConnection::getTlsCipherSuiteLists() const {
+std::vector<std::string> DicomNetworkConnection::getTlsCipherSuiteList() const {
 	std::vector<std::string> result;
 	result.reserve(data->TlsCipherSuite().size());
 	for (const auto & value: data->TlsCipherSuite()) {
@@ -125,7 +125,7 @@ std::vector<std::string> DicomNetworkConnection::getTlsCipherSuiteLists() const 
 	return result;
 }
 
-void DicomNetworkConnection::clearTlsCipherSuiteLists() {
+void DicomNetworkConnection::clearTlsCipherSuiteList() {
 	data->TlsCipherSuite().clear();
 }
 

@@ -67,16 +67,16 @@ public:
 	bool hasEnd() const;
 
 	RequestedOrderDetail & addPerformer(const PersonParticipation & value);
-	std::vector<PersonParticipation> getPerformerLists() const;
-	void clearPerformerLists();
+	std::vector<PersonParticipation> getPerformerList() const;
+	void clearPerformerList();
 	
 	RequestedOrderDetail & addService(const CodedValue & value);
-	std::vector<CodedValue> getServiceLists() const;
-	void clearServiceLists();
+	std::vector<CodedValue> getServiceList() const;
+	void clearServiceList();
 	
 	RequestedOrderDetail & addImagingProcedure(const ImagingProcedure & value);
-	std::vector<ImagingProcedure> getImagingProcedureLists() const;
-	void clearImagingProcedureLists();
+	std::vector<ImagingProcedure> getImagingProcedureList() const;
+	void clearImagingProcedureList();
 	
 	RequestedOrderDetail & setReferringPhysician(const PersonReference & value);
 	PersonReference getReferringPhysician() const;

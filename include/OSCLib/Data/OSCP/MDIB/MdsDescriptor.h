@@ -75,8 +75,8 @@ public:
 	bool hasSafetyClassification() const;
 
 	MdsDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecificationLists() const;
-	void clearProductionSpecificationLists();
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
 	
 	MdsDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
@@ -109,12 +109,12 @@ public:
 	bool hasApprovedJurisdictions() const;
 
 	MdsDescriptor & addBattery(const BatteryDescriptor & value);
-	std::vector<BatteryDescriptor> getBatteryLists() const;
-	void clearBatteryLists();
+	std::vector<BatteryDescriptor> getBatteryList() const;
+	void clearBatteryList();
 	
 	MdsDescriptor & addVmd(const VmdDescriptor & value);
-	std::vector<VmdDescriptor> getVmdLists() const;
-	void clearVmdLists();
+	std::vector<VmdDescriptor> getVmdList() const;
+	void clearVmdList();
 	
 private:
 	std::shared_ptr<CDM::MdsDescriptor> data;

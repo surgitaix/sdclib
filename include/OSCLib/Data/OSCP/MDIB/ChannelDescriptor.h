@@ -75,19 +75,21 @@ public:
 	bool hasSafetyClassification() const;
 
 	ChannelDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecificationLists() const;
-	void clearProductionSpecificationLists();
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
 	
 
-	std::vector<EnumStringMetricDescriptor> getEnumStringMetricDescriptors() const;
-	std::vector<NumericMetricDescriptor> getNumericMetricDescriptors() const;
-	std::vector<StringMetricDescriptor> getStringMetricDescriptors() const;
-	std::vector<RealTimeSampleArrayMetricDescriptor> getRealTimeSampleArrayMetricDescriptors() const;
+	std::vector<EnumStringMetricDescriptor> getEnumStringMetricDescriptorList() const;
+	std::vector<NumericMetricDescriptor> getNumericMetricDescriptorList() const;
+	std::vector<StringMetricDescriptor> getStringMetricDescriptorList() const;
+	std::vector<RealTimeSampleArrayMetricDescriptor> getRealTimeSampleArrayMetricDescriptorList() const;
+	std::vector<DistributionSampleArrayMetricDescriptor> getDistributionSampleArrayMetricDescriptorList() const;
 
 	ChannelDescriptor & addMetric(const EnumStringMetricDescriptor & source);
 	ChannelDescriptor & addMetric(const NumericMetricDescriptor & source);
 	ChannelDescriptor & addMetric(const StringMetricDescriptor & source);
 	ChannelDescriptor & addMetric(const RealTimeSampleArrayMetricDescriptor & source);
+	ChannelDescriptor & addMetric(const DistributionSampleArrayMetricDescriptor & source);
 
 private:
 	template<class U, class V>

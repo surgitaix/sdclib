@@ -75,8 +75,8 @@ public:
 	bool hasDeterminationTime() const;
 
 	NumericMetricValue & addAnnotation(const Annotation & value);
-	std::vector<Annotation> getAnnotationLists() const;
-	void clearAnnotationLists();
+	std::vector<Annotation> getAnnotationList() const;
+	void clearAnnotationList();
 	
 	NumericMetricValue & setValue(const double & value);
 	double getValue() const;

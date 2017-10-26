@@ -159,7 +159,7 @@ BaseDemographics & BaseDemographics::addMiddlename(const std::string & value) {
 	return *this;
 }
 
-std::vector<std::string> BaseDemographics::getMiddlenameLists() const {
+std::vector<std::string> BaseDemographics::getMiddlenameList() const {
 	std::vector<std::string> result;
 	result.reserve(data->Middlename().size());
 	for (const auto & value: data->Middlename()) {
@@ -168,7 +168,7 @@ std::vector<std::string> BaseDemographics::getMiddlenameLists() const {
 	return result;
 }
 
-void BaseDemographics::clearMiddlenameLists() {
+void BaseDemographics::clearMiddlenameList() {
 	data->Middlename().clear();
 }
 

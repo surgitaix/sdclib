@@ -151,7 +151,7 @@ ClockDescriptor & ClockDescriptor::addProductionSpecification(const ProductionSp
 	return *this;
 }
 
-std::vector<ProductionSpecification> ClockDescriptor::getProductionSpecificationLists() const {
+std::vector<ProductionSpecification> ClockDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
 	result.reserve(data->ProductionSpecification().size());
 	for (const auto & value: data->ProductionSpecification()) {
@@ -160,7 +160,7 @@ std::vector<ProductionSpecification> ClockDescriptor::getProductionSpecification
 	return result;
 }
 
-void ClockDescriptor::clearProductionSpecificationLists() {
+void ClockDescriptor::clearProductionSpecificationList() {
 	data->ProductionSpecification().clear();
 }
 
@@ -190,7 +190,7 @@ ClockDescriptor & ClockDescriptor::addTimeProtocol(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> ClockDescriptor::getTimeProtocolLists() const {
+std::vector<CodedValue> ClockDescriptor::getTimeProtocolList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->TimeProtocol().size());
 	for (const auto & value: data->TimeProtocol()) {
@@ -199,7 +199,7 @@ std::vector<CodedValue> ClockDescriptor::getTimeProtocolLists() const {
 	return result;
 }
 
-void ClockDescriptor::clearTimeProtocolLists() {
+void ClockDescriptor::clearTimeProtocolList() {
 	data->TimeProtocol().clear();
 }
 

@@ -150,7 +150,7 @@ ChannelDescriptor & ChannelDescriptor::addProductionSpecification(const Producti
 	return *this;
 }
 
-std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecificationLists() const {
+std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
 	result.reserve(data->ProductionSpecification().size());
 	for (const auto & value: data->ProductionSpecification()) {
@@ -159,7 +159,7 @@ std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecificati
 	return result;
 }
 
-void ChannelDescriptor::clearProductionSpecificationLists() {
+void ChannelDescriptor::clearProductionSpecificationList() {
 	data->ProductionSpecification().clear();
 }
 

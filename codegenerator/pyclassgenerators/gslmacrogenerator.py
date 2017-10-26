@@ -49,7 +49,7 @@ class GSLClassBuilder(object):
     
     def addPropertyList(self, property_name, property_type):
         # automatically names nameServeral attaching a 's' to property_name
-        self.__propertylists = self.__propertylists + '\t\t<propertyList nameSingle = \"' + property_name + '\" nameSeveral = \"' + property_name + 'Lists\" type = \"' + property_type + '\" />\n'
+        self.__propertylists = self.__propertylists + '\t\t<propertyList nameSingle = \"' + property_name + '\" nameSeveral = \"' + property_name + 'List\" type = \"' + property_type + '\" />\n'
         
     def addTypedef(self, typedef_name, typedef_type):
         self.__typedefs = self.__typedefs + '\t\t<typedef name = \"' + typedef_name + '\" type = \"' + typedef_type + '\" />\n'

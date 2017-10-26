@@ -234,7 +234,7 @@ LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addSource(const H
 	return *this;
 }
 
-std::vector<HandleRef> LimitAlertConditionDescriptor::getSourceLists() const {
+std::vector<HandleRef> LimitAlertConditionDescriptor::getSourceList() const {
 	std::vector<HandleRef> result;
 	result.reserve(data->Source().size());
 	for (const auto & value: data->Source()) {
@@ -243,7 +243,7 @@ std::vector<HandleRef> LimitAlertConditionDescriptor::getSourceLists() const {
 	return result;
 }
 
-void LimitAlertConditionDescriptor::clearSourceLists() {
+void LimitAlertConditionDescriptor::clearSourceList() {
 	data->Source().clear();
 }
 
@@ -252,7 +252,7 @@ LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addCauseInfo(cons
 	return *this;
 }
 
-std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfoLists() const {
+std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfoList() const {
 	std::vector<CauseInfo> result;
 	result.reserve(data->CauseInfo().size());
 	for (const auto & value: data->CauseInfo()) {
@@ -261,7 +261,7 @@ std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfoLists() const 
 	return result;
 }
 
-void LimitAlertConditionDescriptor::clearCauseInfoLists() {
+void LimitAlertConditionDescriptor::clearCauseInfoList() {
 	data->CauseInfo().clear();
 }
 

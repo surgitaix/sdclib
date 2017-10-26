@@ -215,7 +215,7 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::addBody
 	return *this;
 }
 
-std::vector<CodedValue> DistributionSampleArrayMetricState::getBodySiteLists() const {
+std::vector<CodedValue> DistributionSampleArrayMetricState::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -224,7 +224,7 @@ std::vector<CodedValue> DistributionSampleArrayMetricState::getBodySiteLists() c
 	return result;
 }
 
-void DistributionSampleArrayMetricState::clearBodySiteLists() {
+void DistributionSampleArrayMetricState::clearBodySiteList() {
 	data->BodySite().clear();
 }
 
@@ -254,7 +254,7 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::addPhys
 	return *this;
 }
 
-std::vector<Range> DistributionSampleArrayMetricState::getPhysiologicalRangeLists() const {
+std::vector<Range> DistributionSampleArrayMetricState::getPhysiologicalRangeList() const {
 	std::vector<Range> result;
 	result.reserve(data->PhysiologicalRange().size());
 	for (const auto & value: data->PhysiologicalRange()) {
@@ -263,7 +263,7 @@ std::vector<Range> DistributionSampleArrayMetricState::getPhysiologicalRangeList
 	return result;
 }
 
-void DistributionSampleArrayMetricState::clearPhysiologicalRangeLists() {
+void DistributionSampleArrayMetricState::clearPhysiologicalRangeList() {
 	data->PhysiologicalRange().clear();
 }
 

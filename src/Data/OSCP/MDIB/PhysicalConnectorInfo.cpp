@@ -97,7 +97,7 @@ PhysicalConnectorInfo & PhysicalConnectorInfo::addLabel(const LocalizedText & va
 	return *this;
 }
 
-std::vector<LocalizedText> PhysicalConnectorInfo::getLabelLists() const {
+std::vector<LocalizedText> PhysicalConnectorInfo::getLabelList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Label().size());
 	for (const auto & value: data->Label()) {
@@ -106,7 +106,7 @@ std::vector<LocalizedText> PhysicalConnectorInfo::getLabelLists() const {
 	return result;
 }
 
-void PhysicalConnectorInfo::clearLabelLists() {
+void PhysicalConnectorInfo::clearLabelList() {
 	data->Label().clear();
 }
 

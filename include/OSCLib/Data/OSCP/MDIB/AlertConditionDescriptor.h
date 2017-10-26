@@ -96,12 +96,12 @@ public:
 	bool hasCanDeescalate() const;
 
 	AlertConditionDescriptor & addSource(const HandleRef & value);
-	std::vector<HandleRef> getSourceLists() const;
-	void clearSourceLists();
+	std::vector<HandleRef> getSourceList() const;
+	void clearSourceList();
 	
 	AlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
-	std::vector<CauseInfo> getCauseInfoLists() const;
-	void clearCauseInfoLists();
+	std::vector<CauseInfo> getCauseInfoList() const;
+	void clearCauseInfoList();
 	
 private:
 	std::shared_ptr<CDM::AlertConditionDescriptor> data;

@@ -57,8 +57,8 @@ public:
     typedef CDM::ApprovedJurisdictions WrappedType;
 
 	ApprovedJurisdictions & addApprovedJurisdiction(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getApprovedJurisdictionLists() const;
-	void clearApprovedJurisdictionLists();
+	std::vector<InstanceIdentifier> getApprovedJurisdictionList() const;
+	void clearApprovedJurisdictionList();
 	
 private:
 	std::shared_ptr<CDM::ApprovedJurisdictions> data;

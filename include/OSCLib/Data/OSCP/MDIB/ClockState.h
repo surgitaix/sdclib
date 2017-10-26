@@ -134,8 +134,8 @@ public:
 	bool hasCriticalUse() const;
 
 	ClockState & addReferenceSource(const std::string & value);
-	std::vector<std::string> getReferenceSourceLists() const;
-	void clearReferenceSourceLists();
+	std::vector<std::string> getReferenceSourceList() const;
+	void clearReferenceSourceList();
 	
 private:
 	std::shared_ptr<CDM::ClockState> data;

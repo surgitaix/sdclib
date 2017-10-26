@@ -309,7 +309,7 @@ DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescripto
 	return *this;
 }
 
-std::vector<CodedValue> DistributionSampleArrayMetricDescriptor::getBodySiteLists() const {
+std::vector<CodedValue> DistributionSampleArrayMetricDescriptor::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -318,7 +318,7 @@ std::vector<CodedValue> DistributionSampleArrayMetricDescriptor::getBodySiteList
 	return result;
 }
 
-void DistributionSampleArrayMetricDescriptor::clearBodySiteLists() {
+void DistributionSampleArrayMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
 }
 
@@ -327,7 +327,7 @@ DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescripto
 	return *this;
 }
 
-std::vector<Relation> DistributionSampleArrayMetricDescriptor::getRelationLists() const {
+std::vector<Relation> DistributionSampleArrayMetricDescriptor::getRelationList() const {
 	std::vector<Relation> result;
 	result.reserve(data->Relation().size());
 	for (const auto & value: data->Relation()) {
@@ -336,7 +336,7 @@ std::vector<Relation> DistributionSampleArrayMetricDescriptor::getRelationLists(
 	return result;
 }
 
-void DistributionSampleArrayMetricDescriptor::clearRelationLists() {
+void DistributionSampleArrayMetricDescriptor::clearRelationList() {
 	data->Relation().clear();
 }
 
@@ -375,7 +375,7 @@ DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescripto
 	return *this;
 }
 
-std::vector<Range> DistributionSampleArrayMetricDescriptor::getTechnicalRangeLists() const {
+std::vector<Range> DistributionSampleArrayMetricDescriptor::getTechnicalRangeList() const {
 	std::vector<Range> result;
 	result.reserve(data->TechnicalRange().size());
 	for (const auto & value: data->TechnicalRange()) {
@@ -384,7 +384,7 @@ std::vector<Range> DistributionSampleArrayMetricDescriptor::getTechnicalRangeLis
 	return result;
 }
 
-void DistributionSampleArrayMetricDescriptor::clearTechnicalRangeLists() {
+void DistributionSampleArrayMetricDescriptor::clearTechnicalRangeList() {
 	data->TechnicalRange().clear();
 }
 

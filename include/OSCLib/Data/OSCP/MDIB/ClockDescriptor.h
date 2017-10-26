@@ -75,8 +75,8 @@ public:
 	bool hasSafetyClassification() const;
 
 	ClockDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecificationLists() const;
-	void clearProductionSpecificationLists();
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
 	
 	ClockDescriptor & setResolution(const xml_schema::Duration & value);
 	xml_schema::Duration getResolution() const;
@@ -84,8 +84,8 @@ public:
 	bool hasResolution() const;
 
 	ClockDescriptor & addTimeProtocol(const CodedValue & value);
-	std::vector<CodedValue> getTimeProtocolLists() const;
-	void clearTimeProtocolLists();
+	std::vector<CodedValue> getTimeProtocolList() const;
+	void clearTimeProtocolList();
 	
 private:
 	std::shared_ptr<CDM::ClockDescriptor> data;

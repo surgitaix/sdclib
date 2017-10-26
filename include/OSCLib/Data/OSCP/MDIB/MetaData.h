@@ -77,20 +77,20 @@ public:
 	bool hasModelNumber() const;
 
 	MetaData & addUdi(const Udi & value);
-	std::vector<Udi> getUdiLists() const;
-	void clearUdiLists();
+	std::vector<Udi> getUdiList() const;
+	void clearUdiList();
 	
 	MetaData & addManufacturer(const LocalizedText & value);
-	std::vector<LocalizedText> getManufacturerLists() const;
-	void clearManufacturerLists();
+	std::vector<LocalizedText> getManufacturerList() const;
+	void clearManufacturerList();
 	
 	MetaData & addModelName(const LocalizedText & value);
-	std::vector<LocalizedText> getModelNameLists() const;
-	void clearModelNameLists();
+	std::vector<LocalizedText> getModelNameList() const;
+	void clearModelNameList();
 	
 	MetaData & addSerialNumber(const std::string & value);
-	std::vector<std::string> getSerialNumberLists() const;
-	void clearSerialNumberLists();
+	std::vector<std::string> getSerialNumberList() const;
+	void clearSerialNumberList();
 	
 private:
 	std::shared_ptr<CDM::MetaData> data;

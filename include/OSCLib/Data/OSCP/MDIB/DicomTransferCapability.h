@@ -63,8 +63,8 @@ public:
 	DicomTransferRole getTransferRole() const;
 
 	DicomTransferCapability & addTransferSyntax(const std::string & value);
-	std::vector<std::string> getTransferSyntaxLists() const;
-	void clearTransferSyntaxLists();
+	std::vector<std::string> getTransferSyntaxList() const;
+	void clearTransferSyntaxList();
 	
 private:
 	std::shared_ptr<CDM::DicomTransferCapability> data;

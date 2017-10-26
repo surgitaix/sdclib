@@ -214,7 +214,7 @@ EnumStringMetricState & EnumStringMetricState::addBodySite(const CodedValue & va
 	return *this;
 }
 
-std::vector<CodedValue> EnumStringMetricState::getBodySiteLists() const {
+std::vector<CodedValue> EnumStringMetricState::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -223,7 +223,7 @@ std::vector<CodedValue> EnumStringMetricState::getBodySiteLists() const {
 	return result;
 }
 
-void EnumStringMetricState::clearBodySiteLists() {
+void EnumStringMetricState::clearBodySiteList() {
 	data->BodySite().clear();
 }
 

@@ -14,12 +14,14 @@
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSignalStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSystemStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderChannelStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderVmdStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
@@ -27,9 +29,8 @@
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ChannelState.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
-#include "OSCLib/Data/OSCP/MDIB/DateTime.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -42,7 +43,6 @@
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationInvocationContext.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
@@ -51,9 +51,12 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdState.h"
+#include "OSCLib/Data/OSCP/MDIB/Udi.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 #include "../AbstractOSCLibFixture.h"
@@ -211,13 +214,13 @@ public:
 
     void onStateChanged(const AlertSignalState & state) override {
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received alert signal changed of " << handle << ", presence = " << EnumToString::convert(state.getPresence()) << std::endl;
-        if (state.getPresence() == SignalPresence::Off) {
+        if (state.getPresence() == AlertSignalPresence::Off) {
         	eventEAROff.set();
         }
-        if (state.getPresence() == SignalPresence::On) {
+        if (state.getPresence() == AlertSignalPresence::On) {
         	eventEAROn.set();
         }
-        if (state.getPresence() == SignalPresence::Latch) {
+        if (state.getPresence() == AlertSignalPresence::Latch) {
         	eventEARLatch.set();
         }
     }
@@ -307,7 +310,7 @@ public:
 		if (pcStates.size() > 0) {
             updateState(pcStates[0]);
         }
-	    return InvocationState::FINISHED;
+	    return InvocationState::Fin;
 	}
 
     // Get inital states
@@ -319,9 +322,8 @@ public:
             .setDescriptorHandle("location_context")
             .addIdentification(
             InstanceIdentifier()
-            .setroot("MyHospital")
-            .setextension("Room 23")
-            );
+            	.setRoot("MyHospital")
+            	.setExtension("Room 23"));
 		std::vector<LocationContextState> result;
 		result.push_back(locationState);
 		return result;
@@ -335,14 +337,12 @@ public:
             .setDescriptorHandle("patient_context")
             .addIdentification(
             InstanceIdentifier()
-            .setroot("max")
-            .setextension("mustermann")
-            );
+				.setRoot("max")
+				.setExtension("mustermann"));
         std::vector<PatientContextState> result;
 		result.push_back(patientState);
 		return result;
 	}
-
 };
 
 class MaxValueStateHandler : public OSCPProviderNumericMetricStateHandler {
@@ -355,24 +355,23 @@ public:
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: MaxValueStateHandler received state change request" << std::endl;
 
-    	notifyOperationInvoked(oic, InvocationState::STARTED);
+    	notifyOperationInvoked(oic, InvocationState::Start);
 
-        // we can update here, but if we return FINISHED, the framework will also update
+        // we can update here, but if we return Fin, the framework will also update
         //updateState(state);
 
         // Usually, update the real device's state here.
 
-        return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
     NumericMetricState createState() {
         NumericMetricState result;
         result
-            .setObservedValue(NumericMetricValue().setValue(2.0))
-            .setComponentActivationState(ComponentActivation::ON)
-            .setDescriptorHandle("handle_max")
-            .setHandle("handle_max_state");
+            .setMetricValue(NumericMetricValue().setValue(2.0))
+            .setActivationState(ComponentActivation::On)
+            .setDescriptorHandle("handle_max");
         return result;
     }
 
@@ -387,7 +386,7 @@ public:
         // TODO: in real applications, check if findState returns true!
         getParentProvider().getMdState().findState("handle_max", result);
         // TODO: in real applications, check if state has an observed value and if the observed value has a value!
-        return (float)result.getObservedValue().getValue();
+        return (float)result.getMetricValue().getValue();
     }
 
 };
@@ -404,8 +403,8 @@ public:
     NumericMetricState createState(float value) {
         NumericMetricState result;
         result
-            .setObservedValue(NumericMetricValue().setValue(value))
-            .setComponentActivationState(ComponentActivation::ON)
+            .setMetricValue(NumericMetricValue().setValue(value))
+            .setActivationState(ComponentActivation::On)
             .setDescriptorHandle("handle_cur");
         return result;
     }
@@ -431,24 +430,23 @@ public:
     InvocationState onStateChangeRequest(const EnumStringMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: EnumStringMetricStateHandler received state change request" << std::endl;
-    	notifyOperationInvoked(oic, InvocationState::STARTED);
+    	notifyOperationInvoked(oic, InvocationState::Start);
 
-        // we can update here, but if we return FINISHED, the framework will also notify
+        // we can update here, but if we return Fin, the framework will also notify
         //updateState(currentStringState);
 
         // Usually, update the real device's state here.
 
-        return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
     EnumStringMetricState createState(const std::string & value) {
         EnumStringMetricState result;
         result
-            .setObservedValue(StringMetricValue().setValue(value))
-            .setComponentActivationState(ComponentActivation::ON)
-            .setDescriptorHandle("handle_enum")
-            .setHandle("handle_enum_state");
+            .setMetricValue(StringMetricValue().setValue(value))
+            .setActivationState(ComponentActivation::On)
+            .setDescriptorHandle("handle_enum");
         return result;
     }
 
@@ -467,22 +465,22 @@ public:
     InvocationState onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: StrValueStateHandler received state change request" << std::endl;
-    	notifyOperationInvoked(oic, InvocationState::STARTED);
+    	notifyOperationInvoked(oic, InvocationState::Start);
 
-        // we can update here, but if we return FINISHED, the framework will also notify
+        // we can update here, but if we return Fin, the framework will also notify
         //updateState(currentStringState);
 
         // Usually, update the real device's state here.
 
-        return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
     StringMetricState createState(const std::string & value) {
         StringMetricState result;
         result
-            .setObservedValue(StringMetricValue().setValue(value))
-            .setComponentActivationState(ComponentActivation::ON)
+            .setMetricValue(StringMetricValue().setValue(value))
+            .setActivationState(ComponentActivation::On)
             .setDescriptorHandle("handle_str");
         return result;
     }
@@ -509,14 +507,14 @@ public:
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: AlertSignalStateHandler received state change: " << EnumToString::convert(state.getPresence()) << std::endl;
 
-    	notifyOperationInvoked(oic, InvocationState::STARTED);
+    	notifyOperationInvoked(oic, InvocationState::Start);
 
     	// Update the real device's state here (update device alarms)! Check state's presence and alertSignalState's presence values!
 
-    	// we can update here, but if we return FINISHED, the framework will also notify
+    	// we can update here, but if we return Fin, the framework will also notify
     	//updateState(alertSignalState);
 
-        return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
@@ -524,8 +522,8 @@ public:
         AlertSignalState result;
         result
             .setDescriptorHandle("handle_alert_signal")  // Reference alert signal descriptor's handle
-            .setActivationState(PausableActivation::ON)  // Component is working
-            .setPresence(SignalPresence::Off);  // No alarm signal
+            .setActivationState(AlertActivation::On)  // Component is working
+            .setPresence(AlertSignalPresence::Off);  // No alarm signal
         return result;
     }
 
@@ -545,14 +543,14 @@ public:
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LatchingAlertSignalStateHandler received state change: " << EnumToString::convert(state.getPresence()) << std::endl;
 
-    	notifyOperationInvoked(oic, InvocationState::STARTED);
+    	notifyOperationInvoked(oic, InvocationState::Start);
 
     	// Update the real device's state here (update device alarms)! Check state's presence and alertSignalState's presence values!
 
-    	// we can update here, but if we return FINISHED, the framework will also notify
+    	// we can update here, but if we return Fin, the framework will also notify
     	//updateState(alertSignalState);
 
-        return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
@@ -560,8 +558,8 @@ public:
         AlertSignalState result;
         result
             .setDescriptorHandle("handle_alert_signal_latching")  // Reference alert signal descriptor's handle
-            .setActivationState(PausableActivation::ON)  // Component is working
-            .setPresence(SignalPresence::Off);  // No alarm signal
+            .setActivationState(AlertActivation::On)  // Component is working
+            .setPresence(AlertSignalPresence::Off);  // No alarm signal
         return result;
     }
 
@@ -591,10 +589,10 @@ public:
     		// do something...
     	}
 
-    	// we can update here, but if we return FINISHED, the framework will also notify
+    	// we can update here, but if we return Fin, the framework will also notify
     	//updateState(limitAlertConditionState);
 
-    	return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+    	return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     void sourceHasChanged(const std::string & sourceHandle) override {
@@ -608,14 +606,11 @@ public:
     	if (sourceState.getDescriptorHandle() != sourceHandle) {
     		return;
     	}
-    	if (!sourceState.hasObservedValue()) {
+    	if (!sourceState.hasMetricValue()) {
     		return;
     	}
-    	const auto sourceValue(sourceState.getObservedValue());
+    	const auto sourceValue(sourceState.getMetricValue());
     	if (!sourceValue.hasValue()) {
-    		return;
-    	}
-    	if (!limitAlertConditionState.hasLimits()) {
     		return;
     	}
     	const auto limits(limitAlertConditionState.getLimits());
@@ -641,9 +636,9 @@ public:
         LimitAlertConditionState result;
         result
             .setDescriptorHandle("handle_alert_condition")  // Reference alert signal descriptor's handle
-            .setActivationState(PausableActivation::ON)  // Component is working
+            .setActivationState(AlertActivation::On)  // Component is working
             .setPresence(false)
-            .setMonitoredAlertLimits(MonitoredAlertLimits::ALL)
+            .setMonitoredAlertLimits(AlertConditionMonitoredLimits::All)
             .setLimits(Range().setLower(0.0).setUpper(2.0));
         return result;
     }
@@ -664,7 +659,7 @@ public:
         AlertSystemState alertSystemState;
         // reference alert system descriptor's handle
         alertSystemState
-            .setActivationState(PausableActivation::ON)
+            .setActivationState(AlertActivation::On)
             .setDescriptorHandle("handle_alert_system");
         return alertSystemState;
     }
@@ -679,7 +674,7 @@ public:
 
 	InvocationState onActivateRequest(const MdibContainer & , const OperationInvocationContext & ) override {
 		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: Received command!" << std::endl;
-		return InvocationState::FINISHED;
+		return InvocationState::Fin;
 	}
 
 	std::string getDescriptorHandle() override {
@@ -687,23 +682,23 @@ public:
 	}
 };
 
-class AlwaysOnComponentStateHandler : public OSCPProviderComponentStateHandler {
+class AlwaysOnChannelStateHandler : public OSCPProviderChannelStateHandler {
 public:
-    AlwaysOnComponentStateHandler(const std::string & descriptorHandle) {
+	AlwaysOnChannelStateHandler(const std::string & descriptorHandle) {
         this->descriptorHandle = descriptorHandle;
     }
 
     // Helper method
-    ComponentState createState() {
-        ComponentState result;
+    ChannelState createState() {
+    	ChannelState result;
         result
             .setDescriptorHandle(descriptorHandle)
-            .setComponentActivationState(ComponentActivation::ON);
+            .setActivationState(ComponentActivation::On);
         return result;
     }
 
-    virtual ComponentState getInitialState() override {
-        ComponentState state = createState();
+    virtual ChannelState getInitialState() override {
+    	ChannelState state = createState();
         return state;
     }
 
@@ -711,23 +706,52 @@ private:
     std::string descriptorHandle;
 };
 
-class AlwaysOnHydraMDSStateHandler : public OSCPProviderMdsStateHandler {
+
+class AlwaysOnVmdStateHandler : public OSCPProviderVmdStateHandler {
 public:
-    AlwaysOnHydraMDSStateHandler(const std::string & descriptorHandle) {
+	AlwaysOnVmdStateHandler(const std::string & descriptorHandle) {
         this->descriptorHandle = descriptorHandle;
     }
 
     // Helper method
-    HydraMDSState createState() {
-        HydraMDSState result;
+    VmdState createState() {
+    	VmdState result;
         result
             .setDescriptorHandle(descriptorHandle)
-            .setComponentActivationState(ComponentActivation::ON);
+            .setActivationState(ComponentActivation::On);
         return result;
     }
 
-    virtual HydraMDSState getInitialState() override {
-        HydraMDSState state = createState();
+    virtual VmdState getInitialState() override {
+    	VmdState state = createState();
+        return state;
+    }
+
+private:
+    std::string descriptorHandle;
+};
+
+
+
+
+
+class AlwaysOnMdsStateHandler : public OSCPProviderMdsStateHandler {
+public:
+    AlwaysOnMdsStateHandler(const std::string & descriptorHandle) {
+        this->descriptorHandle = descriptorHandle;
+    }
+
+    // Helper method
+    MdsState createState() {
+        MdsState result;
+        result
+            .setDescriptorHandle(descriptorHandle)
+            .setActivationState(ComponentActivation::On);
+        return result;
+    }
+
+    virtual MdsState getInitialState() override {
+        MdsState state = createState();
         return state;
     }
 
@@ -753,9 +777,9 @@ public:
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
         CodedValue unit;
-        unit	.setCodeId("MDCX_CODE_ID_KG")
-				.setCodingSystemId("OR.NET.Codings")
-        		.addConceptDescription(LocalizedText().set("Weight in kg"));
+        unit	.setCode("MDCX_CODE_ID_KG")
+				.setCodingSystem("OR.NET.Codings")
+				.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"));
 
     	//
         // Setup metric descriptors
@@ -763,47 +787,53 @@ public:
 
         // define properties of current weight metric
         currentWeightMetric
-			.setMetricCategory(MetricCategory::MEASUREMENT)
-        	.setAvailability(MetricAvailability::CONTINUOUS)
+			.setMetricCategory(MetricCategory::Msrmt)
+        	.setMetricAvailability(MetricAvailability::Cont)
 			.setUnit(unit)
 			.setType(
 				CodedValue()
-				.setCodeId("MDCX_CODE_ID_WEIGHT")
-				.addConceptDescription(LocalizedText().set("Current weight")))
+				.setCodingSystem("OR.NET.Codings")
+				.setCode("MDCX_CODE_ID_WEIGHT")
+				.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("ru")))
 	        .setHandle("handle_cur");
 
         testEnumMetric
-			.setMetricCategory(MetricCategory::SETTING)
-			.setAvailability(MetricAvailability::CONTINUOUS)
+			.setMetricCategory(MetricCategory::Set)
+			.setMetricAvailability(MetricAvailability::Cont)
 			.setUnit(unit)
 				.setType(
 					CodedValue()
-					.addConceptDescription(LocalizedText().set("Enum test")))
+					.setCodingSystem("OR.NET.Codings")
+					.setCode("MDCX_CODE_ID_ENUM")
+					.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
 			.setHandle("handle_enum")
-			.addAllowedValue("hello")
-			.addAllowedValue("hallo")
-			.addAllowedValue("bon jour");
+			.addAllowedValue(AllowedValue().setValue("hello"))
+			.addAllowedValue(AllowedValue().setValue("hallo"))
+			.addAllowedValue(AllowedValue().setValue("bon jour"));
 
         location.setHandle("location_context");
         patient.setHandle("patient_context");
 
         // define properties of max weight metric
         maxWeightMetric
-			.setMetricCategory(MetricCategory::SETTING)
-        	.setAvailability(MetricAvailability::CONTINUOUS)
+			.setMetricCategory(MetricCategory::Set)
+        	.setMetricAvailability(MetricAvailability::Cont)
         	.setUnit(unit)
 			.setType(
         		CodedValue()
-				.addConceptDescription(LocalizedText().set("Maximum weight")))
+        		.setCodingSystem("OR.NET.Codings")
+        		.setCode("MDCX_CODE_ID_MAXWEIGHT")
+        		.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
         	.setHandle("handle_max");
 
         // define properties of test string metric
         testStringMetric
-			.setMetricCategory(MetricCategory::SETTING)
-			.setAvailability(MetricAvailability::CONTINUOUS)
+			.setMetricCategory(MetricCategory::Set)
+			.setMetricAvailability(MetricAvailability::Cont)
 			.setType(
         		CodedValue()
-				.addConceptDescription(LocalizedText().set("Test string")))
+        		.setCode("MDCX_CODE_ID_STRING")
+        		.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
 			.setHandle("handle_str");
 
         //
@@ -815,22 +845,22 @@ public:
 			.addSource("handle_cur")
 			.setType(
         		CodedValue()
-				.setCodeId("MDCX_CODE_ID_ALERT_WEIGHT_CONDITION")
-				.setCodingSystemId("OR.NET.Codings"))
-			.setKind(AlertConditionKind::TECHNICAL)
-			.setPriority(AlertConditionPriority::MEDIUM)
+				.setCode("MDCX_CODE_ID_ALERT_WEIGHT_CONDITION")
+				.setCodingSystem("OR.NET.Codings"))
+			.setKind(AlertConditionKind::Tec)
+			.setPriority(AlertConditionPriority::Me)
 			.setHandle("handle_alert_condition");
 
         // create signal for condition
         alertSignal
 			.setConditionSignaled("handle_alert_condition")
-			.setManifestation(AlertSignalManifestation::VISIBLE)
+			.setManifestation(AlertSignalManifestation::Vis)
 			.setLatching(false)
 			.setHandle("handle_alert_signal");
 
         latchingAlertSignal
 			.setConditionSignaled("handle_alert_condition")
-			.setManifestation(AlertSignalManifestation::VISIBLE)
+			.setManifestation(AlertSignalManifestation::Vis)
 			.setLatching(true)
 			.setHandle("handle_alert_signal_latching");
 
@@ -846,47 +876,42 @@ public:
         ChannelDescriptor holdingDeviceChannel;
         holdingDeviceChannel
 			.setHandle(CHANNEL_DESCRIPTOR_HANDLE)
-			.setAlertSystem(alertSystem)
 			.addMetric(currentWeightMetric)
 			.addMetric(testEnumMetric)
         	.addMetric(maxWeightMetric)
         	.addMetric(testStringMetric)
-			.setIntendedUse(IntendedUse::MEDICAL_A);
+			.setSafetyClassification(SafetyClassification::MedA);
 
         // VMD
-        VMDDescriptor holdingDeviceModule;
+        VmdDescriptor holdingDeviceModule;
         holdingDeviceModule
+        // TODO: kick this comment if working properly
+        	.setAlertSystem(alertSystem)
 			.setHandle(VMD_DESCRIPTOR_HANDLE)
 			.addChannel(holdingDeviceChannel);
 
         // MDS
-        HydraMDSDescriptor holdingDeviceSystem;
+        MdsDescriptor holdingDeviceSystem;
         holdingDeviceSystem
 			.setHandle(MDS_HANDLE)
-			.setMetaData(
-				SystemMetaData()
-				.setUDI(DEVICE_UDI)
-				.addManufacturer(
-					LocalizedText()
-					.set("SurgiTAIX AG"))
-				.addModelName(
-					LocalizedText()
-					.set("EndoTAIX"))
-				.addModelNumber("1")
-				.addSerialNumber("1234")
-				)
-			.setContext(
-				SystemContext()
+        	.setMetaData(
+        		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
+        		.setModelNumber("1")
+        		.addModelName(LocalizedText().setRef("EndoTAIX"))
+        		.addSerialNumber("1234")
+        		.addUdi(Udi()))
+			.setSystemContext(
+				SystemContextDescriptor()
 			    .setPatientContext(
 			    		patient)
 				.setLocationContext(
 						location)
 				)
-			.addVMD(holdingDeviceModule)
+			.addVmd(holdingDeviceModule)
 			.setType(
                 CodedValue()
-                .setCodingSystemId("OR.NET.Codings")
-        		.setCodeId("MDCX_CODE_ID_MDS"));
+                .setCodingSystem("OR.NET.Codings")
+        		.setCode("MDCX_CODE_ID_MDS"));
 
         oscpProvider.createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
         oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
@@ -902,10 +927,10 @@ public:
 		oscpProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
 		// create and add description
-		MDDescription mdDescription;
-		mdDescription.addMDSDescriptor(holdingDeviceSystem);
+		MdDescription mdDescription;
+		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
-		oscpProvider.setMDDescription(mdDescription);
+		oscpProvider.setMdDescription(mdDescription);
 
         // State handlers
 
@@ -924,7 +949,7 @@ public:
 		oscpProvider.addMdSateHandler(&vmdState);
 	}
 
-    MDDescription getMdDescription() {
+    MdDescription getMdDescription() {
     	return oscpProvider.getMdDescription();
     }
 
@@ -992,9 +1017,9 @@ private:
     LatchingAlertSignalStateHandler latchingAlertSigHandler;
     AlertSystemStateHandler alertSysHandler;
     CommandHandler cmdHandler;
-    AlwaysOnComponentStateHandler channelState;
-    AlwaysOnHydraMDSStateHandler hydraMDSState;
-    AlwaysOnComponentStateHandler vmdState;
+    AlwaysOnChannelStateHandler channelState;
+    AlwaysOnMdsStateHandler hydraMDSState;
+    AlwaysOnVmdStateHandler vmdState;
 };
 
 }
@@ -1020,13 +1045,13 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         provider.startup();
         provider.start();
 
-        // MDDescription test
-        MDDescription mdDescription =  provider.getMdDescription();
+        // MdDescription test
+        MdDescription mdDescription =  provider.getMdDescription();
         // add and remove a test MDS
-        HydraMDSDescriptor hydraMDS_test;
-        mdDescription.addMDSDescriptor(hydraMDS_test);
+        MdsDescriptor mds_test;
+        mdDescription.addMdsDescriptor(mds_test);
 
-        CHECK_EQUAL(true, mdDescription.removeMDSDescriptor(hydraMDS_test));
+        CHECK_EQUAL(true, mdDescription.removeMdsDescriptor(mds_test));
 
         //Poco::Thread::sleep(2000000);
         // Consumer
@@ -1050,29 +1075,30 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             MdibContainer mdib(consumer.getMdib());
 
             { // test access to system metadata of mds implemented by provider above
-            	HydraMDSDescriptor mds;
+            	MdsDescriptor mds;
             	if (mdib.getMdDescription().findDescriptor(Tests::SimpleOSCP::MDS_HANDLE, mds)) {
             		if (mds.hasMetaData()) {
-            			const SystemMetaData metadata(mds.getMetaData());
-            			if (metadata.hasUDI()) {
-            	            const std::string remoteUDI(metadata.getUDI());
-            	            CHECK_EQUAL(Tests::SimpleOSCP::DEVICE_UDI, remoteUDI);
+            			const MetaData metadata(mds.getMetaData());
+            			if (!metadata.getUdiList().empty()) {
+							const std::string remoteUDI(metadata.getUdiList().at(0).getDeviceIdentifier());
+							CHECK_EQUAL("Invalid. Not assigned!", remoteUDI); // check for default initialization
             			}
+
             		}
             	}
             }
             { // test presence of system context descriptors
-            	HydraMDSDescriptor mds;
+            	MdsDescriptor mds;
             	if (mdib.getMdDescription().findDescriptor(Tests::SimpleOSCP::MDS_HANDLE, mds)) {
-            		SystemContext sc(mds.getContext());
+            		SystemContextDescriptor sc(mds.getSystemContext());
             		CHECK_EQUAL(true, sc.hasPatientContext());
-            		CHECK_EQUAL(false, sc.hasOperatorContext());
+            		CHECK_EQUAL(true, sc.getOperatorContextList().empty());
             	}
             }
             {	// lookup descriptors that should exist for the provider implemented above
             	NumericMetricDescriptor curMetric;
 				mdib.getMdDescription().findDescriptor("handle_cur", curMetric);
-				CHECK_EQUAL("Current weight", curMetric.getType().getConceptDescriptions().at(0).get());
+				CHECK_EQUAL("ru", curMetric.getType().getConceptDescriptionList().at(0).getLang());
 				CHECK_EQUAL("handle_cur", curMetric.getHandle());
 
 				StringMetricDescriptor strMetric;
@@ -1102,9 +1128,9 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             {	// Request state of current weight
             	NumericMetricState currentWeightState;
 				CHECK_EQUAL(true, consumer.requestState("handle_cur", currentWeightState));
-				CHECK_EQUAL(true, currentWeightState.hasObservedValue());
-				if (currentWeightState.hasObservedValue()) {
-					const double curWeight(currentWeightState.getObservedValue().getValue());
+				CHECK_EQUAL(true, currentWeightState.hasMetricValue());
+				if (currentWeightState.hasMetricValue()) {
+					const double curWeight(currentWeightState.getMetricValue().getValue());
 					CHECK_EQUAL(true, curWeight > 0.1);
 				}
             }
@@ -1117,31 +1143,31 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             {	// Get state of maximum weight
 				NumericMetricState maxWeightState;
 				CHECK_EQUAL(true, consumer.requestState("handle_max", maxWeightState));
-				double maxWeight = maxWeightState.getObservedValue().getValue();
+				double maxWeight = maxWeightState.getMetricValue().getValue();
 				CHECK_EQUAL(2.0, maxWeight);
             }
             {	// Get state of test enum
 				EnumStringMetricState enumState;
 				CHECK_EQUAL(true, consumer.requestState("handle_enum", enumState));
-				const std::string enumValue(enumState.getObservedValue().getValue());
+				const std::string enumValue(enumState.getMetricValue().getValue());
 				CHECK_EQUAL("hello", enumValue);
             }
             {	// Set state of test enum with allowed enum value
 				EnumStringMetricState enumState;
 				CHECK_EQUAL(true, consumer.requestState("handle_enum", enumState));
 
-				enumState.setObservedValue(StringMetricValue().setValue("bon jour"));
+				enumState.setMetricValue(StringMetricValue().setValue("bon jour"));
 				FutureInvocationState fis;
 				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(enumState, fis));
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
             {	// Set state of test enum with illegal enum value
 				EnumStringMetricState enumState;
 				CHECK_EQUAL(true, consumer.requestState("handle_enum", enumState));
-				const std::string enumValue(enumState.getObservedValue().getValue());
+				const std::string enumValue(enumState.getMetricValue().getValue());
 				CHECK_EQUAL("bon jour", enumValue);
 
-				enumState.setObservedValue(StringMetricValue().setValue("bye"));
+				enumState.setMetricValue(StringMetricValue().setValue("bye"));
 				FutureInvocationState fis;
 				consumer.commitState(enumState, fis);
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fail, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
@@ -1156,27 +1182,27 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 				CHECK_EQUAL(true, consumer.requestState("handle_max", maxWeightState));
 
 				// Here, we increase max weight to switch condition presence => results in alert signal presence
-				maxWeightState.setObservedValue(NumericMetricValue().setValue(10));
+				maxWeightState.setMetricValue(NumericMetricValue().setValue(10));
 				FutureInvocationState fis;
 				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(maxWeightState, fis));
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 			}
 
             {	// Set state test for a string metric state (must succeed)
                 DebugOut(DebugOut::Default, "SimpleOSCP") << "String test...";
 				StringMetricState stringState;
 				stringState.setDescriptorHandle("handle_str");
-				stringState.setObservedValue(StringMetricValue().setValue("Test2"));
+				stringState.setMetricValue(StringMetricValue().setValue("Test2"));
 				FutureInvocationState fis;
 				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(stringState, fis));
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
 
             {	// Activate test
                 DebugOut(DebugOut::Default, "SimpleOSCP") << "Activate test...";
                 FutureInvocationState fis;
 				CHECK_EQUAL(true, InvocationState::Wait == c->activate("handle_cmd", fis));
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
 
             {	// Location context test
@@ -1184,13 +1210,13 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
                 LocationContextState lcs;
                 lcs.setDescriptorHandle("location_context");
                 lcs.setHandle("location_context");
-                lcs.setContextAssociation(ContextAssociation::ASSOCIATED);
-                lcs.addIdentification(InstanceIdentifier().setroot("hello").setextension("world"));
+                lcs.setContextAssociation(ContextAssociation::Assoc);
+                lcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
                 FutureInvocationState fis;
                 ceh.getEventEMR().reset();
                 CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(lcs, fis));
 				CHECK_EQUAL(true, ceh.getEventEMR().tryWait(3000));
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "Location context test done...";
             }
             {	// Patient context test
@@ -1198,18 +1224,19 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 				PatientContextState pcs;
 				pcs.setDescriptorHandle("patient_context");
 				pcs.setHandle("pat_context");
-				pcs.setContextAssociation(ContextAssociation::ASSOCIATED);
-				pcs.addIdentification(InstanceIdentifier().setroot("hello").setextension("world"));
+				pcs.setContextAssociation(ContextAssociation::Assoc);
+				pcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
 				pcs.setCoreData(PatientDemographicsCoreData()
 						.setGivenname("Max")
 						.setBirthname("")
-						.setFamilyname("Mustermann")
-						.setDateOfBirth(DateTime().setyear(1982).setmonth(1).setday(1)));
+						.setFamilyname("Mustermann"));
+						// TODO: DateOfBirth does not work yet -> schema validation fail because unio is not rightly implemented
+						//.setDateOfBirth("08.05.1945"));
 				FutureInvocationState fis;
 				ceh.getEventEMR().reset();
 				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(pcs, fis));
 				CHECK_EQUAL(true, ceh.getEventEMR().tryWait(3000));
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "Patient context test done...";
 			}
             // Run for some time to receive and display incoming metric events.
@@ -1222,10 +1249,10 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 				AlertSignalState alertSignal;
 				CHECK_EQUAL(true, consumer.requestState("handle_alert_signal", alertSignal));
 
-				alertSignal.setPresence(SignalPresence::Off);
+				alertSignal.setPresence(AlertSignalPresence::Off);
 				FutureInvocationState fis;
 				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(alertSignal, fis));
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::FINISHED, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 			}
 
             Poco::Thread::sleep(5000);

@@ -72,8 +72,8 @@ public:
 	bool hasExtension() const;
 
 	InstanceIdentifier & addIdentifierName(const LocalizedText & value);
-	std::vector<LocalizedText> getIdentifierNameLists() const;
-	void clearIdentifierNameLists();
+	std::vector<LocalizedText> getIdentifierNameList() const;
+	void clearIdentifierNameList();
 	
 private:
 	std::shared_ptr<CDM::InstanceIdentifier> data;

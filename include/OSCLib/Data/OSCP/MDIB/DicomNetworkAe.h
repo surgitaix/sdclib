@@ -69,12 +69,12 @@ public:
 	bool getAssociationAcceptor() const;
 
 	DicomNetworkAe & addTransferCapability(const DicomTransferCapability & value);
-	std::vector<DicomTransferCapability> getTransferCapabilityLists() const;
-	void clearTransferCapabilityLists();
+	std::vector<DicomTransferCapability> getTransferCapabilityList() const;
+	void clearTransferCapabilityList();
 	
 	DicomNetworkAe & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptionLists() const;
-	void clearDescriptionLists();
+	std::vector<LocalizedText> getDescriptionList() const;
+	void clearDescriptionList();
 	
 private:
 	std::shared_ptr<CDM::DicomNetworkAe> data;

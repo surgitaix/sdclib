@@ -68,8 +68,8 @@ public:
 	bool hasPort() const;
 
 	DicomNetworkConnection & addTlsCipherSuite(const std::string & value);
-	std::vector<std::string> getTlsCipherSuiteLists() const;
-	void clearTlsCipherSuiteLists();
+	std::vector<std::string> getTlsCipherSuiteList() const;
+	void clearTlsCipherSuiteList();
 	
 private:
 	std::shared_ptr<CDM::DicomNetworkConnection> data;

@@ -151,7 +151,7 @@ BatteryDescriptor & BatteryDescriptor::addProductionSpecification(const Producti
 	return *this;
 }
 
-std::vector<ProductionSpecification> BatteryDescriptor::getProductionSpecificationLists() const {
+std::vector<ProductionSpecification> BatteryDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
 	result.reserve(data->ProductionSpecification().size());
 	for (const auto & value: data->ProductionSpecification()) {
@@ -160,7 +160,7 @@ std::vector<ProductionSpecification> BatteryDescriptor::getProductionSpecificati
 	return result;
 }
 
-void BatteryDescriptor::clearProductionSpecificationLists() {
+void BatteryDescriptor::clearProductionSpecificationList() {
 	data->ProductionSpecification().clear();
 }
 

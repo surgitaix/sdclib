@@ -98,7 +98,7 @@ PersonReference & PersonReference::addIdentification(const InstanceIdentifier & 
 	return *this;
 }
 
-std::vector<InstanceIdentifier> PersonReference::getIdentificationLists() const {
+std::vector<InstanceIdentifier> PersonReference::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -107,7 +107,7 @@ std::vector<InstanceIdentifier> PersonReference::getIdentificationLists() const 
 	return result;
 }
 
-void PersonReference::clearIdentificationLists() {
+void PersonReference::clearIdentificationList() {
 	data->Identification().clear();
 }
 

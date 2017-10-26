@@ -93,8 +93,8 @@ public:
 	bool hasLifeTimePeriod() const;
 
 	StringMetricState & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySiteLists() const;
-	void clearBodySiteLists();
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
 	
 	StringMetricState & setMetricValue(const StringMetricValue & value);
 	StringMetricValue getMetricValue() const;

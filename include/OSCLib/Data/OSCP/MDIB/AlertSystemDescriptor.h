@@ -90,13 +90,16 @@ public:
 	bool hasSelfCheckPeriod() const;
 
 	AlertSystemDescriptor & addAlertCondition(const AlertConditionDescriptor & value);
-	std::vector<AlertConditionDescriptor> getAlertConditionLists() const;
-	void clearAlertConditionLists();
+	std::vector<AlertConditionDescriptor> getAlertConditionList() const;
+	void clearAlertConditionList();
 	
 	AlertSystemDescriptor & addAlertSignal(const AlertSignalDescriptor & value);
-	std::vector<AlertSignalDescriptor> getAlertSignalLists() const;
-	void clearAlertSignalLists();
+	std::vector<AlertSignalDescriptor> getAlertSignalList() const;
+	void clearAlertSignalList();
 	
+
+	AlertSystemDescriptor & addLimitAlertCondition(const LimitAlertConditionDescriptor & source);
+	std::vector<LimitAlertConditionDescriptor> getLimitAlertConditionList() const;
 private:
 	std::shared_ptr<CDM::AlertSystemDescriptor> data;
 };

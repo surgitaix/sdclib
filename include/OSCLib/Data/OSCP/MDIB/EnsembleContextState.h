@@ -104,12 +104,12 @@ public:
 	bool hasBindingEndTime() const;
 
 	EnsembleContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidatorLists() const;
-	void clearValidatorLists();
+	std::vector<InstanceIdentifier> getValidatorList() const;
+	void clearValidatorList();
 	
 	EnsembleContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentificationLists() const;
-	void clearIdentificationLists();
+	std::vector<InstanceIdentifier> getIdentificationList() const;
+	void clearIdentificationList();
 	
 private:
 	std::shared_ptr<CDM::EnsembleContextState> data;

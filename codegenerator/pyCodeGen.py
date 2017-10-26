@@ -63,7 +63,7 @@ g_apiInterfaces = [
                            ['WorkflowContextState', 'DescriptorType', 'WorkflowContextDescriptor']
                            ] 
 # only applicable for complex types
-g_customImplList = ['ChannelDescriptor', 'MdDescription', 'MdState', 'ScoDescriptor']
+g_customImplList = ['ChannelDescriptor', 'MdDescription', 'MdState', 'ScoDescriptor', 'AlertSystemDescriptor']
 
 # MDIB forward declarations
 class MDIBDeclacationsBuilder(object):

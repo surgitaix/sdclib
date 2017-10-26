@@ -392,7 +392,7 @@ ClockState & ClockState::addReferenceSource(const std::string & value) {
 	return *this;
 }
 
-std::vector<std::string> ClockState::getReferenceSourceLists() const {
+std::vector<std::string> ClockState::getReferenceSourceList() const {
 	std::vector<std::string> result;
 	result.reserve(data->ReferenceSource().size());
 	for (const auto & value: data->ReferenceSource()) {
@@ -401,7 +401,7 @@ std::vector<std::string> ClockState::getReferenceSourceLists() const {
 	return result;
 }
 
-void ClockState::clearReferenceSourceLists() {
+void ClockState::clearReferenceSourceList() {
 	data->ReferenceSource().clear();
 }
 

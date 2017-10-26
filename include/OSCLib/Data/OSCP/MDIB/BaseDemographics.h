@@ -77,8 +77,8 @@ public:
 	bool hasTitle() const;
 
 	BaseDemographics & addMiddlename(const std::string & value);
-	std::vector<std::string> getMiddlenameLists() const;
-	void clearMiddlenameLists();
+	std::vector<std::string> getMiddlenameList() const;
+	void clearMiddlenameList();
 	
 private:
 	std::shared_ptr<CDM::BaseDemographics> data;

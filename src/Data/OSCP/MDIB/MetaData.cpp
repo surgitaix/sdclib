@@ -161,7 +161,7 @@ MetaData & MetaData::addUdi(const Udi & value) {
 	return *this;
 }
 
-std::vector<Udi> MetaData::getUdiLists() const {
+std::vector<Udi> MetaData::getUdiList() const {
 	std::vector<Udi> result;
 	result.reserve(data->Udi().size());
 	for (const auto & value: data->Udi()) {
@@ -170,7 +170,7 @@ std::vector<Udi> MetaData::getUdiLists() const {
 	return result;
 }
 
-void MetaData::clearUdiLists() {
+void MetaData::clearUdiList() {
 	data->Udi().clear();
 }
 
@@ -179,7 +179,7 @@ MetaData & MetaData::addManufacturer(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> MetaData::getManufacturerLists() const {
+std::vector<LocalizedText> MetaData::getManufacturerList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Manufacturer().size());
 	for (const auto & value: data->Manufacturer()) {
@@ -188,7 +188,7 @@ std::vector<LocalizedText> MetaData::getManufacturerLists() const {
 	return result;
 }
 
-void MetaData::clearManufacturerLists() {
+void MetaData::clearManufacturerList() {
 	data->Manufacturer().clear();
 }
 
@@ -197,7 +197,7 @@ MetaData & MetaData::addModelName(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> MetaData::getModelNameLists() const {
+std::vector<LocalizedText> MetaData::getModelNameList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->ModelName().size());
 	for (const auto & value: data->ModelName()) {
@@ -206,7 +206,7 @@ std::vector<LocalizedText> MetaData::getModelNameLists() const {
 	return result;
 }
 
-void MetaData::clearModelNameLists() {
+void MetaData::clearModelNameList() {
 	data->ModelName().clear();
 }
 
@@ -215,7 +215,7 @@ MetaData & MetaData::addSerialNumber(const std::string & value) {
 	return *this;
 }
 
-std::vector<std::string> MetaData::getSerialNumberLists() const {
+std::vector<std::string> MetaData::getSerialNumberList() const {
 	std::vector<std::string> result;
 	result.reserve(data->SerialNumber().size());
 	for (const auto & value: data->SerialNumber()) {
@@ -224,7 +224,7 @@ std::vector<std::string> MetaData::getSerialNumberLists() const {
 	return result;
 }
 
-void MetaData::clearSerialNumberLists() {
+void MetaData::clearSerialNumberList() {
 	data->SerialNumber().clear();
 }
 

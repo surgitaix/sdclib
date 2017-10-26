@@ -158,7 +158,7 @@ MdsDescriptor & MdsDescriptor::addProductionSpecification(const ProductionSpecif
 	return *this;
 }
 
-std::vector<ProductionSpecification> MdsDescriptor::getProductionSpecificationLists() const {
+std::vector<ProductionSpecification> MdsDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
 	result.reserve(data->ProductionSpecification().size());
 	for (const auto & value: data->ProductionSpecification()) {
@@ -167,7 +167,7 @@ std::vector<ProductionSpecification> MdsDescriptor::getProductionSpecificationLi
 	return result;
 }
 
-void MdsDescriptor::clearProductionSpecificationLists() {
+void MdsDescriptor::clearProductionSpecificationList() {
 	data->ProductionSpecification().clear();
 }
 
@@ -302,7 +302,7 @@ MdsDescriptor & MdsDescriptor::addBattery(const BatteryDescriptor & value) {
 	return *this;
 }
 
-std::vector<BatteryDescriptor> MdsDescriptor::getBatteryLists() const {
+std::vector<BatteryDescriptor> MdsDescriptor::getBatteryList() const {
 	std::vector<BatteryDescriptor> result;
 	result.reserve(data->Battery().size());
 	for (const auto & value: data->Battery()) {
@@ -311,7 +311,7 @@ std::vector<BatteryDescriptor> MdsDescriptor::getBatteryLists() const {
 	return result;
 }
 
-void MdsDescriptor::clearBatteryLists() {
+void MdsDescriptor::clearBatteryList() {
 	data->Battery().clear();
 }
 
@@ -320,7 +320,7 @@ MdsDescriptor & MdsDescriptor::addVmd(const VmdDescriptor & value) {
 	return *this;
 }
 
-std::vector<VmdDescriptor> MdsDescriptor::getVmdLists() const {
+std::vector<VmdDescriptor> MdsDescriptor::getVmdList() const {
 	std::vector<VmdDescriptor> result;
 	result.reserve(data->Vmd().size());
 	for (const auto & value: data->Vmd()) {
@@ -329,7 +329,7 @@ std::vector<VmdDescriptor> MdsDescriptor::getVmdLists() const {
 	return result;
 }
 
-void MdsDescriptor::clearVmdLists() {
+void MdsDescriptor::clearVmdList() {
 	data->Vmd().clear();
 }
 

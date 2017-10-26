@@ -140,7 +140,7 @@ OperatingJurisdiction & OperatingJurisdiction::addIdentifierName(const Localized
 	return *this;
 }
 
-std::vector<LocalizedText> OperatingJurisdiction::getIdentifierNameLists() const {
+std::vector<LocalizedText> OperatingJurisdiction::getIdentifierNameList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->IdentifierName().size());
 	for (const auto & value: data->IdentifierName()) {
@@ -149,7 +149,7 @@ std::vector<LocalizedText> OperatingJurisdiction::getIdentifierNameLists() const
 	return result;
 }
 
-void OperatingJurisdiction::clearIdentifierNameLists() {
+void OperatingJurisdiction::clearIdentifierNameList() {
 	data->IdentifierName().clear();
 }
 

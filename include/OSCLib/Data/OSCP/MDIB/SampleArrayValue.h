@@ -75,8 +75,8 @@ public:
 	bool hasDeterminationTime() const;
 
 	SampleArrayValue & addAnnotation(const Annotation & value);
-	std::vector<Annotation> getAnnotationLists() const;
-	void clearAnnotationLists();
+	std::vector<Annotation> getAnnotationList() const;
+	void clearAnnotationList();
 	
 	SampleArrayValue & setSamples(const RealTimeValueType & value);
 	RealTimeValueType getSamples() const;
@@ -84,8 +84,8 @@ public:
 	bool hasSamples() const;
 
 	SampleArrayValue & addApplyAnnotation(const ApplyAnnotation & value);
-	std::vector<ApplyAnnotation> getApplyAnnotationLists() const;
-	void clearApplyAnnotationLists();
+	std::vector<ApplyAnnotation> getApplyAnnotationList() const;
+	void clearApplyAnnotationList();
 	
 private:
 	std::shared_ptr<CDM::SampleArrayValue> data;

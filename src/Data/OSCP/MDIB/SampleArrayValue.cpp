@@ -151,7 +151,7 @@ SampleArrayValue & SampleArrayValue::addAnnotation(const Annotation & value) {
 	return *this;
 }
 
-std::vector<Annotation> SampleArrayValue::getAnnotationLists() const {
+std::vector<Annotation> SampleArrayValue::getAnnotationList() const {
 	std::vector<Annotation> result;
 	result.reserve(data->Annotation().size());
 	for (const auto & value: data->Annotation()) {
@@ -160,7 +160,7 @@ std::vector<Annotation> SampleArrayValue::getAnnotationLists() const {
 	return result;
 }
 
-void SampleArrayValue::clearAnnotationLists() {
+void SampleArrayValue::clearAnnotationList() {
 	data->Annotation().clear();
 }
 
@@ -190,7 +190,7 @@ SampleArrayValue & SampleArrayValue::addApplyAnnotation(const ApplyAnnotation & 
 	return *this;
 }
 
-std::vector<ApplyAnnotation> SampleArrayValue::getApplyAnnotationLists() const {
+std::vector<ApplyAnnotation> SampleArrayValue::getApplyAnnotationList() const {
 	std::vector<ApplyAnnotation> result;
 	result.reserve(data->ApplyAnnotation().size());
 	for (const auto & value: data->ApplyAnnotation()) {
@@ -199,7 +199,7 @@ std::vector<ApplyAnnotation> SampleArrayValue::getApplyAnnotationLists() const {
 	return result;
 }
 
-void SampleArrayValue::clearApplyAnnotationLists() {
+void SampleArrayValue::clearApplyAnnotationList() {
 	data->ApplyAnnotation().clear();
 }
 

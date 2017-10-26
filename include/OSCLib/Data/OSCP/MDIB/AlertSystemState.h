@@ -96,8 +96,8 @@ public:
 	bool hasPresentTechnicalAlarmConditions() const;
 
 	AlertSystemState & addSystemSignalActivation(const SystemSignalActivation & value);
-	std::vector<SystemSignalActivation> getSystemSignalActivationLists() const;
-	void clearSystemSignalActivationLists();
+	std::vector<SystemSignalActivation> getSystemSignalActivationList() const;
+	void clearSystemSignalActivationList();
 	
 private:
 	std::shared_ptr<CDM::AlertSystemState> data;

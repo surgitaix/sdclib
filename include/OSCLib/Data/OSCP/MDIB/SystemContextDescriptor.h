@@ -85,20 +85,20 @@ public:
 	bool hasLocationContext() const;
 
 	SystemContextDescriptor & addEnsembleContext(const EnsembleContextDescriptor & value);
-	std::vector<EnsembleContextDescriptor> getEnsembleContextLists() const;
-	void clearEnsembleContextLists();
+	std::vector<EnsembleContextDescriptor> getEnsembleContextList() const;
+	void clearEnsembleContextList();
 	
 	SystemContextDescriptor & addOperatorContext(const OperatorContextDescriptor & value);
-	std::vector<OperatorContextDescriptor> getOperatorContextLists() const;
-	void clearOperatorContextLists();
+	std::vector<OperatorContextDescriptor> getOperatorContextList() const;
+	void clearOperatorContextList();
 	
 	SystemContextDescriptor & addWorkflowContext(const WorkflowContextDescriptor & value);
-	std::vector<WorkflowContextDescriptor> getWorkflowContextLists() const;
-	void clearWorkflowContextLists();
+	std::vector<WorkflowContextDescriptor> getWorkflowContextList() const;
+	void clearWorkflowContextList();
 	
 	SystemContextDescriptor & addMeansContext(const MeansContextDescriptor & value);
-	std::vector<MeansContextDescriptor> getMeansContextLists() const;
-	void clearMeansContextLists();
+	std::vector<MeansContextDescriptor> getMeansContextList() const;
+	void clearMeansContextList();
 	
 private:
 	std::shared_ptr<CDM::SystemContextDescriptor> data;

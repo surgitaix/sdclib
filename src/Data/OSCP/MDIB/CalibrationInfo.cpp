@@ -139,7 +139,7 @@ CalibrationInfo & CalibrationInfo::addCalibrationDocumentation(const Calibration
 	return *this;
 }
 
-std::vector<CalibrationDocumentation> CalibrationInfo::getCalibrationDocumentationLists() const {
+std::vector<CalibrationDocumentation> CalibrationInfo::getCalibrationDocumentationList() const {
 	std::vector<CalibrationDocumentation> result;
 	result.reserve(data->CalibrationDocumentation().size());
 	for (const auto & value: data->CalibrationDocumentation()) {
@@ -148,7 +148,7 @@ std::vector<CalibrationDocumentation> CalibrationInfo::getCalibrationDocumentati
 	return result;
 }
 
-void CalibrationInfo::clearCalibrationDocumentationLists() {
+void CalibrationInfo::clearCalibrationDocumentationList() {
 	data->CalibrationDocumentation().clear();
 }
 

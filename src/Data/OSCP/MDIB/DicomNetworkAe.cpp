@@ -117,7 +117,7 @@ DicomNetworkAe & DicomNetworkAe::addTransferCapability(const DicomTransferCapabi
 	return *this;
 }
 
-std::vector<DicomTransferCapability> DicomNetworkAe::getTransferCapabilityLists() const {
+std::vector<DicomTransferCapability> DicomNetworkAe::getTransferCapabilityList() const {
 	std::vector<DicomTransferCapability> result;
 	result.reserve(data->TransferCapability().size());
 	for (const auto & value: data->TransferCapability()) {
@@ -126,7 +126,7 @@ std::vector<DicomTransferCapability> DicomNetworkAe::getTransferCapabilityLists(
 	return result;
 }
 
-void DicomNetworkAe::clearTransferCapabilityLists() {
+void DicomNetworkAe::clearTransferCapabilityList() {
 	data->TransferCapability().clear();
 }
 
@@ -135,7 +135,7 @@ DicomNetworkAe & DicomNetworkAe::addDescription(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> DicomNetworkAe::getDescriptionLists() const {
+std::vector<LocalizedText> DicomNetworkAe::getDescriptionList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Description().size());
 	for (const auto & value: data->Description()) {
@@ -144,7 +144,7 @@ std::vector<LocalizedText> DicomNetworkAe::getDescriptionLists() const {
 	return result;
 }
 
-void DicomNetworkAe::clearDescriptionLists() {
+void DicomNetworkAe::clearDescriptionList() {
 	data->Description().clear();
 }
 

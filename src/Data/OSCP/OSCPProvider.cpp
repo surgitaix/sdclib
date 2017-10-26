@@ -315,7 +315,7 @@ MDM::SetStringResponse OSCPProvider::SetStringAsync(const MDM::SetString & reque
             if (!isMetricChangeAllowed(state, *this)) {
                 return genResponse(InvocationState::Fail);
             }
-			const std::vector<AllowedValue> allowedValues(descriptor.getAllowedValueLists());
+			const std::vector<AllowedValue> allowedValues(descriptor.getAllowedValueList());
 
 			const std::string & requestedStringVal(request.RequestedStringValue());
 			std::vector<std::string> allowedValuesString;
@@ -373,7 +373,7 @@ void OSCPProvider::SetString(const MDM::SetString & request, const OperationInvo
 				return;
 			}
 
-			const std::vector<AllowedValue> allowedValues(descriptor.getAllowedValueLists());
+			const std::vector<AllowedValue> allowedValues(descriptor.getAllowedValueList());
 			std::vector<std::string> allowedValuesString;
 			for (auto allowedValue : allowedValues) {
 				allowedValuesString.push_back(allowedValue.getValue());
@@ -876,13 +876,13 @@ void OSCPProvider::evaluateAlertConditions(const std::string & source) {
 
 	std::vector<std::string> relevantDescriptors;
 	for (const auto & alertCondition : description.collectAllAlertConditionDescriptors()) {
-		const auto sources(alertCondition.getSourceLists());
+		const auto sources(alertCondition.getSourceList());
 		if (std::find(sources.begin(), sources.end(), source) != sources.end()) {
 			relevantDescriptors.push_back(alertCondition.getHandle());
 		}
 	}
 	for (const auto & limitAlertCondition : description.collectAllLimitAlertConditionDescriptors()) {
-		const auto sources(limitAlertCondition.getSourceLists());
+		const auto sources(limitAlertCondition.getSourceList());
 		if (std::find(sources.begin(), sources.end(), source) != sources.end()) {
 			relevantDescriptors.push_back(limitAlertCondition.getHandle());
 		}

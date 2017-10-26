@@ -307,7 +307,7 @@ StringMetricDescriptor & StringMetricDescriptor::addBodySite(const CodedValue & 
 	return *this;
 }
 
-std::vector<CodedValue> StringMetricDescriptor::getBodySiteLists() const {
+std::vector<CodedValue> StringMetricDescriptor::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -316,7 +316,7 @@ std::vector<CodedValue> StringMetricDescriptor::getBodySiteLists() const {
 	return result;
 }
 
-void StringMetricDescriptor::clearBodySiteLists() {
+void StringMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
 }
 
@@ -325,7 +325,7 @@ StringMetricDescriptor & StringMetricDescriptor::addRelation(const Relation & va
 	return *this;
 }
 
-std::vector<Relation> StringMetricDescriptor::getRelationLists() const {
+std::vector<Relation> StringMetricDescriptor::getRelationList() const {
 	std::vector<Relation> result;
 	result.reserve(data->Relation().size());
 	for (const auto & value: data->Relation()) {
@@ -334,7 +334,7 @@ std::vector<Relation> StringMetricDescriptor::getRelationLists() const {
 	return result;
 }
 
-void StringMetricDescriptor::clearRelationLists() {
+void StringMetricDescriptor::clearRelationList() {
 	data->Relation().clear();
 }
 

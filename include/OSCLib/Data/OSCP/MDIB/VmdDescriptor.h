@@ -75,8 +75,8 @@ public:
 	bool hasSafetyClassification() const;
 
 	VmdDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecificationLists() const;
-	void clearProductionSpecificationLists();
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
 	
 	VmdDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
@@ -94,8 +94,8 @@ public:
 	bool hasApprovedJurisdictions() const;
 
 	VmdDescriptor & addChannel(const ChannelDescriptor & value);
-	std::vector<ChannelDescriptor> getChannelLists() const;
-	void clearChannelLists();
+	std::vector<ChannelDescriptor> getChannelList() const;
+	void clearChannelList();
 	
 private:
 	std::shared_ptr<CDM::VmdDescriptor> data;

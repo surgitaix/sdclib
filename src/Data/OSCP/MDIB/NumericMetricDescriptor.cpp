@@ -308,7 +308,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::addBodySite(const CodedValue 
 	return *this;
 }
 
-std::vector<CodedValue> NumericMetricDescriptor::getBodySiteLists() const {
+std::vector<CodedValue> NumericMetricDescriptor::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -317,7 +317,7 @@ std::vector<CodedValue> NumericMetricDescriptor::getBodySiteLists() const {
 	return result;
 }
 
-void NumericMetricDescriptor::clearBodySiteLists() {
+void NumericMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
 }
 
@@ -326,7 +326,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::addRelation(const Relation & 
 	return *this;
 }
 
-std::vector<Relation> NumericMetricDescriptor::getRelationLists() const {
+std::vector<Relation> NumericMetricDescriptor::getRelationList() const {
 	std::vector<Relation> result;
 	result.reserve(data->Relation().size());
 	for (const auto & value: data->Relation()) {
@@ -335,7 +335,7 @@ std::vector<Relation> NumericMetricDescriptor::getRelationLists() const {
 	return result;
 }
 
-void NumericMetricDescriptor::clearRelationLists() {
+void NumericMetricDescriptor::clearRelationList() {
 	data->Relation().clear();
 }
 
@@ -375,7 +375,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::addTechnicalRange(const Range
 	return *this;
 }
 
-std::vector<Range> NumericMetricDescriptor::getTechnicalRangeLists() const {
+std::vector<Range> NumericMetricDescriptor::getTechnicalRangeList() const {
 	std::vector<Range> result;
 	result.reserve(data->TechnicalRange().size());
 	for (const auto & value: data->TechnicalRange()) {
@@ -384,7 +384,7 @@ std::vector<Range> NumericMetricDescriptor::getTechnicalRangeLists() const {
 	return result;
 }
 
-void NumericMetricDescriptor::clearTechnicalRangeLists() {
+void NumericMetricDescriptor::clearTechnicalRangeList() {
 	data->TechnicalRange().clear();
 }
 

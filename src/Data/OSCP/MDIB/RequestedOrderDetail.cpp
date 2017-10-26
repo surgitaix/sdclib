@@ -122,7 +122,7 @@ RequestedOrderDetail & RequestedOrderDetail::addPerformer(const PersonParticipat
 	return *this;
 }
 
-std::vector<PersonParticipation> RequestedOrderDetail::getPerformerLists() const {
+std::vector<PersonParticipation> RequestedOrderDetail::getPerformerList() const {
 	std::vector<PersonParticipation> result;
 	result.reserve(data->Performer().size());
 	for (const auto & value: data->Performer()) {
@@ -131,7 +131,7 @@ std::vector<PersonParticipation> RequestedOrderDetail::getPerformerLists() const
 	return result;
 }
 
-void RequestedOrderDetail::clearPerformerLists() {
+void RequestedOrderDetail::clearPerformerList() {
 	data->Performer().clear();
 }
 
@@ -140,7 +140,7 @@ RequestedOrderDetail & RequestedOrderDetail::addService(const CodedValue & value
 	return *this;
 }
 
-std::vector<CodedValue> RequestedOrderDetail::getServiceLists() const {
+std::vector<CodedValue> RequestedOrderDetail::getServiceList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->Service().size());
 	for (const auto & value: data->Service()) {
@@ -149,7 +149,7 @@ std::vector<CodedValue> RequestedOrderDetail::getServiceLists() const {
 	return result;
 }
 
-void RequestedOrderDetail::clearServiceLists() {
+void RequestedOrderDetail::clearServiceList() {
 	data->Service().clear();
 }
 
@@ -158,7 +158,7 @@ RequestedOrderDetail & RequestedOrderDetail::addImagingProcedure(const ImagingPr
 	return *this;
 }
 
-std::vector<ImagingProcedure> RequestedOrderDetail::getImagingProcedureLists() const {
+std::vector<ImagingProcedure> RequestedOrderDetail::getImagingProcedureList() const {
 	std::vector<ImagingProcedure> result;
 	result.reserve(data->ImagingProcedure().size());
 	for (const auto & value: data->ImagingProcedure()) {
@@ -167,7 +167,7 @@ std::vector<ImagingProcedure> RequestedOrderDetail::getImagingProcedureLists() c
 	return result;
 }
 
-void RequestedOrderDetail::clearImagingProcedureLists() {
+void RequestedOrderDetail::clearImagingProcedureList() {
 	data->ImagingProcedure().clear();
 }
 

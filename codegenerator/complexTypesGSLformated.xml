@@ -10,7 +10,7 @@
 	<class name = "MdDescription" parent = "NULL" abstract = "false" customImpl = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h" />
 		<property name = "DescriptionVersion" type = "VersionCounter" optional = "true" />
-		<propertyList nameSingle = "Mds" nameSeveral = "MdsLists" type = "MdsDescriptor" />
+		<propertyList nameSingle = "Mds" nameSeveral = "MdsList" type = "MdsDescriptor" />
 	</class>
 
 	<class name = "MdState" parent = "NULL" abstract = "false" customImpl = "true">
@@ -31,9 +31,9 @@
 		<property name = "CodingSystem" type = "xml_schema::Uri" optional = "true" />
 		<property name = "CodingSystemVersion" type = "std::string" optional = "true" />
 		<property name = "SymbolicCodeName" type = "SymbolicCodeName" optional = "true" />
-		<propertyList nameSingle = "CodingSystemName" nameSeveral = "CodingSystemNameLists" type = "LocalizedText" />
-		<propertyList nameSingle = "ConceptDescription" nameSeveral = "ConceptDescriptionLists" type = "LocalizedText" />
-		<propertyList nameSingle = "Translation" nameSeveral = "TranslationLists" type = "Translation" />
+		<propertyList nameSingle = "CodingSystemName" nameSeveral = "CodingSystemNameList" type = "LocalizedText" />
+		<propertyList nameSingle = "ConceptDescription" nameSeveral = "ConceptDescriptionList" type = "LocalizedText" />
+		<propertyList nameSingle = "Translation" nameSeveral = "TranslationList" type = "Translation" />
 	</class>
 
 	<class name = "Translation" parent = "NULL" abstract = "false">
@@ -48,7 +48,7 @@
 		<property name = "Type" type = "CodedValue" optional = "true" />
 		<property name = "Root" type = "Root" optional = "true" />
 		<property name = "Extension" type = "Extension" optional = "true" />
-		<propertyList nameSingle = "IdentifierName" nameSeveral = "IdentifierNameLists" type = "LocalizedText" />
+		<propertyList nameSingle = "IdentifierName" nameSeveral = "IdentifierNameList" type = "LocalizedText" />
 	</class>
 
 	<class name = "Range" parent = "NULL" abstract = "false">
@@ -67,7 +67,7 @@
 
 	<class name = "ApprovedJurisdictions" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<propertyList nameSingle = "ApprovedJurisdiction" nameSeveral = "ApprovedJurisdictionLists" type = "InstanceIdentifier" />
+		<propertyList nameSingle = "ApprovedJurisdiction" nameSeveral = "ApprovedJurisdictionList" type = "InstanceIdentifier" />
 	</class>
 
 	<class name = "OperatingJurisdiction" parent = "InstanceIdentifier" abstract = "false">
@@ -76,7 +76,7 @@
 	<class name = "PhysicalConnectorInfo" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<property name = "Number" type = "int" optional = "true" />
-		<propertyList nameSingle = "Label" nameSeveral = "LabelLists" type = "LocalizedText" />
+		<propertyList nameSingle = "Label" nameSeveral = "LabelList" type = "LocalizedText" />
 	</class>
 
 	<class name = "AbstractDescriptor" parent = "NULL" abstract = "true">
@@ -101,7 +101,7 @@
 
 	<class name = "AbstractDeviceComponentDescriptor" parent = "AbstractDescriptor" abstract = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h" />
-		<propertyList nameSingle = "ProductionSpecification" nameSeveral = "ProductionSpecificationLists" type = "ProductionSpecification" />
+		<propertyList nameSingle = "ProductionSpecification" nameSeveral = "ProductionSpecificationList" type = "ProductionSpecification" />
 	</class>
 
 	<class name = "ProductionSpecification" parent = "NULL" abstract = "false">
@@ -124,14 +124,14 @@
 		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "true" />
 		<property name = "Type" type = "CalibrationType" optional = "true" />
 		<property name = "Time" type = "Timestamp" optional = "true" />
-		<propertyList nameSingle = "CalibrationDocumentation" nameSeveral = "CalibrationDocumentationLists" type = "CalibrationDocumentation" />
+		<propertyList nameSingle = "CalibrationDocumentation" nameSeveral = "CalibrationDocumentationList" type = "CalibrationDocumentation" />
 	</class>
 
 	<class name = "CalibrationDocumentation" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationResult.h" />
-		<propertyList nameSingle = "Documentation" nameSeveral = "DocumentationLists" type = "LocalizedText" />
-		<propertyList nameSingle = "CalibrationResult" nameSeveral = "CalibrationResultLists" type = "CalibrationResult" />
+		<propertyList nameSingle = "Documentation" nameSeveral = "DocumentationList" type = "LocalizedText" />
+		<propertyList nameSingle = "CalibrationResult" nameSeveral = "CalibrationResultList" type = "CalibrationResult" />
 	</class>
 
 	<class name = "CalibrationResult" parent = "NULL" abstract = "false">
@@ -166,8 +166,8 @@
 		<property name = "SystemContext" type = "SystemContextDescriptor" optional = "true" />
 		<property name = "Clock" type = "ClockDescriptor" optional = "true" />
 		<property name = "ApprovedJurisdictions" type = "ApprovedJurisdictions" optional = "true" />
-		<propertyList nameSingle = "Battery" nameSeveral = "BatteryLists" type = "BatteryDescriptor" />
-		<propertyList nameSingle = "Vmd" nameSeveral = "VmdLists" type = "VmdDescriptor" />
+		<propertyList nameSingle = "Battery" nameSeveral = "BatteryList" type = "BatteryDescriptor" />
+		<propertyList nameSingle = "Vmd" nameSeveral = "VmdList" type = "VmdDescriptor" />
 	</class>
 
 	<class name = "MetaData" parent = "NULL" abstract = "false">
@@ -177,10 +177,10 @@
 		<property name = "ManufactureDate" type = "xml_schema::DateTime" optional = "true" />
 		<property name = "ExpirationDate" type = "xml_schema::DateTime" optional = "true" />
 		<property name = "ModelNumber" type = "std::string" optional = "true" />
-		<propertyList nameSingle = "Udi" nameSeveral = "UdiLists" type = "Udi" />
-		<propertyList nameSingle = "Manufacturer" nameSeveral = "ManufacturerLists" type = "LocalizedText" />
-		<propertyList nameSingle = "ModelName" nameSeveral = "ModelNameLists" type = "LocalizedText" />
-		<propertyList nameSingle = "SerialNumber" nameSeveral = "SerialNumberLists" type = "std::string" />
+		<propertyList nameSingle = "Udi" nameSeveral = "UdiList" type = "Udi" />
+		<propertyList nameSingle = "Manufacturer" nameSeveral = "ManufacturerList" type = "LocalizedText" />
+		<propertyList nameSingle = "ModelName" nameSeveral = "ModelNameList" type = "LocalizedText" />
+		<propertyList nameSingle = "SerialNumber" nameSeveral = "SerialNumberList" type = "std::string" />
 	</class>
 
 	<class name = "Udi" parent = "NULL" abstract = "false">
@@ -204,7 +204,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/ApprovedJurisdictions.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h" />
 		<property name = "ApprovedJurisdictions" type = "ApprovedJurisdictions" optional = "true" />
-		<propertyList nameSingle = "Channel" nameSeveral = "ChannelLists" type = "ChannelDescriptor" />
+		<propertyList nameSingle = "Channel" nameSeveral = "ChannelList" type = "ChannelDescriptor" />
 	</class>
 
 	<class name = "VmdState" parent = "AbstractComplexDeviceComponentState" abstract = "false">
@@ -230,14 +230,14 @@
 		<property name = "State" type = "AlertActivation" optional = "false" />
 	</class>
 
-	<class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false">
+	<class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false" customImpl = "true">
 		<include path = "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h" />
 		<property name = "MaxPhysiologicalParallelAlarms" type = "unsigned int" optional = "true" />
 		<property name = "MaxTechnicalParallelAlarms" type = "unsigned int" optional = "true" />
 		<property name = "SelfCheckPeriod" type = "xml_schema::Duration" optional = "true" />
-		<propertyList nameSingle = "AlertCondition" nameSeveral = "AlertConditionLists" type = "AlertConditionDescriptor" />
-		<propertyList nameSingle = "AlertSignal" nameSeveral = "AlertSignalLists" type = "AlertSignalDescriptor" />
+		<propertyList nameSingle = "AlertCondition" nameSeveral = "AlertConditionList" type = "AlertConditionDescriptor" />
+		<propertyList nameSingle = "AlertSignal" nameSeveral = "AlertSignalList" type = "AlertSignalDescriptor" />
 	</class>
 
 	<class name = "AlertSystemState" parent = "AbstractAlertState" abstract = "false">
@@ -249,19 +249,19 @@
 		<property name = "SelfCheckCount" type = "long long" optional = "true" />
 		<property name = "PresentPhysiologicalAlarmConditions" type = "AlertConditionReference" optional = "true" />
 		<property name = "PresentTechnicalAlarmConditions" type = "AlertConditionReference" optional = "true" />
-		<propertyList nameSingle = "SystemSignalActivation" nameSeveral = "SystemSignalActivationLists" type = "SystemSignalActivation" />
+		<propertyList nameSingle = "SystemSignalActivation" nameSeveral = "SystemSignalActivationList" type = "SystemSignalActivation" />
 	</class>
 
 	<class name = "CauseInfo" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/RemedyInfo.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<property name = "RemedyInfo" type = "RemedyInfo" optional = "true" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
 	</class>
 
 	<class name = "RemedyInfo" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
 	</class>
 
 	<class name = "AlertConditionDescriptor" parent = "AbstractAlertDescriptor" abstract = "false">
@@ -271,8 +271,8 @@
 		<property name = "DefaultConditionGenerationDelay" type = "xml_schema::Duration" optional = "true" />
 		<property name = "CanEscalate" type = "CanEscalate" optional = "true" />
 		<property name = "CanDeescalate" type = "CanDeescalate" optional = "true" />
-		<propertyList nameSingle = "Source" nameSeveral = "SourceLists" type = "HandleRef" />
-		<propertyList nameSingle = "CauseInfo" nameSeveral = "CauseInfoLists" type = "CauseInfo" />
+		<propertyList nameSingle = "Source" nameSeveral = "SourceList" type = "HandleRef" />
+		<propertyList nameSingle = "CauseInfo" nameSeveral = "CauseInfoList" type = "CauseInfo" />
 	</class>
 
 	<class name = "AlertConditionState" parent = "AbstractAlertState" abstract = "false">
@@ -331,7 +331,7 @@
 		<property name = "StartTime" type = "Timestamp" optional = "true" />
 		<property name = "StopTime" type = "Timestamp" optional = "true" />
 		<property name = "DeterminationTime" type = "Timestamp" optional = "true" />
-		<propertyList nameSingle = "Annotation" nameSeveral = "AnnotationLists" type = "Annotation" />
+		<propertyList nameSingle = "Annotation" nameSeveral = "AnnotationList" type = "Annotation" />
 	</class>
 
 	<class name = "MetricQuality" parent = "NULL" abstract = "false">
@@ -356,7 +356,7 @@
 	<class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h" />
 		<property name = "Samples" type = "RealTimeValueType" optional = "true" />
-		<propertyList nameSingle = "ApplyAnnotation" nameSeveral = "ApplyAnnotationLists" type = "ApplyAnnotation" />
+		<propertyList nameSingle = "ApplyAnnotation" nameSeveral = "ApplyAnnotationList" type = "ApplyAnnotation" />
 	</class>
 
 	<class name = "ApplyAnnotation" parent = "NULL" abstract = "false">
@@ -376,8 +376,8 @@
 		<property name = "DeterminationPeriod" type = "xml_schema::Duration" optional = "true" />
 		<property name = "LifeTimePeriod" type = "xml_schema::Duration" optional = "true" />
 		<property name = "ActivationDuration" type = "xml_schema::Duration" optional = "true" />
-		<propertyList nameSingle = "BodySite" nameSeveral = "BodySiteLists" type = "CodedValue" />
-		<propertyList nameSingle = "Relation" nameSeveral = "RelationLists" type = "Relation" />
+		<propertyList nameSingle = "BodySite" nameSeveral = "BodySiteList" type = "CodedValue" />
+		<propertyList nameSingle = "Relation" nameSeveral = "RelationList" type = "Relation" />
 	</class>
 
 	<class name = "Relation" parent = "NULL" abstract = "false">
@@ -396,7 +396,7 @@
 		<property name = "ActivationState" type = "ComponentActivation" optional = "true" />
 		<property name = "ActiveDeterminationPeriod" type = "xml_schema::Duration" optional = "true" />
 		<property name = "LifeTimePeriod" type = "xml_schema::Duration" optional = "true" />
-		<propertyList nameSingle = "BodySite" nameSeveral = "BodySiteLists" type = "CodedValue" />
+		<propertyList nameSingle = "BodySite" nameSeveral = "BodySiteList" type = "CodedValue" />
 	</class>
 
 	<class name = "NumericMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
@@ -404,7 +404,7 @@
 		<typedef name = "StateType" type = "NumericMetricState" />
 		<property name = "Resolution" type = "double" optional = "false" />
 		<property name = "AveragingPeriod" type = "xml_schema::Duration" optional = "true" />
-		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeLists" type = "Range" />
+		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeList" type = "Range" />
 	</class>
 
 	<class name = "NumericMetricState" parent = "AbstractMetricState" abstract = "false">
@@ -415,7 +415,7 @@
 		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerNumericMetricStateHandler" />
 		<property name = "MetricValue" type = "NumericMetricValue" optional = "true" />
 		<property name = "ActiveAveragingPeriod" type = "xml_schema::Duration" optional = "true" />
-		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeLists" type = "Range" />
+		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeList" type = "Range" />
 	</class>
 
 	<class name = "StringMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
@@ -432,7 +432,7 @@
 
 	<class name = "EnumStringMetricDescriptor" parent = "StringMetricDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/AllowedValue.h" />
-		<propertyList nameSingle = "AllowedValue" nameSeveral = "AllowedValueLists" type = "AllowedValue" />
+		<propertyList nameSingle = "AllowedValue" nameSeveral = "AllowedValueList" type = "AllowedValue" />
 	</class>
 
 	<class name = "AllowedValue" parent = "NULL" abstract = "false">
@@ -456,7 +456,7 @@
 		<typedef name = "StateType" type = "RealTimeSampleArrayMetricState" />
 		<property name = "Resolution" type = "double" optional = "false" />
 		<property name = "SamplePeriod" type = "xml_schema::Duration" optional = "false" />
-		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeLists" type = "Range" />
+		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeList" type = "Range" />
 	</class>
 
 	<class name = "RealTimeSampleArrayMetricState" parent = "AbstractMetricState" abstract = "false">
@@ -466,7 +466,7 @@
 		<typedef name = "ProviderHandlerType" type = "OSCPProviderRealTimeSampleArrayMetricStateHandler" />
 		<typedef name = "ConsumerHandlerType" type = "OSCPConsumerRealTimeSampleArrayMetricStateHandler" />
 		<property name = "MetricValue" type = "SampleArrayValue" optional = "true" />
-		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeLists" type = "Range" />
+		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeList" type = "Range" />
 	</class>
 
 	<class name = "DistributionSampleArrayMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
@@ -475,14 +475,14 @@
 		<property name = "DomainUnit" type = "CodedValue" optional = "false" />
 		<property name = "DistributionRange" type = "Range" optional = "false" />
 		<property name = "Resolution" type = "double" optional = "false" />
-		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeLists" type = "Range" />
+		<propertyList nameSingle = "TechnicalRange" nameSeveral = "TechnicalRangeList" type = "Range" />
 	</class>
 
 	<class name = "DistributionSampleArrayMetricState" parent = "AbstractMetricState" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
 		<property name = "MetricValue" type = "SampleArrayValue" optional = "true" />
-		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeLists" type = "Range" />
+		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeList" type = "Range" />
 	</class>
 
 	<class name = "ScoDescriptor" parent = "AbstractDescriptor" abstract = "false" customImpl = "true">
@@ -492,7 +492,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/OperationGroup.h" />
 		<property name = "InvocationRequested" type = "OperationRef" optional = "true" />
 		<property name = "InvocationRequired" type = "OperationRef" optional = "true" />
-		<propertyList nameSingle = "OperationGroup" nameSeveral = "OperationGroupLists" type = "OperationGroup" />
+		<propertyList nameSingle = "OperationGroup" nameSeveral = "OperationGroupList" type = "OperationGroup" />
 	</class>
 
 	<class name = "OperationGroup" parent = "NULL" abstract = "false">
@@ -511,7 +511,7 @@
 	</class>
 
 	<class name = "AbstractSetStateOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "true">
-		<propertyList nameSingle = "ModifiableData" nameSeveral = "ModifiableDataLists" type = "std::string" />
+		<propertyList nameSingle = "ModifiableData" nameSeveral = "ModifiableDataList" type = "std::string" />
 	</class>
 
 	<class name = "AbstractOperationState" parent = "AbstractState" abstract = "true">
@@ -523,7 +523,7 @@
 
 	<class name = "SetValueOperationState" parent = "AbstractOperationState" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
-		<propertyList nameSingle = "AllowedRange" nameSeveral = "AllowedRangeLists" type = "Range" />
+		<propertyList nameSingle = "AllowedRange" nameSeveral = "AllowedRangeList" type = "Range" />
 	</class>
 
 	<class name = "SetStringOperationDescriptor" parent = "AbstractOperationDescriptor" abstract = "false">
@@ -541,7 +541,7 @@
 
 	<class name = "ActivateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/Argument.h" />
-		<propertyList nameSingle = "Argument" nameSeveral = "ArgumentLists" type = "Argument" />
+		<propertyList nameSingle = "Argument" nameSeveral = "ArgumentList" type = "Argument" />
 	</class>
 
 	<class name = "Argument" parent = "NULL" abstract = "false">
@@ -580,7 +580,7 @@
 	<class name = "ClockDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
 		<property name = "Resolution" type = "xml_schema::Duration" optional = "true" />
-		<propertyList nameSingle = "TimeProtocol" nameSeveral = "TimeProtocolLists" type = "CodedValue" />
+		<propertyList nameSingle = "TimeProtocol" nameSeveral = "TimeProtocolList" type = "CodedValue" />
 	</class>
 
 	<class name = "ClockState" parent = "AbstractDeviceComponentState" abstract = "false">
@@ -593,7 +593,7 @@
 		<property name = "LastSet" type = "Timestamp" optional = "true" />
 		<property name = "TimeZone" type = "TimeZone" optional = "true" />
 		<property name = "CriticalUse" type = "bool" optional = "true" />
-		<propertyList nameSingle = "ReferenceSource" nameSeveral = "ReferenceSourceLists" type = "std::string" />
+		<propertyList nameSingle = "ReferenceSource" nameSeveral = "ReferenceSourceList" type = "std::string" />
 	</class>
 
 	<class name = "BatteryDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false">
@@ -623,10 +623,10 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h" />
 		<property name = "PatientContext" type = "PatientContextDescriptor" optional = "true" />
 		<property name = "LocationContext" type = "LocationContextDescriptor" optional = "true" />
-		<propertyList nameSingle = "EnsembleContext" nameSeveral = "EnsembleContextLists" type = "EnsembleContextDescriptor" />
-		<propertyList nameSingle = "OperatorContext" nameSeveral = "OperatorContextLists" type = "OperatorContextDescriptor" />
-		<propertyList nameSingle = "WorkflowContext" nameSeveral = "WorkflowContextLists" type = "WorkflowContextDescriptor" />
-		<propertyList nameSingle = "MeansContext" nameSeveral = "MeansContextLists" type = "MeansContextDescriptor" />
+		<propertyList nameSingle = "EnsembleContext" nameSeveral = "EnsembleContextList" type = "EnsembleContextDescriptor" />
+		<propertyList nameSingle = "OperatorContext" nameSeveral = "OperatorContextList" type = "OperatorContextDescriptor" />
+		<propertyList nameSingle = "WorkflowContext" nameSeveral = "WorkflowContextList" type = "WorkflowContextDescriptor" />
+		<propertyList nameSingle = "MeansContext" nameSeveral = "MeansContextList" type = "MeansContextDescriptor" />
 	</class>
 
 	<class name = "SystemContextState" parent = "AbstractState" abstract = "false">
@@ -642,8 +642,8 @@
 		<property name = "UnbindingMdibVersion" type = "ReferencedVersion" optional = "true" />
 		<property name = "BindingStartTime" type = "Timestamp" optional = "true" />
 		<property name = "BindingEndTime" type = "Timestamp" optional = "true" />
-		<propertyList nameSingle = "Validator" nameSeveral = "ValidatorLists" type = "InstanceIdentifier" />
-		<propertyList nameSingle = "Identification" nameSeveral = "IdentificationLists" type = "InstanceIdentifier" />
+		<propertyList nameSingle = "Validator" nameSeveral = "ValidatorList" type = "InstanceIdentifier" />
+		<propertyList nameSingle = "Identification" nameSeveral = "IdentificationList" type = "InstanceIdentifier" />
 	</class>
 
 	<class name = "BaseDemographics" parent = "NULL" abstract = "false">
@@ -651,14 +651,14 @@
 		<property name = "Familyname" type = "std::string" optional = "true" />
 		<property name = "Birthname" type = "std::string" optional = "true" />
 		<property name = "Title" type = "std::string" optional = "true" />
-		<propertyList nameSingle = "Middlename" nameSeveral = "MiddlenameLists" type = "std::string" />
+		<propertyList nameSingle = "Middlename" nameSeveral = "MiddlenameList" type = "std::string" />
 	</class>
 
 	<class name = "PersonReference" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/BaseDemographics.h" />
 		<property name = "Name" type = "BaseDemographics" optional = "true" />
-		<propertyList nameSingle = "Identification" nameSeveral = "IdentificationLists" type = "InstanceIdentifier" />
+		<propertyList nameSingle = "Identification" nameSeveral = "IdentificationList" type = "InstanceIdentifier" />
 	</class>
 
 	<class name = "LocationDetail" parent = "NULL" abstract = "false">
@@ -722,8 +722,8 @@
 		<property name = "Type" type = "CodedValue" optional = "true" />
 		<property name = "Code" type = "CodedValue" optional = "true" />
 		<property name = "Criticality" type = "Criticality" optional = "true" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
-		<propertyList nameSingle = "RelatedMeasurement" nameSeveral = "RelatedMeasurementLists" type = "RelatedMeasurement" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
+		<propertyList nameSingle = "RelatedMeasurement" nameSeveral = "RelatedMeasurementList" type = "RelatedMeasurement" />
 	</class>
 
 	<class name = "RelatedMeasurement" parent = "NULL" abstract = "false">
@@ -731,7 +731,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/ReferenceRange.h" />
 		<property name = "Value" type = "Measurement" optional = "false" />
 		<property name = "Validity" type = "MeasurementValidity" optional = "true" />
-		<propertyList nameSingle = "ReferenceRange" nameSeveral = "ReferenceRangeLists" type = "ReferenceRange" />
+		<propertyList nameSingle = "ReferenceRange" nameSeveral = "ReferenceRangeList" type = "ReferenceRange" />
 	</class>
 
 	<class name = "ReferenceRange" parent = "NULL" abstract = "false">
@@ -756,7 +756,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocationDetail.h" />
 		<property name = "LocationDetail" type = "LocationDetail" optional = "true" />
-		<propertyList nameSingle = "Identification" nameSeveral = "IdentificationLists" type = "InstanceIdentifier" />
+		<propertyList nameSingle = "Identification" nameSeveral = "IdentificationList" type = "InstanceIdentifier" />
 	</class>
 
 	<class name = "OrderDetail" parent = "NULL" abstract = "false">
@@ -765,14 +765,14 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h" />
 		<property name = "Start" type = "xml_schema::DateTime" optional = "true" />
 		<property name = "End" type = "xml_schema::DateTime" optional = "true" />
-		<propertyList nameSingle = "Performer" nameSeveral = "PerformerLists" type = "PersonParticipation" />
-		<propertyList nameSingle = "Service" nameSeveral = "ServiceLists" type = "CodedValue" />
-		<propertyList nameSingle = "ImagingProcedure" nameSeveral = "ImagingProcedureLists" type = "ImagingProcedure" />
+		<propertyList nameSingle = "Performer" nameSeveral = "PerformerList" type = "PersonParticipation" />
+		<propertyList nameSingle = "Service" nameSeveral = "ServiceList" type = "CodedValue" />
+		<propertyList nameSingle = "ImagingProcedure" nameSeveral = "ImagingProcedureList" type = "ImagingProcedure" />
 	</class>
 
 	<class name = "PersonParticipation" parent = "PersonReference" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<propertyList nameSingle = "Role" nameSeveral = "RoleLists" type = "CodedValue" />
+		<propertyList nameSingle = "Role" nameSeveral = "RoleList" type = "CodedValue" />
 	</class>
 
 	<class name = "WorkflowContextState" parent = "AbstractContextState" abstract = "false">
@@ -794,8 +794,8 @@
 		<property name = "VisitNumber" type = "InstanceIdentifier" optional = "true" />
 		<property name = "RequestedOrderDetail" type = "RequestedOrderDetail" optional = "true" />
 		<property name = "PerformedOrderDetail" type = "PerformedOrderDetail" optional = "true" />
-		<propertyList nameSingle = "DangerCode" nameSeveral = "DangerCodeLists" type = "CodedValue" />
-		<propertyList nameSingle = "RelevantClinicalInfo" nameSeveral = "RelevantClinicalInfoLists" type = "ClinicalInfo" />
+		<propertyList nameSingle = "DangerCode" nameSeveral = "DangerCodeList" type = "CodedValue" />
+		<propertyList nameSingle = "RelevantClinicalInfo" nameSeveral = "RelevantClinicalInfoList" type = "ClinicalInfo" />
 	</class>
 
 	<class name = "RequestedOrderDetail" parent = "OrderDetail" abstract = "false">
@@ -810,7 +810,7 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
 		<property name = "FillerOrderNumber" type = "InstanceIdentifier" optional = "true" />
-		<propertyList nameSingle = "ResultingClinicalInfo" nameSeveral = "ResultingClinicalInfoLists" type = "ClinicalInfo" />
+		<propertyList nameSingle = "ResultingClinicalInfo" nameSeveral = "ResultingClinicalInfoList" type = "ClinicalInfo" />
 	</class>
 
 	<class name = "OperatorContextDescriptor" parent = "AbstractContextDescriptor" abstract = "false">
@@ -839,7 +839,7 @@
 
 	<class name = "ContainmentTree" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h" />
-		<propertyList nameSingle = "Entry" nameSeveral = "EntryLists" type = "ContainmentTreeEntry" />
+		<propertyList nameSingle = "Entry" nameSeveral = "EntryList" type = "ContainmentTreeEntry" />
 	</class>
 
 	<class name = "ContainmentTreeEntry" parent = "NULL" abstract = "false">
@@ -850,7 +850,7 @@
 	<class name = "DicomTransferCapability" parent = "NULL" abstract = "false">
 		<property name = "SopClass" type = "std::string" optional = "false" />
 		<property name = "TransferRole" type = "DicomTransferRole" optional = "false" />
-		<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxLists" type = "std::string" />
+		<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxList" type = "std::string" />
 	</class>
 
 	<class name = "DicomNetworkAe" parent = "NULL" abstract = "false">
@@ -860,15 +860,15 @@
 		<property name = "NetworkConnectionReference" type = "xml_schema::Idrefs" optional = "false" />
 		<property name = "AssociationInitiator" type = "bool" optional = "false" />
 		<property name = "AssociationAcceptor" type = "bool" optional = "false" />
-		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityLists" type = "DicomTransferCapability" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
+		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityList" type = "DicomTransferCapability" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
 	</class>
 
 	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
 		<property name = "id" type = "xml_schema::Id" optional = "false" />
 		<property name = "Hostname" type = "std::string" optional = "false" />
 		<property name = "Port" type = "unsigned short" optional = "true" />
-		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteLists" type = "std::string" />
+		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteList" type = "std::string" />
 	</class>
 
 	<class name = "DicomDeviceDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
@@ -876,10 +876,10 @@
 		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h" />
 		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
 		<property name = "IssuerOfPatientID" type = "std::string" optional = "true" />
-		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeLists" type = "DicomNetworkAe" />
-		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionLists" type = "DicomNetworkConnection" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionLists" type = "LocalizedText" />
-		<propertyList nameSingle = "StationName" nameSeveral = "StationNameLists" type = "LocalizedText" />
+		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeList" type = "DicomNetworkAe" />
+		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionList" type = "DicomNetworkConnection" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
+		<propertyList nameSingle = "StationName" nameSeveral = "StationNameList" type = "LocalizedText" />
 	</class>
 
 </classes>

@@ -266,7 +266,7 @@ WorkflowContextState & WorkflowContextState::addValidator(const InstanceIdentifi
 	return *this;
 }
 
-std::vector<InstanceIdentifier> WorkflowContextState::getValidatorLists() const {
+std::vector<InstanceIdentifier> WorkflowContextState::getValidatorList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Validator().size());
 	for (const auto & value: data->Validator()) {
@@ -275,7 +275,7 @@ std::vector<InstanceIdentifier> WorkflowContextState::getValidatorLists() const 
 	return result;
 }
 
-void WorkflowContextState::clearValidatorLists() {
+void WorkflowContextState::clearValidatorList() {
 	data->Validator().clear();
 }
 
@@ -284,7 +284,7 @@ WorkflowContextState & WorkflowContextState::addIdentification(const InstanceIde
 	return *this;
 }
 
-std::vector<InstanceIdentifier> WorkflowContextState::getIdentificationLists() const {
+std::vector<InstanceIdentifier> WorkflowContextState::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -293,7 +293,7 @@ std::vector<InstanceIdentifier> WorkflowContextState::getIdentificationLists() c
 	return result;
 }
 
-void WorkflowContextState::clearIdentificationLists() {
+void WorkflowContextState::clearIdentificationList() {
 	data->Identification().clear();
 }
 

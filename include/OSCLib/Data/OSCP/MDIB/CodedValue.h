@@ -75,16 +75,16 @@ public:
 	bool hasSymbolicCodeName() const;
 
 	CodedValue & addCodingSystemName(const LocalizedText & value);
-	std::vector<LocalizedText> getCodingSystemNameLists() const;
-	void clearCodingSystemNameLists();
+	std::vector<LocalizedText> getCodingSystemNameList() const;
+	void clearCodingSystemNameList();
 	
 	CodedValue & addConceptDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getConceptDescriptionLists() const;
-	void clearConceptDescriptionLists();
+	std::vector<LocalizedText> getConceptDescriptionList() const;
+	void clearConceptDescriptionList();
 	
 	CodedValue & addTranslation(const Translation & value);
-	std::vector<Translation> getTranslationLists() const;
-	void clearTranslationLists();
+	std::vector<Translation> getTranslationList() const;
+	void clearTranslationList();
 	
 private:
 	std::shared_ptr<CDM::CodedValue> data;

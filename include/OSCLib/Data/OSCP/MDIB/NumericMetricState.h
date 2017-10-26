@@ -93,8 +93,8 @@ public:
 	bool hasLifeTimePeriod() const;
 
 	NumericMetricState & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySiteLists() const;
-	void clearBodySiteLists();
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
 	
 	NumericMetricState & setMetricValue(const NumericMetricValue & value);
 	NumericMetricValue getMetricValue() const;
@@ -107,8 +107,8 @@ public:
 	bool hasActiveAveragingPeriod() const;
 
 	NumericMetricState & addPhysiologicalRange(const Range & value);
-	std::vector<Range> getPhysiologicalRangeLists() const;
-	void clearPhysiologicalRangeLists();
+	std::vector<Range> getPhysiologicalRangeList() const;
+	void clearPhysiologicalRangeList();
 	
 private:
 	std::shared_ptr<CDM::NumericMetricState> data;

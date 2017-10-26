@@ -96,12 +96,12 @@ public:
 	bool hasCanDeescalate() const;
 
 	LimitAlertConditionDescriptor & addSource(const HandleRef & value);
-	std::vector<HandleRef> getSourceLists() const;
-	void clearSourceLists();
+	std::vector<HandleRef> getSourceList() const;
+	void clearSourceList();
 	
 	LimitAlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
-	std::vector<CauseInfo> getCauseInfoLists() const;
-	void clearCauseInfoLists();
+	std::vector<CauseInfo> getCauseInfoList() const;
+	void clearCauseInfoList();
 	
 	LimitAlertConditionDescriptor & setMaxLimits(const Range & value);
 	Range getMaxLimits() const;
