@@ -29,10 +29,34 @@ public:
 	ServiceManager();
 	virtual ~ServiceManager();
 
+    /**
+    * @brief Set a handler that will be called when device send DPWS hello.
+    *
+    * @param handler The handler
+    */
 	void setHelloReceivedHandler(HelloReceivedHandler * handler);
 
+    /**
+    * @brief Create a consumer and connect to Xaddr.
+    *
+    * @param xaddr The address
+    * @return The consumer or null
+    */
 	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> connect(const std::string & xaddr);
+
+    /**
+    * @brief Create a consumer and try to discover provider using EPR.
+    *
+    * @param epr The EPR
+    * @return The consumer or null
+    */
 	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> discoverEndpointReference(const std::string & epr);
+
+    /**
+    * @brief Discover all SDC providers currently available
+    *
+    * @return List of all providers
+    */
 	std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> discoverOSCP();
 
 private:

@@ -186,13 +186,40 @@ public:
     */
     void removeMDStateHandler(OSCPProviderMdStateHandler * handler);
 
+    /**
+     * @brief Set the endpoint reference.
+     *
+     * @param epr the EPR
+     */
 	void setEndpointReference(const std::string & epr);
+
+    /**
+     * @brief Set the endpoint reference.
+     *
+     * @return The EPR
+     */
 	const std::string getEndpointReference() const;
 
+    /**
+     * @brief Get the low level DPWS device characteristics.
+     *
+     * @return The DPWS device characteristics
+     */
 	const Dev::DeviceCharacteristics& getDeviceCharacteristics() const;
 	void setDeviceCharacteristics(const Dev::DeviceCharacteristics& deviceCharacteristics);
 
+
+    /**
+     * @brief Get the current Mdib version.
+     *
+     * @return The Mdib version.
+     */
     unsigned long long int getMdibVersion() const;
+
+
+    /**
+     * @brief Increment Mdib version by 1.
+     */
     void incrementMDIBVersion();
 
     Poco::Mutex & getMutex();
@@ -205,6 +232,12 @@ public:
     	getMutex().unlock();
     }    
 
+    /**
+     * @brief Set the periodic event fire interval.
+     *
+     * @param seconds Interval seconds
+     * @param millisecods Interval milliseconds
+     */
     void setPeriodicEventInterval(const int seconds, const int milliseconds);
     std::vector<std::string> getHandlesForPeriodicUpdate();
     void addHandleForPeriodicEvent(const std::string & handle);
@@ -228,7 +261,7 @@ public:
 
 
     /**
-    * @brief Notify all registered consumers about a changed MDIB object (fires episodic metric changed event).
+    * @brief Update internal state and notify all registered consumers about a changed MDIB object (episodic metric event).
     * These functions are used by the state handlers. Use those instead for updating the provider's states
     *
     * @param object The MDIB object
@@ -248,8 +281,6 @@ public:
     void updateState(const WorkflowContextState & object);
     void updateState(const DistributionSampleArrayMetricState & object);
 
-
-// TODO no inheritance no need for protected methods..
 protected:
 
     /**

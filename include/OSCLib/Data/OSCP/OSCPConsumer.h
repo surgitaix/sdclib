@@ -209,10 +209,25 @@ public:
     */
     void setSubscriptionLostHandler(OSCPConsumerSubscriptionLostHandler * handler);
 
+    /**
+    * @brief Request Mdib in raw XML format.
+    *
+    * @return The XML as string
+    */
     std::string requestRawMdib();
 
+    /**
+    * @brief Get EPR of the connected provider.
+    *
+    * @return The EPR
+    */
     std::string getEndpointReference();
 
+    /**
+    * @brief Get last known Mdib version.
+    *
+    * @return The version
+    */
     unsigned long long int getLastKnownMdibVersion();
 
 private:
@@ -221,7 +236,7 @@ private:
     /**
     * @brief Update the local MDIB using an RPC to the provider.
     *
-    * @param True, if MDIB updated successfully.
+    * @return True, if MDIB updated successfully.
     */
     bool requestMdib();
     std::unique_ptr<MDM::GetMdibResponse> requestCDMMdib();
