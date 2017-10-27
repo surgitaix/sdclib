@@ -37,7 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -93,13 +92,13 @@ bool OperatorContextDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-OperatorContextDescriptor & OperatorContextDescriptor::setHandle(const std::string & value) {
+OperatorContextDescriptor & OperatorContextDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string OperatorContextDescriptor::getHandle() const {
+Handle OperatorContextDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -124,25 +123,25 @@ bool OperatorContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-OperatorContextDescriptor & OperatorContextDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
+OperatorContextDescriptor & OperatorContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool OperatorContextDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
+bool OperatorContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
-IntendedUse OperatorContextDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
+SafetyClassification OperatorContextDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool OperatorContextDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
+bool OperatorContextDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
 }
 	
 

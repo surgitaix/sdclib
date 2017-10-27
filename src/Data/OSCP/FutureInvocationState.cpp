@@ -29,12 +29,12 @@ namespace Data {
 namespace OSCP {
 
 FutureInvocationState::FutureInvocationState() : transactionId(-1), consumer(nullptr) {
-	invocationEvents[InvocationState::CANCELLED] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::CANCELLED_MANUALLY] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::FAILED] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::FINISHED] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::STARTED] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::WAITING] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	invocationEvents[InvocationState::Cnclld] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	invocationEvents[InvocationState::CnclldMan] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	invocationEvents[InvocationState::Fail] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	invocationEvents[InvocationState::Fin] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	invocationEvents[InvocationState::Start] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	invocationEvents[InvocationState::Wait] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
 }
 
 FutureInvocationState::~FutureInvocationState() {
@@ -42,6 +42,7 @@ FutureInvocationState::~FutureInvocationState() {
 		consumer->unregisterFutureInvocationListener(transactionId);
 	}
 }
+
 
 bool FutureInvocationState::waitReceived(InvocationState expected, int timeout) {
 	std::shared_ptr<Poco::Event> event;

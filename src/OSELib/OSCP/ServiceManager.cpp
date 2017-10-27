@@ -218,7 +218,7 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 				}
 
 				for (const auto & hosted : metadata.Relationship().get().Hosted()) {
-					if (hosted.ServiceId() == "PHI") {
+					if (hosted.ServiceId() == "ContextService") {
 						for (const auto & iter : hosted.EndpointReference()) {
 							deviceDescription.addContextServiceURI(Poco::URI(iter.Address()));
 						}
@@ -280,7 +280,7 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
 	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> result(new OSCLib::Data::OSCP::OSCPConsumer(deviceDescription));
-	if (!result->requestMDIB()) {
+	if (!result->requestMdib()) {
 		result->disconnect();
 		return nullptr;
 	}

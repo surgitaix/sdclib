@@ -64,7 +64,7 @@ std::unique_ptr<GetContextStatesTraits::Response> GetContextStatesTraits::dispat
 }
 
 std::string GetMDDescriptionTraits::OperationName() {
-	return "GetMDDescription";
+	return "GetMdDescription";
 }
 xml_schema::Qname GetMDDescriptionTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_GETSERVICE_PORTTYPE);
@@ -86,7 +86,7 @@ std::unique_ptr<GetMDDescriptionTraits::Response> GetMDDescriptionTraits::dispat
 }
 
 std::string GetMDIBTraits::OperationName() {
-	return "GetMDIB";
+	return "GetMdib";
 }
 xml_schema::Qname GetMDIBTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_GETSERVICE_PORTTYPE);
@@ -107,25 +107,25 @@ std::unique_ptr<GetMDIBTraits::Response> GetMDIBTraits::dispatch(GetMDIBTraits::
 	return dispatcher.dispatch(request);
 }
 
-std::string GetMDStateTraits::OperationName() {
-	return "GetMDState";
+std::string GetMdStateTraits::OperationName() {
+	return "GetMdState";
 }
-xml_schema::Qname GetMDStateTraits::PortType() {
+xml_schema::Qname GetMdStateTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_GETSERVICE_PORTTYPE);
 }
-std::string GetMDStateTraits::RequestAction() {
+std::string GetMdStateTraits::RequestAction() {
 	return ACTION_CDM_GET_MDSTATE_REQUEST;
 }
-xml_schema::Qname GetMDStateTraits::RequestType() {
+xml_schema::Qname GetMdStateTraits::RequestType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName());
 }
-std::string GetMDStateTraits::ResponseAction() {
+std::string GetMdStateTraits::ResponseAction() {
 	return ACTION_CDM_GET_MDSTATE_RESPONSE;
 }
-xml_schema::Qname GetMDStateTraits::ResponseType() {
+xml_schema::Qname GetMdStateTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<GetMDStateTraits::Response> GetMDStateTraits::dispatch(GetMDStateTraits::Dispatcher & dispatcher, const Request & request) {
+std::unique_ptr<GetMdStateTraits::Response> GetMdStateTraits::dispatch(GetMdStateTraits::Dispatcher & dispatcher, const Request & request) {
 	return dispatcher.dispatch(request);
 }
 

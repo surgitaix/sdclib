@@ -32,7 +32,7 @@
 #ifndef ACTIVATEOPERATIONDESCRIPTOR_H_
 #define ACTIVATEOPERATIONDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,31 +61,50 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	ActivateOperationDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	ActivateOperationDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	ActivateOperationDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	ActivateOperationDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
+	ActivateOperationDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
 
-	ActivateOperationDescriptor & setOperationTarget(const std::string & value);
-	std::string getOperationTarget() const;
+	ActivateOperationDescriptor & setOperationTarget(const HandleRef & value);
+	HandleRef getOperationTarget() const;
 
-	ActivateOperationDescriptor & addModifiableElement(const CodedValue & value);
-	std::vector<CodedValue> getModifiableElements() const;
-	void clearModifiableElements();
+	ActivateOperationDescriptor & setMaxTimeToFinish(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxTimeToFinish() const;
+	bool getMaxTimeToFinish(xml_schema::Duration & out) const;
+	bool hasMaxTimeToFinish() const;
+
+	ActivateOperationDescriptor & setInvocationEffectiveTimeout(const xml_schema::Duration & value);
+	xml_schema::Duration getInvocationEffectiveTimeout() const;
+	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
+	bool hasInvocationEffectiveTimeout() const;
+
+	ActivateOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
+	xml_schema::Duration getRetriggerable() const;
+	bool getRetriggerable(xml_schema::Duration & out) const;
+	bool hasRetriggerable() const;
+
+	ActivateOperationDescriptor & setAccessLevel(const AccessLevel & value);
+	AccessLevel getAccessLevel() const;
+	bool getAccessLevel(AccessLevel & out) const;
+	bool hasAccessLevel() const;
+
+	ActivateOperationDescriptor & addModifiableData(const std::string & value);
+	std::vector<std::string> getModifiableDataList() const;
+	void clearModifiableDataList();
 	
-	ActivateOperationDescriptor & setActivationDuration(const Duration & value);
-	Duration getActivationDuration() const;
-	bool getActivationDuration(Duration & out) const;
-	bool hasActivationDuration() const;
-
+	ActivateOperationDescriptor & addArgument(const Argument & value);
+	std::vector<Argument> getArgumentList() const;
+	void clearArgumentList();
+	
 private:
 	std::shared_ptr<CDM::ActivateOperationDescriptor> data;
 };

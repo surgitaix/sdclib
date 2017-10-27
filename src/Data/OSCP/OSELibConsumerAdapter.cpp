@@ -15,7 +15,7 @@
 #include "Poco/Net/ServerSocket.h"
 #include "Poco/Net/MulticastSocket.h"
 
-#include "BICEPS_DomainModel.hxx"
+#include "BICEPS_ParticipantModel.hxx"
 #include "BICEPS_MessageModel.hxx"
 #include "eventing.hxx"
 #include "NormalizedMessageModel.hxx"
@@ -24,7 +24,6 @@
 #include "OSCLib/OSCLibrary.h"
 
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationInvocationContext.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
@@ -34,6 +33,7 @@
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/OSCP/OSELibConsumerAdapter.h"
 
 #include "OSELib/DPWS/PingManager.h"
@@ -66,13 +66,15 @@ struct ContextServiceEventSink : public OSCP::IContextServiceEventSink {
 	}
 
 	virtual void dispatch(const OSCP::EpisodicContextChangedReportTraits::ReportType & report) override {
-		_consumer.updateLastKnownMDIBVersion(report.MDIBVersion());
+		if (report.MdibVersion().present()) {
+			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
+		}
 		std::vector<std::string> changedStatesHandles;
 
 		for (const auto & reportPart: report.ReportPart()) {
-			if (const auto part = dynamic_cast<const CDM::ContextChangedReportPart *>(&reportPart)) {
-				for (const auto & handle : part->ChangedContextState()) {
-					changedStatesHandles.push_back(handle);
+			if (const auto part = dynamic_cast<const MDM::ReportPart *>(&reportPart)) {
+				for (const auto & handle : part->ContextState()) {
+					changedStatesHandles.push_back(handle.Handle());
 				}
 			}
 		}
@@ -81,13 +83,15 @@ struct ContextServiceEventSink : public OSCP::IContextServiceEventSink {
 	}
 
 	virtual void dispatch(const OSCP::PeriodicContextChangedReportTraits::ReportType & report) override {
-		_consumer.updateLastKnownMDIBVersion(report.MDIBVersion());
+		if (report.MdibVersion().present()) {
+			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
+		}
 		std::vector<std::string> changedStatesHandles;
 
 		for (const auto & reportPart: report.ReportPart()) {
-			if (const auto part = dynamic_cast<const CDM::ContextChangedReportPart *>(&reportPart)) {
-				for (const auto & handle : part->ChangedContextState()) {
-					changedStatesHandles.push_back(handle);
+			if (const auto part = dynamic_cast<const MDM::ReportPart *>(&reportPart)) {
+				for (const auto & handle : part->ContextState()) {
+					changedStatesHandles.push_back(handle.Handle());
 				}
 			}
 		}
@@ -111,8 +115,10 @@ struct EventReportEventSink : public OSCP::IEventReportEventSink, public OSELib:
 	}
 
 	virtual void dispatch(const OSCP::EpisodicAlertReportTraits::ReportType & report) override {
-		_consumer.updateLastKnownMDIBVersion(report.MDIBVersion());
-		for (const auto & reportPart : report.AlertReportDetail()) {
+		if (report.MdibVersion().present()) {
+			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
+		}
+		for (const auto & reportPart : report.ReportPart()) {
 			for (const auto & state : reportPart.AlertState()) {
 				dispatchAlertState(state);
 			}
@@ -120,7 +126,9 @@ struct EventReportEventSink : public OSCP::IEventReportEventSink, public OSELib:
 	}
 
 	virtual void dispatch(const OSCP::EpisodicMetricReportTraits::ReportType & report) override {
-		_consumer.updateLastKnownMDIBVersion(report.MDIBVersion());
+		if (report.MdibVersion().present()) {
+			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
+		}
 		for (const auto & reportPart : report.ReportPart()) {
 			for (const auto & state : reportPart.MetricState()) {
 				dispatchMetricState(state);
@@ -129,8 +137,10 @@ struct EventReportEventSink : public OSCP::IEventReportEventSink, public OSELib:
 	}
 
 	virtual void dispatch(const OSCP::PeriodicAlertReportTraits::ReportType & report) override {
-		_consumer.updateLastKnownMDIBVersion(report.MDIBVersion());
-		for (const auto & reportPart : report.AlertReportDetail()) {
+		if (report.MdibVersion().present()) {
+			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
+		}
+		for (const auto & reportPart : report.ReportPart()) {
 			for (const auto & state : reportPart.AlertState()) {
 				dispatchAlertState(state);
 			}
@@ -138,7 +148,9 @@ struct EventReportEventSink : public OSCP::IEventReportEventSink, public OSELib:
 	}
 
 	virtual void dispatch(const OSCP::PeriodicMetricReportTraits::ReportType & report) override {
-		_consumer.updateLastKnownMDIBVersion(report.MDIBVersion());
+		if (report.MdibVersion().present()) {
+			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
+		}
 		for (const auto & reportPart : report.ReportPart()) {
 			for (const auto & state : reportPart.MetricState()) {
 				dispatchMetricState(state);
@@ -148,14 +160,17 @@ struct EventReportEventSink : public OSCP::IEventReportEventSink, public OSELib:
 
 	virtual void dispatch(const OSCP::OperationInvokedReportTraits::ReportType & report) override {
 		// fixme move all to OSCPConsumer and change interface, so this method here only delegates. This should be done for all events
-		_consumer.updateLastKnownMDIBVersion(report.MDIBVersion());
-		for (const auto & irp : report.ReportDetail()) {
+		if (report.MdibVersion().present()) {
+			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
+		}
+		for (const auto & irp : report.ReportPart()) {
 			_consumer.onOperationInvoked(
-				OSCLib::Data::OSCP::OperationInvocationContext(irp.OperationHandleRef(), irp.TransactionId()),
-				OSCLib::Data::OSCP::ConvertFromCDM::convert(irp.OperationState()));
+				OSCLib::Data::OSCP::OperationInvocationContext(irp.OperationHandleRef(), irp.InvocationInfo().TransactionId()),
+				OSCLib::Data::OSCP::ConvertFromCDM::convert(irp.InvocationInfo().InvocationState()));
 		}
 	}
 
+	// todo: more elegant implementation of streaming possible?
 	virtual void dispatch(const OSCP::WaveformStreamTraits::ReportType & report) override {
 		//
 	}
@@ -345,7 +360,9 @@ std::unique_ptr<typename TraitsType::Response> OSELibConsumerAdapter::invokeImpl
 	auto response(invoker->invoke(request));
 
 	if (response != nullptr) {
-		_consumer.updateLastKnownMDIBVersion(response->MDIBVersion());
+		if (response->MdibVersion().present()) {
+			_consumer.updateLastKnownMdibVersion(response->MdibVersion().get());
+		}
 		return std::move(response);
 	}
 
@@ -353,7 +370,7 @@ std::unique_ptr<typename TraitsType::Response> OSELibConsumerAdapter::invokeImpl
 }
 
 void OSELibConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType & notification) {
-		_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(notification.RealTimeSampleArray().front()));
+	_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(notification.State().front()));
 }
 
 
@@ -368,7 +385,7 @@ Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib
 }
 
 template<>
-Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::GetMDStateTraits::Request & ) {
+Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::GetMdStateTraits::Request & ) {
 	return _deviceDescription.getGetServiceURI();
 }
 
@@ -397,37 +414,37 @@ Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib
 	return _deviceDescription.getContextServiceURI();
 }
 
-std::unique_ptr<CDM::GetMDDescriptionResponse> OSELibConsumerAdapter::invoke(const CDM::GetMDDescription & request) {
+std::unique_ptr<MDM::GetMdDescriptionResponse> OSELibConsumerAdapter::invoke(const MDM::GetMdDescription & request) {
 	return invokeImpl<OSELib::OSCP::GetMDDescriptionTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<CDM::GetMDIBResponse> OSELibConsumerAdapter::invoke(const CDM::GetMDIB & request) {
+std::unique_ptr<MDM::GetMdibResponse> OSELibConsumerAdapter::invoke(const MDM::GetMdib & request) {
 	return invokeImpl<OSELib::OSCP::GetMDIBTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<CDM::GetMDStateResponse> OSELibConsumerAdapter::invoke(const CDM::GetMDState & request) {
-	return invokeImpl<OSELib::OSCP::GetMDStateTraits>(request, getRequestURIFromDeviceDescription(request));
+std::unique_ptr<MDM::GetMdStateResponse> OSELibConsumerAdapter::invoke(const MDM::GetMdState & request) {
+	return invokeImpl<OSELib::OSCP::GetMdStateTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
 
-std::unique_ptr<CDM::ActivateResponse> OSELibConsumerAdapter::invoke(const CDM::Activate & request) {
+std::unique_ptr<MDM::ActivateResponse> OSELibConsumerAdapter::invoke(const MDM::Activate & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::ActivateTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<CDM::SetAlertStateResponse> OSELibConsumerAdapter::invoke(const CDM::SetAlertState & request) {
+std::unique_ptr<MDM::SetAlertStateResponse> OSELibConsumerAdapter::invoke(const MDM::SetAlertState & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::SetAlertStateTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<CDM::SetValueResponse> OSELibConsumerAdapter::invoke(const CDM::SetValue & request) {
+std::unique_ptr<MDM::SetValueResponse> OSELibConsumerAdapter::invoke(const MDM::SetValue & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::SetValueTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<CDM::SetStringResponse> OSELibConsumerAdapter::invoke(const CDM::SetString & request) {
+std::unique_ptr<MDM::SetStringResponse> OSELibConsumerAdapter::invoke(const MDM::SetString & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::SetStringTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
 
-std::unique_ptr<CDM::SetContextStateResponse> OSELibConsumerAdapter::invoke(const CDM::SetContextState & request) {
+std::unique_ptr<MDM::SetContextStateResponse> OSELibConsumerAdapter::invoke(const MDM::SetContextState & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::SetContextStateTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 

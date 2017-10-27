@@ -37,7 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/SampleIndex.h"
 
 namespace OSCLib {
 namespace Data {
@@ -72,35 +71,14 @@ Annotation & Annotation:: operator=(const Annotation & object) {
 }
 
 
-Annotation & Annotation::setCode(const CodedValue & value) {
-	data->Code(ConvertToCDM::convert(value));
+Annotation & Annotation::setType(const CodedValue & value) {
+	data->Type(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-CodedValue Annotation::getCode() const {
-	return ConvertFromCDM::convert(data->Code());
-}
-	
-Annotation & Annotation::setSampleIndex(const SampleIndex & value) {
-	data->SampleIndex(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool Annotation::getSampleIndex(SampleIndex & out) const {
-	if (data->SampleIndex().present()) {
-		out = ConvertFromCDM::convert(data->SampleIndex().get());
-		return true;
-	}
-	return false;
-}
-
-SampleIndex Annotation::getSampleIndex() const {
-	return ConvertFromCDM::convert(data->SampleIndex().get());
-}
-	
-bool Annotation::hasSampleIndex() const {
-	return data->SampleIndex().present();
+CodedValue Annotation::getType() const {
+	return ConvertFromCDM::convert(data->Type());
 }
 	
 

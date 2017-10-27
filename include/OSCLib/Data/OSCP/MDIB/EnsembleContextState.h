@@ -32,7 +32,7 @@
 #ifndef ENSEMBLECONTEXTSTATE_H_
 #define ENSEMBLECONTEXTSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -57,31 +57,41 @@ public:
     typedef CDM::EnsembleContextState WrappedType;
     typedef EnsembleContextDescriptor DescriptorType;
 
-	EnsembleContextState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	EnsembleContextState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	EnsembleContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
+
+	EnsembleContextState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	EnsembleContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
+
+	EnsembleContextState & setCategory(const CodedValue & value);
+	CodedValue getCategory() const;
+	bool getCategory(CodedValue & out) const;
+	bool hasCategory() const;
+
+	EnsembleContextState & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	EnsembleContextState & setContextAssociation(const ContextAssociation & value);
 	ContextAssociation getContextAssociation() const;
 	bool getContextAssociation(ContextAssociation & out) const;
 	bool hasContextAssociation() const;
 
-	EnsembleContextState & setBindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getBindingMDIBVersion() const;
+	EnsembleContextState & setBindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getBindingMdibVersion() const;
+	bool getBindingMdibVersion(ReferencedVersion & out) const;
+	bool hasBindingMdibVersion() const;
 
-	EnsembleContextState & setUnbindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getUnbindingMDIBVersion() const;
-	bool getUnbindingMDIBVersion(ReferencedVersion & out) const;
-	bool hasUnbindingMDIBVersion() const;
+	EnsembleContextState & setUnbindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getUnbindingMdibVersion() const;
+	bool getUnbindingMdibVersion(ReferencedVersion & out) const;
+	bool hasUnbindingMdibVersion() const;
 
 	EnsembleContextState & setBindingStartTime(const Timestamp & value);
 	Timestamp getBindingStartTime() const;
@@ -94,12 +104,12 @@ public:
 	bool hasBindingEndTime() const;
 
 	EnsembleContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidators() const;
-	void clearValidators();
+	std::vector<InstanceIdentifier> getValidatorList() const;
+	void clearValidatorList();
 	
 	EnsembleContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationList() const;
+	void clearIdentificationList();
 	
 private:
 	std::shared_ptr<CDM::EnsembleContextState> data;

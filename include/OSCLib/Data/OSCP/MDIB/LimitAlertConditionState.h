@@ -32,7 +32,7 @@
 #ifndef LIMITALERTCONDITIONSTATE_H_
 #define LIMITALERTCONDITIONSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -59,21 +59,31 @@ public:
     typedef OSCPProviderLimitAlertConditionStateHandler ProviderHandlerType;
     typedef OSCPConsumerLimitAlertConditionStateHandler ConsumerHandlerType;
 
-	LimitAlertConditionState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	LimitAlertConditionState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	LimitAlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	LimitAlertConditionState & setActivationState(const PausableActivation & value);
-	PausableActivation getActivationState() const;
+	LimitAlertConditionState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	LimitAlertConditionState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
+
+	LimitAlertConditionState & setActivationState(const AlertActivation & value);
+	AlertActivation getActivationState() const;
+
+	LimitAlertConditionState & setActualConditionGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getActualConditionGenerationDelay() const;
+	bool getActualConditionGenerationDelay(xml_schema::Duration & out) const;
+	bool hasActualConditionGenerationDelay() const;
+
+	LimitAlertConditionState & setActualPriority(const AlertConditionPriority & value);
+	AlertConditionPriority getActualPriority() const;
+	bool getActualPriority(AlertConditionPriority & out) const;
+	bool hasActualPriority() const;
 
 	LimitAlertConditionState & setRank(const int & value);
 	int getRank() const;
@@ -82,23 +92,23 @@ public:
 
 	LimitAlertConditionState & setPresence(const bool & value);
 	bool getPresence() const;
+	bool getPresence(bool & out) const;
+	bool hasPresence() const;
 
-	LimitAlertConditionState & setObservationTime(const Timestamp & value);
-	Timestamp getObservationTime() const;
-	bool getObservationTime(Timestamp & out) const;
-	bool hasObservationTime() const;
+	LimitAlertConditionState & setDeterminationTime(const Timestamp & value);
+	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
 
 	LimitAlertConditionState & setLimits(const Range & value);
 	Range getLimits() const;
-	bool getLimits(Range & out) const;
-	bool hasLimits() const;
 
-	LimitAlertConditionState & setMonitoredAlertLimits(const MonitoredAlertLimits & value);
-	MonitoredAlertLimits getMonitoredAlertLimits() const;
+	LimitAlertConditionState & setMonitoredAlertLimits(const AlertConditionMonitoredLimits & value);
+	AlertConditionMonitoredLimits getMonitoredAlertLimits() const;
 
-	LimitAlertConditionState & setAutoLimitActivationState(const PausableActivation & value);
-	PausableActivation getAutoLimitActivationState() const;
-	bool getAutoLimitActivationState(PausableActivation & out) const;
+	LimitAlertConditionState & setAutoLimitActivationState(const AlertActivation & value);
+	AlertActivation getAutoLimitActivationState() const;
+	bool getAutoLimitActivationState(AlertActivation & out) const;
 	bool hasAutoLimitActivationState() const;
 
 private:

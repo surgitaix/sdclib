@@ -32,7 +32,7 @@
 #ifndef ORDERDETAIL_H_
 #define ORDERDETAIL_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,23 +56,27 @@ public:
     
     typedef CDM::OrderDetail WrappedType;
 
-	OrderDetail & setStart(const DateTime & value);
-	DateTime getStart() const;
-	bool getStart(DateTime & out) const;
+	OrderDetail & setStart(const xml_schema::DateTime & value);
+	xml_schema::DateTime getStart() const;
+	bool getStart(xml_schema::DateTime & out) const;
 	bool hasStart() const;
 
-	OrderDetail & setEnd(const DateTime & value);
-	DateTime getEnd() const;
-	bool getEnd(DateTime & out) const;
+	OrderDetail & setEnd(const xml_schema::DateTime & value);
+	xml_schema::DateTime getEnd() const;
+	bool getEnd(xml_schema::DateTime & out) const;
 	bool hasEnd() const;
 
 	OrderDetail & addPerformer(const PersonParticipation & value);
-	std::vector<PersonParticipation> getPerformers() const;
-	void clearPerformers();
+	std::vector<PersonParticipation> getPerformerList() const;
+	void clearPerformerList();
 	
 	OrderDetail & addService(const CodedValue & value);
-	std::vector<CodedValue> getServices() const;
-	void clearServices();
+	std::vector<CodedValue> getServiceList() const;
+	void clearServiceList();
+	
+	OrderDetail & addImagingProcedure(const ImagingProcedure & value);
+	std::vector<ImagingProcedure> getImagingProcedureList() const;
+	void clearImagingProcedureList();
 	
 private:
 	std::shared_ptr<CDM::OrderDetail> data;

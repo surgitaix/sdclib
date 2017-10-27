@@ -10,8 +10,8 @@ namespace OSELib {
 namespace OSCP {
 
 struct ActivateTraits {
-	typedef CDM::Activate Request;
-	typedef CDM::ActivateResponse Response;
+	typedef MDM::Activate Request;
+	typedef MDM::ActivateResponse Response;
 	typedef ISetService Dispatcher;
 	static std::string OperationName();
 	static xml_schema::Qname PortType();
@@ -23,8 +23,8 @@ struct ActivateTraits {
 };
 
 struct GetContextStatesTraits {
-	typedef CDM::GetContextStates Request;
-	typedef CDM::GetContextStatesResponse Response;
+	typedef MDM::GetContextStates Request;
+	typedef MDM::GetContextStatesResponse Response;
 	typedef IContextService Dispatcher;
 	static std::string OperationName();
 	static xml_schema::Qname PortType();
@@ -36,8 +36,8 @@ struct GetContextStatesTraits {
 };
 
 struct GetMDDescriptionTraits {
-	typedef CDM::GetMDDescription Request;
-	typedef CDM::GetMDDescriptionResponse Response;
+	typedef MDM::GetMdDescription Request;
+	typedef MDM::GetMdDescriptionResponse Response;
 	typedef IGetService Dispatcher;
 	static std::string OperationName();
 	static xml_schema::Qname PortType();
@@ -49,8 +49,8 @@ struct GetMDDescriptionTraits {
 };
 
 struct GetMDIBTraits {
-	typedef CDM::GetMDIB Request;
-	typedef CDM::GetMDIBResponse Response;
+	typedef MDM::GetMdib Request;
+	typedef MDM::GetMdibResponse Response;
 	typedef IGetService Dispatcher;
 	static std::string OperationName();
 	static xml_schema::Qname PortType();
@@ -61,9 +61,9 @@ struct GetMDIBTraits {
 	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
 };
 
-struct GetMDStateTraits {
-	typedef CDM::GetMDState Request;
-	typedef CDM::GetMDStateResponse Response;
+struct GetMdStateTraits {
+	typedef MDM::GetMdState Request;
+	typedef MDM::GetMdStateResponse Response;
 	typedef IGetService Dispatcher;
 	static std::string OperationName();
 	static xml_schema::Qname PortType();
@@ -75,8 +75,8 @@ struct GetMDStateTraits {
 };
 
 struct SetAlertStateTraits {
-	typedef CDM::SetAlertState Request;
-	typedef CDM::SetAlertStateResponse Response;
+	typedef MDM::SetAlertState Request;
+	typedef MDM::SetAlertStateResponse Response;
 	typedef ISetService Dispatcher;
 	static std::string OperationName();
 	static xml_schema::Qname PortType();
@@ -88,8 +88,8 @@ struct SetAlertStateTraits {
 };
 
 struct SetContextStateTraits {
-	typedef CDM::SetContextState Request;
-	typedef CDM::SetContextStateResponse Response;
+	typedef MDM::SetContextState Request;
+	typedef MDM::SetContextStateResponse Response;
 	typedef IContextService Dispatcher;
 	static std::string OperationName();
 	static xml_schema::Qname PortType();
@@ -101,8 +101,8 @@ struct SetContextStateTraits {
 };
 
 struct SetStringTraits {
-	typedef CDM::SetString Request;
-	typedef CDM::SetStringResponse Response;
+	typedef MDM::SetString Request;
+	typedef MDM::SetStringResponse Response;
 	typedef ISetService Dispatcher;
 	static std::string OperationName();
 	static xml_schema::Qname PortType();
@@ -114,8 +114,8 @@ struct SetStringTraits {
 };
 
 struct SetValueTraits {
-	typedef CDM::SetValue Request;
-	typedef CDM::SetValueResponse Response;
+	typedef MDM::SetValue Request;
+	typedef MDM::SetValueResponse Response;
 	typedef ISetService Dispatcher;
 	static std::string OperationName();
 	static xml_schema::Qname PortType();

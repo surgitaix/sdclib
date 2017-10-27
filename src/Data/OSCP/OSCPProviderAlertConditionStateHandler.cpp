@@ -22,7 +22,7 @@ OSCPProviderAlertConditionStateHandler::~OSCPProviderAlertConditionStateHandler(
 
 InvocationState OSCPProviderAlertConditionStateHandler::onStateChangeRequest(const AlertConditionState & , const OperationInvocationContext & ) {
 	log_error([] { return "Method not overridden: onStateChangeRequest(AlertConditionState)!"; });
-    return InvocationState::FAILED;
+    return InvocationState::Fail;
 }
 
 void OSCPProviderAlertConditionStateHandler::sourceHasChanged(const std::string & ) {

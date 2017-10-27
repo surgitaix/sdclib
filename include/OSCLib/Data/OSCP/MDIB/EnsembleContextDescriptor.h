@@ -32,7 +32,7 @@
 #ifndef ENSEMBLECONTEXTDESCRIPTOR_H_
 #define ENSEMBLECONTEXTDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -62,18 +62,18 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	EnsembleContextDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	EnsembleContextDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	EnsembleContextDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	EnsembleContextDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
+	EnsembleContextDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
 
 private:
 	std::shared_ptr<CDM::EnsembleContextDescriptor> data;

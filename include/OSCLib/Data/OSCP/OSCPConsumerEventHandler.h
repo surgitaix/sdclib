@@ -25,7 +25,7 @@
 #define OSCPCONSUMEREVENTHANDLER_H_
 
 #include <string>
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
 
 namespace OSCLib {

@@ -32,7 +32,7 @@
 #ifndef CLINICALINFO_H_
 #define CLINICALINFO_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -58,13 +58,26 @@ public:
 
 	ClinicalInfo & setType(const CodedValue & value);
 	CodedValue getType() const;
+	bool getType(CodedValue & out) const;
+	bool hasType() const;
 
-	ClinicalInfo & setMeasuredValue(const double & value);
-	double getMeasuredValue() const;
+	ClinicalInfo & setCode(const CodedValue & value);
+	CodedValue getCode() const;
+	bool getCode(CodedValue & out) const;
+	bool hasCode() const;
 
-	ClinicalInfo & addRelatedMeasurement(const Measure & value);
-	std::vector<Measure> getRelatedMeasurements() const;
-	void clearRelatedMeasurements();
+	ClinicalInfo & setCriticality(const Criticality & value);
+	Criticality getCriticality() const;
+	bool getCriticality(Criticality & out) const;
+	bool hasCriticality() const;
+
+	ClinicalInfo & addDescription(const LocalizedText & value);
+	std::vector<LocalizedText> getDescriptionList() const;
+	void clearDescriptionList();
+	
+	ClinicalInfo & addRelatedMeasurement(const RelatedMeasurement & value);
+	std::vector<RelatedMeasurement> getRelatedMeasurementList() const;
+	void clearRelatedMeasurementList();
 	
 private:
 	std::shared_ptr<CDM::ClinicalInfo> data;

@@ -37,6 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/BaseDemographics.h"
 
 namespace OSCLib {
@@ -72,22 +73,43 @@ PersonParticipation & PersonParticipation:: operator=(const PersonParticipation 
 }
 
 
-PersonParticipation & PersonParticipation::addName(const BaseDemographics & value) {
-	data->Name().push_back(ConvertToCDM::convert(value));
+PersonParticipation & PersonParticipation::setName(const BaseDemographics & value) {
+	data->Name(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<BaseDemographics> PersonParticipation::getNames() const {
-	std::vector<BaseDemographics> result;
-	result.reserve(data->Name().size());
-	for (const auto & value: data->Name()) {
+bool PersonParticipation::getName(BaseDemographics & out) const {
+	if (data->Name().present()) {
+		out = ConvertFromCDM::convert(data->Name().get());
+		return true;
+	}
+	return false;
+}
+
+BaseDemographics PersonParticipation::getName() const {
+	return ConvertFromCDM::convert(data->Name().get());
+}
+	
+bool PersonParticipation::hasName() const {
+	return data->Name().present();
+}
+	
+PersonParticipation & PersonParticipation::addIdentification(const InstanceIdentifier & value) {
+	data->Identification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<InstanceIdentifier> PersonParticipation::getIdentificationList() const {
+	std::vector<InstanceIdentifier> result;
+	result.reserve(data->Identification().size());
+	for (const auto & value: data->Identification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
-void PersonParticipation::clearNames() {
-	data->Name().clear();
+void PersonParticipation::clearIdentificationList() {
+	data->Identification().clear();
 }
 
 PersonParticipation & PersonParticipation::addRole(const CodedValue & value) {
@@ -95,7 +117,7 @@ PersonParticipation & PersonParticipation::addRole(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> PersonParticipation::getRoles() const {
+std::vector<CodedValue> PersonParticipation::getRoleList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->Role().size());
 	for (const auto & value: data->Role()) {
@@ -104,7 +126,7 @@ std::vector<CodedValue> PersonParticipation::getRoles() const {
 	return result;
 }
 
-void PersonParticipation::clearRoles() {
+void PersonParticipation::clearRoleList() {
 	data->Role().clear();
 }
 

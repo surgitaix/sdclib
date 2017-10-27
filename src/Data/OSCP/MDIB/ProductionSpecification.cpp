@@ -72,45 +72,45 @@ ProductionSpecification & ProductionSpecification:: operator=(const ProductionSp
 }
 
 
-ProductionSpecification & ProductionSpecification::setspecType(const CodedValue & value) {
-	data->specType(ConvertToCDM::convert(value));
+ProductionSpecification & ProductionSpecification::setSpecType(const CodedValue & value) {
+	data->SpecType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-CodedValue ProductionSpecification::getspecType() const {
-	return ConvertFromCDM::convert(data->specType());
+CodedValue ProductionSpecification::getSpecType() const {
+	return ConvertFromCDM::convert(data->SpecType());
 }
 	
-ProductionSpecification & ProductionSpecification::setproductionSpec(const std::string & value) {
-	data->productionSpec(ConvertToCDM::convert(value));
+ProductionSpecification & ProductionSpecification::setProductionSpec(const std::string & value) {
+	data->ProductionSpec(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string ProductionSpecification::getproductionSpec() const {
-	return ConvertFromCDM::convert(data->productionSpec());
+std::string ProductionSpecification::getProductionSpec() const {
+	return ConvertFromCDM::convert(data->ProductionSpec());
 }
 	
-ProductionSpecification & ProductionSpecification::setcomponentId(const InstanceIdentifier & value) {
-	data->componentId(ConvertToCDM::convert(value));
+ProductionSpecification & ProductionSpecification::setComponentId(const InstanceIdentifier & value) {
+	data->ComponentId(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ProductionSpecification::getcomponentId(InstanceIdentifier & out) const {
-	if (data->componentId().present()) {
-		out = ConvertFromCDM::convert(data->componentId().get());
+bool ProductionSpecification::getComponentId(InstanceIdentifier & out) const {
+	if (data->ComponentId().present()) {
+		out = ConvertFromCDM::convert(data->ComponentId().get());
 		return true;
 	}
 	return false;
 }
 
-InstanceIdentifier ProductionSpecification::getcomponentId() const {
-	return ConvertFromCDM::convert(data->componentId().get());
+InstanceIdentifier ProductionSpecification::getComponentId() const {
+	return ConvertFromCDM::convert(data->ComponentId().get());
 }
 	
-bool ProductionSpecification::hascomponentId() const {
-	return data->componentId().present();
+bool ProductionSpecification::hasComponentId() const {
+	return data->ComponentId().present();
 }
 	
 

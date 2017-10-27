@@ -32,7 +32,7 @@
 #ifndef CHANNELDESCRIPTOR_H_
 #define CHANNELDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,38 +61,35 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	ChannelDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	ChannelDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	ChannelDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	ChannelDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
+	ChannelDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
 
 	ChannelDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecifications() const;
-	void clearProductionSpecifications();
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
 	
-	ChannelDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
-	AlertSystemDescriptor getAlertSystem() const;
-	bool getAlertSystem(AlertSystemDescriptor & out) const;
-	bool hasAlertSystem() const;
 
-
-	std::vector<EnumStringMetricDescriptor> getEnumStringMetricDescriptors() const;
-	std::vector<NumericMetricDescriptor> getNumericMetricDescriptors() const;
-	std::vector<StringMetricDescriptor> getStringMetricDescriptors() const;
-	std::vector<RealTimeSampleArrayMetricDescriptor> getRealTimeSampleArrayMetricDescriptors() const;
+	std::vector<EnumStringMetricDescriptor> getEnumStringMetricDescriptorList() const;
+	std::vector<NumericMetricDescriptor> getNumericMetricDescriptorList() const;
+	std::vector<StringMetricDescriptor> getStringMetricDescriptorList() const;
+	std::vector<RealTimeSampleArrayMetricDescriptor> getRealTimeSampleArrayMetricDescriptorList() const;
+	std::vector<DistributionSampleArrayMetricDescriptor> getDistributionSampleArrayMetricDescriptorList() const;
 
 	ChannelDescriptor & addMetric(const EnumStringMetricDescriptor & source);
 	ChannelDescriptor & addMetric(const NumericMetricDescriptor & source);
 	ChannelDescriptor & addMetric(const StringMetricDescriptor & source);
 	ChannelDescriptor & addMetric(const RealTimeSampleArrayMetricDescriptor & source);
+	ChannelDescriptor & addMetric(const DistributionSampleArrayMetricDescriptor & source);
 
 private:
 	template<class U, class V>

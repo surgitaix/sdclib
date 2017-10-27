@@ -32,7 +32,7 @@
 #ifndef SETALERTSTATEOPERATIONDESCRIPTOR_H_
 #define SETALERTSTATEOPERATIONDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,25 +61,45 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	SetAlertStateOperationDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	SetAlertStateOperationDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	SetAlertStateOperationDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	SetAlertStateOperationDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
+	SetAlertStateOperationDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
 
-	SetAlertStateOperationDescriptor & setOperationTarget(const std::string & value);
-	std::string getOperationTarget() const;
+	SetAlertStateOperationDescriptor & setOperationTarget(const HandleRef & value);
+	HandleRef getOperationTarget() const;
 
-	SetAlertStateOperationDescriptor & addModifiableElement(const CodedValue & value);
-	std::vector<CodedValue> getModifiableElements() const;
-	void clearModifiableElements();
+	SetAlertStateOperationDescriptor & setMaxTimeToFinish(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxTimeToFinish() const;
+	bool getMaxTimeToFinish(xml_schema::Duration & out) const;
+	bool hasMaxTimeToFinish() const;
+
+	SetAlertStateOperationDescriptor & setInvocationEffectiveTimeout(const xml_schema::Duration & value);
+	xml_schema::Duration getInvocationEffectiveTimeout() const;
+	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
+	bool hasInvocationEffectiveTimeout() const;
+
+	SetAlertStateOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
+	xml_schema::Duration getRetriggerable() const;
+	bool getRetriggerable(xml_schema::Duration & out) const;
+	bool hasRetriggerable() const;
+
+	SetAlertStateOperationDescriptor & setAccessLevel(const AccessLevel & value);
+	AccessLevel getAccessLevel() const;
+	bool getAccessLevel(AccessLevel & out) const;
+	bool hasAccessLevel() const;
+
+	SetAlertStateOperationDescriptor & addModifiableData(const std::string & value);
+	std::vector<std::string> getModifiableDataList() const;
+	void clearModifiableDataList();
 	
 private:
 	std::shared_ptr<CDM::SetAlertStateOperationDescriptor> data;

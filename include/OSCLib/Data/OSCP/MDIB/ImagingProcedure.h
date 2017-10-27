@@ -32,7 +32,7 @@
 #ifndef IMAGINGPROCEDURE_H_
 #define IMAGINGPROCEDURE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -59,14 +59,14 @@ public:
 	ImagingProcedure & setAccessionIdentifier(const InstanceIdentifier & value);
 	InstanceIdentifier getAccessionIdentifier() const;
 
-	ImagingProcedure & setRequestedProcedureID(const InstanceIdentifier & value);
-	InstanceIdentifier getRequestedProcedureID() const;
+	ImagingProcedure & setRequestedProcedureId(const InstanceIdentifier & value);
+	InstanceIdentifier getRequestedProcedureId() const;
 
-	ImagingProcedure & setStudyInstanceUID(const InstanceIdentifier & value);
-	InstanceIdentifier getStudyInstanceUID() const;
+	ImagingProcedure & setStudyInstanceUid(const InstanceIdentifier & value);
+	InstanceIdentifier getStudyInstanceUid() const;
 
-	ImagingProcedure & setScheduledProcedureStepID(const InstanceIdentifier & value);
-	InstanceIdentifier getScheduledProcedureStepID() const;
+	ImagingProcedure & setScheduledProcedureStepId(const InstanceIdentifier & value);
+	InstanceIdentifier getScheduledProcedureStepId() const;
 
 	ImagingProcedure & setModality(const CodedValue & value);
 	CodedValue getModality() const;

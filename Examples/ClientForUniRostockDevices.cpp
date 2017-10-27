@@ -1,29 +1,27 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
-#include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/OSCPConstants.h
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
@@ -128,71 +126,59 @@ int main() {
 			{
         		// TODO MDIBVersion in GetMDIBResponse/MDIB node is missing so the messages fails validation.
 //				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDIB:";
-//				const auto mdib = consumer.getMDIB();
+//				const auto mdib = consumer.getMdib();
 //				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Done.";
 			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
-				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState():";
-				const auto mdstate = consumer.getMDState();
-				if (!mdstate.findComponentStates().empty()
-					&& !mdstate.findNumericMetricStates().empty()
+				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMdState():";
+				const auto mdstate = consumer.getMdState();
+				if (!mdstate.findNumericMetricStates().empty()
 					&& !mdstate.findStringMetricStates().empty()) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 				} else {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
 				}
 
-				additionalResults << "Testing getMDState():" << std::endl;
-				additionalResults << "Found " << mdstate.findComponentStates().size() << " ComponentStates." << std::endl;
+				additionalResults << "Testing getMdState():" << std::endl;
 				additionalResults << "Found " << mdstate.findEnumStringMetricStates().size() << " EnumStringMetricStates." << std::endl;
 				additionalResults << "Found " << mdstate.findNumericMetricStates().size() << " NumericMetricStates." << std::endl;
 				additionalResults << "Found " << mdstate.findStringMetricStates().size() << " StringMetricStates." << std::endl;
 			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
-			{
-				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for component state:";
-				ComponentState cs;
-				if (consumer.requestState(handle_channel1_vmd0, cs)
-						&& cs.hasComponentActivationState()
-						&& cs.getComponentActivationState() == ComponentActivation::ON) {
-					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
-				} else {
-					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
-				}
-			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for numeric metric:";
 				NumericMetricState nms;
 				if (consumer.requestState(handle_m1_get_and_episodic, nms)
-						&& nms.hasObservedValue()
-						&& (nms.getObservedValue().getValue() == numeric_initial_value
-								|| nms.getObservedValue().getValue() == numeric_some_value)) {
+						&& nms.hasMetricValue()
+						&& (nms.getMetricValue().getValue() == numeric_initial_value
+								|| nms.getMetricValue().getValue() == numeric_some_value)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 				} else {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
 				}
 			}
-			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
-			{
-				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for operation state:";
-				OperationState os;
-				if (consumer.requestState(handle_setString_operation, os)
-						&& os.getOperatingMode() == OperatingMode::ENABLED) {
-					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
-				} else {
-					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
-				}
-			}
+			// todo: reimplement for all OpertionStates
+//			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
+//			{
+//				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for operation state:";
+//				OperationState os;
+//				if (consumer.requestState(handle_setString_operation, os)
+//						&& os.getOperatingMode() == OperatingMode::En) {
+//					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
+//				} else {
+//					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
+//				}
+//			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for string metric:";
 				StringMetricState sms;
 				if (consumer.requestState(handle_sm1_get_and_episodic_and_periodic, sms)
-						&& sms.hasObservedValue()
-						&& (sms.getObservedValue().getValue() == string_initial_value
-								|| sms.getObservedValue().getValue() == string_some_value)) {
+						&& sms.hasMetricValue()
+						&& (sms.getMetricValue().getValue() == string_initial_value
+								|| sms.getMetricValue().getValue() == string_some_value)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 				} else {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
@@ -200,9 +186,9 @@ int main() {
 			}
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
-				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDDescription():";
-				const auto mddescription = consumer.getMDDescription();
-				if (!mddescription.collectAllHydraMDSDescriptors().empty()
+				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMdDescription():";
+				const auto mddescription = consumer.getMdDescription();
+				if (!mddescription.collectAllMdsDescriptors().empty()
 						&& !mddescription.collectAllNumericMetricDescriptors().empty()
 						&& !mddescription.collectAllStringMetricDescriptors().empty()) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
@@ -210,9 +196,9 @@ int main() {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
 				}
 
-				additionalResults << "Testing getMDDescription():" << std::endl;
+				additionalResults << "Testing getMdDescription():" << std::endl;
 				additionalResults << "Found " << mddescription.collectAllEnumStringMetricDescriptors().size() << " EnumStringMetricDescriptors." << std::endl;
-				additionalResults << "Found " << mddescription.collectAllHydraMDSDescriptors().size() << " HydraMDSDescriptors." << std::endl;
+				additionalResults << "Found " << mddescription.collectAllMdsDescriptors().size() << " HydraMDSDescriptors." << std::endl;
 				additionalResults << "Found " << mddescription.collectAllNumericMetricDescriptors().size() << " NumericMetricDescriptors." << std::endl;
 				additionalResults << "Found " << mddescription.collectAllStringMetricDescriptors().size() << " StringMetricDescriptors." << std::endl;
 			}
@@ -222,14 +208,14 @@ int main() {
 				additionalResults << "Testing setValue():" << std::endl;
 				NumericMetricState nms;
 				nms	.setDescriptorHandle(handle_m1_get_and_episodic)
-					.setObservedValue(NumericMetricValue().setValue(numeric_some_value));
+					.setMetricValue(NumericMetricValue().setValue(numeric_some_value));
 				FutureInvocationState fut;
-				if (consumer.commitState(nms, fut) == InvocationState::WAITING) {
+				if (consumer.commitState(nms, fut) == InvocationState::Wait) {
 					additionalResults << "Request accepted." << std::endl;
 				} else {
 					additionalResults << "Request rejected." << std::endl;
 				}
-				if (fut.waitReceived(InvocationState::FINISHED, 1000)) {
+				if (fut.waitReceived(InvocationState::Fin, 1000)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 					additionalResults << "Request successful." << std::endl;
 				} else {
@@ -243,14 +229,14 @@ int main() {
 				additionalResults << "Testing setString():" << std::endl;
 				StringMetricState sms;
 				sms	.setDescriptorHandle(handle_sm1_get_and_episodic_and_periodic)
-					.setObservedValue(StringMetricValue().setValue(string_some_value));
+					.setMetricValue(StringMetricValue().setValue(string_some_value));
 				FutureInvocationState fut;
-				if (consumer.commitState(sms, fut) == InvocationState::WAITING) {
+				if (consumer.commitState(sms, fut) == InvocationState::Wait) {
 					additionalResults << "Request accepted." << std::endl;
 				} else {
 					additionalResults << "Request rejected." << std::endl;
 				}
-				if (fut.waitReceived(InvocationState::FINISHED, 1000)) {
+				if (fut.waitReceived(InvocationState::Fin, 1000)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 					additionalResults << "Request successful." << std::endl;
 				} else {
@@ -267,10 +253,10 @@ int main() {
 				Poco::Thread::sleep(1000);
 				NumericMetricState nms;
 				nms	.setDescriptorHandle(handle_m1_get_and_episodic)
-					.setObservedValue(NumericMetricValue().setValue(numeric_initial_value));
+					.setMetricValue(NumericMetricValue().setValue(numeric_initial_value));
 				FutureInvocationState fut;
 				consumer.commitState(nms, fut);
-				fut.waitReceived(InvocationState::FINISHED, 1000);
+				fut.waitReceived(InvocationState::Fin, 1000);
 				Poco::Thread::sleep(1000);
 
 				const unsigned int after(episodicHandler.receivedEventsCounter);
@@ -304,10 +290,10 @@ int main() {
 				Poco::Thread::sleep(1000);
 				StringMetricState sms;
 				sms	.setDescriptorHandle(handle_sm1_get_and_episodic_and_periodic)
-					.setObservedValue(StringMetricValue().setValue(string_some_value));
+					.setMetricValue(StringMetricValue().setValue(string_some_value));
 				FutureInvocationState fut;
 				consumer.commitState(sms, fut);
-				fut.waitReceived(InvocationState::FINISHED, 1000);
+				fut.waitReceived(InvocationState::Fin, 1000);
 				Poco::Thread::sleep(5000);
 
 				const unsigned int after(combinedHandler.receivedEventsCounter);

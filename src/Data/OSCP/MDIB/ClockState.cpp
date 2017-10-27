@@ -37,9 +37,8 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/TimeZone.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -74,37 +73,6 @@ ClockState & ClockState:: operator=(const ClockState & object) {
 }
 
 
-ClockState & ClockState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ClockState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
-		return true;
-	}
-	return false;
-}
-
-std::string ClockState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
-}
-	
-bool ClockState::hasHandle() const {
-	return data->Handle().present();
-}
-	
-ClockState & ClockState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string ClockState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 ClockState & ClockState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,6 +92,163 @@ VersionCounter ClockState::getStateVersion() const {
 	
 bool ClockState::hasStateVersion() const {
 	return data->StateVersion().present();
+}
+	
+ClockState & ClockState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef ClockState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+ClockState & ClockState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
+
+ReferencedVersion ClockState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool ClockState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
+}
+	
+ClockState & ClockState::setCalibrationInfo(const CalibrationInfo & value) {
+	data->CalibrationInfo(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockState::getCalibrationInfo(CalibrationInfo & out) const {
+	if (data->CalibrationInfo().present()) {
+		out = ConvertFromCDM::convert(data->CalibrationInfo().get());
+		return true;
+	}
+	return false;
+}
+
+CalibrationInfo ClockState::getCalibrationInfo() const {
+	return ConvertFromCDM::convert(data->CalibrationInfo().get());
+}
+	
+bool ClockState::hasCalibrationInfo() const {
+	return data->CalibrationInfo().present();
+}
+	
+ClockState & ClockState::setNextCalibration(const CalibrationInfo & value) {
+	data->NextCalibration(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockState::getNextCalibration(CalibrationInfo & out) const {
+	if (data->NextCalibration().present()) {
+		out = ConvertFromCDM::convert(data->NextCalibration().get());
+		return true;
+	}
+	return false;
+}
+
+CalibrationInfo ClockState::getNextCalibration() const {
+	return ConvertFromCDM::convert(data->NextCalibration().get());
+}
+	
+bool ClockState::hasNextCalibration() const {
+	return data->NextCalibration().present();
+}
+	
+ClockState & ClockState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
+	data->PhysicalConnector(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
+	if (data->PhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+		return true;
+	}
+	return false;
+}
+
+PhysicalConnectorInfo ClockState::getPhysicalConnector() const {
+	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+}
+	
+bool ClockState::hasPhysicalConnector() const {
+	return data->PhysicalConnector().present();
+}
+	
+ClockState & ClockState::setActivationState(const ComponentActivation & value) {
+	data->ActivationState(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
+		return true;
+	}
+	return false;
+}
+
+ComponentActivation ClockState::getActivationState() const {
+	return ConvertFromCDM::convert(data->ActivationState().get());
+}
+	
+bool ClockState::hasActivationState() const {
+	return data->ActivationState().present();
+}
+	
+ClockState & ClockState::setOperatingHours(const unsigned int & value) {
+	data->OperatingHours(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockState::getOperatingHours(unsigned int & out) const {
+	if (data->OperatingHours().present()) {
+		out = ConvertFromCDM::convert(data->OperatingHours().get());
+		return true;
+	}
+	return false;
+}
+
+unsigned int ClockState::getOperatingHours() const {
+	return ConvertFromCDM::convert(data->OperatingHours().get());
+}
+	
+bool ClockState::hasOperatingHours() const {
+	return data->OperatingHours().present();
+}
+	
+ClockState & ClockState::setOperatingCycles(const int & value) {
+	data->OperatingCycles(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClockState::getOperatingCycles(int & out) const {
+	if (data->OperatingCycles().present()) {
+		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+		return true;
+	}
+	return false;
+}
+
+int ClockState::getOperatingCycles() const {
+	return ConvertFromCDM::convert(data->OperatingCycles().get());
+}
+	
+bool ClockState::hasOperatingCycles() const {
+	return data->OperatingCycles().present();
 }
 	
 ClockState & ClockState::setActiveSyncProtocol(const CodedValue & value) {
@@ -176,27 +301,6 @@ ClockState & ClockState::setRemoteSync(const bool & value) {
 
 bool ClockState::getRemoteSync() const {
 	return ConvertFromCDM::convert(data->RemoteSync());
-}
-	
-ClockState & ClockState::setReferenceSource(const std::string & value) {
-	data->ReferenceSource(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ClockState::getReferenceSource(std::string & out) const {
-	if (data->ReferenceSource().present()) {
-		out = ConvertFromCDM::convert(data->ReferenceSource().get());
-		return true;
-	}
-	return false;
-}
-
-std::string ClockState::getReferenceSource() const {
-	return ConvertFromCDM::convert(data->ReferenceSource().get());
-}
-	
-bool ClockState::hasReferenceSource() const {
-	return data->ReferenceSource().present();
 }
 	
 ClockState & ClockState::setAccuracy(const double & value) {
@@ -283,6 +387,24 @@ bool ClockState::hasCriticalUse() const {
 	return data->CriticalUse().present();
 }
 	
+ClockState & ClockState::addReferenceSource(const std::string & value) {
+	data->ReferenceSource().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<std::string> ClockState::getReferenceSourceList() const {
+	std::vector<std::string> result;
+	result.reserve(data->ReferenceSource().size());
+	for (const auto & value: data->ReferenceSource()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ClockState::clearReferenceSourceList() {
+	data->ReferenceSource().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

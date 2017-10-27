@@ -1,8 +1,8 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
@@ -15,11 +15,11 @@
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
@@ -31,7 +31,7 @@
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
-#include "OSCLib/Data/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/OSCPConstants.h
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertSignalStateHandler.h"
@@ -213,7 +213,7 @@ int main (int argc, char * argv[])
 	std::unique_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(epr));
 	if (consumer) {
 		DebugOut(DebugOut::Default, "GenericSubscription") << "Connected to device with epr: " << epr;
-		const MDDescription mdd(consumer->getMDDescription());
+		const MDDescription mdd(consumer->getMdDescription());
 
 		std::vector<std::unique_ptr<OSCPConsumerEventHandler>> handlers;
 

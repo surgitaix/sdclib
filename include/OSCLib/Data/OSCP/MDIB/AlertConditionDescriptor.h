@@ -32,7 +32,7 @@
 #ifndef ALERTCONDITIONDESCRIPTOR_H_
 #define ALERTCONDITIONDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,18 +61,18 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	AlertConditionDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	AlertConditionDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	AlertConditionDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	AlertConditionDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
+	AlertConditionDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
 
 	AlertConditionDescriptor & setKind(const AlertConditionKind & value);
 	AlertConditionKind getKind() const;
@@ -80,13 +80,28 @@ public:
 	AlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getPriority() const;
 
-	AlertConditionDescriptor & addSource(const std::string & value);
-	std::vector<std::string> getSources() const;
-	void clearSources();
+	AlertConditionDescriptor & setDefaultConditionGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getDefaultConditionGenerationDelay() const;
+	bool getDefaultConditionGenerationDelay(xml_schema::Duration & out) const;
+	bool hasDefaultConditionGenerationDelay() const;
+
+	AlertConditionDescriptor & setCanEscalate(const CanEscalate & value);
+	CanEscalate getCanEscalate() const;
+	bool getCanEscalate(CanEscalate & out) const;
+	bool hasCanEscalate() const;
+
+	AlertConditionDescriptor & setCanDeescalate(const CanDeescalate & value);
+	CanDeescalate getCanDeescalate() const;
+	bool getCanDeescalate(CanDeescalate & out) const;
+	bool hasCanDeescalate() const;
+
+	AlertConditionDescriptor & addSource(const HandleRef & value);
+	std::vector<HandleRef> getSourceList() const;
+	void clearSourceList();
 	
 	AlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
-	std::vector<CauseInfo> getCauseInfo() const;
-	void clearCauseInfo();
+	std::vector<CauseInfo> getCauseInfoList() const;
+	void clearCauseInfoList();
 	
 private:
 	std::shared_ptr<CDM::AlertConditionDescriptor> data;

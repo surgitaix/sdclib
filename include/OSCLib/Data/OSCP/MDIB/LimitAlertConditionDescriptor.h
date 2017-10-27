@@ -32,7 +32,7 @@
 #ifndef LIMITALERTCONDITIONDESCRIPTOR_H_
 #define LIMITALERTCONDITIONDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,18 +61,18 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	LimitAlertConditionDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	LimitAlertConditionDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	LimitAlertConditionDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	LimitAlertConditionDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
+	LimitAlertConditionDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
 
 	LimitAlertConditionDescriptor & setKind(const AlertConditionKind & value);
 	AlertConditionKind getKind() const;
@@ -80,13 +80,28 @@ public:
 	LimitAlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getPriority() const;
 
-	LimitAlertConditionDescriptor & addSource(const std::string & value);
-	std::vector<std::string> getSources() const;
-	void clearSources();
+	LimitAlertConditionDescriptor & setDefaultConditionGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getDefaultConditionGenerationDelay() const;
+	bool getDefaultConditionGenerationDelay(xml_schema::Duration & out) const;
+	bool hasDefaultConditionGenerationDelay() const;
+
+	LimitAlertConditionDescriptor & setCanEscalate(const CanEscalate & value);
+	CanEscalate getCanEscalate() const;
+	bool getCanEscalate(CanEscalate & out) const;
+	bool hasCanEscalate() const;
+
+	LimitAlertConditionDescriptor & setCanDeescalate(const CanDeescalate & value);
+	CanDeescalate getCanDeescalate() const;
+	bool getCanDeescalate(CanDeescalate & out) const;
+	bool hasCanDeescalate() const;
+
+	LimitAlertConditionDescriptor & addSource(const HandleRef & value);
+	std::vector<HandleRef> getSourceList() const;
+	void clearSourceList();
 	
 	LimitAlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
-	std::vector<CauseInfo> getCauseInfo() const;
-	void clearCauseInfo();
+	std::vector<CauseInfo> getCauseInfoList() const;
+	void clearCauseInfoList();
 	
 	LimitAlertConditionDescriptor & setMaxLimits(const Range & value);
 	Range getMaxLimits() const;

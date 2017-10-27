@@ -37,8 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -94,13 +92,13 @@ bool SetValueOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-SetValueOperationDescriptor & SetValueOperationDescriptor::setHandle(const std::string & value) {
+SetValueOperationDescriptor & SetValueOperationDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetValueOperationDescriptor::getHandle() const {
+Handle SetValueOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -125,55 +123,121 @@ bool SetValueOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-SetValueOperationDescriptor & SetValueOperationDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
+SetValueOperationDescriptor & SetValueOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetValueOperationDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
+bool SetValueOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
-IntendedUse SetValueOperationDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
+SafetyClassification SetValueOperationDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool SetValueOperationDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
+bool SetValueOperationDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
 }
 	
-SetValueOperationDescriptor & SetValueOperationDescriptor::setOperationTarget(const std::string & value) {
+SetValueOperationDescriptor & SetValueOperationDescriptor::setOperationTarget(const HandleRef & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string SetValueOperationDescriptor::getOperationTarget() const {
+HandleRef SetValueOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
 	
-SetValueOperationDescriptor & SetValueOperationDescriptor::addModifiableElement(const CodedValue & value) {
-	data->ModifiableElement().push_back(ConvertToCDM::convert(value));
+SetValueOperationDescriptor & SetValueOperationDescriptor::setMaxTimeToFinish(const xml_schema::Duration & value) {
+	data->MaxTimeToFinish(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<CodedValue> SetValueOperationDescriptor::getModifiableElements() const {
-	std::vector<CodedValue> result;
-	result.reserve(data->ModifiableElement().size());
-	for (const auto & value: data->ModifiableElement()) {
-		result.push_back(ConvertFromCDM::convert(value));
+bool SetValueOperationDescriptor::getMaxTimeToFinish(xml_schema::Duration & out) const {
+	if (data->MaxTimeToFinish().present()) {
+		out = ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+		return true;
 	}
-	return result;
+	return false;
 }
 
-void SetValueOperationDescriptor::clearModifiableElements() {
-	data->ModifiableElement().clear();
+xml_schema::Duration SetValueOperationDescriptor::getMaxTimeToFinish() const {
+	return ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+}
+	
+bool SetValueOperationDescriptor::hasMaxTimeToFinish() const {
+	return data->MaxTimeToFinish().present();
+}
+	
+SetValueOperationDescriptor & SetValueOperationDescriptor::setInvocationEffectiveTimeout(const xml_schema::Duration & value) {
+	data->InvocationEffectiveTimeout(ConvertToCDM::convert(value));
+	return *this;
 }
 
+bool SetValueOperationDescriptor::getInvocationEffectiveTimeout(xml_schema::Duration & out) const {
+	if (data->InvocationEffectiveTimeout().present()) {
+		out = ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration SetValueOperationDescriptor::getInvocationEffectiveTimeout() const {
+	return ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+}
+	
+bool SetValueOperationDescriptor::hasInvocationEffectiveTimeout() const {
+	return data->InvocationEffectiveTimeout().present();
+}
+	
+SetValueOperationDescriptor & SetValueOperationDescriptor::setRetriggerable(const xml_schema::Duration & value) {
+	data->Retriggerable(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SetValueOperationDescriptor::getRetriggerable(xml_schema::Duration & out) const {
+	if (data->Retriggerable().present()) {
+		out = ConvertFromCDM::convert(data->Retriggerable().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration SetValueOperationDescriptor::getRetriggerable() const {
+	return ConvertFromCDM::convert(data->Retriggerable().get());
+}
+	
+bool SetValueOperationDescriptor::hasRetriggerable() const {
+	return data->Retriggerable().present();
+}
+	
+SetValueOperationDescriptor & SetValueOperationDescriptor::setAccessLevel(const AccessLevel & value) {
+	data->AccessLevel(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SetValueOperationDescriptor::getAccessLevel(AccessLevel & out) const {
+	if (data->AccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->AccessLevel().get());
+		return true;
+	}
+	return false;
+}
+
+AccessLevel SetValueOperationDescriptor::getAccessLevel() const {
+	return ConvertFromCDM::convert(data->AccessLevel().get());
+}
+	
+bool SetValueOperationDescriptor::hasAccessLevel() const {
+	return data->AccessLevel().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

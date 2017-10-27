@@ -42,619 +42,583 @@
 
 namespace CDM
 {
-  // DICOMTransferRole
+  // DicomTransferRole
   // 
 
-  DICOMTransferRole::
-  DICOMTransferRole (Value v)
-  : ::xml_schema::String (_xsd_DICOMTransferRole_literals_[v])
+  DicomTransferRole::
+  DicomTransferRole (Value v)
+  : ::xml_schema::String (_xsd_DicomTransferRole_literals_[v])
   {
   }
 
-  DICOMTransferRole::
-  DICOMTransferRole (const char* v)
+  DicomTransferRole::
+  DicomTransferRole (const char* v)
   : ::xml_schema::String (v)
   {
   }
 
-  DICOMTransferRole::
-  DICOMTransferRole (const ::std::string& v)
+  DicomTransferRole::
+  DicomTransferRole (const ::std::string& v)
   : ::xml_schema::String (v)
   {
   }
 
-  DICOMTransferRole::
-  DICOMTransferRole (const ::xml_schema::String& v)
+  DicomTransferRole::
+  DicomTransferRole (const ::xml_schema::String& v)
   : ::xml_schema::String (v)
   {
   }
 
-  DICOMTransferRole::
-  DICOMTransferRole (const DICOMTransferRole& v,
+  DicomTransferRole::
+  DicomTransferRole (const DicomTransferRole& v,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
   : ::xml_schema::String (v, f, c)
   {
   }
 
-  DICOMTransferRole& DICOMTransferRole::
+  DicomTransferRole& DicomTransferRole::
   operator= (Value v)
   {
     static_cast< ::xml_schema::String& > (*this) = 
-    ::xml_schema::String (_xsd_DICOMTransferRole_literals_[v]);
+    ::xml_schema::String (_xsd_DicomTransferRole_literals_[v]);
 
     return *this;
   }
 
 
-  // DICOMTransferCapability
+  // DicomTransferCapability
   // 
 
-  const DICOMTransferCapability::TransferSyntaxSequence& DICOMTransferCapability::
+  const DicomTransferCapability::TransferSyntaxSequence& DicomTransferCapability::
   TransferSyntax () const
   {
     return this->TransferSyntax_;
   }
 
-  DICOMTransferCapability::TransferSyntaxSequence& DICOMTransferCapability::
+  DicomTransferCapability::TransferSyntaxSequence& DicomTransferCapability::
   TransferSyntax ()
   {
     return this->TransferSyntax_;
   }
 
-  void DICOMTransferCapability::
+  void DicomTransferCapability::
   TransferSyntax (const TransferSyntaxSequence& s)
   {
     this->TransferSyntax_ = s;
   }
 
-  const DICOMTransferCapability::SOPClassType& DICOMTransferCapability::
-  SOPClass () const
+  const DicomTransferCapability::SopClassType& DicomTransferCapability::
+  SopClass () const
   {
-    return this->SOPClass_.get ();
+    return this->SopClass_.get ();
   }
 
-  DICOMTransferCapability::SOPClassType& DICOMTransferCapability::
-  SOPClass ()
+  DicomTransferCapability::SopClassType& DicomTransferCapability::
+  SopClass ()
   {
-    return this->SOPClass_.get ();
+    return this->SopClass_.get ();
   }
 
-  void DICOMTransferCapability::
-  SOPClass (const SOPClassType& x)
+  void DicomTransferCapability::
+  SopClass (const SopClassType& x)
   {
-    this->SOPClass_.set (x);
+    this->SopClass_.set (x);
   }
 
-  void DICOMTransferCapability::
-  SOPClass (::std::unique_ptr< SOPClassType > x)
+  void DicomTransferCapability::
+  SopClass (::std::unique_ptr< SopClassType > x)
   {
-    this->SOPClass_.set (std::move (x));
+    this->SopClass_.set (std::move (x));
   }
 
-  const DICOMTransferCapability::TransferRoleType& DICOMTransferCapability::
+  const DicomTransferCapability::TransferRoleType& DicomTransferCapability::
   TransferRole () const
   {
     return this->TransferRole_.get ();
   }
 
-  DICOMTransferCapability::TransferRoleType& DICOMTransferCapability::
+  DicomTransferCapability::TransferRoleType& DicomTransferCapability::
   TransferRole ()
   {
     return this->TransferRole_.get ();
   }
 
-  void DICOMTransferCapability::
+  void DicomTransferCapability::
   TransferRole (const TransferRoleType& x)
   {
     this->TransferRole_.set (x);
   }
 
-  void DICOMTransferCapability::
+  void DicomTransferCapability::
   TransferRole (::std::unique_ptr< TransferRoleType > x)
   {
     this->TransferRole_.set (std::move (x));
   }
 
 
-  // DICOMNetworkAE
+  // DicomNetworkAe
   // 
 
-  const DICOMNetworkAE::TransferCapabilitySequence& DICOMNetworkAE::
+  const DicomNetworkAe::TransferCapabilitySequence& DicomNetworkAe::
   TransferCapability () const
   {
     return this->TransferCapability_;
   }
 
-  DICOMNetworkAE::TransferCapabilitySequence& DICOMNetworkAE::
+  DicomNetworkAe::TransferCapabilitySequence& DicomNetworkAe::
   TransferCapability ()
   {
     return this->TransferCapability_;
   }
 
-  void DICOMNetworkAE::
+  void DicomNetworkAe::
   TransferCapability (const TransferCapabilitySequence& s)
   {
     this->TransferCapability_ = s;
   }
 
-  const DICOMNetworkAE::ApplicationClusterSequence& DICOMNetworkAE::
+  const DicomNetworkAe::ApplicationClusterSequence& DicomNetworkAe::
   ApplicationCluster () const
   {
     return this->ApplicationCluster_;
   }
 
-  DICOMNetworkAE::ApplicationClusterSequence& DICOMNetworkAE::
+  DicomNetworkAe::ApplicationClusterSequence& DicomNetworkAe::
   ApplicationCluster ()
   {
     return this->ApplicationCluster_;
   }
 
-  void DICOMNetworkAE::
+  void DicomNetworkAe::
   ApplicationCluster (const ApplicationClusterSequence& s)
   {
     this->ApplicationCluster_ = s;
   }
 
-  const DICOMNetworkAE::SupportedCharacterSetSequence& DICOMNetworkAE::
+  const DicomNetworkAe::SupportedCharacterSetSequence& DicomNetworkAe::
   SupportedCharacterSet () const
   {
     return this->SupportedCharacterSet_;
   }
 
-  DICOMNetworkAE::SupportedCharacterSetSequence& DICOMNetworkAE::
+  DicomNetworkAe::SupportedCharacterSetSequence& DicomNetworkAe::
   SupportedCharacterSet ()
   {
     return this->SupportedCharacterSet_;
   }
 
-  void DICOMNetworkAE::
+  void DicomNetworkAe::
   SupportedCharacterSet (const SupportedCharacterSetSequence& s)
   {
     this->SupportedCharacterSet_ = s;
   }
 
-  const DICOMNetworkAE::AETitleType& DICOMNetworkAE::
-  AETitle () const
-  {
-    return this->AETitle_.get ();
-  }
-
-  DICOMNetworkAE::AETitleType& DICOMNetworkAE::
-  AETitle ()
-  {
-    return this->AETitle_.get ();
-  }
-
-  void DICOMNetworkAE::
-  AETitle (const AETitleType& x)
-  {
-    this->AETitle_.set (x);
-  }
-
-  void DICOMNetworkAE::
-  AETitle (::std::unique_ptr< AETitleType > x)
-  {
-    this->AETitle_.set (std::move (x));
-  }
-
-  const DICOMNetworkAE::NetworkConnectionReferenceType& DICOMNetworkAE::
-  NetworkConnectionReference () const
-  {
-    return this->NetworkConnectionReference_.get ();
-  }
-
-  DICOMNetworkAE::NetworkConnectionReferenceType& DICOMNetworkAE::
-  NetworkConnectionReference ()
-  {
-    return this->NetworkConnectionReference_.get ();
-  }
-
-  void DICOMNetworkAE::
-  NetworkConnectionReference (const NetworkConnectionReferenceType& x)
-  {
-    this->NetworkConnectionReference_.set (x);
-  }
-
-  void DICOMNetworkAE::
-  NetworkConnectionReference (::std::unique_ptr< NetworkConnectionReferenceType > x)
-  {
-    this->NetworkConnectionReference_.set (std::move (x));
-  }
-
-  const DICOMNetworkAE::AssociationInitiatorType& DICOMNetworkAE::
-  AssociationInitiator () const
-  {
-    return this->AssociationInitiator_.get ();
-  }
-
-  DICOMNetworkAE::AssociationInitiatorType& DICOMNetworkAE::
-  AssociationInitiator ()
-  {
-    return this->AssociationInitiator_.get ();
-  }
-
-  void DICOMNetworkAE::
-  AssociationInitiator (const AssociationInitiatorType& x)
-  {
-    this->AssociationInitiator_.set (x);
-  }
-
-  const DICOMNetworkAE::AssociationAcceptorType& DICOMNetworkAE::
-  AssociationAcceptor () const
-  {
-    return this->AssociationAcceptor_.get ();
-  }
-
-  DICOMNetworkAE::AssociationAcceptorType& DICOMNetworkAE::
-  AssociationAcceptor ()
-  {
-    return this->AssociationAcceptor_.get ();
-  }
-
-  void DICOMNetworkAE::
-  AssociationAcceptor (const AssociationAcceptorType& x)
-  {
-    this->AssociationAcceptor_.set (x);
-  }
-
-  const DICOMNetworkAE::DescriptionOptional& DICOMNetworkAE::
+  const DicomNetworkAe::DescriptionSequence& DicomNetworkAe::
   Description () const
   {
     return this->Description_;
   }
 
-  DICOMNetworkAE::DescriptionOptional& DICOMNetworkAE::
+  DicomNetworkAe::DescriptionSequence& DicomNetworkAe::
   Description ()
   {
     return this->Description_;
   }
 
-  void DICOMNetworkAE::
-  Description (const DescriptionType& x)
+  void DicomNetworkAe::
+  Description (const DescriptionSequence& s)
   {
-    this->Description_.set (x);
+    this->Description_ = s;
   }
 
-  void DICOMNetworkAE::
-  Description (const DescriptionOptional& x)
+  const DicomNetworkAe::AeTitleType& DicomNetworkAe::
+  AeTitle () const
   {
-    this->Description_ = x;
+    return this->AeTitle_.get ();
   }
 
-  void DICOMNetworkAE::
-  Description (::std::unique_ptr< DescriptionType > x)
+  DicomNetworkAe::AeTitleType& DicomNetworkAe::
+  AeTitle ()
   {
-    this->Description_.set (std::move (x));
+    return this->AeTitle_.get ();
+  }
+
+  void DicomNetworkAe::
+  AeTitle (const AeTitleType& x)
+  {
+    this->AeTitle_.set (x);
+  }
+
+  void DicomNetworkAe::
+  AeTitle (::std::unique_ptr< AeTitleType > x)
+  {
+    this->AeTitle_.set (std::move (x));
+  }
+
+  const DicomNetworkAe::NetworkConnectionReferenceType& DicomNetworkAe::
+  NetworkConnectionReference () const
+  {
+    return this->NetworkConnectionReference_.get ();
+  }
+
+  DicomNetworkAe::NetworkConnectionReferenceType& DicomNetworkAe::
+  NetworkConnectionReference ()
+  {
+    return this->NetworkConnectionReference_.get ();
+  }
+
+  void DicomNetworkAe::
+  NetworkConnectionReference (const NetworkConnectionReferenceType& x)
+  {
+    this->NetworkConnectionReference_.set (x);
+  }
+
+  void DicomNetworkAe::
+  NetworkConnectionReference (::std::unique_ptr< NetworkConnectionReferenceType > x)
+  {
+    this->NetworkConnectionReference_.set (std::move (x));
+  }
+
+  const DicomNetworkAe::AssociationInitiatorType& DicomNetworkAe::
+  AssociationInitiator () const
+  {
+    return this->AssociationInitiator_.get ();
+  }
+
+  DicomNetworkAe::AssociationInitiatorType& DicomNetworkAe::
+  AssociationInitiator ()
+  {
+    return this->AssociationInitiator_.get ();
+  }
+
+  void DicomNetworkAe::
+  AssociationInitiator (const AssociationInitiatorType& x)
+  {
+    this->AssociationInitiator_.set (x);
+  }
+
+  const DicomNetworkAe::AssociationAcceptorType& DicomNetworkAe::
+  AssociationAcceptor () const
+  {
+    return this->AssociationAcceptor_.get ();
+  }
+
+  DicomNetworkAe::AssociationAcceptorType& DicomNetworkAe::
+  AssociationAcceptor ()
+  {
+    return this->AssociationAcceptor_.get ();
+  }
+
+  void DicomNetworkAe::
+  AssociationAcceptor (const AssociationAcceptorType& x)
+  {
+    this->AssociationAcceptor_.set (x);
   }
 
 
-  // DICOMNetworkConnection
+  // DicomNetworkConnection
   // 
 
-  const DICOMNetworkConnection::TLSCipherSuiteSequence& DICOMNetworkConnection::
-  TLSCipherSuite () const
+  const DicomNetworkConnection::TlsCipherSuiteSequence& DicomNetworkConnection::
+  TlsCipherSuite () const
   {
-    return this->TLSCipherSuite_;
+    return this->TlsCipherSuite_;
   }
 
-  DICOMNetworkConnection::TLSCipherSuiteSequence& DICOMNetworkConnection::
-  TLSCipherSuite ()
+  DicomNetworkConnection::TlsCipherSuiteSequence& DicomNetworkConnection::
+  TlsCipherSuite ()
   {
-    return this->TLSCipherSuite_;
+    return this->TlsCipherSuite_;
   }
 
-  void DICOMNetworkConnection::
-  TLSCipherSuite (const TLSCipherSuiteSequence& s)
+  void DicomNetworkConnection::
+  TlsCipherSuite (const TlsCipherSuiteSequence& s)
   {
-    this->TLSCipherSuite_ = s;
+    this->TlsCipherSuite_ = s;
   }
 
-  const DICOMNetworkConnection::IdType& DICOMNetworkConnection::
+  const DicomNetworkConnection::IdType& DicomNetworkConnection::
   id () const
   {
     return this->id_.get ();
   }
 
-  DICOMNetworkConnection::IdType& DICOMNetworkConnection::
+  DicomNetworkConnection::IdType& DicomNetworkConnection::
   id ()
   {
     return this->id_.get ();
   }
 
-  void DICOMNetworkConnection::
+  void DicomNetworkConnection::
   id (const IdType& x)
   {
     this->id_.set (x);
   }
 
-  void DICOMNetworkConnection::
+  void DicomNetworkConnection::
   id (::std::unique_ptr< IdType > x)
   {
     this->id_.set (std::move (x));
   }
 
-  const DICOMNetworkConnection::HostnameType& DICOMNetworkConnection::
+  const DicomNetworkConnection::HostnameType& DicomNetworkConnection::
   Hostname () const
   {
     return this->Hostname_.get ();
   }
 
-  DICOMNetworkConnection::HostnameType& DICOMNetworkConnection::
+  DicomNetworkConnection::HostnameType& DicomNetworkConnection::
   Hostname ()
   {
     return this->Hostname_.get ();
   }
 
-  void DICOMNetworkConnection::
+  void DicomNetworkConnection::
   Hostname (const HostnameType& x)
   {
     this->Hostname_.set (x);
   }
 
-  void DICOMNetworkConnection::
+  void DicomNetworkConnection::
   Hostname (::std::unique_ptr< HostnameType > x)
   {
     this->Hostname_.set (std::move (x));
   }
 
-  const DICOMNetworkConnection::PortOptional& DICOMNetworkConnection::
+  const DicomNetworkConnection::PortOptional& DicomNetworkConnection::
   Port () const
   {
     return this->Port_;
   }
 
-  DICOMNetworkConnection::PortOptional& DICOMNetworkConnection::
+  DicomNetworkConnection::PortOptional& DicomNetworkConnection::
   Port ()
   {
     return this->Port_;
   }
 
-  void DICOMNetworkConnection::
+  void DicomNetworkConnection::
   Port (const PortType& x)
   {
     this->Port_.set (x);
   }
 
-  void DICOMNetworkConnection::
+  void DicomNetworkConnection::
   Port (const PortOptional& x)
   {
     this->Port_ = x;
   }
 
 
-  // DICOMDeviceDescriptor
+  // DicomDeviceDescriptor
   // 
 
-  const DICOMDeviceDescriptor::NetworkAESequence& DICOMDeviceDescriptor::
-  NetworkAE () const
+  const DicomDeviceDescriptor::NetworkAeSequence& DicomDeviceDescriptor::
+  NetworkAe () const
   {
-    return this->NetworkAE_;
+    return this->NetworkAe_;
   }
 
-  DICOMDeviceDescriptor::NetworkAESequence& DICOMDeviceDescriptor::
-  NetworkAE ()
+  DicomDeviceDescriptor::NetworkAeSequence& DicomDeviceDescriptor::
+  NetworkAe ()
   {
-    return this->NetworkAE_;
+    return this->NetworkAe_;
   }
 
-  void DICOMDeviceDescriptor::
-  NetworkAE (const NetworkAESequence& s)
+  void DicomDeviceDescriptor::
+  NetworkAe (const NetworkAeSequence& s)
   {
-    this->NetworkAE_ = s;
+    this->NetworkAe_ = s;
   }
 
-  const DICOMDeviceDescriptor::NetworkConnectionSequence& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::NetworkConnectionSequence& DicomDeviceDescriptor::
   NetworkConnection () const
   {
     return this->NetworkConnection_;
   }
 
-  DICOMDeviceDescriptor::NetworkConnectionSequence& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::NetworkConnectionSequence& DicomDeviceDescriptor::
   NetworkConnection ()
   {
     return this->NetworkConnection_;
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   NetworkConnection (const NetworkConnectionSequence& s)
   {
     this->NetworkConnection_ = s;
   }
 
-  const DICOMDeviceDescriptor::SoftwareVersionSequence& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::SoftwareVersionSequence& DicomDeviceDescriptor::
   SoftwareVersion () const
   {
     return this->SoftwareVersion_;
   }
 
-  DICOMDeviceDescriptor::SoftwareVersionSequence& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::SoftwareVersionSequence& DicomDeviceDescriptor::
   SoftwareVersion ()
   {
     return this->SoftwareVersion_;
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   SoftwareVersion (const SoftwareVersionSequence& s)
   {
     this->SoftwareVersion_ = s;
   }
 
-  const DICOMDeviceDescriptor::InstitutionNameSequence& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::InstitutionNameSequence& DicomDeviceDescriptor::
   InstitutionName () const
   {
     return this->InstitutionName_;
   }
 
-  DICOMDeviceDescriptor::InstitutionNameSequence& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::InstitutionNameSequence& DicomDeviceDescriptor::
   InstitutionName ()
   {
     return this->InstitutionName_;
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   InstitutionName (const InstitutionNameSequence& s)
   {
     this->InstitutionName_ = s;
   }
 
-  const DICOMDeviceDescriptor::InstitutionAddressSequence& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::InstitutionAddressSequence& DicomDeviceDescriptor::
   InstitutionAddress () const
   {
     return this->InstitutionAddress_;
   }
 
-  DICOMDeviceDescriptor::InstitutionAddressSequence& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::InstitutionAddressSequence& DicomDeviceDescriptor::
   InstitutionAddress ()
   {
     return this->InstitutionAddress_;
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   InstitutionAddress (const InstitutionAddressSequence& s)
   {
     this->InstitutionAddress_ = s;
   }
 
-  const DICOMDeviceDescriptor::InstitutionalDepartmentNameSequence& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::InstitutionalDepartmentNameSequence& DicomDeviceDescriptor::
   InstitutionalDepartmentName () const
   {
     return this->InstitutionalDepartmentName_;
   }
 
-  DICOMDeviceDescriptor::InstitutionalDepartmentNameSequence& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::InstitutionalDepartmentNameSequence& DicomDeviceDescriptor::
   InstitutionalDepartmentName ()
   {
     return this->InstitutionalDepartmentName_;
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   InstitutionalDepartmentName (const InstitutionalDepartmentNameSequence& s)
   {
     this->InstitutionalDepartmentName_ = s;
   }
 
-  const DICOMDeviceDescriptor::PrimaryDeviceTypeSequence& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::PrimaryDeviceTypeSequence& DicomDeviceDescriptor::
   PrimaryDeviceType () const
   {
     return this->PrimaryDeviceType_;
   }
 
-  DICOMDeviceDescriptor::PrimaryDeviceTypeSequence& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::PrimaryDeviceTypeSequence& DicomDeviceDescriptor::
   PrimaryDeviceType ()
   {
     return this->PrimaryDeviceType_;
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   PrimaryDeviceType (const PrimaryDeviceTypeSequence& s)
   {
     this->PrimaryDeviceType_ = s;
   }
 
-  const DICOMDeviceDescriptor::PublicCertificateSequence& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::PublicCertificateSequence& DicomDeviceDescriptor::
   PublicCertificate () const
   {
     return this->PublicCertificate_;
   }
 
-  DICOMDeviceDescriptor::PublicCertificateSequence& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::PublicCertificateSequence& DicomDeviceDescriptor::
   PublicCertificate ()
   {
     return this->PublicCertificate_;
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   PublicCertificate (const PublicCertificateSequence& s)
   {
     this->PublicCertificate_ = s;
   }
 
-  const DICOMDeviceDescriptor::DescriptionOptional& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::DescriptionSequence& DicomDeviceDescriptor::
   Description () const
   {
     return this->Description_;
   }
 
-  DICOMDeviceDescriptor::DescriptionOptional& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::DescriptionSequence& DicomDeviceDescriptor::
   Description ()
   {
     return this->Description_;
   }
 
-  void DICOMDeviceDescriptor::
-  Description (const DescriptionType& x)
+  void DicomDeviceDescriptor::
+  Description (const DescriptionSequence& s)
   {
-    this->Description_.set (x);
+    this->Description_ = s;
   }
 
-  void DICOMDeviceDescriptor::
-  Description (const DescriptionOptional& x)
-  {
-    this->Description_ = x;
-  }
-
-  void DICOMDeviceDescriptor::
-  Description (::std::unique_ptr< DescriptionType > x)
-  {
-    this->Description_.set (std::move (x));
-  }
-
-  const DICOMDeviceDescriptor::StationNameOptional& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::StationNameSequence& DicomDeviceDescriptor::
   StationName () const
   {
     return this->StationName_;
   }
 
-  DICOMDeviceDescriptor::StationNameOptional& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::StationNameSequence& DicomDeviceDescriptor::
   StationName ()
   {
     return this->StationName_;
   }
 
-  void DICOMDeviceDescriptor::
-  StationName (const StationNameType& x)
+  void DicomDeviceDescriptor::
+  StationName (const StationNameSequence& s)
   {
-    this->StationName_.set (x);
+    this->StationName_ = s;
   }
 
-  void DICOMDeviceDescriptor::
-  StationName (const StationNameOptional& x)
-  {
-    this->StationName_ = x;
-  }
-
-  void DICOMDeviceDescriptor::
-  StationName (::std::unique_ptr< StationNameType > x)
-  {
-    this->StationName_.set (std::move (x));
-  }
-
-  const DICOMDeviceDescriptor::IssuerOfPatientIDOptional& DICOMDeviceDescriptor::
+  const DicomDeviceDescriptor::IssuerOfPatientIDOptional& DicomDeviceDescriptor::
   IssuerOfPatientID () const
   {
     return this->IssuerOfPatientID_;
   }
 
-  DICOMDeviceDescriptor::IssuerOfPatientIDOptional& DICOMDeviceDescriptor::
+  DicomDeviceDescriptor::IssuerOfPatientIDOptional& DicomDeviceDescriptor::
   IssuerOfPatientID ()
   {
     return this->IssuerOfPatientID_;
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   IssuerOfPatientID (const IssuerOfPatientIDType& x)
   {
     this->IssuerOfPatientID_.set (x);
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   IssuerOfPatientID (const IssuerOfPatientIDOptional& x)
   {
     this->IssuerOfPatientID_ = x;
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   IssuerOfPatientID (::std::unique_ptr< IssuerOfPatientIDType > x)
   {
     this->IssuerOfPatientID_.set (std::move (x));
@@ -674,55 +638,55 @@ namespace _xsd
 
 namespace CDM
 {
-  // DICOMTransferRole
+  // DicomTransferRole
   //
 
-  DICOMTransferRole::
-  DICOMTransferRole (const ::xercesc::DOMElement& e,
+  DicomTransferRole::
+  DicomTransferRole (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
   : ::xml_schema::String (e, f, c)
   {
-    _xsd_DICOMTransferRole_convert ();
+    _xsd_DicomTransferRole_convert ();
   }
 
-  DICOMTransferRole::
-  DICOMTransferRole (const ::xercesc::DOMAttr& a,
+  DicomTransferRole::
+  DicomTransferRole (const ::xercesc::DOMAttr& a,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
   : ::xml_schema::String (a, f, c)
   {
-    _xsd_DICOMTransferRole_convert ();
+    _xsd_DicomTransferRole_convert ();
   }
 
-  DICOMTransferRole::
-  DICOMTransferRole (const ::std::string& s,
+  DicomTransferRole::
+  DicomTransferRole (const ::std::string& s,
                      const ::xercesc::DOMElement* e,
                      ::xml_schema::Flags f,
                      ::xml_schema::Container* c)
   : ::xml_schema::String (s, e, f, c)
   {
-    _xsd_DICOMTransferRole_convert ();
+    _xsd_DicomTransferRole_convert ();
   }
 
-  DICOMTransferRole* DICOMTransferRole::
+  DicomTransferRole* DicomTransferRole::
   _clone (::xml_schema::Flags f,
           ::xml_schema::Container* c) const
   {
-    return new class DICOMTransferRole (*this, f, c);
+    return new class DicomTransferRole (*this, f, c);
   }
 
-  DICOMTransferRole::Value DICOMTransferRole::
-  _xsd_DICOMTransferRole_convert () const
+  DicomTransferRole::Value DicomTransferRole::
+  _xsd_DicomTransferRole_convert () const
   {
-    ::xsd::cxx::tree::enum_comparator< char > c (_xsd_DICOMTransferRole_literals_);
+    ::xsd::cxx::tree::enum_comparator< char > c (_xsd_DicomTransferRole_literals_);
     const Value* i (::std::lower_bound (
-                      _xsd_DICOMTransferRole_indexes_,
-                      _xsd_DICOMTransferRole_indexes_ + 2,
+                      _xsd_DicomTransferRole_indexes_,
+                      _xsd_DicomTransferRole_indexes_ + 2,
                       *this,
                       c));
 
-    if (i == _xsd_DICOMTransferRole_indexes_ + 2 || _xsd_DICOMTransferRole_literals_[*i] != *this)
+    if (i == _xsd_DicomTransferRole_indexes_ + 2 || _xsd_DicomTransferRole_literals_[*i] != *this)
     {
       throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
     }
@@ -730,57 +694,57 @@ namespace CDM
     return *i;
   }
 
-  const char* const DICOMTransferRole::
-  _xsd_DICOMTransferRole_literals_[2] =
+  const char* const DicomTransferRole::
+  _xsd_DicomTransferRole_literals_[2] =
   {
-    "SCU",
-    "SCP"
+    "Scu",
+    "Scp"
   };
 
-  const DICOMTransferRole::Value DICOMTransferRole::
-  _xsd_DICOMTransferRole_indexes_[2] =
+  const DicomTransferRole::Value DicomTransferRole::
+  _xsd_DicomTransferRole_indexes_[2] =
   {
-    ::CDM::DICOMTransferRole::SCP,
-    ::CDM::DICOMTransferRole::SCU
+    ::CDM::DicomTransferRole::Scp,
+    ::CDM::DicomTransferRole::Scu
   };
 
   static
-  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DICOMTransferRole >
-  _xsd_DICOMTransferRole_type_factory_init (
-    "DICOMTransferRole",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DicomTransferRole >
+  _xsd_DicomTransferRole_type_factory_init (
+    "DicomTransferRole",
+    "http://dicom-extension-uri/09/08");
 
-  // DICOMTransferCapability
+  // DicomTransferCapability
   //
 
-  DICOMTransferCapability::
-  DICOMTransferCapability (const SOPClassType& SOPClass,
+  DicomTransferCapability::
+  DicomTransferCapability (const SopClassType& SopClass,
                            const TransferRoleType& TransferRole)
   : ::xml_schema::Type (),
     TransferSyntax_ (this),
-    SOPClass_ (SOPClass, this),
+    SopClass_ (SopClass, this),
     TransferRole_ (TransferRole, this)
   {
   }
 
-  DICOMTransferCapability::
-  DICOMTransferCapability (const DICOMTransferCapability& x,
+  DicomTransferCapability::
+  DicomTransferCapability (const DicomTransferCapability& x,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
     TransferSyntax_ (x.TransferSyntax_, f, this),
-    SOPClass_ (x.SOPClass_, f, this),
+    SopClass_ (x.SopClass_, f, this),
     TransferRole_ (x.TransferRole_, f, this)
   {
   }
 
-  DICOMTransferCapability::
-  DICOMTransferCapability (const ::xercesc::DOMElement& e,
+  DicomTransferCapability::
+  DicomTransferCapability (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
     TransferSyntax_ (this),
-    SOPClass_ (this),
+    SopClass_ (this),
     TransferRole_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -790,7 +754,7 @@ namespace CDM
     }
   }
 
-  void DICOMTransferCapability::
+  void DicomTransferCapability::
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
@@ -806,7 +770,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TransferSyntax",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< TransferSyntaxType >,
             false, true, i, n, f, this));
 
@@ -834,9 +798,9 @@ namespace CDM
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
-      if (n.name () == "SOPClass" && n.namespace_ ().empty ())
+      if (n.name () == "SopClass" && n.namespace_ ().empty ())
       {
-        this->SOPClass_.set (SOPClassTraits::create (i, f, this));
+        this->SopClass_.set (SopClassTraits::create (i, f, this));
         continue;
       }
 
@@ -847,10 +811,10 @@ namespace CDM
       }
     }
 
-    if (!SOPClass_.present ())
+    if (!SopClass_.present ())
     {
       throw ::xsd::cxx::tree::expected_attribute< char > (
-        "SOPClass",
+        "SopClass",
         "");
     }
 
@@ -862,43 +826,43 @@ namespace CDM
     }
   }
 
-  DICOMTransferCapability* DICOMTransferCapability::
+  DicomTransferCapability* DicomTransferCapability::
   _clone (::xml_schema::Flags f,
           ::xml_schema::Container* c) const
   {
-    return new class DICOMTransferCapability (*this, f, c);
+    return new class DicomTransferCapability (*this, f, c);
   }
 
-  DICOMTransferCapability& DICOMTransferCapability::
-  operator= (const DICOMTransferCapability& x)
+  DicomTransferCapability& DicomTransferCapability::
+  operator= (const DicomTransferCapability& x)
   {
     if (this != &x)
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->TransferSyntax_ = x.TransferSyntax_;
-      this->SOPClass_ = x.SOPClass_;
+      this->SopClass_ = x.SopClass_;
       this->TransferRole_ = x.TransferRole_;
     }
 
     return *this;
   }
 
-  DICOMTransferCapability::
-  ~DICOMTransferCapability ()
+  DicomTransferCapability::
+  ~DicomTransferCapability ()
   {
   }
 
   static
-  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DICOMTransferCapability >
-  _xsd_DICOMTransferCapability_type_factory_init (
-    "DICOMTransferCapability",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DicomTransferCapability >
+  _xsd_DicomTransferCapability_type_factory_init (
+    "DicomTransferCapability",
+    "http://dicom-extension-uri/09/08");
 
-  // DICOMNetworkAE
+  // DicomNetworkAe
   //
 
-  DICOMNetworkAE::
-  DICOMNetworkAE (const AETitleType& AETitle,
+  DicomNetworkAe::
+  DicomNetworkAe (const AeTitleType& AeTitle,
                   const NetworkConnectionReferenceType& NetworkConnectionReference,
                   const AssociationInitiatorType& AssociationInitiator,
                   const AssociationAcceptorType& AssociationAcceptor)
@@ -906,43 +870,43 @@ namespace CDM
     TransferCapability_ (this),
     ApplicationCluster_ (this),
     SupportedCharacterSet_ (this),
-    AETitle_ (AETitle, this),
+    Description_ (this),
+    AeTitle_ (AeTitle, this),
     NetworkConnectionReference_ (NetworkConnectionReference, this),
     AssociationInitiator_ (AssociationInitiator, this),
-    AssociationAcceptor_ (AssociationAcceptor, this),
-    Description_ (this)
+    AssociationAcceptor_ (AssociationAcceptor, this)
   {
   }
 
-  DICOMNetworkAE::
-  DICOMNetworkAE (const DICOMNetworkAE& x,
+  DicomNetworkAe::
+  DicomNetworkAe (const DicomNetworkAe& x,
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
     TransferCapability_ (x.TransferCapability_, f, this),
     ApplicationCluster_ (x.ApplicationCluster_, f, this),
     SupportedCharacterSet_ (x.SupportedCharacterSet_, f, this),
-    AETitle_ (x.AETitle_, f, this),
+    Description_ (x.Description_, f, this),
+    AeTitle_ (x.AeTitle_, f, this),
     NetworkConnectionReference_ (x.NetworkConnectionReference_, f, this),
     AssociationInitiator_ (x.AssociationInitiator_, f, this),
-    AssociationAcceptor_ (x.AssociationAcceptor_, f, this),
-    Description_ (x.Description_, f, this)
+    AssociationAcceptor_ (x.AssociationAcceptor_, f, this)
   {
   }
 
-  DICOMNetworkAE::
-  DICOMNetworkAE (const ::xercesc::DOMElement& e,
+  DicomNetworkAe::
+  DicomNetworkAe (const ::xercesc::DOMElement& e,
                   ::xml_schema::Flags f,
                   ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
     TransferCapability_ (this),
     ApplicationCluster_ (this),
     SupportedCharacterSet_ (this),
-    AETitle_ (this),
+    Description_ (this),
+    AeTitle_ (this),
     NetworkConnectionReference_ (this),
     AssociationInitiator_ (this),
-    AssociationAcceptor_ (this),
-    Description_ (this)
+    AssociationAcceptor_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
@@ -951,7 +915,7 @@ namespace CDM
     }
   }
 
-  void DICOMNetworkAE::
+  void DicomNetworkAe::
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
@@ -967,7 +931,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TransferCapability",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< TransferCapabilityType >,
             false, true, i, n, f, this));
 
@@ -992,7 +956,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ApplicationCluster",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< ApplicationClusterType >,
             false, true, i, n, f, this));
 
@@ -1017,7 +981,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SupportedCharacterSet",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< SupportedCharacterSetType >,
             false, true, i, n, f, this));
 
@@ -1036,6 +1000,31 @@ namespace CDM
         }
       }
 
+      // Description
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Description",
+            "http://dicom-extension-uri/09/08",
+            &::xsd::cxx::tree::factory_impl< DescriptionType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          ::std::unique_ptr< DescriptionType > r (
+            dynamic_cast< DescriptionType* > (tmp.get ()));
+
+          if (r.get ())
+            tmp.release ();
+          else
+            throw ::xsd::cxx::tree::not_derived< char > ();
+
+          this->Description_.push_back (::std::move (r));
+          continue;
+        }
+      }
+
       break;
     }
 
@@ -1045,9 +1034,9 @@ namespace CDM
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
-      if (n.name () == "AETitle" && n.namespace_ ().empty ())
+      if (n.name () == "AeTitle" && n.namespace_ ().empty ())
       {
-        this->AETitle_.set (AETitleTraits::create (i, f, this));
+        this->AeTitle_.set (AeTitleTraits::create (i, f, this));
         continue;
       }
 
@@ -1068,18 +1057,12 @@ namespace CDM
         this->AssociationAcceptor_.set (AssociationAcceptorTraits::create (i, f, this));
         continue;
       }
-
-      if (n.name () == "Description" && n.namespace_ ().empty ())
-      {
-        this->Description_.set (DescriptionTraits::create (i, f, this));
-        continue;
-      }
     }
 
-    if (!AETitle_.present ())
+    if (!AeTitle_.present ())
     {
       throw ::xsd::cxx::tree::expected_attribute< char > (
-        "AETitle",
+        "AeTitle",
         "");
     }
 
@@ -1105,15 +1088,15 @@ namespace CDM
     }
   }
 
-  DICOMNetworkAE* DICOMNetworkAE::
+  DicomNetworkAe* DicomNetworkAe::
   _clone (::xml_schema::Flags f,
           ::xml_schema::Container* c) const
   {
-    return new class DICOMNetworkAE (*this, f, c);
+    return new class DicomNetworkAe (*this, f, c);
   }
 
-  DICOMNetworkAE& DICOMNetworkAE::
-  operator= (const DICOMNetworkAE& x)
+  DicomNetworkAe& DicomNetworkAe::
+  operator= (const DicomNetworkAe& x)
   {
     if (this != &x)
     {
@@ -1121,59 +1104,59 @@ namespace CDM
       this->TransferCapability_ = x.TransferCapability_;
       this->ApplicationCluster_ = x.ApplicationCluster_;
       this->SupportedCharacterSet_ = x.SupportedCharacterSet_;
-      this->AETitle_ = x.AETitle_;
+      this->Description_ = x.Description_;
+      this->AeTitle_ = x.AeTitle_;
       this->NetworkConnectionReference_ = x.NetworkConnectionReference_;
       this->AssociationInitiator_ = x.AssociationInitiator_;
       this->AssociationAcceptor_ = x.AssociationAcceptor_;
-      this->Description_ = x.Description_;
     }
 
     return *this;
   }
 
-  DICOMNetworkAE::
-  ~DICOMNetworkAE ()
+  DicomNetworkAe::
+  ~DicomNetworkAe ()
   {
   }
 
   static
-  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DICOMNetworkAE >
-  _xsd_DICOMNetworkAE_type_factory_init (
-    "DICOMNetworkAE",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DicomNetworkAe >
+  _xsd_DicomNetworkAe_type_factory_init (
+    "DicomNetworkAe",
+    "http://dicom-extension-uri/09/08");
 
-  // DICOMNetworkConnection
+  // DicomNetworkConnection
   //
 
-  DICOMNetworkConnection::
-  DICOMNetworkConnection (const IdType& id,
+  DicomNetworkConnection::
+  DicomNetworkConnection (const IdType& id,
                           const HostnameType& Hostname)
   : ::xml_schema::Type (),
-    TLSCipherSuite_ (this),
+    TlsCipherSuite_ (this),
     id_ (id, this),
     Hostname_ (Hostname, this),
     Port_ (this)
   {
   }
 
-  DICOMNetworkConnection::
-  DICOMNetworkConnection (const DICOMNetworkConnection& x,
+  DicomNetworkConnection::
+  DicomNetworkConnection (const DicomNetworkConnection& x,
                           ::xml_schema::Flags f,
                           ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
-    TLSCipherSuite_ (x.TLSCipherSuite_, f, this),
+    TlsCipherSuite_ (x.TlsCipherSuite_, f, this),
     id_ (x.id_, f, this),
     Hostname_ (x.Hostname_, f, this),
     Port_ (x.Port_, f, this)
   {
   }
 
-  DICOMNetworkConnection::
-  DICOMNetworkConnection (const ::xercesc::DOMElement& e,
+  DicomNetworkConnection::
+  DicomNetworkConnection (const ::xercesc::DOMElement& e,
                           ::xml_schema::Flags f,
                           ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
-    TLSCipherSuite_ (this),
+    TlsCipherSuite_ (this),
     id_ (this),
     Hostname_ (this),
     Port_ (this)
@@ -1185,7 +1168,7 @@ namespace CDM
     }
   }
 
-  void DICOMNetworkConnection::
+  void DicomNetworkConnection::
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
@@ -1195,27 +1178,27 @@ namespace CDM
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
-      // TLSCipherSuite
+      // TlsCipherSuite
       //
       {
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "TLSCipherSuite",
-            "http://dicom-gateway-model-uri/15/04",
-            &::xsd::cxx::tree::factory_impl< TLSCipherSuiteType >,
+            "TlsCipherSuite",
+            "http://dicom-extension-uri/09/08",
+            &::xsd::cxx::tree::factory_impl< TlsCipherSuiteType >,
             false, true, i, n, f, this));
 
         if (tmp.get () != 0)
         {
-          ::std::unique_ptr< TLSCipherSuiteType > r (
-            dynamic_cast< TLSCipherSuiteType* > (tmp.get ()));
+          ::std::unique_ptr< TlsCipherSuiteType > r (
+            dynamic_cast< TlsCipherSuiteType* > (tmp.get ()));
 
           if (r.get ())
             tmp.release ();
           else
             throw ::xsd::cxx::tree::not_derived< char > ();
 
-          this->TLSCipherSuite_.push_back (::std::move (r));
+          this->TlsCipherSuite_.push_back (::std::move (r));
           continue;
         }
       }
@@ -1263,20 +1246,20 @@ namespace CDM
     }
   }
 
-  DICOMNetworkConnection* DICOMNetworkConnection::
+  DicomNetworkConnection* DicomNetworkConnection::
   _clone (::xml_schema::Flags f,
           ::xml_schema::Container* c) const
   {
-    return new class DICOMNetworkConnection (*this, f, c);
+    return new class DicomNetworkConnection (*this, f, c);
   }
 
-  DICOMNetworkConnection& DICOMNetworkConnection::
-  operator= (const DICOMNetworkConnection& x)
+  DicomNetworkConnection& DicomNetworkConnection::
+  operator= (const DicomNetworkConnection& x)
   {
     if (this != &x)
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
-      this->TLSCipherSuite_ = x.TLSCipherSuite_;
+      this->TlsCipherSuite_ = x.TlsCipherSuite_;
       this->id_ = x.id_;
       this->Hostname_ = x.Hostname_;
       this->Port_ = x.Port_;
@@ -1285,26 +1268,24 @@ namespace CDM
     return *this;
   }
 
-  DICOMNetworkConnection::
-  ~DICOMNetworkConnection ()
+  DicomNetworkConnection::
+  ~DicomNetworkConnection ()
   {
   }
 
   static
-  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DICOMNetworkConnection >
-  _xsd_DICOMNetworkConnection_type_factory_init (
-    "DICOMNetworkConnection",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DicomNetworkConnection >
+  _xsd_DicomNetworkConnection_type_factory_init (
+    "DicomNetworkConnection",
+    "http://dicom-extension-uri/09/08");
 
-  // DICOMDeviceDescriptor
+  // DicomDeviceDescriptor
   //
 
-  DICOMDeviceDescriptor::
-  DICOMDeviceDescriptor (const HandleType& Handle,
-                         const ContextType& Context)
-  : ::CDM::AbstractMDSDescriptor (Handle,
-                                  Context),
-    NetworkAE_ (this),
+  DicomDeviceDescriptor::
+  DicomDeviceDescriptor (const HandleType& Handle)
+  : ::CDM::AbstractComplexDeviceComponentDescriptor (Handle),
+    NetworkAe_ (this),
     NetworkConnection_ (this),
     SoftwareVersion_ (this),
     InstitutionName_ (this),
@@ -1318,31 +1299,12 @@ namespace CDM
   {
   }
 
-  DICOMDeviceDescriptor::
-  DICOMDeviceDescriptor (const HandleType& Handle,
-                         ::std::unique_ptr< ContextType > Context)
-  : ::CDM::AbstractMDSDescriptor (Handle,
-                                  std::move (Context)),
-    NetworkAE_ (this),
-    NetworkConnection_ (this),
-    SoftwareVersion_ (this),
-    InstitutionName_ (this),
-    InstitutionAddress_ (this),
-    InstitutionalDepartmentName_ (this),
-    PrimaryDeviceType_ (this),
-    PublicCertificate_ (this),
-    Description_ (this),
-    StationName_ (this),
-    IssuerOfPatientID_ (this)
-  {
-  }
-
-  DICOMDeviceDescriptor::
-  DICOMDeviceDescriptor (const DICOMDeviceDescriptor& x,
+  DicomDeviceDescriptor::
+  DicomDeviceDescriptor (const DicomDeviceDescriptor& x,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractMDSDescriptor (x, f, c),
-    NetworkAE_ (x.NetworkAE_, f, this),
+  : ::CDM::AbstractComplexDeviceComponentDescriptor (x, f, c),
+    NetworkAe_ (x.NetworkAe_, f, this),
     NetworkConnection_ (x.NetworkConnection_, f, this),
     SoftwareVersion_ (x.SoftwareVersion_, f, this),
     InstitutionName_ (x.InstitutionName_, f, this),
@@ -1356,12 +1318,12 @@ namespace CDM
   {
   }
 
-  DICOMDeviceDescriptor::
-  DICOMDeviceDescriptor (const ::xercesc::DOMElement& e,
+  DicomDeviceDescriptor::
+  DicomDeviceDescriptor (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f,
                          ::xml_schema::Container* c)
-  : ::CDM::AbstractMDSDescriptor (e, f | ::xml_schema::Flags::base, c),
-    NetworkAE_ (this),
+  : ::CDM::AbstractComplexDeviceComponentDescriptor (e, f | ::xml_schema::Flags::base, c),
+    NetworkAe_ (this),
     NetworkConnection_ (this),
     SoftwareVersion_ (this),
     InstitutionName_ (this),
@@ -1380,11 +1342,11 @@ namespace CDM
     }
   }
 
-  void DICOMDeviceDescriptor::
+  void DicomDeviceDescriptor::
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractMDSDescriptor::parse (p, f);
+    this->::CDM::AbstractComplexDeviceComponentDescriptor::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -1392,27 +1354,27 @@ namespace CDM
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
-      // NetworkAE
+      // NetworkAe
       //
       {
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "NetworkAE",
-            "http://dicom-gateway-model-uri/15/04",
-            &::xsd::cxx::tree::factory_impl< NetworkAEType >,
+            "NetworkAe",
+            "http://dicom-extension-uri/09/08",
+            &::xsd::cxx::tree::factory_impl< NetworkAeType >,
             false, true, i, n, f, this));
 
         if (tmp.get () != 0)
         {
-          ::std::unique_ptr< NetworkAEType > r (
-            dynamic_cast< NetworkAEType* > (tmp.get ()));
+          ::std::unique_ptr< NetworkAeType > r (
+            dynamic_cast< NetworkAeType* > (tmp.get ()));
 
           if (r.get ())
             tmp.release ();
           else
             throw ::xsd::cxx::tree::not_derived< char > ();
 
-          this->NetworkAE_.push_back (::std::move (r));
+          this->NetworkAe_.push_back (::std::move (r));
           continue;
         }
       }
@@ -1423,7 +1385,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "NetworkConnection",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< NetworkConnectionType >,
             false, true, i, n, f, this));
 
@@ -1448,7 +1410,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SoftwareVersion",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< SoftwareVersionType >,
             false, true, i, n, f, this));
 
@@ -1473,7 +1435,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "InstitutionName",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< InstitutionNameType >,
             false, true, i, n, f, this));
 
@@ -1498,7 +1460,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "InstitutionAddress",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< InstitutionAddressType >,
             false, true, i, n, f, this));
 
@@ -1523,7 +1485,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "InstitutionalDepartmentName",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< InstitutionalDepartmentNameType >,
             false, true, i, n, f, this));
 
@@ -1548,7 +1510,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PrimaryDeviceType",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< PrimaryDeviceTypeType >,
             false, true, i, n, f, this));
 
@@ -1573,7 +1535,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PublicCertificate",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             &::xsd::cxx::tree::factory_impl< PublicCertificateType >,
             false, true, i, n, f, this));
 
@@ -1592,6 +1554,56 @@ namespace CDM
         }
       }
 
+      // Description
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "Description",
+            "http://dicom-extension-uri/09/08",
+            &::xsd::cxx::tree::factory_impl< DescriptionType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          ::std::unique_ptr< DescriptionType > r (
+            dynamic_cast< DescriptionType* > (tmp.get ()));
+
+          if (r.get ())
+            tmp.release ();
+          else
+            throw ::xsd::cxx::tree::not_derived< char > ();
+
+          this->Description_.push_back (::std::move (r));
+          continue;
+        }
+      }
+
+      // StationName
+      //
+      {
+        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+            "StationName",
+            "http://dicom-extension-uri/09/08",
+            &::xsd::cxx::tree::factory_impl< StationNameType >,
+            false, true, i, n, f, this));
+
+        if (tmp.get () != 0)
+        {
+          ::std::unique_ptr< StationNameType > r (
+            dynamic_cast< StationNameType* > (tmp.get ()));
+
+          if (r.get ())
+            tmp.release ();
+          else
+            throw ::xsd::cxx::tree::not_derived< char > ();
+
+          this->StationName_.push_back (::std::move (r));
+          continue;
+        }
+      }
+
       break;
     }
 
@@ -1603,18 +1615,6 @@ namespace CDM
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
-      if (n.name () == "Description" && n.namespace_ ().empty ())
-      {
-        this->Description_.set (DescriptionTraits::create (i, f, this));
-        continue;
-      }
-
-      if (n.name () == "StationName" && n.namespace_ ().empty ())
-      {
-        this->StationName_.set (StationNameTraits::create (i, f, this));
-        continue;
-      }
-
       if (n.name () == "IssuerOfPatientID" && n.namespace_ ().empty ())
       {
         this->IssuerOfPatientID_.set (IssuerOfPatientIDTraits::create (i, f, this));
@@ -1623,20 +1623,20 @@ namespace CDM
     }
   }
 
-  DICOMDeviceDescriptor* DICOMDeviceDescriptor::
+  DicomDeviceDescriptor* DicomDeviceDescriptor::
   _clone (::xml_schema::Flags f,
           ::xml_schema::Container* c) const
   {
-    return new class DICOMDeviceDescriptor (*this, f, c);
+    return new class DicomDeviceDescriptor (*this, f, c);
   }
 
-  DICOMDeviceDescriptor& DICOMDeviceDescriptor::
-  operator= (const DICOMDeviceDescriptor& x)
+  DicomDeviceDescriptor& DicomDeviceDescriptor::
+  operator= (const DicomDeviceDescriptor& x)
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractMDSDescriptor& > (*this) = x;
-      this->NetworkAE_ = x.NetworkAE_;
+      static_cast< ::CDM::AbstractComplexDeviceComponentDescriptor& > (*this) = x;
+      this->NetworkAe_ = x.NetworkAe_;
       this->NetworkConnection_ = x.NetworkConnection_;
       this->SoftwareVersion_ = x.SoftwareVersion_;
       this->InstitutionName_ = x.InstitutionName_;
@@ -1652,16 +1652,16 @@ namespace CDM
     return *this;
   }
 
-  DICOMDeviceDescriptor::
-  ~DICOMDeviceDescriptor ()
+  DicomDeviceDescriptor::
+  ~DicomDeviceDescriptor ()
   {
   }
 
   static
-  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DICOMDeviceDescriptor >
-  _xsd_DICOMDeviceDescriptor_type_factory_init (
-    "DICOMDeviceDescriptor",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, DicomDeviceDescriptor >
+  _xsd_DicomDeviceDescriptor_type_factory_init (
+    "DicomDeviceDescriptor",
+    "http://dicom-extension-uri/09/08");
 }
 
 #include <istream>
@@ -1688,33 +1688,33 @@ namespace _xsd
 namespace CDM
 {
   void
-  operator<< (::xercesc::DOMElement& e, const DICOMTransferRole& i)
+  operator<< (::xercesc::DOMElement& e, const DicomTransferRole& i)
   {
     e << static_cast< const ::xml_schema::String& > (i);
   }
 
   void
-  operator<< (::xercesc::DOMAttr& a, const DICOMTransferRole& i)
+  operator<< (::xercesc::DOMAttr& a, const DicomTransferRole& i)
   {
     a << static_cast< const ::xml_schema::String& > (i);
   }
 
   void
   operator<< (::xml_schema::ListStream& l,
-              const DICOMTransferRole& i)
+              const DicomTransferRole& i)
   {
     l << static_cast< const ::xml_schema::String& > (i);
   }
 
   static
-  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DICOMTransferRole >
-  _xsd_DICOMTransferRole_type_serializer_init (
-    "DICOMTransferRole",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DicomTransferRole >
+  _xsd_DicomTransferRole_type_serializer_init (
+    "DicomTransferRole",
+    "http://dicom-extension-uri/09/08");
 
 
   void
-  operator<< (::xercesc::DOMElement& e, const DICOMTransferCapability& i)
+  operator<< (::xercesc::DOMElement& e, const DicomTransferCapability& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
 
@@ -1724,16 +1724,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMTransferCapability::TransferSyntaxConstIterator
+      for (DicomTransferCapability::TransferSyntaxConstIterator
            b (i.TransferSyntax ().begin ()), n (i.TransferSyntax ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMTransferCapability::TransferSyntaxType) == typeid (*b))
+        if (typeid (DicomTransferCapability::TransferSyntaxType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TransferSyntax",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -1741,20 +1741,20 @@ namespace CDM
         else
           tsm.serialize (
             "TransferSyntax",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
 
-    // SOPClass
+    // SopClass
     //
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
-          "SOPClass",
+          "SopClass",
           e));
 
-      a << i.SOPClass ();
+      a << i.SopClass ();
     }
 
     // TransferRole
@@ -1770,14 +1770,14 @@ namespace CDM
   }
 
   static
-  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DICOMTransferCapability >
-  _xsd_DICOMTransferCapability_type_serializer_init (
-    "DICOMTransferCapability",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DicomTransferCapability >
+  _xsd_DicomTransferCapability_type_serializer_init (
+    "DicomTransferCapability",
+    "http://dicom-extension-uri/09/08");
 
 
   void
-  operator<< (::xercesc::DOMElement& e, const DICOMNetworkAE& i)
+  operator<< (::xercesc::DOMElement& e, const DicomNetworkAe& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
 
@@ -1787,16 +1787,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMNetworkAE::TransferCapabilityConstIterator
+      for (DicomNetworkAe::TransferCapabilityConstIterator
            b (i.TransferCapability ().begin ()), n (i.TransferCapability ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMNetworkAE::TransferCapabilityType) == typeid (*b))
+        if (typeid (DicomNetworkAe::TransferCapabilityType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TransferCapability",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -1804,7 +1804,7 @@ namespace CDM
         else
           tsm.serialize (
             "TransferCapability",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -1815,16 +1815,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMNetworkAE::ApplicationClusterConstIterator
+      for (DicomNetworkAe::ApplicationClusterConstIterator
            b (i.ApplicationCluster ().begin ()), n (i.ApplicationCluster ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMNetworkAE::ApplicationClusterType) == typeid (*b))
+        if (typeid (DicomNetworkAe::ApplicationClusterType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ApplicationCluster",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -1832,7 +1832,7 @@ namespace CDM
         else
           tsm.serialize (
             "ApplicationCluster",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -1843,16 +1843,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMNetworkAE::SupportedCharacterSetConstIterator
+      for (DicomNetworkAe::SupportedCharacterSetConstIterator
            b (i.SupportedCharacterSet ().begin ()), n (i.SupportedCharacterSet ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMNetworkAE::SupportedCharacterSetType) == typeid (*b))
+        if (typeid (DicomNetworkAe::SupportedCharacterSetType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SupportedCharacterSet",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -1860,20 +1860,48 @@ namespace CDM
         else
           tsm.serialize (
             "SupportedCharacterSet",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
 
-    // AETitle
+    // Description
+    //
+    {
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+      for (DicomNetworkAe::DescriptionConstIterator
+           b (i.Description ().begin ()), n (i.Description ().end ());
+           b != n; ++b)
+      {
+        if (typeid (DicomNetworkAe::DescriptionType) == typeid (*b))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Description",
+              "http://dicom-extension-uri/09/08",
+              e));
+
+          s << *b;
+        }
+        else
+          tsm.serialize (
+            "Description",
+            "http://dicom-extension-uri/09/08",
+            false, true, e, *b);
+      }
+    }
+
+    // AeTitle
     //
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
-          "AETitle",
+          "AeTitle",
           e));
 
-      a << i.AETitle ();
+      a << i.AeTitle ();
     }
 
     // NetworkConnectionReference
@@ -1908,56 +1936,44 @@ namespace CDM
 
       a << i.AssociationAcceptor ();
     }
-
-    // Description
-    //
-    if (i.Description ())
-    {
-      ::xercesc::DOMAttr& a (
-        ::xsd::cxx::xml::dom::create_attribute (
-          "Description",
-          e));
-
-      a << *i.Description ();
-    }
   }
 
   static
-  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DICOMNetworkAE >
-  _xsd_DICOMNetworkAE_type_serializer_init (
-    "DICOMNetworkAE",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DicomNetworkAe >
+  _xsd_DicomNetworkAe_type_serializer_init (
+    "DicomNetworkAe",
+    "http://dicom-extension-uri/09/08");
 
 
   void
-  operator<< (::xercesc::DOMElement& e, const DICOMNetworkConnection& i)
+  operator<< (::xercesc::DOMElement& e, const DicomNetworkConnection& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
 
-    // TLSCipherSuite
+    // TlsCipherSuite
     //
     {
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMNetworkConnection::TLSCipherSuiteConstIterator
-           b (i.TLSCipherSuite ().begin ()), n (i.TLSCipherSuite ().end ());
+      for (DicomNetworkConnection::TlsCipherSuiteConstIterator
+           b (i.TlsCipherSuite ().begin ()), n (i.TlsCipherSuite ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMNetworkConnection::TLSCipherSuiteType) == typeid (*b))
+        if (typeid (DicomNetworkConnection::TlsCipherSuiteType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
-              "TLSCipherSuite",
-              "http://dicom-gateway-model-uri/15/04",
+              "TlsCipherSuite",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
         }
         else
           tsm.serialize (
-            "TLSCipherSuite",
-            "http://dicom-gateway-model-uri/15/04",
+            "TlsCipherSuite",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -1998,41 +2014,41 @@ namespace CDM
   }
 
   static
-  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DICOMNetworkConnection >
-  _xsd_DICOMNetworkConnection_type_serializer_init (
-    "DICOMNetworkConnection",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DicomNetworkConnection >
+  _xsd_DicomNetworkConnection_type_serializer_init (
+    "DicomNetworkConnection",
+    "http://dicom-extension-uri/09/08");
 
 
   void
-  operator<< (::xercesc::DOMElement& e, const DICOMDeviceDescriptor& i)
+  operator<< (::xercesc::DOMElement& e, const DicomDeviceDescriptor& i)
   {
-    e << static_cast< const ::CDM::AbstractMDSDescriptor& > (i);
+    e << static_cast< const ::CDM::AbstractComplexDeviceComponentDescriptor& > (i);
 
-    // NetworkAE
+    // NetworkAe
     //
     {
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMDeviceDescriptor::NetworkAEConstIterator
-           b (i.NetworkAE ().begin ()), n (i.NetworkAE ().end ());
+      for (DicomDeviceDescriptor::NetworkAeConstIterator
+           b (i.NetworkAe ().begin ()), n (i.NetworkAe ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMDeviceDescriptor::NetworkAEType) == typeid (*b))
+        if (typeid (DicomDeviceDescriptor::NetworkAeType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
-              "NetworkAE",
-              "http://dicom-gateway-model-uri/15/04",
+              "NetworkAe",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
         }
         else
           tsm.serialize (
-            "NetworkAE",
-            "http://dicom-gateway-model-uri/15/04",
+            "NetworkAe",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -2043,16 +2059,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMDeviceDescriptor::NetworkConnectionConstIterator
+      for (DicomDeviceDescriptor::NetworkConnectionConstIterator
            b (i.NetworkConnection ().begin ()), n (i.NetworkConnection ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMDeviceDescriptor::NetworkConnectionType) == typeid (*b))
+        if (typeid (DicomDeviceDescriptor::NetworkConnectionType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "NetworkConnection",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -2060,7 +2076,7 @@ namespace CDM
         else
           tsm.serialize (
             "NetworkConnection",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -2071,16 +2087,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMDeviceDescriptor::SoftwareVersionConstIterator
+      for (DicomDeviceDescriptor::SoftwareVersionConstIterator
            b (i.SoftwareVersion ().begin ()), n (i.SoftwareVersion ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMDeviceDescriptor::SoftwareVersionType) == typeid (*b))
+        if (typeid (DicomDeviceDescriptor::SoftwareVersionType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SoftwareVersion",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -2088,7 +2104,7 @@ namespace CDM
         else
           tsm.serialize (
             "SoftwareVersion",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -2099,16 +2115,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMDeviceDescriptor::InstitutionNameConstIterator
+      for (DicomDeviceDescriptor::InstitutionNameConstIterator
            b (i.InstitutionName ().begin ()), n (i.InstitutionName ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMDeviceDescriptor::InstitutionNameType) == typeid (*b))
+        if (typeid (DicomDeviceDescriptor::InstitutionNameType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "InstitutionName",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -2116,7 +2132,7 @@ namespace CDM
         else
           tsm.serialize (
             "InstitutionName",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -2127,16 +2143,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMDeviceDescriptor::InstitutionAddressConstIterator
+      for (DicomDeviceDescriptor::InstitutionAddressConstIterator
            b (i.InstitutionAddress ().begin ()), n (i.InstitutionAddress ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMDeviceDescriptor::InstitutionAddressType) == typeid (*b))
+        if (typeid (DicomDeviceDescriptor::InstitutionAddressType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "InstitutionAddress",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -2144,7 +2160,7 @@ namespace CDM
         else
           tsm.serialize (
             "InstitutionAddress",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -2155,16 +2171,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMDeviceDescriptor::InstitutionalDepartmentNameConstIterator
+      for (DicomDeviceDescriptor::InstitutionalDepartmentNameConstIterator
            b (i.InstitutionalDepartmentName ().begin ()), n (i.InstitutionalDepartmentName ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMDeviceDescriptor::InstitutionalDepartmentNameType) == typeid (*b))
+        if (typeid (DicomDeviceDescriptor::InstitutionalDepartmentNameType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "InstitutionalDepartmentName",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -2172,7 +2188,7 @@ namespace CDM
         else
           tsm.serialize (
             "InstitutionalDepartmentName",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -2183,16 +2199,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMDeviceDescriptor::PrimaryDeviceTypeConstIterator
+      for (DicomDeviceDescriptor::PrimaryDeviceTypeConstIterator
            b (i.PrimaryDeviceType ().begin ()), n (i.PrimaryDeviceType ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMDeviceDescriptor::PrimaryDeviceTypeType) == typeid (*b))
+        if (typeid (DicomDeviceDescriptor::PrimaryDeviceTypeType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PrimaryDeviceType",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -2200,7 +2216,7 @@ namespace CDM
         else
           tsm.serialize (
             "PrimaryDeviceType",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
@@ -2211,16 +2227,16 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      for (DICOMDeviceDescriptor::PublicCertificateConstIterator
+      for (DicomDeviceDescriptor::PublicCertificateConstIterator
            b (i.PublicCertificate ().begin ()), n (i.PublicCertificate ().end ());
            b != n; ++b)
       {
-        if (typeid (DICOMDeviceDescriptor::PublicCertificateType) == typeid (*b))
+        if (typeid (DicomDeviceDescriptor::PublicCertificateType) == typeid (*b))
         {
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PublicCertificate",
-              "http://dicom-gateway-model-uri/15/04",
+              "http://dicom-extension-uri/09/08",
               e));
 
           s << *b;
@@ -2228,33 +2244,65 @@ namespace CDM
         else
           tsm.serialize (
             "PublicCertificate",
-            "http://dicom-gateway-model-uri/15/04",
+            "http://dicom-extension-uri/09/08",
             false, true, e, *b);
       }
     }
 
     // Description
     //
-    if (i.Description ())
     {
-      ::xercesc::DOMAttr& a (
-        ::xsd::cxx::xml::dom::create_attribute (
-          "Description",
-          e));
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      a << *i.Description ();
+      for (DicomDeviceDescriptor::DescriptionConstIterator
+           b (i.Description ().begin ()), n (i.Description ().end ());
+           b != n; ++b)
+      {
+        if (typeid (DicomDeviceDescriptor::DescriptionType) == typeid (*b))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Description",
+              "http://dicom-extension-uri/09/08",
+              e));
+
+          s << *b;
+        }
+        else
+          tsm.serialize (
+            "Description",
+            "http://dicom-extension-uri/09/08",
+            false, true, e, *b);
+      }
     }
 
     // StationName
     //
-    if (i.StationName ())
     {
-      ::xercesc::DOMAttr& a (
-        ::xsd::cxx::xml::dom::create_attribute (
-          "StationName",
-          e));
+      ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      a << *i.StationName ();
+      for (DicomDeviceDescriptor::StationNameConstIterator
+           b (i.StationName ().begin ()), n (i.StationName ().end ());
+           b != n; ++b)
+      {
+        if (typeid (DicomDeviceDescriptor::StationNameType) == typeid (*b))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "StationName",
+              "http://dicom-extension-uri/09/08",
+              e));
+
+          s << *b;
+        }
+        else
+          tsm.serialize (
+            "StationName",
+            "http://dicom-extension-uri/09/08",
+            false, true, e, *b);
+      }
     }
 
     // IssuerOfPatientID
@@ -2271,10 +2319,10 @@ namespace CDM
   }
 
   static
-  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DICOMDeviceDescriptor >
-  _xsd_DICOMDeviceDescriptor_type_serializer_init (
-    "DICOMDeviceDescriptor",
-    "http://dicom-gateway-model-uri/15/04");
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DicomDeviceDescriptor >
+  _xsd_DicomDeviceDescriptor_type_serializer_init (
+    "DicomDeviceDescriptor",
+    "http://dicom-extension-uri/09/08");
 }
 
 #include <xsd/cxx/post.hxx>

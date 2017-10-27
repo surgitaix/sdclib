@@ -25,8 +25,8 @@
 #define OSCPCONSUMER_H_
 
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
 
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSCLib/Data/OSCP/OSELibConsumerAdapter.h"
@@ -80,21 +80,21 @@ public:
     *
     * @return The MDIB container
     */
-    MDIBContainer getMDIB();
+    MdibContainer getMdib();
 
     /**
     * @brief Get the Medical Device Description.
     *
     * @return The MDD container
     */
-    MDDescription getMDDescription();
+    MdDescription getMdDescription();
 
     /**
     * @brief Get all states as part of the MDIB.
     *
     * @return The MD state container
     */
-    MDState getMDState();
+    MdState getMdState();
 
     /**
     * @brief Register to be notified if a state changes.
@@ -200,7 +200,7 @@ public:
     *
     * @param handler The handler
     */
-    void setContextStateChangedHandler(OSCPConsumerContextStateChangedHandler * handler);
+    void setContextStateChangedHandler(OSCPConsumerSystemContextStateChangedHandler * handler);
 
     /**
     * @brief Set a handler which will be invoked if a renewal of a subscription fails.
@@ -209,11 +209,26 @@ public:
     */
     void setSubscriptionLostHandler(OSCPConsumerSubscriptionLostHandler * handler);
 
-    std::string requestRawMDIB();
+    /**
+    * @brief Request Mdib in raw XML format.
+    *
+    * @return The XML as string
+    */
+    std::string requestRawMdib();
 
+    /**
+    * @brief Get EPR of the connected provider.
+    *
+    * @return The EPR
+    */
     std::string getEndpointReference();
 
-    unsigned long long int getLastKnownMDIBVersion();
+    /**
+    * @brief Get last known Mdib version.
+    *
+    * @return The version
+    */
+    unsigned long long int getLastKnownMdibVersion();
 
 private:
     OSCPConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription);
@@ -221,12 +236,12 @@ private:
     /**
     * @brief Update the local MDIB using an RPC to the provider.
     *
-    * @param True, if MDIB updated successfully.
+    * @return True, if MDIB updated successfully.
     */
-    bool requestMDIB();
-    std::unique_ptr<CDM::GetMDIBResponse> requestCDMMDIB();
+    bool requestMdib();
+    std::unique_ptr<MDM::GetMdibResponse> requestCDMMdib();
 
-    MDDescription getCachedMDDescription();
+    MdDescription getCachedMdDescription();
 
     bool unregisterFutureInvocationListener(int transactionId);
 
@@ -241,7 +256,7 @@ private:
     void onConnectionLost();
     void onSubscriptionLost();
     void onContextStateChanged(const std::vector<std::string> & handle);
-    void updateLastKnownMDIBVersion(unsigned long long int newVersion);
+    void updateLastKnownMdibVersion(unsigned long long int newVersion);
 
     //
     //Variables
@@ -249,14 +264,14 @@ private:
     std::map<int, FutureInvocationState *> fisMap;
     Poco::Mutex transactionMutex;
 
-    std::shared_ptr<MDIBContainer> mdib;
+    std::shared_ptr<MdibContainer> mdib;
     std::deque<TransactionState> transactionQueue;
 	Poco::Mutex mdibVersionMutex;
 	Poco::Mutex requestMutex;
     Poco::Mutex eventMutex;
     std::map<std::string, OSCPConsumerEventHandler *> eventHandlers;
     OSCPConsumerConnectionLostHandler * connectionLostHandler;
-    OSCPConsumerContextStateChangedHandler * contextStateChangedHandler;
+    OSCPConsumerSystemContextStateChangedHandler * contextStateChangedHandler;
     OSCPConsumerSubscriptionLostHandler * subscriptionLostHandler;
 
     unsigned long long int lastKnownMDIBVersion;

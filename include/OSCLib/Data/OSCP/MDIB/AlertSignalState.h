@@ -32,7 +32,7 @@
 #ifndef ALERTSIGNALSTATE_H_
 #define ALERTSIGNALSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -59,36 +59,41 @@ public:
     typedef OSCPProviderAlertSignalStateHandler ProviderHandlerType;
     typedef OSCPConsumerAlertSignalStateHandler ConsumerHandlerType;
 
-	AlertSignalState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	AlertSignalState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	AlertSignalState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	AlertSignalState & setLocation(const PrimaryAlertSignalLocation & value);
-	PrimaryAlertSignalLocation getLocation() const;
-	bool getLocation(PrimaryAlertSignalLocation & out) const;
+	AlertSignalState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	AlertSignalState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
+
+	AlertSignalState & setActivationState(const AlertActivation & value);
+	AlertActivation getActivationState() const;
+
+	AlertSignalState & setActualSignalGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getActualSignalGenerationDelay() const;
+	bool getActualSignalGenerationDelay(xml_schema::Duration & out) const;
+	bool hasActualSignalGenerationDelay() const;
+
+	AlertSignalState & setPresence(const AlertSignalPresence & value);
+	AlertSignalPresence getPresence() const;
+	bool getPresence(AlertSignalPresence & out) const;
+	bool hasPresence() const;
+
+	AlertSignalState & setLocation(const AlertSignalPrimaryLocation & value);
+	AlertSignalPrimaryLocation getLocation() const;
+	bool getLocation(AlertSignalPrimaryLocation & out) const;
 	bool hasLocation() const;
 
-	AlertSignalState & setSlot(const int & value);
-	int getSlot() const;
-	bool getSlot(int & out) const;
+	AlertSignalState & setSlot(const unsigned int & value);
+	unsigned int getSlot() const;
+	bool getSlot(unsigned int & out) const;
 	bool hasSlot() const;
-
-	AlertSignalState & setActivationState(const PausableActivation & value);
-	PausableActivation getActivationState() const;
-
-	AlertSignalState & setPresence(const SignalPresence & value);
-	SignalPresence getPresence() const;
-	bool getPresence(SignalPresence & out) const;
-	bool hasPresence() const;
 
 private:
 	std::shared_ptr<CDM::AlertSignalState> data;

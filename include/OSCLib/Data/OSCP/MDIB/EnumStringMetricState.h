@@ -32,7 +32,7 @@
 #ifndef ENUMSTRINGMETRICSTATE_H_
 #define ENUMSTRINGMETRICSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -59,43 +59,47 @@ public:
     typedef OSCPProviderEnumStringMetricStateHandler ProviderHandlerType;
     typedef OSCPConsumerEnumStringMetricStateHandler ConsumerHandlerType;
 
-	EnumStringMetricState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	EnumStringMetricState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	EnumStringMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	EnumStringMetricState & setComponentActivationState(const ComponentActivation & value);
-	ComponentActivation getComponentActivationState() const;
-	bool getComponentActivationState(ComponentActivation & out) const;
-	bool hasComponentActivationState() const;
+	EnumStringMetricState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
 
-	EnumStringMetricState & setCalibrationInfo(const CalibrationInfo & value);
-	CalibrationInfo getCalibrationInfo() const;
-	bool getCalibrationInfo(CalibrationInfo & out) const;
-	bool hasCalibrationInfo() const;
+	EnumStringMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
-	EnumStringMetricState & setOperatingHours(const int & value);
-	int getOperatingHours() const;
-	bool getOperatingHours(int & out) const;
-	bool hasOperatingHours() const;
+	EnumStringMetricState & setPhysicalConnector(const PhysicalConnectorInfo & value);
+	PhysicalConnectorInfo getPhysicalConnector() const;
+	bool getPhysicalConnector(PhysicalConnectorInfo & out) const;
+	bool hasPhysicalConnector() const;
 
-	EnumStringMetricState & setOperatingCycles(const int & value);
-	int getOperatingCycles() const;
-	bool getOperatingCycles(int & out) const;
-	bool hasOperatingCycles() const;
+	EnumStringMetricState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
 
-	EnumStringMetricState & setObservedValue(const StringMetricValue & value);
-	StringMetricValue getObservedValue() const;
-	bool getObservedValue(StringMetricValue & out) const;
-	bool hasObservedValue() const;
+	EnumStringMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveDeterminationPeriod() const;
+	bool getActiveDeterminationPeriod(xml_schema::Duration & out) const;
+	bool hasActiveDeterminationPeriod() const;
+
+	EnumStringMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
+	bool hasLifeTimePeriod() const;
+
+	EnumStringMetricState & addBodySite(const CodedValue & value);
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
+	
+	EnumStringMetricState & setMetricValue(const StringMetricValue & value);
+	StringMetricValue getMetricValue() const;
+	bool getMetricValue(StringMetricValue & out) const;
+	bool hasMetricValue() const;
 
 private:
 	std::shared_ptr<CDM::EnumStringMetricState> data;

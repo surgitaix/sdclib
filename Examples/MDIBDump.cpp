@@ -1,8 +1,8 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/MDIBContainer.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
@@ -15,11 +15,11 @@
 #include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/SCODescriptor.h"
@@ -28,7 +28,7 @@
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
-#include "OSCLib/Data/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/OSCPConstants.h
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Util/DebugOut.h"
@@ -168,12 +168,12 @@ void validateStates(const MDDescription & mdd, const std::vector<ComponentState>
 	}
 }
 
-void validate(const MDIBContainer & mdib) {
+void validate(const MdibContainer & mdib) {
 	std::vector<std::string> descriptorHandles;
 	std::vector<std::string> stateHandles;
 
-	const MDDescription mdd(mdib.getMDDescription());
-	const MDState mdstate(mdib.getMDState());
+	const MDDescription mdd(mdib.getMdDescription());
+	const MDState mdstate(mdib.getMdState());
 
 	{
 		HydraMDSDescriptor mds;
@@ -309,14 +309,14 @@ int main (int argc, char * argv[])
 				std::ofstream outFile;
 				outFile.open(filename, std::ios::trunc);
 				Poco::Timestamp dumpStarted;
-				outFile << consumer->requestRawMDIB();
+				outFile << consumer->requestRawMdib();
 				DebugOut(DebugOut::Default, "MDIBDump") << "   -> took " << Poco::DateTimeFormatter::format(Poco::Timespan(dumpStarted.elapsed()), "%s:%i") << " s:ms." << std::endl;
 				outFile.close();
 			} catch (...) {
 				DebugOut(DebugOut::Default, "MDIBDump") << "Error writing file." << std::endl;
 			}
 
-			const MDIBContainer mdib(consumer->getMDIB());
+			const MdibContainer mdib(consumer->getMdib());
 			validate(mdib);
 		}
 

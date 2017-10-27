@@ -32,7 +32,7 @@
 #ifndef NUMERICMETRICSTATE_H_
 #define NUMERICMETRICSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -59,47 +59,56 @@ public:
     typedef OSCPProviderNumericMetricStateHandler ProviderHandlerType;
     typedef OSCPConsumerNumericMetricStateHandler ConsumerHandlerType;
 
-	NumericMetricState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	NumericMetricState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	NumericMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	NumericMetricState & setComponentActivationState(const ComponentActivation & value);
-	ComponentActivation getComponentActivationState() const;
-	bool getComponentActivationState(ComponentActivation & out) const;
-	bool hasComponentActivationState() const;
+	NumericMetricState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
 
-	NumericMetricState & setCalibrationInfo(const CalibrationInfo & value);
-	CalibrationInfo getCalibrationInfo() const;
-	bool getCalibrationInfo(CalibrationInfo & out) const;
-	bool hasCalibrationInfo() const;
+	NumericMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
-	NumericMetricState & setOperatingHours(const int & value);
-	int getOperatingHours() const;
-	bool getOperatingHours(int & out) const;
-	bool hasOperatingHours() const;
+	NumericMetricState & setPhysicalConnector(const PhysicalConnectorInfo & value);
+	PhysicalConnectorInfo getPhysicalConnector() const;
+	bool getPhysicalConnector(PhysicalConnectorInfo & out) const;
+	bool hasPhysicalConnector() const;
 
-	NumericMetricState & setOperatingCycles(const int & value);
-	int getOperatingCycles() const;
-	bool getOperatingCycles(int & out) const;
-	bool hasOperatingCycles() const;
+	NumericMetricState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
 
-	NumericMetricState & setObservedValue(const NumericMetricValue & value);
-	NumericMetricValue getObservedValue() const;
-	bool getObservedValue(NumericMetricValue & out) const;
-	bool hasObservedValue() const;
+	NumericMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveDeterminationPeriod() const;
+	bool getActiveDeterminationPeriod(xml_schema::Duration & out) const;
+	bool hasActiveDeterminationPeriod() const;
+
+	NumericMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
+	bool hasLifeTimePeriod() const;
+
+	NumericMetricState & addBodySite(const CodedValue & value);
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
+	
+	NumericMetricState & setMetricValue(const NumericMetricValue & value);
+	NumericMetricValue getMetricValue() const;
+	bool getMetricValue(NumericMetricValue & out) const;
+	bool hasMetricValue() const;
+
+	NumericMetricState & setActiveAveragingPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveAveragingPeriod() const;
+	bool getActiveAveragingPeriod(xml_schema::Duration & out) const;
+	bool hasActiveAveragingPeriod() const;
 
 	NumericMetricState & addPhysiologicalRange(const Range & value);
-	std::vector<Range> getPhysiologicalRanges() const;
-	void clearPhysiologicalRanges();
+	std::vector<Range> getPhysiologicalRangeList() const;
+	void clearPhysiologicalRangeList();
 	
 private:
 	std::shared_ptr<CDM::NumericMetricState> data;

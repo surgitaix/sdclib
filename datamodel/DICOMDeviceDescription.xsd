@@ -1,64 +1,69 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Mit XMLSpy v2015 sp2 (x64) (http://www.altova.com) von Michael Onken (OFFIS e. V.) bearbeitet -->
-<xsd:schema xmlns:tns="http://dicom-gateway-model-uri/15/04" xmlns:CMDM="http://domain-model-uri/15/04" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://dicom-gateway-model-uri/15/04" xml:lang="en">
-	<xsd:import namespace="http://domain-model-uri/15/04" schemaLocation="BICEPS_DomainModel.xsd"/>
-	<xsd:simpleType name="DICOMTransferRole">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dicom-extension-uri/09/08" xmlns:pm="http://p11073-10207/draft10/pm/2017/10/05" targetNamespace="http://dicom-extension-uri/09/08" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
+	<xsd:import namespace="http://p11073-10207/draft10/pm/2017/10/05" schemaLocation="BICEPS_ParticipantModel.xsd"/>
+	<xsd:simpleType name="DicomTransferRole">
 		<xsd:annotation>
-			<xsd:documentation> Role can be either server (SCP) or client (SCU)</xsd:documentation>
+			<xsd:documentation>Role can be either server (SCP) or client (SCU)</xsd:documentation>
 		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="SCU">
+			<xsd:enumeration value="Scu">
 				<xsd:annotation>
 					<xsd:documentation>Client role</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
-			<xsd:enumeration value="SCP">
+			<xsd:enumeration value="Scp">
 				<xsd:annotation>
 					<xsd:documentation>Server role</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 		</xsd:restriction>
 	</xsd:simpleType>
-	<xsd:complexType name="DICOMTransferCapability">
+	<xsd:complexType name="DicomTransferCapability">
 		<xsd:annotation>
 			<xsd:documentation> A DICOM transfer capability consists of a SOP class and whether the SOP class is supported as a server (SCP) or client (SCU)</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element maxOccurs="unbounded" minOccurs="1" name="TransferSyntax" type="xsd:string">
+			<xsd:element name="TransferSyntax" type="xsd:string" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation>The transfer syntax defines the DICOM encoding used for the transfer of data; this can also include compression of pixel data.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
-		<xsd:attribute name="SOPClass" type="xsd:string" use="required">
+		<xsd:attribute name="SopClass" type="xsd:string" use="required">
 			<xsd:annotation>
 				<xsd:documentation>The SOP Class (DICOM service)</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="TransferRole" type="tns:DICOMTransferRole" use="required">
+		<xsd:attribute name="TransferRole" type="tns:DicomTransferRole" use="required">
 			<xsd:annotation>
 				<xsd:documentation>Role for this service: Client (SCU) or Server (SCP)</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
-	<xsd:complexType name="DICOMNetworkAE">
+	<xsd:complexType name="DicomNetworkAe">
 		<xsd:annotation>
 			<xsd:documentation>A Network AE (Application Entity) is a DICOM network communication component that is uniquely known on the DICOM network by its AE Ttile. It refers to a network connection the AE uses for its communication. The AE is marked whether it initiates and/or receives connections (associations). Optionally a free text description is given.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element maxOccurs="unbounded" minOccurs="1" name="TransferCapability" type="tns:DICOMTransferCapability"/>
-			<xsd:element name="ApplicationCluster" type="CMDM:LocalizedText" maxOccurs="unbounded" minOccurs="0">
+			<xsd:element name="TransferCapability" type="tns:DicomTransferCapability" maxOccurs="unbounded"/>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="ApplicationCluster" type="pm:LocalizedText">
+					<xsd:annotation>
+						<xsd:documentation>Can be used to group DICOM Application Entities into a DICOM Application Clusters</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="SupportedCharacterSet" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Character set supported by this Application Entity. All permitted values can be found in part 3 of the DICOM standard (look for "Specific Charcter Set"). Example: Use "ISO_IR 192" for UTF-8.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="Description" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>Can be used to group DICOM Application Entities into a DICOM Application Clusters</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="SupportedCharacterSet" type="xsd:string" maxOccurs="unbounded" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation>Character set supported by this Application Entity. All permitted values can be found in part 3 of the DICOM standard (look for "Specific Charcter Set"). Example: Use "ISO_IR 192" for UTF-8.</xsd:documentation>
+					<xsd:documentation>Free text description of this Application Entity</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
-		<xsd:attribute name="AETitle" type="xsd:string" use="required">
+		<xsd:attribute name="AeTitle" type="xsd:string" use="required">
 			<xsd:annotation>
 				<xsd:documentation>The AE Title defines a DICOM networking component uniquely on a network.  Maximally 16 characters (ASCII, only upper case characters and numbers highly recommended)</xsd:documentation>
 			</xsd:annotation>
@@ -78,18 +83,13 @@
 				<xsd:documentation>TRUE if  this AE may accept connection (association) requests , FALSE otherwise</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="Description" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation>Free text description of this Application Entity</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
 	</xsd:complexType>
-	<xsd:complexType name="DICOMNetworkConnection">
+	<xsd:complexType name="DicomNetworkConnection">
 		<xsd:annotation>
 			<xsd:documentation>A DICOM network connection (identified by its ID for reference purposes, especially from the DICOMNetworkAE type), is described by a host name (can be an IP address) and TCP port number.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element maxOccurs="unbounded" minOccurs="0" name="TLSCipherSuite" type="xsd:string">
+			<xsd:element name="TlsCipherSuite" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation>TLS Cipher Suites supported by this device. See DICOM standard part 15 for valid values (section on "Secure Transport Connection Profiles").</xsd:documentation>
 				</xsd:annotation>
@@ -111,32 +111,34 @@
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
-	<xsd:complexType name="DICOMDeviceDescriptor">
+	<xsd:complexType name="DicomDeviceDescriptor">
 		<xsd:annotation>
 			<xsd:documentation> General description of a DICOM device. Includes basic description of the device which may also be taken over into any DICOM objects created by the device.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="CMDM:AbstractMDSDescriptor">
+			<xsd:extension base="pm:AbstractComplexDeviceComponentDescriptor">
 				<xsd:sequence>
-					<xsd:element name="NetworkAE" type="tns:DICOMNetworkAE" maxOccurs="unbounded" minOccurs="1"/>
-					<xsd:element name="NetworkConnection" type="tns:DICOMNetworkConnection" maxOccurs="unbounded" minOccurs="1"/>
-					<xsd:element name="SoftwareVersion" type="xsd:string" maxOccurs="unbounded" minOccurs="0" />
-					<xsd:element name="InstitutionName" type="CMDM:LocalizedText" maxOccurs="unbounded" minOccurs="0"/>
-					<xsd:element name="InstitutionAddress" type="CMDM:LocalizedText" maxOccurs="unbounded" minOccurs="0"/>
-					<xsd:element name="InstitutionalDepartmentName" type="CMDM:LocalizedText" maxOccurs="unbounded" minOccurs="0"/>
-					<xsd:element name="PrimaryDeviceType" type="CMDM:LocalizedText" maxOccurs="unbounded" minOccurs="0"/>
-					<xsd:element name="PublicCertificate" type="xsd:base64Binary" maxOccurs="unbounded" minOccurs="0"/>
+					<xsd:element name="NetworkAe" type="tns:DicomNetworkAe" maxOccurs="unbounded"/>
+					<xsd:element name="NetworkConnection" type="tns:DicomNetworkConnection" maxOccurs="unbounded"/>
+					<xsd:choice minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="SoftwareVersion" type="xsd:string"/>
+						<xsd:element name="InstitutionName" type="pm:LocalizedText"/>
+						<xsd:element name="InstitutionAddress" type="pm:LocalizedText"/>
+						<xsd:element name="InstitutionalDepartmentName" type="pm:LocalizedText"/>
+						<xsd:element name="PrimaryDeviceType" type="pm:LocalizedText"/>
+						<xsd:element name="PublicCertificate" type="xsd:base64Binary"/>
+					</xsd:choice>
+					<xsd:element name="Description" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Free text description of this device</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="StationName" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Free text station name, e.g. "High resolution CT 1"</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
 				</xsd:sequence>
-				<xsd:attribute name="Description" type="xsd:string" use="optional">
-					<xsd:annotation>
-						<xsd:documentation>Free text description of this device</xsd:documentation>
-					</xsd:annotation>
-				</xsd:attribute>
-				<xsd:attribute name="StationName" type="xsd:string" use="optional">
-					<xsd:annotation>
-						<xsd:documentation>Free text station name, e.g. "High resolution CT 1"</xsd:documentation>
-					</xsd:annotation>
-				</xsd:attribute>
 				<xsd:attribute name="IssuerOfPatientID" type="xsd:string" use="optional">
 					<xsd:annotation>
 						<xsd:documentation>Issuer of Patient ID as written to the any DICOM objects that are created by this device.</xsd:documentation>

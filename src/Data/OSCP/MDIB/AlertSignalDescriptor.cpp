@@ -36,9 +36,7 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -94,13 +92,13 @@ bool AlertSignalDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-AlertSignalDescriptor & AlertSignalDescriptor::setHandle(const std::string & value) {
+AlertSignalDescriptor & AlertSignalDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string AlertSignalDescriptor::getHandle() const {
+Handle AlertSignalDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -125,35 +123,46 @@ bool AlertSignalDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-AlertSignalDescriptor & AlertSignalDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
+AlertSignalDescriptor & AlertSignalDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
+bool AlertSignalDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
-IntendedUse AlertSignalDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
+SafetyClassification AlertSignalDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool AlertSignalDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
+bool AlertSignalDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
 }
 	
-AlertSignalDescriptor & AlertSignalDescriptor::setConditionSignaled(const std::string & value) {
+AlertSignalDescriptor & AlertSignalDescriptor::setConditionSignaled(const HandleRef & value) {
 	data->ConditionSignaled(ConvertToCDM::convert(value));
 	return *this;
 }
 
+bool AlertSignalDescriptor::getConditionSignaled(HandleRef & out) const {
+	if (data->ConditionSignaled().present()) {
+		out = ConvertFromCDM::convert(data->ConditionSignaled().get());
+		return true;
+	}
+	return false;
+}
 
-std::string AlertSignalDescriptor::getConditionSignaled() const {
-	return ConvertFromCDM::convert(data->ConditionSignaled());
+HandleRef AlertSignalDescriptor::getConditionSignaled() const {
+	return ConvertFromCDM::convert(data->ConditionSignaled().get());
+}
+	
+bool AlertSignalDescriptor::hasConditionSignaled() const {
+	return data->ConditionSignaled().present();
 }
 	
 AlertSignalDescriptor & AlertSignalDescriptor::setManifestation(const AlertSignalManifestation & value) {
@@ -176,12 +185,12 @@ bool AlertSignalDescriptor::getLatching() const {
 	return ConvertFromCDM::convert(data->Latching());
 }
 	
-AlertSignalDescriptor & AlertSignalDescriptor::setDefaultSignalGenerationDelay(const Duration & value) {
+AlertSignalDescriptor & AlertSignalDescriptor::setDefaultSignalGenerationDelay(const xml_schema::Duration & value) {
 	data->DefaultSignalGenerationDelay(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalDescriptor::getDefaultSignalGenerationDelay(Duration & out) const {
+bool AlertSignalDescriptor::getDefaultSignalGenerationDelay(xml_schema::Duration & out) const {
 	if (data->DefaultSignalGenerationDelay().present()) {
 		out = ConvertFromCDM::convert(data->DefaultSignalGenerationDelay().get());
 		return true;
@@ -189,12 +198,54 @@ bool AlertSignalDescriptor::getDefaultSignalGenerationDelay(Duration & out) cons
 	return false;
 }
 
-Duration AlertSignalDescriptor::getDefaultSignalGenerationDelay() const {
+xml_schema::Duration AlertSignalDescriptor::getDefaultSignalGenerationDelay() const {
 	return ConvertFromCDM::convert(data->DefaultSignalGenerationDelay().get());
 }
 	
 bool AlertSignalDescriptor::hasDefaultSignalGenerationDelay() const {
 	return data->DefaultSignalGenerationDelay().present();
+}
+	
+AlertSignalDescriptor & AlertSignalDescriptor::setMinSignalGenerationDelay(const xml_schema::Duration & value) {
+	data->MinSignalGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSignalDescriptor::getMinSignalGenerationDelay(xml_schema::Duration & out) const {
+	if (data->MinSignalGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->MinSignalGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration AlertSignalDescriptor::getMinSignalGenerationDelay() const {
+	return ConvertFromCDM::convert(data->MinSignalGenerationDelay().get());
+}
+	
+bool AlertSignalDescriptor::hasMinSignalGenerationDelay() const {
+	return data->MinSignalGenerationDelay().present();
+}
+	
+AlertSignalDescriptor & AlertSignalDescriptor::setMaxSignalGenerationDelay(const xml_schema::Duration & value) {
+	data->MaxSignalGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSignalDescriptor::getMaxSignalGenerationDelay(xml_schema::Duration & out) const {
+	if (data->MaxSignalGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->MaxSignalGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration AlertSignalDescriptor::getMaxSignalGenerationDelay() const {
+	return ConvertFromCDM::convert(data->MaxSignalGenerationDelay().get());
+}
+	
+bool AlertSignalDescriptor::hasMaxSignalGenerationDelay() const {
+	return data->MaxSignalGenerationDelay().present();
 }
 	
 AlertSignalDescriptor & AlertSignalDescriptor::setSignalDelegationSupported(const bool & value) {
@@ -239,12 +290,12 @@ bool AlertSignalDescriptor::hasAcknowledgementSupported() const {
 	return data->AcknowledgementSupported().present();
 }
 	
-AlertSignalDescriptor & AlertSignalDescriptor::setAcknowledgeTimeout(const Duration & value) {
+AlertSignalDescriptor & AlertSignalDescriptor::setAcknowledgeTimeout(const xml_schema::Duration & value) {
 	data->AcknowledgeTimeout(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertSignalDescriptor::getAcknowledgeTimeout(Duration & out) const {
+bool AlertSignalDescriptor::getAcknowledgeTimeout(xml_schema::Duration & out) const {
 	if (data->AcknowledgeTimeout().present()) {
 		out = ConvertFromCDM::convert(data->AcknowledgeTimeout().get());
 		return true;
@@ -252,7 +303,7 @@ bool AlertSignalDescriptor::getAcknowledgeTimeout(Duration & out) const {
 	return false;
 }
 
-Duration AlertSignalDescriptor::getAcknowledgeTimeout() const {
+xml_schema::Duration AlertSignalDescriptor::getAcknowledgeTimeout() const {
 	return ConvertFromCDM::convert(data->AcknowledgeTimeout().get());
 }
 	

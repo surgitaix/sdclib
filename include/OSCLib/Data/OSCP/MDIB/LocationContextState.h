@@ -32,7 +32,7 @@
 #ifndef LOCATIONCONTEXTSTATE_H_
 #define LOCATIONCONTEXTSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -57,31 +57,41 @@ public:
     typedef CDM::LocationContextState WrappedType;
     typedef LocationContextDescriptor DescriptorType;
 
-	LocationContextState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	LocationContextState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	LocationContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
+
+	LocationContextState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	LocationContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
+
+	LocationContextState & setCategory(const CodedValue & value);
+	CodedValue getCategory() const;
+	bool getCategory(CodedValue & out) const;
+	bool hasCategory() const;
+
+	LocationContextState & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	LocationContextState & setContextAssociation(const ContextAssociation & value);
 	ContextAssociation getContextAssociation() const;
 	bool getContextAssociation(ContextAssociation & out) const;
 	bool hasContextAssociation() const;
 
-	LocationContextState & setBindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getBindingMDIBVersion() const;
+	LocationContextState & setBindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getBindingMdibVersion() const;
+	bool getBindingMdibVersion(ReferencedVersion & out) const;
+	bool hasBindingMdibVersion() const;
 
-	LocationContextState & setUnbindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getUnbindingMDIBVersion() const;
-	bool getUnbindingMDIBVersion(ReferencedVersion & out) const;
-	bool hasUnbindingMDIBVersion() const;
+	LocationContextState & setUnbindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getUnbindingMdibVersion() const;
+	bool getUnbindingMdibVersion(ReferencedVersion & out) const;
+	bool hasUnbindingMdibVersion() const;
 
 	LocationContextState & setBindingStartTime(const Timestamp & value);
 	Timestamp getBindingStartTime() const;
@@ -94,13 +104,18 @@ public:
 	bool hasBindingEndTime() const;
 
 	LocationContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidators() const;
-	void clearValidators();
+	std::vector<InstanceIdentifier> getValidatorList() const;
+	void clearValidatorList();
 	
 	LocationContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationList() const;
+	void clearIdentificationList();
 	
+	LocationContextState & setLocationDetail(const LocationDetail & value);
+	LocationDetail getLocationDetail() const;
+	bool getLocationDetail(LocationDetail & out) const;
+	bool hasLocationDetail() const;
+
 private:
 	std::shared_ptr<CDM::LocationContextState> data;
 };

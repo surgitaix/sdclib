@@ -32,7 +32,7 @@
 #ifndef WORKFLOWCONTEXTSTATE_H_
 #define WORKFLOWCONTEXTSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -57,31 +57,41 @@ public:
     typedef CDM::WorkflowContextState WrappedType;
     typedef WorkflowContextDescriptor DescriptorType;
 
-	WorkflowContextState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	WorkflowContextState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	WorkflowContextState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
+
+	WorkflowContextState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	WorkflowContextState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
+
+	WorkflowContextState & setCategory(const CodedValue & value);
+	CodedValue getCategory() const;
+	bool getCategory(CodedValue & out) const;
+	bool hasCategory() const;
+
+	WorkflowContextState & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	WorkflowContextState & setContextAssociation(const ContextAssociation & value);
 	ContextAssociation getContextAssociation() const;
 	bool getContextAssociation(ContextAssociation & out) const;
 	bool hasContextAssociation() const;
 
-	WorkflowContextState & setBindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getBindingMDIBVersion() const;
+	WorkflowContextState & setBindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getBindingMdibVersion() const;
+	bool getBindingMdibVersion(ReferencedVersion & out) const;
+	bool hasBindingMdibVersion() const;
 
-	WorkflowContextState & setUnbindingMDIBVersion(const ReferencedVersion & value);
-	ReferencedVersion getUnbindingMDIBVersion() const;
-	bool getUnbindingMDIBVersion(ReferencedVersion & out) const;
-	bool hasUnbindingMDIBVersion() const;
+	WorkflowContextState & setUnbindingMdibVersion(const ReferencedVersion & value);
+	ReferencedVersion getUnbindingMdibVersion() const;
+	bool getUnbindingMdibVersion(ReferencedVersion & out) const;
+	bool hasUnbindingMdibVersion() const;
 
 	WorkflowContextState & setBindingStartTime(const Timestamp & value);
 	Timestamp getBindingStartTime() const;
@@ -94,17 +104,17 @@ public:
 	bool hasBindingEndTime() const;
 
 	WorkflowContextState & addValidator(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getValidators() const;
-	void clearValidators();
+	std::vector<InstanceIdentifier> getValidatorList() const;
+	void clearValidatorList();
 	
 	WorkflowContextState & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
-	void clearIdentifications();
+	std::vector<InstanceIdentifier> getIdentificationList() const;
+	void clearIdentificationList();
 	
-	WorkflowContextState & setOrderDetail(const Order & value);
-	Order getOrderDetail() const;
-	bool getOrderDetail(Order & out) const;
-	bool hasOrderDetail() const;
+	WorkflowContextState & setWorkflowDetail(const WorkflowDetail & value);
+	WorkflowDetail getWorkflowDetail() const;
+	bool getWorkflowDetail(WorkflowDetail & out) const;
+	bool hasWorkflowDetail() const;
 
 private:
 	std::shared_ptr<CDM::WorkflowContextState> data;

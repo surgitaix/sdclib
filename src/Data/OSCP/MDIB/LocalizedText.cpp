@@ -36,7 +36,6 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Language.h"
 
 namespace OSCLib {
 namespace Data {
@@ -70,22 +69,34 @@ LocalizedText & LocalizedText:: operator=(const LocalizedText & object) {
 	return *this;
 }
 
-std::string LocalizedText::get() const {
-	return *data;
+
+LocalizedText & LocalizedText::setRef(const LocalizedTextRef & value) {
+	data->Ref(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LocalizedText::getRef(LocalizedTextRef & out) const {
+	if (data->Ref().present()) {
+		out = ConvertFromCDM::convert(data->Ref().get());
+		return true;
+	}
+	return false;
+}
+
+LocalizedTextRef LocalizedText::getRef() const {
+	return ConvertFromCDM::convert(data->Ref().get());
 }
 	
-LocalizedText & LocalizedText::set(const std::string & value) {
-	*data = value;
-	return *this;
-} 
+bool LocalizedText::hasRef() const {
+	return data->Ref().present();
+}
 	
-
-LocalizedText & LocalizedText::setLang(const Language & value) {
+LocalizedText & LocalizedText::setLang(const xml_schema::Language & value) {
 	data->Lang(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LocalizedText::getLang(Language & out) const {
+bool LocalizedText::getLang(xml_schema::Language & out) const {
 	if (data->Lang().present()) {
 		out = ConvertFromCDM::convert(data->Lang().get());
 		return true;
@@ -93,12 +104,54 @@ bool LocalizedText::getLang(Language & out) const {
 	return false;
 }
 
-Language LocalizedText::getLang() const {
+xml_schema::Language LocalizedText::getLang() const {
 	return ConvertFromCDM::convert(data->Lang().get());
 }
 	
 bool LocalizedText::hasLang() const {
 	return data->Lang().present();
+}
+	
+LocalizedText & LocalizedText::setVersion(const ReferencedVersion & value) {
+	data->Version(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LocalizedText::getVersion(ReferencedVersion & out) const {
+	if (data->Version().present()) {
+		out = ConvertFromCDM::convert(data->Version().get());
+		return true;
+	}
+	return false;
+}
+
+ReferencedVersion LocalizedText::getVersion() const {
+	return ConvertFromCDM::convert(data->Version().get());
+}
+	
+bool LocalizedText::hasVersion() const {
+	return data->Version().present();
+}
+	
+LocalizedText & LocalizedText::setTextWidth(const LocalizedTextWidth & value) {
+	data->TextWidth(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LocalizedText::getTextWidth(LocalizedTextWidth & out) const {
+	if (data->TextWidth().present()) {
+		out = ConvertFromCDM::convert(data->TextWidth().get());
+		return true;
+	}
+	return false;
+}
+
+LocalizedTextWidth LocalizedText::getTextWidth() const {
+	return ConvertFromCDM::convert(data->TextWidth().get());
+}
+	
+bool LocalizedText::hasTextWidth() const {
+	return data->TextWidth().present();
 }
 	
 

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Clue for documentation elements: Please start and end a documentation by directly beginning after/ending before the opening/closing tag. Example:
-	<xsd:documentation>Here the doc starts [...] and ends.</document>
+	Please start and end a documentation by directly beginning after/ending before the opening/closing tag. Example:
+	<xsd:documentation>Here the doc starts [..SHAL.] and ends.</document>
 
 	Do not do something like this:
 	<xsd:documentation>
@@ -21,15 +21,20 @@ and the doc ends.</document>
 		Another new line starts [...]
 		and the doc ends.</document>
 
-	All these rules prevent the documentation output format (that is generated using Altova XML Spy) from looking akward/not well-shaped.
+	All these rules prevent the documentation output format (that is generated using Altova XML Spy) from looking awkward/not well-shaped.
 
 	=====
 
-	Information: Search for "TODO: add documentation" for missing documentation items
+	Please fulfill CamelCase notation for any elements that exist or will be inserted.
+
+	=====
+
+	Information: - Search for "TODO: add documentation" for missing documentation items.
+	             - Search for "[TODO: clarification]" for documentation items that have to clarified
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://extension-point-uri/15/03" xmlns:dom="http://domain-model-uri/15/04" xmlns:msg="http://message-model-uri/15/04" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:npre="http://jaxb2-commons.dev.java.net/namespace-prefix" targetNamespace="http://message-model-uri/15/04" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0-BETA_04" xml:lang="en" jaxb:version="2.0">
-	<xsd:import namespace="http://extension-point-uri/15/03" schemaLocation="ExtensionPoint.xsd"/>
-	<xsd:import namespace="http://domain-model-uri/15/04" schemaLocation="BICEPS_DomainModel.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://p11073-10207/draft10/ext/2017/10/05" xmlns:pm="http://p11073-10207/draft10/pm/2017/10/05" xmlns:msg="http://p11073-10207/draft10/msg/2017/10/05" targetNamespace="http://p11073-10207/draft10/msg/2017/10/05" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft10-Revision2" xml:lang="en">
+	<xsd:import namespace="http://p11073-10207/draft10/ext/2017/10/05" schemaLocation="ExtensionPoint.xsd"/>
+	<xsd:import namespace="http://p11073-10207/draft10/pm/2017/10/05" schemaLocation="BICEPS_ParticipantModel.xsd"/>
 	<xsd:annotation>
 		<xsd:documentation>This XML schema defines the 'Basic Integrated Clinical Environment Protocol Specification' (BICEPS) that is a Domain Information Model (DIM) for point of care medical device communication.
 			It encompasses the device model and the corresponding messages.
@@ -41,30 +46,119 @@ and the doc ends.</document>
 			The Domain Information model is subdivided into two parts, a static part (referred to as Descriptor)
 			that provides general information about the hardware specification of the elements and
 			a dynamic part (referred to as State) that may change during time.</xsd:documentation>
-		<xsd:appinfo>
-			<jaxb:schemaBindings>
-				<jaxb:nameXmlTransform>
-					<!--jaxb:elementName prefix="Msg"/>
-						<jaxb:typeName prefix="Msg"/>
-						<jaxb:anonymousTypeName prefix="Msg"/-->
-				</jaxb:nameXmlTransform>
-			</jaxb:schemaBindings>
-			<!--jaxb:globalBindings generateValueClass="false" /-->
-			<!--jaxb.globalBindings>
-			<jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime" 
-parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime" 
-printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/> 
-			</jaxb.globalBindings-->
-		</xsd:appinfo>
 	</xsd:annotation>
-	<!--Message Model - Get Service-->
-	<!-- xsd:simpleType name="HandleConstraint">
-		<xsd:restriction base="msg:HandleRef"/>
-	</xsd:simpleType-->
-	<!---->
+	<!--Section: Base Types-->
+	<xsd:simpleType name="TransactionId">
+		<xsd:annotation>
+			<xsd:documentation>TransactionId is a transaction identifier that SHALL be unique among an operation invocation transaction.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:unsignedInt"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="InvocationState">
+		<xsd:annotation>
+			<xsd:documentation>Transaction state of an invoked operation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Wait">
+				<xsd:annotation>
+					<xsd:documentation>Wait = Waiting. The operation has been queued and waits for execution.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Start">
+				<xsd:annotation>
+					<xsd:documentation>Start = Started. The execution of the operation has been started.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Cnclld">
+				<xsd:annotation>
+					<xsd:documentation>Cnclld = Cancelled. The execution has been cancelled by the SERVICE PROVIDER.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CnclldMan">
+				<xsd:annotation>
+					<xsd:documentation>CnclldMan = Cancelled Manually. The execution has been cancelled by the operator.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Fin">
+				<xsd:annotation>
+					<xsd:documentation>Fin = Finished. The execution has been finished.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="FinMod">
+				<xsd:annotation>
+					<xsd:documentation>FinMod = Finished with modification. As the requested target value could not be reached, the next best value has been chosen and used as target value.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Fail">
+				<xsd:annotation>
+					<xsd:documentation>The execution has been failed.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="InvocationError">
+		<xsd:annotation>
+			<xsd:documentation>InvocationError conveys details with respect to the origin of an operation invocation failure.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Unspec">
+				<xsd:annotation>
+					<xsd:documentation>Unspec = Unspecified. An unspecified error has occurred. No more information about the error is available.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Unkn">
+				<xsd:annotation>
+					<xsd:documentation>Unkn = Unknown Operation. The HANDLE to the operation object is not known.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Inv">
+				<xsd:annotation>
+					<xsd:documentation>Inv = Invalid Value. The HANDLE to the operation object does not match the invocation request MESSAGE.
+
+Example: if a msg:SetString MESSAGE is received, in which the msg:SetString/msg:OperationHandleRef points to a msg:SetValue MESSAGE, the receiver replies with InvocationError "Inv".</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Oth">
+				<xsd:annotation>
+					<xsd:documentation>Oth = Other. Another type of error has occurred. More information on the error MAY be available.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="InvocationInfo">
+		<xsd:annotation>
+			<xsd:documentation>InvocationInfo conveys information to describe a transaction operation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="ext:Extension" minOccurs="0"/>
+			<xsd:element name="TransactionId" type="msg:TransactionId">
+				<xsd:annotation>
+					<xsd:documentation>Transaction identifier that has been assigned to the processing of a set operation.
+
+The transaction identifier SHALL be used to identify a set operation transaction status that is delivered via msg:OperationInvokedReport MESSAGEs. The transaction's initial identifier is tramsmitted in the response of a set operation request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="InvocationState" type="msg:InvocationState">
+				<xsd:annotation>
+					<xsd:documentation>Processing state of an invoked operation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="InvocationError" type="msg:InvocationError" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>If ./msg:InvocationState indicates a failure, InvocationError may convey more information about the error.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="InvocationErrorMessage" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>If ./msg:InvocationState indicates a failure, InvocationErrorMessage may convey a MESSAGE for a user with information about the error.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--Section: Service Operations Base Types-->
 	<xsd:complexType name="AbstractGet">
 		<xsd:annotation>
-			<xsd:documentation>Abstract super type of any request message for the GET service.</xsd:documentation>
+			<xsd:documentation>The GET SERVICE provides a set of request and response MESSAGEs. AbstractGet is the building block for any GET SERVICE request MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element ref="ext:Extension" minOccurs="0"/>
@@ -72,17 +166,75 @@ printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
 	</xsd:complexType>
 	<xsd:complexType name="AbstractGetResponse">
 		<xsd:annotation>
-			<xsd:documentation>Abstract super type of any response message for the GET service.</xsd:documentation>
+			<xsd:documentation>The GET SERVICE provides a set of request and response MESSAGEs. AbstractGetResponse is the building block for any GET SERVICE response MESSAGE.
+
+Per convention any response MESSAGE ends up with "Response", whereas request MESSAGEs possess no specific suffix.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element ref="ext:Extension" minOccurs="0"/>
 		</xsd:sequence>
-		<xsd:attribute ref="dom:MDIBVersion" use="required"/>
+		<xsd:attributeGroup ref="pm:MdibVersionGroup"/>
 	</xsd:complexType>
-	<!--MDIB-->
-	<xsd:element name="GetMDIB">
+	<xsd:complexType name="AbstractReportPart">
 		<xsd:annotation>
-			<xsd:documentation>The GetMDIB message indicates that the complete MDIB (a.k.a capability description of the medical device(s)) SHOULD be returned as response.</xsd:documentation>
+			<xsd:documentation>Any report that is delivered using msg:AbstractReport MAY consist of multiple report parts. AbstractReport is the building block for a single report part in a msg:AbstractReport.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="ext:Extension" minOccurs="0"/>
+			<xsd:element name="SourceMds" type="pm:HandleRef" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Reference to the MDS that has triggered the sending of the report part. An event sink MAY use this HANDLE reference for filtering.
+
+- If the MDIB includes a single MDS only, SourceMds is OPTIONAL.
+- If the MDIB includes multiple MDSs, SourceMds is REQUIRED.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AbstractReport">
+		<xsd:annotation>
+			<xsd:documentation>Event report services provide a set of MESSAGEs, which are distributed using a publish subscribe mechanism. AbstractReport is the building block for any event MESSAGE that is delivered to an event sink.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="ext:Extension" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="pm:MdibVersionGroup"/>
+	</xsd:complexType>
+	<xsd:complexType name="AbstractSet">
+		<xsd:annotation>
+			<xsd:documentation>The SET SERVICE provides a set of request and response MESSAGEs. AbstractSet is the building block for any SET SERVICE request MESSAGE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="ext:Extension" minOccurs="0"/>
+			<xsd:element name="OperationHandleRef" type="pm:HandleRef">
+				<xsd:annotation>
+					<xsd:documentation>Handle of the set operation to invoke. 
+
+A SERVICE PROVIDER SHALL accept a set request only if at least the operation target HANDLE is valid and the operation is enabled according to the POC MEDICAL DEVICE's MDIB. A target HANDLE is valid if the operation to invoke can be applied on the object referenced by the target HANDLE. An operation can be considered as enabled if pm:AbstractOperationStateType/@OperatingMode equals "En".</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AbstractSetResponse">
+		<xsd:annotation>
+			<xsd:documentation>The SET SERVICE provides a set of request and response MESSAGEs. AbstractSetResponse is the building block for any SET SERVICE response MESSAGE.
+
+Per convention any response MESSAGE ends up with "Response", whereas request MESSAGEs possess no specific suffix.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="ext:Extension" minOccurs="0"/>
+			<xsd:element name="InvocationInfo" type="msg:InvocationInfo">
+				<xsd:annotation>
+					<xsd:documentation>Information set regarding the returned transaction. See pm:InvocationInfo.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="pm:MdibVersionGroup"/>
+	</xsd:complexType>
+	<!--Section: Get-->
+	<xsd:element name="GetMdib">
+		<xsd:annotation>
+			<xsd:documentation>GetMdib is the request to a msg:GetMdibResponse MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -90,45 +242,37 @@ printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="GetMDIBResponse">
+	<xsd:element name="GetMdibResponse">
 		<xsd:annotation>
-			<xsd:documentation>The response for a GetMDIB request that transports the MDIB of the communication node (may handle multiple medical devices).</xsd:documentation>
+			<xsd:documentation>GetMdibResponse is the response to a msg:GetMdib MESSAGE It conveys the complete MDIB. 
+
+Since contexts might include privacy-related information, a SERVICE PROVIDER MAY decide to leave the MDS contexts empty. To acquire context information, a client has to send a msg:GetContextStates request.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGetResponse">
 					<xsd:sequence>
-						<xsd:element name="MDIB" type="dom:MDIB">
+						<xsd:element name="Mdib" type="pm:Mdib">
 							<xsd:annotation>
-								<xsd:documentation>The current MDIB of the communication node that may handle multiple medical devices.</xsd:documentation>
+								<xsd:documentation>Current snapshot of the MDIB.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<!-- xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionGetMDIBResponses"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="GetMDDescription">
+	<xsd:element name="GetMdDescription">
 		<xsd:annotation>
-			<xsd:documentation>The GetMDDescription message indicates that referenced MDS descriptors SHOULD be returned as response. If no MDS descriptors are referenced all MDS descriptors SHOULD be returned.</xsd:documentation>
+			<xsd:documentation>GetMdDescription is the request to a msg:GetMdDescriptionResponse MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGet">
 					<xsd:sequence>
-						<xsd:element name="HandleRef" type="dom:HandleRef" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of handles that specify which descriptors SHOULD be returned. If no handle is provided, all descriptors in the MDIB SHOULD be returned.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="Handles"/>
-								</xsd:appinfo>
+								<xsd:documentation>List of HANDLEs that specify which descriptors are requested. See msg:GetMdDescriptionResponse/msg:MdDescription.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -136,41 +280,39 @@ printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="GetMDDescriptionResponse">
+	<xsd:element name="GetMdDescriptionResponse">
 		<xsd:annotation>
-			<xsd:documentation>The response for a GetMDDescription request that transports a set of MDS descriptors of the device. The contained MDS descriptors depend on the handle list of the request. If the handle list of the request is empty all MDS descriptors will be returned. If a handle in the list belongs to a MDS descriptor all states referencing the MDS descriptor will be returned. </xsd:documentation>
+			<xsd:documentation>GetMdDescriptionResponse is the response to a msg:GetMdDescription MESSAGE. It transports a set of MDS descriptors.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGetResponse">
 					<xsd:sequence>
-						<xsd:element name="StaticDescription" type="dom:MDDescription"/>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="MdDescription" type="pm:MdDescription">
 							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionGetMDDescriptionResponses"/>
-								</xsd:appinfo>
+								<xsd:documentation>MdDescription comprises the requested set of MDS descriptors. Which MDS descriptors SHALL be included depends on the msg:GetMdDescription/msg:HandleRef list:
+
+- If the HANDLE reference list is empty, all MDS descriptors are included in the result list.
+- If a HANDLE reference does match an MDS descriptor, it is included in the result list.
+- If a HANDLE reference does not match an MDS descriptor (i.e., any other descriptor), the MDS descriptor that is in the parent tree of the HANDLE reference is included in the result list.</xsd:documentation>
 							</xsd:annotation>
-						</xsd:any-->
+						</xsd:element>
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="GetMDState">
+	<xsd:element name="GetMdState">
 		<xsd:annotation>
-			<xsd:documentation>The GetMDState message indicates that the specified states SHOULD be returned. If no HandleRef is specified all states SHOULD be returned.</xsd:documentation>
+			<xsd:documentation>GetMdState is the request to a msg:GetMdStateResponse MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGet">
 					<xsd:sequence>
-						<xsd:element name="HandleRef" type="dom:HandleRef" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of handles that specify which states SHOULD be returned. If no handle is provided, all states in the MDIB SHOULD be returned.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="Handles"/>
-								</xsd:appinfo>
+								<xsd:documentation>List of HANDLEs that specify which states are requested. See msg:GetMdStateResponse/msg:MdState.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -178,48 +320,42 @@ printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="GetMDStateResponse">
+	<xsd:element name="GetMdStateResponse">
 		<xsd:annotation>
-			<xsd:documentation>The response for a GetMDState request that transports a set of states of the device. The contained states depend on the handle list of the request. If the handle list of the request is empty all states will be returned. If a handle in the list belongs to a descriptor all states referencing the descriptor will be returned.</xsd:documentation>
+			<xsd:documentation>GetMdStateResponse is the response to a msg:GetMdState MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGetResponse">
 					<xsd:sequence>
-						<xsd:element name="MDState" type="dom:MDState">
+						<xsd:element name="MdState" type="pm:MdState">
 							<xsd:annotation>
-								<xsd:documentation>The requested MDState object.</xsd:documentation>
+								<xsd:documentation>MdState comprises the requested set of MDS states. Which MDS states SHALL be included depends on the msg:GetMdState/msg:HandleRef list:
+
+- If the HANDLE reference list is empty, all states in the MDIB are included in the result list.
+- If a HANDLE reference does match a multi state HANDLE, the corresponding multi state is included in the result list.
+- If a HANDLE reference does match a descriptor HANDLE, all states that belong to the corresponding descriptor are included in the result list.
+
+Since context states might include privacy-related information, a SERVICE PROVIDER can decide to skip any contexts states. Context states have to be requested by sending a msg:GetContextStates request.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionGetMDStateResponse"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
+	<!--Section: Context-->
 	<xsd:element name="GetContextStates">
 		<xsd:annotation>
-			<xsd:documentation>The GetContextState message indicates that the specified context SHOULD be returned as response.</xsd:documentation>
-			<xsd:appinfo>
-				<jaxb:class name="GetContextStates"/>
-			</xsd:appinfo>
+			<xsd:documentation>GetContextStates is the request to a msg:GetContextStatesResponse MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGet">
 					<xsd:sequence>
-						<xsd:element name="HandleRef" type="dom:HandleRef" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of handles that specify which patients SHOULD be returned. If no handle is provided all patients in the MDIB SHOULD be returned. If a Handle of a non-patient object (e.g. MDS) is provided than all patients that are associated with that object SHOULD be returned.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="Handles"/>
-								</xsd:appinfo>
+								<xsd:documentation>List of HANDLEs that specify which context states are requested. See msg:GetContextStatesResponse/msg:ContextState.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -229,21 +365,23 @@ printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
 	</xsd:element>
 	<xsd:element name="GetContextStatesResponse">
 		<xsd:annotation>
-			<xsd:documentation>The response to a GetContextStateResponse request that transports the requested patient information of the device.</xsd:documentation>
-			<xsd:appinfo>
-				<jaxb:class name="GetContextStatesResponse"/>
-			</xsd:appinfo>
+			<xsd:documentation>GetContextStatesResponse is the response to a msg:GetContextStates MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGetResponse">
 					<xsd:sequence>
-						<xsd:element name="ContextState" type="dom:AbstractContextState" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="ContextState" type="pm:AbstractContextState" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of context values that includes all or just a subset of the requested context information.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="ContextStates"/>
-								</xsd:appinfo>
+								<xsd:documentation>ContextState comprises the requested set of context states.
+
+__R5039: If the msg:GetContextStates/msg:HandleRef list is empty, all context states in the MDIB SHALL be included in the result list.__
+
+__R5040: If a HANDLE reference from the msg:GetContextStates/msg:HandleRef list does match a context descriptor HANDLE, then all context states that belong to the corresponding context descriptor SHALL be included in the result list.__
+
+__R5041: If a HANDLE reference from the msg:GetContextStates/msg:HandleRef list does match a context state HANDLE, then the corresponding context state SHALL be included in the result list.__
+
+__R5042: If a HANDLE reference from the msg:GetContextStates/msg:HandleRef list does match an MDS descriptor, then all context states that are part of this MDS SHALL be included in the result list.__</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -251,38 +389,44 @@ printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="GetContainmentTree">
+	<xsd:element name="GetContextStatesByIdentification">
 		<xsd:annotation>
-			<xsd:documentation>The GetContainmentTree message indicates that the child elements of the referenced element should be returned.</xsd:documentation>
+			<xsd:documentation>GetContextStatesByIdentification is the request to a msg:GetContextStatesByIdentificationResponse MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGet">
 					<xsd:sequence>
-						<xsd:element name="HandleRef" type="dom:HandleRef" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="Identification" type="pm:InstanceIdentifier" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of handles that specify which containment tree element be returned. If no handle is provided, all containment tree elements in the MDIB SHOULD be returned.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="Handles"/>
-								</xsd:appinfo>
+								<xsd:documentation>List of pm:InstanceIdentifier ELEMENTs that specify which context states are requested based on their pm:AbstractContextState/pm:Identification. See msg:GetContextStatesByIdentificationResponse/msg:ContextState.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
+					<xsd:attribute name="ContextType" type="xsd:QName">
+						<xsd:annotation>
+							<xsd:documentation>ContextType defines the type of context to return (e.g., pm:LocationContextState or pm:PatientContextState).</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="GetContainmentTreeResponse">
+	<xsd:element name="GetContextStatesByIdentificationResponse">
 		<xsd:annotation>
-			<xsd:documentation>The response to a GetContainmentTree request that transports the containment tree information of the child elements for the specified parents from the request.</xsd:documentation>
+			<xsd:documentation>GetContextStatesByIdentificationResponse is the response to a msg:GetContextStatesByIdentification MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGetResponse">
 					<xsd:sequence>
-						<xsd:element name="ContainmentTree" type="dom:ContainmentTree">
+						<xsd:element name="ContextState" type="pm:AbstractContextState" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>TODO: add documentation</xsd:documentation>
+								<xsd:documentation>ContextState comprises the requested set of context states.
+
+__R5036: If the msg:GetContextStates/msg:Identification list is empty, then no context states SHALL be included in the result list.__
+
+__R5037: The result list SHALL enclose all context states of the requested msg:GetContextStates/@ContextType that match at least all ELEMENTs from the msg:GetContextStates/msg:Identification list.__</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -290,20 +434,49 @@ printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="GetDescriptor">
+	<xsd:element name="GetContextStatesByFilter">
 		<xsd:annotation>
-			<xsd:documentation>The GetDescriptor message indicates that the defined descriptors should be returned without child descriptors included.</xsd:documentation>
+			<xsd:documentation>GetContextStatesByFilter is the request to a msg:GetContextStatesByFilterResponse.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractGet">
 					<xsd:sequence>
-						<xsd:element name="HandleRef" type="dom:HandleRef" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="Filter" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of handles that specify which descriptors should be returned. If no handle is provided, all descrtiptors should be returned.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="Handles"/>
-								</xsd:appinfo>
+								<xsd:documentation>List of XPath expressions that specify which context states are requested based on XPath expressions. See msg:GetContextStatesByFilterResponse/msg:ContextState.
+
+__R5045: The root node of the XPath expression SHALL be the pm:MdState ELEMENT of the target MDIB.__</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="ContextType" type="xsd:QName">
+						<xsd:annotation>
+							<xsd:documentation>ContextType defines the type of context to return (e.g., pm:LocationContextState or pm:PatientContextState).</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetContextStatesByFilterResponse">
+		<xsd:annotation>
+			<xsd:documentation>GetContextStatesByFilterResponse is the response to a msg:GetContextStatesByFilter MESSAGE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGetResponse">
+					<xsd:sequence>
+						<xsd:element name="ContextState" type="pm:AbstractContextState" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>ContextState comprises the requested set of context states.
+
+__R5043: If the msg:GetContextStates/msg:Filter list is empty, then no context states SHALL be included in the result list.__
+
+__R5044: The result SHALL enclose all context states of the requested msg:GetContextStates/@ContextType that match the filter criteria from the msg:GetContextStates/msg:Filter list where all filter criteria are concatenated by a logical "and".__
+
+NOTE—For a logical "or" concatenation a SERVICE CONSUMER has to send multiple requests. This is similar to the Types and Scopes filtering mechanism of WS-Discovery [WS-Discovery].
+</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -311,371 +484,32 @@ printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="GetDescriptorResponse">
+	<xsd:element name="SetContextState">
 		<xsd:annotation>
-			<xsd:documentation>The response to a GetDescriptor request that transports the descriptors woth out child descriptors for the specified handles from the request. </xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractGetResponse">
-					<xsd:sequence>
-						<xsd:element name="Descriptor" type="dom:AbstractDescriptor" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-				</xsd:extension>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<!--Localization-->
-	<xsd:complexType name="GetLocalizedText">
-		<xsd:annotation>
-			<xsd:documentation>GetLocalizedText is a request message to obtain a localized text referenced in the MDIB.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractGet">
-				<xsd:sequence>
-					<xsd:element name="Ref" type="dom:LocalizedTextRef">
-						<xsd:annotation>
-							<xsd:documentation>Reference name of the text that is requested.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="Version" type="dom:ReferencedVersion" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>Revision of the referenced text that is requested.
+			<xsd:documentation>SetContextState is the request to a msg:SetContextStateResponse MESSAGE. Its function is to insert a new or modify an existing context state.
 
-The following rules SHALL apply:
-- If the referenced text is not available in the specific version, GetLocalizedTextResponse includes an empty result
-- If Version is not specified, GetLocalizedTextResponse responds with the latest version of the text.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="Lang" type="xsd:language" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>Zero or more language identifiers according to RFC 5646 (see http://tools.ietf.org/html/rfc5646) to get different translations of the requested text.
-
-The following rules SHALL apply:
-- If there is no Lang element given in the request message, all translations will be returned in the GetLocalizedTextResponse message.
-- Otherwise, the GetLocalizedTextResponse message contains translations in all languages matching the Lang elements of the GetLocalizedText request message. If a text is not available in a specific language, the result for that specific language is omitted. Supported languages can be retrieved using the GetSupportedLanguages request message.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="GetLocalizedTextResponse">
-		<xsd:annotation>
-			<xsd:documentation>GetLocalizedTextResponse is sent in response to a GetLocalizedText message and SHALL contain the result requested by GetLocalizedText.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractGetResponse">
-				<xsd:sequence>
-					<xsd:element name="Text" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>A list of texts in different translations in accordance to the GetLocalizedText request message. There might be no elements present if a referenced text does not exist or is not availabe in the requested language(s) and version.</xsd:documentation>
-						</xsd:annotation>
-						<xsd:complexType>
-							<xsd:simpleContent>
-								<xsd:extension base="xsd:string">
-									<xsd:attribute name="Lang" type="xsd:language">
-										<xsd:annotation>
-											<xsd:documentation>The language of the underlying text in accordance to RFC 5646 (see http://tools.ietf.org/html/rfc5646).</xsd:documentation>
-										</xsd:annotation>
-									</xsd:attribute>
-								</xsd:extension>
-							</xsd:simpleContent>
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="GetSupportedLanguages">
-		<xsd:annotation>
-			<xsd:documentation>By sending a GetSupportedLanguages request, a service SHALL respond with a GetSupportedLanguagesResponse message containing a list of supported translations of referenced localized texts. GetSupportedLanguages requires no further parameters.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractGet">
-				<xsd:sequence/>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="GetSupportedLanguagesResponse">
-		<xsd:annotation>
-			<xsd:documentation>A GetSupportedLanguagesResponse message SHALL be send in answer to a GetSupportedLanguages request message. The GetSupportedLanguagesResponse message SHALL contain all language identifiers available for referenced localized texts.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractGetResponse">
-				<xsd:sequence>
-					<xsd:element name="Lang" type="xsd:language" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of available languages as RFC 5646 (see http://tools.ietf.org/html/rfc5646) language identifiers.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<!--Archive-->
-	<xsd:complexType name="GetDescriptorsFromArchive">
-		<xsd:annotation>
-			<xsd:documentation>GetDescriptorsFromArchive message is used by the archive service to request descriptors related to a specific descriptor version and/or time frame.
-
-GetDescriptorsFromArchive SHALL at least expect a version or a time frame filter. If both a version and a time frame are defined, the filter SHALL apply by conjunction. If none are defined, the message is invalid. Clue: It is not sufficient to provide handles only.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractGet">
-				<xsd:sequence>
-					<xsd:element name="DescriptorRevision" type="dom:ReferencedVersion" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>DescriptorRevision is a version filter. It is the referenced descriptor version that will be requested. By adding this optional element to the request, GetDescriptorsFromArchiveResponse SHALL only respond with descriptors matching this version.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="TimeFrame" type="msg:TimeFrame" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>TimeFrame defines a time-based filter. By adding this optional element to the request, GetDescriptorsFromArchiveResponse SHALL only respond with descriptors matching this time frame.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="Handle" type="dom:HandleRef" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>A list of handle references which serve as a filter for the response.
-
-If one or more handle references are defined, GetDescriptorsFromArchiveResponse SHALL respond only with descriptors matching these handle references at the given revision and/or time frame. If no handle references are defined, GetDescriptorsFromArchiveResponse SHALL respond with all descriptors at the given revision and/or time frame.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="GetDescriptorsFromArchiveResponse">
-		<xsd:annotation>
-			<xsd:documentation>GetDescriptorsFromArchiveResponse message is sent as the response to a GetDescriptorsFromArchive request message using the archive service.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractGetResponse">
-				<xsd:sequence>
-					<xsd:element name="Descriptor" type="dom:AbstractDescriptor" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>A list of descriptors. The descriptors SHALL match the time frame as well as the version and handle references of the GetDescriptorsFromArchive request message.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="GetStatesFromArchive">
-		<xsd:annotation>
-			<xsd:documentation>GetStatesFromArchive message is used by the archive service to request states related to a specific state version and/or time frame.
-
-GetStatesFromArchive SHALL at least expect a version or a time frame filter. If both a version and a time frame are defined, the filter SHALL apply by conjunction. If none are defined, the message is invalid. Clue: It is not sufficient to provide handles only.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractGet">
-				<xsd:sequence>
-					<xsd:element name="StateRevision" type="dom:ReferencedVersion">
-						<xsd:annotation>
-							<xsd:documentation>StateRevision is a version filter. It is the referenced state version that will be requested. By adding this optional element to the request, GetStatesFromArchiveResponse SHALL only respond with states matching this version.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="TimeFrame" type="msg:TimeFrame" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>TimeFrame defines a time-based filter. By adding this optional element to the request, GetStatesFromArchiveResponse SHALL only respond with states matching this time frame.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="Handle" type="dom:HandleRef" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>A list of handle references which serve as a filter for the response.
-
-If one or more handle references are defined, GetStatesFromArchiveResponse SHALL respond only with states matching these handle references at the given revision and/or time frame. If no handle references are defined, GetStatesFromArchiveResponse SHALL respond with all states at the given revision and/or time frame. If a handle is a descriptor handle that points to a multi state, GetStatesFromArchiveResponse SHALL respond with all states referring to the descriptor handle.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="GetStatesFromArchiveResponse">
-		<xsd:annotation>
-			<xsd:documentation>GetStatesFromArchiveResponse message is sent as the response to a GetStatesFromArchive request message using the archive service.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractGet">
-				<xsd:sequence>
-					<xsd:element name="State" type="dom:AbstractState" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>A list of states. The states SHALL match the time frame as well as the version and handle references of the GetStatesFromArchive request message.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="TimeFrame">
-		<xsd:annotation>
-			<xsd:documentation>Defines a time frame by defining start and end time whereby the following rule SHALL apply: Start less than End.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:attribute name="Start" type="dom:Timestamp">
-			<xsd:annotation>
-				<xsd:documentation>The start time of the time frame.</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="End" type="dom:Timestamp">
-			<xsd:annotation>
-				<xsd:documentation>The end time of the time frame.</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-	</xsd:complexType>
-	<!--Messagel Model - SET service-->
-	<xsd:simpleType name="TransactionID">
-		<xsd:annotation>
-			<xsd:documentation>Defines a transaction ID, e.g., to be used when performing a queued SET operation.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:unsignedInt"/>
-	</xsd:simpleType>
-	<xsd:simpleType name="InvocationState">
-		<xsd:annotation>
-			<xsd:documentation>State of the execution of an invoked operation.</xsd:documentation>
-			<xsd:appinfo>
-				<jaxb:typesafeEnumClass name="InvocationState"/>
-			</xsd:appinfo>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="Wait">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="WAITING"/>
-					</xsd:appinfo>
-					<xsd:documentation>Wait = Waiting. The operation has been queued and waits for execution.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Start">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="STARTED"/>
-					</xsd:appinfo>
-					<xsd:documentation>Start = Started. The execution of this operation has been started.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Cnclld">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="CANCELLED"/>
-					</xsd:appinfo>
-					<xsd:documentation>Cnclld = Cancelled. The execution has been cancelled by the DEVICE.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="CnclldMan">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="CANCELLED_MANUALLY"/>
-					</xsd:appinfo>
-					<xsd:documentation>CnclldMan = Cancelled Manually. The execution has been cancelled by the operator.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Fin">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="FINISHED"/>
-					</xsd:appinfo>
-					<xsd:documentation>Fin = Finished. The execution has been finished.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Fail">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="FAILED"/>
-					</xsd:appinfo>
-					<xsd:documentation>The execution has been been failed.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
-	<xsd:complexType name="ArgumentType">
-		<xsd:annotation>
-			<xsd:documentation>Describes an operation argument, e.g., used by Activate.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element ref="ext:Extension" minOccurs="0"/>
-			<xsd:element name="ArgValue" type="xsd:anySimpleType">
-				<xsd:annotation>
-					<xsd:documentation>The value type as a XML simple type.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="AbstractSet">
-		<xsd:annotation>
-			<xsd:documentation>Abstract super class of all setter operation messages.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element ref="ext:Extension" minOccurs="0"/>
-			<xsd:element name="OperationHandleRef" type="dom:HandleRef">
-				<xsd:annotation>
-					<xsd:documentation>Handle of the operation that SHOULD be invoked. 
-Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation>
-					<xsd:appinfo>
-						<jaxb:property name="OperationHandle"/>
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="AbstractSetResponse">
-		<xsd:annotation>
-			<xsd:documentation>Abstract super class of all setter operation response messages.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element ref="ext:Extension" minOccurs="0"/>
-			<xsd:element name="TransactionId" type="msg:TransactionID">
-				<xsd:annotation>
-					<xsd:documentation>The ID of the transaction that has been assigned to the processing of the setter operation request.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="InvocationState" type="msg:InvocationState">
-				<xsd:annotation>
-					<xsd:documentation>State of the execution of the invoked operation.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="OperationError" type="msg:InvocationError" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation>If the OperationState indicates a failure, this attribute may convey more information about the error.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="OperationErrorMessage" type="xsd:string" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation>If the OperationState indicates a failure, this attribute may convey a message for a user with information about the error.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-		<xsd:attribute ref="dom:MDIBVersion" use="required"/>
-	</xsd:complexType>
-	<xsd:element name="SetRange">
-		<xsd:annotation>
-			<xsd:documentation>The SetRange method corresponds to the SeRangeOperation objects in the MDIB and allows the modification of a range.</xsd:documentation>
+The corresponding operation description is defined by pm:SetContextStateOperationDescriptor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractSet">
 					<xsd:sequence>
-						<xsd:element name="RequestedRange" type="dom:Range">
+						<xsd:element name="ProposedContextState" type="pm:AbstractContextState" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>The new value the range SHOULD be set to.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="Range"/>
-								</xsd:appinfo>
+								<xsd:documentation>ProposedContextState comprises the context states that have to be inserted or updated:
+
+- If ProposedContextState/@Handle is equal ProposedContextState/@DescriptorHandle, the proposed object SHOULD be created as a new context state.
+- If ProposedContextState/@Handle is not equal ProposedContextState/@DescriptorHandle, the proposed object SHOULD be modified.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionSetRanges"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="SetRangeResponse">
+	<xsd:element name="SetContextStateResponse">
 		<xsd:annotation>
-			<xsd:documentation>Response message to a SetRange request message.</xsd:documentation>
+			<xsd:documentation>Response MESSAGE to a SetContextState request MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -683,9 +517,309 @@ Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
+	<xsd:complexType name="AbstractContextReport">
+		<xsd:annotation>
+			<xsd:documentation>AbstractContextReport is a change report that contains updated pm:AbstractContextState instances.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="msg:AbstractReport">
+				<xsd:sequence>
+					<xsd:element name="ReportPart" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:annotation/>
+							<xsd:complexContent>
+								<xsd:extension base="msg:AbstractReportPart">
+									<xsd:sequence>
+										<xsd:element name="ContextState" type="pm:AbstractContextState" minOccurs="0" maxOccurs="unbounded">
+											<xsd:annotation>
+												<xsd:documentation>List of changed pm:AbstractContextState instances.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:extension>
+							</xsd:complexContent>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="PeriodicContextReport">
+		<xsd:annotation>
+			<xsd:documentation>PeriodicContextReport is an msg:AbstractContextReport that is delivered periodically.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractContextReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="EpisodicContextReport">
+		<xsd:annotation>
+			<xsd:documentation>EpisodicContextReport is an msg:AbstractContextReport that is delivered episodically. It is sent if at least one pm:AbstractContextState has changed. It SHALL contain only pm:AbstractContextState instances where at least one child ELEMENT or ATTRIBUTE have changed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractContextReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<!--Section: Localization-->
+	<xsd:element name="GetLocalizedText">
+		<xsd:annotation>
+			<xsd:documentation>GetLocalizedText is the request to a msg:GetLocalizedTextResponse MESSAGE. Its intended use is to obtain a localized text that is referenced in the MDIB.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGet">
+					<xsd:sequence>
+						<xsd:element name="Ref" type="pm:LocalizedTextRef" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Zero or more reference names of the texts that are requested. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+
+- If there is no Ref ELEMENT given in the request MESSAGE, then all texts are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one Ref ELEMENT given, then msg:GetLocalizedTextResponse/msg:Text contains all texts that match the Ref ELEMENTs of the msg:GetLocalizedText request MESSAGE.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Version" type="pm:ReferencedVersion" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Revision of the referenced text that is requested. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+
+- If the referenced text is not available in the specific version, then msg:GetLocalizedTextResponse/msg:Text is empty.
+- If Version is not specified, then msg:GetLocalizedTextResponse contains the latest version of the text in msg:GetLocalizedTextResponse/msg:Text.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Lang" type="xsd:language" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Zero or more language identifiers according to RFC 5646 (see http://tools.ietf.org/html/rfc5646) to get different translations of the requested text. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+
+- If there is no Lang ELEMENT given in the request MESSAGE, then all translations are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one Lang ELEMENT given, then msg:GetLocalizedTextResponse/msg:Text contains translations in all languages matching the Lang ELEMENTs of the msg:GetLocalizedText request MESSAGE. If a text is not available in a specific language, the result for that specific language is omitted.
+
+NOTE—A set of supported languages is retrievable using msg:GetSupportedLanguages.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="TextWidth" type="pm:LocalizedTextWidth" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Zero or more pm:LocalizedTextWidth itentifiers to filter for different text widths. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+
+- If there is no TextWidth ELEMENT given in the request MESSAGE, then all text widths are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one TextWidth ELEMENT given, then msg:GetLocalizedTextResponse/msg:Text contains texts with all text widths matching the TextWidth ELEMENTs of the msg:GetLocalizedText request MESSAGE. Matching in this case means that the number of full width characters in the text is less or equal to the TextWidth ELEMENTs.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="NumberOfLines" type="xsd:integer" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Zero or more numbers to filter for number of lines. The ELEMENT SHALL have the following impacts on the information conveyed in msg:GetLocalizedTextResponse/msg:Text:
+
+- If there is no NumberOfLines ELEMENT given in the request MESSAGE, then all texts independent of the number of lines are returned in msg:GetLocalizedTextResponse/msg:Text.
+- If there is at least one NumberOfLines ELEMENT given, msg:GetLocalizedTextResponse/msg:Text contains texts that match the number of lines defined by the NumberOfLines ELEMENTs of the msg:GetLocalizedText request MESSAGE. Matching in this case means that the number of lines in the text is less or equal to the NumberOfLines ELEMENTs.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetLocalizedTextResponse">
+		<xsd:annotation>
+			<xsd:documentation>GetLocalizedTextResponse is the response to a msg:GetLocalizedText MESSAGE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGetResponse">
+					<xsd:sequence>
+						<xsd:element name="Text" type="pm:LocalizedText" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>A list of texts that SHALL contain a result according to the selection constituted by msg:GetLocalizedText/msg:Ref, msg:GetLocalizedText/msg:Version, and msg:GetLocalizedText/msg:Lang.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetSupportedLanguages">
+		<xsd:annotation>
+			<xsd:documentation>GetSupportedLanguages is the request to a msg:GetSupportedLanguagesResponse MESSAGE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGet">
+					<xsd:sequence/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetSupportedLanguagesResponse">
+		<xsd:annotation>
+			<xsd:documentation>GetSupportedLanguagesResponse is the response to a msg:GetSupportedLanguagesResponse MESSAGE. A GetSupportedLanguagesResponse MESSAGE SHALL be send in answer to a GetSupportedLanguages request MESSAGE and contains all language identifiers available for referenced localized texts.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGetResponse">
+					<xsd:sequence>
+						<xsd:element name="Lang" type="xsd:language" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>List of language identifiers available to request referenced localized texts. The format is given in accordance to RFC 5646 (see http://tools.ietf.org/html/rfc5646).</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<!--Section: Archive-->
+	<xsd:complexType name="VersionFrame">
+		<xsd:annotation>
+			<xsd:documentation>VersionFrame constitutes a version frame by defining ./@Start and ./@End, whereby ./@Start is REQUIRED to be lesser than or equal to ./@End.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="Start" type="pm:ReferencedVersion">
+			<xsd:annotation>
+				<xsd:documentation>The start version of the version frame.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="End" type="pm:ReferencedVersion">
+			<xsd:annotation>
+				<xsd:documentation>The end version of the version frame.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="TimeFrame">
+		<xsd:annotation>
+			<xsd:documentation>TimeFrame constitutes a time frame by defining ./@Start and ./@End, whereby ./@Start is REQUIRED to be lesser than ./@End.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="Start" type="pm:Timestamp">
+			<xsd:annotation>
+				<xsd:documentation>The start time of the time frame.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="End" type="pm:Timestamp">
+			<xsd:annotation>
+				<xsd:documentation>The end time of the time frame.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:element name="GetDescriptorsFromArchive">
+		<xsd:annotation>
+			<xsd:documentation>GetDescriptorsFromArchive is the request to a msg:GetDescriptorsFromArchiveResponse MESSAGE. Its intended use is used to request descriptors from the MDIB archive related to a specific descriptor version and/or time frame.
+
+__R5015: GetDescriptorsFromArchive SHALL at least expect ./msg:DescriptorRevisions or ./msg:TimeFrame as a filter condition.__
+
+__R5016: If both ./msg:DescriptorRevisions and ./msg:TimeFrame are given, the filter SHALL be applied by conjunction. If none are defined, the MESSAGE is invalid.__</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGet">
+					<xsd:sequence>
+						<xsd:element name="DescriptorRevisions" type="msg:VersionFrame" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>DescriptorRevisions is a version-based filter. It designates the referenced descriptor version frame that is requested. By adding this optional ELEMENT to the request, msg:GetDescriptorsFromArchiveResponse SHALL only respond with descriptors that match this version frame.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="TimeFrame" type="msg:TimeFrame" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>TimeFrame defines a time-based filter. By adding this ELEMENT to the request, msg:GetDescriptorsFromArchiveResponse SHALL only respond with descriptors that matches this time frame.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Handle" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>A list of HANDLE references that serve as a filter for the response.
+
+__R5017: If one or more HANDLE references are defined, msg:GetDescriptorsFromArchiveResponse SHALL respond only with descriptors that match these HANDLE references at the given revision and/or time frame.__
+
+__R5018: If no HANDLE references are defined, msg:GetDescriptorsFromArchiveResponse SHALL respond with all descriptors at the given revision and/or time frame.__</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetDescriptorsFromArchiveResponse">
+		<xsd:annotation>
+			<xsd:documentation>GetDescriptorsFromArchiveResponse MESSAGE is sent as the response to a GetDescriptorsFromArchive request MESSAGE using the ARCHIVE SERVICE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGetResponse">
+					<xsd:sequence>
+						<xsd:element name="Descriptor" type="pm:AbstractDescriptor" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>A list of descriptors. The descriptors SHALL match the time frame as well as the version and HANDLE references of the GetDescriptorsFromArchive request MESSAGE.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetStatesFromArchive">
+		<xsd:annotation>
+			<xsd:documentation>GetStatesFromArchive MESSAGE is used by the ARCHIVE SERVICE to request states related to a specific state version and/or time frame.
+
+__R5019: GetStatesFromArchive SHALL at least expect a version or a time frame filter.__
+
+__R5020: If both a version and a time frame are defined, the filter SHALL apply by conjunction. If none are defined, the MESSAGE is invalid.__
+
+NOTE—It is not sufficient to provide HANDLEs only.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGet">
+					<xsd:sequence>
+						<xsd:element name="StateRevisions" type="msg:VersionFrame" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>StateRevisions is a version filter. It designates the referenced state version frame that is requested. By adding this optional ELEMENT to the request, GetStatesFromArchiveResponse SHALL only respond with states matching this version frame.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="TimeFrame" type="msg:TimeFrame" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>TimeFrame defines a time-based filter. By adding this optional ELEMENT to the request, GetStatesFromArchiveResponse SHALL only respond with states matching this time frame.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Handle" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>A list of HANDLE references which serve as a filter for the response.
+
+__R5021: If one or more HANDLE references are defined, GetStatesFromArchiveResponse SHALL respond only with states matching these HANDLE references at the given revision and/or time frame.__
+
+__R5022: If no HANDLE references are defined, GetStatesFromArchiveResponse SHALL respond with all states at the given revision and/or time frame.__
+
+__R5023: If a HANDLE is a descriptor HANDLE that points to a multi state, GetStatesFromArchiveResponse SHALL respond with all states referring to the descriptor HANDLE.__</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetStatesFromArchiveResponse">
+		<xsd:annotation>
+			<xsd:documentation>GetStatesFromArchiveResponse MESSAGE is sent as the response to a GetStatesFromArchive request MESSAGE using the ARCHIVE SERVICE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGetResponse">
+					<xsd:sequence>
+						<xsd:element name="State" type="pm:AbstractState" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>A list of states. The states SHALL match the time frame as well as the version and HANDLE references of the GetStatesFromArchive request MESSAGE.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<!--Section: Set-->
 	<xsd:element name="SetValue">
 		<xsd:annotation>
-			<xsd:documentation>The SetValue method corresponds to the SetValueOperation objects in the MDIB and allows the modification of a numeric metric.</xsd:documentation>
+			<xsd:documentation>SetValue is the request to a msg:SetValueResponse MESSAGE.
+
+The corresponding operation description is defined by pm:SetValueOperationDescriptor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -693,19 +827,9 @@ Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation
 					<xsd:sequence>
 						<xsd:element name="RequestedNumericValue" type="xsd:decimal">
 							<xsd:annotation>
-								<xsd:documentation>The new value the metric SHOULD be set to.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="Value"/>
-								</xsd:appinfo>
+								<xsd:documentation>Value of pm:NumericMetricState/pm:ObservedValue/@Value to set.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionSetValues"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
@@ -713,7 +837,7 @@ Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation
 	</xsd:element>
 	<xsd:element name="SetValueResponse">
 		<xsd:annotation>
-			<xsd:documentation>Response message to a SetValue request message.</xsd:documentation>
+			<xsd:documentation>SetValueResponse is the response to a msg:SetValue MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -723,7 +847,9 @@ Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation
 	</xsd:element>
 	<xsd:element name="SetString">
 		<xsd:annotation>
-			<xsd:documentation>The SetString method corresponds to the SetStringOperation objects in the MDIB and allows the modification of a string metric.</xsd:documentation>
+			<xsd:documentation>SetString is the request to a msg:SetStringResponse MESSAGE.
+
+The corresponding operation description is defined by pm:SetStringOperationDescriptor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -731,19 +857,9 @@ Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation
 					<xsd:sequence>
 						<xsd:element name="RequestedStringValue" type="xsd:string">
 							<xsd:annotation>
-								<xsd:documentation>The new value the metric SHOULD be set to.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="String"/>
-								</xsd:appinfo>
+								<xsd:documentation>Value of pm:StringMetricState/pm:ObservedValue/@Value to set.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionSetStrings"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
@@ -751,38 +867,7 @@ Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation
 	</xsd:element>
 	<xsd:element name="SetStringResponse">
 		<xsd:annotation>
-			<xsd:documentation>Response message to a SetString request message.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractSetResponse"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="SetAlertState">
-		<xsd:annotation>
-			<xsd:documentation>The SetAlertState method corresponds to the SetAlertStateOperation objects in the MDIB and allows the modification of an alert.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractSet">
-					<xsd:sequence>
-						<xsd:element name="RequestedAlertState" type="dom:AbstractAlertState">
-							<xsd:annotation>
-								<xsd:documentation>The new value state of the alert SHOULD be set to.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="State"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:element>
-					</xsd:sequence>
-				</xsd:extension>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="SetAlertStateResponse">
-		<xsd:annotation>
-			<xsd:documentation>Response message to a SetAlertState request message.</xsd:documentation>
+			<xsd:documentation>SetStringResponse is the response to a msg:SetString MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -792,19 +877,28 @@ Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation
 	</xsd:element>
 	<xsd:element name="Activate">
 		<xsd:annotation>
-			<xsd:documentation>The Activate method corresponds to the Activate objects in the MDIB and allows the invocation of a predefined job, e.g., silence alarms.</xsd:documentation>
+			<xsd:documentation>Activate is the request to an msg:ActivateResponse MESSAGE. It allows invocation of a predefined job, e.g., to silence alarms.
+
+The corresponding operation description is defined by pm:ActivateOperationDescriptor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractSet">
 					<xsd:sequence>
-						<xsd:element name="Argument" type="msg:ArgumentType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="Argument" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>List of arguments that SHOULD be used for invocation. TODO: Berücksichtigung für Param-Index / reihenfolge wie definition im descr</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="Arguments"/>
-								</xsd:appinfo>
+								<xsd:documentation>List of arguments that can be used for invocation. The type list of the arguments can be obtained by the operation description in the MDIB. Furthermore, the ordering of Argument SHALL match the ordering in pm:ActivateOperationDescriptor/pm:Argument.</xsd:documentation>
 							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element ref="ext:Extension" minOccurs="0"/>
+									<xsd:element name="ArgValue" type="xsd:anySimpleType">
+										<xsd:annotation>
+											<xsd:documentation>Argument value.</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
 						</xsd:element>
 					</xsd:sequence>
 				</xsd:extension>
@@ -813,7 +907,7 @@ Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation
 	</xsd:element>
 	<xsd:element name="ActivateResponse">
 		<xsd:annotation>
-			<xsd:documentation>Response message to an Activate request message.</xsd:documentation>
+			<xsd:documentation>ActivateResponse is the response to an msg:Activate MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -821,91 +915,29 @@ Note: Only valid operation handles from the MDIB are allowed.</xsd:documentation
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<!-- Message Model - SET service - context -->
-	<xsd:element name="SetContextState">
+	<xsd:element name="SetAlertState">
 		<xsd:annotation>
-			<xsd:documentation>Request message of a SetContextOperation call to insert a new or modify an existing context state.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractSet">
-					<xsd:sequence>
-						<xsd:element name="ProposedContextState" type="dom:AbstractContextState" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:documentation>Defines the context states that has to be inserted or updated. Requests MAY insert or modify more than one context per request. The following semantics apply:
-- If no handle in ProposedContextState/Handle is defined, the proposed object SHALL be created as a new context state .
-- If a handle in ProposedContextState/Handle is defined, the proposed object already exist and SHALL be modified. If the handle references a multi state descriptor handle, the request SHALL be invalid.
+			<xsd:documentation>SetAlertState is the request to a msg:SetAlertStateResponse MESSAGE. The intended use is to modifiy alert states.
 
-A device MAY reject any requests. This applies especially for requests which have an impact on the device's memory allocation or deliver invalid handle names.
-</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="ProposedContextStates"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:element>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionSetContext"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
-					</xsd:sequence>
-				</xsd:extension>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="SetContextStateResponse">
-		<xsd:annotation>
-			<xsd:documentation>Response message to a SetContextState request message.</xsd:documentation>
-			<xsd:appinfo>
-				<jaxb:class name="SetContextStateResponse"/>
-			</xsd:appinfo>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractSetResponse"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<!--Messagel Model - SET service -  Patient-->
-	<xsd:element name="SetPatientAssociationState">
-		<xsd:annotation>
-			<xsd:documentation>The SetPatientAssociationState method allows the modification of the association state of the patient.</xsd:documentation>
-			<xsd:appinfo>
-				<jaxb:class name="SetPatientState"/>
-			</xsd:appinfo>
+The corresponding operation description is defined by pm:SetAlertStateOperationDescriptor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractSet">
 					<xsd:sequence>
-						<xsd:element name="RequestedAssociation" type="dom:ContextAssociation">
+						<xsd:element name="ProposedAlertState" type="pm:AbstractAlertState">
 							<xsd:annotation>
-								<xsd:documentation>The new context association to set.</xsd:documentation>
-								<xsd:appinfo>
-									<jaxb:property name="PatientAssociationState"/>
-								</xsd:appinfo>
+								<xsd:documentation>ProposedAlertState comprises the alert states that have to be updated.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionPatientStates"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="SetPatientAssociationStateResponse">
+	<xsd:element name="SetAlertStateResponse">
 		<xsd:annotation>
-			<xsd:documentation>Response message to a SetPatientAssociationState request message.</xsd:documentation>
-			<xsd:appinfo>
-				<jaxb:class name="SetPatientStateResponse"/>
-			</xsd:appinfo>
+			<xsd:documentation>SetAlertStateResponse is the response to a msg:SetAlertState MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -913,874 +945,634 @@ A device MAY reject any requests. This applies especially for requests which hav
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<!--Message Model - Reports-->
-	<xsd:complexType name="AbstractReport">
+	<xsd:element name="SetComponentState">
 		<xsd:annotation>
-			<xsd:documentation>TODO: add documentation</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element ref="ext:Extension" minOccurs="0"/>
-		</xsd:sequence>
-		<xsd:attribute ref="dom:MDIBVersion" use="required"/>
-	</xsd:complexType>
-	<xsd:complexType name="AbstractReportPart">
-		<xsd:annotation>
-			<xsd:appinfo>
-				<jaxb:class name="ReportPart"/>
-			</xsd:appinfo>
-			<xsd:documentation>TODO: add documentation</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element ref="ext:Extension" minOccurs="0"/>
-			<xsd:element name="SourceMDS" type="dom:HandleRef" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation>Optional reference to the MDS that has triggered the sending of this report. Maybe be used for filtering.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-	<!--Messagel Model - Reports - MDIB State Reports-->
-	<xsd:complexType name="MetricReportPart">
-		<xsd:annotation>
-			<xsd:documentation>A container of a list of metric states that is reported.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
-				<xsd:sequence>
-					<xsd:element name="MetricState" type="dom:AbstractMetricState" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of metrics that build the content of this report.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="Metrics"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="AbstractMetricReport">
-		<xsd:annotation>
-			<xsd:documentation>A report that contains information about metrics.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReport">
-				<xsd:sequence>
-					<xsd:element name="ReportPart" type="msg:MetricReportPart" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="ReportParts"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:element name="PeriodicMetricReport">
-		<xsd:annotation>
-			<xsd:documentation>The PeriodicMetricReport is sent periodically and contains all current metrics from the MDIB.</xsd:documentation>
+			<xsd:documentation>SetComponentState is the request to a msg:SetComponentStateResponse MESSAGE. Its intended use is to modify an existing component state.
+
+The corresponding operation description is defined by pm:SetComponentStateOperationDescriptor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractMetricReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="EpisodicMetricReport">
-		<xsd:annotation>
-			<xsd:documentation>The EpisodicMetricReport is sent if at least one property of at least one metric has changed and SHOULD contain only the changed metrics.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractMetricReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:complexType name="AlertReportPart">
-		<xsd:annotation>
-			<xsd:documentation>A container of a list of alert states that is reported. </xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
-				<xsd:sequence>
-					<xsd:element name="AlertState" type="dom:AbstractAlertState" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of alert states that build the content of this report.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="AlertStates"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="AbstractAlertReport">
-		<xsd:annotation>
-			<xsd:documentation>A report that contains information about alerts.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReport">
-				<xsd:sequence>
-					<xsd:element name="AlertReportDetail" type="msg:AlertReportPart" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of report containers.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="ReportParts"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-					<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:appinfo>
-								<jaxb:property name="anyExtensionAbstractAlertReports"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:any-->
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:element name="PeriodicAlertReport">
-		<xsd:annotation>
-			<xsd:documentation>The PeriodicAlertReport is sent periodically and contains all current alerts from the MDIB.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractAlertReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="EpisodicAlertReport">
-		<xsd:annotation>
-			<xsd:documentation>The EpisodicAlertReport is sent if at least one property of at least one alert has changed and SHOULD contain only the changed alerts.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractAlertReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<!-- Context reports -->
-	<!--xsd:complexType name="ContextStateReportPart">
-		<xsd:annotation>
-			<xsd:documentation>A container of a list of context states that is reported. </xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
-				<xsd:sequence>
-					<xsd:element name="ContextState" type="msg:ContextStateElement" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of abstract contexts that build the content of this report.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="ContextStates"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-				
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="AbstractContextReport">
-		<xsd:annotation>
-			<xsd:appinfo>
-				<jaxb:class name="AbstractContextReport"/>
-			</xsd:appinfo>
-			<xsd:documentation>A report that contains information about metrics.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReport">
-				<xsd:sequence>
-					<xsd:element name="ReportPart" type="msg:ContextStateReportPart" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="ReportParts"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-				
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:element name="PeriodicContextReport">
-		<xsd:annotation>
-			<xsd:documentation>The PeriodicContextReport is sent periodically and contains all current context infos from the MDIB.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractContextReport">
-					
+				<xsd:extension base="msg:AbstractSet">
+					<xsd:sequence>
+						<xsd:element name="ProposedComponentState" type="pm:AbstractDeviceComponentState" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>ProposedComponentState comprises the component states that have to be updated.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="EpisodicContextReport">
+	<xsd:element name="SetComponentStateResponse">
 		<xsd:annotation>
-			<xsd:documentation>The EpisodicMetricReport is sent if at least one property of at least one metric has changed and SHOULD contain only the changed metrics.</xsd:documentation>
+			<xsd:documentation>SetComponentStateResponse is the response to a msg:SetComponentState MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractContextReport">
-					
+				<xsd:extension base="msg:AbstractSetResponse"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="SetMetricState">
+		<xsd:annotation>
+			<xsd:documentation>SetMetricState is the request to a msg:SetMetricStateResponse MESSAGE.
+
+The corresponding operation description is defined by pm:SetMetricStateOperationDescriptor.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractSet">
+					<xsd:sequence>
+						<xsd:element name="ProposedMetricState" type="pm:AbstractMetricState" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>ProposedMetricState comprises the METRIC states that have to be updated.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
--->
-	<!--Changed report -->
-	<xsd:complexType name="ContextChangedReportPart">
+	<xsd:element name="SetMetricStateResponse">
 		<xsd:annotation>
-			<xsd:documentation>A container of a list of context states that is reported. </xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
-				<xsd:sequence>
-					<!--xsd:element name="ChangedContext" type="msg:ContextAssociationState" minOccurs="0" maxOccurs="unbounded"-->
-					<xsd:element name="ChangedContextState" type="dom:HandleRef" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of abstract contexts that build the content of this report.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="ChangedContextStates"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="AbstractContextChangedReport">
-		<xsd:annotation>
-			<xsd:appinfo>
-				<jaxb:class name="AbstractContextChangedReport"/>
-			</xsd:appinfo>
-			<xsd:documentation>A report that contains information about metrics.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReport">
-				<xsd:sequence>
-					<xsd:element name="ReportPart" type="msg:ContextChangedReportPart" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="ReportParts"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:element name="PeriodicContextChangedReport">
-		<xsd:annotation>
-			<xsd:documentation>The PeriodicContextReport is sent periodically and contains all current context infos from the MDIB.</xsd:documentation>
+			<xsd:documentation>SetMetricStateResponse is the response to a msg:SetMetricState MESSAGE.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractContextChangedReport"/>
+				<xsd:extension base="msg:AbstractSetResponse"/>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:element name="EpisodicContextChangedReport">
-		<xsd:annotation>
-			<xsd:documentation>The EpisodicMetricReport is sent if at least one property of at least one metric has changed and SHOULD contain only the changed metrics.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:AbstractContextChangedReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<!--Message Model - Reports - Interaktion-->
-	<xsd:simpleType name="InvocationError">
-		<xsd:annotation>
-			<xsd:documentation>Presents more details with respect to the origin of the failure</xsd:documentation>
-			<xsd:appinfo>
-				<jaxb:typesafeEnumClass name="InvocationError"/>
-			</xsd:appinfo>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="Unspec">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="UNSPECIFIED"/>
-					</xsd:appinfo>
-					<xsd:documentation>Unspec = Unspecified. An unspecified error has occurred.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Unkn">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="UNKNOWN_OPERATION"/>
-					</xsd:appinfo>
-					<xsd:documentation>Unkn = Unknown Operation. The handle to the operation object is not known.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Inv">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="INVALID_VALUE"/>
-					</xsd:appinfo>
-					<xsd:documentation>Inv = Invalid Value. The handle to the operation object does not match the invocation request message.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="Oth">
-				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="OTHER"/>
-					</xsd:appinfo>
-					<xsd:documentation>Oth = Other. Another type of error has occurred</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<!--xsd:enumeration value="Unspecified">
-				<xsd:annotation>
-					<xsd:documentation>An unspecified error has occurred.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="UnknownOperation">
-				<xsd:annotation>
-					<xsd:documentation>The handle to the operation object is not known.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="InvalidValue">
-				<xsd:annotation>
-					<xsd:documentation>The handle to the operation object does not match the invocation request message.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration-->
-		</xsd:restriction>
-	</xsd:simpleType>
-	<xsd:complexType name="OperationDescriptionModificationReportPart">
-		<xsd:annotation>
-			<xsd:documentation>A container for a an operation description modification that is reported.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
-				<xsd:sequence>
-					<xsd:element name="OperationDescription" type="dom:AbstractOperationDescriptor" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of modified operations.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="Operations"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-					<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:appinfo>
-								<jaxb:property name="anyExtensionOperationDescriptionModificationReportParts"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:any-->
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="OperationDescriptionModificationReport">
-		<xsd:annotation>
-			<xsd:appinfo>
-				<jaxb:class name="OperationModificationReport"/>
-			</xsd:appinfo>
-			<xsd:documentation>The OperationModificationReport is sent if at least one operation description has been changed during runtime.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReport">
-				<xsd:sequence>
-					<xsd:element name="ReportDetail" type="msg:OperationDescriptionModificationReportPart" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>List of report containers.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="ReportParts"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-					<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:appinfo>
-								<jaxb:property name="anyExtensionOperationModificationReports"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:any-->
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="OperationInvokedReportPart">
-		<xsd:annotation>
-			<xsd:documentation>A container for information on the state of the requested execution of an opeation.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
-				<xsd:sequence>
-					<xsd:element name="TransactionId" type="msg:TransactionID">
-						<xsd:annotation>
-							<xsd:documentation>The internal transaction ID of the remote operation request.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="OperationHandleRef" type="dom:HandleRef">
-						<xsd:annotation>
-							<xsd:appinfo>
-								<jaxb:property name="Operation"/>
-							</xsd:appinfo>
-							<xsd:documentation>The descriptor handle referencing the operation that was requested to be executed.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="OperationTarget" type="dom:HandleRef" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>The optional target handle of the operation that was requested to be executed.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<!-- Shortcut to e.g. Metric -->
-					<!-- TODO Besser InvocationState -->
-					<xsd:element name="OperationState" type="msg:InvocationState">
-						<xsd:annotation>
-							<xsd:documentation>The current state of the operation request execution.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<!-- new type -->
-					<xsd:element name="OperationError" type="msg:InvocationError" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>If the OperationState indicates a failure, this attribute may convey more information about the error.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="OperationErrorMessage" type="xsd:string" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>If the OperationState indicates a failure, this attribute may convey a message for a user with information about the error.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
 	<xsd:element name="OperationInvokedReport">
 		<xsd:annotation>
-			<xsd:documentation>An OperationInvokedReport is fired if the state of the execution of a remote operation request has changed.
+			<xsd:documentation>OperationInvokedReport is a change report that contains updated invocation information. It is delivered if the state of the execution of a remote operation request has changed.
 
-If a remote operation affects a multi state, the following rules SHALL apply:
-- To identify which state of a multi state is changed or created, operation-invoked reports have to include the OperationTarget attribute in at least one of the transaction messages. As a consequence, the caller of the operation knows the state that has been modified or created.
-- Once an OperationInvokedReport message includes the OperationTarget attribute, it is guaranteed that the generated or affected handle does not change anymore.
-</xsd:documentation>
+To identify which state of a multi state is changed or created, OperationInvokedReport SHALL include msg:OperationInvokedReportPart/@OperationTarget. This ATTRIBUTE defines the multi state that is created or updated.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractReport">
 					<xsd:sequence>
-						<xsd:element name="ReportDetail" type="msg:OperationInvokedReportPart" maxOccurs="unbounded">
+						<xsd:element name="ReportPart" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="ReportDetails"/>
-								</xsd:appinfo>
-								<xsd:documentation>List of report details.</xsd:documentation>
+								<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
 							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:complexContent>
+									<xsd:extension base="msg:AbstractReportPart">
+										<xsd:sequence>
+											<xsd:element name="InvocationInfo" type="msg:InvocationInfo">
+												<xsd:annotation>
+													<xsd:documentation>Information set regarding the report's transaction status. See pm:InvocationInfo.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+											<xsd:element name="InvocationSource" type="pm:InstanceIdentifier">
+												<xsd:annotation>
+													<xsd:documentation>Identifies the PARTICIPANT that has requested the execution of the operation.
+
+NOTE—If another PARTICIPANT is interested in who requested a certain operation, it is able to track that information by means of InvocationSource.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+										</xsd:sequence>
+										<xsd:attribute name="OperationHandleRef" type="pm:HandleRef" use="required">
+											<xsd:annotation>
+												<xsd:documentation>A REQUIRED HANDLE reference that provides a link to the set operation processed by the transaction.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:attribute>
+										<xsd:attribute name="OperationTarget" type="pm:HandleRef">
+											<xsd:annotation>
+												<xsd:documentation>An OPTIONAL HANDLE reference that provides a link to the CONTAINMENT TREE ENTRY affected by the transaction.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:attribute>
+									</xsd:extension>
+								</xsd:complexContent>
+							</xsd:complexType>
 						</xsd:element>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionOperationInvokedReports"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:complexType name="OperationalStateChangedReportPart">
+	<!--Section: ContainmentTree-->
+	<xsd:element name="GetContainmentTree">
 		<xsd:annotation>
-			<xsd:documentation>A container for a list of operation states that is reported.</xsd:documentation>
+			<xsd:documentation>GetContainmentTree is the request to a msg:GetContainmentTreeResponse MESSAGE. It is intended to be used as a tool to navigate through the CONTAINMENT TREE of an MDIB.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGet">
+					<xsd:sequence>
+						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>List of HANDLE references that specify which CONTAINMENT TREE ENTRYs are requested.
+
+__R5030: All HANDLE references SHALL share the same parent. Otherwise, the result of GetContainmentTree is undefined.__</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetContainmentTreeResponse">
+		<xsd:annotation>
+			<xsd:documentation>GetContainmentTreeResponse is the response to a msg:GetContainmentTree MESSAGE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGetResponse">
+					<xsd:sequence>
+						<xsd:element name="ContainmentTree" type="pm:ContainmentTree">
+							<xsd:annotation>
+								<xsd:documentation>ContainmentTreeInfo as described in pm:ContainmentTree.
+
+__R5031: The result SHALL contain CONTAINMENT TREE information of all ELEMENTs that are matched by msg:GetContainmentTree/msg:HandleRef.__
+
+__R5032: If no HANDLE reference is provided, all CONTAINMENT TREE ELEMENTs on MDS level SHALL be returned.__</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetDescriptor">
+		<xsd:annotation>
+			<xsd:documentation>GetDescriptor is the request to a msg:GetDescriptorResponse MESSAGE. It is proposed to be used to resolve the HANDLE references that are requested by msg:GetContainmentTree.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGet">
+					<xsd:sequence>
+						<xsd:element name="HandleRef" type="pm:HandleRef" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>List of HANDLE references that specify which descriptors are requested.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="GetDescriptorResponse">
+		<xsd:annotation>
+			<xsd:documentation>GetDescriptorResponse is the response to a msg:GetDescriptorResponse MESSAGE.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractGetResponse">
+					<xsd:sequence>
+						<xsd:element name="Descriptor" type="pm:AbstractDescriptor" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>List of pm:AbstractDescriptor ELEMENTs.
+
+__R5033: Resulting descriptors SHALL NOT contain child descriptors.__
+
+__R5034: The result SHALL contain CONTAINMENT TREE information of all descriptors that are matched by msg:GetDescriptor/msg:HandleRef.__
+
+__R5035: If no HANDLE is provided, all descriptors SHALL be returned.__</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<!--Section: StateEvent-->
+	<!--Sub-section: Metric Reports-->
+	<xsd:complexType name="AbstractMetricReport">
+		<xsd:annotation>
+			<xsd:documentation>AbstractMetricReport is a change report that contains updated pm:AbstractMetricState instances.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
+			<xsd:extension base="msg:AbstractReport">
 				<xsd:sequence>
-					<xsd:element name="Operation" type="dom:OperationState" maxOccurs="unbounded">
+					<xsd:element name="ReportPart" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
-							<xsd:documentation>List of operation states that build the content of this report.</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="Operations"/>
-							</xsd:appinfo>
+							<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
 						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:complexContent>
+								<xsd:extension base="msg:AbstractReportPart">
+									<xsd:sequence>
+										<xsd:element name="MetricState" type="pm:AbstractMetricState" minOccurs="0" maxOccurs="unbounded">
+											<xsd:annotation>
+												<xsd:documentation>List of changed pm:AbstractMetricState instances.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:extension>
+							</xsd:complexContent>
+						</xsd:complexType>
 					</xsd:element>
-					<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:appinfo>
-								<jaxb:property name="anyExtensionOperationalStateChangedReports"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:any-->
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
-	<xsd:element name="OperationalStateChangedReport">
+	<xsd:element name="EpisodicMetricReport">
 		<xsd:annotation>
-			<xsd:documentation>An OperationInvokedReport is fired if the state of the execution of a remote operation changed.</xsd:documentation>
+			<xsd:documentation>EpisodicMetricReport is an msg::AbstractMetricReport that is delivered episodically. It is sent if at least one pm:AbstractMetricState has changed. It SHALL contain only pm:AbstractMetricState instances where at least one child ELEMENT or ATTRIBUTE have changed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractMetricReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PeriodicMetricReport">
+		<xsd:annotation>
+			<xsd:documentation>PeriodicMetricReport is an msg:AbstractMetricReport that is delivered periodically.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractMetricReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<!--Sub-section: Component Reports-->
+	<xsd:complexType name="AbstractComponentReport">
+		<xsd:annotation>
+			<xsd:documentation>AbstractComponentReport is a change report that contains updated pm:AbstractComponentState instances.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="msg:AbstractReport">
+				<xsd:sequence>
+					<xsd:element name="ReportPart" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:complexContent>
+								<xsd:extension base="msg:AbstractReportPart">
+									<xsd:sequence>
+										<xsd:element name="ComponentState" type="pm:AbstractDeviceComponentState" minOccurs="0" maxOccurs="unbounded">
+											<xsd:annotation>
+												<xsd:documentation>List of changed pm:AbstractComponentState instances.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:extension>
+							</xsd:complexContent>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="EpisodicComponentReport">
+		<xsd:annotation>
+			<xsd:documentation>EpisodicComponentReport is an msg:AbstractComponentReport that is delivered episodically. It is sent if at least one pm:AbstractComponentState has changed. It SHALL contain only pm:AbstractComponentState instances where at least one child ELEMENT or ATTRIBUTE have changed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractComponentReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PeriodicComponentReport">
+		<xsd:annotation>
+			<xsd:documentation>PeriodicComponentReport is an msg:AbstractComponentReport that is delivered periodically.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractComponentReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<!--Sub-section: Alert Reports-->
+	<xsd:complexType name="AbstractAlertReport">
+		<xsd:annotation>
+			<xsd:documentation>AbstractAlertReport is a change report that contains updated pm:AbstractAlertState instances.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="msg:AbstractReport">
+				<xsd:sequence>
+					<xsd:element name="ReportPart" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:complexContent>
+								<xsd:extension base="msg:AbstractReportPart">
+									<xsd:sequence>
+										<xsd:element name="AlertState" type="pm:AbstractAlertState" minOccurs="0" maxOccurs="unbounded">
+											<xsd:annotation>
+												<xsd:documentation>List of changed pm:AbstractAlertState instances.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:extension>
+							</xsd:complexContent>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="EpisodicAlertReport">
+		<xsd:annotation>
+			<xsd:documentation>EpisodicAlertReport is an msg:AbstractAlertReport that is delivered episodically. It is sent if at least one pm:AbstractAlertState has changed. It SHALL contain only pm:AbstractAlertState instances where at least one child ELEMENT or ATTRIBUTE have changed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractAlertReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PeriodicAlertReport">
+		<xsd:annotation>
+			<xsd:documentation>PeriodicAlertReport is an msg:AbstractAlertReport that is delivered periodically.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractAlertReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<!--Sub-section: Operation State Reports-->
+	<xsd:complexType name="AbstractOperationalStateReport">
+		<xsd:annotation>
+			<xsd:documentation>AbstractOperationalStateReport is a change report that contains updated pm:AbstractOperationState instances.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="msg:AbstractReport">
+				<xsd:sequence>
+					<xsd:element name="ReportPart" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:complexContent>
+								<xsd:extension base="msg:AbstractReportPart">
+									<xsd:sequence>
+										<xsd:element name="OperationState" type="pm:AbstractOperationState" minOccurs="0" maxOccurs="unbounded">
+											<xsd:annotation>
+												<xsd:documentation>List of changed pm:AbstractOperationState instances.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:extension>
+							</xsd:complexContent>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="EpisodicOperationalStateReport">
+		<xsd:annotation>
+			<xsd:documentation>EpisodicOperationalStateReport is an msg:AbstractOperationalStateReport that is delivered episodically. It is sent if at least one pm:AbstractOperationState has changed. It SHALL contain only pm:AbstractOperationState instances where at least one child ELEMENT or ATTRIBUTE have changed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractOperationalStateReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PeriodicOperationalStateReport">
+		<xsd:annotation>
+			<xsd:documentation>PeriodicOperationalStateReport is an msg:AbstractOperationalStateReport that is delivered periodically.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractOperationalStateReport"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<!--Sub-section: System Error Reports-->
+	<xsd:element name="SystemErrorReport">
+		<xsd:annotation>
+			<xsd:documentation>SystemErrorReport is an msg:AbstractReport. It is sent episodically when a system error has occurred.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractReport">
 					<xsd:sequence>
-						<xsd:element name="ReportDetail" type="msg:OperationalStateChangedReportPart" maxOccurs="unbounded">
+						<xsd:element name="ReportPart" minOccurs="1" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="ReportDetails"/>
-								</xsd:appinfo>
-								<xsd:documentation>List of report details.</xsd:documentation>
+								<xsd:documentation>List of report containers associated to one MDS. Every report part contains an error code plus an OPTIONAL, human-readable description.</xsd:documentation>
 							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:complexContent>
+									<xsd:extension base="msg:AbstractReportPart">
+										<xsd:sequence>
+											<xsd:element name="ErrorCode" type="pm:CodedValue">
+												<xsd:annotation>
+													<xsd:documentation>CODED VALUE of the error.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+											<xsd:element name="ErrorInfo" type="pm:LocalizedText" minOccurs="0">
+												<xsd:annotation>
+													<xsd:documentation>Additional textual information. ErrorInfo SHALL NOT make use of the pm:LocalizedTextType/@Ref ATTRIBUTE.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:extension>
+								</xsd:complexContent>
+							</xsd:complexType>
 						</xsd:element>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionOperationInvokedReports"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<!--Message Model - Reports - MDIB Description Reports-->
-	<xsd:element name="OperationCreatedReport">
-		<xsd:annotation>
-			<xsd:documentation>The OperationCreatedReport is sent if at least one new operation has been created during runtime and can be invoked by a remote device.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:OperationDescriptionModificationReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="OperationDeletedReport">
-		<xsd:annotation>
-			<xsd:documentation>The OperationDeletedReport is sent if at least one operation has been deleted during runtime and can be invoked by a remote device.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:OperationDescriptionModificationReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
+	<!--Section: DescriptionEvent-->
 	<xsd:simpleType name="DescriptionModificationType">
 		<xsd:annotation>
-			<xsd:documentation>DescriptionModificationType designates the modification mode when sending a DescriptionModificationReport.</xsd:documentation>
+			<xsd:documentation>DescriptionModificationType designates the modification mode when a msg:DescriptionModificationReport is sent.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Crt">
 				<xsd:annotation>
-					<xsd:documentation>Crt = Created. Indicates that the object transmitted by a modification message has been created (inserted into the MDIB).</xsd:documentation>
+					<xsd:documentation>Crt = Created. Indicates that the object transmitted by a modification MESSAGE has been created, i.e. inserted into the MDIB.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Upt">
 				<xsd:annotation>
-					<xsd:documentation>Upt = Updated. Indicates that the object transmitted by a modification message has been updated.</xsd:documentation>
+					<xsd:documentation>Upt = Updated. Indicates that the object transmitted by a modification MESSAGE has been updated.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Del">
 				<xsd:annotation>
-					<xsd:documentation>Del = Deleted. Indicates that the object transmitted by a modification message has been deleted (removed from the MDIB).</xsd:documentation>
+					<xsd:documentation>Del = Deleted. Indicates that the object transmitted by a modification MESSAGE has been deleted, i.e. removed from the MDIB.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 		</xsd:restriction>
 	</xsd:simpleType>
-	<xsd:complexType name="DescriptionModificationReportPart">
+	<xsd:element name="DescriptionModificationReport">
 		<xsd:annotation>
-			<xsd:documentation>A container for a list of descriptors that belong to one parent and that have changed.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
-				<xsd:sequence>
-					<xsd:element name="Descriptor" type="dom:AbstractDescriptor">
-						<xsd:annotation>
-							<xsd:documentation>Descriptor that has been inserted into, updated from or deleted from the MDIB. The mode is stored in the ModificationType attribute.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-				<xsd:attribute name="ParentDescriptor" type="dom:HandleRef" use="required">
-					<xsd:annotation>
-						<xsd:documentation>
-							The parent descriptor of the descriptor stored in the Descriptor element.
-						</xsd:documentation>
-					</xsd:annotation>
-				</xsd:attribute>
-				<xsd:attribute name="ModificationType" type="msg:DescriptionModificationType" use="optional">
-					<xsd:annotation>
-						<xsd:documentation>
-							Determines if the descriptor stored in the Descriptor element has been inserted into, updated from or deleted from the MDIB. Default value SHALL be "Upt" for "updated".
-						</xsd:documentation>
-					</xsd:annotation>
-				</xsd:attribute>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="DescriptionModificationReport">
-		<xsd:annotation>
-			<xsd:documentation>The DescriptionModificationReport is sent if at least one descriptor item has been changed during runtime,</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReport">
-				<xsd:sequence>
-					<xsd:element name="ReportDetail" type="msg:DescriptionModificationReportPart" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:appinfo>
-								<jaxb:property name="ReportDetails"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="MDSModificationReportPart">
-		<xsd:annotation>
-			<xsd:documentation>A container for a list of MDS descriptors that belong to one parent and that have changed.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
-				<xsd:sequence>
-					<xsd:element name="MDS" type="dom:AbstractMDSDescriptor" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:documentation>???</xsd:documentation>
-							<xsd:appinfo>
-								<jaxb:property name="MDSDescriptors"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-					<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:appinfo>
-								<jaxb:property name="anyExtensionMDSModificationReportParts"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:any-->
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="MDSModificationReport">
-		<xsd:annotation>
-			<xsd:documentation>The MDSModificationReport is sent if at least one MDS descriptor item has been changed during runtime,</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReport">
-				<xsd:sequence>
-					<xsd:element name="ReportDetail" type="msg:MDSModificationReportPart" minOccurs="0" maxOccurs="unbounded">
-						<xsd:annotation>
-							<xsd:appinfo>
-								<jaxb:property name="ReportDetails"/>
-							</xsd:appinfo>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:element name="ObjectCreatedReport">
-		<xsd:annotation>
-			<xsd:documentation>The ObjectCreatedReport is sent if at least one VMO description has been created during runtime.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:DescriptionModificationReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="ObjectUpdatedReport">
-		<xsd:annotation>
-			<xsd:documentation>The ObjectUpdateReport is sent if at least one VMO description has been updated during runtime.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:DescriptionModificationReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="ObjectDeletedReport">
-		<xsd:annotation>
-			<xsd:documentation>The ObjectDeletedReport is sent if at least one VMO description has been deleted during runtime.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:DescriptionModificationReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="MDSCreatedReport">
-		<xsd:annotation>
-			<xsd:documentation>The MDSCreatedReport is sent if a MDS has been created during runtime.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:MDSModificationReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="MDSDeletedReport">
-		<xsd:annotation>
-			<xsd:documentation>The MDSCreatedReport is sent if a MDS has been created during runtime.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:complexContent>
-				<xsd:extension base="msg:MDSModificationReport"/>
-			</xsd:complexContent>
-		</xsd:complexType>
-	</xsd:element>
-	<!--Message Model - Reports - System Error-->
-	<xsd:complexType name="SystemErrorReportReportPart">
-		<xsd:annotation>
-			<xsd:documentation>A container for information on the system error state that is reported.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexContent>
-			<xsd:extension base="msg:AbstractReportPart">
-				<xsd:sequence>
-					<xsd:element name="ErrorCode" type="dom:CodedValue">
-						<xsd:annotation>
-							<xsd:documentation>The code of the error.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="ErrorInfo" type="xsd:string" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation>Additional textual information.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:element name="SystemErrorReport">
-		<xsd:annotation>
-			<xsd:documentation>The SystemErrorReport is sent episodically, if a system error has occurred and contains one system error report.</xsd:documentation>
+			<xsd:documentation>DescriptionModificationReport is an msg:AbstractReport that is delivered episodically. It is sent if at least one pm:AbstractDescriptor has changed. It SHALL contain only pm:AbstractDescriptor instances where at least one child ELEMENT or ATTRIBUTE have changed, i.e., inserted, updated, or deleted.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="msg:AbstractReport">
 					<xsd:sequence>
-						<xsd:element name="ReportDetail" type="msg:SystemErrorReportReportPart" minOccurs="0" maxOccurs="unbounded"/>
-						<!--xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:appinfo>
-									<jaxb:property name="anyExtensionSystemErrorReports"/>
-								</xsd:appinfo>
-							</xsd:annotation>
-						</xsd:any-->
+						<xsd:element name="ReportPart" maxOccurs="unbounded">
+							<xsd:annotation/>
+							<xsd:complexType>
+								<xsd:annotation>
+									<xsd:documentation>List of report containers associated to one MDS.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexContent>
+									<xsd:extension base="msg:AbstractReportPart">
+										<xsd:sequence>
+											<xsd:element name="Descriptor" type="pm:AbstractDescriptor" minOccurs="0" maxOccurs="unbounded">
+												<xsd:annotation>
+													<xsd:documentation>Descriptor that was inserted into, updated from or deleted from the MDIB. The mode is stored in the ./@ModificationType ATTRIBUTE.
+
+__R5024: Descriptors in this list SHALL not include nested descriptors.__
+
+NOTE—If nested descriptors are also modified, then they can be included as children of the report part.
+
+__R5025: Updated descriptors SHALL be ordered in the way that parent descriptors appear before child descriptors.__
+
+__R5046: If a parent descriptor is deleted, then all child descriptors of that parent SHALL communicated as deleted in advance.__</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+											<xsd:element name="State" type="pm:AbstractState" minOccurs="0" maxOccurs="unbounded">
+												<xsd:annotation>
+													<xsd:documentation>The descriptor's corresponding state(s).
+
+__R5051: If ./@ModificationType is "Crt", then the descriptor version referenced by State SHALL match the descriptor given in ./Descriptor.__
+
+__R5052: If ./@ModificationType is "Upt", then the descriptor version referenced by State SHALL match the descriptor given in ./Descriptor.__
+
+__R5053: If ./@ModificationType is "Del", then State SHALL be omitted from the MESSAGE.__</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+										</xsd:sequence>
+										<xsd:attribute name="ParentDescriptor" type="pm:HandleRef" use="optional">
+											<xsd:annotation>
+												<xsd:documentation>The HANDLE reference of the parent descriptor. The HANDLE reference SHALL be empty if an pm:MdsDescriptor is inserted, updated or deleted.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:attribute>
+										<xsd:attribute name="ModificationType" type="msg:DescriptionModificationType" use="optional">
+											<xsd:annotation>
+												<xsd:documentation>Determines if the descriptor stored in ./msg:Descriptor has been inserted into, updated from or deleted from the MDIB. The implied value SHALL be "Upt".</xsd:documentation>
+											</xsd:annotation>
+										</xsd:attribute>
+									</xsd:extension>
+								</xsd:complexContent>
+							</xsd:complexType>
+						</xsd:element>
 					</xsd:sequence>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<!--Message Model - Reports - Streams-->
+	<!--Section: Waveform-->
 	<xsd:element name="WaveformStream">
 		<xsd:annotation>
-			<xsd:documentation>The WaveformStream message is sent in order to transmit a set of samples of one or more waveforms.</xsd:documentation>
+			<xsd:documentation>The WaveformStream MESSAGE is sent in order to transmit a set of samples of one or more waveforms.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element ref="ext:Extension" minOccurs="0"/>
-				<xsd:element name="RealTimeSampleArray" type="dom:RealTimeSampleArrayMetricState" minOccurs="0" maxOccurs="unbounded">
-					<xsd:annotation>
-						<xsd:documentation>The sample array of a waveform-</xsd:documentation>
-						<xsd:appinfo>
-							<jaxb:property name="RealTimeSampleArrays"/>
-						</xsd:appinfo>
-					</xsd:annotation>
-				</xsd:element>
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractReport">
+					<xsd:sequence>
+						<xsd:element name="State" type="pm:RealTimeSampleArrayMetricState" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>State represents a list of sample arrays of a waveform.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<xsd:complexType name="StreamElement">
-		<xsd:sequence>
-				<xsd:element name="Value" type="dom:AbstractMetricValue" minOccurs="0" maxOccurs="1"/>
-			</xsd:sequence>
-							<xsd:attribute name="Metric" type="dom:HandleRef" use="required">
-					<xsd:annotation>
-						<xsd:documentation>Todo.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:attribute>
-	</xsd:complexType>
-	<xsd:element name="OVStream">
+	<xsd:element name="ObservedValueStream">
 		<xsd:annotation>
-			<xsd:documentation>TODO</xsd:documentation>
+			<xsd:documentation>The ObservedValueStream MESSAGE is sent in order to transmit observed values of one or more waveforms. This object MAY be used for optimized waveform value transmission.
+
+__R5026: If ObservedValueStream is supported, any changes to the observed value of pm:RealTimeSampleArrayMetricState SHALL be reported by ObservedValueStream while other changes are reported through pm:WaveformStream.__</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element ref="ext:Extension" minOccurs="0"/>
-				<xsd:element name="Value" type="msg:StreamElement" minOccurs="0" maxOccurs="unbounded"/>
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="msg:AbstractReport">
+					<xsd:sequence>
+						<xsd:element name="Value" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:annotation>
+									<xsd:documentation>A stream ELEMENT that contains observed values of a stream-able state.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:sequence>
+									<xsd:element name="Value" type="pm:SampleArrayValue" minOccurs="0" maxOccurs="1"/>
+								</xsd:sequence>
+								<xsd:attribute name="Metric" type="pm:HandleRef" use="required">
+									<xsd:annotation>
+										<xsd:documentation>Handle reference to the descriptor the observed values belong to.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+								<xsd:attribute name="StateVersion" type="pm:VersionCounter" use="optional">
+									<xsd:annotation>
+										<xsd:documentation>Version number of the state. The implied value SHALL be "0".</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	<!-- Message Model - Metric Retrievability -->
-	<xsd:simpleType name="MetricRetrievability">
+	<!--Section: Retrievability Method-->
+	<xsd:simpleType name="RetrievabilityMethod">
 		<xsd:annotation>
-			<xsd:appinfo>
-				<jaxb:typesafeEnumClass name="MetricRetrievability"/>
-			</xsd:appinfo>
-			<xsd:documentation>MetricAvailability provides information on how it is possible to access the metric value.</xsd:documentation>
+			<xsd:documentation>The method on how it is retrieve the information about a state.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Get">
 				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="GET"/>
-					</xsd:appinfo>
-					<xsd:documentation>The metric is retrievable via a Get request. Use the corresponding get message (e.g.GetMetrics).</xsd:documentation>
+					<xsd:documentation>The CONTAINMENT TREE ENTRY is retrievable via a get request. Use the corresponding get MESSAGE.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Per">
 				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="PERIODIC"/>
-					</xsd:appinfo>
-					<xsd:documentation>Per = Periodic. The metric is retrievable via a periodic event report (TODO: 11073: MDC_NOTI_BUF_SCAN_RPT (1:3331), even though not configurable). Use the corresponding periodic event report message (e.g. EpisodicMetricReport) . </xsd:documentation>
+					<xsd:documentation>Per = Periodic. The CONTAINMENT TREE ENTRY is retrievable via a periodic event report. Use the corresponding periodic event report MESSAGE (e.g., pm:PeriodicMetricReport).</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Ep">
 				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="EPISODIC"/>
-					</xsd:appinfo>
-					<xsd:documentation>Ep = Episodic. The metric is retrievable via a periodic event report (MDC_NOTI_BUF_SCAN_RPT (1:3331) ???, not configurable). Use the corresponding episodic event report message (e.g. PeriodicMetricReport) .</xsd:documentation>
+					<xsd:documentation>Ep = Episodic. The CONTAINMENT TREE ENTRY is retrievable via an episodic event report. Use the corresponding episodic event report MESSAGE (e.g., pm:EpisodicMetricReport).</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Strm">
 				<xsd:annotation>
-					<xsd:appinfo>
-						<jaxb:typesafeEnumMember name="STREAM"/>
-					</xsd:appinfo>
-					<xsd:documentation>Strm = Stream. The metric is retrievable via a WaveformStream. Use the WaveformStream message.</xsd:documentation>
+					<xsd:documentation>Strm = Stream. The CONTAINMENT TREE ENTRY is retrievable via a waveform stream. Use the msg:WaveformStream or msg:ObservedValueStream MESSAGE.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 		</xsd:restriction>
 	</xsd:simpleType>
+	<xsd:complexType name="RetrievabilityInfo">
+		<xsd:annotation>
+			<xsd:documentation>Retrievability provides information on how it is possible to access a state.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:sequence>
+				<xsd:element ref="ext:Extension" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:sequence>
+		<xsd:attribute name="Method" type="msg:RetrievabilityMethod" use="required">
+			<xsd:annotation>
+				<xsd:documentation>The method on how to retrieve a state.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="UpdatePeriod" type="xsd:duration">
+			<xsd:annotation>
+				<xsd:documentation>The periodicity in which updates can be expected to be communicated as a periodic event. The implied value SHALL be "PT1S".</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
 	<xsd:element name="Retrievability">
 		<xsd:annotation>
-			<xsd:documentation>Extension point for the domain model which SHOULD be included as AbstractMetricDescriptor extensions to describe the metric retrievability (see simple type MetricRetrievability). Since a metric might be retrievable by several methods, Retrievability comprises of a list of By elements.</xsd:documentation>
+			<xsd:documentation>Extension point that SHOULD be included as a pm:AbstractMetricDescriptor extension to describe METRIC retrievability (see msg:RetrievabilityMethod). Since a METRIC might be retrievable by several methods, Retrievability comprises a list of msg:RetrievabilityInfo ELEMENTs.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="By" type="msg:MetricRetrievability" minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="By" type="msg:RetrievabilityInfo" minOccurs="0" maxOccurs="unbounded">
 					<xsd:annotation>
-						<xsd:documentation>By defines a single metric retrievability.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:element>
-			</xsd:sequence>
-		</xsd:complexType>
-	</xsd:element>
-	<xsd:element name="OperationReference">
-		<xsd:annotation>
-			<xsd:documentation>TODO</xsd:documentation>
-		</xsd:annotation>
-		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element name="ServiceID" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
-					<xsd:annotation>
-						<xsd:documentation>Identifier for a hosted service that is unique within a network device.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:element>
-				<xsd:element name="Action" type="xsd:string">
-					<xsd:annotation>
-						<xsd:documentation>Identifier for the action to be invoked.</xsd:documentation>
+						<xsd:documentation>Retrievability information set.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:element>
 			</xsd:sequence>

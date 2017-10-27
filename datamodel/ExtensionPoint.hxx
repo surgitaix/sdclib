@@ -63,29 +63,29 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-namespace CDM
+namespace EXT
 {
-  class Extension: public ::xml_schema::Type
+  class ExtensionType: public ::xml_schema::Type
   {
     public:
     // Constructors.
     //
-    Extension ();
+    ExtensionType ();
 
-    Extension (const ::xercesc::DOMElement& e,
-               ::xml_schema::Flags f = 0,
-               ::xml_schema::Container* c = 0);
+    ExtensionType (const ::xercesc::DOMElement& e,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
 
-    Extension (const Extension& x,
-               ::xml_schema::Flags f = 0,
-               ::xml_schema::Container* c = 0);
+    ExtensionType (const ExtensionType& x,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
 
-    virtual Extension*
+    virtual ExtensionType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
     virtual 
-    ~Extension ();
+    ~ExtensionType ();
 
     // Implementation.
     //
@@ -104,100 +104,100 @@ namespace CDM
 #include <xercesc/dom/DOMDocument.hpp>
 #include <xercesc/dom/DOMErrorHandler.hpp>
 
-namespace CDM
+namespace EXT
 {
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (const ::std::string& uri,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (const ::std::string& uri,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (const ::std::string& uri,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (const ::std::string& uri,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (const ::std::string& uri,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (const ::std::string& uri,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::std::istream& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::std::istream& is,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::std::istream& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::std::istream& is,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::std::istream& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::std::istream& is,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::std::istream& is,
+             const ::std::string& id,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::std::istream& is,
+             const ::std::string& id,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::std::istream& is,
-              const ::std::string& id,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::std::istream& is,
+             const ::std::string& id,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::xercesc::InputSource& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::xercesc::InputSource& is,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::xercesc::InputSource& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::xercesc::InputSource& is,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::xercesc::InputSource& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::xercesc::InputSource& is,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (const ::xercesc::DOMDocument& d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (const ::xercesc::DOMDocument& d,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Extension >
-  Extension_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::EXT::ExtensionType >
+  Extension (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 }
 
 #include <iosfwd>
@@ -208,78 +208,78 @@ namespace CDM
 
 #include <xsd/cxx/xml/dom/auto-ptr.hxx>
 
-namespace CDM
+namespace EXT
 {
   // Serialize to std::ostream.
   //
 
   void
-  Extension_ (::std::ostream& os,
-              const ::CDM::Extension& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+  Extension (::std::ostream& os,
+             const ::EXT::ExtensionType& x, 
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
 
   void
-  Extension_ (::std::ostream& os,
-              const ::CDM::Extension& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+  Extension (::std::ostream& os,
+             const ::EXT::ExtensionType& x, 
+             ::xml_schema::ErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
 
   void
-  Extension_ (::std::ostream& os,
-              const ::CDM::Extension& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+  Extension (::std::ostream& os,
+             const ::EXT::ExtensionType& x, 
+             ::xercesc::DOMErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
 
   // Serialize to xercesc::XMLFormatTarget.
   //
 
   void
-  Extension_ (::xercesc::XMLFormatTarget& ft,
-              const ::CDM::Extension& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+  Extension (::xercesc::XMLFormatTarget& ft,
+             const ::EXT::ExtensionType& x, 
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
 
   void
-  Extension_ (::xercesc::XMLFormatTarget& ft,
-              const ::CDM::Extension& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+  Extension (::xercesc::XMLFormatTarget& ft,
+             const ::EXT::ExtensionType& x, 
+             ::xml_schema::ErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
 
   void
-  Extension_ (::xercesc::XMLFormatTarget& ft,
-              const ::CDM::Extension& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+  Extension (::xercesc::XMLFormatTarget& ft,
+             const ::EXT::ExtensionType& x, 
+             ::xercesc::DOMErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
 
   // Serialize to an existing xercesc::DOMDocument.
   //
 
   void
-  Extension_ (::xercesc::DOMDocument& d,
-              const ::CDM::Extension& x,
-              ::xml_schema::Flags f = 0);
+  Extension (::xercesc::DOMDocument& d,
+             const ::EXT::ExtensionType& x,
+             ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Extension_ (const ::CDM::Extension& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              ::xml_schema::Flags f = 0);
+  Extension (const ::EXT::ExtensionType& x, 
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             ::xml_schema::Flags f = 0);
 
   void
-  operator<< (::xercesc::DOMElement&, const Extension&);
+  operator<< (::xercesc::DOMElement&, const ExtensionType&);
 }
 
 #include <xsd/cxx/post.hxx>

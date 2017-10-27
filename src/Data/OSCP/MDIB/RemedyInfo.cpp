@@ -76,7 +76,7 @@ RemedyInfo & RemedyInfo::addDescription(const LocalizedText & value) {
 	return *this;
 }
 
-std::vector<LocalizedText> RemedyInfo::getDescriptions() const {
+std::vector<LocalizedText> RemedyInfo::getDescriptionList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->Description().size());
 	for (const auto & value: data->Description()) {
@@ -85,7 +85,7 @@ std::vector<LocalizedText> RemedyInfo::getDescriptions() const {
 	return result;
 }
 
-void RemedyInfo::clearDescriptions() {
+void RemedyInfo::clearDescriptionList() {
 	data->Description().clear();
 }
 

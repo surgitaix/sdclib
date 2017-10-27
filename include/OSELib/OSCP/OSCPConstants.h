@@ -32,10 +32,10 @@ namespace OSCP {
 
 const std::string NS_ADDRESSING("http://www.w3.org/2005/08/addressing");
 const std::string NS_EVENTING("http://schemas.xmlsoap.org/ws/2004/08/eventing");
-const std::string NS_DOMAIN_MODEL("http://domain-model-uri/15/04");
-const std::string NS_MESSAGE_MODEL("http://message-model-uri/15/04");
+const std::string NS_DOMAIN_MODEL("http://p11073-10207/draft10/pm/2017/10/05");
+const std::string NS_MESSAGE_MODEL("http://p11073-10207/draft10/msg/2017/10/05");
 const std::string NS_WSDL("http://schemas.xmlsoap.org/wsdl/");
-const std::string NS_WSDL_TARGET_NAMESPACE("http://message-model-uri/15/04");
+const std::string NS_WSDL_TARGET_NAMESPACE("http://p11073-10207/draft10/msg/2017/10/05");
 const std::string NS_WSDL_SOAP_BINDING("http://schemas.xmlsoap.org/wsdl/soap/");
 const std::string NS_XML_SCHEMA("http://www.w3.org/2001/XMLSchema");
 const std::string NS_MDPWS("http://standards.ieee.org/downloads/11073/11073-20702-201x/");
@@ -69,14 +69,14 @@ const std::string ACTION_CDM_ACTIVATE_RESPONSE(NS_MESSAGE_MODEL + "/" + QNAME_SE
 const std::string ACTION_CDM_GET_CONTEXTSTATES_REQUEST(NS_MESSAGE_MODEL + "/" + QNAME_CONTEXTSERVICE_PORTTYPE + "/GetContextStates");
 const std::string ACTION_CDM_GET_CONTEXTSTATES_RESPONSE(NS_MESSAGE_MODEL + "/" + QNAME_CONTEXTSERVICE_PORTTYPE + "/GetContextStatesResponse");
 
-const std::string ACTION_CDM_GET_MDDESCRIPTION_REQUEST(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMDDescription");
-const std::string ACTION_CDM_GET_MDDESCRIPTION_RESPONSE(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMDDescriptionResponse");
+const std::string ACTION_CDM_GET_MDDESCRIPTION_REQUEST(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMdDescription");
+const std::string ACTION_CDM_GET_MDDESCRIPTION_RESPONSE(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMdDescriptionResponse");
 
-const std::string ACTION_CDM_GET_MDIB_REQUEST(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMDIB");
-const std::string ACTION_CDM_GET_MDIB_RESPONSE(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMDIBResponse");
+const std::string ACTION_CDM_GET_MDIB_REQUEST(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMdib");
+const std::string ACTION_CDM_GET_MDIB_RESPONSE(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMdibResponse");
 
-const std::string ACTION_CDM_GET_MDSTATE_REQUEST(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMDState");
-const std::string ACTION_CDM_GET_MDSTATE_RESPONSE(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMDStateResponse");
+const std::string ACTION_CDM_GET_MDSTATE_REQUEST(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMdState");
+const std::string ACTION_CDM_GET_MDSTATE_RESPONSE(NS_MESSAGE_MODEL + "/" + QNAME_GETSERVICE_PORTTYPE + "/GetMdStateResponse");
 
 const std::string ACTION_CDM_SET_ALERT_STATE_REQUEST(NS_MESSAGE_MODEL + "/" + QNAME_SETSERVICE_PORTTYPE + "/SetAlertState");
 const std::string ACTION_CDM_SET_ALERT_STATE_RESPONSE(NS_MESSAGE_MODEL + "/" + QNAME_SETSERVICE_PORTTYPE + "/SetAlertStateResponse");
@@ -98,7 +98,7 @@ const std::string EVENT_ACTION_CDM_PERIODIC_CONTEXT_REPORT(NS_MESSAGE_MODEL + "/
 const std::string EVENT_ACTION_CDM_EPISODIC_METRIC_REPORT(NS_MESSAGE_MODEL + "/" + QNAME_REPORTSERVICE_PORTTYPE + "/EpisodicMetricReport");
 const std::string EVENT_ACTION_CDM_PERIODIC_METRIC_REPORT(NS_MESSAGE_MODEL + "/" + QNAME_REPORTSERVICE_PORTTYPE + "/PeriodicMetricReport");
 const std::string EVENT_ACTION_CDM_OPERATION_INVOKED_REPORT(NS_MESSAGE_MODEL + "/" + QNAME_REPORTSERVICE_PORTTYPE + "/OperationInvokedReport");
-const std::string EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT(NS_MESSAGE_MODEL + "/" + QNAME_STREAMSERVICE_PORTTYPE + "/WaveformStream");
+const std::string EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT(NS_ORNET_STREAM_ID + "/WaveformStream");
 
 }
 }

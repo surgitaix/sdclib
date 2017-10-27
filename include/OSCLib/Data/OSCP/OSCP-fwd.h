@@ -19,7 +19,7 @@ namespace OSCP {
 	class FutureInvocationState;
 	class OSCPConsumer;
 	class OSCPConsumerConnectionLostHandler;
-	class OSCPConsumerContextStateChangedHandler;
+	class OSCPConsumerSystemContextStateChangedHandler;
 	class OSCPConsumerEventHandler;
 	class OSCPConsumerEnumStringMetricStateHandler;
 	class OSCPConsumerNumericMetricStateHandler;
@@ -32,13 +32,12 @@ namespace OSCP {
 	class OSCPConsumerSubscriptionLostHandler;
 
 	class OSCPProvider;
-	class OSCPProviderMDStateHandler;
+	class OSCPProviderMdStateHandler;
 	class OSCPProviderAlertConditionStateHandler;
 	class OSCPProviderAlertSignalStateHandler;
 	class OSCPProviderAlertSystemStateHandler;
 	class OSCPProviderClockStateHandler;
-	class OSCPProviderComponentStateHandler;
-	class OSCPProviderHydraMDSStateHandler;
+	class OSCPProviderMdsStateHandler;
 	class OSCPProviderEnumStringMetricStateHandler;
 	class OSCPProviderLimitAlertConditionStateHandler;
 	class OSCPProviderNumericMetricStateHandler;

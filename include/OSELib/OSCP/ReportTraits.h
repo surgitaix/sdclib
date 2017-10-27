@@ -8,7 +8,7 @@ namespace OSELib {
 namespace OSCP {
 
 struct DescriptionModificationReportTraits {
-	typedef CDM::DescriptionModificationReport ReportType;
+	typedef MDM::DescriptionModificationReport ReportType;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
@@ -16,7 +16,7 @@ struct DescriptionModificationReportTraits {
 };
 
 struct EpisodicAlertReportTraits {
-	typedef CDM::EpisodicAlertReport ReportType;
+	typedef MDM::EpisodicAlertReport ReportType;
 	typedef IEventReportEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
@@ -26,7 +26,7 @@ struct EpisodicAlertReportTraits {
 };
 
 struct EpisodicContextChangedReportTraits {
-	typedef CDM::EpisodicContextChangedReport ReportType;
+	typedef MDM::EpisodicContextReport ReportType;
 	typedef IContextServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();	
@@ -36,7 +36,7 @@ struct EpisodicContextChangedReportTraits {
 };
 
 struct EpisodicMetricReportTraits {
-	typedef CDM::EpisodicMetricReport ReportType;
+	typedef MDM::EpisodicMetricReport ReportType;
 	typedef IEventReportEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
@@ -46,7 +46,7 @@ struct EpisodicMetricReportTraits {
 };
 
 struct OperationInvokedReportTraits {
-	typedef CDM::OperationInvokedReport ReportType;
+	typedef MDM::OperationInvokedReport ReportType;
 	typedef IEventReportEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
@@ -56,7 +56,7 @@ struct OperationInvokedReportTraits {
 };
 
 struct PeriodicAlertReportTraits {
-	typedef CDM::PeriodicAlertReport ReportType;
+	typedef MDM::PeriodicAlertReport ReportType;
 	typedef IEventReportEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
@@ -66,7 +66,7 @@ struct PeriodicAlertReportTraits {
 };
 
 struct PeriodicContextChangedReportTraits {
-	typedef CDM::PeriodicContextChangedReport ReportType;
+	typedef MDM::PeriodicContextReport ReportType;
 	typedef IContextServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();	
@@ -76,7 +76,7 @@ struct PeriodicContextChangedReportTraits {
 };
 
 struct PeriodicMetricReportTraits {
-	typedef CDM::PeriodicMetricReport ReportType;
+	typedef MDM::PeriodicMetricReport ReportType;
 	typedef IEventReportEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
@@ -86,7 +86,7 @@ struct PeriodicMetricReportTraits {
 };
 
 struct WaveformStreamTraits {
-	typedef CDM::WaveformStream ReportType;
+	typedef MDM::WaveformStream ReportType;
 	typedef IEventReportEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();

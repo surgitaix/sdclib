@@ -39,8 +39,6 @@
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CauseInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -96,13 +94,13 @@ bool LimitAlertConditionDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setHandle(const std::string & value) {
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string LimitAlertConditionDescriptor::getHandle() const {
+Handle LimitAlertConditionDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -127,25 +125,25 @@ bool LimitAlertConditionDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LimitAlertConditionDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
+bool LimitAlertConditionDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
-IntendedUse LimitAlertConditionDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
+SafetyClassification LimitAlertConditionDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool LimitAlertConditionDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
+bool LimitAlertConditionDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
 }
 	
 LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setKind(const AlertConditionKind & value) {
@@ -168,13 +166,76 @@ AlertConditionPriority LimitAlertConditionDescriptor::getPriority() const {
 	return ConvertFromCDM::convert(data->Priority());
 }
 	
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addSource(const std::string & value) {
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setDefaultConditionGenerationDelay(const xml_schema::Duration & value) {
+	data->DefaultConditionGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionDescriptor::getDefaultConditionGenerationDelay(xml_schema::Duration & out) const {
+	if (data->DefaultConditionGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration LimitAlertConditionDescriptor::getDefaultConditionGenerationDelay() const {
+	return ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+}
+	
+bool LimitAlertConditionDescriptor::hasDefaultConditionGenerationDelay() const {
+	return data->DefaultConditionGenerationDelay().present();
+}
+	
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setCanEscalate(const CanEscalate & value) {
+	data->CanEscalate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionDescriptor::getCanEscalate(CanEscalate & out) const {
+	if (data->CanEscalate().present()) {
+		out = ConvertFromCDM::convert(data->CanEscalate().get());
+		return true;
+	}
+	return false;
+}
+
+CanEscalate LimitAlertConditionDescriptor::getCanEscalate() const {
+	return ConvertFromCDM::convert(data->CanEscalate().get());
+}
+	
+bool LimitAlertConditionDescriptor::hasCanEscalate() const {
+	return data->CanEscalate().present();
+}
+	
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::setCanDeescalate(const CanDeescalate & value) {
+	data->CanDeescalate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionDescriptor::getCanDeescalate(CanDeescalate & out) const {
+	if (data->CanDeescalate().present()) {
+		out = ConvertFromCDM::convert(data->CanDeescalate().get());
+		return true;
+	}
+	return false;
+}
+
+CanDeescalate LimitAlertConditionDescriptor::getCanDeescalate() const {
+	return ConvertFromCDM::convert(data->CanDeescalate().get());
+}
+	
+bool LimitAlertConditionDescriptor::hasCanDeescalate() const {
+	return data->CanDeescalate().present();
+}
+	
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addSource(const HandleRef & value) {
 	data->Source().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<std::string> LimitAlertConditionDescriptor::getSources() const {
-	std::vector<std::string> result;
+std::vector<HandleRef> LimitAlertConditionDescriptor::getSourceList() const {
+	std::vector<HandleRef> result;
 	result.reserve(data->Source().size());
 	for (const auto & value: data->Source()) {
 		result.push_back(ConvertFromCDM::convert(value));
@@ -182,7 +243,7 @@ std::vector<std::string> LimitAlertConditionDescriptor::getSources() const {
 	return result;
 }
 
-void LimitAlertConditionDescriptor::clearSources() {
+void LimitAlertConditionDescriptor::clearSourceList() {
 	data->Source().clear();
 }
 
@@ -191,7 +252,7 @@ LimitAlertConditionDescriptor & LimitAlertConditionDescriptor::addCauseInfo(cons
 	return *this;
 }
 
-std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfo() const {
+std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfoList() const {
 	std::vector<CauseInfo> result;
 	result.reserve(data->CauseInfo().size());
 	for (const auto & value: data->CauseInfo()) {
@@ -200,7 +261,7 @@ std::vector<CauseInfo> LimitAlertConditionDescriptor::getCauseInfo() const {
 	return result;
 }
 
-void LimitAlertConditionDescriptor::clearCauseInfo() {
+void LimitAlertConditionDescriptor::clearCauseInfoList() {
 	data->CauseInfo().clear();
 }
 

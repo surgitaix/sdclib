@@ -8,13 +8,13 @@
 #ifndef DATA_OSCP_OSCPPROVIDERSTRINGMETRICSTATEHANDLER_H_
 #define DATA_OSCP_OSCPPROVIDERSTRINGMETRICSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPProviderMDStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderStringMetricStateHandler : public OSCPProviderMDStateHandler {
+class OSCPProviderStringMetricStateHandler : public OSCPProviderMdStateHandler {
 public:
 	OSCPProviderStringMetricStateHandler();
 	virtual ~OSCPProviderStringMetricStateHandler();

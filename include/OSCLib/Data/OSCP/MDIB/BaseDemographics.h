@@ -32,7 +32,7 @@
 #ifndef BASEDEMOGRAPHICS_H_
 #define BASEDEMOGRAPHICS_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -77,8 +77,8 @@ public:
 	bool hasTitle() const;
 
 	BaseDemographics & addMiddlename(const std::string & value);
-	std::vector<std::string> getMiddlenames() const;
-	void clearMiddlenames();
+	std::vector<std::string> getMiddlenameList() const;
+	void clearMiddlenameList();
 	
 private:
 	std::shared_ptr<CDM::BaseDemographics> data;

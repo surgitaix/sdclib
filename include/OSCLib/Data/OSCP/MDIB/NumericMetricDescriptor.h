@@ -32,7 +32,7 @@
 #ifndef NUMERICMETRICDESCRIPTOR_H_
 #define NUMERICMETRICDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -62,18 +62,18 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	NumericMetricDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	NumericMetricDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	NumericMetricDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	NumericMetricDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
+	NumericMetricDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
 
 	NumericMetricDescriptor & setUnit(const CodedValue & value);
 	CodedValue getUnit() const;
@@ -81,34 +81,58 @@ public:
 	NumericMetricDescriptor & setMetricCategory(const MetricCategory & value);
 	MetricCategory getMetricCategory() const;
 
-	NumericMetricDescriptor & setAvailability(const MetricAvailability & value);
-	MetricAvailability getAvailability() const;
+	NumericMetricDescriptor & setDerivationMethod(const DerivationMethod & value);
+	DerivationMethod getDerivationMethod() const;
+	bool getDerivationMethod(DerivationMethod & out) const;
+	bool hasDerivationMethod() const;
 
-	NumericMetricDescriptor & setMaxDelayTime(const Duration & value);
-	Duration getMaxDelayTime() const;
-	bool getMaxDelayTime(Duration & out) const;
+	NumericMetricDescriptor & setMetricAvailability(const MetricAvailability & value);
+	MetricAvailability getMetricAvailability() const;
+
+	NumericMetricDescriptor & setMaxMeasurementTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxMeasurementTime() const;
+	bool getMaxMeasurementTime(xml_schema::Duration & out) const;
+	bool hasMaxMeasurementTime() const;
+
+	NumericMetricDescriptor & setMaxDelayTime(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxDelayTime() const;
+	bool getMaxDelayTime(xml_schema::Duration & out) const;
 	bool hasMaxDelayTime() const;
 
+	NumericMetricDescriptor & setDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getDeterminationPeriod() const;
+	bool getDeterminationPeriod(xml_schema::Duration & out) const;
+	bool hasDeterminationPeriod() const;
+
+	NumericMetricDescriptor & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
+	bool hasLifeTimePeriod() const;
+
+	NumericMetricDescriptor & setActivationDuration(const xml_schema::Duration & value);
+	xml_schema::Duration getActivationDuration() const;
+	bool getActivationDuration(xml_schema::Duration & out) const;
+	bool hasActivationDuration() const;
+
 	NumericMetricDescriptor & addBodySite(const CodedValue & value);
-	std::vector<CodedValue> getBodySites() const;
-	void clearBodySites();
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
+	
+	NumericMetricDescriptor & addRelation(const Relation & value);
+	std::vector<Relation> getRelationList() const;
+	void clearRelationList();
 	
 	NumericMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
 
-	NumericMetricDescriptor & setMeasurePeriod(const Duration & value);
-	Duration getMeasurePeriod() const;
-	bool getMeasurePeriod(Duration & out) const;
-	bool hasMeasurePeriod() const;
-
-	NumericMetricDescriptor & setAveragingPeriod(const Duration & value);
-	Duration getAveragingPeriod() const;
-	bool getAveragingPeriod(Duration & out) const;
+	NumericMetricDescriptor & setAveragingPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getAveragingPeriod() const;
+	bool getAveragingPeriod(xml_schema::Duration & out) const;
 	bool hasAveragingPeriod() const;
 
 	NumericMetricDescriptor & addTechnicalRange(const Range & value);
-	std::vector<Range> getTechnicalRanges() const;
-	void clearTechnicalRanges();
+	std::vector<Range> getTechnicalRangeList() const;
+	void clearTechnicalRangeList();
 	
 private:
 	std::shared_ptr<CDM::NumericMetricDescriptor> data;

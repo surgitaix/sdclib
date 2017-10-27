@@ -37,8 +37,8 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -73,37 +73,6 @@ EnumStringMetricState & EnumStringMetricState:: operator=(const EnumStringMetric
 }
 
 
-EnumStringMetricState & EnumStringMetricState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool EnumStringMetricState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
-		return true;
-	}
-	return false;
-}
-
-std::string EnumStringMetricState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
-}
-	
-bool EnumStringMetricState::hasHandle() const {
-	return data->Handle().present();
-}
-	
-EnumStringMetricState & EnumStringMetricState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string EnumStringMetricState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 EnumStringMetricState & EnumStringMetricState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,109 +94,158 @@ bool EnumStringMetricState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
-EnumStringMetricState & EnumStringMetricState::setComponentActivationState(const ComponentActivation & value) {
-	data->ComponentActivationState(ConvertToCDM::convert(value));
+EnumStringMetricState & EnumStringMetricState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricState::getComponentActivationState(ComponentActivation & out) const {
-	if (data->ComponentActivationState().present()) {
-		out = ConvertFromCDM::convert(data->ComponentActivationState().get());
+
+HandleRef EnumStringMetricState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+EnumStringMetricState & EnumStringMetricState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool EnumStringMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-ComponentActivation EnumStringMetricState::getComponentActivationState() const {
-	return ConvertFromCDM::convert(data->ComponentActivationState().get());
+ReferencedVersion EnumStringMetricState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool EnumStringMetricState::hasComponentActivationState() const {
-	return data->ComponentActivationState().present();
+bool EnumStringMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
-EnumStringMetricState & EnumStringMetricState::setCalibrationInfo(const CalibrationInfo & value) {
-	data->CalibrationInfo(ConvertToCDM::convert(value));
+EnumStringMetricState & EnumStringMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
+	data->PhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricState::getCalibrationInfo(CalibrationInfo & out) const {
-	if (data->CalibrationInfo().present()) {
-		out = ConvertFromCDM::convert(data->CalibrationInfo().get());
+bool EnumStringMetricState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
+	if (data->PhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
 		return true;
 	}
 	return false;
 }
 
-CalibrationInfo EnumStringMetricState::getCalibrationInfo() const {
-	return ConvertFromCDM::convert(data->CalibrationInfo().get());
+PhysicalConnectorInfo EnumStringMetricState::getPhysicalConnector() const {
+	return ConvertFromCDM::convert(data->PhysicalConnector().get());
 }
 	
-bool EnumStringMetricState::hasCalibrationInfo() const {
-	return data->CalibrationInfo().present();
+bool EnumStringMetricState::hasPhysicalConnector() const {
+	return data->PhysicalConnector().present();
 }
 	
-EnumStringMetricState & EnumStringMetricState::setOperatingHours(const int & value) {
-	data->OperatingHours(ConvertToCDM::convert(value));
+EnumStringMetricState & EnumStringMetricState::setActivationState(const ComponentActivation & value) {
+	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricState::getOperatingHours(int & out) const {
-	if (data->OperatingHours().present()) {
-		out = ConvertFromCDM::convert(data->OperatingHours().get());
+bool EnumStringMetricState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
 		return true;
 	}
 	return false;
 }
 
-int EnumStringMetricState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours().get());
+ComponentActivation EnumStringMetricState::getActivationState() const {
+	return ConvertFromCDM::convert(data->ActivationState().get());
 }
 	
-bool EnumStringMetricState::hasOperatingHours() const {
-	return data->OperatingHours().present();
+bool EnumStringMetricState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
-EnumStringMetricState & EnumStringMetricState::setOperatingCycles(const int & value) {
-	data->OperatingCycles(ConvertToCDM::convert(value));
+EnumStringMetricState & EnumStringMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
+	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricState::getOperatingCycles(int & out) const {
-	if (data->OperatingCycles().present()) {
-		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+bool EnumStringMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out) const {
+	if (data->ActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 		return true;
 	}
 	return false;
 }
 
-int EnumStringMetricState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles().get());
+xml_schema::Duration EnumStringMetricState::getActiveDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 }
 	
-bool EnumStringMetricState::hasOperatingCycles() const {
-	return data->OperatingCycles().present();
+bool EnumStringMetricState::hasActiveDeterminationPeriod() const {
+	return data->ActiveDeterminationPeriod().present();
 }
 	
-EnumStringMetricState & EnumStringMetricState::setObservedValue(const StringMetricValue & value) {
-	data->ObservedValue(ConvertToCDM::convert(value));
+EnumStringMetricState & EnumStringMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
+	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool EnumStringMetricState::getObservedValue(StringMetricValue & out) const {
-	if (data->ObservedValue().present()) {
-		out = ConvertFromCDM::convert(data->ObservedValue().get());
+bool EnumStringMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
+	if (data->LifeTimePeriod().present()) {
+		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
 	}
 	return false;
 }
 
-StringMetricValue EnumStringMetricState::getObservedValue() const {
-	return ConvertFromCDM::convert(data->ObservedValue().get());
+xml_schema::Duration EnumStringMetricState::getLifeTimePeriod() const {
+	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
-bool EnumStringMetricState::hasObservedValue() const {
-	return data->ObservedValue().present();
+bool EnumStringMetricState::hasLifeTimePeriod() const {
+	return data->LifeTimePeriod().present();
+}
+	
+EnumStringMetricState & EnumStringMetricState::addBodySite(const CodedValue & value) {
+	data->BodySite().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<CodedValue> EnumStringMetricState::getBodySiteList() const {
+	std::vector<CodedValue> result;
+	result.reserve(data->BodySite().size());
+	for (const auto & value: data->BodySite()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void EnumStringMetricState::clearBodySiteList() {
+	data->BodySite().clear();
+}
+
+EnumStringMetricState & EnumStringMetricState::setMetricValue(const StringMetricValue & value) {
+	data->MetricValue(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool EnumStringMetricState::getMetricValue(StringMetricValue & out) const {
+	if (data->MetricValue().present()) {
+		out = ConvertFromCDM::convert(data->MetricValue().get());
+		return true;
+	}
+	return false;
+}
+
+StringMetricValue EnumStringMetricState::getMetricValue() const {
+	return ConvertFromCDM::convert(data->MetricValue().get());
+}
+	
+bool EnumStringMetricState::hasMetricValue() const {
+	return data->MetricValue().present();
 }
 	
 

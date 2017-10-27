@@ -254,9 +254,9 @@ namespace xml_schema
 
 // Forward declarations.
 //
-namespace CDM
+namespace EXT
 {
-  class Extension;
+  class ExtensionType;
 }
 
 

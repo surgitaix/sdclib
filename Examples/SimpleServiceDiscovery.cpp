@@ -1,6 +1,6 @@
 
 #include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Util/DebugOut.h"

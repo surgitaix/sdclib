@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/CalibrationDocumentation.h"
 
 namespace OSCLib {
 namespace Data {
@@ -91,6 +92,66 @@ bool CalibrationInfo::hasComponentCalibrationState() const {
 	return data->ComponentCalibrationState().present();
 }
 	
+CalibrationInfo & CalibrationInfo::setType(const CalibrationType & value) {
+	data->Type(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool CalibrationInfo::getType(CalibrationType & out) const {
+	if (data->Type().present()) {
+		out = ConvertFromCDM::convert(data->Type().get());
+		return true;
+	}
+	return false;
+}
+
+CalibrationType CalibrationInfo::getType() const {
+	return ConvertFromCDM::convert(data->Type().get());
+}
+	
+bool CalibrationInfo::hasType() const {
+	return data->Type().present();
+}
+	
+CalibrationInfo & CalibrationInfo::setTime(const Timestamp & value) {
+	data->Time(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool CalibrationInfo::getTime(Timestamp & out) const {
+	if (data->Time().present()) {
+		out = ConvertFromCDM::convert(data->Time().get());
+		return true;
+	}
+	return false;
+}
+
+Timestamp CalibrationInfo::getTime() const {
+	return ConvertFromCDM::convert(data->Time().get());
+}
+	
+bool CalibrationInfo::hasTime() const {
+	return data->Time().present();
+}
+	
+CalibrationInfo & CalibrationInfo::addCalibrationDocumentation(const CalibrationDocumentation & value) {
+	data->CalibrationDocumentation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<CalibrationDocumentation> CalibrationInfo::getCalibrationDocumentationList() const {
+	std::vector<CalibrationDocumentation> result;
+	result.reserve(data->CalibrationDocumentation().size());
+	for (const auto & value: data->CalibrationDocumentation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void CalibrationInfo::clearCalibrationDocumentationList() {
+	data->CalibrationDocumentation().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

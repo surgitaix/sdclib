@@ -26,14 +26,14 @@ public:
 	void start();
 	void stop();
 
-	void notifyEvent(const CDM::EpisodicAlertReport & report);
-	void notifyEvent(const CDM::EpisodicContextChangedReport & report);
-	void notifyEvent(const CDM::EpisodicMetricReport & report);
-	void notifyEvent(const CDM::PeriodicAlertReport & report);
-	void notifyEvent(const CDM::PeriodicContextChangedReport & report);
-	void notifyEvent(const CDM::PeriodicMetricReport & report);
-	void notifyEvent(const CDM::OperationInvokedReport & report);
-	void notifyEvent(const CDM::WaveformStream & stream);
+	void notifyEvent(const MDM::EpisodicAlertReport & report);
+	void notifyEvent(const MDM::EpisodicContextReport & report);
+	void notifyEvent(const MDM::EpisodicMetricReport & report);
+	void notifyEvent(const MDM::PeriodicAlertReport & report);
+	void notifyEvent(const MDM::PeriodicContextReport & report);
+	void notifyEvent(const MDM::PeriodicMetricReport & report);
+	void notifyEvent(const MDM::OperationInvokedReport & report);
+	void notifyEvent(const MDM::WaveformStream & stream);
 
 	unsigned int getPort() const;
 	void setPort(unsigned int port);

@@ -162,7 +162,7 @@ void $(my.childclass:)::clear$(propertyList.nameSeveral:)() {
 #ifndef $(class.NAME)_H_
 #define $(class.NAME)_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 

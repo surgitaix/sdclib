@@ -65,16 +65,304 @@
 
 #include "ExtensionPoint.hxx"
 
-#include "BICEPS_DomainModel.hxx"
+#include "BICEPS_ParticipantModel.hxx"
 
-namespace CDM
+namespace MDM
 {
+  class TransactionId: public ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedInt, char, ::xml_schema::SimpleType >
+  {
+    public:
+    // Constructors.
+    //
+    TransactionId (const ::xml_schema::UnsignedInt&);
+
+    TransactionId (const ::xercesc::DOMElement& e,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    TransactionId (const ::xercesc::DOMAttr& a,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    TransactionId (const ::std::string& s,
+                   const ::xercesc::DOMElement* e,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    TransactionId (const TransactionId& x,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    virtual TransactionId*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~TransactionId ();
+  };
+
+  class InvocationState: public ::xml_schema::String
+  {
+    public:
+    enum Value
+    {
+      Wait,
+      Start,
+      Cnclld,
+      CnclldMan,
+      Fin,
+      FinMod,
+      Fail
+    };
+
+    InvocationState (Value v);
+
+    InvocationState (const char* v);
+
+    InvocationState (const ::std::string& v);
+
+    InvocationState (const ::xml_schema::String& v);
+
+    InvocationState (const ::xercesc::DOMElement& e,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    InvocationState (const ::xercesc::DOMAttr& a,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    InvocationState (const ::std::string& s,
+                     const ::xercesc::DOMElement* e,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    InvocationState (const InvocationState& x,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    virtual InvocationState*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    InvocationState&
+    operator= (Value v);
+
+    virtual
+    operator Value () const
+    {
+      return _xsd_InvocationState_convert ();
+    }
+
+    protected:
+    Value
+    _xsd_InvocationState_convert () const;
+
+    public:
+    static const char* const _xsd_InvocationState_literals_[7];
+    static const Value _xsd_InvocationState_indexes_[7];
+  };
+
+  class InvocationError: public ::xml_schema::String
+  {
+    public:
+    enum Value
+    {
+      Unspec,
+      Unkn,
+      Inv,
+      Oth
+    };
+
+    InvocationError (Value v);
+
+    InvocationError (const char* v);
+
+    InvocationError (const ::std::string& v);
+
+    InvocationError (const ::xml_schema::String& v);
+
+    InvocationError (const ::xercesc::DOMElement& e,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    InvocationError (const ::xercesc::DOMAttr& a,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    InvocationError (const ::std::string& s,
+                     const ::xercesc::DOMElement* e,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    InvocationError (const InvocationError& x,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    virtual InvocationError*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    InvocationError&
+    operator= (Value v);
+
+    virtual
+    operator Value () const
+    {
+      return _xsd_InvocationError_convert ();
+    }
+
+    protected:
+    Value
+    _xsd_InvocationError_convert () const;
+
+    public:
+    static const char* const _xsd_InvocationError_literals_[4];
+    static const Value _xsd_InvocationError_indexes_[4];
+  };
+
+  class InvocationInfo: public ::xml_schema::Type
+  {
+    public:
+    // Extension
+    //
+    typedef ::EXT::ExtensionType ExtensionType;
+    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
+    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
+
+    const ExtensionOptional&
+    Extension () const;
+
+    ExtensionOptional&
+    Extension ();
+
+    void
+    Extension (const ExtensionType& x);
+
+    void
+    Extension (const ExtensionOptional& x);
+
+    void
+    Extension (::std::unique_ptr< ExtensionType > p);
+
+    // TransactionId
+    //
+    typedef ::MDM::TransactionId TransactionIdType;
+    typedef ::xsd::cxx::tree::traits< TransactionIdType, char > TransactionIdTraits;
+
+    const TransactionIdType&
+    TransactionId () const;
+
+    TransactionIdType&
+    TransactionId ();
+
+    void
+    TransactionId (const TransactionIdType& x);
+
+    void
+    TransactionId (::std::unique_ptr< TransactionIdType > p);
+
+    // InvocationState
+    //
+    typedef ::MDM::InvocationState InvocationStateType;
+    typedef ::xsd::cxx::tree::traits< InvocationStateType, char > InvocationStateTraits;
+
+    const InvocationStateType&
+    InvocationState () const;
+
+    InvocationStateType&
+    InvocationState ();
+
+    void
+    InvocationState (const InvocationStateType& x);
+
+    void
+    InvocationState (::std::unique_ptr< InvocationStateType > p);
+
+    // InvocationError
+    //
+    typedef ::MDM::InvocationError InvocationErrorType;
+    typedef ::xsd::cxx::tree::optional< InvocationErrorType > InvocationErrorOptional;
+    typedef ::xsd::cxx::tree::traits< InvocationErrorType, char > InvocationErrorTraits;
+
+    const InvocationErrorOptional&
+    InvocationError () const;
+
+    InvocationErrorOptional&
+    InvocationError ();
+
+    void
+    InvocationError (const InvocationErrorType& x);
+
+    void
+    InvocationError (const InvocationErrorOptional& x);
+
+    void
+    InvocationError (::std::unique_ptr< InvocationErrorType > p);
+
+    // InvocationErrorMessage
+    //
+    typedef ::CDM::LocalizedText InvocationErrorMessageType;
+    typedef ::xsd::cxx::tree::sequence< InvocationErrorMessageType > InvocationErrorMessageSequence;
+    typedef InvocationErrorMessageSequence::iterator InvocationErrorMessageIterator;
+    typedef InvocationErrorMessageSequence::const_iterator InvocationErrorMessageConstIterator;
+    typedef ::xsd::cxx::tree::traits< InvocationErrorMessageType, char > InvocationErrorMessageTraits;
+
+    const InvocationErrorMessageSequence&
+    InvocationErrorMessage () const;
+
+    InvocationErrorMessageSequence&
+    InvocationErrorMessage ();
+
+    void
+    InvocationErrorMessage (const InvocationErrorMessageSequence& s);
+
+    // Constructors.
+    //
+    InvocationInfo (const TransactionIdType&,
+                    const InvocationStateType&);
+
+    InvocationInfo (::std::unique_ptr< TransactionIdType >,
+                    ::std::unique_ptr< InvocationStateType >);
+
+    InvocationInfo (const ::xercesc::DOMElement& e,
+                    ::xml_schema::Flags f = 0,
+                    ::xml_schema::Container* c = 0);
+
+    InvocationInfo (const InvocationInfo& x,
+                    ::xml_schema::Flags f = 0,
+                    ::xml_schema::Container* c = 0);
+
+    virtual InvocationInfo*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    InvocationInfo&
+    operator= (const InvocationInfo& x);
+
+    virtual 
+    ~InvocationInfo ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ExtensionOptional Extension_;
+    ::xsd::cxx::tree::one< TransactionIdType > TransactionId_;
+    ::xsd::cxx::tree::one< InvocationStateType > InvocationState_;
+    InvocationErrorOptional InvocationError_;
+    InvocationErrorMessageSequence InvocationErrorMessage_;
+  };
+
   class AbstractGet: public ::xml_schema::Type
   {
     public:
     // Extension
     //
-    typedef ::CDM::Extension ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -131,7 +419,7 @@ namespace CDM
     public:
     // Extension
     //
-    typedef ::CDM::Extension ExtensionType;
+    typedef ::EXT::ExtensionType ExtensionType;
     typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
     typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
@@ -150,26 +438,65 @@ namespace CDM
     void
     Extension (::std::unique_ptr< ExtensionType > p);
 
-    // MDIBVersion
+    // MdibVersion
     //
-    typedef ::CDM::VersionCounter MDIBVersionType;
-    typedef ::xsd::cxx::tree::traits< MDIBVersionType, char > MDIBVersionTraits;
+    typedef ::CDM::VersionCounter MdibVersionType;
+    typedef ::xsd::cxx::tree::optional< MdibVersionType > MdibVersionOptional;
+    typedef ::xsd::cxx::tree::traits< MdibVersionType, char > MdibVersionTraits;
 
-    const MDIBVersionType&
-    MDIBVersion () const;
+    const MdibVersionOptional&
+    MdibVersion () const;
 
-    MDIBVersionType&
-    MDIBVersion ();
-
-    void
-    MDIBVersion (const MDIBVersionType& x);
+    MdibVersionOptional&
+    MdibVersion ();
 
     void
-    MDIBVersion (::std::unique_ptr< MDIBVersionType > p);
+    MdibVersion (const MdibVersionType& x);
+
+    void
+    MdibVersion (const MdibVersionOptional& x);
+
+    void
+    MdibVersion (::std::unique_ptr< MdibVersionType > p);
+
+    // SequenceId
+    //
+    typedef ::xml_schema::Uri SequenceIdType;
+    typedef ::xsd::cxx::tree::traits< SequenceIdType, char > SequenceIdTraits;
+
+    const SequenceIdType&
+    SequenceId () const;
+
+    SequenceIdType&
+    SequenceId ();
+
+    void
+    SequenceId (const SequenceIdType& x);
+
+    void
+    SequenceId (::std::unique_ptr< SequenceIdType > p);
+
+    // InstanceId
+    //
+    typedef ::xml_schema::UnsignedLong InstanceIdType;
+    typedef ::xsd::cxx::tree::optional< InstanceIdType > InstanceIdOptional;
+    typedef ::xsd::cxx::tree::traits< InstanceIdType, char > InstanceIdTraits;
+
+    const InstanceIdOptional&
+    InstanceId () const;
+
+    InstanceIdOptional&
+    InstanceId ();
+
+    void
+    InstanceId (const InstanceIdType& x);
+
+    void
+    InstanceId (const InstanceIdOptional& x);
 
     // Constructors.
     //
-    AbstractGetResponse (const MDIBVersionType&);
+    AbstractGetResponse (const SequenceIdType&);
 
     AbstractGetResponse (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f = 0,
@@ -198,90 +525,77 @@ namespace CDM
 
     protected:
     ExtensionOptional Extension_;
-    ::xsd::cxx::tree::one< MDIBVersionType > MDIBVersion_;
+    MdibVersionOptional MdibVersion_;
+    ::xsd::cxx::tree::one< SequenceIdType > SequenceId_;
+    InstanceIdOptional InstanceId_;
   };
 
-  class GetLocalizedText: public ::CDM::AbstractGet
+  class AbstractReportPart: public ::xml_schema::Type
   {
     public:
-    // Ref
+    // Extension
     //
-    typedef ::CDM::LocalizedTextRef RefType;
-    typedef ::xsd::cxx::tree::traits< RefType, char > RefTraits;
+    typedef ::EXT::ExtensionType ExtensionType;
+    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
+    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
-    const RefType&
-    Ref () const;
+    const ExtensionOptional&
+    Extension () const;
 
-    RefType&
-    Ref ();
-
-    void
-    Ref (const RefType& x);
+    ExtensionOptional&
+    Extension ();
 
     void
-    Ref (::std::unique_ptr< RefType > p);
+    Extension (const ExtensionType& x);
 
-    // Version
+    void
+    Extension (const ExtensionOptional& x);
+
+    void
+    Extension (::std::unique_ptr< ExtensionType > p);
+
+    // SourceMds
     //
-    typedef ::CDM::ReferencedVersion VersionType;
-    typedef ::xsd::cxx::tree::optional< VersionType > VersionOptional;
-    typedef ::xsd::cxx::tree::traits< VersionType, char > VersionTraits;
+    typedef ::CDM::HandleRef SourceMdsType;
+    typedef ::xsd::cxx::tree::optional< SourceMdsType > SourceMdsOptional;
+    typedef ::xsd::cxx::tree::traits< SourceMdsType, char > SourceMdsTraits;
 
-    const VersionOptional&
-    Version () const;
+    const SourceMdsOptional&
+    SourceMds () const;
 
-    VersionOptional&
-    Version ();
-
-    void
-    Version (const VersionType& x);
+    SourceMdsOptional&
+    SourceMds ();
 
     void
-    Version (const VersionOptional& x);
+    SourceMds (const SourceMdsType& x);
 
     void
-    Version (::std::unique_ptr< VersionType > p);
-
-    // Lang
-    //
-    typedef ::xml_schema::Language LangType;
-    typedef ::xsd::cxx::tree::sequence< LangType > LangSequence;
-    typedef LangSequence::iterator LangIterator;
-    typedef LangSequence::const_iterator LangConstIterator;
-    typedef ::xsd::cxx::tree::traits< LangType, char > LangTraits;
-
-    const LangSequence&
-    Lang () const;
-
-    LangSequence&
-    Lang ();
+    SourceMds (const SourceMdsOptional& x);
 
     void
-    Lang (const LangSequence& s);
+    SourceMds (::std::unique_ptr< SourceMdsType > p);
 
     // Constructors.
     //
-    GetLocalizedText (const RefType&);
+    AbstractReportPart ();
 
-    GetLocalizedText (::std::unique_ptr< RefType >);
+    AbstractReportPart (const ::xercesc::DOMElement& e,
+                        ::xml_schema::Flags f = 0,
+                        ::xml_schema::Container* c = 0);
 
-    GetLocalizedText (const ::xercesc::DOMElement& e,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
+    AbstractReportPart (const AbstractReportPart& x,
+                        ::xml_schema::Flags f = 0,
+                        ::xml_schema::Container* c = 0);
 
-    GetLocalizedText (const GetLocalizedText& x,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
-
-    virtual GetLocalizedText*
+    virtual AbstractReportPart*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetLocalizedText&
-    operator= (const GetLocalizedText& x);
+    AbstractReportPart&
+    operator= (const AbstractReportPart& x);
 
     virtual 
-    ~GetLocalizedText ();
+    ~AbstractReportPart ();
 
     // Implementation.
     //
@@ -291,52 +605,111 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< RefType > Ref_;
-    VersionOptional Version_;
-    LangSequence Lang_;
+    ExtensionOptional Extension_;
+    SourceMdsOptional SourceMds_;
   };
 
-  class GetLocalizedTextResponse: public ::CDM::AbstractGetResponse
+  class AbstractReport: public ::xml_schema::Type
   {
     public:
-    // Text
+    // Extension
     //
-    typedef ::CDM::Text TextType;
-    typedef ::xsd::cxx::tree::sequence< TextType > TextSequence;
-    typedef TextSequence::iterator TextIterator;
-    typedef TextSequence::const_iterator TextConstIterator;
-    typedef ::xsd::cxx::tree::traits< TextType, char > TextTraits;
+    typedef ::EXT::ExtensionType ExtensionType;
+    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
+    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
-    const TextSequence&
-    Text () const;
+    const ExtensionOptional&
+    Extension () const;
 
-    TextSequence&
-    Text ();
+    ExtensionOptional&
+    Extension ();
 
     void
-    Text (const TextSequence& s);
+    Extension (const ExtensionType& x);
+
+    void
+    Extension (const ExtensionOptional& x);
+
+    void
+    Extension (::std::unique_ptr< ExtensionType > p);
+
+    // MdibVersion
+    //
+    typedef ::CDM::VersionCounter MdibVersionType;
+    typedef ::xsd::cxx::tree::optional< MdibVersionType > MdibVersionOptional;
+    typedef ::xsd::cxx::tree::traits< MdibVersionType, char > MdibVersionTraits;
+
+    const MdibVersionOptional&
+    MdibVersion () const;
+
+    MdibVersionOptional&
+    MdibVersion ();
+
+    void
+    MdibVersion (const MdibVersionType& x);
+
+    void
+    MdibVersion (const MdibVersionOptional& x);
+
+    void
+    MdibVersion (::std::unique_ptr< MdibVersionType > p);
+
+    // SequenceId
+    //
+    typedef ::xml_schema::Uri SequenceIdType;
+    typedef ::xsd::cxx::tree::traits< SequenceIdType, char > SequenceIdTraits;
+
+    const SequenceIdType&
+    SequenceId () const;
+
+    SequenceIdType&
+    SequenceId ();
+
+    void
+    SequenceId (const SequenceIdType& x);
+
+    void
+    SequenceId (::std::unique_ptr< SequenceIdType > p);
+
+    // InstanceId
+    //
+    typedef ::xml_schema::UnsignedLong InstanceIdType;
+    typedef ::xsd::cxx::tree::optional< InstanceIdType > InstanceIdOptional;
+    typedef ::xsd::cxx::tree::traits< InstanceIdType, char > InstanceIdTraits;
+
+    const InstanceIdOptional&
+    InstanceId () const;
+
+    InstanceIdOptional&
+    InstanceId ();
+
+    void
+    InstanceId (const InstanceIdType& x);
+
+    void
+    InstanceId (const InstanceIdOptional& x);
 
     // Constructors.
     //
-    GetLocalizedTextResponse (const MDIBVersionType&);
+    AbstractReport (const SequenceIdType&);
 
-    GetLocalizedTextResponse (const ::xercesc::DOMElement& e,
-                              ::xml_schema::Flags f = 0,
-                              ::xml_schema::Container* c = 0);
+    AbstractReport (const ::xercesc::DOMElement& e,
+                    ::xml_schema::Flags f = 0,
+                    ::xml_schema::Container* c = 0);
 
-    GetLocalizedTextResponse (const GetLocalizedTextResponse& x,
-                              ::xml_schema::Flags f = 0,
-                              ::xml_schema::Container* c = 0);
+    AbstractReport (const AbstractReport& x,
+                    ::xml_schema::Flags f = 0,
+                    ::xml_schema::Container* c = 0);
 
-    virtual GetLocalizedTextResponse*
+    virtual AbstractReport*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetLocalizedTextResponse&
-    operator= (const GetLocalizedTextResponse& x);
+    AbstractReport&
+    operator= (const AbstractReport& x);
 
     virtual 
-    ~GetLocalizedTextResponse ();
+    ~AbstractReport ();
 
     // Implementation.
     //
@@ -346,73 +719,268 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    TextSequence Text_;
+    ExtensionOptional Extension_;
+    MdibVersionOptional MdibVersion_;
+    ::xsd::cxx::tree::one< SequenceIdType > SequenceId_;
+    InstanceIdOptional InstanceId_;
   };
 
-  class GetSupportedLanguages: public ::CDM::AbstractGet
+  class AbstractSet: public ::xml_schema::Type
   {
     public:
+    // Extension
+    //
+    typedef ::EXT::ExtensionType ExtensionType;
+    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
+    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
+
+    const ExtensionOptional&
+    Extension () const;
+
+    ExtensionOptional&
+    Extension ();
+
+    void
+    Extension (const ExtensionType& x);
+
+    void
+    Extension (const ExtensionOptional& x);
+
+    void
+    Extension (::std::unique_ptr< ExtensionType > p);
+
+    // OperationHandleRef
+    //
+    typedef ::CDM::HandleRef OperationHandleRefType;
+    typedef ::xsd::cxx::tree::traits< OperationHandleRefType, char > OperationHandleRefTraits;
+
+    const OperationHandleRefType&
+    OperationHandleRef () const;
+
+    OperationHandleRefType&
+    OperationHandleRef ();
+
+    void
+    OperationHandleRef (const OperationHandleRefType& x);
+
+    void
+    OperationHandleRef (::std::unique_ptr< OperationHandleRefType > p);
+
     // Constructors.
     //
-    GetSupportedLanguages ();
+    AbstractSet (const OperationHandleRefType&);
 
-    GetSupportedLanguages (const ::xercesc::DOMElement& e,
+    AbstractSet (::std::unique_ptr< OperationHandleRefType >);
+
+    AbstractSet (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    AbstractSet (const AbstractSet& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual AbstractSet*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    AbstractSet&
+    operator= (const AbstractSet& x);
+
+    virtual 
+    ~AbstractSet ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ExtensionOptional Extension_;
+    ::xsd::cxx::tree::one< OperationHandleRefType > OperationHandleRef_;
+  };
+
+  class AbstractSetResponse: public ::xml_schema::Type
+  {
+    public:
+    // Extension
+    //
+    typedef ::EXT::ExtensionType ExtensionType;
+    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
+    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
+
+    const ExtensionOptional&
+    Extension () const;
+
+    ExtensionOptional&
+    Extension ();
+
+    void
+    Extension (const ExtensionType& x);
+
+    void
+    Extension (const ExtensionOptional& x);
+
+    void
+    Extension (::std::unique_ptr< ExtensionType > p);
+
+    // InvocationInfo
+    //
+    typedef ::MDM::InvocationInfo InvocationInfoType;
+    typedef ::xsd::cxx::tree::traits< InvocationInfoType, char > InvocationInfoTraits;
+
+    const InvocationInfoType&
+    InvocationInfo () const;
+
+    InvocationInfoType&
+    InvocationInfo ();
+
+    void
+    InvocationInfo (const InvocationInfoType& x);
+
+    void
+    InvocationInfo (::std::unique_ptr< InvocationInfoType > p);
+
+    // MdibVersion
+    //
+    typedef ::CDM::VersionCounter MdibVersionType;
+    typedef ::xsd::cxx::tree::optional< MdibVersionType > MdibVersionOptional;
+    typedef ::xsd::cxx::tree::traits< MdibVersionType, char > MdibVersionTraits;
+
+    const MdibVersionOptional&
+    MdibVersion () const;
+
+    MdibVersionOptional&
+    MdibVersion ();
+
+    void
+    MdibVersion (const MdibVersionType& x);
+
+    void
+    MdibVersion (const MdibVersionOptional& x);
+
+    void
+    MdibVersion (::std::unique_ptr< MdibVersionType > p);
+
+    // SequenceId
+    //
+    typedef ::xml_schema::Uri SequenceIdType;
+    typedef ::xsd::cxx::tree::traits< SequenceIdType, char > SequenceIdTraits;
+
+    const SequenceIdType&
+    SequenceId () const;
+
+    SequenceIdType&
+    SequenceId ();
+
+    void
+    SequenceId (const SequenceIdType& x);
+
+    void
+    SequenceId (::std::unique_ptr< SequenceIdType > p);
+
+    // InstanceId
+    //
+    typedef ::xml_schema::UnsignedLong InstanceIdType;
+    typedef ::xsd::cxx::tree::optional< InstanceIdType > InstanceIdOptional;
+    typedef ::xsd::cxx::tree::traits< InstanceIdType, char > InstanceIdTraits;
+
+    const InstanceIdOptional&
+    InstanceId () const;
+
+    InstanceIdOptional&
+    InstanceId ();
+
+    void
+    InstanceId (const InstanceIdType& x);
+
+    void
+    InstanceId (const InstanceIdOptional& x);
+
+    // Constructors.
+    //
+    AbstractSetResponse (const InvocationInfoType&,
+                         const SequenceIdType&);
+
+    AbstractSetResponse (::std::unique_ptr< InvocationInfoType >,
+                         const SequenceIdType&);
+
+    AbstractSetResponse (const ::xercesc::DOMElement& e,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
+
+    AbstractSetResponse (const AbstractSetResponse& x,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
+
+    virtual AbstractSetResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    AbstractSetResponse&
+    operator= (const AbstractSetResponse& x);
+
+    virtual 
+    ~AbstractSetResponse ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ExtensionOptional Extension_;
+    ::xsd::cxx::tree::one< InvocationInfoType > InvocationInfo_;
+    MdibVersionOptional MdibVersion_;
+    ::xsd::cxx::tree::one< SequenceIdType > SequenceId_;
+    InstanceIdOptional InstanceId_;
+  };
+
+  class AbstractContextReport: public ::MDM::AbstractReport
+  {
+    public:
+    // ReportPart
+    //
+    typedef ::MDM::ReportPart ReportPartType;
+    typedef ::xsd::cxx::tree::sequence< ReportPartType > ReportPartSequence;
+    typedef ReportPartSequence::iterator ReportPartIterator;
+    typedef ReportPartSequence::const_iterator ReportPartConstIterator;
+    typedef ::xsd::cxx::tree::traits< ReportPartType, char > ReportPartTraits;
+
+    const ReportPartSequence&
+    ReportPart () const;
+
+    ReportPartSequence&
+    ReportPart ();
+
+    void
+    ReportPart (const ReportPartSequence& s);
+
+    // Constructors.
+    //
+    AbstractContextReport (const SequenceIdType&);
+
+    AbstractContextReport (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
-    GetSupportedLanguages (const GetSupportedLanguages& x,
+    AbstractContextReport (const AbstractContextReport& x,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
-    virtual GetSupportedLanguages*
+    virtual AbstractContextReport*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    virtual 
-    ~GetSupportedLanguages ();
-  };
-
-  class GetSupportedLanguagesResponse: public ::CDM::AbstractGetResponse
-  {
-    public:
-    // Lang
-    //
-    typedef ::xml_schema::Language LangType;
-    typedef ::xsd::cxx::tree::sequence< LangType > LangSequence;
-    typedef LangSequence::iterator LangIterator;
-    typedef LangSequence::const_iterator LangConstIterator;
-    typedef ::xsd::cxx::tree::traits< LangType, char > LangTraits;
-
-    const LangSequence&
-    Lang () const;
-
-    LangSequence&
-    Lang ();
-
-    void
-    Lang (const LangSequence& s);
-
-    // Constructors.
-    //
-    GetSupportedLanguagesResponse (const MDIBVersionType&);
-
-    GetSupportedLanguagesResponse (const ::xercesc::DOMElement& e,
-                                   ::xml_schema::Flags f = 0,
-                                   ::xml_schema::Container* c = 0);
-
-    GetSupportedLanguagesResponse (const GetSupportedLanguagesResponse& x,
-                                   ::xml_schema::Flags f = 0,
-                                   ::xml_schema::Container* c = 0);
-
-    virtual GetSupportedLanguagesResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    GetSupportedLanguagesResponse&
-    operator= (const GetSupportedLanguagesResponse& x);
+    AbstractContextReport&
+    operator= (const AbstractContextReport& x);
 
     virtual 
-    ~GetSupportedLanguagesResponse ();
+    ~AbstractContextReport ();
 
     // Implementation.
     //
@@ -422,92 +990,75 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    LangSequence Lang_;
+    ReportPartSequence ReportPart_;
   };
 
-  class GetDescriptorsFromArchive: public ::CDM::AbstractGet
+  class VersionFrame: public ::xml_schema::Type
   {
     public:
-    // DescriptorRevision
+    // Start
     //
-    typedef ::CDM::ReferencedVersion DescriptorRevisionType;
-    typedef ::xsd::cxx::tree::optional< DescriptorRevisionType > DescriptorRevisionOptional;
-    typedef ::xsd::cxx::tree::traits< DescriptorRevisionType, char > DescriptorRevisionTraits;
+    typedef ::CDM::ReferencedVersion StartType;
+    typedef ::xsd::cxx::tree::optional< StartType > StartOptional;
+    typedef ::xsd::cxx::tree::traits< StartType, char > StartTraits;
 
-    const DescriptorRevisionOptional&
-    DescriptorRevision () const;
+    const StartOptional&
+    Start () const;
 
-    DescriptorRevisionOptional&
-    DescriptorRevision ();
-
-    void
-    DescriptorRevision (const DescriptorRevisionType& x);
+    StartOptional&
+    Start ();
 
     void
-    DescriptorRevision (const DescriptorRevisionOptional& x);
+    Start (const StartType& x);
 
     void
-    DescriptorRevision (::std::unique_ptr< DescriptorRevisionType > p);
+    Start (const StartOptional& x);
 
-    // TimeFrame
+    void
+    Start (::std::unique_ptr< StartType > p);
+
+    // End
     //
-    typedef ::CDM::TimeFrame TimeFrameType;
-    typedef ::xsd::cxx::tree::optional< TimeFrameType > TimeFrameOptional;
-    typedef ::xsd::cxx::tree::traits< TimeFrameType, char > TimeFrameTraits;
+    typedef ::CDM::ReferencedVersion EndType;
+    typedef ::xsd::cxx::tree::optional< EndType > EndOptional;
+    typedef ::xsd::cxx::tree::traits< EndType, char > EndTraits;
 
-    const TimeFrameOptional&
-    TimeFrame () const;
+    const EndOptional&
+    End () const;
 
-    TimeFrameOptional&
-    TimeFrame ();
-
-    void
-    TimeFrame (const TimeFrameType& x);
+    EndOptional&
+    End ();
 
     void
-    TimeFrame (const TimeFrameOptional& x);
+    End (const EndType& x);
 
     void
-    TimeFrame (::std::unique_ptr< TimeFrameType > p);
-
-    // Handle
-    //
-    typedef ::CDM::HandleRef HandleType;
-    typedef ::xsd::cxx::tree::sequence< HandleType > HandleSequence;
-    typedef HandleSequence::iterator HandleIterator;
-    typedef HandleSequence::const_iterator HandleConstIterator;
-    typedef ::xsd::cxx::tree::traits< HandleType, char > HandleTraits;
-
-    const HandleSequence&
-    Handle () const;
-
-    HandleSequence&
-    Handle ();
+    End (const EndOptional& x);
 
     void
-    Handle (const HandleSequence& s);
+    End (::std::unique_ptr< EndType > p);
 
     // Constructors.
     //
-    GetDescriptorsFromArchive ();
+    VersionFrame ();
 
-    GetDescriptorsFromArchive (const ::xercesc::DOMElement& e,
-                               ::xml_schema::Flags f = 0,
-                               ::xml_schema::Container* c = 0);
+    VersionFrame (const ::xercesc::DOMElement& e,
+                  ::xml_schema::Flags f = 0,
+                  ::xml_schema::Container* c = 0);
 
-    GetDescriptorsFromArchive (const GetDescriptorsFromArchive& x,
-                               ::xml_schema::Flags f = 0,
-                               ::xml_schema::Container* c = 0);
+    VersionFrame (const VersionFrame& x,
+                  ::xml_schema::Flags f = 0,
+                  ::xml_schema::Container* c = 0);
 
-    virtual GetDescriptorsFromArchive*
+    virtual VersionFrame*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetDescriptorsFromArchive&
-    operator= (const GetDescriptorsFromArchive& x);
+    VersionFrame&
+    operator= (const VersionFrame& x);
 
     virtual 
-    ~GetDescriptorsFromArchive ();
+    ~VersionFrame ();
 
     // Implementation.
     //
@@ -517,210 +1068,8 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    DescriptorRevisionOptional DescriptorRevision_;
-    TimeFrameOptional TimeFrame_;
-    HandleSequence Handle_;
-  };
-
-  class GetDescriptorsFromArchiveResponse: public ::CDM::AbstractGetResponse
-  {
-    public:
-    // Descriptor
-    //
-    typedef ::CDM::AbstractDescriptor DescriptorType;
-    typedef ::xsd::cxx::tree::sequence< DescriptorType > DescriptorSequence;
-    typedef DescriptorSequence::iterator DescriptorIterator;
-    typedef DescriptorSequence::const_iterator DescriptorConstIterator;
-    typedef ::xsd::cxx::tree::traits< DescriptorType, char > DescriptorTraits;
-
-    const DescriptorSequence&
-    Descriptor () const;
-
-    DescriptorSequence&
-    Descriptor ();
-
-    void
-    Descriptor (const DescriptorSequence& s);
-
-    // Constructors.
-    //
-    GetDescriptorsFromArchiveResponse (const MDIBVersionType&);
-
-    GetDescriptorsFromArchiveResponse (const ::xercesc::DOMElement& e,
-                                       ::xml_schema::Flags f = 0,
-                                       ::xml_schema::Container* c = 0);
-
-    GetDescriptorsFromArchiveResponse (const GetDescriptorsFromArchiveResponse& x,
-                                       ::xml_schema::Flags f = 0,
-                                       ::xml_schema::Container* c = 0);
-
-    virtual GetDescriptorsFromArchiveResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    GetDescriptorsFromArchiveResponse&
-    operator= (const GetDescriptorsFromArchiveResponse& x);
-
-    virtual 
-    ~GetDescriptorsFromArchiveResponse ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    DescriptorSequence Descriptor_;
-  };
-
-  class GetStatesFromArchive: public ::CDM::AbstractGet
-  {
-    public:
-    // StateRevision
-    //
-    typedef ::CDM::ReferencedVersion StateRevisionType;
-    typedef ::xsd::cxx::tree::traits< StateRevisionType, char > StateRevisionTraits;
-
-    const StateRevisionType&
-    StateRevision () const;
-
-    StateRevisionType&
-    StateRevision ();
-
-    void
-    StateRevision (const StateRevisionType& x);
-
-    void
-    StateRevision (::std::unique_ptr< StateRevisionType > p);
-
-    // TimeFrame
-    //
-    typedef ::CDM::TimeFrame TimeFrameType;
-    typedef ::xsd::cxx::tree::optional< TimeFrameType > TimeFrameOptional;
-    typedef ::xsd::cxx::tree::traits< TimeFrameType, char > TimeFrameTraits;
-
-    const TimeFrameOptional&
-    TimeFrame () const;
-
-    TimeFrameOptional&
-    TimeFrame ();
-
-    void
-    TimeFrame (const TimeFrameType& x);
-
-    void
-    TimeFrame (const TimeFrameOptional& x);
-
-    void
-    TimeFrame (::std::unique_ptr< TimeFrameType > p);
-
-    // Handle
-    //
-    typedef ::CDM::HandleRef HandleType;
-    typedef ::xsd::cxx::tree::sequence< HandleType > HandleSequence;
-    typedef HandleSequence::iterator HandleIterator;
-    typedef HandleSequence::const_iterator HandleConstIterator;
-    typedef ::xsd::cxx::tree::traits< HandleType, char > HandleTraits;
-
-    const HandleSequence&
-    Handle () const;
-
-    HandleSequence&
-    Handle ();
-
-    void
-    Handle (const HandleSequence& s);
-
-    // Constructors.
-    //
-    GetStatesFromArchive (const StateRevisionType&);
-
-    GetStatesFromArchive (::std::unique_ptr< StateRevisionType >);
-
-    GetStatesFromArchive (const ::xercesc::DOMElement& e,
-                          ::xml_schema::Flags f = 0,
-                          ::xml_schema::Container* c = 0);
-
-    GetStatesFromArchive (const GetStatesFromArchive& x,
-                          ::xml_schema::Flags f = 0,
-                          ::xml_schema::Container* c = 0);
-
-    virtual GetStatesFromArchive*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    GetStatesFromArchive&
-    operator= (const GetStatesFromArchive& x);
-
-    virtual 
-    ~GetStatesFromArchive ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xsd::cxx::tree::one< StateRevisionType > StateRevision_;
-    TimeFrameOptional TimeFrame_;
-    HandleSequence Handle_;
-  };
-
-  class GetStatesFromArchiveResponse: public ::CDM::AbstractGet
-  {
-    public:
-    // State
-    //
-    typedef ::CDM::AbstractState StateType;
-    typedef ::xsd::cxx::tree::sequence< StateType > StateSequence;
-    typedef StateSequence::iterator StateIterator;
-    typedef StateSequence::const_iterator StateConstIterator;
-    typedef ::xsd::cxx::tree::traits< StateType, char > StateTraits;
-
-    const StateSequence&
-    State () const;
-
-    StateSequence&
-    State ();
-
-    void
-    State (const StateSequence& s);
-
-    // Constructors.
-    //
-    GetStatesFromArchiveResponse ();
-
-    GetStatesFromArchiveResponse (const ::xercesc::DOMElement& e,
-                                  ::xml_schema::Flags f = 0,
-                                  ::xml_schema::Container* c = 0);
-
-    GetStatesFromArchiveResponse (const GetStatesFromArchiveResponse& x,
-                                  ::xml_schema::Flags f = 0,
-                                  ::xml_schema::Container* c = 0);
-
-    virtual GetStatesFromArchiveResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    GetStatesFromArchiveResponse&
-    operator= (const GetStatesFromArchiveResponse& x);
-
-    virtual 
-    ~GetStatesFromArchiveResponse ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    StateSequence State_;
+    StartOptional Start_;
+    EndOptional End_;
   };
 
   class TimeFrame: public ::xml_schema::Type
@@ -802,626 +1151,12 @@ namespace CDM
     EndOptional End_;
   };
 
-  class TransactionID: public ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedInt, char, ::xml_schema::SimpleType >
-  {
-    public:
-    // Constructors.
-    //
-    TransactionID (const ::xml_schema::UnsignedInt&);
-
-    TransactionID (const ::xercesc::DOMElement& e,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    TransactionID (const ::xercesc::DOMAttr& a,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    TransactionID (const ::std::string& s,
-                   const ::xercesc::DOMElement* e,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    TransactionID (const TransactionID& x,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    virtual TransactionID*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~TransactionID ();
-  };
-
-  class InvocationState: public ::xml_schema::String
-  {
-    public:
-    enum Value
-    {
-      Wait,
-      Start,
-      Cnclld,
-      CnclldMan,
-      Fin,
-      Fail
-    };
-
-    InvocationState (Value v);
-
-    InvocationState (const char* v);
-
-    InvocationState (const ::std::string& v);
-
-    InvocationState (const ::xml_schema::String& v);
-
-    InvocationState (const ::xercesc::DOMElement& e,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    InvocationState (const ::xercesc::DOMAttr& a,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    InvocationState (const ::std::string& s,
-                     const ::xercesc::DOMElement* e,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    InvocationState (const InvocationState& x,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    virtual InvocationState*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    InvocationState&
-    operator= (Value v);
-
-    virtual
-    operator Value () const
-    {
-      return _xsd_InvocationState_convert ();
-    }
-
-    protected:
-    Value
-    _xsd_InvocationState_convert () const;
-
-    public:
-    static const char* const _xsd_InvocationState_literals_[6];
-    static const Value _xsd_InvocationState_indexes_[6];
-  };
-
-  class ArgumentType: public ::xml_schema::Type
-  {
-    public:
-    // Extension
-    //
-    typedef ::CDM::Extension ExtensionType;
-    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
-    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
-
-    const ExtensionOptional&
-    Extension () const;
-
-    ExtensionOptional&
-    Extension ();
-
-    void
-    Extension (const ExtensionType& x);
-
-    void
-    Extension (const ExtensionOptional& x);
-
-    void
-    Extension (::std::unique_ptr< ExtensionType > p);
-
-    // ArgValue
-    //
-    typedef ::xml_schema::SimpleType ArgValueType;
-    typedef ::xsd::cxx::tree::traits< ArgValueType, char > ArgValueTraits;
-
-    const ArgValueType&
-    ArgValue () const;
-
-    ArgValueType&
-    ArgValue ();
-
-    void
-    ArgValue (const ArgValueType& x);
-
-    void
-    ArgValue (::std::unique_ptr< ArgValueType > p);
-
-    // Constructors.
-    //
-    ArgumentType (const ArgValueType&);
-
-    ArgumentType (::std::unique_ptr< ArgValueType >);
-
-    ArgumentType (const ::xercesc::DOMElement& e,
-                  ::xml_schema::Flags f = 0,
-                  ::xml_schema::Container* c = 0);
-
-    ArgumentType (const ArgumentType& x,
-                  ::xml_schema::Flags f = 0,
-                  ::xml_schema::Container* c = 0);
-
-    virtual ArgumentType*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    ArgumentType&
-    operator= (const ArgumentType& x);
-
-    virtual 
-    ~ArgumentType ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ExtensionOptional Extension_;
-    ::xsd::cxx::tree::one< ArgValueType > ArgValue_;
-  };
-
-  class AbstractSet: public ::xml_schema::Type
-  {
-    public:
-    // Extension
-    //
-    typedef ::CDM::Extension ExtensionType;
-    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
-    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
-
-    const ExtensionOptional&
-    Extension () const;
-
-    ExtensionOptional&
-    Extension ();
-
-    void
-    Extension (const ExtensionType& x);
-
-    void
-    Extension (const ExtensionOptional& x);
-
-    void
-    Extension (::std::unique_ptr< ExtensionType > p);
-
-    // OperationHandleRef
-    //
-    typedef ::CDM::HandleRef OperationHandleRefType;
-    typedef ::xsd::cxx::tree::traits< OperationHandleRefType, char > OperationHandleRefTraits;
-
-    const OperationHandleRefType&
-    OperationHandleRef () const;
-
-    OperationHandleRefType&
-    OperationHandleRef ();
-
-    void
-    OperationHandleRef (const OperationHandleRefType& x);
-
-    void
-    OperationHandleRef (::std::unique_ptr< OperationHandleRefType > p);
-
-    // Constructors.
-    //
-    AbstractSet (const OperationHandleRefType&);
-
-    AbstractSet (::std::unique_ptr< OperationHandleRefType >);
-
-    AbstractSet (const ::xercesc::DOMElement& e,
-                 ::xml_schema::Flags f = 0,
-                 ::xml_schema::Container* c = 0);
-
-    AbstractSet (const AbstractSet& x,
-                 ::xml_schema::Flags f = 0,
-                 ::xml_schema::Container* c = 0);
-
-    virtual AbstractSet*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    AbstractSet&
-    operator= (const AbstractSet& x);
-
-    virtual 
-    ~AbstractSet ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ExtensionOptional Extension_;
-    ::xsd::cxx::tree::one< OperationHandleRefType > OperationHandleRef_;
-  };
-
-  class AbstractSetResponse: public ::xml_schema::Type
-  {
-    public:
-    // Extension
-    //
-    typedef ::CDM::Extension ExtensionType;
-    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
-    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
-
-    const ExtensionOptional&
-    Extension () const;
-
-    ExtensionOptional&
-    Extension ();
-
-    void
-    Extension (const ExtensionType& x);
-
-    void
-    Extension (const ExtensionOptional& x);
-
-    void
-    Extension (::std::unique_ptr< ExtensionType > p);
-
-    // TransactionId
-    //
-    typedef ::CDM::TransactionID TransactionIdType;
-    typedef ::xsd::cxx::tree::traits< TransactionIdType, char > TransactionIdTraits;
-
-    const TransactionIdType&
-    TransactionId () const;
-
-    TransactionIdType&
-    TransactionId ();
-
-    void
-    TransactionId (const TransactionIdType& x);
-
-    void
-    TransactionId (::std::unique_ptr< TransactionIdType > p);
-
-    // InvocationState
-    //
-    typedef ::CDM::InvocationState InvocationStateType;
-    typedef ::xsd::cxx::tree::traits< InvocationStateType, char > InvocationStateTraits;
-
-    const InvocationStateType&
-    InvocationState () const;
-
-    InvocationStateType&
-    InvocationState ();
-
-    void
-    InvocationState (const InvocationStateType& x);
-
-    void
-    InvocationState (::std::unique_ptr< InvocationStateType > p);
-
-    // OperationError
-    //
-    typedef ::CDM::InvocationError OperationErrorType;
-    typedef ::xsd::cxx::tree::optional< OperationErrorType > OperationErrorOptional;
-    typedef ::xsd::cxx::tree::traits< OperationErrorType, char > OperationErrorTraits;
-
-    const OperationErrorOptional&
-    OperationError () const;
-
-    OperationErrorOptional&
-    OperationError ();
-
-    void
-    OperationError (const OperationErrorType& x);
-
-    void
-    OperationError (const OperationErrorOptional& x);
-
-    void
-    OperationError (::std::unique_ptr< OperationErrorType > p);
-
-    // OperationErrorMessage
-    //
-    typedef ::xml_schema::String OperationErrorMessageType;
-    typedef ::xsd::cxx::tree::optional< OperationErrorMessageType > OperationErrorMessageOptional;
-    typedef ::xsd::cxx::tree::traits< OperationErrorMessageType, char > OperationErrorMessageTraits;
-
-    const OperationErrorMessageOptional&
-    OperationErrorMessage () const;
-
-    OperationErrorMessageOptional&
-    OperationErrorMessage ();
-
-    void
-    OperationErrorMessage (const OperationErrorMessageType& x);
-
-    void
-    OperationErrorMessage (const OperationErrorMessageOptional& x);
-
-    void
-    OperationErrorMessage (::std::unique_ptr< OperationErrorMessageType > p);
-
-    // MDIBVersion
-    //
-    typedef ::CDM::VersionCounter MDIBVersionType;
-    typedef ::xsd::cxx::tree::traits< MDIBVersionType, char > MDIBVersionTraits;
-
-    const MDIBVersionType&
-    MDIBVersion () const;
-
-    MDIBVersionType&
-    MDIBVersion ();
-
-    void
-    MDIBVersion (const MDIBVersionType& x);
-
-    void
-    MDIBVersion (::std::unique_ptr< MDIBVersionType > p);
-
-    // Constructors.
-    //
-    AbstractSetResponse (const TransactionIdType&,
-                         const InvocationStateType&,
-                         const MDIBVersionType&);
-
-    AbstractSetResponse (::std::unique_ptr< TransactionIdType >,
-                         ::std::unique_ptr< InvocationStateType >,
-                         const MDIBVersionType&);
-
-    AbstractSetResponse (const ::xercesc::DOMElement& e,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    AbstractSetResponse (const AbstractSetResponse& x,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    virtual AbstractSetResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    AbstractSetResponse&
-    operator= (const AbstractSetResponse& x);
-
-    virtual 
-    ~AbstractSetResponse ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ExtensionOptional Extension_;
-    ::xsd::cxx::tree::one< TransactionIdType > TransactionId_;
-    ::xsd::cxx::tree::one< InvocationStateType > InvocationState_;
-    OperationErrorOptional OperationError_;
-    OperationErrorMessageOptional OperationErrorMessage_;
-    ::xsd::cxx::tree::one< MDIBVersionType > MDIBVersion_;
-  };
-
-  class AbstractReport: public ::xml_schema::Type
-  {
-    public:
-    // Extension
-    //
-    typedef ::CDM::Extension ExtensionType;
-    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
-    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
-
-    const ExtensionOptional&
-    Extension () const;
-
-    ExtensionOptional&
-    Extension ();
-
-    void
-    Extension (const ExtensionType& x);
-
-    void
-    Extension (const ExtensionOptional& x);
-
-    void
-    Extension (::std::unique_ptr< ExtensionType > p);
-
-    // MDIBVersion
-    //
-    typedef ::CDM::VersionCounter MDIBVersionType;
-    typedef ::xsd::cxx::tree::traits< MDIBVersionType, char > MDIBVersionTraits;
-
-    const MDIBVersionType&
-    MDIBVersion () const;
-
-    MDIBVersionType&
-    MDIBVersion ();
-
-    void
-    MDIBVersion (const MDIBVersionType& x);
-
-    void
-    MDIBVersion (::std::unique_ptr< MDIBVersionType > p);
-
-    // Constructors.
-    //
-    AbstractReport (const MDIBVersionType&);
-
-    AbstractReport (const ::xercesc::DOMElement& e,
-                    ::xml_schema::Flags f = 0,
-                    ::xml_schema::Container* c = 0);
-
-    AbstractReport (const AbstractReport& x,
-                    ::xml_schema::Flags f = 0,
-                    ::xml_schema::Container* c = 0);
-
-    virtual AbstractReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    AbstractReport&
-    operator= (const AbstractReport& x);
-
-    virtual 
-    ~AbstractReport ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ExtensionOptional Extension_;
-    ::xsd::cxx::tree::one< MDIBVersionType > MDIBVersion_;
-  };
-
-  class AbstractReportPart: public ::xml_schema::Type
-  {
-    public:
-    // Extension
-    //
-    typedef ::CDM::Extension ExtensionType;
-    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
-    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
-
-    const ExtensionOptional&
-    Extension () const;
-
-    ExtensionOptional&
-    Extension ();
-
-    void
-    Extension (const ExtensionType& x);
-
-    void
-    Extension (const ExtensionOptional& x);
-
-    void
-    Extension (::std::unique_ptr< ExtensionType > p);
-
-    // SourceMDS
-    //
-    typedef ::CDM::HandleRef SourceMDSType;
-    typedef ::xsd::cxx::tree::optional< SourceMDSType > SourceMDSOptional;
-    typedef ::xsd::cxx::tree::traits< SourceMDSType, char > SourceMDSTraits;
-
-    const SourceMDSOptional&
-    SourceMDS () const;
-
-    SourceMDSOptional&
-    SourceMDS ();
-
-    void
-    SourceMDS (const SourceMDSType& x);
-
-    void
-    SourceMDS (const SourceMDSOptional& x);
-
-    void
-    SourceMDS (::std::unique_ptr< SourceMDSType > p);
-
-    // Constructors.
-    //
-    AbstractReportPart ();
-
-    AbstractReportPart (const ::xercesc::DOMElement& e,
-                        ::xml_schema::Flags f = 0,
-                        ::xml_schema::Container* c = 0);
-
-    AbstractReportPart (const AbstractReportPart& x,
-                        ::xml_schema::Flags f = 0,
-                        ::xml_schema::Container* c = 0);
-
-    virtual AbstractReportPart*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    AbstractReportPart&
-    operator= (const AbstractReportPart& x);
-
-    virtual 
-    ~AbstractReportPart ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ExtensionOptional Extension_;
-    SourceMDSOptional SourceMDS_;
-  };
-
-  class MetricReportPart: public ::CDM::AbstractReportPart
-  {
-    public:
-    // MetricState
-    //
-    typedef ::CDM::AbstractMetricState MetricStateType;
-    typedef ::xsd::cxx::tree::sequence< MetricStateType > MetricStateSequence;
-    typedef MetricStateSequence::iterator MetricStateIterator;
-    typedef MetricStateSequence::const_iterator MetricStateConstIterator;
-    typedef ::xsd::cxx::tree::traits< MetricStateType, char > MetricStateTraits;
-
-    const MetricStateSequence&
-    MetricState () const;
-
-    MetricStateSequence&
-    MetricState ();
-
-    void
-    MetricState (const MetricStateSequence& s);
-
-    // Constructors.
-    //
-    MetricReportPart ();
-
-    MetricReportPart (const ::xercesc::DOMElement& e,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
-
-    MetricReportPart (const MetricReportPart& x,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
-
-    virtual MetricReportPart*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    MetricReportPart&
-    operator= (const MetricReportPart& x);
-
-    virtual 
-    ~MetricReportPart ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    MetricStateSequence MetricState_;
-  };
-
-  class AbstractMetricReport: public ::CDM::AbstractReport
+  class AbstractMetricReport: public ::MDM::AbstractReport
   {
     public:
     // ReportPart
     //
-    typedef ::CDM::MetricReportPart ReportPartType;
+    typedef ::MDM::ReportPart1 ReportPartType;
     typedef ::xsd::cxx::tree::sequence< ReportPartType > ReportPartSequence;
     typedef ReportPartSequence::iterator ReportPartIterator;
     typedef ReportPartSequence::const_iterator ReportPartConstIterator;
@@ -1438,7 +1173,7 @@ namespace CDM
 
     // Constructors.
     //
-    AbstractMetricReport (const MDIBVersionType&);
+    AbstractMetricReport (const SequenceIdType&);
 
     AbstractMetricReport (const ::xercesc::DOMElement& e,
                           ::xml_schema::Flags f = 0,
@@ -1469,47 +1204,47 @@ namespace CDM
     ReportPartSequence ReportPart_;
   };
 
-  class AlertReportPart: public ::CDM::AbstractReportPart
+  class AbstractComponentReport: public ::MDM::AbstractReport
   {
     public:
-    // AlertState
+    // ReportPart
     //
-    typedef ::CDM::AbstractAlertState AlertStateType;
-    typedef ::xsd::cxx::tree::sequence< AlertStateType > AlertStateSequence;
-    typedef AlertStateSequence::iterator AlertStateIterator;
-    typedef AlertStateSequence::const_iterator AlertStateConstIterator;
-    typedef ::xsd::cxx::tree::traits< AlertStateType, char > AlertStateTraits;
+    typedef ::MDM::ReportPart2 ReportPartType;
+    typedef ::xsd::cxx::tree::sequence< ReportPartType > ReportPartSequence;
+    typedef ReportPartSequence::iterator ReportPartIterator;
+    typedef ReportPartSequence::const_iterator ReportPartConstIterator;
+    typedef ::xsd::cxx::tree::traits< ReportPartType, char > ReportPartTraits;
 
-    const AlertStateSequence&
-    AlertState () const;
+    const ReportPartSequence&
+    ReportPart () const;
 
-    AlertStateSequence&
-    AlertState ();
+    ReportPartSequence&
+    ReportPart ();
 
     void
-    AlertState (const AlertStateSequence& s);
+    ReportPart (const ReportPartSequence& s);
 
     // Constructors.
     //
-    AlertReportPart ();
+    AbstractComponentReport (const SequenceIdType&);
 
-    AlertReportPart (const ::xercesc::DOMElement& e,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
+    AbstractComponentReport (const ::xercesc::DOMElement& e,
+                             ::xml_schema::Flags f = 0,
+                             ::xml_schema::Container* c = 0);
 
-    AlertReportPart (const AlertReportPart& x,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
+    AbstractComponentReport (const AbstractComponentReport& x,
+                             ::xml_schema::Flags f = 0,
+                             ::xml_schema::Container* c = 0);
 
-    virtual AlertReportPart*
+    virtual AbstractComponentReport*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    AlertReportPart&
-    operator= (const AlertReportPart& x);
+    AbstractComponentReport&
+    operator= (const AbstractComponentReport& x);
 
     virtual 
-    ~AlertReportPart ();
+    ~AbstractComponentReport ();
 
     // Implementation.
     //
@@ -1519,32 +1254,32 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    AlertStateSequence AlertState_;
+    ReportPartSequence ReportPart_;
   };
 
-  class AbstractAlertReport: public ::CDM::AbstractReport
+  class AbstractAlertReport: public ::MDM::AbstractReport
   {
     public:
-    // AlertReportDetail
+    // ReportPart
     //
-    typedef ::CDM::AlertReportPart AlertReportDetailType;
-    typedef ::xsd::cxx::tree::sequence< AlertReportDetailType > AlertReportDetailSequence;
-    typedef AlertReportDetailSequence::iterator AlertReportDetailIterator;
-    typedef AlertReportDetailSequence::const_iterator AlertReportDetailConstIterator;
-    typedef ::xsd::cxx::tree::traits< AlertReportDetailType, char > AlertReportDetailTraits;
+    typedef ::MDM::ReportPart3 ReportPartType;
+    typedef ::xsd::cxx::tree::sequence< ReportPartType > ReportPartSequence;
+    typedef ReportPartSequence::iterator ReportPartIterator;
+    typedef ReportPartSequence::const_iterator ReportPartConstIterator;
+    typedef ::xsd::cxx::tree::traits< ReportPartType, char > ReportPartTraits;
 
-    const AlertReportDetailSequence&
-    AlertReportDetail () const;
+    const ReportPartSequence&
+    ReportPart () const;
 
-    AlertReportDetailSequence&
-    AlertReportDetail ();
+    ReportPartSequence&
+    ReportPart ();
 
     void
-    AlertReportDetail (const AlertReportDetailSequence& s);
+    ReportPart (const ReportPartSequence& s);
 
     // Constructors.
     //
-    AbstractAlertReport (const MDIBVersionType&);
+    AbstractAlertReport (const SequenceIdType&);
 
     AbstractAlertReport (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f = 0,
@@ -1572,68 +1307,15 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    AlertReportDetailSequence AlertReportDetail_;
+    ReportPartSequence ReportPart_;
   };
 
-  class ContextChangedReportPart: public ::CDM::AbstractReportPart
-  {
-    public:
-    // ChangedContextState
-    //
-    typedef ::CDM::HandleRef ChangedContextStateType;
-    typedef ::xsd::cxx::tree::sequence< ChangedContextStateType > ChangedContextStateSequence;
-    typedef ChangedContextStateSequence::iterator ChangedContextStateIterator;
-    typedef ChangedContextStateSequence::const_iterator ChangedContextStateConstIterator;
-    typedef ::xsd::cxx::tree::traits< ChangedContextStateType, char > ChangedContextStateTraits;
-
-    const ChangedContextStateSequence&
-    ChangedContextState () const;
-
-    ChangedContextStateSequence&
-    ChangedContextState ();
-
-    void
-    ChangedContextState (const ChangedContextStateSequence& s);
-
-    // Constructors.
-    //
-    ContextChangedReportPart ();
-
-    ContextChangedReportPart (const ::xercesc::DOMElement& e,
-                              ::xml_schema::Flags f = 0,
-                              ::xml_schema::Container* c = 0);
-
-    ContextChangedReportPart (const ContextChangedReportPart& x,
-                              ::xml_schema::Flags f = 0,
-                              ::xml_schema::Container* c = 0);
-
-    virtual ContextChangedReportPart*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    ContextChangedReportPart&
-    operator= (const ContextChangedReportPart& x);
-
-    virtual 
-    ~ContextChangedReportPart ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ChangedContextStateSequence ChangedContextState_;
-  };
-
-  class AbstractContextChangedReport: public ::CDM::AbstractReport
+  class AbstractOperationalStateReport: public ::MDM::AbstractReport
   {
     public:
     // ReportPart
     //
-    typedef ::CDM::ContextChangedReportPart ReportPartType;
+    typedef ::MDM::ReportPart4 ReportPartType;
     typedef ::xsd::cxx::tree::sequence< ReportPartType > ReportPartSequence;
     typedef ReportPartSequence::iterator ReportPartIterator;
     typedef ReportPartSequence::const_iterator ReportPartConstIterator;
@@ -1650,25 +1332,25 @@ namespace CDM
 
     // Constructors.
     //
-    AbstractContextChangedReport (const MDIBVersionType&);
+    AbstractOperationalStateReport (const SequenceIdType&);
 
-    AbstractContextChangedReport (const ::xercesc::DOMElement& e,
-                                  ::xml_schema::Flags f = 0,
-                                  ::xml_schema::Container* c = 0);
+    AbstractOperationalStateReport (const ::xercesc::DOMElement& e,
+                                    ::xml_schema::Flags f = 0,
+                                    ::xml_schema::Container* c = 0);
 
-    AbstractContextChangedReport (const AbstractContextChangedReport& x,
-                                  ::xml_schema::Flags f = 0,
-                                  ::xml_schema::Container* c = 0);
+    AbstractOperationalStateReport (const AbstractOperationalStateReport& x,
+                                    ::xml_schema::Flags f = 0,
+                                    ::xml_schema::Container* c = 0);
 
-    virtual AbstractContextChangedReport*
+    virtual AbstractOperationalStateReport*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    AbstractContextChangedReport&
-    operator= (const AbstractContextChangedReport& x);
+    AbstractOperationalStateReport&
+    operator= (const AbstractOperationalStateReport& x);
 
     virtual 
-    ~AbstractContextChangedReport ();
+    ~AbstractOperationalStateReport ();
 
     // Implementation.
     //
@@ -1679,384 +1361,6 @@ namespace CDM
 
     protected:
     ReportPartSequence ReportPart_;
-  };
-
-  class InvocationError: public ::xml_schema::String
-  {
-    public:
-    enum Value
-    {
-      Unspec,
-      Unkn,
-      Inv,
-      Oth
-    };
-
-    InvocationError (Value v);
-
-    InvocationError (const char* v);
-
-    InvocationError (const ::std::string& v);
-
-    InvocationError (const ::xml_schema::String& v);
-
-    InvocationError (const ::xercesc::DOMElement& e,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    InvocationError (const ::xercesc::DOMAttr& a,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    InvocationError (const ::std::string& s,
-                     const ::xercesc::DOMElement* e,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    InvocationError (const InvocationError& x,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    virtual InvocationError*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    InvocationError&
-    operator= (Value v);
-
-    virtual
-    operator Value () const
-    {
-      return _xsd_InvocationError_convert ();
-    }
-
-    protected:
-    Value
-    _xsd_InvocationError_convert () const;
-
-    public:
-    static const char* const _xsd_InvocationError_literals_[4];
-    static const Value _xsd_InvocationError_indexes_[4];
-  };
-
-  class OperationDescriptionModificationReportPart: public ::CDM::AbstractReportPart
-  {
-    public:
-    // OperationDescription
-    //
-    typedef ::CDM::AbstractOperationDescriptor OperationDescriptionType;
-    typedef ::xsd::cxx::tree::sequence< OperationDescriptionType > OperationDescriptionSequence;
-    typedef OperationDescriptionSequence::iterator OperationDescriptionIterator;
-    typedef OperationDescriptionSequence::const_iterator OperationDescriptionConstIterator;
-    typedef ::xsd::cxx::tree::traits< OperationDescriptionType, char > OperationDescriptionTraits;
-
-    const OperationDescriptionSequence&
-    OperationDescription () const;
-
-    OperationDescriptionSequence&
-    OperationDescription ();
-
-    void
-    OperationDescription (const OperationDescriptionSequence& s);
-
-    // Constructors.
-    //
-    OperationDescriptionModificationReportPart ();
-
-    OperationDescriptionModificationReportPart (const ::xercesc::DOMElement& e,
-                                                ::xml_schema::Flags f = 0,
-                                                ::xml_schema::Container* c = 0);
-
-    OperationDescriptionModificationReportPart (const OperationDescriptionModificationReportPart& x,
-                                                ::xml_schema::Flags f = 0,
-                                                ::xml_schema::Container* c = 0);
-
-    virtual OperationDescriptionModificationReportPart*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    OperationDescriptionModificationReportPart&
-    operator= (const OperationDescriptionModificationReportPart& x);
-
-    virtual 
-    ~OperationDescriptionModificationReportPart ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    OperationDescriptionSequence OperationDescription_;
-  };
-
-  class OperationDescriptionModificationReport: public ::CDM::AbstractReport
-  {
-    public:
-    // ReportDetail
-    //
-    typedef ::CDM::OperationDescriptionModificationReportPart ReportDetailType;
-    typedef ::xsd::cxx::tree::sequence< ReportDetailType > ReportDetailSequence;
-    typedef ReportDetailSequence::iterator ReportDetailIterator;
-    typedef ReportDetailSequence::const_iterator ReportDetailConstIterator;
-    typedef ::xsd::cxx::tree::traits< ReportDetailType, char > ReportDetailTraits;
-
-    const ReportDetailSequence&
-    ReportDetail () const;
-
-    ReportDetailSequence&
-    ReportDetail ();
-
-    void
-    ReportDetail (const ReportDetailSequence& s);
-
-    // Constructors.
-    //
-    OperationDescriptionModificationReport (const MDIBVersionType&);
-
-    OperationDescriptionModificationReport (const ::xercesc::DOMElement& e,
-                                            ::xml_schema::Flags f = 0,
-                                            ::xml_schema::Container* c = 0);
-
-    OperationDescriptionModificationReport (const OperationDescriptionModificationReport& x,
-                                            ::xml_schema::Flags f = 0,
-                                            ::xml_schema::Container* c = 0);
-
-    virtual OperationDescriptionModificationReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    OperationDescriptionModificationReport&
-    operator= (const OperationDescriptionModificationReport& x);
-
-    virtual 
-    ~OperationDescriptionModificationReport ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ReportDetailSequence ReportDetail_;
-  };
-
-  class OperationInvokedReportPart: public ::CDM::AbstractReportPart
-  {
-    public:
-    // TransactionId
-    //
-    typedef ::CDM::TransactionID TransactionIdType;
-    typedef ::xsd::cxx::tree::traits< TransactionIdType, char > TransactionIdTraits;
-
-    const TransactionIdType&
-    TransactionId () const;
-
-    TransactionIdType&
-    TransactionId ();
-
-    void
-    TransactionId (const TransactionIdType& x);
-
-    void
-    TransactionId (::std::unique_ptr< TransactionIdType > p);
-
-    // OperationHandleRef
-    //
-    typedef ::CDM::HandleRef OperationHandleRefType;
-    typedef ::xsd::cxx::tree::traits< OperationHandleRefType, char > OperationHandleRefTraits;
-
-    const OperationHandleRefType&
-    OperationHandleRef () const;
-
-    OperationHandleRefType&
-    OperationHandleRef ();
-
-    void
-    OperationHandleRef (const OperationHandleRefType& x);
-
-    void
-    OperationHandleRef (::std::unique_ptr< OperationHandleRefType > p);
-
-    // OperationTarget
-    //
-    typedef ::CDM::HandleRef OperationTargetType;
-    typedef ::xsd::cxx::tree::optional< OperationTargetType > OperationTargetOptional;
-    typedef ::xsd::cxx::tree::traits< OperationTargetType, char > OperationTargetTraits;
-
-    const OperationTargetOptional&
-    OperationTarget () const;
-
-    OperationTargetOptional&
-    OperationTarget ();
-
-    void
-    OperationTarget (const OperationTargetType& x);
-
-    void
-    OperationTarget (const OperationTargetOptional& x);
-
-    void
-    OperationTarget (::std::unique_ptr< OperationTargetType > p);
-
-    // OperationState
-    //
-    typedef ::CDM::InvocationState OperationStateType;
-    typedef ::xsd::cxx::tree::traits< OperationStateType, char > OperationStateTraits;
-
-    const OperationStateType&
-    OperationState () const;
-
-    OperationStateType&
-    OperationState ();
-
-    void
-    OperationState (const OperationStateType& x);
-
-    void
-    OperationState (::std::unique_ptr< OperationStateType > p);
-
-    // OperationError
-    //
-    typedef ::CDM::InvocationError OperationErrorType;
-    typedef ::xsd::cxx::tree::optional< OperationErrorType > OperationErrorOptional;
-    typedef ::xsd::cxx::tree::traits< OperationErrorType, char > OperationErrorTraits;
-
-    const OperationErrorOptional&
-    OperationError () const;
-
-    OperationErrorOptional&
-    OperationError ();
-
-    void
-    OperationError (const OperationErrorType& x);
-
-    void
-    OperationError (const OperationErrorOptional& x);
-
-    void
-    OperationError (::std::unique_ptr< OperationErrorType > p);
-
-    // OperationErrorMessage
-    //
-    typedef ::xml_schema::String OperationErrorMessageType;
-    typedef ::xsd::cxx::tree::optional< OperationErrorMessageType > OperationErrorMessageOptional;
-    typedef ::xsd::cxx::tree::traits< OperationErrorMessageType, char > OperationErrorMessageTraits;
-
-    const OperationErrorMessageOptional&
-    OperationErrorMessage () const;
-
-    OperationErrorMessageOptional&
-    OperationErrorMessage ();
-
-    void
-    OperationErrorMessage (const OperationErrorMessageType& x);
-
-    void
-    OperationErrorMessage (const OperationErrorMessageOptional& x);
-
-    void
-    OperationErrorMessage (::std::unique_ptr< OperationErrorMessageType > p);
-
-    // Constructors.
-    //
-    OperationInvokedReportPart (const TransactionIdType&,
-                                const OperationHandleRefType&,
-                                const OperationStateType&);
-
-    OperationInvokedReportPart (::std::unique_ptr< TransactionIdType >,
-                                ::std::unique_ptr< OperationHandleRefType >,
-                                ::std::unique_ptr< OperationStateType >);
-
-    OperationInvokedReportPart (const ::xercesc::DOMElement& e,
-                                ::xml_schema::Flags f = 0,
-                                ::xml_schema::Container* c = 0);
-
-    OperationInvokedReportPart (const OperationInvokedReportPart& x,
-                                ::xml_schema::Flags f = 0,
-                                ::xml_schema::Container* c = 0);
-
-    virtual OperationInvokedReportPart*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    OperationInvokedReportPart&
-    operator= (const OperationInvokedReportPart& x);
-
-    virtual 
-    ~OperationInvokedReportPart ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xsd::cxx::tree::one< TransactionIdType > TransactionId_;
-    ::xsd::cxx::tree::one< OperationHandleRefType > OperationHandleRef_;
-    OperationTargetOptional OperationTarget_;
-    ::xsd::cxx::tree::one< OperationStateType > OperationState_;
-    OperationErrorOptional OperationError_;
-    OperationErrorMessageOptional OperationErrorMessage_;
-  };
-
-  class OperationalStateChangedReportPart: public ::CDM::AbstractReportPart
-  {
-    public:
-    // Operation
-    //
-    typedef ::CDM::OperationState OperationType;
-    typedef ::xsd::cxx::tree::sequence< OperationType > OperationSequence;
-    typedef OperationSequence::iterator OperationIterator;
-    typedef OperationSequence::const_iterator OperationConstIterator;
-    typedef ::xsd::cxx::tree::traits< OperationType, char > OperationTraits;
-
-    const OperationSequence&
-    Operation () const;
-
-    OperationSequence&
-    Operation ();
-
-    void
-    Operation (const OperationSequence& s);
-
-    // Constructors.
-    //
-    OperationalStateChangedReportPart ();
-
-    OperationalStateChangedReportPart (const ::xercesc::DOMElement& e,
-                                       ::xml_schema::Flags f = 0,
-                                       ::xml_schema::Container* c = 0);
-
-    OperationalStateChangedReportPart (const OperationalStateChangedReportPart& x,
-                                       ::xml_schema::Flags f = 0,
-                                       ::xml_schema::Container* c = 0);
-
-    virtual OperationalStateChangedReportPart*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    OperationalStateChangedReportPart&
-    operator= (const OperationalStateChangedReportPart& x);
-
-    virtual 
-    ~OperationalStateChangedReportPart ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    OperationSequence Operation_;
   };
 
   class DescriptionModificationType: public ::xml_schema::String
@@ -2116,415 +1420,7 @@ namespace CDM
     static const Value _xsd_DescriptionModificationType_indexes_[3];
   };
 
-  class DescriptionModificationReportPart: public ::CDM::AbstractReportPart
-  {
-    public:
-    // Descriptor
-    //
-    typedef ::CDM::AbstractDescriptor DescriptorType;
-    typedef ::xsd::cxx::tree::traits< DescriptorType, char > DescriptorTraits;
-
-    const DescriptorType&
-    Descriptor () const;
-
-    DescriptorType&
-    Descriptor ();
-
-    void
-    Descriptor (const DescriptorType& x);
-
-    void
-    Descriptor (::std::unique_ptr< DescriptorType > p);
-
-    // ParentDescriptor
-    //
-    typedef ::CDM::HandleRef ParentDescriptorType;
-    typedef ::xsd::cxx::tree::traits< ParentDescriptorType, char > ParentDescriptorTraits;
-
-    const ParentDescriptorType&
-    ParentDescriptor () const;
-
-    ParentDescriptorType&
-    ParentDescriptor ();
-
-    void
-    ParentDescriptor (const ParentDescriptorType& x);
-
-    void
-    ParentDescriptor (::std::unique_ptr< ParentDescriptorType > p);
-
-    // ModificationType
-    //
-    typedef ::CDM::DescriptionModificationType ModificationTypeType;
-    typedef ::xsd::cxx::tree::optional< ModificationTypeType > ModificationTypeOptional;
-    typedef ::xsd::cxx::tree::traits< ModificationTypeType, char > ModificationTypeTraits;
-
-    const ModificationTypeOptional&
-    ModificationType () const;
-
-    ModificationTypeOptional&
-    ModificationType ();
-
-    void
-    ModificationType (const ModificationTypeType& x);
-
-    void
-    ModificationType (const ModificationTypeOptional& x);
-
-    void
-    ModificationType (::std::unique_ptr< ModificationTypeType > p);
-
-    // Constructors.
-    //
-    DescriptionModificationReportPart (const DescriptorType&,
-                                       const ParentDescriptorType&);
-
-    DescriptionModificationReportPart (::std::unique_ptr< DescriptorType >,
-                                       const ParentDescriptorType&);
-
-    DescriptionModificationReportPart (const ::xercesc::DOMElement& e,
-                                       ::xml_schema::Flags f = 0,
-                                       ::xml_schema::Container* c = 0);
-
-    DescriptionModificationReportPart (const DescriptionModificationReportPart& x,
-                                       ::xml_schema::Flags f = 0,
-                                       ::xml_schema::Container* c = 0);
-
-    virtual DescriptionModificationReportPart*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    DescriptionModificationReportPart&
-    operator= (const DescriptionModificationReportPart& x);
-
-    virtual 
-    ~DescriptionModificationReportPart ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xsd::cxx::tree::one< DescriptorType > Descriptor_;
-    ::xsd::cxx::tree::one< ParentDescriptorType > ParentDescriptor_;
-    ModificationTypeOptional ModificationType_;
-  };
-
-  class DescriptionModificationReport: public ::CDM::AbstractReport
-  {
-    public:
-    // ReportDetail
-    //
-    typedef ::CDM::DescriptionModificationReportPart ReportDetailType;
-    typedef ::xsd::cxx::tree::sequence< ReportDetailType > ReportDetailSequence;
-    typedef ReportDetailSequence::iterator ReportDetailIterator;
-    typedef ReportDetailSequence::const_iterator ReportDetailConstIterator;
-    typedef ::xsd::cxx::tree::traits< ReportDetailType, char > ReportDetailTraits;
-
-    const ReportDetailSequence&
-    ReportDetail () const;
-
-    ReportDetailSequence&
-    ReportDetail ();
-
-    void
-    ReportDetail (const ReportDetailSequence& s);
-
-    // Constructors.
-    //
-    DescriptionModificationReport (const MDIBVersionType&);
-
-    DescriptionModificationReport (const ::xercesc::DOMElement& e,
-                                   ::xml_schema::Flags f = 0,
-                                   ::xml_schema::Container* c = 0);
-
-    DescriptionModificationReport (const DescriptionModificationReport& x,
-                                   ::xml_schema::Flags f = 0,
-                                   ::xml_schema::Container* c = 0);
-
-    virtual DescriptionModificationReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    DescriptionModificationReport&
-    operator= (const DescriptionModificationReport& x);
-
-    virtual 
-    ~DescriptionModificationReport ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ReportDetailSequence ReportDetail_;
-  };
-
-  class MDSModificationReportPart: public ::CDM::AbstractReportPart
-  {
-    public:
-    // MDS
-    //
-    typedef ::CDM::AbstractMDSDescriptor MDSType;
-    typedef ::xsd::cxx::tree::sequence< MDSType > MDSSequence;
-    typedef MDSSequence::iterator MDSIterator;
-    typedef MDSSequence::const_iterator MDSConstIterator;
-    typedef ::xsd::cxx::tree::traits< MDSType, char > MDSTraits;
-
-    const MDSSequence&
-    MDS () const;
-
-    MDSSequence&
-    MDS ();
-
-    void
-    MDS (const MDSSequence& s);
-
-    // Constructors.
-    //
-    MDSModificationReportPart ();
-
-    MDSModificationReportPart (const ::xercesc::DOMElement& e,
-                               ::xml_schema::Flags f = 0,
-                               ::xml_schema::Container* c = 0);
-
-    MDSModificationReportPart (const MDSModificationReportPart& x,
-                               ::xml_schema::Flags f = 0,
-                               ::xml_schema::Container* c = 0);
-
-    virtual MDSModificationReportPart*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    MDSModificationReportPart&
-    operator= (const MDSModificationReportPart& x);
-
-    virtual 
-    ~MDSModificationReportPart ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    MDSSequence MDS_;
-  };
-
-  class MDSModificationReport: public ::CDM::AbstractReport
-  {
-    public:
-    // ReportDetail
-    //
-    typedef ::CDM::MDSModificationReportPart ReportDetailType;
-    typedef ::xsd::cxx::tree::sequence< ReportDetailType > ReportDetailSequence;
-    typedef ReportDetailSequence::iterator ReportDetailIterator;
-    typedef ReportDetailSequence::const_iterator ReportDetailConstIterator;
-    typedef ::xsd::cxx::tree::traits< ReportDetailType, char > ReportDetailTraits;
-
-    const ReportDetailSequence&
-    ReportDetail () const;
-
-    ReportDetailSequence&
-    ReportDetail ();
-
-    void
-    ReportDetail (const ReportDetailSequence& s);
-
-    // Constructors.
-    //
-    MDSModificationReport (const MDIBVersionType&);
-
-    MDSModificationReport (const ::xercesc::DOMElement& e,
-                           ::xml_schema::Flags f = 0,
-                           ::xml_schema::Container* c = 0);
-
-    MDSModificationReport (const MDSModificationReport& x,
-                           ::xml_schema::Flags f = 0,
-                           ::xml_schema::Container* c = 0);
-
-    virtual MDSModificationReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    MDSModificationReport&
-    operator= (const MDSModificationReport& x);
-
-    virtual 
-    ~MDSModificationReport ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ReportDetailSequence ReportDetail_;
-  };
-
-  class SystemErrorReportReportPart: public ::CDM::AbstractReportPart
-  {
-    public:
-    // ErrorCode
-    //
-    typedef ::CDM::CodedValue ErrorCodeType;
-    typedef ::xsd::cxx::tree::traits< ErrorCodeType, char > ErrorCodeTraits;
-
-    const ErrorCodeType&
-    ErrorCode () const;
-
-    ErrorCodeType&
-    ErrorCode ();
-
-    void
-    ErrorCode (const ErrorCodeType& x);
-
-    void
-    ErrorCode (::std::unique_ptr< ErrorCodeType > p);
-
-    // ErrorInfo
-    //
-    typedef ::xml_schema::String ErrorInfoType;
-    typedef ::xsd::cxx::tree::optional< ErrorInfoType > ErrorInfoOptional;
-    typedef ::xsd::cxx::tree::traits< ErrorInfoType, char > ErrorInfoTraits;
-
-    const ErrorInfoOptional&
-    ErrorInfo () const;
-
-    ErrorInfoOptional&
-    ErrorInfo ();
-
-    void
-    ErrorInfo (const ErrorInfoType& x);
-
-    void
-    ErrorInfo (const ErrorInfoOptional& x);
-
-    void
-    ErrorInfo (::std::unique_ptr< ErrorInfoType > p);
-
-    // Constructors.
-    //
-    SystemErrorReportReportPart (const ErrorCodeType&);
-
-    SystemErrorReportReportPart (::std::unique_ptr< ErrorCodeType >);
-
-    SystemErrorReportReportPart (const ::xercesc::DOMElement& e,
-                                 ::xml_schema::Flags f = 0,
-                                 ::xml_schema::Container* c = 0);
-
-    SystemErrorReportReportPart (const SystemErrorReportReportPart& x,
-                                 ::xml_schema::Flags f = 0,
-                                 ::xml_schema::Container* c = 0);
-
-    virtual SystemErrorReportReportPart*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    SystemErrorReportReportPart&
-    operator= (const SystemErrorReportReportPart& x);
-
-    virtual 
-    ~SystemErrorReportReportPart ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xsd::cxx::tree::one< ErrorCodeType > ErrorCode_;
-    ErrorInfoOptional ErrorInfo_;
-  };
-
-  class StreamElement: public ::xml_schema::Type
-  {
-    public:
-    // Value
-    //
-    typedef ::CDM::AbstractMetricValue ValueType;
-    typedef ::xsd::cxx::tree::optional< ValueType > ValueOptional;
-    typedef ::xsd::cxx::tree::traits< ValueType, char > ValueTraits;
-
-    const ValueOptional&
-    Value () const;
-
-    ValueOptional&
-    Value ();
-
-    void
-    Value (const ValueType& x);
-
-    void
-    Value (const ValueOptional& x);
-
-    void
-    Value (::std::unique_ptr< ValueType > p);
-
-    // Metric
-    //
-    typedef ::CDM::HandleRef MetricType;
-    typedef ::xsd::cxx::tree::traits< MetricType, char > MetricTraits;
-
-    const MetricType&
-    Metric () const;
-
-    MetricType&
-    Metric ();
-
-    void
-    Metric (const MetricType& x);
-
-    void
-    Metric (::std::unique_ptr< MetricType > p);
-
-    // Constructors.
-    //
-    StreamElement (const MetricType&);
-
-    StreamElement (const ::xercesc::DOMElement& e,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    StreamElement (const StreamElement& x,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    virtual StreamElement*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    StreamElement&
-    operator= (const StreamElement& x);
-
-    virtual 
-    ~StreamElement ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ValueOptional Value_;
-    ::xsd::cxx::tree::one< MetricType > Metric_;
-  };
-
-  class MetricRetrievability: public ::xml_schema::String
+  class RetrievabilityMethod: public ::xml_schema::String
   {
     public:
     enum Value
@@ -2535,121 +1431,136 @@ namespace CDM
       Strm
     };
 
-    MetricRetrievability (Value v);
+    RetrievabilityMethod (Value v);
 
-    MetricRetrievability (const char* v);
+    RetrievabilityMethod (const char* v);
 
-    MetricRetrievability (const ::std::string& v);
+    RetrievabilityMethod (const ::std::string& v);
 
-    MetricRetrievability (const ::xml_schema::String& v);
+    RetrievabilityMethod (const ::xml_schema::String& v);
 
-    MetricRetrievability (const ::xercesc::DOMElement& e,
+    RetrievabilityMethod (const ::xercesc::DOMElement& e,
                           ::xml_schema::Flags f = 0,
                           ::xml_schema::Container* c = 0);
 
-    MetricRetrievability (const ::xercesc::DOMAttr& a,
+    RetrievabilityMethod (const ::xercesc::DOMAttr& a,
                           ::xml_schema::Flags f = 0,
                           ::xml_schema::Container* c = 0);
 
-    MetricRetrievability (const ::std::string& s,
+    RetrievabilityMethod (const ::std::string& s,
                           const ::xercesc::DOMElement* e,
                           ::xml_schema::Flags f = 0,
                           ::xml_schema::Container* c = 0);
 
-    MetricRetrievability (const MetricRetrievability& x,
+    RetrievabilityMethod (const RetrievabilityMethod& x,
                           ::xml_schema::Flags f = 0,
                           ::xml_schema::Container* c = 0);
 
-    virtual MetricRetrievability*
+    virtual RetrievabilityMethod*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    MetricRetrievability&
+    RetrievabilityMethod&
     operator= (Value v);
 
     virtual
     operator Value () const
     {
-      return _xsd_MetricRetrievability_convert ();
+      return _xsd_RetrievabilityMethod_convert ();
     }
 
     protected:
     Value
-    _xsd_MetricRetrievability_convert () const;
+    _xsd_RetrievabilityMethod_convert () const;
 
     public:
-    static const char* const _xsd_MetricRetrievability_literals_[4];
-    static const Value _xsd_MetricRetrievability_indexes_[4];
+    static const char* const _xsd_RetrievabilityMethod_literals_[4];
+    static const Value _xsd_RetrievabilityMethod_indexes_[4];
   };
 
-  class GetMDIB: public ::CDM::AbstractGet
+  class RetrievabilityInfo: public ::xml_schema::Type
   {
     public:
+    // Extension
+    //
+    typedef ::EXT::ExtensionType ExtensionType;
+    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
+    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
+
+    const ExtensionOptional&
+    Extension () const;
+
+    ExtensionOptional&
+    Extension ();
+
+    void
+    Extension (const ExtensionType& x);
+
+    void
+    Extension (const ExtensionOptional& x);
+
+    void
+    Extension (::std::unique_ptr< ExtensionType > p);
+
+    // Method
+    //
+    typedef ::MDM::RetrievabilityMethod MethodType;
+    typedef ::xsd::cxx::tree::traits< MethodType, char > MethodTraits;
+
+    const MethodType&
+    Method () const;
+
+    MethodType&
+    Method ();
+
+    void
+    Method (const MethodType& x);
+
+    void
+    Method (::std::unique_ptr< MethodType > p);
+
+    // UpdatePeriod
+    //
+    typedef ::xml_schema::Duration UpdatePeriodType;
+    typedef ::xsd::cxx::tree::optional< UpdatePeriodType > UpdatePeriodOptional;
+    typedef ::xsd::cxx::tree::traits< UpdatePeriodType, char > UpdatePeriodTraits;
+
+    const UpdatePeriodOptional&
+    UpdatePeriod () const;
+
+    UpdatePeriodOptional&
+    UpdatePeriod ();
+
+    void
+    UpdatePeriod (const UpdatePeriodType& x);
+
+    void
+    UpdatePeriod (const UpdatePeriodOptional& x);
+
+    void
+    UpdatePeriod (::std::unique_ptr< UpdatePeriodType > p);
+
     // Constructors.
     //
-    GetMDIB ();
+    RetrievabilityInfo (const MethodType&);
 
-    GetMDIB (const ::xercesc::DOMElement& e,
-             ::xml_schema::Flags f = 0,
-             ::xml_schema::Container* c = 0);
+    RetrievabilityInfo (const ::xercesc::DOMElement& e,
+                        ::xml_schema::Flags f = 0,
+                        ::xml_schema::Container* c = 0);
 
-    GetMDIB (const GetMDIB& x,
-             ::xml_schema::Flags f = 0,
-             ::xml_schema::Container* c = 0);
+    RetrievabilityInfo (const RetrievabilityInfo& x,
+                        ::xml_schema::Flags f = 0,
+                        ::xml_schema::Container* c = 0);
 
-    virtual GetMDIB*
+    virtual RetrievabilityInfo*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    virtual 
-    ~GetMDIB ();
-  };
-
-  class GetMDIBResponse: public ::CDM::AbstractGetResponse
-  {
-    public:
-    // MDIB
-    //
-    typedef ::CDM::MDIB MDIBType;
-    typedef ::xsd::cxx::tree::traits< MDIBType, char > MDIBTraits;
-
-    const MDIBType&
-    MDIB () const;
-
-    MDIBType&
-    MDIB ();
-
-    void
-    MDIB (const MDIBType& x);
-
-    void
-    MDIB (::std::unique_ptr< MDIBType > p);
-
-    // Constructors.
-    //
-    GetMDIBResponse (const MDIBVersionType&,
-                     const MDIBType&);
-
-    GetMDIBResponse (const MDIBVersionType&,
-                     ::std::unique_ptr< MDIBType >);
-
-    GetMDIBResponse (const ::xercesc::DOMElement& e,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    GetMDIBResponse (const GetMDIBResponse& x,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
-
-    virtual GetMDIBResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    GetMDIBResponse&
-    operator= (const GetMDIBResponse& x);
+    RetrievabilityInfo&
+    operator= (const RetrievabilityInfo& x);
 
     virtual 
-    ~GetMDIBResponse ();
+    ~RetrievabilityInfo ();
 
     // Implementation.
     //
@@ -2659,10 +1570,92 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< MDIBType > MDIB_;
+    ExtensionOptional Extension_;
+    ::xsd::cxx::tree::one< MethodType > Method_;
+    UpdatePeriodOptional UpdatePeriod_;
   };
 
-  class GetMDDescription: public ::CDM::AbstractGet
+  class GetMdib: public ::MDM::AbstractGet
+  {
+    public:
+    // Constructors.
+    //
+    GetMdib ();
+
+    GetMdib (const ::xercesc::DOMElement& e,
+             ::xml_schema::Flags f = 0,
+             ::xml_schema::Container* c = 0);
+
+    GetMdib (const GetMdib& x,
+             ::xml_schema::Flags f = 0,
+             ::xml_schema::Container* c = 0);
+
+    virtual GetMdib*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~GetMdib ();
+  };
+
+  class GetMdibResponse: public ::MDM::AbstractGetResponse
+  {
+    public:
+    // Mdib
+    //
+    typedef ::CDM::Mdib MdibType;
+    typedef ::xsd::cxx::tree::traits< MdibType, char > MdibTraits;
+
+    const MdibType&
+    Mdib () const;
+
+    MdibType&
+    Mdib ();
+
+    void
+    Mdib (const MdibType& x);
+
+    void
+    Mdib (::std::unique_ptr< MdibType > p);
+
+    // Constructors.
+    //
+    GetMdibResponse (const SequenceIdType&,
+                     const MdibType&);
+
+    GetMdibResponse (const SequenceIdType&,
+                     ::std::unique_ptr< MdibType >);
+
+    GetMdibResponse (const ::xercesc::DOMElement& e,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    GetMdibResponse (const GetMdibResponse& x,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    virtual GetMdibResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetMdibResponse&
+    operator= (const GetMdibResponse& x);
+
+    virtual 
+    ~GetMdibResponse ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ::xsd::cxx::tree::one< MdibType > Mdib_;
+  };
+
+  class GetMdDescription: public ::MDM::AbstractGet
   {
     public:
     // HandleRef
@@ -2684,25 +1677,25 @@ namespace CDM
 
     // Constructors.
     //
-    GetMDDescription ();
+    GetMdDescription ();
 
-    GetMDDescription (const ::xercesc::DOMElement& e,
+    GetMdDescription (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
-    GetMDDescription (const GetMDDescription& x,
+    GetMdDescription (const GetMdDescription& x,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
-    virtual GetMDDescription*
+    virtual GetMdDescription*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetMDDescription&
-    operator= (const GetMDDescription& x);
+    GetMdDescription&
+    operator= (const GetMdDescription& x);
 
     virtual 
-    ~GetMDDescription ();
+    ~GetMdDescription ();
 
     // Implementation.
     //
@@ -2715,51 +1708,51 @@ namespace CDM
     HandleRefSequence HandleRef_;
   };
 
-  class GetMDDescriptionResponse: public ::CDM::AbstractGetResponse
+  class GetMdDescriptionResponse: public ::MDM::AbstractGetResponse
   {
     public:
-    // StaticDescription
+    // MdDescription
     //
-    typedef ::CDM::MDDescription StaticDescriptionType;
-    typedef ::xsd::cxx::tree::traits< StaticDescriptionType, char > StaticDescriptionTraits;
+    typedef ::CDM::MdDescription MdDescriptionType;
+    typedef ::xsd::cxx::tree::traits< MdDescriptionType, char > MdDescriptionTraits;
 
-    const StaticDescriptionType&
-    StaticDescription () const;
+    const MdDescriptionType&
+    MdDescription () const;
 
-    StaticDescriptionType&
-    StaticDescription ();
-
-    void
-    StaticDescription (const StaticDescriptionType& x);
+    MdDescriptionType&
+    MdDescription ();
 
     void
-    StaticDescription (::std::unique_ptr< StaticDescriptionType > p);
+    MdDescription (const MdDescriptionType& x);
+
+    void
+    MdDescription (::std::unique_ptr< MdDescriptionType > p);
 
     // Constructors.
     //
-    GetMDDescriptionResponse (const MDIBVersionType&,
-                              const StaticDescriptionType&);
+    GetMdDescriptionResponse (const SequenceIdType&,
+                              const MdDescriptionType&);
 
-    GetMDDescriptionResponse (const MDIBVersionType&,
-                              ::std::unique_ptr< StaticDescriptionType >);
+    GetMdDescriptionResponse (const SequenceIdType&,
+                              ::std::unique_ptr< MdDescriptionType >);
 
-    GetMDDescriptionResponse (const ::xercesc::DOMElement& e,
+    GetMdDescriptionResponse (const ::xercesc::DOMElement& e,
                               ::xml_schema::Flags f = 0,
                               ::xml_schema::Container* c = 0);
 
-    GetMDDescriptionResponse (const GetMDDescriptionResponse& x,
+    GetMdDescriptionResponse (const GetMdDescriptionResponse& x,
                               ::xml_schema::Flags f = 0,
                               ::xml_schema::Container* c = 0);
 
-    virtual GetMDDescriptionResponse*
+    virtual GetMdDescriptionResponse*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetMDDescriptionResponse&
-    operator= (const GetMDDescriptionResponse& x);
+    GetMdDescriptionResponse&
+    operator= (const GetMdDescriptionResponse& x);
 
     virtual 
-    ~GetMDDescriptionResponse ();
+    ~GetMdDescriptionResponse ();
 
     // Implementation.
     //
@@ -2769,10 +1762,10 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< StaticDescriptionType > StaticDescription_;
+    ::xsd::cxx::tree::one< MdDescriptionType > MdDescription_;
   };
 
-  class GetMDState: public ::CDM::AbstractGet
+  class GetMdState: public ::MDM::AbstractGet
   {
     public:
     // HandleRef
@@ -2794,25 +1787,25 @@ namespace CDM
 
     // Constructors.
     //
-    GetMDState ();
+    GetMdState ();
 
-    GetMDState (const ::xercesc::DOMElement& e,
+    GetMdState (const ::xercesc::DOMElement& e,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
-    GetMDState (const GetMDState& x,
+    GetMdState (const GetMdState& x,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
-    virtual GetMDState*
+    virtual GetMdState*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetMDState&
-    operator= (const GetMDState& x);
+    GetMdState&
+    operator= (const GetMdState& x);
 
     virtual 
-    ~GetMDState ();
+    ~GetMdState ();
 
     // Implementation.
     //
@@ -2825,51 +1818,51 @@ namespace CDM
     HandleRefSequence HandleRef_;
   };
 
-  class GetMDStateResponse: public ::CDM::AbstractGetResponse
+  class GetMdStateResponse: public ::MDM::AbstractGetResponse
   {
     public:
-    // MDState
+    // MdState
     //
-    typedef ::CDM::MDState MDStateType;
-    typedef ::xsd::cxx::tree::traits< MDStateType, char > MDStateTraits;
+    typedef ::CDM::MdState MdStateType;
+    typedef ::xsd::cxx::tree::traits< MdStateType, char > MdStateTraits;
 
-    const MDStateType&
-    MDState () const;
+    const MdStateType&
+    MdState () const;
 
-    MDStateType&
-    MDState ();
-
-    void
-    MDState (const MDStateType& x);
+    MdStateType&
+    MdState ();
 
     void
-    MDState (::std::unique_ptr< MDStateType > p);
+    MdState (const MdStateType& x);
+
+    void
+    MdState (::std::unique_ptr< MdStateType > p);
 
     // Constructors.
     //
-    GetMDStateResponse (const MDIBVersionType&,
-                        const MDStateType&);
+    GetMdStateResponse (const SequenceIdType&,
+                        const MdStateType&);
 
-    GetMDStateResponse (const MDIBVersionType&,
-                        ::std::unique_ptr< MDStateType >);
+    GetMdStateResponse (const SequenceIdType&,
+                        ::std::unique_ptr< MdStateType >);
 
-    GetMDStateResponse (const ::xercesc::DOMElement& e,
+    GetMdStateResponse (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
-    GetMDStateResponse (const GetMDStateResponse& x,
+    GetMdStateResponse (const GetMdStateResponse& x,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
-    virtual GetMDStateResponse*
+    virtual GetMdStateResponse*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetMDStateResponse&
-    operator= (const GetMDStateResponse& x);
+    GetMdStateResponse&
+    operator= (const GetMdStateResponse& x);
 
     virtual 
-    ~GetMDStateResponse ();
+    ~GetMdStateResponse ();
 
     // Implementation.
     //
@@ -2879,10 +1872,10 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< MDStateType > MDState_;
+    ::xsd::cxx::tree::one< MdStateType > MdState_;
   };
 
-  class GetContextStates: public ::CDM::AbstractGet
+  class GetContextStates: public ::MDM::AbstractGet
   {
     public:
     // HandleRef
@@ -2935,7 +1928,7 @@ namespace CDM
     HandleRefSequence HandleRef_;
   };
 
-  class GetContextStatesResponse: public ::CDM::AbstractGetResponse
+  class GetContextStatesResponse: public ::MDM::AbstractGetResponse
   {
     public:
     // ContextState
@@ -2957,7 +1950,7 @@ namespace CDM
 
     // Constructors.
     //
-    GetContextStatesResponse (const MDIBVersionType&);
+    GetContextStatesResponse (const SequenceIdType&);
 
     GetContextStatesResponse (const ::xercesc::DOMElement& e,
                               ::xml_schema::Flags f = 0,
@@ -2988,47 +1981,68 @@ namespace CDM
     ContextStateSequence ContextState_;
   };
 
-  class GetContainmentTree: public ::CDM::AbstractGet
+  class GetContextStatesByIdentification: public ::MDM::AbstractGet
   {
     public:
-    // HandleRef
+    // Identification
     //
-    typedef ::CDM::HandleRef HandleRefType;
-    typedef ::xsd::cxx::tree::sequence< HandleRefType > HandleRefSequence;
-    typedef HandleRefSequence::iterator HandleRefIterator;
-    typedef HandleRefSequence::const_iterator HandleRefConstIterator;
-    typedef ::xsd::cxx::tree::traits< HandleRefType, char > HandleRefTraits;
+    typedef ::CDM::InstanceIdentifier IdentificationType;
+    typedef ::xsd::cxx::tree::sequence< IdentificationType > IdentificationSequence;
+    typedef IdentificationSequence::iterator IdentificationIterator;
+    typedef IdentificationSequence::const_iterator IdentificationConstIterator;
+    typedef ::xsd::cxx::tree::traits< IdentificationType, char > IdentificationTraits;
 
-    const HandleRefSequence&
-    HandleRef () const;
+    const IdentificationSequence&
+    Identification () const;
 
-    HandleRefSequence&
-    HandleRef ();
+    IdentificationSequence&
+    Identification ();
 
     void
-    HandleRef (const HandleRefSequence& s);
+    Identification (const IdentificationSequence& s);
+
+    // ContextType
+    //
+    typedef ::xml_schema::Qname ContextTypeType;
+    typedef ::xsd::cxx::tree::optional< ContextTypeType > ContextTypeOptional;
+    typedef ::xsd::cxx::tree::traits< ContextTypeType, char > ContextTypeTraits;
+
+    const ContextTypeOptional&
+    ContextType () const;
+
+    ContextTypeOptional&
+    ContextType ();
+
+    void
+    ContextType (const ContextTypeType& x);
+
+    void
+    ContextType (const ContextTypeOptional& x);
+
+    void
+    ContextType (::std::unique_ptr< ContextTypeType > p);
 
     // Constructors.
     //
-    GetContainmentTree ();
+    GetContextStatesByIdentification ();
 
-    GetContainmentTree (const ::xercesc::DOMElement& e,
-                        ::xml_schema::Flags f = 0,
-                        ::xml_schema::Container* c = 0);
+    GetContextStatesByIdentification (const ::xercesc::DOMElement& e,
+                                      ::xml_schema::Flags f = 0,
+                                      ::xml_schema::Container* c = 0);
 
-    GetContainmentTree (const GetContainmentTree& x,
-                        ::xml_schema::Flags f = 0,
-                        ::xml_schema::Container* c = 0);
+    GetContextStatesByIdentification (const GetContextStatesByIdentification& x,
+                                      ::xml_schema::Flags f = 0,
+                                      ::xml_schema::Container* c = 0);
 
-    virtual GetContainmentTree*
+    virtual GetContextStatesByIdentification*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetContainmentTree&
-    operator= (const GetContainmentTree& x);
+    GetContextStatesByIdentification&
+    operator= (const GetContextStatesByIdentification& x);
 
     virtual 
-    ~GetContainmentTree ();
+    ~GetContextStatesByIdentification ();
 
     // Implementation.
     //
@@ -3038,54 +2052,51 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    HandleRefSequence HandleRef_;
+    IdentificationSequence Identification_;
+    ContextTypeOptional ContextType_;
   };
 
-  class GetContainmentTreeResponse: public ::CDM::AbstractGetResponse
+  class GetContextStatesByIdentificationResponse: public ::MDM::AbstractGetResponse
   {
     public:
-    // ContainmentTree
+    // ContextState
     //
-    typedef ::CDM::ContainmentTree ContainmentTreeType;
-    typedef ::xsd::cxx::tree::traits< ContainmentTreeType, char > ContainmentTreeTraits;
+    typedef ::CDM::AbstractContextState ContextStateType;
+    typedef ::xsd::cxx::tree::sequence< ContextStateType > ContextStateSequence;
+    typedef ContextStateSequence::iterator ContextStateIterator;
+    typedef ContextStateSequence::const_iterator ContextStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< ContextStateType, char > ContextStateTraits;
 
-    const ContainmentTreeType&
-    ContainmentTree () const;
+    const ContextStateSequence&
+    ContextState () const;
 
-    ContainmentTreeType&
-    ContainmentTree ();
+    ContextStateSequence&
+    ContextState ();
 
     void
-    ContainmentTree (const ContainmentTreeType& x);
-
-    void
-    ContainmentTree (::std::unique_ptr< ContainmentTreeType > p);
+    ContextState (const ContextStateSequence& s);
 
     // Constructors.
     //
-    GetContainmentTreeResponse (const MDIBVersionType&,
-                                const ContainmentTreeType&);
+    GetContextStatesByIdentificationResponse (const SequenceIdType&);
 
-    GetContainmentTreeResponse (const MDIBVersionType&,
-                                ::std::unique_ptr< ContainmentTreeType >);
+    GetContextStatesByIdentificationResponse (const ::xercesc::DOMElement& e,
+                                              ::xml_schema::Flags f = 0,
+                                              ::xml_schema::Container* c = 0);
 
-    GetContainmentTreeResponse (const ::xercesc::DOMElement& e,
-                                ::xml_schema::Flags f = 0,
-                                ::xml_schema::Container* c = 0);
+    GetContextStatesByIdentificationResponse (const GetContextStatesByIdentificationResponse& x,
+                                              ::xml_schema::Flags f = 0,
+                                              ::xml_schema::Container* c = 0);
 
-    GetContainmentTreeResponse (const GetContainmentTreeResponse& x,
-                                ::xml_schema::Flags f = 0,
-                                ::xml_schema::Container* c = 0);
-
-    virtual GetContainmentTreeResponse*
+    virtual GetContextStatesByIdentificationResponse*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetContainmentTreeResponse&
-    operator= (const GetContainmentTreeResponse& x);
+    GetContextStatesByIdentificationResponse&
+    operator= (const GetContextStatesByIdentificationResponse& x);
 
     virtual 
-    ~GetContainmentTreeResponse ();
+    ~GetContextStatesByIdentificationResponse ();
 
     // Implementation.
     //
@@ -3095,50 +2106,71 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< ContainmentTreeType > ContainmentTree_;
+    ContextStateSequence ContextState_;
   };
 
-  class GetDescriptor: public ::CDM::AbstractGet
+  class GetContextStatesByFilter: public ::MDM::AbstractGet
   {
     public:
-    // HandleRef
+    // Filter
     //
-    typedef ::CDM::HandleRef HandleRefType;
-    typedef ::xsd::cxx::tree::sequence< HandleRefType > HandleRefSequence;
-    typedef HandleRefSequence::iterator HandleRefIterator;
-    typedef HandleRefSequence::const_iterator HandleRefConstIterator;
-    typedef ::xsd::cxx::tree::traits< HandleRefType, char > HandleRefTraits;
+    typedef ::xml_schema::String FilterType;
+    typedef ::xsd::cxx::tree::sequence< FilterType > FilterSequence;
+    typedef FilterSequence::iterator FilterIterator;
+    typedef FilterSequence::const_iterator FilterConstIterator;
+    typedef ::xsd::cxx::tree::traits< FilterType, char > FilterTraits;
 
-    const HandleRefSequence&
-    HandleRef () const;
+    const FilterSequence&
+    Filter () const;
 
-    HandleRefSequence&
-    HandleRef ();
+    FilterSequence&
+    Filter ();
 
     void
-    HandleRef (const HandleRefSequence& s);
+    Filter (const FilterSequence& s);
+
+    // ContextType
+    //
+    typedef ::xml_schema::Qname ContextTypeType;
+    typedef ::xsd::cxx::tree::optional< ContextTypeType > ContextTypeOptional;
+    typedef ::xsd::cxx::tree::traits< ContextTypeType, char > ContextTypeTraits;
+
+    const ContextTypeOptional&
+    ContextType () const;
+
+    ContextTypeOptional&
+    ContextType ();
+
+    void
+    ContextType (const ContextTypeType& x);
+
+    void
+    ContextType (const ContextTypeOptional& x);
+
+    void
+    ContextType (::std::unique_ptr< ContextTypeType > p);
 
     // Constructors.
     //
-    GetDescriptor ();
+    GetContextStatesByFilter ();
 
-    GetDescriptor (const ::xercesc::DOMElement& e,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
+    GetContextStatesByFilter (const ::xercesc::DOMElement& e,
+                              ::xml_schema::Flags f = 0,
+                              ::xml_schema::Container* c = 0);
 
-    GetDescriptor (const GetDescriptor& x,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
+    GetContextStatesByFilter (const GetContextStatesByFilter& x,
+                              ::xml_schema::Flags f = 0,
+                              ::xml_schema::Container* c = 0);
 
-    virtual GetDescriptor*
+    virtual GetContextStatesByFilter*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetDescriptor&
-    operator= (const GetDescriptor& x);
+    GetContextStatesByFilter&
+    operator= (const GetContextStatesByFilter& x);
 
     virtual 
-    ~GetDescriptor ();
+    ~GetContextStatesByFilter ();
 
     // Implementation.
     //
@@ -3148,10 +2180,600 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    HandleRefSequence HandleRef_;
+    FilterSequence Filter_;
+    ContextTypeOptional ContextType_;
   };
 
-  class GetDescriptorResponse: public ::CDM::AbstractGetResponse
+  class GetContextStatesByFilterResponse: public ::MDM::AbstractGetResponse
+  {
+    public:
+    // ContextState
+    //
+    typedef ::CDM::AbstractContextState ContextStateType;
+    typedef ::xsd::cxx::tree::sequence< ContextStateType > ContextStateSequence;
+    typedef ContextStateSequence::iterator ContextStateIterator;
+    typedef ContextStateSequence::const_iterator ContextStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< ContextStateType, char > ContextStateTraits;
+
+    const ContextStateSequence&
+    ContextState () const;
+
+    ContextStateSequence&
+    ContextState ();
+
+    void
+    ContextState (const ContextStateSequence& s);
+
+    // Constructors.
+    //
+    GetContextStatesByFilterResponse (const SequenceIdType&);
+
+    GetContextStatesByFilterResponse (const ::xercesc::DOMElement& e,
+                                      ::xml_schema::Flags f = 0,
+                                      ::xml_schema::Container* c = 0);
+
+    GetContextStatesByFilterResponse (const GetContextStatesByFilterResponse& x,
+                                      ::xml_schema::Flags f = 0,
+                                      ::xml_schema::Container* c = 0);
+
+    virtual GetContextStatesByFilterResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetContextStatesByFilterResponse&
+    operator= (const GetContextStatesByFilterResponse& x);
+
+    virtual 
+    ~GetContextStatesByFilterResponse ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ContextStateSequence ContextState_;
+  };
+
+  class SetContextState: public ::MDM::AbstractSet
+  {
+    public:
+    // ProposedContextState
+    //
+    typedef ::CDM::AbstractContextState ProposedContextStateType;
+    typedef ::xsd::cxx::tree::sequence< ProposedContextStateType > ProposedContextStateSequence;
+    typedef ProposedContextStateSequence::iterator ProposedContextStateIterator;
+    typedef ProposedContextStateSequence::const_iterator ProposedContextStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< ProposedContextStateType, char > ProposedContextStateTraits;
+
+    const ProposedContextStateSequence&
+    ProposedContextState () const;
+
+    ProposedContextStateSequence&
+    ProposedContextState ();
+
+    void
+    ProposedContextState (const ProposedContextStateSequence& s);
+
+    // Constructors.
+    //
+    SetContextState (const OperationHandleRefType&);
+
+    SetContextState (::std::unique_ptr< OperationHandleRefType >);
+
+    SetContextState (const ::xercesc::DOMElement& e,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    SetContextState (const SetContextState& x,
+                     ::xml_schema::Flags f = 0,
+                     ::xml_schema::Container* c = 0);
+
+    virtual SetContextState*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    SetContextState&
+    operator= (const SetContextState& x);
+
+    virtual 
+    ~SetContextState ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ProposedContextStateSequence ProposedContextState_;
+  };
+
+  class SetContextStateResponse: public ::MDM::AbstractSetResponse
+  {
+    public:
+    // Constructors.
+    //
+    SetContextStateResponse (const InvocationInfoType&,
+                             const SequenceIdType&);
+
+    SetContextStateResponse (::std::unique_ptr< InvocationInfoType >,
+                             const SequenceIdType&);
+
+    SetContextStateResponse (const ::xercesc::DOMElement& e,
+                             ::xml_schema::Flags f = 0,
+                             ::xml_schema::Container* c = 0);
+
+    SetContextStateResponse (const SetContextStateResponse& x,
+                             ::xml_schema::Flags f = 0,
+                             ::xml_schema::Container* c = 0);
+
+    virtual SetContextStateResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~SetContextStateResponse ();
+  };
+
+  class ReportPart: public ::MDM::AbstractReportPart
+  {
+    public:
+    // ContextState
+    //
+    typedef ::CDM::AbstractContextState ContextStateType;
+    typedef ::xsd::cxx::tree::sequence< ContextStateType > ContextStateSequence;
+    typedef ContextStateSequence::iterator ContextStateIterator;
+    typedef ContextStateSequence::const_iterator ContextStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< ContextStateType, char > ContextStateTraits;
+
+    const ContextStateSequence&
+    ContextState () const;
+
+    ContextStateSequence&
+    ContextState ();
+
+    void
+    ContextState (const ContextStateSequence& s);
+
+    // Constructors.
+    //
+    ReportPart ();
+
+    ReportPart (const ::xercesc::DOMElement& e,
+                ::xml_schema::Flags f = 0,
+                ::xml_schema::Container* c = 0);
+
+    ReportPart (const ReportPart& x,
+                ::xml_schema::Flags f = 0,
+                ::xml_schema::Container* c = 0);
+
+    virtual ReportPart*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    ReportPart&
+    operator= (const ReportPart& x);
+
+    virtual 
+    ~ReportPart ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ContextStateSequence ContextState_;
+  };
+
+  class PeriodicContextReport: public ::MDM::AbstractContextReport
+  {
+    public:
+    // Constructors.
+    //
+    PeriodicContextReport (const SequenceIdType&);
+
+    PeriodicContextReport (const ::xercesc::DOMElement& e,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    PeriodicContextReport (const PeriodicContextReport& x,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    virtual PeriodicContextReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~PeriodicContextReport ();
+  };
+
+  class EpisodicContextReport: public ::MDM::AbstractContextReport
+  {
+    public:
+    // Constructors.
+    //
+    EpisodicContextReport (const SequenceIdType&);
+
+    EpisodicContextReport (const ::xercesc::DOMElement& e,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    EpisodicContextReport (const EpisodicContextReport& x,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    virtual EpisodicContextReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~EpisodicContextReport ();
+  };
+
+  class GetLocalizedText: public ::MDM::AbstractGet
+  {
+    public:
+    // Ref
+    //
+    typedef ::CDM::LocalizedTextRef RefType;
+    typedef ::xsd::cxx::tree::sequence< RefType > RefSequence;
+    typedef RefSequence::iterator RefIterator;
+    typedef RefSequence::const_iterator RefConstIterator;
+    typedef ::xsd::cxx::tree::traits< RefType, char > RefTraits;
+
+    const RefSequence&
+    Ref () const;
+
+    RefSequence&
+    Ref ();
+
+    void
+    Ref (const RefSequence& s);
+
+    // Version
+    //
+    typedef ::CDM::ReferencedVersion VersionType;
+    typedef ::xsd::cxx::tree::optional< VersionType > VersionOptional;
+    typedef ::xsd::cxx::tree::traits< VersionType, char > VersionTraits;
+
+    const VersionOptional&
+    Version () const;
+
+    VersionOptional&
+    Version ();
+
+    void
+    Version (const VersionType& x);
+
+    void
+    Version (const VersionOptional& x);
+
+    void
+    Version (::std::unique_ptr< VersionType > p);
+
+    // Lang
+    //
+    typedef ::xml_schema::Language LangType;
+    typedef ::xsd::cxx::tree::sequence< LangType > LangSequence;
+    typedef LangSequence::iterator LangIterator;
+    typedef LangSequence::const_iterator LangConstIterator;
+    typedef ::xsd::cxx::tree::traits< LangType, char > LangTraits;
+
+    const LangSequence&
+    Lang () const;
+
+    LangSequence&
+    Lang ();
+
+    void
+    Lang (const LangSequence& s);
+
+    // TextWidth
+    //
+    typedef ::CDM::LocalizedTextWidth TextWidthType;
+    typedef ::xsd::cxx::tree::sequence< TextWidthType > TextWidthSequence;
+    typedef TextWidthSequence::iterator TextWidthIterator;
+    typedef TextWidthSequence::const_iterator TextWidthConstIterator;
+    typedef ::xsd::cxx::tree::traits< TextWidthType, char > TextWidthTraits;
+
+    const TextWidthSequence&
+    TextWidth () const;
+
+    TextWidthSequence&
+    TextWidth ();
+
+    void
+    TextWidth (const TextWidthSequence& s);
+
+    // NumberOfLines
+    //
+    typedef ::xml_schema::Integer NumberOfLinesType;
+    typedef ::xsd::cxx::tree::sequence< NumberOfLinesType > NumberOfLinesSequence;
+    typedef NumberOfLinesSequence::iterator NumberOfLinesIterator;
+    typedef NumberOfLinesSequence::const_iterator NumberOfLinesConstIterator;
+    typedef ::xsd::cxx::tree::traits< NumberOfLinesType, char > NumberOfLinesTraits;
+
+    const NumberOfLinesSequence&
+    NumberOfLines () const;
+
+    NumberOfLinesSequence&
+    NumberOfLines ();
+
+    void
+    NumberOfLines (const NumberOfLinesSequence& s);
+
+    // Constructors.
+    //
+    GetLocalizedText ();
+
+    GetLocalizedText (const ::xercesc::DOMElement& e,
+                      ::xml_schema::Flags f = 0,
+                      ::xml_schema::Container* c = 0);
+
+    GetLocalizedText (const GetLocalizedText& x,
+                      ::xml_schema::Flags f = 0,
+                      ::xml_schema::Container* c = 0);
+
+    virtual GetLocalizedText*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetLocalizedText&
+    operator= (const GetLocalizedText& x);
+
+    virtual 
+    ~GetLocalizedText ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    RefSequence Ref_;
+    VersionOptional Version_;
+    LangSequence Lang_;
+    TextWidthSequence TextWidth_;
+    NumberOfLinesSequence NumberOfLines_;
+  };
+
+  class GetLocalizedTextResponse: public ::MDM::AbstractGetResponse
+  {
+    public:
+    // Text
+    //
+    typedef ::CDM::LocalizedText TextType;
+    typedef ::xsd::cxx::tree::sequence< TextType > TextSequence;
+    typedef TextSequence::iterator TextIterator;
+    typedef TextSequence::const_iterator TextConstIterator;
+    typedef ::xsd::cxx::tree::traits< TextType, char > TextTraits;
+
+    const TextSequence&
+    Text () const;
+
+    TextSequence&
+    Text ();
+
+    void
+    Text (const TextSequence& s);
+
+    // Constructors.
+    //
+    GetLocalizedTextResponse (const SequenceIdType&);
+
+    GetLocalizedTextResponse (const ::xercesc::DOMElement& e,
+                              ::xml_schema::Flags f = 0,
+                              ::xml_schema::Container* c = 0);
+
+    GetLocalizedTextResponse (const GetLocalizedTextResponse& x,
+                              ::xml_schema::Flags f = 0,
+                              ::xml_schema::Container* c = 0);
+
+    virtual GetLocalizedTextResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetLocalizedTextResponse&
+    operator= (const GetLocalizedTextResponse& x);
+
+    virtual 
+    ~GetLocalizedTextResponse ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    TextSequence Text_;
+  };
+
+  class GetSupportedLanguages: public ::MDM::AbstractGet
+  {
+    public:
+    // Constructors.
+    //
+    GetSupportedLanguages ();
+
+    GetSupportedLanguages (const ::xercesc::DOMElement& e,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    GetSupportedLanguages (const GetSupportedLanguages& x,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    virtual GetSupportedLanguages*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~GetSupportedLanguages ();
+  };
+
+  class GetSupportedLanguagesResponse: public ::MDM::AbstractGetResponse
+  {
+    public:
+    // Lang
+    //
+    typedef ::xml_schema::Language LangType;
+    typedef ::xsd::cxx::tree::sequence< LangType > LangSequence;
+    typedef LangSequence::iterator LangIterator;
+    typedef LangSequence::const_iterator LangConstIterator;
+    typedef ::xsd::cxx::tree::traits< LangType, char > LangTraits;
+
+    const LangSequence&
+    Lang () const;
+
+    LangSequence&
+    Lang ();
+
+    void
+    Lang (const LangSequence& s);
+
+    // Constructors.
+    //
+    GetSupportedLanguagesResponse (const SequenceIdType&);
+
+    GetSupportedLanguagesResponse (const ::xercesc::DOMElement& e,
+                                   ::xml_schema::Flags f = 0,
+                                   ::xml_schema::Container* c = 0);
+
+    GetSupportedLanguagesResponse (const GetSupportedLanguagesResponse& x,
+                                   ::xml_schema::Flags f = 0,
+                                   ::xml_schema::Container* c = 0);
+
+    virtual GetSupportedLanguagesResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetSupportedLanguagesResponse&
+    operator= (const GetSupportedLanguagesResponse& x);
+
+    virtual 
+    ~GetSupportedLanguagesResponse ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    LangSequence Lang_;
+  };
+
+  class GetDescriptorsFromArchive: public ::MDM::AbstractGet
+  {
+    public:
+    // DescriptorRevisions
+    //
+    typedef ::MDM::VersionFrame DescriptorRevisionsType;
+    typedef ::xsd::cxx::tree::optional< DescriptorRevisionsType > DescriptorRevisionsOptional;
+    typedef ::xsd::cxx::tree::traits< DescriptorRevisionsType, char > DescriptorRevisionsTraits;
+
+    const DescriptorRevisionsOptional&
+    DescriptorRevisions () const;
+
+    DescriptorRevisionsOptional&
+    DescriptorRevisions ();
+
+    void
+    DescriptorRevisions (const DescriptorRevisionsType& x);
+
+    void
+    DescriptorRevisions (const DescriptorRevisionsOptional& x);
+
+    void
+    DescriptorRevisions (::std::unique_ptr< DescriptorRevisionsType > p);
+
+    // TimeFrame
+    //
+    typedef ::MDM::TimeFrame TimeFrameType;
+    typedef ::xsd::cxx::tree::optional< TimeFrameType > TimeFrameOptional;
+    typedef ::xsd::cxx::tree::traits< TimeFrameType, char > TimeFrameTraits;
+
+    const TimeFrameOptional&
+    TimeFrame () const;
+
+    TimeFrameOptional&
+    TimeFrame ();
+
+    void
+    TimeFrame (const TimeFrameType& x);
+
+    void
+    TimeFrame (const TimeFrameOptional& x);
+
+    void
+    TimeFrame (::std::unique_ptr< TimeFrameType > p);
+
+    // Handle
+    //
+    typedef ::CDM::HandleRef HandleType;
+    typedef ::xsd::cxx::tree::sequence< HandleType > HandleSequence;
+    typedef HandleSequence::iterator HandleIterator;
+    typedef HandleSequence::const_iterator HandleConstIterator;
+    typedef ::xsd::cxx::tree::traits< HandleType, char > HandleTraits;
+
+    const HandleSequence&
+    Handle () const;
+
+    HandleSequence&
+    Handle ();
+
+    void
+    Handle (const HandleSequence& s);
+
+    // Constructors.
+    //
+    GetDescriptorsFromArchive ();
+
+    GetDescriptorsFromArchive (const ::xercesc::DOMElement& e,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
+
+    GetDescriptorsFromArchive (const GetDescriptorsFromArchive& x,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
+
+    virtual GetDescriptorsFromArchive*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetDescriptorsFromArchive&
+    operator= (const GetDescriptorsFromArchive& x);
+
+    virtual 
+    ~GetDescriptorsFromArchive ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    DescriptorRevisionsOptional DescriptorRevisions_;
+    TimeFrameOptional TimeFrame_;
+    HandleSequence Handle_;
+  };
+
+  class GetDescriptorsFromArchiveResponse: public ::MDM::AbstractGetResponse
   {
     public:
     // Descriptor
@@ -3173,25 +2795,25 @@ namespace CDM
 
     // Constructors.
     //
-    GetDescriptorResponse (const MDIBVersionType&);
+    GetDescriptorsFromArchiveResponse (const SequenceIdType&);
 
-    GetDescriptorResponse (const ::xercesc::DOMElement& e,
-                           ::xml_schema::Flags f = 0,
-                           ::xml_schema::Container* c = 0);
+    GetDescriptorsFromArchiveResponse (const ::xercesc::DOMElement& e,
+                                       ::xml_schema::Flags f = 0,
+                                       ::xml_schema::Container* c = 0);
 
-    GetDescriptorResponse (const GetDescriptorResponse& x,
-                           ::xml_schema::Flags f = 0,
-                           ::xml_schema::Container* c = 0);
+    GetDescriptorsFromArchiveResponse (const GetDescriptorsFromArchiveResponse& x,
+                                       ::xml_schema::Flags f = 0,
+                                       ::xml_schema::Container* c = 0);
 
-    virtual GetDescriptorResponse*
+    virtual GetDescriptorsFromArchiveResponse*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    GetDescriptorResponse&
-    operator= (const GetDescriptorResponse& x);
+    GetDescriptorsFromArchiveResponse&
+    operator= (const GetDescriptorsFromArchiveResponse& x);
 
     virtual 
-    ~GetDescriptorResponse ();
+    ~GetDescriptorsFromArchiveResponse ();
 
     // Implementation.
     //
@@ -3204,57 +2826,89 @@ namespace CDM
     DescriptorSequence Descriptor_;
   };
 
-  class Text: public ::xml_schema::String
+  class GetStatesFromArchive: public ::MDM::AbstractGet
   {
     public:
-    // Lang
+    // StateRevisions
     //
-    typedef ::xml_schema::Language LangType;
-    typedef ::xsd::cxx::tree::optional< LangType > LangOptional;
-    typedef ::xsd::cxx::tree::traits< LangType, char > LangTraits;
+    typedef ::MDM::VersionFrame StateRevisionsType;
+    typedef ::xsd::cxx::tree::optional< StateRevisionsType > StateRevisionsOptional;
+    typedef ::xsd::cxx::tree::traits< StateRevisionsType, char > StateRevisionsTraits;
 
-    const LangOptional&
-    Lang () const;
+    const StateRevisionsOptional&
+    StateRevisions () const;
 
-    LangOptional&
-    Lang ();
-
-    void
-    Lang (const LangType& x);
+    StateRevisionsOptional&
+    StateRevisions ();
 
     void
-    Lang (const LangOptional& x);
+    StateRevisions (const StateRevisionsType& x);
 
     void
-    Lang (::std::unique_ptr< LangType > p);
+    StateRevisions (const StateRevisionsOptional& x);
+
+    void
+    StateRevisions (::std::unique_ptr< StateRevisionsType > p);
+
+    // TimeFrame
+    //
+    typedef ::MDM::TimeFrame TimeFrameType;
+    typedef ::xsd::cxx::tree::optional< TimeFrameType > TimeFrameOptional;
+    typedef ::xsd::cxx::tree::traits< TimeFrameType, char > TimeFrameTraits;
+
+    const TimeFrameOptional&
+    TimeFrame () const;
+
+    TimeFrameOptional&
+    TimeFrame ();
+
+    void
+    TimeFrame (const TimeFrameType& x);
+
+    void
+    TimeFrame (const TimeFrameOptional& x);
+
+    void
+    TimeFrame (::std::unique_ptr< TimeFrameType > p);
+
+    // Handle
+    //
+    typedef ::CDM::HandleRef HandleType;
+    typedef ::xsd::cxx::tree::sequence< HandleType > HandleSequence;
+    typedef HandleSequence::iterator HandleIterator;
+    typedef HandleSequence::const_iterator HandleConstIterator;
+    typedef ::xsd::cxx::tree::traits< HandleType, char > HandleTraits;
+
+    const HandleSequence&
+    Handle () const;
+
+    HandleSequence&
+    Handle ();
+
+    void
+    Handle (const HandleSequence& s);
 
     // Constructors.
     //
-    Text ();
+    GetStatesFromArchive ();
 
-    Text (const char*);
+    GetStatesFromArchive (const ::xercesc::DOMElement& e,
+                          ::xml_schema::Flags f = 0,
+                          ::xml_schema::Container* c = 0);
 
-    Text (const ::std::string&);
+    GetStatesFromArchive (const GetStatesFromArchive& x,
+                          ::xml_schema::Flags f = 0,
+                          ::xml_schema::Container* c = 0);
 
-    Text (const ::xml_schema::String&);
-
-    Text (const ::xercesc::DOMElement& e,
-          ::xml_schema::Flags f = 0,
-          ::xml_schema::Container* c = 0);
-
-    Text (const Text& x,
-          ::xml_schema::Flags f = 0,
-          ::xml_schema::Container* c = 0);
-
-    virtual Text*
+    virtual GetStatesFromArchive*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    Text&
-    operator= (const Text& x);
+    GetStatesFromArchive&
+    operator= (const GetStatesFromArchive& x);
 
     virtual 
-    ~Text ();
+    ~GetStatesFromArchive ();
 
     // Implementation.
     //
@@ -3264,57 +2918,52 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    LangOptional Lang_;
+    StateRevisionsOptional StateRevisions_;
+    TimeFrameOptional TimeFrame_;
+    HandleSequence Handle_;
   };
 
-  class SetRange: public ::CDM::AbstractSet
+  class GetStatesFromArchiveResponse: public ::MDM::AbstractGetResponse
   {
     public:
-    // RequestedRange
+    // State
     //
-    typedef ::CDM::Range RequestedRangeType;
-    typedef ::xsd::cxx::tree::traits< RequestedRangeType, char > RequestedRangeTraits;
+    typedef ::CDM::AbstractState StateType;
+    typedef ::xsd::cxx::tree::sequence< StateType > StateSequence;
+    typedef StateSequence::iterator StateIterator;
+    typedef StateSequence::const_iterator StateConstIterator;
+    typedef ::xsd::cxx::tree::traits< StateType, char > StateTraits;
 
-    const RequestedRangeType&
-    RequestedRange () const;
+    const StateSequence&
+    State () const;
 
-    RequestedRangeType&
-    RequestedRange ();
+    StateSequence&
+    State ();
 
     void
-    RequestedRange (const RequestedRangeType& x);
-
-    void
-    RequestedRange (::std::unique_ptr< RequestedRangeType > p);
+    State (const StateSequence& s);
 
     // Constructors.
     //
-    SetRange (const OperationHandleRefType&,
-              const RequestedRangeType&);
+    GetStatesFromArchiveResponse (const SequenceIdType&);
 
-    SetRange (const OperationHandleRefType&,
-              ::std::unique_ptr< RequestedRangeType >);
+    GetStatesFromArchiveResponse (const ::xercesc::DOMElement& e,
+                                  ::xml_schema::Flags f = 0,
+                                  ::xml_schema::Container* c = 0);
 
-    SetRange (::std::unique_ptr< OperationHandleRefType >,
-              ::std::unique_ptr< RequestedRangeType >);
+    GetStatesFromArchiveResponse (const GetStatesFromArchiveResponse& x,
+                                  ::xml_schema::Flags f = 0,
+                                  ::xml_schema::Container* c = 0);
 
-    SetRange (const ::xercesc::DOMElement& e,
-              ::xml_schema::Flags f = 0,
-              ::xml_schema::Container* c = 0);
-
-    SetRange (const SetRange& x,
-              ::xml_schema::Flags f = 0,
-              ::xml_schema::Container* c = 0);
-
-    virtual SetRange*
+    virtual GetStatesFromArchiveResponse*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    SetRange&
-    operator= (const SetRange& x);
+    GetStatesFromArchiveResponse&
+    operator= (const GetStatesFromArchiveResponse& x);
 
     virtual 
-    ~SetRange ();
+    ~GetStatesFromArchiveResponse ();
 
     // Implementation.
     //
@@ -3324,39 +2973,10 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< RequestedRangeType > RequestedRange_;
+    StateSequence State_;
   };
 
-  class SetRangeResponse: public ::CDM::AbstractSetResponse
-  {
-    public:
-    // Constructors.
-    //
-    SetRangeResponse (const TransactionIdType&,
-                      const InvocationStateType&,
-                      const MDIBVersionType&);
-
-    SetRangeResponse (::std::unique_ptr< TransactionIdType >,
-                      ::std::unique_ptr< InvocationStateType >,
-                      const MDIBVersionType&);
-
-    SetRangeResponse (const ::xercesc::DOMElement& e,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
-
-    SetRangeResponse (const SetRangeResponse& x,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
-
-    virtual SetRangeResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~SetRangeResponse ();
-  };
-
-  class SetValue: public ::CDM::AbstractSet
+  class SetValue: public ::MDM::AbstractSet
   {
     public:
     // RequestedNumericValue
@@ -3410,18 +3030,16 @@ namespace CDM
     ::xsd::cxx::tree::one< RequestedNumericValueType > RequestedNumericValue_;
   };
 
-  class SetValueResponse: public ::CDM::AbstractSetResponse
+  class SetValueResponse: public ::MDM::AbstractSetResponse
   {
     public:
     // Constructors.
     //
-    SetValueResponse (const TransactionIdType&,
-                      const InvocationStateType&,
-                      const MDIBVersionType&);
+    SetValueResponse (const InvocationInfoType&,
+                      const SequenceIdType&);
 
-    SetValueResponse (::std::unique_ptr< TransactionIdType >,
-                      ::std::unique_ptr< InvocationStateType >,
-                      const MDIBVersionType&);
+    SetValueResponse (::std::unique_ptr< InvocationInfoType >,
+                      const SequenceIdType&);
 
     SetValueResponse (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f = 0,
@@ -3439,7 +3057,7 @@ namespace CDM
     ~SetValueResponse ();
   };
 
-  class SetString: public ::CDM::AbstractSet
+  class SetString: public ::MDM::AbstractSet
   {
     public:
     // RequestedStringValue
@@ -3496,18 +3114,16 @@ namespace CDM
     ::xsd::cxx::tree::one< RequestedStringValueType > RequestedStringValue_;
   };
 
-  class SetStringResponse: public ::CDM::AbstractSetResponse
+  class SetStringResponse: public ::MDM::AbstractSetResponse
   {
     public:
     // Constructors.
     //
-    SetStringResponse (const TransactionIdType&,
-                       const InvocationStateType&,
-                       const MDIBVersionType&);
+    SetStringResponse (const InvocationInfoType&,
+                       const SequenceIdType&);
 
-    SetStringResponse (::std::unique_ptr< TransactionIdType >,
-                       ::std::unique_ptr< InvocationStateType >,
-                       const MDIBVersionType&);
+    SetStringResponse (::std::unique_ptr< InvocationInfoType >,
+                       const SequenceIdType&);
 
     SetStringResponse (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f = 0,
@@ -3525,101 +3141,12 @@ namespace CDM
     ~SetStringResponse ();
   };
 
-  class SetAlertState: public ::CDM::AbstractSet
-  {
-    public:
-    // RequestedAlertState
-    //
-    typedef ::CDM::AbstractAlertState RequestedAlertStateType;
-    typedef ::xsd::cxx::tree::traits< RequestedAlertStateType, char > RequestedAlertStateTraits;
-
-    const RequestedAlertStateType&
-    RequestedAlertState () const;
-
-    RequestedAlertStateType&
-    RequestedAlertState ();
-
-    void
-    RequestedAlertState (const RequestedAlertStateType& x);
-
-    void
-    RequestedAlertState (::std::unique_ptr< RequestedAlertStateType > p);
-
-    // Constructors.
-    //
-    SetAlertState (const OperationHandleRefType&,
-                   const RequestedAlertStateType&);
-
-    SetAlertState (const OperationHandleRefType&,
-                   ::std::unique_ptr< RequestedAlertStateType >);
-
-    SetAlertState (::std::unique_ptr< OperationHandleRefType >,
-                   ::std::unique_ptr< RequestedAlertStateType >);
-
-    SetAlertState (const ::xercesc::DOMElement& e,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    SetAlertState (const SetAlertState& x,
-                   ::xml_schema::Flags f = 0,
-                   ::xml_schema::Container* c = 0);
-
-    virtual SetAlertState*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    SetAlertState&
-    operator= (const SetAlertState& x);
-
-    virtual 
-    ~SetAlertState ();
-
-    // Implementation.
-    //
-    protected:
-    void
-    parse (::xsd::cxx::xml::dom::parser< char >&,
-           ::xml_schema::Flags);
-
-    protected:
-    ::xsd::cxx::tree::one< RequestedAlertStateType > RequestedAlertState_;
-  };
-
-  class SetAlertStateResponse: public ::CDM::AbstractSetResponse
-  {
-    public:
-    // Constructors.
-    //
-    SetAlertStateResponse (const TransactionIdType&,
-                           const InvocationStateType&,
-                           const MDIBVersionType&);
-
-    SetAlertStateResponse (::std::unique_ptr< TransactionIdType >,
-                           ::std::unique_ptr< InvocationStateType >,
-                           const MDIBVersionType&);
-
-    SetAlertStateResponse (const ::xercesc::DOMElement& e,
-                           ::xml_schema::Flags f = 0,
-                           ::xml_schema::Container* c = 0);
-
-    SetAlertStateResponse (const SetAlertStateResponse& x,
-                           ::xml_schema::Flags f = 0,
-                           ::xml_schema::Container* c = 0);
-
-    virtual SetAlertStateResponse*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~SetAlertStateResponse ();
-  };
-
-  class Activate: public ::CDM::AbstractSet
+  class Activate: public ::MDM::AbstractSet
   {
     public:
     // Argument
     //
-    typedef ::CDM::ArgumentType ArgumentType;
+    typedef ::MDM::Argument ArgumentType;
     typedef ::xsd::cxx::tree::sequence< ArgumentType > ArgumentSequence;
     typedef ArgumentSequence::iterator ArgumentIterator;
     typedef ArgumentSequence::const_iterator ArgumentConstIterator;
@@ -3669,18 +3196,16 @@ namespace CDM
     ArgumentSequence Argument_;
   };
 
-  class ActivateResponse: public ::CDM::AbstractSetResponse
+  class ActivateResponse: public ::MDM::AbstractSetResponse
   {
     public:
     // Constructors.
     //
-    ActivateResponse (const TransactionIdType&,
-                      const InvocationStateType&,
-                      const MDIBVersionType&);
+    ActivateResponse (const InvocationInfoType&,
+                      const SequenceIdType&);
 
-    ActivateResponse (::std::unique_ptr< TransactionIdType >,
-                      ::std::unique_ptr< InvocationStateType >,
-                      const MDIBVersionType&);
+    ActivateResponse (::std::unique_ptr< InvocationInfoType >,
+                      const SequenceIdType&);
 
     ActivateResponse (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f = 0,
@@ -3698,49 +3223,54 @@ namespace CDM
     ~ActivateResponse ();
   };
 
-  class SetContextState: public ::CDM::AbstractSet
+  class SetAlertState: public ::MDM::AbstractSet
   {
     public:
-    // ProposedContextState
+    // ProposedAlertState
     //
-    typedef ::CDM::AbstractContextState ProposedContextStateType;
-    typedef ::xsd::cxx::tree::sequence< ProposedContextStateType > ProposedContextStateSequence;
-    typedef ProposedContextStateSequence::iterator ProposedContextStateIterator;
-    typedef ProposedContextStateSequence::const_iterator ProposedContextStateConstIterator;
-    typedef ::xsd::cxx::tree::traits< ProposedContextStateType, char > ProposedContextStateTraits;
+    typedef ::CDM::AbstractAlertState ProposedAlertStateType;
+    typedef ::xsd::cxx::tree::traits< ProposedAlertStateType, char > ProposedAlertStateTraits;
 
-    const ProposedContextStateSequence&
-    ProposedContextState () const;
+    const ProposedAlertStateType&
+    ProposedAlertState () const;
 
-    ProposedContextStateSequence&
-    ProposedContextState ();
+    ProposedAlertStateType&
+    ProposedAlertState ();
 
     void
-    ProposedContextState (const ProposedContextStateSequence& s);
+    ProposedAlertState (const ProposedAlertStateType& x);
+
+    void
+    ProposedAlertState (::std::unique_ptr< ProposedAlertStateType > p);
 
     // Constructors.
     //
-    SetContextState (const OperationHandleRefType&);
+    SetAlertState (const OperationHandleRefType&,
+                   const ProposedAlertStateType&);
 
-    SetContextState (::std::unique_ptr< OperationHandleRefType >);
+    SetAlertState (const OperationHandleRefType&,
+                   ::std::unique_ptr< ProposedAlertStateType >);
 
-    SetContextState (const ::xercesc::DOMElement& e,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
+    SetAlertState (::std::unique_ptr< OperationHandleRefType >,
+                   ::std::unique_ptr< ProposedAlertStateType >);
 
-    SetContextState (const SetContextState& x,
-                     ::xml_schema::Flags f = 0,
-                     ::xml_schema::Container* c = 0);
+    SetAlertState (const ::xercesc::DOMElement& e,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
 
-    virtual SetContextState*
+    SetAlertState (const SetAlertState& x,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    virtual SetAlertState*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    SetContextState&
-    operator= (const SetContextState& x);
+    SetAlertState&
+    operator= (const SetAlertState& x);
 
     virtual 
-    ~SetContextState ();
+    ~SetAlertState ();
 
     // Implementation.
     //
@@ -3750,83 +3280,79 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ProposedContextStateSequence ProposedContextState_;
+    ::xsd::cxx::tree::one< ProposedAlertStateType > ProposedAlertState_;
   };
 
-  class SetContextStateResponse: public ::CDM::AbstractSetResponse
+  class SetAlertStateResponse: public ::MDM::AbstractSetResponse
   {
     public:
     // Constructors.
     //
-    SetContextStateResponse (const TransactionIdType&,
-                             const InvocationStateType&,
-                             const MDIBVersionType&);
+    SetAlertStateResponse (const InvocationInfoType&,
+                           const SequenceIdType&);
 
-    SetContextStateResponse (::std::unique_ptr< TransactionIdType >,
-                             ::std::unique_ptr< InvocationStateType >,
-                             const MDIBVersionType&);
+    SetAlertStateResponse (::std::unique_ptr< InvocationInfoType >,
+                           const SequenceIdType&);
 
-    SetContextStateResponse (const ::xercesc::DOMElement& e,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
+    SetAlertStateResponse (const ::xercesc::DOMElement& e,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
 
-    SetContextStateResponse (const SetContextStateResponse& x,
-                             ::xml_schema::Flags f = 0,
-                             ::xml_schema::Container* c = 0);
+    SetAlertStateResponse (const SetAlertStateResponse& x,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
 
-    virtual SetContextStateResponse*
+    virtual SetAlertStateResponse*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
     virtual 
-    ~SetContextStateResponse ();
+    ~SetAlertStateResponse ();
   };
 
-  class SetPatientAssociationState: public ::CDM::AbstractSet
+  class SetComponentState: public ::MDM::AbstractSet
   {
     public:
-    // RequestedAssociation
+    // ProposedComponentState
     //
-    typedef ::CDM::ContextAssociation RequestedAssociationType;
-    typedef ::xsd::cxx::tree::traits< RequestedAssociationType, char > RequestedAssociationTraits;
+    typedef ::CDM::AbstractDeviceComponentState ProposedComponentStateType;
+    typedef ::xsd::cxx::tree::sequence< ProposedComponentStateType > ProposedComponentStateSequence;
+    typedef ProposedComponentStateSequence::iterator ProposedComponentStateIterator;
+    typedef ProposedComponentStateSequence::const_iterator ProposedComponentStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< ProposedComponentStateType, char > ProposedComponentStateTraits;
 
-    const RequestedAssociationType&
-    RequestedAssociation () const;
+    const ProposedComponentStateSequence&
+    ProposedComponentState () const;
 
-    RequestedAssociationType&
-    RequestedAssociation ();
+    ProposedComponentStateSequence&
+    ProposedComponentState ();
 
     void
-    RequestedAssociation (const RequestedAssociationType& x);
-
-    void
-    RequestedAssociation (::std::unique_ptr< RequestedAssociationType > p);
+    ProposedComponentState (const ProposedComponentStateSequence& s);
 
     // Constructors.
     //
-    SetPatientAssociationState (const OperationHandleRefType&,
-                                const RequestedAssociationType&);
+    SetComponentState (const OperationHandleRefType&);
 
-    SetPatientAssociationState (::std::unique_ptr< OperationHandleRefType >,
-                                ::std::unique_ptr< RequestedAssociationType >);
+    SetComponentState (::std::unique_ptr< OperationHandleRefType >);
 
-    SetPatientAssociationState (const ::xercesc::DOMElement& e,
-                                ::xml_schema::Flags f = 0,
-                                ::xml_schema::Container* c = 0);
+    SetComponentState (const ::xercesc::DOMElement& e,
+                       ::xml_schema::Flags f = 0,
+                       ::xml_schema::Container* c = 0);
 
-    SetPatientAssociationState (const SetPatientAssociationState& x,
-                                ::xml_schema::Flags f = 0,
-                                ::xml_schema::Container* c = 0);
+    SetComponentState (const SetComponentState& x,
+                       ::xml_schema::Flags f = 0,
+                       ::xml_schema::Container* c = 0);
 
-    virtual SetPatientAssociationState*
+    virtual SetComponentState*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    SetPatientAssociationState&
-    operator= (const SetPatientAssociationState& x);
+    SetComponentState&
+    operator= (const SetComponentState& x);
 
     virtual 
-    ~SetPatientAssociationState ();
+    ~SetComponentState ();
 
     // Implementation.
     //
@@ -3836,199 +3362,141 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< RequestedAssociationType > RequestedAssociation_;
+    ProposedComponentStateSequence ProposedComponentState_;
   };
 
-  class SetPatientAssociationStateResponse: public ::CDM::AbstractSetResponse
+  class SetComponentStateResponse: public ::MDM::AbstractSetResponse
   {
     public:
     // Constructors.
     //
-    SetPatientAssociationStateResponse (const TransactionIdType&,
-                                        const InvocationStateType&,
-                                        const MDIBVersionType&);
+    SetComponentStateResponse (const InvocationInfoType&,
+                               const SequenceIdType&);
 
-    SetPatientAssociationStateResponse (::std::unique_ptr< TransactionIdType >,
-                                        ::std::unique_ptr< InvocationStateType >,
-                                        const MDIBVersionType&);
+    SetComponentStateResponse (::std::unique_ptr< InvocationInfoType >,
+                               const SequenceIdType&);
 
-    SetPatientAssociationStateResponse (const ::xercesc::DOMElement& e,
-                                        ::xml_schema::Flags f = 0,
-                                        ::xml_schema::Container* c = 0);
+    SetComponentStateResponse (const ::xercesc::DOMElement& e,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
 
-    SetPatientAssociationStateResponse (const SetPatientAssociationStateResponse& x,
-                                        ::xml_schema::Flags f = 0,
-                                        ::xml_schema::Container* c = 0);
+    SetComponentStateResponse (const SetComponentStateResponse& x,
+                               ::xml_schema::Flags f = 0,
+                               ::xml_schema::Container* c = 0);
 
-    virtual SetPatientAssociationStateResponse*
+    virtual SetComponentStateResponse*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
     virtual 
-    ~SetPatientAssociationStateResponse ();
+    ~SetComponentStateResponse ();
   };
 
-  class PeriodicMetricReport: public ::CDM::AbstractMetricReport
+  class SetMetricState: public ::MDM::AbstractSet
   {
     public:
-    // Constructors.
+    // ProposedMetricState
     //
-    PeriodicMetricReport (const MDIBVersionType&);
+    typedef ::CDM::AbstractMetricState ProposedMetricStateType;
+    typedef ::xsd::cxx::tree::sequence< ProposedMetricStateType > ProposedMetricStateSequence;
+    typedef ProposedMetricStateSequence::iterator ProposedMetricStateIterator;
+    typedef ProposedMetricStateSequence::const_iterator ProposedMetricStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< ProposedMetricStateType, char > ProposedMetricStateTraits;
 
-    PeriodicMetricReport (const ::xercesc::DOMElement& e,
-                          ::xml_schema::Flags f = 0,
-                          ::xml_schema::Container* c = 0);
+    const ProposedMetricStateSequence&
+    ProposedMetricState () const;
 
-    PeriodicMetricReport (const PeriodicMetricReport& x,
-                          ::xml_schema::Flags f = 0,
-                          ::xml_schema::Container* c = 0);
-
-    virtual PeriodicMetricReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~PeriodicMetricReport ();
-  };
-
-  class EpisodicMetricReport: public ::CDM::AbstractMetricReport
-  {
-    public:
-    // Constructors.
-    //
-    EpisodicMetricReport (const MDIBVersionType&);
-
-    EpisodicMetricReport (const ::xercesc::DOMElement& e,
-                          ::xml_schema::Flags f = 0,
-                          ::xml_schema::Container* c = 0);
-
-    EpisodicMetricReport (const EpisodicMetricReport& x,
-                          ::xml_schema::Flags f = 0,
-                          ::xml_schema::Container* c = 0);
-
-    virtual EpisodicMetricReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~EpisodicMetricReport ();
-  };
-
-  class PeriodicAlertReport: public ::CDM::AbstractAlertReport
-  {
-    public:
-    // Constructors.
-    //
-    PeriodicAlertReport (const MDIBVersionType&);
-
-    PeriodicAlertReport (const ::xercesc::DOMElement& e,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    PeriodicAlertReport (const PeriodicAlertReport& x,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    virtual PeriodicAlertReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~PeriodicAlertReport ();
-  };
-
-  class EpisodicAlertReport: public ::CDM::AbstractAlertReport
-  {
-    public:
-    // Constructors.
-    //
-    EpisodicAlertReport (const MDIBVersionType&);
-
-    EpisodicAlertReport (const ::xercesc::DOMElement& e,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    EpisodicAlertReport (const EpisodicAlertReport& x,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    virtual EpisodicAlertReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~EpisodicAlertReport ();
-  };
-
-  class PeriodicContextChangedReport: public ::CDM::AbstractContextChangedReport
-  {
-    public:
-    // Constructors.
-    //
-    PeriodicContextChangedReport (const MDIBVersionType&);
-
-    PeriodicContextChangedReport (const ::xercesc::DOMElement& e,
-                                  ::xml_schema::Flags f = 0,
-                                  ::xml_schema::Container* c = 0);
-
-    PeriodicContextChangedReport (const PeriodicContextChangedReport& x,
-                                  ::xml_schema::Flags f = 0,
-                                  ::xml_schema::Container* c = 0);
-
-    virtual PeriodicContextChangedReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~PeriodicContextChangedReport ();
-  };
-
-  class EpisodicContextChangedReport: public ::CDM::AbstractContextChangedReport
-  {
-    public:
-    // Constructors.
-    //
-    EpisodicContextChangedReport (const MDIBVersionType&);
-
-    EpisodicContextChangedReport (const ::xercesc::DOMElement& e,
-                                  ::xml_schema::Flags f = 0,
-                                  ::xml_schema::Container* c = 0);
-
-    EpisodicContextChangedReport (const EpisodicContextChangedReport& x,
-                                  ::xml_schema::Flags f = 0,
-                                  ::xml_schema::Container* c = 0);
-
-    virtual EpisodicContextChangedReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~EpisodicContextChangedReport ();
-  };
-
-  class OperationInvokedReport: public ::CDM::AbstractReport
-  {
-    public:
-    // ReportDetail
-    //
-    typedef ::CDM::OperationInvokedReportPart ReportDetailType;
-    typedef ::xsd::cxx::tree::sequence< ReportDetailType > ReportDetailSequence;
-    typedef ReportDetailSequence::iterator ReportDetailIterator;
-    typedef ReportDetailSequence::const_iterator ReportDetailConstIterator;
-    typedef ::xsd::cxx::tree::traits< ReportDetailType, char > ReportDetailTraits;
-
-    const ReportDetailSequence&
-    ReportDetail () const;
-
-    ReportDetailSequence&
-    ReportDetail ();
+    ProposedMetricStateSequence&
+    ProposedMetricState ();
 
     void
-    ReportDetail (const ReportDetailSequence& s);
+    ProposedMetricState (const ProposedMetricStateSequence& s);
 
     // Constructors.
     //
-    OperationInvokedReport (const MDIBVersionType&);
+    SetMetricState (const OperationHandleRefType&);
+
+    SetMetricState (::std::unique_ptr< OperationHandleRefType >);
+
+    SetMetricState (const ::xercesc::DOMElement& e,
+                    ::xml_schema::Flags f = 0,
+                    ::xml_schema::Container* c = 0);
+
+    SetMetricState (const SetMetricState& x,
+                    ::xml_schema::Flags f = 0,
+                    ::xml_schema::Container* c = 0);
+
+    virtual SetMetricState*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    SetMetricState&
+    operator= (const SetMetricState& x);
+
+    virtual 
+    ~SetMetricState ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ProposedMetricStateSequence ProposedMetricState_;
+  };
+
+  class SetMetricStateResponse: public ::MDM::AbstractSetResponse
+  {
+    public:
+    // Constructors.
+    //
+    SetMetricStateResponse (const InvocationInfoType&,
+                            const SequenceIdType&);
+
+    SetMetricStateResponse (::std::unique_ptr< InvocationInfoType >,
+                            const SequenceIdType&);
+
+    SetMetricStateResponse (const ::xercesc::DOMElement& e,
+                            ::xml_schema::Flags f = 0,
+                            ::xml_schema::Container* c = 0);
+
+    SetMetricStateResponse (const SetMetricStateResponse& x,
+                            ::xml_schema::Flags f = 0,
+                            ::xml_schema::Container* c = 0);
+
+    virtual SetMetricStateResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~SetMetricStateResponse ();
+  };
+
+  class OperationInvokedReport: public ::MDM::AbstractReport
+  {
+    public:
+    // ReportPart
+    //
+    typedef ::MDM::ReportPart5 ReportPartType;
+    typedef ::xsd::cxx::tree::sequence< ReportPartType > ReportPartSequence;
+    typedef ReportPartSequence::iterator ReportPartIterator;
+    typedef ReportPartSequence::const_iterator ReportPartConstIterator;
+    typedef ::xsd::cxx::tree::traits< ReportPartType, char > ReportPartTraits;
+
+    const ReportPartSequence&
+    ReportPart () const;
+
+    ReportPartSequence&
+    ReportPart ();
+
+    void
+    ReportPart (const ReportPartSequence& s);
+
+    // Constructors.
+    //
+    OperationInvokedReport (const SequenceIdType&);
 
     OperationInvokedReport (const ::xercesc::DOMElement& e,
                             ::xml_schema::Flags f = 0,
@@ -4056,50 +3524,50 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ReportDetailSequence ReportDetail_;
+    ReportPartSequence ReportPart_;
   };
 
-  class OperationalStateChangedReport: public ::CDM::AbstractReport
+  class GetContainmentTree: public ::MDM::AbstractGet
   {
     public:
-    // ReportDetail
+    // HandleRef
     //
-    typedef ::CDM::OperationalStateChangedReportPart ReportDetailType;
-    typedef ::xsd::cxx::tree::sequence< ReportDetailType > ReportDetailSequence;
-    typedef ReportDetailSequence::iterator ReportDetailIterator;
-    typedef ReportDetailSequence::const_iterator ReportDetailConstIterator;
-    typedef ::xsd::cxx::tree::traits< ReportDetailType, char > ReportDetailTraits;
+    typedef ::CDM::HandleRef HandleRefType;
+    typedef ::xsd::cxx::tree::sequence< HandleRefType > HandleRefSequence;
+    typedef HandleRefSequence::iterator HandleRefIterator;
+    typedef HandleRefSequence::const_iterator HandleRefConstIterator;
+    typedef ::xsd::cxx::tree::traits< HandleRefType, char > HandleRefTraits;
 
-    const ReportDetailSequence&
-    ReportDetail () const;
+    const HandleRefSequence&
+    HandleRef () const;
 
-    ReportDetailSequence&
-    ReportDetail ();
+    HandleRefSequence&
+    HandleRef ();
 
     void
-    ReportDetail (const ReportDetailSequence& s);
+    HandleRef (const HandleRefSequence& s);
 
     // Constructors.
     //
-    OperationalStateChangedReport (const MDIBVersionType&);
+    GetContainmentTree ();
 
-    OperationalStateChangedReport (const ::xercesc::DOMElement& e,
-                                   ::xml_schema::Flags f = 0,
-                                   ::xml_schema::Container* c = 0);
+    GetContainmentTree (const ::xercesc::DOMElement& e,
+                        ::xml_schema::Flags f = 0,
+                        ::xml_schema::Container* c = 0);
 
-    OperationalStateChangedReport (const OperationalStateChangedReport& x,
-                                   ::xml_schema::Flags f = 0,
-                                   ::xml_schema::Container* c = 0);
+    GetContainmentTree (const GetContainmentTree& x,
+                        ::xml_schema::Flags f = 0,
+                        ::xml_schema::Container* c = 0);
 
-    virtual OperationalStateChangedReport*
+    virtual GetContainmentTree*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    OperationalStateChangedReport&
-    operator= (const OperationalStateChangedReport& x);
+    GetContainmentTree&
+    operator= (const GetContainmentTree& x);
 
     virtual 
-    ~OperationalStateChangedReport ();
+    ~GetContainmentTree ();
 
     // Implementation.
     //
@@ -4109,193 +3577,591 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ReportDetailSequence ReportDetail_;
+    HandleRefSequence HandleRef_;
   };
 
-  class OperationCreatedReport: public ::CDM::OperationDescriptionModificationReport
+  class GetContainmentTreeResponse: public ::MDM::AbstractGetResponse
   {
     public:
-    // Constructors.
+    // ContainmentTree
     //
-    OperationCreatedReport (const MDIBVersionType&);
+    typedef ::CDM::ContainmentTree ContainmentTreeType;
+    typedef ::xsd::cxx::tree::traits< ContainmentTreeType, char > ContainmentTreeTraits;
 
-    OperationCreatedReport (const ::xercesc::DOMElement& e,
-                            ::xml_schema::Flags f = 0,
-                            ::xml_schema::Container* c = 0);
+    const ContainmentTreeType&
+    ContainmentTree () const;
 
-    OperationCreatedReport (const OperationCreatedReport& x,
-                            ::xml_schema::Flags f = 0,
-                            ::xml_schema::Container* c = 0);
-
-    virtual OperationCreatedReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~OperationCreatedReport ();
-  };
-
-  class OperationDeletedReport: public ::CDM::OperationDescriptionModificationReport
-  {
-    public:
-    // Constructors.
-    //
-    OperationDeletedReport (const MDIBVersionType&);
-
-    OperationDeletedReport (const ::xercesc::DOMElement& e,
-                            ::xml_schema::Flags f = 0,
-                            ::xml_schema::Container* c = 0);
-
-    OperationDeletedReport (const OperationDeletedReport& x,
-                            ::xml_schema::Flags f = 0,
-                            ::xml_schema::Container* c = 0);
-
-    virtual OperationDeletedReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~OperationDeletedReport ();
-  };
-
-  class ObjectCreatedReport: public ::CDM::DescriptionModificationReport
-  {
-    public:
-    // Constructors.
-    //
-    ObjectCreatedReport (const MDIBVersionType&);
-
-    ObjectCreatedReport (const ::xercesc::DOMElement& e,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    ObjectCreatedReport (const ObjectCreatedReport& x,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    virtual ObjectCreatedReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~ObjectCreatedReport ();
-  };
-
-  class ObjectUpdatedReport: public ::CDM::DescriptionModificationReport
-  {
-    public:
-    // Constructors.
-    //
-    ObjectUpdatedReport (const MDIBVersionType&);
-
-    ObjectUpdatedReport (const ::xercesc::DOMElement& e,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    ObjectUpdatedReport (const ObjectUpdatedReport& x,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    virtual ObjectUpdatedReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~ObjectUpdatedReport ();
-  };
-
-  class ObjectDeletedReport: public ::CDM::DescriptionModificationReport
-  {
-    public:
-    // Constructors.
-    //
-    ObjectDeletedReport (const MDIBVersionType&);
-
-    ObjectDeletedReport (const ::xercesc::DOMElement& e,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    ObjectDeletedReport (const ObjectDeletedReport& x,
-                         ::xml_schema::Flags f = 0,
-                         ::xml_schema::Container* c = 0);
-
-    virtual ObjectDeletedReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~ObjectDeletedReport ();
-  };
-
-  class MDSCreatedReport: public ::CDM::MDSModificationReport
-  {
-    public:
-    // Constructors.
-    //
-    MDSCreatedReport (const MDIBVersionType&);
-
-    MDSCreatedReport (const ::xercesc::DOMElement& e,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
-
-    MDSCreatedReport (const MDSCreatedReport& x,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
-
-    virtual MDSCreatedReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~MDSCreatedReport ();
-  };
-
-  class MDSDeletedReport: public ::CDM::MDSModificationReport
-  {
-    public:
-    // Constructors.
-    //
-    MDSDeletedReport (const MDIBVersionType&);
-
-    MDSDeletedReport (const ::xercesc::DOMElement& e,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
-
-    MDSDeletedReport (const MDSDeletedReport& x,
-                      ::xml_schema::Flags f = 0,
-                      ::xml_schema::Container* c = 0);
-
-    virtual MDSDeletedReport*
-    _clone (::xml_schema::Flags f = 0,
-            ::xml_schema::Container* c = 0) const;
-
-    virtual 
-    ~MDSDeletedReport ();
-  };
-
-  class SystemErrorReport: public ::CDM::AbstractReport
-  {
-    public:
-    // ReportDetail
-    //
-    typedef ::CDM::SystemErrorReportReportPart ReportDetailType;
-    typedef ::xsd::cxx::tree::sequence< ReportDetailType > ReportDetailSequence;
-    typedef ReportDetailSequence::iterator ReportDetailIterator;
-    typedef ReportDetailSequence::const_iterator ReportDetailConstIterator;
-    typedef ::xsd::cxx::tree::traits< ReportDetailType, char > ReportDetailTraits;
-
-    const ReportDetailSequence&
-    ReportDetail () const;
-
-    ReportDetailSequence&
-    ReportDetail ();
+    ContainmentTreeType&
+    ContainmentTree ();
 
     void
-    ReportDetail (const ReportDetailSequence& s);
+    ContainmentTree (const ContainmentTreeType& x);
+
+    void
+    ContainmentTree (::std::unique_ptr< ContainmentTreeType > p);
 
     // Constructors.
     //
-    SystemErrorReport (const MDIBVersionType&);
+    GetContainmentTreeResponse (const SequenceIdType&,
+                                const ContainmentTreeType&);
+
+    GetContainmentTreeResponse (const SequenceIdType&,
+                                ::std::unique_ptr< ContainmentTreeType >);
+
+    GetContainmentTreeResponse (const ::xercesc::DOMElement& e,
+                                ::xml_schema::Flags f = 0,
+                                ::xml_schema::Container* c = 0);
+
+    GetContainmentTreeResponse (const GetContainmentTreeResponse& x,
+                                ::xml_schema::Flags f = 0,
+                                ::xml_schema::Container* c = 0);
+
+    virtual GetContainmentTreeResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetContainmentTreeResponse&
+    operator= (const GetContainmentTreeResponse& x);
+
+    virtual 
+    ~GetContainmentTreeResponse ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ::xsd::cxx::tree::one< ContainmentTreeType > ContainmentTree_;
+  };
+
+  class GetDescriptor: public ::MDM::AbstractGet
+  {
+    public:
+    // HandleRef
+    //
+    typedef ::CDM::HandleRef HandleRefType;
+    typedef ::xsd::cxx::tree::sequence< HandleRefType > HandleRefSequence;
+    typedef HandleRefSequence::iterator HandleRefIterator;
+    typedef HandleRefSequence::const_iterator HandleRefConstIterator;
+    typedef ::xsd::cxx::tree::traits< HandleRefType, char > HandleRefTraits;
+
+    const HandleRefSequence&
+    HandleRef () const;
+
+    HandleRefSequence&
+    HandleRef ();
+
+    void
+    HandleRef (const HandleRefSequence& s);
+
+    // Constructors.
+    //
+    GetDescriptor ();
+
+    GetDescriptor (const ::xercesc::DOMElement& e,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    GetDescriptor (const GetDescriptor& x,
+                   ::xml_schema::Flags f = 0,
+                   ::xml_schema::Container* c = 0);
+
+    virtual GetDescriptor*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetDescriptor&
+    operator= (const GetDescriptor& x);
+
+    virtual 
+    ~GetDescriptor ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    HandleRefSequence HandleRef_;
+  };
+
+  class GetDescriptorResponse: public ::MDM::AbstractGetResponse
+  {
+    public:
+    // Descriptor
+    //
+    typedef ::CDM::AbstractDescriptor DescriptorType;
+    typedef ::xsd::cxx::tree::sequence< DescriptorType > DescriptorSequence;
+    typedef DescriptorSequence::iterator DescriptorIterator;
+    typedef DescriptorSequence::const_iterator DescriptorConstIterator;
+    typedef ::xsd::cxx::tree::traits< DescriptorType, char > DescriptorTraits;
+
+    const DescriptorSequence&
+    Descriptor () const;
+
+    DescriptorSequence&
+    Descriptor ();
+
+    void
+    Descriptor (const DescriptorSequence& s);
+
+    // Constructors.
+    //
+    GetDescriptorResponse (const SequenceIdType&);
+
+    GetDescriptorResponse (const ::xercesc::DOMElement& e,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    GetDescriptorResponse (const GetDescriptorResponse& x,
+                           ::xml_schema::Flags f = 0,
+                           ::xml_schema::Container* c = 0);
+
+    virtual GetDescriptorResponse*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    GetDescriptorResponse&
+    operator= (const GetDescriptorResponse& x);
+
+    virtual 
+    ~GetDescriptorResponse ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    DescriptorSequence Descriptor_;
+  };
+
+  class ReportPart1: public ::MDM::AbstractReportPart
+  {
+    public:
+    // MetricState
+    //
+    typedef ::CDM::AbstractMetricState MetricStateType;
+    typedef ::xsd::cxx::tree::sequence< MetricStateType > MetricStateSequence;
+    typedef MetricStateSequence::iterator MetricStateIterator;
+    typedef MetricStateSequence::const_iterator MetricStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< MetricStateType, char > MetricStateTraits;
+
+    const MetricStateSequence&
+    MetricState () const;
+
+    MetricStateSequence&
+    MetricState ();
+
+    void
+    MetricState (const MetricStateSequence& s);
+
+    // Constructors.
+    //
+    ReportPart1 ();
+
+    ReportPart1 (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    ReportPart1 (const ReportPart1& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual ReportPart1*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    ReportPart1&
+    operator= (const ReportPart1& x);
+
+    virtual 
+    ~ReportPart1 ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    MetricStateSequence MetricState_;
+  };
+
+  class EpisodicMetricReport: public ::MDM::AbstractMetricReport
+  {
+    public:
+    // Constructors.
+    //
+    EpisodicMetricReport (const SequenceIdType&);
+
+    EpisodicMetricReport (const ::xercesc::DOMElement& e,
+                          ::xml_schema::Flags f = 0,
+                          ::xml_schema::Container* c = 0);
+
+    EpisodicMetricReport (const EpisodicMetricReport& x,
+                          ::xml_schema::Flags f = 0,
+                          ::xml_schema::Container* c = 0);
+
+    virtual EpisodicMetricReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~EpisodicMetricReport ();
+  };
+
+  class PeriodicMetricReport: public ::MDM::AbstractMetricReport
+  {
+    public:
+    // Constructors.
+    //
+    PeriodicMetricReport (const SequenceIdType&);
+
+    PeriodicMetricReport (const ::xercesc::DOMElement& e,
+                          ::xml_schema::Flags f = 0,
+                          ::xml_schema::Container* c = 0);
+
+    PeriodicMetricReport (const PeriodicMetricReport& x,
+                          ::xml_schema::Flags f = 0,
+                          ::xml_schema::Container* c = 0);
+
+    virtual PeriodicMetricReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~PeriodicMetricReport ();
+  };
+
+  class ReportPart2: public ::MDM::AbstractReportPart
+  {
+    public:
+    // ComponentState
+    //
+    typedef ::CDM::AbstractDeviceComponentState ComponentStateType;
+    typedef ::xsd::cxx::tree::sequence< ComponentStateType > ComponentStateSequence;
+    typedef ComponentStateSequence::iterator ComponentStateIterator;
+    typedef ComponentStateSequence::const_iterator ComponentStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< ComponentStateType, char > ComponentStateTraits;
+
+    const ComponentStateSequence&
+    ComponentState () const;
+
+    ComponentStateSequence&
+    ComponentState ();
+
+    void
+    ComponentState (const ComponentStateSequence& s);
+
+    // Constructors.
+    //
+    ReportPart2 ();
+
+    ReportPart2 (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    ReportPart2 (const ReportPart2& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual ReportPart2*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    ReportPart2&
+    operator= (const ReportPart2& x);
+
+    virtual 
+    ~ReportPart2 ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ComponentStateSequence ComponentState_;
+  };
+
+  class EpisodicComponentReport: public ::MDM::AbstractComponentReport
+  {
+    public:
+    // Constructors.
+    //
+    EpisodicComponentReport (const SequenceIdType&);
+
+    EpisodicComponentReport (const ::xercesc::DOMElement& e,
+                             ::xml_schema::Flags f = 0,
+                             ::xml_schema::Container* c = 0);
+
+    EpisodicComponentReport (const EpisodicComponentReport& x,
+                             ::xml_schema::Flags f = 0,
+                             ::xml_schema::Container* c = 0);
+
+    virtual EpisodicComponentReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~EpisodicComponentReport ();
+  };
+
+  class PeriodicComponentReport: public ::MDM::AbstractComponentReport
+  {
+    public:
+    // Constructors.
+    //
+    PeriodicComponentReport (const SequenceIdType&);
+
+    PeriodicComponentReport (const ::xercesc::DOMElement& e,
+                             ::xml_schema::Flags f = 0,
+                             ::xml_schema::Container* c = 0);
+
+    PeriodicComponentReport (const PeriodicComponentReport& x,
+                             ::xml_schema::Flags f = 0,
+                             ::xml_schema::Container* c = 0);
+
+    virtual PeriodicComponentReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~PeriodicComponentReport ();
+  };
+
+  class ReportPart3: public ::MDM::AbstractReportPart
+  {
+    public:
+    // AlertState
+    //
+    typedef ::CDM::AbstractAlertState AlertStateType;
+    typedef ::xsd::cxx::tree::sequence< AlertStateType > AlertStateSequence;
+    typedef AlertStateSequence::iterator AlertStateIterator;
+    typedef AlertStateSequence::const_iterator AlertStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< AlertStateType, char > AlertStateTraits;
+
+    const AlertStateSequence&
+    AlertState () const;
+
+    AlertStateSequence&
+    AlertState ();
+
+    void
+    AlertState (const AlertStateSequence& s);
+
+    // Constructors.
+    //
+    ReportPart3 ();
+
+    ReportPart3 (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    ReportPart3 (const ReportPart3& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual ReportPart3*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    ReportPart3&
+    operator= (const ReportPart3& x);
+
+    virtual 
+    ~ReportPart3 ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    AlertStateSequence AlertState_;
+  };
+
+  class EpisodicAlertReport: public ::MDM::AbstractAlertReport
+  {
+    public:
+    // Constructors.
+    //
+    EpisodicAlertReport (const SequenceIdType&);
+
+    EpisodicAlertReport (const ::xercesc::DOMElement& e,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
+
+    EpisodicAlertReport (const EpisodicAlertReport& x,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
+
+    virtual EpisodicAlertReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~EpisodicAlertReport ();
+  };
+
+  class PeriodicAlertReport: public ::MDM::AbstractAlertReport
+  {
+    public:
+    // Constructors.
+    //
+    PeriodicAlertReport (const SequenceIdType&);
+
+    PeriodicAlertReport (const ::xercesc::DOMElement& e,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
+
+    PeriodicAlertReport (const PeriodicAlertReport& x,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
+
+    virtual PeriodicAlertReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~PeriodicAlertReport ();
+  };
+
+  class ReportPart4: public ::MDM::AbstractReportPart
+  {
+    public:
+    // OperationState
+    //
+    typedef ::CDM::AbstractOperationState OperationStateType;
+    typedef ::xsd::cxx::tree::sequence< OperationStateType > OperationStateSequence;
+    typedef OperationStateSequence::iterator OperationStateIterator;
+    typedef OperationStateSequence::const_iterator OperationStateConstIterator;
+    typedef ::xsd::cxx::tree::traits< OperationStateType, char > OperationStateTraits;
+
+    const OperationStateSequence&
+    OperationState () const;
+
+    OperationStateSequence&
+    OperationState ();
+
+    void
+    OperationState (const OperationStateSequence& s);
+
+    // Constructors.
+    //
+    ReportPart4 ();
+
+    ReportPart4 (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    ReportPart4 (const ReportPart4& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual ReportPart4*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    ReportPart4&
+    operator= (const ReportPart4& x);
+
+    virtual 
+    ~ReportPart4 ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    OperationStateSequence OperationState_;
+  };
+
+  class EpisodicOperationalStateReport: public ::MDM::AbstractOperationalStateReport
+  {
+    public:
+    // Constructors.
+    //
+    EpisodicOperationalStateReport (const SequenceIdType&);
+
+    EpisodicOperationalStateReport (const ::xercesc::DOMElement& e,
+                                    ::xml_schema::Flags f = 0,
+                                    ::xml_schema::Container* c = 0);
+
+    EpisodicOperationalStateReport (const EpisodicOperationalStateReport& x,
+                                    ::xml_schema::Flags f = 0,
+                                    ::xml_schema::Container* c = 0);
+
+    virtual EpisodicOperationalStateReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~EpisodicOperationalStateReport ();
+  };
+
+  class PeriodicOperationalStateReport: public ::MDM::AbstractOperationalStateReport
+  {
+    public:
+    // Constructors.
+    //
+    PeriodicOperationalStateReport (const SequenceIdType&);
+
+    PeriodicOperationalStateReport (const ::xercesc::DOMElement& e,
+                                    ::xml_schema::Flags f = 0,
+                                    ::xml_schema::Container* c = 0);
+
+    PeriodicOperationalStateReport (const PeriodicOperationalStateReport& x,
+                                    ::xml_schema::Flags f = 0,
+                                    ::xml_schema::Container* c = 0);
+
+    virtual PeriodicOperationalStateReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~PeriodicOperationalStateReport ();
+  };
+
+  class SystemErrorReport: public ::MDM::AbstractReport
+  {
+    public:
+    // ReportPart
+    //
+    typedef ::MDM::ReportPart6 ReportPartType;
+    typedef ::xsd::cxx::tree::sequence< ReportPartType > ReportPartSequence;
+    typedef ReportPartSequence::iterator ReportPartIterator;
+    typedef ReportPartSequence::const_iterator ReportPartConstIterator;
+    typedef ::xsd::cxx::tree::traits< ReportPartType, char > ReportPartTraits;
+
+    const ReportPartSequence&
+    ReportPart () const;
+
+    ReportPartSequence&
+    ReportPart ();
+
+    void
+    ReportPart (const ReportPartSequence& s);
+
+    // Constructors.
+    //
+    SystemErrorReport (const SequenceIdType&);
 
     SystemErrorReport (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f = 0,
@@ -4323,53 +4189,85 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ReportDetailSequence ReportDetail_;
+    ReportPartSequence ReportPart_;
   };
 
-  class WaveformStream: public ::xml_schema::Type
+  class DescriptionModificationReport: public ::MDM::AbstractReport
   {
     public:
-    // Extension
+    // ReportPart
     //
-    typedef ::CDM::Extension ExtensionType;
-    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
-    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
+    typedef ::MDM::ReportPart7 ReportPartType;
+    typedef ::xsd::cxx::tree::sequence< ReportPartType > ReportPartSequence;
+    typedef ReportPartSequence::iterator ReportPartIterator;
+    typedef ReportPartSequence::const_iterator ReportPartConstIterator;
+    typedef ::xsd::cxx::tree::traits< ReportPartType, char > ReportPartTraits;
 
-    const ExtensionOptional&
-    Extension () const;
+    const ReportPartSequence&
+    ReportPart () const;
 
-    ExtensionOptional&
-    Extension ();
-
-    void
-    Extension (const ExtensionType& x);
-
-    void
-    Extension (const ExtensionOptional& x);
+    ReportPartSequence&
+    ReportPart ();
 
     void
-    Extension (::std::unique_ptr< ExtensionType > p);
-
-    // RealTimeSampleArray
-    //
-    typedef ::CDM::RealTimeSampleArrayMetricState RealTimeSampleArrayType;
-    typedef ::xsd::cxx::tree::sequence< RealTimeSampleArrayType > RealTimeSampleArraySequence;
-    typedef RealTimeSampleArraySequence::iterator RealTimeSampleArrayIterator;
-    typedef RealTimeSampleArraySequence::const_iterator RealTimeSampleArrayConstIterator;
-    typedef ::xsd::cxx::tree::traits< RealTimeSampleArrayType, char > RealTimeSampleArrayTraits;
-
-    const RealTimeSampleArraySequence&
-    RealTimeSampleArray () const;
-
-    RealTimeSampleArraySequence&
-    RealTimeSampleArray ();
-
-    void
-    RealTimeSampleArray (const RealTimeSampleArraySequence& s);
+    ReportPart (const ReportPartSequence& s);
 
     // Constructors.
     //
-    WaveformStream ();
+    DescriptionModificationReport (const SequenceIdType&);
+
+    DescriptionModificationReport (const ::xercesc::DOMElement& e,
+                                   ::xml_schema::Flags f = 0,
+                                   ::xml_schema::Container* c = 0);
+
+    DescriptionModificationReport (const DescriptionModificationReport& x,
+                                   ::xml_schema::Flags f = 0,
+                                   ::xml_schema::Container* c = 0);
+
+    virtual DescriptionModificationReport*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    DescriptionModificationReport&
+    operator= (const DescriptionModificationReport& x);
+
+    virtual 
+    ~DescriptionModificationReport ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ReportPartSequence ReportPart_;
+  };
+
+  class WaveformStream: public ::MDM::AbstractReport
+  {
+    public:
+    // State
+    //
+    typedef ::CDM::RealTimeSampleArrayMetricState StateType;
+    typedef ::xsd::cxx::tree::sequence< StateType > StateSequence;
+    typedef StateSequence::iterator StateIterator;
+    typedef StateSequence::const_iterator StateConstIterator;
+    typedef ::xsd::cxx::tree::traits< StateType, char > StateTraits;
+
+    const StateSequence&
+    State () const;
+
+    StateSequence&
+    State ();
+
+    void
+    State (const StateSequence& s);
+
+    // Constructors.
+    //
+    WaveformStream (const SequenceIdType&);
 
     WaveformStream (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
@@ -4397,37 +4295,15 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ExtensionOptional Extension_;
-    RealTimeSampleArraySequence RealTimeSampleArray_;
+    StateSequence State_;
   };
 
-  class OVStream: public ::xml_schema::Type
+  class ObservedValueStream: public ::MDM::AbstractReport
   {
     public:
-    // Extension
-    //
-    typedef ::CDM::Extension ExtensionType;
-    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
-    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
-
-    const ExtensionOptional&
-    Extension () const;
-
-    ExtensionOptional&
-    Extension ();
-
-    void
-    Extension (const ExtensionType& x);
-
-    void
-    Extension (const ExtensionOptional& x);
-
-    void
-    Extension (::std::unique_ptr< ExtensionType > p);
-
     // Value
     //
-    typedef ::CDM::StreamElement ValueType;
+    typedef ::MDM::Value ValueType;
     typedef ::xsd::cxx::tree::sequence< ValueType > ValueSequence;
     typedef ValueSequence::iterator ValueIterator;
     typedef ValueSequence::const_iterator ValueConstIterator;
@@ -4444,25 +4320,25 @@ namespace CDM
 
     // Constructors.
     //
-    OVStream ();
+    ObservedValueStream (const SequenceIdType&);
 
-    OVStream (const ::xercesc::DOMElement& e,
-              ::xml_schema::Flags f = 0,
-              ::xml_schema::Container* c = 0);
+    ObservedValueStream (const ::xercesc::DOMElement& e,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
 
-    OVStream (const OVStream& x,
-              ::xml_schema::Flags f = 0,
-              ::xml_schema::Container* c = 0);
+    ObservedValueStream (const ObservedValueStream& x,
+                         ::xml_schema::Flags f = 0,
+                         ::xml_schema::Container* c = 0);
 
-    virtual OVStream*
+    virtual ObservedValueStream*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    OVStream&
-    operator= (const OVStream& x);
+    ObservedValueStream&
+    operator= (const ObservedValueStream& x);
 
     virtual 
-    ~OVStream ();
+    ~ObservedValueStream ();
 
     // Implementation.
     //
@@ -4472,7 +4348,6 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ExtensionOptional Extension_;
     ValueSequence Value_;
   };
 
@@ -4481,7 +4356,7 @@ namespace CDM
     public:
     // By
     //
-    typedef ::CDM::MetricRetrievability ByType;
+    typedef ::MDM::RetrievabilityInfo ByType;
     typedef ::xsd::cxx::tree::sequence< ByType > BySequence;
     typedef BySequence::iterator ByIterator;
     typedef BySequence::const_iterator ByConstIterator;
@@ -4529,66 +4404,70 @@ namespace CDM
     BySequence By_;
   };
 
-  class OperationReference: public ::xml_schema::Type
+  class Argument: public ::xml_schema::Type
   {
     public:
-    // ServiceID
+    // Extension
     //
-    typedef ::xml_schema::String ServiceIDType;
-    typedef ::xsd::cxx::tree::sequence< ServiceIDType > ServiceIDSequence;
-    typedef ServiceIDSequence::iterator ServiceIDIterator;
-    typedef ServiceIDSequence::const_iterator ServiceIDConstIterator;
-    typedef ::xsd::cxx::tree::traits< ServiceIDType, char > ServiceIDTraits;
+    typedef ::EXT::ExtensionType ExtensionType;
+    typedef ::xsd::cxx::tree::optional< ExtensionType > ExtensionOptional;
+    typedef ::xsd::cxx::tree::traits< ExtensionType, char > ExtensionTraits;
 
-    const ServiceIDSequence&
-    ServiceID () const;
+    const ExtensionOptional&
+    Extension () const;
 
-    ServiceIDSequence&
-    ServiceID ();
+    ExtensionOptional&
+    Extension ();
 
     void
-    ServiceID (const ServiceIDSequence& s);
+    Extension (const ExtensionType& x);
 
-    // Action
+    void
+    Extension (const ExtensionOptional& x);
+
+    void
+    Extension (::std::unique_ptr< ExtensionType > p);
+
+    // ArgValue
     //
-    typedef ::xml_schema::String ActionType;
-    typedef ::xsd::cxx::tree::traits< ActionType, char > ActionTraits;
+    typedef ::xml_schema::SimpleType ArgValueType;
+    typedef ::xsd::cxx::tree::traits< ArgValueType, char > ArgValueTraits;
 
-    const ActionType&
-    Action () const;
+    const ArgValueType&
+    ArgValue () const;
 
-    ActionType&
-    Action ();
-
-    void
-    Action (const ActionType& x);
+    ArgValueType&
+    ArgValue ();
 
     void
-    Action (::std::unique_ptr< ActionType > p);
+    ArgValue (const ArgValueType& x);
+
+    void
+    ArgValue (::std::unique_ptr< ArgValueType > p);
 
     // Constructors.
     //
-    OperationReference (const ActionType&);
+    Argument (const ArgValueType&);
 
-    OperationReference (::std::unique_ptr< ActionType >);
+    Argument (::std::unique_ptr< ArgValueType >);
 
-    OperationReference (const ::xercesc::DOMElement& e,
-                        ::xml_schema::Flags f = 0,
-                        ::xml_schema::Container* c = 0);
+    Argument (const ::xercesc::DOMElement& e,
+              ::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0);
 
-    OperationReference (const OperationReference& x,
-                        ::xml_schema::Flags f = 0,
-                        ::xml_schema::Container* c = 0);
+    Argument (const Argument& x,
+              ::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0);
 
-    virtual OperationReference*
+    virtual Argument*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
-    OperationReference&
-    operator= (const OperationReference& x);
+    Argument&
+    operator= (const Argument& x);
 
     virtual 
-    ~OperationReference ();
+    ~Argument ();
 
     // Implementation.
     //
@@ -4598,8 +4477,414 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ServiceIDSequence ServiceID_;
-    ::xsd::cxx::tree::one< ActionType > Action_;
+    ExtensionOptional Extension_;
+    ::xsd::cxx::tree::one< ArgValueType > ArgValue_;
+  };
+
+  class ReportPart5: public ::MDM::AbstractReportPart
+  {
+    public:
+    // InvocationInfo
+    //
+    typedef ::MDM::InvocationInfo InvocationInfoType;
+    typedef ::xsd::cxx::tree::traits< InvocationInfoType, char > InvocationInfoTraits;
+
+    const InvocationInfoType&
+    InvocationInfo () const;
+
+    InvocationInfoType&
+    InvocationInfo ();
+
+    void
+    InvocationInfo (const InvocationInfoType& x);
+
+    void
+    InvocationInfo (::std::unique_ptr< InvocationInfoType > p);
+
+    // InvocationSource
+    //
+    typedef ::CDM::InstanceIdentifier InvocationSourceType;
+    typedef ::xsd::cxx::tree::traits< InvocationSourceType, char > InvocationSourceTraits;
+
+    const InvocationSourceType&
+    InvocationSource () const;
+
+    InvocationSourceType&
+    InvocationSource ();
+
+    void
+    InvocationSource (const InvocationSourceType& x);
+
+    void
+    InvocationSource (::std::unique_ptr< InvocationSourceType > p);
+
+    // OperationHandleRef
+    //
+    typedef ::CDM::HandleRef OperationHandleRefType;
+    typedef ::xsd::cxx::tree::traits< OperationHandleRefType, char > OperationHandleRefTraits;
+
+    const OperationHandleRefType&
+    OperationHandleRef () const;
+
+    OperationHandleRefType&
+    OperationHandleRef ();
+
+    void
+    OperationHandleRef (const OperationHandleRefType& x);
+
+    void
+    OperationHandleRef (::std::unique_ptr< OperationHandleRefType > p);
+
+    // OperationTarget
+    //
+    typedef ::CDM::HandleRef OperationTargetType;
+    typedef ::xsd::cxx::tree::optional< OperationTargetType > OperationTargetOptional;
+    typedef ::xsd::cxx::tree::traits< OperationTargetType, char > OperationTargetTraits;
+
+    const OperationTargetOptional&
+    OperationTarget () const;
+
+    OperationTargetOptional&
+    OperationTarget ();
+
+    void
+    OperationTarget (const OperationTargetType& x);
+
+    void
+    OperationTarget (const OperationTargetOptional& x);
+
+    void
+    OperationTarget (::std::unique_ptr< OperationTargetType > p);
+
+    // Constructors.
+    //
+    ReportPart5 (const InvocationInfoType&,
+                 const InvocationSourceType&,
+                 const OperationHandleRefType&);
+
+    ReportPart5 (::std::unique_ptr< InvocationInfoType >,
+                 ::std::unique_ptr< InvocationSourceType >,
+                 const OperationHandleRefType&);
+
+    ReportPart5 (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    ReportPart5 (const ReportPart5& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual ReportPart5*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    ReportPart5&
+    operator= (const ReportPart5& x);
+
+    virtual 
+    ~ReportPart5 ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ::xsd::cxx::tree::one< InvocationInfoType > InvocationInfo_;
+    ::xsd::cxx::tree::one< InvocationSourceType > InvocationSource_;
+    ::xsd::cxx::tree::one< OperationHandleRefType > OperationHandleRef_;
+    OperationTargetOptional OperationTarget_;
+  };
+
+  class ReportPart6: public ::MDM::AbstractReportPart
+  {
+    public:
+    // ErrorCode
+    //
+    typedef ::CDM::CodedValue ErrorCodeType;
+    typedef ::xsd::cxx::tree::traits< ErrorCodeType, char > ErrorCodeTraits;
+
+    const ErrorCodeType&
+    ErrorCode () const;
+
+    ErrorCodeType&
+    ErrorCode ();
+
+    void
+    ErrorCode (const ErrorCodeType& x);
+
+    void
+    ErrorCode (::std::unique_ptr< ErrorCodeType > p);
+
+    // ErrorInfo
+    //
+    typedef ::CDM::LocalizedText ErrorInfoType;
+    typedef ::xsd::cxx::tree::optional< ErrorInfoType > ErrorInfoOptional;
+    typedef ::xsd::cxx::tree::traits< ErrorInfoType, char > ErrorInfoTraits;
+
+    const ErrorInfoOptional&
+    ErrorInfo () const;
+
+    ErrorInfoOptional&
+    ErrorInfo ();
+
+    void
+    ErrorInfo (const ErrorInfoType& x);
+
+    void
+    ErrorInfo (const ErrorInfoOptional& x);
+
+    void
+    ErrorInfo (::std::unique_ptr< ErrorInfoType > p);
+
+    // Constructors.
+    //
+    ReportPart6 (const ErrorCodeType&);
+
+    ReportPart6 (::std::unique_ptr< ErrorCodeType >);
+
+    ReportPart6 (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    ReportPart6 (const ReportPart6& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual ReportPart6*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    ReportPart6&
+    operator= (const ReportPart6& x);
+
+    virtual 
+    ~ReportPart6 ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    ::xsd::cxx::tree::one< ErrorCodeType > ErrorCode_;
+    ErrorInfoOptional ErrorInfo_;
+  };
+
+  class ReportPart7: public ::MDM::AbstractReportPart
+  {
+    public:
+    // Descriptor
+    //
+    typedef ::CDM::AbstractDescriptor DescriptorType;
+    typedef ::xsd::cxx::tree::sequence< DescriptorType > DescriptorSequence;
+    typedef DescriptorSequence::iterator DescriptorIterator;
+    typedef DescriptorSequence::const_iterator DescriptorConstIterator;
+    typedef ::xsd::cxx::tree::traits< DescriptorType, char > DescriptorTraits;
+
+    const DescriptorSequence&
+    Descriptor () const;
+
+    DescriptorSequence&
+    Descriptor ();
+
+    void
+    Descriptor (const DescriptorSequence& s);
+
+    // State
+    //
+    typedef ::CDM::AbstractState StateType;
+    typedef ::xsd::cxx::tree::sequence< StateType > StateSequence;
+    typedef StateSequence::iterator StateIterator;
+    typedef StateSequence::const_iterator StateConstIterator;
+    typedef ::xsd::cxx::tree::traits< StateType, char > StateTraits;
+
+    const StateSequence&
+    State () const;
+
+    StateSequence&
+    State ();
+
+    void
+    State (const StateSequence& s);
+
+    // ParentDescriptor
+    //
+    typedef ::CDM::HandleRef ParentDescriptorType;
+    typedef ::xsd::cxx::tree::optional< ParentDescriptorType > ParentDescriptorOptional;
+    typedef ::xsd::cxx::tree::traits< ParentDescriptorType, char > ParentDescriptorTraits;
+
+    const ParentDescriptorOptional&
+    ParentDescriptor () const;
+
+    ParentDescriptorOptional&
+    ParentDescriptor ();
+
+    void
+    ParentDescriptor (const ParentDescriptorType& x);
+
+    void
+    ParentDescriptor (const ParentDescriptorOptional& x);
+
+    void
+    ParentDescriptor (::std::unique_ptr< ParentDescriptorType > p);
+
+    // ModificationType
+    //
+    typedef ::MDM::DescriptionModificationType ModificationTypeType;
+    typedef ::xsd::cxx::tree::optional< ModificationTypeType > ModificationTypeOptional;
+    typedef ::xsd::cxx::tree::traits< ModificationTypeType, char > ModificationTypeTraits;
+
+    const ModificationTypeOptional&
+    ModificationType () const;
+
+    ModificationTypeOptional&
+    ModificationType ();
+
+    void
+    ModificationType (const ModificationTypeType& x);
+
+    void
+    ModificationType (const ModificationTypeOptional& x);
+
+    void
+    ModificationType (::std::unique_ptr< ModificationTypeType > p);
+
+    // Constructors.
+    //
+    ReportPart7 ();
+
+    ReportPart7 (const ::xercesc::DOMElement& e,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    ReportPart7 (const ReportPart7& x,
+                 ::xml_schema::Flags f = 0,
+                 ::xml_schema::Container* c = 0);
+
+    virtual ReportPart7*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    ReportPart7&
+    operator= (const ReportPart7& x);
+
+    virtual 
+    ~ReportPart7 ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    DescriptorSequence Descriptor_;
+    StateSequence State_;
+    ParentDescriptorOptional ParentDescriptor_;
+    ModificationTypeOptional ModificationType_;
+  };
+
+  class Value: public ::xml_schema::Type
+  {
+    public:
+    // Value
+    //
+    typedef ::CDM::SampleArrayValue Value1Type;
+    typedef ::xsd::cxx::tree::optional< Value1Type > Value1Optional;
+    typedef ::xsd::cxx::tree::traits< Value1Type, char > Value1Traits;
+
+    const Value1Optional&
+    Value1 () const;
+
+    Value1Optional&
+    Value1 ();
+
+    void
+    Value1 (const Value1Type& x);
+
+    void
+    Value1 (const Value1Optional& x);
+
+    void
+    Value1 (::std::unique_ptr< Value1Type > p);
+
+    // Metric
+    //
+    typedef ::CDM::HandleRef MetricType;
+    typedef ::xsd::cxx::tree::traits< MetricType, char > MetricTraits;
+
+    const MetricType&
+    Metric () const;
+
+    MetricType&
+    Metric ();
+
+    void
+    Metric (const MetricType& x);
+
+    void
+    Metric (::std::unique_ptr< MetricType > p);
+
+    // StateVersion
+    //
+    typedef ::CDM::VersionCounter StateVersionType;
+    typedef ::xsd::cxx::tree::optional< StateVersionType > StateVersionOptional;
+    typedef ::xsd::cxx::tree::traits< StateVersionType, char > StateVersionTraits;
+
+    const StateVersionOptional&
+    StateVersion () const;
+
+    StateVersionOptional&
+    StateVersion ();
+
+    void
+    StateVersion (const StateVersionType& x);
+
+    void
+    StateVersion (const StateVersionOptional& x);
+
+    void
+    StateVersion (::std::unique_ptr< StateVersionType > p);
+
+    // Constructors.
+    //
+    Value (const MetricType&);
+
+    Value (const ::xercesc::DOMElement& e,
+           ::xml_schema::Flags f = 0,
+           ::xml_schema::Container* c = 0);
+
+    Value (const Value& x,
+           ::xml_schema::Flags f = 0,
+           ::xml_schema::Container* c = 0);
+
+    virtual Value*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    Value&
+    operator= (const Value& x);
+
+    virtual 
+    ~Value ();
+
+    // Implementation.
+    //
+    protected:
+    void
+    parse (::xsd::cxx::xml::dom::parser< char >&,
+           ::xml_schema::Flags);
+
+    protected:
+    Value1Optional Value1_;
+    ::xsd::cxx::tree::one< MetricType > Metric_;
+    StateVersionOptional StateVersion_;
   };
 }
 
@@ -4609,24 +4894,24 @@ namespace CDM
 #include <xercesc/dom/DOMDocument.hpp>
 #include <xercesc/dom/DOMErrorHandler.hpp>
 
-namespace CDM
+namespace MDM
 {
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (const ::std::string& uri,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (const ::std::string& uri,
             ::xml_schema::ErrorHandler& eh,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (const ::std::string& uri,
             ::xercesc::DOMErrorHandler& eh,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -4634,38 +4919,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::std::istream& is,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::std::istream& is,
             ::xml_schema::ErrorHandler& eh,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::std::istream& is,
             ::xercesc::DOMErrorHandler& eh,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::std::istream& is,
             const ::std::string& id,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::std::istream& is,
             const ::std::string& id,
             ::xml_schema::ErrorHandler& eh,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::std::istream& is,
             const ::std::string& id,
             ::xercesc::DOMErrorHandler& eh,
             ::xml_schema::Flags f = 0,
@@ -4674,19 +4959,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::xercesc::InputSource& is,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::xercesc::InputSource& is,
             ::xml_schema::ErrorHandler& eh,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::xercesc::InputSource& is,
             ::xercesc::DOMErrorHandler& eh,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -4694,32 +4979,32 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (const ::xercesc::DOMDocument& d,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIB >
-  GetMDIB_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::GetMdib >
+  GetMdib_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
             ::xml_schema::Flags f = 0,
             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (const ::std::string& uri,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (const ::std::string& uri,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (const ::std::string& uri,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -4727,38 +5012,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::std::istream& is,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::std::istream& is,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::std::istream& is,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::std::istream& is,
                     const ::std::string& id,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::std::istream& is,
                     const ::std::string& id,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::std::istream& is,
                     const ::std::string& id,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
@@ -4767,19 +5052,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::xercesc::InputSource& is,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::xercesc::InputSource& is,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::xercesc::InputSource& is,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -4787,32 +5072,32 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (const ::xercesc::DOMDocument& d,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDIBResponse >
-  GetMDIBResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::GetMdibResponse >
+  GetMdibResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (const ::std::string& uri,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (const ::std::string& uri,
                      ::xml_schema::ErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (const ::std::string& uri,
                      ::xercesc::DOMErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -4820,38 +5105,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::std::istream& is,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::std::istream& is,
                      ::xml_schema::ErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::std::istream& is,
                      ::xercesc::DOMErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::std::istream& is,
                      const ::std::string& id,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::std::istream& is,
                      const ::std::string& id,
                      ::xml_schema::ErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::std::istream& is,
                      const ::std::string& id,
                      ::xercesc::DOMErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
@@ -4860,19 +5145,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::xercesc::InputSource& is,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::xercesc::InputSource& is,
                      ::xml_schema::ErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::xercesc::InputSource& is,
                      ::xercesc::DOMErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -4880,32 +5165,32 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (const ::xercesc::DOMDocument& d,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescription >
-  GetMDDescription_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::GetMdDescription >
+  GetMdDescription_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (const ::std::string& uri,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (const ::std::string& uri,
                              ::xml_schema::ErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (const ::std::string& uri,
                              ::xercesc::DOMErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -4913,38 +5198,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::std::istream& is,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::std::istream& is,
                              ::xml_schema::ErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::std::istream& is,
                              ::xercesc::DOMErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::std::istream& is,
                              const ::std::string& id,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::std::istream& is,
                              const ::std::string& id,
                              ::xml_schema::ErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::std::istream& is,
                              const ::std::string& id,
                              ::xercesc::DOMErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
@@ -4953,19 +5238,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::xercesc::InputSource& is,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::xercesc::InputSource& is,
                              ::xml_schema::ErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::xercesc::InputSource& is,
                              ::xercesc::DOMErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -4973,32 +5258,32 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (const ::xercesc::DOMDocument& d,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDDescriptionResponse >
-  GetMDDescriptionResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
+  GetMdDescriptionResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (const ::std::string& uri,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (const ::std::string& uri,
                ::xml_schema::ErrorHandler& eh,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (const ::std::string& uri,
                ::xercesc::DOMErrorHandler& eh,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -5006,38 +5291,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::std::istream& is,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::std::istream& is,
                ::xml_schema::ErrorHandler& eh,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::std::istream& is,
                ::xercesc::DOMErrorHandler& eh,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::std::istream& is,
                const ::std::string& id,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::std::istream& is,
                const ::std::string& id,
                ::xml_schema::ErrorHandler& eh,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::std::istream& is,
                const ::std::string& id,
                ::xercesc::DOMErrorHandler& eh,
                ::xml_schema::Flags f = 0,
@@ -5046,19 +5331,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::xercesc::InputSource& is,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::xercesc::InputSource& is,
                ::xml_schema::ErrorHandler& eh,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::xercesc::InputSource& is,
                ::xercesc::DOMErrorHandler& eh,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -5066,32 +5351,32 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (const ::xercesc::DOMDocument& d,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDState >
-  GetMDState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::GetMdState >
+  GetMdState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                ::xml_schema::Flags f = 0,
                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (const ::std::string& uri,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (const ::std::string& uri,
                        ::xml_schema::ErrorHandler& eh,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (const ::std::string& uri,
                        ::xercesc::DOMErrorHandler& eh,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -5099,38 +5384,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::std::istream& is,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::std::istream& is,
                        ::xml_schema::ErrorHandler& eh,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::std::istream& is,
                        ::xercesc::DOMErrorHandler& eh,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::std::istream& is,
                        const ::std::string& id,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::std::istream& is,
                        const ::std::string& id,
                        ::xml_schema::ErrorHandler& eh,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::std::istream& is,
                        const ::std::string& id,
                        ::xercesc::DOMErrorHandler& eh,
                        ::xml_schema::Flags f = 0,
@@ -5139,19 +5424,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::xercesc::InputSource& is,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::xercesc::InputSource& is,
                        ::xml_schema::ErrorHandler& eh,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::xercesc::InputSource& is,
                        ::xercesc::DOMErrorHandler& eh,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -5159,31 +5444,31 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (const ::xercesc::DOMDocument& d,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetMDStateResponse >
-  GetMDStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::GetMdStateResponse >
+  GetMdStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                        ::xml_schema::Flags f = 0,
                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (const ::std::string& uri,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (const ::std::string& uri,
                      ::xml_schema::ErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (const ::std::string& uri,
                      ::xercesc::DOMErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
@@ -5192,37 +5477,37 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      ::xml_schema::ErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      ::xercesc::DOMErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      const ::std::string& id,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      const ::std::string& id,
                      ::xml_schema::ErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::std::istream& is,
                      const ::std::string& id,
                      ::xercesc::DOMErrorHandler& eh,
@@ -5232,18 +5517,18 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::xercesc::InputSource& is,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::xercesc::InputSource& is,
                      ::xml_schema::ErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::xercesc::InputSource& is,
                      ::xercesc::DOMErrorHandler& eh,
                      ::xml_schema::Flags f = 0,
@@ -5252,12 +5537,12 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (const ::xercesc::DOMDocument& d,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStates >
+  ::std::unique_ptr< ::MDM::GetContextStates >
   GetContextStates_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                      ::xml_schema::Flags f = 0,
                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -5265,18 +5550,18 @@ namespace CDM
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (const ::std::string& uri,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (const ::std::string& uri,
                              ::xml_schema::ErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (const ::std::string& uri,
                              ::xercesc::DOMErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
@@ -5285,37 +5570,37 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              ::xml_schema::ErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              ::xercesc::DOMErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              const ::std::string& id,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              const ::std::string& id,
                              ::xml_schema::ErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::std::istream& is,
                              const ::std::string& id,
                              ::xercesc::DOMErrorHandler& eh,
@@ -5325,18 +5610,18 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::xercesc::InputSource& is,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::xercesc::InputSource& is,
                              ::xml_schema::ErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::xercesc::InputSource& is,
                              ::xercesc::DOMErrorHandler& eh,
                              ::xml_schema::Flags f = 0,
@@ -5345,12 +5630,12 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (const ::xercesc::DOMDocument& d,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContextStatesResponse >
+  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
   GetContextStatesResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                              ::xml_schema::Flags f = 0,
                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -5358,1320 +5643,390 @@ namespace CDM
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (const ::std::string& uri,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (const ::std::string& uri,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (const ::std::string& uri,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (const ::std::string& uri,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (const ::std::string& uri,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       const ::std::string& id,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       const ::std::string& id,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       const ::std::string& id,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::xercesc::InputSource& is,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::xercesc::InputSource& is,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::xercesc::InputSource& is,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (const ::xercesc::DOMDocument& d,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTree >
-  GetContainmentTree_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (const ::std::string& uri,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (const ::std::string& uri,
-                               ::xml_schema::ErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (const ::std::string& uri,
-                               ::xercesc::DOMErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (const ::std::string& uri,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               ::xml_schema::ErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               ::xercesc::DOMErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               const ::std::string& id,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               const ::std::string& id,
-                               ::xml_schema::ErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               const ::std::string& id,
-                               ::xercesc::DOMErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::xercesc::InputSource& is,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::xercesc::InputSource& is,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::xercesc::InputSource& is,
-                               ::xml_schema::ErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::xercesc::InputSource& is,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::xercesc::InputSource& is,
-                               ::xercesc::DOMErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::xercesc::InputSource& is,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (const ::xercesc::DOMDocument& d,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (const ::xercesc::DOMDocument& d,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
+  GetContextStatesByIdentification_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (const ::std::string& uri,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (const ::std::string& uri,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (const ::std::string& uri,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (const ::std::string& uri,
+                                             ::xml_schema::ErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (const ::std::string& uri,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (const ::std::string& uri,
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             ::xml_schema::ErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             const ::std::string& id,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             const ::std::string& id,
+                                             ::xml_schema::ErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::std::istream& is,
+                                             const ::std::string& id,
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::xercesc::InputSource& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::xercesc::InputSource& is,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::xercesc::InputSource& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::xercesc::InputSource& is,
+                                             ::xml_schema::ErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::xercesc::InputSource& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::xercesc::InputSource& is,
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (const ::xercesc::DOMDocument& d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (const ::xercesc::DOMDocument& d,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptor >
-  GetDescriptor_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
+  GetContextStatesByIdentificationResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                             ::xml_schema::Flags f = 0,
+                                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (const ::std::string& uri,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (const ::std::string& uri,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (const ::std::string& uri,
-                          ::xml_schema::ErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (const ::std::string& uri,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (const ::std::string& uri,
-                          ::xercesc::DOMErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (const ::std::string& uri,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          ::xml_schema::ErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          ::xercesc::DOMErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          const ::std::string& id,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             const ::std::string& id,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          const ::std::string& id,
-                          ::xml_schema::ErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             const ::std::string& id,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          const ::std::string& id,
-                          ::xercesc::DOMErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::std::istream& is,
+                             const ::std::string& id,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::xercesc::InputSource& is,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::xercesc::InputSource& is,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::xercesc::InputSource& is,
-                          ::xml_schema::ErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::xercesc::InputSource& is,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::xercesc::InputSource& is,
-                          ::xercesc::DOMErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::xercesc::InputSource& is,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (const ::xercesc::DOMDocument& d,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (const ::xercesc::DOMDocument& d,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
+  GetContextStatesByFilter_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (const ::std::string& uri,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (const ::std::string& uri,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (const ::std::string& uri,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRange >
-  SetRange_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (const ::std::string& uri,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (const ::std::string& uri,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (const ::std::string& uri,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::std::istream& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::std::istream& is,
+                                     const ::std::string& id,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::xercesc::InputSource& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::xercesc::InputSource& is,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::xercesc::InputSource& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::xercesc::InputSource& is,
+                                     ::xml_schema::ErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::xercesc::InputSource& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (const ::xercesc::DOMDocument& d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetRangeResponse >
-  SetRangeResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::xercesc::InputSource& is,
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (const ::xercesc::DOMDocument& d,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetValue >
-  SetValue_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (const ::std::string& uri,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (const ::std::string& uri,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (const ::std::string& uri,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::xercesc::InputSource& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::xercesc::InputSource& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::xercesc::InputSource& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (const ::xercesc::DOMDocument& d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetValueResponse >
-  SetValueResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
+  GetContextStatesByFilterResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                     ::xml_schema::Flags f = 0,
+                                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (const ::std::string& uri,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (const ::std::string& uri,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (const ::std::string& uri,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::std::istream& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::std::istream& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::std::istream& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::std::istream& is,
-              const ::std::string& id,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::xercesc::InputSource& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::xercesc::InputSource& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::xercesc::InputSource& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (const ::xercesc::DOMDocument& d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetString >
-  SetString_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (const ::std::string& uri,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (const ::std::string& uri,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (const ::std::string& uri,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::xercesc::InputSource& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::xercesc::InputSource& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::xercesc::InputSource& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (const ::xercesc::DOMDocument& d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetStringResponse >
-  SetStringResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (const ::std::string& uri,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (const ::std::string& uri,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (const ::std::string& uri,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::xercesc::InputSource& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::xercesc::InputSource& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::xercesc::InputSource& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (const ::xercesc::DOMDocument& d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertState >
-  SetAlertState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (const ::std::string& uri,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (const ::std::string& uri,
-                          ::xml_schema::ErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (const ::std::string& uri,
-                          ::xercesc::DOMErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          ::xml_schema::ErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          ::xercesc::DOMErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          const ::std::string& id,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          const ::std::string& id,
-                          ::xml_schema::ErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          const ::std::string& id,
-                          ::xercesc::DOMErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::xercesc::InputSource& is,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::xercesc::InputSource& is,
-                          ::xml_schema::ErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::xercesc::InputSource& is,
-                          ::xercesc::DOMErrorHandler& eh,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (const ::xercesc::DOMDocument& d,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                          ::xml_schema::Flags f = 0,
-                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::Activate >
-  Activate_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (const ::std::string& uri,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (const ::std::string& uri,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (const ::std::string& uri,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::xercesc::InputSource& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::xercesc::InputSource& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::xercesc::InputSource& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (const ::xercesc::DOMDocument& d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::ActivateResponse >
-  ActivateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (const ::std::string& uri,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (const ::std::string& uri,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (const ::std::string& uri,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
@@ -6680,37 +6035,37 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     const ::std::string& id,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     const ::std::string& id,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::std::istream& is,
                     const ::std::string& id,
                     ::xercesc::DOMErrorHandler& eh,
@@ -6720,18 +6075,18 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::xercesc::InputSource& is,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::xercesc::InputSource& is,
                     ::xml_schema::ErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::xercesc::InputSource& is,
                     ::xercesc::DOMErrorHandler& eh,
                     ::xml_schema::Flags f = 0,
@@ -6740,12 +6095,12 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (const ::xercesc::DOMDocument& d,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextState >
+  ::std::unique_ptr< ::MDM::SetContextState >
   SetContextState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                     ::xml_schema::Flags f = 0,
                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -6753,18 +6108,18 @@ namespace CDM
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (const ::std::string& uri,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (const ::std::string& uri,
                             ::xml_schema::ErrorHandler& eh,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (const ::std::string& uri,
                             ::xercesc::DOMErrorHandler& eh,
                             ::xml_schema::Flags f = 0,
@@ -6773,37 +6128,37 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             ::xml_schema::ErrorHandler& eh,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             ::xercesc::DOMErrorHandler& eh,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             const ::std::string& id,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             const ::std::string& id,
                             ::xml_schema::ErrorHandler& eh,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::std::istream& is,
                             const ::std::string& id,
                             ::xercesc::DOMErrorHandler& eh,
@@ -6813,18 +6168,18 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::xercesc::InputSource& is,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::xercesc::InputSource& is,
                             ::xml_schema::ErrorHandler& eh,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::xercesc::InputSource& is,
                             ::xercesc::DOMErrorHandler& eh,
                             ::xml_schema::Flags f = 0,
@@ -6833,12 +6188,12 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (const ::xercesc::DOMDocument& d,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetContextStateResponse >
+  ::std::unique_ptr< ::MDM::SetContextStateResponse >
   SetContextStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                             ::xml_schema::Flags f = 0,
                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -6846,205 +6201,763 @@ namespace CDM
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (const ::std::string& uri,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (const ::std::string& uri,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (const ::std::string& uri,
-                               ::xml_schema::ErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (const ::std::string& uri,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (const ::std::string& uri,
-                               ::xercesc::DOMErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::std::istream& is,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::std::istream& is,
-                               ::xml_schema::ErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::std::istream& is,
-                               ::xercesc::DOMErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::std::istream& is,
-                               const ::std::string& id,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::std::istream& is,
-                               const ::std::string& id,
-                               ::xml_schema::ErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::std::istream& is,
-                               const ::std::string& id,
-                               ::xercesc::DOMErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::xercesc::InputSource& is,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::xercesc::InputSource& is,
-                               ::xml_schema::ErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::xercesc::InputSource& is,
-                               ::xercesc::DOMErrorHandler& eh,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (const ::xercesc::DOMDocument& d,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationState >
-  SetPatientAssociationState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                               ::xml_schema::Flags f = 0,
-                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (const ::std::string& uri,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (const ::std::string& uri,
-                                       ::xml_schema::ErrorHandler& eh,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (const ::std::string& uri,
-                                       ::xercesc::DOMErrorHandler& eh,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (const ::std::string& uri,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::std::istream& is,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::std::istream& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::std::istream& is,
-                                       ::xml_schema::ErrorHandler& eh,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::std::istream& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::std::istream& is,
-                                       ::xercesc::DOMErrorHandler& eh,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::std::istream& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::std::istream& is,
-                                       const ::std::string& id,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::std::istream& is,
-                                       const ::std::string& id,
-                                       ::xml_schema::ErrorHandler& eh,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::std::istream& is,
-                                       const ::std::string& id,
-                                       ::xercesc::DOMErrorHandler& eh,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::xercesc::InputSource& is,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::xercesc::InputSource& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::xercesc::InputSource& is,
-                                       ::xml_schema::ErrorHandler& eh,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::xercesc::InputSource& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::xercesc::InputSource& is,
-                                       ::xercesc::DOMErrorHandler& eh,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::xercesc::InputSource& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (const ::xercesc::DOMDocument& d,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (const ::xercesc::DOMDocument& d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SetPatientAssociationStateResponse >
-  SetPatientAssociationStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                       ::xml_schema::Flags f = 0,
-                                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicContextReport >
+  PeriodicContextReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (const ::std::string& uri,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (const ::std::string& uri,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (const ::std::string& uri,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::std::istream& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::std::istream& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::std::istream& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::xercesc::InputSource& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::xercesc::InputSource& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::xercesc::InputSource& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (const ::xercesc::DOMDocument& d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicContextReport >
+  EpisodicContextReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (const ::std::string& uri,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (const ::std::string& uri,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (const ::std::string& uri,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::std::istream& is,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::std::istream& is,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::std::istream& is,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::std::istream& is,
+                     const ::std::string& id,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::std::istream& is,
+                     const ::std::string& id,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::std::istream& is,
+                     const ::std::string& id,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::xercesc::InputSource& is,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::xercesc::InputSource& is,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::xercesc::InputSource& is,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (const ::xercesc::DOMDocument& d,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedText >
+  GetLocalizedText_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (const ::std::string& uri,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (const ::std::string& uri,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (const ::std::string& uri,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::std::istream& is,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::std::istream& is,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::std::istream& is,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::std::istream& is,
+                             const ::std::string& id,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::std::istream& is,
+                             const ::std::string& id,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::std::istream& is,
+                             const ::std::string& id,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::xercesc::InputSource& is,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::xercesc::InputSource& is,
+                             ::xml_schema::ErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::xercesc::InputSource& is,
+                             ::xercesc::DOMErrorHandler& eh,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (const ::xercesc::DOMDocument& d,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
+  GetLocalizedTextResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                             ::xml_schema::Flags f = 0,
+                             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (const ::std::string& uri,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (const ::std::string& uri,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (const ::std::string& uri,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::std::istream& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::std::istream& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::std::istream& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::xercesc::InputSource& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::xercesc::InputSource& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::xercesc::InputSource& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (const ::xercesc::DOMDocument& d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
+  GetSupportedLanguages_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (const ::std::string& uri,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (const ::std::string& uri,
+                                  ::xml_schema::ErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (const ::std::string& uri,
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::std::istream& is,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::std::istream& is,
+                                  ::xml_schema::ErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::std::istream& is,
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::std::istream& is,
+                                  const ::std::string& id,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::std::istream& is,
+                                  const ::std::string& id,
+                                  ::xml_schema::ErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::std::istream& is,
+                                  const ::std::string& id,
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::xercesc::InputSource& is,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::xercesc::InputSource& is,
+                                  ::xml_schema::ErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::xercesc::InputSource& is,
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (const ::xercesc::DOMDocument& d,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
+  GetSupportedLanguagesResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (const ::std::string& uri,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (const ::std::string& uri,
+                              ::xml_schema::ErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (const ::std::string& uri,
+                              ::xercesc::DOMErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::std::istream& is,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::std::istream& is,
+                              ::xml_schema::ErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::std::istream& is,
+                              ::xercesc::DOMErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::std::istream& is,
+                              const ::std::string& id,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::std::istream& is,
+                              const ::std::string& id,
+                              ::xml_schema::ErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::std::istream& is,
+                              const ::std::string& id,
+                              ::xercesc::DOMErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::xercesc::InputSource& is,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::xercesc::InputSource& is,
+                              ::xml_schema::ErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::xercesc::InputSource& is,
+                              ::xercesc::DOMErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (const ::xercesc::DOMDocument& d,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
+  GetDescriptorsFromArchive_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (const ::std::string& uri,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (const ::std::string& uri,
+                                      ::xml_schema::ErrorHandler& eh,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (const ::std::string& uri,
+                                      ::xercesc::DOMErrorHandler& eh,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
+                                      ::xml_schema::ErrorHandler& eh,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
+                                      ::xercesc::DOMErrorHandler& eh,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
+                                      const ::std::string& id,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
+                                      const ::std::string& id,
+                                      ::xml_schema::ErrorHandler& eh,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
+                                      const ::std::string& id,
+                                      ::xercesc::DOMErrorHandler& eh,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::xercesc::InputSource& is,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::xercesc::InputSource& is,
+                                      ::xml_schema::ErrorHandler& eh,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::xercesc::InputSource& is,
+                                      ::xercesc::DOMErrorHandler& eh,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (const ::xercesc::DOMDocument& d,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
+  GetDescriptorsFromArchiveResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                      ::xml_schema::Flags f = 0,
+                                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (const ::std::string& uri,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (const ::std::string& uri,
                          ::xml_schema::ErrorHandler& eh,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (const ::std::string& uri,
                          ::xercesc::DOMErrorHandler& eh,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -7052,131 +6965,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::std::istream& is,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::std::istream& is,
                          ::xml_schema::ErrorHandler& eh,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::std::istream& is,
                          ::xercesc::DOMErrorHandler& eh,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::std::istream& is,
                          const ::std::string& id,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::std::istream& is,
                          const ::std::string& id,
                          ::xml_schema::ErrorHandler& eh,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
-                         const ::std::string& id,
-                         ::xercesc::DOMErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::xercesc::InputSource& is,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::xercesc::InputSource& is,
-                         ::xml_schema::ErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::xercesc::InputSource& is,
-                         ::xercesc::DOMErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (const ::xercesc::DOMDocument& d,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (const ::std::string& uri,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (const ::std::string& uri,
-                         ::xml_schema::ErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (const ::std::string& uri,
-                         ::xercesc::DOMErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         ::xml_schema::ErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         ::xercesc::DOMErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         const ::std::string& id,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         const ::std::string& id,
-                         ::xml_schema::ErrorHandler& eh,
-                         ::xml_schema::Flags f = 0,
-                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::std::istream& is,
                          const ::std::string& id,
                          ::xercesc::DOMErrorHandler& eh,
                          ::xml_schema::Flags f = 0,
@@ -7185,19 +7005,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::xercesc::InputSource& is,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::xercesc::InputSource& is,
                          ::xml_schema::ErrorHandler& eh,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::xercesc::InputSource& is,
                          ::xercesc::DOMErrorHandler& eh,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -7205,218 +7025,32 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (const ::xercesc::DOMDocument& d,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
+  GetStatesFromArchive_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                          ::xml_schema::Flags f = 0,
                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (const ::std::string& uri,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (const ::std::string& uri,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (const ::std::string& uri,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::xercesc::InputSource& is,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::xercesc::InputSource& is,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::xercesc::InputSource& is,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (const ::xercesc::DOMDocument& d,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (const ::std::string& uri,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (const ::std::string& uri,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (const ::std::string& uri,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::xercesc::InputSource& is,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::xercesc::InputSource& is,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::xercesc::InputSource& is,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (const ::xercesc::DOMDocument& d,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (const ::std::string& uri,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (const ::std::string& uri,
                                  ::xml_schema::ErrorHandler& eh,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (const ::std::string& uri,
                                  ::xercesc::DOMErrorHandler& eh,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -7424,38 +7058,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::std::istream& is,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::std::istream& is,
                                  ::xml_schema::ErrorHandler& eh,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::std::istream& is,
                                  ::xercesc::DOMErrorHandler& eh,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::std::istream& is,
                                  const ::std::string& id,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::std::istream& is,
                                  const ::std::string& id,
                                  ::xml_schema::ErrorHandler& eh,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::std::istream& is,
                                  const ::std::string& id,
                                  ::xercesc::DOMErrorHandler& eh,
                                  ::xml_schema::Flags f = 0,
@@ -7464,19 +7098,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::xercesc::InputSource& is,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::xercesc::InputSource& is,
                                  ::xml_schema::ErrorHandler& eh,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::xercesc::InputSource& is,
                                  ::xercesc::DOMErrorHandler& eh,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -7484,124 +7118,1147 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (const ::xercesc::DOMDocument& d,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::PeriodicContextChangedReport >
-  PeriodicContextChangedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
+  GetStatesFromArchiveResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                                  ::xml_schema::Flags f = 0,
                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (const ::std::string& uri,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (const ::std::string& uri,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (const ::std::string& uri,
-                                 ::xml_schema::ErrorHandler& eh,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (const ::std::string& uri,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (const ::std::string& uri,
-                                 ::xercesc::DOMErrorHandler& eh,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (const ::std::string& uri,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::std::istream& is,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::std::istream& is,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::std::istream& is,
-                                 ::xml_schema::ErrorHandler& eh,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::std::istream& is,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::std::istream& is,
-                                 ::xercesc::DOMErrorHandler& eh,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::std::istream& is,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::std::istream& is,
-                                 const ::std::string& id,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::std::istream& is,
+             const ::std::string& id,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::std::istream& is,
-                                 const ::std::string& id,
-                                 ::xml_schema::ErrorHandler& eh,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::std::istream& is,
+             const ::std::string& id,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::std::istream& is,
-                                 const ::std::string& id,
-                                 ::xercesc::DOMErrorHandler& eh,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::std::istream& is,
+             const ::std::string& id,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::xercesc::InputSource& is,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::xercesc::InputSource& is,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::xercesc::InputSource& is,
-                                 ::xml_schema::ErrorHandler& eh,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::xercesc::InputSource& is,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::xercesc::InputSource& is,
-                                 ::xercesc::DOMErrorHandler& eh,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::xercesc::InputSource& is,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (const ::xercesc::DOMDocument& d,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (const ::xercesc::DOMDocument& d,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::EpisodicContextChangedReport >
-  EpisodicContextChangedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                 ::xml_schema::Flags f = 0,
-                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::SetValue >
+  SetValue_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (const ::std::string& uri,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (const ::std::string& uri,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (const ::std::string& uri,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::std::istream& is,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::std::istream& is,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::std::istream& is,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::std::istream& is,
+                     const ::std::string& id,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::std::istream& is,
+                     const ::std::string& id,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::std::istream& is,
+                     const ::std::string& id,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::xercesc::InputSource& is,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::xercesc::InputSource& is,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::xercesc::InputSource& is,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (const ::xercesc::DOMDocument& d,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetValueResponse >
+  SetValueResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (const ::std::string& uri,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (const ::std::string& uri,
+              ::xml_schema::ErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (const ::std::string& uri,
+              ::xercesc::DOMErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::std::istream& is,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::std::istream& is,
+              ::xml_schema::ErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::std::istream& is,
+              ::xercesc::DOMErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::std::istream& is,
+              const ::std::string& id,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::std::istream& is,
+              const ::std::string& id,
+              ::xml_schema::ErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::std::istream& is,
+              const ::std::string& id,
+              ::xercesc::DOMErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::xercesc::InputSource& is,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::xercesc::InputSource& is,
+              ::xml_schema::ErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::xercesc::InputSource& is,
+              ::xercesc::DOMErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (const ::xercesc::DOMDocument& d,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetString >
+  SetString_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (const ::std::string& uri,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (const ::std::string& uri,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (const ::std::string& uri,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::std::istream& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::std::istream& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::std::istream& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::std::istream& is,
+                      const ::std::string& id,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::xercesc::InputSource& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::xercesc::InputSource& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::xercesc::InputSource& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (const ::xercesc::DOMDocument& d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetStringResponse >
+  SetStringResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (const ::std::string& uri,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (const ::std::string& uri,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (const ::std::string& uri,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::std::istream& is,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::std::istream& is,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::std::istream& is,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::std::istream& is,
+             const ::std::string& id,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::std::istream& is,
+             const ::std::string& id,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::std::istream& is,
+             const ::std::string& id,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::xercesc::InputSource& is,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::xercesc::InputSource& is,
+             ::xml_schema::ErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::xercesc::InputSource& is,
+             ::xercesc::DOMErrorHandler& eh,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (const ::xercesc::DOMDocument& d,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::Activate >
+  Activate_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+             ::xml_schema::Flags f = 0,
+             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (const ::std::string& uri,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (const ::std::string& uri,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (const ::std::string& uri,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::std::istream& is,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::std::istream& is,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::std::istream& is,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::std::istream& is,
+                     const ::std::string& id,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::std::istream& is,
+                     const ::std::string& id,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::std::istream& is,
+                     const ::std::string& id,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::xercesc::InputSource& is,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::xercesc::InputSource& is,
+                     ::xml_schema::ErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::xercesc::InputSource& is,
+                     ::xercesc::DOMErrorHandler& eh,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (const ::xercesc::DOMDocument& d,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::ActivateResponse >
+  ActivateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                     ::xml_schema::Flags f = 0,
+                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (const ::std::string& uri,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (const ::std::string& uri,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (const ::std::string& uri,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::std::istream& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::std::istream& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::std::istream& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::std::istream& is,
+                  const ::std::string& id,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::xercesc::InputSource& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::xercesc::InputSource& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::xercesc::InputSource& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (const ::xercesc::DOMDocument& d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertState >
+  SetAlertState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (const ::std::string& uri,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (const ::std::string& uri,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (const ::std::string& uri,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::std::istream& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::std::istream& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::std::istream& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::xercesc::InputSource& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::xercesc::InputSource& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::xercesc::InputSource& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (const ::xercesc::DOMDocument& d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
+  SetAlertStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (const ::std::string& uri,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (const ::std::string& uri,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (const ::std::string& uri,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::std::istream& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::std::istream& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::std::istream& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::std::istream& is,
+                      const ::std::string& id,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::xercesc::InputSource& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::xercesc::InputSource& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::xercesc::InputSource& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (const ::xercesc::DOMDocument& d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentState >
+  SetComponentState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (const ::std::string& uri,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (const ::std::string& uri,
+                              ::xml_schema::ErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (const ::std::string& uri,
+                              ::xercesc::DOMErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::std::istream& is,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::std::istream& is,
+                              ::xml_schema::ErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::std::istream& is,
+                              ::xercesc::DOMErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::std::istream& is,
+                              const ::std::string& id,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::std::istream& is,
+                              const ::std::string& id,
+                              ::xml_schema::ErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::std::istream& is,
+                              const ::std::string& id,
+                              ::xercesc::DOMErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::xercesc::InputSource& is,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::xercesc::InputSource& is,
+                              ::xml_schema::ErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::xercesc::InputSource& is,
+                              ::xercesc::DOMErrorHandler& eh,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (const ::xercesc::DOMDocument& d,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
+  SetComponentStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                              ::xml_schema::Flags f = 0,
+                              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (const ::std::string& uri,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (const ::std::string& uri,
+                   ::xml_schema::ErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (const ::std::string& uri,
+                   ::xercesc::DOMErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::std::istream& is,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::std::istream& is,
+                   ::xml_schema::ErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::std::istream& is,
+                   ::xercesc::DOMErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::std::istream& is,
+                   const ::std::string& id,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::std::istream& is,
+                   const ::std::string& id,
+                   ::xml_schema::ErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::std::istream& is,
+                   const ::std::string& id,
+                   ::xercesc::DOMErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::xercesc::InputSource& is,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::xercesc::InputSource& is,
+                   ::xml_schema::ErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::xercesc::InputSource& is,
+                   ::xercesc::DOMErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (const ::xercesc::DOMDocument& d,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricState >
+  SetMetricState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (const ::std::string& uri,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (const ::std::string& uri,
+                           ::xml_schema::ErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (const ::std::string& uri,
+                           ::xercesc::DOMErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::std::istream& is,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::std::istream& is,
+                           ::xml_schema::ErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::std::istream& is,
+                           ::xercesc::DOMErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::std::istream& is,
+                           const ::std::string& id,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::std::istream& is,
+                           const ::std::string& id,
+                           ::xml_schema::ErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::std::istream& is,
+                           const ::std::string& id,
+                           ::xercesc::DOMErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::xercesc::InputSource& is,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::xercesc::InputSource& is,
+                           ::xml_schema::ErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::xercesc::InputSource& is,
+                           ::xercesc::DOMErrorHandler& eh,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (const ::xercesc::DOMDocument& d,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
+  SetMetricStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                           ::xml_schema::Flags f = 0,
+                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (const ::std::string& uri,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (const ::std::string& uri,
                            ::xml_schema::ErrorHandler& eh,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (const ::std::string& uri,
                            ::xercesc::DOMErrorHandler& eh,
                            ::xml_schema::Flags f = 0,
@@ -7610,37 +8267,37 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            ::xml_schema::ErrorHandler& eh,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            ::xercesc::DOMErrorHandler& eh,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            const ::std::string& id,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            const ::std::string& id,
                            ::xml_schema::ErrorHandler& eh,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::std::istream& is,
                            const ::std::string& id,
                            ::xercesc::DOMErrorHandler& eh,
@@ -7650,18 +8307,18 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::xercesc::InputSource& is,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::xercesc::InputSource& is,
                            ::xml_schema::ErrorHandler& eh,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::xercesc::InputSource& is,
                            ::xercesc::DOMErrorHandler& eh,
                            ::xml_schema::Flags f = 0,
@@ -7670,12 +8327,12 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (const ::xercesc::DOMDocument& d,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationInvokedReport >
+  ::std::unique_ptr< ::MDM::OperationInvokedReport >
   OperationInvokedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                            ::xml_schema::Flags f = 0,
                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -7683,298 +8340,763 @@ namespace CDM
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (const ::std::string& uri,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (const ::std::string& uri,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (const ::std::string& uri,
-                                  ::xml_schema::ErrorHandler& eh,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (const ::std::string& uri,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (const ::std::string& uri,
-                                  ::xercesc::DOMErrorHandler& eh,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::std::istream& is,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::std::istream& is,
-                                  ::xml_schema::ErrorHandler& eh,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::std::istream& is,
-                                  ::xercesc::DOMErrorHandler& eh,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::std::istream& is,
-                                  const ::std::string& id,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::std::istream& is,
-                                  const ::std::string& id,
-                                  ::xml_schema::ErrorHandler& eh,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::std::istream& is,
-                                  const ::std::string& id,
-                                  ::xercesc::DOMErrorHandler& eh,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::xercesc::InputSource& is,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::xercesc::InputSource& is,
-                                  ::xml_schema::ErrorHandler& eh,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::xercesc::InputSource& is,
-                                  ::xercesc::DOMErrorHandler& eh,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (const ::xercesc::DOMDocument& d,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationalStateChangedReport >
-  OperationalStateChangedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                  ::xml_schema::Flags f = 0,
-                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (const ::std::string& uri,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (const ::std::string& uri,
-                           ::xml_schema::ErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (const ::std::string& uri,
-                           ::xercesc::DOMErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (const ::std::string& uri,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::std::istream& is,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::std::istream& is,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::std::istream& is,
-                           ::xml_schema::ErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::std::istream& is,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::std::istream& is,
-                           ::xercesc::DOMErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::std::istream& is,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::std::istream& is,
-                           const ::std::string& id,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::std::istream& is,
+                       const ::std::string& id,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::std::istream& is,
-                           const ::std::string& id,
-                           ::xml_schema::ErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::std::istream& is,
+                       const ::std::string& id,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::std::istream& is,
-                           const ::std::string& id,
-                           ::xercesc::DOMErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::std::istream& is,
+                       const ::std::string& id,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::xercesc::InputSource& is,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::xercesc::InputSource& is,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::xercesc::InputSource& is,
-                           ::xml_schema::ErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::xercesc::InputSource& is,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::xercesc::InputSource& is,
-                           ::xercesc::DOMErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::xercesc::InputSource& is,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (const ::xercesc::DOMDocument& d,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (const ::xercesc::DOMDocument& d,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationCreatedReport >
-  OperationCreatedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTree >
+  GetContainmentTree_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (const ::std::string& uri,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (const ::std::string& uri,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (const ::std::string& uri,
-                           ::xml_schema::ErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (const ::std::string& uri,
+                               ::xml_schema::ErrorHandler& eh,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (const ::std::string& uri,
-                           ::xercesc::DOMErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (const ::std::string& uri,
+                               ::xercesc::DOMErrorHandler& eh,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::std::istream& is,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::std::istream& is,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::std::istream& is,
-                           ::xml_schema::ErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::std::istream& is,
+                               ::xml_schema::ErrorHandler& eh,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::std::istream& is,
-                           ::xercesc::DOMErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::std::istream& is,
+                               ::xercesc::DOMErrorHandler& eh,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::std::istream& is,
-                           const ::std::string& id,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::std::istream& is,
+                               const ::std::string& id,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::std::istream& is,
-                           const ::std::string& id,
-                           ::xml_schema::ErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::std::istream& is,
+                               const ::std::string& id,
+                               ::xml_schema::ErrorHandler& eh,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::std::istream& is,
-                           const ::std::string& id,
-                           ::xercesc::DOMErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::std::istream& is,
+                               const ::std::string& id,
+                               ::xercesc::DOMErrorHandler& eh,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::xercesc::InputSource& is,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::xercesc::InputSource& is,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::xercesc::InputSource& is,
-                           ::xml_schema::ErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::xercesc::InputSource& is,
+                               ::xml_schema::ErrorHandler& eh,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::xercesc::InputSource& is,
-                           ::xercesc::DOMErrorHandler& eh,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::xercesc::InputSource& is,
+                               ::xercesc::DOMErrorHandler& eh,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (const ::xercesc::DOMDocument& d,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (const ::xercesc::DOMDocument& d,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OperationDeletedReport >
-  OperationDeletedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                           ::xml_schema::Flags f = 0,
-                           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
+  GetContainmentTreeResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                               ::xml_schema::Flags f = 0,
+                               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (const ::std::string& uri,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (const ::std::string& uri,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (const ::std::string& uri,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::std::istream& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::std::istream& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::std::istream& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::std::istream& is,
+                  const ::std::string& id,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::xercesc::InputSource& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::xercesc::InputSource& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::xercesc::InputSource& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (const ::xercesc::DOMDocument& d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptor >
+  GetDescriptor_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (const ::std::string& uri,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (const ::std::string& uri,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (const ::std::string& uri,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::std::istream& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::std::istream& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::std::istream& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::std::istream& is,
+                          const ::std::string& id,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::xercesc::InputSource& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::xercesc::InputSource& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::xercesc::InputSource& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (const ::xercesc::DOMDocument& d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
+  GetDescriptorResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (const ::std::string& uri,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (const ::std::string& uri,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (const ::std::string& uri,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::std::istream& is,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::std::istream& is,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::std::istream& is,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::std::istream& is,
+                         const ::std::string& id,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::std::istream& is,
+                         const ::std::string& id,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::std::istream& is,
+                         const ::std::string& id,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::xercesc::InputSource& is,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::xercesc::InputSource& is,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::xercesc::InputSource& is,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (const ::xercesc::DOMDocument& d,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
+  EpisodicMetricReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (const ::std::string& uri,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (const ::std::string& uri,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (const ::std::string& uri,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::std::istream& is,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::std::istream& is,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::std::istream& is,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::std::istream& is,
+                         const ::std::string& id,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::std::istream& is,
+                         const ::std::string& id,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::std::istream& is,
+                         const ::std::string& id,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::xercesc::InputSource& is,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::xercesc::InputSource& is,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::xercesc::InputSource& is,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (const ::xercesc::DOMDocument& d,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
+  PeriodicMetricReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (const ::std::string& uri,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (const ::std::string& uri,
+                            ::xml_schema::ErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (const ::std::string& uri,
+                            ::xercesc::DOMErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::std::istream& is,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::std::istream& is,
+                            ::xml_schema::ErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::std::istream& is,
+                            ::xercesc::DOMErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::std::istream& is,
+                            const ::std::string& id,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::std::istream& is,
+                            const ::std::string& id,
+                            ::xml_schema::ErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::std::istream& is,
+                            const ::std::string& id,
+                            ::xercesc::DOMErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::xercesc::InputSource& is,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::xercesc::InputSource& is,
+                            ::xml_schema::ErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::xercesc::InputSource& is,
+                            ::xercesc::DOMErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (const ::xercesc::DOMDocument& d,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
+  EpisodicComponentReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (const ::std::string& uri,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (const ::std::string& uri,
+                            ::xml_schema::ErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (const ::std::string& uri,
+                            ::xercesc::DOMErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::std::istream& is,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::std::istream& is,
+                            ::xml_schema::ErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::std::istream& is,
+                            ::xercesc::DOMErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::std::istream& is,
+                            const ::std::string& id,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::std::istream& is,
+                            const ::std::string& id,
+                            ::xml_schema::ErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::std::istream& is,
+                            const ::std::string& id,
+                            ::xercesc::DOMErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::xercesc::InputSource& is,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::xercesc::InputSource& is,
+                            ::xml_schema::ErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::xercesc::InputSource& is,
+                            ::xercesc::DOMErrorHandler& eh,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (const ::xercesc::DOMDocument& d,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
+  PeriodicComponentReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                            ::xml_schema::Flags f = 0,
+                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (const ::std::string& uri,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (const ::std::string& uri,
                         ::xml_schema::ErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (const ::std::string& uri,
                         ::xercesc::DOMErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -7982,38 +9104,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::std::istream& is,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::std::istream& is,
                         ::xml_schema::ErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::std::istream& is,
                         ::xercesc::DOMErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::std::istream& is,
                         const ::std::string& id,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::std::istream& is,
                         const ::std::string& id,
                         ::xml_schema::ErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::std::istream& is,
                         const ::std::string& id,
                         ::xercesc::DOMErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
@@ -8022,19 +9144,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::xercesc::InputSource& is,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::xercesc::InputSource& is,
                         ::xml_schema::ErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::xercesc::InputSource& is,
                         ::xercesc::DOMErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -8042,32 +9164,32 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (const ::xercesc::DOMDocument& d,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectCreatedReport >
-  ObjectCreatedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
+  EpisodicAlertReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (const ::std::string& uri,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (const ::std::string& uri,
                         ::xml_schema::ErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (const ::std::string& uri,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (const ::std::string& uri,
                         ::xercesc::DOMErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -8075,38 +9197,38 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::std::istream& is,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::std::istream& is,
                         ::xml_schema::ErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::std::istream& is,
                         ::xercesc::DOMErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::std::istream& is,
                         const ::std::string& id,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::std::istream& is,
                         const ::std::string& id,
                         ::xml_schema::ErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::std::istream& is,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::std::istream& is,
                         const ::std::string& id,
                         ::xercesc::DOMErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
@@ -8115,19 +9237,19 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::xercesc::InputSource& is,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::xercesc::InputSource& is,
                         ::xml_schema::ErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::xercesc::InputSource& is,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::xercesc::InputSource& is,
                         ::xercesc::DOMErrorHandler& eh,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -8135,310 +9257,217 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (const ::xercesc::DOMDocument& d,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (const ::xercesc::DOMDocument& d,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectUpdatedReport >
-  ObjectUpdatedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
+  PeriodicAlertReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                         ::xml_schema::Flags f = 0,
                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (const ::std::string& uri,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (const ::std::string& uri,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (const ::std::string& uri,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (const ::std::string& uri,
+                                   ::xml_schema::ErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (const ::std::string& uri,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (const ::std::string& uri,
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::std::istream& is,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::std::istream& is,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::std::istream& is,
+                                   ::xml_schema::ErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::std::istream& is,
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::std::istream& is,
+                                   const ::std::string& id,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::std::istream& is,
+                                   const ::std::string& id,
+                                   ::xml_schema::ErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::std::istream& is,
+                                   const ::std::string& id,
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::xercesc::InputSource& is,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::xercesc::InputSource& is,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::xercesc::InputSource& is,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::xercesc::InputSource& is,
+                                   ::xml_schema::ErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::xercesc::InputSource& is,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::xercesc::InputSource& is,
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (const ::xercesc::DOMDocument& d,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (const ::xercesc::DOMDocument& d,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::ObjectDeletedReport >
-  ObjectDeletedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
+  EpisodicOperationalStateReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (const ::std::string& uri,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (const ::std::string& uri,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (const ::std::string& uri,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (const ::std::string& uri,
+                                   ::xml_schema::ErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (const ::std::string& uri,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (const ::std::string& uri,
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::std::istream& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::std::istream& is,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::std::istream& is,
+                                   ::xml_schema::ErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::std::istream& is,
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::std::istream& is,
+                                   const ::std::string& id,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::std::istream& is,
+                                   const ::std::string& id,
+                                   ::xml_schema::ErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::xercesc::InputSource& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::xercesc::InputSource& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::xercesc::InputSource& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (const ::xercesc::DOMDocument& d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSCreatedReport >
-  MDSCreatedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (const ::std::string& uri,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (const ::std::string& uri,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (const ::std::string& uri,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::std::istream& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::std::istream& is,
-                     const ::std::string& id,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::std::istream& is,
+                                   const ::std::string& id,
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::xercesc::InputSource& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::xercesc::InputSource& is,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::xercesc::InputSource& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::xercesc::InputSource& is,
+                                   ::xml_schema::ErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::xercesc::InputSource& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::xercesc::InputSource& is,
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (const ::xercesc::DOMDocument& d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (const ::xercesc::DOMDocument& d,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::MDSDeletedReport >
-  MDSDeletedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
+  PeriodicOperationalStateReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                   ::xml_schema::Flags f = 0,
+                                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (const ::std::string& uri,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (const ::std::string& uri,
                       ::xml_schema::ErrorHandler& eh,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (const ::std::string& uri,
                       ::xercesc::DOMErrorHandler& eh,
                       ::xml_schema::Flags f = 0,
@@ -8447,37 +9476,37 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       ::xml_schema::ErrorHandler& eh,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       ::xercesc::DOMErrorHandler& eh,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       const ::std::string& id,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       const ::std::string& id,
                       ::xml_schema::ErrorHandler& eh,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::std::istream& is,
                       const ::std::string& id,
                       ::xercesc::DOMErrorHandler& eh,
@@ -8487,18 +9516,18 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::xercesc::InputSource& is,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::xercesc::InputSource& is,
                       ::xml_schema::ErrorHandler& eh,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::xercesc::InputSource& is,
                       ::xercesc::DOMErrorHandler& eh,
                       ::xml_schema::Flags f = 0,
@@ -8507,12 +9536,12 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (const ::xercesc::DOMDocument& d,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::SystemErrorReport >
+  ::std::unique_ptr< ::MDM::SystemErrorReport >
   SystemErrorReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                       ::xml_schema::Flags f = 0,
                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -8520,18 +9549,111 @@ namespace CDM
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (const ::std::string& uri,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (const ::std::string& uri,
+                                  ::xml_schema::ErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (const ::std::string& uri,
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse std::istream.
+  //
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::std::istream& is,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::std::istream& is,
+                                  ::xml_schema::ErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::std::istream& is,
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::std::istream& is,
+                                  const ::std::string& id,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::std::istream& is,
+                                  const ::std::string& id,
+                                  ::xml_schema::ErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::std::istream& is,
+                                  const ::std::string& id,
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::InputSource.
+  //
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::xercesc::InputSource& is,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::xercesc::InputSource& is,
+                                  ::xml_schema::ErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::xercesc::InputSource& is,
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse xercesc::DOMDocument.
+  //
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (const ::xercesc::DOMDocument& d,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
+  DescriptionModificationReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                  ::xml_schema::Flags f = 0,
+                                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  // Parse a URI or a local file.
+  //
+
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (const ::std::string& uri,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (const ::std::string& uri,
                    ::xml_schema::ErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (const ::std::string& uri,
                    ::xercesc::DOMErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
@@ -8540,37 +9662,37 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    ::xml_schema::ErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    ::xercesc::DOMErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    const ::std::string& id,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    const ::std::string& id,
                    ::xml_schema::ErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::std::istream& is,
                    const ::std::string& id,
                    ::xercesc::DOMErrorHandler& eh,
@@ -8580,18 +9702,18 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::xercesc::InputSource& is,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::xercesc::InputSource& is,
                    ::xml_schema::ErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::xercesc::InputSource& is,
                    ::xercesc::DOMErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
@@ -8600,12 +9722,12 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (const ::xercesc::DOMDocument& d,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::WaveformStream >
+  ::std::unique_ptr< ::MDM::WaveformStream >
   WaveformStream_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
@@ -8613,111 +9735,111 @@ namespace CDM
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (const ::std::string& uri,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (const ::std::string& uri,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (const ::std::string& uri,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::std::istream& is,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::std::istream& is,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::std::istream& is,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::std::istream& is,
+                        const ::std::string& id,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::std::istream& is,
+                        const ::std::string& id,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::std::istream& is,
+                        const ::std::string& id,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::xercesc::InputSource& is,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::xercesc::InputSource& is,
+                        ::xml_schema::ErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::xercesc::InputSource& is,
+                        ::xercesc::DOMErrorHandler& eh,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (const ::xercesc::DOMDocument& d,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::OVStream >
-  OVStream_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  ::std::unique_ptr< ::MDM::ObservedValueStream >
+  ObservedValueStream_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                        ::xml_schema::Flags f = 0,
+                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
   // Parse a URI or a local file.
   //
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (const ::std::string& uri,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (const ::std::string& uri,
                    ::xml_schema::ErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (const ::std::string& uri,
                    ::xercesc::DOMErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
@@ -8726,37 +9848,37 @@ namespace CDM
   // Parse std::istream.
   //
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    ::xml_schema::ErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    ::xercesc::DOMErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    const ::std::string& id,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    const ::std::string& id,
                    ::xml_schema::ErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::std::istream& is,
                    const ::std::string& id,
                    ::xercesc::DOMErrorHandler& eh,
@@ -8766,18 +9888,18 @@ namespace CDM
   // Parse xercesc::InputSource.
   //
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::xercesc::InputSource& is,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::xercesc::InputSource& is,
                    ::xml_schema::ErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::xercesc::InputSource& is,
                    ::xercesc::DOMErrorHandler& eh,
                    ::xml_schema::Flags f = 0,
@@ -8786,108 +9908,15 @@ namespace CDM
   // Parse xercesc::DOMDocument.
   //
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (const ::xercesc::DOMDocument& d,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  ::std::unique_ptr< ::CDM::Retrievability >
+  ::std::unique_ptr< ::MDM::Retrievability >
   Retrievability_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                    ::xml_schema::Flags f = 0,
                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (const ::std::string& uri,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (const ::std::string& uri,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (const ::std::string& uri,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::std::istream& is,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::std::istream& is,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::std::istream& is,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::std::istream& is,
-                       const ::std::string& id,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::std::istream& is,
-                       const ::std::string& id,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::std::istream& is,
-                       const ::std::string& id,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::xercesc::InputSource& is,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::xercesc::InputSource& is,
-                       ::xml_schema::ErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::xercesc::InputSource& is,
-                       ::xercesc::DOMErrorHandler& eh,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (const ::xercesc::DOMDocument& d,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::CDM::OperationReference >
-  OperationReference_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                       ::xml_schema::Flags f = 0,
-                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 }
 
 #include <iosfwd>
@@ -8898,35 +9927,80 @@ namespace CDM
 
 #include <xsd/cxx/xml/dom/auto-ptr.hxx>
 
-namespace CDM
+namespace MDM
 {
+  void
+  operator<< (::xercesc::DOMElement&, const TransactionId&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const TransactionId&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const TransactionId&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const InvocationState&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const InvocationState&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const InvocationState&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const InvocationError&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const InvocationError&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const InvocationError&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const InvocationInfo&);
+
   void
   operator<< (::xercesc::DOMElement&, const AbstractGet&);
 
   void
   operator<< (::xercesc::DOMElement&, const AbstractGetResponse&);
 
+  void
+  operator<< (::xercesc::DOMElement&, const AbstractReportPart&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const AbstractReport&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const AbstractSet&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const AbstractSetResponse&);
+
   // Serialize to std::ostream.
   //
 
   void
-  GetMDIB_ (::std::ostream& os,
-            const ::CDM::GetMDIB& x, 
+  GetMdib_ (::std::ostream& os,
+            const ::MDM::GetMdib& x, 
             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
             const ::std::string& e = "UTF-8",
             ::xml_schema::Flags f = 0);
 
   void
-  GetMDIB_ (::std::ostream& os,
-            const ::CDM::GetMDIB& x, 
+  GetMdib_ (::std::ostream& os,
+            const ::MDM::GetMdib& x, 
             ::xml_schema::ErrorHandler& eh,
             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
             const ::std::string& e = "UTF-8",
             ::xml_schema::Flags f = 0);
 
   void
-  GetMDIB_ (::std::ostream& os,
-            const ::CDM::GetMDIB& x, 
+  GetMdib_ (::std::ostream& os,
+            const ::MDM::GetMdib& x, 
             ::xercesc::DOMErrorHandler& eh,
             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
             const ::std::string& e = "UTF-8",
@@ -8936,23 +10010,23 @@ namespace CDM
   //
 
   void
-  GetMDIB_ (::xercesc::XMLFormatTarget& ft,
-            const ::CDM::GetMDIB& x, 
+  GetMdib_ (::xercesc::XMLFormatTarget& ft,
+            const ::MDM::GetMdib& x, 
             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
             const ::std::string& e = "UTF-8",
             ::xml_schema::Flags f = 0);
 
   void
-  GetMDIB_ (::xercesc::XMLFormatTarget& ft,
-            const ::CDM::GetMDIB& x, 
+  GetMdib_ (::xercesc::XMLFormatTarget& ft,
+            const ::MDM::GetMdib& x, 
             ::xml_schema::ErrorHandler& eh,
             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
             const ::std::string& e = "UTF-8",
             ::xml_schema::Flags f = 0);
 
   void
-  GetMDIB_ (::xercesc::XMLFormatTarget& ft,
-            const ::CDM::GetMDIB& x, 
+  GetMdib_ (::xercesc::XMLFormatTarget& ft,
+            const ::MDM::GetMdib& x, 
             ::xercesc::DOMErrorHandler& eh,
             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
             const ::std::string& e = "UTF-8",
@@ -8962,15 +10036,15 @@ namespace CDM
   //
 
   void
-  GetMDIB_ (::xercesc::DOMDocument& d,
-            const ::CDM::GetMDIB& x,
+  GetMdib_ (::xercesc::DOMDocument& d,
+            const ::MDM::GetMdib& x,
             ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMDIB_ (const ::CDM::GetMDIB& x, 
+  GetMdib_ (const ::MDM::GetMdib& x, 
             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
             ::xml_schema::Flags f = 0);
 
@@ -8978,23 +10052,23 @@ namespace CDM
   //
 
   void
-  GetMDIBResponse_ (::std::ostream& os,
-                    const ::CDM::GetMDIBResponse& x, 
+  GetMdibResponse_ (::std::ostream& os,
+                    const ::MDM::GetMdibResponse& x, 
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
   void
-  GetMDIBResponse_ (::std::ostream& os,
-                    const ::CDM::GetMDIBResponse& x, 
+  GetMdibResponse_ (::std::ostream& os,
+                    const ::MDM::GetMdibResponse& x, 
                     ::xml_schema::ErrorHandler& eh,
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
   void
-  GetMDIBResponse_ (::std::ostream& os,
-                    const ::CDM::GetMDIBResponse& x, 
+  GetMdibResponse_ (::std::ostream& os,
+                    const ::MDM::GetMdibResponse& x, 
                     ::xercesc::DOMErrorHandler& eh,
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
@@ -9004,23 +10078,23 @@ namespace CDM
   //
 
   void
-  GetMDIBResponse_ (::xercesc::XMLFormatTarget& ft,
-                    const ::CDM::GetMDIBResponse& x, 
+  GetMdibResponse_ (::xercesc::XMLFormatTarget& ft,
+                    const ::MDM::GetMdibResponse& x, 
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
   void
-  GetMDIBResponse_ (::xercesc::XMLFormatTarget& ft,
-                    const ::CDM::GetMDIBResponse& x, 
+  GetMdibResponse_ (::xercesc::XMLFormatTarget& ft,
+                    const ::MDM::GetMdibResponse& x, 
                     ::xml_schema::ErrorHandler& eh,
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
                     ::xml_schema::Flags f = 0);
 
   void
-  GetMDIBResponse_ (::xercesc::XMLFormatTarget& ft,
-                    const ::CDM::GetMDIBResponse& x, 
+  GetMdibResponse_ (::xercesc::XMLFormatTarget& ft,
+                    const ::MDM::GetMdibResponse& x, 
                     ::xercesc::DOMErrorHandler& eh,
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     const ::std::string& e = "UTF-8",
@@ -9030,15 +10104,15 @@ namespace CDM
   //
 
   void
-  GetMDIBResponse_ (::xercesc::DOMDocument& d,
-                    const ::CDM::GetMDIBResponse& x,
+  GetMdibResponse_ (::xercesc::DOMDocument& d,
+                    const ::MDM::GetMdibResponse& x,
                     ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMDIBResponse_ (const ::CDM::GetMDIBResponse& x, 
+  GetMdibResponse_ (const ::MDM::GetMdibResponse& x, 
                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                     ::xml_schema::Flags f = 0);
 
@@ -9046,23 +10120,23 @@ namespace CDM
   //
 
   void
-  GetMDDescription_ (::std::ostream& os,
-                     const ::CDM::GetMDDescription& x, 
+  GetMdDescription_ (::std::ostream& os,
+                     const ::MDM::GetMdDescription& x, 
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
   void
-  GetMDDescription_ (::std::ostream& os,
-                     const ::CDM::GetMDDescription& x, 
+  GetMdDescription_ (::std::ostream& os,
+                     const ::MDM::GetMdDescription& x, 
                      ::xml_schema::ErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
   void
-  GetMDDescription_ (::std::ostream& os,
-                     const ::CDM::GetMDDescription& x, 
+  GetMdDescription_ (::std::ostream& os,
+                     const ::MDM::GetMdDescription& x, 
                      ::xercesc::DOMErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
@@ -9072,23 +10146,23 @@ namespace CDM
   //
 
   void
-  GetMDDescription_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::GetMDDescription& x, 
+  GetMdDescription_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::GetMdDescription& x, 
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
   void
-  GetMDDescription_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::GetMDDescription& x, 
+  GetMdDescription_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::GetMdDescription& x, 
                      ::xml_schema::ErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
   void
-  GetMDDescription_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::GetMDDescription& x, 
+  GetMdDescription_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::GetMdDescription& x, 
                      ::xercesc::DOMErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
@@ -9098,15 +10172,15 @@ namespace CDM
   //
 
   void
-  GetMDDescription_ (::xercesc::DOMDocument& d,
-                     const ::CDM::GetMDDescription& x,
+  GetMdDescription_ (::xercesc::DOMDocument& d,
+                     const ::MDM::GetMdDescription& x,
                      ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMDDescription_ (const ::CDM::GetMDDescription& x, 
+  GetMdDescription_ (const ::MDM::GetMdDescription& x, 
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      ::xml_schema::Flags f = 0);
 
@@ -9114,23 +10188,23 @@ namespace CDM
   //
 
   void
-  GetMDDescriptionResponse_ (::std::ostream& os,
-                             const ::CDM::GetMDDescriptionResponse& x, 
+  GetMdDescriptionResponse_ (::std::ostream& os,
+                             const ::MDM::GetMdDescriptionResponse& x, 
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
                              ::xml_schema::Flags f = 0);
 
   void
-  GetMDDescriptionResponse_ (::std::ostream& os,
-                             const ::CDM::GetMDDescriptionResponse& x, 
+  GetMdDescriptionResponse_ (::std::ostream& os,
+                             const ::MDM::GetMdDescriptionResponse& x, 
                              ::xml_schema::ErrorHandler& eh,
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
                              ::xml_schema::Flags f = 0);
 
   void
-  GetMDDescriptionResponse_ (::std::ostream& os,
-                             const ::CDM::GetMDDescriptionResponse& x, 
+  GetMdDescriptionResponse_ (::std::ostream& os,
+                             const ::MDM::GetMdDescriptionResponse& x, 
                              ::xercesc::DOMErrorHandler& eh,
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
@@ -9140,23 +10214,23 @@ namespace CDM
   //
 
   void
-  GetMDDescriptionResponse_ (::xercesc::XMLFormatTarget& ft,
-                             const ::CDM::GetMDDescriptionResponse& x, 
+  GetMdDescriptionResponse_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetMdDescriptionResponse& x, 
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
                              ::xml_schema::Flags f = 0);
 
   void
-  GetMDDescriptionResponse_ (::xercesc::XMLFormatTarget& ft,
-                             const ::CDM::GetMDDescriptionResponse& x, 
+  GetMdDescriptionResponse_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetMdDescriptionResponse& x, 
                              ::xml_schema::ErrorHandler& eh,
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
                              ::xml_schema::Flags f = 0);
 
   void
-  GetMDDescriptionResponse_ (::xercesc::XMLFormatTarget& ft,
-                             const ::CDM::GetMDDescriptionResponse& x, 
+  GetMdDescriptionResponse_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetMdDescriptionResponse& x, 
                              ::xercesc::DOMErrorHandler& eh,
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
@@ -9166,15 +10240,15 @@ namespace CDM
   //
 
   void
-  GetMDDescriptionResponse_ (::xercesc::DOMDocument& d,
-                             const ::CDM::GetMDDescriptionResponse& x,
+  GetMdDescriptionResponse_ (::xercesc::DOMDocument& d,
+                             const ::MDM::GetMdDescriptionResponse& x,
                              ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMDDescriptionResponse_ (const ::CDM::GetMDDescriptionResponse& x, 
+  GetMdDescriptionResponse_ (const ::MDM::GetMdDescriptionResponse& x, 
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              ::xml_schema::Flags f = 0);
 
@@ -9182,23 +10256,23 @@ namespace CDM
   //
 
   void
-  GetMDState_ (::std::ostream& os,
-               const ::CDM::GetMDState& x, 
+  GetMdState_ (::std::ostream& os,
+               const ::MDM::GetMdState& x, 
                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                const ::std::string& e = "UTF-8",
                ::xml_schema::Flags f = 0);
 
   void
-  GetMDState_ (::std::ostream& os,
-               const ::CDM::GetMDState& x, 
+  GetMdState_ (::std::ostream& os,
+               const ::MDM::GetMdState& x, 
                ::xml_schema::ErrorHandler& eh,
                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                const ::std::string& e = "UTF-8",
                ::xml_schema::Flags f = 0);
 
   void
-  GetMDState_ (::std::ostream& os,
-               const ::CDM::GetMDState& x, 
+  GetMdState_ (::std::ostream& os,
+               const ::MDM::GetMdState& x, 
                ::xercesc::DOMErrorHandler& eh,
                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                const ::std::string& e = "UTF-8",
@@ -9208,23 +10282,23 @@ namespace CDM
   //
 
   void
-  GetMDState_ (::xercesc::XMLFormatTarget& ft,
-               const ::CDM::GetMDState& x, 
+  GetMdState_ (::xercesc::XMLFormatTarget& ft,
+               const ::MDM::GetMdState& x, 
                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                const ::std::string& e = "UTF-8",
                ::xml_schema::Flags f = 0);
 
   void
-  GetMDState_ (::xercesc::XMLFormatTarget& ft,
-               const ::CDM::GetMDState& x, 
+  GetMdState_ (::xercesc::XMLFormatTarget& ft,
+               const ::MDM::GetMdState& x, 
                ::xml_schema::ErrorHandler& eh,
                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                const ::std::string& e = "UTF-8",
                ::xml_schema::Flags f = 0);
 
   void
-  GetMDState_ (::xercesc::XMLFormatTarget& ft,
-               const ::CDM::GetMDState& x, 
+  GetMdState_ (::xercesc::XMLFormatTarget& ft,
+               const ::MDM::GetMdState& x, 
                ::xercesc::DOMErrorHandler& eh,
                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                const ::std::string& e = "UTF-8",
@@ -9234,15 +10308,15 @@ namespace CDM
   //
 
   void
-  GetMDState_ (::xercesc::DOMDocument& d,
-               const ::CDM::GetMDState& x,
+  GetMdState_ (::xercesc::DOMDocument& d,
+               const ::MDM::GetMdState& x,
                ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMDState_ (const ::CDM::GetMDState& x, 
+  GetMdState_ (const ::MDM::GetMdState& x, 
                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                ::xml_schema::Flags f = 0);
 
@@ -9250,23 +10324,23 @@ namespace CDM
   //
 
   void
-  GetMDStateResponse_ (::std::ostream& os,
-                       const ::CDM::GetMDStateResponse& x, 
+  GetMdStateResponse_ (::std::ostream& os,
+                       const ::MDM::GetMdStateResponse& x, 
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
                        ::xml_schema::Flags f = 0);
 
   void
-  GetMDStateResponse_ (::std::ostream& os,
-                       const ::CDM::GetMDStateResponse& x, 
+  GetMdStateResponse_ (::std::ostream& os,
+                       const ::MDM::GetMdStateResponse& x, 
                        ::xml_schema::ErrorHandler& eh,
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
                        ::xml_schema::Flags f = 0);
 
   void
-  GetMDStateResponse_ (::std::ostream& os,
-                       const ::CDM::GetMDStateResponse& x, 
+  GetMdStateResponse_ (::std::ostream& os,
+                       const ::MDM::GetMdStateResponse& x, 
                        ::xercesc::DOMErrorHandler& eh,
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
@@ -9276,23 +10350,23 @@ namespace CDM
   //
 
   void
-  GetMDStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                       const ::CDM::GetMDStateResponse& x, 
+  GetMdStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                       const ::MDM::GetMdStateResponse& x, 
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
                        ::xml_schema::Flags f = 0);
 
   void
-  GetMDStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                       const ::CDM::GetMDStateResponse& x, 
+  GetMdStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                       const ::MDM::GetMdStateResponse& x, 
                        ::xml_schema::ErrorHandler& eh,
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
                        ::xml_schema::Flags f = 0);
 
   void
-  GetMDStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                       const ::CDM::GetMDStateResponse& x, 
+  GetMdStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                       const ::MDM::GetMdStateResponse& x, 
                        ::xercesc::DOMErrorHandler& eh,
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
@@ -9302,15 +10376,15 @@ namespace CDM
   //
 
   void
-  GetMDStateResponse_ (::xercesc::DOMDocument& d,
-                       const ::CDM::GetMDStateResponse& x,
+  GetMdStateResponse_ (::xercesc::DOMDocument& d,
+                       const ::MDM::GetMdStateResponse& x,
                        ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMDStateResponse_ (const ::CDM::GetMDStateResponse& x, 
+  GetMdStateResponse_ (const ::MDM::GetMdStateResponse& x, 
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        ::xml_schema::Flags f = 0);
 
@@ -9319,14 +10393,14 @@ namespace CDM
 
   void
   GetContextStates_ (::std::ostream& os,
-                     const ::CDM::GetContextStates& x, 
+                     const ::MDM::GetContextStates& x, 
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
   void
   GetContextStates_ (::std::ostream& os,
-                     const ::CDM::GetContextStates& x, 
+                     const ::MDM::GetContextStates& x, 
                      ::xml_schema::ErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
@@ -9334,7 +10408,7 @@ namespace CDM
 
   void
   GetContextStates_ (::std::ostream& os,
-                     const ::CDM::GetContextStates& x, 
+                     const ::MDM::GetContextStates& x, 
                      ::xercesc::DOMErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
@@ -9345,14 +10419,14 @@ namespace CDM
 
   void
   GetContextStates_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::GetContextStates& x, 
+                     const ::MDM::GetContextStates& x, 
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
   void
   GetContextStates_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::GetContextStates& x, 
+                     const ::MDM::GetContextStates& x, 
                      ::xml_schema::ErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
@@ -9360,7 +10434,7 @@ namespace CDM
 
   void
   GetContextStates_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::GetContextStates& x, 
+                     const ::MDM::GetContextStates& x, 
                      ::xercesc::DOMErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
@@ -9371,14 +10445,14 @@ namespace CDM
 
   void
   GetContextStates_ (::xercesc::DOMDocument& d,
-                     const ::CDM::GetContextStates& x,
+                     const ::MDM::GetContextStates& x,
                      ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStates_ (const ::CDM::GetContextStates& x, 
+  GetContextStates_ (const ::MDM::GetContextStates& x, 
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      ::xml_schema::Flags f = 0);
 
@@ -9387,14 +10461,14 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::std::ostream& os,
-                             const ::CDM::GetContextStatesResponse& x, 
+                             const ::MDM::GetContextStatesResponse& x, 
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
                              ::xml_schema::Flags f = 0);
 
   void
   GetContextStatesResponse_ (::std::ostream& os,
-                             const ::CDM::GetContextStatesResponse& x, 
+                             const ::MDM::GetContextStatesResponse& x, 
                              ::xml_schema::ErrorHandler& eh,
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
@@ -9402,7 +10476,7 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::std::ostream& os,
-                             const ::CDM::GetContextStatesResponse& x, 
+                             const ::MDM::GetContextStatesResponse& x, 
                              ::xercesc::DOMErrorHandler& eh,
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
@@ -9413,14 +10487,14 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::xercesc::XMLFormatTarget& ft,
-                             const ::CDM::GetContextStatesResponse& x, 
+                             const ::MDM::GetContextStatesResponse& x, 
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
                              ::xml_schema::Flags f = 0);
 
   void
   GetContextStatesResponse_ (::xercesc::XMLFormatTarget& ft,
-                             const ::CDM::GetContextStatesResponse& x, 
+                             const ::MDM::GetContextStatesResponse& x, 
                              ::xml_schema::ErrorHandler& eh,
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
@@ -9428,7 +10502,7 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::xercesc::XMLFormatTarget& ft,
-                             const ::CDM::GetContextStatesResponse& x, 
+                             const ::MDM::GetContextStatesResponse& x, 
                              ::xercesc::DOMErrorHandler& eh,
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              const ::std::string& e = "UTF-8",
@@ -9439,14 +10513,14 @@ namespace CDM
 
   void
   GetContextStatesResponse_ (::xercesc::DOMDocument& d,
-                             const ::CDM::GetContextStatesResponse& x,
+                             const ::MDM::GetContextStatesResponse& x,
                              ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStatesResponse_ (const ::CDM::GetContextStatesResponse& x, 
+  GetContextStatesResponse_ (const ::MDM::GetContextStatesResponse& x, 
                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                              ::xml_schema::Flags f = 0);
 
@@ -9454,15 +10528,1996 @@ namespace CDM
   //
 
   void
+  GetContextStatesByIdentification_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentification_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentification_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetContextStatesByIdentification_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentification_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentification_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByIdentification& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetContextStatesByIdentification_ (::xercesc::DOMDocument& d,
+                                     const ::MDM::GetContextStatesByIdentification& x,
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetContextStatesByIdentification_ (const ::MDM::GetContextStatesByIdentification& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetContextStatesByIdentificationResponse_ (::std::ostream& os,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentificationResponse_ (::std::ostream& os,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             ::xml_schema::ErrorHandler& eh,
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentificationResponse_ (::std::ostream& os,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetContextStatesByIdentificationResponse_ (::xercesc::XMLFormatTarget& ft,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentificationResponse_ (::xercesc::XMLFormatTarget& ft,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             ::xml_schema::ErrorHandler& eh,
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByIdentificationResponse_ (::xercesc::XMLFormatTarget& ft,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             ::xercesc::DOMErrorHandler& eh,
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             const ::std::string& e = "UTF-8",
+                                             ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetContextStatesByIdentificationResponse_ (::xercesc::DOMDocument& d,
+                                             const ::MDM::GetContextStatesByIdentificationResponse& x,
+                                             ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetContextStatesByIdentificationResponse_ (const ::MDM::GetContextStatesByIdentificationResponse& x, 
+                                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                             ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetContextStatesByFilter_ (::std::ostream& os,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilter_ (::std::ostream& os,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             ::xml_schema::ErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilter_ (::std::ostream& os,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             ::xercesc::DOMErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetContextStatesByFilter_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilter_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             ::xml_schema::ErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilter_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetContextStatesByFilter& x, 
+                             ::xercesc::DOMErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetContextStatesByFilter_ (::xercesc::DOMDocument& d,
+                             const ::MDM::GetContextStatesByFilter& x,
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetContextStatesByFilter_ (const ::MDM::GetContextStatesByFilter& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetContextStatesByFilterResponse_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilterResponse_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilterResponse_ (::std::ostream& os,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetContextStatesByFilterResponse_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilterResponse_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  void
+  GetContextStatesByFilterResponse_ (::xercesc::XMLFormatTarget& ft,
+                                     const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetContextStatesByFilterResponse_ (::xercesc::DOMDocument& d,
+                                     const ::MDM::GetContextStatesByFilterResponse& x,
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetContextStatesByFilterResponse_ (const ::MDM::GetContextStatesByFilterResponse& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetContextState_ (::std::ostream& os,
+                    const ::MDM::SetContextState& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
+
+  void
+  SetContextState_ (::std::ostream& os,
+                    const ::MDM::SetContextState& x, 
+                    ::xml_schema::ErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
+
+  void
+  SetContextState_ (::std::ostream& os,
+                    const ::MDM::SetContextState& x, 
+                    ::xercesc::DOMErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetContextState_ (::xercesc::XMLFormatTarget& ft,
+                    const ::MDM::SetContextState& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
+
+  void
+  SetContextState_ (::xercesc::XMLFormatTarget& ft,
+                    const ::MDM::SetContextState& x, 
+                    ::xml_schema::ErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
+
+  void
+  SetContextState_ (::xercesc::XMLFormatTarget& ft,
+                    const ::MDM::SetContextState& x, 
+                    ::xercesc::DOMErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetContextState_ (::xercesc::DOMDocument& d,
+                    const ::MDM::SetContextState& x,
+                    ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetContextState_ (const ::MDM::SetContextState& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetContextStateResponse_ (::std::ostream& os,
+                            const ::MDM::SetContextStateResponse& x, 
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  SetContextStateResponse_ (::std::ostream& os,
+                            const ::MDM::SetContextStateResponse& x, 
+                            ::xml_schema::ErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  SetContextStateResponse_ (::std::ostream& os,
+                            const ::MDM::SetContextStateResponse& x, 
+                            ::xercesc::DOMErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetContextStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                            const ::MDM::SetContextStateResponse& x, 
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  SetContextStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                            const ::MDM::SetContextStateResponse& x, 
+                            ::xml_schema::ErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  SetContextStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                            const ::MDM::SetContextStateResponse& x, 
+                            ::xercesc::DOMErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetContextStateResponse_ (::xercesc::DOMDocument& d,
+                            const ::MDM::SetContextStateResponse& x,
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetContextStateResponse_ (const ::MDM::SetContextStateResponse& x, 
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            ::xml_schema::Flags f = 0);
+
+  void
+  operator<< (::xercesc::DOMElement&, const AbstractContextReport&);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  PeriodicContextReport_ (::std::ostream& os,
+                          const ::MDM::PeriodicContextReport& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicContextReport_ (::std::ostream& os,
+                          const ::MDM::PeriodicContextReport& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicContextReport_ (::std::ostream& os,
+                          const ::MDM::PeriodicContextReport& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  PeriodicContextReport_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::PeriodicContextReport& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicContextReport_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::PeriodicContextReport& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicContextReport_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::PeriodicContextReport& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  PeriodicContextReport_ (::xercesc::DOMDocument& d,
+                          const ::MDM::PeriodicContextReport& x,
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  PeriodicContextReport_ (const ::MDM::PeriodicContextReport& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  EpisodicContextReport_ (::std::ostream& os,
+                          const ::MDM::EpisodicContextReport& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicContextReport_ (::std::ostream& os,
+                          const ::MDM::EpisodicContextReport& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicContextReport_ (::std::ostream& os,
+                          const ::MDM::EpisodicContextReport& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  EpisodicContextReport_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::EpisodicContextReport& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicContextReport_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::EpisodicContextReport& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicContextReport_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::EpisodicContextReport& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  EpisodicContextReport_ (::xercesc::DOMDocument& d,
+                          const ::MDM::EpisodicContextReport& x,
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  EpisodicContextReport_ (const ::MDM::EpisodicContextReport& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetLocalizedText_ (::std::ostream& os,
+                     const ::MDM::GetLocalizedText& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  GetLocalizedText_ (::std::ostream& os,
+                     const ::MDM::GetLocalizedText& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  GetLocalizedText_ (::std::ostream& os,
+                     const ::MDM::GetLocalizedText& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetLocalizedText_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::GetLocalizedText& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  GetLocalizedText_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::GetLocalizedText& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  GetLocalizedText_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::GetLocalizedText& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetLocalizedText_ (::xercesc::DOMDocument& d,
+                     const ::MDM::GetLocalizedText& x,
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetLocalizedText_ (const ::MDM::GetLocalizedText& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetLocalizedTextResponse_ (::std::ostream& os,
+                             const ::MDM::GetLocalizedTextResponse& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetLocalizedTextResponse_ (::std::ostream& os,
+                             const ::MDM::GetLocalizedTextResponse& x, 
+                             ::xml_schema::ErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetLocalizedTextResponse_ (::std::ostream& os,
+                             const ::MDM::GetLocalizedTextResponse& x, 
+                             ::xercesc::DOMErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetLocalizedTextResponse_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetLocalizedTextResponse& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetLocalizedTextResponse_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetLocalizedTextResponse& x, 
+                             ::xml_schema::ErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  void
+  GetLocalizedTextResponse_ (::xercesc::XMLFormatTarget& ft,
+                             const ::MDM::GetLocalizedTextResponse& x, 
+                             ::xercesc::DOMErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetLocalizedTextResponse_ (::xercesc::DOMDocument& d,
+                             const ::MDM::GetLocalizedTextResponse& x,
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetLocalizedTextResponse_ (const ::MDM::GetLocalizedTextResponse& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetSupportedLanguages_ (::std::ostream& os,
+                          const ::MDM::GetSupportedLanguages& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  GetSupportedLanguages_ (::std::ostream& os,
+                          const ::MDM::GetSupportedLanguages& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  GetSupportedLanguages_ (::std::ostream& os,
+                          const ::MDM::GetSupportedLanguages& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetSupportedLanguages_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::GetSupportedLanguages& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  GetSupportedLanguages_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::GetSupportedLanguages& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  GetSupportedLanguages_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::GetSupportedLanguages& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetSupportedLanguages_ (::xercesc::DOMDocument& d,
+                          const ::MDM::GetSupportedLanguages& x,
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetSupportedLanguages_ (const ::MDM::GetSupportedLanguages& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetSupportedLanguagesResponse_ (::std::ostream& os,
+                                  const ::MDM::GetSupportedLanguagesResponse& x, 
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  void
+  GetSupportedLanguagesResponse_ (::std::ostream& os,
+                                  const ::MDM::GetSupportedLanguagesResponse& x, 
+                                  ::xml_schema::ErrorHandler& eh,
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  void
+  GetSupportedLanguagesResponse_ (::std::ostream& os,
+                                  const ::MDM::GetSupportedLanguagesResponse& x, 
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetSupportedLanguagesResponse_ (::xercesc::XMLFormatTarget& ft,
+                                  const ::MDM::GetSupportedLanguagesResponse& x, 
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  void
+  GetSupportedLanguagesResponse_ (::xercesc::XMLFormatTarget& ft,
+                                  const ::MDM::GetSupportedLanguagesResponse& x, 
+                                  ::xml_schema::ErrorHandler& eh,
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  void
+  GetSupportedLanguagesResponse_ (::xercesc::XMLFormatTarget& ft,
+                                  const ::MDM::GetSupportedLanguagesResponse& x, 
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetSupportedLanguagesResponse_ (::xercesc::DOMDocument& d,
+                                  const ::MDM::GetSupportedLanguagesResponse& x,
+                                  ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetSupportedLanguagesResponse_ (const ::MDM::GetSupportedLanguagesResponse& x, 
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  ::xml_schema::Flags f = 0);
+
+  void
+  operator<< (::xercesc::DOMElement&, const VersionFrame&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const TimeFrame&);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetDescriptorsFromArchive_ (::std::ostream& os,
+                              const ::MDM::GetDescriptorsFromArchive& x, 
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  void
+  GetDescriptorsFromArchive_ (::std::ostream& os,
+                              const ::MDM::GetDescriptorsFromArchive& x, 
+                              ::xml_schema::ErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  void
+  GetDescriptorsFromArchive_ (::std::ostream& os,
+                              const ::MDM::GetDescriptorsFromArchive& x, 
+                              ::xercesc::DOMErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetDescriptorsFromArchive_ (::xercesc::XMLFormatTarget& ft,
+                              const ::MDM::GetDescriptorsFromArchive& x, 
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  void
+  GetDescriptorsFromArchive_ (::xercesc::XMLFormatTarget& ft,
+                              const ::MDM::GetDescriptorsFromArchive& x, 
+                              ::xml_schema::ErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  void
+  GetDescriptorsFromArchive_ (::xercesc::XMLFormatTarget& ft,
+                              const ::MDM::GetDescriptorsFromArchive& x, 
+                              ::xercesc::DOMErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetDescriptorsFromArchive_ (::xercesc::DOMDocument& d,
+                              const ::MDM::GetDescriptorsFromArchive& x,
+                              ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetDescriptorsFromArchive_ (const ::MDM::GetDescriptorsFromArchive& x, 
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetDescriptorsFromArchiveResponse_ (::std::ostream& os,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& x, 
+                                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                      const ::std::string& e = "UTF-8",
+                                      ::xml_schema::Flags f = 0);
+
+  void
+  GetDescriptorsFromArchiveResponse_ (::std::ostream& os,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& x, 
+                                      ::xml_schema::ErrorHandler& eh,
+                                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                      const ::std::string& e = "UTF-8",
+                                      ::xml_schema::Flags f = 0);
+
+  void
+  GetDescriptorsFromArchiveResponse_ (::std::ostream& os,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& x, 
+                                      ::xercesc::DOMErrorHandler& eh,
+                                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                      const ::std::string& e = "UTF-8",
+                                      ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetDescriptorsFromArchiveResponse_ (::xercesc::XMLFormatTarget& ft,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& x, 
+                                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                      const ::std::string& e = "UTF-8",
+                                      ::xml_schema::Flags f = 0);
+
+  void
+  GetDescriptorsFromArchiveResponse_ (::xercesc::XMLFormatTarget& ft,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& x, 
+                                      ::xml_schema::ErrorHandler& eh,
+                                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                      const ::std::string& e = "UTF-8",
+                                      ::xml_schema::Flags f = 0);
+
+  void
+  GetDescriptorsFromArchiveResponse_ (::xercesc::XMLFormatTarget& ft,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& x, 
+                                      ::xercesc::DOMErrorHandler& eh,
+                                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                      const ::std::string& e = "UTF-8",
+                                      ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetDescriptorsFromArchiveResponse_ (::xercesc::DOMDocument& d,
+                                      const ::MDM::GetDescriptorsFromArchiveResponse& x,
+                                      ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetDescriptorsFromArchiveResponse_ (const ::MDM::GetDescriptorsFromArchiveResponse& x, 
+                                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                      ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetStatesFromArchive_ (::std::ostream& os,
+                         const ::MDM::GetStatesFromArchive& x, 
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  GetStatesFromArchive_ (::std::ostream& os,
+                         const ::MDM::GetStatesFromArchive& x, 
+                         ::xml_schema::ErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  GetStatesFromArchive_ (::std::ostream& os,
+                         const ::MDM::GetStatesFromArchive& x, 
+                         ::xercesc::DOMErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetStatesFromArchive_ (::xercesc::XMLFormatTarget& ft,
+                         const ::MDM::GetStatesFromArchive& x, 
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  GetStatesFromArchive_ (::xercesc::XMLFormatTarget& ft,
+                         const ::MDM::GetStatesFromArchive& x, 
+                         ::xml_schema::ErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  GetStatesFromArchive_ (::xercesc::XMLFormatTarget& ft,
+                         const ::MDM::GetStatesFromArchive& x, 
+                         ::xercesc::DOMErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetStatesFromArchive_ (::xercesc::DOMDocument& d,
+                         const ::MDM::GetStatesFromArchive& x,
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetStatesFromArchive_ (const ::MDM::GetStatesFromArchive& x, 
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  GetStatesFromArchiveResponse_ (::std::ostream& os,
+                                 const ::MDM::GetStatesFromArchiveResponse& x, 
+                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                 const ::std::string& e = "UTF-8",
+                                 ::xml_schema::Flags f = 0);
+
+  void
+  GetStatesFromArchiveResponse_ (::std::ostream& os,
+                                 const ::MDM::GetStatesFromArchiveResponse& x, 
+                                 ::xml_schema::ErrorHandler& eh,
+                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                 const ::std::string& e = "UTF-8",
+                                 ::xml_schema::Flags f = 0);
+
+  void
+  GetStatesFromArchiveResponse_ (::std::ostream& os,
+                                 const ::MDM::GetStatesFromArchiveResponse& x, 
+                                 ::xercesc::DOMErrorHandler& eh,
+                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                 const ::std::string& e = "UTF-8",
+                                 ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  GetStatesFromArchiveResponse_ (::xercesc::XMLFormatTarget& ft,
+                                 const ::MDM::GetStatesFromArchiveResponse& x, 
+                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                 const ::std::string& e = "UTF-8",
+                                 ::xml_schema::Flags f = 0);
+
+  void
+  GetStatesFromArchiveResponse_ (::xercesc::XMLFormatTarget& ft,
+                                 const ::MDM::GetStatesFromArchiveResponse& x, 
+                                 ::xml_schema::ErrorHandler& eh,
+                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                 const ::std::string& e = "UTF-8",
+                                 ::xml_schema::Flags f = 0);
+
+  void
+  GetStatesFromArchiveResponse_ (::xercesc::XMLFormatTarget& ft,
+                                 const ::MDM::GetStatesFromArchiveResponse& x, 
+                                 ::xercesc::DOMErrorHandler& eh,
+                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                 const ::std::string& e = "UTF-8",
+                                 ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  GetStatesFromArchiveResponse_ (::xercesc::DOMDocument& d,
+                                 const ::MDM::GetStatesFromArchiveResponse& x,
+                                 ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  GetStatesFromArchiveResponse_ (const ::MDM::GetStatesFromArchiveResponse& x, 
+                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                 ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetValue_ (::std::ostream& os,
+             const ::MDM::SetValue& x, 
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  void
+  SetValue_ (::std::ostream& os,
+             const ::MDM::SetValue& x, 
+             ::xml_schema::ErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  void
+  SetValue_ (::std::ostream& os,
+             const ::MDM::SetValue& x, 
+             ::xercesc::DOMErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetValue_ (::xercesc::XMLFormatTarget& ft,
+             const ::MDM::SetValue& x, 
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  void
+  SetValue_ (::xercesc::XMLFormatTarget& ft,
+             const ::MDM::SetValue& x, 
+             ::xml_schema::ErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  void
+  SetValue_ (::xercesc::XMLFormatTarget& ft,
+             const ::MDM::SetValue& x, 
+             ::xercesc::DOMErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetValue_ (::xercesc::DOMDocument& d,
+             const ::MDM::SetValue& x,
+             ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetValue_ (const ::MDM::SetValue& x, 
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetValueResponse_ (::std::ostream& os,
+                     const ::MDM::SetValueResponse& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  SetValueResponse_ (::std::ostream& os,
+                     const ::MDM::SetValueResponse& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  SetValueResponse_ (::std::ostream& os,
+                     const ::MDM::SetValueResponse& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetValueResponse_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::SetValueResponse& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  SetValueResponse_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::SetValueResponse& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  SetValueResponse_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::SetValueResponse& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetValueResponse_ (::xercesc::DOMDocument& d,
+                     const ::MDM::SetValueResponse& x,
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetValueResponse_ (const ::MDM::SetValueResponse& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetString_ (::std::ostream& os,
+              const ::MDM::SetString& x, 
+              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+              const ::std::string& e = "UTF-8",
+              ::xml_schema::Flags f = 0);
+
+  void
+  SetString_ (::std::ostream& os,
+              const ::MDM::SetString& x, 
+              ::xml_schema::ErrorHandler& eh,
+              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+              const ::std::string& e = "UTF-8",
+              ::xml_schema::Flags f = 0);
+
+  void
+  SetString_ (::std::ostream& os,
+              const ::MDM::SetString& x, 
+              ::xercesc::DOMErrorHandler& eh,
+              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+              const ::std::string& e = "UTF-8",
+              ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetString_ (::xercesc::XMLFormatTarget& ft,
+              const ::MDM::SetString& x, 
+              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+              const ::std::string& e = "UTF-8",
+              ::xml_schema::Flags f = 0);
+
+  void
+  SetString_ (::xercesc::XMLFormatTarget& ft,
+              const ::MDM::SetString& x, 
+              ::xml_schema::ErrorHandler& eh,
+              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+              const ::std::string& e = "UTF-8",
+              ::xml_schema::Flags f = 0);
+
+  void
+  SetString_ (::xercesc::XMLFormatTarget& ft,
+              const ::MDM::SetString& x, 
+              ::xercesc::DOMErrorHandler& eh,
+              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+              const ::std::string& e = "UTF-8",
+              ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetString_ (::xercesc::DOMDocument& d,
+              const ::MDM::SetString& x,
+              ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetString_ (const ::MDM::SetString& x, 
+              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+              ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetStringResponse_ (::std::ostream& os,
+                      const ::MDM::SetStringResponse& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SetStringResponse_ (::std::ostream& os,
+                      const ::MDM::SetStringResponse& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SetStringResponse_ (::std::ostream& os,
+                      const ::MDM::SetStringResponse& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetStringResponse_ (::xercesc::XMLFormatTarget& ft,
+                      const ::MDM::SetStringResponse& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SetStringResponse_ (::xercesc::XMLFormatTarget& ft,
+                      const ::MDM::SetStringResponse& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SetStringResponse_ (::xercesc::XMLFormatTarget& ft,
+                      const ::MDM::SetStringResponse& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetStringResponse_ (::xercesc::DOMDocument& d,
+                      const ::MDM::SetStringResponse& x,
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetStringResponse_ (const ::MDM::SetStringResponse& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  Activate_ (::std::ostream& os,
+             const ::MDM::Activate& x, 
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  void
+  Activate_ (::std::ostream& os,
+             const ::MDM::Activate& x, 
+             ::xml_schema::ErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  void
+  Activate_ (::std::ostream& os,
+             const ::MDM::Activate& x, 
+             ::xercesc::DOMErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  Activate_ (::xercesc::XMLFormatTarget& ft,
+             const ::MDM::Activate& x, 
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  void
+  Activate_ (::xercesc::XMLFormatTarget& ft,
+             const ::MDM::Activate& x, 
+             ::xml_schema::ErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  void
+  Activate_ (::xercesc::XMLFormatTarget& ft,
+             const ::MDM::Activate& x, 
+             ::xercesc::DOMErrorHandler& eh,
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             const ::std::string& e = "UTF-8",
+             ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  Activate_ (::xercesc::DOMDocument& d,
+             const ::MDM::Activate& x,
+             ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  Activate_ (const ::MDM::Activate& x, 
+             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+             ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  ActivateResponse_ (::std::ostream& os,
+                     const ::MDM::ActivateResponse& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  ActivateResponse_ (::std::ostream& os,
+                     const ::MDM::ActivateResponse& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  ActivateResponse_ (::std::ostream& os,
+                     const ::MDM::ActivateResponse& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  ActivateResponse_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::ActivateResponse& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  ActivateResponse_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::ActivateResponse& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  void
+  ActivateResponse_ (::xercesc::XMLFormatTarget& ft,
+                     const ::MDM::ActivateResponse& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  ActivateResponse_ (::xercesc::DOMDocument& d,
+                     const ::MDM::ActivateResponse& x,
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  ActivateResponse_ (const ::MDM::ActivateResponse& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetAlertState_ (::std::ostream& os,
+                  const ::MDM::SetAlertState& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+  void
+  SetAlertState_ (::std::ostream& os,
+                  const ::MDM::SetAlertState& x, 
+                  ::xml_schema::ErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+  void
+  SetAlertState_ (::std::ostream& os,
+                  const ::MDM::SetAlertState& x, 
+                  ::xercesc::DOMErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetAlertState_ (::xercesc::XMLFormatTarget& ft,
+                  const ::MDM::SetAlertState& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+  void
+  SetAlertState_ (::xercesc::XMLFormatTarget& ft,
+                  const ::MDM::SetAlertState& x, 
+                  ::xml_schema::ErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+  void
+  SetAlertState_ (::xercesc::XMLFormatTarget& ft,
+                  const ::MDM::SetAlertState& x, 
+                  ::xercesc::DOMErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetAlertState_ (::xercesc::DOMDocument& d,
+                  const ::MDM::SetAlertState& x,
+                  ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetAlertState_ (const ::MDM::SetAlertState& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetAlertStateResponse_ (::std::ostream& os,
+                          const ::MDM::SetAlertStateResponse& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  SetAlertStateResponse_ (::std::ostream& os,
+                          const ::MDM::SetAlertStateResponse& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  SetAlertStateResponse_ (::std::ostream& os,
+                          const ::MDM::SetAlertStateResponse& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetAlertStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::SetAlertStateResponse& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  SetAlertStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::SetAlertStateResponse& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  void
+  SetAlertStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                          const ::MDM::SetAlertStateResponse& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetAlertStateResponse_ (::xercesc::DOMDocument& d,
+                          const ::MDM::SetAlertStateResponse& x,
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetAlertStateResponse_ (const ::MDM::SetAlertStateResponse& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetComponentState_ (::std::ostream& os,
+                      const ::MDM::SetComponentState& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SetComponentState_ (::std::ostream& os,
+                      const ::MDM::SetComponentState& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SetComponentState_ (::std::ostream& os,
+                      const ::MDM::SetComponentState& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetComponentState_ (::xercesc::XMLFormatTarget& ft,
+                      const ::MDM::SetComponentState& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SetComponentState_ (::xercesc::XMLFormatTarget& ft,
+                      const ::MDM::SetComponentState& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SetComponentState_ (::xercesc::XMLFormatTarget& ft,
+                      const ::MDM::SetComponentState& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetComponentState_ (::xercesc::DOMDocument& d,
+                      const ::MDM::SetComponentState& x,
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetComponentState_ (const ::MDM::SetComponentState& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetComponentStateResponse_ (::std::ostream& os,
+                              const ::MDM::SetComponentStateResponse& x, 
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  void
+  SetComponentStateResponse_ (::std::ostream& os,
+                              const ::MDM::SetComponentStateResponse& x, 
+                              ::xml_schema::ErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  void
+  SetComponentStateResponse_ (::std::ostream& os,
+                              const ::MDM::SetComponentStateResponse& x, 
+                              ::xercesc::DOMErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetComponentStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                              const ::MDM::SetComponentStateResponse& x, 
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  void
+  SetComponentStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                              const ::MDM::SetComponentStateResponse& x, 
+                              ::xml_schema::ErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  void
+  SetComponentStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                              const ::MDM::SetComponentStateResponse& x, 
+                              ::xercesc::DOMErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetComponentStateResponse_ (::xercesc::DOMDocument& d,
+                              const ::MDM::SetComponentStateResponse& x,
+                              ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetComponentStateResponse_ (const ::MDM::SetComponentStateResponse& x, 
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetMetricState_ (::std::ostream& os,
+                   const ::MDM::SetMetricState& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  SetMetricState_ (::std::ostream& os,
+                   const ::MDM::SetMetricState& x, 
+                   ::xml_schema::ErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  SetMetricState_ (::std::ostream& os,
+                   const ::MDM::SetMetricState& x, 
+                   ::xercesc::DOMErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetMetricState_ (::xercesc::XMLFormatTarget& ft,
+                   const ::MDM::SetMetricState& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  SetMetricState_ (::xercesc::XMLFormatTarget& ft,
+                   const ::MDM::SetMetricState& x, 
+                   ::xml_schema::ErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  SetMetricState_ (::xercesc::XMLFormatTarget& ft,
+                   const ::MDM::SetMetricState& x, 
+                   ::xercesc::DOMErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetMetricState_ (::xercesc::DOMDocument& d,
+                   const ::MDM::SetMetricState& x,
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetMetricState_ (const ::MDM::SetMetricState& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SetMetricStateResponse_ (::std::ostream& os,
+                           const ::MDM::SetMetricStateResponse& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  void
+  SetMetricStateResponse_ (::std::ostream& os,
+                           const ::MDM::SetMetricStateResponse& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  void
+  SetMetricStateResponse_ (::std::ostream& os,
+                           const ::MDM::SetMetricStateResponse& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SetMetricStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                           const ::MDM::SetMetricStateResponse& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  void
+  SetMetricStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                           const ::MDM::SetMetricStateResponse& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  void
+  SetMetricStateResponse_ (::xercesc::XMLFormatTarget& ft,
+                           const ::MDM::SetMetricStateResponse& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SetMetricStateResponse_ (::xercesc::DOMDocument& d,
+                           const ::MDM::SetMetricStateResponse& x,
+                           ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SetMetricStateResponse_ (const ::MDM::SetMetricStateResponse& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  OperationInvokedReport_ (::std::ostream& os,
+                           const ::MDM::OperationInvokedReport& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  void
+  OperationInvokedReport_ (::std::ostream& os,
+                           const ::MDM::OperationInvokedReport& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  void
+  OperationInvokedReport_ (::std::ostream& os,
+                           const ::MDM::OperationInvokedReport& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  OperationInvokedReport_ (::xercesc::XMLFormatTarget& ft,
+                           const ::MDM::OperationInvokedReport& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  void
+  OperationInvokedReport_ (::xercesc::XMLFormatTarget& ft,
+                           const ::MDM::OperationInvokedReport& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  void
+  OperationInvokedReport_ (::xercesc::XMLFormatTarget& ft,
+                           const ::MDM::OperationInvokedReport& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  OperationInvokedReport_ (::xercesc::DOMDocument& d,
+                           const ::MDM::OperationInvokedReport& x,
+                           ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  OperationInvokedReport_ (const ::MDM::OperationInvokedReport& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
   GetContainmentTree_ (::std::ostream& os,
-                       const ::CDM::GetContainmentTree& x, 
+                       const ::MDM::GetContainmentTree& x, 
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
                        ::xml_schema::Flags f = 0);
 
   void
   GetContainmentTree_ (::std::ostream& os,
-                       const ::CDM::GetContainmentTree& x, 
+                       const ::MDM::GetContainmentTree& x, 
                        ::xml_schema::ErrorHandler& eh,
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
@@ -9470,7 +12525,7 @@ namespace CDM
 
   void
   GetContainmentTree_ (::std::ostream& os,
-                       const ::CDM::GetContainmentTree& x, 
+                       const ::MDM::GetContainmentTree& x, 
                        ::xercesc::DOMErrorHandler& eh,
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
@@ -9481,14 +12536,14 @@ namespace CDM
 
   void
   GetContainmentTree_ (::xercesc::XMLFormatTarget& ft,
-                       const ::CDM::GetContainmentTree& x, 
+                       const ::MDM::GetContainmentTree& x, 
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
                        ::xml_schema::Flags f = 0);
 
   void
   GetContainmentTree_ (::xercesc::XMLFormatTarget& ft,
-                       const ::CDM::GetContainmentTree& x, 
+                       const ::MDM::GetContainmentTree& x, 
                        ::xml_schema::ErrorHandler& eh,
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
@@ -9496,7 +12551,7 @@ namespace CDM
 
   void
   GetContainmentTree_ (::xercesc::XMLFormatTarget& ft,
-                       const ::CDM::GetContainmentTree& x, 
+                       const ::MDM::GetContainmentTree& x, 
                        ::xercesc::DOMErrorHandler& eh,
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        const ::std::string& e = "UTF-8",
@@ -9507,14 +12562,14 @@ namespace CDM
 
   void
   GetContainmentTree_ (::xercesc::DOMDocument& d,
-                       const ::CDM::GetContainmentTree& x,
+                       const ::MDM::GetContainmentTree& x,
                        ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContainmentTree_ (const ::CDM::GetContainmentTree& x, 
+  GetContainmentTree_ (const ::MDM::GetContainmentTree& x, 
                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                        ::xml_schema::Flags f = 0);
 
@@ -9523,14 +12578,14 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::std::ostream& os,
-                               const ::CDM::GetContainmentTreeResponse& x, 
+                               const ::MDM::GetContainmentTreeResponse& x, 
                                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                                const ::std::string& e = "UTF-8",
                                ::xml_schema::Flags f = 0);
 
   void
   GetContainmentTreeResponse_ (::std::ostream& os,
-                               const ::CDM::GetContainmentTreeResponse& x, 
+                               const ::MDM::GetContainmentTreeResponse& x, 
                                ::xml_schema::ErrorHandler& eh,
                                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                                const ::std::string& e = "UTF-8",
@@ -9538,7 +12593,7 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::std::ostream& os,
-                               const ::CDM::GetContainmentTreeResponse& x, 
+                               const ::MDM::GetContainmentTreeResponse& x, 
                                ::xercesc::DOMErrorHandler& eh,
                                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                                const ::std::string& e = "UTF-8",
@@ -9549,14 +12604,14 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::xercesc::XMLFormatTarget& ft,
-                               const ::CDM::GetContainmentTreeResponse& x, 
+                               const ::MDM::GetContainmentTreeResponse& x, 
                                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                                const ::std::string& e = "UTF-8",
                                ::xml_schema::Flags f = 0);
 
   void
   GetContainmentTreeResponse_ (::xercesc::XMLFormatTarget& ft,
-                               const ::CDM::GetContainmentTreeResponse& x, 
+                               const ::MDM::GetContainmentTreeResponse& x, 
                                ::xml_schema::ErrorHandler& eh,
                                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                                const ::std::string& e = "UTF-8",
@@ -9564,7 +12619,7 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::xercesc::XMLFormatTarget& ft,
-                               const ::CDM::GetContainmentTreeResponse& x, 
+                               const ::MDM::GetContainmentTreeResponse& x, 
                                ::xercesc::DOMErrorHandler& eh,
                                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                                const ::std::string& e = "UTF-8",
@@ -9575,14 +12630,14 @@ namespace CDM
 
   void
   GetContainmentTreeResponse_ (::xercesc::DOMDocument& d,
-                               const ::CDM::GetContainmentTreeResponse& x,
+                               const ::MDM::GetContainmentTreeResponse& x,
                                ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContainmentTreeResponse_ (const ::CDM::GetContainmentTreeResponse& x, 
+  GetContainmentTreeResponse_ (const ::MDM::GetContainmentTreeResponse& x, 
                                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                                ::xml_schema::Flags f = 0);
 
@@ -9591,14 +12646,14 @@ namespace CDM
 
   void
   GetDescriptor_ (::std::ostream& os,
-                  const ::CDM::GetDescriptor& x, 
+                  const ::MDM::GetDescriptor& x, 
                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                   const ::std::string& e = "UTF-8",
                   ::xml_schema::Flags f = 0);
 
   void
   GetDescriptor_ (::std::ostream& os,
-                  const ::CDM::GetDescriptor& x, 
+                  const ::MDM::GetDescriptor& x, 
                   ::xml_schema::ErrorHandler& eh,
                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                   const ::std::string& e = "UTF-8",
@@ -9606,7 +12661,7 @@ namespace CDM
 
   void
   GetDescriptor_ (::std::ostream& os,
-                  const ::CDM::GetDescriptor& x, 
+                  const ::MDM::GetDescriptor& x, 
                   ::xercesc::DOMErrorHandler& eh,
                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                   const ::std::string& e = "UTF-8",
@@ -9617,14 +12672,14 @@ namespace CDM
 
   void
   GetDescriptor_ (::xercesc::XMLFormatTarget& ft,
-                  const ::CDM::GetDescriptor& x, 
+                  const ::MDM::GetDescriptor& x, 
                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                   const ::std::string& e = "UTF-8",
                   ::xml_schema::Flags f = 0);
 
   void
   GetDescriptor_ (::xercesc::XMLFormatTarget& ft,
-                  const ::CDM::GetDescriptor& x, 
+                  const ::MDM::GetDescriptor& x, 
                   ::xml_schema::ErrorHandler& eh,
                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                   const ::std::string& e = "UTF-8",
@@ -9632,7 +12687,7 @@ namespace CDM
 
   void
   GetDescriptor_ (::xercesc::XMLFormatTarget& ft,
-                  const ::CDM::GetDescriptor& x, 
+                  const ::MDM::GetDescriptor& x, 
                   ::xercesc::DOMErrorHandler& eh,
                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                   const ::std::string& e = "UTF-8",
@@ -9643,14 +12698,14 @@ namespace CDM
 
   void
   GetDescriptor_ (::xercesc::DOMDocument& d,
-                  const ::CDM::GetDescriptor& x,
+                  const ::MDM::GetDescriptor& x,
                   ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptor_ (const ::CDM::GetDescriptor& x, 
+  GetDescriptor_ (const ::MDM::GetDescriptor& x, 
                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                   ::xml_schema::Flags f = 0);
 
@@ -9659,14 +12714,14 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::std::ostream& os,
-                          const ::CDM::GetDescriptorResponse& x, 
+                          const ::MDM::GetDescriptorResponse& x, 
                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                           const ::std::string& e = "UTF-8",
                           ::xml_schema::Flags f = 0);
 
   void
   GetDescriptorResponse_ (::std::ostream& os,
-                          const ::CDM::GetDescriptorResponse& x, 
+                          const ::MDM::GetDescriptorResponse& x, 
                           ::xml_schema::ErrorHandler& eh,
                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                           const ::std::string& e = "UTF-8",
@@ -9674,7 +12729,7 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::std::ostream& os,
-                          const ::CDM::GetDescriptorResponse& x, 
+                          const ::MDM::GetDescriptorResponse& x, 
                           ::xercesc::DOMErrorHandler& eh,
                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                           const ::std::string& e = "UTF-8",
@@ -9685,14 +12740,14 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::xercesc::XMLFormatTarget& ft,
-                          const ::CDM::GetDescriptorResponse& x, 
+                          const ::MDM::GetDescriptorResponse& x, 
                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                           const ::std::string& e = "UTF-8",
                           ::xml_schema::Flags f = 0);
 
   void
   GetDescriptorResponse_ (::xercesc::XMLFormatTarget& ft,
-                          const ::CDM::GetDescriptorResponse& x, 
+                          const ::MDM::GetDescriptorResponse& x, 
                           ::xml_schema::ErrorHandler& eh,
                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                           const ::std::string& e = "UTF-8",
@@ -9700,7 +12755,7 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::xercesc::XMLFormatTarget& ft,
-                          const ::CDM::GetDescriptorResponse& x, 
+                          const ::MDM::GetDescriptorResponse& x, 
                           ::xercesc::DOMErrorHandler& eh,
                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                           const ::std::string& e = "UTF-8",
@@ -9711,16 +12766,986 @@ namespace CDM
 
   void
   GetDescriptorResponse_ (::xercesc::DOMDocument& d,
-                          const ::CDM::GetDescriptorResponse& x,
+                          const ::MDM::GetDescriptorResponse& x,
                           ::xml_schema::Flags f = 0);
 
   // Serialize to a new xercesc::DOMDocument.
   //
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptorResponse_ (const ::CDM::GetDescriptorResponse& x, 
+  GetDescriptorResponse_ (const ::MDM::GetDescriptorResponse& x, 
                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                           ::xml_schema::Flags f = 0);
+
+  void
+  operator<< (::xercesc::DOMElement&, const AbstractMetricReport&);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  EpisodicMetricReport_ (::std::ostream& os,
+                         const ::MDM::EpisodicMetricReport& x, 
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicMetricReport_ (::std::ostream& os,
+                         const ::MDM::EpisodicMetricReport& x, 
+                         ::xml_schema::ErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicMetricReport_ (::std::ostream& os,
+                         const ::MDM::EpisodicMetricReport& x, 
+                         ::xercesc::DOMErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  EpisodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
+                         const ::MDM::EpisodicMetricReport& x, 
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
+                         const ::MDM::EpisodicMetricReport& x, 
+                         ::xml_schema::ErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
+                         const ::MDM::EpisodicMetricReport& x, 
+                         ::xercesc::DOMErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  EpisodicMetricReport_ (::xercesc::DOMDocument& d,
+                         const ::MDM::EpisodicMetricReport& x,
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  EpisodicMetricReport_ (const ::MDM::EpisodicMetricReport& x, 
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  PeriodicMetricReport_ (::std::ostream& os,
+                         const ::MDM::PeriodicMetricReport& x, 
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicMetricReport_ (::std::ostream& os,
+                         const ::MDM::PeriodicMetricReport& x, 
+                         ::xml_schema::ErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicMetricReport_ (::std::ostream& os,
+                         const ::MDM::PeriodicMetricReport& x, 
+                         ::xercesc::DOMErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  PeriodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
+                         const ::MDM::PeriodicMetricReport& x, 
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
+                         const ::MDM::PeriodicMetricReport& x, 
+                         ::xml_schema::ErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
+                         const ::MDM::PeriodicMetricReport& x, 
+                         ::xercesc::DOMErrorHandler& eh,
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         const ::std::string& e = "UTF-8",
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  PeriodicMetricReport_ (::xercesc::DOMDocument& d,
+                         const ::MDM::PeriodicMetricReport& x,
+                         ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  PeriodicMetricReport_ (const ::MDM::PeriodicMetricReport& x, 
+                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                         ::xml_schema::Flags f = 0);
+
+  void
+  operator<< (::xercesc::DOMElement&, const AbstractComponentReport&);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  EpisodicComponentReport_ (::std::ostream& os,
+                            const ::MDM::EpisodicComponentReport& x, 
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicComponentReport_ (::std::ostream& os,
+                            const ::MDM::EpisodicComponentReport& x, 
+                            ::xml_schema::ErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicComponentReport_ (::std::ostream& os,
+                            const ::MDM::EpisodicComponentReport& x, 
+                            ::xercesc::DOMErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  EpisodicComponentReport_ (::xercesc::XMLFormatTarget& ft,
+                            const ::MDM::EpisodicComponentReport& x, 
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicComponentReport_ (::xercesc::XMLFormatTarget& ft,
+                            const ::MDM::EpisodicComponentReport& x, 
+                            ::xml_schema::ErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicComponentReport_ (::xercesc::XMLFormatTarget& ft,
+                            const ::MDM::EpisodicComponentReport& x, 
+                            ::xercesc::DOMErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  EpisodicComponentReport_ (::xercesc::DOMDocument& d,
+                            const ::MDM::EpisodicComponentReport& x,
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  EpisodicComponentReport_ (const ::MDM::EpisodicComponentReport& x, 
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  PeriodicComponentReport_ (::std::ostream& os,
+                            const ::MDM::PeriodicComponentReport& x, 
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicComponentReport_ (::std::ostream& os,
+                            const ::MDM::PeriodicComponentReport& x, 
+                            ::xml_schema::ErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicComponentReport_ (::std::ostream& os,
+                            const ::MDM::PeriodicComponentReport& x, 
+                            ::xercesc::DOMErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  PeriodicComponentReport_ (::xercesc::XMLFormatTarget& ft,
+                            const ::MDM::PeriodicComponentReport& x, 
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicComponentReport_ (::xercesc::XMLFormatTarget& ft,
+                            const ::MDM::PeriodicComponentReport& x, 
+                            ::xml_schema::ErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicComponentReport_ (::xercesc::XMLFormatTarget& ft,
+                            const ::MDM::PeriodicComponentReport& x, 
+                            ::xercesc::DOMErrorHandler& eh,
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            const ::std::string& e = "UTF-8",
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  PeriodicComponentReport_ (::xercesc::DOMDocument& d,
+                            const ::MDM::PeriodicComponentReport& x,
+                            ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  PeriodicComponentReport_ (const ::MDM::PeriodicComponentReport& x, 
+                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                            ::xml_schema::Flags f = 0);
+
+  void
+  operator<< (::xercesc::DOMElement&, const AbstractAlertReport&);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  EpisodicAlertReport_ (::std::ostream& os,
+                        const ::MDM::EpisodicAlertReport& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicAlertReport_ (::std::ostream& os,
+                        const ::MDM::EpisodicAlertReport& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicAlertReport_ (::std::ostream& os,
+                        const ::MDM::EpisodicAlertReport& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  EpisodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
+                        const ::MDM::EpisodicAlertReport& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
+                        const ::MDM::EpisodicAlertReport& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
+                        const ::MDM::EpisodicAlertReport& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  EpisodicAlertReport_ (::xercesc::DOMDocument& d,
+                        const ::MDM::EpisodicAlertReport& x,
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  EpisodicAlertReport_ (const ::MDM::EpisodicAlertReport& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  PeriodicAlertReport_ (::std::ostream& os,
+                        const ::MDM::PeriodicAlertReport& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicAlertReport_ (::std::ostream& os,
+                        const ::MDM::PeriodicAlertReport& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicAlertReport_ (::std::ostream& os,
+                        const ::MDM::PeriodicAlertReport& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  PeriodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
+                        const ::MDM::PeriodicAlertReport& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
+                        const ::MDM::PeriodicAlertReport& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
+                        const ::MDM::PeriodicAlertReport& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  PeriodicAlertReport_ (::xercesc::DOMDocument& d,
+                        const ::MDM::PeriodicAlertReport& x,
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  PeriodicAlertReport_ (const ::MDM::PeriodicAlertReport& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        ::xml_schema::Flags f = 0);
+
+  void
+  operator<< (::xercesc::DOMElement&, const AbstractOperationalStateReport&);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  EpisodicOperationalStateReport_ (::std::ostream& os,
+                                   const ::MDM::EpisodicOperationalStateReport& x, 
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicOperationalStateReport_ (::std::ostream& os,
+                                   const ::MDM::EpisodicOperationalStateReport& x, 
+                                   ::xml_schema::ErrorHandler& eh,
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicOperationalStateReport_ (::std::ostream& os,
+                                   const ::MDM::EpisodicOperationalStateReport& x, 
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  EpisodicOperationalStateReport_ (::xercesc::XMLFormatTarget& ft,
+                                   const ::MDM::EpisodicOperationalStateReport& x, 
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicOperationalStateReport_ (::xercesc::XMLFormatTarget& ft,
+                                   const ::MDM::EpisodicOperationalStateReport& x, 
+                                   ::xml_schema::ErrorHandler& eh,
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  void
+  EpisodicOperationalStateReport_ (::xercesc::XMLFormatTarget& ft,
+                                   const ::MDM::EpisodicOperationalStateReport& x, 
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  EpisodicOperationalStateReport_ (::xercesc::DOMDocument& d,
+                                   const ::MDM::EpisodicOperationalStateReport& x,
+                                   ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  EpisodicOperationalStateReport_ (const ::MDM::EpisodicOperationalStateReport& x, 
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  PeriodicOperationalStateReport_ (::std::ostream& os,
+                                   const ::MDM::PeriodicOperationalStateReport& x, 
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicOperationalStateReport_ (::std::ostream& os,
+                                   const ::MDM::PeriodicOperationalStateReport& x, 
+                                   ::xml_schema::ErrorHandler& eh,
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicOperationalStateReport_ (::std::ostream& os,
+                                   const ::MDM::PeriodicOperationalStateReport& x, 
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  PeriodicOperationalStateReport_ (::xercesc::XMLFormatTarget& ft,
+                                   const ::MDM::PeriodicOperationalStateReport& x, 
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicOperationalStateReport_ (::xercesc::XMLFormatTarget& ft,
+                                   const ::MDM::PeriodicOperationalStateReport& x, 
+                                   ::xml_schema::ErrorHandler& eh,
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  void
+  PeriodicOperationalStateReport_ (::xercesc::XMLFormatTarget& ft,
+                                   const ::MDM::PeriodicOperationalStateReport& x, 
+                                   ::xercesc::DOMErrorHandler& eh,
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   const ::std::string& e = "UTF-8",
+                                   ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  PeriodicOperationalStateReport_ (::xercesc::DOMDocument& d,
+                                   const ::MDM::PeriodicOperationalStateReport& x,
+                                   ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  PeriodicOperationalStateReport_ (const ::MDM::PeriodicOperationalStateReport& x, 
+                                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                   ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  SystemErrorReport_ (::std::ostream& os,
+                      const ::MDM::SystemErrorReport& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SystemErrorReport_ (::std::ostream& os,
+                      const ::MDM::SystemErrorReport& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SystemErrorReport_ (::std::ostream& os,
+                      const ::MDM::SystemErrorReport& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  SystemErrorReport_ (::xercesc::XMLFormatTarget& ft,
+                      const ::MDM::SystemErrorReport& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SystemErrorReport_ (::xercesc::XMLFormatTarget& ft,
+                      const ::MDM::SystemErrorReport& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  void
+  SystemErrorReport_ (::xercesc::XMLFormatTarget& ft,
+                      const ::MDM::SystemErrorReport& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  SystemErrorReport_ (::xercesc::DOMDocument& d,
+                      const ::MDM::SystemErrorReport& x,
+                      ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  SystemErrorReport_ (const ::MDM::SystemErrorReport& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      ::xml_schema::Flags f = 0);
+
+  void
+  operator<< (::xercesc::DOMElement&, const DescriptionModificationType&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const DescriptionModificationType&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const DescriptionModificationType&);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  DescriptionModificationReport_ (::std::ostream& os,
+                                  const ::MDM::DescriptionModificationReport& x, 
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  void
+  DescriptionModificationReport_ (::std::ostream& os,
+                                  const ::MDM::DescriptionModificationReport& x, 
+                                  ::xml_schema::ErrorHandler& eh,
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  void
+  DescriptionModificationReport_ (::std::ostream& os,
+                                  const ::MDM::DescriptionModificationReport& x, 
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  DescriptionModificationReport_ (::xercesc::XMLFormatTarget& ft,
+                                  const ::MDM::DescriptionModificationReport& x, 
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  void
+  DescriptionModificationReport_ (::xercesc::XMLFormatTarget& ft,
+                                  const ::MDM::DescriptionModificationReport& x, 
+                                  ::xml_schema::ErrorHandler& eh,
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  void
+  DescriptionModificationReport_ (::xercesc::XMLFormatTarget& ft,
+                                  const ::MDM::DescriptionModificationReport& x, 
+                                  ::xercesc::DOMErrorHandler& eh,
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  const ::std::string& e = "UTF-8",
+                                  ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  DescriptionModificationReport_ (::xercesc::DOMDocument& d,
+                                  const ::MDM::DescriptionModificationReport& x,
+                                  ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  DescriptionModificationReport_ (const ::MDM::DescriptionModificationReport& x, 
+                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                  ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  WaveformStream_ (::std::ostream& os,
+                   const ::MDM::WaveformStream& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  WaveformStream_ (::std::ostream& os,
+                   const ::MDM::WaveformStream& x, 
+                   ::xml_schema::ErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  WaveformStream_ (::std::ostream& os,
+                   const ::MDM::WaveformStream& x, 
+                   ::xercesc::DOMErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  WaveformStream_ (::xercesc::XMLFormatTarget& ft,
+                   const ::MDM::WaveformStream& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  WaveformStream_ (::xercesc::XMLFormatTarget& ft,
+                   const ::MDM::WaveformStream& x, 
+                   ::xml_schema::ErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  WaveformStream_ (::xercesc::XMLFormatTarget& ft,
+                   const ::MDM::WaveformStream& x, 
+                   ::xercesc::DOMErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  WaveformStream_ (::xercesc::DOMDocument& d,
+                   const ::MDM::WaveformStream& x,
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  WaveformStream_ (const ::MDM::WaveformStream& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  ObservedValueStream_ (::std::ostream& os,
+                        const ::MDM::ObservedValueStream& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  ObservedValueStream_ (::std::ostream& os,
+                        const ::MDM::ObservedValueStream& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  ObservedValueStream_ (::std::ostream& os,
+                        const ::MDM::ObservedValueStream& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  ObservedValueStream_ (::xercesc::XMLFormatTarget& ft,
+                        const ::MDM::ObservedValueStream& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  ObservedValueStream_ (::xercesc::XMLFormatTarget& ft,
+                        const ::MDM::ObservedValueStream& x, 
+                        ::xml_schema::ErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  void
+  ObservedValueStream_ (::xercesc::XMLFormatTarget& ft,
+                        const ::MDM::ObservedValueStream& x, 
+                        ::xercesc::DOMErrorHandler& eh,
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        const ::std::string& e = "UTF-8",
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  ObservedValueStream_ (::xercesc::DOMDocument& d,
+                        const ::MDM::ObservedValueStream& x,
+                        ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  ObservedValueStream_ (const ::MDM::ObservedValueStream& x, 
+                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                        ::xml_schema::Flags f = 0);
+
+  void
+  operator<< (::xercesc::DOMElement&, const RetrievabilityMethod&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const RetrievabilityMethod&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const RetrievabilityMethod&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const RetrievabilityInfo&);
+
+  // Serialize to std::ostream.
+  //
+
+  void
+  Retrievability_ (::std::ostream& os,
+                   const ::MDM::Retrievability& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  Retrievability_ (::std::ostream& os,
+                   const ::MDM::Retrievability& x, 
+                   ::xml_schema::ErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  Retrievability_ (::std::ostream& os,
+                   const ::MDM::Retrievability& x, 
+                   ::xercesc::DOMErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to xercesc::XMLFormatTarget.
+  //
+
+  void
+  Retrievability_ (::xercesc::XMLFormatTarget& ft,
+                   const ::MDM::Retrievability& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  Retrievability_ (::xercesc::XMLFormatTarget& ft,
+                   const ::MDM::Retrievability& x, 
+                   ::xml_schema::ErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  void
+  Retrievability_ (::xercesc::XMLFormatTarget& ft,
+                   const ::MDM::Retrievability& x, 
+                   ::xercesc::DOMErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to an existing xercesc::DOMDocument.
+  //
+
+  void
+  Retrievability_ (::xercesc::DOMDocument& d,
+                   const ::MDM::Retrievability& x,
+                   ::xml_schema::Flags f = 0);
+
+  // Serialize to a new xercesc::DOMDocument.
+  //
+
+  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+  Retrievability_ (const ::MDM::Retrievability& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   ::xml_schema::Flags f = 0);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetMdib&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetMdibResponse&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetMdDescription&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetMdDescriptionResponse&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetMdState&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetMdStateResponse&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStates&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStatesResponse&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStatesByIdentification&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStatesByIdentificationResponse&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStatesByFilter&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const GetContextStatesByFilterResponse&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const SetContextState&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const SetContextStateResponse&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const ReportPart&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const PeriodicContextReport&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const EpisodicContextReport&);
 
   void
   operator<< (::xercesc::DOMElement&, const GetLocalizedText&);
@@ -9747,2456 +13772,43 @@ namespace CDM
   operator<< (::xercesc::DOMElement&, const GetStatesFromArchiveResponse&);
 
   void
-  operator<< (::xercesc::DOMElement&, const TimeFrame&);
+  operator<< (::xercesc::DOMElement&, const SetValue&);
 
   void
-  operator<< (::xercesc::DOMElement&, const TransactionID&);
+  operator<< (::xercesc::DOMElement&, const SetValueResponse&);
 
   void
-  operator<< (::xercesc::DOMAttr&, const TransactionID&);
+  operator<< (::xercesc::DOMElement&, const SetString&);
 
   void
-  operator<< (::xml_schema::ListStream&,
-              const TransactionID&);
+  operator<< (::xercesc::DOMElement&, const SetStringResponse&);
 
   void
-  operator<< (::xercesc::DOMElement&, const InvocationState&);
+  operator<< (::xercesc::DOMElement&, const Activate&);
 
   void
-  operator<< (::xercesc::DOMAttr&, const InvocationState&);
+  operator<< (::xercesc::DOMElement&, const ActivateResponse&);
 
   void
-  operator<< (::xml_schema::ListStream&,
-              const InvocationState&);
+  operator<< (::xercesc::DOMElement&, const SetAlertState&);
 
   void
-  operator<< (::xercesc::DOMElement&, const ArgumentType&);
+  operator<< (::xercesc::DOMElement&, const SetAlertStateResponse&);
 
   void
-  operator<< (::xercesc::DOMElement&, const AbstractSet&);
+  operator<< (::xercesc::DOMElement&, const SetComponentState&);
 
   void
-  operator<< (::xercesc::DOMElement&, const AbstractSetResponse&);
+  operator<< (::xercesc::DOMElement&, const SetComponentStateResponse&);
 
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetRange_ (::std::ostream& os,
-             const ::CDM::SetRange& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SetRange_ (::std::ostream& os,
-             const ::CDM::SetRange& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SetRange_ (::std::ostream& os,
-             const ::CDM::SetRange& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetRange_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::SetRange& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SetRange_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::SetRange& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SetRange_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::SetRange& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetRange_ (::xercesc::DOMDocument& d,
-             const ::CDM::SetRange& x,
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetRange_ (const ::CDM::SetRange& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetRangeResponse_ (::std::ostream& os,
-                     const ::CDM::SetRangeResponse& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  SetRangeResponse_ (::std::ostream& os,
-                     const ::CDM::SetRangeResponse& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  SetRangeResponse_ (::std::ostream& os,
-                     const ::CDM::SetRangeResponse& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetRangeResponse_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::SetRangeResponse& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  SetRangeResponse_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::SetRangeResponse& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  SetRangeResponse_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::SetRangeResponse& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetRangeResponse_ (::xercesc::DOMDocument& d,
-                     const ::CDM::SetRangeResponse& x,
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetRangeResponse_ (const ::CDM::SetRangeResponse& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetValue_ (::std::ostream& os,
-             const ::CDM::SetValue& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SetValue_ (::std::ostream& os,
-             const ::CDM::SetValue& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SetValue_ (::std::ostream& os,
-             const ::CDM::SetValue& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetValue_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::SetValue& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SetValue_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::SetValue& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SetValue_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::SetValue& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetValue_ (::xercesc::DOMDocument& d,
-             const ::CDM::SetValue& x,
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetValue_ (const ::CDM::SetValue& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetValueResponse_ (::std::ostream& os,
-                     const ::CDM::SetValueResponse& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  SetValueResponse_ (::std::ostream& os,
-                     const ::CDM::SetValueResponse& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  SetValueResponse_ (::std::ostream& os,
-                     const ::CDM::SetValueResponse& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetValueResponse_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::SetValueResponse& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  SetValueResponse_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::SetValueResponse& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  SetValueResponse_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::SetValueResponse& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetValueResponse_ (::xercesc::DOMDocument& d,
-                     const ::CDM::SetValueResponse& x,
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetValueResponse_ (const ::CDM::SetValueResponse& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetString_ (::std::ostream& os,
-              const ::CDM::SetString& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  SetString_ (::std::ostream& os,
-              const ::CDM::SetString& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  SetString_ (::std::ostream& os,
-              const ::CDM::SetString& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetString_ (::xercesc::XMLFormatTarget& ft,
-              const ::CDM::SetString& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  SetString_ (::xercesc::XMLFormatTarget& ft,
-              const ::CDM::SetString& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  SetString_ (::xercesc::XMLFormatTarget& ft,
-              const ::CDM::SetString& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetString_ (::xercesc::DOMDocument& d,
-              const ::CDM::SetString& x,
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetString_ (const ::CDM::SetString& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetStringResponse_ (::std::ostream& os,
-                      const ::CDM::SetStringResponse& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SetStringResponse_ (::std::ostream& os,
-                      const ::CDM::SetStringResponse& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SetStringResponse_ (::std::ostream& os,
-                      const ::CDM::SetStringResponse& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetStringResponse_ (::xercesc::XMLFormatTarget& ft,
-                      const ::CDM::SetStringResponse& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SetStringResponse_ (::xercesc::XMLFormatTarget& ft,
-                      const ::CDM::SetStringResponse& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SetStringResponse_ (::xercesc::XMLFormatTarget& ft,
-                      const ::CDM::SetStringResponse& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetStringResponse_ (::xercesc::DOMDocument& d,
-                      const ::CDM::SetStringResponse& x,
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetStringResponse_ (const ::CDM::SetStringResponse& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetAlertState_ (::std::ostream& os,
-                  const ::CDM::SetAlertState& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  void
-  SetAlertState_ (::std::ostream& os,
-                  const ::CDM::SetAlertState& x, 
-                  ::xml_schema::ErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  void
-  SetAlertState_ (::std::ostream& os,
-                  const ::CDM::SetAlertState& x, 
-                  ::xercesc::DOMErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetAlertState_ (::xercesc::XMLFormatTarget& ft,
-                  const ::CDM::SetAlertState& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  void
-  SetAlertState_ (::xercesc::XMLFormatTarget& ft,
-                  const ::CDM::SetAlertState& x, 
-                  ::xml_schema::ErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  void
-  SetAlertState_ (::xercesc::XMLFormatTarget& ft,
-                  const ::CDM::SetAlertState& x, 
-                  ::xercesc::DOMErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetAlertState_ (::xercesc::DOMDocument& d,
-                  const ::CDM::SetAlertState& x,
-                  ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetAlertState_ (const ::CDM::SetAlertState& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetAlertStateResponse_ (::std::ostream& os,
-                          const ::CDM::SetAlertStateResponse& x, 
-                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                          const ::std::string& e = "UTF-8",
-                          ::xml_schema::Flags f = 0);
-
-  void
-  SetAlertStateResponse_ (::std::ostream& os,
-                          const ::CDM::SetAlertStateResponse& x, 
-                          ::xml_schema::ErrorHandler& eh,
-                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                          const ::std::string& e = "UTF-8",
-                          ::xml_schema::Flags f = 0);
-
-  void
-  SetAlertStateResponse_ (::std::ostream& os,
-                          const ::CDM::SetAlertStateResponse& x, 
-                          ::xercesc::DOMErrorHandler& eh,
-                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                          const ::std::string& e = "UTF-8",
-                          ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetAlertStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                          const ::CDM::SetAlertStateResponse& x, 
-                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                          const ::std::string& e = "UTF-8",
-                          ::xml_schema::Flags f = 0);
-
-  void
-  SetAlertStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                          const ::CDM::SetAlertStateResponse& x, 
-                          ::xml_schema::ErrorHandler& eh,
-                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                          const ::std::string& e = "UTF-8",
-                          ::xml_schema::Flags f = 0);
-
-  void
-  SetAlertStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                          const ::CDM::SetAlertStateResponse& x, 
-                          ::xercesc::DOMErrorHandler& eh,
-                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                          const ::std::string& e = "UTF-8",
-                          ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetAlertStateResponse_ (::xercesc::DOMDocument& d,
-                          const ::CDM::SetAlertStateResponse& x,
-                          ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetAlertStateResponse_ (const ::CDM::SetAlertStateResponse& x, 
-                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                          ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  Activate_ (::std::ostream& os,
-             const ::CDM::Activate& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  Activate_ (::std::ostream& os,
-             const ::CDM::Activate& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  Activate_ (::std::ostream& os,
-             const ::CDM::Activate& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  Activate_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::Activate& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  Activate_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::Activate& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  Activate_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::Activate& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  Activate_ (::xercesc::DOMDocument& d,
-             const ::CDM::Activate& x,
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Activate_ (const ::CDM::Activate& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  ActivateResponse_ (::std::ostream& os,
-                     const ::CDM::ActivateResponse& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  ActivateResponse_ (::std::ostream& os,
-                     const ::CDM::ActivateResponse& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  ActivateResponse_ (::std::ostream& os,
-                     const ::CDM::ActivateResponse& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  ActivateResponse_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::ActivateResponse& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  ActivateResponse_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::ActivateResponse& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  ActivateResponse_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::ActivateResponse& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  ActivateResponse_ (::xercesc::DOMDocument& d,
-                     const ::CDM::ActivateResponse& x,
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  ActivateResponse_ (const ::CDM::ActivateResponse& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetContextState_ (::std::ostream& os,
-                    const ::CDM::SetContextState& x, 
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  void
-  SetContextState_ (::std::ostream& os,
-                    const ::CDM::SetContextState& x, 
-                    ::xml_schema::ErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  void
-  SetContextState_ (::std::ostream& os,
-                    const ::CDM::SetContextState& x, 
-                    ::xercesc::DOMErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetContextState_ (::xercesc::XMLFormatTarget& ft,
-                    const ::CDM::SetContextState& x, 
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  void
-  SetContextState_ (::xercesc::XMLFormatTarget& ft,
-                    const ::CDM::SetContextState& x, 
-                    ::xml_schema::ErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  void
-  SetContextState_ (::xercesc::XMLFormatTarget& ft,
-                    const ::CDM::SetContextState& x, 
-                    ::xercesc::DOMErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetContextState_ (::xercesc::DOMDocument& d,
-                    const ::CDM::SetContextState& x,
-                    ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetContextState_ (const ::CDM::SetContextState& x, 
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetContextStateResponse_ (::std::ostream& os,
-                            const ::CDM::SetContextStateResponse& x, 
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
-
-  void
-  SetContextStateResponse_ (::std::ostream& os,
-                            const ::CDM::SetContextStateResponse& x, 
-                            ::xml_schema::ErrorHandler& eh,
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
-
-  void
-  SetContextStateResponse_ (::std::ostream& os,
-                            const ::CDM::SetContextStateResponse& x, 
-                            ::xercesc::DOMErrorHandler& eh,
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetContextStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                            const ::CDM::SetContextStateResponse& x, 
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
-
-  void
-  SetContextStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                            const ::CDM::SetContextStateResponse& x, 
-                            ::xml_schema::ErrorHandler& eh,
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
-
-  void
-  SetContextStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                            const ::CDM::SetContextStateResponse& x, 
-                            ::xercesc::DOMErrorHandler& eh,
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetContextStateResponse_ (::xercesc::DOMDocument& d,
-                            const ::CDM::SetContextStateResponse& x,
-                            ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetContextStateResponse_ (const ::CDM::SetContextStateResponse& x, 
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetPatientAssociationState_ (::std::ostream& os,
-                               const ::CDM::SetPatientAssociationState& x, 
-                               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                               const ::std::string& e = "UTF-8",
-                               ::xml_schema::Flags f = 0);
-
-  void
-  SetPatientAssociationState_ (::std::ostream& os,
-                               const ::CDM::SetPatientAssociationState& x, 
-                               ::xml_schema::ErrorHandler& eh,
-                               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                               const ::std::string& e = "UTF-8",
-                               ::xml_schema::Flags f = 0);
-
-  void
-  SetPatientAssociationState_ (::std::ostream& os,
-                               const ::CDM::SetPatientAssociationState& x, 
-                               ::xercesc::DOMErrorHandler& eh,
-                               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                               const ::std::string& e = "UTF-8",
-                               ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetPatientAssociationState_ (::xercesc::XMLFormatTarget& ft,
-                               const ::CDM::SetPatientAssociationState& x, 
-                               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                               const ::std::string& e = "UTF-8",
-                               ::xml_schema::Flags f = 0);
-
-  void
-  SetPatientAssociationState_ (::xercesc::XMLFormatTarget& ft,
-                               const ::CDM::SetPatientAssociationState& x, 
-                               ::xml_schema::ErrorHandler& eh,
-                               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                               const ::std::string& e = "UTF-8",
-                               ::xml_schema::Flags f = 0);
-
-  void
-  SetPatientAssociationState_ (::xercesc::XMLFormatTarget& ft,
-                               const ::CDM::SetPatientAssociationState& x, 
-                               ::xercesc::DOMErrorHandler& eh,
-                               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                               const ::std::string& e = "UTF-8",
-                               ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetPatientAssociationState_ (::xercesc::DOMDocument& d,
-                               const ::CDM::SetPatientAssociationState& x,
-                               ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetPatientAssociationState_ (const ::CDM::SetPatientAssociationState& x, 
-                               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                               ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SetPatientAssociationStateResponse_ (::std::ostream& os,
-                                       const ::CDM::SetPatientAssociationStateResponse& x, 
-                                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                       const ::std::string& e = "UTF-8",
-                                       ::xml_schema::Flags f = 0);
-
-  void
-  SetPatientAssociationStateResponse_ (::std::ostream& os,
-                                       const ::CDM::SetPatientAssociationStateResponse& x, 
-                                       ::xml_schema::ErrorHandler& eh,
-                                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                       const ::std::string& e = "UTF-8",
-                                       ::xml_schema::Flags f = 0);
-
-  void
-  SetPatientAssociationStateResponse_ (::std::ostream& os,
-                                       const ::CDM::SetPatientAssociationStateResponse& x, 
-                                       ::xercesc::DOMErrorHandler& eh,
-                                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                       const ::std::string& e = "UTF-8",
-                                       ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SetPatientAssociationStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                                       const ::CDM::SetPatientAssociationStateResponse& x, 
-                                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                       const ::std::string& e = "UTF-8",
-                                       ::xml_schema::Flags f = 0);
-
-  void
-  SetPatientAssociationStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                                       const ::CDM::SetPatientAssociationStateResponse& x, 
-                                       ::xml_schema::ErrorHandler& eh,
-                                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                       const ::std::string& e = "UTF-8",
-                                       ::xml_schema::Flags f = 0);
-
-  void
-  SetPatientAssociationStateResponse_ (::xercesc::XMLFormatTarget& ft,
-                                       const ::CDM::SetPatientAssociationStateResponse& x, 
-                                       ::xercesc::DOMErrorHandler& eh,
-                                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                       const ::std::string& e = "UTF-8",
-                                       ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SetPatientAssociationStateResponse_ (::xercesc::DOMDocument& d,
-                                       const ::CDM::SetPatientAssociationStateResponse& x,
-                                       ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetPatientAssociationStateResponse_ (const ::CDM::SetPatientAssociationStateResponse& x, 
-                                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                       ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const AbstractReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const AbstractReportPart&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const MetricReportPart&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const AbstractMetricReport&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  PeriodicMetricReport_ (::std::ostream& os,
-                         const ::CDM::PeriodicMetricReport& x, 
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicMetricReport_ (::std::ostream& os,
-                         const ::CDM::PeriodicMetricReport& x, 
-                         ::xml_schema::ErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicMetricReport_ (::std::ostream& os,
-                         const ::CDM::PeriodicMetricReport& x, 
-                         ::xercesc::DOMErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  PeriodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
-                         const ::CDM::PeriodicMetricReport& x, 
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
-                         const ::CDM::PeriodicMetricReport& x, 
-                         ::xml_schema::ErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
-                         const ::CDM::PeriodicMetricReport& x, 
-                         ::xercesc::DOMErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  PeriodicMetricReport_ (::xercesc::DOMDocument& d,
-                         const ::CDM::PeriodicMetricReport& x,
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicMetricReport_ (const ::CDM::PeriodicMetricReport& x, 
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  EpisodicMetricReport_ (::std::ostream& os,
-                         const ::CDM::EpisodicMetricReport& x, 
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicMetricReport_ (::std::ostream& os,
-                         const ::CDM::EpisodicMetricReport& x, 
-                         ::xml_schema::ErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicMetricReport_ (::std::ostream& os,
-                         const ::CDM::EpisodicMetricReport& x, 
-                         ::xercesc::DOMErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  EpisodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
-                         const ::CDM::EpisodicMetricReport& x, 
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
-                         const ::CDM::EpisodicMetricReport& x, 
-                         ::xml_schema::ErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicMetricReport_ (::xercesc::XMLFormatTarget& ft,
-                         const ::CDM::EpisodicMetricReport& x, 
-                         ::xercesc::DOMErrorHandler& eh,
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         const ::std::string& e = "UTF-8",
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  EpisodicMetricReport_ (::xercesc::DOMDocument& d,
-                         const ::CDM::EpisodicMetricReport& x,
-                         ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicMetricReport_ (const ::CDM::EpisodicMetricReport& x, 
-                         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                         ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const AlertReportPart&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const AbstractAlertReport&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  PeriodicAlertReport_ (::std::ostream& os,
-                        const ::CDM::PeriodicAlertReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicAlertReport_ (::std::ostream& os,
-                        const ::CDM::PeriodicAlertReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicAlertReport_ (::std::ostream& os,
-                        const ::CDM::PeriodicAlertReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  PeriodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::PeriodicAlertReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::PeriodicAlertReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::PeriodicAlertReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  PeriodicAlertReport_ (::xercesc::DOMDocument& d,
-                        const ::CDM::PeriodicAlertReport& x,
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicAlertReport_ (const ::CDM::PeriodicAlertReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  EpisodicAlertReport_ (::std::ostream& os,
-                        const ::CDM::EpisodicAlertReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicAlertReport_ (::std::ostream& os,
-                        const ::CDM::EpisodicAlertReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicAlertReport_ (::std::ostream& os,
-                        const ::CDM::EpisodicAlertReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  EpisodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::EpisodicAlertReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::EpisodicAlertReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicAlertReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::EpisodicAlertReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  EpisodicAlertReport_ (::xercesc::DOMDocument& d,
-                        const ::CDM::EpisodicAlertReport& x,
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicAlertReport_ (const ::CDM::EpisodicAlertReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const ContextChangedReportPart&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const AbstractContextChangedReport&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  PeriodicContextChangedReport_ (::std::ostream& os,
-                                 const ::CDM::PeriodicContextChangedReport& x, 
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicContextChangedReport_ (::std::ostream& os,
-                                 const ::CDM::PeriodicContextChangedReport& x, 
-                                 ::xml_schema::ErrorHandler& eh,
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicContextChangedReport_ (::std::ostream& os,
-                                 const ::CDM::PeriodicContextChangedReport& x, 
-                                 ::xercesc::DOMErrorHandler& eh,
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  PeriodicContextChangedReport_ (::xercesc::XMLFormatTarget& ft,
-                                 const ::CDM::PeriodicContextChangedReport& x, 
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicContextChangedReport_ (::xercesc::XMLFormatTarget& ft,
-                                 const ::CDM::PeriodicContextChangedReport& x, 
-                                 ::xml_schema::ErrorHandler& eh,
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  void
-  PeriodicContextChangedReport_ (::xercesc::XMLFormatTarget& ft,
-                                 const ::CDM::PeriodicContextChangedReport& x, 
-                                 ::xercesc::DOMErrorHandler& eh,
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  PeriodicContextChangedReport_ (::xercesc::DOMDocument& d,
-                                 const ::CDM::PeriodicContextChangedReport& x,
-                                 ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicContextChangedReport_ (const ::CDM::PeriodicContextChangedReport& x, 
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  EpisodicContextChangedReport_ (::std::ostream& os,
-                                 const ::CDM::EpisodicContextChangedReport& x, 
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicContextChangedReport_ (::std::ostream& os,
-                                 const ::CDM::EpisodicContextChangedReport& x, 
-                                 ::xml_schema::ErrorHandler& eh,
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicContextChangedReport_ (::std::ostream& os,
-                                 const ::CDM::EpisodicContextChangedReport& x, 
-                                 ::xercesc::DOMErrorHandler& eh,
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  EpisodicContextChangedReport_ (::xercesc::XMLFormatTarget& ft,
-                                 const ::CDM::EpisodicContextChangedReport& x, 
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicContextChangedReport_ (::xercesc::XMLFormatTarget& ft,
-                                 const ::CDM::EpisodicContextChangedReport& x, 
-                                 ::xml_schema::ErrorHandler& eh,
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  void
-  EpisodicContextChangedReport_ (::xercesc::XMLFormatTarget& ft,
-                                 const ::CDM::EpisodicContextChangedReport& x, 
-                                 ::xercesc::DOMErrorHandler& eh,
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 const ::std::string& e = "UTF-8",
-                                 ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  EpisodicContextChangedReport_ (::xercesc::DOMDocument& d,
-                                 const ::CDM::EpisodicContextChangedReport& x,
-                                 ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicContextChangedReport_ (const ::CDM::EpisodicContextChangedReport& x, 
-                                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                 ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const InvocationError&);
-
-  void
-  operator<< (::xercesc::DOMAttr&, const InvocationError&);
-
-  void
-  operator<< (::xml_schema::ListStream&,
-              const InvocationError&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const OperationDescriptionModificationReportPart&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const OperationDescriptionModificationReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const OperationInvokedReportPart&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  OperationInvokedReport_ (::std::ostream& os,
-                           const ::CDM::OperationInvokedReport& x, 
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationInvokedReport_ (::std::ostream& os,
-                           const ::CDM::OperationInvokedReport& x, 
-                           ::xml_schema::ErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationInvokedReport_ (::std::ostream& os,
-                           const ::CDM::OperationInvokedReport& x, 
-                           ::xercesc::DOMErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  OperationInvokedReport_ (::xercesc::XMLFormatTarget& ft,
-                           const ::CDM::OperationInvokedReport& x, 
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationInvokedReport_ (::xercesc::XMLFormatTarget& ft,
-                           const ::CDM::OperationInvokedReport& x, 
-                           ::xml_schema::ErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationInvokedReport_ (::xercesc::XMLFormatTarget& ft,
-                           const ::CDM::OperationInvokedReport& x, 
-                           ::xercesc::DOMErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  OperationInvokedReport_ (::xercesc::DOMDocument& d,
-                           const ::CDM::OperationInvokedReport& x,
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  OperationInvokedReport_ (const ::CDM::OperationInvokedReport& x, 
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const OperationalStateChangedReportPart&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  OperationalStateChangedReport_ (::std::ostream& os,
-                                  const ::CDM::OperationalStateChangedReport& x, 
-                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                  const ::std::string& e = "UTF-8",
-                                  ::xml_schema::Flags f = 0);
-
-  void
-  OperationalStateChangedReport_ (::std::ostream& os,
-                                  const ::CDM::OperationalStateChangedReport& x, 
-                                  ::xml_schema::ErrorHandler& eh,
-                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                  const ::std::string& e = "UTF-8",
-                                  ::xml_schema::Flags f = 0);
-
-  void
-  OperationalStateChangedReport_ (::std::ostream& os,
-                                  const ::CDM::OperationalStateChangedReport& x, 
-                                  ::xercesc::DOMErrorHandler& eh,
-                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                  const ::std::string& e = "UTF-8",
-                                  ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  OperationalStateChangedReport_ (::xercesc::XMLFormatTarget& ft,
-                                  const ::CDM::OperationalStateChangedReport& x, 
-                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                  const ::std::string& e = "UTF-8",
-                                  ::xml_schema::Flags f = 0);
-
-  void
-  OperationalStateChangedReport_ (::xercesc::XMLFormatTarget& ft,
-                                  const ::CDM::OperationalStateChangedReport& x, 
-                                  ::xml_schema::ErrorHandler& eh,
-                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                  const ::std::string& e = "UTF-8",
-                                  ::xml_schema::Flags f = 0);
-
-  void
-  OperationalStateChangedReport_ (::xercesc::XMLFormatTarget& ft,
-                                  const ::CDM::OperationalStateChangedReport& x, 
-                                  ::xercesc::DOMErrorHandler& eh,
-                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                  const ::std::string& e = "UTF-8",
-                                  ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  OperationalStateChangedReport_ (::xercesc::DOMDocument& d,
-                                  const ::CDM::OperationalStateChangedReport& x,
-                                  ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  OperationalStateChangedReport_ (const ::CDM::OperationalStateChangedReport& x, 
-                                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                                  ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  OperationCreatedReport_ (::std::ostream& os,
-                           const ::CDM::OperationCreatedReport& x, 
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationCreatedReport_ (::std::ostream& os,
-                           const ::CDM::OperationCreatedReport& x, 
-                           ::xml_schema::ErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationCreatedReport_ (::std::ostream& os,
-                           const ::CDM::OperationCreatedReport& x, 
-                           ::xercesc::DOMErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  OperationCreatedReport_ (::xercesc::XMLFormatTarget& ft,
-                           const ::CDM::OperationCreatedReport& x, 
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationCreatedReport_ (::xercesc::XMLFormatTarget& ft,
-                           const ::CDM::OperationCreatedReport& x, 
-                           ::xml_schema::ErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationCreatedReport_ (::xercesc::XMLFormatTarget& ft,
-                           const ::CDM::OperationCreatedReport& x, 
-                           ::xercesc::DOMErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  OperationCreatedReport_ (::xercesc::DOMDocument& d,
-                           const ::CDM::OperationCreatedReport& x,
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  OperationCreatedReport_ (const ::CDM::OperationCreatedReport& x, 
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  OperationDeletedReport_ (::std::ostream& os,
-                           const ::CDM::OperationDeletedReport& x, 
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationDeletedReport_ (::std::ostream& os,
-                           const ::CDM::OperationDeletedReport& x, 
-                           ::xml_schema::ErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationDeletedReport_ (::std::ostream& os,
-                           const ::CDM::OperationDeletedReport& x, 
-                           ::xercesc::DOMErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  OperationDeletedReport_ (::xercesc::XMLFormatTarget& ft,
-                           const ::CDM::OperationDeletedReport& x, 
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationDeletedReport_ (::xercesc::XMLFormatTarget& ft,
-                           const ::CDM::OperationDeletedReport& x, 
-                           ::xml_schema::ErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  void
-  OperationDeletedReport_ (::xercesc::XMLFormatTarget& ft,
-                           const ::CDM::OperationDeletedReport& x, 
-                           ::xercesc::DOMErrorHandler& eh,
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           const ::std::string& e = "UTF-8",
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  OperationDeletedReport_ (::xercesc::DOMDocument& d,
-                           const ::CDM::OperationDeletedReport& x,
-                           ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  OperationDeletedReport_ (const ::CDM::OperationDeletedReport& x, 
-                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                           ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const DescriptionModificationType&);
-
-  void
-  operator<< (::xercesc::DOMAttr&, const DescriptionModificationType&);
-
-  void
-  operator<< (::xml_schema::ListStream&,
-              const DescriptionModificationType&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const DescriptionModificationReportPart&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const DescriptionModificationReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const MDSModificationReportPart&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const MDSModificationReport&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  ObjectCreatedReport_ (::std::ostream& os,
-                        const ::CDM::ObjectCreatedReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectCreatedReport_ (::std::ostream& os,
-                        const ::CDM::ObjectCreatedReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectCreatedReport_ (::std::ostream& os,
-                        const ::CDM::ObjectCreatedReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  ObjectCreatedReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::ObjectCreatedReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectCreatedReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::ObjectCreatedReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectCreatedReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::ObjectCreatedReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  ObjectCreatedReport_ (::xercesc::DOMDocument& d,
-                        const ::CDM::ObjectCreatedReport& x,
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  ObjectCreatedReport_ (const ::CDM::ObjectCreatedReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  ObjectUpdatedReport_ (::std::ostream& os,
-                        const ::CDM::ObjectUpdatedReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectUpdatedReport_ (::std::ostream& os,
-                        const ::CDM::ObjectUpdatedReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectUpdatedReport_ (::std::ostream& os,
-                        const ::CDM::ObjectUpdatedReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  ObjectUpdatedReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::ObjectUpdatedReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectUpdatedReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::ObjectUpdatedReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectUpdatedReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::ObjectUpdatedReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  ObjectUpdatedReport_ (::xercesc::DOMDocument& d,
-                        const ::CDM::ObjectUpdatedReport& x,
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  ObjectUpdatedReport_ (const ::CDM::ObjectUpdatedReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  ObjectDeletedReport_ (::std::ostream& os,
-                        const ::CDM::ObjectDeletedReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectDeletedReport_ (::std::ostream& os,
-                        const ::CDM::ObjectDeletedReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectDeletedReport_ (::std::ostream& os,
-                        const ::CDM::ObjectDeletedReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  ObjectDeletedReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::ObjectDeletedReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectDeletedReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::ObjectDeletedReport& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  void
-  ObjectDeletedReport_ (::xercesc::XMLFormatTarget& ft,
-                        const ::CDM::ObjectDeletedReport& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  ObjectDeletedReport_ (::xercesc::DOMDocument& d,
-                        const ::CDM::ObjectDeletedReport& x,
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  ObjectDeletedReport_ (const ::CDM::ObjectDeletedReport& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  MDSCreatedReport_ (::std::ostream& os,
-                     const ::CDM::MDSCreatedReport& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  MDSCreatedReport_ (::std::ostream& os,
-                     const ::CDM::MDSCreatedReport& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  MDSCreatedReport_ (::std::ostream& os,
-                     const ::CDM::MDSCreatedReport& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  MDSCreatedReport_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::MDSCreatedReport& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  MDSCreatedReport_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::MDSCreatedReport& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  MDSCreatedReport_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::MDSCreatedReport& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  MDSCreatedReport_ (::xercesc::DOMDocument& d,
-                     const ::CDM::MDSCreatedReport& x,
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  MDSCreatedReport_ (const ::CDM::MDSCreatedReport& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  MDSDeletedReport_ (::std::ostream& os,
-                     const ::CDM::MDSDeletedReport& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  MDSDeletedReport_ (::std::ostream& os,
-                     const ::CDM::MDSDeletedReport& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  MDSDeletedReport_ (::std::ostream& os,
-                     const ::CDM::MDSDeletedReport& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  MDSDeletedReport_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::MDSDeletedReport& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  MDSDeletedReport_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::MDSDeletedReport& x, 
-                     ::xml_schema::ErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  void
-  MDSDeletedReport_ (::xercesc::XMLFormatTarget& ft,
-                     const ::CDM::MDSDeletedReport& x, 
-                     ::xercesc::DOMErrorHandler& eh,
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     const ::std::string& e = "UTF-8",
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  MDSDeletedReport_ (::xercesc::DOMDocument& d,
-                     const ::CDM::MDSDeletedReport& x,
-                     ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  MDSDeletedReport_ (const ::CDM::MDSDeletedReport& x, 
-                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                     ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SystemErrorReportReportPart&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SystemErrorReport_ (::std::ostream& os,
-                      const ::CDM::SystemErrorReport& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SystemErrorReport_ (::std::ostream& os,
-                      const ::CDM::SystemErrorReport& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SystemErrorReport_ (::std::ostream& os,
-                      const ::CDM::SystemErrorReport& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SystemErrorReport_ (::xercesc::XMLFormatTarget& ft,
-                      const ::CDM::SystemErrorReport& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SystemErrorReport_ (::xercesc::XMLFormatTarget& ft,
-                      const ::CDM::SystemErrorReport& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SystemErrorReport_ (::xercesc::XMLFormatTarget& ft,
-                      const ::CDM::SystemErrorReport& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SystemErrorReport_ (::xercesc::DOMDocument& d,
-                      const ::CDM::SystemErrorReport& x,
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SystemErrorReport_ (const ::CDM::SystemErrorReport& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  WaveformStream_ (::std::ostream& os,
-                   const ::CDM::WaveformStream& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  void
-  WaveformStream_ (::std::ostream& os,
-                   const ::CDM::WaveformStream& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  void
-  WaveformStream_ (::std::ostream& os,
-                   const ::CDM::WaveformStream& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  WaveformStream_ (::xercesc::XMLFormatTarget& ft,
-                   const ::CDM::WaveformStream& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  void
-  WaveformStream_ (::xercesc::XMLFormatTarget& ft,
-                   const ::CDM::WaveformStream& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  void
-  WaveformStream_ (::xercesc::XMLFormatTarget& ft,
-                   const ::CDM::WaveformStream& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  WaveformStream_ (::xercesc::DOMDocument& d,
-                   const ::CDM::WaveformStream& x,
-                   ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  WaveformStream_ (const ::CDM::WaveformStream& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const StreamElement&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  OVStream_ (::std::ostream& os,
-             const ::CDM::OVStream& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  OVStream_ (::std::ostream& os,
-             const ::CDM::OVStream& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  OVStream_ (::std::ostream& os,
-             const ::CDM::OVStream& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  OVStream_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::OVStream& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  OVStream_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::OVStream& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  OVStream_ (::xercesc::XMLFormatTarget& ft,
-             const ::CDM::OVStream& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  OVStream_ (::xercesc::DOMDocument& d,
-             const ::CDM::OVStream& x,
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  OVStream_ (const ::CDM::OVStream& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const MetricRetrievability&);
-
-  void
-  operator<< (::xercesc::DOMAttr&, const MetricRetrievability&);
-
-  void
-  operator<< (::xml_schema::ListStream&,
-              const MetricRetrievability&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  Retrievability_ (::std::ostream& os,
-                   const ::CDM::Retrievability& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  void
-  Retrievability_ (::std::ostream& os,
-                   const ::CDM::Retrievability& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  void
-  Retrievability_ (::std::ostream& os,
-                   const ::CDM::Retrievability& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  Retrievability_ (::xercesc::XMLFormatTarget& ft,
-                   const ::CDM::Retrievability& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  void
-  Retrievability_ (::xercesc::XMLFormatTarget& ft,
-                   const ::CDM::Retrievability& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  void
-  Retrievability_ (::xercesc::XMLFormatTarget& ft,
-                   const ::CDM::Retrievability& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  Retrievability_ (::xercesc::DOMDocument& d,
-                   const ::CDM::Retrievability& x,
-                   ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Retrievability_ (const ::CDM::Retrievability& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  OperationReference_ (::std::ostream& os,
-                       const ::CDM::OperationReference& x, 
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
-
-  void
-  OperationReference_ (::std::ostream& os,
-                       const ::CDM::OperationReference& x, 
-                       ::xml_schema::ErrorHandler& eh,
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
-
-  void
-  OperationReference_ (::std::ostream& os,
-                       const ::CDM::OperationReference& x, 
-                       ::xercesc::DOMErrorHandler& eh,
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  OperationReference_ (::xercesc::XMLFormatTarget& ft,
-                       const ::CDM::OperationReference& x, 
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
-
-  void
-  OperationReference_ (::xercesc::XMLFormatTarget& ft,
-                       const ::CDM::OperationReference& x, 
-                       ::xml_schema::ErrorHandler& eh,
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
-
-  void
-  OperationReference_ (::xercesc::XMLFormatTarget& ft,
-                       const ::CDM::OperationReference& x, 
-                       ::xercesc::DOMErrorHandler& eh,
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       const ::std::string& e = "UTF-8",
-                       ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  OperationReference_ (::xercesc::DOMDocument& d,
-                       const ::CDM::OperationReference& x,
-                       ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  OperationReference_ (const ::CDM::OperationReference& x, 
-                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                       ::xml_schema::Flags f = 0);
-
-  void
-  operator<< (::xercesc::DOMElement&, const GetMDIB&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const GetMDIBResponse&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const GetMDDescription&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const GetMDDescriptionResponse&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const GetMDState&);
-
   void
-  operator<< (::xercesc::DOMElement&, const GetMDStateResponse&);
+  operator<< (::xercesc::DOMElement&, const SetMetricState&);
 
   void
-  operator<< (::xercesc::DOMElement&, const GetContextStates&);
+  operator<< (::xercesc::DOMElement&, const SetMetricStateResponse&);
 
   void
-  operator<< (::xercesc::DOMElement&, const GetContextStatesResponse&);
+  operator<< (::xercesc::DOMElement&, const OperationInvokedReport&);
 
   void
   operator<< (::xercesc::DOMElement&, const GetContainmentTree&);
@@ -12211,109 +13823,70 @@ namespace CDM
   operator<< (::xercesc::DOMElement&, const GetDescriptorResponse&);
 
   void
-  operator<< (::xercesc::DOMElement&, const Text&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetRange&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetRangeResponse&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetValue&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetValueResponse&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetString&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetStringResponse&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetAlertState&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetAlertStateResponse&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const Activate&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const ActivateResponse&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetContextState&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetContextStateResponse&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetPatientAssociationState&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const SetPatientAssociationStateResponse&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const PeriodicMetricReport&);
+  operator<< (::xercesc::DOMElement&, const ReportPart1&);
 
   void
   operator<< (::xercesc::DOMElement&, const EpisodicMetricReport&);
 
   void
-  operator<< (::xercesc::DOMElement&, const PeriodicAlertReport&);
+  operator<< (::xercesc::DOMElement&, const PeriodicMetricReport&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const ReportPart2&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const EpisodicComponentReport&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const PeriodicComponentReport&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const ReportPart3&);
 
   void
   operator<< (::xercesc::DOMElement&, const EpisodicAlertReport&);
 
   void
-  operator<< (::xercesc::DOMElement&, const PeriodicContextChangedReport&);
+  operator<< (::xercesc::DOMElement&, const PeriodicAlertReport&);
 
   void
-  operator<< (::xercesc::DOMElement&, const EpisodicContextChangedReport&);
+  operator<< (::xercesc::DOMElement&, const ReportPart4&);
 
   void
-  operator<< (::xercesc::DOMElement&, const OperationInvokedReport&);
+  operator<< (::xercesc::DOMElement&, const EpisodicOperationalStateReport&);
 
   void
-  operator<< (::xercesc::DOMElement&, const OperationalStateChangedReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const OperationCreatedReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const OperationDeletedReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const ObjectCreatedReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const ObjectUpdatedReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const ObjectDeletedReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const MDSCreatedReport&);
-
-  void
-  operator<< (::xercesc::DOMElement&, const MDSDeletedReport&);
+  operator<< (::xercesc::DOMElement&, const PeriodicOperationalStateReport&);
 
   void
   operator<< (::xercesc::DOMElement&, const SystemErrorReport&);
 
   void
+  operator<< (::xercesc::DOMElement&, const DescriptionModificationReport&);
+
+  void
   operator<< (::xercesc::DOMElement&, const WaveformStream&);
 
   void
-  operator<< (::xercesc::DOMElement&, const OVStream&);
+  operator<< (::xercesc::DOMElement&, const ObservedValueStream&);
 
   void
   operator<< (::xercesc::DOMElement&, const Retrievability&);
 
   void
-  operator<< (::xercesc::DOMElement&, const OperationReference&);
+  operator<< (::xercesc::DOMElement&, const Argument&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const ReportPart5&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const ReportPart6&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const ReportPart7&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const Value&);
 }
 
 #include <xsd/cxx/post.hxx>

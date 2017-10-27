@@ -32,7 +32,7 @@
 #ifndef CLOCKSTATE_H_
 #define CLOCKSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -57,18 +57,48 @@ public:
     typedef CDM::ClockState WrappedType;
     typedef ClockDescriptor DescriptorType;
 
-	ClockState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	ClockState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	ClockState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
+
+	ClockState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	ClockState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
+
+	ClockState & setCalibrationInfo(const CalibrationInfo & value);
+	CalibrationInfo getCalibrationInfo() const;
+	bool getCalibrationInfo(CalibrationInfo & out) const;
+	bool hasCalibrationInfo() const;
+
+	ClockState & setNextCalibration(const CalibrationInfo & value);
+	CalibrationInfo getNextCalibration() const;
+	bool getNextCalibration(CalibrationInfo & out) const;
+	bool hasNextCalibration() const;
+
+	ClockState & setPhysicalConnector(const PhysicalConnectorInfo & value);
+	PhysicalConnectorInfo getPhysicalConnector() const;
+	bool getPhysicalConnector(PhysicalConnectorInfo & out) const;
+	bool hasPhysicalConnector() const;
+
+	ClockState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
+
+	ClockState & setOperatingHours(const unsigned int & value);
+	unsigned int getOperatingHours() const;
+	bool getOperatingHours(unsigned int & out) const;
+	bool hasOperatingHours() const;
+
+	ClockState & setOperatingCycles(const int & value);
+	int getOperatingCycles() const;
+	bool getOperatingCycles(int & out) const;
+	bool hasOperatingCycles() const;
 
 	ClockState & setActiveSyncProtocol(const CodedValue & value);
 	CodedValue getActiveSyncProtocol() const;
@@ -82,11 +112,6 @@ public:
 
 	ClockState & setRemoteSync(const bool & value);
 	bool getRemoteSync() const;
-
-	ClockState & setReferenceSource(const std::string & value);
-	std::string getReferenceSource() const;
-	bool getReferenceSource(std::string & out) const;
-	bool hasReferenceSource() const;
 
 	ClockState & setAccuracy(const double & value);
 	double getAccuracy() const;
@@ -108,6 +133,10 @@ public:
 	bool getCriticalUse(bool & out) const;
 	bool hasCriticalUse() const;
 
+	ClockState & addReferenceSource(const std::string & value);
+	std::vector<std::string> getReferenceSourceList() const;
+	void clearReferenceSourceList();
+	
 private:
 	std::shared_ptr<CDM::ClockState> data;
 };

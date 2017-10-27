@@ -36,9 +36,8 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/DateTime.h"
-#include "OSCLib/Data/OSCP/MDIB/Measure.h"
 
 namespace OSCLib {
 namespace Data {
@@ -162,7 +161,7 @@ PatientDemographicsCoreData & PatientDemographicsCoreData::addMiddlename(const s
 	return *this;
 }
 
-std::vector<std::string> PatientDemographicsCoreData::getMiddlenames() const {
+std::vector<std::string> PatientDemographicsCoreData::getMiddlenameList() const {
 	std::vector<std::string> result;
 	result.reserve(data->Middlename().size());
 	for (const auto & value: data->Middlename()) {
@@ -171,7 +170,7 @@ std::vector<std::string> PatientDemographicsCoreData::getMiddlenames() const {
 	return result;
 }
 
-void PatientDemographicsCoreData::clearMiddlenames() {
+void PatientDemographicsCoreData::clearMiddlenameList() {
 	data->Middlename().clear();
 }
 
@@ -217,12 +216,12 @@ bool PatientDemographicsCoreData::hasPatientType() const {
 	return data->PatientType().present();
 }
 	
-PatientDemographicsCoreData & PatientDemographicsCoreData::setDateOfBirth(const DateTime & value) {
+PatientDemographicsCoreData & PatientDemographicsCoreData::setDateOfBirth(const DateOfBirth & value) {
 	data->DateOfBirth(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool PatientDemographicsCoreData::getDateOfBirth(DateTime & out) const {
+bool PatientDemographicsCoreData::getDateOfBirth(DateOfBirth & out) const {
 	if (data->DateOfBirth().present()) {
 		out = ConvertFromCDM::convert(data->DateOfBirth().get());
 		return true;
@@ -230,7 +229,7 @@ bool PatientDemographicsCoreData::getDateOfBirth(DateTime & out) const {
 	return false;
 }
 
-DateTime PatientDemographicsCoreData::getDateOfBirth() const {
+DateOfBirth PatientDemographicsCoreData::getDateOfBirth() const {
 	return ConvertFromCDM::convert(data->DateOfBirth().get());
 }
 	
@@ -238,12 +237,12 @@ bool PatientDemographicsCoreData::hasDateOfBirth() const {
 	return data->DateOfBirth().present();
 }
 	
-PatientDemographicsCoreData & PatientDemographicsCoreData::setHeight(const Measure & value) {
+PatientDemographicsCoreData & PatientDemographicsCoreData::setHeight(const Measurement & value) {
 	data->Height(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool PatientDemographicsCoreData::getHeight(Measure & out) const {
+bool PatientDemographicsCoreData::getHeight(Measurement & out) const {
 	if (data->Height().present()) {
 		out = ConvertFromCDM::convert(data->Height().get());
 		return true;
@@ -251,7 +250,7 @@ bool PatientDemographicsCoreData::getHeight(Measure & out) const {
 	return false;
 }
 
-Measure PatientDemographicsCoreData::getHeight() const {
+Measurement PatientDemographicsCoreData::getHeight() const {
 	return ConvertFromCDM::convert(data->Height().get());
 }
 	
@@ -259,12 +258,12 @@ bool PatientDemographicsCoreData::hasHeight() const {
 	return data->Height().present();
 }
 	
-PatientDemographicsCoreData & PatientDemographicsCoreData::setWeight(const Measure & value) {
+PatientDemographicsCoreData & PatientDemographicsCoreData::setWeight(const Measurement & value) {
 	data->Weight(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool PatientDemographicsCoreData::getWeight(Measure & out) const {
+bool PatientDemographicsCoreData::getWeight(Measurement & out) const {
 	if (data->Weight().present()) {
 		out = ConvertFromCDM::convert(data->Weight().get());
 		return true;
@@ -272,7 +271,7 @@ bool PatientDemographicsCoreData::getWeight(Measure & out) const {
 	return false;
 }
 
-Measure PatientDemographicsCoreData::getWeight() const {
+Measurement PatientDemographicsCoreData::getWeight() const {
 	return ConvertFromCDM::convert(data->Weight().get());
 }
 	

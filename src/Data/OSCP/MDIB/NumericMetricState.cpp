@@ -38,8 +38,8 @@
 
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h"
 
 namespace OSCLib {
 namespace Data {
@@ -74,37 +74,6 @@ NumericMetricState & NumericMetricState:: operator=(const NumericMetricState & o
 }
 
 
-NumericMetricState & NumericMetricState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool NumericMetricState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
-		return true;
-	}
-	return false;
-}
-
-std::string NumericMetricState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
-}
-	
-bool NumericMetricState::hasHandle() const {
-	return data->Handle().present();
-}
-	
-NumericMetricState & NumericMetricState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string NumericMetricState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 NumericMetricState & NumericMetricState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -126,109 +95,179 @@ bool NumericMetricState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
-NumericMetricState & NumericMetricState::setComponentActivationState(const ComponentActivation & value) {
-	data->ComponentActivationState(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getComponentActivationState(ComponentActivation & out) const {
-	if (data->ComponentActivationState().present()) {
-		out = ConvertFromCDM::convert(data->ComponentActivationState().get());
+
+HandleRef NumericMetricState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+NumericMetricState & NumericMetricState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NumericMetricState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
-ComponentActivation NumericMetricState::getComponentActivationState() const {
-	return ConvertFromCDM::convert(data->ComponentActivationState().get());
+ReferencedVersion NumericMetricState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
 	
-bool NumericMetricState::hasComponentActivationState() const {
-	return data->ComponentActivationState().present();
+bool NumericMetricState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
 }
 	
-NumericMetricState & NumericMetricState::setCalibrationInfo(const CalibrationInfo & value) {
-	data->CalibrationInfo(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
+	data->PhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getCalibrationInfo(CalibrationInfo & out) const {
-	if (data->CalibrationInfo().present()) {
-		out = ConvertFromCDM::convert(data->CalibrationInfo().get());
+bool NumericMetricState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
+	if (data->PhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
 		return true;
 	}
 	return false;
 }
 
-CalibrationInfo NumericMetricState::getCalibrationInfo() const {
-	return ConvertFromCDM::convert(data->CalibrationInfo().get());
+PhysicalConnectorInfo NumericMetricState::getPhysicalConnector() const {
+	return ConvertFromCDM::convert(data->PhysicalConnector().get());
 }
 	
-bool NumericMetricState::hasCalibrationInfo() const {
-	return data->CalibrationInfo().present();
+bool NumericMetricState::hasPhysicalConnector() const {
+	return data->PhysicalConnector().present();
 }
 	
-NumericMetricState & NumericMetricState::setOperatingHours(const int & value) {
-	data->OperatingHours(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::setActivationState(const ComponentActivation & value) {
+	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getOperatingHours(int & out) const {
-	if (data->OperatingHours().present()) {
-		out = ConvertFromCDM::convert(data->OperatingHours().get());
+bool NumericMetricState::getActivationState(ComponentActivation & out) const {
+	if (data->ActivationState().present()) {
+		out = ConvertFromCDM::convert(data->ActivationState().get());
 		return true;
 	}
 	return false;
 }
 
-int NumericMetricState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours().get());
+ComponentActivation NumericMetricState::getActivationState() const {
+	return ConvertFromCDM::convert(data->ActivationState().get());
 }
 	
-bool NumericMetricState::hasOperatingHours() const {
-	return data->OperatingHours().present();
+bool NumericMetricState::hasActivationState() const {
+	return data->ActivationState().present();
 }
 	
-NumericMetricState & NumericMetricState::setOperatingCycles(const int & value) {
-	data->OperatingCycles(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
+	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getOperatingCycles(int & out) const {
-	if (data->OperatingCycles().present()) {
-		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+bool NumericMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out) const {
+	if (data->ActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 		return true;
 	}
 	return false;
 }
 
-int NumericMetricState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles().get());
+xml_schema::Duration NumericMetricState::getActiveDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 }
 	
-bool NumericMetricState::hasOperatingCycles() const {
-	return data->OperatingCycles().present();
+bool NumericMetricState::hasActiveDeterminationPeriod() const {
+	return data->ActiveDeterminationPeriod().present();
 }
 	
-NumericMetricState & NumericMetricState::setObservedValue(const NumericMetricValue & value) {
-	data->ObservedValue(ConvertToCDM::convert(value));
+NumericMetricState & NumericMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
+	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool NumericMetricState::getObservedValue(NumericMetricValue & out) const {
-	if (data->ObservedValue().present()) {
-		out = ConvertFromCDM::convert(data->ObservedValue().get());
+bool NumericMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
+	if (data->LifeTimePeriod().present()) {
+		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
 		return true;
 	}
 	return false;
 }
 
-NumericMetricValue NumericMetricState::getObservedValue() const {
-	return ConvertFromCDM::convert(data->ObservedValue().get());
+xml_schema::Duration NumericMetricState::getLifeTimePeriod() const {
+	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
 	
-bool NumericMetricState::hasObservedValue() const {
-	return data->ObservedValue().present();
+bool NumericMetricState::hasLifeTimePeriod() const {
+	return data->LifeTimePeriod().present();
+}
+	
+NumericMetricState & NumericMetricState::addBodySite(const CodedValue & value) {
+	data->BodySite().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<CodedValue> NumericMetricState::getBodySiteList() const {
+	std::vector<CodedValue> result;
+	result.reserve(data->BodySite().size());
+	for (const auto & value: data->BodySite()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void NumericMetricState::clearBodySiteList() {
+	data->BodySite().clear();
+}
+
+NumericMetricState & NumericMetricState::setMetricValue(const NumericMetricValue & value) {
+	data->MetricValue(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NumericMetricState::getMetricValue(NumericMetricValue & out) const {
+	if (data->MetricValue().present()) {
+		out = ConvertFromCDM::convert(data->MetricValue().get());
+		return true;
+	}
+	return false;
+}
+
+NumericMetricValue NumericMetricState::getMetricValue() const {
+	return ConvertFromCDM::convert(data->MetricValue().get());
+}
+	
+bool NumericMetricState::hasMetricValue() const {
+	return data->MetricValue().present();
+}
+	
+NumericMetricState & NumericMetricState::setActiveAveragingPeriod(const xml_schema::Duration & value) {
+	data->ActiveAveragingPeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NumericMetricState::getActiveAveragingPeriod(xml_schema::Duration & out) const {
+	if (data->ActiveAveragingPeriod().present()) {
+		out = ConvertFromCDM::convert(data->ActiveAveragingPeriod().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration NumericMetricState::getActiveAveragingPeriod() const {
+	return ConvertFromCDM::convert(data->ActiveAveragingPeriod().get());
+}
+	
+bool NumericMetricState::hasActiveAveragingPeriod() const {
+	return data->ActiveAveragingPeriod().present();
 }
 	
 NumericMetricState & NumericMetricState::addPhysiologicalRange(const Range & value) {
@@ -236,7 +275,7 @@ NumericMetricState & NumericMetricState::addPhysiologicalRange(const Range & val
 	return *this;
 }
 
-std::vector<Range> NumericMetricState::getPhysiologicalRanges() const {
+std::vector<Range> NumericMetricState::getPhysiologicalRangeList() const {
 	std::vector<Range> result;
 	result.reserve(data->PhysiologicalRange().size());
 	for (const auto & value: data->PhysiologicalRange()) {
@@ -245,7 +284,7 @@ std::vector<Range> NumericMetricState::getPhysiologicalRanges() const {
 	return result;
 }
 
-void NumericMetricState::clearPhysiologicalRanges() {
+void NumericMetricState::clearPhysiologicalRangeList() {
 	data->PhysiologicalRange().clear();
 }
 

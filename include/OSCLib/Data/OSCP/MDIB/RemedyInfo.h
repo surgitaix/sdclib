@@ -32,7 +32,7 @@
 #ifndef REMEDYINFO_H_
 #define REMEDYINFO_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -57,8 +57,8 @@ public:
     typedef CDM::RemedyInfo WrappedType;
 
 	RemedyInfo & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptions() const;
-	void clearDescriptions();
+	std::vector<LocalizedText> getDescriptionList() const;
+	void clearDescriptionList();
 	
 private:
 	std::shared_ptr<CDM::RemedyInfo> data;

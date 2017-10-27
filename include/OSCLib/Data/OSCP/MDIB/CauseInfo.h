@@ -32,7 +32,7 @@
 #ifndef CAUSEINFO_H_
 #define CAUSEINFO_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,14 +56,14 @@ public:
     
     typedef CDM::CauseInfo WrappedType;
 
-	CauseInfo & setRemedy(const RemedyInfo & value);
-	RemedyInfo getRemedy() const;
-	bool getRemedy(RemedyInfo & out) const;
-	bool hasRemedy() const;
+	CauseInfo & setRemedyInfo(const RemedyInfo & value);
+	RemedyInfo getRemedyInfo() const;
+	bool getRemedyInfo(RemedyInfo & out) const;
+	bool hasRemedyInfo() const;
 
 	CauseInfo & addDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getDescriptions() const;
-	void clearDescriptions();
+	std::vector<LocalizedText> getDescriptionList() const;
+	void clearDescriptionList();
 	
 private:
 	std::shared_ptr<CDM::CauseInfo> data;

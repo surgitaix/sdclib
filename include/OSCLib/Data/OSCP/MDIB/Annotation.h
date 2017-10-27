@@ -32,7 +32,7 @@
 #ifndef ANNOTATION_H_
 #define ANNOTATION_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,13 +56,8 @@ public:
     
     typedef CDM::Annotation WrappedType;
 
-	Annotation & setCode(const CodedValue & value);
-	CodedValue getCode() const;
-
-	Annotation & setSampleIndex(const SampleIndex & value);
-	SampleIndex getSampleIndex() const;
-	bool getSampleIndex(SampleIndex & out) const;
-	bool hasSampleIndex() const;
+	Annotation & setType(const CodedValue & value);
+	CodedValue getType() const;
 
 private:
 	std::shared_ptr<CDM::Annotation> data;

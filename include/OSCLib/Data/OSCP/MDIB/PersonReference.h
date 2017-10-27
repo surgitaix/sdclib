@@ -32,7 +32,7 @@
 #ifndef PERSONREFERENCE_H_
 #define PERSONREFERENCE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,12 +56,15 @@ public:
     
     typedef CDM::PersonReference WrappedType;
 
-	PersonReference & addName(const BaseDemographics & value);
-	std::vector<BaseDemographics> getNames() const;
-	void clearNames();
-	
+	PersonReference & setName(const BaseDemographics & value);
+	BaseDemographics getName() const;
+	bool getName(BaseDemographics & out) const;
+	bool hasName() const;
+
 	PersonReference & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
+	std::vector<InstanceIdentifier> getIdentificationList() const;
+	void clearIdentificationList();
+	
 private:
 	std::shared_ptr<CDM::PersonReference> data;
 };

@@ -13,7 +13,7 @@
 #include "Poco/Net/NetworkInterface.h"
 #include "Poco/Net/ServerSocket.h"
 
-#include "BICEPS_DomainModel.hxx"
+#include "BICEPS_ParticipantModel.hxx"
 #include "BICEPS_MessageModel.hxx"
 #include "MetadataExchange.hxx"
 #include "NormalizedMessageModel.hxx"
@@ -229,7 +229,7 @@ struct GetServiceImpl : public OSCP::IGetService {
 		WSDL::WSDLBuilder builder(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_GETSERVICE_PORTTYPE);
 		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMDDescriptionTraits> GetMDDescriptionTraitsAdapter(builder);
 		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMDIBTraits> GetMDIBTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMDStateTraits> GetMDStateOperationAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMdStateTraits> GetMDStateOperationAdapter(builder);
 		return builder.serialize();
 	}
 
@@ -240,15 +240,15 @@ struct GetServiceImpl : public OSCP::IGetService {
 
 	virtual std::unique_ptr<OSCP::GetMDDescriptionTraits::Response> dispatch(const OSCP::GetMDDescriptionTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::GetMDDescriptionTraits::Response>(new OSCP::GetMDDescriptionTraits::Response(_provider.GetMDDescription(request)));
+		return std::unique_ptr<OSCP::GetMDDescriptionTraits::Response>(new OSCP::GetMDDescriptionTraits::Response(_provider.GetMdDescription(request)));
 	}
 	virtual std::unique_ptr<OSCP::GetMDIBTraits::Response> dispatch(const OSCP::GetMDIBTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::GetMDIBTraits::Response>(new OSCP::GetMDIBTraits::Response(_provider.GetMDIB(request)));
+		return std::unique_ptr<OSCP::GetMDIBTraits::Response>(new OSCP::GetMDIBTraits::Response(_provider.GetMdib(request)));
 	}
-	virtual std::unique_ptr<OSCP::GetMDStateTraits::Response> dispatch(const OSCP::GetMDStateTraits::Request & request) override {
+	virtual std::unique_ptr<OSCP::GetMdStateTraits::Response> dispatch(const OSCP::GetMdStateTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::GetMDStateTraits::Response>(new OSCP::GetMDStateTraits::Response(_provider.GetMDState(request)));
+		return std::unique_ptr<OSCP::GetMdStateTraits::Response>(new OSCP::GetMdStateTraits::Response(_provider.GetMdState(request)));
 	}
 
 private:
@@ -351,9 +351,8 @@ void OSELibProviderAdapter::start() {
 	}
 
 	OSELib::DPWS::TypesType types;
-	types.push_back(OSELib::DPWS::QName("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01", "Device"));
-	types.push_back(OSELib::DPWS::QName("http://message-model-uri/15/04", "MedicalDevice"));
-	types.push_back(OSELib::DPWS::QName("http://www.draeger.com/projects/DSC/CMDM/2012/05", "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01", "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName(OSELib::OSCP::NS_WSDL_TARGET_NAMESPACE, "MedicalDevice"));
 
 	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),
@@ -440,56 +439,56 @@ void OSELibProviderAdapter::stop() {
 	_subscriptionManager.reset();
 }
 
-void OSELibProviderAdapter::notifyEvent(const CDM::EpisodicAlertReport & report) {
+void OSELibProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::EpisodicAlertReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const CDM::EpisodicContextChangedReport & report) {
+void OSELibProviderAdapter::notifyEvent(const MDM::EpisodicContextReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::EpisodicContextChangedReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const CDM::EpisodicMetricReport & report) {
+void OSELibProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::EpisodicMetricReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const CDM::PeriodicAlertReport & report) {
+void OSELibProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::PeriodicAlertReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const CDM::PeriodicContextChangedReport & report) {
+void OSELibProviderAdapter::notifyEvent(const MDM::PeriodicContextReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::PeriodicContextChangedReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const CDM::PeriodicMetricReport & report) {
+void OSELibProviderAdapter::notifyEvent(const MDM::PeriodicMetricReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::PeriodicMetricReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const CDM::OperationInvokedReport & report) {
+void OSELibProviderAdapter::notifyEvent(const MDM::OperationInvokedReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::OperationInvokedReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const CDM::WaveformStream & stream) {
+void OSELibProviderAdapter::notifyEvent(const MDM::WaveformStream & stream) {
 	_dpwsHost->sendStream(stream);
 }
 

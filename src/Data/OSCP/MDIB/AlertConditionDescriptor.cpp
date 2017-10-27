@@ -38,8 +38,6 @@
 
 #include "OSCLib/Data/OSCP/MDIB/CauseInfo.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -95,13 +93,13 @@ bool AlertConditionDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-AlertConditionDescriptor & AlertConditionDescriptor::setHandle(const std::string & value) {
+AlertConditionDescriptor & AlertConditionDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string AlertConditionDescriptor::getHandle() const {
+Handle AlertConditionDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -126,25 +124,25 @@ bool AlertConditionDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-AlertConditionDescriptor & AlertConditionDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
+AlertConditionDescriptor & AlertConditionDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool AlertConditionDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
+bool AlertConditionDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
-IntendedUse AlertConditionDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
+SafetyClassification AlertConditionDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool AlertConditionDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
+bool AlertConditionDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
 }
 	
 AlertConditionDescriptor & AlertConditionDescriptor::setKind(const AlertConditionKind & value) {
@@ -167,13 +165,76 @@ AlertConditionPriority AlertConditionDescriptor::getPriority() const {
 	return ConvertFromCDM::convert(data->Priority());
 }
 	
-AlertConditionDescriptor & AlertConditionDescriptor::addSource(const std::string & value) {
+AlertConditionDescriptor & AlertConditionDescriptor::setDefaultConditionGenerationDelay(const xml_schema::Duration & value) {
+	data->DefaultConditionGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionDescriptor::getDefaultConditionGenerationDelay(xml_schema::Duration & out) const {
+	if (data->DefaultConditionGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration AlertConditionDescriptor::getDefaultConditionGenerationDelay() const {
+	return ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+}
+	
+bool AlertConditionDescriptor::hasDefaultConditionGenerationDelay() const {
+	return data->DefaultConditionGenerationDelay().present();
+}
+	
+AlertConditionDescriptor & AlertConditionDescriptor::setCanEscalate(const CanEscalate & value) {
+	data->CanEscalate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionDescriptor::getCanEscalate(CanEscalate & out) const {
+	if (data->CanEscalate().present()) {
+		out = ConvertFromCDM::convert(data->CanEscalate().get());
+		return true;
+	}
+	return false;
+}
+
+CanEscalate AlertConditionDescriptor::getCanEscalate() const {
+	return ConvertFromCDM::convert(data->CanEscalate().get());
+}
+	
+bool AlertConditionDescriptor::hasCanEscalate() const {
+	return data->CanEscalate().present();
+}
+	
+AlertConditionDescriptor & AlertConditionDescriptor::setCanDeescalate(const CanDeescalate & value) {
+	data->CanDeescalate(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionDescriptor::getCanDeescalate(CanDeescalate & out) const {
+	if (data->CanDeescalate().present()) {
+		out = ConvertFromCDM::convert(data->CanDeescalate().get());
+		return true;
+	}
+	return false;
+}
+
+CanDeescalate AlertConditionDescriptor::getCanDeescalate() const {
+	return ConvertFromCDM::convert(data->CanDeescalate().get());
+}
+	
+bool AlertConditionDescriptor::hasCanDeescalate() const {
+	return data->CanDeescalate().present();
+}
+	
+AlertConditionDescriptor & AlertConditionDescriptor::addSource(const HandleRef & value) {
 	data->Source().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<std::string> AlertConditionDescriptor::getSources() const {
-	std::vector<std::string> result;
+std::vector<HandleRef> AlertConditionDescriptor::getSourceList() const {
+	std::vector<HandleRef> result;
 	result.reserve(data->Source().size());
 	for (const auto & value: data->Source()) {
 		result.push_back(ConvertFromCDM::convert(value));
@@ -181,7 +242,7 @@ std::vector<std::string> AlertConditionDescriptor::getSources() const {
 	return result;
 }
 
-void AlertConditionDescriptor::clearSources() {
+void AlertConditionDescriptor::clearSourceList() {
 	data->Source().clear();
 }
 
@@ -190,7 +251,7 @@ AlertConditionDescriptor & AlertConditionDescriptor::addCauseInfo(const CauseInf
 	return *this;
 }
 
-std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfo() const {
+std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfoList() const {
 	std::vector<CauseInfo> result;
 	result.reserve(data->CauseInfo().size());
 	for (const auto & value: data->CauseInfo()) {
@@ -199,7 +260,7 @@ std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfo() const {
 	return result;
 }
 
-void AlertConditionDescriptor::clearCauseInfo() {
+void AlertConditionDescriptor::clearCauseInfoList() {
 	data->CauseInfo().clear();
 }
 

@@ -32,7 +32,7 @@
 #ifndef LOCALIZEDTEXT_H_
 #define LOCALIZEDTEXT_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,13 +56,26 @@ public:
     
     typedef CDM::LocalizedText WrappedType;
 
-	LocalizedText & setLang(const Language & value);
-	Language getLang() const;
-	bool getLang(Language & out) const;
+	LocalizedText & setRef(const LocalizedTextRef & value);
+	LocalizedTextRef getRef() const;
+	bool getRef(LocalizedTextRef & out) const;
+	bool hasRef() const;
+
+	LocalizedText & setLang(const xml_schema::Language & value);
+	xml_schema::Language getLang() const;
+	bool getLang(xml_schema::Language & out) const;
 	bool hasLang() const;
 
-	std::string get() const;
-	LocalizedText & set(const std::string & value); 
+	LocalizedText & setVersion(const ReferencedVersion & value);
+	ReferencedVersion getVersion() const;
+	bool getVersion(ReferencedVersion & out) const;
+	bool hasVersion() const;
+
+	LocalizedText & setTextWidth(const LocalizedTextWidth & value);
+	LocalizedTextWidth getTextWidth() const;
+	bool getTextWidth(LocalizedTextWidth & out) const;
+	bool hasTextWidth() const;
+
 private:
 	std::shared_ptr<CDM::LocalizedText> data;
 };

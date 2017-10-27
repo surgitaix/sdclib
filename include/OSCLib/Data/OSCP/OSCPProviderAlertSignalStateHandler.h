@@ -8,13 +8,13 @@
 #ifndef DATA_OSCP_OSCPPROVIDERALERTSIGNALSTATEHANDLER_H_
 #define DATA_OSCP_OSCPPROVIDERALERTSIGNALSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPProviderMDStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderAlertSignalStateHandler : public OSCPProviderMDStateHandler {
+class OSCPProviderAlertSignalStateHandler : public OSCPProviderMdStateHandler {
 public:
 	OSCPProviderAlertSignalStateHandler();
 	virtual ~OSCPProviderAlertSignalStateHandler();

@@ -24,7 +24,7 @@
 #ifndef SRC_DATA_OSCP_FUTURETRANSACTIONSTATE_H_
 #define SRC_DATA_OSCP_FUTURETRANSACTIONSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "Poco/Event.h"
 #include "Poco/Mutex.h"
 

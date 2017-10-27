@@ -32,7 +32,7 @@
 #ifndef ALERTCONDITIONSTATE_H_
 #define ALERTCONDITIONSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -59,21 +59,31 @@ public:
     typedef OSCPProviderAlertConditionStateHandler ProviderHandlerType;
     typedef OSCPConsumerAlertConditionStateHandler ConsumerHandlerType;
 
-	AlertConditionState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	AlertConditionState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	AlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	AlertConditionState & setActivationState(const PausableActivation & value);
-	PausableActivation getActivationState() const;
+	AlertConditionState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
+
+	AlertConditionState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
+
+	AlertConditionState & setActivationState(const AlertActivation & value);
+	AlertActivation getActivationState() const;
+
+	AlertConditionState & setActualConditionGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getActualConditionGenerationDelay() const;
+	bool getActualConditionGenerationDelay(xml_schema::Duration & out) const;
+	bool hasActualConditionGenerationDelay() const;
+
+	AlertConditionState & setActualPriority(const AlertConditionPriority & value);
+	AlertConditionPriority getActualPriority() const;
+	bool getActualPriority(AlertConditionPriority & out) const;
+	bool hasActualPriority() const;
 
 	AlertConditionState & setRank(const int & value);
 	int getRank() const;
@@ -82,11 +92,13 @@ public:
 
 	AlertConditionState & setPresence(const bool & value);
 	bool getPresence() const;
+	bool getPresence(bool & out) const;
+	bool hasPresence() const;
 
-	AlertConditionState & setObservationTime(const Timestamp & value);
-	Timestamp getObservationTime() const;
-	bool getObservationTime(Timestamp & out) const;
-	bool hasObservationTime() const;
+	AlertConditionState & setDeterminationTime(const Timestamp & value);
+	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
 
 private:
 	std::shared_ptr<CDM::AlertConditionState> data;

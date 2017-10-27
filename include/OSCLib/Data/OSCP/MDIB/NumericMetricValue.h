@@ -32,7 +32,7 @@
 #ifndef NUMERICMETRICVALUE_H_
 #define NUMERICMETRICVALUE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,24 +56,28 @@ public:
     
     typedef CDM::NumericMetricValue WrappedType;
 
-	NumericMetricValue & setMeasurementState(const MeasurementState & value);
-	MeasurementState getMeasurementState() const;
+	NumericMetricValue & setMetricQuality(const MetricQuality & value);
+	MetricQuality getMetricQuality() const;
 
-	NumericMetricValue & setStart_Time(const Timestamp & value);
-	Timestamp getStart_Time() const;
-	bool getStart_Time(Timestamp & out) const;
-	bool hasStart_Time() const;
+	NumericMetricValue & setStartTime(const Timestamp & value);
+	Timestamp getStartTime() const;
+	bool getStartTime(Timestamp & out) const;
+	bool hasStartTime() const;
 
-	NumericMetricValue & setStop_Time(const Timestamp & value);
-	Timestamp getStop_Time() const;
-	bool getStop_Time(Timestamp & out) const;
-	bool hasStop_Time() const;
+	NumericMetricValue & setStopTime(const Timestamp & value);
+	Timestamp getStopTime() const;
+	bool getStopTime(Timestamp & out) const;
+	bool hasStopTime() const;
 
-	NumericMetricValue & setObservationTime(const Timestamp & value);
-	Timestamp getObservationTime() const;
-	bool getObservationTime(Timestamp & out) const;
-	bool hasObservationTime() const;
+	NumericMetricValue & setDeterminationTime(const Timestamp & value);
+	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
 
+	NumericMetricValue & addAnnotation(const Annotation & value);
+	std::vector<Annotation> getAnnotationList() const;
+	void clearAnnotationList();
+	
 	NumericMetricValue & setValue(const double & value);
 	double getValue() const;
 	bool getValue(double & out) const;

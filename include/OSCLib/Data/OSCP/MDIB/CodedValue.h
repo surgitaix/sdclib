@@ -32,7 +32,7 @@
 #ifndef CODEDVALUE_H_
 #define CODEDVALUE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,26 +56,35 @@ public:
     
     typedef CDM::CodedValue WrappedType;
 
-	CodedValue & setCodingSystemId(const std::string & value);
-	std::string getCodingSystemId() const;
-	bool getCodingSystemId(std::string & out) const;
-	bool hasCodingSystemId() const;
+	CodedValue & setCode(const CodeIdentifier & value);
+	CodeIdentifier getCode() const;
 
-	CodedValue & setVersionId(const std::string & value);
-	std::string getVersionId() const;
-	bool getVersionId(std::string & out) const;
-	bool hasVersionId() const;
+	CodedValue & setCodingSystem(const xml_schema::Uri & value);
+	xml_schema::Uri getCodingSystem() const;
+	bool getCodingSystem(xml_schema::Uri & out) const;
+	bool hasCodingSystem() const;
 
-	CodedValue & setCodeId(const std::string & value);
-	std::string getCodeId() const;
+	CodedValue & setCodingSystemVersion(const std::string & value);
+	std::string getCodingSystemVersion() const;
+	bool getCodingSystemVersion(std::string & out) const;
+	bool hasCodingSystemVersion() const;
+
+	CodedValue & setSymbolicCodeName(const SymbolicCodeName & value);
+	SymbolicCodeName getSymbolicCodeName() const;
+	bool getSymbolicCodeName(SymbolicCodeName & out) const;
+	bool hasSymbolicCodeName() const;
 
 	CodedValue & addCodingSystemName(const LocalizedText & value);
-	std::vector<LocalizedText> getCodingSystemNames() const;
-	void clearCodingSystemNames();
+	std::vector<LocalizedText> getCodingSystemNameList() const;
+	void clearCodingSystemNameList();
 	
 	CodedValue & addConceptDescription(const LocalizedText & value);
-	std::vector<LocalizedText> getConceptDescriptions() const;
-	void clearConceptDescriptions();
+	std::vector<LocalizedText> getConceptDescriptionList() const;
+	void clearConceptDescriptionList();
+	
+	CodedValue & addTranslation(const Translation & value);
+	std::vector<Translation> getTranslationList() const;
+	void clearTranslationList();
 	
 private:
 	std::shared_ptr<CDM::CodedValue> data;

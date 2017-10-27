@@ -7,21 +7,19 @@
 #include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
+
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/Measure.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
-#include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
+
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 #include "../AbstractOSCLibFixture.h"
@@ -55,7 +53,7 @@ public:
     void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
     	Poco::Mutex::ScopedLock lock(mutex);
         DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << handle << std::endl;
-        std::vector<double> values = state.getObservedValue().getSamples().getValues();
+        std::vector<double> values = state.getMetricValue().getSamples();
         verifiedChunks = true;
 
         for (size_t i = 0; i < values.size(); i++) {
@@ -89,9 +87,8 @@ public:
     RealTimeSampleArrayMetricState createState() {
         RealTimeSampleArrayMetricState realTimeSampleArrayState;
         realTimeSampleArrayState
-            .setComponentActivationState(ComponentActivation::ON)
-            .setDescriptorHandle(descriptorHandle)
-            .setHandle(descriptorHandle + "_state");
+        	.setActivationState(ComponentActivation::On)
+        	.setDescriptorHandle(descriptorHandle);
         return realTimeSampleArrayState;
     }
 
@@ -100,10 +97,10 @@ public:
         return createState();
     }
 
-    void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
+    void updateStateValue(const SampleArrayValue & rtsav) {
         RealTimeSampleArrayMetricState realTimeSampleArrayState = createState();
         realTimeSampleArrayState
-            .setObservedValue(rtsav);
+            .setMetricValue(rtsav);
         updateState(realTimeSampleArrayState);
     }
 
@@ -124,70 +121,60 @@ public:
 
         // Currentweight stream metric (read-only)
         currentMetric
-			.setSamplePeriod(
-					Duration()
-					.setseconds(0.001)
-					)
-			.setResolution(1.0)
-			.addTechnicalRange(Range()
-					.setUpper(2)
-					.setLower(0))
-			.setMetricCategory(MetricCategory::MEASUREMENT)
-			.setAvailability(MetricAvailability::CONTINUOUS)
-			.setType(CodedValue()
-                    .setCodeId("MDCX_PLETHYSMOGRAM"));
+        	.setSamplePeriod(xml_schema::Duration(0,0,0,0,0,0,0.001))
+        	.setResolution(1.0)
+        	.addTechnicalRange(Range().setLower(0).setUpper(2))
+        	.setMetricCategory(MetricCategory::Msrmt)
+        	.setMetricAvailability(MetricAvailability::Cont)
+        	.setType(CodedValue()
+        			.setCode(CodeIdentifier("MDCX_PLETHYSMOGRAM"))
+        			.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
+
+
+        // alternative current matrix
         currentMetricAlt
-            .setSamplePeriod(
-            Duration()
-            .setseconds(0.001)
-            )
-            .setResolution(1.0)
-            .addTechnicalRange(Range()
-            .setUpper(2)
-            .setLower(0))
-            .setMetricCategory(MetricCategory::MEASUREMENT)
-            .setAvailability(MetricAvailability::CONTINUOUS)
-            .setType(CodedValue()
-                    .setCodeId("MDCX_PLETHYSMOGRAM_ALT"));
-        
+			.setSamplePeriod(xml_schema::Duration(0,0,0,0,0,0,0.001))
+			.setResolution(1.0)
+			.addTechnicalRange(Range().setLower(0).setUpper(2))
+			.setMetricCategory(MetricCategory::Msrmt)
+			.setMetricAvailability(MetricAvailability::Cont)
+			.setType(CodedValue()
+					.setCode(CodeIdentifier("MDCX_PLETHYSMOGRAM_ALT"))
+					.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
+
         // Channel
         ChannelDescriptor holdingDeviceParameters;
         holdingDeviceParameters
 			.addMetric(currentMetric)
             .addMetric(currentMetricAlt)
-			.setIntendedUse(IntendedUse::INFORMATIONAL);
-        
+			.setSafetyClassification(SafetyClassification::Inf);
+
         // VMD
-        VMDDescriptor holdingDeviceModule;       
+        VmdDescriptor holdingDeviceModule;
         holdingDeviceModule.addChannel(holdingDeviceParameters);
-        
+
         // MDS
-        HydraMDSDescriptor holdingDeviceSystem;
+        MdsDescriptor holdingDeviceSystem;
         holdingDeviceSystem
 			.setMetaData(
-				SystemMetaData()
-				.addManufacturer(
-					LocalizedText()
-					.set("SurgiTAIX AG"))
-				.addModelName(
-					LocalizedText()
-					.set("ChipOx"))
-				.addModelNumber("1")
-				.addSerialNumber("1234")
-				)
+				MetaData()
+					.addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
+	        		.setModelNumber("1")
+	        		.addModelName(LocalizedText().setRef("EndoTAIX"))
+	        		.addSerialNumber("1234"))
             .setType(CodedValue()
-                .setCodeId("MDC_DEV_ANALY_SAT_O2_MDS"))
-			.addVMD(holdingDeviceModule);
-        
-        // create and add description
-		MDDescription mdDescription;
-		mdDescription.addMDSDescriptor(holdingDeviceSystem);
+                .setCode("MDC_DEV_ANALY_SAT_O2_MDS"))
+			.addVmd(holdingDeviceModule);
 
-		oscpProvider.setMDDescription(mdDescription);
+        // create and add description
+		MdDescription mdDescription;
+		mdDescription.addMdsDescriptor(holdingDeviceSystem);
+
+		oscpProvider.setMdDescription(mdDescription);
 
         // Add handler
-        oscpProvider.addMDStateHandler(&streamHandler);
-        oscpProvider.addMDStateHandler(&streamHandlerAlt);
+        oscpProvider.addMdSateHandler(&streamHandler);
+        oscpProvider.addMdSateHandler(&streamHandlerAlt);
     }
 
     void startup() {
@@ -198,7 +185,7 @@ public:
     	oscpProvider.shutdown();
     }
 
-    void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
+    void updateStateValue(const SampleArrayValue & rtsav) {
         streamHandler.updateStateValue(rtsav); // updates handles and the parent provider
         streamHandlerAlt.updateStateValue(rtsav);
     }
@@ -226,11 +213,8 @@ public:
 		while (!isInterrupted()) {
 			{
                 updateStateValue(
-						RealTimeSampleArrayValue()
-						.setSamples(
-							RTValueType()
-							.setValues(samples))
-						);
+						SampleArrayValue()
+						.setSamples(samples));
 
 			}
 			DebugOut(DebugOut::Default, "StreamOSCP") << "Produced stream chunk of size " << size << ", index " << index << std::endl;

@@ -30,10 +30,10 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
-#include "OSCLib/Data/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerContextStateChangedHandler.h"
+#include "OSCLib/Data/OSCP/OSCPConsumerSystemContextStateChangedHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertSignalStateHandler.h"
@@ -51,7 +51,6 @@
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockState.h"
-#include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
@@ -61,7 +60,6 @@
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationState.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
@@ -69,13 +67,13 @@
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
-#include "OSCLib/Data/OSCP/MDIB/MDState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationInvocationContext.h"
+#include "OSCLib/Data/OSCP/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
@@ -92,73 +90,73 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-CDM::SetAlertState createRequestMessage(const AlertConditionState & state, const std::string & operationHandle) {
-	CDM::SetAlertState result(operationHandle, ConvertToCDM::convert(state));
+MDM::SetAlertState createRequestMessage(const AlertConditionState & state, const std::string & operationHandle) {
+	MDM::SetAlertState result(operationHandle, ConvertToCDM::convert(state));
 	return result;
 }
 
-CDM::SetAlertState createRequestMessage(const AlertSignalState & state, const std::string & operationHandle) {
-	CDM::SetAlertState result(operationHandle, ConvertToCDM::convert(state));
+MDM::SetAlertState createRequestMessage(const AlertSignalState & state, const std::string & operationHandle) {
+	MDM::SetAlertState result(operationHandle, ConvertToCDM::convert(state));
 	return result;
 }
 
-CDM::SetAlertState createRequestMessage(const AlertSystemState & state, const std::string & operationHandle) {
-	CDM::SetAlertState result(operationHandle, ConvertToCDM::convert(state));
+MDM::SetAlertState createRequestMessage(const AlertSystemState & state, const std::string & operationHandle) {
+	MDM::SetAlertState result(operationHandle, ConvertToCDM::convert(state));
 	return result;
 }
 
-CDM::SetString createRequestMessage(const EnumStringMetricState & state, const std::string & operationHandle) {
-	CDM::SetString result(operationHandle, state.getObservedValue().getValue());
+MDM::SetString createRequestMessage(const EnumStringMetricState & state, const std::string & operationHandle) {
+	MDM::SetString result(operationHandle, state.getMetricValue().getValue());
 	return result;
 }
 
-CDM::SetAlertState createRequestMessage(const LimitAlertConditionState & state, const std::string & operationHandle) {
-	CDM::SetAlertState result(operationHandle, ConvertToCDM::convert(state));
+MDM::SetAlertState createRequestMessage(const LimitAlertConditionState & state, const std::string & operationHandle) {
+	MDM::SetAlertState result(operationHandle, ConvertToCDM::convert(state));
 	return result;
 }
 
-CDM::SetValue createRequestMessage(const NumericMetricState & state, const std::string & operationHandle) {
-	CDM::SetValue result(operationHandle, state.getObservedValue().getValue());
+MDM::SetValue createRequestMessage(const NumericMetricState & state, const std::string & operationHandle) {
+	MDM::SetValue result(operationHandle, state.getMetricValue().getValue());
 	return result;
 }
 
-CDM::SetString createRequestMessage(const StringMetricState & state, const std::string & operationHandle) {
-	CDM::SetString result(operationHandle, state.getObservedValue().getValue());
+MDM::SetString createRequestMessage(const StringMetricState & state, const std::string & operationHandle) {
+	MDM::SetString result(operationHandle, state.getMetricValue().getValue());
 	return result;
 }
 
-CDM::Activate createRequestMessage(const std::string & operationHandle) {
-	CDM::Activate result(operationHandle);
+MDM::Activate createRequestMessage(const std::string & operationHandle) {
+	MDM::Activate result(operationHandle);
 	return result;
 }
 
-CDM::SetContextState createRequestMessage(const LocationContextState & state, const std::string & operationHandle) {
-	CDM::SetContextState result(operationHandle);
+MDM::SetContextState createRequestMessage(const LocationContextState & state, const std::string & operationHandle) {
+	MDM::SetContextState result(operationHandle);
 	result.ProposedContextState().push_back(ConvertToCDM::convert(state));
 	return result;
 }
 
 
-CDM::SetContextState createRequestMessage(const PatientContextState & state, const std::string & operationHandle) {
-	CDM::SetContextState result(operationHandle);
+MDM::SetContextState createRequestMessage(const PatientContextState & state, const std::string & operationHandle) {
+	MDM::SetContextState result(operationHandle);
 	result.ProposedContextState().push_back(ConvertToCDM::convert(state));
 	return result;
 }
 
-CDM::SetContextState createRequestMessage(const EnsembleContextState & state, const std::string & operationHandle) {
-	CDM::SetContextState result(operationHandle);
+MDM::SetContextState createRequestMessage(const EnsembleContextState & state, const std::string & operationHandle) {
+	MDM::SetContextState result(operationHandle);
 	result.ProposedContextState().push_back(ConvertToCDM::convert(state));
 	return result;
 }
 
-CDM::SetContextState createRequestMessage(const OperatorContextState & state, const std::string & operationHandle) {
-	CDM::SetContextState result(operationHandle);
+MDM::SetContextState createRequestMessage(const OperatorContextState & state, const std::string & operationHandle) {
+	MDM::SetContextState result(operationHandle);
 	result.ProposedContextState().push_back(ConvertToCDM::convert(state));
 	return result;
 }
 
-CDM::SetContextState createRequestMessage(const WorkflowContextState & state, const std::string & operationHandle) {
-	CDM::SetContextState result(operationHandle);
+MDM::SetContextState createRequestMessage(const WorkflowContextState & state, const std::string & operationHandle) {
+	MDM::SetContextState result(operationHandle);
 	result.ProposedContextState().push_back(ConvertToCDM::convert(state));
 	return result;
 }
@@ -212,7 +210,7 @@ void OSCPConsumer::setConnectionLostHandler(OSCPConsumerConnectionLostHandler * 
     connectionLostHandler = handler;
 }
 
-void OSCPConsumer::setContextStateChangedHandler(OSCPConsumerContextStateChangedHandler * handler) {
+void OSCPConsumer::setContextStateChangedHandler(OSCPConsumerSystemContextStateChangedHandler * handler) {
     Poco::Mutex::ScopedLock lock(eventMutex);
 	contextStateChangedHandler = handler;
 	if (_adapter) {
@@ -242,50 +240,53 @@ void OSCPConsumer::onSubscriptionLost() {
     }
 }
 
-MDIBContainer OSCPConsumer::getMDIB() {
-	if (!requestMDIB()) {
+MdibContainer OSCPConsumer::getMdib() {
+	if (!requestMdib()) {
 		onConnectionLost();
 	}
     return *mdib;
 }
 
-MDDescription OSCPConsumer::getMDDescription() {
-    const CDM::GetMDDescription request;
+MdDescription OSCPConsumer::getMdDescription() {
+    const MDM::GetMdDescription request;
     auto response(_adapter->invoke(request));
 
 	if (response == nullptr) {
-        log_error([] { return "GetMDDescription request failed!"; });
+        log_error([] { return "GetMdDescription request failed!"; });
 		onConnectionLost();
-		return MDDescription();
+		return MdDescription();
 	}
-	const MDDescription description(ConvertFromCDM::convert(response->StaticDescription()));
+
+	const MdDescription description(ConvertFromCDM::convert(response->MdDescription()));
 
 	// refresh cashed version
-	mdib->setMDDescription(description);
-	mdib->setMDIBVersion(response->MDIBVersion());
+	mdib->setMdDescription(description);
+	if (response->MdibVersion().present()) {
+		mdib->setMdibVersion(response->MdibVersion().get());
+	}
 
     return description;
 }
 
-MDDescription OSCPConsumer::getCachedMDDescription() {
+MdDescription OSCPConsumer::getCachedMdDescription() {
 	if (mdib) {
-		return mdib->getMDDescription();
+		return mdib->getMdDescription();
 	} else {
-		return MDDescription();
+		return MdDescription();
 	}
 }
 
-MDState OSCPConsumer::getMDState() {
-    const CDM::GetMDState request;
-    std::unique_ptr<const CDM::GetMDStateResponse> response(_adapter->invoke(request));
+MdState OSCPConsumer::getMdState() {
+    const MDM::GetMdState request;
+    std::unique_ptr<const MDM::GetMdStateResponse> response(_adapter->invoke(request));
 
 	if (response == nullptr) {
-		log_error([] { return "GetMDState request failed!"; });
+		log_error([] { return "GetMdState request failed!"; });
 		onConnectionLost();
-		return MDState();
+		return MdState();
 	}
 
-    return ConvertFromCDM::convert(response->MDState());
+    return ConvertFromCDM::convert(response->MdState());
 }
 
 bool OSCPConsumer::unregisterFutureInvocationListener(int transactionId) {
@@ -313,28 +314,34 @@ bool OSCPConsumer::unregisterStateEventHandler(OSCPConsumerEventHandler * handle
     return true;
 }
 
-bool OSCPConsumer::requestMDIB() {
-	std::unique_ptr<const CDM::GetMDIBResponse> response(requestCDMMDIB());
+bool OSCPConsumer::requestMdib() {
+	std::unique_ptr<const MDM::GetMdibResponse> response(requestCDMMdib());
 	if (response == nullptr) {
 		return false;
 	}
 
 	Poco::Mutex::ScopedLock lock(requestMutex);
-	mdib.reset(new MDIBContainer());
-	mdib->setMDState(ConvertFromCDM::convert(response->MDIB().MDState()));
-	mdib->setMDDescription(ConvertFromCDM::convert(response->MDIB().MDDescription()));
-	mdib->setMDIBVersion(response->MDIBVersion());
+	mdib.reset(new MdibContainer());
+	mdib->setMdState(ConvertFromCDM::convert(response->Mdib().MdState().get()));
+	if (response->Mdib().MdDescription().present()) {
+		mdib->setMdDescription(ConvertFromCDM::convert(response->Mdib().MdDescription().get()));
+	}
+
+	if (response->MdibVersion().present()) {
+		mdib->setMdibVersion(response->MdibVersion().get());
+	}
+
 	return true;
 }
 
-std::unique_ptr<CDM::GetMDIBResponse> OSCPConsumer::requestCDMMDIB() {
-    const CDM::GetMDIB request;
+std::unique_ptr<MDM::GetMdibResponse> OSCPConsumer::requestCDMMdib() {
+    const MDM::GetMdib request;
     auto response(_adapter->invoke(request));
     return response;
 }
 
-std::string OSCPConsumer::requestRawMDIB() {
-	std::unique_ptr<const CDM::GetMDIBResponse> response(requestCDMMDIB());
+std::string OSCPConsumer::requestRawMdib() {
+	std::unique_ptr<const MDM::GetMdibResponse> response(requestCDMMdib());
 	if (response == nullptr) {
 		log_error([] { return "MDIB request failed!"; });
 		return "";
@@ -342,38 +349,39 @@ std::string OSCPConsumer::requestRawMDIB() {
 		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
 		std::ostringstream result;
 		xml_schema::NamespaceInfomap map;
-		CDM::MDIBContainer(result, response->MDIB(), map, OSELib::XML_ENCODING, xercesFlags);
+
+		CDM::MdibContainer(result, response->Mdib(), map, OSELib::XML_ENCODING, xercesFlags);
 		return result.str();
 	}
 }
 
 // TODO: delete commitStateImpl() use one template class, use traits for Metrices: https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Member_Detector
 InvocationState OSCPConsumer::commitState(const EnumStringMetricState & state, FutureInvocationState & fis) {
-	if (!state.hasObservedValue()) {
-		return InvocationState::FAILED;
+	if (!state.hasMetricValue()) {
+		return InvocationState::Fail;
 	}
-	if (!state.getObservedValue().hasValue()) {
-		return InvocationState::FAILED;
+	if (!state.getMetricValue().hasValue()) {
+		return InvocationState::Fail;
 	}
 	return commitStateImpl<OSELib::OSCP::SetStringTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const NumericMetricState & state, FutureInvocationState & fis) {
-	if (!state.hasObservedValue()) {
-		return InvocationState::FAILED;
+	if (!state.hasMetricValue()) {
+		return InvocationState::Fail;
 	}
-	if (!state.getObservedValue().hasValue()) {
-		return InvocationState::FAILED;
+	if (!state.getMetricValue().hasValue()) {
+		return InvocationState::Fail;
 	}
 	return commitStateImpl<OSELib::OSCP::SetValueTraits>(state, fis);
 }
 
 InvocationState OSCPConsumer::commitState(const StringMetricState & state, FutureInvocationState & fis) {
-	if (!state.hasObservedValue()) {
-		return InvocationState::FAILED;
+	if (!state.hasMetricValue()) {
+		return InvocationState::Fail;
 	}
-	if (!state.getObservedValue().hasValue()) {
-		return InvocationState::FAILED;
+	if (!state.getMetricValue().hasValue()) {
+		return InvocationState::Fail;
 	}
 	return commitStateImpl<OSELib::OSCP::SetStringTraits>(state, fis);
 }
@@ -479,36 +487,40 @@ InvocationState OSCPConsumer::commitStateImpl(const StateType & state, FutureInv
 
 	if (state.getDescriptorHandle().empty()) {
 		log_error([] { return "Commit failed: descriptor handle is empty!"; });
-		return InvocationState::FAILED;
+		return InvocationState::Fail;
 	}
 
-	const MDDescription mddescription(getCachedMDDescription());
+	const MdDescription mddescription(getCachedMdDescription());
 
 	typename StateType::DescriptorType descriptor;
 	if (!mddescription.findDescriptor(state.getDescriptorHandle(), descriptor)) {
-		log_error([] { return "Could not find descriptor handle in getMDDescriptionResponse. Resolving matching set operations failed!"; });
-		return InvocationState::FAILED;
+		log_error([] { return "Could not find descriptor handle in getMdDescriptionResponse. Resolving matching set operations failed!"; });
+		return InvocationState::Fail;
 	}
+
 
 	// Check for operation that targets the descriptor for this state.
 	std::string operationHandle(mddescription.getFirstOperationHandleForOperationTarget(state.getDescriptorHandle()));
-	if (operationHandle.empty() && state.hasHandle()) {
+
+
+
+	if (operationHandle.empty()) {
 		// No operation targeting this state was found.
 		// check for operation that targets state
-		operationHandle = mddescription.getFirstOperationHandleForOperationTarget(state.getHandle());
+		operationHandle = mddescription.getFirstOperationHandleForOperationTarget(state.getDescriptorHandle());
 	}
 	if (operationHandle.empty()) {
 		log_error([&] { return "Commit failed: No set operation found to modify given state! State has descriptor handle " + state.getDescriptorHandle(); });
-		return InvocationState::FAILED;
+		return InvocationState::Fail;
 	}
 
 	const typename OperationTraits::Request request(createRequestMessage(state, operationHandle));
 	std::unique_ptr<const typename OperationTraits::Response> response(_adapter->invoke(request));
 	if (response == nullptr) {
-		return InvocationState::FAILED;
+		return InvocationState::Fail;
 	} else {
-		handleInvocationState(response->TransactionId(), fis);
-		return ConvertFromCDM::convert(response->InvocationState());
+		handleInvocationState(response->InvocationInfo().TransactionId(), fis);
+		return ConvertFromCDM::convert(response->InvocationInfo().InvocationState());
 	}
 }
 
@@ -535,15 +547,15 @@ InvocationState OSCPConsumer::activate(const std::string & handle) {
 
 InvocationState OSCPConsumer::activate(const std::string & handle, FutureInvocationState & fis) {
 
-    const MDDescription mdd(getCachedMDDescription());
+    const MdDescription mdd(getCachedMdDescription());
 
-	const CDM::Activate request(createRequestMessage(handle));
-	std::unique_ptr<const CDM::ActivateResponse> response(_adapter->invoke(request));
+	const MDM::Activate request(createRequestMessage(handle));
+	std::unique_ptr<const MDM::ActivateResponse> response(_adapter->invoke(request));
 	if (response == nullptr) {
-		return InvocationState::FAILED;
+		return InvocationState::Fail;
 	} else {
-		handleInvocationState(response->TransactionId(), fis);
-		return ConvertFromCDM::convert(response->InvocationState());
+		handleInvocationState(response->InvocationInfo().TransactionId(), fis);
+		return ConvertFromCDM::convert(response->InvocationInfo().InvocationState());
 	}
 }
 
@@ -551,13 +563,11 @@ template bool OSCPConsumer::requestState<AlertConditionState>(const std::string 
 template bool OSCPConsumer::requestState<AlertSignalState>(const std::string & handle, AlertSignalState & outState);
 template bool OSCPConsumer::requestState<AlertSystemState>(const std::string & handle, AlertSystemState & outState);
 template bool OSCPConsumer::requestState<ClockState>(const std::string & handle, ClockState & outState);
-template bool OSCPConsumer::requestState<ComponentState>(const std::string & handle, ComponentState & outState);
 template bool OSCPConsumer::requestState<EnsembleContextState>(const std::string & handle, EnsembleContextState & outState);
 template bool OSCPConsumer::requestState<EnumStringMetricState>(const std::string & handle, EnumStringMetricState & outState);
 template bool OSCPConsumer::requestState<LimitAlertConditionState>(const std::string & handle, LimitAlertConditionState & outState);
 template bool OSCPConsumer::requestState<LocationContextState>(const std::string & handle, LocationContextState & outState);
 template bool OSCPConsumer::requestState<NumericMetricState>(const std::string & handle, NumericMetricState & outState);
-template bool OSCPConsumer::requestState<OperationState>(const std::string & handle, OperationState & outState);
 template bool OSCPConsumer::requestState<OperatorContextState>(const std::string & handle, OperatorContextState & outState);
 template bool OSCPConsumer::requestState<PatientContextState>(const std::string & handle, PatientContextState & outState);
 template bool OSCPConsumer::requestState<StringMetricState>(const std::string & handle, StringMetricState & outState);
@@ -567,7 +577,7 @@ template bool OSCPConsumer::requestState<WorkflowContextState>(const std::string
 template<class OutStateType>
 bool OSCPConsumer::requestState(const std::string & handle, OutStateType & outState) {
 
-    CDM::GetMDState request;
+    MDM::GetMdState request;
     request.HandleRef().push_back(handle);
 
     auto response (_adapter->invoke(request));
@@ -575,7 +585,7 @@ bool OSCPConsumer::requestState(const std::string & handle, OutStateType & outSt
     	return false;
     }
 
-	const CDM::MDState::StateSequence & resultStates(response->MDState().State());
+	const CDM::MdState::StateSequence & resultStates(response->MdState().State());
 	if (resultStates.empty()) {
 		log_error([&] { return "requestState failed: Got no response object for handle "  + handle; });
 		return false;
@@ -622,15 +632,15 @@ void OSCPConsumer::onOperationInvoked(const OperationInvocationContext & oic, In
     Poco::Mutex::ScopedLock lock(eventMutex);
     // If operation handle belongs to ActivateOperationDescriptor, use operation handle as target handle in case of operation invoked events!
 
-    const MDDescription mdd(getCachedMDDescription());
+    const MdDescription mdd(getCachedMdDescription());
     std::string targetHandle;
-    const std::vector<HydraMDSDescriptor> mdss(mdd.collectAllHydraMDSDescriptors());
+    const std::vector<MdsDescriptor> mdss(mdd.collectAllMdsDescriptors());
     for (const auto & mds : mdss) {
-    	const std::unique_ptr<CDM::HydraMDSDescriptor> hydraMDS(ConvertToCDM::convert(mds));
-		if (!hydraMDS->SCO().present()) {
+    	const std::unique_ptr<CDM::MdsDescriptor> mds_uniquePtr(ConvertToCDM::convert(mds));
+		if (!mds_uniquePtr->Sco().present()) {
 			continue;
 		}
-		for (const auto & operation : hydraMDS->SCO().get().Operation()) {
+		for (const auto & operation : mds_uniquePtr->Sco().get().Operation()) {
 			if (operation.Handle() == oic.operationHandle && dynamic_cast<const CDM::ActivateOperationDescriptor *>(&operation) != nullptr) {
 				targetHandle = oic.operationHandle;
 				break;
@@ -659,13 +669,13 @@ std::string OSCPConsumer::getEndpointReference() {
 	return _deviceDescription.getEPR();
 }
 
-unsigned long long int OSCPConsumer::getLastKnownMDIBVersion() {
+unsigned long long int OSCPConsumer::getLastKnownMdibVersion() {
 	Poco::Mutex::ScopedLock lock(mdibVersionMutex);
 	unsigned long long int result = lastKnownMDIBVersion;
 	return result;
 }
 
-void OSCPConsumer::updateLastKnownMDIBVersion(unsigned long long int newVersion) {
+void OSCPConsumer::updateLastKnownMdibVersion(unsigned long long int newVersion) {
 	Poco::Mutex::ScopedLock lock(mdibVersionMutex);
 	if (lastKnownMDIBVersion < newVersion) {
 		lastKnownMDIBVersion = newVersion;

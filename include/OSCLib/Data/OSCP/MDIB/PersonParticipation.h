@@ -32,7 +32,7 @@
 #ifndef PERSONPARTICIPATION_H_
 #define PERSONPARTICIPATION_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,16 +56,19 @@ public:
     
     typedef CDM::PersonParticipation WrappedType;
 
-	PersonParticipation & addName(const BaseDemographics & value);
-	std::vector<BaseDemographics> getNames() const;
-	void clearNames();
+	PersonParticipation & setName(const BaseDemographics & value);
+	BaseDemographics getName() const;
+	bool getName(BaseDemographics & out) const;
+	bool hasName() const;
+
+	PersonParticipation & addIdentification(const InstanceIdentifier & value);
+	std::vector<InstanceIdentifier> getIdentificationList() const;
+	void clearIdentificationList();
 	
 	PersonParticipation & addRole(const CodedValue & value);
-	std::vector<CodedValue> getRoles() const;
-	void clearRoles();
+	std::vector<CodedValue> getRoleList() const;
+	void clearRoleList();
 	
-	PersonParticipation & addIdentification(const InstanceIdentifier & value);
-	std::vector<InstanceIdentifier> getIdentifications() const;
 private:
 	std::shared_ptr<CDM::PersonParticipation> data;
 };

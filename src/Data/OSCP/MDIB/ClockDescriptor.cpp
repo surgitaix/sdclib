@@ -37,9 +37,8 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
+#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -95,13 +94,13 @@ bool ClockDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-ClockDescriptor & ClockDescriptor::setHandle(const std::string & value) {
+ClockDescriptor & ClockDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string ClockDescriptor::getHandle() const {
+Handle ClockDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -126,33 +125,51 @@ bool ClockDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-ClockDescriptor & ClockDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
+ClockDescriptor & ClockDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ClockDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
+bool ClockDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
-IntendedUse ClockDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
+SafetyClassification ClockDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool ClockDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
+bool ClockDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
 }
 	
-ClockDescriptor & ClockDescriptor::setResolution(const Duration & value) {
+ClockDescriptor & ClockDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> ClockDescriptor::getProductionSpecificationList() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ClockDescriptor::clearProductionSpecificationList() {
+	data->ProductionSpecification().clear();
+}
+
+ClockDescriptor & ClockDescriptor::setResolution(const xml_schema::Duration & value) {
 	data->Resolution(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ClockDescriptor::getResolution(Duration & out) const {
+bool ClockDescriptor::getResolution(xml_schema::Duration & out) const {
 	if (data->Resolution().present()) {
 		out = ConvertFromCDM::convert(data->Resolution().get());
 		return true;
@@ -160,7 +177,7 @@ bool ClockDescriptor::getResolution(Duration & out) const {
 	return false;
 }
 
-Duration ClockDescriptor::getResolution() const {
+xml_schema::Duration ClockDescriptor::getResolution() const {
 	return ConvertFromCDM::convert(data->Resolution().get());
 }
 	
@@ -173,7 +190,7 @@ ClockDescriptor & ClockDescriptor::addTimeProtocol(const CodedValue & value) {
 	return *this;
 }
 
-std::vector<CodedValue> ClockDescriptor::getTimeProtocols() const {
+std::vector<CodedValue> ClockDescriptor::getTimeProtocolList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->TimeProtocol().size());
 	for (const auto & value: data->TimeProtocol()) {
@@ -182,7 +199,7 @@ std::vector<CodedValue> ClockDescriptor::getTimeProtocols() const {
 	return result;
 }
 
-void ClockDescriptor::clearTimeProtocols() {
+void ClockDescriptor::clearTimeProtocolList() {
 	data->TimeProtocol().clear();
 }
 

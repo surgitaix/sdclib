@@ -19,25 +19,20 @@
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/Measure.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
-
-#include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
@@ -125,7 +120,7 @@ public:
     float getMaxWeight() {
         NumericMetricState result;
         // TODO: in real applications, check if findState returns true!
-        getParentProvider().getMDState().findState("handle_set", result);
+        getParentProvider().getMdState().findState("handle_set", result);
         // TODO: in real applications, check if state has an observed value and if the observed value has a value!
         return (float)result.getObservedValue().getValue();
     }
@@ -146,9 +141,9 @@ public:
     RealTimeSampleArrayMetricState createState() {
         RealTimeSampleArrayMetricState realTimeSampleArrayState;
         realTimeSampleArrayState
-            .setComponentActivationState(ComponentActivation::ON)
-            .setDescriptorHandle(descriptorHandle)
-            .setHandle(descriptorHandle + "_state");
+            .setActivationState(ComponentActivation::On)
+            .setDescriptorHandle(descriptorHandle);
+
         return realTimeSampleArrayState;
     }
 
@@ -157,10 +152,10 @@ public:
         return createState();
     }
 
-    void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
+    void updateStateValue(const SampleArrayValue & sav) {
         RealTimeSampleArrayMetricState realTimeSampleArrayState = createState();
         realTimeSampleArrayState
-            .setObservedValue(rtsav);
+            .setMetricValue(sav);
         updateState(realTimeSampleArrayState);
     }
 
@@ -185,12 +180,12 @@ public:
 
 		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << mdDesciption_xml;
 
-		oscpProvider.setMDDescription(mdDesciption_xml);
+		oscpProvider.setMdDescription(mdDesciption_xml);
 
         // Add handler
-		oscpProvider.addMDStateHandler(&streamHandler);
-		oscpProvider.addMDStateHandler(&getNumericHandler);
-		oscpProvider.addMDStateHandler(&setNumericHandler);
+		oscpProvider.addMdSateHandler(&streamHandler);
+		oscpProvider.addMdSateHandler(&getNumericHandler);
+		oscpProvider.addMdSateHandler(&setNumericHandler);
     }
 
     void startup() {
@@ -201,8 +196,8 @@ public:
     	oscpProvider.shutdown();
     }
 
-    void updateStateValue(const RealTimeSampleArrayValue & rtsav) {
-        streamHandler.updateStateValue(rtsav); // updates handles and the parent provider
+    void updateStateValue(const SampleArrayValue & sav) {
+        streamHandler.updateStateValue(sav); // updates handles and the parent provider
     }
 
 private:

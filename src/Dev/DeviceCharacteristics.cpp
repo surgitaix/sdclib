@@ -18,7 +18,7 @@
  *  @file DeviceCharacteristics.cpp
  *  @project OSCLib
  *  @date 05.07.2011
- *  @author besting
+ *  @author besting (H)
  *  @copyright (c) SurgiTAIX AG
  */
 

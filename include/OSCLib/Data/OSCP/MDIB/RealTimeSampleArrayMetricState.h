@@ -32,7 +32,7 @@
 #ifndef REALTIMESAMPLEARRAYMETRICSTATE_H_
 #define REALTIMESAMPLEARRAYMETRICSTATE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -59,44 +59,52 @@ public:
     typedef OSCPProviderRealTimeSampleArrayMetricStateHandler ProviderHandlerType;
     typedef OSCPConsumerRealTimeSampleArrayMetricStateHandler ConsumerHandlerType;
 
-	RealTimeSampleArrayMetricState & setHandle(const std::string & value);
-	std::string getHandle() const;
-	bool getHandle(std::string & out) const;
-	bool hasHandle() const;
-
-	RealTimeSampleArrayMetricState & setDescriptorHandle(const std::string & value);
-	std::string getDescriptorHandle() const;
-
 	RealTimeSampleArrayMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
 
-	RealTimeSampleArrayMetricState & setComponentActivationState(const ComponentActivation & value);
-	ComponentActivation getComponentActivationState() const;
-	bool getComponentActivationState(ComponentActivation & out) const;
-	bool hasComponentActivationState() const;
+	RealTimeSampleArrayMetricState & setDescriptorHandle(const HandleRef & value);
+	HandleRef getDescriptorHandle() const;
 
-	RealTimeSampleArrayMetricState & setCalibrationInfo(const CalibrationInfo & value);
-	CalibrationInfo getCalibrationInfo() const;
-	bool getCalibrationInfo(CalibrationInfo & out) const;
-	bool hasCalibrationInfo() const;
+	RealTimeSampleArrayMetricState & setDescriptorVersion(const ReferencedVersion & value);
+	ReferencedVersion getDescriptorVersion() const;
+	bool getDescriptorVersion(ReferencedVersion & out) const;
+	bool hasDescriptorVersion() const;
 
-	RealTimeSampleArrayMetricState & setOperatingHours(const int & value);
-	int getOperatingHours() const;
-	bool getOperatingHours(int & out) const;
-	bool hasOperatingHours() const;
+	RealTimeSampleArrayMetricState & setPhysicalConnector(const PhysicalConnectorInfo & value);
+	PhysicalConnectorInfo getPhysicalConnector() const;
+	bool getPhysicalConnector(PhysicalConnectorInfo & out) const;
+	bool hasPhysicalConnector() const;
 
-	RealTimeSampleArrayMetricState & setOperatingCycles(const int & value);
-	int getOperatingCycles() const;
-	bool getOperatingCycles(int & out) const;
-	bool hasOperatingCycles() const;
+	RealTimeSampleArrayMetricState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
 
-	RealTimeSampleArrayMetricState & setObservedValue(const RealTimeSampleArrayValue & value);
-	RealTimeSampleArrayValue getObservedValue() const;
-	bool getObservedValue(RealTimeSampleArrayValue & out) const;
-	bool hasObservedValue() const;
+	RealTimeSampleArrayMetricState & setActiveDeterminationPeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getActiveDeterminationPeriod() const;
+	bool getActiveDeterminationPeriod(xml_schema::Duration & out) const;
+	bool hasActiveDeterminationPeriod() const;
 
+	RealTimeSampleArrayMetricState & setLifeTimePeriod(const xml_schema::Duration & value);
+	xml_schema::Duration getLifeTimePeriod() const;
+	bool getLifeTimePeriod(xml_schema::Duration & out) const;
+	bool hasLifeTimePeriod() const;
+
+	RealTimeSampleArrayMetricState & addBodySite(const CodedValue & value);
+	std::vector<CodedValue> getBodySiteList() const;
+	void clearBodySiteList();
+	
+	RealTimeSampleArrayMetricState & setMetricValue(const SampleArrayValue & value);
+	SampleArrayValue getMetricValue() const;
+	bool getMetricValue(SampleArrayValue & out) const;
+	bool hasMetricValue() const;
+
+	RealTimeSampleArrayMetricState & addPhysiologicalRange(const Range & value);
+	std::vector<Range> getPhysiologicalRangeList() const;
+	void clearPhysiologicalRangeList();
+	
 private:
 	std::shared_ptr<CDM::RealTimeSampleArrayMetricState> data;
 };

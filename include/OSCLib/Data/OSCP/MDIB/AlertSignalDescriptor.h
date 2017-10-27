@@ -32,7 +32,7 @@
 #ifndef ALERTSIGNALDESCRIPTOR_H_
 #define ALERTSIGNALDESCRIPTOR_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,21 +61,23 @@ public:
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
 
-	AlertSignalDescriptor & setHandle(const std::string & value);
-	std::string getHandle() const;
+	AlertSignalDescriptor & setHandle(const Handle & value);
+	Handle getHandle() const;
 
 	AlertSignalDescriptor & setDescriptorVersion(const VersionCounter & value);
 	VersionCounter getDescriptorVersion() const;
 	bool getDescriptorVersion(VersionCounter & out) const;
 	bool hasDescriptorVersion() const;
 
-	AlertSignalDescriptor & setIntendedUse(const IntendedUse & value);
-	IntendedUse getIntendedUse() const;
-	bool getIntendedUse(IntendedUse & out) const;
-	bool hasIntendedUse() const;
+	AlertSignalDescriptor & setSafetyClassification(const SafetyClassification & value);
+	SafetyClassification getSafetyClassification() const;
+	bool getSafetyClassification(SafetyClassification & out) const;
+	bool hasSafetyClassification() const;
 
-	AlertSignalDescriptor & setConditionSignaled(const std::string & value);
-	std::string getConditionSignaled() const;
+	AlertSignalDescriptor & setConditionSignaled(const HandleRef & value);
+	HandleRef getConditionSignaled() const;
+	bool getConditionSignaled(HandleRef & out) const;
+	bool hasConditionSignaled() const;
 
 	AlertSignalDescriptor & setManifestation(const AlertSignalManifestation & value);
 	AlertSignalManifestation getManifestation() const;
@@ -83,10 +85,20 @@ public:
 	AlertSignalDescriptor & setLatching(const bool & value);
 	bool getLatching() const;
 
-	AlertSignalDescriptor & setDefaultSignalGenerationDelay(const Duration & value);
-	Duration getDefaultSignalGenerationDelay() const;
-	bool getDefaultSignalGenerationDelay(Duration & out) const;
+	AlertSignalDescriptor & setDefaultSignalGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getDefaultSignalGenerationDelay() const;
+	bool getDefaultSignalGenerationDelay(xml_schema::Duration & out) const;
 	bool hasDefaultSignalGenerationDelay() const;
+
+	AlertSignalDescriptor & setMinSignalGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getMinSignalGenerationDelay() const;
+	bool getMinSignalGenerationDelay(xml_schema::Duration & out) const;
+	bool hasMinSignalGenerationDelay() const;
+
+	AlertSignalDescriptor & setMaxSignalGenerationDelay(const xml_schema::Duration & value);
+	xml_schema::Duration getMaxSignalGenerationDelay() const;
+	bool getMaxSignalGenerationDelay(xml_schema::Duration & out) const;
+	bool hasMaxSignalGenerationDelay() const;
 
 	AlertSignalDescriptor & setSignalDelegationSupported(const bool & value);
 	bool getSignalDelegationSupported() const;
@@ -98,9 +110,9 @@ public:
 	bool getAcknowledgementSupported(bool & out) const;
 	bool hasAcknowledgementSupported() const;
 
-	AlertSignalDescriptor & setAcknowledgeTimeout(const Duration & value);
-	Duration getAcknowledgeTimeout() const;
-	bool getAcknowledgeTimeout(Duration & out) const;
+	AlertSignalDescriptor & setAcknowledgeTimeout(const xml_schema::Duration & value);
+	xml_schema::Duration getAcknowledgeTimeout() const;
+	bool getAcknowledgeTimeout(xml_schema::Duration & out) const;
 	bool hasAcknowledgeTimeout() const;
 
 private:

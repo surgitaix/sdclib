@@ -36,12 +36,9 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/BaseDemographics.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferencedVersion.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
@@ -76,37 +73,6 @@ OperatorContextState & OperatorContextState:: operator=(const OperatorContextSta
 }
 
 
-OperatorContextState & OperatorContextState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool OperatorContextState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
-		return true;
-	}
-	return false;
-}
-
-std::string OperatorContextState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
-}
-	
-bool OperatorContextState::hasHandle() const {
-	return data->Handle().present();
-}
-	
-OperatorContextState & OperatorContextState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string OperatorContextState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 OperatorContextState & OperatorContextState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -126,6 +92,68 @@ VersionCounter OperatorContextState::getStateVersion() const {
 	
 bool OperatorContextState::hasStateVersion() const {
 	return data->StateVersion().present();
+}
+	
+OperatorContextState & OperatorContextState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef OperatorContextState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+OperatorContextState & OperatorContextState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool OperatorContextState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
+
+ReferencedVersion OperatorContextState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool OperatorContextState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
+}
+	
+OperatorContextState & OperatorContextState::setCategory(const CodedValue & value) {
+	data->Category(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool OperatorContextState::getCategory(CodedValue & out) const {
+	if (data->Category().present()) {
+		out = ConvertFromCDM::convert(data->Category().get());
+		return true;
+	}
+	return false;
+}
+
+CodedValue OperatorContextState::getCategory() const {
+	return ConvertFromCDM::convert(data->Category().get());
+}
+	
+bool OperatorContextState::hasCategory() const {
+	return data->Category().present();
+}
+	
+OperatorContextState & OperatorContextState::setHandle(const Handle & value) {
+	data->Handle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Handle OperatorContextState::getHandle() const {
+	return ConvertFromCDM::convert(data->Handle());
 }
 	
 OperatorContextState & OperatorContextState::setContextAssociation(const ContextAssociation & value) {
@@ -149,35 +177,46 @@ bool OperatorContextState::hasContextAssociation() const {
 	return data->ContextAssociation().present();
 }
 	
-OperatorContextState & OperatorContextState::setBindingMDIBVersion(const ReferencedVersion & value) {
-	data->BindingMDIBVersion(ConvertToCDM::convert(value));
+OperatorContextState & OperatorContextState::setBindingMdibVersion(const ReferencedVersion & value) {
+	data->BindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
-
-ReferencedVersion OperatorContextState::getBindingMDIBVersion() const {
-	return ConvertFromCDM::convert(data->BindingMDIBVersion());
-}
-	
-OperatorContextState & OperatorContextState::setUnbindingMDIBVersion(const ReferencedVersion & value) {
-	data->UnbindingMDIBVersion(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool OperatorContextState::getUnbindingMDIBVersion(ReferencedVersion & out) const {
-	if (data->UnbindingMDIBVersion().present()) {
-		out = ConvertFromCDM::convert(data->UnbindingMDIBVersion().get());
+bool OperatorContextState::getBindingMdibVersion(ReferencedVersion & out) const {
+	if (data->BindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->BindingMdibVersion().get());
 		return true;
 	}
 	return false;
 }
 
-ReferencedVersion OperatorContextState::getUnbindingMDIBVersion() const {
-	return ConvertFromCDM::convert(data->UnbindingMDIBVersion().get());
+ReferencedVersion OperatorContextState::getBindingMdibVersion() const {
+	return ConvertFromCDM::convert(data->BindingMdibVersion().get());
 }
 	
-bool OperatorContextState::hasUnbindingMDIBVersion() const {
-	return data->UnbindingMDIBVersion().present();
+bool OperatorContextState::hasBindingMdibVersion() const {
+	return data->BindingMdibVersion().present();
+}
+	
+OperatorContextState & OperatorContextState::setUnbindingMdibVersion(const ReferencedVersion & value) {
+	data->UnbindingMdibVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool OperatorContextState::getUnbindingMdibVersion(ReferencedVersion & out) const {
+	if (data->UnbindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+		return true;
+	}
+	return false;
+}
+
+ReferencedVersion OperatorContextState::getUnbindingMdibVersion() const {
+	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+}
+	
+bool OperatorContextState::hasUnbindingMdibVersion() const {
+	return data->UnbindingMdibVersion().present();
 }
 	
 OperatorContextState & OperatorContextState::setBindingStartTime(const Timestamp & value) {
@@ -227,7 +266,7 @@ OperatorContextState & OperatorContextState::addValidator(const InstanceIdentifi
 	return *this;
 }
 
-std::vector<InstanceIdentifier> OperatorContextState::getValidators() const {
+std::vector<InstanceIdentifier> OperatorContextState::getValidatorList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Validator().size());
 	for (const auto & value: data->Validator()) {
@@ -236,7 +275,7 @@ std::vector<InstanceIdentifier> OperatorContextState::getValidators() const {
 	return result;
 }
 
-void OperatorContextState::clearValidators() {
+void OperatorContextState::clearValidatorList() {
 	data->Validator().clear();
 }
 
@@ -245,7 +284,7 @@ OperatorContextState & OperatorContextState::addIdentification(const InstanceIde
 	return *this;
 }
 
-std::vector<InstanceIdentifier> OperatorContextState::getIdentifications() const {
+std::vector<InstanceIdentifier> OperatorContextState::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
 	result.reserve(data->Identification().size());
 	for (const auto & value: data->Identification()) {
@@ -254,10 +293,31 @@ std::vector<InstanceIdentifier> OperatorContextState::getIdentifications() const
 	return result;
 }
 
-void OperatorContextState::clearIdentifications() {
+void OperatorContextState::clearIdentificationList() {
 	data->Identification().clear();
 }
 
+OperatorContextState & OperatorContextState::setOperatorDetails(const BaseDemographics & value) {
+	data->OperatorDetails(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool OperatorContextState::getOperatorDetails(BaseDemographics & out) const {
+	if (data->OperatorDetails().present()) {
+		out = ConvertFromCDM::convert(data->OperatorDetails().get());
+		return true;
+	}
+	return false;
+}
+
+BaseDemographics OperatorContextState::getOperatorDetails() const {
+	return ConvertFromCDM::convert(data->OperatorDetails().get());
+}
+	
+bool OperatorContextState::hasOperatorDetails() const {
+	return data->OperatorDetails().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

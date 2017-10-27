@@ -32,7 +32,7 @@
 #ifndef CALIBRATIONINFO_H_
 #define CALIBRATIONINFO_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -61,6 +61,20 @@ public:
 	bool getComponentCalibrationState(CalibrationState & out) const;
 	bool hasComponentCalibrationState() const;
 
+	CalibrationInfo & setType(const CalibrationType & value);
+	CalibrationType getType() const;
+	bool getType(CalibrationType & out) const;
+	bool hasType() const;
+
+	CalibrationInfo & setTime(const Timestamp & value);
+	Timestamp getTime() const;
+	bool getTime(Timestamp & out) const;
+	bool hasTime() const;
+
+	CalibrationInfo & addCalibrationDocumentation(const CalibrationDocumentation & value);
+	std::vector<CalibrationDocumentation> getCalibrationDocumentationList() const;
+	void clearCalibrationDocumentationList();
+	
 private:
 	std::shared_ptr<CDM::CalibrationInfo> data;
 };

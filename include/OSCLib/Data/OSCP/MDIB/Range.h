@@ -32,7 +32,7 @@
 #ifndef RANGE_H_
 #define RANGE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -70,6 +70,16 @@ public:
 	double getStepWidth() const;
 	bool getStepWidth(double & out) const;
 	bool hasStepWidth() const;
+
+	Range & setRelativeAccuracy(const double & value);
+	double getRelativeAccuracy() const;
+	bool getRelativeAccuracy(double & out) const;
+	bool hasRelativeAccuracy() const;
+
+	Range & setAbsoluteAccuracy(const double & value);
+	double getAbsoluteAccuracy() const;
+	bool getAbsoluteAccuracy(double & out) const;
+	bool hasAbsoluteAccuracy() const;
 
 private:
 	std::shared_ptr<CDM::Range> data;

@@ -18,7 +18,7 @@
  * OSCPProvider.h
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
- *  Author: roehser, besting, buerger
+ *  Author: besting, buerger, roehser
  */
 
 #ifndef OSCPPROVIDER_H_
@@ -36,7 +36,7 @@
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "OSCLib/Data/OSCP/OSELibProviderAdapter.h"
 #include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
-#include "OSCLib/Data/OSCP/MDIB/MDState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdState.h"
 
 #include "OSELib/Helper/WithLogger.h"
 
@@ -55,7 +55,7 @@ namespace OSCP {
 class OSCPProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
 
-    friend class OSCPProviderMDStateHandler;
+    friend class OSCPProviderMdStateHandler;
     
     // todo replace by friend class OSELibProviderAdapter
     friend struct OSELib::ContextReportServiceImpl;
@@ -67,61 +67,73 @@ public:
     virtual ~OSCPProvider();
 
     /**
-    * @brief Get the complete MDIB (description and states).
+    * @brief Get the complete Medical Device Infomation Base (MDIB, description and states).
     *
     * @return The MDIB container
     */
-    MDIBContainer getMDIB();
+    MdibContainer getMdib();
 
     /**
-    * @brief Get the Medical Device Description.
+    * @brief Set the (static) Medical Device Description
     *
-    * @return The MDDescription container
+    * @param The MdDescription
     */
+    void setMdDescription(const MdDescription & mdDescription);
+    /**
+    * @brief Set the (static) Medical Device Description
+    *
+    * @param The MdDescription as xml string
+    */
+    void setMdDescription(std::string xml);
 
-    void setMDDescription(const MDDescription & mdDescription);
-    void setMDDescription(std::string xml);
-    MDDescription getMDDescription() const;
+    /**
+    * @brief Get the (static) Medical Device Description.
+    *
+    * @return The MdDescription
+    */
+    MdDescription getMdDescription() const;
 
     /**
     * @brief Get all states as part of the MDIB.
     *
     * @return The MD state container
     */
-    MDState getMDState();
-
-    void addActivateOperationForDescriptor(const ActivateOperationDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const AlertConditionDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const AlertSignalDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const AlertSystemDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const EnumStringMetricDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const LimitAlertConditionDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const NumericMetricDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const StringMetricDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const PatientContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const LocationContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const EnsembleContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const OperatorContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
-    void createSetOperationForDescriptor(const WorkflowContextDescriptor & descriptor, HydraMDSDescriptor & ownerMDS);
+    MdState getMdState();
 
     /**
-    * @brief Notify all registered consumers about a changed MDIB object (fires episodic metric changed event).
+    * @brief Activates the SetOperation of a state defined in descriptor in the ownerMDS.
+    * Comparable to createSetOperationForDescriptor, but with more flexibility regarding the described state
     *
-    * @param object The MDIB object
+    * @param ActivateOperationDescriptor: contains name of the service control objects handle and the targets handle (e.g. descriptor.setHandle("handle_cmd").setOperationTarget("handle_max"))
+    * @param MdsDescriptor: the containing mds
+    *
+    *
     */
-    void updateState(const AlertSystemState & object);
-    void updateState(const AlertSignalState & object);
-    void updateState(const AlertConditionState & object);
-    void updateState(const EnumStringMetricState & object);
-    void updateState(const EnsembleContextState & object);
-    void updateState(const LimitAlertConditionState & object);
-    void updateState(const LocationContextState & object);
-    void updateState(const NumericMetricState & object);
-    void updateState(const OperatorContextState & object);
-    void updateState(const PatientContextState & object);
-    void updateState(const StringMetricState & object);
-    void updateState(const RealTimeSampleArrayMetricState & object);
-    void updateState(const WorkflowContextState & object);
+    void addActivateOperationForDescriptor(const ActivateOperationDescriptor & descriptor, MdsDescriptor & ownerMDS);
+
+
+    /**
+    * @brief Activates the SetOperation of a descriptor: makes the target state of the descriptor settable through the consumer)
+    *
+    *
+    * @param the descriptor to be made settable
+    * @param MdsDescriptor: the containing mds
+    *
+    */
+    void createSetOperationForDescriptor(const AlertConditionDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const AlertSignalDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const AlertSystemDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const EnumStringMetricDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const LimitAlertConditionDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const NumericMetricDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const StringMetricDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const PatientContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const LocationContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const EnsembleContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const OperatorContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
+    void createSetOperationForDescriptor(const WorkflowContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
+
+
 
     /**
     * @brief Trigger an alert condition using a flag to indicate the condition's presence.
@@ -165,22 +177,49 @@ public:
     *
     * @param handler The handler
     */
-    void addMDStateHandler(OSCPProviderMDStateHandler * handler);
+    void addMdSateHandler(OSCPProviderMdStateHandler * handler);
 
     /**
     * @brief Remove a request handler which provides states and processes incoming change requests from a consumer.
     *
     * @param handler The handler
     */
-    void removeMDStateHandler(OSCPProviderMDStateHandler * handler);
+    void removeMDStateHandler(OSCPProviderMdStateHandler * handler);
 
+    /**
+     * @brief Set the endpoint reference.
+     *
+     * @param epr the EPR
+     */
 	void setEndpointReference(const std::string & epr);
+
+    /**
+     * @brief Set the endpoint reference.
+     *
+     * @return The EPR
+     */
 	const std::string getEndpointReference() const;
 
+    /**
+     * @brief Get the low level DPWS device characteristics.
+     *
+     * @return The DPWS device characteristics
+     */
 	const Dev::DeviceCharacteristics& getDeviceCharacteristics() const;
 	void setDeviceCharacteristics(const Dev::DeviceCharacteristics& deviceCharacteristics);
 
-    unsigned long long int getMDIBVersion() const;
+
+    /**
+     * @brief Get the current Mdib version.
+     *
+     * @return The Mdib version.
+     */
+    unsigned long long int getMdibVersion() const;
+
+
+    /**
+     * @brief Increment Mdib version by 1.
+     */
     void incrementMDIBVersion();
 
     Poco::Mutex & getMutex();
@@ -193,6 +232,12 @@ public:
     	getMutex().unlock();
     }    
 
+    /**
+     * @brief Set the periodic event fire interval.
+     *
+     * @param seconds Interval seconds
+     * @param millisecods Interval milliseconds
+     */
     void setPeriodicEventInterval(const int seconds, const int milliseconds);
     std::vector<std::string> getHandlesForPeriodicUpdate();
     void addHandleForPeriodicEvent(const std::string & handle);
@@ -214,7 +259,28 @@ public:
 	template<typename T>
 		InvocationState onStateChangeRequest(const T & state, const OperationInvocationContext & oic);
 
-// TODO no inheritance no need for protected methods..
+
+    /**
+    * @brief Update internal state and notify all registered consumers about a changed MDIB object (episodic metric event).
+    * These functions are used by the state handlers. Use those instead for updating the provider's states
+    *
+    * @param object The MDIB object
+    */
+    void updateState(const AlertSystemState & object);
+    void updateState(const AlertSignalState & object);
+    void updateState(const AlertConditionState & object);
+    void updateState(const EnumStringMetricState & object);
+    void updateState(const EnsembleContextState & object);
+    void updateState(const LimitAlertConditionState & object);
+    void updateState(const LocationContextState & object);
+    void updateState(const NumericMetricState & object);
+    void updateState(const OperatorContextState & object);
+    void updateState(const PatientContextState & object);
+    void updateState(const StringMetricState & object);
+    void updateState(const RealTimeSampleArrayMetricState & object);
+    void updateState(const WorkflowContextState & object);
+    void updateState(const DistributionSampleArrayMetricState & object);
+
 protected:
 
     /**
@@ -235,34 +301,34 @@ private:
 	void notifyEpisodicMetricImpl(const T & object);
 
     template<class T>
-    void createSetOperationForContextDescriptor(const T & descriptor, HydraMDSDescriptor & ownerMDS);
+    void createSetOperationForContextDescriptor(const T & descriptor, MdsDescriptor & ownerMDS);
 
-	CDM::SetValueResponse SetValueAsync(const CDM::SetValue & request);
-    void SetValue(const CDM::SetValue & request, const OperationInvocationContext & oic);
+	MDM::SetValueResponse SetValueAsync(const MDM::SetValue & request);
+    void SetValue(const MDM::SetValue & request, const OperationInvocationContext & oic);
 
-    CDM::ActivateResponse OnActivateAsync(const CDM::Activate & request);
+    MDM::ActivateResponse OnActivateAsync(const MDM::Activate & request);
     void OnActivate(const OperationInvocationContext & oic);
 
-    CDM::SetStringResponse SetStringAsync(const CDM::SetString & request);
-    void SetString(const CDM::SetString & request, const OperationInvocationContext & oic);
+    MDM::SetStringResponse SetStringAsync(const MDM::SetString & request);
+    void SetString(const MDM::SetString & request, const OperationInvocationContext & oic);
     template<class T>
     void SetStringImpl(const T & state, const OperationInvocationContext & oic);
 
-    CDM::SetAlertStateResponse SetAlertStateAsync(const CDM::SetAlertState & request);
-    void SetAlertState(const CDM::SetAlertState & request, const OperationInvocationContext & oic);
+    MDM::SetAlertStateResponse SetAlertStateAsync(const MDM::SetAlertState & request);
+    void SetAlertState(const MDM::SetAlertState & request, const OperationInvocationContext & oic);
     template<typename StateType>
     void SetAlertStateImpl(const StateType & state, const OperationInvocationContext & oic);
 
-    CDM::GetMDIBResponse GetMDIB(const CDM::GetMDIB & request);
-    CDM::GetMDDescriptionResponse GetMDDescription(const CDM::GetMDDescription & request);
-    CDM::GetMDStateResponse GetMDState(const CDM::GetMDState & request);
+    MDM::GetMdibResponse GetMdib(const MDM::GetMdib & request);
+    MDM::GetMdDescriptionResponse GetMdDescription(const MDM::GetMdDescription & request);
+    MDM::GetMdStateResponse GetMdState(const MDM::GetMdState & request);
 
-    CDM::GetContextStatesResponse GetContextStates(const CDM::GetContextStates & request);
-    CDM::SetContextStateResponse SetContextStateAsync(const CDM::SetContextState & request);
-    void SetContextState(const CDM::SetContextState & request, const OperationInvocationContext & oic);
+    MDM::GetContextStatesResponse GetContextStates(const MDM::GetContextStates & request);
+    MDM::SetContextStateResponse SetContextStateAsync(const MDM::SetContextState & request);
+    void SetContextState(const MDM::SetContextState & request, const OperationInvocationContext & oic);
 
     template<class T>
-    void addSetOperationToSCOObjectImpl(const T & source, HydraMDSDescriptor & ownerMDS);
+    void addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor & ownerMDS);
 
     template<class T>
     void enqueueInvokeNotification(const T & request, const OperationInvocationContext & oic);
@@ -272,17 +338,17 @@ private:
 
     std::atomic_ullong mdibVersion;
 
-    std::map<std::string, OSCPProviderMDStateHandler *> stateHandlers;
+    std::map<std::string, OSCPProviderMdStateHandler *> stateHandlers;
 
-	std::shared_ptr<MDDescription> m_mdDescription;
+	std::shared_ptr<MdDescription> m_mdDescription;
     std::unique_ptr<OSELibProviderAdapter> _adapter;
     Dev::DeviceCharacteristics devicecharacteristics;
 	Poco::Mutex mutex;
 
     std::string endpointReference;
 
-	MDState mdibStates;
-    MDState operationStates;
+	MdState mdibStates;
+    MdState operationStates;
     Poco::NotificationQueue invokeQueue;
     std::shared_ptr<AsyncProviderInvoker> providerInvoker;
 

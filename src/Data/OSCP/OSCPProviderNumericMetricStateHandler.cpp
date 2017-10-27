@@ -22,7 +22,7 @@ OSCPProviderNumericMetricStateHandler::~OSCPProviderNumericMetricStateHandler() 
 
 InvocationState OSCPProviderNumericMetricStateHandler::onStateChangeRequest(const NumericMetricState & , const OperationInvocationContext & ) {
 	log_error([] { return "Method not overridden: onStateChangeRequest(NumericMetricState)!"; });
-    return InvocationState::FAILED;
+    return InvocationState::Fail;
 }
 
 void OSCPProviderNumericMetricStateHandler::updateState(const OSCLib::Data::OSCP::NumericMetricState & object) {

@@ -24,7 +24,7 @@ SET(XSDCXX_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xsd/include" CACHE PATH "Path t
 SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
 SET(XERCES_LIB_DIR "${PROJECT_SOURCE_DIR}/../xerces/lib/" CACHE PATH "Path to XERCES-C libraries.")
 
-INCLUDE_DIRECTORIES("include" "datamodel" "swig" ${XSDCXX_INCLUDE_DIR} ${XERCES_INCLUDE_DIR} ${PTHREAD_INCLUDE_DIR})
+INCLUDE_DIRECTORIES("include" "datamodel" ${XSDCXX_INCLUDE_DIR} ${XERCES_INCLUDE_DIR} ${PTHREAD_INCLUDE_DIR})
 LINK_DIRECTORIES(${PTHREAD_LIB_DIR} ${XERCES_LIB_DIR})
 
 # Debug or Release build
@@ -69,105 +69,128 @@ ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/ActivateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/ActivateOperationState.cpp
 ./src/Data/OSCP/MDIB/AlertConditionDescriptor.cpp
-./src/Data/OSCP/MDIB/AlertConditionReference.cpp
-./src/Data/OSCP/MDIB/AlertConditionReferenceCustomImpl.cxx
 ./src/Data/OSCP/MDIB/AlertConditionState.cpp
 ./src/Data/OSCP/MDIB/AlertSignalDescriptor.cpp
 ./src/Data/OSCP/MDIB/AlertSignalState.cpp
 ./src/Data/OSCP/MDIB/AlertSystemDescriptor.cpp
-./src/Data/OSCP/MDIB/AlertSystemDescriptorCustomImpl.cxx
 ./src/Data/OSCP/MDIB/AlertSystemState.cpp
+./src/Data/OSCP/MDIB/AllowedValue.cpp
+./src/Data/OSCP/MDIB/AllowedValues.cpp
 ./src/Data/OSCP/MDIB/Annotation.cpp
-./src/Data/OSCP/MDIB/Base64Binary.cpp
-./src/Data/OSCP/MDIB/Base64BinaryCustomImpl.cxx
+./src/Data/OSCP/MDIB/ApplyAnnotation.cpp
+./src/Data/OSCP/MDIB/ApprovedJurisdictions.cpp
+./src/Data/OSCP/MDIB/Argument.cpp
 ./src/Data/OSCP/MDIB/BaseDemographics.cpp
-./src/Data/OSCP/MDIB/CauseInfo.cpp
+./src/Data/OSCP/MDIB/BatteryDescriptor.cpp
+./src/Data/OSCP/MDIB/BatteryState.cpp
+./src/Data/OSCP/MDIB/CalibrationDocumentation.cpp
 ./src/Data/OSCP/MDIB/CalibrationInfo.cpp
+./src/Data/OSCP/MDIB/CalibrationResult.cpp
+./src/Data/OSCP/MDIB/CauseInfo.cpp
 ./src/Data/OSCP/MDIB/ChannelDescriptor.cpp
-./src/Data/OSCP/MDIB/ChannelDescriptorCustomImpl.cxx
+./src/Data/OSCP/MDIB/ChannelState.cpp
 ./src/Data/OSCP/MDIB/ClinicalInfo.cpp
 ./src/Data/OSCP/MDIB/ClockDescriptor.cpp
 ./src/Data/OSCP/MDIB/ClockState.cpp
 ./src/Data/OSCP/MDIB/CodedValue.cpp
-./src/Data/OSCP/MDIB/ComponentState.cpp
+./src/Data/OSCP/MDIB/ContainmentTree.cpp
+./src/Data/OSCP/MDIB/ContainmentTreeEntry.cpp
 ./src/Data/OSCP/MDIB/ConvertFromCDM.cpp
 ./src/Data/OSCP/MDIB/ConvertToCDM.cpp
-./src/Data/OSCP/MDIB/DateTime.cpp
-./src/Data/OSCP/MDIB/Defaults.cpp
-./src/Data/OSCP/MDIB/DICOMDeviceDescriptor.cpp
-./src/Data/OSCP/MDIB/DICOMNetworkAE.cpp
-./src/Data/OSCP/MDIB/DICOMNetworkConnection.cpp
-./src/Data/OSCP/MDIB/DICOMTransferCapability.cpp
-./src/Data/OSCP/MDIB/Duration.cpp
+./src/Data/OSCP/MDIB/DicomDeviceDescriptor.cpp
+./src/Data/OSCP/MDIB/DicomNetworkAe.cpp
+./src/Data/OSCP/MDIB/DicomNetworkConnection.cpp
+./src/Data/OSCP/MDIB/DicomTransferCapability.cpp
+./src/Data/OSCP/MDIB/DistributionSampleArrayMetricDescriptor.cpp
+./src/Data/OSCP/MDIB/DistributionSampleArrayMetricState.cpp
 ./src/Data/OSCP/MDIB/EnsembleContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/EnsembleContextState.cpp
-./src/Data/OSCP/MDIB/EnumMappings.cpp
-./src/Data/OSCP/MDIB/EnumNomenRef.cpp
 ./src/Data/OSCP/MDIB/EnumStringMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/EnumStringMetricState.cpp
-./src/Data/OSCP/MDIB/HydraMDSDescriptor.cpp
-./src/Data/OSCP/MDIB/HydraMDSState.cpp
 ./src/Data/OSCP/MDIB/ImagingProcedure.cpp
 ./src/Data/OSCP/MDIB/InstanceIdentifier.cpp
-./src/Data/OSCP/MDIB/Language.cpp
 ./src/Data/OSCP/MDIB/LimitAlertConditionDescriptor.cpp
 ./src/Data/OSCP/MDIB/LimitAlertConditionState.cpp
 ./src/Data/OSCP/MDIB/LocalizedText.cpp
 ./src/Data/OSCP/MDIB/LocationContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/LocationContextState.cpp
-./src/Data/OSCP/MDIB/MDDescription.cpp
-./src/Data/OSCP/MDIB/MDDescriptionCustomImpl.cxx
-./src/Data/OSCP/MDIB/MDIBContainer.cpp
-./src/Data/OSCP/MDIB/MDState.cpp
-./src/Data/OSCP/MDIB/MDStateCustomImpl.cxx
-./src/Data/OSCP/MDIB/Measure.cpp
-./src/Data/OSCP/MDIB/MeasurementState.cpp
+./src/Data/OSCP/MDIB/LocationDetail.cpp
+./src/Data/OSCP/MDIB/LocationReference.cpp
+./src/Data/OSCP/MDIB/MdDescription.cpp
+./src/Data/OSCP/MDIB/Mdib.cpp
+./src/Data/OSCP/MDIB/MdsDescriptor.cpp
+./src/Data/OSCP/MDIB/MdsState.cpp
+./src/Data/OSCP/MDIB/MdState.cpp
+./src/Data/OSCP/MDIB/MeansContextDescriptor.cpp
+./src/Data/OSCP/MDIB/MeansContextState.cpp
+./src/Data/OSCP/MDIB/Measurement.cpp
+./src/Data/OSCP/MDIB/MetaData.cpp
+./src/Data/OSCP/MDIB/MetricQuality.cpp
+./src/Data/OSCP/MDIB/NeonatalPatientDemographicsCoreData.cpp
 ./src/Data/OSCP/MDIB/NumericMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/NumericMetricState.cpp
 ./src/Data/OSCP/MDIB/NumericMetricValue.cpp
-./src/Data/OSCP/MDIB/OperationState.cpp
-./src/Data/OSCP/MDIB/OperationInvocationContext.cpp
+./src/Data/OSCP/MDIB/OperatingJurisdiction.cpp
+./src/Data/OSCP/MDIB/OperationGroup.cpp
 ./src/Data/OSCP/MDIB/OperatorContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/OperatorContextState.cpp
-./src/Data/OSCP/MDIB/Order.cpp
 ./src/Data/OSCP/MDIB/OrderDetail.cpp
 ./src/Data/OSCP/MDIB/PatientContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/PatientContextState.cpp
 ./src/Data/OSCP/MDIB/PatientDemographicsCoreData.cpp
+./src/Data/OSCP/MDIB/PerformedOrderDetail.cpp
 ./src/Data/OSCP/MDIB/PersonParticipation.cpp
-./src/Data/OSCP/MDIB/PersonParticipationCustomImpl.cxx
 ./src/Data/OSCP/MDIB/PersonReference.cpp
-./src/Data/OSCP/MDIB/PersonReferenceCustomImpl.cxx
+./src/Data/OSCP/MDIB/PhysicalConnectorInfo.cpp
 ./src/Data/OSCP/MDIB/ProductionSpecification.cpp
 ./src/Data/OSCP/MDIB/Range.cpp
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.cpp
-./src/Data/OSCP/MDIB/RealTimeSampleArrayValue.cpp
+./src/Data/OSCP/MDIB/ReferenceRange.cpp
+./src/Data/OSCP/MDIB/RelatedMeasurement.cpp
+./src/Data/OSCP/MDIB/Relation.cpp
 ./src/Data/OSCP/MDIB/RemedyInfo.cpp
-./src/Data/OSCP/MDIB/ReferencedVersion.cpp
-./src/Data/OSCP/MDIB/RTValueType.cpp
-./src/Data/OSCP/MDIB/RTValueTypeCustomImpl.cxx
-./src/Data/OSCP/MDIB/SampleIndex.cpp
-./src/Data/OSCP/MDIB/SCODescriptor.cpp
-./src/Data/OSCP/MDIB/SCODescriptorCustomImpl.cxx
+./src/Data/OSCP/MDIB/RequestedOrderDetail.cpp
+./src/Data/OSCP/MDIB/SampleArrayValue.cpp
+./src/Data/OSCP/MDIB/ScoDescriptor.cpp
+./src/Data/OSCP/MDIB/ScoDescriptor.cpp~
+./src/Data/OSCP/MDIB/ScoState.cpp
 ./src/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.cpp
-./src/Data/OSCP/MDIB/SetContextOperationDescriptor.cpp
-./src/Data/OSCP/MDIB/SetRangeOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetAlertStateOperationState.cpp
+./src/Data/OSCP/MDIB/SetComponentStateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetComponentStateOperationState.cpp
+./src/Data/OSCP/MDIB/SetContextStateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetContextStateOperationState.cpp
+./src/Data/OSCP/MDIB/SetMetricStateOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetMetricStateOperationState.cpp
 ./src/Data/OSCP/MDIB/SetStringOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetStringOperationState.cpp
 ./src/Data/OSCP/MDIB/SetValueOperationDescriptor.cpp
+./src/Data/OSCP/MDIB/SetValueOperationState.cpp
+./src/Data/OSCP/MDIB/SimpleTypesMapping.cpp
 ./src/Data/OSCP/MDIB/StringMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/StringMetricState.cpp
 ./src/Data/OSCP/MDIB/StringMetricValue.cpp
-./src/Data/OSCP/MDIB/SystemContext.cpp
-./src/Data/OSCP/MDIB/SystemMetaData.cpp
-./src/Data/OSCP/MDIB/Timestamp.cpp
-./src/Data/OSCP/MDIB/TimeZone.cpp
-./src/Data/OSCP/MDIB/TimeZoneCustomImpl.cxx
-./src/Data/OSCP/MDIB/VersionCounter.cpp
-./src/Data/OSCP/MDIB/VMDDescriptor.cpp
+./src/Data/OSCP/MDIB/SystemContextDescriptor.cpp
+./src/Data/OSCP/MDIB/SystemContextState.cpp
+./src/Data/OSCP/MDIB/SystemSignalActivation.cpp
+./src/Data/OSCP/MDIB/Translation.cpp
+./src/Data/OSCP/MDIB/Udi.cpp
+./src/Data/OSCP/MDIB/VmdDescriptor.cpp
+./src/Data/OSCP/MDIB/VmdState.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextState.cpp
+./src/Data/OSCP/MDIB/WorkflowDetail.cpp
+./src/Data/OSCP/MDIB/custom/ChannelDescriptorCustomImpl.cxx
+./src/Data/OSCP/MDIB/custom/Defaults.cpp
+./src/Data/OSCP/MDIB/custom/MdDescriptionCustomImpl.cxx
+./src/Data/OSCP/MDIB/custom/MdibContainer.cpp
+./src/Data/OSCP/MDIB/custom/MdStateCustomImpl.cxx
+./src/Data/OSCP/MDIB/custom/OperationInvocationContext.cpp
+./src/Data/OSCP/MDIB/custom/ScoDescriptorCustomImpl.cxx
+./src/Data/OSCP/MDIB/custom/AlertSystemDescriptorCustomImpl.cxx
 ./src/Data/OSCP/FutureInvocationState.cpp
 ./src/Data/OSCP/OSCPConsumer.cpp
 ./src/Data/OSCP/OSCPConsumerEventHandler.cpp
@@ -176,16 +199,18 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/OSCPProviderAlertConditionStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderAlertSignalStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderAlertSystemStateHandler.cpp
+./src/Data/OSCP/OSCPProviderChannelStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderClockStateHandler.cpp
-./src/Data/OSCP/OSCPProviderComponentStateHandler.cpp
-./src/Data/OSCP/OSCPProviderContextStateHandler.cpp
+./src/Data/OSCP/OSCPProviderSystemContextStateHandler.cpp
+./src/Data/OSCP/OSCPProviderDistributionSampleArrayMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.cpp
-./src/Data/OSCP/OSCPProviderHydraMDSStateHandler.cpp
+./src/Data/OSCP/OSCPProviderMdsStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.cpp
-./src/Data/OSCP/OSCPProviderMDStateHandler.cpp
+./src/Data/OSCP/OSCPProviderMdStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderNumericMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderStringMetricStateHandler.cpp
+./src/Data/OSCP/OSCPProviderVmdStateHandler.cpp
 ./src/Data/OSCP/OSELibConsumerAdapter.cpp
 ./src/Data/OSCP/OSELibProviderAdapter.cpp
 ./src/Dev/DeviceCharacteristics.cpp
@@ -441,7 +466,7 @@ set(PocoSOURCES
 
 
 list(APPEND OSCLibSOURCES 
-./datamodel/BICEPS_DomainModel.cxx
+./datamodel/BICEPS_ParticipantModel.cxx
 ./datamodel/BICEPS_MessageModel.cxx
 ./datamodel/DICOMDeviceDescription.cxx
 ./datamodel/eventing.cxx
@@ -464,10 +489,11 @@ list(APPEND OSCLibSOURCES ${PocoSOURCES})
 
 add_library(OSCLib SHARED ${OSCLibSOURCES})
 
+
 add_executable(UnitTests
 Tests/UnitTests.cpp
 Tests/OSCPTests/TestConnectionLost.cpp
-Tests/OSCPTests/TestDICOM.cpp
+#Tests/OSCPTests/TestDICOM.cpp
 Tests/OSCPTests/TestMultiOSCP.cpp
 Tests/OSCPTests/TestSimpleOSCP.cpp
 Tests/OSCPTests/TestPeriodicEvents.cpp
@@ -497,17 +523,19 @@ add_executable(ExampleConsumer
 Examples/ExampleConsumer.cpp
 )
 
+add_executable(ExampleProject
+Examples/ExampleProject.cpp
+)
+
+add_executable(ExampleProvider
+Examples/ExampleProvider.cpp
+)
+
 add_executable(ExampleConsumer4SoftICEStreaming
 Examples/ExampleConsumer4SoftICEStreaming.cpp
 )
 
-add_executable(ExampleProvider4SoftICEStreaming
-Examples/ExampleProvider4SoftICEStreaming.cpp
-)
 
-add_executable(ExampleProject
-Examples/ExampleProject.cpp
-)
 
 add_executable(SimpleServiceDiscovery
 Examples/SimpleServiceDiscovery.cpp
@@ -517,25 +545,25 @@ add_executable(MDIBVisualizer
 Examples/MDIBVisualizer.cpp
 )
 
-add_executable(MDIBDump
-Examples/MDIBDump.cpp
-)
+#add_executable(MDIBDump
+#Examples/MDIBDump.cpp
+#)
 
-add_executable(GenericSubscription
-Examples/GenericSubscription.cpp
-)
+#add_executable(GenericSubscription
+#Examples/GenericSubscription.cpp
+#)
 
-add_executable(DPWSDiscoveryClient
-Tests/Tools/DPWSDiscoveryClient.cpp
-)
+#add_executable(DPWSDiscoveryClient
+#Tests/Tools/DPWSDiscoveryClient.cpp
+#)
 
-add_executable(DPWSDiscoveryListener
-Tests/Tools/DPWSDiscoveryListener.cpp
-)
+#add_executable(DPWSDiscoveryListener
+#Tests/Tools/DPWSDiscoveryListener.cpp
+#)
 
-add_executable(ClientForUniRostockDevices
-Examples/ClientForUniRostockDevices.cpp
-)
+#add_executable(ClientForUniRostockDevices
+#Examples/ClientForUniRostockDevices.cpp
+#)
 
 
 SET(ADDITIONAL_LIBS "")
@@ -544,12 +572,13 @@ target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleProvider4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(GenericSubscription OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(DPWSDiscoveryClient OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(DPWSDiscoveryListener OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ClientForUniRostockDevices OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(GenericSubscription OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(DPWSDiscoveryClient OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(DPWSDiscoveryListener OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ClientForUniRostockDevices OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+

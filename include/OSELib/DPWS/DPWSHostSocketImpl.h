@@ -36,7 +36,7 @@ public:
 
 	void sendBye(const ByeType & bye);
 	void sendHello(const HelloType & hello);
-	void sendStream(const CDM::WaveformStream & stream, const AddressType epr);
+	void sendStream(const MDM::WaveformStream & stream, const AddressType epr);
 
 private:
 	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);

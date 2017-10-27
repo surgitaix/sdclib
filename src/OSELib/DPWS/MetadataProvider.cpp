@@ -5,7 +5,7 @@
  *      Author: matthias
  */
 
-#include <OSELib/OSCP/OSCPConstants.h>
+#include "OSELib/OSCP/OSCPConstants.h"
 #include "MetadataExchange.hxx"
 #include "MDPWS.hxx"
 
@@ -33,7 +33,7 @@ std::string MetadataProvider::getGetServicePath() const {
 }
 
 std::string MetadataProvider::getPHIServicePath() const {
-	return "/PHI";
+	return "/ContextService";
 }
 
 std::string MetadataProvider::getSetServicePath() const {
@@ -202,7 +202,7 @@ MetadataProvider::Hosted MetadataProvider::createHostedContextService(const std:
 	Hosted::TypesType hostedTypes;
 	hostedTypes.push_back(xml_schema::Qname(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_CONTEXTSERVICE_PORTTYPE));
 
-	Hosted::ServiceIdType hostedServiceId("PHI");
+	Hosted::ServiceIdType hostedServiceId("ContextService");
 	Hosted hosted(hostedTypes, hostedServiceId);
 	hosted.EndpointReference().push_back(hostedEPR);
 	return hosted;

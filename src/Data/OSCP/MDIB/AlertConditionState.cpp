@@ -36,8 +36,6 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -72,37 +70,6 @@ AlertConditionState & AlertConditionState:: operator=(const AlertConditionState 
 }
 
 
-AlertConditionState & AlertConditionState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertConditionState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
-		return true;
-	}
-	return false;
-}
-
-std::string AlertConditionState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
-}
-	
-bool AlertConditionState::hasHandle() const {
-	return data->Handle().present();
-}
-	
-AlertConditionState & AlertConditionState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string AlertConditionState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 AlertConditionState & AlertConditionState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,14 +91,87 @@ bool AlertConditionState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
-AlertConditionState & AlertConditionState::setActivationState(const PausableActivation & value) {
+AlertConditionState & AlertConditionState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef AlertConditionState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+AlertConditionState & AlertConditionState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
+
+ReferencedVersion AlertConditionState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool AlertConditionState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
+}
+	
+AlertConditionState & AlertConditionState::setActivationState(const AlertActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-PausableActivation AlertConditionState::getActivationState() const {
+AlertActivation AlertConditionState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
+}
+	
+AlertConditionState & AlertConditionState::setActualConditionGenerationDelay(const xml_schema::Duration & value) {
+	data->ActualConditionGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionState::getActualConditionGenerationDelay(xml_schema::Duration & out) const {
+	if (data->ActualConditionGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->ActualConditionGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration AlertConditionState::getActualConditionGenerationDelay() const {
+	return ConvertFromCDM::convert(data->ActualConditionGenerationDelay().get());
+}
+	
+bool AlertConditionState::hasActualConditionGenerationDelay() const {
+	return data->ActualConditionGenerationDelay().present();
+}
+	
+AlertConditionState & AlertConditionState::setActualPriority(const AlertConditionPriority & value) {
+	data->ActualPriority(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionState::getActualPriority(AlertConditionPriority & out) const {
+	if (data->ActualPriority().present()) {
+		out = ConvertFromCDM::convert(data->ActualPriority().get());
+		return true;
+	}
+	return false;
+}
+
+AlertConditionPriority AlertConditionState::getActualPriority() const {
+	return ConvertFromCDM::convert(data->ActualPriority().get());
+}
+	
+bool AlertConditionState::hasActualPriority() const {
+	return data->ActualPriority().present();
 }
 	
 AlertConditionState & AlertConditionState::setRank(const int & value) {
@@ -160,30 +200,41 @@ AlertConditionState & AlertConditionState::setPresence(const bool & value) {
 	return *this;
 }
 
-
-bool AlertConditionState::getPresence() const {
-	return ConvertFromCDM::convert(data->Presence());
-}
-	
-AlertConditionState & AlertConditionState::setObservationTime(const Timestamp & value) {
-	data->ObservationTime(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertConditionState::getObservationTime(Timestamp & out) const {
-	if (data->ObservationTime().present()) {
-		out = ConvertFromCDM::convert(data->ObservationTime().get());
+bool AlertConditionState::getPresence(bool & out) const {
+	if (data->Presence().present()) {
+		out = ConvertFromCDM::convert(data->Presence().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp AlertConditionState::getObservationTime() const {
-	return ConvertFromCDM::convert(data->ObservationTime().get());
+bool AlertConditionState::getPresence() const {
+	return ConvertFromCDM::convert(data->Presence().get());
 }
 	
-bool AlertConditionState::hasObservationTime() const {
-	return data->ObservationTime().present();
+bool AlertConditionState::hasPresence() const {
+	return data->Presence().present();
+}
+	
+AlertConditionState & AlertConditionState::setDeterminationTime(const Timestamp & value) {
+	data->DeterminationTime(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertConditionState::getDeterminationTime(Timestamp & out) const {
+	if (data->DeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationTime().get());
+		return true;
+	}
+	return false;
+}
+
+Timestamp AlertConditionState::getDeterminationTime() const {
+	return ConvertFromCDM::convert(data->DeterminationTime().get());
+}
+	
+bool AlertConditionState::hasDeterminationTime() const {
+	return data->DeterminationTime().present();
 }
 	
 

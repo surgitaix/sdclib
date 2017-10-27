@@ -37,9 +37,8 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Duration.h"
+#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -95,13 +94,13 @@ bool StringMetricDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setHandle(const std::string & value) {
+StringMetricDescriptor & StringMetricDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string StringMetricDescriptor::getHandle() const {
+Handle StringMetricDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -126,25 +125,25 @@ bool StringMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
+StringMetricDescriptor & StringMetricDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
+bool StringMetricDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
-IntendedUse StringMetricDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
+SafetyClassification StringMetricDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool StringMetricDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
+bool StringMetricDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
 }
 	
 StringMetricDescriptor & StringMetricDescriptor::setUnit(const CodedValue & value) {
@@ -167,22 +166,64 @@ MetricCategory StringMetricDescriptor::getMetricCategory() const {
 	return ConvertFromCDM::convert(data->MetricCategory());
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setAvailability(const MetricAvailability & value) {
-	data->Availability(ConvertToCDM::convert(value));
+StringMetricDescriptor & StringMetricDescriptor::setDerivationMethod(const DerivationMethod & value) {
+	data->DerivationMethod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricDescriptor::getDerivationMethod(DerivationMethod & out) const {
+	if (data->DerivationMethod().present()) {
+		out = ConvertFromCDM::convert(data->DerivationMethod().get());
+		return true;
+	}
+	return false;
+}
+
+DerivationMethod StringMetricDescriptor::getDerivationMethod() const {
+	return ConvertFromCDM::convert(data->DerivationMethod().get());
+}
+	
+bool StringMetricDescriptor::hasDerivationMethod() const {
+	return data->DerivationMethod().present();
+}
+	
+StringMetricDescriptor & StringMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
+	data->MetricAvailability(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MetricAvailability StringMetricDescriptor::getAvailability() const {
-	return ConvertFromCDM::convert(data->Availability());
+MetricAvailability StringMetricDescriptor::getMetricAvailability() const {
+	return ConvertFromCDM::convert(data->MetricAvailability());
 }
 	
-StringMetricDescriptor & StringMetricDescriptor::setMaxDelayTime(const Duration & value) {
+StringMetricDescriptor & StringMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
+	data->MaxMeasurementTime(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricDescriptor::getMaxMeasurementTime(xml_schema::Duration & out) const {
+	if (data->MaxMeasurementTime().present()) {
+		out = ConvertFromCDM::convert(data->MaxMeasurementTime().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration StringMetricDescriptor::getMaxMeasurementTime() const {
+	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
+}
+	
+bool StringMetricDescriptor::hasMaxMeasurementTime() const {
+	return data->MaxMeasurementTime().present();
+}
+	
+StringMetricDescriptor & StringMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool StringMetricDescriptor::getMaxDelayTime(Duration & out) const {
+bool StringMetricDescriptor::getMaxDelayTime(xml_schema::Duration & out) const {
 	if (data->MaxDelayTime().present()) {
 		out = ConvertFromCDM::convert(data->MaxDelayTime().get());
 		return true;
@@ -190,7 +231,7 @@ bool StringMetricDescriptor::getMaxDelayTime(Duration & out) const {
 	return false;
 }
 
-Duration StringMetricDescriptor::getMaxDelayTime() const {
+xml_schema::Duration StringMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
 	
@@ -198,12 +239,75 @@ bool StringMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
 }
 	
+StringMetricDescriptor & StringMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
+	data->DeterminationPeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricDescriptor::getDeterminationPeriod(xml_schema::Duration & out) const {
+	if (data->DeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationPeriod().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration StringMetricDescriptor::getDeterminationPeriod() const {
+	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
+}
+	
+bool StringMetricDescriptor::hasDeterminationPeriod() const {
+	return data->DeterminationPeriod().present();
+}
+	
+StringMetricDescriptor & StringMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
+	data->LifeTimePeriod(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricDescriptor::getLifeTimePeriod(xml_schema::Duration & out) const {
+	if (data->LifeTimePeriod().present()) {
+		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration StringMetricDescriptor::getLifeTimePeriod() const {
+	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
+}
+	
+bool StringMetricDescriptor::hasLifeTimePeriod() const {
+	return data->LifeTimePeriod().present();
+}
+	
+StringMetricDescriptor & StringMetricDescriptor::setActivationDuration(const xml_schema::Duration & value) {
+	data->ActivationDuration(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool StringMetricDescriptor::getActivationDuration(xml_schema::Duration & out) const {
+	if (data->ActivationDuration().present()) {
+		out = ConvertFromCDM::convert(data->ActivationDuration().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration StringMetricDescriptor::getActivationDuration() const {
+	return ConvertFromCDM::convert(data->ActivationDuration().get());
+}
+	
+bool StringMetricDescriptor::hasActivationDuration() const {
+	return data->ActivationDuration().present();
+}
+	
 StringMetricDescriptor & StringMetricDescriptor::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-std::vector<CodedValue> StringMetricDescriptor::getBodySites() const {
+std::vector<CodedValue> StringMetricDescriptor::getBodySiteList() const {
 	std::vector<CodedValue> result;
 	result.reserve(data->BodySite().size());
 	for (const auto & value: data->BodySite()) {
@@ -212,8 +316,26 @@ std::vector<CodedValue> StringMetricDescriptor::getBodySites() const {
 	return result;
 }
 
-void StringMetricDescriptor::clearBodySites() {
+void StringMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
+}
+
+StringMetricDescriptor & StringMetricDescriptor::addRelation(const Relation & value) {
+	data->Relation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Relation> StringMetricDescriptor::getRelationList() const {
+	std::vector<Relation> result;
+	result.reserve(data->Relation().size());
+	for (const auto & value: data->Relation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void StringMetricDescriptor::clearRelationList() {
+	data->Relation().clear();
 }
 
 

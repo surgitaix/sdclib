@@ -32,7 +32,7 @@
 #ifndef STRINGMETRICVALUE_H_
 #define STRINGMETRICVALUE_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -56,24 +56,28 @@ public:
     
     typedef CDM::StringMetricValue WrappedType;
 
-	StringMetricValue & setMeasurementState(const MeasurementState & value);
-	MeasurementState getMeasurementState() const;
+	StringMetricValue & setMetricQuality(const MetricQuality & value);
+	MetricQuality getMetricQuality() const;
 
-	StringMetricValue & setStart_Time(const Timestamp & value);
-	Timestamp getStart_Time() const;
-	bool getStart_Time(Timestamp & out) const;
-	bool hasStart_Time() const;
+	StringMetricValue & setStartTime(const Timestamp & value);
+	Timestamp getStartTime() const;
+	bool getStartTime(Timestamp & out) const;
+	bool hasStartTime() const;
 
-	StringMetricValue & setStop_Time(const Timestamp & value);
-	Timestamp getStop_Time() const;
-	bool getStop_Time(Timestamp & out) const;
-	bool hasStop_Time() const;
+	StringMetricValue & setStopTime(const Timestamp & value);
+	Timestamp getStopTime() const;
+	bool getStopTime(Timestamp & out) const;
+	bool hasStopTime() const;
 
-	StringMetricValue & setObservationTime(const Timestamp & value);
-	Timestamp getObservationTime() const;
-	bool getObservationTime(Timestamp & out) const;
-	bool hasObservationTime() const;
+	StringMetricValue & setDeterminationTime(const Timestamp & value);
+	Timestamp getDeterminationTime() const;
+	bool getDeterminationTime(Timestamp & out) const;
+	bool hasDeterminationTime() const;
 
+	StringMetricValue & addAnnotation(const Annotation & value);
+	std::vector<Annotation> getAnnotationList() const;
+	void clearAnnotationList();
+	
 	StringMetricValue & setValue(const std::string & value);
 	std::string getValue() const;
 	bool getValue(std::string & out) const;

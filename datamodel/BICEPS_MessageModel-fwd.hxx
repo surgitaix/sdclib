@@ -254,14 +254,49 @@ namespace xml_schema
 
 #include "ExtensionPoint-fwd.hxx"
 
-#include "BICEPS_DomainModel-fwd.hxx"
+#include "BICEPS_ParticipantModel-fwd.hxx"
 
 // Forward declarations.
 //
-namespace CDM
+namespace MDM
 {
+  class TransactionId;
+  class InvocationState;
+  class InvocationError;
+  class InvocationInfo;
   class AbstractGet;
   class AbstractGetResponse;
+  class AbstractReportPart;
+  class AbstractReport;
+  class AbstractSet;
+  class AbstractSetResponse;
+  class AbstractContextReport;
+  class VersionFrame;
+  class TimeFrame;
+  class AbstractMetricReport;
+  class AbstractComponentReport;
+  class AbstractAlertReport;
+  class AbstractOperationalStateReport;
+  class DescriptionModificationType;
+  class RetrievabilityMethod;
+  class RetrievabilityInfo;
+  class GetMdib;
+  class GetMdibResponse;
+  class GetMdDescription;
+  class GetMdDescriptionResponse;
+  class GetMdState;
+  class GetMdStateResponse;
+  class GetContextStates;
+  class GetContextStatesResponse;
+  class GetContextStatesByIdentification;
+  class GetContextStatesByIdentificationResponse;
+  class GetContextStatesByFilter;
+  class GetContextStatesByFilterResponse;
+  class SetContextState;
+  class SetContextStateResponse;
+  class ReportPart;
+  class PeriodicContextReport;
+  class EpisodicContextReport;
   class GetLocalizedText;
   class GetLocalizedTextResponse;
   class GetSupportedLanguages;
@@ -270,80 +305,45 @@ namespace CDM
   class GetDescriptorsFromArchiveResponse;
   class GetStatesFromArchive;
   class GetStatesFromArchiveResponse;
-  class TimeFrame;
-  class TransactionID;
-  class InvocationState;
-  class ArgumentType;
-  class AbstractSet;
-  class AbstractSetResponse;
-  class AbstractReport;
-  class AbstractReportPart;
-  class MetricReportPart;
-  class AbstractMetricReport;
-  class AlertReportPart;
-  class AbstractAlertReport;
-  class ContextChangedReportPart;
-  class AbstractContextChangedReport;
-  class InvocationError;
-  class OperationDescriptionModificationReportPart;
-  class OperationDescriptionModificationReport;
-  class OperationInvokedReportPart;
-  class OperationalStateChangedReportPart;
-  class DescriptionModificationType;
-  class DescriptionModificationReportPart;
-  class DescriptionModificationReport;
-  class MDSModificationReportPart;
-  class MDSModificationReport;
-  class SystemErrorReportReportPart;
-  class StreamElement;
-  class MetricRetrievability;
-  class GetMDIB;
-  class GetMDIBResponse;
-  class GetMDDescription;
-  class GetMDDescriptionResponse;
-  class GetMDState;
-  class GetMDStateResponse;
-  class GetContextStates;
-  class GetContextStatesResponse;
-  class GetContainmentTree;
-  class GetContainmentTreeResponse;
-  class GetDescriptor;
-  class GetDescriptorResponse;
-  class Text;
-  class SetRange;
-  class SetRangeResponse;
   class SetValue;
   class SetValueResponse;
   class SetString;
   class SetStringResponse;
-  class SetAlertState;
-  class SetAlertStateResponse;
   class Activate;
   class ActivateResponse;
-  class SetContextState;
-  class SetContextStateResponse;
-  class SetPatientAssociationState;
-  class SetPatientAssociationStateResponse;
-  class PeriodicMetricReport;
-  class EpisodicMetricReport;
-  class PeriodicAlertReport;
-  class EpisodicAlertReport;
-  class PeriodicContextChangedReport;
-  class EpisodicContextChangedReport;
+  class SetAlertState;
+  class SetAlertStateResponse;
+  class SetComponentState;
+  class SetComponentStateResponse;
+  class SetMetricState;
+  class SetMetricStateResponse;
   class OperationInvokedReport;
-  class OperationalStateChangedReport;
-  class OperationCreatedReport;
-  class OperationDeletedReport;
-  class ObjectCreatedReport;
-  class ObjectUpdatedReport;
-  class ObjectDeletedReport;
-  class MDSCreatedReport;
-  class MDSDeletedReport;
+  class GetContainmentTree;
+  class GetContainmentTreeResponse;
+  class GetDescriptor;
+  class GetDescriptorResponse;
+  class ReportPart1;
+  class EpisodicMetricReport;
+  class PeriodicMetricReport;
+  class ReportPart2;
+  class EpisodicComponentReport;
+  class PeriodicComponentReport;
+  class ReportPart3;
+  class EpisodicAlertReport;
+  class PeriodicAlertReport;
+  class ReportPart4;
+  class EpisodicOperationalStateReport;
+  class PeriodicOperationalStateReport;
   class SystemErrorReport;
+  class DescriptionModificationReport;
   class WaveformStream;
-  class OVStream;
+  class ObservedValueStream;
   class Retrievability;
-  class OperationReference;
+  class Argument;
+  class ReportPart5;
+  class ReportPart6;
+  class ReportPart7;
+  class Value;
 }
 
 

@@ -65,7 +65,7 @@ void MDPWSHostAdapter::setXAddresses(const XAddressesType & xaddresses) {
 	sendHello();
 }
 
-void MDPWSHostAdapter::sendStream(const CDM::WaveformStream & stream) {
+void MDPWSHostAdapter::sendStream(const MDM::WaveformStream & stream) {
 	_impl->sendStream(stream, AddressType(_epr));
 }
 

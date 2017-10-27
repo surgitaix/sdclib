@@ -37,8 +37,6 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/Timestamp.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -73,37 +71,6 @@ LimitAlertConditionState & LimitAlertConditionState:: operator=(const LimitAlert
 }
 
 
-LimitAlertConditionState & LimitAlertConditionState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool LimitAlertConditionState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
-		return true;
-	}
-	return false;
-}
-
-std::string LimitAlertConditionState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
-}
-	
-bool LimitAlertConditionState::hasHandle() const {
-	return data->Handle().present();
-}
-	
-LimitAlertConditionState & LimitAlertConditionState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string LimitAlertConditionState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 LimitAlertConditionState & LimitAlertConditionState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,14 +92,87 @@ bool LimitAlertConditionState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
-LimitAlertConditionState & LimitAlertConditionState::setActivationState(const PausableActivation & value) {
+LimitAlertConditionState & LimitAlertConditionState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef LimitAlertConditionState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+LimitAlertConditionState & LimitAlertConditionState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
+
+ReferencedVersion LimitAlertConditionState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool LimitAlertConditionState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
+}
+	
+LimitAlertConditionState & LimitAlertConditionState::setActivationState(const AlertActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-PausableActivation LimitAlertConditionState::getActivationState() const {
+AlertActivation LimitAlertConditionState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
+}
+	
+LimitAlertConditionState & LimitAlertConditionState::setActualConditionGenerationDelay(const xml_schema::Duration & value) {
+	data->ActualConditionGenerationDelay(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionState::getActualConditionGenerationDelay(xml_schema::Duration & out) const {
+	if (data->ActualConditionGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->ActualConditionGenerationDelay().get());
+		return true;
+	}
+	return false;
+}
+
+xml_schema::Duration LimitAlertConditionState::getActualConditionGenerationDelay() const {
+	return ConvertFromCDM::convert(data->ActualConditionGenerationDelay().get());
+}
+	
+bool LimitAlertConditionState::hasActualConditionGenerationDelay() const {
+	return data->ActualConditionGenerationDelay().present();
+}
+	
+LimitAlertConditionState & LimitAlertConditionState::setActualPriority(const AlertConditionPriority & value) {
+	data->ActualPriority(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionState::getActualPriority(AlertConditionPriority & out) const {
+	if (data->ActualPriority().present()) {
+		out = ConvertFromCDM::convert(data->ActualPriority().get());
+		return true;
+	}
+	return false;
+}
+
+AlertConditionPriority LimitAlertConditionState::getActualPriority() const {
+	return ConvertFromCDM::convert(data->ActualPriority().get());
+}
+	
+bool LimitAlertConditionState::hasActualPriority() const {
+	return data->ActualPriority().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setRank(const int & value) {
@@ -161,30 +201,41 @@ LimitAlertConditionState & LimitAlertConditionState::setPresence(const bool & va
 	return *this;
 }
 
-
-bool LimitAlertConditionState::getPresence() const {
-	return ConvertFromCDM::convert(data->Presence());
-}
-	
-LimitAlertConditionState & LimitAlertConditionState::setObservationTime(const Timestamp & value) {
-	data->ObservationTime(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool LimitAlertConditionState::getObservationTime(Timestamp & out) const {
-	if (data->ObservationTime().present()) {
-		out = ConvertFromCDM::convert(data->ObservationTime().get());
+bool LimitAlertConditionState::getPresence(bool & out) const {
+	if (data->Presence().present()) {
+		out = ConvertFromCDM::convert(data->Presence().get());
 		return true;
 	}
 	return false;
 }
 
-Timestamp LimitAlertConditionState::getObservationTime() const {
-	return ConvertFromCDM::convert(data->ObservationTime().get());
+bool LimitAlertConditionState::getPresence() const {
+	return ConvertFromCDM::convert(data->Presence().get());
 }
 	
-bool LimitAlertConditionState::hasObservationTime() const {
-	return data->ObservationTime().present();
+bool LimitAlertConditionState::hasPresence() const {
+	return data->Presence().present();
+}
+	
+LimitAlertConditionState & LimitAlertConditionState::setDeterminationTime(const Timestamp & value) {
+	data->DeterminationTime(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool LimitAlertConditionState::getDeterminationTime(Timestamp & out) const {
+	if (data->DeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->DeterminationTime().get());
+		return true;
+	}
+	return false;
+}
+
+Timestamp LimitAlertConditionState::getDeterminationTime() const {
+	return ConvertFromCDM::convert(data->DeterminationTime().get());
+}
+	
+bool LimitAlertConditionState::hasDeterminationTime() const {
+	return data->DeterminationTime().present();
 }
 	
 LimitAlertConditionState & LimitAlertConditionState::setLimits(const Range & value) {
@@ -192,38 +243,27 @@ LimitAlertConditionState & LimitAlertConditionState::setLimits(const Range & val
 	return *this;
 }
 
-bool LimitAlertConditionState::getLimits(Range & out) const {
-	if (data->Limits().present()) {
-		out = ConvertFromCDM::convert(data->Limits().get());
-		return true;
-	}
-	return false;
-}
 
 Range LimitAlertConditionState::getLimits() const {
-	return ConvertFromCDM::convert(data->Limits().get());
+	return ConvertFromCDM::convert(data->Limits());
 }
 	
-bool LimitAlertConditionState::hasLimits() const {
-	return data->Limits().present();
-}
-	
-LimitAlertConditionState & LimitAlertConditionState::setMonitoredAlertLimits(const MonitoredAlertLimits & value) {
+LimitAlertConditionState & LimitAlertConditionState::setMonitoredAlertLimits(const AlertConditionMonitoredLimits & value) {
 	data->MonitoredAlertLimits(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-MonitoredAlertLimits LimitAlertConditionState::getMonitoredAlertLimits() const {
+AlertConditionMonitoredLimits LimitAlertConditionState::getMonitoredAlertLimits() const {
 	return ConvertFromCDM::convert(data->MonitoredAlertLimits());
 }
 	
-LimitAlertConditionState & LimitAlertConditionState::setAutoLimitActivationState(const PausableActivation & value) {
+LimitAlertConditionState & LimitAlertConditionState::setAutoLimitActivationState(const AlertActivation & value) {
 	data->AutoLimitActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool LimitAlertConditionState::getAutoLimitActivationState(PausableActivation & out) const {
+bool LimitAlertConditionState::getAutoLimitActivationState(AlertActivation & out) const {
 	if (data->AutoLimitActivationState().present()) {
 		out = ConvertFromCDM::convert(data->AutoLimitActivationState().get());
 		return true;
@@ -231,7 +271,7 @@ bool LimitAlertConditionState::getAutoLimitActivationState(PausableActivation & 
 	return false;
 }
 
-PausableActivation LimitAlertConditionState::getAutoLimitActivationState() const {
+AlertActivation LimitAlertConditionState::getAutoLimitActivationState() const {
 	return ConvertFromCDM::convert(data->AutoLimitActivationState().get());
 }
 	

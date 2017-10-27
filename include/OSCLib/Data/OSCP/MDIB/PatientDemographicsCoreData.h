@@ -32,7 +32,7 @@
 #ifndef PATIENTDEMOGRAPHICSCOREDATA_H_
 #define PATIENTDEMOGRAPHICSCOREDATA_H_
 
-#include "OSCLib/Data/OSCP/MDIB/EnumMappings.h"
+#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -77,8 +77,8 @@ public:
 	bool hasTitle() const;
 
 	PatientDemographicsCoreData & addMiddlename(const std::string & value);
-	std::vector<std::string> getMiddlenames() const;
-	void clearMiddlenames();
+	std::vector<std::string> getMiddlenameList() const;
+	void clearMiddlenameList();
 	
 	PatientDemographicsCoreData & setSex(const Sex & value);
 	Sex getSex() const;
@@ -90,19 +90,19 @@ public:
 	bool getPatientType(PatientType & out) const;
 	bool hasPatientType() const;
 
-	PatientDemographicsCoreData & setDateOfBirth(const DateTime & value);
-	DateTime getDateOfBirth() const;
-	bool getDateOfBirth(DateTime & out) const;
+	PatientDemographicsCoreData & setDateOfBirth(const DateOfBirth & value);
+	DateOfBirth getDateOfBirth() const;
+	bool getDateOfBirth(DateOfBirth & out) const;
 	bool hasDateOfBirth() const;
 
-	PatientDemographicsCoreData & setHeight(const Measure & value);
-	Measure getHeight() const;
-	bool getHeight(Measure & out) const;
+	PatientDemographicsCoreData & setHeight(const Measurement & value);
+	Measurement getHeight() const;
+	bool getHeight(Measurement & out) const;
 	bool hasHeight() const;
 
-	PatientDemographicsCoreData & setWeight(const Measure & value);
-	Measure getWeight() const;
-	bool getWeight(Measure & out) const;
+	PatientDemographicsCoreData & setWeight(const Measurement & value);
+	Measurement getWeight() const;
+	bool getWeight(Measurement & out) const;
 	bool hasWeight() const;
 
 	PatientDemographicsCoreData & setRace(const CodedValue & value);

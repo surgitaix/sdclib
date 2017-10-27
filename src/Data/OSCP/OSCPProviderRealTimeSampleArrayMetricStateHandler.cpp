@@ -22,7 +22,7 @@ OSCPProviderRealTimeSampleArrayMetricStateHandler::~OSCPProviderRealTimeSampleAr
 
 InvocationState OSCPProviderRealTimeSampleArrayMetricStateHandler::onStateChangeRequest(const RealTimeSampleArrayMetricState & , const OperationInvocationContext & ) {
 	log_error([] { return "Method not overridden: onStateChangeRequest(RealTimeSampleArrayMetricState)!"; });
-    return InvocationState::FAILED;
+    return InvocationState::Fail;
 }
 
 void OSCPProviderRealTimeSampleArrayMetricStateHandler::updateState(const OSCLib::Data::OSCP::RealTimeSampleArrayMetricState & object) {

@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 
 namespace OSCLib {
@@ -71,35 +72,67 @@ InstanceIdentifier & InstanceIdentifier:: operator=(const InstanceIdentifier & o
 }
 
 
-InstanceIdentifier & InstanceIdentifier::setroot(const std::string & value) {
-	data->root(ConvertToCDM::convert(value));
+InstanceIdentifier & InstanceIdentifier::setType(const CodedValue & value) {
+	data->Type(ConvertToCDM::convert(value));
 	return *this;
 }
 
-
-std::string InstanceIdentifier::getroot() const {
-	return ConvertFromCDM::convert(data->root());
-}
-	
-InstanceIdentifier & InstanceIdentifier::setextension(const std::string & value) {
-	data->extension(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool InstanceIdentifier::getextension(std::string & out) const {
-	if (data->extension().present()) {
-		out = ConvertFromCDM::convert(data->extension().get());
+bool InstanceIdentifier::getType(CodedValue & out) const {
+	if (data->Type().present()) {
+		out = ConvertFromCDM::convert(data->Type().get());
 		return true;
 	}
 	return false;
 }
 
-std::string InstanceIdentifier::getextension() const {
-	return ConvertFromCDM::convert(data->extension().get());
+CodedValue InstanceIdentifier::getType() const {
+	return ConvertFromCDM::convert(data->Type().get());
 }
 	
-bool InstanceIdentifier::hasextension() const {
-	return data->extension().present();
+bool InstanceIdentifier::hasType() const {
+	return data->Type().present();
+}
+	
+InstanceIdentifier & InstanceIdentifier::setRoot(const Root & value) {
+	data->Root(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool InstanceIdentifier::getRoot(Root & out) const {
+	if (data->Root().present()) {
+		out = ConvertFromCDM::convert(data->Root().get());
+		return true;
+	}
+	return false;
+}
+
+Root InstanceIdentifier::getRoot() const {
+	return ConvertFromCDM::convert(data->Root().get());
+}
+	
+bool InstanceIdentifier::hasRoot() const {
+	return data->Root().present();
+}
+	
+InstanceIdentifier & InstanceIdentifier::setExtension(const Extension & value) {
+	data->Extension1(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool InstanceIdentifier::getExtension(Extension & out) const {
+	if (data->Extension1().present()) {
+		out = ConvertFromCDM::convert(data->Extension1().get());
+		return true;
+	}
+	return false;
+}
+
+Extension InstanceIdentifier::getExtension() const {
+	return ConvertFromCDM::convert(data->Extension1().get());
+}
+	
+bool InstanceIdentifier::hasExtension() const {
+	return data->Extension1().present();
 }
 	
 InstanceIdentifier & InstanceIdentifier::addIdentifierName(const LocalizedText & value) {
@@ -107,7 +140,7 @@ InstanceIdentifier & InstanceIdentifier::addIdentifierName(const LocalizedText &
 	return *this;
 }
 
-std::vector<LocalizedText> InstanceIdentifier::getIdentifierNames() const {
+std::vector<LocalizedText> InstanceIdentifier::getIdentifierNameList() const {
 	std::vector<LocalizedText> result;
 	result.reserve(data->IdentifierName().size());
 	for (const auto & value: data->IdentifierName()) {
@@ -116,7 +149,7 @@ std::vector<LocalizedText> InstanceIdentifier::getIdentifierNames() const {
 	return result;
 }
 
-void InstanceIdentifier::clearIdentifierNames() {
+void InstanceIdentifier::clearIdentifierNameList() {
 	data->IdentifierName().clear();
 }
 

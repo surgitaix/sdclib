@@ -133,6 +133,48 @@ bool Range::hasStepWidth() const {
 	return data->StepWidth().present();
 }
 	
+Range & Range::setRelativeAccuracy(const double & value) {
+	data->RelativeAccuracy(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool Range::getRelativeAccuracy(double & out) const {
+	if (data->RelativeAccuracy().present()) {
+		out = ConvertFromCDM::convert(data->RelativeAccuracy().get());
+		return true;
+	}
+	return false;
+}
+
+double Range::getRelativeAccuracy() const {
+	return ConvertFromCDM::convert(data->RelativeAccuracy().get());
+}
+	
+bool Range::hasRelativeAccuracy() const {
+	return data->RelativeAccuracy().present();
+}
+	
+Range & Range::setAbsoluteAccuracy(const double & value) {
+	data->AbsoluteAccuracy(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool Range::getAbsoluteAccuracy(double & out) const {
+	if (data->AbsoluteAccuracy().present()) {
+		out = ConvertFromCDM::convert(data->AbsoluteAccuracy().get());
+		return true;
+	}
+	return false;
+}
+
+double Range::getAbsoluteAccuracy() const {
+	return ConvertFromCDM::convert(data->AbsoluteAccuracy().get());
+}
+	
+bool Range::hasAbsoluteAccuracy() const {
+	return data->AbsoluteAccuracy().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

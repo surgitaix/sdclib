@@ -1,4 +1,4 @@
-<p1:MDIBContainer xmlns:p1="http://domain-model-uri/15/04" p1:MDIBVersion="348">
+<p1:MDIBContainer xmlns:p1="http://p11073-10207/draft8/pm/2017/08/07" p1:MDIBVersion="348">
   <p1:MDDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <p1:MDS Handle="Invalid. Not assigned!" xsi:type="p1:HydraMDSDescriptor">
       <p1:Type>

@@ -36,8 +36,7 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/AlertConditionReference.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemSignalActivation.h"
 
 namespace OSCLib {
 namespace Data {
@@ -72,37 +71,6 @@ AlertSystemState & AlertSystemState:: operator=(const AlertSystemState & object)
 }
 
 
-AlertSystemState & AlertSystemState::setHandle(const std::string & value) {
-	data->Handle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertSystemState::getHandle(std::string & out) const {
-	if (data->Handle().present()) {
-		out = ConvertFromCDM::convert(data->Handle().get());
-		return true;
-	}
-	return false;
-}
-
-std::string AlertSystemState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle().get());
-}
-	
-bool AlertSystemState::hasHandle() const {
-	return data->Handle().present();
-}
-	
-AlertSystemState & AlertSystemState::setDescriptorHandle(const std::string & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-std::string AlertSystemState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
-}
-	
 AlertSystemState & AlertSystemState::setStateVersion(const VersionCounter & value) {
 	data->StateVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,14 +92,87 @@ bool AlertSystemState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
 	
-AlertSystemState & AlertSystemState::setActivationState(const PausableActivation & value) {
+AlertSystemState & AlertSystemState::setDescriptorHandle(const HandleRef & value) {
+	data->DescriptorHandle(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+HandleRef AlertSystemState::getDescriptorHandle() const {
+	return ConvertFromCDM::convert(data->DescriptorHandle());
+}
+	
+AlertSystemState & AlertSystemState::setDescriptorVersion(const ReferencedVersion & value) {
+	data->DescriptorVersion(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSystemState::getDescriptorVersion(ReferencedVersion & out) const {
+	if (data->DescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+		return true;
+	}
+	return false;
+}
+
+ReferencedVersion AlertSystemState::getDescriptorVersion() const {
+	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+}
+	
+bool AlertSystemState::hasDescriptorVersion() const {
+	return data->DescriptorVersion().present();
+}
+	
+AlertSystemState & AlertSystemState::setActivationState(const AlertActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-PausableActivation AlertSystemState::getActivationState() const {
+AlertActivation AlertSystemState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
+}
+	
+AlertSystemState & AlertSystemState::setLastSelfCheck(const Timestamp & value) {
+	data->LastSelfCheck(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSystemState::getLastSelfCheck(Timestamp & out) const {
+	if (data->LastSelfCheck().present()) {
+		out = ConvertFromCDM::convert(data->LastSelfCheck().get());
+		return true;
+	}
+	return false;
+}
+
+Timestamp AlertSystemState::getLastSelfCheck() const {
+	return ConvertFromCDM::convert(data->LastSelfCheck().get());
+}
+	
+bool AlertSystemState::hasLastSelfCheck() const {
+	return data->LastSelfCheck().present();
+}
+	
+AlertSystemState & AlertSystemState::setSelfCheckCount(const long long & value) {
+	data->SelfCheckCount(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool AlertSystemState::getSelfCheckCount(long long & out) const {
+	if (data->SelfCheckCount().present()) {
+		out = ConvertFromCDM::convert(data->SelfCheckCount().get());
+		return true;
+	}
+	return false;
+}
+
+long long AlertSystemState::getSelfCheckCount() const {
+	return ConvertFromCDM::convert(data->SelfCheckCount().get());
+}
+	
+bool AlertSystemState::hasSelfCheckCount() const {
+	return data->SelfCheckCount().present();
 }
 	
 AlertSystemState & AlertSystemState::setPresentPhysiologicalAlarmConditions(const AlertConditionReference & value) {
@@ -176,6 +217,24 @@ bool AlertSystemState::hasPresentTechnicalAlarmConditions() const {
 	return data->PresentTechnicalAlarmConditions().present();
 }
 	
+AlertSystemState & AlertSystemState::addSystemSignalActivation(const SystemSignalActivation & value) {
+	data->SystemSignalActivation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<SystemSignalActivation> AlertSystemState::getSystemSignalActivationList() const {
+	std::vector<SystemSignalActivation> result;
+	result.reserve(data->SystemSignalActivation().size());
+	for (const auto & value: data->SystemSignalActivation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void AlertSystemState::clearSystemSignalActivationList() {
+	data->SystemSignalActivation().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

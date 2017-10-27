@@ -2,35 +2,36 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerContextStateChangedHandler.h"
+#include "OSCLib/Data/OSCP/OSCPConsumerSystemContextStateChangedHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSystemStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderComponentStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderHydraMDSStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderSystemContextStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderVmdStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderChannelStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ChannelState.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/HydraMDSState.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
-#include "OSCLib/Data/OSCP/MDIB/MDDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/OperationInvocationContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemContext.h"
-#include "OSCLib/Data/OSCP/MDIB/SystemMetaData.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdState.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
@@ -97,7 +98,7 @@ private:
     Poco::Event event;
 };
 
-class ConsumerContextEventHandler : public OSCPConsumerContextStateChangedHandler {
+class ConsumerContextEventHandler : public OSCPConsumerSystemContextStateChangedHandler {
 public:
 	ConsumerContextEventHandler() :
 		handle(LOCATION_CONTEXT_DESCRIPTOR_HANDLE),
@@ -180,6 +181,7 @@ public:
 
 };
 
+
 class AlertSystemStateHandler : public OSCPProviderAlertSystemStateHandler {
 public:
 	AlertSystemStateHandler() {
@@ -190,7 +192,7 @@ public:
         AlertSystemState result;
         // reference alert system descriptor's handle
         result
-            .setActivationState(PausableActivation::ON)
+            .setActivationState(AlertActivation::On)
             .setDescriptorHandle(ALERT_SYSTEM_HANDLE);
         return result;
     }
@@ -202,7 +204,7 @@ public:
 
 };
 
-class ContextHandler : public OSCPProviderContextStateHandler {
+class ContextHandler : public OSCPProviderSystemContextStateHandler {
 public:
 	ContextHandler() {
 	}
@@ -231,8 +233,8 @@ public:
     NumericMetricState createState() {
         NumericMetricState result;
         result
-            .setObservedValue(NumericMetricValue().setValue(0.0))
-            .setComponentActivationState(ComponentActivation::ON)
+            .setMetricValue(NumericMetricValue().setValue(0.0))
+            .setActivationState(ComponentActivation::On)
             .setDescriptorHandle(METRIC_DUMMY_HANDLE);
         return result;
     }
@@ -241,26 +243,26 @@ public:
         NumericMetricState result = createState();
         return result;
     }
-
 };
 
-class AlwaysOnComponentStateHandler : public OSCPProviderComponentStateHandler {
+
+class AlwaysOnMdsStateHandler : public OSCPProviderMdsStateHandler {
 public:
-	AlwaysOnComponentStateHandler(const std::string & descriptorHandle) {
+	AlwaysOnMdsStateHandler(const std::string & descriptorHandle) {
         this->descriptorHandle = descriptorHandle;
 	}
 
     // Helper method
-    ComponentState createState() {
-        ComponentState result;
+    MdsState createState() {
+        MdsState result;
         result
             .setDescriptorHandle(descriptorHandle)
-            .setComponentActivationState(ComponentActivation::ON);
+            .setActivationState(ComponentActivation::On);
         return result;
     }
 
-	virtual ComponentState getInitialState() override {
-        ComponentState state = createState();
+	virtual MdsState getInitialState() override {
+        MdsState state = createState();
         return state;
 	}
 
@@ -268,23 +270,48 @@ private:
     std::string descriptorHandle;
 };
 
-class AlwaysOnHydraMDSStateHandler : public OSCPProviderHydraMDSStateHandler {
+
+class AlwaysOnVmdStateHandler : public OSCPProviderVmdStateHandler {
 public:
-	AlwaysOnHydraMDSStateHandler(const std::string & descriptorHandle) {
+	AlwaysOnVmdStateHandler(const std::string & descriptorHandle) {
         this->descriptorHandle = descriptorHandle;
 	}
 
     // Helper method
-    HydraMDSState createState() {
-        HydraMDSState result;
+    VmdState createState() {
+        VmdState result;
         result
             .setDescriptorHandle(descriptorHandle)
-            .setComponentActivationState(ComponentActivation::ON);
+            .setActivationState(ComponentActivation::On);
         return result;
     }
 
-	virtual HydraMDSState getInitialState() override {
-        HydraMDSState state = createState();
+	virtual VmdState getInitialState() override {
+		VmdState state = createState();
+        return state;
+	}
+
+private:
+    std::string descriptorHandle;
+};
+
+class AlwaysOnChannelStateHandler : public OSCPProviderChannelStateHandler {
+public:
+	AlwaysOnChannelStateHandler(const std::string & descriptorHandle) {
+        this->descriptorHandle = descriptorHandle;
+	}
+
+    // Helper method
+    ChannelState createState() {
+    	ChannelState result;
+        result
+            .setDescriptorHandle(descriptorHandle)
+            .setActivationState(ComponentActivation::On);
+        return result;
+    }
+
+	virtual ChannelState getInitialState() override {
+		ChannelState state = createState();
         return state;
 	}
 
@@ -301,20 +328,20 @@ public:
 	OSCPDeviceProvider() :
 		oscpProvider(),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
-		hydraMDSState(MDS_HANDLE),
+		mdsState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
 		oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
         alertCondition
 			.addSource(METRIC_DUMMY_HANDLE)
-			.setKind(AlertConditionKind::TECHNICAL)
-			.setPriority(AlertConditionPriority::MEDIUM)
+			.setKind(AlertConditionKind::Tec)
+			.setPriority(AlertConditionPriority::Me)
 			.setHandle(ALERT_CONDITION_HANDLE);
 
         dummyMetricDescriptor
-			.setMetricCategory(MetricCategory::MEASUREMENT)
-        	.setAvailability(MetricAvailability::CONTINUOUS)
+			.setMetricCategory(MetricCategory::Msrmt)
+        	.setMetricAvailability(MetricAvailability::Cont)
 	        .setHandle(METRIC_DUMMY_HANDLE);
 
         location.setHandle(LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
@@ -330,51 +357,43 @@ public:
         deviceChannel
 			.setHandle(CHANNEL_DESCRIPTOR_HANDLE)
 			.addMetric(dummyMetricDescriptor)
-			.setIntendedUse(IntendedUse::MEDICAL_A);
+			.setSafetyClassification(SafetyClassification::MedA);
 
         // VMD
-        VMDDescriptor deviceModule;
+        VmdDescriptor deviceModule;
         deviceModule
 			.setHandle(VMD_DESCRIPTOR_HANDLE)
 			.addChannel(deviceChannel);
 
         // MDS
-        HydraMDSDescriptor deviceSystem;
+        MdsDescriptor deviceSystem;
         deviceSystem
 			.setHandle(MDS_HANDLE)
-			.setMetaData(
-				SystemMetaData()
-				.setUDI(DEVICE_UDI)
-				.addManufacturer(
-					LocalizedText()
-					.set("SurgiTAIX AG"))
-				.addModelName(
-					LocalizedText()
-					.set("EndoTAIX"))
-				.addModelNumber("1")
-				.addSerialNumber("1234")
-				)
-			.setContext(
-				SystemContext()
-				.setLocationContext(location)
-				)
-			.addVMD(deviceModule)
+			.setMetaData(MetaData()
+				.addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
+				.setModelNumber("1")
+				.addModelName(LocalizedText().setRef("EndoTAIX"))
+				.addSerialNumber("1234"))
+			.setSystemContext(
+				SystemContextDescriptor()
+					.setLocationContext(location))
+			.addVmd(deviceModule)
 			.setAlertSystem(alertSystem);
 
         // create and add description
-		MDDescription mdDescription;
-		mdDescription.addMDSDescriptor(deviceSystem);
+		MdDescription mdDescription;
+		mdDescription.addMdsDescriptor(deviceSystem);
 
-		oscpProvider.setMDDescription(mdDescription);
+		oscpProvider.setMdDescription(mdDescription);
 
         // State handlers
-        oscpProvider.addMDStateHandler(&alertSystemState);
-        oscpProvider.addMDStateHandler(&alertConditionState);
-        oscpProvider.addMDStateHandler(&channelState);
-        oscpProvider.addMDStateHandler(&contextStates);
-        oscpProvider.addMDStateHandler(&dummyState);
-        oscpProvider.addMDStateHandler(&hydraMDSState);
-        oscpProvider.addMDStateHandler(&vmdState);
+        oscpProvider.addMdSateHandler(&alertSystemState);
+        oscpProvider.addMdSateHandler(&alertConditionState);
+        oscpProvider.addMdSateHandler(&channelState);
+        oscpProvider.addMdSateHandler(&contextStates);
+        oscpProvider.addMdSateHandler(&dummyState);
+        oscpProvider.addMdSateHandler(&mdsState);
+        oscpProvider.addMdSateHandler(&vmdState);
 	}
 
 	void startup() {
@@ -408,10 +427,10 @@ private:
     ContextHandler contextStates;
     AlertConditionStateHandler alertConditionState;
     AlertSystemStateHandler alertSystemState;
-    AlwaysOnComponentStateHandler channelState;
+    AlwaysOnChannelStateHandler channelState;
     ProviderNumericStateHandler dummyState;
-    AlwaysOnHydraMDSStateHandler hydraMDSState;
-    AlwaysOnComponentStateHandler vmdState;
+    AlwaysOnMdsStateHandler mdsState;
+    AlwaysOnVmdStateHandler vmdState;
 };
 
 }

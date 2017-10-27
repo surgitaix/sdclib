@@ -36,10 +36,8 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/VersionCounter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -95,13 +93,13 @@ bool ChannelDescriptor::hasType() const {
 	return data->Type().present();
 }
 	
-ChannelDescriptor & ChannelDescriptor::setHandle(const std::string & value) {
+ChannelDescriptor & ChannelDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-std::string ChannelDescriptor::getHandle() const {
+Handle ChannelDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
 	
@@ -126,25 +124,25 @@ bool ChannelDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
 	
-ChannelDescriptor & ChannelDescriptor::setIntendedUse(const IntendedUse & value) {
-	data->IntendedUse(ConvertToCDM::convert(value));
+ChannelDescriptor & ChannelDescriptor::setSafetyClassification(const SafetyClassification & value) {
+	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool ChannelDescriptor::getIntendedUse(IntendedUse & out) const {
-	if (data->IntendedUse().present()) {
-		out = ConvertFromCDM::convert(data->IntendedUse().get());
+bool ChannelDescriptor::getSafetyClassification(SafetyClassification & out) const {
+	if (data->SafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->SafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
-IntendedUse ChannelDescriptor::getIntendedUse() const {
-	return ConvertFromCDM::convert(data->IntendedUse().get());
+SafetyClassification ChannelDescriptor::getSafetyClassification() const {
+	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
 	
-bool ChannelDescriptor::hasIntendedUse() const {
-	return data->IntendedUse().present();
+bool ChannelDescriptor::hasSafetyClassification() const {
+	return data->SafetyClassification().present();
 }
 	
 ChannelDescriptor & ChannelDescriptor::addProductionSpecification(const ProductionSpecification & value) {
@@ -152,7 +150,7 @@ ChannelDescriptor & ChannelDescriptor::addProductionSpecification(const Producti
 	return *this;
 }
 
-std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecifications() const {
+std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
 	result.reserve(data->ProductionSpecification().size());
 	for (const auto & value: data->ProductionSpecification()) {
@@ -161,31 +159,10 @@ std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecificati
 	return result;
 }
 
-void ChannelDescriptor::clearProductionSpecifications() {
+void ChannelDescriptor::clearProductionSpecificationList() {
 	data->ProductionSpecification().clear();
 }
 
-ChannelDescriptor & ChannelDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
-	data->AlertSystem(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ChannelDescriptor::getAlertSystem(AlertSystemDescriptor & out) const {
-	if (data->AlertSystem().present()) {
-		out = ConvertFromCDM::convert(data->AlertSystem().get());
-		return true;
-	}
-	return false;
-}
-
-AlertSystemDescriptor ChannelDescriptor::getAlertSystem() const {
-	return ConvertFromCDM::convert(data->AlertSystem().get());
-}
-	
-bool ChannelDescriptor::hasAlertSystem() const {
-	return data->AlertSystem().present();
-}
-	
 
 } /* namespace OSCP */
 } /* namespace Data */

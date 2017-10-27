@@ -24,13 +24,13 @@
 #ifndef INCLUDE_OSCLIB_DATA_OSCP_OSCPPROVIDERACTIVATEOPERATIONHANDLER_H_
 #define INCLUDE_OSCLIB_DATA_OSCP_OSCPPROVIDERACTIVATEOPERATIONHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPProviderMDStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderActivateOperationHandler : public OSCPProviderMDStateHandler {
+class OSCPProviderActivateOperationHandler : public OSCPProviderMdStateHandler {
 public:
 	OSCPProviderActivateOperationHandler();
 	virtual ~OSCPProviderActivateOperationHandler();
@@ -43,7 +43,7 @@ public:
     *
     * @return invocation state
     */
-    virtual InvocationState onActivateRequest(const MDIBContainer & mdib, const OperationInvocationContext & oic);
+    virtual InvocationState onActivateRequest(const MdibContainer & mdib, const OperationInvocationContext & oic);
 
     /**
     * @brief Notify all registered consumers about a changed MDIB object.
