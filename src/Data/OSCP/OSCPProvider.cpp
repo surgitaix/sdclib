@@ -75,14 +75,13 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-//#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 #include "OSCLib/Data/OSCP/OSCPProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSignalStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSystemStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderClockStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderSystemContextStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.h"
@@ -595,7 +594,7 @@ void OSCPProvider::SetContextState(const MDM::SetContextState & request, const O
 	}
 
 	for (auto & nextHandler : stateHandlers) {
-		if (OSCPProviderContextStateHandler * handler = dynamic_cast<OSCPProviderContextStateHandler *>(nextHandler.second)) {
+		if (OSCPProviderSystemContextStateHandler * handler = dynamic_cast<OSCPProviderSystemContextStateHandler *>(nextHandler.second)) {
 			const InvocationState outIS(handler->onStateChangeRequest(
 					ecStates, lcStates, ocStates, pcStates, wcStates, oic));
 			notifyOperationInvoked(oic, outIS);
@@ -972,7 +971,7 @@ void OSCPProvider::startup() {
 			mdibStates.addState(h->getInitialState());
 		} else if (dynamic_cast<OSCPProviderActivateOperationHandler *>(handler.second)) {
 			// NOOP
-		} else if (OSCPProviderContextStateHandler * h = dynamic_cast<OSCPProviderContextStateHandler *>(handler.second)) {
+		} else if (OSCPProviderSystemContextStateHandler * h = dynamic_cast<OSCPProviderSystemContextStateHandler *>(handler.second)) {
 			for (const auto & state : h->getEnsembleContextStates()) {
 				mdibStates.addState(state);
 			}

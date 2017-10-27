@@ -64,7 +64,7 @@ std::unique_ptr<GetContextStatesTraits::Response> GetContextStatesTraits::dispat
 }
 
 std::string GetMDDescriptionTraits::OperationName() {
-	return "GetMDDescription";
+	return "GetMdDescription";
 }
 xml_schema::Qname GetMDDescriptionTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_GETSERVICE_PORTTYPE);
@@ -86,7 +86,7 @@ std::unique_ptr<GetMDDescriptionTraits::Response> GetMDDescriptionTraits::dispat
 }
 
 std::string GetMDIBTraits::OperationName() {
-	return "GetMDIB";
+	return "GetMdib";
 }
 xml_schema::Qname GetMDIBTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_GETSERVICE_PORTTYPE);
@@ -108,7 +108,7 @@ std::unique_ptr<GetMDIBTraits::Response> GetMDIBTraits::dispatch(GetMDIBTraits::
 }
 
 std::string GetMdStateTraits::OperationName() {
-	return "GetMDState";
+	return "GetMdState";
 }
 xml_schema::Qname GetMdStateTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_GETSERVICE_PORTTYPE);

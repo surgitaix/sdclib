@@ -1,5 +1,5 @@
 /*
- * OSCPProviderContextStateHandler.h
+ * OSCPProviderSystemContextStateHandler.h
  *
  *  Created on: 29.05.2015
  *      Author: roehser
@@ -16,10 +16,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProviderContextStateHandler : public OSCPProviderMdStateHandler {
+class OSCPProviderSystemContextStateHandler : public OSCPProviderMdStateHandler {
 public:
-	OSCPProviderContextStateHandler();
-	virtual ~OSCPProviderContextStateHandler();
+	OSCPProviderSystemContextStateHandler();
+	virtual ~OSCPProviderSystemContextStateHandler();
 
     /**
     * @brief Called on incoming consumer request for a state change

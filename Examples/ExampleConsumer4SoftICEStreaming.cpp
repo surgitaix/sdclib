@@ -39,6 +39,7 @@ public:
     	Poco::Mutex::ScopedLock lock(mutex);
         std::vector<double> values = state.getMetricValue().getSamples();
 
+
         // simple check if the data is valid:
         // assumption: sequence of values, increased by 1
         verifiedChunks = true;
@@ -86,6 +87,7 @@ private:
 
 
 
+
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Startup";
     OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
@@ -99,22 +101,22 @@ int main() {
 	// testing against SoftICE
 	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 	std::shared_ptr<StreamConsumerEventHandler> streamEventHandler = std::make_shared<StreamConsumerEventHandler>(streamHandle);
-	std::shared_ptr<NumericConsumerEventHandler> getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_get");
-	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");
+	std::shared_ptr<NumericConsumerEventHandler> getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_metric");
+//	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");
 
 	if (c != nullptr) {
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider found!" << std::endl;
 		c->registerStateEventHandler(streamEventHandler.get());
-		c->registerStateEventHandler(getNumericEventHandler.get());
-		c->registerStateEventHandler(setNumericEventHandler.get());
+		//c->registerStateEventHandler(getNumericEventHandler.get());
+		//c->registerStateEventHandler(setNumericEventHandler.get());
 
 //		set the providers value for the NMS: handle_set
-		NumericMetricState nms;
-		nms
-			.setMetricValue(NumericMetricValue().setValue(84.0))
-			.setDescriptorHandle("handle_set");
-		Poco::Thread::sleep(1000);
-		c->commitState(nms);
+//		NumericMetricState nms;
+//		nms
+//			.setMetricValue(NumericMetricValue().setValue(84.0))
+//			.setDescriptorHandle("handle_set");
+//		Poco::Thread::sleep(1000);
+//		c->commitState(nms);
 
 		std::string temp;
 		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Press key to exit program.";
@@ -122,7 +124,7 @@ int main() {
 
 		c->unregisterStateEventHandler(streamEventHandler.get());
 		c->unregisterStateEventHandler(getNumericEventHandler.get());
-		c->unregisterStateEventHandler(setNumericEventHandler.get());
+		//c->unregisterStateEventHandler(setNumericEventHandler.get());
 		c->disconnect();
 	} else {
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider not found!" << std::endl;

@@ -12,27 +12,27 @@
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
-#include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderSystemContextStateHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSCPProviderContextStateHandler::OSCPProviderContextStateHandler() :
+OSCPProviderSystemContextStateHandler::OSCPProviderSystemContextStateHandler() :
 	handle(Poco::UUIDGenerator::defaultGenerator().create().toString())
 {
 
 }
 
-OSCPProviderContextStateHandler::~OSCPProviderContextStateHandler() {
+OSCPProviderSystemContextStateHandler::~OSCPProviderSystemContextStateHandler() {
 
 }
 
-std::string OSCPProviderContextStateHandler::getDescriptorHandle() {
+std::string OSCPProviderSystemContextStateHandler::getDescriptorHandle() {
 	return handle;
 }
 
-InvocationState OSCPProviderContextStateHandler::onStateChangeRequest(
+InvocationState OSCPProviderSystemContextStateHandler::onStateChangeRequest(
 		const std::vector<EnsembleContextState> &,
 		const std::vector<LocationContextState> &,
 		const std::vector<OperatorContextState> &,
@@ -43,43 +43,43 @@ InvocationState OSCPProviderContextStateHandler::onStateChangeRequest(
     return InvocationState::Fail;
 }
 
-std::vector<EnsembleContextState> OSCPProviderContextStateHandler::getEnsembleContextStates() {
+std::vector<EnsembleContextState> OSCPProviderSystemContextStateHandler::getEnsembleContextStates() {
 	return std::vector<EnsembleContextState>();
 }
 
-std::vector<LocationContextState> OSCPProviderContextStateHandler::getLocationContextStates() {
+std::vector<LocationContextState> OSCPProviderSystemContextStateHandler::getLocationContextStates() {
 	return std::vector<LocationContextState>();
 }
 
-std::vector<OperatorContextState> OSCPProviderContextStateHandler::getOperatorContextStates() {
+std::vector<OperatorContextState> OSCPProviderSystemContextStateHandler::getOperatorContextStates() {
 	return std::vector<OperatorContextState>();
 }
 
-std::vector<PatientContextState> OSCPProviderContextStateHandler::getPatientContextStates() {
+std::vector<PatientContextState> OSCPProviderSystemContextStateHandler::getPatientContextStates() {
 	return std::vector<PatientContextState>();
 }
 
-std::vector<WorkflowContextState> OSCPProviderContextStateHandler::getWorkflowContextStates() {
+std::vector<WorkflowContextState> OSCPProviderSystemContextStateHandler::getWorkflowContextStates() {
 	return std::vector<WorkflowContextState>();
 }
 
-void OSCPProviderContextStateHandler::updateState(const OSCLib::Data::OSCP::EnsembleContextState & object) {
+void OSCPProviderSystemContextStateHandler::updateState(const OSCLib::Data::OSCP::EnsembleContextState & object) {
 	notifyMDIBObjectChangedImpl(object);
 }
 
-void OSCPProviderContextStateHandler::updateState(const OSCLib::Data::OSCP::LocationContextState & object) {
+void OSCPProviderSystemContextStateHandler::updateState(const OSCLib::Data::OSCP::LocationContextState & object) {
 	notifyMDIBObjectChangedImpl(object);
 }
 
-void OSCPProviderContextStateHandler::updateState(const OSCLib::Data::OSCP::OperatorContextState & object) {
+void OSCPProviderSystemContextStateHandler::updateState(const OSCLib::Data::OSCP::OperatorContextState & object) {
 	notifyMDIBObjectChangedImpl(object);
 }
 
-void OSCPProviderContextStateHandler::updateState(const OSCLib::Data::OSCP::PatientContextState & object) {
+void OSCPProviderSystemContextStateHandler::updateState(const OSCLib::Data::OSCP::PatientContextState & object) {
 	notifyMDIBObjectChangedImpl(object);
 }
 
-void OSCPProviderContextStateHandler::updateState(const OSCLib::Data::OSCP::WorkflowContextState & object) {
+void OSCPProviderSystemContextStateHandler::updateState(const OSCLib::Data::OSCP::WorkflowContextState & object) {
 	notifyMDIBObjectChangedImpl(object);
 }
 

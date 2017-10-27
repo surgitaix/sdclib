@@ -2,12 +2,12 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerContextStateChangedHandler.h"
+#include "OSCLib/Data/OSCP/OSCPConsumerSystemContextStateChangedHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSystemStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderSystemContextStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderVmdStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderChannelStateHandler.h"
@@ -98,7 +98,7 @@ private:
     Poco::Event event;
 };
 
-class ConsumerContextEventHandler : public OSCPConsumerContextStateChangedHandler {
+class ConsumerContextEventHandler : public OSCPConsumerSystemContextStateChangedHandler {
 public:
 	ConsumerContextEventHandler() :
 		handle(LOCATION_CONTEXT_DESCRIPTOR_HANDLE),
@@ -204,7 +204,7 @@ public:
 
 };
 
-class ContextHandler : public OSCPProviderContextStateHandler {
+class ContextHandler : public OSCPProviderSystemContextStateHandler {
 public:
 	ContextHandler() {
 	}

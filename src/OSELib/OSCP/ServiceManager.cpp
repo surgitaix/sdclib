@@ -218,7 +218,7 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 				}
 
 				for (const auto & hosted : metadata.Relationship().get().Hosted()) {
-					if (hosted.ServiceId() == "PHI") {
+					if (hosted.ServiceId() == "ContextService") {
 						for (const auto & iter : hosted.EndpointReference()) {
 							deviceDescription.addContextServiceURI(Poco::URI(iter.Address()));
 						}

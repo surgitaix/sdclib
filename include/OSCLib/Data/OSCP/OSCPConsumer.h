@@ -200,7 +200,7 @@ public:
     *
     * @param handler The handler
     */
-    void setContextStateChangedHandler(OSCPConsumerContextStateChangedHandler * handler);
+    void setContextStateChangedHandler(OSCPConsumerSystemContextStateChangedHandler * handler);
 
     /**
     * @brief Set a handler which will be invoked if a renewal of a subscription fails.
@@ -256,7 +256,7 @@ private:
     Poco::Mutex eventMutex;
     std::map<std::string, OSCPConsumerEventHandler *> eventHandlers;
     OSCPConsumerConnectionLostHandler * connectionLostHandler;
-    OSCPConsumerContextStateChangedHandler * contextStateChangedHandler;
+    OSCPConsumerSystemContextStateChangedHandler * contextStateChangedHandler;
     OSCPConsumerSubscriptionLostHandler * subscriptionLostHandler;
 
     unsigned long long int lastKnownMDIBVersion;

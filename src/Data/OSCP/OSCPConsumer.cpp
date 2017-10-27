@@ -33,7 +33,7 @@
 #include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerContextStateChangedHandler.h"
+#include "OSCLib/Data/OSCP/OSCPConsumerSystemContextStateChangedHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertSignalStateHandler.h"
@@ -210,7 +210,7 @@ void OSCPConsumer::setConnectionLostHandler(OSCPConsumerConnectionLostHandler * 
     connectionLostHandler = handler;
 }
 
-void OSCPConsumer::setContextStateChangedHandler(OSCPConsumerContextStateChangedHandler * handler) {
+void OSCPConsumer::setContextStateChangedHandler(OSCPConsumerSystemContextStateChangedHandler * handler) {
     Poco::Mutex::ScopedLock lock(eventMutex);
 	contextStateChangedHandler = handler;
 	if (_adapter) {

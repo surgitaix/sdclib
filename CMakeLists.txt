@@ -201,7 +201,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/OSCPProviderAlertSystemStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderChannelStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderClockStateHandler.cpp
-./src/Data/OSCP/OSCPProviderContextStateHandler.cpp
+./src/Data/OSCP/OSCPProviderSystemContextStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderMdsStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.cpp

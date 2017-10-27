@@ -7,13 +7,13 @@
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertSignalStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerContextStateChangedHandler.h"
+#include "OSCLib/Data/OSCP/OSCPConsumerSystemContextStateChangedHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSignalStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSystemStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderContextStateHandler.h"
+#include "OSCLib/Data/OSCP/OSCPProviderSystemContextStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
@@ -252,7 +252,7 @@ private:
     Poco::Event eventEARLatch;
 };
 
-class ContextEventHandler : public OSCPConsumerContextStateChangedHandler {
+class ContextEventHandler : public OSCPConsumerSystemContextStateChangedHandler {
 public:
 
 	ContextEventHandler(const std::vector<std::string> & handles) : _handles(handles) {
@@ -281,7 +281,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-class ContextHandler : public OSCPProviderContextStateHandler {
+class ContextHandler : public OSCPProviderSystemContextStateHandler {
 public:
 	ContextHandler() {
 	}

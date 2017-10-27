@@ -1,5 +1,5 @@
 /*
- * OSCPConsumerContextStateChangedHandler.h
+ * OSCPConsumerSystemContextStateChangedHandler.h
  *
  *  Created on: 01.06.2015
  *      Author: roehser
@@ -14,9 +14,9 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerContextStateChangedHandler {
+class OSCPConsumerSystemContextStateChangedHandler {
 public:
-    virtual ~OSCPConsumerContextStateChangedHandler() {
+    virtual ~OSCPConsumerSystemContextStateChangedHandler() {
     }
 
     /**

@@ -2,7 +2,7 @@
  * DeviceDescription.cpp
  *
  *  Created on: 11.12.2015
- *      Author: sebastian, matthias
+ *      Author: buerger, matthias
  *
  *      contains information for the consumer about the provider. all addresses are firstly added while discovery. the possibility of establishing a connection is checked before returning a URI.
  */
