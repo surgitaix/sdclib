@@ -122,6 +122,7 @@ public:
     void updateState(const StringMetricState & object);
     void updateState(const RealTimeSampleArrayMetricState & object);
     void updateState(const WorkflowContextState & object);
+    void updateState(const DistributionSampleArrayMetricState & object);
 
     /**
     * @brief Trigger an alert condition using a flag to indicate the condition's presence.

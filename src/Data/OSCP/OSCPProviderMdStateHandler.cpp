@@ -78,10 +78,11 @@ template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const Pati
 template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const RealTimeSampleArrayMetricState & object);
 template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const StringMetricState & object);
 template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const WorkflowContextState & object);
+template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const DistributionSampleArrayMetricState & object);
 
 template<class T> void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const T & object) {
     if (parentProvider == nullptr) {
-    	log_error([&] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
+    	log_error([&] { return "Handler is used without calling OSCPProvider::addMdStateHandler!"; });
     } else {
         parentProvider->updateState(object);
     }

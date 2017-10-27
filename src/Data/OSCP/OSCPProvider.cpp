@@ -17,7 +17,7 @@
 /*
  * OSCPProvider.cpp
  *
- *  @Copyright (C) 2014, SurgiTAIX AG
+ *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: roehser, besting, buerger
  */
 
@@ -46,6 +46,7 @@
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/Defaults.h"
+#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
@@ -676,16 +677,15 @@ void OSCPProvider::updateState(const PatientContextState & object) {
 	notifyContextEventImpl(object);
 }
 
+void OSCPProvider::updateState(const DistributionSampleArrayMetricState & object) {
+	evaluateAlertConditions(object.getDescriptorHandle());
+	notifyEpisodicMetricImpl(object);
+}
+
+
 void OSCPProvider::updateState(const RealTimeSampleArrayMetricState & object) {
-	incrementMDIBVersion();
-	CDM::RealTimeSampleArrayMetricState cdmState = *ConvertToCDM::convert(object);
-
-	// TODO: replace sequence id
-	MDM::WaveformStream waveformStream(xml_schema::Uri("0"));
-	waveformStream.State().push_back(cdmState);
-	//waveformStream.RealTimeSampleArray().push_back(cdmState);
-
-	_adapter->notifyEvent(waveformStream);
+	evaluateAlertConditions(object.getDescriptorHandle());
+	notifyEpisodicMetricImpl(object);
 }
 
 void OSCPProvider::updateState(const StringMetricState & object) {
@@ -709,11 +709,8 @@ template<class T> void OSCPProvider::notifyAlertEventImpl(const T & object) {
 	// TODO: replace sequence id
 	MDM::EpisodicAlertReport report(xml_schema::Uri("0"));
 
-	//wtf xsd?? why reportpart3?
 	MDM::ReportPart3 reportPart;
-
 	reportPart.AlertState().push_back(ConvertToCDM::convert(object));
-
 	report.ReportPart().push_back(reportPart);
 
 	_adapter->notifyEvent(report);
