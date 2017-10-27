@@ -180,7 +180,7 @@ public:
 
 		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << mdDesciption_xml;
 
-		oscpProvider.setMDDescription(mdDesciption_xml);
+		oscpProvider.setMdDescription(mdDesciption_xml);
 
         // Add handler
 		oscpProvider.addMdSateHandler(&streamHandler);

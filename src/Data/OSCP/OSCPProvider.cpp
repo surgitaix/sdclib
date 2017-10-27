@@ -1092,7 +1092,7 @@ void OSCPProvider::setMdDescription(const MdDescription & mdDescription) {
 	m_mdDescription = std::make_shared<MdDescription>(mdDescription);
 }
 
-void OSCPProvider::setMDDescription(std::string xml) {
+void OSCPProvider::setMdDescription(std::string xml) {
 	OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
 	auto rawMessage = OSELib::Helper::Message::create(xml);
 	auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
@@ -1162,7 +1162,6 @@ void OSCPProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescripto
 	Poco::Mutex::ScopedLock lock(mutex);
 
 	// Now add a state object for the sco descriptor to the cached states.
-
 	std::unique_ptr<CDM::MdState> cachedOperationStates(ConvertToCDM::convert(operationStates));
 	bool existingOperationStateFound(false);
 	for (const auto & state : cachedOperationStates->State()) {

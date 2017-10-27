@@ -18,7 +18,7 @@
  * OSCPProvider.h
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
- *  Author: roehser, besting, buerger
+ *  Author: besting, buerger, roehser
  */
 
 #ifndef OSCPPROVIDER_H_
@@ -67,20 +67,30 @@ public:
     virtual ~OSCPProvider();
 
     /**
-    * @brief Get the complete MDIB (description and states).
+    * @brief Get the complete Medical Device Infomation Base (MDIB, description and states).
     *
     * @return The MDIB container
     */
     MdibContainer getMdib();
 
     /**
-    * @brief Get the Medical Device Description.
+    * @brief Set the (static) Medical Device Description
     *
-    * @return The MdDescription container
+    * @param The MdDescription
     */
-
     void setMdDescription(const MdDescription & mdDescription);
-    void setMDDescription(std::string xml);
+    /**
+    * @brief Set the (static) Medical Device Description
+    *
+    * @param The MdDescription as xml string
+    */
+    void setMdDescription(std::string xml);
+
+    /**
+    * @brief Get the (static) Medical Device Description.
+    *
+    * @return The MdDescription
+    */
     MdDescription getMdDescription() const;
 
     /**
@@ -90,7 +100,26 @@ public:
     */
     MdState getMdState();
 
+    /**
+    * @brief Activates the SetOperation of a state defined in descriptor in the ownerMDS.
+    * Comparable to createSetOperationForDescriptor, but with more flexibility regarding the described state
+    *
+    * @param ActivateOperationDescriptor: contains name of the service control objects handle and the targets handle (e.g. descriptor.setHandle("handle_cmd").setOperationTarget("handle_max"))
+    * @param MdsDescriptor: the containing mds
+    *
+    *
+    */
     void addActivateOperationForDescriptor(const ActivateOperationDescriptor & descriptor, MdsDescriptor & ownerMDS);
+
+
+    /**
+    * @brief Activates the SetOperation of a descriptor: makes the target state of the descriptor settable through the consumer)
+    *
+    *
+    * @param the descriptor to be made settable
+    * @param MdsDescriptor: the containing mds
+    *
+    */
     void createSetOperationForDescriptor(const AlertConditionDescriptor & descriptor, MdsDescriptor & ownerMDS);
     void createSetOperationForDescriptor(const AlertSignalDescriptor & descriptor, MdsDescriptor & ownerMDS);
     void createSetOperationForDescriptor(const AlertSystemDescriptor & descriptor, MdsDescriptor & ownerMDS);
@@ -104,25 +133,7 @@ public:
     void createSetOperationForDescriptor(const OperatorContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
     void createSetOperationForDescriptor(const WorkflowContextDescriptor & descriptor, MdsDescriptor & ownerMDS);
 
-    /**
-    * @brief Notify all registered consumers about a changed MDIB object (fires episodic metric changed event).
-    *
-    * @param object The MDIB object
-    */
-    void updateState(const AlertSystemState & object);
-    void updateState(const AlertSignalState & object);
-    void updateState(const AlertConditionState & object);
-    void updateState(const EnumStringMetricState & object);
-    void updateState(const EnsembleContextState & object);
-    void updateState(const LimitAlertConditionState & object);
-    void updateState(const LocationContextState & object);
-    void updateState(const NumericMetricState & object);
-    void updateState(const OperatorContextState & object);
-    void updateState(const PatientContextState & object);
-    void updateState(const StringMetricState & object);
-    void updateState(const RealTimeSampleArrayMetricState & object);
-    void updateState(const WorkflowContextState & object);
-    void updateState(const DistributionSampleArrayMetricState & object);
+
 
     /**
     * @brief Trigger an alert condition using a flag to indicate the condition's presence.
@@ -214,6 +225,29 @@ public:
 
 	template<typename T>
 		InvocationState onStateChangeRequest(const T & state, const OperationInvocationContext & oic);
+
+
+    /**
+    * @brief Notify all registered consumers about a changed MDIB object (fires episodic metric changed event).
+    * These functions are used by the state handlers. Use those instead for updating the provider's states
+    *
+    * @param object The MDIB object
+    */
+    void updateState(const AlertSystemState & object);
+    void updateState(const AlertSignalState & object);
+    void updateState(const AlertConditionState & object);
+    void updateState(const EnumStringMetricState & object);
+    void updateState(const EnsembleContextState & object);
+    void updateState(const LimitAlertConditionState & object);
+    void updateState(const LocationContextState & object);
+    void updateState(const NumericMetricState & object);
+    void updateState(const OperatorContextState & object);
+    void updateState(const PatientContextState & object);
+    void updateState(const StringMetricState & object);
+    void updateState(const RealTimeSampleArrayMetricState & object);
+    void updateState(const WorkflowContextState & object);
+    void updateState(const DistributionSampleArrayMetricState & object);
+
 
 // TODO no inheritance no need for protected methods..
 protected:
