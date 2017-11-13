@@ -155,7 +155,6 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/RequestedOrderDetail.cpp
 ./src/Data/OSCP/MDIB/SampleArrayValue.cpp
 ./src/Data/OSCP/MDIB/ScoDescriptor.cpp
-./src/Data/OSCP/MDIB/ScoDescriptor.cpp~
 ./src/Data/OSCP/MDIB/ScoState.cpp
 ./src/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.cpp
 ./src/Data/OSCP/MDIB/SetAlertStateOperationState.cpp
@@ -183,8 +182,8 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/MDIB/WorkflowContextDescriptor.cpp
 ./src/Data/OSCP/MDIB/WorkflowContextState.cpp
 ./src/Data/OSCP/MDIB/WorkflowDetail.cpp
-./src/Data/OSCP/MDIB/AbstractDescriptor.cpp
-./src/Data/OSCP/MDIB/AbstractMetricDescriptor.cpp
+#./src/Data/OSCP/MDIB/AbstractDescriptor.cpp
+#./src/Data/OSCP/MDIB/AbstractMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/custom/ChannelDescriptorCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/Defaults.cpp
 ./src/Data/OSCP/MDIB/custom/MdDescriptionCustomImpl.cxx
