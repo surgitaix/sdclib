@@ -228,6 +228,8 @@ void OSCPConsumer::onConnectionLost() {
     }
 }
 
+
+//TODO: context states instead of handles
 void OSCPConsumer::onContextStateChanged(const std::vector<std::string> & handles) {
 	if (contextStateChangedHandler != nullptr) {
 		contextStateChangedHandler->onContextStateChanged(handles);

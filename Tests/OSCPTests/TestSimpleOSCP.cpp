@@ -1031,7 +1031,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixtureSimpleOSCP : Tests::AbstractOSCLibFixture {
-	FixtureSimpleOSCP() : AbstractOSCLibFixture("FixtureSimpleOSCP", OSELib::LogLevel::ERROR, 9000) {}
+	FixtureSimpleOSCP() : AbstractOSCLibFixture("FixtureSimpleOSCP", OSELib::LogLevel::TRACE, 9000) {}
 };
 
 SUITE(OSCP) {
@@ -1053,7 +1053,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 
         CHECK_EQUAL(true, mdDescription.removeMdsDescriptor(mds_test));
 
-        //Poco::Thread::sleep(2000000);
+        Poco::Thread::sleep(2000);
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleOSCP::DEVICE_ENDPOINT_REFERENCE));
@@ -1064,7 +1064,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         Tests::SimpleOSCP::ExampleConsumerEnumStringMetricHandler eces4("handle_enum");
         Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler alertSignalsink("handle_alert_signal");
         Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler latchingAlertSignalsink("handle_alert_signal_latching");
-        Tests::SimpleOSCP::ContextEventHandler ceh({"location_context", "patient_context"});
+        Tests::SimpleOSCP::ContextEventHandler ceh({"location_context_state", "patient_context_state"});
 
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);
@@ -1098,6 +1098,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             {	// lookup descriptors that should exist for the provider implemented above
             	NumericMetricDescriptor curMetric;
 				mdib.getMdDescription().findDescriptor("handle_cur", curMetric);
+				//DebugOut(DebugOut::Default, "SimpleOSCP") << curMetric.getType().getConceptDescriptfionList().at(0).getLang() << std::endl;
 				CHECK_EQUAL("ru", curMetric.getType().getConceptDescriptionList().at(0).getLang());
 				CHECK_EQUAL("handle_cur", curMetric.getHandle());
 
@@ -1209,7 +1210,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
                 DebugOut(DebugOut::Default, "SimpleOSCP") << "Location context test...";
                 LocationContextState lcs;
                 lcs.setDescriptorHandle("location_context");
-                lcs.setHandle("location_context");
+                lcs.setHandle("location_context_state");
                 lcs.setContextAssociation(ContextAssociation::Assoc);
                 lcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
                 FutureInvocationState fis;
@@ -1223,18 +1224,20 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             	DebugOut(DebugOut::Default, "SimpleOSCP") << "Patient context test...";
 				PatientContextState pcs;
 				pcs.setDescriptorHandle("patient_context");
-				pcs.setHandle("pat_context");
+				pcs.setHandle("patient_context_state");
 				pcs.setContextAssociation(ContextAssociation::Assoc);
 				pcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
 				pcs.setCoreData(PatientDemographicsCoreData()
 						.setGivenname("Max")
 						.setBirthname("")
 						.setFamilyname("Mustermann"));
-						// TODO: DateOfBirth does not work yet -> schema validation fail because unio is not rightly implemented
+						// FIXME: DateOfBirth does not work yet -> schema validation fail because unio is not rightly implemented
 						//.setDateOfBirth("08.05.1945"));
 				FutureInvocationState fis;
 				ceh.getEventEMR().reset();
 				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(pcs, fis));
+
+				// FIXME: This check fails!!!
 				CHECK_EQUAL(true, ceh.getEventEMR().tryWait(3000));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "Patient context test done...";

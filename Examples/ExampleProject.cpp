@@ -168,19 +168,19 @@ public:
 
         // define properties of current weight metric
         currentWeightMetric
-        	.setHandle("handle_cur")
-			.setMetricCategory(MetricCategory::Msrmt)
-        	.setMetricAvailability(MetricAvailability::Cont)
-			.setUnit(unit)
-        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
+        	.setHandle("handle_cur");
+        	currentWeightMetric.setMetricCategory(MetricCategory::Msrmt);
+        	currentWeightMetric.setMetricAvailability(MetricAvailability::Cont);
+        	currentWeightMetric.setUnit(unit);
+        	currentWeightMetric.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
 
         // define properties of max weight metric
         maxWeightMetric
-        	.setHandle("handle_max")
-			.setMetricCategory(MetricCategory::Set)
-        	.setMetricAvailability(MetricAvailability::Cont)
-        	.setUnit(unit)
-        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
+        	.setHandle("handle_max");
+        	currentWeightMetric.setMetricCategory(MetricCategory::Set);
+        	currentWeightMetric.setMetricAvailability(MetricAvailability::Cont);
+        	currentWeightMetric.setUnit(unit);
+        	currentWeightMetric.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
 
         // Channel
         ChannelDescriptor holdingDeviceChannel;

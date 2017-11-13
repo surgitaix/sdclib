@@ -147,6 +147,18 @@ CDM::Mdib  * Defaults::Mdib() {
 	return new CDM::Mdib(NOT_ASSIGNED);
 }
 
+CDM::AbstractDescriptor * Defaults::AbstractDescriptor() {
+	return new CDM::AbstractDescriptor(NOT_ASSIGNED);
+}
+
+CDM::AbstractMetricDescriptor * Defaults::AbstractMetricDescriptor() {
+	return new CDM::AbstractMetricDescriptor(NOT_ASSIGNED,
+			ConvertToCDM::convert(OSCP::CodedValue()),
+			CDM::MetricCategory::Unspec,
+			CDM::MetricAvailability::Cont);
+}
+
+
 CDM::MdDescription  * Defaults::MdDescription() {
 	return new CDM::MdDescription();
 }

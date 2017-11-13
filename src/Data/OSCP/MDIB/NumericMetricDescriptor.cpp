@@ -90,7 +90,7 @@ bool NumericMetricDescriptor::getType(CodedValue & out) const {
 CodedValue NumericMetricDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool NumericMetricDescriptor::hasType() const {
 	return data->Type().present();
 }

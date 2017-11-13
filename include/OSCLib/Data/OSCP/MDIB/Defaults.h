@@ -136,6 +136,9 @@ public:
 	static CDM::DicomNetworkAe * DicomNetworkAe();
 	static CDM::DicomNetworkConnection * DicomNetworkConnection();
 	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptor();
+	// playing arround
+	static CDM::AbstractDescriptor * AbstractDescriptor();
+	static CDM::AbstractMetricDescriptor * AbstractMetricDescriptor();
 };
 
 } /* namespace OSCP */
