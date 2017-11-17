@@ -25,7 +25,7 @@
  *  $(printlicense.cplusplusfilename:)
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -170,6 +170,13 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
+.define NumProperties = 0
+.for property 
+.if property.optional="false" 
+.NumProperties = .NumProperties + 1
+.endif 
+.endfor
+
 class $(class.name:) {
 private:
 	$(class.name:)(const CDM::$(class.name:) & object);
@@ -177,7 +184,19 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	$(class.name:)();
+	$(class.name:)() = delete;
+	$(class.name:)(
+.define counter = 0
+.for property 
+.if property.optional="false" 
+.counter = .counter + 1
+		$(property.type:) $(property.name:)
+.if NumProperties <> counter
+		,
+.endif
+.endif 
+.endfor
+	);
 	$(class.name:)(const $(class.name:) & object);
 	virtual ~$(class.name:)();
     
@@ -238,8 +257,36 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-$(class.name:)::$(class.name:)() : data(Defaults::$(class.name:)()) {
-}
+.define NumProperties = 0
+.for property 
+.if property.optional="false" 
+.NumProperties = .NumProperties + 1
+.endif 
+.endfor
+
+$(class.name:)::$(class.name:)(
+.define counter = 0
+.for property 
+.if property.optional="false" 
+.counter = .counter + 1
+	$(property.type:) $(property.name:)
+.if NumProperties <> counter
+	,
+.endif
+.endif 
+.endfor
+) : data(Defaults::$(class.name:)(
+.define counter = 0
+.for property 
+.if property.optional="false" 
+.counter = .counter + 1
+	$(property.name:) 
+.if NumProperties <> counter
+	,
+.endif
+.endif 
+.endfor
+)) {}
 
 $(class.name:)::operator CDM::$(class.name:)() const {
 	return *data;

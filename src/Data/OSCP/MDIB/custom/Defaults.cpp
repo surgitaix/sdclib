@@ -170,7 +170,7 @@ CDM::MdState  * Defaults::MdState() {
 CDM::LocalizedText  * Defaults::LocalizedText() {
 	// it is important to call the string constructor instead of the default constructor
 	// xsd does not respect minLenght for strings in schemas, but validation would fail otherwise
-	return new CDM::LocalizedText(NOT_ASSIGNED);
+	return new CDM::LocalizedText(ConvertToCDM::convert(NOT_ASSIGNED));
 }
 
 CDM::CodedValue  * Defaults::CodedValue() {
@@ -336,7 +336,7 @@ CDM::NumericMetricDescriptor  * Defaults::NumericMetricDescriptor() {
 			ConvertToCDM::convert(OSCP::CodedValue()),
 			CDM::MetricCategory::Unspec,
 			CDM::MetricAvailability::Cont,
-			xml_schema::Decimal(0.0000001));
+			xml_schema::Decimal(0.0000001));l
 }
 
 CDM::NumericMetricState  * Defaults::NumericMetricState() {

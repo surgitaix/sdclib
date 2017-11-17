@@ -29,6 +29,7 @@ class ComplexTypeNodeParser(object):
         # classes are None from the beginning. Check before usage
         self.__gslClassBuilder = None
         self.__customImplList = customImplList
+        self.__requiredProperties = []
            
     def parseComplexTypeNode(self, cTNode_xpath):
         # only take nodes that have a 'name' attribute
@@ -39,11 +40,15 @@ class ComplexTypeNodeParser(object):
             hasParents = False
             # TODO : attribute == base check!!!
             for complexTypeParent_node in cTNode_xpath.xpath('./*/xsd:extension', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                hasParents = True
                 for parentAttribute_name in complexTypeParent_node.attrib:
-                    parentName_xsd = complexTypeParent_node.attrib[parentAttribute_name]
+                    parentTypeName_xsd = complexTypeParent_node.attrib[parentAttribute_name]
                     # get rid of the namespace prefix
-                    self.__parentTypeName = parentName_xsd[(parentName_xsd.index(':')+1):]
+                    parentTypeName = parentTypeName_xsd[(parentTypeName_xsd.index(':')+1):]
+                    # only consider complex types as parents
+                    if not (parentTypeName in self.__simpleTypes_set):  
+                        hasParents = True
+                        # get rid of the namespace prefix
+                        self.__parentTypeName = parentTypeName
 
             # consider only those types abstract that are named that way:
             self.__abstract_bool =  (self.__complexTypeName.find('Abstract') != -1)
@@ -143,7 +148,7 @@ class ComplexTypeNodeParser(object):
         if 'use' in attribute_node.attrib:
             if attribute_node.attrib['use'] == 'required':
                 optionality_string = 'false'
-
+                self.__requiredProperties.append(attribute_type + ' ' + attribute_name)
         # add class
         self.__gslClassBuilder.addProperty(attribute_name, attribute_type, optionality_string)
         print '>> Attribute -> Property: ' + attribute_name + ', type= ' +  attribute_type + ', optional= ' + optionality_string
@@ -162,9 +167,10 @@ class ComplexTypeNodeParser(object):
                 if element_node.attrib['minOccurs'] == '0':
                     elementOptional = 'true'
 
-            # element, without min/max occurence entry -> min=max=1 -> non-optional property
+            # element, without min/max occurence entry -> min=max=1 -> non-optional/required property
             else: 
                 elementOptional = 'false'       
+                self.__requiredProperties.append(element_type + ' ' + element_name)
             # add class
             self.__gslClassBuilder.addProperty(element_name, element_type, elementOptional)
             print '>> Element -> Property: ' + element_name + ', type= ' + element_type + ', optional= ' + elementOptional 
@@ -180,7 +186,13 @@ class ComplexTypeNodeParser(object):
 
     def hasEmbeddedType(self):
         return self.__hasEmbeddedComplexType
-
+    
+    def getRequiredProperties(self):
+        return self.__requiredProperties
+    
+    def getParentTypeName(self):
+        return self.__parentTypeName
+    
     # debug. TODO delete
     def getEmbeddedAttributesNamesList(self):
         return self.__embeddedNodesNamesList
