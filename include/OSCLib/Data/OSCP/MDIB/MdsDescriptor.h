@@ -77,6 +77,10 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
+	MdsDescriptor & addProductionSpecification(const ProductionSpecification & value);
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
+	
 	MdsDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;
@@ -86,6 +90,11 @@ public:
 	ScoDescriptor getSco() const;
 	bool getSco(ScoDescriptor & out) const;
 	bool hasSco() const;
+
+	MdsDescriptor & setMetaData(const MetaData & value);
+	MetaData getMetaData() const;
+	bool getMetaData(MetaData & out) const;
+	bool hasMetaData() const;
 
 	MdsDescriptor & setSystemContext(const SystemContextDescriptor & value);
 	SystemContextDescriptor getSystemContext() const;

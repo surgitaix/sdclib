@@ -116,6 +116,11 @@ public:
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
 	
+	WorkflowContextState & setWorkflowDetail(const WorkflowDetail & value);
+	WorkflowDetail getWorkflowDetail() const;
+	bool getWorkflowDetail(WorkflowDetail & out) const;
+	bool hasWorkflowDetail() const;
+
 private:
 	std::shared_ptr<CDM::WorkflowContextState> data;
 };

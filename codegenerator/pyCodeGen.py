@@ -270,10 +270,11 @@ for tree in xsdFiles:
 ## inheritance
 #
 ## save inheritance and required fields to maps
+complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, g_customImplList, simpleTypeNodeParser)
+
 for tree in xsdFiles:
-    for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                
-        complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, g_customImplList, simpleTypeNodeParser)   
+    for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):                
+           
         complexNodeParser.parseComplexTypeNode(complexType_node)
         
         ### build map for required fiels (= XSD constructor arguments)
@@ -300,14 +301,13 @@ for dependencyPath in dependencyRepresentation:
     requiredFieldsFromAllAncestors[dependencyPath[0]] = requiredFieldsAlongPath_list
 
 
-complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, g_customImplList, simpleTypeNodeParser)   
-complexNodeParser.reset()
-
 # analyse complex types
+complexNodeParser.resetParser()
+complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, g_customImplList, simpleTypeNodeParser)
+
 for tree in xsdFiles:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
         
-        complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, g_customImplList, simpleTypeNodeParser)   
         complexNodeParser.parseComplexTypeNode(complexType_node)
         
         requiredFields_list = complexNodeParser.getRequiredProperties()

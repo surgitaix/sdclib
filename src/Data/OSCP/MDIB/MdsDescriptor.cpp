@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
 #include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h"
@@ -43,6 +44,7 @@
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -155,6 +157,24 @@ bool MdsDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
+MdsDescriptor & MdsDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> MdsDescriptor::getProductionSpecificationList() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void MdsDescriptor::clearProductionSpecificationList() {
+	data->ProductionSpecification().clear();
+}
+
 MdsDescriptor & MdsDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
 	data->AlertSystem(ConvertToCDM::convert(value));
 	return *this;
@@ -195,6 +215,27 @@ ScoDescriptor MdsDescriptor::getSco() const {
 	
 bool MdsDescriptor::hasSco() const {
 	return data->Sco().present();
+}
+	
+MdsDescriptor & MdsDescriptor::setMetaData(const MetaData & value) {
+	data->MetaData(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool MdsDescriptor::getMetaData(MetaData & out) const {
+	if (data->MetaData().present()) {
+		out = ConvertFromCDM::convert(data->MetaData().get());
+		return true;
+	}
+	return false;
+}
+
+MetaData MdsDescriptor::getMetaData() const {
+	return ConvertFromCDM::convert(data->MetaData().get());
+}
+	
+bool MdsDescriptor::hasMetaData() const {
+	return data->MetaData().present();
 }
 	
 MdsDescriptor & MdsDescriptor::setSystemContext(const SystemContextDescriptor & value) {

@@ -225,6 +225,27 @@ bool SetMetricStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
 	
+SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
+	data->AccessLevel(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SetMetricStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
+	if (data->AccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->AccessLevel().get());
+		return true;
+	}
+	return false;
+}
+
+AccessLevel SetMetricStateOperationDescriptor::getAccessLevel() const {
+	return ConvertFromCDM::convert(data->AccessLevel().get());
+}
+	
+bool SetMetricStateOperationDescriptor::hasAccessLevel() const {
+	return data->AccessLevel().present();
+}
+	
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::addModifiableData(const std::string & value) {
 	data->ModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;

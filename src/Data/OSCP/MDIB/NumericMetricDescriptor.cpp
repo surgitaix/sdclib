@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -338,6 +339,24 @@ std::vector<CodedValue> NumericMetricDescriptor::getBodySiteList() const {
 
 void NumericMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
+}
+
+NumericMetricDescriptor & NumericMetricDescriptor::addRelation(const Relation & value) {
+	data->Relation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Relation> NumericMetricDescriptor::getRelationList() const {
+	std::vector<Relation> result;
+	result.reserve(data->Relation().size());
+	for (const auto & value: data->Relation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void NumericMetricDescriptor::clearRelationList() {
+	data->Relation().clear();
 }
 
 NumericMetricDescriptor & NumericMetricDescriptor::setResolution(const double & value) {

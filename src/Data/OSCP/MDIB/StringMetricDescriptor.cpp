@@ -37,6 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -333,6 +334,24 @@ std::vector<CodedValue> StringMetricDescriptor::getBodySiteList() const {
 
 void StringMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
+}
+
+StringMetricDescriptor & StringMetricDescriptor::addRelation(const Relation & value) {
+	data->Relation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Relation> StringMetricDescriptor::getRelationList() const {
+	std::vector<Relation> result;
+	result.reserve(data->Relation().size());
+	for (const auto & value: data->Relation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void StringMetricDescriptor::clearRelationList() {
+	data->Relation().clear();
 }
 
 

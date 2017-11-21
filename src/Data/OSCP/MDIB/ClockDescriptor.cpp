@@ -37,6 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -149,6 +150,24 @@ bool ClockDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
+ClockDescriptor & ClockDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> ClockDescriptor::getProductionSpecificationList() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ClockDescriptor::clearProductionSpecificationList() {
+	data->ProductionSpecification().clear();
+}
+
 ClockDescriptor & ClockDescriptor::setResolution(const xml_schema::Duration & value) {
 	data->Resolution(ConvertToCDM::convert(value));
 	return *this;

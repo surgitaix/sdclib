@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/AllowedValues.h"
 
 namespace OSCLib {
 namespace Data {
@@ -138,6 +139,27 @@ SetStringOperationState & SetStringOperationState::setOperatingMode(const Operat
 
 OperatingMode SetStringOperationState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode());
+}
+	
+SetStringOperationState & SetStringOperationState::setAllowedValues(const AllowedValues & value) {
+	data->AllowedValues(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SetStringOperationState::getAllowedValues(AllowedValues & out) const {
+	if (data->AllowedValues().present()) {
+		out = ConvertFromCDM::convert(data->AllowedValues().get());
+		return true;
+	}
+	return false;
+}
+
+AllowedValues SetStringOperationState::getAllowedValues() const {
+	return ConvertFromCDM::convert(data->AllowedValues().get());
+}
+	
+bool SetStringOperationState::hasAllowedValues() const {
+	return data->AllowedValues().present();
 }
 	
 

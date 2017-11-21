@@ -360,6 +360,27 @@ bool BatteryState::hasRemainingBatteryTime() const {
 	return data->RemainingBatteryTime().present();
 }
 	
+BatteryState & BatteryState::setChargeStatus(const ChargeStatus & value) {
+	data->ChargeStatus(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool BatteryState::getChargeStatus(ChargeStatus & out) const {
+	if (data->ChargeStatus().present()) {
+		out = ConvertFromCDM::convert(data->ChargeStatus().get());
+		return true;
+	}
+	return false;
+}
+
+ChargeStatus BatteryState::getChargeStatus() const {
+	return ConvertFromCDM::convert(data->ChargeStatus().get());
+}
+	
+bool BatteryState::hasChargeStatus() const {
+	return data->ChargeStatus().present();
+}
+	
 BatteryState & BatteryState::setChargeCycles(const unsigned int & value) {
 	data->ChargeCycles(ConvertToCDM::convert(value));
 	return *this;

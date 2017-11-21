@@ -225,6 +225,27 @@ bool SetAlertStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
 	
+SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
+	data->AccessLevel(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SetAlertStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
+	if (data->AccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->AccessLevel().get());
+		return true;
+	}
+	return false;
+}
+
+AccessLevel SetAlertStateOperationDescriptor::getAccessLevel() const {
+	return ConvertFromCDM::convert(data->AccessLevel().get());
+}
+	
+bool SetAlertStateOperationDescriptor::hasAccessLevel() const {
+	return data->AccessLevel().present();
+}
+	
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::addModifiableData(const std::string & value) {
 	data->ModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;

@@ -2802,4 +2802,131 @@ namespace WS
     void
     ProblemIRI (::std::ostream& os,
                 const ::WS::ADDRESSING::AttributedURIType& x, 
-   
+                ::xercesc::DOMErrorHandler& eh,
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    ProblemIRI (::xercesc::XMLFormatTarget& ft,
+                const ::WS::ADDRESSING::AttributedURIType& x, 
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
+
+    void
+    ProblemIRI (::xercesc::XMLFormatTarget& ft,
+                const ::WS::ADDRESSING::AttributedURIType& x, 
+                ::xml_schema::ErrorHandler& eh,
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
+
+    void
+    ProblemIRI (::xercesc::XMLFormatTarget& ft,
+                const ::WS::ADDRESSING::AttributedURIType& x, 
+                ::xercesc::DOMErrorHandler& eh,
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                const ::std::string& e = "UTF-8",
+                ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    ProblemIRI (::xercesc::DOMDocument& d,
+                const ::WS::ADDRESSING::AttributedURIType& x,
+                ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    ProblemIRI (const ::WS::ADDRESSING::AttributedURIType& x, 
+                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                ::xml_schema::Flags f = 0);
+
+    // Serialize to std::ostream.
+    //
+
+    void
+    ProblemAction (::std::ostream& os,
+                   const ::WS::ADDRESSING::ProblemActionType& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+    void
+    ProblemAction (::std::ostream& os,
+                   const ::WS::ADDRESSING::ProblemActionType& x, 
+                   ::xml_schema::ErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+    void
+    ProblemAction (::std::ostream& os,
+                   const ::WS::ADDRESSING::ProblemActionType& x, 
+                   ::xercesc::DOMErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+    // Serialize to xercesc::XMLFormatTarget.
+    //
+
+    void
+    ProblemAction (::xercesc::XMLFormatTarget& ft,
+                   const ::WS::ADDRESSING::ProblemActionType& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+    void
+    ProblemAction (::xercesc::XMLFormatTarget& ft,
+                   const ::WS::ADDRESSING::ProblemActionType& x, 
+                   ::xml_schema::ErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+    void
+    ProblemAction (::xercesc::XMLFormatTarget& ft,
+                   const ::WS::ADDRESSING::ProblemActionType& x, 
+                   ::xercesc::DOMErrorHandler& eh,
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   const ::std::string& e = "UTF-8",
+                   ::xml_schema::Flags f = 0);
+
+    // Serialize to an existing xercesc::DOMDocument.
+    //
+
+    void
+    ProblemAction (::xercesc::DOMDocument& d,
+                   const ::WS::ADDRESSING::ProblemActionType& x,
+                   ::xml_schema::Flags f = 0);
+
+    // Serialize to a new xercesc::DOMDocument.
+    //
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    ProblemAction (const ::WS::ADDRESSING::ProblemActionType& x, 
+                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                   ::xml_schema::Flags f = 0);
+
+    void
+    operator<< (::xercesc::DOMElement&, const ProblemActionType&);
+  }
+}
+
+#include <xsd/cxx/post.hxx>
+
+// Begin epilogue.
+//
+//
+// End epilogue.
+
+#endif // WS_ADDRESSING_HXX

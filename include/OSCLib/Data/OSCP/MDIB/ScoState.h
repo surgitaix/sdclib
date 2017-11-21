@@ -82,6 +82,10 @@ public:
 	bool getInvocationRequired(OperationRef & out) const;
 	bool hasInvocationRequired() const;
 
+	ScoState & addOperationGroup(const OperationGroup & value);
+	std::vector<OperationGroup> getOperationGroupList() const;
+	void clearOperationGroupList();
+	
 private:
 	std::shared_ptr<CDM::ScoState> data;
 };

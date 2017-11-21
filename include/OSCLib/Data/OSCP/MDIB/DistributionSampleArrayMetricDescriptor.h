@@ -132,6 +132,10 @@ public:
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
 	
+	DistributionSampleArrayMetricDescriptor & addRelation(const Relation & value);
+	std::vector<Relation> getRelationList() const;
+	void clearRelationList();
+	
 	DistributionSampleArrayMetricDescriptor & setDomainUnit(const CodedValue & value);
 	CodedValue getDomainUnit() const;
 

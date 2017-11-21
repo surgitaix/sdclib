@@ -85,6 +85,10 @@ public:
 	std::vector<LocalizedText> getConceptDescriptionList() const;
 	void clearConceptDescriptionList();
 	
+	CodedValue & addTranslation(const Translation & value);
+	std::vector<Translation> getTranslationList() const;
+	void clearTranslationList();
+	
 private:
 	std::shared_ptr<CDM::CodedValue> data;
 };

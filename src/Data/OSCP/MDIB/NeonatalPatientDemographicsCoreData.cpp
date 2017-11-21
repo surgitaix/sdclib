@@ -220,6 +220,27 @@ bool NeonatalPatientDemographicsCoreData::hasPatientType() const {
 	return data->PatientType().present();
 }
 	
+NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setDateOfBirth(const DateOfBirth & value) {
+	data->DateOfBirth(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool NeonatalPatientDemographicsCoreData::getDateOfBirth(DateOfBirth & out) const {
+	if (data->DateOfBirth().present()) {
+		out = ConvertFromCDM::convert(data->DateOfBirth().get());
+		return true;
+	}
+	return false;
+}
+
+DateOfBirth NeonatalPatientDemographicsCoreData::getDateOfBirth() const {
+	return ConvertFromCDM::convert(data->DateOfBirth().get());
+}
+	
+bool NeonatalPatientDemographicsCoreData::hasDateOfBirth() const {
+	return data->DateOfBirth().present();
+}
+	
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setHeight(const Measurement & value) {
 	data->Height(ConvertToCDM::convert(value));
 	return *this;

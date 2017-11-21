@@ -17,6 +17,7 @@
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 
@@ -27,7 +28,7 @@ namespace Data {
 namespace OSCP {
 
 bool MdState::findState(const std::string & handle, AlertConditionState & outState) const {
-	LimitAlertConditionState limitAlertState;
+	LimitAlertConditionState limitAlertState(handle, AlertActivation::Off, Range(), AlertConditionMonitoredLimits::All);
 	if (findStateImpl<LimitAlertConditionState>(handle, limitAlertState)) {
 		return false;
 	} else {
@@ -85,7 +86,7 @@ bool MdState::findState(const std::string & handle, RealTimeSampleArrayMetricSta
 }
 
 bool MdState::findState(const std::string & handle, StringMetricState & outState) const {
-	EnumStringMetricState enumState;
+	EnumStringMetricState enumState(handle);
 	if (findStateImpl<EnumStringMetricState>(handle, enumState)) {
 		return false;
 	} else {

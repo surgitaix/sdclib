@@ -77,6 +77,10 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
+	VmdDescriptor & addProductionSpecification(const ProductionSpecification & value);
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
+	
 	VmdDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;

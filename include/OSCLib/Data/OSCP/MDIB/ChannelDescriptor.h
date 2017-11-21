@@ -77,6 +77,10 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
+	ChannelDescriptor & addProductionSpecification(const ProductionSpecification & value);
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
+	
 
 	std::vector<EnumStringMetricDescriptor> getEnumStringMetricDescriptorList() const;
 	std::vector<NumericMetricDescriptor> getNumericMetricDescriptorList() const;

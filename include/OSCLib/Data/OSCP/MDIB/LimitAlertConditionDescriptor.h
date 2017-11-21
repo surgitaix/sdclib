@@ -50,6 +50,8 @@ public:
 	LimitAlertConditionDescriptor(
 		Handle handle
 		, 
+		AlertConditionKind kind
+		, 
 		AlertConditionPriority priority
 		, 
 		Range maxlimits
@@ -81,6 +83,9 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
+	LimitAlertConditionDescriptor & setKind(const AlertConditionKind & value);
+	AlertConditionKind getKind() const;
+
 	LimitAlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getPriority() const;
 
@@ -88,6 +93,16 @@ public:
 	xml_schema::Duration getDefaultConditionGenerationDelay() const;
 	bool getDefaultConditionGenerationDelay(xml_schema::Duration & out) const;
 	bool hasDefaultConditionGenerationDelay() const;
+
+	LimitAlertConditionDescriptor & setCanEscalate(const CanEscalate & value);
+	CanEscalate getCanEscalate() const;
+	bool getCanEscalate(CanEscalate & out) const;
+	bool hasCanEscalate() const;
+
+	LimitAlertConditionDescriptor & setCanDeescalate(const CanDeescalate & value);
+	CanDeescalate getCanDeescalate() const;
+	bool getCanDeescalate(CanDeescalate & out) const;
+	bool hasCanDeescalate() const;
 
 	LimitAlertConditionDescriptor & addSource(const HandleRef & value);
 	std::vector<HandleRef> getSourceList() const;

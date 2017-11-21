@@ -77,6 +77,10 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
+	ClockDescriptor & addProductionSpecification(const ProductionSpecification & value);
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
+	
 	ClockDescriptor & setResolution(const xml_schema::Duration & value);
 	xml_schema::Duration getResolution() const;
 	bool getResolution(xml_schema::Duration & out) const;

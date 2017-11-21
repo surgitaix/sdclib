@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/WorkflowDetail.h"
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
@@ -304,6 +305,27 @@ void WorkflowContextState::clearIdentificationList() {
 	data->Identification().clear();
 }
 
+WorkflowContextState & WorkflowContextState::setWorkflowDetail(const WorkflowDetail & value) {
+	data->WorkflowDetail(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowContextState::getWorkflowDetail(WorkflowDetail & out) const {
+	if (data->WorkflowDetail().present()) {
+		out = ConvertFromCDM::convert(data->WorkflowDetail().get());
+		return true;
+	}
+	return false;
+}
+
+WorkflowDetail WorkflowContextState::getWorkflowDetail() const {
+	return ConvertFromCDM::convert(data->WorkflowDetail().get());
+}
+	
+bool WorkflowContextState::hasWorkflowDetail() const {
+	return data->WorkflowDetail().present();
+}
+	
 
 } /* namespace OSCP */
 } /* namespace Data */

@@ -225,6 +225,27 @@ bool SetComponentStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
 	
+SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
+	data->AccessLevel(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SetComponentStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
+	if (data->AccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->AccessLevel().get());
+		return true;
+	}
+	return false;
+}
+
+AccessLevel SetComponentStateOperationDescriptor::getAccessLevel() const {
+	return ConvertFromCDM::convert(data->AccessLevel().get());
+}
+	
+bool SetComponentStateOperationDescriptor::hasAccessLevel() const {
+	return data->AccessLevel().present();
+}
+	
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::addModifiableData(const std::string & value) {
 	data->ModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;

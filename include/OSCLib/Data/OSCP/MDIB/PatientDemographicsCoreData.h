@@ -91,6 +91,11 @@ public:
 	bool getPatientType(PatientType & out) const;
 	bool hasPatientType() const;
 
+	PatientDemographicsCoreData & setDateOfBirth(const DateOfBirth & value);
+	DateOfBirth getDateOfBirth() const;
+	bool getDateOfBirth(DateOfBirth & out) const;
+	bool hasDateOfBirth() const;
+
 	PatientDemographicsCoreData & setHeight(const Measurement & value);
 	Measurement getHeight() const;
 	bool getHeight(Measurement & out) const;

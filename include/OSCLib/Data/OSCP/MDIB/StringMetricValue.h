@@ -48,7 +48,9 @@ private:
 	friend class ConvertToCDM;
 public:
 	StringMetricValue(
+		MetricQuality metricquality
 	); 
+	StringMetricValue() = delete;
 	StringMetricValue(const StringMetricValue & object);
 	virtual ~StringMetricValue();
     
@@ -56,6 +58,9 @@ public:
     StringMetricValue & operator=(const StringMetricValue & object);
     
     typedef CDM::StringMetricValue WrappedType;
+
+	StringMetricValue & setMetricQuality(const MetricQuality & value);
+	MetricQuality getMetricQuality() const;
 
 	StringMetricValue & setStartTime(const Timestamp & value);
 	Timestamp getStartTime() const;
@@ -72,6 +77,10 @@ public:
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
+	StringMetricValue & addAnnotation(const Annotation & value);
+	std::vector<Annotation> getAnnotationList() const;
+	void clearAnnotationList();
+	
 	StringMetricValue & setValue(const std::string & value);
 	std::string getValue() const;
 	bool getValue(std::string & out) const;

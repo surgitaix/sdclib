@@ -126,6 +126,14 @@ public:
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
 	
+	EnumStringMetricDescriptor & addRelation(const Relation & value);
+	std::vector<Relation> getRelationList() const;
+	void clearRelationList();
+	
+	EnumStringMetricDescriptor & addAllowedValue(const AllowedValue & value);
+	std::vector<AllowedValue> getAllowedValueList() const;
+	void clearAllowedValueList();
+	
 private:
 	std::shared_ptr<CDM::EnumStringMetricDescriptor> data;
 };

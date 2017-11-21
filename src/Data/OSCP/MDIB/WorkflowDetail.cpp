@@ -41,6 +41,8 @@
 #include "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h"
+#include "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h"
+#include "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h"
 
 namespace OSCLib {
 namespace Data {
@@ -129,6 +131,48 @@ InstanceIdentifier WorkflowDetail::getVisitNumber() const {
 	
 bool WorkflowDetail::hasVisitNumber() const {
 	return data->VisitNumber().present();
+}
+	
+WorkflowDetail & WorkflowDetail::setRequestedOrderDetail(const RequestedOrderDetail & value) {
+	data->RequestedOrderDetail(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowDetail::getRequestedOrderDetail(RequestedOrderDetail & out) const {
+	if (data->RequestedOrderDetail().present()) {
+		out = ConvertFromCDM::convert(data->RequestedOrderDetail().get());
+		return true;
+	}
+	return false;
+}
+
+RequestedOrderDetail WorkflowDetail::getRequestedOrderDetail() const {
+	return ConvertFromCDM::convert(data->RequestedOrderDetail().get());
+}
+	
+bool WorkflowDetail::hasRequestedOrderDetail() const {
+	return data->RequestedOrderDetail().present();
+}
+	
+WorkflowDetail & WorkflowDetail::setPerformedOrderDetail(const PerformedOrderDetail & value) {
+	data->PerformedOrderDetail(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool WorkflowDetail::getPerformedOrderDetail(PerformedOrderDetail & out) const {
+	if (data->PerformedOrderDetail().present()) {
+		out = ConvertFromCDM::convert(data->PerformedOrderDetail().get());
+		return true;
+	}
+	return false;
+}
+
+PerformedOrderDetail WorkflowDetail::getPerformedOrderDetail() const {
+	return ConvertFromCDM::convert(data->PerformedOrderDetail().get());
+}
+	
+bool WorkflowDetail::hasPerformedOrderDetail() const {
+	return data->PerformedOrderDetail().present();
 }
 	
 WorkflowDetail & WorkflowDetail::addDangerCode(const CodedValue & value) {

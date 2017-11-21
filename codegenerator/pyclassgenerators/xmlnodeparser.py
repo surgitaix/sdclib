@@ -13,10 +13,7 @@ from gslmacrogenerator import GSLClassBuilder
 # build the gslFile, available via getGslClassBuilder
 class ComplexTypeNodeParser(object):
     #static list of embedded nodes against double treatment
-    __embeddedNodesNamesList = list()
-    
-    def reset(self):
-        ComplexTypeNodeParser.__embeddedNodesNamesList = list()
+    __embeddedNodesNamesList = list()     
     
     def __init__(self, simpleTypes_set, complexTypes_set, basetype_map, apiInterface, customImplList, simpleTypeNodeParser):
         # complexTypes_set: a set of all existing complexTypes. Complex types get own C++ Classes, thus they need to be references
@@ -26,15 +23,30 @@ class ComplexTypeNodeParser(object):
         self.__basetype_map = basetype_map
         self.__apiInterface = apiInterface 
         self.__simpleTypeNodeParser = simpleTypeNodeParser
+        self.__customImplList = customImplList
+
+    def resetParser(self):
+        ComplexTypeNodeParser.__embeddedNodesNamesList = list()
+        self.__simpleTypes_set = None 
+        self.__complexTypes_set = None
+        self.__basetype_map = None
+        self.__apiInterface = None 
+        self.__simpleTypeNodeParser = None 
+        self.__customImplList = None
+        self.initNewNode()   
+
+    def initNewNode(self):
         self.__complexTypeName = ''
         self.__abstract_bool = False
         self.__parentTypeName = 'NULL'
         # classes are None from the beginning. Check before usage
-        self.__gslClassBuilder = None
-        self.__customImplList = customImplList
+        self.__gslClassBuilder = None        
         self.__requiredProperties = []
+        
            
     def parseComplexTypeNode(self, cTNode_xpath):
+        
+        self.initNewNode()
         # only take nodes that have a 'name' attribute
         if 'name' in cTNode_xpath.attrib:
             # get name
@@ -208,47 +220,48 @@ class SimpleTypeNodeParser(object):
         isEnum = False
         if 'name' in simpleTypeNode.attrib:
             simpleTypeName = simpleTypeNode.attrib['name'] # attribute_name = 'name'
-            self.__simpleTypes_set.add(simpleTypeName)
-            print simpleTypeName
-            
-            # destinguish between enums and basetypes/itemlists
-            # enums
-            for enumNode in simpleTypeNode.xpath('./xsd:restriction/xsd:enumeration', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):    
-                enumEntry = enumNode.attrib['value']
-                print 'enum-type>>' + enumEntry
-                # enum_Flag is False at the beginning of a new enum class -> reset classes
-                if not enumInit_flag:
-                    enumInit_flag = True
-                    isEnum = True
-                    self.__classBuilderForwarder.initEnumClassBuilders(simpleTypeName)
-
-                self.__classBuilderForwarder.addEnumEntry(enumEntry)
-            
-            # append code for each enum class
-            if isEnum:
-                self.__classBuilderForwarder.finalizeEnumClass(simpleTypeName)
-            
-            # non enums
-            if not isEnum:
-                # basetypes
-                for baseTypeNode in simpleTypeNode.xpath('./xsd:restriction', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                    if 'base' in baseTypeNode.attrib:
-                        basetypeType = baseTypeNode.attrib['base']
-                        print 'base-type>>' + basetypeType
-                        self.__classBuilderForwarder.addBasetype(simpleTypeName,basetypeType)
-                        
-                # item lists
-                for itemListNode in simpleTypeNode.xpath('./xsd:list', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                    if 'itemType' in itemListNode.attrib:
-                        itemListName = itemListNode.attrib['itemType']
-                        print 'itemList-type>>' + itemListName
-                        self.__classBuilderForwarder.addItemlist(simpleTypeName, itemListName)
-                        
-                for unionTypeNode in simpleTypeNode.xpath('./xsd:union', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
-                    if 'memberTypes' in unionTypeNode.attrib:
-                        # handle as basetype
-                        basetypeType = unionTypeNode.attrib['memberTypes']
-                        self.__classBuilderForwarder.addBasetype(simpleTypeName,basetypeType)
-                        print 'union-type>>' + basetypeType
+            if not simpleTypeName in self.__simpleTypes_set:
+                self.__simpleTypes_set.add(simpleTypeName)
+                print simpleTypeName
+                
+                # destinguish between enums and basetypes/itemlists
+                # enums
+                for enumNode in simpleTypeNode.xpath('./xsd:restriction/xsd:enumeration', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):    
+                    enumEntry = enumNode.attrib['value']
+                    print 'enum-type>>' + enumEntry
+                    # enum_Flag is False at the beginning of a new enum class -> reset classes
+                    if not enumInit_flag:
+                        enumInit_flag = True
+                        isEnum = True
+                        self.__classBuilderForwarder.initEnumClassBuilders(simpleTypeName)
+    
+                    self.__classBuilderForwarder.addEnumEntry(enumEntry)
+                
+                # append code for each enum class
+                if isEnum:
+                    self.__classBuilderForwarder.finalizeEnumClass(simpleTypeName)
+                
+                # non enums
+                if not isEnum:
+                    # basetypes
+                    for baseTypeNode in simpleTypeNode.xpath('./xsd:restriction', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                        if 'base' in baseTypeNode.attrib:
+                            basetypeType = baseTypeNode.attrib['base']
+                            print 'base-type>>' + basetypeType
+                            self.__classBuilderForwarder.addBasetype(simpleTypeName,basetypeType)
+                            
+                    # item lists
+                    for itemListNode in simpleTypeNode.xpath('./xsd:list', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                        if 'itemType' in itemListNode.attrib:
+                            itemListName = itemListNode.attrib['itemType']
+                            print 'itemList-type>>' + itemListName
+                            self.__classBuilderForwarder.addItemlist(simpleTypeName, itemListName)
+                            
+                    for unionTypeNode in simpleTypeNode.xpath('./xsd:union', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+                        if 'memberTypes' in unionTypeNode.attrib:
+                            # handle as basetype
+                            basetypeType = unionTypeNode.attrib['memberTypes']
+                            self.__classBuilderForwarder.addBasetype(simpleTypeName,basetypeType)
+                            print 'union-type>>' + basetypeType
 
     

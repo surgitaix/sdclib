@@ -25,6 +25,10 @@ class Defaults {
 public:
 	Defaults();
 	virtual ~Defaults();
+	static CDM::DicomTransferCapability * DicomTransferCapabilityInit(std::string sopclass, DicomTransferRole transferrole);
+	static CDM::DicomNetworkAe * DicomNetworkAeInit(std::string aetitle, xml_schema::Idrefs networkconnectionreference, bool associationinitiator, bool associationacceptor);
+	static CDM::DicomNetworkConnection * DicomNetworkConnectionInit(xml_schema::Id id, std::string hostname);
+	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptorInit(Handle handle);
 	static CDM::Mdib * MdibInit();
 	static CDM::MdDescription * MdDescriptionInit();
 	static CDM::MdState * MdStateInit();
@@ -54,7 +58,7 @@ public:
 	static CDM::AlertSystemState * AlertSystemStateInit(HandleRef descriptorhandle, AlertActivation activationstate);
 	static CDM::CauseInfo * CauseInfoInit();
 	static CDM::RemedyInfo * RemedyInfoInit();
-	static CDM::AlertConditionDescriptor * AlertConditionDescriptorInit(Handle handle, AlertConditionPriority priority);
+	static CDM::AlertConditionDescriptor * AlertConditionDescriptorInit(Handle handle, AlertConditionKind kind, AlertConditionPriority priority);
 	static CDM::AlertConditionState * AlertConditionStateInit(HandleRef descriptorhandle, AlertActivation activationstate);
 	static CDM::LimitAlertConditionDescriptor * LimitAlertConditionDescriptorInit(Handle handle, AlertConditionKind kind, AlertConditionPriority priority, Range maxlimits);
 	static CDM::LimitAlertConditionState * LimitAlertConditionStateInit(HandleRef descriptorhandle, AlertActivation activationstate, Range limits, AlertConditionMonitoredLimits monitoredalertlimits);
@@ -66,7 +70,7 @@ public:
 	static CDM::StringMetricValue * StringMetricValueInit(MetricQuality metricquality);
 	static CDM::SampleArrayValue * SampleArrayValueInit(MetricQuality metricquality);
 	static CDM::ApplyAnnotation * ApplyAnnotationInit(unsigned int annotationindex, unsigned int sampleindex);
-	static CDM::Relation * RelationInit(HandleRef entries);
+	static CDM::Relation * RelationInit(Kind kind, HandleRef entries);
 	static CDM::NumericMetricDescriptor * NumericMetricDescriptorInit(Handle handle, CodedValue unit, MetricCategory metriccategory, MetricAvailability metricavailability, double resolution);
 	static CDM::NumericMetricState * NumericMetricStateInit(HandleRef descriptorhandle);
 	static CDM::StringMetricDescriptor * StringMetricDescriptorInit(Handle handle, CodedValue unit, MetricCategory metriccategory, MetricAvailability metricavailability);
@@ -132,10 +136,6 @@ public:
 	static CDM::EnsembleContextState * EnsembleContextStateInit(HandleRef descriptorhandle, Handle handle);
 	static CDM::ContainmentTree * ContainmentTreeInit();
 	static CDM::ContainmentTreeEntry * ContainmentTreeEntryInit();
-	static CDM::DicomTransferCapability * DicomTransferCapabilityInit(std::string sopclass, DicomTransferRole transferrole);
-	static CDM::DicomNetworkAe * DicomNetworkAeInit(std::string aetitle, xml_schema::Idrefs networkconnectionreference, bool associationinitiator, bool associationacceptor);
-	static CDM::DicomNetworkConnection * DicomNetworkConnectionInit(xml_schema::Id id, std::string hostname);
-	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptorInit(Handle handle);
 };
 
 } /* namespace OSCP */

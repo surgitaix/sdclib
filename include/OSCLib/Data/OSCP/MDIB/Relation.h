@@ -48,6 +48,8 @@ private:
 	friend class ConvertToCDM;
 public:
 	Relation(
+		Kind kind
+		, 
 		HandleRef entries
 	); 
 	Relation() = delete;
@@ -68,6 +70,9 @@ public:
 	InstanceIdentifier getIdentification() const;
 	bool getIdentification(InstanceIdentifier & out) const;
 	bool hasIdentification() const;
+
+	Relation & setKind(const Kind & value);
+	Kind getKind() const;
 
 	Relation & setEntries(const HandleRef & value);
 	HandleRef getEntries() const;

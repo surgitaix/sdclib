@@ -40,6 +40,7 @@
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -152,6 +153,24 @@ bool VmdDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
+VmdDescriptor & VmdDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> VmdDescriptor::getProductionSpecificationList() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void VmdDescriptor::clearProductionSpecificationList() {
+	data->ProductionSpecification().clear();
+}
+
 VmdDescriptor & VmdDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
 	data->AlertSystem(ConvertToCDM::convert(value));
 	return *this;

@@ -4243,4 +4243,3801 @@ namespace WS
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
     RetryAfter (::std::istream& is,
                 const ::std::string& sid,
-                ::xm
+                ::xml_schema::ErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::RetryAfter (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
+    RetryAfter (::std::istream& is,
+                const ::std::string& sid,
+                ::xercesc::DOMErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::RetryAfter (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
+    RetryAfter (::xercesc::InputSource& i,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
+        ::WS::ADDRESSING::RetryAfter (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
+    RetryAfter (::xercesc::InputSource& i,
+                ::xml_schema::ErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
+        ::WS::ADDRESSING::RetryAfter (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
+    RetryAfter (::xercesc::InputSource& i,
+                ::xercesc::DOMErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
+        ::WS::ADDRESSING::RetryAfter (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
+    RetryAfter (const ::xercesc::DOMDocument& doc,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      if (f & ::xml_schema::Flags::keep_dom)
+      {
+        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
+
+        return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
+          ::WS::ADDRESSING::RetryAfter (
+            std::move (d), f | ::xml_schema::Flags::own_dom, p));
+      }
+
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "RetryAfter",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::AttributedUnsignedLongType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+        ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > r (
+          dynamic_cast< ::WS::ADDRESSING::AttributedUnsignedLongType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "RetryAfter",
+        "http://www.w3.org/2005/08/addressing");
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
+    RetryAfter (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties&)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
+        ((f & ::xml_schema::Flags::keep_dom) &&
+         !(f & ::xml_schema::Flags::own_dom))
+        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
+        : 0);
+
+      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (f & ::xml_schema::Flags::keep_dom)
+        doc.setUserData (::xml_schema::dom::tree_node_key,
+                         (c.get () ? &c : &d),
+                         0);
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "RetryAfter",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::AttributedUnsignedLongType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+
+        ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > r (
+          dynamic_cast< ::WS::ADDRESSING::AttributedUnsignedLongType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "RetryAfter",
+        "http://www.w3.org/2005/08/addressing");
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (const ::std::string& u,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
+        ::WS::ADDRESSING::ProblemHeaderQName (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (const ::std::string& u,
+                        ::xml_schema::ErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
+        ::WS::ADDRESSING::ProblemHeaderQName (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (const ::std::string& u,
+                        ::xercesc::DOMErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
+        ::WS::ADDRESSING::ProblemHeaderQName (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::std::istream& is,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::std::istream& is,
+                        ::xml_schema::ErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::std::istream& is,
+                        ::xercesc::DOMErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::std::istream& is,
+                        const ::std::string& sid,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::std::istream& is,
+                        const ::std::string& sid,
+                        ::xml_schema::ErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::std::istream& is,
+                        const ::std::string& sid,
+                        ::xercesc::DOMErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::xercesc::InputSource& i,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
+        ::WS::ADDRESSING::ProblemHeaderQName (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::xercesc::InputSource& i,
+                        ::xml_schema::ErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
+        ::WS::ADDRESSING::ProblemHeaderQName (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::xercesc::InputSource& i,
+                        ::xercesc::DOMErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
+        ::WS::ADDRESSING::ProblemHeaderQName (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (const ::xercesc::DOMDocument& doc,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
+    {
+      if (f & ::xml_schema::Flags::keep_dom)
+      {
+        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
+
+        return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
+          ::WS::ADDRESSING::ProblemHeaderQName (
+            std::move (d), f | ::xml_schema::Flags::own_dom, p));
+      }
+
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "ProblemHeaderQName",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::AttributedQNameType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+        ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > r (
+          dynamic_cast< ::WS::ADDRESSING::AttributedQNameType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "ProblemHeaderQName",
+        "http://www.w3.org/2005/08/addressing");
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
+    ProblemHeaderQName (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties&)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
+        ((f & ::xml_schema::Flags::keep_dom) &&
+         !(f & ::xml_schema::Flags::own_dom))
+        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
+        : 0);
+
+      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (f & ::xml_schema::Flags::keep_dom)
+        doc.setUserData (::xml_schema::dom::tree_node_key,
+                         (c.get () ? &c : &d),
+                         0);
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "ProblemHeaderQName",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::AttributedQNameType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+
+        ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > r (
+          dynamic_cast< ::WS::ADDRESSING::AttributedQNameType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "ProblemHeaderQName",
+        "http://www.w3.org/2005/08/addressing");
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (const ::std::string& u,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::ProblemIRI (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (const ::std::string& u,
+                ::xml_schema::ErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::ProblemIRI (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (const ::std::string& u,
+                ::xercesc::DOMErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::ProblemIRI (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::std::istream& is,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::ProblemIRI (isrc, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::std::istream& is,
+                ::xml_schema::ErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::ProblemIRI (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::std::istream& is,
+                ::xercesc::DOMErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::ProblemIRI (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::std::istream& is,
+                const ::std::string& sid,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::ProblemIRI (isrc, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::std::istream& is,
+                const ::std::string& sid,
+                ::xml_schema::ErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::ProblemIRI (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::std::istream& is,
+                const ::std::string& sid,
+                ::xercesc::DOMErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::ProblemIRI (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::xercesc::InputSource& i,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::ProblemIRI (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::xercesc::InputSource& i,
+                ::xml_schema::ErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::ProblemIRI (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::xercesc::InputSource& i,
+                ::xercesc::DOMErrorHandler& h,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::ProblemIRI (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (const ::xercesc::DOMDocument& doc,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties& p)
+    {
+      if (f & ::xml_schema::Flags::keep_dom)
+      {
+        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
+
+        return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+          ::WS::ADDRESSING::ProblemIRI (
+            std::move (d), f | ::xml_schema::Flags::own_dom, p));
+      }
+
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "ProblemIRI",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::AttributedURIType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+        ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > r (
+          dynamic_cast< ::WS::ADDRESSING::AttributedURIType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "ProblemIRI",
+        "http://www.w3.org/2005/08/addressing");
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    ProblemIRI (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                ::xml_schema::Flags f,
+                const ::xml_schema::Properties&)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
+        ((f & ::xml_schema::Flags::keep_dom) &&
+         !(f & ::xml_schema::Flags::own_dom))
+        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
+        : 0);
+
+      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (f & ::xml_schema::Flags::keep_dom)
+        doc.setUserData (::xml_schema::dom::tree_node_key,
+                         (c.get () ? &c : &d),
+                         0);
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "ProblemIRI",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::AttributedURIType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+
+        ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > r (
+          dynamic_cast< ::WS::ADDRESSING::AttributedURIType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "ProblemIRI",
+        "http://www.w3.org/2005/08/addressing");
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (const ::std::string& u,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
+        ::WS::ADDRESSING::ProblemAction (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (const ::std::string& u,
+                   ::xml_schema::ErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
+        ::WS::ADDRESSING::ProblemAction (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (const ::std::string& u,
+                   ::xercesc::DOMErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
+        ::WS::ADDRESSING::ProblemAction (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::std::istream& is,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::ProblemAction (isrc, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::std::istream& is,
+                   ::xml_schema::ErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::ProblemAction (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::std::istream& is,
+                   ::xercesc::DOMErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::ProblemAction (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::std::istream& is,
+                   const ::std::string& sid,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::ProblemAction (isrc, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::std::istream& is,
+                   const ::std::string& sid,
+                   ::xml_schema::ErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::ProblemAction (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::std::istream& is,
+                   const ::std::string& sid,
+                   ::xercesc::DOMErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::ProblemAction (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::xercesc::InputSource& i,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
+        ::WS::ADDRESSING::ProblemAction (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::xercesc::InputSource& i,
+                   ::xml_schema::ErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
+        ::WS::ADDRESSING::ProblemAction (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::xercesc::InputSource& i,
+                   ::xercesc::DOMErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
+        ::WS::ADDRESSING::ProblemAction (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (const ::xercesc::DOMDocument& doc,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
+    {
+      if (f & ::xml_schema::Flags::keep_dom)
+      {
+        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
+
+        return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
+          ::WS::ADDRESSING::ProblemAction (
+            std::move (d), f | ::xml_schema::Flags::own_dom, p));
+      }
+
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "ProblemAction",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::ProblemActionType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+        ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > r (
+          dynamic_cast< ::WS::ADDRESSING::ProblemActionType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "ProblemAction",
+        "http://www.w3.org/2005/08/addressing");
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
+    ProblemAction (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties&)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
+        ((f & ::xml_schema::Flags::keep_dom) &&
+         !(f & ::xml_schema::Flags::own_dom))
+        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
+        : 0);
+
+      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (f & ::xml_schema::Flags::keep_dom)
+        doc.setUserData (::xml_schema::dom::tree_node_key,
+                         (c.get () ? &c : &d),
+                         0);
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "ProblemAction",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::ProblemActionType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+
+        ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > r (
+          dynamic_cast< ::WS::ADDRESSING::ProblemActionType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "ProblemAction",
+        "http://www.w3.org/2005/08/addressing");
+    }
+  }
+}
+
+#include <ostream>
+#include <xsd/cxx/tree/error-handler.hxx>
+#include <xsd/cxx/xml/dom/serialization-source.hxx>
+
+#include <xsd/cxx/tree/type-serializer-map.hxx>
+
+namespace _xsd
+{
+  static
+  const ::xsd::cxx::tree::type_serializer_plate< 0, char >
+  type_serializer_plate_init;
+}
+
+namespace WS
+{
+  namespace ADDRESSING
+  {
+    void
+    EndpointReference (::std::ostream& o,
+                       const ::WS::ADDRESSING::EndpointReferenceType& s,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::EndpointReference (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    EndpointReference (::std::ostream& o,
+                       const ::WS::ADDRESSING::EndpointReferenceType& s,
+                       ::xml_schema::ErrorHandler& h,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::EndpointReference (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    EndpointReference (::std::ostream& o,
+                       const ::WS::ADDRESSING::EndpointReferenceType& s,
+                       ::xercesc::DOMErrorHandler& h,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::EndpointReference (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    EndpointReference (::xercesc::XMLFormatTarget& t,
+                       const ::WS::ADDRESSING::EndpointReferenceType& s,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::EndpointReference (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    EndpointReference (::xercesc::XMLFormatTarget& t,
+                       const ::WS::ADDRESSING::EndpointReferenceType& s,
+                       ::xml_schema::ErrorHandler& h,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::EndpointReference (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    EndpointReference (::xercesc::XMLFormatTarget& t,
+                       const ::WS::ADDRESSING::EndpointReferenceType& s,
+                       ::xercesc::DOMErrorHandler& h,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::EndpointReference (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    EndpointReference (::xercesc::DOMDocument& d,
+                       const ::WS::ADDRESSING::EndpointReferenceType& s,
+                       ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
+      {
+        if (n.name () == "EndpointReference" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "EndpointReference",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "EndpointReference",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    EndpointReference (const ::WS::ADDRESSING::EndpointReferenceType& s,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "EndpointReference",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "EndpointReference",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::EndpointReference (*d, s, f);
+      return d;
+    }
+
+    void
+    operator<< (::xercesc::DOMElement& e, const EndpointReferenceType& i)
+    {
+      e << static_cast< const ::xml_schema::Type& > (i);
+
+      // Address
+      //
+      {
+        ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+        const EndpointReferenceType::AddressType& x (i.Address ());
+        if (typeid (EndpointReferenceType::AddressType) == typeid (x))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Address",
+              "http://www.w3.org/2005/08/addressing",
+              e));
+
+          s << x;
+        }
+        else
+          tsm.serialize (
+            "Address",
+            "http://www.w3.org/2005/08/addressing",
+            false, true, e, x);
+      }
+
+      // ReferenceParameters
+      //
+      {
+        ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+        if (i.ReferenceParameters ())
+        {
+          const EndpointReferenceType::ReferenceParametersType& x (*i.ReferenceParameters ());
+          if (typeid (EndpointReferenceType::ReferenceParametersType) == typeid (x))
+          {
+            ::xercesc::DOMElement& s (
+              ::xsd::cxx::xml::dom::create_element (
+                "ReferenceParameters",
+                "http://www.w3.org/2005/08/addressing",
+                e));
+
+            s << x;
+          }
+          else
+            tsm.serialize (
+              "ReferenceParameters",
+              "http://www.w3.org/2005/08/addressing",
+              true, true, e, x);
+        }
+      }
+
+      // Metadata
+      //
+      {
+        ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+        if (i.Metadata ())
+        {
+          const EndpointReferenceType::MetadataType& x (*i.Metadata ());
+          if (typeid (EndpointReferenceType::MetadataType) == typeid (x))
+          {
+            ::xercesc::DOMElement& s (
+              ::xsd::cxx::xml::dom::create_element (
+                "Metadata",
+                "http://www.w3.org/2005/08/addressing",
+                e));
+
+            s << x;
+          }
+          else
+            tsm.serialize (
+              "Metadata",
+              "http://www.w3.org/2005/08/addressing",
+              true, true, e, x);
+        }
+      }
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EndpointReferenceType >
+    _xsd_EndpointReferenceType_type_serializer_init (
+      "EndpointReferenceType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    ReferenceParameters (::std::ostream& o,
+                         const ::WS::ADDRESSING::ReferenceParametersType& s,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ReferenceParameters (::std::ostream& o,
+                         const ::WS::ADDRESSING::ReferenceParametersType& s,
+                         ::xml_schema::ErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ReferenceParameters (::std::ostream& o,
+                         const ::WS::ADDRESSING::ReferenceParametersType& s,
+                         ::xercesc::DOMErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ReferenceParameters (::xercesc::XMLFormatTarget& t,
+                         const ::WS::ADDRESSING::ReferenceParametersType& s,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ReferenceParameters (::xercesc::XMLFormatTarget& t,
+                         const ::WS::ADDRESSING::ReferenceParametersType& s,
+                         ::xml_schema::ErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ReferenceParameters (::xercesc::XMLFormatTarget& t,
+                         const ::WS::ADDRESSING::ReferenceParametersType& s,
+                         ::xercesc::DOMErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ReferenceParameters (::xercesc::DOMDocument& d,
+                         const ::WS::ADDRESSING::ReferenceParametersType& s,
+                         ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::ReferenceParametersType) == typeid (s))
+      {
+        if (n.name () == "ReferenceParameters" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "ReferenceParameters",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ReferenceParameters",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    ReferenceParameters (const ::WS::ADDRESSING::ReferenceParametersType& s,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::ReferenceParametersType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "ReferenceParameters",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ReferenceParameters",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::ReferenceParameters (*d, s, f);
+      return d;
+    }
+
+    void
+    operator<< (::xercesc::DOMElement& e, const ReferenceParametersType& i)
+    {
+      e << static_cast< const ::xml_schema::Type& > (i);
+
+      // Identifier
+      //
+      if (i.Identifier ())
+      {
+        ::xercesc::DOMElement& s (
+          ::xsd::cxx::xml::dom::create_element (
+            "Identifier",
+            "http://schemas.xmlsoap.org/ws/2004/08/eventing",
+            e));
+
+        s << *i.Identifier ();
+      }
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ReferenceParametersType >
+    _xsd_ReferenceParametersType_type_serializer_init (
+      "ReferenceParametersType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    Metadata (::std::ostream& o,
+              const ::WS::ADDRESSING::MetadataType& s,
+              const ::xml_schema::NamespaceInfomap& m,
+              const ::std::string& e,
+              ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Metadata (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    Metadata (::std::ostream& o,
+              const ::WS::ADDRESSING::MetadataType& s,
+              ::xml_schema::ErrorHandler& h,
+              const ::xml_schema::NamespaceInfomap& m,
+              const ::std::string& e,
+              ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Metadata (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    Metadata (::std::ostream& o,
+              const ::WS::ADDRESSING::MetadataType& s,
+              ::xercesc::DOMErrorHandler& h,
+              const ::xml_schema::NamespaceInfomap& m,
+              const ::std::string& e,
+              ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Metadata (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    Metadata (::xercesc::XMLFormatTarget& t,
+              const ::WS::ADDRESSING::MetadataType& s,
+              const ::xml_schema::NamespaceInfomap& m,
+              const ::std::string& e,
+              ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Metadata (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    Metadata (::xercesc::XMLFormatTarget& t,
+              const ::WS::ADDRESSING::MetadataType& s,
+              ::xml_schema::ErrorHandler& h,
+              const ::xml_schema::NamespaceInfomap& m,
+              const ::std::string& e,
+              ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Metadata (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    Metadata (::xercesc::XMLFormatTarget& t,
+              const ::WS::ADDRESSING::MetadataType& s,
+              ::xercesc::DOMErrorHandler& h,
+              const ::xml_schema::NamespaceInfomap& m,
+              const ::std::string& e,
+              ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Metadata (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    Metadata (::xercesc::DOMDocument& d,
+              const ::WS::ADDRESSING::MetadataType& s,
+              ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::MetadataType) == typeid (s))
+      {
+        if (n.name () == "Metadata" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "Metadata",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "Metadata",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    Metadata (const ::WS::ADDRESSING::MetadataType& s,
+              const ::xml_schema::NamespaceInfomap& m,
+              ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::MetadataType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "Metadata",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "Metadata",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::Metadata (*d, s, f);
+      return d;
+    }
+
+    void
+    operator<< (::xercesc::DOMElement& e, const MetadataType& i)
+    {
+      e << static_cast< const ::xml_schema::Type& > (i);
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MetadataType >
+    _xsd_MetadataType_type_serializer_init (
+      "MetadataType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    MessageID (::std::ostream& o,
+               const ::WS::ADDRESSING::AttributedURIType& s,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::MessageID (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    MessageID (::std::ostream& o,
+               const ::WS::ADDRESSING::AttributedURIType& s,
+               ::xml_schema::ErrorHandler& h,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::MessageID (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    MessageID (::std::ostream& o,
+               const ::WS::ADDRESSING::AttributedURIType& s,
+               ::xercesc::DOMErrorHandler& h,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::MessageID (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    MessageID (::xercesc::XMLFormatTarget& t,
+               const ::WS::ADDRESSING::AttributedURIType& s,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::MessageID (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    MessageID (::xercesc::XMLFormatTarget& t,
+               const ::WS::ADDRESSING::AttributedURIType& s,
+               ::xml_schema::ErrorHandler& h,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::MessageID (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    MessageID (::xercesc::XMLFormatTarget& t,
+               const ::WS::ADDRESSING::AttributedURIType& s,
+               ::xercesc::DOMErrorHandler& h,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::MessageID (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    MessageID (::xercesc::DOMDocument& d,
+               const ::WS::ADDRESSING::AttributedURIType& s,
+               ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::AttributedURIType) == typeid (s))
+      {
+        if (n.name () == "MessageID" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "MessageID",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "MessageID",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    MessageID (const ::WS::ADDRESSING::AttributedURIType& s,
+               const ::xml_schema::NamespaceInfomap& m,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::AttributedURIType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "MessageID",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "MessageID",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::MessageID (*d, s, f);
+      return d;
+    }
+
+    void
+    RelatesTo (::std::ostream& o,
+               const ::WS::ADDRESSING::RelatesToType& s,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RelatesTo (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    RelatesTo (::std::ostream& o,
+               const ::WS::ADDRESSING::RelatesToType& s,
+               ::xml_schema::ErrorHandler& h,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RelatesTo (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    RelatesTo (::std::ostream& o,
+               const ::WS::ADDRESSING::RelatesToType& s,
+               ::xercesc::DOMErrorHandler& h,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RelatesTo (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    RelatesTo (::xercesc::XMLFormatTarget& t,
+               const ::WS::ADDRESSING::RelatesToType& s,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RelatesTo (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    RelatesTo (::xercesc::XMLFormatTarget& t,
+               const ::WS::ADDRESSING::RelatesToType& s,
+               ::xml_schema::ErrorHandler& h,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RelatesTo (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    RelatesTo (::xercesc::XMLFormatTarget& t,
+               const ::WS::ADDRESSING::RelatesToType& s,
+               ::xercesc::DOMErrorHandler& h,
+               const ::xml_schema::NamespaceInfomap& m,
+               const ::std::string& e,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RelatesTo (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    RelatesTo (::xercesc::DOMDocument& d,
+               const ::WS::ADDRESSING::RelatesToType& s,
+               ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::RelatesToType) == typeid (s))
+      {
+        if (n.name () == "RelatesTo" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "RelatesTo",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "RelatesTo",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    RelatesTo (const ::WS::ADDRESSING::RelatesToType& s,
+               const ::xml_schema::NamespaceInfomap& m,
+               ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::RelatesToType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "RelatesTo",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "RelatesTo",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::RelatesTo (*d, s, f);
+      return d;
+    }
+
+    void
+    operator<< (::xercesc::DOMElement& e, const RelatesToType& i)
+    {
+      e << static_cast< const ::xml_schema::Uri& > (i);
+
+      // RelationshipType
+      //
+      if (i.RelationshipType ())
+      {
+        ::xercesc::DOMAttr& a (
+          ::xsd::cxx::xml::dom::create_attribute (
+            "RelationshipType",
+            e));
+
+        a << *i.RelationshipType ();
+      }
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RelatesToType >
+    _xsd_RelatesToType_type_serializer_init (
+      "RelatesToType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    operator<< (::xercesc::DOMElement& e, const RelationshipTypeOpenEnum& i)
+    {
+      e << static_cast< const ::xml_schema::String& > (i);
+    }
+
+    void
+    operator<< (::xercesc::DOMAttr& a, const RelationshipTypeOpenEnum& i)
+    {
+      a << static_cast< const ::xml_schema::String& > (i);
+    }
+
+    void
+    operator<< (::xml_schema::ListStream& l,
+                const RelationshipTypeOpenEnum& i)
+    {
+      l << static_cast< const ::xml_schema::String& > (i);
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RelationshipTypeOpenEnum >
+    _xsd_RelationshipTypeOpenEnum_type_serializer_init (
+      "RelationshipTypeOpenEnum",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    operator<< (::xercesc::DOMElement& e, const RelationshipType& i)
+    {
+      e << static_cast< const ::xml_schema::Uri& > (i);
+    }
+
+    void
+    operator<< (::xercesc::DOMAttr& a, const RelationshipType& i)
+    {
+      a << static_cast< const ::xml_schema::Uri& > (i);
+    }
+
+    void
+    operator<< (::xml_schema::ListStream& l,
+                const RelationshipType& i)
+    {
+      l << static_cast< const ::xml_schema::Uri& > (i);
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RelationshipType >
+    _xsd_RelationshipType_type_serializer_init (
+      "RelationshipType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    ReplyTo (::std::ostream& o,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReplyTo (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ReplyTo (::std::ostream& o,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xml_schema::ErrorHandler& h,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReplyTo (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ReplyTo (::std::ostream& o,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xercesc::DOMErrorHandler& h,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReplyTo (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ReplyTo (::xercesc::XMLFormatTarget& t,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReplyTo (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ReplyTo (::xercesc::XMLFormatTarget& t,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xml_schema::ErrorHandler& h,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReplyTo (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ReplyTo (::xercesc::XMLFormatTarget& t,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xercesc::DOMErrorHandler& h,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ReplyTo (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ReplyTo (::xercesc::DOMDocument& d,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
+      {
+        if (n.name () == "ReplyTo" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "ReplyTo",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ReplyTo",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    ReplyTo (const ::WS::ADDRESSING::EndpointReferenceType& s,
+             const ::xml_schema::NamespaceInfomap& m,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "ReplyTo",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ReplyTo",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::ReplyTo (*d, s, f);
+      return d;
+    }
+
+    void
+    From (::std::ostream& o,
+          const ::WS::ADDRESSING::EndpointReferenceType& s,
+          const ::xml_schema::NamespaceInfomap& m,
+          const ::std::string& e,
+          ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::From (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    From (::std::ostream& o,
+          const ::WS::ADDRESSING::EndpointReferenceType& s,
+          ::xml_schema::ErrorHandler& h,
+          const ::xml_schema::NamespaceInfomap& m,
+          const ::std::string& e,
+          ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::From (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    From (::std::ostream& o,
+          const ::WS::ADDRESSING::EndpointReferenceType& s,
+          ::xercesc::DOMErrorHandler& h,
+          const ::xml_schema::NamespaceInfomap& m,
+          const ::std::string& e,
+          ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::From (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    From (::xercesc::XMLFormatTarget& t,
+          const ::WS::ADDRESSING::EndpointReferenceType& s,
+          const ::xml_schema::NamespaceInfomap& m,
+          const ::std::string& e,
+          ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::From (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    From (::xercesc::XMLFormatTarget& t,
+          const ::WS::ADDRESSING::EndpointReferenceType& s,
+          ::xml_schema::ErrorHandler& h,
+          const ::xml_schema::NamespaceInfomap& m,
+          const ::std::string& e,
+          ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::From (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    From (::xercesc::XMLFormatTarget& t,
+          const ::WS::ADDRESSING::EndpointReferenceType& s,
+          ::xercesc::DOMErrorHandler& h,
+          const ::xml_schema::NamespaceInfomap& m,
+          const ::std::string& e,
+          ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::From (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    From (::xercesc::DOMDocument& d,
+          const ::WS::ADDRESSING::EndpointReferenceType& s,
+          ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
+      {
+        if (n.name () == "From" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "From",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "From",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    From (const ::WS::ADDRESSING::EndpointReferenceType& s,
+          const ::xml_schema::NamespaceInfomap& m,
+          ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "From",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "From",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::From (*d, s, f);
+      return d;
+    }
+
+    void
+    FaultTo (::std::ostream& o,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::FaultTo (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    FaultTo (::std::ostream& o,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xml_schema::ErrorHandler& h,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::FaultTo (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    FaultTo (::std::ostream& o,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xercesc::DOMErrorHandler& h,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::FaultTo (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    FaultTo (::xercesc::XMLFormatTarget& t,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::FaultTo (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    FaultTo (::xercesc::XMLFormatTarget& t,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xml_schema::ErrorHandler& h,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::FaultTo (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    FaultTo (::xercesc::XMLFormatTarget& t,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xercesc::DOMErrorHandler& h,
+             const ::xml_schema::NamespaceInfomap& m,
+             const ::std::string& e,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::FaultTo (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    FaultTo (::xercesc::DOMDocument& d,
+             const ::WS::ADDRESSING::EndpointReferenceType& s,
+             ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
+      {
+        if (n.name () == "FaultTo" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "FaultTo",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "FaultTo",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    FaultTo (const ::WS::ADDRESSING::EndpointReferenceType& s,
+             const ::xml_schema::NamespaceInfomap& m,
+             ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "FaultTo",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "FaultTo",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::FaultTo (*d, s, f);
+      return d;
+    }
+
+    void
+    To (::std::ostream& o,
+        const ::WS::ADDRESSING::AttributedURIType& s,
+        const ::xml_schema::NamespaceInfomap& m,
+        const ::std::string& e,
+        ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::To (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    To (::std::ostream& o,
+        const ::WS::ADDRESSING::AttributedURIType& s,
+        ::xml_schema::ErrorHandler& h,
+        const ::xml_schema::NamespaceInfomap& m,
+        const ::std::string& e,
+        ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::To (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    To (::std::ostream& o,
+        const ::WS::ADDRESSING::AttributedURIType& s,
+        ::xercesc::DOMErrorHandler& h,
+        const ::xml_schema::NamespaceInfomap& m,
+        const ::std::string& e,
+        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::To (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    To (::xercesc::XMLFormatTarget& t,
+        const ::WS::ADDRESSING::AttributedURIType& s,
+        const ::xml_schema::NamespaceInfomap& m,
+        const ::std::string& e,
+        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::To (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    To (::xercesc::XMLFormatTarget& t,
+        const ::WS::ADDRESSING::AttributedURIType& s,
+        ::xml_schema::ErrorHandler& h,
+        const ::xml_schema::NamespaceInfomap& m,
+        const ::std::string& e,
+        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::To (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    To (::xercesc::XMLFormatTarget& t,
+        const ::WS::ADDRESSING::AttributedURIType& s,
+        ::xercesc::DOMErrorHandler& h,
+        const ::xml_schema::NamespaceInfomap& m,
+        const ::std::string& e,
+        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::To (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    To (::xercesc::DOMDocument& d,
+        const ::WS::ADDRESSING::AttributedURIType& s,
+        ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::AttributedURIType) == typeid (s))
+      {
+        if (n.name () == "To" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "To",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "To",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    To (const ::WS::ADDRESSING::AttributedURIType& s,
+        const ::xml_schema::NamespaceInfomap& m,
+        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::AttributedURIType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "To",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "To",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::To (*d, s, f);
+      return d;
+    }
+
+    void
+    Action (::std::ostream& o,
+            const ::WS::ADDRESSING::AttributedURIType& s,
+            const ::xml_schema::NamespaceInfomap& m,
+            const ::std::string& e,
+            ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Action (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    Action (::std::ostream& o,
+            const ::WS::ADDRESSING::AttributedURIType& s,
+            ::xml_schema::ErrorHandler& h,
+            const ::xml_schema::NamespaceInfomap& m,
+            const ::std::string& e,
+            ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Action (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    Action (::std::ostream& o,
+            const ::WS::ADDRESSING::AttributedURIType& s,
+            ::xercesc::DOMErrorHandler& h,
+            const ::xml_schema::NamespaceInfomap& m,
+            const ::std::string& e,
+            ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Action (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    Action (::xercesc::XMLFormatTarget& t,
+            const ::WS::ADDRESSING::AttributedURIType& s,
+            const ::xml_schema::NamespaceInfomap& m,
+            const ::std::string& e,
+            ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Action (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    Action (::xercesc::XMLFormatTarget& t,
+            const ::WS::ADDRESSING::AttributedURIType& s,
+            ::xml_schema::ErrorHandler& h,
+            const ::xml_schema::NamespaceInfomap& m,
+            const ::std::string& e,
+            ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Action (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    Action (::xercesc::XMLFormatTarget& t,
+            const ::WS::ADDRESSING::AttributedURIType& s,
+            ::xercesc::DOMErrorHandler& h,
+            const ::xml_schema::NamespaceInfomap& m,
+            const ::std::string& e,
+            ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::Action (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    Action (::xercesc::DOMDocument& d,
+            const ::WS::ADDRESSING::AttributedURIType& s,
+            ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::AttributedURIType) == typeid (s))
+      {
+        if (n.name () == "Action" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "Action",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "Action",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    Action (const ::WS::ADDRESSING::AttributedURIType& s,
+            const ::xml_schema::NamespaceInfomap& m,
+            ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::AttributedURIType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "Action",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "Action",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::Action (*d, s, f);
+      return d;
+    }
+
+    void
+    operator<< (::xercesc::DOMElement& e, const AttributedURIType& i)
+    {
+      e << static_cast< const ::xml_schema::Uri& > (i);
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AttributedURIType >
+    _xsd_AttributedURIType_type_serializer_init (
+      "AttributedURIType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    operator<< (::xercesc::DOMElement& e, const FaultCodesOpenEnumType& i)
+    {
+      e << static_cast< const ::xml_schema::String& > (i);
+    }
+
+    void
+    operator<< (::xercesc::DOMAttr& a, const FaultCodesOpenEnumType& i)
+    {
+      a << static_cast< const ::xml_schema::String& > (i);
+    }
+
+    void
+    operator<< (::xml_schema::ListStream& l,
+                const FaultCodesOpenEnumType& i)
+    {
+      l << static_cast< const ::xml_schema::String& > (i);
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, FaultCodesOpenEnumType >
+    _xsd_FaultCodesOpenEnumType_type_serializer_init (
+      "FaultCodesOpenEnumType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    operator<< (::xercesc::DOMElement& e, const FaultCodesType& i)
+    {
+      e << static_cast< const ::xml_schema::Qname& > (i);
+    }
+
+    void
+    operator<< (::xercesc::DOMAttr& a, const FaultCodesType& i)
+    {
+      a << static_cast< const ::xml_schema::Qname& > (i);
+    }
+
+    void
+    operator<< (::xml_schema::ListStream& l,
+                const FaultCodesType& i)
+    {
+      l << static_cast< const ::xml_schema::Qname& > (i);
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, FaultCodesType >
+    _xsd_FaultCodesType_type_serializer_init (
+      "FaultCodesType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    RetryAfter (::std::ostream& o,
+                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RetryAfter (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    RetryAfter (::std::ostream& o,
+                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                ::xml_schema::ErrorHandler& h,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RetryAfter (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    RetryAfter (::std::ostream& o,
+                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                ::xercesc::DOMErrorHandler& h,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RetryAfter (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    RetryAfter (::xercesc::XMLFormatTarget& t,
+                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RetryAfter (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    RetryAfter (::xercesc::XMLFormatTarget& t,
+                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                ::xml_schema::ErrorHandler& h,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RetryAfter (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    RetryAfter (::xercesc::XMLFormatTarget& t,
+                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                ::xercesc::DOMErrorHandler& h,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::RetryAfter (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    RetryAfter (::xercesc::DOMDocument& d,
+                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::AttributedUnsignedLongType) == typeid (s))
+      {
+        if (n.name () == "RetryAfter" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "RetryAfter",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "RetryAfter",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    RetryAfter (const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                const ::xml_schema::NamespaceInfomap& m,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::AttributedUnsignedLongType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "RetryAfter",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "RetryAfter",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::RetryAfter (*d, s, f);
+      return d;
+    }
+
+    void
+    operator<< (::xercesc::DOMElement& e, const AttributedUnsignedLongType& i)
+    {
+      e << static_cast< const ::xsd::cxx::tree::fundamental_base< ::xml_schema::UnsignedLong, char, ::xml_schema::SimpleType >& > (i);
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AttributedUnsignedLongType >
+    _xsd_AttributedUnsignedLongType_type_serializer_init (
+      "AttributedUnsignedLongType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    ProblemHeaderQName (::std::ostream& o,
+                        const ::WS::ADDRESSING::AttributedQNameType& s,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ProblemHeaderQName (::std::ostream& o,
+                        const ::WS::ADDRESSING::AttributedQNameType& s,
+                        ::xml_schema::ErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemHeaderQName (::std::ostream& o,
+                        const ::WS::ADDRESSING::AttributedQNameType& s,
+                        ::xercesc::DOMErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemHeaderQName (::xercesc::XMLFormatTarget& t,
+                        const ::WS::ADDRESSING::AttributedQNameType& s,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ProblemHeaderQName (::xercesc::XMLFormatTarget& t,
+                        const ::WS::ADDRESSING::AttributedQNameType& s,
+                        ::xml_schema::ErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemHeaderQName (::xercesc::XMLFormatTarget& t,
+                        const ::WS::ADDRESSING::AttributedQNameType& s,
+                        ::xercesc::DOMErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemHeaderQName (::xercesc::DOMDocument& d,
+                        const ::WS::ADDRESSING::AttributedQNameType& s,
+                        ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::AttributedQNameType) == typeid (s))
+      {
+        if (n.name () == "ProblemHeaderQName" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "ProblemHeaderQName",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ProblemHeaderQName",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    ProblemHeaderQName (const ::WS::ADDRESSING::AttributedQNameType& s,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::AttributedQNameType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "ProblemHeaderQName",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ProblemHeaderQName",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::ProblemHeaderQName (*d, s, f);
+      return d;
+    }
+
+    void
+    operator<< (::xercesc::DOMElement& e, const AttributedQNameType& i)
+    {
+      e << static_cast< const ::xml_schema::Qname& > (i);
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AttributedQNameType >
+    _xsd_AttributedQNameType_type_serializer_init (
+      "AttributedQNameType",
+      "http://www.w3.org/2005/08/addressing");
+
+
+    void
+    ProblemIRI (::std::ostream& o,
+                const ::WS::ADDRESSING::AttributedURIType& s,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ProblemIRI (::std::ostream& o,
+                const ::WS::ADDRESSING::AttributedURIType& s,
+                ::xml_schema::ErrorHandler& h,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemIRI (::std::ostream& o,
+                const ::WS::ADDRESSING::AttributedURIType& s,
+                ::xercesc::DOMErrorHandler& h,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemIRI (::xercesc::XMLFormatTarget& t,
+                const ::WS::ADDRESSING::AttributedURIType& s,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ProblemIRI (::xercesc::XMLFormatTarget& t,
+                const ::WS::ADDRESSING::AttributedURIType& s,
+                ::xml_schema::ErrorHandler& h,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemIRI (::xercesc::XMLFormatTarget& t,
+                const ::WS::ADDRESSING::AttributedURIType& s,
+                ::xercesc::DOMErrorHandler& h,
+                const ::xml_schema::NamespaceInfomap& m,
+                const ::std::string& e,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemIRI (::xercesc::DOMDocument& d,
+                const ::WS::ADDRESSING::AttributedURIType& s,
+                ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::AttributedURIType) == typeid (s))
+      {
+        if (n.name () == "ProblemIRI" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "ProblemIRI",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ProblemIRI",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    ProblemIRI (const ::WS::ADDRESSING::AttributedURIType& s,
+                const ::xml_schema::NamespaceInfomap& m,
+                ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::AttributedURIType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "ProblemIRI",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ProblemIRI",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::ProblemIRI (*d, s, f);
+      return d;
+    }
+
+    void
+    ProblemAction (::std::ostream& o,
+                   const ::WS::ADDRESSING::ProblemActionType& s,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemAction (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ProblemAction (::std::ostream& o,
+                   const ::WS::ADDRESSING::ProblemActionType& s,
+                   ::xml_schema::ErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemAction (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemAction (::std::ostream& o,
+                   const ::WS::ADDRESSING::ProblemActionType& s,
+                   ::xercesc::DOMErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemAction (s, m, f));
+      ::xsd::cxx::xml::dom::ostream_format_target t (o);
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemAction (::xercesc::XMLFormatTarget& t,
+                   const ::WS::ADDRESSING::ProblemActionType& s,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemAction (s, m, f));
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
+      }
+    }
+
+    void
+    ProblemAction (::xercesc::XMLFormatTarget& t,
+                   const ::WS::ADDRESSING::ProblemActionType& s,
+                   ::xml_schema::ErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemAction (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemAction (::xercesc::XMLFormatTarget& t,
+                   const ::WS::ADDRESSING::ProblemActionType& s,
+                   ::xercesc::DOMErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::WS::ADDRESSING::ProblemAction (s, m, f));
+      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
+      {
+        throw ::xsd::cxx::tree::serialization< char > ();
+      }
+    }
+
+    void
+    ProblemAction (::xercesc::DOMDocument& d,
+                   const ::WS::ADDRESSING::ProblemActionType& s,
+                   ::xml_schema::Flags)
+    {
+      ::xercesc::DOMElement& e (*d.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (typeid (::WS::ADDRESSING::ProblemActionType) == typeid (s))
+      {
+        if (n.name () == "ProblemAction" &&
+            n.namespace_ () == "http://www.w3.org/2005/08/addressing")
+        {
+          e << s;
+        }
+        else
+        {
+          throw ::xsd::cxx::tree::unexpected_element < char > (
+            n.name (),
+            n.namespace_ (),
+            "ProblemAction",
+            "http://www.w3.org/2005/08/addressing");
+        }
+      }
+      else
+      {
+        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ProblemAction",
+          "http://www.w3.org/2005/08/addressing",
+          e, n, s);
+      }
+    }
+
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    ProblemAction (const ::WS::ADDRESSING::ProblemActionType& s,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   ::xml_schema::Flags f)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
+
+      if (typeid (::WS::ADDRESSING::ProblemActionType) == typeid (s))
+      {
+        d = ::xsd::cxx::xml::dom::serialize< char > (
+          "ProblemAction",
+          "http://www.w3.org/2005/08/addressing",
+          m, f);
+      }
+      else
+      {
+        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
+          "ProblemAction",
+          "http://www.w3.org/2005/08/addressing",
+          m, s, f);
+      }
+
+      ::WS::ADDRESSING::ProblemAction (*d, s, f);
+      return d;
+    }
+
+    void
+    operator<< (::xercesc::DOMElement& e, const ProblemActionType& i)
+    {
+      e << static_cast< const ::xml_schema::Type& > (i);
+
+      // Action
+      //
+      {
+        ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+        if (i.Action ())
+        {
+          const ProblemActionType::ActionType& x (*i.Action ());
+          if (typeid (ProblemActionType::ActionType) == typeid (x))
+          {
+            ::xercesc::DOMElement& s (
+              ::xsd::cxx::xml::dom::create_element (
+                "Action",
+                "http://www.w3.org/2005/08/addressing",
+                e));
+
+            s << x;
+          }
+          else
+            tsm.serialize (
+              "Action",
+              "http://www.w3.org/2005/08/addressing",
+              true, true, e, x);
+        }
+      }
+
+      // SoapAction
+      //
+      {
+        ::xsd::cxx::tree::type_serializer_map< char >& tsm (
+          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
+
+        if (i.SoapAction ())
+        {
+          const ProblemActionType::SoapActionType& x (*i.SoapAction ());
+          if (typeid (ProblemActionType::SoapActionType) == typeid (x))
+          {
+            ::xercesc::DOMElement& s (
+              ::xsd::cxx::xml::dom::create_element (
+                "SoapAction",
+                "http://www.w3.org/2005/08/addressing",
+                e));
+
+            s << x;
+          }
+          else
+            tsm.serialize (
+              "SoapAction",
+              "http://www.w3.org/2005/08/addressing",
+              false, true, e, x);
+        }
+      }
+    }
+
+    static
+    const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ProblemActionType >
+    _xsd_ProblemActionType_type_serializer_init (
+      "ProblemActionType",
+      "http://www.w3.org/2005/08/addressing");
+  }
+}
+
+#include <xsd/cxx/post.hxx>
+
+// Begin epilogue.
+//
+//
+// End epilogue.
+

@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -342,6 +343,24 @@ std::vector<CodedValue> RealTimeSampleArrayMetricDescriptor::getBodySiteList() c
 
 void RealTimeSampleArrayMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
+}
+
+RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::addRelation(const Relation & value) {
+	data->Relation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Relation> RealTimeSampleArrayMetricDescriptor::getRelationList() const {
+	std::vector<Relation> result;
+	result.reserve(data->Relation().size());
+	for (const auto & value: data->Relation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void RealTimeSampleArrayMetricDescriptor::clearRelationList() {
+	data->Relation().clear();
 }
 
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setResolution(const double & value) {

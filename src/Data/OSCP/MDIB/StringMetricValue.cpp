@@ -36,6 +36,8 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
+#include "OSCLib/Data/OSCP/MDIB/Annotation.h"
 
 namespace OSCLib {
 namespace Data {
@@ -43,7 +45,9 @@ namespace OSCP {
 
 
 StringMetricValue::StringMetricValue(
+		MetricQuality metricquality
 ) : data(Defaults::StringMetricValueInit(
+		metricquality
 )) {}
 
 StringMetricValue::operator CDM::StringMetricValue() const {
@@ -72,6 +76,16 @@ StringMetricValue & StringMetricValue:: operator=(const StringMetricValue & obje
 }
 
 
+StringMetricValue & StringMetricValue::setMetricQuality(const MetricQuality & value) {
+	data->MetricQuality(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+MetricQuality StringMetricValue::getMetricQuality() const {
+	return ConvertFromCDM::convert(data->MetricQuality());
+}
+	
 StringMetricValue & StringMetricValue::setStartTime(const Timestamp & value) {
 	data->StartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -135,6 +149,24 @@ bool StringMetricValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
 	
+StringMetricValue & StringMetricValue::addAnnotation(const Annotation & value) {
+	data->Annotation().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<Annotation> StringMetricValue::getAnnotationList() const {
+	std::vector<Annotation> result;
+	result.reserve(data->Annotation().size());
+	for (const auto & value: data->Annotation()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void StringMetricValue::clearAnnotationList() {
+	data->Annotation().clear();
+}
+
 StringMetricValue & StringMetricValue::setValue(const std::string & value) {
 	data->Value(ConvertToCDM::convert(value));
 	return *this;

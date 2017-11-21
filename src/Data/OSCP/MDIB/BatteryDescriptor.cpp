@@ -37,6 +37,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
+#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -149,6 +150,24 @@ bool BatteryDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
+BatteryDescriptor & BatteryDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> BatteryDescriptor::getProductionSpecificationList() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void BatteryDescriptor::clearProductionSpecificationList() {
+	data->ProductionSpecification().clear();
+}
+
 BatteryDescriptor & BatteryDescriptor::setCapacityFullCharge(const Measurement & value) {
 	data->CapacityFullCharge(ConvertToCDM::convert(value));
 	return *this;

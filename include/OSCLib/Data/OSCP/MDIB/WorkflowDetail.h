@@ -72,6 +72,16 @@ public:
 	bool getVisitNumber(InstanceIdentifier & out) const;
 	bool hasVisitNumber() const;
 
+	WorkflowDetail & setRequestedOrderDetail(const RequestedOrderDetail & value);
+	RequestedOrderDetail getRequestedOrderDetail() const;
+	bool getRequestedOrderDetail(RequestedOrderDetail & out) const;
+	bool hasRequestedOrderDetail() const;
+
+	WorkflowDetail & setPerformedOrderDetail(const PerformedOrderDetail & value);
+	PerformedOrderDetail getPerformedOrderDetail() const;
+	bool getPerformedOrderDetail(PerformedOrderDetail & out) const;
+	bool hasPerformedOrderDetail() const;
+
 	WorkflowDetail & addDangerCode(const CodedValue & value);
 	std::vector<CodedValue> getDangerCodeList() const;
 	void clearDangerCodeList();

@@ -77,6 +77,10 @@ public:
 	bool getModelNumber(std::string & out) const;
 	bool hasModelNumber() const;
 
+	MetaData & addUdi(const Udi & value);
+	std::vector<Udi> getUdiList() const;
+	void clearUdiList();
+	
 	MetaData & addManufacturer(const LocalizedText & value);
 	std::vector<LocalizedText> getManufacturerList() const;
 	void clearManufacturerList();

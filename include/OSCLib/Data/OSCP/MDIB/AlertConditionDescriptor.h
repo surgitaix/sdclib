@@ -50,6 +50,8 @@ public:
 	AlertConditionDescriptor(
 		Handle handle
 		, 
+		AlertConditionKind kind
+		, 
 		AlertConditionPriority priority
 	); 
 	AlertConditionDescriptor() = delete;
@@ -79,6 +81,9 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
+	AlertConditionDescriptor & setKind(const AlertConditionKind & value);
+	AlertConditionKind getKind() const;
+
 	AlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getPriority() const;
 
@@ -86,6 +91,16 @@ public:
 	xml_schema::Duration getDefaultConditionGenerationDelay() const;
 	bool getDefaultConditionGenerationDelay(xml_schema::Duration & out) const;
 	bool hasDefaultConditionGenerationDelay() const;
+
+	AlertConditionDescriptor & setCanEscalate(const CanEscalate & value);
+	CanEscalate getCanEscalate() const;
+	bool getCanEscalate(CanEscalate & out) const;
+	bool hasCanEscalate() const;
+
+	AlertConditionDescriptor & setCanDeescalate(const CanDeescalate & value);
+	CanDeescalate getCanDeescalate() const;
+	bool getCanDeescalate(CanDeescalate & out) const;
+	bool hasCanDeescalate() const;
 
 	AlertConditionDescriptor & addSource(const HandleRef & value);
 	std::vector<HandleRef> getSourceList() const;

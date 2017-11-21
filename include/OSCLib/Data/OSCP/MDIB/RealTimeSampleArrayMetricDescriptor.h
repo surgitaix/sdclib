@@ -131,6 +131,10 @@ public:
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
 	
+	RealTimeSampleArrayMetricDescriptor & addRelation(const Relation & value);
+	std::vector<Relation> getRelationList() const;
+	void clearRelationList();
+	
 	RealTimeSampleArrayMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
 

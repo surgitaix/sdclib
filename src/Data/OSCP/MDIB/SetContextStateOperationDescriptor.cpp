@@ -225,6 +225,27 @@ bool SetContextStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
 	
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
+	data->AccessLevel(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool SetContextStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
+	if (data->AccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->AccessLevel().get());
+		return true;
+	}
+	return false;
+}
+
+AccessLevel SetContextStateOperationDescriptor::getAccessLevel() const {
+	return ConvertFromCDM::convert(data->AccessLevel().get());
+}
+	
+bool SetContextStateOperationDescriptor::hasAccessLevel() const {
+	return data->AccessLevel().present();
+}
+	
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::addModifiableData(const std::string & value) {
 	data->ModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;

@@ -129,6 +129,10 @@ public:
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
 	
+	NumericMetricDescriptor & addRelation(const Relation & value);
+	std::vector<Relation> getRelationList() const;
+	void clearRelationList();
+	
 	NumericMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
 

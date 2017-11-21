@@ -45,8 +45,12 @@ namespace OSCP {
 
 
 Relation::Relation(
+		Kind kind
+		, 
 		HandleRef entries
 ) : data(Defaults::RelationInit(
+		kind
+		,
 		entries
 )) {}
 
@@ -116,6 +120,16 @@ InstanceIdentifier Relation::getIdentification() const {
 	
 bool Relation::hasIdentification() const {
 	return data->Identification().present();
+}
+	
+Relation & Relation::setKind(const Kind & value) {
+	data->Kind(ConvertToCDM::convert(value));
+	return *this;
+}
+
+
+Kind Relation::getKind() const {
+	return ConvertFromCDM::convert(data->Kind());
 }
 	
 Relation & Relation::setEntries(const HandleRef & value) {

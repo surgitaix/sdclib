@@ -38,6 +38,7 @@
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
+#include "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h"
 
 namespace OSCLib {
 namespace Data {
@@ -116,6 +117,27 @@ bool ClinicalInfo::hasCode() const {
 	return data->Code().present();
 }
 	
+ClinicalInfo & ClinicalInfo::setCriticality(const Criticality & value) {
+	data->Criticality(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool ClinicalInfo::getCriticality(Criticality & out) const {
+	if (data->Criticality().present()) {
+		out = ConvertFromCDM::convert(data->Criticality().get());
+		return true;
+	}
+	return false;
+}
+
+Criticality ClinicalInfo::getCriticality() const {
+	return ConvertFromCDM::convert(data->Criticality().get());
+}
+	
+bool ClinicalInfo::hasCriticality() const {
+	return data->Criticality().present();
+}
+	
 ClinicalInfo & ClinicalInfo::addDescription(const LocalizedText & value) {
 	data->Description().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -132,6 +154,24 @@ std::vector<LocalizedText> ClinicalInfo::getDescriptionList() const {
 
 void ClinicalInfo::clearDescriptionList() {
 	data->Description().clear();
+}
+
+ClinicalInfo & ClinicalInfo::addRelatedMeasurement(const RelatedMeasurement & value) {
+	data->RelatedMeasurement().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<RelatedMeasurement> ClinicalInfo::getRelatedMeasurementList() const {
+	std::vector<RelatedMeasurement> result;
+	result.reserve(data->RelatedMeasurement().size());
+	for (const auto & value: data->RelatedMeasurement()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ClinicalInfo::clearRelatedMeasurementList() {
+	data->RelatedMeasurement().clear();
 }
 
 

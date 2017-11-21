@@ -46,7 +46,7 @@ class DefaultDefinitionBuilder(object):
             if requiredProperties_list:
                 requiredPropertiesVar_list = []
                 for tupel in requiredProperties_list:
-                    requiredPropertiesVar_list.append(tupel.split()[-1].lower())
+                    requiredPropertiesVar_list.append('ConvertToCDM::convert(' + tupel.split()[-1].lower() + ')')
                 self.__functionDefinition = self.__functionDefinition + ", ".join([str(item) for item in requiredPropertiesVar_list])
             self.__functionDefinition = self.__functionDefinition + ');\n}\n\n'
                 

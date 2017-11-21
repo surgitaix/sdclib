@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
@@ -148,6 +149,24 @@ bool ChannelDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
+ChannelDescriptor & ChannelDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecificationList() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ChannelDescriptor::clearProductionSpecificationList() {
+	data->ProductionSpecification().clear();
+}
+
 
 } /* namespace OSCP */
 } /* namespace Data */

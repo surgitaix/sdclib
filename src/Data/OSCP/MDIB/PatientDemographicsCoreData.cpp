@@ -218,6 +218,27 @@ bool PatientDemographicsCoreData::hasPatientType() const {
 	return data->PatientType().present();
 }
 	
+PatientDemographicsCoreData & PatientDemographicsCoreData::setDateOfBirth(const DateOfBirth & value) {
+	data->DateOfBirth(ConvertToCDM::convert(value));
+	return *this;
+}
+
+bool PatientDemographicsCoreData::getDateOfBirth(DateOfBirth & out) const {
+	if (data->DateOfBirth().present()) {
+		out = ConvertFromCDM::convert(data->DateOfBirth().get());
+		return true;
+	}
+	return false;
+}
+
+DateOfBirth PatientDemographicsCoreData::getDateOfBirth() const {
+	return ConvertFromCDM::convert(data->DateOfBirth().get());
+}
+	
+bool PatientDemographicsCoreData::hasDateOfBirth() const {
+	return data->DateOfBirth().present();
+}
+	
 PatientDemographicsCoreData & PatientDemographicsCoreData::setHeight(const Measurement & value) {
 	data->Height(ConvertToCDM::convert(value));
 	return *this;
