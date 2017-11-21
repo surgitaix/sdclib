@@ -18,7 +18,7 @@
  *  DicomNetworkAe.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,24 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-DicomNetworkAe::DicomNetworkAe() : data(Defaults::DicomNetworkAe()) {
-}
+
+DicomNetworkAe::DicomNetworkAe(
+		std::string aetitle
+		, 
+		xml_schema::Idrefs networkconnectionreference
+		, 
+		bool associationinitiator
+		, 
+		bool associationacceptor
+) : data(Defaults::DicomNetworkAeInit(
+		aetitle
+		,
+		networkconnectionreference
+		,
+		associationinitiator
+		,
+		associationacceptor
+)) {}
 
 DicomNetworkAe::operator CDM::DicomNetworkAe() const {
 	return *data;

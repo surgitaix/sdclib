@@ -18,7 +18,7 @@
  *  CalibrationInfo.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -36,14 +36,15 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/CalibrationDocumentation.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-CalibrationInfo::CalibrationInfo() : data(Defaults::CalibrationInfo()) {
-}
+
+CalibrationInfo::CalibrationInfo(
+) : data(Defaults::CalibrationInfoInit(
+)) {}
 
 CalibrationInfo::operator CDM::CalibrationInfo() const {
 	return *data;
@@ -134,24 +135,6 @@ bool CalibrationInfo::hasTime() const {
 	return data->Time().present();
 }
 	
-CalibrationInfo & CalibrationInfo::addCalibrationDocumentation(const CalibrationDocumentation & value) {
-	data->CalibrationDocumentation().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<CalibrationDocumentation> CalibrationInfo::getCalibrationDocumentationList() const {
-	std::vector<CalibrationDocumentation> result;
-	result.reserve(data->CalibrationDocumentation().size());
-	for (const auto & value: data->CalibrationDocumentation()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void CalibrationInfo::clearCalibrationDocumentationList() {
-	data->CalibrationDocumentation().clear();
-}
-
 
 } /* namespace OSCP */
 } /* namespace Data */

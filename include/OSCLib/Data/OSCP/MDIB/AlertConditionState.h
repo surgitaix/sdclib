@@ -18,7 +18,7 @@
  *  AlertConditionState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	AlertConditionState();
+	AlertConditionState(
+		HandleRef descriptorhandle
+		, 
+		AlertActivation activationstate
+	); 
+	AlertConditionState() = delete;
 	AlertConditionState(const AlertConditionState & object);
 	virtual ~AlertConditionState();
     

@@ -18,7 +18,7 @@
  *  SetComponentStateOperationState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetComponentStateOperationState::SetComponentStateOperationState() : data(Defaults::SetComponentStateOperationState()) {
-}
+
+SetComponentStateOperationState::SetComponentStateOperationState(
+		HandleRef descriptorhandle
+		, 
+		OperatingMode operatingmode
+) : data(Defaults::SetComponentStateOperationStateInit(
+		descriptorhandle
+		,
+		operatingmode
+)) {}
 
 SetComponentStateOperationState::operator CDM::SetComponentStateOperationState() const {
 	return *data;

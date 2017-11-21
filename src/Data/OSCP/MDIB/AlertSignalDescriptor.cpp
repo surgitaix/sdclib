@@ -18,7 +18,7 @@
  *  AlertSignalDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,20 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-AlertSignalDescriptor::AlertSignalDescriptor() : data(Defaults::AlertSignalDescriptor()) {
-}
+
+AlertSignalDescriptor::AlertSignalDescriptor(
+		Handle handle
+		, 
+		AlertSignalManifestation manifestation
+		, 
+		bool latching
+) : data(Defaults::AlertSignalDescriptorInit(
+		handle
+		,
+		manifestation
+		,
+		latching
+)) {}
 
 AlertSignalDescriptor::operator CDM::AlertSignalDescriptor() const {
 	return *data;

@@ -18,7 +18,7 @@
  *  AlertSystemState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	AlertSystemState();
+	AlertSystemState(
+		HandleRef descriptorhandle
+		, 
+		AlertActivation activationstate
+	); 
+	AlertSystemState() = delete;
 	AlertSystemState(const AlertSystemState & object);
 	virtual ~AlertSystemState();
     

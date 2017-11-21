@@ -18,7 +18,7 @@
  *  CalibrationDocumentation.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	CalibrationDocumentation();
+	CalibrationDocumentation(
+	); 
 	CalibrationDocumentation(const CalibrationDocumentation & object);
 	virtual ~CalibrationDocumentation();
     
@@ -59,10 +60,6 @@ public:
 	CalibrationDocumentation & addDocumentation(const LocalizedText & value);
 	std::vector<LocalizedText> getDocumentationList() const;
 	void clearDocumentationList();
-	
-	CalibrationDocumentation & addCalibrationResult(const CalibrationResult & value);
-	std::vector<CalibrationResult> getCalibrationResultList() const;
-	void clearCalibrationResultList();
 	
 private:
 	std::shared_ptr<CDM::CalibrationDocumentation> data;

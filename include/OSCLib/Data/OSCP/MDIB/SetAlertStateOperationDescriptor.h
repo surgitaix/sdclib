@@ -18,7 +18,7 @@
  *  SetAlertStateOperationDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SetAlertStateOperationDescriptor();
+	SetAlertStateOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+	); 
+	SetAlertStateOperationDescriptor() = delete;
 	SetAlertStateOperationDescriptor(const SetAlertStateOperationDescriptor & object);
 	virtual ~SetAlertStateOperationDescriptor();
     
@@ -91,11 +96,6 @@ public:
 	xml_schema::Duration getRetriggerable() const;
 	bool getRetriggerable(xml_schema::Duration & out) const;
 	bool hasRetriggerable() const;
-
-	SetAlertStateOperationDescriptor & setAccessLevel(const AccessLevel & value);
-	AccessLevel getAccessLevel() const;
-	bool getAccessLevel(AccessLevel & out) const;
-	bool hasAccessLevel() const;
 
 	SetAlertStateOperationDescriptor & addModifiableData(const std::string & value);
 	std::vector<std::string> getModifiableDataList() const;

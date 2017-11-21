@@ -18,7 +18,7 @@
  *  PersonParticipation.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-PersonParticipation::PersonParticipation() : data(Defaults::PersonParticipation()) {
-}
+
+PersonParticipation::PersonParticipation(
+) : data(Defaults::PersonParticipationInit(
+)) {}
 
 PersonParticipation::operator CDM::PersonParticipation() const {
 	return *data;

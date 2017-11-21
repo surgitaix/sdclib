@@ -18,7 +18,7 @@
  *  LocationContextState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	LocationContextState();
+	LocationContextState(
+		HandleRef descriptorhandle
+		, 
+		Handle handle
+	); 
+	LocationContextState() = delete;
 	LocationContextState(const LocationContextState & object);
 	virtual ~LocationContextState();
     

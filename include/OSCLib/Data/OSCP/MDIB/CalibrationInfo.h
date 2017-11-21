@@ -18,7 +18,7 @@
  *  CalibrationInfo.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	CalibrationInfo();
+	CalibrationInfo(
+	); 
 	CalibrationInfo(const CalibrationInfo & object);
 	virtual ~CalibrationInfo();
     
@@ -71,10 +72,6 @@ public:
 	bool getTime(Timestamp & out) const;
 	bool hasTime() const;
 
-	CalibrationInfo & addCalibrationDocumentation(const CalibrationDocumentation & value);
-	std::vector<CalibrationDocumentation> getCalibrationDocumentationList() const;
-	void clearCalibrationDocumentationList();
-	
 private:
 	std::shared_ptr<CDM::CalibrationInfo> data;
 };

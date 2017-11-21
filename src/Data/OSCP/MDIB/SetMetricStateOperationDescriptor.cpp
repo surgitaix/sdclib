@@ -18,7 +18,7 @@
  *  SetMetricStateOperationDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetMetricStateOperationDescriptor::SetMetricStateOperationDescriptor() : data(Defaults::SetMetricStateOperationDescriptor()) {
-}
+
+SetMetricStateOperationDescriptor::SetMetricStateOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+) : data(Defaults::SetMetricStateOperationDescriptorInit(
+		handle
+		,
+		operationtarget
+)) {}
 
 SetMetricStateOperationDescriptor::operator CDM::SetMetricStateOperationDescriptor() const {
 	return *data;
@@ -215,27 +223,6 @@ xml_schema::Duration SetMetricStateOperationDescriptor::getRetriggerable() const
 	
 bool SetMetricStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
-}
-	
-SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
-	data->AccessLevel(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SetMetricStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
-	if (data->AccessLevel().present()) {
-		out = ConvertFromCDM::convert(data->AccessLevel().get());
-		return true;
-	}
-	return false;
-}
-
-AccessLevel SetMetricStateOperationDescriptor::getAccessLevel() const {
-	return ConvertFromCDM::convert(data->AccessLevel().get());
-}
-	
-bool SetMetricStateOperationDescriptor::hasAccessLevel() const {
-	return data->AccessLevel().present();
 }
 	
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::addModifiableData(const std::string & value) {

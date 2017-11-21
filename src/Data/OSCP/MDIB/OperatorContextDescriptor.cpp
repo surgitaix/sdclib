@@ -18,7 +18,7 @@
  *  OperatorContextDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OperatorContextDescriptor::OperatorContextDescriptor() : data(Defaults::OperatorContextDescriptor()) {
-}
+
+OperatorContextDescriptor::OperatorContextDescriptor(
+		Handle handle
+) : data(Defaults::OperatorContextDescriptorInit(
+		handle
+)) {}
 
 OperatorContextDescriptor::operator CDM::OperatorContextDescriptor() const {
 	return *data;

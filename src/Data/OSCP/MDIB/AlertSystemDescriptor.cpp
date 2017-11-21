@@ -18,7 +18,7 @@
  *  AlertSystemDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-AlertSystemDescriptor::AlertSystemDescriptor() : data(Defaults::AlertSystemDescriptor()) {
-}
+
+AlertSystemDescriptor::AlertSystemDescriptor(
+		Handle handle
+) : data(Defaults::AlertSystemDescriptorInit(
+		handle
+)) {}
 
 AlertSystemDescriptor::operator CDM::AlertSystemDescriptor() const {
 	return *data;

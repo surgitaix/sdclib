@@ -18,7 +18,7 @@
  *  RealTimeSampleArrayMetricState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	RealTimeSampleArrayMetricState();
+	RealTimeSampleArrayMetricState(
+		HandleRef descriptorhandle
+	); 
+	RealTimeSampleArrayMetricState() = delete;
 	RealTimeSampleArrayMetricState(const RealTimeSampleArrayMetricState & object);
 	virtual ~RealTimeSampleArrayMetricState();
     

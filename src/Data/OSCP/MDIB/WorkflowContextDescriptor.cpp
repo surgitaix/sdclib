@@ -18,7 +18,7 @@
  *  WorkflowContextDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-WorkflowContextDescriptor::WorkflowContextDescriptor() : data(Defaults::WorkflowContextDescriptor()) {
-}
+
+WorkflowContextDescriptor::WorkflowContextDescriptor(
+		Handle handle
+) : data(Defaults::WorkflowContextDescriptorInit(
+		handle
+)) {}
 
 WorkflowContextDescriptor::operator CDM::WorkflowContextDescriptor() const {
 	return *data;

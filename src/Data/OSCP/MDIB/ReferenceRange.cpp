@@ -18,7 +18,7 @@
  *  ReferenceRange.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ReferenceRange::ReferenceRange() : data(Defaults::ReferenceRange()) {
-}
+
+ReferenceRange::ReferenceRange(
+		Range range
+) : data(Defaults::ReferenceRangeInit(
+		range
+)) {}
 
 ReferenceRange::operator CDM::ReferenceRange() const {
 	return *data;

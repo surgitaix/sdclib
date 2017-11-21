@@ -18,7 +18,7 @@
  *  PersonReference.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-PersonReference::PersonReference() : data(Defaults::PersonReference()) {
-}
+
+PersonReference::PersonReference(
+) : data(Defaults::PersonReferenceInit(
+)) {}
 
 PersonReference::operator CDM::PersonReference() const {
 	return *data;

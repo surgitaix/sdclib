@@ -18,7 +18,7 @@
  *  Relation.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-Relation::Relation() : data(Defaults::Relation()) {
-}
+
+Relation::Relation(
+		HandleRef entries
+) : data(Defaults::RelationInit(
+		entries
+)) {}
 
 Relation::operator CDM::Relation() const {
 	return *data;
@@ -112,16 +116,6 @@ InstanceIdentifier Relation::getIdentification() const {
 	
 bool Relation::hasIdentification() const {
 	return data->Identification().present();
-}
-	
-Relation & Relation::setKind(const Kind & value) {
-	data->Kind(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-Kind Relation::getKind() const {
-	return ConvertFromCDM::convert(data->Kind());
 }
 	
 Relation & Relation::setEntries(const HandleRef & value) {

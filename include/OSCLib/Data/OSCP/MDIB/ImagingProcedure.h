@@ -18,7 +18,7 @@
  *  ImagingProcedure.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,16 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ImagingProcedure();
+	ImagingProcedure(
+		InstanceIdentifier accessionidentifier
+		, 
+		InstanceIdentifier requestedprocedureid
+		, 
+		InstanceIdentifier studyinstanceuid
+		, 
+		InstanceIdentifier scheduledprocedurestepid
+	); 
+	ImagingProcedure() = delete;
 	ImagingProcedure(const ImagingProcedure & object);
 	virtual ~ImagingProcedure();
     

@@ -18,7 +18,7 @@
  *  SetMetricStateOperationState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetMetricStateOperationState::SetMetricStateOperationState() : data(Defaults::SetMetricStateOperationState()) {
-}
+
+SetMetricStateOperationState::SetMetricStateOperationState(
+		HandleRef descriptorhandle
+		, 
+		OperatingMode operatingmode
+) : data(Defaults::SetMetricStateOperationStateInit(
+		descriptorhandle
+		,
+		operatingmode
+)) {}
 
 SetMetricStateOperationState::operator CDM::SetMetricStateOperationState() const {
 	return *data;

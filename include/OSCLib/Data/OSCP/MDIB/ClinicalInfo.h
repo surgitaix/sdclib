@@ -18,7 +18,7 @@
  *  ClinicalInfo.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ClinicalInfo();
+	ClinicalInfo(
+	); 
 	ClinicalInfo(const ClinicalInfo & object);
 	virtual ~ClinicalInfo();
     
@@ -66,18 +67,9 @@ public:
 	bool getCode(CodedValue & out) const;
 	bool hasCode() const;
 
-	ClinicalInfo & setCriticality(const Criticality & value);
-	Criticality getCriticality() const;
-	bool getCriticality(Criticality & out) const;
-	bool hasCriticality() const;
-
 	ClinicalInfo & addDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getDescriptionList() const;
 	void clearDescriptionList();
-	
-	ClinicalInfo & addRelatedMeasurement(const RelatedMeasurement & value);
-	std::vector<RelatedMeasurement> getRelatedMeasurementList() const;
-	void clearRelatedMeasurementList();
 	
 private:
 	std::shared_ptr<CDM::ClinicalInfo> data;

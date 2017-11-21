@@ -18,7 +18,7 @@
  *  DistributionSampleArrayMetricDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -39,15 +39,42 @@
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor() : data(Defaults::DistributionSampleArrayMetricDescriptor()) {
-}
+
+DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(
+		Handle handle
+		, 
+		CodedValue unit
+		, 
+		MetricCategory metriccategory
+		, 
+		MetricAvailability metricavailability
+		, 
+		CodedValue domainunit
+		, 
+		Range distributionrange
+		, 
+		double resolution
+) : data(Defaults::DistributionSampleArrayMetricDescriptorInit(
+		handle
+		,
+		unit
+		,
+		metriccategory
+		,
+		metricavailability
+		,
+		domainunit
+		,
+		distributionrange
+		,
+		resolution
+)) {}
 
 DistributionSampleArrayMetricDescriptor::operator CDM::DistributionSampleArrayMetricDescriptor() const {
 	return *data;
@@ -320,24 +347,6 @@ std::vector<CodedValue> DistributionSampleArrayMetricDescriptor::getBodySiteList
 
 void DistributionSampleArrayMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
-}
-
-DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::addRelation(const Relation & value) {
-	data->Relation().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<Relation> DistributionSampleArrayMetricDescriptor::getRelationList() const {
-	std::vector<Relation> result;
-	result.reserve(data->Relation().size());
-	for (const auto & value: data->Relation()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void DistributionSampleArrayMetricDescriptor::clearRelationList() {
-	data->Relation().clear();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setDomainUnit(const CodedValue & value) {

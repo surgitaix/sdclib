@@ -18,7 +18,7 @@
  *  MdState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MdState::MdState() : data(Defaults::MdState()) {
-}
+
+MdState::MdState(
+) : data(Defaults::MdStateInit(
+)) {}
 
 MdState::operator CDM::MdState() const {
 	return *data;

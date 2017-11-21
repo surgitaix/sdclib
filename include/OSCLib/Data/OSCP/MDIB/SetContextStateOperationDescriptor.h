@@ -18,7 +18,7 @@
  *  SetContextStateOperationDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SetContextStateOperationDescriptor();
+	SetContextStateOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+	); 
+	SetContextStateOperationDescriptor() = delete;
 	SetContextStateOperationDescriptor(const SetContextStateOperationDescriptor & object);
 	virtual ~SetContextStateOperationDescriptor();
     
@@ -91,11 +96,6 @@ public:
 	xml_schema::Duration getRetriggerable() const;
 	bool getRetriggerable(xml_schema::Duration & out) const;
 	bool hasRetriggerable() const;
-
-	SetContextStateOperationDescriptor & setAccessLevel(const AccessLevel & value);
-	AccessLevel getAccessLevel() const;
-	bool getAccessLevel(AccessLevel & out) const;
-	bool hasAccessLevel() const;
 
 	SetContextStateOperationDescriptor & addModifiableData(const std::string & value);
 	std::vector<std::string> getModifiableDataList() const;

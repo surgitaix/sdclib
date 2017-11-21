@@ -18,7 +18,7 @@
  *  SetContextStateOperationState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetContextStateOperationState::SetContextStateOperationState() : data(Defaults::SetContextStateOperationState()) {
-}
+
+SetContextStateOperationState::SetContextStateOperationState(
+		HandleRef descriptorhandle
+		, 
+		OperatingMode operatingmode
+) : data(Defaults::SetContextStateOperationStateInit(
+		descriptorhandle
+		,
+		operatingmode
+)) {}
 
 SetContextStateOperationState::operator CDM::SetContextStateOperationState() const {
 	return *data;

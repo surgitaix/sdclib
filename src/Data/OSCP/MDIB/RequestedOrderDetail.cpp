@@ -18,7 +18,7 @@
  *  RequestedOrderDetail.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -46,8 +46,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-RequestedOrderDetail::RequestedOrderDetail() : data(Defaults::RequestedOrderDetail()) {
-}
+
+RequestedOrderDetail::RequestedOrderDetail(
+		InstanceIdentifier placerordernumber
+) : data(Defaults::RequestedOrderDetailInit(
+		placerordernumber
+)) {}
 
 RequestedOrderDetail::operator CDM::RequestedOrderDetail() const {
 	return *data;

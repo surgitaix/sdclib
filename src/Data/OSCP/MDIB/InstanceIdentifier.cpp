@@ -43,7 +43,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-InstanceIdentifier::InstanceIdentifier() : data(Defaults::InstanceIdentifier()) {
+InstanceIdentifier::InstanceIdentifier() : data(Defaults::InstanceIdentifierInit()) {
 }
 
 InstanceIdentifier::operator CDM::InstanceIdentifier() const {

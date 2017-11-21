@@ -18,7 +18,7 @@
  *  ChannelState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ChannelState::ChannelState() : data(Defaults::ChannelState()) {
-}
+
+ChannelState::ChannelState(
+		HandleRef descriptorhandle
+) : data(Defaults::ChannelStateInit(
+		descriptorhandle
+)) {}
 
 ChannelState::operator CDM::ChannelState() const {
 	return *data;

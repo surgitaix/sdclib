@@ -18,7 +18,7 @@
  *  VmdDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -40,15 +40,18 @@
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-VmdDescriptor::VmdDescriptor() : data(Defaults::VmdDescriptor()) {
-}
+
+VmdDescriptor::VmdDescriptor(
+		Handle handle
+) : data(Defaults::VmdDescriptorInit(
+		handle
+)) {}
 
 VmdDescriptor::operator CDM::VmdDescriptor() const {
 	return *data;
@@ -149,24 +152,6 @@ bool VmdDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-VmdDescriptor & VmdDescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<ProductionSpecification> VmdDescriptor::getProductionSpecificationList() const {
-	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void VmdDescriptor::clearProductionSpecificationList() {
-	data->ProductionSpecification().clear();
-}
-
 VmdDescriptor & VmdDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
 	data->AlertSystem(ConvertToCDM::convert(value));
 	return *this;

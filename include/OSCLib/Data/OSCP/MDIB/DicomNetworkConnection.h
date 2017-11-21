@@ -18,7 +18,7 @@
  *  DicomNetworkConnection.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	DicomNetworkConnection();
+	DicomNetworkConnection(
+		xml_schema::Id id
+		, 
+		std::string hostname
+	); 
+	DicomNetworkConnection() = delete;
 	DicomNetworkConnection(const DicomNetworkConnection & object);
 	virtual ~DicomNetworkConnection();
     

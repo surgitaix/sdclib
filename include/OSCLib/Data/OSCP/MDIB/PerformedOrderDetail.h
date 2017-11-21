@@ -18,7 +18,7 @@
  *  PerformedOrderDetail.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	PerformedOrderDetail();
+	PerformedOrderDetail(
+	); 
 	PerformedOrderDetail(const PerformedOrderDetail & object);
 	virtual ~PerformedOrderDetail();
     

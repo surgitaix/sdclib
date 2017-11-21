@@ -18,7 +18,7 @@
  *  RelatedMeasurement.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -37,14 +37,17 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
-#include "OSCLib/Data/OSCP/MDIB/ReferenceRange.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-RelatedMeasurement::RelatedMeasurement() : data(Defaults::RelatedMeasurement()) {
-}
+
+RelatedMeasurement::RelatedMeasurement(
+		Measurement value
+) : data(Defaults::RelatedMeasurementInit(
+		value
+)) {}
 
 RelatedMeasurement::operator CDM::RelatedMeasurement() const {
 	return *data;
@@ -103,24 +106,6 @@ bool RelatedMeasurement::hasValidity() const {
 	return data->Validity().present();
 }
 	
-RelatedMeasurement & RelatedMeasurement::addReferenceRange(const ReferenceRange & value) {
-	data->ReferenceRange().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<ReferenceRange> RelatedMeasurement::getReferenceRangeList() const {
-	std::vector<ReferenceRange> result;
-	result.reserve(data->ReferenceRange().size());
-	for (const auto & value: data->ReferenceRange()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void RelatedMeasurement::clearReferenceRangeList() {
-	data->ReferenceRange().clear();
-}
-
 
 } /* namespace OSCP */
 } /* namespace Data */

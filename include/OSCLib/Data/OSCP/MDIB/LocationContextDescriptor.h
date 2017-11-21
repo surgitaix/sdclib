@@ -18,7 +18,7 @@
  *  LocationContextDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	LocationContextDescriptor();
+	LocationContextDescriptor(
+		Handle handle
+	); 
+	LocationContextDescriptor() = delete;
 	LocationContextDescriptor(const LocationContextDescriptor & object);
 	virtual ~LocationContextDescriptor();
     

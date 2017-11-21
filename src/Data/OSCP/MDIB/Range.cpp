@@ -18,7 +18,7 @@
  *  Range.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-Range::Range() : data(Defaults::Range()) {
-}
+
+Range::Range(
+) : data(Defaults::RangeInit(
+)) {}
 
 Range::operator CDM::Range() const {
 	return *data;

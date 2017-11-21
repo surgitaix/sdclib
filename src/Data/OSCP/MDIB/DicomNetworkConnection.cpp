@@ -18,7 +18,7 @@
  *  DicomNetworkConnection.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-DicomNetworkConnection::DicomNetworkConnection() : data(Defaults::DicomNetworkConnection()) {
-}
+
+DicomNetworkConnection::DicomNetworkConnection(
+		xml_schema::Id id
+		, 
+		std::string hostname
+) : data(Defaults::DicomNetworkConnectionInit(
+		id
+		,
+		hostname
+)) {}
 
 DicomNetworkConnection::operator CDM::DicomNetworkConnection() const {
 	return *data;

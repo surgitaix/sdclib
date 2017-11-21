@@ -18,7 +18,7 @@
  *  ApplyAnnotation.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ApplyAnnotation::ApplyAnnotation() : data(Defaults::ApplyAnnotation()) {
-}
+
+ApplyAnnotation::ApplyAnnotation(
+		unsigned int annotationindex
+		, 
+		unsigned int sampleindex
+) : data(Defaults::ApplyAnnotationInit(
+		annotationindex
+		,
+		sampleindex
+)) {}
 
 ApplyAnnotation::operator CDM::ApplyAnnotation() const {
 	return *data;

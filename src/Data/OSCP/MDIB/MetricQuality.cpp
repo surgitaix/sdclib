@@ -18,7 +18,7 @@
  *  MetricQuality.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MetricQuality::MetricQuality() : data(Defaults::MetricQuality()) {
-}
+
+MetricQuality::MetricQuality(
+		MeasurementValidity validity
+) : data(Defaults::MetricQualityInit(
+		validity
+)) {}
 
 MetricQuality::operator CDM::MetricQuality() const {
 	return *data;

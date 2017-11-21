@@ -18,7 +18,7 @@
  *  ClockDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ClockDescriptor();
+	ClockDescriptor(
+		Handle handle
+	); 
+	ClockDescriptor() = delete;
 	ClockDescriptor(const ClockDescriptor & object);
 	virtual ~ClockDescriptor();
     
@@ -74,10 +77,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	ClockDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecificationList() const;
-	void clearProductionSpecificationList();
-	
 	ClockDescriptor & setResolution(const xml_schema::Duration & value);
 	xml_schema::Duration getResolution() const;
 	bool getResolution(xml_schema::Duration & out) const;

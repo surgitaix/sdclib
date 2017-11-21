@@ -18,7 +18,7 @@
  *  AlertConditionDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	AlertConditionDescriptor();
+	AlertConditionDescriptor(
+		Handle handle
+		, 
+		AlertConditionPriority priority
+	); 
+	AlertConditionDescriptor() = delete;
 	AlertConditionDescriptor(const AlertConditionDescriptor & object);
 	virtual ~AlertConditionDescriptor();
     
@@ -74,9 +79,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	AlertConditionDescriptor & setKind(const AlertConditionKind & value);
-	AlertConditionKind getKind() const;
-
 	AlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getPriority() const;
 
@@ -84,16 +86,6 @@ public:
 	xml_schema::Duration getDefaultConditionGenerationDelay() const;
 	bool getDefaultConditionGenerationDelay(xml_schema::Duration & out) const;
 	bool hasDefaultConditionGenerationDelay() const;
-
-	AlertConditionDescriptor & setCanEscalate(const CanEscalate & value);
-	CanEscalate getCanEscalate() const;
-	bool getCanEscalate(CanEscalate & out) const;
-	bool hasCanEscalate() const;
-
-	AlertConditionDescriptor & setCanDeescalate(const CanDeescalate & value);
-	CanDeescalate getCanDeescalate() const;
-	bool getCanDeescalate(CanDeescalate & out) const;
-	bool hasCanDeescalate() const;
 
 	AlertConditionDescriptor & addSource(const HandleRef & value);
 	std::vector<HandleRef> getSourceList() const;

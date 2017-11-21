@@ -18,7 +18,7 @@
  *  VmdState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-VmdState::VmdState() : data(Defaults::VmdState()) {
-}
+
+VmdState::VmdState(
+		HandleRef descriptorhandle
+) : data(Defaults::VmdStateInit(
+		descriptorhandle
+)) {}
 
 VmdState::operator CDM::VmdState() const {
 	return *data;

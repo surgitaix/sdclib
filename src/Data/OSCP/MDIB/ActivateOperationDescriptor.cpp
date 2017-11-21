@@ -18,7 +18,7 @@
  *  ActivateOperationDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -36,15 +36,22 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Argument.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ActivateOperationDescriptor::ActivateOperationDescriptor() : data(Defaults::ActivateOperationDescriptor()) {
-}
+
+ActivateOperationDescriptor::ActivateOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+) : data(Defaults::ActivateOperationDescriptorInit(
+		handle
+		,
+		operationtarget
+)) {}
 
 ActivateOperationDescriptor::operator CDM::ActivateOperationDescriptor() const {
 	return *data;
@@ -218,27 +225,6 @@ bool ActivateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
 	
-ActivateOperationDescriptor & ActivateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
-	data->AccessLevel(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool ActivateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
-	if (data->AccessLevel().present()) {
-		out = ConvertFromCDM::convert(data->AccessLevel().get());
-		return true;
-	}
-	return false;
-}
-
-AccessLevel ActivateOperationDescriptor::getAccessLevel() const {
-	return ConvertFromCDM::convert(data->AccessLevel().get());
-}
-	
-bool ActivateOperationDescriptor::hasAccessLevel() const {
-	return data->AccessLevel().present();
-}
-	
 ActivateOperationDescriptor & ActivateOperationDescriptor::addModifiableData(const std::string & value) {
 	data->ModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -255,24 +241,6 @@ std::vector<std::string> ActivateOperationDescriptor::getModifiableDataList() co
 
 void ActivateOperationDescriptor::clearModifiableDataList() {
 	data->ModifiableData().clear();
-}
-
-ActivateOperationDescriptor & ActivateOperationDescriptor::addArgument(const Argument & value) {
-	data->Argument().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<Argument> ActivateOperationDescriptor::getArgumentList() const {
-	std::vector<Argument> result;
-	result.reserve(data->Argument().size());
-	for (const auto & value: data->Argument()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void ActivateOperationDescriptor::clearArgumentList() {
-	data->Argument().clear();
 }
 
 

@@ -18,7 +18,7 @@
  *  ActivateOperationDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ActivateOperationDescriptor();
+	ActivateOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+	); 
+	ActivateOperationDescriptor() = delete;
 	ActivateOperationDescriptor(const ActivateOperationDescriptor & object);
 	virtual ~ActivateOperationDescriptor();
     
@@ -92,18 +97,9 @@ public:
 	bool getRetriggerable(xml_schema::Duration & out) const;
 	bool hasRetriggerable() const;
 
-	ActivateOperationDescriptor & setAccessLevel(const AccessLevel & value);
-	AccessLevel getAccessLevel() const;
-	bool getAccessLevel(AccessLevel & out) const;
-	bool hasAccessLevel() const;
-
 	ActivateOperationDescriptor & addModifiableData(const std::string & value);
 	std::vector<std::string> getModifiableDataList() const;
 	void clearModifiableDataList();
-	
-	ActivateOperationDescriptor & addArgument(const Argument & value);
-	std::vector<Argument> getArgumentList() const;
-	void clearArgumentList();
 	
 private:
 	std::shared_ptr<CDM::ActivateOperationDescriptor> data;

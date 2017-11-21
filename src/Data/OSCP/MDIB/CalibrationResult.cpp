@@ -18,7 +18,7 @@
  *  CalibrationResult.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-CalibrationResult::CalibrationResult() : data(Defaults::CalibrationResult()) {
-}
+
+CalibrationResult::CalibrationResult(
+		CodedValue code
+		, 
+		Measurement value
+) : data(Defaults::CalibrationResultInit(
+		code
+		,
+		value
+)) {}
 
 CalibrationResult::operator CDM::CalibrationResult() const {
 	return *data;

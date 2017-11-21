@@ -18,7 +18,7 @@
  *  OrderDetail.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OrderDetail::OrderDetail() : data(Defaults::OrderDetail()) {
-}
+
+OrderDetail::OrderDetail(
+) : data(Defaults::OrderDetailInit(
+)) {}
 
 OrderDetail::operator CDM::OrderDetail() const {
 	return *data;

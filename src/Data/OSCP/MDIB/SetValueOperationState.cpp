@@ -18,7 +18,7 @@
  *  SetValueOperationState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetValueOperationState::SetValueOperationState() : data(Defaults::SetValueOperationState()) {
-}
+
+SetValueOperationState::SetValueOperationState(
+		HandleRef descriptorhandle
+		, 
+		OperatingMode operatingmode
+) : data(Defaults::SetValueOperationStateInit(
+		descriptorhandle
+		,
+		operatingmode
+)) {}
 
 SetValueOperationState::operator CDM::SetValueOperationState() const {
 	return *data;

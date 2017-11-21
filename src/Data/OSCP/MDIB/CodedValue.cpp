@@ -18,7 +18,7 @@
  *  CodedValue.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -37,14 +37,17 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/Translation.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-CodedValue::CodedValue() : data(Defaults::CodedValue()) {
-}
+
+CodedValue::CodedValue(
+		CodeIdentifier code
+) : data(Defaults::CodedValueInit(
+		code
+)) {}
 
 CodedValue::operator CDM::CodedValue() const {
 	return *data;
@@ -179,24 +182,6 @@ std::vector<LocalizedText> CodedValue::getConceptDescriptionList() const {
 
 void CodedValue::clearConceptDescriptionList() {
 	data->ConceptDescription().clear();
-}
-
-CodedValue & CodedValue::addTranslation(const Translation & value) {
-	data->Translation().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<Translation> CodedValue::getTranslationList() const {
-	std::vector<Translation> result;
-	result.reserve(data->Translation().size());
-	for (const auto & value: data->Translation()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void CodedValue::clearTranslationList() {
-	data->Translation().clear();
 }
 
 

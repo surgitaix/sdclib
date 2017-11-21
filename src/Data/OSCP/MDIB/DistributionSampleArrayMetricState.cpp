@@ -18,7 +18,7 @@
  *  DistributionSampleArrayMetricState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -45,8 +45,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-DistributionSampleArrayMetricState::DistributionSampleArrayMetricState() : data(Defaults::DistributionSampleArrayMetricState()) {
-}
+
+DistributionSampleArrayMetricState::DistributionSampleArrayMetricState(
+		HandleRef descriptorhandle
+) : data(Defaults::DistributionSampleArrayMetricStateInit(
+		descriptorhandle
+)) {}
 
 DistributionSampleArrayMetricState::operator CDM::DistributionSampleArrayMetricState() const {
 	return *data;

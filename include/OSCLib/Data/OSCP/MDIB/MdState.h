@@ -18,7 +18,7 @@
  *  MdState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	MdState();
+	MdState(
+	); 
 	MdState(const MdState & object);
 	virtual ~MdState();
     

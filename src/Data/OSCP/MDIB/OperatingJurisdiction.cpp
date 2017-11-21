@@ -43,7 +43,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OperatingJurisdiction::OperatingJurisdiction() : data(Defaults::OperatingJurisdiction()) {
+OperatingJurisdiction::OperatingJurisdiction() : data(Defaults::OperatingJurisdictionInit()) {
 }
 
 OperatingJurisdiction::operator CDM::OperatingJurisdiction() const {

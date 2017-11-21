@@ -15,6 +15,7 @@ SWITCH_ENABLE_DEFAULT_CPP_GENERATION = 1
 
 from lxml import etree
 from io import StringIO, BytesIO
+import copy
 
 from pyclassgenerators.simpletypeshandling import CppTypdefStringBuilder, CppEnumClassBuilder, CppEnumToStringClassDeclarationBuilder, CppEnumToStringClassDefinitionBuilder
 from pyclassgenerators.converterclasses import CppConvertFromCDMClassDeclarationBuilder, CppConvertFromCDMClassEnumConverterFunctionBuilder, CppConvertFromCDMClassDefinitionBuilder, CppConvertToCDMClassDeclarationBuilder, CppConvertToCDMClassEnumConverterFunctionBuilder, CppConvertToCDMClassDefinitionBuilder
@@ -111,7 +112,6 @@ class ClassBuilderForwarding(object):
         self.__cppConvertFromCDMClassDeclarationBuilder.addNonBasetype(complexTypeName, abstractBool)
         self.__cppConvertToCDMClassDefinitionBuilder.addComplexType(complexTypeName, abstractBool)
         self.__mdibDeclacationsBuilder.addType(complexTypeName)
-        print requiredProperties_list
         self.__defaultDeclarationBuilder.addFunction(complexTypeName,abstractBool, requiredProperties_list)
         self.__defaultDefinitionBuilder.addFunction(complexTypeName,abstractBool,requiredProperties_list)
         
@@ -209,11 +209,12 @@ g_complexTypes_set = set()
 gslFileBuilder =  GSLFileBuilder()
 g_embeddedAttributesNamesList = list()
 classBuilderForwarder = ClassBuilderForwarding()
+g_attributeGroupsNodesMap = {}
 ## abstract class hirachy handling, no multiple inheritance
-requiredFieldsFromAbstractPartents = {} # one level of abstraction
-requiredFieldsFromAllAbstractAncestors = {} # all level of abstraction
-abstractClassParent_map = {}
-abstractDependencyRepresentation = list(list()) # each inner list represents one path in the inheritance tree
+requiredPropertiesOfClass = {} # one level of abstraction
+requiredFieldsFromAllAncestors = {} # all level of abstraction
+classParent_map = {}
+dependencyRepresentation = list(list()) # each inner list represents one path in the inheritance tree
 
 
 
@@ -238,8 +239,37 @@ for tree in xsdFiles:
             ##> put inside gslclass!!
             g_complexTypes_set.add(complexType_node.attrib['name'])
 
+#
+## attributeGroups
+#
+# save attribute groups to dereference them later
+# for tree in xsdFiles:
+#     for attribGroup_node in tree.xpath('//xsd:attributeGroup', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+#         # node with a name define the content of an attribute group
+#         if 'name' in attribGroup_node.attrib:
+#             g_attributeGroupsNodesMap[attribGroup_node.attrib['name']] = attribGroup_node
+#             
+# # replace referenced nodes in tree
+# for tree in xsdFiles:
+#     for attribGroup_node in tree.xpath('//xsd:attributeGroup', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
+#         # node with a name define the content of an attribute group
+#         if 'ref' in attribGroup_node.attrib:
+#             # get rid of the namespace prefix
+#             nodeReference_xsd = attribGroup_node.attrib['ref']
+#             nodeReference = nodeReference_xsd[(nodeReference_xsd.index(':')+1):]
+#             copyOfNode = copy.deepcopy(g_attributeGroupsNodesMap[nodeReference])
+#             
+#             for element in copyOfNode.getchildren():
+#                 attribGroup_node.getparent().append(element)
+#             
+#             attribGroup_node.getparent().remove(attribGroup_node)
+#         
+#         print etree.tostring(tree)
 
-## abstract class handling: save inheritance and required fields to maps
+#
+## inheritance
+#
+## save inheritance and required fields to maps
 for tree in xsdFiles:
     for complexType_node in tree.xpath('//xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'}):
                 
@@ -247,31 +277,31 @@ for tree in xsdFiles:
         complexNodeParser.parseComplexTypeNode(complexType_node)
         
         ### build map for required fiels (= XSD constructor arguments)
-        if complexNodeParser.getAbstractBool():    
-            requiredFieldsFromAbstractPartents[complexNodeParser.getComplexTypeName()] = complexNodeParser.getRequiredProperties()
-            abstractClassParent_map[complexNodeParser.getComplexTypeName()] = complexNodeParser.getParentTypeName()
-            
+        requiredPropertiesOfClass[complexNodeParser.getComplexTypeName()] = complexNodeParser.getRequiredProperties()
+        classParent_map[complexNodeParser.getComplexTypeName()] = complexNodeParser.getParentTypeName()
+        
 
-
-## build dependency lists, representing inheritance of the abstract classes
-for item in abstractClassParent_map.keys():
+## build dependency lists, representing inheritance 
+for item in classParent_map.keys():
     dependencyPath = []
     child = item
-    while (abstractClassParent_map[child] != 'NULL'):
-        dependencyPath.append(abstractClassParent_map[child])
-        child = abstractClassParent_map[child]
-    if dependencyPath:
-        dependencyPath = [item] + dependencyPath
-        abstractDependencyRepresentation.append(dependencyPath)
+    while (classParent_map[child] != 'NULL'):
+        dependencyPath.append(classParent_map[child])
+        child = classParent_map[child]
+    #if dependencyPath:   
+    dependencyPath = [item] + dependencyPath
+    dependencyRepresentation.append(dependencyPath)
         
-## build a new required fields list for the abstract classes containing all inherited fields
-for dependencyPath in abstractDependencyRepresentation:
+## build a new list of required fields  for the classes containing all inherited fields
+for dependencyPath in dependencyRepresentation:
     requiredFieldsAlongPath_list = list()
     for item in dependencyPath:
-        requiredFieldsAlongPath_list = requiredFieldsFromAbstractPartents[item] + requiredFieldsAlongPath_list 
-    requiredFieldsFromAllAbstractAncestors[dependencyPath[0]] = requiredFieldsAlongPath_list
+        requiredFieldsAlongPath_list = requiredPropertiesOfClass[item] + requiredFieldsAlongPath_list 
+    requiredFieldsFromAllAncestors[dependencyPath[0]] = requiredFieldsAlongPath_list
 
 
+complexNodeParser = ComplexTypeNodeParser(simpleTypes_set, g_complexTypes_set, g_basetype_map, g_apiInterfaces, g_customImplList, simpleTypeNodeParser)   
+complexNodeParser.reset()
 
 # analyse complex types
 for tree in xsdFiles:
@@ -282,8 +312,7 @@ for tree in xsdFiles:
         
         requiredFields_list = complexNodeParser.getRequiredProperties()
         if complexNodeParser.getParentTypeName() != 'NULL':
-            # partents are always abstract
-            requiredFields_list = requiredFieldsFromAllAbstractAncestors[complexNodeParser.getParentTypeName()] + requiredFields_list
+            requiredFields_list = requiredFieldsFromAllAncestors[complexNodeParser.getParentTypeName()] + requiredFields_list
         
         ### non-gsl files
         # add to ConverterClasses
@@ -362,8 +391,8 @@ if SWITCH_ENABLE_DEFAULT_CPP_GENERATION:
 print ' '
 print '----- Inheritance representation -----'
 print ' '
-print abstractDependencyRepresentation
-print requiredFieldsFromAllAbstractAncestors
+print dependencyRepresentation
+print requiredFieldsFromAllAncestors
 
 
 # ---- Statistics -----
@@ -374,9 +403,3 @@ print 'Basetypes: ' + str(classBuilderForwarder.getBaseTypeCounter())
 print 'ItemLists: ' + str(classBuilderForwarder.getItemListCoutner())
 print 'Enums: ' + str(classBuilderForwarder.getEnumCounter())
 print 'ComplexTypes: ' + str(gslFileBuilder.getNumOfClasses())
-
-
-print requiredFieldsFromAbstractPartents
-print abstractClassParent_map
-print abstractDependencyRepresentation
-

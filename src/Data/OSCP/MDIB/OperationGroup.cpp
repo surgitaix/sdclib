@@ -42,8 +42,11 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OperationGroup::OperationGroup() : data(Defaults::OperationGroup()) {
-}
+OperationGroup::OperationGroup(
+		CodedValue type
+) : data(Defaults::OperationGroupInit(
+		type
+)) {}
 
 OperationGroup::operator CDM::OperationGroup() const {
 	return *data;

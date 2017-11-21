@@ -18,7 +18,7 @@
  *  DicomTransferCapability.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	DicomTransferCapability();
+	DicomTransferCapability(
+		std::string sopclass
+		, 
+		DicomTransferRole transferrole
+	); 
+	DicomTransferCapability() = delete;
 	DicomTransferCapability(const DicomTransferCapability & object);
 	virtual ~DicomTransferCapability();
     

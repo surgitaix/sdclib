@@ -18,7 +18,7 @@
  *  SetValueOperationDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SetValueOperationDescriptor();
+	SetValueOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+	); 
+	SetValueOperationDescriptor() = delete;
 	SetValueOperationDescriptor(const SetValueOperationDescriptor & object);
 	virtual ~SetValueOperationDescriptor();
     
@@ -91,11 +96,6 @@ public:
 	xml_schema::Duration getRetriggerable() const;
 	bool getRetriggerable(xml_schema::Duration & out) const;
 	bool hasRetriggerable() const;
-
-	SetValueOperationDescriptor & setAccessLevel(const AccessLevel & value);
-	AccessLevel getAccessLevel() const;
-	bool getAccessLevel(AccessLevel & out) const;
-	bool hasAccessLevel() const;
 
 private:
 	std::shared_ptr<CDM::SetValueOperationDescriptor> data;

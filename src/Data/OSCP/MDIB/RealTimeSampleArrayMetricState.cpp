@@ -18,7 +18,7 @@
  *  RealTimeSampleArrayMetricState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -45,8 +45,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-RealTimeSampleArrayMetricState::RealTimeSampleArrayMetricState() : data(Defaults::RealTimeSampleArrayMetricState()) {
-}
+
+RealTimeSampleArrayMetricState::RealTimeSampleArrayMetricState(
+		HandleRef descriptorhandle
+) : data(Defaults::RealTimeSampleArrayMetricStateInit(
+		descriptorhandle
+)) {}
 
 RealTimeSampleArrayMetricState::operator CDM::RealTimeSampleArrayMetricState() const {
 	return *data;

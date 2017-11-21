@@ -18,7 +18,7 @@
  *  MdDescription.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MdDescription::MdDescription() : data(Defaults::MdDescription()) {
-}
+
+MdDescription::MdDescription(
+) : data(Defaults::MdDescriptionInit(
+)) {}
 
 MdDescription::operator CDM::MdDescription() const {
 	return *data;

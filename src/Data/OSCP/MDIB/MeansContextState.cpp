@@ -18,7 +18,7 @@
  *  MeansContextState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MeansContextState::MeansContextState() : data(Defaults::MeansContextState()) {
-}
+
+MeansContextState::MeansContextState(
+		HandleRef descriptorhandle
+		, 
+		Handle handle
+) : data(Defaults::MeansContextStateInit(
+		descriptorhandle
+		,
+		handle
+)) {}
 
 MeansContextState::operator CDM::MeansContextState() const {
 	return *data;

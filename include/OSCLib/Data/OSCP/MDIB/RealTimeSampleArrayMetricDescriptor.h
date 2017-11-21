@@ -18,7 +18,7 @@
  *  RealTimeSampleArrayMetricDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,20 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	RealTimeSampleArrayMetricDescriptor();
+	RealTimeSampleArrayMetricDescriptor(
+		Handle handle
+		, 
+		CodedValue unit
+		, 
+		MetricCategory metriccategory
+		, 
+		MetricAvailability metricavailability
+		, 
+		double resolution
+		, 
+		xml_schema::Duration sampleperiod
+	); 
+	RealTimeSampleArrayMetricDescriptor() = delete;
 	RealTimeSampleArrayMetricDescriptor(const RealTimeSampleArrayMetricDescriptor & object);
 	virtual ~RealTimeSampleArrayMetricDescriptor();
     
@@ -117,10 +130,6 @@ public:
 	RealTimeSampleArrayMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
-	RealTimeSampleArrayMetricDescriptor & addRelation(const Relation & value);
-	std::vector<Relation> getRelationList() const;
-	void clearRelationList();
 	
 	RealTimeSampleArrayMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;

@@ -37,6 +37,79 @@
  */
 .endmacro 
 
+
+.macro countconstructorarguments (classname, childclass)
+.define counterarguments = 0
+.countconstructorarguments_recursiv ("$(my.classname:)", "$(my.childclass:)")
+.endmacro
+
+.macro countconstructorarguments_recursiv (classname, childclass)
+.for classes.class
+.if "$(my.classname:)" = "$(class.name:)"
+.if "$(class.parent:)" <> "NULL" 
+.countconstructorarguments_recursiv ("$(class.parent:)", "$(my.childclass:)")
+.endif
+.for property
+.if property.optional="false" 
+.counterarguments = .counterarguments + 1
+.endif
+.endfor
+.endif
+.endfor
+.endmacro
+
+
+
+.macro printancestorsconstructorarguments (classname, childclass)
+.define counter = 0
+.printancestorsconstructorarguments_recursiv ("$(my.classname:)", "$(my.childclass:)")
+.endmacro
+
+.macro printancestorsconstructorarguments_recursiv (classname, childclass)
+.for classes.class
+.if "$(my.classname:)" = "$(class.name:)"
+.if "$(class.parent:)" <> "NULL" 
+.printancestorsconstructorarguments_recursiv ("$(class.parent:)", "$(my.childclass:)")
+.endif
+.for property
+.if property.optional="false" 
+.counter = .counter + 1
+		$(property.type:) $(property.name)
+.if counter <> counterarguments
+		, 
+.endif
+.endif
+.endfor
+.endif
+.endfor
+.endmacro
+
+.macro printancestorsconstructorargumentswithouttype (classname, childclass)
+.define counter = 0
+.printancestorsconstructorargumentswithouttype_recursiv ("$(my.classname:)", "$(my.childclass:)")
+.endmacro
+
+.macro printancestorsconstructorargumentswithouttype_recursiv (classname, childclass)
+.for classes.class
+.if "$(my.classname:)" = "$(class.name:)"
+.if "$(class.parent:)" <> "NULL" 
+.printancestorsconstructorargumentswithouttype_recursiv ("$(class.parent:)", "$(my.childclass:)")
+.endif
+.for property
+.if property.optional="false" 
+.counter = .counter + 1
+		$(property.name)
+.if counter <> counterarguments
+		,
+.endif
+.endif
+.endfor
+.endif
+.endfor
+.endmacro
+
+
+
 .macro printaccessordeclaration (classname, childclass)
 .for classes.class
 .if "$(my.classname:)" = "$(class.name:)"
@@ -170,13 +243,6 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-.define NumProperties = 0
-.for property 
-.if property.optional="false" 
-.NumProperties = .NumProperties + 1
-.endif 
-.endfor
-
 class $(class.name:) {
 private:
 	$(class.name:)(const CDM::$(class.name:) & object);
@@ -184,19 +250,13 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	$(class.name:)() = delete;
 	$(class.name:)(
-.define counter = 0
-.for property 
-.if property.optional="false" 
-.counter = .counter + 1
-		$(property.type:) $(property.name:)
-.if NumProperties <> counter
-		,
+.countconstructorarguments("$(class.name:)", "$(class.name:)")
+.printancestorsconstructorarguments("$(class.name:)", "$(class.name:)")
+	); 
+.if counterarguments <> 0
+	$(class.name:)() = delete;
 .endif
-.endif 
-.endfor
-	);
 	$(class.name:)(const $(class.name:) & object);
 	virtual ~$(class.name:)();
     
@@ -265,27 +325,10 @@ namespace OSCP {
 .endfor
 
 $(class.name:)::$(class.name:)(
-.define counter = 0
-.for property 
-.if property.optional="false" 
-.counter = .counter + 1
-	$(property.type:) $(property.name:)
-.if NumProperties <> counter
-	,
-.endif
-.endif 
-.endfor
-) : data(Defaults::$(class.name:)(
-.define counter = 0
-.for property 
-.if property.optional="false" 
-.counter = .counter + 1
-	$(property.name:) 
-.if NumProperties <> counter
-	,
-.endif
-.endif 
-.endfor
+.countconstructorarguments("$(class.name:)", "$(class.name:)")
+.printancestorsconstructorarguments("$(class.name:)", "$(class.name:)")
+) : data(Defaults::$(class.name:)Init(
+.printancestorsconstructorargumentswithouttype("$(class.name:)", "$(class.name:)")
 )) {}
 
 $(class.name:)::operator CDM::$(class.name:)() const {

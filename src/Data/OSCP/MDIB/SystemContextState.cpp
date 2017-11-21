@@ -18,7 +18,7 @@
  *  SystemContextState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SystemContextState::SystemContextState() : data(Defaults::SystemContextState()) {
-}
+
+SystemContextState::SystemContextState(
+		HandleRef descriptorhandle
+) : data(Defaults::SystemContextStateInit(
+		descriptorhandle
+)) {}
 
 SystemContextState::operator CDM::SystemContextState() const {
 	return *data;

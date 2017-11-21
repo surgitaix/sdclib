@@ -18,7 +18,7 @@
  *  ScoDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ScoDescriptor::ScoDescriptor() : data(Defaults::ScoDescriptor()) {
-}
+
+ScoDescriptor::ScoDescriptor(
+		Handle handle
+) : data(Defaults::ScoDescriptorInit(
+		handle
+)) {}
 
 ScoDescriptor::operator CDM::ScoDescriptor() const {
 	return *data;

@@ -18,7 +18,7 @@
  *  PhysicalConnectorInfo.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-PhysicalConnectorInfo::PhysicalConnectorInfo() : data(Defaults::PhysicalConnectorInfo()) {
-}
+
+PhysicalConnectorInfo::PhysicalConnectorInfo(
+) : data(Defaults::PhysicalConnectorInfoInit(
+)) {}
 
 PhysicalConnectorInfo::operator CDM::PhysicalConnectorInfo() const {
 	return *data;

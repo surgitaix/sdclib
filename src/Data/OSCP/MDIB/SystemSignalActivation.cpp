@@ -18,7 +18,7 @@
  *  SystemSignalActivation.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SystemSignalActivation::SystemSignalActivation() : data(Defaults::SystemSignalActivation()) {
-}
+
+SystemSignalActivation::SystemSignalActivation(
+		AlertSignalManifestation manifestation
+		, 
+		AlertActivation state
+) : data(Defaults::SystemSignalActivationInit(
+		manifestation
+		,
+		state
+)) {}
 
 SystemSignalActivation::operator CDM::SystemSignalActivation() const {
 	return *data;

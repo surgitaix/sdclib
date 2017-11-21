@@ -18,7 +18,7 @@
  *  CalibrationResult.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	CalibrationResult();
+	CalibrationResult(
+		CodedValue code
+		, 
+		Measurement value
+	); 
+	CalibrationResult() = delete;
 	CalibrationResult(const CalibrationResult & object);
 	virtual ~CalibrationResult();
     

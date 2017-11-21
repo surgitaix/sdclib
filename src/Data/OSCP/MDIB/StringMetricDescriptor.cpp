@@ -18,7 +18,7 @@
  *  StringMetricDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -37,15 +37,30 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-StringMetricDescriptor::StringMetricDescriptor() : data(Defaults::StringMetricDescriptor()) {
-}
+
+StringMetricDescriptor::StringMetricDescriptor(
+		Handle handle
+		, 
+		CodedValue unit
+		, 
+		MetricCategory metriccategory
+		, 
+		MetricAvailability metricavailability
+) : data(Defaults::StringMetricDescriptorInit(
+		handle
+		,
+		unit
+		,
+		metriccategory
+		,
+		metricavailability
+)) {}
 
 StringMetricDescriptor::operator CDM::StringMetricDescriptor() const {
 	return *data;
@@ -318,24 +333,6 @@ std::vector<CodedValue> StringMetricDescriptor::getBodySiteList() const {
 
 void StringMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
-}
-
-StringMetricDescriptor & StringMetricDescriptor::addRelation(const Relation & value) {
-	data->Relation().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<Relation> StringMetricDescriptor::getRelationList() const {
-	std::vector<Relation> result;
-	result.reserve(data->Relation().size());
-	for (const auto & value: data->Relation()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void StringMetricDescriptor::clearRelationList() {
-	data->Relation().clear();
 }
 
 

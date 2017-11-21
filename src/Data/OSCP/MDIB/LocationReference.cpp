@@ -18,7 +18,7 @@
  *  LocationReference.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-LocationReference::LocationReference() : data(Defaults::LocationReference()) {
-}
+
+LocationReference::LocationReference(
+) : data(Defaults::LocationReferenceInit(
+)) {}
 
 LocationReference::operator CDM::LocationReference() const {
 	return *data;

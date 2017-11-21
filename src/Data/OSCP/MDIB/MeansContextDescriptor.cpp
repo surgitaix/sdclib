@@ -18,7 +18,7 @@
  *  MeansContextDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MeansContextDescriptor::MeansContextDescriptor() : data(Defaults::MeansContextDescriptor()) {
-}
+
+MeansContextDescriptor::MeansContextDescriptor(
+		Handle handle
+) : data(Defaults::MeansContextDescriptorInit(
+		handle
+)) {}
 
 MeansContextDescriptor::operator CDM::MeansContextDescriptor() const {
 	return *data;

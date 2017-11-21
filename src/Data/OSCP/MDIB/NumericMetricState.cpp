@@ -18,7 +18,7 @@
  *  NumericMetricState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -45,8 +45,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-NumericMetricState::NumericMetricState() : data(Defaults::NumericMetricState()) {
-}
+
+NumericMetricState::NumericMetricState(
+		HandleRef descriptorhandle
+) : data(Defaults::NumericMetricStateInit(
+		descriptorhandle
+)) {}
 
 NumericMetricState::operator CDM::NumericMetricState() const {
 	return *data;

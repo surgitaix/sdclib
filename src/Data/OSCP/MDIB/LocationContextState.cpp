@@ -18,7 +18,7 @@
  *  LocationContextState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-LocationContextState::LocationContextState() : data(Defaults::LocationContextState()) {
-}
+
+LocationContextState::LocationContextState(
+		HandleRef descriptorhandle
+		, 
+		Handle handle
+) : data(Defaults::LocationContextStateInit(
+		descriptorhandle
+		,
+		handle
+)) {}
 
 LocationContextState::operator CDM::LocationContextState() const {
 	return *data;

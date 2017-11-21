@@ -18,7 +18,7 @@
  *  DicomDeviceDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,15 +41,18 @@
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-DicomDeviceDescriptor::DicomDeviceDescriptor() : data(Defaults::DicomDeviceDescriptor()) {
-}
+
+DicomDeviceDescriptor::DicomDeviceDescriptor(
+		Handle handle
+) : data(Defaults::DicomDeviceDescriptorInit(
+		handle
+)) {}
 
 DicomDeviceDescriptor::operator CDM::DicomDeviceDescriptor() const {
 	return *data;
@@ -150,24 +153,6 @@ bool DicomDeviceDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-DicomDeviceDescriptor & DicomDeviceDescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<ProductionSpecification> DicomDeviceDescriptor::getProductionSpecificationList() const {
-	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void DicomDeviceDescriptor::clearProductionSpecificationList() {
-	data->ProductionSpecification().clear();
-}
-
 DicomDeviceDescriptor & DicomDeviceDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
 	data->AlertSystem(ConvertToCDM::convert(value));
 	return *this;

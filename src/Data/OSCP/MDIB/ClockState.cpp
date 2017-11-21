@@ -18,7 +18,7 @@
  *  ClockState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ClockState::ClockState() : data(Defaults::ClockState()) {
-}
+
+ClockState::ClockState(
+		HandleRef descriptorhandle
+		, 
+		bool remotesync
+) : data(Defaults::ClockStateInit(
+		descriptorhandle
+		,
+		remotesync
+)) {}
 
 ClockState::operator CDM::ClockState() const {
 	return *data;

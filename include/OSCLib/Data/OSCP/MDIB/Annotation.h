@@ -18,7 +18,7 @@
  *  Annotation.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	Annotation();
+	Annotation(
+		CodedValue type
+	); 
+	Annotation() = delete;
 	Annotation(const Annotation & object);
 	virtual ~Annotation();
     

@@ -18,7 +18,7 @@
  *  AlertSignalState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	AlertSignalState();
+	AlertSignalState(
+		HandleRef descriptorhandle
+		, 
+		AlertActivation activationstate
+	); 
+	AlertSignalState() = delete;
 	AlertSignalState(const AlertSignalState & object);
 	virtual ~AlertSignalState();
     

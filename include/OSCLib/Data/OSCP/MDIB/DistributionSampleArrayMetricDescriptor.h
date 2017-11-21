@@ -18,7 +18,7 @@
  *  DistributionSampleArrayMetricDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,22 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	DistributionSampleArrayMetricDescriptor();
+	DistributionSampleArrayMetricDescriptor(
+		Handle handle
+		, 
+		CodedValue unit
+		, 
+		MetricCategory metriccategory
+		, 
+		MetricAvailability metricavailability
+		, 
+		CodedValue domainunit
+		, 
+		Range distributionrange
+		, 
+		double resolution
+	); 
+	DistributionSampleArrayMetricDescriptor() = delete;
 	DistributionSampleArrayMetricDescriptor(const DistributionSampleArrayMetricDescriptor & object);
 	virtual ~DistributionSampleArrayMetricDescriptor();
     
@@ -116,10 +131,6 @@ public:
 	DistributionSampleArrayMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
-	DistributionSampleArrayMetricDescriptor & addRelation(const Relation & value);
-	std::vector<Relation> getRelationList() const;
-	void clearRelationList();
 	
 	DistributionSampleArrayMetricDescriptor & setDomainUnit(const CodedValue & value);
 	CodedValue getDomainUnit() const;

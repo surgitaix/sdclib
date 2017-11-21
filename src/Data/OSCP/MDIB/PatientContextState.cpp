@@ -18,7 +18,7 @@
  *  PatientContextState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-PatientContextState::PatientContextState() : data(Defaults::PatientContextState()) {
-}
+
+PatientContextState::PatientContextState(
+		HandleRef descriptorhandle
+		, 
+		Handle handle
+) : data(Defaults::PatientContextStateInit(
+		descriptorhandle
+		,
+		handle
+)) {}
 
 PatientContextState::operator CDM::PatientContextState() const {
 	return *data;

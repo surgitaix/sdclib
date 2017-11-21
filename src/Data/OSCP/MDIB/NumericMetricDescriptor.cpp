@@ -18,7 +18,7 @@
  *  NumericMetricDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -38,15 +38,34 @@
 
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-NumericMetricDescriptor::NumericMetricDescriptor() : data(Defaults::NumericMetricDescriptor()) {
-}
+
+NumericMetricDescriptor::NumericMetricDescriptor(
+		Handle handle
+		, 
+		CodedValue unit
+		, 
+		MetricCategory metriccategory
+		, 
+		MetricAvailability metricavailability
+		, 
+		double resolution
+) : data(Defaults::NumericMetricDescriptorInit(
+		handle
+		,
+		unit
+		,
+		metriccategory
+		,
+		metricavailability
+		,
+		resolution
+)) {}
 
 NumericMetricDescriptor::operator CDM::NumericMetricDescriptor() const {
 	return *data;
@@ -90,7 +109,7 @@ bool NumericMetricDescriptor::getType(CodedValue & out) const {
 CodedValue NumericMetricDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-
+	
 bool NumericMetricDescriptor::hasType() const {
 	return data->Type().present();
 }
@@ -319,24 +338,6 @@ std::vector<CodedValue> NumericMetricDescriptor::getBodySiteList() const {
 
 void NumericMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
-}
-
-NumericMetricDescriptor & NumericMetricDescriptor::addRelation(const Relation & value) {
-	data->Relation().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<Relation> NumericMetricDescriptor::getRelationList() const {
-	std::vector<Relation> result;
-	result.reserve(data->Relation().size());
-	for (const auto & value: data->Relation()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void NumericMetricDescriptor::clearRelationList() {
-	data->Relation().clear();
 }
 
 NumericMetricDescriptor & NumericMetricDescriptor::setResolution(const double & value) {

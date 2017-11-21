@@ -18,7 +18,7 @@
  *  CalibrationDocumentation.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -37,14 +37,15 @@
 #include "osdm.hxx"
 
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/CalibrationResult.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-CalibrationDocumentation::CalibrationDocumentation() : data(Defaults::CalibrationDocumentation()) {
-}
+
+CalibrationDocumentation::CalibrationDocumentation(
+) : data(Defaults::CalibrationDocumentationInit(
+)) {}
 
 CalibrationDocumentation::operator CDM::CalibrationDocumentation() const {
 	return *data;
@@ -88,24 +89,6 @@ std::vector<LocalizedText> CalibrationDocumentation::getDocumentationList() cons
 
 void CalibrationDocumentation::clearDocumentationList() {
 	data->Documentation().clear();
-}
-
-CalibrationDocumentation & CalibrationDocumentation::addCalibrationResult(const CalibrationResult & value) {
-	data->CalibrationResult().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<CalibrationResult> CalibrationDocumentation::getCalibrationResultList() const {
-	std::vector<CalibrationResult> result;
-	result.reserve(data->CalibrationResult().size());
-	for (const auto & value: data->CalibrationResult()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void CalibrationDocumentation::clearCalibrationResultList() {
-	data->CalibrationResult().clear();
 }
 
 

@@ -18,7 +18,7 @@
  *  BatteryState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	BatteryState();
+	BatteryState(
+		HandleRef descriptorhandle
+	); 
+	BatteryState() = delete;
 	BatteryState(const BatteryState & object);
 	virtual ~BatteryState();
     
@@ -123,11 +126,6 @@ public:
 	Measurement getRemainingBatteryTime() const;
 	bool getRemainingBatteryTime(Measurement & out) const;
 	bool hasRemainingBatteryTime() const;
-
-	BatteryState & setChargeStatus(const ChargeStatus & value);
-	ChargeStatus getChargeStatus() const;
-	bool getChargeStatus(ChargeStatus & out) const;
-	bool hasChargeStatus() const;
 
 	BatteryState & setChargeCycles(const unsigned int & value);
 	unsigned int getChargeCycles() const;

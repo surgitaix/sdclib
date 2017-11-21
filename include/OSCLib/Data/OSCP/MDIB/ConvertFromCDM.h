@@ -73,6 +73,12 @@ public:
 	static Sex convert(const CDM::Sex & source);
 	static PatientType convert(const CDM::PatientType & source);
 	static DicomTransferRole convert(const CDM::DicomTransferRole & source);
+	static CanEscalate convert(const CDM::CanEscalate & source);
+	static CanDeescalate convert(const CDM::CanDeescalate & source);
+	static Kind convert(const CDM::Kind & source);
+	static AccessLevel convert(const CDM::AccessLevel & source);
+	static ChargeStatus convert(const CDM::ChargeStatus & source);
+	static Criticality convert(const CDM::Criticality & source);
 	static Mdib convert(const CDM::Mdib & source);
 	static MdDescription convert(const CDM::MdDescription & source);
 	static MdState convert(const CDM::MdState & source);
@@ -102,8 +108,6 @@ public:
 	static AlertSystemState convert(const CDM::AlertSystemState & source);
 	static CauseInfo convert(const CDM::CauseInfo & source);
 	static RemedyInfo convert(const CDM::RemedyInfo & source);
-	static CanEscalate convert(const CDM::CanEscalate & source);
-	static CanDeescalate convert(const CDM::CanDeescalate & source);
 	static AlertConditionDescriptor convert(const CDM::AlertConditionDescriptor & source);
 	static AlertConditionState convert(const CDM::AlertConditionState & source);
 	static LimitAlertConditionDescriptor convert(const CDM::LimitAlertConditionDescriptor & source);
@@ -116,7 +120,6 @@ public:
 	static StringMetricValue convert(const CDM::StringMetricValue & source);
 	static SampleArrayValue convert(const CDM::SampleArrayValue & source);
 	static ApplyAnnotation convert(const CDM::ApplyAnnotation & source);
-	static Kind convert(const CDM::Kind & source);
 	static Relation convert(const CDM::Relation & source);
 	static NumericMetricDescriptor convert(const CDM::NumericMetricDescriptor & source);
 	static NumericMetricState convert(const CDM::NumericMetricState & source);
@@ -132,7 +135,6 @@ public:
 	static ScoDescriptor convert(const CDM::ScoDescriptor & source);
 	static ScoState convert(const CDM::ScoState & source);
 	static OperationGroup convert(const CDM::OperationGroup & source);
-	static AccessLevel convert(const CDM::AccessLevel & source);
 	static SetValueOperationDescriptor convert(const CDM::SetValueOperationDescriptor & source);
 	static SetValueOperationState convert(const CDM::SetValueOperationState & source);
 	static SetStringOperationDescriptor convert(const CDM::SetStringOperationDescriptor & source);
@@ -152,7 +154,6 @@ public:
 	static ClockDescriptor convert(const CDM::ClockDescriptor & source);
 	static ClockState convert(const CDM::ClockState & source);
 	static BatteryDescriptor convert(const CDM::BatteryDescriptor & source);
-	static ChargeStatus convert(const CDM::ChargeStatus & source);
 	static BatteryState convert(const CDM::BatteryState & source);
 	static SystemContextDescriptor convert(const CDM::SystemContextDescriptor & source);
 	static SystemContextState convert(const CDM::SystemContextState & source);
@@ -166,7 +167,6 @@ public:
 	static LocationContextDescriptor convert(const CDM::LocationContextDescriptor & source);
 	static LocationContextState convert(const CDM::LocationContextState & source);
 	static WorkflowContextDescriptor convert(const CDM::WorkflowContextDescriptor & source);
-	static Criticality convert(const CDM::Criticality & source);
 	static ClinicalInfo convert(const CDM::ClinicalInfo & source);
 	static RelatedMeasurement convert(const CDM::RelatedMeasurement & source);
 	static ReferenceRange convert(const CDM::ReferenceRange & source);

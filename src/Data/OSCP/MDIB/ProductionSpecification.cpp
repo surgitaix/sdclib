@@ -18,7 +18,7 @@
  *  ProductionSpecification.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ProductionSpecification::ProductionSpecification() : data(Defaults::ProductionSpecification()) {
-}
+
+ProductionSpecification::ProductionSpecification(
+		CodedValue spectype
+		, 
+		std::string productionspec
+) : data(Defaults::ProductionSpecificationInit(
+		spectype
+		,
+		productionspec
+)) {}
 
 ProductionSpecification::operator CDM::ProductionSpecification() const {
 	return *data;

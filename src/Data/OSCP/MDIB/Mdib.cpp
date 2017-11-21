@@ -18,7 +18,7 @@
  *  Mdib.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-Mdib::Mdib() : data(Defaults::Mdib()) {
-}
+
+Mdib::Mdib(
+) : data(Defaults::MdibInit(
+)) {}
 
 Mdib::operator CDM::Mdib() const {
 	return *data;

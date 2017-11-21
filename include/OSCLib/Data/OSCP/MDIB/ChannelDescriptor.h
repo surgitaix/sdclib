@@ -18,7 +18,7 @@
  *  ChannelDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ChannelDescriptor();
+	ChannelDescriptor(
+		Handle handle
+	); 
+	ChannelDescriptor() = delete;
 	ChannelDescriptor(const ChannelDescriptor & object);
 	virtual ~ChannelDescriptor();
     
@@ -74,10 +77,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	ChannelDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecificationList() const;
-	void clearProductionSpecificationList();
-	
 
 	std::vector<EnumStringMetricDescriptor> getEnumStringMetricDescriptorList() const;
 	std::vector<NumericMetricDescriptor> getNumericMetricDescriptorList() const;

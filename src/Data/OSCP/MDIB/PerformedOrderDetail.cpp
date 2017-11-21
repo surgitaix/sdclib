@@ -18,7 +18,7 @@
  *  PerformedOrderDetail.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -46,8 +46,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-PerformedOrderDetail::PerformedOrderDetail() : data(Defaults::PerformedOrderDetail()) {
-}
+
+PerformedOrderDetail::PerformedOrderDetail(
+) : data(Defaults::PerformedOrderDetailInit(
+)) {}
 
 PerformedOrderDetail::operator CDM::PerformedOrderDetail() const {
 	return *data;

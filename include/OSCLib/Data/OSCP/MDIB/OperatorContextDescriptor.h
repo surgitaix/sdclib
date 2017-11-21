@@ -18,7 +18,7 @@
  *  OperatorContextDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	OperatorContextDescriptor();
+	OperatorContextDescriptor(
+		Handle handle
+	); 
+	OperatorContextDescriptor() = delete;
 	OperatorContextDescriptor(const OperatorContextDescriptor & object);
 	virtual ~OperatorContextDescriptor();
     

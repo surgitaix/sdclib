@@ -18,7 +18,7 @@
  *  DicomDeviceDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	DicomDeviceDescriptor();
+	DicomDeviceDescriptor(
+		Handle handle
+	); 
+	DicomDeviceDescriptor() = delete;
 	DicomDeviceDescriptor(const DicomDeviceDescriptor & object);
 	virtual ~DicomDeviceDescriptor();
     
@@ -74,10 +77,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	DicomDeviceDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecificationList() const;
-	void clearProductionSpecificationList();
-	
 	DicomDeviceDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;

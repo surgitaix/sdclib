@@ -18,7 +18,7 @@
  *  MeansContextState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	MeansContextState();
+	MeansContextState(
+		HandleRef descriptorhandle
+		, 
+		Handle handle
+	); 
+	MeansContextState() = delete;
 	MeansContextState(const MeansContextState & object);
 	virtual ~MeansContextState();
     

@@ -18,7 +18,7 @@
  *  RelatedMeasurement.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	RelatedMeasurement();
+	RelatedMeasurement(
+		Measurement value
+	); 
+	RelatedMeasurement() = delete;
 	RelatedMeasurement(const RelatedMeasurement & object);
 	virtual ~RelatedMeasurement();
     
@@ -64,10 +67,6 @@ public:
 	bool getValidity(MeasurementValidity & out) const;
 	bool hasValidity() const;
 
-	RelatedMeasurement & addReferenceRange(const ReferenceRange & value);
-	std::vector<ReferenceRange> getReferenceRangeList() const;
-	void clearReferenceRangeList();
-	
 private:
 	std::shared_ptr<CDM::RelatedMeasurement> data;
 };

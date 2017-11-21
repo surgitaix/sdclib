@@ -18,7 +18,7 @@
  *  Measurement.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-Measurement::Measurement() : data(Defaults::Measurement()) {
-}
+
+Measurement::Measurement(
+		CodedValue measurementunit
+		, 
+		double measuredvalue
+) : data(Defaults::MeasurementInit(
+		measurementunit
+		,
+		measuredvalue
+)) {}
 
 Measurement::operator CDM::Measurement() const {
 	return *data;

@@ -18,7 +18,7 @@
  *  ActivateOperationState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ActivateOperationState::ActivateOperationState() : data(Defaults::ActivateOperationState()) {
-}
+
+ActivateOperationState::ActivateOperationState(
+		HandleRef descriptorhandle
+		, 
+		OperatingMode operatingmode
+) : data(Defaults::ActivateOperationStateInit(
+		descriptorhandle
+		,
+		operatingmode
+)) {}
 
 ActivateOperationState::operator CDM::ActivateOperationState() const {
 	return *data;

@@ -18,7 +18,7 @@
  *  LocationContextDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-LocationContextDescriptor::LocationContextDescriptor() : data(Defaults::LocationContextDescriptor()) {
-}
+
+LocationContextDescriptor::LocationContextDescriptor(
+		Handle handle
+) : data(Defaults::LocationContextDescriptorInit(
+		handle
+)) {}
 
 LocationContextDescriptor::operator CDM::LocationContextDescriptor() const {
 	return *data;

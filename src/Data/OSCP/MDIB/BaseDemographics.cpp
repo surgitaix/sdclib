@@ -18,7 +18,7 @@
  *  BaseDemographics.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-BaseDemographics::BaseDemographics() : data(Defaults::BaseDemographics()) {
-}
+
+BaseDemographics::BaseDemographics(
+) : data(Defaults::BaseDemographicsInit(
+)) {}
 
 BaseDemographics::operator CDM::BaseDemographics() const {
 	return *data;

@@ -18,7 +18,7 @@
  *  AllowedValue.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-AllowedValue::AllowedValue() : data(Defaults::AllowedValue()) {
-}
+
+AllowedValue::AllowedValue(
+		std::string value
+) : data(Defaults::AllowedValueInit(
+		value
+)) {}
 
 AllowedValue::operator CDM::AllowedValue() const {
 	return *data;

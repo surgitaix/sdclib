@@ -18,7 +18,7 @@
  *  StringMetricState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-StringMetricState::StringMetricState() : data(Defaults::StringMetricState()) {
-}
+
+StringMetricState::StringMetricState(
+		HandleRef descriptorhandle
+) : data(Defaults::StringMetricStateInit(
+		descriptorhandle
+)) {}
 
 StringMetricState::operator CDM::StringMetricState() const {
 	return *data;

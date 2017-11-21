@@ -18,7 +18,7 @@
  *  StringMetricState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	StringMetricState();
+	StringMetricState(
+		HandleRef descriptorhandle
+	); 
+	StringMetricState() = delete;
 	StringMetricState(const StringMetricState & object);
 	virtual ~StringMetricState();
     

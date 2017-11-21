@@ -18,7 +18,7 @@
  *  SetStringOperationState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SetStringOperationState();
+	SetStringOperationState(
+		HandleRef descriptorhandle
+		, 
+		OperatingMode operatingmode
+	); 
+	SetStringOperationState() = delete;
 	SetStringOperationState(const SetStringOperationState & object);
 	virtual ~SetStringOperationState();
     
@@ -71,11 +76,6 @@ public:
 
 	SetStringOperationState & setOperatingMode(const OperatingMode & value);
 	OperatingMode getOperatingMode() const;
-
-	SetStringOperationState & setAllowedValues(const AllowedValues & value);
-	AllowedValues getAllowedValues() const;
-	bool getAllowedValues(AllowedValues & out) const;
-	bool hasAllowedValues() const;
 
 private:
 	std::shared_ptr<CDM::SetStringOperationState> data;

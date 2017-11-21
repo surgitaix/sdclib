@@ -18,7 +18,7 @@
  *  SetContextStateOperationDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetContextStateOperationDescriptor::SetContextStateOperationDescriptor() : data(Defaults::SetContextStateOperationDescriptor()) {
-}
+
+SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+) : data(Defaults::SetContextStateOperationDescriptorInit(
+		handle
+		,
+		operationtarget
+)) {}
 
 SetContextStateOperationDescriptor::operator CDM::SetContextStateOperationDescriptor() const {
 	return *data;
@@ -215,27 +223,6 @@ xml_schema::Duration SetContextStateOperationDescriptor::getRetriggerable() cons
 	
 bool SetContextStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
-}
-	
-SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
-	data->AccessLevel(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SetContextStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
-	if (data->AccessLevel().present()) {
-		out = ConvertFromCDM::convert(data->AccessLevel().get());
-		return true;
-	}
-	return false;
-}
-
-AccessLevel SetContextStateOperationDescriptor::getAccessLevel() const {
-	return ConvertFromCDM::convert(data->AccessLevel().get());
-}
-	
-bool SetContextStateOperationDescriptor::hasAccessLevel() const {
-	return data->AccessLevel().present();
 }
 	
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::addModifiableData(const std::string & value) {

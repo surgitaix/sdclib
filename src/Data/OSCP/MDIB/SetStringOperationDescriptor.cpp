@@ -18,7 +18,7 @@
  *  SetStringOperationDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetStringOperationDescriptor::SetStringOperationDescriptor() : data(Defaults::SetStringOperationDescriptor()) {
-}
+
+SetStringOperationDescriptor::SetStringOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+) : data(Defaults::SetStringOperationDescriptorInit(
+		handle
+		,
+		operationtarget
+)) {}
 
 SetStringOperationDescriptor::operator CDM::SetStringOperationDescriptor() const {
 	return *data;
@@ -215,27 +223,6 @@ xml_schema::Duration SetStringOperationDescriptor::getRetriggerable() const {
 	
 bool SetStringOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
-}
-	
-SetStringOperationDescriptor & SetStringOperationDescriptor::setAccessLevel(const AccessLevel & value) {
-	data->AccessLevel(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SetStringOperationDescriptor::getAccessLevel(AccessLevel & out) const {
-	if (data->AccessLevel().present()) {
-		out = ConvertFromCDM::convert(data->AccessLevel().get());
-		return true;
-	}
-	return false;
-}
-
-AccessLevel SetStringOperationDescriptor::getAccessLevel() const {
-	return ConvertFromCDM::convert(data->AccessLevel().get());
-}
-	
-bool SetStringOperationDescriptor::hasAccessLevel() const {
-	return data->AccessLevel().present();
 }
 	
 SetStringOperationDescriptor & SetStringOperationDescriptor::setMaxLength(const unsigned long long & value) {

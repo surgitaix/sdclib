@@ -15,6 +15,9 @@ class ComplexTypeNodeParser(object):
     #static list of embedded nodes against double treatment
     __embeddedNodesNamesList = list()
     
+    def reset(self):
+        ComplexTypeNodeParser.__embeddedNodesNamesList = list()
+    
     def __init__(self, simpleTypes_set, complexTypes_set, basetype_map, apiInterface, customImplList, simpleTypeNodeParser):
         # complexTypes_set: a set of all existing complexTypes. Complex types get own C++ Classes, thus they need to be references
         # simpleTypes_set: a set of all existing simpleTypes. simple types are all connected in simpleTypesMapping.cpp and are referenced to all complex classes by gsl script
@@ -115,7 +118,7 @@ class ComplexTypeNodeParser(object):
             else:
                 embeddedComplexTypeNode = xmlNode_xpath.xpath('./xsd:complexType', namespaces={'xsd':'http://www.w3.org/2001/XMLSchema'})
                 if embeddedComplexTypeNode:
-                    # embedded complex classes do not have an own type name, thus named with a Type prefix
+                    # embedded complex classes do not have an own type name, thus named like the name attribute (to comply with XSD)
                     # add name attribute to embedded type node to convert it in the non-embedded form
                     # since the node is a mutable object this is done at the original node which is going to be parsed the next time.
                     # this approach is more efficient then utilizing recursion
@@ -192,10 +195,6 @@ class ComplexTypeNodeParser(object):
     
     def getParentTypeName(self):
         return self.__parentTypeName
-    
-    # debug. TODO delete
-    def getEmbeddedAttributesNamesList(self):
-        return self.__embeddedNodesNamesList
     
     
 class SimpleTypeNodeParser(object):

@@ -18,7 +18,7 @@
  *  ApprovedJurisdictions.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ApprovedJurisdictions::ApprovedJurisdictions() : data(Defaults::ApprovedJurisdictions()) {
-}
+
+ApprovedJurisdictions::ApprovedJurisdictions(
+) : data(Defaults::ApprovedJurisdictionsInit(
+)) {}
 
 ApprovedJurisdictions::operator CDM::ApprovedJurisdictions() const {
 	return *data;

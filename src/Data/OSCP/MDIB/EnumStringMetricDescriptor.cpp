@@ -18,7 +18,7 @@
  *  EnumStringMetricDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -36,17 +36,31 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-#include "OSCLib/Data/OSCP/MDIB/Relation.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-EnumStringMetricDescriptor::EnumStringMetricDescriptor() : data(Defaults::EnumStringMetricDescriptor()) {
-}
+
+EnumStringMetricDescriptor::EnumStringMetricDescriptor(
+		Handle handle
+		, 
+		CodedValue unit
+		, 
+		MetricCategory metriccategory
+		, 
+		MetricAvailability metricavailability
+) : data(Defaults::EnumStringMetricDescriptorInit(
+		handle
+		,
+		unit
+		,
+		metriccategory
+		,
+		metricavailability
+)) {}
 
 EnumStringMetricDescriptor::operator CDM::EnumStringMetricDescriptor() const {
 	return *data;
@@ -319,42 +333,6 @@ std::vector<CodedValue> EnumStringMetricDescriptor::getBodySiteList() const {
 
 void EnumStringMetricDescriptor::clearBodySiteList() {
 	data->BodySite().clear();
-}
-
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::addRelation(const Relation & value) {
-	data->Relation().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<Relation> EnumStringMetricDescriptor::getRelationList() const {
-	std::vector<Relation> result;
-	result.reserve(data->Relation().size());
-	for (const auto & value: data->Relation()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void EnumStringMetricDescriptor::clearRelationList() {
-	data->Relation().clear();
-}
-
-EnumStringMetricDescriptor & EnumStringMetricDescriptor::addAllowedValue(const AllowedValue & value) {
-	data->AllowedValue().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<AllowedValue> EnumStringMetricDescriptor::getAllowedValueList() const {
-	std::vector<AllowedValue> result;
-	result.reserve(data->AllowedValue().size());
-	for (const auto & value: data->AllowedValue()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void EnumStringMetricDescriptor::clearAllowedValueList() {
-	data->AllowedValue().clear();
 }
 
 

@@ -18,7 +18,7 @@
  *  Relation.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	Relation();
+	Relation(
+		HandleRef entries
+	); 
+	Relation() = delete;
 	Relation(const Relation & object);
 	virtual ~Relation();
     
@@ -65,9 +68,6 @@ public:
 	InstanceIdentifier getIdentification() const;
 	bool getIdentification(InstanceIdentifier & out) const;
 	bool hasIdentification() const;
-
-	Relation & setKind(const Kind & value);
-	Kind getKind() const;
 
 	Relation & setEntries(const HandleRef & value);
 	HandleRef getEntries() const;

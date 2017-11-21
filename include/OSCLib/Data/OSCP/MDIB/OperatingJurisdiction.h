@@ -18,7 +18,7 @@
  *  OperatingJurisdiction.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	OperatingJurisdiction();
+	OperatingJurisdiction(
+	); 
 	OperatingJurisdiction(const OperatingJurisdiction & object);
 	virtual ~OperatingJurisdiction();
     
@@ -60,16 +61,6 @@ public:
 	CodedValue getType() const;
 	bool getType(CodedValue & out) const;
 	bool hasType() const;
-
-	OperatingJurisdiction & setRoot(const Root & value);
-	Root getRoot() const;
-	bool getRoot(Root & out) const;
-	bool hasRoot() const;
-
-	OperatingJurisdiction & setExtension(const Extension & value);
-	Extension getExtension() const;
-	bool getExtension(Extension & out) const;
-	bool hasExtension() const;
 
 	OperatingJurisdiction & addIdentifierName(const LocalizedText & value);
 	std::vector<LocalizedText> getIdentifierNameList() const;

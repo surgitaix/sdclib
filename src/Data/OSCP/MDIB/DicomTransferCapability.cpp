@@ -18,7 +18,7 @@
  *  DicomTransferCapability.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-DicomTransferCapability::DicomTransferCapability() : data(Defaults::DicomTransferCapability()) {
-}
+
+DicomTransferCapability::DicomTransferCapability(
+		std::string sopclass
+		, 
+		DicomTransferRole transferrole
+) : data(Defaults::DicomTransferCapabilityInit(
+		sopclass
+		,
+		transferrole
+)) {}
 
 DicomTransferCapability::operator CDM::DicomTransferCapability() const {
 	return *data;

@@ -18,7 +18,7 @@
  *  Argument.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-Argument::Argument() : data(Defaults::Argument()) {
-}
+
+Argument::Argument(
+		CodedValue argname
+		, 
+		xml_schema::Qname arg
+) : data(Defaults::ArgumentInit(
+		argname
+		,
+		arg
+)) {}
 
 Argument::operator CDM::Argument() const {
 	return *data;

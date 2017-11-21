@@ -18,7 +18,7 @@
  *  SetAlertStateOperationDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor() : data(Defaults::SetAlertStateOperationDescriptor()) {
-}
+
+SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+) : data(Defaults::SetAlertStateOperationDescriptorInit(
+		handle
+		,
+		operationtarget
+)) {}
 
 SetAlertStateOperationDescriptor::operator CDM::SetAlertStateOperationDescriptor() const {
 	return *data;
@@ -215,27 +223,6 @@ xml_schema::Duration SetAlertStateOperationDescriptor::getRetriggerable() const 
 	
 bool SetAlertStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
-}
-	
-SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
-	data->AccessLevel(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool SetAlertStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
-	if (data->AccessLevel().present()) {
-		out = ConvertFromCDM::convert(data->AccessLevel().get());
-		return true;
-	}
-	return false;
-}
-
-AccessLevel SetAlertStateOperationDescriptor::getAccessLevel() const {
-	return ConvertFromCDM::convert(data->AccessLevel().get());
-}
-	
-bool SetAlertStateOperationDescriptor::hasAccessLevel() const {
-	return data->AccessLevel().present();
 }
 	
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::addModifiableData(const std::string & value) {

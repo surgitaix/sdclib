@@ -18,7 +18,7 @@
  *  BatteryState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-BatteryState::BatteryState() : data(Defaults::BatteryState()) {
-}
+
+BatteryState::BatteryState(
+		HandleRef descriptorhandle
+) : data(Defaults::BatteryStateInit(
+		descriptorhandle
+)) {}
 
 BatteryState::operator CDM::BatteryState() const {
 	return *data;
@@ -354,27 +358,6 @@ Measurement BatteryState::getRemainingBatteryTime() const {
 	
 bool BatteryState::hasRemainingBatteryTime() const {
 	return data->RemainingBatteryTime().present();
-}
-	
-BatteryState & BatteryState::setChargeStatus(const ChargeStatus & value) {
-	data->ChargeStatus(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool BatteryState::getChargeStatus(ChargeStatus & out) const {
-	if (data->ChargeStatus().present()) {
-		out = ConvertFromCDM::convert(data->ChargeStatus().get());
-		return true;
-	}
-	return false;
-}
-
-ChargeStatus BatteryState::getChargeStatus() const {
-	return ConvertFromCDM::convert(data->ChargeStatus().get());
-}
-	
-bool BatteryState::hasChargeStatus() const {
-	return data->ChargeStatus().present();
 }
 	
 BatteryState & BatteryState::setChargeCycles(const unsigned int & value) {

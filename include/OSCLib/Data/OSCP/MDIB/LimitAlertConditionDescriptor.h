@@ -18,7 +18,7 @@
  *  LimitAlertConditionDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,14 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	LimitAlertConditionDescriptor();
+	LimitAlertConditionDescriptor(
+		Handle handle
+		, 
+		AlertConditionPriority priority
+		, 
+		Range maxlimits
+	); 
+	LimitAlertConditionDescriptor() = delete;
 	LimitAlertConditionDescriptor(const LimitAlertConditionDescriptor & object);
 	virtual ~LimitAlertConditionDescriptor();
     
@@ -74,9 +81,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	LimitAlertConditionDescriptor & setKind(const AlertConditionKind & value);
-	AlertConditionKind getKind() const;
-
 	LimitAlertConditionDescriptor & setPriority(const AlertConditionPriority & value);
 	AlertConditionPriority getPriority() const;
 
@@ -84,16 +88,6 @@ public:
 	xml_schema::Duration getDefaultConditionGenerationDelay() const;
 	bool getDefaultConditionGenerationDelay(xml_schema::Duration & out) const;
 	bool hasDefaultConditionGenerationDelay() const;
-
-	LimitAlertConditionDescriptor & setCanEscalate(const CanEscalate & value);
-	CanEscalate getCanEscalate() const;
-	bool getCanEscalate(CanEscalate & out) const;
-	bool hasCanEscalate() const;
-
-	LimitAlertConditionDescriptor & setCanDeescalate(const CanDeescalate & value);
-	CanDeescalate getCanDeescalate() const;
-	bool getCanDeescalate(CanDeescalate & out) const;
-	bool hasCanDeescalate() const;
 
 	LimitAlertConditionDescriptor & addSource(const HandleRef & value);
 	std::vector<HandleRef> getSourceList() const;

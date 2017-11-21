@@ -18,7 +18,7 @@
  *  Measurement.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	Measurement();
+	Measurement(
+		CodedValue measurementunit
+		, 
+		double measuredvalue
+	); 
+	Measurement() = delete;
 	Measurement(const Measurement & object);
 	virtual ~Measurement();
     

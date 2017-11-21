@@ -18,7 +18,7 @@
  *  NumericMetricDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,18 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	NumericMetricDescriptor();
+	NumericMetricDescriptor(
+		Handle handle
+		, 
+		CodedValue unit
+		, 
+		MetricCategory metriccategory
+		, 
+		MetricAvailability metricavailability
+		, 
+		double resolution
+	); 
+	NumericMetricDescriptor() = delete;
 	NumericMetricDescriptor(const NumericMetricDescriptor & object);
 	virtual ~NumericMetricDescriptor();
     
@@ -117,10 +128,6 @@ public:
 	NumericMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
-	NumericMetricDescriptor & addRelation(const Relation & value);
-	std::vector<Relation> getRelationList() const;
-	void clearRelationList();
 	
 	NumericMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;

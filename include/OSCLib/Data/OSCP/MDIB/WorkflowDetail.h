@@ -18,7 +18,7 @@
  *  WorkflowDetail.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	WorkflowDetail();
+	WorkflowDetail(
+		PersonReference patient
+	); 
+	WorkflowDetail() = delete;
 	WorkflowDetail(const WorkflowDetail & object);
 	virtual ~WorkflowDetail();
     
@@ -68,16 +71,6 @@ public:
 	InstanceIdentifier getVisitNumber() const;
 	bool getVisitNumber(InstanceIdentifier & out) const;
 	bool hasVisitNumber() const;
-
-	WorkflowDetail & setRequestedOrderDetail(const RequestedOrderDetail & value);
-	RequestedOrderDetail getRequestedOrderDetail() const;
-	bool getRequestedOrderDetail(RequestedOrderDetail & out) const;
-	bool hasRequestedOrderDetail() const;
-
-	WorkflowDetail & setPerformedOrderDetail(const PerformedOrderDetail & value);
-	PerformedOrderDetail getPerformedOrderDetail() const;
-	bool getPerformedOrderDetail(PerformedOrderDetail & out) const;
-	bool hasPerformedOrderDetail() const;
 
 	WorkflowDetail & addDangerCode(const CodedValue & value);
 	std::vector<CodedValue> getDangerCodeList() const;

@@ -18,7 +18,7 @@
  *  Udi.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,14 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	Udi();
+	Udi(
+		std::string deviceidentifier
+		, 
+		std::string humanreadableform
+		, 
+		InstanceIdentifier issuer
+	); 
+	Udi() = delete;
 	Udi(const Udi & object);
 	virtual ~Udi();
     

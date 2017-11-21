@@ -18,7 +18,7 @@
  *  AlertConditionDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-AlertConditionDescriptor::AlertConditionDescriptor() : data(Defaults::AlertConditionDescriptor()) {
-}
+
+AlertConditionDescriptor::AlertConditionDescriptor(
+		Handle handle
+		, 
+		AlertConditionPriority priority
+) : data(Defaults::AlertConditionDescriptorInit(
+		handle
+		,
+		priority
+)) {}
 
 AlertConditionDescriptor::operator CDM::AlertConditionDescriptor() const {
 	return *data;
@@ -145,16 +153,6 @@ bool AlertConditionDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
 	
-AlertConditionDescriptor & AlertConditionDescriptor::setKind(const AlertConditionKind & value) {
-	data->Kind(ConvertToCDM::convert(value));
-	return *this;
-}
-
-
-AlertConditionKind AlertConditionDescriptor::getKind() const {
-	return ConvertFromCDM::convert(data->Kind());
-}
-	
 AlertConditionDescriptor & AlertConditionDescriptor::setPriority(const AlertConditionPriority & value) {
 	data->Priority(ConvertToCDM::convert(value));
 	return *this;
@@ -184,48 +182,6 @@ xml_schema::Duration AlertConditionDescriptor::getDefaultConditionGenerationDela
 	
 bool AlertConditionDescriptor::hasDefaultConditionGenerationDelay() const {
 	return data->DefaultConditionGenerationDelay().present();
-}
-	
-AlertConditionDescriptor & AlertConditionDescriptor::setCanEscalate(const CanEscalate & value) {
-	data->CanEscalate(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertConditionDescriptor::getCanEscalate(CanEscalate & out) const {
-	if (data->CanEscalate().present()) {
-		out = ConvertFromCDM::convert(data->CanEscalate().get());
-		return true;
-	}
-	return false;
-}
-
-CanEscalate AlertConditionDescriptor::getCanEscalate() const {
-	return ConvertFromCDM::convert(data->CanEscalate().get());
-}
-	
-bool AlertConditionDescriptor::hasCanEscalate() const {
-	return data->CanEscalate().present();
-}
-	
-AlertConditionDescriptor & AlertConditionDescriptor::setCanDeescalate(const CanDeescalate & value) {
-	data->CanDeescalate(ConvertToCDM::convert(value));
-	return *this;
-}
-
-bool AlertConditionDescriptor::getCanDeescalate(CanDeescalate & out) const {
-	if (data->CanDeescalate().present()) {
-		out = ConvertFromCDM::convert(data->CanDeescalate().get());
-		return true;
-	}
-	return false;
-}
-
-CanDeescalate AlertConditionDescriptor::getCanDeescalate() const {
-	return ConvertFromCDM::convert(data->CanDeescalate().get());
-}
-	
-bool AlertConditionDescriptor::hasCanDeescalate() const {
-	return data->CanDeescalate().present();
 }
 	
 AlertConditionDescriptor & AlertConditionDescriptor::addSource(const HandleRef & value) {

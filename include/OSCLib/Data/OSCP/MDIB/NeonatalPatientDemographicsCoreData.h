@@ -18,7 +18,7 @@
  *  NeonatalPatientDemographicsCoreData.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	NeonatalPatientDemographicsCoreData();
+	NeonatalPatientDemographicsCoreData(
+	); 
 	NeonatalPatientDemographicsCoreData(const NeonatalPatientDemographicsCoreData & object);
 	virtual ~NeonatalPatientDemographicsCoreData();
     
@@ -89,11 +90,6 @@ public:
 	PatientType getPatientType() const;
 	bool getPatientType(PatientType & out) const;
 	bool hasPatientType() const;
-
-	NeonatalPatientDemographicsCoreData & setDateOfBirth(const DateOfBirth & value);
-	DateOfBirth getDateOfBirth() const;
-	bool getDateOfBirth(DateOfBirth & out) const;
-	bool hasDateOfBirth() const;
 
 	NeonatalPatientDemographicsCoreData & setHeight(const Measurement & value);
 	Measurement getHeight() const;

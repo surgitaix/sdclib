@@ -18,7 +18,7 @@
  *  CodedValue.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	CodedValue();
+	CodedValue(
+		CodeIdentifier code
+	); 
+	CodedValue() = delete;
 	CodedValue(const CodedValue & object);
 	virtual ~CodedValue();
     
@@ -81,10 +84,6 @@ public:
 	CodedValue & addConceptDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getConceptDescriptionList() const;
 	void clearConceptDescriptionList();
-	
-	CodedValue & addTranslation(const Translation & value);
-	std::vector<Translation> getTranslationList() const;
-	void clearTranslationList();
 	
 private:
 	std::shared_ptr<CDM::CodedValue> data;

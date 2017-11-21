@@ -18,7 +18,7 @@
  *  ScoDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ScoDescriptor();
+	ScoDescriptor(
+		Handle handle
+	); 
+	ScoDescriptor() = delete;
 	ScoDescriptor(const ScoDescriptor & object);
 	virtual ~ScoDescriptor();
     

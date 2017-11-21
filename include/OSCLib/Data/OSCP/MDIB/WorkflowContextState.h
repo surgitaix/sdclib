@@ -18,7 +18,7 @@
  *  WorkflowContextState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	WorkflowContextState();
+	WorkflowContextState(
+		HandleRef descriptorhandle
+		, 
+		Handle handle
+	); 
+	WorkflowContextState() = delete;
 	WorkflowContextState(const WorkflowContextState & object);
 	virtual ~WorkflowContextState();
     
@@ -111,11 +116,6 @@ public:
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
 	
-	WorkflowContextState & setWorkflowDetail(const WorkflowDetail & value);
-	WorkflowDetail getWorkflowDetail() const;
-	bool getWorkflowDetail(WorkflowDetail & out) const;
-	bool hasWorkflowDetail() const;
-
 private:
 	std::shared_ptr<CDM::WorkflowContextState> data;
 };

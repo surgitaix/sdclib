@@ -18,7 +18,7 @@
  *  ProductionSpecification.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ProductionSpecification();
+	ProductionSpecification(
+		CodedValue spectype
+		, 
+		std::string productionspec
+	); 
+	ProductionSpecification() = delete;
 	ProductionSpecification(const ProductionSpecification & object);
 	virtual ~ProductionSpecification();
     

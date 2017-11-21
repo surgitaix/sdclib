@@ -18,7 +18,7 @@
  *  Translation.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	Translation();
+	Translation(
+		CodeIdentifier code
+	); 
+	Translation() = delete;
 	Translation(const Translation & object);
 	virtual ~Translation();
     

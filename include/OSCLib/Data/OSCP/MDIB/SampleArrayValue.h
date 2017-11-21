@@ -18,7 +18,7 @@
  *  SampleArrayValue.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SampleArrayValue();
+	SampleArrayValue(
+	); 
 	SampleArrayValue(const SampleArrayValue & object);
 	virtual ~SampleArrayValue();
     
@@ -55,9 +56,6 @@ public:
     SampleArrayValue & operator=(const SampleArrayValue & object);
     
     typedef CDM::SampleArrayValue WrappedType;
-
-	SampleArrayValue & setMetricQuality(const MetricQuality & value);
-	MetricQuality getMetricQuality() const;
 
 	SampleArrayValue & setStartTime(const Timestamp & value);
 	Timestamp getStartTime() const;
@@ -74,19 +72,11 @@ public:
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
-	SampleArrayValue & addAnnotation(const Annotation & value);
-	std::vector<Annotation> getAnnotationList() const;
-	void clearAnnotationList();
-	
 	SampleArrayValue & setSamples(const RealTimeValueType & value);
 	RealTimeValueType getSamples() const;
 	bool getSamples(RealTimeValueType & out) const;
 	bool hasSamples() const;
 
-	SampleArrayValue & addApplyAnnotation(const ApplyAnnotation & value);
-	std::vector<ApplyAnnotation> getApplyAnnotationList() const;
-	void clearApplyAnnotationList();
-	
 private:
 	std::shared_ptr<CDM::SampleArrayValue> data;
 };

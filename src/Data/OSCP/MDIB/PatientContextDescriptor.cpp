@@ -18,7 +18,7 @@
  *  PatientContextDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-PatientContextDescriptor::PatientContextDescriptor() : data(Defaults::PatientContextDescriptor()) {
-}
+
+PatientContextDescriptor::PatientContextDescriptor(
+		Handle handle
+) : data(Defaults::PatientContextDescriptorInit(
+		handle
+)) {}
 
 PatientContextDescriptor::operator CDM::PatientContextDescriptor() const {
 	return *data;

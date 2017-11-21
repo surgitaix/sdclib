@@ -18,7 +18,7 @@
  *  MetaData.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	MetaData();
+	MetaData(
+	); 
 	MetaData(const MetaData & object);
 	virtual ~MetaData();
     
@@ -76,10 +77,6 @@ public:
 	bool getModelNumber(std::string & out) const;
 	bool hasModelNumber() const;
 
-	MetaData & addUdi(const Udi & value);
-	std::vector<Udi> getUdiList() const;
-	void clearUdiList();
-	
 	MetaData & addManufacturer(const LocalizedText & value);
 	std::vector<LocalizedText> getManufacturerList() const;
 	void clearManufacturerList();

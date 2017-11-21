@@ -18,7 +18,7 @@
  *  Udi.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,20 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-Udi::Udi() : data(Defaults::Udi()) {
-}
+
+Udi::Udi(
+		std::string deviceidentifier
+		, 
+		std::string humanreadableform
+		, 
+		InstanceIdentifier issuer
+) : data(Defaults::UdiInit(
+		deviceidentifier
+		,
+		humanreadableform
+		,
+		issuer
+)) {}
 
 Udi::operator CDM::Udi() const {
 	return *data;

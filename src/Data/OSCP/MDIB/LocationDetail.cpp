@@ -18,7 +18,7 @@
  *  LocationDetail.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-LocationDetail::LocationDetail() : data(Defaults::LocationDetail()) {
-}
+
+LocationDetail::LocationDetail(
+) : data(Defaults::LocationDetailInit(
+)) {}
 
 LocationDetail::operator CDM::LocationDetail() const {
 	return *data;

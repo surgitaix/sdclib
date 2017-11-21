@@ -18,7 +18,7 @@
  *  ApplyAnnotation.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ApplyAnnotation();
+	ApplyAnnotation(
+		unsigned int annotationindex
+		, 
+		unsigned int sampleindex
+	); 
+	ApplyAnnotation() = delete;
 	ApplyAnnotation(const ApplyAnnotation & object);
 	virtual ~ApplyAnnotation();
     

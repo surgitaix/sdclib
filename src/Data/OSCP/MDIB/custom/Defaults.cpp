@@ -147,18 +147,6 @@ CDM::Mdib  * Defaults::Mdib() {
 	return new CDM::Mdib(NOT_ASSIGNED);
 }
 
-CDM::AbstractDescriptor * Defaults::AbstractDescriptor() {
-	return new CDM::AbstractDescriptor(NOT_ASSIGNED);
-}
-
-CDM::AbstractMetricDescriptor * Defaults::AbstractMetricDescriptor() {
-	return new CDM::AbstractMetricDescriptor(NOT_ASSIGNED,
-			ConvertToCDM::convert(OSCP::CodedValue()),
-			CDM::MetricCategory::Unspec,
-			CDM::MetricAvailability::Cont);
-}
-
-
 CDM::MdDescription  * Defaults::MdDescription() {
 	return new CDM::MdDescription();
 }
@@ -168,13 +156,11 @@ CDM::MdState  * Defaults::MdState() {
 }
 
 CDM::LocalizedText  * Defaults::LocalizedText() {
-	// it is important to call the string constructor instead of the default constructor
-	// xsd does not respect minLenght for strings in schemas, but validation would fail otherwise
-	return new CDM::LocalizedText(ConvertToCDM::convert(NOT_ASSIGNED));
+	return new CDM::LocalizedText();
 }
 
 CDM::CodedValue  * Defaults::CodedValue() {
-	return new CDM::CodedValue(NOT_ASSIGNED);
+	return new CDM::CodedValue("Code not assigned.");
 }
 
 CDM::InstanceIdentifier  * Defaults::InstanceIdentifier() {
@@ -336,7 +322,7 @@ CDM::NumericMetricDescriptor  * Defaults::NumericMetricDescriptor() {
 			ConvertToCDM::convert(OSCP::CodedValue()),
 			CDM::MetricCategory::Unspec,
 			CDM::MetricAvailability::Cont,
-			xml_schema::Decimal(0.0000001));l
+			xml_schema::Decimal(0.0000001));
 }
 
 CDM::NumericMetricState  * Defaults::NumericMetricState() {
@@ -375,7 +361,7 @@ CDM::RealTimeSampleArrayMetricDescriptor  * Defaults::RealTimeSampleArrayMetricD
 			CDM::MetricCategory::Unspec,
 			CDM::MetricAvailability::Cont,
 			xml_schema::Decimal(1),
-			xml_schema::Duration(false,0,0,0,0,0,1));
+			xml_schema::Duration(true,0,0,0,0,0,0));
 }
 
 CDM::RealTimeSampleArrayMetricState  * Defaults::RealTimeSampleArrayMetricState() {
@@ -654,29 +640,6 @@ CDM::DicomNetworkConnection  * Defaults::DicomNetworkConnection() {
 
 CDM::DicomDeviceDescriptor  * Defaults::DicomDeviceDescriptor() {
 	return new CDM::DicomDeviceDescriptor(NOT_ASSIGNED);
-}
-
-// new D10
-CDM::CalibrationResult * Defaults::CalibrationResult() {
-	return new CDM::CalibrationResult(ConvertToCDM::convert(OSCP::CodedValue()),
-			ConvertToCDM::convert(OSCP::Measurement()));
-}
-
-
-CDM::CalibrationDocumentation * Defaults::CalibrationDocumentation() {
-	return new CDM::CalibrationDocumentation();
-}
-
-CDM::Translation * Defaults::Translation() {
-	return new CDM::Translation(NOT_ASSIGNED);
-}
-
-CDM::OperationGroup * Defaults::OperationGroup() {
-	return new CDM::OperationGroup(ConvertToCDM::convert(OSCP::CodedValue()));
-}
-
-CDM::PhysicalConnectorInfo * Defaults::PhysicalConnectorInfo() {
-	return new CDM::PhysicalConnectorInfo();
 }
 
 

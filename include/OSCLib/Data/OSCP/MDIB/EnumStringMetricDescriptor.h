@@ -18,7 +18,7 @@
  *  EnumStringMetricDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,16 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	EnumStringMetricDescriptor();
+	EnumStringMetricDescriptor(
+		Handle handle
+		, 
+		CodedValue unit
+		, 
+		MetricCategory metriccategory
+		, 
+		MetricAvailability metricavailability
+	); 
+	EnumStringMetricDescriptor() = delete;
 	EnumStringMetricDescriptor(const EnumStringMetricDescriptor & object);
 	virtual ~EnumStringMetricDescriptor();
     
@@ -116,14 +125,6 @@ public:
 	EnumStringMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
-	EnumStringMetricDescriptor & addRelation(const Relation & value);
-	std::vector<Relation> getRelationList() const;
-	void clearRelationList();
-	
-	EnumStringMetricDescriptor & addAllowedValue(const AllowedValue & value);
-	std::vector<AllowedValue> getAllowedValueList() const;
-	void clearAllowedValueList();
 	
 private:
 	std::shared_ptr<CDM::EnumStringMetricDescriptor> data;

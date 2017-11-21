@@ -18,7 +18,7 @@
  *  LimitAlertConditionState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,24 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-LimitAlertConditionState::LimitAlertConditionState() : data(Defaults::LimitAlertConditionState()) {
-}
+
+LimitAlertConditionState::LimitAlertConditionState(
+		HandleRef descriptorhandle
+		, 
+		AlertActivation activationstate
+		, 
+		Range limits
+		, 
+		AlertConditionMonitoredLimits monitoredalertlimits
+) : data(Defaults::LimitAlertConditionStateInit(
+		descriptorhandle
+		,
+		activationstate
+		,
+		limits
+		,
+		monitoredalertlimits
+)) {}
 
 LimitAlertConditionState::operator CDM::LimitAlertConditionState() const {
 	return *data;

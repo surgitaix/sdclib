@@ -18,7 +18,7 @@
  *  Annotation.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-Annotation::Annotation() : data(Defaults::Annotation()) {
-}
+
+Annotation::Annotation(
+		CodedValue type
+) : data(Defaults::AnnotationInit(
+		type
+)) {}
 
 Annotation::operator CDM::Annotation() const {
 	return *data;

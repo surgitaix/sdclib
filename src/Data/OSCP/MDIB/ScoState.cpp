@@ -42,8 +42,11 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ScoState::ScoState() : data(Defaults::ScoState()) {
-}
+ScoState::ScoState(
+		HandleRef descriptorhandle
+) : data(Defaults::ScoStateInit(
+		descriptorhandle
+)) {}
 
 ScoState::operator CDM::ScoState() const {
 	return *data;

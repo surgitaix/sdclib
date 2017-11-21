@@ -18,7 +18,7 @@
  *  MdsState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MdsState::MdsState() : data(Defaults::MdsState()) {
-}
+
+MdsState::MdsState(
+		HandleRef descriptorhandle
+) : data(Defaults::MdsStateInit(
+		descriptorhandle
+)) {}
 
 MdsState::operator CDM::MdsState() const {
 	return *data;

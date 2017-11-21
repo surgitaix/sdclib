@@ -18,7 +18,7 @@
  *  Translation.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-Translation::Translation() : data(Defaults::Translation()) {
-}
+
+Translation::Translation(
+		CodeIdentifier code
+) : data(Defaults::TranslationInit(
+		code
+)) {}
 
 Translation::operator CDM::Translation() const {
 	return *data;

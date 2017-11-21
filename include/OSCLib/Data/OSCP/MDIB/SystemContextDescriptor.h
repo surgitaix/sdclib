@@ -18,7 +18,7 @@
  *  SystemContextDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SystemContextDescriptor();
+	SystemContextDescriptor(
+		Handle handle
+	); 
+	SystemContextDescriptor() = delete;
 	SystemContextDescriptor(const SystemContextDescriptor & object);
 	virtual ~SystemContextDescriptor();
     

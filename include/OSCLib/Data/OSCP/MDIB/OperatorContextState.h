@@ -18,7 +18,7 @@
  *  OperatorContextState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	OperatorContextState();
+	OperatorContextState(
+		HandleRef descriptorhandle
+		, 
+		Handle handle
+	); 
+	OperatorContextState() = delete;
 	OperatorContextState(const OperatorContextState & object);
 	virtual ~OperatorContextState();
     

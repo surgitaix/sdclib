@@ -18,7 +18,7 @@
  *  Argument.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	Argument();
+	Argument(
+		CodedValue argname
+		, 
+		xml_schema::Qname arg
+	); 
+	Argument() = delete;
 	Argument(const Argument & object);
 	virtual ~Argument();
     

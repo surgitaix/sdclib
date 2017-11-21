@@ -18,7 +18,7 @@
  *  EnumStringMetricState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	EnumStringMetricState();
+	EnumStringMetricState(
+		HandleRef descriptorhandle
+	); 
+	EnumStringMetricState() = delete;
 	EnumStringMetricState(const EnumStringMetricState & object);
 	virtual ~EnumStringMetricState();
     

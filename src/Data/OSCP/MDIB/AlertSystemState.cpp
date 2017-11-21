@@ -18,7 +18,7 @@
  *  AlertSystemState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-AlertSystemState::AlertSystemState() : data(Defaults::AlertSystemState()) {
-}
+
+AlertSystemState::AlertSystemState(
+		HandleRef descriptorhandle
+		, 
+		AlertActivation activationstate
+) : data(Defaults::AlertSystemStateInit(
+		descriptorhandle
+		,
+		activationstate
+)) {}
 
 AlertSystemState::operator CDM::AlertSystemState() const {
 	return *data;

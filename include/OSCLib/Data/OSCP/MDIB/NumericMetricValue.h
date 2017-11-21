@@ -18,7 +18,7 @@
  *  NumericMetricValue.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,8 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	NumericMetricValue();
+	NumericMetricValue(
+	); 
 	NumericMetricValue(const NumericMetricValue & object);
 	virtual ~NumericMetricValue();
     
@@ -55,9 +56,6 @@ public:
     NumericMetricValue & operator=(const NumericMetricValue & object);
     
     typedef CDM::NumericMetricValue WrappedType;
-
-	NumericMetricValue & setMetricQuality(const MetricQuality & value);
-	MetricQuality getMetricQuality() const;
 
 	NumericMetricValue & setStartTime(const Timestamp & value);
 	Timestamp getStartTime() const;
@@ -74,10 +72,6 @@ public:
 	bool getDeterminationTime(Timestamp & out) const;
 	bool hasDeterminationTime() const;
 
-	NumericMetricValue & addAnnotation(const Annotation & value);
-	std::vector<Annotation> getAnnotationList() const;
-	void clearAnnotationList();
-	
 	NumericMetricValue & setValue(const double & value);
 	double getValue() const;
 	bool getValue(double & out) const;

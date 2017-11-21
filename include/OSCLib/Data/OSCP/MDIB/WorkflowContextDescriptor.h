@@ -18,7 +18,7 @@
  *  WorkflowContextDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	WorkflowContextDescriptor();
+	WorkflowContextDescriptor(
+		Handle handle
+	); 
+	WorkflowContextDescriptor() = delete;
 	WorkflowContextDescriptor(const WorkflowContextDescriptor & object);
 	virtual ~WorkflowContextDescriptor();
     

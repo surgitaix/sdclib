@@ -18,7 +18,7 @@
  *  SystemContextDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -48,8 +48,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SystemContextDescriptor::SystemContextDescriptor() : data(Defaults::SystemContextDescriptor()) {
-}
+
+SystemContextDescriptor::SystemContextDescriptor(
+		Handle handle
+) : data(Defaults::SystemContextDescriptorInit(
+		handle
+)) {}
 
 SystemContextDescriptor::operator CDM::SystemContextDescriptor() const {
 	return *data;

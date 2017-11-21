@@ -18,7 +18,7 @@
  *  ScoState.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	ScoState();
+	ScoState(
+		HandleRef descriptorhandle
+	); 
+	ScoState() = delete;
 	ScoState(const ScoState & object);
 	virtual ~ScoState();
     
@@ -79,10 +82,6 @@ public:
 	bool getInvocationRequired(OperationRef & out) const;
 	bool hasInvocationRequired() const;
 
-	ScoState & addOperationGroup(const OperationGroup & value);
-	std::vector<OperationGroup> getOperationGroupList() const;
-	void clearOperationGroupList();
-	
 private:
 	std::shared_ptr<CDM::ScoState> data;
 };

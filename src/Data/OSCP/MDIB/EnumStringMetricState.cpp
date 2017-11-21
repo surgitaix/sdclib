@@ -18,7 +18,7 @@
  *  EnumStringMetricState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-EnumStringMetricState::EnumStringMetricState() : data(Defaults::EnumStringMetricState()) {
-}
+
+EnumStringMetricState::EnumStringMetricState(
+		HandleRef descriptorhandle
+) : data(Defaults::EnumStringMetricStateInit(
+		descriptorhandle
+)) {}
 
 EnumStringMetricState::operator CDM::EnumStringMetricState() const {
 	return *data;

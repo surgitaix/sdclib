@@ -18,7 +18,7 @@
  *  OperatorContextState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -44,8 +44,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OperatorContextState::OperatorContextState() : data(Defaults::OperatorContextState()) {
-}
+
+OperatorContextState::OperatorContextState(
+		HandleRef descriptorhandle
+		, 
+		Handle handle
+) : data(Defaults::OperatorContextStateInit(
+		descriptorhandle
+		,
+		handle
+)) {}
 
 OperatorContextState::operator CDM::OperatorContextState() const {
 	return *data;

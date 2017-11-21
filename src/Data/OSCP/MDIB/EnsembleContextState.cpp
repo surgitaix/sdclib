@@ -18,7 +18,7 @@
  *  EnsembleContextState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-EnsembleContextState::EnsembleContextState() : data(Defaults::EnsembleContextState()) {
-}
+
+EnsembleContextState::EnsembleContextState(
+		HandleRef descriptorhandle
+		, 
+		Handle handle
+) : data(Defaults::EnsembleContextStateInit(
+		descriptorhandle
+		,
+		handle
+)) {}
 
 EnsembleContextState::operator CDM::EnsembleContextState() const {
 	return *data;

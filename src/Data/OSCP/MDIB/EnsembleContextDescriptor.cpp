@@ -18,7 +18,7 @@
  *  EnsembleContextDescriptor.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,12 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-EnsembleContextDescriptor::EnsembleContextDescriptor() : data(Defaults::EnsembleContextDescriptor()) {
-}
+
+EnsembleContextDescriptor::EnsembleContextDescriptor(
+		Handle handle
+) : data(Defaults::EnsembleContextDescriptorInit(
+		handle
+)) {}
 
 EnsembleContextDescriptor::operator CDM::EnsembleContextDescriptor() const {
 	return *data;

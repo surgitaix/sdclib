@@ -18,7 +18,7 @@
  *  MetaData.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -36,15 +36,16 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/Data/OSCP/MDIB/Udi.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-MetaData::MetaData() : data(Defaults::MetaData()) {
-}
+
+MetaData::MetaData(
+) : data(Defaults::MetaDataInit(
+)) {}
 
 MetaData::operator CDM::MetaData() const {
 	return *data;
@@ -156,24 +157,6 @@ bool MetaData::hasModelNumber() const {
 	return data->ModelNumber().present();
 }
 	
-MetaData & MetaData::addUdi(const Udi & value) {
-	data->Udi().push_back(ConvertToCDM::convert(value));
-	return *this;
-}
-
-std::vector<Udi> MetaData::getUdiList() const {
-	std::vector<Udi> result;
-	result.reserve(data->Udi().size());
-	for (const auto & value: data->Udi()) {
-		result.push_back(ConvertFromCDM::convert(value));
-	}
-	return result;
-}
-
-void MetaData::clearUdiList() {
-	data->Udi().clear();
-}
-
 MetaData & MetaData::addManufacturer(const LocalizedText & value) {
 	data->Manufacturer().push_back(ConvertToCDM::convert(value));
 	return *this;

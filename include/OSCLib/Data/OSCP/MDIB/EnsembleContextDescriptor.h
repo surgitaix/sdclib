@@ -18,7 +18,7 @@
  *  EnsembleContextDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	EnsembleContextDescriptor();
+	EnsembleContextDescriptor(
+		Handle handle
+	); 
+	EnsembleContextDescriptor() = delete;
 	EnsembleContextDescriptor(const EnsembleContextDescriptor & object);
 	virtual ~EnsembleContextDescriptor();
     

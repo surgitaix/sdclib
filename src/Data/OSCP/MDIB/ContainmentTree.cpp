@@ -18,7 +18,7 @@
  *  ContainmentTree.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ContainmentTree::ContainmentTree() : data(Defaults::ContainmentTree()) {
-}
+
+ContainmentTree::ContainmentTree(
+) : data(Defaults::ContainmentTreeInit(
+)) {}
 
 ContainmentTree::operator CDM::ContainmentTree() const {
 	return *data;

@@ -18,7 +18,7 @@
  *  DicomNetworkAe.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,16 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	DicomNetworkAe();
+	DicomNetworkAe(
+		std::string aetitle
+		, 
+		xml_schema::Idrefs networkconnectionreference
+		, 
+		bool associationinitiator
+		, 
+		bool associationacceptor
+	); 
+	DicomNetworkAe() = delete;
 	DicomNetworkAe(const DicomNetworkAe & object);
 	virtual ~DicomNetworkAe();
     

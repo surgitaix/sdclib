@@ -18,7 +18,7 @@
  *  RemedyInfo.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -42,8 +42,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-RemedyInfo::RemedyInfo() : data(Defaults::RemedyInfo()) {
-}
+
+RemedyInfo::RemedyInfo(
+) : data(Defaults::RemedyInfoInit(
+)) {}
 
 RemedyInfo::operator CDM::RemedyInfo() const {
 	return *data;

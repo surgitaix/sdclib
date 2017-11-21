@@ -18,7 +18,7 @@
  *  BatteryDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,10 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	BatteryDescriptor();
+	BatteryDescriptor(
+		Handle handle
+	); 
+	BatteryDescriptor() = delete;
 	BatteryDescriptor(const BatteryDescriptor & object);
 	virtual ~BatteryDescriptor();
     
@@ -74,10 +77,6 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
-	BatteryDescriptor & addProductionSpecification(const ProductionSpecification & value);
-	std::vector<ProductionSpecification> getProductionSpecificationList() const;
-	void clearProductionSpecificationList();
-	
 	BatteryDescriptor & setCapacityFullCharge(const Measurement & value);
 	Measurement getCapacityFullCharge() const;
 	bool getCapacityFullCharge(Measurement & out) const;

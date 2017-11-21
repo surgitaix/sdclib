@@ -18,7 +18,7 @@
  *  StringMetricDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,16 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	StringMetricDescriptor();
+	StringMetricDescriptor(
+		Handle handle
+		, 
+		CodedValue unit
+		, 
+		MetricCategory metriccategory
+		, 
+		MetricAvailability metricavailability
+	); 
+	StringMetricDescriptor() = delete;
 	StringMetricDescriptor(const StringMetricDescriptor & object);
 	virtual ~StringMetricDescriptor();
     
@@ -117,10 +126,6 @@ public:
 	StringMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
-	StringMetricDescriptor & addRelation(const Relation & value);
-	std::vector<Relation> getRelationList() const;
-	void clearRelationList();
 	
 private:
 	std::shared_ptr<CDM::StringMetricDescriptor> data;

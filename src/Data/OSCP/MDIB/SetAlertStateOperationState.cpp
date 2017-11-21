@@ -18,7 +18,7 @@
  *  SetAlertStateOperationState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -41,8 +41,16 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SetAlertStateOperationState::SetAlertStateOperationState() : data(Defaults::SetAlertStateOperationState()) {
-}
+
+SetAlertStateOperationState::SetAlertStateOperationState(
+		HandleRef descriptorhandle
+		, 
+		OperatingMode operatingmode
+) : data(Defaults::SetAlertStateOperationStateInit(
+		descriptorhandle
+		,
+		operatingmode
+)) {}
 
 SetAlertStateOperationState::operator CDM::SetAlertStateOperationState() const {
 	return *data;

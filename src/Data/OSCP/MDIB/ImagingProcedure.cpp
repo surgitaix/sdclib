@@ -18,7 +18,7 @@
  *  ImagingProcedure.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -43,8 +43,24 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-ImagingProcedure::ImagingProcedure() : data(Defaults::ImagingProcedure()) {
-}
+
+ImagingProcedure::ImagingProcedure(
+		InstanceIdentifier accessionidentifier
+		, 
+		InstanceIdentifier requestedprocedureid
+		, 
+		InstanceIdentifier studyinstanceuid
+		, 
+		InstanceIdentifier scheduledprocedurestepid
+) : data(Defaults::ImagingProcedureInit(
+		accessionidentifier
+		,
+		requestedprocedureid
+		,
+		studyinstanceuid
+		,
+		scheduledprocedurestepid
+)) {}
 
 ImagingProcedure::operator CDM::ImagingProcedure() const {
 	return *data;

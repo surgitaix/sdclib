@@ -18,7 +18,7 @@
  *  SetStringOperationDescriptor.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, buerger, roehser
  */
  
 /**
@@ -47,7 +47,12 @@ private:
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
 public:
-	SetStringOperationDescriptor();
+	SetStringOperationDescriptor(
+		Handle handle
+		, 
+		HandleRef operationtarget
+	); 
+	SetStringOperationDescriptor() = delete;
 	SetStringOperationDescriptor(const SetStringOperationDescriptor & object);
 	virtual ~SetStringOperationDescriptor();
     
@@ -91,11 +96,6 @@ public:
 	xml_schema::Duration getRetriggerable() const;
 	bool getRetriggerable(xml_schema::Duration & out) const;
 	bool hasRetriggerable() const;
-
-	SetStringOperationDescriptor & setAccessLevel(const AccessLevel & value);
-	AccessLevel getAccessLevel() const;
-	bool getAccessLevel(AccessLevel & out) const;
-	bool hasAccessLevel() const;
 
 	SetStringOperationDescriptor & setMaxLength(const unsigned long long & value);
 	unsigned long long getMaxLength() const;
