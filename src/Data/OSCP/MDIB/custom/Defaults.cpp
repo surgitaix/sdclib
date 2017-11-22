@@ -174,7 +174,9 @@ CDM::MdState  * Defaults::MdStateInit() {
 }
 
 CDM::LocalizedText  * Defaults::LocalizedTextInit() {
-	return new CDM::LocalizedText();
+	// it is important to call the string constructor instead of the default constructor
+	// xsd does not respect minLenght for strings in schemas, but validation would fail otherwise
+	return new CDM::LocalizedText(NOT_ASSIGNED);
 }
 
 CDM::CodedValue  * Defaults::CodedValueInit(CodeIdentifier code) {

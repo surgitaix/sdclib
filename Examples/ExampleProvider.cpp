@@ -4,7 +4,7 @@
  *  @Copyright (C) 2016, SurgiTAIX AG
  *  Author: buerger
  *
- *  This program sends a RealTimeSampleArrayMetricState ("handle_stream") and a NumericMatricState ("handle_get") to the network. It changes the "handle_stream"
+ *  This program sends a RealTimeSampleArrayMetricState (HANDLE_STREAM_METRIC) and a NumericMatricState (HANDLE_GET_METRIC) to the network. It changes the HANDLE_STREAM_METRIC
  *
  */
 
@@ -35,6 +35,8 @@
 #include "OSCLib/Dev/DeviceCharacteristics.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 
+#include "BICEPS_MessageModel-fwd.hxx"
+
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
@@ -54,6 +56,11 @@ const std::string DEVICE_EPR("UDI-1234567890");
 const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
 const std::string MDS_DESCRIPTOR_HANDLE("holdingDevice_mds");
+const std::string HANDLE_SET_METRIC("handle_set");
+const std::string HANDLE_GET_METRIC("handle_get");
+const std::string HANDLE_STREAM_METRIC("handle_stream");
+const std::string HANDLE_STRING_METRIC("handle_string");
+
 
 class NumericProviderStateHandlerGet : public OSCPProviderNumericMetricStateHandler {
 public:
@@ -64,7 +71,7 @@ public:
 
 	// Helper method
 	NumericMetricState createState(double value) {
-		NumericMetricState result("handle_get");
+		NumericMetricState result(HANDLE_GET_METRIC);
 		result
 			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
 			.setActivationState(ComponentActivation::On);
@@ -104,7 +111,7 @@ public:
 
     // Helper method
     NumericMetricState createState() {
-        NumericMetricState result("handle_set");
+        NumericMetricState result(HANDLE_SET_METRIC);
         result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
             .setActivationState(ComponentActivation::On);
@@ -119,9 +126,9 @@ public:
 
     // Convenience value getter
     float getMaxWeight() {
-        NumericMetricState result;
+        NumericMetricState result(HANDLE_SET_METRIC);
         // TODO: in real applications, check if findState returns true!
-        getParentProvider().getMdState().findState("handle_set", result);
+        getParentProvider().getMdState().findState(HANDLE_SET_METRIC, result);
         // TODO: in real applications, check if state has an observed value and if the observed value has a value!
         return (float)result.getMetricValue().getValue();
     }
@@ -140,11 +147,9 @@ public:
 
     // Helper method
     RealTimeSampleArrayMetricState createState() {
-        RealTimeSampleArrayMetricState realTimeSampleArrayState;
+        RealTimeSampleArrayMetricState realTimeSampleArrayState(descriptorHandle);
         realTimeSampleArrayState
-            .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle(descriptorHandle);
-
+            .setActivationState(ComponentActivation::On);
         return realTimeSampleArrayState;
     }
 
@@ -184,10 +189,9 @@ public:
 
 	// Helper method
 	StringMetricState createState() {
-		StringMetricState result;
+		StringMetricState result(HANDLE_STRING_METRIC);
 		result
-			.setDescriptorHandle("handle_string")
-			.setMetricValue(StringMetricValue().setValue("StringMetricValueInit"));
+			.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Inv)).setValue("StringMetricValueInit"));
 
 	    return result;
 	}
@@ -205,49 +209,49 @@ private:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() : oscpProvider(), streamProviderStateHandler("handle_stream"), stringProviderStateHandler("handle_string"), numericProviderStateHandlerGet("handle_get"), numericProviderStateHandlerSet("handle_set") {
+    OSCPStreamProvider() :	oscpProvider(),
+    	streamProviderStateHandler(HANDLE_STREAM_METRIC),
+    	stringProviderStateHandler(HANDLE_STRING_METRIC),
+    	numericProviderStateHandlerGet(HANDLE_GET_METRIC),
+    	numericProviderStateHandlerSet(HANDLE_SET_METRIC) {
 
 		oscpProvider.setEndpointReference(DEVICE_EPR);
 		Dev::DeviceCharacteristics devChar;
 		devChar.addFriendlyName("en", "OSCLib ExampleProvider");
 		oscpProvider.setDeviceCharacteristics(devChar);
 
-		// Important:
-        // each handle references its state
-        streamMetricDescriptor.setHandle("handle_stream");
-        setMetricDescriptor.setHandle("handle_set");
-        getMetricDescriptor.setHandle("handle_get");
-        stringMetricDescriptor.setHandle("handle_string");
+	    // metric stream metric (read-only)
+	    RealTimeSampleArrayMetricDescriptor streamMetricDescriptor(HANDLE_STREAM_METRIC,
+	    		CodedValue("MDCX_EXAMPLE_STREAM"),
+	    		MetricCategory::Msrmt,
+	    		MetricAvailability::Cont,
+	    		1,
+	    		xml_schema::Duration(0,0,0,0,0,0,1));
 
-        // metric stream metric (read-only)
-        streamMetricDescriptor
-        	.setMetricAvailability(MetricAvailability::Cont)
-        	.setResolution(1.0)
-        	.setType(CodedValue().setCode("MDCX_EXAMPLE_STREAM"))
-        	.setMetricCategory(MetricCategory::Msrmt)
-        	.addTechnicalRange(Range().setLower(0).setUpper(2));
+	    NumericMetricDescriptor setMetricDescriptor(HANDLE_SET_METRIC,
+	    		CodedValue("MDCX_EXAMPLE_SET"),
+	    		MetricCategory::Set,
+	    		MetricAvailability::Cont,
+	    		1.0);
 
-        setMetricDescriptor
-        	.setMetricCategory(MetricCategory::Set)
-        	.setMetricAvailability(MetricAvailability::Cont)
-        	.setType(CodedValue()
-        		.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"))
-        		.setCode("MDCX_EXAMPLE_SET"));
 
-        getMetricDescriptor
-			.setMetricAvailability(MetricAvailability::Cont)
-			.setType(CodedValue()
-					.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"))
-					.setCode("MDCX_EXAMPLE_GET"));
+	    NumericMetricDescriptor getMetricDescriptor(HANDLE_GET_METRIC,
+	    		CodedValue("MDCX_EXAMPLE_GET"),
+	    		MetricCategory::Set,
+	    		MetricAvailability::Cont,
+	    		1);
 
-        stringMetricDescriptor
-        	.setMetricAvailability(MetricAvailability::Cont)
-        	.setType(CodedValue().addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
+	    StringMetricDescriptor  stringMetricDescriptor(HANDLE_STRING_METRIC,
+	    		CodedValue("MDCX_EXAMPLE_STRING"),
+	    		MetricCategory::Set,
+	    		MetricAvailability::Cont);
+
+
+
 
         // Channel
-        ChannelDescriptor holdingDeviceParameters;
+        ChannelDescriptor holdingDeviceParameters(CHANNEL_DESCRIPTOR_HANDLE);
         holdingDeviceParameters
-        	.setHandle(CHANNEL_DESCRIPTOR_HANDLE)
         	.setSafetyClassification(SafetyClassification::MedB)
 			.addMetric(streamMetricDescriptor)
 			.addMetric(setMetricDescriptor)
@@ -256,17 +260,14 @@ public:
 
 
         // VMD
-        VmdDescriptor holdingDeviceModule;
+        VmdDescriptor holdingDeviceModule(VMD_DESCRIPTOR_HANDLE);
         holdingDeviceModule
-        	.setHandle(VMD_DESCRIPTOR_HANDLE)
         	.addChannel(holdingDeviceParameters);
 
         // MDS
-        MdsDescriptor holdingDeviceSystem;
+        MdsDescriptor holdingDeviceSystem(MDS_DESCRIPTOR_HANDLE);
         holdingDeviceSystem
-        	.setHandle(MDS_DESCRIPTOR_HANDLE)
-        	.setType(CodedValue()
-        			.setCode("MDC_DEV_DOCU_POSE_MDS")
+        	.setType(CodedValue("MDC_DEV_DOCU_POSE_MDS")
         			.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
         	.setMetaData(
         		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
@@ -307,10 +308,6 @@ public:
 private:
 
     OSCPProvider oscpProvider;
-	RealTimeSampleArrayMetricDescriptor streamMetricDescriptor;
-	NumericMetricDescriptor setMetricDescriptor;
-	NumericMetricDescriptor getMetricDescriptor;
-	StringMetricDescriptor stringMetricDescriptor;
 
     StreamProviderStateHandler streamProviderStateHandler;
     NumericProviderStateHandlerGet numericProviderStateHandlerGet;
@@ -333,7 +330,7 @@ public:
 
 		while (!isInterrupted()) {
 			{
-                updateStateValue(SampleArrayValue().setSamples(samples));
+                updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Inv)).setSamples(samples));
 			}
 			DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
