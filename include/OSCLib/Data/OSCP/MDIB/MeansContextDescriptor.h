@@ -46,11 +46,15 @@ private:
 	operator CDM::MeansContextDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	MeansContextDescriptor(
 		Handle handle
 	); 
-	MeansContextDescriptor() = delete;
+private:
+	MeansContextDescriptor(){};
+public:
 	MeansContextDescriptor(const MeansContextDescriptor & object);
 	virtual ~MeansContextDescriptor();
     

@@ -46,11 +46,15 @@ private:
 	operator CDM::ScoState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ScoState(
 		HandleRef descriptorhandle
 	); 
-	ScoState() = delete;
+private:
+	ScoState(){};
+public:
 	ScoState(const ScoState & object);
 	virtual ~ScoState();
     

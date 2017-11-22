@@ -46,6 +46,8 @@ private:
 	operator CDM::DistributionSampleArrayMetricDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	DistributionSampleArrayMetricDescriptor(
 		Handle handle
@@ -62,7 +64,9 @@ public:
 		, 
 		double resolution
 	); 
-	DistributionSampleArrayMetricDescriptor() = delete;
+private:
+	DistributionSampleArrayMetricDescriptor(){};
+public:
 	DistributionSampleArrayMetricDescriptor(const DistributionSampleArrayMetricDescriptor & object);
 	virtual ~DistributionSampleArrayMetricDescriptor();
     

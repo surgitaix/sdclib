@@ -46,11 +46,15 @@ private:
 	operator CDM::DistributionSampleArrayMetricState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	DistributionSampleArrayMetricState(
 		HandleRef descriptorhandle
 	); 
-	DistributionSampleArrayMetricState() = delete;
+private:
+	DistributionSampleArrayMetricState(){};
+public:
 	DistributionSampleArrayMetricState(const DistributionSampleArrayMetricState & object);
 	virtual ~DistributionSampleArrayMetricState();
     

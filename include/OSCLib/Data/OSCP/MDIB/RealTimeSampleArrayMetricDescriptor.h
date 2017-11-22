@@ -46,6 +46,8 @@ private:
 	operator CDM::RealTimeSampleArrayMetricDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	RealTimeSampleArrayMetricDescriptor(
 		Handle handle
@@ -60,7 +62,9 @@ public:
 		, 
 		xml_schema::Duration sampleperiod
 	); 
-	RealTimeSampleArrayMetricDescriptor() = delete;
+private:
+	RealTimeSampleArrayMetricDescriptor(){};
+public:
 	RealTimeSampleArrayMetricDescriptor(const RealTimeSampleArrayMetricDescriptor & object);
 	virtual ~RealTimeSampleArrayMetricDescriptor();
     

@@ -168,7 +168,7 @@ private:
 };
 
 template<class StateType>
-bool isMetricChangeAllowed(const StateType & state, OSCPProvider & provider) {
+bool OSCPProvider::isMetricChangeAllowed(const StateType & state, OSCPProvider & provider) {
 	typename StateType::DescriptorType descriptor;
 	if (!provider.getMdDescription().findDescriptor(state.getDescriptorHandle(), descriptor)) {
 		return false;
@@ -823,9 +823,18 @@ void OSCPProvider::setAlertConditionPresence(const std::string & alertConditionH
 	// Search all alert signal descriptors with reference to the alert condition descriptor handle
 	const std::vector<AlertSignalDescriptor> asds(getMdDescription().collectAllAlertSignalDescriptors());
 	std::map<std::string, AlertSignalDescriptor> matchingDescriptors;
+	std::list<AlertSignalDescriptor> listDescriptors;
+
+	// TODO: test if replacing operator[] insert/find really worked!
+	AlertSignalDescriptor test;
+	test.setHandle("testtest");
+	matchingDescriptors.insert( std::map<std::string, AlertSignalDescriptor>::value_type ( "asdf", AlertSignalDescriptor() ) );
+	std::string asdf = matchingDescriptors.find( "asdf" )->second.getHandle();
+
+
 	for (const auto & descriptor : asds) {
 		if (descriptor.getConditionSignaled() == alertConditionHandle) {
-			matchingDescriptors[descriptor.getHandle()] = descriptor;
+			matchingDescriptors.insert( std::map<std::string, AlertSignalDescriptor>::value_type ( descriptor.getHandle(), descriptor) );
 		}
 	}
 
@@ -1147,7 +1156,7 @@ void OSCPProvider::notifyOperationInvoked(const OperationInvocationContext & oic
 template<class T>
 void OSCPProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor & ownerMDS) {
 	// get sco object or create new
-	std::unique_ptr<CDM::ScoDescriptor> scoDescriptor(Defaults::ScoDescriptor());
+	std::unique_ptr<CDM::ScoDescriptor> scoDescriptor(Defaults::ScoDescriptorInit(xml_schema::Uri("")));
 	if (ownerMDS.hasSco()) {
 		scoDescriptor = ConvertToCDM::convert(ownerMDS.getSco());
 	} else {

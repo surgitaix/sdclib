@@ -46,11 +46,15 @@ private:
 	operator CDM::BatteryDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	BatteryDescriptor(
 		Handle handle
 	); 
-	BatteryDescriptor() = delete;
+private:
+	BatteryDescriptor(){};
+public:
 	BatteryDescriptor(const BatteryDescriptor & object);
 	virtual ~BatteryDescriptor();
     

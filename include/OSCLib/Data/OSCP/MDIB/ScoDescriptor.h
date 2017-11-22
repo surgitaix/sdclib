@@ -46,11 +46,15 @@ private:
 	operator CDM::ScoDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ScoDescriptor(
 		Handle handle
 	); 
-	ScoDescriptor() = delete;
+private:
+	ScoDescriptor(){};
+public:
 	ScoDescriptor(const ScoDescriptor & object);
 	virtual ~ScoDescriptor();
     

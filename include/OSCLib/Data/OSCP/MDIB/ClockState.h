@@ -46,13 +46,17 @@ private:
 	operator CDM::ClockState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ClockState(
 		HandleRef descriptorhandle
 		, 
 		bool remotesync
 	); 
-	ClockState() = delete;
+private:
+	ClockState(){};
+public:
 	ClockState(const ClockState & object);
 	virtual ~ClockState();
     

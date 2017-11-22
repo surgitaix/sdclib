@@ -46,11 +46,15 @@ private:
 	operator CDM::CodedValue() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	CodedValue(
 		CodeIdentifier code
 	); 
-	CodedValue() = delete;
+private:
+	CodedValue(){};
+public:
 	CodedValue(const CodedValue & object);
 	virtual ~CodedValue();
     

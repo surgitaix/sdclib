@@ -46,11 +46,15 @@ private:
 	operator CDM::SystemContextDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	SystemContextDescriptor(
 		Handle handle
 	); 
-	SystemContextDescriptor() = delete;
+private:
+	SystemContextDescriptor(){};
+public:
 	SystemContextDescriptor(const SystemContextDescriptor & object);
 	virtual ~SystemContextDescriptor();
     

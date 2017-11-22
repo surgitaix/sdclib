@@ -46,6 +46,8 @@ private:
 	operator CDM::DicomNetworkAe() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	DicomNetworkAe(
 		std::string aetitle
@@ -56,7 +58,9 @@ public:
 		, 
 		bool associationacceptor
 	); 
-	DicomNetworkAe() = delete;
+private:
+	DicomNetworkAe(){};
+public:
 	DicomNetworkAe(const DicomNetworkAe & object);
 	virtual ~DicomNetworkAe();
     

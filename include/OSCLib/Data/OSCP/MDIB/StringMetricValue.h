@@ -46,11 +46,15 @@ private:
 	operator CDM::StringMetricValue() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	StringMetricValue(
 		MetricQuality metricquality
 	); 
-	StringMetricValue() = delete;
+private:
+	StringMetricValue(){};
+public:
 	StringMetricValue(const StringMetricValue & object);
 	virtual ~StringMetricValue();
     

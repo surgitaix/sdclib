@@ -46,11 +46,15 @@ private:
 	operator CDM::AlertSystemDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	AlertSystemDescriptor(
 		Handle handle
 	); 
-	AlertSystemDescriptor() = delete;
+private:
+	AlertSystemDescriptor(){};
+public:
 	AlertSystemDescriptor(const AlertSystemDescriptor & object);
 	virtual ~AlertSystemDescriptor();
     

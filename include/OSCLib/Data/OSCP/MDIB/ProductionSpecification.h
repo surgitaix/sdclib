@@ -46,13 +46,17 @@ private:
 	operator CDM::ProductionSpecification() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ProductionSpecification(
 		CodedValue spectype
 		, 
 		std::string productionspec
 	); 
-	ProductionSpecification() = delete;
+private:
+	ProductionSpecification(){};
+public:
 	ProductionSpecification(const ProductionSpecification & object);
 	virtual ~ProductionSpecification();
     

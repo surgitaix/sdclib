@@ -46,11 +46,15 @@ private:
 	operator CDM::ChannelState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ChannelState(
 		HandleRef descriptorhandle
 	); 
-	ChannelState() = delete;
+private:
+	ChannelState(){};
+public:
 	ChannelState(const ChannelState & object);
 	virtual ~ChannelState();
     

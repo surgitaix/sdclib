@@ -46,13 +46,17 @@ private:
 	operator CDM::SystemSignalActivation() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	SystemSignalActivation(
 		AlertSignalManifestation manifestation
 		, 
 		AlertActivation state
 	); 
-	SystemSignalActivation() = delete;
+private:
+	SystemSignalActivation(){};
+public:
 	SystemSignalActivation(const SystemSignalActivation & object);
 	virtual ~SystemSignalActivation();
     

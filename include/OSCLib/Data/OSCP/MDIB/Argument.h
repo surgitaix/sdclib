@@ -46,13 +46,17 @@ private:
 	operator CDM::Argument() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	Argument(
 		CodedValue argname
 		, 
 		xml_schema::Qname arg
 	); 
-	Argument() = delete;
+private:
+	Argument(){};
+public:
 	Argument(const Argument & object);
 	virtual ~Argument();
     

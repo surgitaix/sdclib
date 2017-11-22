@@ -46,11 +46,15 @@ private:
 	operator CDM::MdsDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	MdsDescriptor(
 		Handle handle
 	); 
-	MdsDescriptor() = delete;
+private:
+	MdsDescriptor(){};
+public:
 	MdsDescriptor(const MdsDescriptor & object);
 	virtual ~MdsDescriptor();
     

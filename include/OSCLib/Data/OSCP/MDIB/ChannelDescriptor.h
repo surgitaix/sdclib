@@ -46,11 +46,15 @@ private:
 	operator CDM::ChannelDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ChannelDescriptor(
 		Handle handle
 	); 
-	ChannelDescriptor() = delete;
+private:
+	ChannelDescriptor(){};
+public:
 	ChannelDescriptor(const ChannelDescriptor & object);
 	virtual ~ChannelDescriptor();
     

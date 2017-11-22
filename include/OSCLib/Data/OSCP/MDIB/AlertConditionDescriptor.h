@@ -46,6 +46,8 @@ private:
 	operator CDM::AlertConditionDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	AlertConditionDescriptor(
 		Handle handle
@@ -54,7 +56,9 @@ public:
 		, 
 		AlertConditionPriority priority
 	); 
-	AlertConditionDescriptor() = delete;
+private:
+	AlertConditionDescriptor(){};
+public:
 	AlertConditionDescriptor(const AlertConditionDescriptor & object);
 	virtual ~AlertConditionDescriptor();
     

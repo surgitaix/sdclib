@@ -493,12 +493,12 @@ add_library(OSCLib SHARED ${OSCLibSOURCES})
 
 add_executable(UnitTests
 Tests/UnitTests.cpp
-Tests/OSCPTests/TestConnectionLost.cpp
+#Tests/OSCPTests/TestConnectionLost.cpp
 #Tests/OSCPTests/TestDICOM.cpp
-Tests/OSCPTests/TestMultiOSCP.cpp
-Tests/OSCPTests/TestSimpleOSCP.cpp
-Tests/OSCPTests/TestPeriodicEvents.cpp
-Tests/OSCPTests/TestStreamOSCP.cpp
+#Tests/OSCPTests/TestMultiOSCP.cpp
+#Tests/OSCPTests/TestSimpleOSCP.cpp
+#Tests/OSCPTests/TestPeriodicEvents.cpp
+#Tests/OSCPTests/TestStreamOSCP.cpp
 Tests/UnitTest++/src/Test.cpp
 Tests/UnitTest++/src/TestList.cpp
 Tests/UnitTest++/src/TestRunner.cpp
@@ -520,31 +520,31 @@ Tests/UnitTest++/src/Posix/SignalTranslator.cpp
 )
 
 
-add_executable(ExampleConsumer
-Examples/ExampleConsumer.cpp
-)
+#add_executable(ExampleConsumer
+#Examples/ExampleConsumer.cpp
+#)
 
-add_executable(ExampleProject
-Examples/ExampleProject.cpp
-)
+#add_executable(ExampleProject
+#Examples/ExampleProject.cpp
+#)
 
 add_executable(ExampleProvider
 Examples/ExampleProvider.cpp
 )
 
-add_executable(ExampleConsumer4SoftICEStreaming
-Examples/ExampleConsumer4SoftICEStreaming.cpp
-)
+#add_executable(ExampleConsumer4SoftICEStreaming
+#Examples/ExampleConsumer4SoftICEStreaming.cpp
+#)
 
 
 
-add_executable(SimpleServiceDiscovery
-Examples/SimpleServiceDiscovery.cpp
-)
+#add_executable(SimpleServiceDiscovery
+#Examples/SimpleServiceDiscovery.cpp
+#)
 
-add_executable(MDIBVisualizer
-Examples/MDIBVisualizer.cpp
-)
+#add_executable(MDIBVisualizer
+#Examples/MDIBVisualizer.cpp
+#)
 
 #add_executable(MDIBDump
 #Examples/MDIBDump.cpp
@@ -570,14 +570,14 @@ Examples/MDIBVisualizer.cpp
 SET(ADDITIONAL_LIBS "")
 
 target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(GenericSubscription OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(DPWSDiscoveryClient OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(DPWSDiscoveryListener OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})

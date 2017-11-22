@@ -46,11 +46,15 @@ private:
 	operator CDM::RequestedOrderDetail() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	RequestedOrderDetail(
 		InstanceIdentifier placerordernumber
 	); 
-	RequestedOrderDetail() = delete;
+private:
+	RequestedOrderDetail(){};
+public:
 	RequestedOrderDetail(const RequestedOrderDetail & object);
 	virtual ~RequestedOrderDetail();
     

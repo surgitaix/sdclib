@@ -46,11 +46,15 @@ private:
 	operator CDM::WorkflowDetail() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	WorkflowDetail(
 		PersonReference patient
 	); 
-	WorkflowDetail() = delete;
+private:
+	WorkflowDetail(){};
+public:
 	WorkflowDetail(const WorkflowDetail & object);
 	virtual ~WorkflowDetail();
     

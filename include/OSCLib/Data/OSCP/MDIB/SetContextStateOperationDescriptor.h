@@ -46,13 +46,17 @@ private:
 	operator CDM::SetContextStateOperationDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	SetContextStateOperationDescriptor(
 		Handle handle
 		, 
 		HandleRef operationtarget
 	); 
-	SetContextStateOperationDescriptor() = delete;
+private:
+	SetContextStateOperationDescriptor(){};
+public:
 	SetContextStateOperationDescriptor(const SetContextStateOperationDescriptor & object);
 	virtual ~SetContextStateOperationDescriptor();
     

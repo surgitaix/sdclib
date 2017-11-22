@@ -46,13 +46,17 @@ private:
 	operator CDM::DicomTransferCapability() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	DicomTransferCapability(
 		std::string sopclass
 		, 
 		DicomTransferRole transferrole
 	); 
-	DicomTransferCapability() = delete;
+private:
+	DicomTransferCapability(){};
+public:
 	DicomTransferCapability(const DicomTransferCapability & object);
 	virtual ~DicomTransferCapability();
     

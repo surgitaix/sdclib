@@ -46,11 +46,15 @@ private:
 	operator CDM::Translation() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	Translation(
 		CodeIdentifier code
 	); 
-	Translation() = delete;
+private:
+	Translation(){};
+public:
 	Translation(const Translation & object);
 	virtual ~Translation();
     

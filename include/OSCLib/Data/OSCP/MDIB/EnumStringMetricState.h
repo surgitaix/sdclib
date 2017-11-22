@@ -46,11 +46,15 @@ private:
 	operator CDM::EnumStringMetricState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	EnumStringMetricState(
 		HandleRef descriptorhandle
 	); 
-	EnumStringMetricState() = delete;
+private:
+	EnumStringMetricState(){};
+public:
 	EnumStringMetricState(const EnumStringMetricState & object);
 	virtual ~EnumStringMetricState();
     

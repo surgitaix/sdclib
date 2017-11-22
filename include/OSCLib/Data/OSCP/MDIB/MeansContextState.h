@@ -46,13 +46,17 @@ private:
 	operator CDM::MeansContextState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	MeansContextState(
 		HandleRef descriptorhandle
 		, 
 		Handle handle
 	); 
-	MeansContextState() = delete;
+private:
+	MeansContextState(){};
+public:
 	MeansContextState(const MeansContextState & object);
 	virtual ~MeansContextState();
     

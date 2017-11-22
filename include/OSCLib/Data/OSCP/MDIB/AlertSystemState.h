@@ -46,13 +46,17 @@ private:
 	operator CDM::AlertSystemState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	AlertSystemState(
 		HandleRef descriptorhandle
 		, 
 		AlertActivation activationstate
 	); 
-	AlertSystemState() = delete;
+private:
+	AlertSystemState(){};
+public:
 	AlertSystemState(const AlertSystemState & object);
 	virtual ~AlertSystemState();
     

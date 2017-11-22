@@ -46,13 +46,17 @@ private:
 	operator CDM::SetMetricStateOperationDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	SetMetricStateOperationDescriptor(
 		Handle handle
 		, 
 		HandleRef operationtarget
 	); 
-	SetMetricStateOperationDescriptor() = delete;
+private:
+	SetMetricStateOperationDescriptor(){};
+public:
 	SetMetricStateOperationDescriptor(const SetMetricStateOperationDescriptor & object);
 	virtual ~SetMetricStateOperationDescriptor();
     

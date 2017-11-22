@@ -46,11 +46,15 @@ private:
 	operator CDM::StringMetricState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	StringMetricState(
 		HandleRef descriptorhandle
 	); 
-	StringMetricState() = delete;
+private:
+	StringMetricState(){};
+public:
 	StringMetricState(const StringMetricState & object);
 	virtual ~StringMetricState();
     

@@ -46,11 +46,15 @@ private:
 	operator CDM::RealTimeSampleArrayMetricState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	RealTimeSampleArrayMetricState(
 		HandleRef descriptorhandle
 	); 
-	RealTimeSampleArrayMetricState() = delete;
+private:
+	RealTimeSampleArrayMetricState(){};
+public:
 	RealTimeSampleArrayMetricState(const RealTimeSampleArrayMetricState & object);
 	virtual ~RealTimeSampleArrayMetricState();
     

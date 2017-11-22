@@ -46,13 +46,17 @@ private:
 	operator CDM::PatientContextState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	PatientContextState(
 		HandleRef descriptorhandle
 		, 
 		Handle handle
 	); 
-	PatientContextState() = delete;
+private:
+	PatientContextState(){};
+public:
 	PatientContextState(const PatientContextState & object);
 	virtual ~PatientContextState();
     

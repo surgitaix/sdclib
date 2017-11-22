@@ -46,11 +46,15 @@ private:
 	operator CDM::OperationGroup() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	OperationGroup(
 		CodedValue type
 	); 
-	OperationGroup() = delete;
+private:
+	OperationGroup(){};
+public:
 	OperationGroup(const OperationGroup & object);
 	virtual ~OperationGroup();
     

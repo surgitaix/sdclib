@@ -46,11 +46,15 @@ private:
 	operator CDM::ReferenceRange() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ReferenceRange(
 		Range range
 	); 
-	ReferenceRange() = delete;
+private:
+	ReferenceRange(){};
+public:
 	ReferenceRange(const ReferenceRange & object);
 	virtual ~ReferenceRange();
     

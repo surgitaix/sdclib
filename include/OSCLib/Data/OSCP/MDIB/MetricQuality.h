@@ -46,11 +46,15 @@ private:
 	operator CDM::MetricQuality() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	MetricQuality(
 		MeasurementValidity validity
 	); 
-	MetricQuality() = delete;
+private:
+	MetricQuality(){};
+public:
 	MetricQuality(const MetricQuality & object);
 	virtual ~MetricQuality();
     

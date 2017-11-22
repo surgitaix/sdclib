@@ -46,13 +46,17 @@ private:
 	operator CDM::ApplyAnnotation() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ApplyAnnotation(
 		unsigned int annotationindex
 		, 
 		unsigned int sampleindex
 	); 
-	ApplyAnnotation() = delete;
+private:
+	ApplyAnnotation(){};
+public:
 	ApplyAnnotation(const ApplyAnnotation & object);
 	virtual ~ApplyAnnotation();
     

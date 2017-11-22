@@ -46,6 +46,8 @@ private:
 	operator CDM::StringMetricDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	StringMetricDescriptor(
 		Handle handle
@@ -56,7 +58,9 @@ public:
 		, 
 		MetricAvailability metricavailability
 	); 
-	StringMetricDescriptor() = delete;
+private:
+	StringMetricDescriptor(){};
+public:
 	StringMetricDescriptor(const StringMetricDescriptor & object);
 	virtual ~StringMetricDescriptor();
     

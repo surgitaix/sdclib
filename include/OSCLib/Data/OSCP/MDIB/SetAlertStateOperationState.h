@@ -46,13 +46,17 @@ private:
 	operator CDM::SetAlertStateOperationState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	SetAlertStateOperationState(
 		HandleRef descriptorhandle
 		, 
 		OperatingMode operatingmode
 	); 
-	SetAlertStateOperationState() = delete;
+private:
+	SetAlertStateOperationState(){};
+public:
 	SetAlertStateOperationState(const SetAlertStateOperationState & object);
 	virtual ~SetAlertStateOperationState();
     

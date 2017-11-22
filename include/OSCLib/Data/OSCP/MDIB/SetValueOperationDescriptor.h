@@ -46,13 +46,17 @@ private:
 	operator CDM::SetValueOperationDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	SetValueOperationDescriptor(
 		Handle handle
 		, 
 		HandleRef operationtarget
 	); 
-	SetValueOperationDescriptor() = delete;
+private:
+	SetValueOperationDescriptor(){};
+public:
 	SetValueOperationDescriptor(const SetValueOperationDescriptor & object);
 	virtual ~SetValueOperationDescriptor();
     

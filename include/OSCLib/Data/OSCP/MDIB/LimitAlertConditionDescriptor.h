@@ -46,6 +46,8 @@ private:
 	operator CDM::LimitAlertConditionDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	LimitAlertConditionDescriptor(
 		Handle handle
@@ -56,7 +58,9 @@ public:
 		, 
 		Range maxlimits
 	); 
-	LimitAlertConditionDescriptor() = delete;
+private:
+	LimitAlertConditionDescriptor(){};
+public:
 	LimitAlertConditionDescriptor(const LimitAlertConditionDescriptor & object);
 	virtual ~LimitAlertConditionDescriptor();
     

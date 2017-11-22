@@ -46,11 +46,15 @@ private:
 	operator CDM::SampleArrayValue() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	SampleArrayValue(
 		MetricQuality metricquality
 	); 
-	SampleArrayValue() = delete;
+private:
+	SampleArrayValue(){};
+public:
 	SampleArrayValue(const SampleArrayValue & object);
 	virtual ~SampleArrayValue();
     

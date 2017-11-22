@@ -46,6 +46,8 @@ private:
 	operator CDM::Udi() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	Udi(
 		std::string deviceidentifier
@@ -54,7 +56,9 @@ public:
 		, 
 		InstanceIdentifier issuer
 	); 
-	Udi() = delete;
+private:
+	Udi(){};
+public:
 	Udi(const Udi & object);
 	virtual ~Udi();
     

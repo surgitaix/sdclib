@@ -46,6 +46,8 @@ private:
 	operator CDM::EnumStringMetricDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	EnumStringMetricDescriptor(
 		Handle handle
@@ -56,7 +58,9 @@ public:
 		, 
 		MetricAvailability metricavailability
 	); 
-	EnumStringMetricDescriptor() = delete;
+private:
+	EnumStringMetricDescriptor(){};
+public:
 	EnumStringMetricDescriptor(const EnumStringMetricDescriptor & object);
 	virtual ~EnumStringMetricDescriptor();
     

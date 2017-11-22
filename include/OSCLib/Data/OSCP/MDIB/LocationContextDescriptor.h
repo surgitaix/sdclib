@@ -46,11 +46,15 @@ private:
 	operator CDM::LocationContextDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	LocationContextDescriptor(
 		Handle handle
 	); 
-	LocationContextDescriptor() = delete;
+private:
+	LocationContextDescriptor(){};
+public:
 	LocationContextDescriptor(const LocationContextDescriptor & object);
 	virtual ~LocationContextDescriptor();
     

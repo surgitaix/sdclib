@@ -46,13 +46,17 @@ private:
 	operator CDM::Relation() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	Relation(
 		Kind kind
 		, 
 		HandleRef entries
 	); 
-	Relation() = delete;
+private:
+	Relation(){};
+public:
 	Relation(const Relation & object);
 	virtual ~Relation();
     

@@ -46,11 +46,15 @@ private:
 	operator CDM::NumericMetricValue() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	NumericMetricValue(
 		MetricQuality metricquality
 	); 
-	NumericMetricValue() = delete;
+private:
+	NumericMetricValue(){};
+public:
 	NumericMetricValue(const NumericMetricValue & object);
 	virtual ~NumericMetricValue();
     

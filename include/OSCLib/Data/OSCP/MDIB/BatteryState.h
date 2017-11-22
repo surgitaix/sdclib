@@ -46,11 +46,15 @@ private:
 	operator CDM::BatteryState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	BatteryState(
 		HandleRef descriptorhandle
 	); 
-	BatteryState() = delete;
+private:
+	BatteryState(){};
+public:
 	BatteryState(const BatteryState & object);
 	virtual ~BatteryState();
     

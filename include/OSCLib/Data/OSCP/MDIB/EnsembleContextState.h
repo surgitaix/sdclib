@@ -46,13 +46,17 @@ private:
 	operator CDM::EnsembleContextState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	EnsembleContextState(
 		HandleRef descriptorhandle
 		, 
 		Handle handle
 	); 
-	EnsembleContextState() = delete;
+private:
+	EnsembleContextState(){};
+public:
 	EnsembleContextState(const EnsembleContextState & object);
 	virtual ~EnsembleContextState();
     

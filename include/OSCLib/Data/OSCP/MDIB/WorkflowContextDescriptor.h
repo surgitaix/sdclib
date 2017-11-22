@@ -46,11 +46,15 @@ private:
 	operator CDM::WorkflowContextDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	WorkflowContextDescriptor(
 		Handle handle
 	); 
-	WorkflowContextDescriptor() = delete;
+private:
+	WorkflowContextDescriptor(){};
+public:
 	WorkflowContextDescriptor(const WorkflowContextDescriptor & object);
 	virtual ~WorkflowContextDescriptor();
     

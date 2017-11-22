@@ -46,6 +46,8 @@ private:
 	operator CDM::NeonatalPatientDemographicsCoreData() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	NeonatalPatientDemographicsCoreData(
 	); 

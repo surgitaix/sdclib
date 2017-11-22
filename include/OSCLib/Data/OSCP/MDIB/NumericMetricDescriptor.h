@@ -46,6 +46,8 @@ private:
 	operator CDM::NumericMetricDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	NumericMetricDescriptor(
 		Handle handle
@@ -58,7 +60,9 @@ public:
 		, 
 		double resolution
 	); 
-	NumericMetricDescriptor() = delete;
+private:
+	NumericMetricDescriptor(){};
+public:
 	NumericMetricDescriptor(const NumericMetricDescriptor & object);
 	virtual ~NumericMetricDescriptor();
     

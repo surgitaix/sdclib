@@ -19,6 +19,7 @@
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
@@ -63,11 +64,10 @@ public:
 
 	// Helper method
 	NumericMetricState createState(double value) {
-		NumericMetricState result;
+		NumericMetricState result("handle_get");
 		result
-			.setMetricValue(NumericMetricValue().setValue(value))
-			.setActivationState(ComponentActivation::On)
-			.setDescriptorHandle("handle_get");
+			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+			.setActivationState(ComponentActivation::On);
 		return result;
 	}
 
@@ -104,11 +104,10 @@ public:
 
     // Helper method
     NumericMetricState createState() {
-        NumericMetricState result;
+        NumericMetricState result("handle_set");
         result
-            .setMetricValue(NumericMetricValue().setValue(2.0))
-            .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle("handle_set");
+            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+            .setActivationState(ComponentActivation::On);
 
         return result;
     }

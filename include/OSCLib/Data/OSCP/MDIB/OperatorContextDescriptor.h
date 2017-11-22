@@ -46,11 +46,15 @@ private:
 	operator CDM::OperatorContextDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	OperatorContextDescriptor(
 		Handle handle
 	); 
-	OperatorContextDescriptor() = delete;
+private:
+	OperatorContextDescriptor(){};
+public:
 	OperatorContextDescriptor(const OperatorContextDescriptor & object);
 	virtual ~OperatorContextDescriptor();
     

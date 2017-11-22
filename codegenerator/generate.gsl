@@ -249,13 +249,17 @@ private:
 	operator CDM::$(class.name:)() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	$(class.name:)(
 .countconstructorarguments("$(class.name:)", "$(class.name:)")
 .printancestorsconstructorarguments("$(class.name:)", "$(class.name:)")
 	); 
 .if counterarguments <> 0
-	$(class.name:)() = delete;
+private:
+	$(class.name:)(){};
+public:
 .endif
 	$(class.name:)(const $(class.name:) & object);
 	virtual ~$(class.name:)();

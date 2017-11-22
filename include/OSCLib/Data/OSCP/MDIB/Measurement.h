@@ -46,13 +46,17 @@ private:
 	operator CDM::Measurement() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	Measurement(
 		CodedValue measurementunit
 		, 
 		double measuredvalue
 	); 
-	Measurement() = delete;
+private:
+	Measurement(){};
+public:
 	Measurement(const Measurement & object);
 	virtual ~Measurement();
     

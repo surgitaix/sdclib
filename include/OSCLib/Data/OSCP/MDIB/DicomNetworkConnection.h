@@ -46,13 +46,17 @@ private:
 	operator CDM::DicomNetworkConnection() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	DicomNetworkConnection(
 		xml_schema::Id id
 		, 
 		std::string hostname
 	); 
-	DicomNetworkConnection() = delete;
+private:
+	DicomNetworkConnection(){};
+public:
 	DicomNetworkConnection(const DicomNetworkConnection & object);
 	virtual ~DicomNetworkConnection();
     

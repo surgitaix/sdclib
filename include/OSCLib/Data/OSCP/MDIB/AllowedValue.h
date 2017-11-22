@@ -46,11 +46,15 @@ private:
 	operator CDM::AllowedValue() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	AllowedValue(
 		std::string value
 	); 
-	AllowedValue() = delete;
+private:
+	AllowedValue(){};
+public:
 	AllowedValue(const AllowedValue & object);
 	virtual ~AllowedValue();
     

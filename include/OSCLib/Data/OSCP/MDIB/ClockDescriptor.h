@@ -46,11 +46,15 @@ private:
 	operator CDM::ClockDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ClockDescriptor(
 		Handle handle
 	); 
-	ClockDescriptor() = delete;
+private:
+	ClockDescriptor(){};
+public:
 	ClockDescriptor(const ClockDescriptor & object);
 	virtual ~ClockDescriptor();
     

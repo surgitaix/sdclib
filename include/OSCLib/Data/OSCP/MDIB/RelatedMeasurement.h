@@ -46,11 +46,15 @@ private:
 	operator CDM::RelatedMeasurement() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	RelatedMeasurement(
 		Measurement value
 	); 
-	RelatedMeasurement() = delete;
+private:
+	RelatedMeasurement(){};
+public:
 	RelatedMeasurement(const RelatedMeasurement & object);
 	virtual ~RelatedMeasurement();
     

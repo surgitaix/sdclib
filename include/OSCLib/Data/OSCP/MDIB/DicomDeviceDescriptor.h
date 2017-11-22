@@ -46,11 +46,15 @@ private:
 	operator CDM::DicomDeviceDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	DicomDeviceDescriptor(
 		Handle handle
 	); 
-	DicomDeviceDescriptor() = delete;
+private:
+	DicomDeviceDescriptor(){};
+public:
 	DicomDeviceDescriptor(const DicomDeviceDescriptor & object);
 	virtual ~DicomDeviceDescriptor();
     

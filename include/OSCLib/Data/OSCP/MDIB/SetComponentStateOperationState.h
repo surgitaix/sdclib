@@ -46,13 +46,17 @@ private:
 	operator CDM::SetComponentStateOperationState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	SetComponentStateOperationState(
 		HandleRef descriptorhandle
 		, 
 		OperatingMode operatingmode
 	); 
-	SetComponentStateOperationState() = delete;
+private:
+	SetComponentStateOperationState(){};
+public:
 	SetComponentStateOperationState(const SetComponentStateOperationState & object);
 	virtual ~SetComponentStateOperationState();
     

@@ -46,6 +46,9 @@ private:
 	operator CDM::AlertSignalDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
+	friend std::map<std::string, AlertSignalDescriptor>;
 public:
 	AlertSignalDescriptor(
 		Handle handle
@@ -54,7 +57,9 @@ public:
 		, 
 		bool latching
 	); 
-	AlertSignalDescriptor() = delete;
+private:
+	AlertSignalDescriptor(){};
+public:
 	AlertSignalDescriptor(const AlertSignalDescriptor & object);
 	virtual ~AlertSignalDescriptor();
     

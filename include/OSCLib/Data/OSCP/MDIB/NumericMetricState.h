@@ -46,11 +46,15 @@ private:
 	operator CDM::NumericMetricState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	NumericMetricState(
 		HandleRef descriptorhandle
 	); 
-	NumericMetricState() = delete;
+private:
+	NumericMetricState(){};
+public:
 	NumericMetricState(const NumericMetricState & object);
 	virtual ~NumericMetricState();
     

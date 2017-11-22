@@ -56,11 +56,12 @@ class OSCPProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
 
     friend class OSCPProviderMdStateHandler;
-    
+
     // todo replace by friend class OSELibProviderAdapter
     friend struct OSELib::ContextReportServiceImpl;
     friend struct OSELib::GetServiceImpl;
     friend struct OSELib::SetServiceImpl;
+
 
 public:
     OSCPProvider();
@@ -302,6 +303,9 @@ private:
 
     template<class T>
     void createSetOperationForContextDescriptor(const T & descriptor, MdsDescriptor & ownerMDS);
+
+    template<class StateType>
+    bool isMetricChangeAllowed(const StateType & state, OSCPProvider & provider);
 
 	MDM::SetValueResponse SetValueAsync(const MDM::SetValue & request);
     void SetValue(const MDM::SetValue & request, const OperationInvocationContext & oic);

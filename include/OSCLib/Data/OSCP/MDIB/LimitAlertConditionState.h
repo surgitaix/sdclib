@@ -46,6 +46,8 @@ private:
 	operator CDM::LimitAlertConditionState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	LimitAlertConditionState(
 		HandleRef descriptorhandle
@@ -56,7 +58,9 @@ public:
 		, 
 		AlertConditionMonitoredLimits monitoredalertlimits
 	); 
-	LimitAlertConditionState() = delete;
+private:
+	LimitAlertConditionState(){};
+public:
 	LimitAlertConditionState(const LimitAlertConditionState & object);
 	virtual ~LimitAlertConditionState();
     

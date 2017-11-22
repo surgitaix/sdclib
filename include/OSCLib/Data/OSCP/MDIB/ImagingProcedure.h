@@ -46,6 +46,8 @@ private:
 	operator CDM::ImagingProcedure() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	ImagingProcedure(
 		InstanceIdentifier accessionidentifier
@@ -56,7 +58,9 @@ public:
 		, 
 		InstanceIdentifier scheduledprocedurestepid
 	); 
-	ImagingProcedure() = delete;
+private:
+	ImagingProcedure(){};
+public:
 	ImagingProcedure(const ImagingProcedure & object);
 	virtual ~ImagingProcedure();
     

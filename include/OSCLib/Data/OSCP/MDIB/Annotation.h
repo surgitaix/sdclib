@@ -46,11 +46,15 @@ private:
 	operator CDM::Annotation() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	Annotation(
 		CodedValue type
 	); 
-	Annotation() = delete;
+private:
+	Annotation(){};
+public:
 	Annotation(const Annotation & object);
 	virtual ~Annotation();
     

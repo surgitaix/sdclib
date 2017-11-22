@@ -46,13 +46,17 @@ private:
 	operator CDM::CalibrationResult() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
+	friend class OSCPProvider;
+	friend class OSCPConsumer;
 public:
 	CalibrationResult(
 		CodedValue code
 		, 
 		Measurement value
 	); 
-	CalibrationResult() = delete;
+private:
+	CalibrationResult(){};
+public:
 	CalibrationResult(const CalibrationResult & object);
 	virtual ~CalibrationResult();
     
