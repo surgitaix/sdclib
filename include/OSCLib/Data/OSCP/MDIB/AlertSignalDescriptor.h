@@ -48,7 +48,6 @@ private:
 	friend class ConvertToCDM;
 	friend class OSCPProvider;
 	friend class OSCPConsumer;
-	friend std::map<std::string, AlertSignalDescriptor>;
 public:
 	AlertSignalDescriptor(
 		Handle handle

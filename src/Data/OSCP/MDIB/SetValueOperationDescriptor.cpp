@@ -70,7 +70,7 @@ SetValueOperationDescriptor::~SetValueOperationDescriptor() {
 }
 
 void SetValueOperationDescriptor::copyFrom(const SetValueOperationDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SetValueOperationDescriptor>( new CDM::SetValueOperationDescriptor(*object.data));
 }
 
 SetValueOperationDescriptor & SetValueOperationDescriptor:: operator=(const SetValueOperationDescriptor & object) {

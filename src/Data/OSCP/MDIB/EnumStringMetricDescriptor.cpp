@@ -81,7 +81,7 @@ EnumStringMetricDescriptor::~EnumStringMetricDescriptor() {
 }
 
 void EnumStringMetricDescriptor::copyFrom(const EnumStringMetricDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::EnumStringMetricDescriptor>( new CDM::EnumStringMetricDescriptor(*object.data));
 }
 
 EnumStringMetricDescriptor & EnumStringMetricDescriptor:: operator=(const EnumStringMetricDescriptor & object) {

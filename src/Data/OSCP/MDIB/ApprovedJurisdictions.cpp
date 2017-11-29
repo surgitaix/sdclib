@@ -64,7 +64,7 @@ ApprovedJurisdictions::~ApprovedJurisdictions() {
 }
 
 void ApprovedJurisdictions::copyFrom(const ApprovedJurisdictions & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ApprovedJurisdictions>( new CDM::ApprovedJurisdictions(*object.data));
 }
 
 ApprovedJurisdictions & ApprovedJurisdictions:: operator=(const ApprovedJurisdictions & object) {

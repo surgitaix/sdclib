@@ -69,7 +69,7 @@ AlertConditionState::~AlertConditionState() {
 }
 
 void AlertConditionState::copyFrom(const AlertConditionState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::AlertConditionState>( new CDM::AlertConditionState(*object.data));
 }
 
 AlertConditionState & AlertConditionState:: operator=(const AlertConditionState & object) {

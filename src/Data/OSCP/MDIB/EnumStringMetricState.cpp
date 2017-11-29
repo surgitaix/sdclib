@@ -68,7 +68,7 @@ EnumStringMetricState::~EnumStringMetricState() {
 }
 
 void EnumStringMetricState::copyFrom(const EnumStringMetricState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::EnumStringMetricState>( new CDM::EnumStringMetricState(*object.data));
 }
 
 EnumStringMetricState & EnumStringMetricState:: operator=(const EnumStringMetricState & object) {

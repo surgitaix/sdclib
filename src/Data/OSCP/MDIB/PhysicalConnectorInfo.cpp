@@ -64,7 +64,7 @@ PhysicalConnectorInfo::~PhysicalConnectorInfo() {
 }
 
 void PhysicalConnectorInfo::copyFrom(const PhysicalConnectorInfo & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::PhysicalConnectorInfo>( new CDM::PhysicalConnectorInfo(*object.data));
 }
 
 PhysicalConnectorInfo & PhysicalConnectorInfo:: operator=(const PhysicalConnectorInfo & object) {

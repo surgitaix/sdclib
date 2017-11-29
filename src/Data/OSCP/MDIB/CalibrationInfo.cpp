@@ -64,7 +64,7 @@ CalibrationInfo::~CalibrationInfo() {
 }
 
 void CalibrationInfo::copyFrom(const CalibrationInfo & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::CalibrationInfo>( new CDM::CalibrationInfo(*object.data));
 }
 
 CalibrationInfo & CalibrationInfo:: operator=(const CalibrationInfo & object) {

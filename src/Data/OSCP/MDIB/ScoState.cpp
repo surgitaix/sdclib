@@ -65,7 +65,7 @@ ScoState::~ScoState() {
 }
 
 void ScoState::copyFrom(const ScoState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ScoState>( new CDM::ScoState(*object.data));
 }
 
 ScoState & ScoState:: operator=(const ScoState & object) {

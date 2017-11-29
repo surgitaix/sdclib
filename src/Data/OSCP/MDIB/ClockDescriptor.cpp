@@ -68,7 +68,7 @@ ClockDescriptor::~ClockDescriptor() {
 }
 
 void ClockDescriptor::copyFrom(const ClockDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ClockDescriptor>( new CDM::ClockDescriptor(*object.data));
 }
 
 ClockDescriptor & ClockDescriptor:: operator=(const ClockDescriptor & object) {

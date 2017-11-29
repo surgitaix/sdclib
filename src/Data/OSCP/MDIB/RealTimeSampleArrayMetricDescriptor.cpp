@@ -89,7 +89,7 @@ RealTimeSampleArrayMetricDescriptor::~RealTimeSampleArrayMetricDescriptor() {
 }
 
 void RealTimeSampleArrayMetricDescriptor::copyFrom(const RealTimeSampleArrayMetricDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::RealTimeSampleArrayMetricDescriptor>( new CDM::RealTimeSampleArrayMetricDescriptor(*object.data));
 }
 
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor:: operator=(const RealTimeSampleArrayMetricDescriptor & object) {

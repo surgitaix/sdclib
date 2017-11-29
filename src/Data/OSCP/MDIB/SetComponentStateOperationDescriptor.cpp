@@ -70,7 +70,7 @@ SetComponentStateOperationDescriptor::~SetComponentStateOperationDescriptor() {
 }
 
 void SetComponentStateOperationDescriptor::copyFrom(const SetComponentStateOperationDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SetComponentStateOperationDescriptor>( new CDM::SetComponentStateOperationDescriptor(*object.data));
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor:: operator=(const SetComponentStateOperationDescriptor & object) {

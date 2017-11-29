@@ -71,7 +71,7 @@ ProductionSpecification::~ProductionSpecification() {
 }
 
 void ProductionSpecification::copyFrom(const ProductionSpecification & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ProductionSpecification>( new CDM::ProductionSpecification(*object.data));
 }
 
 ProductionSpecification & ProductionSpecification:: operator=(const ProductionSpecification & object) {

@@ -67,7 +67,7 @@ RelatedMeasurement::~RelatedMeasurement() {
 }
 
 void RelatedMeasurement::copyFrom(const RelatedMeasurement & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::RelatedMeasurement>( new CDM::RelatedMeasurement(*object.data));
 }
 
 RelatedMeasurement & RelatedMeasurement:: operator=(const RelatedMeasurement & object) {

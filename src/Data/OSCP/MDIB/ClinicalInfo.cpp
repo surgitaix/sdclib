@@ -66,7 +66,7 @@ ClinicalInfo::~ClinicalInfo() {
 }
 
 void ClinicalInfo::copyFrom(const ClinicalInfo & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ClinicalInfo>( new CDM::ClinicalInfo(*object.data));
 }
 
 ClinicalInfo & ClinicalInfo:: operator=(const ClinicalInfo & object) {

@@ -63,7 +63,7 @@ MdState::~MdState() {
 }
 
 void MdState::copyFrom(const MdState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::MdState>( new CDM::MdState(*object.data));
 }
 
 MdState & MdState:: operator=(const MdState & object) {

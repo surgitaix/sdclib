@@ -66,7 +66,7 @@ ScoDescriptor::~ScoDescriptor() {
 }
 
 void ScoDescriptor::copyFrom(const ScoDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ScoDescriptor>( new CDM::ScoDescriptor(*object.data));
 }
 
 ScoDescriptor & ScoDescriptor:: operator=(const ScoDescriptor & object) {

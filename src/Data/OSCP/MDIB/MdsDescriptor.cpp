@@ -75,7 +75,7 @@ MdsDescriptor::~MdsDescriptor() {
 }
 
 void MdsDescriptor::copyFrom(const MdsDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::MdsDescriptor>( new CDM::MdsDescriptor(*object.data));
 }
 
 MdsDescriptor & MdsDescriptor:: operator=(const MdsDescriptor & object) {

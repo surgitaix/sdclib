@@ -72,7 +72,7 @@ WorkflowDetail::~WorkflowDetail() {
 }
 
 void WorkflowDetail::copyFrom(const WorkflowDetail & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::WorkflowDetail>( new CDM::WorkflowDetail(*object.data));
 }
 
 WorkflowDetail & WorkflowDetail:: operator=(const WorkflowDetail & object) {

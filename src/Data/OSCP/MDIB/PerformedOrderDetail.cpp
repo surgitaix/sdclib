@@ -68,7 +68,7 @@ PerformedOrderDetail::~PerformedOrderDetail() {
 }
 
 void PerformedOrderDetail::copyFrom(const PerformedOrderDetail & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::PerformedOrderDetail>( new CDM::PerformedOrderDetail(*object.data));
 }
 
 PerformedOrderDetail & PerformedOrderDetail:: operator=(const PerformedOrderDetail & object) {

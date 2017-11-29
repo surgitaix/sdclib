@@ -68,7 +68,7 @@ BatteryDescriptor::~BatteryDescriptor() {
 }
 
 void BatteryDescriptor::copyFrom(const BatteryDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::BatteryDescriptor>( new CDM::BatteryDescriptor(*object.data));
 }
 
 BatteryDescriptor & BatteryDescriptor:: operator=(const BatteryDescriptor & object) {

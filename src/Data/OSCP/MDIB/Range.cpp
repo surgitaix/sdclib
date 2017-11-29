@@ -63,7 +63,7 @@ Range::~Range() {
 }
 
 void Range::copyFrom(const Range & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::Range>( new CDM::Range(*object.data));
 }
 
 Range & Range:: operator=(const Range & object) {

@@ -72,7 +72,7 @@ OperatorContextState::~OperatorContextState() {
 }
 
 void OperatorContextState::copyFrom(const OperatorContextState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::OperatorContextState>( new CDM::OperatorContextState(*object.data));
 }
 
 OperatorContextState & OperatorContextState:: operator=(const OperatorContextState & object) {

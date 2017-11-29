@@ -67,7 +67,7 @@ ChannelDescriptor::~ChannelDescriptor() {
 }
 
 void ChannelDescriptor::copyFrom(const ChannelDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ChannelDescriptor>( new CDM::ChannelDescriptor(*object.data));
 }
 
 ChannelDescriptor & ChannelDescriptor:: operator=(const ChannelDescriptor & object) {

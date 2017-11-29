@@ -66,7 +66,7 @@ WorkflowContextDescriptor::~WorkflowContextDescriptor() {
 }
 
 void WorkflowContextDescriptor::copyFrom(const WorkflowContextDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::WorkflowContextDescriptor>( new CDM::WorkflowContextDescriptor(*object.data));
 }
 
 WorkflowContextDescriptor & WorkflowContextDescriptor:: operator=(const WorkflowContextDescriptor & object) {

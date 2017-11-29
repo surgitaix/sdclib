@@ -68,7 +68,7 @@ SampleArrayValue::~SampleArrayValue() {
 }
 
 void SampleArrayValue::copyFrom(const SampleArrayValue & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SampleArrayValue>( new CDM::SampleArrayValue(*object.data));
 }
 
 SampleArrayValue & SampleArrayValue:: operator=(const SampleArrayValue & object) {

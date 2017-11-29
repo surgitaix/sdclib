@@ -65,7 +65,7 @@ LocationReference::~LocationReference() {
 }
 
 void LocationReference::copyFrom(const LocationReference & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::LocationReference>( new CDM::LocationReference(*object.data));
 }
 
 LocationReference & LocationReference:: operator=(const LocationReference & object) {

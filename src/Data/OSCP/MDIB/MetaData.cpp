@@ -65,7 +65,7 @@ MetaData::~MetaData() {
 }
 
 void MetaData::copyFrom(const MetaData & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::MetaData>( new CDM::MetaData(*object.data));
 }
 
 MetaData & MetaData:: operator=(const MetaData & object) {

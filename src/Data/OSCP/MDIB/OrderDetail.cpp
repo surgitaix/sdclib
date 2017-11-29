@@ -66,7 +66,7 @@ OrderDetail::~OrderDetail() {
 }
 
 void OrderDetail::copyFrom(const OrderDetail & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::OrderDetail>( new CDM::OrderDetail(*object.data));
 }
 
 OrderDetail & OrderDetail:: operator=(const OrderDetail & object) {

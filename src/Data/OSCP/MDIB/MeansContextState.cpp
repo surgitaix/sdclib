@@ -71,7 +71,7 @@ MeansContextState::~MeansContextState() {
 }
 
 void MeansContextState::copyFrom(const MeansContextState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::MeansContextState>( new CDM::MeansContextState(*object.data));
 }
 
 MeansContextState & MeansContextState:: operator=(const MeansContextState & object) {

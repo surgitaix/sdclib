@@ -63,7 +63,7 @@ LocationDetail::~LocationDetail() {
 }
 
 void LocationDetail::copyFrom(const LocationDetail & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::LocationDetail>( new CDM::LocationDetail(*object.data));
 }
 
 LocationDetail & LocationDetail:: operator=(const LocationDetail & object) {

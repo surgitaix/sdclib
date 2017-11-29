@@ -65,7 +65,7 @@ PersonReference::~PersonReference() {
 }
 
 void PersonReference::copyFrom(const PersonReference & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::PersonReference>( new CDM::PersonReference(*object.data));
 }
 
 PersonReference & PersonReference:: operator=(const PersonReference & object) {

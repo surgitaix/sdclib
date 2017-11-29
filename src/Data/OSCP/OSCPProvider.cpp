@@ -247,7 +247,7 @@ void OSCPProvider::SetValue(const MDM::SetValue & request, const OperationInvoca
 		notifyOperationInvoked(oic, InvocationState::Fail);
 		return;
 	}
-	nms.setMetricValue(NumericMetricValue().setValue(request.RequestedNumericValue()));
+	nms.setMetricValue(nms.getMetricValue().setValue(request.RequestedNumericValue()));
 
 	const InvocationState outState(onStateChangeRequest(nms, oic));
 	notifyOperationInvoked(oic, outState);
@@ -345,6 +345,7 @@ void OSCPProvider::SetStringImpl(const T & state, const OperationInvocationConte
 		// Success
 		updateState(state);
 	}
+
 }
 
 void OSCPProvider::SetString(const MDM::SetString & request, const OperationInvocationContext & oic) {
@@ -359,7 +360,7 @@ void OSCPProvider::SetString(const MDM::SetString & request, const OperationInvo
 	{
 		StringMetricState sms;
 		if (mdsc.findState(metricHandle, sms)) {
-			sms.setMetricValue(StringMetricValue().setValue(requestedStringVal));
+			sms.setMetricValue(sms.getMetricValue().setValue(requestedStringVal));
 			SetStringImpl(sms, oic);
 			return;
 		}
@@ -383,7 +384,7 @@ void OSCPProvider::SetString(const MDM::SetString & request, const OperationInvo
 			if (it == allowedValuesString.end()) {
 				notifyOperationInvoked(oic, InvocationState::Fail);
 			} else {
-				StringMetricValue smv;
+				StringMetricValue smv = state.getMetricValue();
 				smv.setValue(it->data());
 				state.setMetricValue(smv);
 				SetStringImpl(state, oic);

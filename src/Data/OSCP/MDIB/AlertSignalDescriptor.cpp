@@ -74,7 +74,7 @@ AlertSignalDescriptor::~AlertSignalDescriptor() {
 }
 
 void AlertSignalDescriptor::copyFrom(const AlertSignalDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::AlertSignalDescriptor>( new CDM::AlertSignalDescriptor(*object.data));
 }
 
 AlertSignalDescriptor & AlertSignalDescriptor:: operator=(const AlertSignalDescriptor & object) {

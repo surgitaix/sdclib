@@ -69,7 +69,7 @@ ActivateOperationState::~ActivateOperationState() {
 }
 
 void ActivateOperationState::copyFrom(const ActivateOperationState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ActivateOperationState>( new CDM::ActivateOperationState(*object.data));
 }
 
 ActivateOperationState & ActivateOperationState:: operator=(const ActivateOperationState & object) {

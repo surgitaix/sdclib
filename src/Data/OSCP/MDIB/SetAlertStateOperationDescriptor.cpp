@@ -70,7 +70,7 @@ SetAlertStateOperationDescriptor::~SetAlertStateOperationDescriptor() {
 }
 
 void SetAlertStateOperationDescriptor::copyFrom(const SetAlertStateOperationDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SetAlertStateOperationDescriptor>( new CDM::SetAlertStateOperationDescriptor(*object.data));
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor:: operator=(const SetAlertStateOperationDescriptor & object) {

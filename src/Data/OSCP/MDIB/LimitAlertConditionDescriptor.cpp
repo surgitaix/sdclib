@@ -80,7 +80,7 @@ LimitAlertConditionDescriptor::~LimitAlertConditionDescriptor() {
 }
 
 void LimitAlertConditionDescriptor::copyFrom(const LimitAlertConditionDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::LimitAlertConditionDescriptor>( new CDM::LimitAlertConditionDescriptor(*object.data));
 }
 
 LimitAlertConditionDescriptor & LimitAlertConditionDescriptor:: operator=(const LimitAlertConditionDescriptor & object) {

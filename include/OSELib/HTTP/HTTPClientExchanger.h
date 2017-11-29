@@ -25,11 +25,12 @@
 #define INCLUDE_OSCLIB_COMM_HTTPCLIENTEXCHANGER_H_
 
 #include "OSELib/fwd.h"
+#include "OSELib/Helper/WithLogger.h"
 
 namespace OSELib {
 namespace HTTP {
 
-class HTTPClientExchanger {
+class HTTPClientExchanger : public WithLogger{
 public:
 	HTTPClientExchanger();
 	virtual ~HTTPClientExchanger();

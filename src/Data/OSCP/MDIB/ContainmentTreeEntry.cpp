@@ -64,7 +64,7 @@ ContainmentTreeEntry::~ContainmentTreeEntry() {
 }
 
 void ContainmentTreeEntry::copyFrom(const ContainmentTreeEntry & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ContainmentTreeEntry>( new CDM::ContainmentTreeEntry(*object.data));
 }
 
 ContainmentTreeEntry & ContainmentTreeEntry:: operator=(const ContainmentTreeEntry & object) {

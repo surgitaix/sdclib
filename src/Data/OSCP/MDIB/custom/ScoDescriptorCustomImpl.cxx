@@ -4,8 +4,6 @@
 #include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetAlertStateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetContextStateOperationDescriptor.h"
-//?? -> TODO: discuss with standardizing group
-//#include "OSCLib/Data/OSCP/MDIB/SetRangeOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetStringOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/SetValueOperationDescriptor.h"
 
@@ -42,12 +40,6 @@ std::vector<SetContextStateOperationDescriptor> ScoDescriptor::collectAllSetCont
 	collectOperationDescriptorImpl<SetContextStateOperationDescriptor>(result);
 	return result;
 }
-
-//std::vector<SetRangeOperationDescriptor> ScoDescriptor::collectAllSetRangeOperationDescriptors() const {
-//	std::vector<SetRangeOperationDescriptor> result;
-//	collectOperationDescriptorImpl<SetRangeOperationDescriptor>(result);
-//	return result;
-//}
 
 std::vector<SetStringOperationDescriptor> ScoDescriptor::collectAllSetStringOperationDescriptors() const {
 	std::vector<SetStringOperationDescriptor> result;

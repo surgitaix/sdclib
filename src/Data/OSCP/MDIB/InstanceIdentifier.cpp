@@ -63,7 +63,7 @@ InstanceIdentifier::~InstanceIdentifier() {
 }
 
 void InstanceIdentifier::copyFrom(const InstanceIdentifier & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::InstanceIdentifier>( new CDM::InstanceIdentifier(*object.data));
 }
 
 InstanceIdentifier & InstanceIdentifier:: operator=(const InstanceIdentifier & object) {

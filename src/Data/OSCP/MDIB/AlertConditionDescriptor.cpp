@@ -75,7 +75,7 @@ AlertConditionDescriptor::~AlertConditionDescriptor() {
 }
 
 void AlertConditionDescriptor::copyFrom(const AlertConditionDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::AlertConditionDescriptor>( new CDM::AlertConditionDescriptor(*object.data));
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor:: operator=(const AlertConditionDescriptor & object) {

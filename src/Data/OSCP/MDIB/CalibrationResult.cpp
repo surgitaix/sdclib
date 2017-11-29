@@ -71,7 +71,7 @@ CalibrationResult::~CalibrationResult() {
 }
 
 void CalibrationResult::copyFrom(const CalibrationResult & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::CalibrationResult>( new CDM::CalibrationResult(*object.data));
 }
 
 CalibrationResult & CalibrationResult:: operator=(const CalibrationResult & object) {

@@ -65,7 +65,7 @@ CauseInfo::~CauseInfo() {
 }
 
 void CauseInfo::copyFrom(const CauseInfo & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::CauseInfo>( new CDM::CauseInfo(*object.data));
 }
 
 CauseInfo & CauseInfo:: operator=(const CauseInfo & object) {

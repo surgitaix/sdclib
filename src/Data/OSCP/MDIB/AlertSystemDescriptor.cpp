@@ -68,7 +68,7 @@ AlertSystemDescriptor::~AlertSystemDescriptor() {
 }
 
 void AlertSystemDescriptor::copyFrom(const AlertSystemDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::AlertSystemDescriptor>( new CDM::AlertSystemDescriptor(*object.data));
 }
 
 AlertSystemDescriptor & AlertSystemDescriptor:: operator=(const AlertSystemDescriptor & object) {

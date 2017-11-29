@@ -70,7 +70,7 @@ SetMetricStateOperationDescriptor::~SetMetricStateOperationDescriptor() {
 }
 
 void SetMetricStateOperationDescriptor::copyFrom(const SetMetricStateOperationDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SetMetricStateOperationDescriptor>( new CDM::SetMetricStateOperationDescriptor(*object.data));
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor:: operator=(const SetMetricStateOperationDescriptor & object) {

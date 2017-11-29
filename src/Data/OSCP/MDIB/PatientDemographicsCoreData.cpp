@@ -65,7 +65,7 @@ PatientDemographicsCoreData::~PatientDemographicsCoreData() {
 }
 
 void PatientDemographicsCoreData::copyFrom(const PatientDemographicsCoreData & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::PatientDemographicsCoreData>( new CDM::PatientDemographicsCoreData(*object.data));
 }
 
 PatientDemographicsCoreData & PatientDemographicsCoreData:: operator=(const PatientDemographicsCoreData & object) {

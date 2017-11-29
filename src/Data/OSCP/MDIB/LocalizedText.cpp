@@ -63,7 +63,7 @@ LocalizedText::~LocalizedText() {
 }
 
 void LocalizedText::copyFrom(const LocalizedText & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::LocalizedText>( new CDM::LocalizedText(*object.data));
 }
 
 LocalizedText & LocalizedText:: operator=(const LocalizedText & object) {

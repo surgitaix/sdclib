@@ -67,7 +67,7 @@ CodedValue::~CodedValue() {
 }
 
 void CodedValue::copyFrom(const CodedValue & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::CodedValue>( new CDM::CodedValue(*object.data));
 }
 
 CodedValue & CodedValue:: operator=(const CodedValue & object) {

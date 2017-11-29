@@ -67,6 +67,8 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SoapInvoke::invoke(std::unique_ptr<MESSA
 			soapHandling.parse(responseContent);
 			return std::move(soapHandling.normalizedMessage);
 		}
+	} catch (const std::exception e) {
+		log_error([&] { return e.what(); });
 	} catch (...) {
 		// fixme add proper exception handling
 		log_error([&] { return "Invoke caused exception. "; });

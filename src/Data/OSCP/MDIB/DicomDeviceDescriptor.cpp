@@ -72,7 +72,7 @@ DicomDeviceDescriptor::~DicomDeviceDescriptor() {
 }
 
 void DicomDeviceDescriptor::copyFrom(const DicomDeviceDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::DicomDeviceDescriptor>( new CDM::DicomDeviceDescriptor(*object.data));
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor:: operator=(const DicomDeviceDescriptor & object) {

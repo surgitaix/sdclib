@@ -68,7 +68,7 @@ StringMetricState::~StringMetricState() {
 }
 
 void StringMetricState::copyFrom(const StringMetricState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::StringMetricState>( new CDM::StringMetricState(*object.data));
 }
 
 StringMetricState & StringMetricState:: operator=(const StringMetricState & object) {

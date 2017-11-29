@@ -79,7 +79,7 @@ DicomNetworkAe::~DicomNetworkAe() {
 }
 
 void DicomNetworkAe::copyFrom(const DicomNetworkAe & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::DicomNetworkAe>( new CDM::DicomNetworkAe(*object.data));
 }
 
 DicomNetworkAe & DicomNetworkAe:: operator=(const DicomNetworkAe & object) {

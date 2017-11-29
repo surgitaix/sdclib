@@ -70,7 +70,7 @@ Argument::~Argument() {
 }
 
 void Argument::copyFrom(const Argument & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::Argument>( new CDM::Argument(*object.data));
 }
 
 Argument & Argument:: operator=(const Argument & object) {

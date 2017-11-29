@@ -70,7 +70,7 @@ SetContextStateOperationDescriptor::~SetContextStateOperationDescriptor() {
 }
 
 void SetContextStateOperationDescriptor::copyFrom(const SetContextStateOperationDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SetContextStateOperationDescriptor>( new CDM::SetContextStateOperationDescriptor(*object.data));
 }
 
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor:: operator=(const SetContextStateOperationDescriptor & object) {

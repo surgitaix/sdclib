@@ -79,7 +79,7 @@ ImagingProcedure::~ImagingProcedure() {
 }
 
 void ImagingProcedure::copyFrom(const ImagingProcedure & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ImagingProcedure>( new CDM::ImagingProcedure(*object.data));
 }
 
 ImagingProcedure & ImagingProcedure:: operator=(const ImagingProcedure & object) {

@@ -66,7 +66,7 @@ PatientContextDescriptor::~PatientContextDescriptor() {
 }
 
 void PatientContextDescriptor::copyFrom(const PatientContextDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::PatientContextDescriptor>( new CDM::PatientContextDescriptor(*object.data));
 }
 
 PatientContextDescriptor & PatientContextDescriptor:: operator=(const PatientContextDescriptor & object) {

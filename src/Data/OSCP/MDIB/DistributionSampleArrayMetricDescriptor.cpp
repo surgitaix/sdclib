@@ -94,7 +94,7 @@ DistributionSampleArrayMetricDescriptor::~DistributionSampleArrayMetricDescripto
 }
 
 void DistributionSampleArrayMetricDescriptor::copyFrom(const DistributionSampleArrayMetricDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::DistributionSampleArrayMetricDescriptor>( new CDM::DistributionSampleArrayMetricDescriptor(*object.data));
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor:: operator=(const DistributionSampleArrayMetricDescriptor & object) {

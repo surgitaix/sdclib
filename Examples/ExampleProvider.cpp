@@ -53,9 +53,11 @@ using namespace OSCLib::Data::OSCP;
 
 
 const std::string DEVICE_EPR("UDI-1234567890");
+
 const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
 const std::string MDS_DESCRIPTOR_HANDLE("holdingDevice_mds");
+
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
@@ -191,7 +193,7 @@ public:
 	StringMetricState createState() {
 		StringMetricState result(HANDLE_STRING_METRIC);
 		result
-			.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Inv)).setValue("StringMetricValueInit"));
+			.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue("StringMetricValueInit"));
 
 	    return result;
 	}
@@ -209,45 +211,38 @@ private:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() :	oscpProvider(),
+    OSCPStreamProvider() :
+    	oscpProvider(),
     	streamProviderStateHandler(HANDLE_STREAM_METRIC),
     	stringProviderStateHandler(HANDLE_STRING_METRIC),
     	numericProviderStateHandlerGet(HANDLE_GET_METRIC),
-    	numericProviderStateHandlerSet(HANDLE_SET_METRIC) {
+    	numericProviderStateHandlerSet(HANDLE_SET_METRIC),
+    	streamMetricDescriptor(HANDLE_STREAM_METRIC,
+    		    		CodedValue("MDCX_EXAMPLE_STREAM"),
+    		    		MetricCategory::Msrmt,
+    		    		MetricAvailability::Cont,
+    		    		1,
+    		    		xml_schema::Duration(0,0,0,0,0,0,1)),
+		setMetricDescriptor(HANDLE_SET_METRIC,
+						CodedValue("MDCX_EXAMPLE_SET"),
+						MetricCategory::Set,
+						MetricAvailability::Cont,
+						1.0),
+		getMetricDescriptor(HANDLE_GET_METRIC,
+						CodedValue("MDCX_EXAMPLE_GET"),
+						MetricCategory::Set,
+						MetricAvailability::Cont,
+						1),
+		stringMetricDescriptor(HANDLE_STRING_METRIC,
+						CodedValue("MDCX_EXAMPLE_STRING"),
+						MetricCategory::Set,
+						MetricAvailability::Cont)
+    	{
 
 		oscpProvider.setEndpointReference(DEVICE_EPR);
 		Dev::DeviceCharacteristics devChar;
 		devChar.addFriendlyName("en", "OSCLib ExampleProvider");
 		oscpProvider.setDeviceCharacteristics(devChar);
-
-	    // metric stream metric (read-only)
-	    RealTimeSampleArrayMetricDescriptor streamMetricDescriptor(HANDLE_STREAM_METRIC,
-	    		CodedValue("MDCX_EXAMPLE_STREAM"),
-	    		MetricCategory::Msrmt,
-	    		MetricAvailability::Cont,
-	    		1,
-	    		xml_schema::Duration(0,0,0,0,0,0,1));
-
-	    NumericMetricDescriptor setMetricDescriptor(HANDLE_SET_METRIC,
-	    		CodedValue("MDCX_EXAMPLE_SET"),
-	    		MetricCategory::Set,
-	    		MetricAvailability::Cont,
-	    		1.0);
-
-
-	    NumericMetricDescriptor getMetricDescriptor(HANDLE_GET_METRIC,
-	    		CodedValue("MDCX_EXAMPLE_GET"),
-	    		MetricCategory::Set,
-	    		MetricAvailability::Cont,
-	    		1);
-
-	    StringMetricDescriptor  stringMetricDescriptor(HANDLE_STRING_METRIC,
-	    		CodedValue("MDCX_EXAMPLE_STRING"),
-	    		MetricCategory::Set,
-	    		MetricAvailability::Cont);
-
-
-
 
         // Channel
         ChannelDescriptor holdingDeviceParameters(CHANNEL_DESCRIPTOR_HANDLE);
@@ -309,6 +304,12 @@ private:
 
     OSCPProvider oscpProvider;
 
+    RealTimeSampleArrayMetricDescriptor streamMetricDescriptor;
+    NumericMetricDescriptor setMetricDescriptor;
+    NumericMetricDescriptor getMetricDescriptor;
+    StringMetricDescriptor  stringMetricDescriptor;
+
+
     StreamProviderStateHandler streamProviderStateHandler;
     NumericProviderStateHandlerGet numericProviderStateHandlerGet;
     NumericProviderStateHandlerSet numericProviderStateHandlerSet;
@@ -330,7 +331,7 @@ public:
 
 		while (!isInterrupted()) {
 			{
-                updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Inv)).setSamples(samples));
+                updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Vld)).setSamples(samples));
 			}
 			DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
@@ -350,7 +351,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+    OSCLibrary::getInstance().startup(OSELib::LogLevel::TRACE);
     OSCLibrary::getInstance().setIP6enabled(false);
     OSCLibrary::getInstance().setIP4enabled(true);
 

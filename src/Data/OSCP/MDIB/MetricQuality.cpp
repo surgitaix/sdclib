@@ -65,7 +65,7 @@ MetricQuality::~MetricQuality() {
 }
 
 void MetricQuality::copyFrom(const MetricQuality & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::MetricQuality>( new CDM::MetricQuality(*object.data));
 }
 
 MetricQuality & MetricQuality:: operator=(const MetricQuality & object) {

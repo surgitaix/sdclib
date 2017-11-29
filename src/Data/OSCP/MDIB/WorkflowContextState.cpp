@@ -72,7 +72,7 @@ WorkflowContextState::~WorkflowContextState() {
 }
 
 void WorkflowContextState::copyFrom(const WorkflowContextState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::WorkflowContextState>( new CDM::WorkflowContextState(*object.data));
 }
 
 WorkflowContextState & WorkflowContextState:: operator=(const WorkflowContextState & object) {

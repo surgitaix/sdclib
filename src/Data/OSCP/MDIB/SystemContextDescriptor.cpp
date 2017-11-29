@@ -72,7 +72,7 @@ SystemContextDescriptor::~SystemContextDescriptor() {
 }
 
 void SystemContextDescriptor::copyFrom(const SystemContextDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SystemContextDescriptor>( new CDM::SystemContextDescriptor(*object.data));
 }
 
 SystemContextDescriptor & SystemContextDescriptor:: operator=(const SystemContextDescriptor & object) {

@@ -67,7 +67,7 @@ StringMetricValue::~StringMetricValue() {
 }
 
 void StringMetricValue::copyFrom(const StringMetricValue & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::StringMetricValue>( new CDM::StringMetricValue(*object.data));
 }
 
 StringMetricValue & StringMetricValue:: operator=(const StringMetricValue & object) {

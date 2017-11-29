@@ -520,21 +520,21 @@ Tests/UnitTest++/src/Posix/SignalTranslator.cpp
 )
 
 
-#add_executable(ExampleConsumer
-#Examples/ExampleConsumer.cpp
-#)
+add_executable(ExampleConsumer
+Examples/ExampleConsumer.cpp
+)
 
-#add_executable(ExampleProject
-#Examples/ExampleProject.cpp
-#)
+add_executable(ExampleProject
+Examples/ExampleProject.cpp
+)
 
 add_executable(ExampleProvider
 Examples/ExampleProvider.cpp
 )
 
-#add_executable(ExampleConsumer4SoftICEStreaming
-#Examples/ExampleConsumer4SoftICEStreaming.cpp
-#)
+add_executable(ExampleConsumer4SoftICEStreaming
+Examples/ExampleConsumer4SoftICEStreaming.cpp
+)
 
 
 
@@ -571,10 +571,10 @@ SET(ADDITIONAL_LIBS "")
 
 target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})

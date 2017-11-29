@@ -78,7 +78,7 @@ LimitAlertConditionState::~LimitAlertConditionState() {
 }
 
 void LimitAlertConditionState::copyFrom(const LimitAlertConditionState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::LimitAlertConditionState>( new CDM::LimitAlertConditionState(*object.data));
 }
 
 LimitAlertConditionState & LimitAlertConditionState:: operator=(const LimitAlertConditionState & object) {

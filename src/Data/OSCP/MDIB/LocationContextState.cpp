@@ -72,7 +72,7 @@ LocationContextState::~LocationContextState() {
 }
 
 void LocationContextState::copyFrom(const LocationContextState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::LocationContextState>( new CDM::LocationContextState(*object.data));
 }
 
 LocationContextState & LocationContextState:: operator=(const LocationContextState & object) {

@@ -71,7 +71,7 @@ Relation::~Relation() {
 }
 
 void Relation::copyFrom(const Relation & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::Relation>( new CDM::Relation(*object.data));
 }
 
 Relation & Relation:: operator=(const Relation & object) {

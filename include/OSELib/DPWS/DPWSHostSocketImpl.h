@@ -9,6 +9,7 @@
 #define DPWS_DPWSDISCOVERYHOSTSOCKETIMPL_H_
 
 #include <map>
+#include <random>
 
 #include "Poco/NotificationQueue.h"
 #include "Poco/TimedNotificationQueue.h"

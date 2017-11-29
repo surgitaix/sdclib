@@ -69,7 +69,7 @@ SetAlertStateOperationState::~SetAlertStateOperationState() {
 }
 
 void SetAlertStateOperationState::copyFrom(const SetAlertStateOperationState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SetAlertStateOperationState>( new CDM::SetAlertStateOperationState(*object.data));
 }
 
 SetAlertStateOperationState & SetAlertStateOperationState:: operator=(const SetAlertStateOperationState & object) {

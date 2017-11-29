@@ -67,7 +67,7 @@ ChannelState::~ChannelState() {
 }
 
 void ChannelState::copyFrom(const ChannelState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ChannelState>( new CDM::ChannelState(*object.data));
 }
 
 ChannelState & ChannelState:: operator=(const ChannelState & object) {

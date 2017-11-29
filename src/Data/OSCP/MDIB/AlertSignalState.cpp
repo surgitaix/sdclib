@@ -69,7 +69,7 @@ AlertSignalState::~AlertSignalState() {
 }
 
 void AlertSignalState::copyFrom(const AlertSignalState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::AlertSignalState>( new CDM::AlertSignalState(*object.data));
 }
 
 AlertSignalState & AlertSignalState:: operator=(const AlertSignalState & object) {

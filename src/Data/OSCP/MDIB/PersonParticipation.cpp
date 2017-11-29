@@ -66,7 +66,7 @@ PersonParticipation::~PersonParticipation() {
 }
 
 void PersonParticipation::copyFrom(const PersonParticipation & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::PersonParticipation>( new CDM::PersonParticipation(*object.data));
 }
 
 PersonParticipation & PersonParticipation:: operator=(const PersonParticipation & object) {

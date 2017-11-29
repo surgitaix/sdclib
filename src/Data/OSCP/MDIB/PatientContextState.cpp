@@ -72,7 +72,7 @@ PatientContextState::~PatientContextState() {
 }
 
 void PatientContextState::copyFrom(const PatientContextState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::PatientContextState>( new CDM::PatientContextState(*object.data));
 }
 
 PatientContextState & PatientContextState:: operator=(const PatientContextState & object) {

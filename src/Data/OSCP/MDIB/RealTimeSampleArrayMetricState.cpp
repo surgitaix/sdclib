@@ -69,7 +69,7 @@ RealTimeSampleArrayMetricState::~RealTimeSampleArrayMetricState() {
 }
 
 void RealTimeSampleArrayMetricState::copyFrom(const RealTimeSampleArrayMetricState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::RealTimeSampleArrayMetricState>( new CDM::RealTimeSampleArrayMetricState(*object.data));
 }
 
 RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState:: operator=(const RealTimeSampleArrayMetricState & object) {

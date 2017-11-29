@@ -71,7 +71,7 @@ EnsembleContextState::~EnsembleContextState() {
 }
 
 void EnsembleContextState::copyFrom(const EnsembleContextState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::EnsembleContextState>( new CDM::EnsembleContextState(*object.data));
 }
 
 EnsembleContextState & EnsembleContextState:: operator=(const EnsembleContextState & object) {

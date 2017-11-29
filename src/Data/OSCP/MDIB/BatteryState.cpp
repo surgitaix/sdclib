@@ -68,7 +68,7 @@ BatteryState::~BatteryState() {
 }
 
 void BatteryState::copyFrom(const BatteryState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::BatteryState>( new CDM::BatteryState(*object.data));
 }
 
 BatteryState & BatteryState:: operator=(const BatteryState & object) {

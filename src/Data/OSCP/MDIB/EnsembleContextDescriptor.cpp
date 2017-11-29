@@ -66,7 +66,7 @@ EnsembleContextDescriptor::~EnsembleContextDescriptor() {
 }
 
 void EnsembleContextDescriptor::copyFrom(const EnsembleContextDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::EnsembleContextDescriptor>( new CDM::EnsembleContextDescriptor(*object.data));
 }
 
 EnsembleContextDescriptor & EnsembleContextDescriptor:: operator=(const EnsembleContextDescriptor & object) {

@@ -69,7 +69,7 @@ SystemSignalActivation::~SystemSignalActivation() {
 }
 
 void SystemSignalActivation::copyFrom(const SystemSignalActivation & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SystemSignalActivation>( new CDM::SystemSignalActivation(*object.data));
 }
 
 SystemSignalActivation & SystemSignalActivation:: operator=(const SystemSignalActivation & object) {

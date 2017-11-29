@@ -69,7 +69,7 @@ NumericMetricState::~NumericMetricState() {
 }
 
 void NumericMetricState::copyFrom(const NumericMetricState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::NumericMetricState>( new CDM::NumericMetricState(*object.data));
 }
 
 NumericMetricState & NumericMetricState:: operator=(const NumericMetricState & object) {

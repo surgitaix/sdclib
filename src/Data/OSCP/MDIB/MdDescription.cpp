@@ -64,7 +64,7 @@ MdDescription::~MdDescription() {
 }
 
 void MdDescription::copyFrom(const MdDescription & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::MdDescription>( new CDM::MdDescription(*object.data));
 }
 
 MdDescription & MdDescription:: operator=(const MdDescription & object) {

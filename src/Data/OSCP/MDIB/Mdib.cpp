@@ -65,7 +65,7 @@ Mdib::~Mdib() {
 }
 
 void Mdib::copyFrom(const Mdib & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::Mdib>( new CDM::Mdib(*object.data));
 }
 
 Mdib & Mdib:: operator=(const Mdib & object) {

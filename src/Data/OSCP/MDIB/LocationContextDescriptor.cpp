@@ -66,7 +66,7 @@ LocationContextDescriptor::~LocationContextDescriptor() {
 }
 
 void LocationContextDescriptor::copyFrom(const LocationContextDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::LocationContextDescriptor>( new CDM::LocationContextDescriptor(*object.data));
 }
 
 LocationContextDescriptor & LocationContextDescriptor:: operator=(const LocationContextDescriptor & object) {

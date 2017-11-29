@@ -65,7 +65,7 @@ SystemContextState::~SystemContextState() {
 }
 
 void SystemContextState::copyFrom(const SystemContextState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SystemContextState>( new CDM::SystemContextState(*object.data));
 }
 
 SystemContextState & SystemContextState:: operator=(const SystemContextState & object) {

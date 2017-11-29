@@ -68,7 +68,7 @@ AllowedValue::~AllowedValue() {
 }
 
 void AllowedValue::copyFrom(const AllowedValue & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::AllowedValue>( new CDM::AllowedValue(*object.data));
 }
 
 AllowedValue & AllowedValue:: operator=(const AllowedValue & object) {

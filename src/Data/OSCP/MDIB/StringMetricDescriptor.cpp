@@ -80,7 +80,7 @@ StringMetricDescriptor::~StringMetricDescriptor() {
 }
 
 void StringMetricDescriptor::copyFrom(const StringMetricDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::StringMetricDescriptor>( new CDM::StringMetricDescriptor(*object.data));
 }
 
 StringMetricDescriptor & StringMetricDescriptor:: operator=(const StringMetricDescriptor & object) {

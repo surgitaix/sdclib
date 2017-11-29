@@ -70,7 +70,7 @@ SetValueOperationState::~SetValueOperationState() {
 }
 
 void SetValueOperationState::copyFrom(const SetValueOperationState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SetValueOperationState>( new CDM::SetValueOperationState(*object.data));
 }
 
 SetValueOperationState & SetValueOperationState:: operator=(const SetValueOperationState & object) {

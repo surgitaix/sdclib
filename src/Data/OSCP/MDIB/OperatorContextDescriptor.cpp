@@ -66,7 +66,7 @@ OperatorContextDescriptor::~OperatorContextDescriptor() {
 }
 
 void OperatorContextDescriptor::copyFrom(const OperatorContextDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::OperatorContextDescriptor>( new CDM::OperatorContextDescriptor(*object.data));
 }
 
 OperatorContextDescriptor & OperatorContextDescriptor:: operator=(const OperatorContextDescriptor & object) {

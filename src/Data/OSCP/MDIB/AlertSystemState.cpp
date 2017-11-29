@@ -70,7 +70,7 @@ AlertSystemState::~AlertSystemState() {
 }
 
 void AlertSystemState::copyFrom(const AlertSystemState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::AlertSystemState>( new CDM::AlertSystemState(*object.data));
 }
 
 AlertSystemState & AlertSystemState:: operator=(const AlertSystemState & object) {

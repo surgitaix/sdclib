@@ -69,7 +69,7 @@ ApplyAnnotation::~ApplyAnnotation() {
 }
 
 void ApplyAnnotation::copyFrom(const ApplyAnnotation & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ApplyAnnotation>( new CDM::ApplyAnnotation(*object.data));
 }
 
 ApplyAnnotation & ApplyAnnotation:: operator=(const ApplyAnnotation & object) {

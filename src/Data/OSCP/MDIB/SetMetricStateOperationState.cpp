@@ -69,7 +69,7 @@ SetMetricStateOperationState::~SetMetricStateOperationState() {
 }
 
 void SetMetricStateOperationState::copyFrom(const SetMetricStateOperationState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SetMetricStateOperationState>( new CDM::SetMetricStateOperationState(*object.data));
 }
 
 SetMetricStateOperationState & SetMetricStateOperationState:: operator=(const SetMetricStateOperationState & object) {

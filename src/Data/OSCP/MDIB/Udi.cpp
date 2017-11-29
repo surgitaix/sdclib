@@ -74,7 +74,7 @@ Udi::~Udi() {
 }
 
 void Udi::copyFrom(const Udi & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::Udi>( new CDM::Udi(*object.data));
 }
 
 Udi & Udi:: operator=(const Udi & object) {

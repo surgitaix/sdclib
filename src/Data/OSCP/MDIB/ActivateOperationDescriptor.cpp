@@ -71,7 +71,7 @@ ActivateOperationDescriptor::~ActivateOperationDescriptor() {
 }
 
 void ActivateOperationDescriptor::copyFrom(const ActivateOperationDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ActivateOperationDescriptor>( new CDM::ActivateOperationDescriptor(*object.data));
 }
 
 ActivateOperationDescriptor & ActivateOperationDescriptor:: operator=(const ActivateOperationDescriptor & object) {

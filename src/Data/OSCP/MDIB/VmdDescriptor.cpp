@@ -71,7 +71,7 @@ VmdDescriptor::~VmdDescriptor() {
 }
 
 void VmdDescriptor::copyFrom(const VmdDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::VmdDescriptor>( new CDM::VmdDescriptor(*object.data));
 }
 
 VmdDescriptor & VmdDescriptor:: operator=(const VmdDescriptor & object) {

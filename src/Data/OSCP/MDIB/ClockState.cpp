@@ -72,7 +72,7 @@ ClockState::~ClockState() {
 }
 
 void ClockState::copyFrom(const ClockState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ClockState>( new CDM::ClockState(*object.data));
 }
 
 ClockState & ClockState:: operator=(const ClockState & object) {

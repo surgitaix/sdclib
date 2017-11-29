@@ -64,7 +64,7 @@ RemedyInfo::~RemedyInfo() {
 }
 
 void RemedyInfo::copyFrom(const RemedyInfo & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::RemedyInfo>( new CDM::RemedyInfo(*object.data));
 }
 
 RemedyInfo & RemedyInfo:: operator=(const RemedyInfo & object) {

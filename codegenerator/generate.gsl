@@ -354,7 +354,7 @@ $(class.name:)::~$(class.name:)() {
 }
 
 void $(class.name:)::copyFrom(const $(class.name:) & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::$(class.name:)>( new CDM::$(class.name:)(*object.data));
 }
 
 $(class.name:) & $(class.name:):: operator=(const $(class.name:) & object) {

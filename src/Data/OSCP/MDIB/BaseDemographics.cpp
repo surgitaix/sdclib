@@ -63,7 +63,7 @@ BaseDemographics::~BaseDemographics() {
 }
 
 void BaseDemographics::copyFrom(const BaseDemographics & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::BaseDemographics>( new CDM::BaseDemographics(*object.data));
 }
 
 BaseDemographics & BaseDemographics:: operator=(const BaseDemographics & object) {

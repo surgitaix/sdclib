@@ -63,7 +63,7 @@ OperatingJurisdiction::~OperatingJurisdiction() {
 }
 
 void OperatingJurisdiction::copyFrom(const OperatingJurisdiction & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::OperatingJurisdiction>( new CDM::OperatingJurisdiction(*object.data));
 }
 
 OperatingJurisdiction & OperatingJurisdiction:: operator=(const OperatingJurisdiction & object) {

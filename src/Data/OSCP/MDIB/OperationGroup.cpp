@@ -65,7 +65,7 @@ OperationGroup::~OperationGroup() {
 }
 
 void OperationGroup::copyFrom(const OperationGroup & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::OperationGroup>( new CDM::OperationGroup(*object.data));
 }
 
 OperationGroup & OperationGroup:: operator=(const OperationGroup & object) {

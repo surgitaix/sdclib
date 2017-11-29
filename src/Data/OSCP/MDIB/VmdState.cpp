@@ -68,7 +68,7 @@ VmdState::~VmdState() {
 }
 
 void VmdState::copyFrom(const VmdState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::VmdState>( new CDM::VmdState(*object.data));
 }
 
 VmdState & VmdState:: operator=(const VmdState & object) {

@@ -70,7 +70,7 @@ Measurement::~Measurement() {
 }
 
 void Measurement::copyFrom(const Measurement & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::Measurement>( new CDM::Measurement(*object.data));
 }
 
 Measurement & Measurement:: operator=(const Measurement & object) {

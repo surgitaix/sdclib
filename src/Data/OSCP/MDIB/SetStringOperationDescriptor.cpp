@@ -70,7 +70,7 @@ SetStringOperationDescriptor::~SetStringOperationDescriptor() {
 }
 
 void SetStringOperationDescriptor::copyFrom(const SetStringOperationDescriptor & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::SetStringOperationDescriptor>( new CDM::SetStringOperationDescriptor(*object.data));
 }
 
 SetStringOperationDescriptor & SetStringOperationDescriptor:: operator=(const SetStringOperationDescriptor & object) {

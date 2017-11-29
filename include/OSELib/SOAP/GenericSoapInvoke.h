@@ -43,6 +43,7 @@ public:
 
 		if (!responseMessage) {
 			// todo throw somehting
+			log_error([&] {return "Soap invoke failed: Empty response message.";});
 			return nullptr;
 		}
 

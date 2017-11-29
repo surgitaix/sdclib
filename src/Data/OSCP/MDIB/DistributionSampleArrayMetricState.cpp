@@ -69,7 +69,7 @@ DistributionSampleArrayMetricState::~DistributionSampleArrayMetricState() {
 }
 
 void DistributionSampleArrayMetricState::copyFrom(const DistributionSampleArrayMetricState & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::DistributionSampleArrayMetricState>( new CDM::DistributionSampleArrayMetricState(*object.data));
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState:: operator=(const DistributionSampleArrayMetricState & object) {

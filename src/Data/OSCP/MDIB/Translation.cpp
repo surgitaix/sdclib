@@ -65,7 +65,7 @@ Translation::~Translation() {
 }
 
 void Translation::copyFrom(const Translation & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::Translation>( new CDM::Translation(*object.data));
 }
 
 Translation & Translation:: operator=(const Translation & object) {

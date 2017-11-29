@@ -67,7 +67,7 @@ ReferenceRange::~ReferenceRange() {
 }
 
 void ReferenceRange::copyFrom(const ReferenceRange & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::ReferenceRange>( new CDM::ReferenceRange(*object.data));
 }
 
 ReferenceRange & ReferenceRange:: operator=(const ReferenceRange & object) {

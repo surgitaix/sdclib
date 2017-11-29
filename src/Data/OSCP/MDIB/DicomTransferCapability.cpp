@@ -69,7 +69,7 @@ DicomTransferCapability::~DicomTransferCapability() {
 }
 
 void DicomTransferCapability::copyFrom(const DicomTransferCapability & object) {
-	*data = *object.data;
+	data = std::shared_ptr<CDM::DicomTransferCapability>( new CDM::DicomTransferCapability(*object.data));
 }
 
 DicomTransferCapability & DicomTransferCapability:: operator=(const DicomTransferCapability & object) {
