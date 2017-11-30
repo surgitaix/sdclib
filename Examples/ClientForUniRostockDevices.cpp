@@ -14,6 +14,7 @@
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
@@ -21,7 +22,7 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSELib/OSCP/OSCPConstants.h
+#include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
@@ -149,7 +150,7 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for numeric metric:";
-				NumericMetricState nms;
+				NumericMetricState nms(handle_m1_get_and_episodic);
 				if (consumer.requestState(handle_m1_get_and_episodic, nms)
 						&& nms.hasMetricValue()
 						&& (nms.getMetricValue().getValue() == numeric_initial_value
@@ -174,7 +175,7 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for string metric:";
-				StringMetricState sms;
+				StringMetricState sms(handle_sm1_get_and_episodic_and_periodic);
 				if (consumer.requestState(handle_sm1_get_and_episodic_and_periodic, sms)
 						&& sms.hasMetricValue()
 						&& (sms.getMetricValue().getValue() == string_initial_value
@@ -206,9 +207,9 @@ int main() {
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing setValue():";
 				additionalResults << "Testing setValue():" << std::endl;
-				NumericMetricState nms;
+				NumericMetricState nms(handle_m1_get_and_episodic);
 				nms	.setDescriptorHandle(handle_m1_get_and_episodic)
-					.setMetricValue(NumericMetricValue().setValue(numeric_some_value));
+					.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(numeric_some_value));
 				FutureInvocationState fut;
 				if (consumer.commitState(nms, fut) == InvocationState::Wait) {
 					additionalResults << "Request accepted." << std::endl;
@@ -227,9 +228,9 @@ int main() {
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing setString():";
 				additionalResults << "Testing setString():" << std::endl;
-				StringMetricState sms;
+				StringMetricState sms(handle_sm1_get_and_episodic_and_periodic);
 				sms	.setDescriptorHandle(handle_sm1_get_and_episodic_and_periodic)
-					.setMetricValue(StringMetricValue().setValue(string_some_value));
+					.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(string_some_value));
 				FutureInvocationState fut;
 				if (consumer.commitState(sms, fut) == InvocationState::Wait) {
 					additionalResults << "Request accepted." << std::endl;
@@ -251,9 +252,9 @@ int main() {
 				const unsigned int before(episodicHandler.receivedEventsCounter);
 
 				Poco::Thread::sleep(1000);
-				NumericMetricState nms;
+				NumericMetricState nms(handle_m1_get_and_episodic);
 				nms	.setDescriptorHandle(handle_m1_get_and_episodic)
-					.setMetricValue(NumericMetricValue().setValue(numeric_initial_value));
+					.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(numeric_initial_value));
 				FutureInvocationState fut;
 				consumer.commitState(nms, fut);
 				fut.waitReceived(InvocationState::Fin, 1000);
@@ -288,9 +289,9 @@ int main() {
 				const unsigned int before(combinedHandler.receivedEventsCounter);
 
 				Poco::Thread::sleep(1000);
-				StringMetricState sms;
+				StringMetricState sms(handle_sm1_get_and_episodic_and_periodic);
 				sms	.setDescriptorHandle(handle_sm1_get_and_episodic_and_periodic)
-					.setMetricValue(StringMetricValue().setValue(string_some_value));
+					.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(string_some_value));
 				FutureInvocationState fut;
 				consumer.commitState(sms, fut);
 				fut.waitReceived(InvocationState::Fin, 1000);

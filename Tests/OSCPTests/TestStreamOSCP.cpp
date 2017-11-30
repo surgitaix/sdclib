@@ -11,8 +11,9 @@
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
-#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/Measurement.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
@@ -85,10 +86,9 @@ public:
 
     // Helper method
     RealTimeSampleArrayMetricState createState() {
-        RealTimeSampleArrayMetricState realTimeSampleArrayState;
+        RealTimeSampleArrayMetricState realTimeSampleArrayState(descriptorHandle);
         realTimeSampleArrayState
-        	.setActivationState(ComponentActivation::On)
-        	.setDescriptorHandle(descriptorHandle);
+        	.setActivationState(ComponentActivation::On);
         return realTimeSampleArrayState;
     }
 
@@ -115,46 +115,42 @@ public:
 
 		oscpProvider.setEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR);
 
-        // Handles and handle references of their states
-        currentMetric.setHandle("handle_plethysmogram_stream");
-        currentMetricAlt.setHandle("handle_plethysmogram_stream_alt");
 
-        // Currentweight stream metric (read-only)
-        currentMetric
-        	.setSamplePeriod(xml_schema::Duration(0,0,0,0,0,0,0.001))
-        	.setResolution(1.0)
-        	.addTechnicalRange(Range().setLower(0).setUpper(2))
-        	.setMetricCategory(MetricCategory::Msrmt)
-        	.setMetricAvailability(MetricAvailability::Cont)
-        	.setType(CodedValue()
-        			.setCode(CodeIdentifier("MDCX_PLETHYSMOGRAM"))
-        			.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
+		// Currentweight stream metric (read-only)
+		// Metric references the handler
+		RealTimeSampleArrayMetricDescriptor currentMetric("handle_plethysmogram_stream",
+				CodedValue(CodeIdentifier("MDCX_PLETHYSMOGRAM")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
+				MetricCategory::Msrmt,
+				MetricAvailability::Cont,
+				1,
+				xml_schema::Duration(0,0,0,0,0,0,1));
 
+		// alternative current matrix
+		// Metric references the handler
+	    RealTimeSampleArrayMetricDescriptor currentMetricAlt("handle_plethysmogram_stream_alt",
+	    		CodedValue(CodeIdentifier("MDCX_PLETHYSMOGRAM_ALT")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
+	    		MetricCategory::Msrmt,
+	    		MetricAvailability::Cont,
+	    		1,
+	    		xml_schema::Duration(0,0,0,0,0,0,1));
 
-        // alternative current matrix
-        currentMetricAlt
-			.setSamplePeriod(xml_schema::Duration(0,0,0,0,0,0,0.001))
-			.setResolution(1.0)
-			.addTechnicalRange(Range().setLower(0).setUpper(2))
-			.setMetricCategory(MetricCategory::Msrmt)
-			.setMetricAvailability(MetricAvailability::Cont)
-			.setType(CodedValue()
-					.setCode(CodeIdentifier("MDCX_PLETHYSMOGRAM_ALT"))
-					.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
+        // alternative current matrix: non-mandatory information
+        currentMetricAlt.addTechnicalRange(Range().setLower(0).setUpper(2));
+
 
         // Channel
-        ChannelDescriptor holdingDeviceParameters;
+        ChannelDescriptor holdingDeviceParameters("handle_channel");
         holdingDeviceParameters
 			.addMetric(currentMetric)
             .addMetric(currentMetricAlt)
 			.setSafetyClassification(SafetyClassification::Inf);
 
         // VMD
-        VmdDescriptor holdingDeviceModule;
+        VmdDescriptor holdingDeviceModule("handle_vmd");
         holdingDeviceModule.addChannel(holdingDeviceParameters);
 
         // MDS
-        MdsDescriptor holdingDeviceSystem;
+        MdsDescriptor holdingDeviceSystem("handle_mds");
         holdingDeviceSystem
 			.setMetaData(
 				MetaData()
@@ -162,8 +158,7 @@ public:
 	        		.setModelNumber("1")
 	        		.addModelName(LocalizedText().setRef("EndoTAIX"))
 	        		.addSerialNumber("1234"))
-            .setType(CodedValue()
-                .setCode("MDC_DEV_ANALY_SAT_O2_MDS"))
+            .setType(CodedValue(CodeIdentifier("MDC_DEV_ANALY_SAT_O2_MDS")))
 			.addVmd(holdingDeviceModule);
 
         // create and add description
@@ -193,8 +188,7 @@ public:
 private:
 
     OSCPProvider oscpProvider;
-	RealTimeSampleArrayMetricDescriptor currentMetric;
-    RealTimeSampleArrayMetricDescriptor currentMetricAlt;
+
     StreamProviderStateHandler streamHandler;
     StreamProviderStateHandler streamHandlerAlt;
 
@@ -213,7 +207,7 @@ public:
 		while (!isInterrupted()) {
 			{
                 updateStateValue(
-						SampleArrayValue()
+						SampleArrayValue(MetricQuality(MeasurementValidity::Vld))
 						.setSamples(samples));
 
 			}

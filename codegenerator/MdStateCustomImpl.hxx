@@ -21,7 +21,7 @@
 	std::vector<ClockState> findClockStates() const;
 	std::vector<EnsembleContextState> findEnsembleContextStates() const;
 	std::vector<EnumStringMetricState> findEnumStringMetricStates() const;
-	std::vector<MdsState> findHydraMDSStates() const;
+	std::vector<MdsState> findMdsStates() const;
 	std::vector<LimitAlertConditionState> findLimitAlertConditionStates() const;
 	std::vector<LocationContextState> findLocationContextStates() const;
 	std::vector<NumericMetricState> findNumericMetricStates() const;

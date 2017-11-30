@@ -826,13 +826,6 @@ void OSCPProvider::setAlertConditionPresence(const std::string & alertConditionH
 	std::map<std::string, AlertSignalDescriptor> matchingDescriptors;
 	std::list<AlertSignalDescriptor> listDescriptors;
 
-	// TODO: test if replacing operator[] insert/find really worked!
-	AlertSignalDescriptor test;
-	test.setHandle("testtest");
-	matchingDescriptors.insert( std::map<std::string, AlertSignalDescriptor>::value_type ( "asdf", AlertSignalDescriptor() ) );
-	std::string asdf = matchingDescriptors.find( "asdf" )->second.getHandle();
-
-
 	for (const auto & descriptor : asds) {
 		if (descriptor.getConditionSignaled() == alertConditionHandle) {
 			matchingDescriptors.insert( std::map<std::string, AlertSignalDescriptor>::value_type ( descriptor.getHandle(), descriptor) );

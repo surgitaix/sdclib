@@ -351,7 +351,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    OSCLibrary::getInstance().startup(OSELib::LogLevel::TRACE);
+    OSCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
     OSCLibrary::getInstance().setIP6enabled(false);
     OSCLibrary::getInstance().setIP4enabled(true);
 

@@ -72,7 +72,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    OSCLibrary::getInstance().startup(OSELib::LogLevel::TRACE);
+    OSCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
 	OSCLibrary::getInstance().setPortStart(12000);
 
     class MyConnectionLostHandler : public Data::OSCP::OSCPConsumerConnectionLostHandler {

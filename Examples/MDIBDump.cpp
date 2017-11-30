@@ -12,7 +12,6 @@
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockState.h"
-#include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -22,13 +21,13 @@
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/SCODescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
-#include "OSELib/OSCP/OSCPConstants.h
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
+#include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Util/DebugOut.h"
@@ -75,16 +74,12 @@ std::string stateTypeAsString(const ClockState & ) {
 	return "ClockState";
 }
 
-std::string stateTypeAsString(const ComponentState & ) {
-	return "ComponentState";
-}
-
 std::string stateTypeAsString(const EnumStringMetricState & ) {
 	return "EnumStringMetricState";
 }
 
-std::string stateTypeAsString(const HydraMDSState & ) {
-	return "HydraMDSState";
+std::string stateTypeAsString(const MdsState & ) {
+	return "MdsState";
 }
 
 std::string stateTypeAsString(const LimitAlertConditionState & ) {
@@ -104,22 +99,22 @@ std::string stateTypeAsString(const StringMetricState & ) {
 }
 
 template<class StateType>
-void validateStates(const MDDescription & mdd, const std::vector<StateType> & states, std::vector<std::string> & stateHandles) {
+void validateStates(const MdDescription & mdd, const std::vector<StateType> & states, std::vector<std::string> & stateHandles) {
 	for (const auto & state : states) {
-		if (state.hasHandle()) {
-			stateHandles.push_back(state.getHandle());
-		}
+		stateHandles.push_back(state.getDescriptorHandle());
 
-		typename StateType::DescriptorType descriptor;
+
+		typename StateType::DescriptorType descriptor(state.getDescriptorHandle());
 		if (!mdd.findDescriptor(state.getDescriptorHandle(), descriptor)) {
-			if (state.hasHandle()) {
-				DebugOut(DebugOut::Default, "MDIBDump") << stateTypeAsString(state) << " with handle " << state.getHandle() << " references non existing descriptor " << state.getDescriptorHandle();
+			if (state.getDescriptorHandle()) {
+				DebugOut(DebugOut::Default, "MDIBDump") << stateTypeAsString(state) << " with descriptor handle " << state.getDescriptorHandle();
 			} else {
 				DebugOut(DebugOut::Default, "MDIBDump") << stateTypeAsString(state) << " (without own handle) references non existing descriptor " << state.getDescriptorHandle();
 			}
 		}
 	}
 }
+
 
 template<>
 void validateStates(const MDDescription & mdd, const std::vector<ComponentState> & states, std::vector<std::string> & stateHandles) {
@@ -172,24 +167,24 @@ void validate(const MdibContainer & mdib) {
 	std::vector<std::string> descriptorHandles;
 	std::vector<std::string> stateHandles;
 
-	const MDDescription mdd(mdib.getMdDescription());
-	const MDState mdstate(mdib.getMdState());
+	const MdDescription mdd(mdib.getMdDescription());
+	const MdState mdstate(mdib.getMdState());
 
 	{
-		HydraMDSDescriptor mds;
-		if (!mdd.getFirstHydraMDSDescriptor(mds)) {
+		MdsDescriptor mds("");
+		if (!mdd.getFirstMdsDescriptor(mds)) {
 			DebugOut(DebugOut::Default, "MDIBDump") << "No MDS found!" << std::endl;
 			return;
 		}
 	}
 
-	for (const auto & mds : mdd.collectAllHydraMDSDescriptors()) {
+	for (const auto & mds : mdd.collectAllMdsDescriptors()) {
 		descriptorHandles.push_back(mds.getHandle());
-		if (mds.hasSCO()) {
-			descriptorHandles.push_back(mds.getSCO().getHandle());
+		if (mds.hasSco()) {
+			descriptorHandles.push_back(mds.getSco().getHandle());
 		}
 	}
-	for (const auto & vmd: mdd.collectAllVMDDescriptors()) {
+	for (const auto & vmd: mdd.collectAllVmdDescriptors()) {
 		descriptorHandles.push_back(vmd.getHandle());
 	}
 	for (const auto & channel : mdd.collectAllChannelDescriptors()) {
@@ -213,13 +208,13 @@ void validate(const MdibContainer & mdib) {
 
 	for (const auto & alertSystem : mdd.collectAllAlertSystemDescriptors()) {
 		descriptorHandles.push_back(alertSystem.getHandle());
-		for (const auto & alertSignal : alertSystem.getAlertSignals()) {
+		for (const auto & alertSignal : alertSystem.getAlertSignalList()) {
 			descriptorHandles.push_back(alertSignal.getHandle());
 		}
-		for (const auto & condition : alertSystem.getAlertConditions()) {
+		for (const auto & condition : alertSystem.getAlertConditionList()) {
 			descriptorHandles.push_back(condition.getHandle());
 		}
-		for (const auto & condition : alertSystem.getLimitAlertConditions()) {
+		for (const auto & condition : alertSystem.getLimitAlertConditionList()) {
 			descriptorHandles.push_back(condition.getHandle());
 		}
 	}
@@ -229,7 +224,7 @@ void validate(const MdibContainer & mdib) {
 		std::vector<std::string> tempDescriptorHandles(descriptorHandles);
 		std::sort(tempDescriptorHandles.begin(), tempDescriptorHandles.end());
 
-		CDM::MDState states(*ConvertToCDM::convert(mdstate));
+		CDM::MdState states(*ConvertToCDM::convert(mdstate));
 		for (const auto & state : states.State()) {
 			const auto iterator(std::find(tempDescriptorHandles.begin(), tempDescriptorHandles.end(), state.DescriptorHandle()));
 			if (iterator != tempDescriptorHandles.end()) {
@@ -246,8 +241,7 @@ void validate(const MdibContainer & mdib) {
 	validateStates(mdd, mdstate.findAlertSignalStates(), stateHandles);
 	validateStates(mdd, mdstate.findAlertConditionStates(), stateHandles);
 	validateStates(mdd, mdstate.findClockStates(), stateHandles);
-	validateStates(mdd, mdstate.findComponentStates(), stateHandles);
-	validateStates(mdd, mdstate.findHydraMDSStates(), stateHandles);
+	validateStates(mdd, mdstate.findMdsStates(), stateHandles);
 	validateStates(mdd, mdstate.findLimitAlertConditionStates(), stateHandles);
 	validateStates(mdd, mdstate.findEnumStringMetricStates(), stateHandles);
 	validateStates(mdd, mdstate.findNumericMetricStates(), stateHandles);

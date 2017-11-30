@@ -22,7 +22,6 @@
 #include "OSCLib/Data/OSCP/MDIB/SystemContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Util/DebugOut.h"
 
 #include "OSELib/OSCP/ServiceManager.h"
@@ -333,7 +332,7 @@ private:
 
 int main()
 {
-	OSCLibrary::getInstance().startup(OSELib::LogLevel::TRACE);
+	OSCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
 	OSCLibrary::getInstance().setIP6enabled(false);
 	OSCLibrary::getInstance().setPortStart(11000);
 
@@ -364,13 +363,11 @@ int main()
 //		std::vector<std::unique_ptr<OSCPConsumer>> consumers(oscpsm.discoverOSCP());
 
 
-
-
-	std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler(HANDLE_CURRENT_WEIGHT_METRIC));
-	std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler(HANDLE_MAX_WEIGHT_METRIC));
-
-
 	if (c != nullptr) {
+
+		std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler(HANDLE_CURRENT_WEIGHT_METRIC));
+		std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler(HANDLE_MAX_WEIGHT_METRIC));
+
 		OSCPConsumer & consumer = *c;
 		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
 

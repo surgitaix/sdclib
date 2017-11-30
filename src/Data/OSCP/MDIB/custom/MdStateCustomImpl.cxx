@@ -210,7 +210,7 @@ std::vector<EnumStringMetricState> MdState::findEnumStringMetricStates() const {
 	return findStatesImpl<EnumStringMetricState>();
 }
 
-std::vector<MdsState> MdState::findHydraMDSStates() const {
+std::vector<MdsState> MdState::findMdsStates() const {
 	return findStatesImpl<MdsState>();
 }
 
