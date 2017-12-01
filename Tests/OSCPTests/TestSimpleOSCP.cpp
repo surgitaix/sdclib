@@ -40,6 +40,7 @@
 #include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
@@ -315,11 +316,9 @@ public:
 
     // Get inital states
 	virtual std::vector<LocationContextState> getLocationContextStates() override {
-        LocationContextState locationState;
+        LocationContextState locationState("location_context_state", "location_context");
         // This device magically knows its location
         locationState
-            .setHandle("location_context_state")
-            .setDescriptorHandle("location_context")
             .addIdentification(
             InstanceIdentifier()
             	.setRoot("MyHospital")
@@ -331,10 +330,8 @@ public:
 
     // Get inital states
     virtual std::vector<PatientContextState> getPatientContextStates() override {
-        PatientContextState patientState;
+        PatientContextState patientState("patient_context_state", "patient_context");
         patientState
-            .setHandle("patient_context_state")
-            .setDescriptorHandle("patient_context")
             .addIdentification(
             InstanceIdentifier()
 				.setRoot("max")
@@ -367,11 +364,10 @@ public:
 
     // Helper method
     NumericMetricState createState() {
-        NumericMetricState result;
+        NumericMetricState result("handle_max");
         result
-            .setMetricValue(NumericMetricValue().setValue(2.0))
-            .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle("handle_max");
+            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+            .setActivationState(ComponentActivation::On);
         return result;
     }
 
@@ -382,7 +378,7 @@ public:
 
     // Convenience value getter
     float getMaxWeight() {
-        NumericMetricState result;
+        NumericMetricState result("handle_max");
         // TODO: in real applications, check if findState returns true!
         getParentProvider().getMdState().findState("handle_max", result);
         // TODO: in real applications, check if state has an observed value and if the observed value has a value!
@@ -401,9 +397,9 @@ public:
 
     // Helper method
     NumericMetricState createState(float value) {
-        NumericMetricState result;
+        NumericMetricState result("handle_cur");
         result
-            .setMetricValue(NumericMetricValue().setValue(value))
+            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
             .setActivationState(ComponentActivation::On)
             .setDescriptorHandle("handle_cur");
         return result;
@@ -442,11 +438,10 @@ public:
 
     // Helper method
     EnumStringMetricState createState(const std::string & value) {
-        EnumStringMetricState result;
+        EnumStringMetricState result("handle_enum");
         result
-            .setMetricValue(StringMetricValue().setValue(value))
-            .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle("handle_enum");
+            .setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+            .setActivationState(ComponentActivation::On);
         return result;
     }
 
@@ -477,11 +472,10 @@ public:
 
     // Helper method
     StringMetricState createState(const std::string & value) {
-        StringMetricState result;
+        StringMetricState result("handle_str");
         result
-            .setMetricValue(StringMetricValue().setValue(value))
-            .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle("handle_str");
+            .setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+            .setActivationState(ComponentActivation::On);
         return result;
     }
 
@@ -519,10 +513,8 @@ public:
 
     // Helper method
     AlertSignalState createState() {
-        AlertSignalState result;
+        AlertSignalState result("handle_alert_signal", AlertActivation::On); // Reference alert signal descriptor's handle // Component is working
         result
-            .setDescriptorHandle("handle_alert_signal")  // Reference alert signal descriptor's handle
-            .setActivationState(AlertActivation::On)  // Component is working
             .setPresence(AlertSignalPresence::Off);  // No alarm signal
         return result;
     }
@@ -555,10 +547,8 @@ public:
 
     // Helper method
     AlertSignalState createState() {
-        AlertSignalState result;
+        AlertSignalState result("handle_alert_signal_latching", AlertActivation::On); // Reference alert signal descriptor's handle // Component is working
         result
-            .setDescriptorHandle("handle_alert_signal_latching")  // Reference alert signal descriptor's handle
-            .setActivationState(AlertActivation::On)  // Component is working
             .setPresence(AlertSignalPresence::Off);  // No alarm signal
         return result;
     }
@@ -580,7 +570,7 @@ public:
 
     InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & ) override {
         // Invocation has been fired as WAITING when entering this method
-        LimitAlertConditionState currentState;
+        LimitAlertConditionState currentState(" ", AlertActivation::On, Range(), AlertConditionMonitoredLimits::None); // dummy: will be filled by findState(...)
         getParentProvider().getMdState().findState(state.getDescriptorHandle(), currentState);
 
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
@@ -599,9 +589,10 @@ public:
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler monitored source state changed." << std::endl;
 
     	// Check limit and trigger alarm condition, if needed (this method will then take care of handling all signal states)
-        NumericMetricState sourceState;
+        NumericMetricState sourceState("");
         getParentProvider().getMdState().findState(sourceHandle, sourceState);
-        LimitAlertConditionState limitAlertConditionState;
+
+        LimitAlertConditionState limitAlertConditionState("", AlertActivation::Psd, Range(), AlertConditionMonitoredLimits::None);  // dummy: will be filled by fundState
         getParentProvider().getMdState().findState("handle_alert_condition", limitAlertConditionState);
     	if (sourceState.getDescriptorHandle() != sourceHandle) {
     		return;
@@ -633,13 +624,9 @@ public:
 
     // Helper method
     LimitAlertConditionState createState() {
-        LimitAlertConditionState result;
+        LimitAlertConditionState result("handle_alert_condition", AlertActivation::On, Range().setLower(0.0).setUpper(2.0), AlertConditionMonitoredLimits::All); // Reference alert signal descriptor's handle
         result
-            .setDescriptorHandle("handle_alert_condition")  // Reference alert signal descriptor's handle
-            .setActivationState(AlertActivation::On)  // Component is working
-            .setPresence(false)
-            .setMonitoredAlertLimits(AlertConditionMonitoredLimits::All)
-            .setLimits(Range().setLower(0.0).setUpper(2.0));
+            .setPresence(false);
         return result;
     }
 
@@ -656,11 +643,7 @@ public:
     }
 
 	AlertSystemState getInitialState() override {
-        AlertSystemState alertSystemState;
-        // reference alert system descriptor's handle
-        alertSystemState
-            .setActivationState(AlertActivation::On)
-            .setDescriptorHandle("handle_alert_system");
+        AlertSystemState alertSystemState("handle_alert_system", AlertActivation::On);  // reference alert system descriptor's handle // Alert is activated
         return alertSystemState;
     }
 
@@ -690,9 +673,8 @@ public:
 
     // Helper method
     ChannelState createState() {
-    	ChannelState result;
+    	ChannelState result(descriptorHandle);
         result
-            .setDescriptorHandle(descriptorHandle)
             .setActivationState(ComponentActivation::On);
         return result;
     }
@@ -715,9 +697,8 @@ public:
 
     // Helper method
     VmdState createState() {
-    	VmdState result;
+    	VmdState result(descriptorHandle);
         result
-            .setDescriptorHandle(descriptorHandle)
             .setActivationState(ComponentActivation::On);
         return result;
     }
@@ -743,9 +724,8 @@ public:
 
     // Helper method
     MdsState createState() {
-        MdsState result;
+        MdsState result(descriptorHandle);
         result
-            .setDescriptorHandle(descriptorHandle)
             .setActivationState(ComponentActivation::On);
         return result;
     }
@@ -776,106 +756,99 @@ public:
 
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
-        CodedValue unit;
-        unit	.setCode("MDCX_CODE_ID_KG")
-				.setCodingSystem("OR.NET.Codings")
+        CodedValue unit(CodeIdentifier("MDCX_CODE_ID_KG"));
+        unit	.setCodingSystem("OR.NET.Codings")
 				.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"));
+
+
+
 
     	//
         // Setup metric descriptors
         //
 
         // define properties of current weight metric
-        currentWeightMetric
-			.setMetricCategory(MetricCategory::Msrmt)
-        	.setMetricAvailability(MetricAvailability::Cont)
-			.setUnit(unit)
-			.setType(
-				CodedValue()
-				.setCodingSystem("OR.NET.Codings")
-				.setCode("MDCX_CODE_ID_WEIGHT")
-				.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("ru")))
-	        .setHandle("handle_cur");
+        NumericMetricDescriptor currentWeightMetric("handle_cur",
+        		CodedValue("MDCX_CODE_ID_WEIGHT").setCodingSystem("OR.NET.Codings"),
+        		MetricCategory::Msrmt,
+        		MetricAvailability::Cont,
+        		1);
 
+        currentWeightMetric.setUnit(unit);
+
+        //  define properties of enum metric
+        EnumStringMetricDescriptor testEnumMetric("handle_enum",
+        		CodedValue("MDCX_CODE_ID_ENUM")
+        			.setCodingSystem("OR.NET.Codings")
+        			.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
+        			MetricCategory::Set,
+        			MetricAvailability::Cont);
         testEnumMetric
-			.setMetricCategory(MetricCategory::Set)
-			.setMetricAvailability(MetricAvailability::Cont)
-			.setUnit(unit)
-				.setType(
-					CodedValue()
-					.setCodingSystem("OR.NET.Codings")
-					.setCode("MDCX_CODE_ID_ENUM")
-					.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
-			.setHandle("handle_enum")
+        	.setUnit(unit)
 			.addAllowedValue(AllowedValue().setValue("hello"))
 			.addAllowedValue(AllowedValue().setValue("hallo"))
 			.addAllowedValue(AllowedValue().setValue("bon jour"));
 
-        location.setHandle("location_context");
-        patient.setHandle("patient_context");
 
         // define properties of max weight metric
+        NumericMetricDescriptor maxWeightMetric("handle_max",
+        		CodedValue("MDCX_CODE_ID_MAXWEIGHT").setCodingSystem("OR.NET.Codings"),
+        		MetricCategory::Set,
+        		MetricAvailability::Cont,
+        		1);
         maxWeightMetric
-			.setMetricCategory(MetricCategory::Set)
-        	.setMetricAvailability(MetricAvailability::Cont)
-        	.setUnit(unit)
-			.setType(
-        		CodedValue()
-        		.setCodingSystem("OR.NET.Codings")
-        		.setCode("MDCX_CODE_ID_MAXWEIGHT")
-        		.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
-        	.setHandle("handle_max");
+        	.setUnit(unit);
 
         // define properties of test string metric
-        testStringMetric
-			.setMetricCategory(MetricCategory::Set)
-			.setMetricAvailability(MetricAvailability::Cont)
-			.setType(
-        		CodedValue()
-        		.setCode("MDCX_CODE_ID_STRING")
-        		.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
-			.setHandle("handle_str");
+        StringMetricDescriptor testStringMetric("handle_str",
+        		CodedValue("MDCX_CODE_ID_STRING"),
+        		MetricCategory::Set,
+        		MetricAvailability::Cont);
+
+
+        //
+        // Contexts
+        //
+
+        // Location context
+        LocationContextDescriptor location("location_context");
+        PatientContextDescriptor patient("patient_context");
+
 
         //
 		// Setup alert system
 		//
 
         // alert condition
-        limitAlertCondition
-			.addSource("handle_cur")
-			.setType(
-        		CodedValue()
-				.setCode("MDCX_CODE_ID_ALERT_WEIGHT_CONDITION")
-				.setCodingSystem("OR.NET.Codings"))
-			.setKind(AlertConditionKind::Tec)
-			.setPriority(AlertConditionPriority::Me)
-			.setHandle("handle_alert_condition");
+        LimitAlertConditionDescriptor limitAlertCondition("handle_alert_condition",
+        		AlertConditionKind::Tec,
+        		AlertConditionPriority::Me,
+        		Range()
+        			.setLower(0)
+        			.setUpper(0)
+        		);
+
+        limitAlertCondition.setType(CodedValue("MDCX_CODE_ID_ALERT_WEIGHT_CONDITION").setCodingSystem("OR.NET.Codings"));
 
         // create signal for condition
+        AlertSignalDescriptor alertSignal("handle_alert_signal", AlertSignalManifestation::Vis, false);
         alertSignal
-			.setConditionSignaled("handle_alert_condition")
-			.setManifestation(AlertSignalManifestation::Vis)
-			.setLatching(false)
-			.setHandle("handle_alert_signal");
+        	.setConditionSignaled("handle_alert_condition");
 
+        AlertSignalDescriptor latchingAlertSignal("handle_alert_signal_latching", AlertSignalManifestation::Vis, true);
         latchingAlertSignal
-			.setConditionSignaled("handle_alert_condition")
-			.setManifestation(AlertSignalManifestation::Vis)
-			.setLatching(true)
-			.setHandle("handle_alert_signal_latching");
+			.setConditionSignaled("handle_alert_condition");
 
         // Alerts
-        AlertSystemDescriptor alertSystem;
+        AlertSystemDescriptor alertSystem("handle_alert_system");
         alertSystem
 			.addAlertSignal(alertSignal)
 			.addAlertSignal(latchingAlertSignal)
-			.addLimitAlertCondition(limitAlertCondition)
-			.setHandle("handle_alert_system");
+			.addLimitAlertCondition(limitAlertCondition);
 
         // Channel
-        ChannelDescriptor holdingDeviceChannel;
+        ChannelDescriptor holdingDeviceChannel("handle_alert_system");
         holdingDeviceChannel
-			.setHandle(CHANNEL_DESCRIPTOR_HANDLE)
 			.addMetric(currentWeightMetric)
 			.addMetric(testEnumMetric)
         	.addMetric(maxWeightMetric)
@@ -883,17 +856,15 @@ public:
 			.setSafetyClassification(SafetyClassification::MedA);
 
         // VMD
-        VmdDescriptor holdingDeviceModule;
+        VmdDescriptor holdingDeviceModule(VMD_DESCRIPTOR_HANDLE);
         holdingDeviceModule
-        // TODO: kick this comment if working properly
         	.setAlertSystem(alertSystem)
 			.setHandle(VMD_DESCRIPTOR_HANDLE)
 			.addChannel(holdingDeviceChannel);
 
         // MDS
-        MdsDescriptor holdingDeviceSystem;
+        MdsDescriptor holdingDeviceSystem(MDS_HANDLE);
         holdingDeviceSystem
-			.setHandle(MDS_HANDLE)
         	.setMetaData(
         		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
         		.setModelNumber("1")
@@ -985,27 +956,6 @@ private:
     // Provider object
     OSCPProvider oscpProvider;
 
-    // The current weight
-    NumericMetricDescriptor currentWeightMetric;
-
-    // Maximum weight
-    NumericMetricDescriptor maxWeightMetric;
-
-    // Test enum
-	EnumStringMetricDescriptor testEnumMetric;
-
-    // Test string
-    StringMetricDescriptor testStringMetric;
-
-    // Location context
-    LocationContextDescriptor location;
-    PatientContextDescriptor patient;
-
-    // Alert descriptors
-    AlertSignalDescriptor alertSignal;
-    AlertSignalDescriptor latchingAlertSignal;
-    LimitAlertConditionDescriptor limitAlertCondition;
-
     // State (handlers)
     ContextHandler contextStates;
     MaxValueStateHandler maxValueState;
@@ -1075,7 +1025,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             MdibContainer mdib(consumer.getMdib());
 
             { // test access to system metadata of mds implemented by provider above
-            	MdsDescriptor mds;
+            	MdsDescriptor mds(" "); // dummy
             	if (mdib.getMdDescription().findDescriptor(Tests::SimpleOSCP::MDS_HANDLE, mds)) {
             		if (mds.hasMetaData()) {
             			const MetaData metadata(mds.getMetaData());
@@ -1088,7 +1038,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             	}
             }
             { // test presence of system context descriptors
-            	MdsDescriptor mds;
+            	MdsDescriptor mds(" "); // dummy
             	if (mdib.getMdDescription().findDescriptor(Tests::SimpleOSCP::MDS_HANDLE, mds)) {
             		SystemContextDescriptor sc(mds.getSystemContext());
             		CHECK_EQUAL(true, sc.hasPatientContext());
@@ -1096,13 +1046,20 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             	}
             }
             {	// lookup descriptors that should exist for the provider implemented above
-            	NumericMetricDescriptor curMetric;
+            	NumericMetricDescriptor curMetric(" ",
+                		CodedValue(" "),
+                		MetricCategory::Msrmt,
+                		MetricAvailability::Cont,
+                		1); // dummy
 				mdib.getMdDescription().findDescriptor("handle_cur", curMetric);
 				//DebugOut(DebugOut::Default, "SimpleOSCP") << curMetric.getType().getConceptDescriptfionList().at(0).getLang() << std::endl;
 				CHECK_EQUAL("ru", curMetric.getType().getConceptDescriptionList().at(0).getLang());
 				CHECK_EQUAL("handle_cur", curMetric.getHandle());
 
-				StringMetricDescriptor strMetric;
+				StringMetricDescriptor strMetric(" ",
+		        		CodedValue(" "),
+		        		MetricCategory::Unspec,
+		        		MetricAvailability::Cont); // dummy
 				CHECK_EQUAL(true, mdib.getMdDescription().findDescriptor("handle_str", strMetric));
 				CHECK_EQUAL("handle_str", strMetric.getHandle());
             }
@@ -1123,11 +1080,11 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             {	// Ensure that requests for wrong handles fail.
             	DebugOut(DebugOut::Default, "SimpleOSCP") << "Numeric test..." << std::endl;
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "SHOULD FAIL: " << std::endl;
-				NumericMetricState tempState;
+				NumericMetricState tempState(" ")
             	CHECK_EQUAL(false, consumer.requestState("unknown", tempState));
             }
             {	// Request state of current weight
-            	NumericMetricState currentWeightState;
+            	NumericMetricState currentWeightState(" ");
 				CHECK_EQUAL(true, consumer.requestState("handle_cur", currentWeightState));
 				CHECK_EQUAL(true, currentWeightState.hasMetricValue());
 				if (currentWeightState.hasMetricValue()) {
@@ -1137,7 +1094,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             }
             {	// Ensure that (read-only) metrics without matching SetOperation cannot be set.
             	DebugOut(DebugOut::Default, "SimpleOSCP") << "SHOULD FAIL: " << std::endl;
-            	NumericMetricState currentWeightState;
+            	NumericMetricState currentWeightState(" ");
 				CHECK_EQUAL(true, consumer.requestState("handle_cur", currentWeightState));
             	CHECK_EQUAL(true, InvocationState::Fail == consumer.commitState(currentWeightState));
             }
@@ -1231,7 +1188,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 						.setGivenname("Max")
 						.setBirthname("")
 						.setFamilyname("Mustermann"));
-						// FIXME: DateOfBirth does not work yet -> schema validation fail because unio is not rightly implemented
+						// FIXME: DateOfBirth does not work yet -> schema validation fail because union is not rightly implemented
 						//.setDateOfBirth("08.05.1945"));
 				FutureInvocationState fis;
 				ceh.getEventEMR().reset();

@@ -44,6 +44,8 @@ if(COMPILER_SUPPORTS_CXX11)
 elseif(COMPILER_SUPPORTS_CXX0X)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 else()
+
+#
         message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
@@ -498,7 +500,7 @@ Tests/UnitTests.cpp
 #Tests/OSCPTests/TestMultiOSCP.cpp
 #Tests/OSCPTests/TestSimpleOSCP.cpp
 #Tests/OSCPTests/TestPeriodicEvents.cpp
-Tests/OSCPTests/TestStreamOSCP.cpp
+#Tests/OSCPTests/TestStreamOSCP.cpp
 Tests/UnitTest++/src/Test.cpp
 Tests/UnitTest++/src/TestList.cpp
 Tests/UnitTest++/src/TestRunner.cpp
@@ -520,31 +522,31 @@ Tests/UnitTest++/src/Posix/SignalTranslator.cpp
 )
 
 
-add_executable(ExampleConsumer
-Examples/ExampleConsumer.cpp
-)
+#add_executable(ExampleConsumer
+#Examples/ExampleConsumer.cpp
+#)
 
-add_executable(ExampleProject
-Examples/ExampleProject.cpp
-)
+#add_executable(ExampleProject
+#Examples/ExampleProject.cpp
+#)
 
 add_executable(ExampleProvider
 Examples/ExampleProvider.cpp
 )
 
-add_executable(ExampleConsumer4SoftICEStreaming
-Examples/ExampleConsumer4SoftICEStreaming.cpp
-)
+#add_executable(ExampleConsumer4SoftICEStreaming
+#Examples/ExampleConsumer4SoftICEStreaming.cpp
+#)
 
 
 
-add_executable(SimpleServiceDiscovery
-Examples/SimpleServiceDiscovery.cpp
-)
+#add_executable(SimpleServiceDiscovery
+#Examples/SimpleServiceDiscovery.cpp
+#)
 
-add_executable(MDIBVisualizer
-Examples/MDIBVisualizer.cpp
-)
+#add_executable(MDIBVisualizer
+#Examples/MDIBVisualizer.cpp
+#)
 
 #add_executable(MDIBDump
 #Examples/MDIBDump.cpp
@@ -562,24 +564,24 @@ Examples/MDIBVisualizer.cpp
 #Tests/Tools/DPWSDiscoveryListener.cpp
 #)
 
-add_executable(ClientForUniRostockDevices
-Examples/ClientForUniRostockDevices.cpp
-)
+#add_executable(ClientForUniRostockDevices
+#Examples/ClientForUniRostockDevices.cpp
+#)
 
 
 SET(ADDITIONAL_LIBS "")
 
 target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(GenericSubscription OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(DPWSDiscoveryClient OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(DPWSDiscoveryListener OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ClientForUniRostockDevices OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ClientForUniRostockDevices OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 
