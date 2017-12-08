@@ -1,19 +1,7 @@
 
-	bool findState(const std::string & handle, AlertConditionState & outState) const;
-	bool findState(const std::string & handle, AlertSignalState & outState) const;
-	bool findState(const std::string & handle, AlertSystemState & outState) const;
-	bool findState(const std::string & handle, ClockState & outState) const;
-	bool findState(const std::string & handle, EnsembleContextState & outState) const;
-	bool findState(const std::string & handle, EnumStringMetricState & outState) const;
-    bool findState(const std::string & handle, MdsState & outState) const;
-	bool findState(const std::string & handle, LimitAlertConditionState & outState) const;
-	bool findState(const std::string & handle, LocationContextState & outState) const;
-	bool findState(const std::string & handle, NumericMetricState & outState) const;
-	bool findState(const std::string & handle, OperatorContextState & outState) const;
-	bool findState(const std::string & handle, PatientContextState & outState) const;
-	bool findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const;
-	bool findState(const std::string & handle, StringMetricState & outState) const;
-	bool findState(const std::string & handle, WorkflowContextState & outState) const;
+	// use this API function to get a copy of the MDIB's internal state
+	template<class TState>
+	std::unique_ptr<TState> findState(const std::string & handle) const;
 
 	std::vector<AlertConditionState> findAlertConditionStates() const;
 	std::vector<AlertSignalState> findAlertSignalStates() const;
@@ -50,6 +38,23 @@
     MdState & addState(const ChannelState & source);
 
 private:
+    // these classes are for internal finding states in the MDIB
+    // the initialize objects which reference is processed
+	bool findState(const std::string & handle, AlertConditionState & outState) const;
+	bool findState(const std::string & handle, AlertSignalState & outState) const;
+	bool findState(const std::string & handle, AlertSystemState & outState) const;
+	bool findState(const std::string & handle, ClockState & outState) const;
+	bool findState(const std::string & handle, EnsembleContextState & outState) const;
+	bool findState(const std::string & handle, EnumStringMetricState & outState) const;
+    bool findState(const std::string & handle, MdsState & outState) const;
+	bool findState(const std::string & handle, LimitAlertConditionState & outState) const;
+	bool findState(const std::string & handle, LocationContextState & outState) const;
+	bool findState(const std::string & handle, NumericMetricState & outState) const;
+	bool findState(const std::string & handle, OperatorContextState & outState) const;
+	bool findState(const std::string & handle, PatientContextState & outState) const;
+	bool findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const;
+	bool findState(const std::string & handle, StringMetricState & outState) const;
+	bool findState(const std::string & handle, WorkflowContextState & outState) const;
     template <class WrapperStateDescriptorType>
     bool findStateImpl(const std::string & handle, WrapperStateDescriptorType & out) const;
 

@@ -39,7 +39,7 @@ using namespace OSCLib::Data::OSCP;
 // Endpoint reference of the device -> unique ID
 const std::string deviceEPR("UDI-1234567890");
 
-// handles of the de
+// descriptor handles
 const std::string MDS_HANDLE("mds_handle");
 const std::string VMD_DESCRIPTOR_HANDLE("vmd_handle");
 

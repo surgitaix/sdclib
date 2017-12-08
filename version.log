@@ -1,3 +1,11 @@
+Update to version 2.1.0 D10_2017_10_05:
+
+- updated to new participant model (data model), standard version: Draft 10
+- implemented code generator for data model XSD wrapper classes
+- API adapted: 
+	- MDIB classes have no (publicly accessable) default constructor, user has to pass mandatory MDIB fields to the constructor (security feature)
+	- findState(), requestState() adapted (returing smart pointers instead of using referenced object)
+	
 Update to version 2.0.1:
 
 - OSCPProvider expanded: able to load MDDescription from xml file

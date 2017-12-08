@@ -21,11 +21,25 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 
+#include <memory>
+
 #include "osdm.hxx"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
+
+template<class TState>
+std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
+	TState outState();
+	if (findStateImpl<TState>(handle, outState)) {
+		return std::unique_ptr<TState>(new TState(outState));
+	} else {
+		return NULL;
+	}
+
+}
+
 
 bool MdState::findState(const std::string & handle, AlertConditionState & outState) const {
 	LimitAlertConditionState limitAlertState(handle, AlertActivation::Off, Range(), AlertConditionMonitoredLimits::All);

@@ -56,10 +56,11 @@ public:
     bool findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const;
     bool findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const;
 
-    bool findState(const std::string & handle, EnumStringMetricState & outState) const;
-	bool findState(const std::string & handle, NumericMetricState & outState) const;
-	bool findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const;
-	bool findState(const std::string & handle, StringMetricState & outState) const;
+    // TODO: use new unique_ptr implementations
+//    bool findState(const std::string & handle, EnumStringMetricState & outState) const;
+//	bool findState(const std::string & handle, NumericMetricState & outState) const;
+//	bool findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const;
+//	bool findState(const std::string & handle, StringMetricState & outState) const;
 
 private:
     std::shared_ptr<MdDescription> mddescription;

@@ -128,11 +128,16 @@ public:
 
     // Convenience value getter
     float getMaxWeight() {
-        NumericMetricState result(HANDLE_SET_METRIC);
-        // TODO: in real applications, check if findState returns true!
-        getParentProvider().getMdState().findState(HANDLE_SET_METRIC, result);
-        // TODO: in real applications, check if state has an observed value and if the observed value has a value!
-        return (float)result.getMetricValue().getValue();
+        std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC));
+
+        if (result != NULL) {
+        	// In real applications, check if state has an observed value and if the observed value has a value!
+        	return (float)result->getMetricValue().getValue();
+        } else {
+
+        	throw std::runtime_error("Max Value not found");
+        }
+
     }
 
 private:

@@ -42,6 +42,8 @@
 
 namespace OSCLib {
 
+const std::string CURRENT_LIB_VERSION("2.1.0");
+
 OSCLibrary::OSCLibrary() :
 	WithLogger(OSELib::Log::BASE),
 	initialized(false),
@@ -79,7 +81,7 @@ void OSCLibrary::startup(OSELib::LogLevel debugLevel) {
 	if (!initialized) {
 		initialized = true;
 		setDebugLevel(debugLevel);
-		log_notice([&]{ return "OSCLib version 2.0.1 (C) 2016 SurgiTAIX AG"; });
+		log_notice([&]{ return "OSCLib version " + CURRENT_LIB_VERSION + " (C) 2016 SurgiTAIX AG"; });
         xercesc::XMLPlatformUtils::Initialize();
 	} else {
 		log_error([&]{ return "OSCLib already initialized!"; });

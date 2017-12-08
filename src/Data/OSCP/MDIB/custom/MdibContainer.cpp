@@ -111,21 +111,21 @@ bool MdibContainer::findDescriptor(const std::string & handle, RealTimeSampleArr
 	return mddescription->findDescriptor(handle, outDescriptor);
 }
 
-bool MdibContainer::findState(const std::string & handle, EnumStringMetricState & outState) const {
-	return mdstate->findState(handle, outState);
-}
-
-bool MdibContainer::findState(const std::string & handle, NumericMetricState & outState) const {
-	return mdstate->findState(handle, outState);
-}
-
-bool MdibContainer::findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const {
-	return mdstate->findState(handle, outState);
-}
-
-bool MdibContainer::findState(const std::string & handle, StringMetricState & outState) const {
-	return mdstate->findState(handle, outState);
-}
+//bool MdibContainer::findState(const std::string & handle, EnumStringMetricState & outState) const {
+//	return mdstate->findState(handle, outState);
+//}
+//
+//bool MdibContainer::findState(const std::string & handle, NumericMetricState & outState) const {
+//	return mdstate->findState(handle, outState);
+//}
+//
+//bool MdibContainer::findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const {
+//	return mdstate->findState(handle, outState);
+//}
+//
+//bool MdibContainer::findState(const std::string & handle, StringMetricState & outState) const {
+//	return mdstate->findState(handle, outState);
+//}
 
 } /* namespace OSCP */
 } /* namespace Data */

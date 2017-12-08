@@ -603,6 +603,7 @@ bool OSCPConsumer::requestState(const std::string & handle, OutStateType & outSt
 	try {
 		const typename OutStateType::WrappedType & resultState(dynamic_cast<const typename OutStateType::WrappedType &>(resultStates.front()));
 		const OutStateType castedType(ConvertFromCDM::convert(resultState));
+
 		outState.copyFrom(castedType);
 		return true;
 	} catch (...) {
