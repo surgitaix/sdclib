@@ -522,9 +522,9 @@ Tests/UnitTest++/src/Posix/SignalTranslator.cpp
 )
 
 
-#add_executable(ExampleConsumer
-#Examples/ExampleConsumer.cpp
-#)
+add_executable(ExampleConsumer
+Examples/ExampleConsumer.cpp
+)
 
 #add_executable(ExampleProject
 #Examples/ExampleProject.cpp
@@ -573,7 +573,7 @@ SET(ADDITIONAL_LIBS "")
 
 target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})

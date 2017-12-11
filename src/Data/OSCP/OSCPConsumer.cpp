@@ -564,54 +564,55 @@ InvocationState OSCPConsumer::activate(const std::string & handle, FutureInvocat
 	}
 }
 
-template bool OSCPConsumer::requestState<AlertConditionState>(const std::string & handle, AlertConditionState & outState);
-template bool OSCPConsumer::requestState<AlertSignalState>(const std::string & handle, AlertSignalState & outState);
-template bool OSCPConsumer::requestState<AlertSystemState>(const std::string & handle, AlertSystemState & outState);
-template bool OSCPConsumer::requestState<ClockState>(const std::string & handle, ClockState & outState);
-template bool OSCPConsumer::requestState<EnsembleContextState>(const std::string & handle, EnsembleContextState & outState);
-template bool OSCPConsumer::requestState<EnumStringMetricState>(const std::string & handle, EnumStringMetricState & outState);
-template bool OSCPConsumer::requestState<LimitAlertConditionState>(const std::string & handle, LimitAlertConditionState & outState);
-template bool OSCPConsumer::requestState<LocationContextState>(const std::string & handle, LocationContextState & outState);
-template bool OSCPConsumer::requestState<NumericMetricState>(const std::string & handle, NumericMetricState & outState);
-template bool OSCPConsumer::requestState<OperatorContextState>(const std::string & handle, OperatorContextState & outState);
-template bool OSCPConsumer::requestState<PatientContextState>(const std::string & handle, PatientContextState & outState);
-template bool OSCPConsumer::requestState<StringMetricState>(const std::string & handle, StringMetricState & outState);
-template bool OSCPConsumer::requestState<WorkflowContextState>(const std::string & handle, WorkflowContextState & outState);
+//// specialization needed for API
+template std::unique_ptr<AlertConditionState> OSCPConsumer::requestState<AlertConditionState>(const std::string & handle);
+template std::unique_ptr<AlertSignalState> OSCPConsumer::requestState<AlertSignalState>(const std::string & handle);
+template std::unique_ptr<AlertSystemState> OSCPConsumer::requestState<AlertSystemState>(const std::string & handle);
+template std::unique_ptr<ClockState> OSCPConsumer::requestState<ClockState>(const std::string & handle);
+template std::unique_ptr<EnsembleContextState> OSCPConsumer::requestState<EnsembleContextState>(const std::string & handle);
+template std::unique_ptr<EnumStringMetricState> OSCPConsumer::requestState<EnumStringMetricState>(const std::string & handle);
+template std::unique_ptr<LimitAlertConditionState> OSCPConsumer::requestState<LimitAlertConditionState>(const std::string & handle);
+template std::unique_ptr<LocationContextState> OSCPConsumer::requestState<LocationContextState>(const std::string & handle);
+template std::unique_ptr<NumericMetricState> OSCPConsumer::requestState<NumericMetricState>(const std::string & handle);
+template std::unique_ptr<OperatorContextState> OSCPConsumer::requestState<OperatorContextState>(const std::string & handle);
+template std::unique_ptr<PatientContextState> OSCPConsumer::requestState<PatientContextState>(const std::string & handle);
+template std::unique_ptr<StringMetricState> OSCPConsumer::requestState<StringMetricState>(const std::string & handle);
+template std::unique_ptr<WorkflowContextState> OSCPConsumer::requestState<WorkflowContextState>(const std::string & handle);
 
 
-template<class OutStateType>
-bool OSCPConsumer::requestState(const std::string & handle, OutStateType & outState) {
+// TODO: implement and test! missing states -> RealTimeSampleArrayMetricState, DistributionSampleArrayMetricState
+
+template<class TStateType>
+std::unique_ptr<TStateType> OSCPConsumer::requestState(const std::string & handle) {
 
     MDM::GetMdState request;
     request.HandleRef().push_back(handle);
 
     auto response (_adapter->invoke(request));
     if (response == nullptr) {
-    	return false;
+    	log_error([&] { return "requestState failed: invoke of adapter returned nullptr for handle "  + handle; });
+    	return nullptr;
     }
 
 	const CDM::MdState::StateSequence & resultStates(response->MdState().State());
 	if (resultStates.empty()) {
 		log_error([&] { return "requestState failed: Got no response object for handle "  + handle; });
-		return false;
+		return nullptr;
 	} else if (resultStates.size() > 1) {
 		log_error([&] { return "requestState failed: Got too many response objects for handle " + handle + std::to_string(resultStates.size()); });
-		return false;
+		return nullptr;
 	}
 
 	// take first element
 	try {
-		const typename OutStateType::WrappedType & resultState(dynamic_cast<const typename OutStateType::WrappedType &>(resultStates.front()));
-		const OutStateType castedType(ConvertFromCDM::convert(resultState));
-
-		outState.copyFrom(castedType);
-		return true;
+		const typename TStateType::WrappedType & resultState(dynamic_cast<const typename TStateType::WrappedType &>(resultStates.front()));
+		std::unique_ptr<TStateType> pReturnState(new TStateType(ConvertFromCDM::convert(resultState)));
+		return std::move(pReturnState);
 	} catch (...) {
 		log_error([&] { return "requestState failed: Types mismatch of returned object for handle " + handle; });
-		return false;
+		return nullptr;
 	}
-
-	return true;
+	return nullptr;
 }
 
 template<typename T> void OSCPConsumer::onStateChanged(const T & state) {

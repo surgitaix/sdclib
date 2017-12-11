@@ -126,8 +126,8 @@ public:
     * @return True, if request was successful
     */
 
-    template<class OutStateType>
-    bool requestState(const std::string & handle, OutStateType & state);
+    template<class TStateType>
+    std::unique_ptr<TStateType> requestState(const std::string & handle);
 
     /**
     * @brief Commit or 'SET' a state (asynchronously).

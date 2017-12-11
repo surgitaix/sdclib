@@ -57,7 +57,8 @@ public:
     bool findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const;
 
     // TODO: use new unique_ptr implementations
-//    bool findState(const std::string & handle, EnumStringMetricState & outState) const;
+	template<class TState>
+	std::unique_ptr<TState> findState(const std::string & handle) const;
 //	bool findState(const std::string & handle, NumericMetricState & outState) const;
 //	bool findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const;
 //	bool findState(const std::string & handle, StringMetricState & outState) const;

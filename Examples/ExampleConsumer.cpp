@@ -91,28 +91,27 @@ int main() {
 	// Discovery
 	OSELib::OSCP::ServiceManager oscpsm;
 	std::unique_ptr<Data::OSCP::OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
-//	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
+	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
 	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
 
 	if (c != nullptr) {
 		Data::OSCP::OSCPConsumer & consumer = *c;
-//	    std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
-//	    consumer.setConnectionLostHandler(myHandler.get());
+	    std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
+	    consumer.setConnectionLostHandler(myHandler.get());
 
-//	    consumer.registerStateEventHandler(eh_get.get());
+	    consumer.registerStateEventHandler(eh_get.get());
 	    consumer.registerStateEventHandler(eh_set.get());
         Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
 
-        NumericMetricState metricState(HANDLE_SET_METRIC);
-        consumer.requestState(HANDLE_SET_METRIC, metricState);
+        std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
 
-        metricState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+        pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
         FutureInvocationState fis;
-        consumer.commitState(metricState, fis);
-        Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 2000);
+        consumer.commitState(*pMetricState, fis);
+        Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
 
         waitForUserInput();
-//        consumer.unregisterStateEventHandler(eh_get.get());
+        consumer.unregisterStateEventHandler(eh_get.get());
         consumer.unregisterStateEventHandler(eh_set.get());
 		consumer.disconnect();
 	} else {

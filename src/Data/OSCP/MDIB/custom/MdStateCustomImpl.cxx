@@ -29,15 +29,37 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
+
+
+
+// warum funktioniert das nicht?
+//// template specialization for API
+//template std::unique_ptr<AlertConditionState> MdState::findState<AlertConditionState>(const std::string & handle) const;
+//template std::unique_ptr<AlertSignalState> MdState::findState<AlertSignalState>(const std::string & handle) const;
+//template std::unique_ptr<AlertSystemState> MdState::findState<AlertSystemState>(const std::string & handle) const;
+//template std::unique_ptr<ClockState> MdState::findState<ClockState>(const std::string & handle) const;
+//template std::unique_ptr<EnsembleContextState> MdState::findState<EnsembleContextState>(const std::string & handle) const;
+//template std::unique_ptr<EnumStringMetricState> MdState::findState<EnumStringMetricState>(const std::string & handle) const;
+//template std::unique_ptr<MdsState> MdState::findState<MdsState>(const std::string & handle) const;
+//template std::unique_ptr<LimitAlertConditionState> MdState::findState<LimitAlertConditionState>(const std::string & handle) const;
+//template std::unique_ptr<LocationContextState> MdState::findState<LocationContextState>(const std::string & handle) const;
+//template std::unique_ptr<NumericMetricState> MdState::findState<NumericMetricState>(const std::string & handle) const;
+//template std::unique_ptr<OperatorContextState> MdState::findState<OperatorContextState>(const std::string & handle) const;
+//template std::unique_ptr<PatientContextState> MdState::findState<PatientContextState>(const std::string & handle) const;
+//template std::unique_ptr<RealTimeSampleArrayMetricState> MdState::findState<RealTimeSampleArrayMetricState>(const std::string & handle) const;
+//template std::unique_ptr<StringMetricState> MdState::findState<StringMetricState>(const std::string & handle) const;
+//template std::unique_ptr<WorkflowContextState> MdState::findState<WorkflowContextState>(const std::string & handle) const;
+
+
+
 template<class TState>
 std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
 	TState outState();
 	if (findStateImpl<TState>(handle, outState)) {
 		return std::unique_ptr<TState>(new TState(outState));
 	} else {
-		return NULL;
+		return nullptr;
 	}
-
 }
 
 

@@ -130,12 +130,13 @@ public:
     float getMaxWeight() {
         std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC));
 
-        if (result != NULL) {
+        // check if result is valid
+        if (result != nullptr) {
         	// In real applications, check if state has an observed value and if the observed value has a value!
         	return (float)result->getMetricValue().getValue();
         } else {
-
-        	throw std::runtime_error("Max Value not found");
+        	DebugOut(DebugOut::Default, "ExampleProvider") << "Maximum weight metric not found." << std::endl;
+        	return 0;
         }
 
     }
@@ -313,7 +314,6 @@ private:
     NumericMetricDescriptor setMetricDescriptor;
     NumericMetricDescriptor getMetricDescriptor;
     StringMetricDescriptor  stringMetricDescriptor;
-
 
     StreamProviderStateHandler streamProviderStateHandler;
     NumericProviderStateHandlerGet numericProviderStateHandlerGet;
