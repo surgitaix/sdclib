@@ -39,31 +39,23 @@ public:
     	oscpProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
 
         // System context
-        SystemContextDescriptor sc;
-        sc.setHandle("MDC_SYS_CON")
-        	.setLocationContext(LocationContextDescriptor().setHandle("MDC_LOC_CON"));
+        SystemContextDescriptor sc("MDC_SYS_CON");
+        sc.setLocationContext(LocationContextDescriptor("MDC_LOC_CON"));
 
         // Channel
-        ChannelDescriptor testChannel;
+        ChannelDescriptor testChannel("MDC_CH");
         testChannel.setSafetyClassification(SafetyClassification::MedA);
         for (std::size_t i = 0; i < metrics; i++) {
-        	NumericMetricDescriptor nmd;
-
-    		nmd.setMetricCategory(MetricCategory::Msrmt)
-    			.setMetricAvailability(MetricAvailability::Cont)
-				.setType(CodedValue()
-					.setCode(CodeIdentifier("MDCX_CODE_ID_WEIGHT"))
-					.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
-    	       .setHandle("handle_cur" + std::to_string(i));
+        	NumericMetricDescriptor nmd("handle_cur" + std::to_string(i), CodedValue(CodeIdentifier("MDCX_CODE_ID_WEIGHT")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0);
     		testChannel.addMetric(nmd);
         }
 
         // VMD
-        VmdDescriptor testVMD;
+        VmdDescriptor testVMD("MDC_VMD1");
         testVMD.addChannel(testChannel);
 
         // MDS
-        MdsDescriptor mds;
+        MdsDescriptor mds("MDC_MDS");
         mds.setMetaData(
 			MetaData()
 				.addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
@@ -71,9 +63,8 @@ public:
         		.addModelName(LocalizedText().setRef("EndoTAIX"))
         		.addSerialNumber("1234"))
 			.setSystemContext(sc)
-			.setType(CodedValue()
-					.setCodingSystem("OR.NET.Codings")
-					.setCode("MDCX_CODE_ID_MDS"));
+			.setType(CodedValue(CodeIdentifier("MDCX_CODE_ID_MDS"))
+					.setCodingSystem(xml_schema::Uri("OR.NET.Codings")));
 
         mds.addVmd(testVMD);
 

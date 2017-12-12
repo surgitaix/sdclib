@@ -150,11 +150,11 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for numeric metric:";
-				NumericMetricState nms(handle_m1_get_and_episodic);
-				if (consumer.requestState(handle_m1_get_and_episodic, nms)
-						&& nms.hasMetricValue()
-						&& (nms.getMetricValue().getValue() == numeric_initial_value
-								|| nms.getMetricValue().getValue() == numeric_some_value)) {
+				std::unique_ptr<NumericMetricState> pNMS(consumer.requestState<NumericMetricState>(handle_m1_get_and_episodic));
+				if ((pNMS != nullptr)
+						&& pNMS->hasMetricValue()
+						&& (pNMS->getMetricValue().getValue() == numeric_initial_value
+								|| pNMS->getMetricValue().getValue() == numeric_some_value)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 				} else {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";
@@ -175,11 +175,11 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << " ";
 			{
 				Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Testing getMDState(some_handle) for string metric:";
-				StringMetricState sms(handle_sm1_get_and_episodic_and_periodic);
-				if (consumer.requestState(handle_sm1_get_and_episodic_and_periodic, sms)
-						&& sms.hasMetricValue()
-						&& (sms.getMetricValue().getValue() == string_initial_value
-								|| sms.getMetricValue().getValue() == string_some_value)) {
+				std::unique_ptr<StringMetricState> pSMS(consumer.requestState<StringMetricState>(handle_sm1_get_and_episodic_and_periodic));
+				if ((pSMS != nullptr)
+						&& pSMS->hasMetricValue()
+						&& (pSMS->getMetricValue().getValue() == string_initial_value
+								|| pSMS->getMetricValue().getValue() == string_some_value)) {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Success.";
 				} else {
 					Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Fail.";

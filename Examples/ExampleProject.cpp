@@ -85,9 +85,9 @@ public:
 
     // Convenience value getter
     float getMaxWeight() {
-        NumericMetricState result(HANDLE_MAX_WEIGHT_METRIC);
-        if (getParentProvider().getMdState().findState(HANDLE_MAX_WEIGHT_METRIC, result) && result.hasMetricValue()) {
-        	return (float)result.getMetricValue().getValue();
+        std::unique_ptr<NumericMetricState> pNMS(getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_MAX_WEIGHT_METRIC));
+        if ((pNMS != nullptr) && pNMS->hasMetricValue()) {
+        	return (float) pNMS->getMetricValue().getValue();
         } else {
         	DebugOut(DebugOut::Default, "ExampleProject") << "No observed value" << std::endl;
         	return 0;
@@ -168,7 +168,7 @@ public:
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
 
-    	// mandatory properties in costructor
+    	// mandatory properties in constructor
         CodedValue unit("MDCX_CODE_ID_KG");
         // additional properties using method chaining
         unit	.setCodingSystem("OR.NET.Codings")
@@ -381,14 +381,13 @@ int main()
 		Poco::Thread::sleep(4000);
 
 		// Get state test (current weight)
-		NumericMetricState currentWeightState(HANDLE_CURRENT_WEIGHT_METRIC);
-		consumer.requestState(HANDLE_CURRENT_WEIGHT_METRIC, currentWeightState);
-		double curWeight = currentWeightState.getMetricValue().getValue();
+		std::unique_ptr<NumericMetricState> pCurrentWeightState(consumer.requestState<NumericMetricState>(HANDLE_CURRENT_WEIGHT_METRIC));
+		double curWeight = pCurrentWeightState->getMetricValue().getValue();
 		DebugOut(DebugOut::Default, "ExampleProject") << "Observed Weight " << curWeight;
 
 		try {
 			// Set state test (must fail due to read-only)
-			InvocationState invocationStateFirst = consumer.commitState(currentWeightState);
+			InvocationState invocationStateFirst = consumer.commitState(*pCurrentWeightState);
 			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (1st commit): " << Data::OSCP::EnumToString::convert(invocationStateFirst);
 			if (InvocationState::Fail == invocationStateFirst) {
 				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state failed as expected.";
@@ -396,15 +395,14 @@ int main()
 				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state succeeded. This is an error, because it should be read-only.";
 			}
 		} catch (const std::runtime_error & e) {
-			DebugOut(DebugOut::Default, "ExampleProject") << "Exeption";}
+			DebugOut(DebugOut::Default, "ExampleProject") << "Exception";}
 		// Get state test (maximum weight)
-		NumericMetricState maxWeightState(HANDLE_MAX_WEIGHT_METRIC);
-		consumer.requestState(HANDLE_MAX_WEIGHT_METRIC, maxWeightState);
-		double maxWeight = maxWeightState.getMetricValue().getValue();
+		std::unique_ptr<NumericMetricState> pMaxWeightState(consumer.requestState<NumericMetricState>(HANDLE_MAX_WEIGHT_METRIC));
+		double maxWeight = pMaxWeightState->getMetricValue().getValue();
 		DebugOut(DebugOut::Default, "ExampleProject") << "Max weight value: "<< maxWeight;
 
 		// Set state test (must succeed)
-		InvocationState invocationStateSecond  = consumer.commitState(maxWeightState);
+		InvocationState invocationStateSecond  = consumer.commitState(*pMaxWeightState);
 		DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): " << Data::OSCP::EnumToString::convert(invocationStateSecond);
 
 		Poco::Thread::sleep(1000);

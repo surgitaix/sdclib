@@ -63,6 +63,8 @@
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
 
+#include <memory>
+
 #include "Poco/Event.h"
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
@@ -378,14 +380,22 @@ public:
 
     // Convenience value getter
     float getMaxWeight() {
-        NumericMetricState result("handle_max");
-        // TODO: in real applications, check if findState returns true!
-        getParentProvider().getMdState().findState("handle_max", result);
-        // TODO: in real applications, check if state has an observed value and if the observed value has a value!
-        return (float)result.getMetricValue().getValue();
-    }
+        std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>("handle_max"));
 
+        // check if result is valid
+        if (result != nullptr) {
+        	// In real applications, check if state has an observed value and if the observed value has a value!
+        	return (float)result->getMetricValue().getValue();
+        } else {
+        	DebugOut(DebugOut::Default, "ExampleProvider") << "Maximum weight metric not found." << std::endl;
+        	return 0;
+        }
+    }
 };
+
+
+
+
 
 class CurValueStateHandler : public OSCPProviderNumericMetricStateHandler {
 public:
@@ -557,8 +567,6 @@ public:
         return createState();
     }
 
-
-
 };
 
 class LimitAlertConditionStateHandler : public OSCPProviderLimitAlertConditionStateHandler {
@@ -570,11 +578,10 @@ public:
 
     InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & ) override {
         // Invocation has been fired as WAITING when entering this method
-        LimitAlertConditionState currentState(" ", AlertActivation::On, Range(), AlertConditionMonitoredLimits::None); // dummy: will be filled by findState(...)
-        getParentProvider().getMdState().findState(state.getDescriptorHandle(), currentState);
+        std::unique_ptr<LimitAlertConditionState> pCurrentState(getParentProvider().getMdState().findState<LimitAlertConditionState>(state.getDescriptorHandle()));
 
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
-        if (state.getPresence() != currentState.getPresence()) {
+        if (state.getPresence() != pCurrentState->getPresence()) {
     		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << state.getPresence() << std::endl;
     		// do something...
     	}
@@ -589,22 +596,21 @@ public:
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler monitored source state changed." << std::endl;
 
     	// Check limit and trigger alarm condition, if needed (this method will then take care of handling all signal states)
-        NumericMetricState sourceState("");
-        getParentProvider().getMdState().findState(sourceHandle, sourceState);
+        std::unique_ptr<NumericMetricState> pSourceState(getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle));
 
-        LimitAlertConditionState limitAlertConditionState("", AlertActivation::Psd, Range(), AlertConditionMonitoredLimits::None);  // dummy: will be filled by fundState
-        getParentProvider().getMdState().findState("handle_alert_condition", limitAlertConditionState);
-    	if (sourceState.getDescriptorHandle() != sourceHandle) {
+
+        std::unique_ptr<LimitAlertConditionState> pLimitAlertConditionState(getParentProvider().getMdState().findState<LimitAlertConditionState>("handle_alert_condition"));
+        if (pSourceState->getDescriptorHandle() != sourceHandle) {
     		return;
     	}
-    	if (!sourceState.hasMetricValue()) {
+    	if (!pSourceState->hasMetricValue()) {
     		return;
     	}
-    	const auto sourceValue(sourceState.getMetricValue());
+    	const auto sourceValue(pSourceState->getMetricValue());
     	if (!sourceValue.hasValue()) {
     		return;
     	}
-    	const auto limits(limitAlertConditionState.getLimits());
+    	const auto limits(pLimitAlertConditionState->getLimits());
     	if (!limits.hasUpper()) {
     		return;
     	}
@@ -613,7 +619,7 @@ public:
     	}
 
     	const bool triggerAlarm(sourceValue.getValue() > limits.getUpper() || sourceValue.getValue() < limits.getLower());
-   		setAlertConditionPresence(limitAlertConditionState.getDescriptorHandle(), triggerAlarm, OperationInvocationContext::none());
+   		setAlertConditionPresence(pLimitAlertConditionState->getDescriptorHandle(), triggerAlarm, OperationInvocationContext::none());
     }
 
 	// Can be used to switch condition on and off (e.g. propagate input from real device). Currently not used in this test.
@@ -746,21 +752,23 @@ private:
 class OSCPHoldingDeviceProvider : public Util::Task {
 public:
     OSCPHoldingDeviceProvider() :
-    	oscpProvider(),
     	currentWeight(0),
+    	oscpProvider(),
+		curValueState(),
+		maxValueState(),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
 		hydraMDSState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
     	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
+
+
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
         CodedValue unit(CodeIdentifier("MDCX_CODE_ID_KG"));
         unit	.setCodingSystem("OR.NET.Codings")
 				.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"));
-
-
 
 
     	//
@@ -785,9 +793,9 @@ public:
         			MetricAvailability::Cont);
         testEnumMetric
         	.setUnit(unit)
-			.addAllowedValue(AllowedValue().setValue("hello"))
-			.addAllowedValue(AllowedValue().setValue("hallo"))
-			.addAllowedValue(AllowedValue().setValue("bon jour"));
+			.addAllowedValue(AllowedValue("hello"))
+			.addAllowedValue(AllowedValue("hallo"))
+			.addAllowedValue(AllowedValue("bon jour"));
 
 
         // define properties of max weight metric
@@ -869,10 +877,9 @@ public:
         		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
         		.setModelNumber("1")
         		.addModelName(LocalizedText().setRef("EndoTAIX"))
-        		.addSerialNumber("1234")
-        		.addUdi(Udi()))
+        		.addSerialNumber("1234"))
 			.setSystemContext(
-				SystemContextDescriptor()
+				SystemContextDescriptor("MDC_SYS_CON")
 			    .setPatientContext(
 			    		patient)
 				.setLocationContext(
@@ -880,9 +887,8 @@ public:
 				)
 			.addVmd(holdingDeviceModule)
 			.setType(
-                CodedValue()
-                .setCodingSystem("OR.NET.Codings")
-        		.setCode("MDCX_CODE_ID_MDS"));
+                CodedValue("MDCX_CODE_ID_MDS")
+                .setCodingSystem("OR.NET.Codings"));
 
         oscpProvider.createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
         oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
@@ -891,9 +897,7 @@ public:
         oscpProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
         oscpProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
 
-        ActivateOperationDescriptor aod;
-			aod.setHandle("handle_cmd")
-			.setOperationTarget("handle_max");
+        ActivateOperationDescriptor aod("handle_cmd", "handle_max");
 
 		oscpProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
@@ -958,8 +962,8 @@ private:
 
     // State (handlers)
     ContextHandler contextStates;
-    MaxValueStateHandler maxValueState;
     CurValueStateHandler curValueState;
+    MaxValueStateHandler maxValueState;
     EnumStringMetricStateHandler enumState;
     StrValueStateHandler strValueState;
     LimitAlertConditionStateHandler limitAlertConditionHandler;
@@ -998,7 +1002,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         // MdDescription test
         MdDescription mdDescription =  provider.getMdDescription();
         // add and remove a test MDS
-        MdsDescriptor mds_test;
+        MdsDescriptor mds_test("MDC_MDS_HANDLE");
         mdDescription.addMdsDescriptor(mds_test);
 
         CHECK_EQUAL(true, mdDescription.removeMdsDescriptor(mds_test));
@@ -1080,54 +1084,61 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             {	// Ensure that requests for wrong handles fail.
             	DebugOut(DebugOut::Default, "SimpleOSCP") << "Numeric test..." << std::endl;
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "SHOULD FAIL: " << std::endl;
-				NumericMetricState tempState(" ")
-            	CHECK_EQUAL(false, consumer.requestState("unknown", tempState));
+				NumericMetricState tempState(" ");
+				std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("unknown"));
+            	CHECK_EQUAL(false, pTempNMS != nullptr);
             }
             {	// Request state of current weight
-            	NumericMetricState currentWeightState(" ");
-				CHECK_EQUAL(true, consumer.requestState("handle_cur", currentWeightState));
-				CHECK_EQUAL(true, currentWeightState.hasMetricValue());
-				if (currentWeightState.hasMetricValue()) {
-					const double curWeight(currentWeightState.getMetricValue().getValue());
+				std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("handle_cur"));
+//				bool check = false
+//				if (pTempNMS != nullptr) {
+//					bool check = true;
+//				}
+				// TODO: works????
+				CHECK_EQUAL(true, pTempNMS != nullptr);
+				CHECK_EQUAL(true, pTempNMS->hasMetricValue());
+				if (pTempNMS->hasMetricValue()) {
+					const double curWeight(pTempNMS->getMetricValue().getValue());
 					CHECK_EQUAL(true, curWeight > 0.1);
 				}
             }
             {	// Ensure that (read-only) metrics without matching SetOperation cannot be set.
             	DebugOut(DebugOut::Default, "SimpleOSCP") << "SHOULD FAIL: " << std::endl;
-            	NumericMetricState currentWeightState(" ");
-				CHECK_EQUAL(true, consumer.requestState("handle_cur", currentWeightState));
-            	CHECK_EQUAL(true, InvocationState::Fail == consumer.commitState(currentWeightState));
+            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("handle_cur"));
+            	CHECK_EQUAL(true, pTempNMS != nullptr);
+            	CHECK_EQUAL(true, InvocationState::Fail == consumer.commitState(*pTempNMS));
             }
             {	// Get state of maximum weight
-				NumericMetricState maxWeightState;
-				CHECK_EQUAL(true, consumer.requestState("handle_max", maxWeightState));
-				double maxWeight = maxWeightState.getMetricValue().getValue();
+            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("handle_max"));
+				CHECK_EQUAL(true, pTempNMS != nullptr);
+				double maxWeight = pTempNMS->getMetricValue().getValue();
 				CHECK_EQUAL(2.0, maxWeight);
             }
             {	// Get state of test enum
-				EnumStringMetricState enumState;
-				CHECK_EQUAL(true, consumer.requestState("handle_enum", enumState));
-				const std::string enumValue(enumState.getMetricValue().getValue());
+            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>("handle_enum"));
+				CHECK_EQUAL(true, pTempESMS != nullptr);
+				const std::string enumValue(pTempESMS->getMetricValue().getValue());
 				CHECK_EQUAL("hello", enumValue);
             }
             {	// Set state of test enum with allowed enum value
-				EnumStringMetricState enumState;
-				CHECK_EQUAL(true, consumer.requestState("handle_enum", enumState));
+            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>("handle_enum"));
+            	CHECK_EQUAL(true, pTempESMS != nullptr);
 
-				enumState.setMetricValue(StringMetricValue().setValue("bon jour"));
+            	pTempESMS->setMetricValue(pTempESMS->getMetricValue().setValue("bon jour"));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(enumState, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempESMS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
             {	// Set state of test enum with illegal enum value
-				EnumStringMetricState enumState;
-				CHECK_EQUAL(true, consumer.requestState("handle_enum", enumState));
-				const std::string enumValue(enumState.getMetricValue().getValue());
+            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>("handle_enum"));
+            	CHECK_EQUAL(true, pTempESMS != nullptr);
+
+				const std::string enumValue(pTempESMS->getMetricValue().getValue());
 				CHECK_EQUAL("bon jour", enumValue);
 
-				enumState.setMetricValue(StringMetricValue().setValue("bye"));
+				pTempESMS->setMetricValue(pTempESMS->getMetricValue().setValue("bye"));
 				FutureInvocationState fis;
-				consumer.commitState(enumState, fis);
+				consumer.commitState(*pTempESMS, fis);
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fail, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
 
@@ -1136,23 +1147,24 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             Poco::Thread::sleep(8000);
 
 			{	// Set state test for a numeric metric state (must succeed, use state handle instead of descriptor handle)
-				NumericMetricState maxWeightState;
-				CHECK_EQUAL(true, consumer.requestState("handle_max", maxWeightState));
+            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("handle_max"));
+				CHECK_EQUAL(true, pTempNMS != nullptr);
 
 				// Here, we increase max weight to switch condition presence => results in alert signal presence
-				maxWeightState.setMetricValue(NumericMetricValue().setValue(10));
+				pTempNMS->setMetricValue(pTempNMS->getMetricValue().setValue(10));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(maxWeightState, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempNMS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 			}
 
             {	// Set state test for a string metric state (must succeed)
                 DebugOut(DebugOut::Default, "SimpleOSCP") << "String test...";
-				StringMetricState stringState;
-				stringState.setDescriptorHandle("handle_str");
-				stringState.setMetricValue(StringMetricValue().setValue("Test2"));
+            	std::unique_ptr<StringMetricState> pTempNMS(consumer.requestState<StringMetricState>("handle_str"));
+				CHECK_EQUAL(true, pTempNMS != nullptr);
+
+				pTempNMS->setMetricValue(pTempNMS->getMetricValue().setValue("Test2"));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(stringState, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempNMS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
 
@@ -1165,9 +1177,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 
             {	// Location context test
                 DebugOut(DebugOut::Default, "SimpleOSCP") << "Location context test...";
-                LocationContextState lcs;
-                lcs.setDescriptorHandle("location_context");
-                lcs.setHandle("location_context_state");
+                LocationContextState lcs("location_context", "location_context_state");
                 lcs.setContextAssociation(ContextAssociation::Assoc);
                 lcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
                 FutureInvocationState fis;
@@ -1179,9 +1189,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             }
             {	// Patient context test
             	DebugOut(DebugOut::Default, "SimpleOSCP") << "Patient context test...";
-				PatientContextState pcs;
-				pcs.setDescriptorHandle("patient_context");
-				pcs.setHandle("patient_context_state");
+				PatientContextState pcs("patient_context", "patient_context_state");
 				pcs.setContextAssociation(ContextAssociation::Assoc);
 				pcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
 				pcs.setCoreData(PatientDemographicsCoreData()
@@ -1206,12 +1214,13 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 			provider.interrupt();
 
 			{	// Switch alert signal state off
-				AlertSignalState alertSignal;
-				CHECK_EQUAL(true, consumer.requestState("handle_alert_signal", alertSignal));
+            	std::unique_ptr<AlertSignalState> pTempASS(consumer.requestState<AlertSignalState>("handle_str"));
+				CHECK_EQUAL(true, pTempASS != nullptr);
 
-				alertSignal.setPresence(AlertSignalPresence::Off);
+
+				pTempASS->setPresence(AlertSignalPresence::Off);
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(alertSignal, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempASS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 			}
 

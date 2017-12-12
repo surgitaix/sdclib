@@ -3,10 +3,11 @@
 #include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
+#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
@@ -102,21 +103,19 @@ int main() {
 	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 	std::shared_ptr<StreamConsumerEventHandler> streamEventHandler = std::make_shared<StreamConsumerEventHandler>(streamHandle);
 	std::shared_ptr<NumericConsumerEventHandler> getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_metric");
-//	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");
+	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");
 
 	if (c != nullptr) {
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider found!" << std::endl;
 		c->registerStateEventHandler(streamEventHandler.get());
-		//c->registerStateEventHandler(getNumericEventHandler.get());
-		//c->registerStateEventHandler(setNumericEventHandler.get());
+		c->registerStateEventHandler(getNumericEventHandler.get());
+		c->registerStateEventHandler(setNumericEventHandler.get());
 
 //		set the providers value for the NMS: handle_set
-//		NumericMetricState nms;
-//		nms
-//			.setMetricValue(NumericMetricValue().setValue(84.0))
-//			.setDescriptorHandle("handle_set");
-//		Poco::Thread::sleep(1000);
-//		c->commitState(nms);
+		NumericMetricState nms("handle_set");
+		nms.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(84.0));
+		Poco::Thread::sleep(1000);
+		c->commitState(nms);
 
 		std::string temp;
 		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Press key to exit program.";
@@ -124,7 +123,7 @@ int main() {
 
 		c->unregisterStateEventHandler(streamEventHandler.get());
 		c->unregisterStateEventHandler(getNumericEventHandler.get());
-		//c->unregisterStateEventHandler(setNumericEventHandler.get());
+		c->unregisterStateEventHandler(setNumericEventHandler.get());
 		c->disconnect();
 	} else {
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider not found!" << std::endl;
