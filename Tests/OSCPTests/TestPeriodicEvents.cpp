@@ -21,6 +21,7 @@
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
@@ -59,6 +60,7 @@ const std::string ALERT_CONDITION_HANDLE("handle_alert_condition");
 const std::string ALERT_SYSTEM_HANDLE("handle_alert_system");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("channel_handle");
 const std::string LOCATION_CONTEXT_DESCRIPTOR_HANDLE("location_context");
+const std::string LOCATION_CONTEXT_HANDLE("location_context_state_handle");
 const std::string MDS_HANDLE("mds_handle");
 const std::string METRIC_DUMMY_HANDLE("metric_dummy_handle");
 const std::string VMD_DESCRIPTOR_HANDLE("vmd_handle");
@@ -169,8 +171,7 @@ public:
 
     // Helper method
     AlertConditionState createState() {
-        AlertConditionState result;
-        result.setDescriptorHandle(ALERT_CONDITION_HANDLE);
+        AlertConditionState result(ALERT_CONDITION_HANDLE, AlertActivation::On);
         return result;
     }
 
@@ -189,11 +190,8 @@ public:
 
     // Helper method
     AlertSystemState createState() {
-        AlertSystemState result;
-        // reference alert system descriptor's handle
-        result
-            .setActivationState(AlertActivation::On)
-            .setDescriptorHandle(ALERT_SYSTEM_HANDLE);
+    	// reference alert system descriptor's handle
+    	AlertSystemState result(ALERT_SYSTEM_HANDLE, AlertActivation::On);
         return result;
     }
 
@@ -211,8 +209,7 @@ public:
 
     // Helper method
     LocationContextState createState() {
-        LocationContextState result;
-        result.setDescriptorHandle(LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
+        LocationContextState result(LOCATION_CONTEXT_DESCRIPTOR_HANDLE, LOCATION_CONTEXT_HANDLE);
         return result;
     }
 
@@ -231,11 +228,10 @@ public:
 
     // Helper method
     NumericMetricState createState() {
-        NumericMetricState result;
+        NumericMetricState result(METRIC_DUMMY_HANDLE);
         result
-            .setMetricValue(NumericMetricValue().setValue(0.0))
-            .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle(METRIC_DUMMY_HANDLE);
+            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(0.0))
+            .setActivationState(ComponentActivation::On);
         return result;
     }
 
@@ -254,9 +250,8 @@ public:
 
     // Helper method
     MdsState createState() {
-        MdsState result;
+        MdsState result(descriptorHandle);
         result
-            .setDescriptorHandle(descriptorHandle)
             .setActivationState(ComponentActivation::On);
         return result;
     }
@@ -279,9 +274,8 @@ public:
 
     // Helper method
     VmdState createState() {
-        VmdState result;
+        VmdState result(descriptorHandle);
         result
-            .setDescriptorHandle(descriptorHandle)
             .setActivationState(ComponentActivation::On);
         return result;
     }
@@ -303,9 +297,8 @@ public:
 
     // Helper method
     ChannelState createState() {
-    	ChannelState result;
+    	ChannelState result(descriptorHandle);
         result
-            .setDescriptorHandle(descriptorHandle)
             .setActivationState(ComponentActivation::On);
         return result;
     }
@@ -325,57 +318,45 @@ private:
 
 class OSCPDeviceProvider {
 public:
+	// the mandatory fields of the states and descriptors MUST be initialized in the constructor initializer list,
+	// the state handlers are recommended to be initialized in the constructor initializer list
 	OSCPDeviceProvider() :
 		oscpProvider(),
+		alertCondition(ALERT_CONDITION_HANDLE, AlertConditionKind::Tec, AlertConditionPriority::Me),
+		dummyMetricDescriptor(METRIC_DUMMY_HANDLE, CodedValue(CodeIdentifier("codedvalue_dummy_handle")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0),
+		location(LOCATION_CONTEXT_DESCRIPTOR_HANDLE),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
 		mdsState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
 		oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
-        alertCondition
-			.addSource(METRIC_DUMMY_HANDLE)
-			.setKind(AlertConditionKind::Tec)
-			.setPriority(AlertConditionPriority::Me)
-			.setHandle(ALERT_CONDITION_HANDLE);
-
-        dummyMetricDescriptor
-			.setMetricCategory(MetricCategory::Msrmt)
-        	.setMetricAvailability(MetricAvailability::Cont)
-	        .setHandle(METRIC_DUMMY_HANDLE);
-
-        location.setHandle(LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
-
     	// Alerts
-        AlertSystemDescriptor alertSystem;
+        AlertSystemDescriptor alertSystem(ALERT_SYSTEM_HANDLE);
         alertSystem
-			.addAlertCondition(alertCondition)
-			.setHandle(ALERT_SYSTEM_HANDLE);
+			.addAlertCondition(alertCondition);
 
     	// Channel
-        ChannelDescriptor deviceChannel;
+        ChannelDescriptor deviceChannel(CHANNEL_DESCRIPTOR_HANDLE);
         deviceChannel
-			.setHandle(CHANNEL_DESCRIPTOR_HANDLE)
 			.addMetric(dummyMetricDescriptor)
 			.setSafetyClassification(SafetyClassification::MedA);
 
         // VMD
-        VmdDescriptor deviceModule;
+        VmdDescriptor deviceModule(VMD_DESCRIPTOR_HANDLE);
         deviceModule
-			.setHandle(VMD_DESCRIPTOR_HANDLE)
 			.addChannel(deviceChannel);
 
         // MDS
-        MdsDescriptor deviceSystem;
+        MdsDescriptor deviceSystem(MDS_HANDLE);
         deviceSystem
-			.setHandle(MDS_HANDLE)
 			.setMetaData(MetaData()
 				.addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
 				.setModelNumber("1")
 				.addModelName(LocalizedText().setRef("EndoTAIX"))
 				.addSerialNumber("1234"))
 			.setSystemContext(
-				SystemContextDescriptor()
+				SystemContextDescriptor("systemcontext_handle")
 					.setLocationContext(location))
 			.addVmd(deviceModule)
 			.setAlertSystem(alertSystem);
@@ -423,8 +404,10 @@ private:
     // context descriptors
     LocationContextDescriptor location;
 
-    // State (handlers)
+    // States
     ContextHandler contextStates;
+
+    // State handlers
     AlertConditionStateHandler alertConditionState;
     AlertSystemStateHandler alertSystemState;
     AlwaysOnChannelStateHandler channelState;
