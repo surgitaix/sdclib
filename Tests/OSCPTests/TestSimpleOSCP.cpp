@@ -578,13 +578,17 @@ public:
 
     InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & ) override {
         // Invocation has been fired as WAITING when entering this method
-        std::unique_ptr<LimitAlertConditionState> pCurrentState(getParentProvider().getMdState().findState<LimitAlertConditionState>(state.getDescriptorHandle()));
+    	MdState  mdstate = getParentProvider().getMdState();
+    	std::string descHandle = state.getDescriptorHandle();
+    	std::unique_ptr<LimitAlertConditionState> result(mdstate.findState<LimitAlertConditionState>(descHandle));
+//    	std::unique_ptr<LimitAlertConditionState> result(getParentProvider().getMdState().findState<LimitAlertConditionState>(state.getDescriptorHandle()));
 
-    	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
-        if (state.getPresence() != pCurrentState->getPresence()) {
-    		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << state.getPresence() << std::endl;
-    		// do something...
-    	}
+
+//    	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
+//        if (state.getPresence() != pCurrentState->getPresence()) {
+//    		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << state.getPresence() << std::endl;
+//    		// do something...
+//    	}
 
     	// we can update here, but if we return Fin, the framework will also notify
     	//updateState(limitAlertConditionState);

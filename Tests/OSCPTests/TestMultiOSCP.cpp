@@ -36,38 +36,30 @@ public:
     	oscpProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
 
         // Location context
-        SystemContextDescriptor sc;
+        SystemContextDescriptor sc("systemcontext_handle_" + number);
 
         // Channel
-        ChannelDescriptor testChannel;
+        ChannelDescriptor testChannel("channel_handle" + number);
         testChannel.setSafetyClassification(SafetyClassification::MedA);
         for (std::size_t i = 0; i < metrics; i++) {
-        	NumericMetricDescriptor nmd;
-    		nmd.setMetricCategory(MetricCategory::Msrmt)
-               .setMetricAvailability(MetricAvailability::Cont)
-               .setType(CodedValue()
-            		   .addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"))
-            		   .setCode("MDCX_CODE_ID_WEIGHT"))
-    	       .setHandle("handle_cur" + std::to_string(i));
+        	NumericMetricDescriptor nmd("handle_cur" + std::to_string(i), CodedValue(CodeIdentifier("MDCX_CODE_ID_WEIGHT")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0);
     		testChannel.addMetric(nmd);
         }
 
         // VMD
-        VmdDescriptor testVmd;
+        VmdDescriptor testVmd("vmd_handle_" + number);
         testVmd.addChannel(testChannel);
 
         // MDS
-        MdsDescriptor mds;
+        MdsDescriptor mds("mds_handle_" + number);
         mds.setMetaData(
         		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
         		.setModelNumber("1")
         		.addModelName(LocalizedText().setRef("EndoTAIX"))
         		.addSerialNumber("1234"))
 			.setSystemContext(sc)
-			.setType(CodedValue()
-			   .addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"))
-			   .setCode("MDCX_CODE_ID_MDS"));
-
+			.setType(CodedValue(CodeIdentifier("MDCX_CODE_ID_MDS"))
+			   .addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
         mds.addVmd(testVmd);
 
         // create and add description
