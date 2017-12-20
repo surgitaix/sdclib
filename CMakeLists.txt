@@ -187,7 +187,7 @@ set(OSCLibSOURCES
 #./src/Data/OSCP/MDIB/AbstractDescriptor.cpp
 #./src/Data/OSCP/MDIB/AbstractMetricDescriptor.cpp
 ./src/Data/OSCP/MDIB/custom/ChannelDescriptorCustomImpl.cxx
-./src/Data/OSCP/MDIB/custom/Defaults.cpp
+./src/Data/OSCP/MDIB/Defaults.cpp
 ./src/Data/OSCP/MDIB/custom/MdDescriptionCustomImpl.cxx
 ./src/Data/OSCP/MDIB/custom/MdibContainer.cpp
 ./src/Data/OSCP/MDIB/custom/MdStateCustomImpl.cxx
@@ -498,7 +498,7 @@ Tests/UnitTests.cpp
 Tests/OSCPTests/TestConnectionLost.cpp
 #Tests/OSCPTests/TestDICOM.cpp
 Tests/OSCPTests/TestMultiOSCP.cpp
-#Tests/OSCPTests/TestSimpleOSCP.cpp
+Tests/OSCPTests/TestSimpleOSCP.cpp
 Tests/OSCPTests/TestPeriodicEvents.cpp
 Tests/OSCPTests/TestStreamOSCP.cpp
 Tests/UnitTest++/src/Test.cpp

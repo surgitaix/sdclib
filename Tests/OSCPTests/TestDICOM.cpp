@@ -35,7 +35,7 @@ const std::string MDS_HANDLE("dicom_mds");
 class OSCPHoldingDeviceProvider {
 public:
 
-    OSCPHoldingDeviceProvider() : oscpProvider() {
+    OSCPHoldingDeviceProvider() : oscpProvider(), dicomDescriptor(MDS_HANDLE) {
     	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
     	std::vector<char> fakeCert;
@@ -44,23 +44,17 @@ public:
     	fakeCert.push_back('c');
     	fakeCert.push_back('x');
 
+    	xml_schema::Idrefs tempIdrefs;
+    	tempIdrefs.push_back(xml_schema::Idref("connection_1"));
+    	//tempIdrefs.push_back(xml_schema::Idref("connection_1"));
+//    	asdf.push_back();
     	dicomDescriptor
-			.setHandle(MDS_HANDLE)
-			.setType(CodedValue().setCodingSystem("OR.NET.Codings").setCode("MDCX_CODE_ID_DICOM_GATEWAY"))
+			.setType(CodedValue("MDCX_CODE_ID_DICOM_GATEWAY").setCodingSystem("OR.NET.Codings"))
 			.addNetworkConnection(
-					DicomNetworkConnection()
-					.setid("connection_1")
-					.setHostname("127.0.0.1"))
-			.addNetworkAE(DICOMNetworkAE()
-					.setAETitle("AE Title")
-					.addNetworkConnectionReference("connection_1")
-					.setAssociationAcceptor(true)
-					.setAssociationInitiator(false)
-					.addTransferCapability(DICOMTransferCapability()
-							.setSOPClass("undfined SOP class")
-							.setTransferRole(DICOMTransferRole::SCP)
-							.addTransferSyntax("unknown syntax"))
-					);
+					DicomNetworkConnection(xml_schema::Id("dicom_network_connection_1"),"test_hostname"))
+			.addNetworkAe(DicomNetworkAe("AE Title", tempIdrefs, true, false)
+					.addTransferCapability(DicomTransferCapability("undfined SOP class", DicomTransferRole::Scp)
+							.addTransferSyntax("unknown syntax")));
 //			.addPublicCertificate(
 //					Base64Binary().
 //					setData(fakeCert));

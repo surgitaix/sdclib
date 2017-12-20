@@ -251,6 +251,7 @@ private:
 	friend class ConvertToCDM;
 	friend class OSCPProvider;
 	friend class OSCPConsumer;
+	friend class MdState;
 public:
 	$(class.name:)(
 .countconstructorarguments("$(class.name:)", "$(class.name:)")

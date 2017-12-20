@@ -32,7 +32,6 @@
 #ifndef MDSTATE_H_
 #define MDSTATE_H_
 
-
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
@@ -49,6 +48,7 @@ private:
 	friend class ConvertToCDM;
 	friend class OSCPProvider;
 	friend class OSCPConsumer;
+	friend class MdState;
 public:
 	MdState(
 	); 
@@ -64,6 +64,7 @@ public:
 	VersionCounter getStateVersion() const;
 	bool getStateVersion(VersionCounter & out) const;
 	bool hasStateVersion() const;
+
 
 	// use this API function to get a copy of the MDIB's internal state
 	template<class TState>
@@ -121,8 +122,6 @@ private:
 	bool findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const;
 	bool findState(const std::string & handle, StringMetricState & outState) const;
 	bool findState(const std::string & handle, WorkflowContextState & outState) const;
-
-
     template <class WrapperStateDescriptorType>
     bool findStateImpl(const std::string & handle, WrapperStateDescriptorType & out) const;
 

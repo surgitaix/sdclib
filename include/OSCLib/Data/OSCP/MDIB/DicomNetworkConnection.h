@@ -48,6 +48,7 @@ private:
 	friend class ConvertToCDM;
 	friend class OSCPProvider;
 	friend class OSCPConsumer;
+	friend class MdState;
 public:
 	DicomNetworkConnection(
 		xml_schema::Id id
