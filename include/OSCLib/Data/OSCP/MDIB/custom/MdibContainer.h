@@ -46,22 +46,13 @@ public:
 
     typedef CDM::Mdib WrappedType;
 
-	bool findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, AlertSystemDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, LimitAlertConditionDescriptor & outDescriptor) const;
+	// search for a descriptor in the Mdib
+	template<class TDescriptor>
+	std::unique_ptr<TDescriptor> findDescriptor(const std::string & handle) const;
 
-    bool findDescriptor(const std::string & handle, EnumStringMetricDescriptor & outDescriptor) const;
-    bool findDescriptor(const std::string & handle, NumericMetricDescriptor & outDescriptor) const;
-    bool findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const;
-    bool findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const;
-
-    // TODO: use new unique_ptr implementations
-	template<class TState>
+	// search for a state in the Mdib
+    template<class TState>
 	std::unique_ptr<TState> findState(const std::string & handle) const;
-//	bool findState(const std::string & handle, NumericMetricState & outState) const;
-//	bool findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const;
-//	bool findState(const std::string & handle, StringMetricState & outState) const;
 
 private:
     std::shared_ptr<MdDescription> mddescription;

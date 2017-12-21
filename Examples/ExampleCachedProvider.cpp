@@ -4,7 +4,7 @@
  *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: buerger
  *
- *  The ExampleCachedProvider uses an .xml file ('cachedMDIB.xml') to build up an OSCP-provider device. It further shows how some of the the providers states ('') can be used to
+ *  The ExampleCachedProvider uses an .xml file ('cachedMdib.xml') to build up an OSCP-provider device. It further shows how some of the the providers states ('') can be used to
  *
  */
 
@@ -21,6 +21,7 @@
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
@@ -48,24 +49,27 @@ using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
 
-const std::string deviceEPR("UDI-1234567890");
+const std::string DEVICE_EPR("UDI-1234567890");
+
+const std::string HANDLE_SET_METRIC("handle_set");
+const std::string HANDLE_GET_METRIC("handle_get");
+const std::string HANDLE_STREAM_METRIC("handle_stream");
 
 
 class GetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
 public:
 
+	// The state handler take a string named as the descriptor for referencing
 	GetNumericMetricStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
 	}
 
 
 	// Helper method
 	NumericMetricState createState(double value) {
-		NumericMetricState result;
+		NumericMetricState result(descriptorHandle);
 		result
-			.setObservedValue(NumericMetricValue().setValue(value))
-			.setComponentActivationState(ComponentActivation::ON)
-			.setDescriptorHandle("handle_get")
-			.setHandle("handle_get_state");
+			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+			.setActivationState(ComponentActivation::On);
 		return result;
 	}
 
@@ -87,27 +91,25 @@ private:
 
 class SetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
 public:
-
+	// The state handler take a string named as the descriptor for referencing
     SetNumericMetricStateHandler(const std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: handle_set received state change request. State's value: " << state.getObservedValue().getValue() << std::endl;
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
 
-        notifyOperationInvoked(oic, InvocationState::STARTED);
+        notifyOperationInvoked(oic, InvocationState::Start);
 
-        return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
     NumericMetricState createState() {
-        NumericMetricState result;
-        result
-            .setObservedValue(NumericMetricValue().setValue(2.0))
-            .setComponentActivationState(ComponentActivation::ON)
-            .setDescriptorHandle("handle_set")
-            .setHandle("handle_set_state");
+		NumericMetricState result(descriptorHandle);
+		result
+			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+			.setActivationState(ComponentActivation::On);
         return result;
     }
 
@@ -118,11 +120,17 @@ public:
 
     // Convenience value getter
     float getMaxWeight() {
-        NumericMetricState result;
-        // TODO: in real applications, check if findState returns true!
-        getParentProvider().getMdState().findState("handle_set", result);
-        // TODO: in real applications, check if state has an observed value and if the observed value has a value!
-        return (float)result.getObservedValue().getValue();
+        std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC));
+
+        // check if result is valid
+        if (result != nullptr) {
+        	// In real applications, check if state has an observed value and if the observed value has a value!
+        	return (float)result->getMetricValue().getValue();
+        } else {
+        	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Maximum weight metric not found." << std::endl;
+        	return 0;
+        }
+
     }
 
 private:
@@ -133,17 +141,15 @@ private:
 
 class StreamProviderStateHandler : public OSCPProviderRealTimeSampleArrayMetricStateHandler {
 public:
-
+	// The state handler take a string named as the descriptor for referencing
     StreamProviderStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
     }
 
     // Helper method
     RealTimeSampleArrayMetricState createState() {
-        RealTimeSampleArrayMetricState realTimeSampleArrayState;
+        RealTimeSampleArrayMetricState realTimeSampleArrayState(descriptorHandle);
         realTimeSampleArrayState
-            .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle(descriptorHandle);
-
+            .setActivationState(ComponentActivation::On);
         return realTimeSampleArrayState;
     }
 
@@ -167,18 +173,18 @@ private:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() : oscpProvider(), streamHandler("handle_stream"), getNumericHandler("handle_get"), setNumericHandler("handle_set") {
+    OSCPStreamProvider() : oscpProvider(), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
 
-		oscpProvider.setEndpointReference(deviceEPR);
+		oscpProvider.setEndpointReference(DEVICE_EPR);
 
-
-
-		std::ifstream t("Examples/cachedMDIB.xml");
+		// Load cached Mdib from file system
+		// Mdib is specified in xml
+		std::ifstream t("Examples/cachedMdib.xml");
 		std::stringstream buffer;
 		buffer << t.rdbuf();
 		std::string mdDesciption_xml = buffer.str();
 
-		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << mdDesciption_xml;
+		DebugOut(DebugOut::Default, "ExampleCachedProvider") << mdDesciption_xml;
 
 		oscpProvider.setMdDescription(mdDesciption_xml);
 
@@ -202,9 +208,11 @@ public:
 
 private:
 
+    // API provider class
     OSCPProvider oscpProvider;
-	RealTimeSampleArrayMetricDescriptor streamMetricDescriptor;
-	NumericMetricDescriptor setMetricDescriptor;
+
+    // State Handlers
+    // each state handler ist named the same way as regarding descriptor
     StreamProviderStateHandler streamHandler;
     GetNumericMetricStateHandler getNumericHandler;
     SetNumericMetricStateHandler setNumericHandler;
@@ -215,31 +223,25 @@ public:
     // runImpl() gets called when starting the provider thread by the inherited function start()
     virtual void runImpl() override {
 
-    	// RealTimeArray
+    	// Streaming init
 		const std::size_t size(1000);
 		std::vector<double> samples;
 		for (std::size_t i = 0; i < size; i++) {
 			samples.push_back(i);
 		}
 		long index(0);
+
 		while (!isInterrupted()) {
 			{
-                updateStateValue(
-						RealTimeSampleArrayValue()
-						.setSamples(
-							RTValueType()
-							.setValues(samples))
-						);
-
+                updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Vld)).setSamples(RealTimeValueType(samples)));
 			}
-//			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
-			// NumericMetricState
+			// generate NumericMetricState
 			getNumericHandler.setNumericValue(42.0);
-//			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "NumericMetric: value changed to 42.0" << std::endl;
+			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "NumericMetric: value changed to 42.0" << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
-
 		}
     }
 };

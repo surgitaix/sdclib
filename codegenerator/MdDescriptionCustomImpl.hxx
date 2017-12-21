@@ -6,23 +6,9 @@
 
 	bool getFirstMdsDescriptor(MdsDescriptor & outDescriptor) const;
 
-	bool findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, AlertSystemDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, ChannelDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, ClockDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, EnsembleContextDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, EnumStringMetricDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, MdsDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, LimitAlertConditionDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, LocationContextDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, NumericMetricDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, OperatorContextDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, PatientContextDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, VmdDescriptor & outDescriptor) const;
-	bool findDescriptor(const std::string & handle, WorkflowContextDescriptor & outDescriptor) const;
+	// use this API method to get a copy of the MDIB's descriptors
+	template<class TDescriptor>
+	std::unique_ptr<TDescriptor> findDescriptor(const std::string & handle) const;
 
 	std::string getOperationTargetForOperationHandle(const std::string & operationHandle) const;
 	std::string getFirstOperationHandleForOperationTarget(const std::string & operationTarget) const;
@@ -43,6 +29,26 @@
 	std::vector<VmdDescriptor> collectAllVmdDescriptors() const;
 
 private:
+	// historical atavisms: those functions are used inside the framework
+	// API use the unique_ptr returning methods
+	bool findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, AlertSystemDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, ChannelDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, ClockDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, EnsembleContextDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, EnumStringMetricDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, MdsDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, LimitAlertConditionDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, LocationContextDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, NumericMetricDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, OperatorContextDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, PatientContextDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, VmdDescriptor & outDescriptor) const;
+	bool findDescriptor(const std::string & handle, WorkflowContextDescriptor & outDescriptor) const;
+
 	template <class WrapperMetricDescriptorType>
 	bool findMetricDescriptorImpl(const std::string & handle, WrapperMetricDescriptorType & out) const;
 

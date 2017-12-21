@@ -12,7 +12,6 @@
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/ClockState.h"
-#include "OSCLib/Data/OSCP/MDIB/ComponentState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -28,7 +27,7 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayValue.h"
+#include "OSCLib/Data/OSCP/MDIB/Real
 #include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
 #include "OSELib/OSCP/OSCPConstants.h

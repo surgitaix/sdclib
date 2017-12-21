@@ -23,13 +23,41 @@
 
 #include "osdm.hxx"
 
-// debug
-//#include "OSCLib/Util/DebugOut.h"
 #include <iostream>
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
+
+//// template specialization for API
+template std::unique_ptr<AlertConditionDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<AlertSignalDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<AlertSystemDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<ChannelDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<ClockDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<EnsembleContextDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<EnumStringMetricDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<MdsDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<LimitAlertConditionDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<LocationContextDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<NumericMetricDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<OperatorContextDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<PatientContextDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<RealTimeSampleArrayMetricDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<StringMetricDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<VmdDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<WorkflowContextDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+
+
+template<class TDescriptor>
+std::unique_ptr<TDescriptor> MdDescription::findDescriptor(const std::string & handle) const {
+	TDescriptor outState;
+	if (findDescriptor(handle, outState)) {
+		return std::unique_ptr<TDescriptor>(new TDescriptor(outState));
+	} else {
+		return nullptr;
+	}
+}
 
 template<class AlertSystemOwner>
 bool findAlertConditionDescriptorImpl(const AlertSystemOwner & owner, const std::string & handle, AlertConditionDescriptor & outDescriptor) {
@@ -169,26 +197,7 @@ bool MdDescription::findDescriptor(const std::string & handle, ChannelDescriptor
 	return false;
 }
 
-template<class WrapperMetricDescriptorType>
-bool MdDescription::findMetricDescriptorImpl(const std::string & handle, WrapperMetricDescriptorType & outMetric) const {
-	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			for (const auto & channelDescriptor : vmdDescriptor.Channel()) {
-				for (const auto & metricDescriptor : channelDescriptor.Metric()) {
-					if (metricDescriptor.Handle() != handle) {
-						continue;
-					}
-					if (const typename WrapperMetricDescriptorType::WrappedType * foundMetric = dynamic_cast<const typename WrapperMetricDescriptorType::WrappedType *>(&metricDescriptor)) {
-						outMetric = ConvertFromCDM::convert(*foundMetric);
-						return true;
-					}
-				}
-			}
-		}
-	}
-	return false;
-}
+
 
 template<>
 bool MdDescription::findMetricDescriptorImpl(const std::string & handle, StringMetricDescriptor & outMetric) const {
@@ -547,6 +556,28 @@ std::vector<ChannelDescriptor> MdDescription::collectAllChannelDescriptors() con
 		}
 	}
 	return result;
+}
+
+
+template<class WrapperMetricDescriptorType>
+bool MdDescription::findMetricDescriptorImpl(const std::string & handle, WrapperMetricDescriptorType & outMetric) const {
+	const CDM::MdDescription & mddescription(*this->data);
+	for (const auto & mds : mddescription.Mds()) {
+		for (const auto & vmdDescriptor : mds.Vmd()) {
+			for (const auto & channelDescriptor : vmdDescriptor.Channel()) {
+				for (const auto & metricDescriptor : channelDescriptor.Metric()) {
+					if (metricDescriptor.Handle() != handle) {
+						continue;
+					}
+					if (const typename WrapperMetricDescriptorType::WrappedType * foundMetric = dynamic_cast<const typename WrapperMetricDescriptorType::WrappedType *>(&metricDescriptor)) {
+						outMetric = ConvertFromCDM::convert(*foundMetric);
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
 }
 
 template <class WrapperMetricDescriptorType>

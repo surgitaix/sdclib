@@ -49,6 +49,7 @@ private:
 	friend class OSCPProvider;
 	friend class OSCPConsumer;
 	friend class MdState;
+	friend class MdDescription;
 public:
 	SetValueOperationDescriptor(
 		Handle handle

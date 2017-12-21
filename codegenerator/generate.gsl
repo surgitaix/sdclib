@@ -252,6 +252,7 @@ private:
 	friend class OSCPProvider;
 	friend class OSCPConsumer;
 	friend class MdState;
+	friend class MdDescription;
 public:
 	$(class.name:)(
 .countconstructorarguments("$(class.name:)", "$(class.name:)")

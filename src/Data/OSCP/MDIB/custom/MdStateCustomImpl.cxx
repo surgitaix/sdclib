@@ -54,7 +54,7 @@ template std::unique_ptr<WorkflowContextState> MdState::findState<WorkflowContex
 template<class TState>
 std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
 	TState outState;
-	if (findStateImpl<TState>(handle, outState)) {
+	if (findState(handle, outState)) {
 		return std::unique_ptr<TState>(new TState(outState));
 	} else {
 		return nullptr;

@@ -79,36 +79,9 @@ unsigned long long int MdibContainer::getMdibVersion() const {
 	return mdibVersion;
 }
 
-bool MdibContainer::findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const {
-	return mddescription->findDescriptor(handle, outDescriptor);
-}
-
-bool MdibContainer::findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const {
-	return mddescription->findDescriptor(handle, outDescriptor);
-}
-
-bool MdibContainer::findDescriptor(const std::string & handle, AlertSystemDescriptor & outDescriptor) const {
-	return mddescription->findDescriptor(handle, outDescriptor);
-}
-
-bool MdibContainer::findDescriptor(const std::string & handle, LimitAlertConditionDescriptor & outDescriptor) const {
-	return mddescription->findDescriptor(handle, outDescriptor);
-}
-
-bool MdibContainer::findDescriptor(const std::string & handle, EnumStringMetricDescriptor & outDescriptor) const {
-	return mddescription->findDescriptor(handle, outDescriptor);
-}
-
-bool MdibContainer::findDescriptor(const std::string & handle, NumericMetricDescriptor & outDescriptor) const {
-	return mddescription->findDescriptor(handle, outDescriptor);
-}
-
-bool MdibContainer::findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const {
-	return mddescription->findDescriptor(handle, outDescriptor);
-}
-
-bool MdibContainer::findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const {
-	return mddescription->findDescriptor(handle, outDescriptor);
+template<class TDescriptor>
+std::unique_ptr<TDescriptor> MdibContainer::findDescriptor(const std::string & handle) const {
+	return mddescription->findDescriptor<TDescriptor>(handle);
 }
 
 template<class TState>
