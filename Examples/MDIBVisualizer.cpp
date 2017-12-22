@@ -1431,12 +1431,14 @@ int main() {
 	OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpng {} -o {}.png";
 
-	int loopcounter = 0;
+
 	OSELib::OSCP::ServiceManager oscpsm;
 
-	while (true) {
-		const std::string deviceEPR("UDI-1234567890");
+	//int loopcounter = 0;
+	//while (true) {
+
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Refreshing ..." << std::flush;
+		//const std::string deviceEPR("UDI-1234567890");
 		//std::shared_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(deviceEPR));
 		std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> results(oscpsm.discoverOSCP());
 
@@ -1477,10 +1479,10 @@ int main() {
 		results.clear();
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Done." << std::endl << std::flush;
 
-		++loopcounter;
-	}
+//		++loopcounter;
+//	}
 
-	Poco::Thread::sleep(5000);
+	//Poco::Thread::sleep(5000);
 
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << "Shutdown: " << testname << std::endl;
 }

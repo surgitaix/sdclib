@@ -37,7 +37,7 @@ using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
 // Endpoint reference of the device -> unique ID
-const std::string deviceEPR("UDI-1234567890");
+const std::string DEVICE_EPR("UDI-EXAMPLEPROJECT");
 
 // descriptor handles
 const std::string MDS_HANDLE("mds_handle");
@@ -164,7 +164,7 @@ public:
     	mdsState(MDS_HANDLE)
 //    	vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
-    	oscpProvider.setEndpointReference(deviceEPR);
+    	oscpProvider.setEndpointReference(DEVICE_EPR);
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
 
@@ -358,7 +358,7 @@ int main()
 	std::cin >> temp;
 
 	// Discovery
-	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR));
 	// alternatively: search the whole network
 //		std::vector<std::unique_ptr<OSCPConsumer>> consumers(oscpsm.discoverOSCP());
 

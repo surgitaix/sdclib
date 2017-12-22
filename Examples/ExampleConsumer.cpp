@@ -19,7 +19,7 @@
 using namespace OSCLib;
 using namespace OSCLib::Data::OSCP;
 
-const std::string deviceEPR("UDI-1234567890");
+const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
 
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
