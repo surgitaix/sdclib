@@ -1,3 +1,41 @@
+/**
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation, either version 3 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  *
+  */
+
+/*
+ * TestSimpleOSCP.cpp
+ *
+ *  @Copyright (C) 2017, SurgiTAIX AG
+ *  Author: besting, buerger, roehser
+ *
+ *	This unit test covers the basic functionality of the SDC library
+ *
+ *	1. 3 different kinds of Metrices (numeric, string, enum) are tested regarding
+ *	- eventing
+ *	- requesting
+ *	- settability
+ *	2. An alert system is implemented. Automatic alerting is evaluated:
+ *	- the referenced alert state () is changed (attribute presence is changed)
+ *	- one metric is increased over time (handle_cur). The value is evaluated by a state handler (LimitAlertConditionStateHandler) referencing the handle_alert_condition.
+ *		If the value is out of bound an alert is triggered. The logic is implemented in the user code! Only the defined limits are taken from the descriptor.
+ *
+ */
+
+
+
+
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
@@ -79,13 +117,43 @@ namespace OSCLib {
 namespace Tests {
 namespace SimpleOSCP {
 
+//
+// define handles and IDs
+//
+
 const std::string DEVICE_ENDPOINT_REFERENCE("EPR_1234");
 const std::string DEVICE_UDI("UDI_1234");
 const int DEFAULT_TIMEOUT(5000);
 
+// Device's taxonomic description
 const std::string MDS_HANDLE("sampleMDS");
 const std::string VMD_DESCRIPTOR_HANDLE("vmd_descriptor");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("first_channel");
+
+// Metrices
+//
+// all metrices are tested to be succesfully requested by the consumer from the provider
+//
+// 1. a provider side changing numeric metric representing a measured value
+const std::string NUMERIC_METRIC_CURRENT_HANDLE("handle_cur");
+// 2. a numeric metric representing a a limit for this changing value
+// this value is set writable, thus the consumer is able to set it
+const std::string NUMERIC_METRIC_MAX_HANDLE("handle_max");
+// 3. a string metric which is also set by the consumer
+const std::string STRING_METRIC_HANDLE("handle_str");
+// 4. an enum metric is also tried to be set by the consumer with legal an illegal values
+const std::string ENUM_METRIC_HANDLE("handle_enum");
+
+// AlertSystem
+//
+// 1. a limit alert condition that consists of the bounds which must be kept by the handle_cur numeric metric state
+// 		a LimitAlertConditionStateHandler with the same name checks compliance
+const std::string ALERT_CONDITION_HANDLE("handle_alert_condition_limit");
+// 2. an alert signal whose attribute presents is changed
+const std::string ALERT_SIGNAL_HANDLE("handle_alert_signal");
+// 3. an latching alert signal which latched state is checked
+const std::string ALERT_SIGNAL_LATCHING_HANDLE("handle_alert_signal_latching");
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Consumer event handlers
@@ -366,7 +434,7 @@ public:
 
     // Helper method
     NumericMetricState createState() {
-        NumericMetricState result("handle_max");
+        NumericMetricState result(NUMERIC_METRIC_MAX_HANDLE);
         result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
             .setActivationState(ComponentActivation::On);
@@ -380,7 +448,7 @@ public:
 
     // Convenience value getter
     float getMaxWeight() {
-    	std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>("handle_max"));
+    	std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(NUMERIC_METRIC_MAX_HANDLE));
         // check if result is valid
         if (result != nullptr) {
         	// In real applications, check if state has an observed value and if the observed value has a value!
@@ -406,11 +474,11 @@ public:
 
     // Helper method
     NumericMetricState createState(float value) {
-        NumericMetricState result("handle_cur");
+        NumericMetricState result(NUMERIC_METRIC_CURRENT_HANDLE);
         result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
             .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle("handle_cur");
+            .setDescriptorHandle(NUMERIC_METRIC_CURRENT_HANDLE);
         return result;
     }
 
@@ -447,7 +515,7 @@ public:
 
     // Helper method
     EnumStringMetricState createState(const std::string & value) {
-        EnumStringMetricState result("handle_enum");
+        EnumStringMetricState result(ENUM_METRIC_HANDLE);
         result
             .setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
             .setActivationState(ComponentActivation::On);
@@ -481,7 +549,7 @@ public:
 
     // Helper method
     StringMetricState createState(const std::string & value) {
-        StringMetricState result("handle_str");
+        StringMetricState result(STRING_METRIC_HANDLE);
         result
             .setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
             .setActivationState(ComponentActivation::On);
@@ -515,14 +583,14 @@ public:
     	// Update the real device's state here (update device alarms)! Check state's presence and alertSignalState's presence values!
 
     	// we can update here, but if we return Fin, the framework will also notify
-    	//updateState(alertSignalState);
+    	//updateState(state);
 
         return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
     AlertSignalState createState() {
-        AlertSignalState result("handle_alert_signal", AlertActivation::On); // Reference alert signal descriptor's handle // Component is working
+        AlertSignalState result(ALERT_SIGNAL_HANDLE, AlertActivation::On); // Reference alert signal descriptor's handle // Component is working
         result
             .setPresence(AlertSignalPresence::Off);  // No alarm signal
         return result;
@@ -556,7 +624,7 @@ public:
 
     // Helper method
     AlertSignalState createState() {
-        AlertSignalState result("handle_alert_signal_latching", AlertActivation::On); // Reference alert signal descriptor's handle // Component is working
+        AlertSignalState result(ALERT_SIGNAL_LATCHING_HANDLE, AlertActivation::On); // Reference alert signal descriptor's handle // Component is working
         result
             .setPresence(AlertSignalPresence::Off);  // No alarm signal
         return result;
@@ -599,7 +667,7 @@ public:
         std::unique_ptr<NumericMetricState> pSourceState(getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle));
 
 
-        std::unique_ptr<LimitAlertConditionState> pLimitAlertConditionState(getParentProvider().getMdState().findState<LimitAlertConditionState>("handle_alert_condition"));
+        std::unique_ptr<LimitAlertConditionState> pLimitAlertConditionState(getParentProvider().getMdState().findState<LimitAlertConditionState>(ALERT_CONDITION_HANDLE));
         if (pSourceState->getDescriptorHandle() != sourceHandle) {
     		return;
     	}
@@ -630,7 +698,7 @@ public:
 
     // Helper method
     LimitAlertConditionState createState() {
-        LimitAlertConditionState result("handle_alert_condition", AlertActivation::On, Range().setLower(0.0).setUpper(2.0), AlertConditionMonitoredLimits::All); // Reference alert signal descriptor's handle
+        LimitAlertConditionState result(ALERT_CONDITION_HANDLE, AlertActivation::On, Range().setLower(0.0).setUpper(2.0), AlertConditionMonitoredLimits::All); // Reference alert signal descriptor's handle
         result
             .setPresence(false);
         return result;
@@ -757,7 +825,7 @@ public:
 		curValueState(),
 		maxValueState(),
 		channelState(CHANNEL_DESCRIPTOR_HANDLE),
-		hydraMDSState(MDS_HANDLE),
+		MdsState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
     	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
@@ -776,7 +844,7 @@ public:
         //
 
         // define properties of current weight metric
-        NumericMetricDescriptor currentWeightMetric("handle_cur",
+        NumericMetricDescriptor currentWeightMetric(NUMERIC_METRIC_CURRENT_HANDLE,
         		CodedValue("MDCX_CODE_ID_WEIGHT").setCodingSystem("OR.NET.Codings"),
         		MetricCategory::Msrmt,
         		MetricAvailability::Cont,
@@ -786,7 +854,7 @@ public:
         	.setUnit(unit);
 
         //  define properties of enum metric
-        EnumStringMetricDescriptor testEnumMetric("handle_enum",
+        EnumStringMetricDescriptor testEnumMetric(ENUM_METRIC_HANDLE,
         		CodedValue("MDCX_CODE_ID_ENUM")
         			.setCodingSystem("OR.NET.Codings")
         			.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
@@ -800,7 +868,7 @@ public:
 
 
         // define properties of max weight metric
-        NumericMetricDescriptor maxWeightMetric("handle_max",
+        NumericMetricDescriptor maxWeightMetric(NUMERIC_METRIC_MAX_HANDLE,
         		CodedValue("MDCX_CODE_ID_MAXWEIGHT").setCodingSystem("OR.NET.Codings"),
         		MetricCategory::Set,
         		MetricAvailability::Cont,
@@ -809,7 +877,7 @@ public:
         	.setUnit(unit);
 
         // define properties of test string metric
-        StringMetricDescriptor testStringMetric("handle_str",
+        StringMetricDescriptor testStringMetric(STRING_METRIC_HANDLE,
         		CodedValue("MDCX_CODE_ID_STRING"),
         		MetricCategory::Set,
         		MetricAvailability::Cont);
@@ -828,25 +896,25 @@ public:
 		// Setup alert system
 		//
 
-        // alert condition
-        LimitAlertConditionDescriptor limitAlertCondition("handle_alert_condition",
+        // alert condition that is monitoring the handle_cur
+        LimitAlertConditionDescriptor limitAlertCondition(ALERT_CONDITION_HANDLE,
         		AlertConditionKind::Tec,
         		AlertConditionPriority::Me,
         		Range()
         			.setLower(0)
-        			.setUpper(0)
+        			.setUpper(2.0)
         		);
 
-        limitAlertCondition.setType(CodedValue("MDCX_CODE_ID_ALERT_WEIGHT_CONDITION").setCodingSystem("OR.NET.Codings"));
+        limitAlertCondition.setType(CodedValue("MDCX_CODE_ID_ALERT_WEIGHT_CONDITION").setCodingSystem("OR.NET.Codings")).addSource(NUMERIC_METRIC_CURRENT_HANDLE);
 
         // create signal for condition
-        AlertSignalDescriptor alertSignal("handle_alert_signal", AlertSignalManifestation::Vis, false);
+        AlertSignalDescriptor alertSignal(ALERT_SIGNAL_HANDLE, AlertSignalManifestation::Vis, false);
         alertSignal
-        	.setConditionSignaled("handle_alert_condition");
+        	.setConditionSignaled(ALERT_CONDITION_HANDLE);
 
-        AlertSignalDescriptor latchingAlertSignal("handle_alert_signal_latching", AlertSignalManifestation::Vis, true);
+        AlertSignalDescriptor latchingAlertSignal(ALERT_SIGNAL_LATCHING_HANDLE, AlertSignalManifestation::Vis, true);
         latchingAlertSignal
-			.setConditionSignaled("handle_alert_condition");
+			.setConditionSignaled(ALERT_CONDITION_HANDLE);
 
         // Alerts
         AlertSystemDescriptor alertSystem("handle_alert_system");
@@ -855,8 +923,13 @@ public:
 			.addAlertSignal(latchingAlertSignal)
 			.addLimitAlertCondition(limitAlertCondition);
 
+
+        //
+        // assemble everything following the taxonomic structure of the device
+        //
+
         // Channel
-        ChannelDescriptor holdingDeviceChannel("handle_alert_system");
+        ChannelDescriptor holdingDeviceChannel(CHANNEL_DESCRIPTOR_HANDLE);
         holdingDeviceChannel
 			.addMetric(currentWeightMetric)
 			.addMetric(testEnumMetric)
@@ -898,7 +971,7 @@ public:
         oscpProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
         oscpProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
 
-        ActivateOperationDescriptor aod("handle_cmd", "handle_max");
+        ActivateOperationDescriptor aod("handle_cmd", NUMERIC_METRIC_MAX_HANDLE);
 
 		oscpProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
@@ -921,7 +994,7 @@ public:
 		oscpProvider.addMdSateHandler(&alertSysHandler);
 		oscpProvider.addMdSateHandler(&cmdHandler);
 		oscpProvider.addMdSateHandler(&channelState);
-		oscpProvider.addMdSateHandler(&hydraMDSState);
+		oscpProvider.addMdSateHandler(&MdsState);
 		oscpProvider.addMdSateHandler(&vmdState);
 	}
 
@@ -973,7 +1046,7 @@ private:
     AlertSystemStateHandler alertSysHandler;
     CommandHandler cmdHandler;
     AlwaysOnChannelStateHandler channelState;
-    AlwaysOnMdsStateHandler hydraMDSState;
+    AlwaysOnMdsStateHandler MdsState;
     AlwaysOnVmdStateHandler vmdState;
 };
 
@@ -986,7 +1059,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixtureSimpleOSCP : Tests::AbstractOSCLibFixture {
-	FixtureSimpleOSCP() : AbstractOSCLibFixture("FixtureSimpleOSCP", OSELib::LogLevel::TRACE, 9000) {}
+	FixtureSimpleOSCP() : AbstractOSCLibFixture("FixtureSimpleOSCP", OSELib::LogLevel::ERROR, 9000) {}
 };
 
 SUITE(OSCP) {
@@ -1014,17 +1087,20 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleOSCP::DEVICE_ENDPOINT_REFERENCE));
 
 
-        Tests::SimpleOSCP::ExampleConsumerNumericHandler eces1("handle_cur");
-        Tests::SimpleOSCP::ExampleConsumerNumericHandler eces2("handle_max");
-        Tests::SimpleOSCP::ExampleConsumerStringMetricHandler eces3("handle_str");
-        Tests::SimpleOSCP::ExampleConsumerEnumStringMetricHandler eces4("handle_enum");
-        Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler alertSignalsink("handle_alert_signal");
-        Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler latchingAlertSignalsink("handle_alert_signal_latching");
+        Tests::SimpleOSCP::ExampleConsumerNumericHandler eces1(Tests::SimpleOSCP::NUMERIC_METRIC_CURRENT_HANDLE);
+        Tests::SimpleOSCP::ExampleConsumerNumericHandler eces2(Tests::SimpleOSCP::NUMERIC_METRIC_MAX_HANDLE);
+        Tests::SimpleOSCP::ExampleConsumerStringMetricHandler eces3(Tests::SimpleOSCP::STRING_METRIC_HANDLE);
+        Tests::SimpleOSCP::ExampleConsumerEnumStringMetricHandler eces4(Tests::SimpleOSCP::ENUM_METRIC_HANDLE);
+        Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler alertSignalsink(Tests::SimpleOSCP::ALERT_SIGNAL_HANDLE);
+        Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler latchingAlertSignalsink(Tests::SimpleOSCP::ALERT_SIGNAL_LATCHING_HANDLE);
         Tests::SimpleOSCP::ContextEventHandler ceh({"location_context_state", "patient_context_state"});
 
 
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);
+
+
+
 
 		if (c != nullptr) {
 			OSCPConsumer & consumer = *c;
@@ -1054,7 +1130,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             	}
             }
             {	// lookup descriptors that should exist for the provider implemented above
-            	std::unique_ptr<NumericMetricDescriptor> pNumericMetricDescriptor(mdib.getMdDescription().findDescriptor<NumericMetricDescriptor>("handle_cur"));
+            	std::unique_ptr<NumericMetricDescriptor> pNumericMetricDescriptor(mdib.getMdDescription().findDescriptor<NumericMetricDescriptor>(Tests::SimpleOSCP::NUMERIC_METRIC_CURRENT_HANDLE));
             	if (pNumericMetricDescriptor != nullptr) {
 
 
@@ -1074,15 +1150,15 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 
 //				DebugOut(DebugOut::Default, "SimpleOSCP") << curMetric.getType().getConceptDescriptionList()[0].getLang() << std::endl;
 //				CHECK_EQUAL("en", curMetric.getType().getConceptDescriptionList()[0].getLang().);
-//				CHECK_EQUAL("handle_cur", curMetric.getHandle());
+//				CHECK_EQUAL(NUMERIC_METRIC_CURRENT_HANDLE, curMetric.getHandle());
 
 				// vector is not rightly instanciated but above it works:
 				//CHECK_EQUAL(true, curMetric.getType().getConceptDescriptionList().empty());
 
 				}
-				std::unique_ptr<StringMetricDescriptor> pStringMetricDescriptor(mdib.getMdDescription().findDescriptor<StringMetricDescriptor>("handle_str"));
+				std::unique_ptr<StringMetricDescriptor> pStringMetricDescriptor(mdib.getMdDescription().findDescriptor<StringMetricDescriptor>(Tests::SimpleOSCP::STRING_METRIC_HANDLE));
 				CHECK_EQUAL(true, pStringMetricDescriptor != nullptr);
-				CHECK_EQUAL("handle_str", pStringMetricDescriptor->getHandle());
+				CHECK_EQUAL(Tests::SimpleOSCP::STRING_METRIC_HANDLE, pStringMetricDescriptor->getHandle());
             }
 
             // Register for consumer events
@@ -1106,7 +1182,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             	CHECK_EQUAL(false, pTempNMS != nullptr);
             }
             {	// Request state of current weight
-				std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("handle_cur"));
+				std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleOSCP::NUMERIC_METRIC_CURRENT_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 				CHECK_EQUAL(true, pTempNMS->hasMetricValue());
 				if (pTempNMS->hasMetricValue()) {
@@ -1116,24 +1192,24 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             }
             {	// Ensure that (read-only) metrics without matching SetOperation cannot be set.
             	DebugOut(DebugOut::Default, "SimpleOSCP") << "SHOULD FAIL: " << std::endl;
-            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("handle_cur"));
+            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleOSCP::NUMERIC_METRIC_CURRENT_HANDLE));
             	CHECK_EQUAL(true, pTempNMS != nullptr);
             	CHECK_EQUAL(true, InvocationState::Fail == consumer.commitState(*pTempNMS));
             }
             {	// Get state of maximum weight
-            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("handle_max"));
+            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleOSCP::NUMERIC_METRIC_MAX_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 				double maxWeight = pTempNMS->getMetricValue().getValue();
 				CHECK_EQUAL(2.0, maxWeight);
             }
             {	// Get state of test enum
-            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>("handle_enum"));
+            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>(Tests::SimpleOSCP::ENUM_METRIC_HANDLE));
 				CHECK_EQUAL(true, pTempESMS != nullptr);
 				const std::string enumValue(pTempESMS->getMetricValue().getValue());
 				CHECK_EQUAL("hello", enumValue);
             }
             {	// Set state of test enum with allowed enum value
-            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>("handle_enum"));
+            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>(Tests::SimpleOSCP::ENUM_METRIC_HANDLE));
             	CHECK_EQUAL(true, pTempESMS != nullptr);
 
             	pTempESMS->setMetricValue(pTempESMS->getMetricValue().setValue("bon jour"));
@@ -1142,7 +1218,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
             {	// Set state of test enum with illegal enum value
-            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>("handle_enum"));
+            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>(Tests::SimpleOSCP::ENUM_METRIC_HANDLE));
             	CHECK_EQUAL(true, pTempESMS != nullptr);
 
 				const std::string enumValue(pTempESMS->getMetricValue().getValue());
@@ -1159,7 +1235,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             Poco::Thread::sleep(8000);
 
 			{	// Set state test for a numeric metric state (must succeed, use state handle instead of descriptor handle)
-            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("handle_max"));
+            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleOSCP::NUMERIC_METRIC_MAX_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 
 				// Here, we increase max weight to switch condition presence => results in alert signal presence
@@ -1171,7 +1247,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 
             {	// Set state test for a string metric state (must succeed)
                 DebugOut(DebugOut::Default, "SimpleOSCP") << "String test...";
-            	std::unique_ptr<StringMetricState> pTempNMS(consumer.requestState<StringMetricState>("handle_str"));
+            	std::unique_ptr<StringMetricState> pTempNMS(consumer.requestState<StringMetricState>(Tests::SimpleOSCP::STRING_METRIC_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 
 				pTempNMS->setMetricValue(pTempNMS->getMetricValue().setValue("Test2"));
@@ -1214,8 +1290,8 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 				ceh.getEventEMR().reset();
 				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(pcs, fis));
 
-				// FIXME: This check fails!!!
 				CHECK_EQUAL(true, ceh.getEventEMR().tryWait(3000));
+
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "Patient context test done...";
 			}
@@ -1226,7 +1302,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 			provider.interrupt();
 
 			{	// Switch alert signal state off
-            	std::unique_ptr<AlertSignalState> pTempASS(consumer.requestState<AlertSignalState>("handle_alert_signal"));
+            	std::unique_ptr<AlertSignalState> pTempASS(consumer.requestState<AlertSignalState>(Tests::SimpleOSCP::ALERT_SIGNAL_HANDLE));
 				CHECK_EQUAL(true, pTempASS != nullptr);
 
 
@@ -1244,8 +1320,8 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             CHECK_EQUAL(true, eces2.getEventEMR().tryWait(Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             CHECK_EQUAL(true, eces3.getEventEMR().tryWait(Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             CHECK_EQUAL(true, eces4.getEventEMR().tryWait(Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+
             CHECK_EQUAL(true, alertSignalsink.getEventEAROff().tryWait(Tests::SimpleOSCP::DEFAULT_TIMEOUT));
-            // FIXME: the following two are failing, why?
             CHECK_EQUAL(true, alertSignalsink.getEventEAROn().tryWait(Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             CHECK_EQUAL(true, latchingAlertSignalsink.getEventEARLatch().tryWait(Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 
