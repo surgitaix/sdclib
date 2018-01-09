@@ -53,7 +53,8 @@ template<class TDescriptor>
 std::unique_ptr<TDescriptor> MdDescription::findDescriptor(const std::string & handle) const {
 	TDescriptor outState;
 	if (findDescriptor(handle, outState)) {
-		return std::unique_ptr<TDescriptor>(new TDescriptor(outState));
+		auto ptr = std::unique_ptr<TDescriptor>(new TDescriptor(outState));
+		return std::move(ptr);
 	} else {
 		return nullptr;
 	}
@@ -570,7 +571,12 @@ bool MdDescription::findMetricDescriptorImpl(const std::string & handle, Wrapper
 						continue;
 					}
 					if (const typename WrapperMetricDescriptorType::WrappedType * foundMetric = dynamic_cast<const typename WrapperMetricDescriptorType::WrappedType *>(&metricDescriptor)) {
-						outMetric = ConvertFromCDM::convert(*foundMetric);
+
+						//TODO: debugging remove
+						WrapperMetricDescriptorType outMetric_preCopy(ConvertFromCDM::convert(*foundMetric));
+
+						outMetric = outMetric_preCopy;
+//						outMetric = ConvertFromCDM::convert(*foundMetric);
 						return true;
 					}
 				}

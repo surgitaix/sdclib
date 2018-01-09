@@ -33,9 +33,6 @@ Poco::Net::HTTPRequestHandler * FrontController::dispatchRequest(const Poco::Net
 		return nullptr;
 	} else {
 		log_debug([&] { return "Dispatching to service controller for uri: " + request.getURI(); });
-		if (request.getURI() == "/SetService") {
-			log_debug([&] { return "Lalalalala"; });
-		}
 		return match->second.get().createRequestHandler(request);
 	}
 }

@@ -55,7 +55,7 @@ public:
 		HandleRef descriptorhandle
 	); 
 private:
-	NumericMetricState(){};
+	NumericMetricState() {};
 public:
 	NumericMetricState(const NumericMetricState & object);
 	virtual ~NumericMetricState();

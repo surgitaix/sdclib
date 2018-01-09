@@ -384,7 +384,7 @@ public:
 	    return InvocationState::Fin;
 	}
 
-    // Get inital states
+    // Get initial states
 	virtual std::vector<LocationContextState> getLocationContextStates() override {
         LocationContextState locationState("location_context_state", "location_context");
         // This device magically knows its location
@@ -478,7 +478,8 @@ public:
         result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
             .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle(NUMERIC_METRIC_CURRENT_HANDLE);
+            .setDescriptorHandle(NUMERIC_METRIC_CURRENT_HANDLE)
+            .setLifeTimePeriod(xml_schema::Duration(0,0,0,0,0,0,1));
         return result;
     }
 
@@ -647,7 +648,6 @@ public:
         // Invocation has been fired as WAITING when entering this method
     	std::unique_ptr<LimitAlertConditionState> pCurrentState(getParentProvider().getMdState().findState<LimitAlertConditionState>(state.getDescriptorHandle()));
 
-
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
         if (state.getPresence() != pCurrentState->getPresence()) {
     		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << state.getPresence() << std::endl;
@@ -660,12 +660,12 @@ public:
     	return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
+    // this function monitors the observered metric which is defined by the Source attribute of the corresponding LimitAlertConditionDescriptor
     void sourceHasChanged(const std::string & sourceHandle) override {
     	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler monitored source state changed." << std::endl;
 
     	// Check limit and trigger alarm condition, if needed (this method will then take care of handling all signal states)
         std::unique_ptr<NumericMetricState> pSourceState(getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle));
-
 
         std::unique_ptr<LimitAlertConditionState> pLimitAlertConditionState(getParentProvider().getMdState().findState<LimitAlertConditionState>(ALERT_CONDITION_HANDLE));
         if (pSourceState->getDescriptorHandle() != sourceHandle) {
@@ -845,23 +845,23 @@ public:
 
         // define properties of current weight metric
         NumericMetricDescriptor currentWeightMetric(NUMERIC_METRIC_CURRENT_HANDLE,
-        		CodedValue("MDCX_CODE_ID_WEIGHT").setCodingSystem("OR.NET.Codings"),
+        		unit,
         		MetricCategory::Msrmt,
         		MetricAvailability::Cont,
-        		1);
+        		2);
 
-        currentWeightMetric
-        	.setUnit(unit);
+        // add additional information: averaging period of the measurement
+        currentWeightMetric.setAveragingPeriod(xml_schema::Duration(0,0,0,0,0,1,0));
 
         //  define properties of enum metric
         EnumStringMetricDescriptor testEnumMetric(ENUM_METRIC_HANDLE,
         		CodedValue("MDCX_CODE_ID_ENUM")
         			.setCodingSystem("OR.NET.Codings")
         			.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
-        			MetricCategory::Set,
-        			MetricAvailability::Cont);
+        		MetricCategory::Set,
+        		MetricAvailability::Cont);
+
         testEnumMetric
-        	.setUnit(unit)
 			.addAllowedValue(AllowedValue("hello"))
 			.addAllowedValue(AllowedValue("hallo"))
 			.addAllowedValue(AllowedValue("bon jour"));
@@ -869,12 +869,10 @@ public:
 
         // define properties of max weight metric
         NumericMetricDescriptor maxWeightMetric(NUMERIC_METRIC_MAX_HANDLE,
-        		CodedValue("MDCX_CODE_ID_MAXWEIGHT").setCodingSystem("OR.NET.Codings"),
+        		unit,
         		MetricCategory::Set,
         		MetricAvailability::Cont,
         		1);
-        maxWeightMetric
-        	.setUnit(unit);
 
         // define properties of test string metric
         StringMetricDescriptor testStringMetric(STRING_METRIC_HANDLE,
@@ -951,7 +949,7 @@ public:
         		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
         		.setModelNumber("1")
         		.addModelName(LocalizedText().setRef("EndoTAIX"))
-        		.addSerialNumber("1234"))
+        		.addSerialNumber("1234-5678"))
 			.setSystemContext(
 				SystemContextDescriptor("MDC_SYS_CON")
 			    .setPatientContext(
@@ -1099,9 +1097,6 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);
 
-
-
-
 		if (c != nullptr) {
 			OSCPConsumer & consumer = *c;
             // MDIB test
@@ -1112,10 +1107,10 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             	if (pMdsDescriptor != nullptr) {
             		if (pMdsDescriptor->hasMetaData()) {
             			const MetaData metadata(pMdsDescriptor->getMetaData());
+
             			if (!metadata.getUdiList().empty()) {
-							const std::string remoteUDI(metadata.getUdiList().at(0).getDeviceIdentifier());
-							// TODO: change test to something senseful
-							CHECK_EQUAL("Invalid. Not assigned!", remoteUDI); // check for default initialization
+							const std::string serialNumber(metadata.getSerialNumberList().at(0));
+							CHECK_EQUAL("1234-5678",serialNumber);
             			}
 
             		}
@@ -1132,29 +1127,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             {	// lookup descriptors that should exist for the provider implemented above
             	std::unique_ptr<NumericMetricDescriptor> pNumericMetricDescriptor(mdib.getMdDescription().findDescriptor<NumericMetricDescriptor>(Tests::SimpleOSCP::NUMERIC_METRIC_CURRENT_HANDLE));
             	if (pNumericMetricDescriptor != nullptr) {
-
-
-					//
-					// somewhere in in the getConceptDescriptonList() must be a memory leak regarding to debugger linker warning:
-					//
-					// warning: can't find linker symbol for virtual table for `OSCLib::Data::OSCP::LocalizedText' value
-					// warning:   found `OSCLib::Data::OSCP::MdsDescriptor::MdsDescriptor(OSCLib::Data::OSCP::MdsDescriptor const&)' instead ...ect
-					//
-					// and stackoverflow: https://stackoverflow.com/questions/8695411/warning-cant-find-linker-symbol-for-virtual-table-for-value-xxx-value-using
-
-				//CodedValue cv(curMetric.getType());
-				//auto lala2(cv.getConceptDescriptionList().at(0).getLang());
-				//auto lala(curMetric.getType().getConceptDescriptionList());
-//				auto lala2(curMetric.getType().getConceptDescriptionList());
-//				LocalizedText lala2(curMetric.getType().getConceptDescriptionList()[0]);
-
-//				DebugOut(DebugOut::Default, "SimpleOSCP") << curMetric.getType().getConceptDescriptionList()[0].getLang() << std::endl;
-//				CHECK_EQUAL("en", curMetric.getType().getConceptDescriptionList()[0].getLang().);
-//				CHECK_EQUAL(NUMERIC_METRIC_CURRENT_HANDLE, curMetric.getHandle());
-
-				// vector is not rightly instanciated but above it works:
-				//CHECK_EQUAL(true, curMetric.getType().getConceptDescriptionList().empty());
-
+				CHECK_EQUAL("en", pNumericMetricDescriptor->getUnit().getConceptDescriptionList()[0].getLang());
 				}
 				std::unique_ptr<StringMetricDescriptor> pStringMetricDescriptor(mdib.getMdDescription().findDescriptor<StringMetricDescriptor>(Tests::SimpleOSCP::STRING_METRIC_HANDLE));
 				CHECK_EQUAL(true, pStringMetricDescriptor != nullptr);
