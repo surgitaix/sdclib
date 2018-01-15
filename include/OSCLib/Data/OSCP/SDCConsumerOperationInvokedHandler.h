@@ -25,8 +25,8 @@
  *
  */
 
-#ifndef OSCPCONSUMEREVENTHANDLER_H_
-#define OSCPCONSUMEREVENTHANDLER_H_
+#ifndef SDCCONSUMEROPERATIONINVOKEDHANDLER_H_
+#define SDCCONSUMEROPERATIONINVOKEDHANDLER_H_
 
 #include <string>
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
@@ -36,10 +36,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerEventHandler {
+class SDCConsumerOperationInvokedHandler {
 public:
-	OSCPConsumerEventHandler();
-    virtual ~OSCPConsumerEventHandler();
+	SDCConsumerOperationInvokedHandler(std::string handle);
+    virtual ~SDCConsumerOperationInvokedHandler();
 
     /**
     * @brief Receive notifications about the invocation state.
@@ -54,7 +54,10 @@ public:
     *
     * @return The handle
     */
-    virtual std::string getHandle() = 0;
+    virtual std::string getHandle();
+
+private:
+    const std::string handle;
 
 };
 
@@ -62,4 +65,4 @@ public:
 } /* namespace Data */
 } /* namespace OSCLib */
 
-#endif /* OSCPCONSUMEREVENTHANDLER_H_ */
+#endif /* SDCCONSUMEROPERATIONINVOKEDHANDLER_H_ */

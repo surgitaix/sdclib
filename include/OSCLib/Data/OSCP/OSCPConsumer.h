@@ -106,7 +106,7 @@ public:
     *
     * @return True, if registration was successful
     */
-    bool registerStateEventHandler(OSCPConsumerEventHandler * handler);
+    bool registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler);
     
     /**
     * @brief Unregister notification.
@@ -115,7 +115,7 @@ public:
     *
     * @return True, if unregistration was successful
     */
-    bool unregisterStateEventHandler(OSCPConsumerEventHandler * handler);
+    bool unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler);
 
     /**
     * @brief Request or 'GET' a state.
@@ -269,7 +269,7 @@ private:
 	Poco::Mutex mdibVersionMutex;
 	Poco::Mutex requestMutex;
     Poco::Mutex eventMutex;
-    std::map<std::string, OSCPConsumerEventHandler *> eventHandlers;
+    std::map<std::string, SDCConsumerOperationInvokedHandler *> eventHandlers;
     OSCPConsumerConnectionLostHandler * connectionLostHandler;
     OSCPConsumerSystemContextStateChangedHandler * contextStateChangedHandler;
     OSCPConsumerSubscriptionLostHandler * subscriptionLostHandler;

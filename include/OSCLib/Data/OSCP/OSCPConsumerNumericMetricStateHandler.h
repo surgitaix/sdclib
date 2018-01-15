@@ -24,13 +24,13 @@
 #ifndef INCLUDE_OSCLIB_DATA_OSCP_OSCPCONSUMERNUMERICMETRICSTATEHANDLER_H_
 #define INCLUDE_OSCLIB_DATA_OSCP_OSCPCONSUMERNUMERICMETRICSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerNumericMetricStateHandler: public OSCPConsumerEventHandler {
+class OSCPConsumerNumericMetricStateHandler: public SDCConsumerOperationInvokedHandler {
 public:
 	OSCPConsumerNumericMetricStateHandler() {}
 	virtual ~OSCPConsumerNumericMetricStateHandler() {}

@@ -1,9 +1,38 @@
+/**
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation, either version 3 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  *
+  */
+
+/*
+ * OSCPConsumerEventHandler.cpp
+ *
+ *  @Copyright (C) 2014, SurgiTAIX AG
+ *  Author: buerger
+ *
+ *  This example demonstrates how to set up a very simple SDCConsumer. It connects to the ExampleProvider defined with it's endpoint reference (EPR).
+ *  A state handler is facilitated to utilize the eventing mechanism for a numeric metric state.
+ *
+ */
+
+
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+// TODO: delete #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -27,26 +56,23 @@ const std::string HANDLE_STREAM_METRIC("handle_stream");
 const std::string HANDLE_STRING_METRIC("handle_string");
 
 
-class ExampleConsumerEventHandler : public OSCPConsumerNumericMetricStateHandler {
+
+class ExampleConsumerEventHandler : public SDCConsumerEventHandler<NumericMetricState> {
 public:
-    ExampleConsumerEventHandler(const std::string & handle) :
-    	currentWeight(0),
-		handle(handle)
+    ExampleConsumerEventHandler(const std::string & handle) : SDCConsumerEventHandler(handle),
+    	currentWeight(0)
 	{
     }
 
+
     void onStateChanged(const NumericMetricState & state) override {
         double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received value changed of " << this->getHandle() << ": " << val << std::endl;
         currentWeight = (float)val;
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
-    }
-
-    std::string getHandle() override {
-        return handle;
+        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << this->getHandle() << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
     }
 
     float getCurrentWeight() {
@@ -55,9 +81,7 @@ public:
 
 private:
     float currentWeight;
-    const std::string handle;
 };
-
 
 
 

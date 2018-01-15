@@ -15,14 +15,11 @@
   */
 
 /*
- * OSCPConsumerAlertSystemStateHandler.h
+ * OSCPConsumerEventHandler.cpp
  *
- *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  @Copyright (C) 2014, SurgiTAIX AG
+ *  Author: roehser, besting, buerger
  */
-
-#ifndef INCLUDE_OSCLIB_DATA_OSCP_OSCPCONSUMERALERTSYSTEMSTATEHANDLER_H_
-#define INCLUDE_OSCLIB_DATA_OSCP_OSCPCONSUMERALERTSYSTEMSTATEHANDLER_H_
 
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 
@@ -30,21 +27,23 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerAlertSystemStateHandler: public SDCConsumerOperationInvokedHandler {
-public:
-	OSCPConsumerAlertSystemStateHandler() {}
-	virtual ~OSCPConsumerAlertSystemStateHandler() {}
+SDCConsumerOperationInvokedHandler::SDCConsumerOperationInvokedHandler(const std::string handle): handle(handle) {
 
-    /**
-    * @brief Receive notifications about the state.
-    *
-    * @param state The state on which a notification event occurred.
-    */
-    virtual void onStateChanged(const AlertSystemState & state) = 0;
-};
+}
+
+SDCConsumerOperationInvokedHandler::~SDCConsumerOperationInvokedHandler() {
+
+}
+
+void SDCConsumerOperationInvokedHandler::onOperationInvoked(const OperationInvocationContext &, InvocationState ) {
+
+}
+
+
+std::string SDCConsumerOperationInvokedHandler::getHandle() {
+	return handle;
+}
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-
-#endif /* INCLUDE_OSCLIB_DATA_OSCP_OSCPCONSUMERALERTSYSTEMSTATEHANDLER_H_ */

@@ -20,7 +20,7 @@ namespace OSCP {
 	class OSCPConsumer;
 	class OSCPConsumerConnectionLostHandler;
 	class OSCPConsumerSystemContextStateChangedHandler;
-	class OSCPConsumerEventHandler;
+	class SDCConsumerOperationInvokedHandler;
 	class OSCPConsumerEnumStringMetricStateHandler;
 	class OSCPConsumerNumericMetricStateHandler;
 	class OSCPConsumerStringMetricStateHandler;

@@ -1,6 +1,6 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"

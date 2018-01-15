@@ -24,13 +24,13 @@
 #ifndef SRC_DATA_OSCP_OSCPCONSUMERENUMSTRINGMETRICSTATEHANDLER_H_
 #define SRC_DATA_OSCP_OSCPCONSUMERENUMSTRINGMETRICSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerEnumStringMetricStateHandler: public OSCPConsumerEventHandler {
+class OSCPConsumerEnumStringMetricStateHandler: public SDCConsumerOperationInvokedHandler {
 public:
 	OSCPConsumerEnumStringMetricStateHandler() {}
 	virtual ~OSCPConsumerEnumStringMetricStateHandler() {}

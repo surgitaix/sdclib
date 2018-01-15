@@ -17,8 +17,8 @@
 /*
  * OSCPConsumer.cpp
  *
- *  @Copyright (C) 2014, SurgiTAIX AG
- *  Author: besting, roehser
+ *  @Copyright (C) 2017, SurgiTAIX AG
+ *  Author: buerger, besting, roehser
  */
 
 #include <memory>
@@ -33,16 +33,15 @@
 #include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
+
+
+#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
+
+// adapt an delete..
 #include "OSCLib/Data/OSCP/OSCPConsumerSystemContextStateChangedHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerAlertSignalStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerAlertSystemStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerLimitAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerEnumStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
+
+
+
 #include "OSCLib/Data/OSCP/OSCPConsumerSubscriptionLostHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
@@ -299,7 +298,7 @@ bool OSCPConsumer::unregisterFutureInvocationListener(int transactionId) {
 	return fisMap.erase(transactionId) == 1;
 }
 
-bool OSCPConsumer::registerStateEventHandler(OSCPConsumerEventHandler * handler) {
+bool OSCPConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
     Poco::Mutex::ScopedLock lock(eventMutex);
 	eventHandlers[handler->getHandle()] = handler;
 	if (_adapter) {
@@ -308,7 +307,7 @@ bool OSCPConsumer::registerStateEventHandler(OSCPConsumerEventHandler * handler)
 	return true;
 }
 
-bool OSCPConsumer::unregisterStateEventHandler(OSCPConsumerEventHandler * handler) {
+bool OSCPConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
 	Poco::Mutex::ScopedLock lock(eventMutex);
 	eventHandlers.erase(handler->getHandle());
 
@@ -618,9 +617,10 @@ std::unique_ptr<TStateType> OSCPConsumer::requestState(const std::string & handl
 template<typename T> void OSCPConsumer::onStateChanged(const T & state) {
     Poco::Mutex::ScopedLock lock(eventMutex);
 
-    std::map<std::string, OSCPConsumerEventHandler *>::iterator it = eventHandlers.find(state.getDescriptorHandle());
+    std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(state.getDescriptorHandle());
     if (it != eventHandlers.end()) {
-    	if (typename T::ConsumerHandlerType * handler = dynamic_cast<typename T::ConsumerHandlerType *>(it->second)) {
+//    	if (typename T::ConsumerHandlerType * handler = dynamic_cast<typename T::ConsumerHandlerType *>(it->second)) {
+    	if (SDCConsumerEventHandler<T> * handler = dynamic_cast<SDCConsumerEventHandler<T> *>(it->second)) {
         	handler->onStateChanged(state);
     	}
     }
@@ -637,8 +637,9 @@ template void OSCPConsumer::onStateChanged(const LimitAlertConditionState & stat
 
 void OSCPConsumer::onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
     Poco::Mutex::ScopedLock lock(eventMutex);
-    // If operation handle belongs to ActivateOperationDescriptor, use operation handle as target handle in case of operation invoked events!
 
+
+    // If operation handle belongs to ActivateOperationDescriptor, use operation handle as target handle in case of operation invoked events!
     const MdDescription mdd(getCachedMdDescription());
     std::string targetHandle;
     const std::vector<MdsDescriptor> mdss(mdd.collectAllMdsDescriptors());
@@ -656,13 +657,15 @@ void OSCPConsumer::onOperationInvoked(const OperationInvocationContext & oic, In
 		if (!targetHandle.empty())
 			break;
     }
+
     // All other operation descriptor cases
     if (targetHandle.empty())
     	targetHandle = mdd.getOperationTargetForOperationHandle(oic.operationHandle);
-    std::map<std::string, OSCPConsumerEventHandler *>::iterator it = eventHandlers.find(targetHandle);
+    std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(targetHandle);
     if (it != eventHandlers.end()) {
         it->second->onOperationInvoked(oic, is);
     }
+
     // Notify user future invocation state events
     Poco::Mutex::ScopedLock transactionLock(transactionMutex);
     if (fisMap.find(oic.transactionId) != fisMap.end()) {

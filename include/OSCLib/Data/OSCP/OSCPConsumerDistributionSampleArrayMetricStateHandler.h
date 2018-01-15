@@ -30,7 +30,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerDistributionSampleArrayMetricStateHandler: public OSCPConsumerEventHandler {
+class OSCPConsumerDistributionSampleArrayMetricStateHandler: public SDCConsumerOperationInvokedHandler {
 public:
 	OSCPConsumerDistributionSampleArrayMetricStateHandler() {}
 	virtual ~OSCPConsumerDistributionSampleArrayMetricStateHandler() {}

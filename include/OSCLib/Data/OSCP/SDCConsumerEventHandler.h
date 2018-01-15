@@ -15,30 +15,39 @@
   */
 
 /*
- * OSCPConsumerEventHandler.cpp
+ * OSCPConsumerAlertConditionStateHandler.h
  *
- *  @Copyright (C) 2014, SurgiTAIX AG
- *  Author: roehser, besting
+ *  @Copyright (C) 2017, SurgiTAIX AG
+ *  Author: buerger
  */
 
-#include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
+#ifndef SDCCONSUMEREVENTHANDLER_H_
+#define SDCCONSUMEREVENTHANDLER_H_
+
+#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSCPConsumerEventHandler::OSCPConsumerEventHandler() {
+template<typename TState>
+class SDCConsumerEventHandler: public SDCConsumerOperationInvokedHandler {
+public:
+	SDCConsumerEventHandler(const std::string handle) : SDCConsumerOperationInvokedHandler(handle) {}
+	virtual ~SDCConsumerEventHandler() {}
 
-}
+	typedef TState StateType;
 
-OSCPConsumerEventHandler::~OSCPConsumerEventHandler() {
-
-}
-
-void OSCPConsumerEventHandler::onOperationInvoked(const OperationInvocationContext &, InvocationState ) {
-
-}
+    /**
+    * @brief Receive notifications about the state.
+    *
+    * @param state The state on which a notification event occurred.
+    */
+    virtual void onStateChanged(const TState & state) = 0;
+};
 
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
+
+#endif /* SDCCONSUMEREVENTHANDLER_H_ */

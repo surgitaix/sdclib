@@ -24,15 +24,15 @@
 #ifndef INCLUDE_OSCLIB_DATA_OSCP_OSCPCONSUMERALERTCONDITIONSTATEHANDLER_H_
 #define INCLUDE_OSCLIB_DATA_OSCP_OSCPCONSUMERALERTCONDITIONSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerAlertConditionStateHandler: public OSCPConsumerEventHandler {
+class OSCPConsumerAlertConditionStateHandler: public SDCConsumerOperationInvokedHandler {
 public:
-	OSCPConsumerAlertConditionStateHandler() {}
+	OSCPConsumerAlertConditionStateHandler(std::string handle) : SDCConsumerOperationInvokedHandler(handle) {}
 	virtual ~OSCPConsumerAlertConditionStateHandler() {}
 
 	typedef AlertConditionState StateType;

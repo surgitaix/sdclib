@@ -214,7 +214,7 @@ int main (int argc, char * argv[])
 		DebugOut(DebugOut::Default, "GenericSubscription") << "Connected to device with epr: " << epr;
 		const MDDescription mdd(consumer->getMdDescription());
 
-		std::vector<std::unique_ptr<OSCPConsumerEventHandler>> handlers;
+		std::vector<std::unique_ptr<SDCConsumerOperationInvokedHandler>> handlers;
 
 		for (const auto & handle : handles) {
 			bool match(false);
@@ -222,7 +222,7 @@ int main (int argc, char * argv[])
 				AlertConditionDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<OSCPConsumerEventHandler> handler(new Handler<OSCPConsumerAlertConditionStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerAlertConditionStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -231,7 +231,7 @@ int main (int argc, char * argv[])
 				AlertSignalDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<OSCPConsumerEventHandler> handler(new Handler<OSCPConsumerAlertSignalStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerAlertSignalStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -240,7 +240,7 @@ int main (int argc, char * argv[])
 				EnumStringMetricDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<OSCPConsumerEventHandler> handler(new Handler<OSCPConsumerEnumStringMetricStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerEnumStringMetricStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -249,7 +249,7 @@ int main (int argc, char * argv[])
 				LimitAlertConditionDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<OSCPConsumerEventHandler> handler(new Handler<OSCPConsumerLimitAlertConditionStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerLimitAlertConditionStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -258,7 +258,7 @@ int main (int argc, char * argv[])
 				NumericMetricDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<OSCPConsumerEventHandler> handler(new Handler<OSCPConsumerNumericMetricStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerNumericMetricStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -267,7 +267,7 @@ int main (int argc, char * argv[])
 				RealTimeSampleArrayMetricDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<OSCPConsumerEventHandler> handler(new Handler<OSCPConsumerRealTimeSampleArrayMetricStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerRealTimeSampleArrayMetricStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -276,7 +276,7 @@ int main (int argc, char * argv[])
 				StringMetricDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<OSCPConsumerEventHandler> handler(new Handler<OSCPConsumerStringMetricStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerStringMetricStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}

@@ -24,13 +24,13 @@
 #ifndef INCLUDE_OSCLIB_DATA_OSCP_OSCPCONSUMERLIMITALERTCONDITIONSTATEHANDLER_H_
 #define INCLUDE_OSCLIB_DATA_OSCP_OSCPCONSUMERLIMITALERTCONDITIONSTATEHANDLER_H_
 
-#include "OSCLib/Data/OSCP/OSCPConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerLimitAlertConditionStateHandler: public OSCPConsumerEventHandler {
+class OSCPConsumerLimitAlertConditionStateHandler: public SDCConsumerOperationInvokedHandler {
 public:
 	OSCPConsumerLimitAlertConditionStateHandler() {}
 	virtual ~OSCPConsumerLimitAlertConditionStateHandler() {}

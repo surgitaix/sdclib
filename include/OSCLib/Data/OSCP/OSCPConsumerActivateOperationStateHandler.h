@@ -30,7 +30,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerActivateOperationStateHandler: public OSCPConsumerEventHandler {
+class OSCPConsumerActivateOperationStateHandler: public SDCConsumerOperationInvokedHandler {
 public:
 	OSCPConsumerActivateOperationStateHandler() {}
 	virtual ~OSCPConsumerActivateOperationStateHandler() {}
