@@ -18,7 +18,11 @@
  * OSCPConsumerEventHandler.h
  *
  *  @Copyright (C) 2014, SurgiTAIX AG
- *  Author: roehser, besting
+ *  Author: roehser, besting, buerger
+ *
+ *  This handler provides the function onOpertionInvoked, which is called each time an incoming message is called each time some operation, like a state change, is invoked by the provider by an incoming message.
+ *  It is state independed. Use this one if only information about the invoked operation is needed. To recieve a changed state use: OSCPConsumer
+ *
  */
 
 #ifndef OSCPCONSUMEREVENTHANDLER_H_

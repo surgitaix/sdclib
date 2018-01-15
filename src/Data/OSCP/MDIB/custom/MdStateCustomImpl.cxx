@@ -49,31 +49,6 @@ template std::unique_ptr<RealTimeSampleArrayMetricState> MdState::findState<Real
 template std::unique_ptr<StringMetricState> MdState::findState<StringMetricState>(const std::string & handle) const;
 template std::unique_ptr<WorkflowContextState> MdState::findState<WorkflowContextState>(const std::string & handle) const;
 
-
-// TODO: remove after debugging
-//template<class TState>
-//std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
-//	TState outState;
-//	if (findState(handle, outState)) {
-//		if (handle == "handle_cur") {
-//			NumericMetricState  * test(new NumericMetricState("asdf"));
-//
-//			TState * ptr_cast= dynamic_cast<TState *> (test);
-//
-//			auto ptr = std::unique_ptr<TState>(ptr_cast);
-//
-//			return std::move(ptr);
-//		} else {
-//			auto ptr = std::unique_ptr<TState>(new TState(outState));
-//			return std::move(ptr);
-//		}
-//
-//	} else {
-//		return nullptr;
-//	}
-//}
-
-
 template<class TState>
 std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
 	TState outState;
@@ -84,9 +59,6 @@ std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
 		return nullptr;
 	}
 }
-
-
-
 
 bool MdState::findState(const std::string & handle, AlertConditionState & outState) const {
 	LimitAlertConditionState limitAlertState;
@@ -165,15 +137,7 @@ bool MdState::findStateImpl(const std::string & handle, WrapperStateDescriptorTy
 	const CDM::MdState & mdstate(*this->data);
 	for (const auto & state : mdstate.State()) {
 		if (state.DescriptorHandle() == handle) {
-
-			// !! Debugging!!
-			if (handle == "handle_cur") {
-				int breakpoint = 0;
-			}
 			if (const typename WrapperStateDescriptorType::WrappedType * foundState = dynamic_cast<const typename WrapperStateDescriptorType::WrappedType *>(&state)) {
-				WrapperStateDescriptorType outState_precopy(ConvertFromCDM::convert(*foundState));
-//				outState = outState_precopy;
-
 				outState = ConvertFromCDM::convert(*foundState);
 				return true;
 			}

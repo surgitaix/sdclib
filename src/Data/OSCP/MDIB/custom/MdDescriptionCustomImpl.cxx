@@ -571,12 +571,7 @@ bool MdDescription::findMetricDescriptorImpl(const std::string & handle, Wrapper
 						continue;
 					}
 					if (const typename WrapperMetricDescriptorType::WrappedType * foundMetric = dynamic_cast<const typename WrapperMetricDescriptorType::WrappedType *>(&metricDescriptor)) {
-
-						//TODO: debugging remove
-						WrapperMetricDescriptorType outMetric_preCopy(ConvertFromCDM::convert(*foundMetric));
-
-						outMetric = outMetric_preCopy;
-//						outMetric = ConvertFromCDM::convert(*foundMetric);
+						outMetric = ConvertFromCDM::convert(*foundMetric);
 						return true;
 					}
 				}
