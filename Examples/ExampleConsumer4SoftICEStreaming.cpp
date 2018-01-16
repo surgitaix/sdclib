@@ -1,8 +1,34 @@
+/**
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation, either version 3 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  *
+  */
+
+/*
+ * OSCPConsumerEventHandler.cpp
+ *
+ *  @Copyright (C) 2018, SurgiTAIX AG
+ *  Author: buerger
+ *
+ *  This example demonstrates how to set up a simple SDCConsumer. Conceptually it connects to the ExampleProvider of SoftICE (https://bitbucket.org/surgitaix/softice/),
+ *  the Java SDC Library which is defined by it's endpoint reference (EPR).
+ *  Two state handler classes are defined to utilize the eventing mechanism for a numeric metric state.
+ *
+ */
+
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
@@ -28,14 +54,30 @@ const std::string deviceEPR("UDI-1234567890");
 const std::string streamHandle("handle_stream");
 
 
-class StreamConsumerEventHandler : public OSCPConsumerRealTimeSampleArrayMetricStateHandler {
+// Example for a minimum implementation of a consumer state handler
+class NumericConsumerEventHandler : public  SDCConsumerEventHandler<NumericMetricState> {
 public:
-	StreamConsumerEventHandler(const std::string & handle) :
-    	verifiedChunks(false),
-		handle(handle)
+	NumericConsumerEventHandler(const std::string & handle) :  SDCConsumerEventHandler(handle)
+	{
+	}
+
+	// this abstract method implements the eventing mechanism
+	// called from within the framework if a value is changed by the provider
+	void onStateChanged(const NumericMetricState & state) override {
+		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Recieved Value: " << state.getMetricValue().getValue() << std::endl;
+	}
+};
+
+
+class StreamConsumerEventHandler : public SDCConsumerEventHandler<RealTimeSampleArrayMetricState> {
+public:
+	StreamConsumerEventHandler(const std::string & handle) : SDCConsumerEventHandler(handle),
+    	verifiedChunks(false)
     {
     }
 
+	// this abstract method implements the eventing mechanism
+	// called from within the framework if a value is changed by the provider
     void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
     	Poco::Mutex::ScopedLock lock(mutex);
         std::vector<double> values = state.getMetricValue().getSamples();
@@ -52,10 +94,6 @@ public:
         DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << handle << ". Validity: " << verifiedChunks << std::endl;
     }
 
-    std::string getHandle() override {
-        return handle;
-    }
-
     bool getVerifiedChunks() {
     	Poco::Mutex::ScopedLock lock(mutex);
         return verifiedChunks;
@@ -64,26 +102,6 @@ public:
 private:
     Poco::Mutex mutex;
     bool verifiedChunks;
-    const std::string handle;
-};
-
-
-class NumericConsumerEventHandler : public OSCPConsumerNumericMetricStateHandler {
-
-public:
-	NumericConsumerEventHandler(const std::string & handle) : handle(handle) {
-	}
-
-	void onStateChanged(const NumericMetricState & state) override {
-		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Recieved Value: " << state.getMetricValue().getValue() << std::endl;
-	}
-
-	std::string getHandle() override {
-	        return handle;
-	    }
-private:
-	const std::string handle;
-
 };
 
 

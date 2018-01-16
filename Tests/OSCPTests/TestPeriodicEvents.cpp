@@ -1,9 +1,9 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerSystemContextStateChangedHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
+
+#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSystemStateHandler.h"
@@ -69,10 +69,10 @@ const std::string VMD_DESCRIPTOR_HANDLE("vmd_handle");
 // Consumer event handlers
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class ConsumerAlertConditionHandler : public OSCPConsumerAlertConditionStateHandler {
+
+class ConsumerAlertConditionHandler : public SDCConsumerEventHandler<AlertConditionState> {
 public:
-	ConsumerAlertConditionHandler() :
-		handle(ALERT_CONDITION_HANDLE),
+	ConsumerAlertConditionHandler() : SDCConsumerEventHandler(handle),
 		counter(0)
 	{
 	}
@@ -86,21 +86,18 @@ public:
 		}
     }
 
-    std::string getHandle() override {
-        return handle;
-    }
-
 	Poco::Event & getEvent() {
 		return event;
 	}
 
 private:
-    const std::string handle;
     int counter;
     Poco::Event event;
 };
 
-class ConsumerContextEventHandler : public OSCPConsumerSystemContextStateChangedHandler {
+
+// FIXME: right?????
+class ConsumerContextEventHandler : public SDCConsumerMultiStateEventHandler<LocationContextState> {
 public:
 	ConsumerContextEventHandler() :
 		handle(LOCATION_CONTEXT_DESCRIPTOR_HANDLE),
@@ -129,10 +126,9 @@ private:
 
 };
 
-class ConsumerDummyHandler : public OSCPConsumerNumericMetricStateHandler {
+class ConsumerDummyHandler : public SDCConsumerEventHandler<NumericMetricState> {
 public:
-	ConsumerDummyHandler() :
-		handle(METRIC_DUMMY_HANDLE),
+	ConsumerDummyHandler() : SDCConsumerEventHandler(handle),
 		counter(0)
 	{
 	}
@@ -144,10 +140,6 @@ public:
         } else {
         	event.set();
         }
-    }
-
-    std::string getHandle() override {
-        return handle;
     }
 
 	Poco::Event & getEvent() {

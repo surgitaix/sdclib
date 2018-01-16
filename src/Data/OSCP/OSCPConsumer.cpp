@@ -61,6 +61,7 @@
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/MeansContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
@@ -228,14 +229,6 @@ void OSCPConsumer::onConnectionLost() {
     if (connectionLostHandler != nullptr) {
         connectionLostHandler->onConnectionLost();
     }
-}
-
-
-//TODO: context states instead of handles
-void OSCPConsumer::onContextStateChanged(const std::vector<std::string> & handles) {
-	if (contextStateChangedHandler != nullptr) {
-		contextStateChangedHandler->onContextStateChanged(handles);
-	}
 }
 
 void OSCPConsumer::onSubscriptionLost() {
@@ -616,14 +609,22 @@ std::unique_ptr<TStateType> OSCPConsumer::requestState(const std::string & handl
 
 template<typename T> void OSCPConsumer::onStateChanged(const T & state) {
     Poco::Mutex::ScopedLock lock(eventMutex);
-
     std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(state.getDescriptorHandle());
     if (it != eventHandlers.end()) {
-//    	if (typename T::ConsumerHandlerType * handler = dynamic_cast<typename T::ConsumerHandlerType *>(it->second)) {
     	if (SDCConsumerEventHandler<T> * handler = dynamic_cast<SDCConsumerEventHandler<T> *>(it->second)) {
         	handler->onStateChanged(state);
     	}
     }
+}
+
+template<typename T> void OSCPConsumer::onMultiStateChanged(const T & state) {
+    Poco::Mutex::ScopedLock lock(eventMutex);
+	std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(state.getHandle());
+	if (it != eventHandlers.end()) {
+		if (SDCConsumerEventHandler<T> * handler = dynamic_cast<SDCConsumerEventHandler<T> *>(it->second)) {
+			handler->onStateChanged(state);
+		}
+	}
 }
 
 template void OSCPConsumer::onStateChanged(const EnumStringMetricState & state);
@@ -634,6 +635,20 @@ template void OSCPConsumer::onStateChanged(const AlertSystemState & state);
 template void OSCPConsumer::onStateChanged(const AlertSignalState & state);
 template void OSCPConsumer::onStateChanged(const AlertConditionState & state);
 template void OSCPConsumer::onStateChanged(const LimitAlertConditionState & state);
+// context states are multi states
+template void OSCPConsumer::onMultiStateChanged(const WorkflowContextState & state);
+template void OSCPConsumer::onMultiStateChanged(const PatientContextState & state);
+template void OSCPConsumer::onMultiStateChanged(const LocationContextState& state);
+template void OSCPConsumer::onMultiStateChanged(const OperatorContextState & state);
+template void OSCPConsumer::onMultiStateChanged(const MeansContextState & state);
+template void OSCPConsumer::onMultiStateChanged(const EnsembleContextState & state);
+// as well as states referenced by a descriptor
+template void OSCPConsumer::onStateChanged(const WorkflowContextState & state);
+template void OSCPConsumer::onStateChanged(const PatientContextState & state);
+template void OSCPConsumer::onStateChanged(const LocationContextState& state);
+template void OSCPConsumer::onStateChanged(const OperatorContextState & state);
+template void OSCPConsumer::onStateChanged(const MeansContextState & state);
+template void OSCPConsumer::onStateChanged(const EnsembleContextState & state);
 
 void OSCPConsumer::onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
     Poco::Mutex::ScopedLock lock(eventMutex);

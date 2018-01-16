@@ -17,7 +17,7 @@
 /*
  * OSCPConsumerEventHandler.cpp
  *
- *  @Copyright (C) 2014, SurgiTAIX AG
+ *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: buerger
  *
  *  This example demonstrates how to set up a very simple SDCConsumer. It connects to the ExampleProvider defined with it's endpoint reference (EPR).
@@ -30,11 +30,8 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
-#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
-// TODO: delete #include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"

@@ -250,12 +250,17 @@ private:
 
     void handleInvocationState(int transactionId, FutureInvocationState & fis);
 
+    // This method es called each time a state changes. It calls to the state handler identified by the states descriptor handle
     template<typename T>
     void onStateChanged(const T & state);
+    // In contrast to the method above, this method calls to all the state handlers identified by states handles. It also invokes by
+    // the message dispacher to update the state handler identified by its descriptor
+    template<typename T>
+    void onMultiStateChanged(const T & state);
+
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is);
     void onConnectionLost();
     void onSubscriptionLost();
-    void onContextStateChanged(const std::vector<std::string> & handle);
     void updateLastKnownMdibVersion(unsigned long long int newVersion);
 
     //

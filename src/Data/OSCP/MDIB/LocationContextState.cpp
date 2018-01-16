@@ -159,7 +159,6 @@ LocationContextState & LocationContextState::setHandle(const Handle & value) {
 	return *this;
 }
 
-
 Handle LocationContextState::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }

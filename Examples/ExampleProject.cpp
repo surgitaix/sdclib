@@ -3,7 +3,7 @@
 #include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
@@ -263,6 +263,8 @@ private:
     MDSStateHandler mdsState;
 };
 
+
+// The DummyValueProducer produces some some increasing values in a separate thread
 class DummyValueProducer : public Poco::Runnable {
 public:
 	DummyValueProducer(OSCPHoldingDeviceProvider * provider) :
@@ -298,26 +300,30 @@ private:
     float currentWeight;
 };
 
-class ExampleConsumerEventHandler : public OSCPConsumerNumericMetricStateHandler {
+
+
+
+// ExampleConsumerEventHandler extends SDCConsumerEventHandler, which is instanciated for NumericMetricState
+// It's methods onStateChanged and onOperationInvoked are called from within this framework, each time the value is changed by the provider
+// All event handlers have to be registered, please see below.
+class ExampleConsumerEventHandler : public SDCConsumerEventHandler<NumericMetricState> {
 public:
-    ExampleConsumerEventHandler(const std::string & handle) :
-    	currentWeight(0),
-		handle(handle)
+    ExampleConsumerEventHandler(const std::string & handle) : SDCConsumerEventHandler(handle),
+    	currentWeight(0)
 	{
     }
 
+    // this method is called when a value changed in the provider
     void onStateChanged(const NumericMetricState & state) override {
         double val = state.getMetricValue().getValue();
         DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
         currentWeight = (float)val;
     }
 
+    // this method is called each time an operation (e.g. a set operation) is called by the provider
+    // use to customize the handling of your code, e.g. log/ prompt a message, do validity checks, ect.
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
         DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
-    }
-
-    std::string getHandle() override {
-        return handle;
     }
 
     float getCurrentWeight() {
@@ -326,7 +332,6 @@ public:
 
 private:
     float currentWeight;
-    const std::string handle;
 };
 
 

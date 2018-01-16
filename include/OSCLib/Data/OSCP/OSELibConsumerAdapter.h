@@ -16,6 +16,8 @@
 #include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
 #include "OSELib/DPWS/Types.h"
 
+#include "OSELib/Helper/WithLogger.h"
+
 // todo: maybe just fwd..
 #include "OSELib/DPWS/MDPWSStreamingAdapter.h"
 
@@ -28,7 +30,8 @@ namespace Data {
 namespace OSCP {
 
 class OSELibConsumerAdapter :
-		public OSELib::DPWS::StreamNotificationDispatcher
+		public OSELib::DPWS::StreamNotificationDispatcher,
+		public OSELib::WithLogger
 {
 public:
 	OSELibConsumerAdapter(OSCPConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription);

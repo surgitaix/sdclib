@@ -40,12 +40,7 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
-#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerEnumStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerAlertSignalStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerSystemContextStateChangedHandler.h"
+
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.h"
@@ -159,11 +154,11 @@ const std::string ALERT_SIGNAL_LATCHING_HANDLE("handle_alert_signal_latching");
 // Consumer event handlers
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class ExampleConsumerNumericHandler : public OSCPConsumerNumericMetricStateHandler {
+
+class ExampleConsumerNumericHandler : public SDCConsumerEventHandler<NumericMetricState> {
 public:
-	ExampleConsumerNumericHandler(const std::string & handle) :
-    	weight(0),
-		handle(handle)
+	ExampleConsumerNumericHandler(const std::string & handle) : SDCConsumerEventHandler(handle),
+    	weight(0)
 	{
 	}
 
@@ -183,10 +178,6 @@ public:
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
-    std::string getHandle() override {
-        return handle;
-    }
-
     float getWeight() {
     	Poco::Mutex::ScopedLock lock(mutex);
     	float result(weight);
@@ -200,14 +191,12 @@ public:
 private:
     Poco::Mutex mutex;
     float weight;
-    const std::string handle;
     Poco::Event eventEMR;
 };
 
-class ExampleConsumerEnumStringMetricHandler : public OSCPConsumerEnumStringMetricStateHandler {
+class ExampleConsumerEnumStringMetricHandler : public SDCConsumerEventHandler<EnumStringMetricState> {
 public:
-	ExampleConsumerEnumStringMetricHandler(const std::string & handle) :
-		handle(handle)
+	ExampleConsumerEnumStringMetricHandler(const std::string & handle) : SDCConsumerEventHandler(handle)
 	{
 	}
 
@@ -225,23 +214,17 @@ public:
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
-    std::string getHandle() override {
-        return handle;
-    }
-
 	Poco::Event & getEventEMR() {
 		return eventEMR;
 	}
 
 private:
-    const std::string handle;
     Poco::Event eventEMR;
 };
 
-class ExampleConsumerStringMetricHandler : public OSCPConsumerStringMetricStateHandler {
+class ExampleConsumerStringMetricHandler : public SDCConsumerEventHandler<StringMetricState> {
 public:
-	ExampleConsumerStringMetricHandler(const std::string & handle) :
-		handle(handle)
+	ExampleConsumerStringMetricHandler(const std::string & handle) : SDCConsumerEventHandler(handle)
 	{
 	}
 
@@ -259,10 +242,6 @@ public:
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
-    std::string getHandle() override {
-        return handle;
-    }
-
 	Poco::Event & getEventEMR() {
 		return eventEMR;
 	}
@@ -272,10 +251,9 @@ private:
     Poco::Event eventEMR;
 };
 
-class ExampleConsumerAlertSignalHandler : public OSCPConsumerAlertSignalStateHandler {
+class ExampleConsumerAlertSignalHandler : public SDCConsumerEventHandler<AlertSignalState> {
 public:
-	ExampleConsumerAlertSignalHandler(const std::string & handle) :
-		handle(handle)
+	ExampleConsumerAlertSignalHandler(const std::string & handle) : SDCConsumerEventHandler(handle)
 	{
 	}
 
@@ -323,19 +301,17 @@ private:
     Poco::Event eventEARLatch;
 };
 
-class ContextEventHandler : public OSCPConsumerSystemContextStateChangedHandler {
+// context state handlers
+
+class ExampleLocationContextEventHandler : public SDCConsumerEventHandler<LocationContextState> {
 public:
 
-	ContextEventHandler(const std::vector<std::string> & handles) : _handles(handles) {
+	ExampleLocationContextEventHandler(std::string handle) : SDCConsumerEventHandler(handle) {
 	}
 
-	virtual void onContextStateChanged(const std::vector<std::string> & handles) override {
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received context values changed!" << std::endl;
-        if (handles.size() > 0) {
-        	if (std::find(_handles.begin(), _handles.end(), handles.front()) != _handles.end()) {
-        		eventEMR.set();
-        	}
-        }
+	virtual void onStateChanged(const LocationContextState & state) override {
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received location context values changed for handle" << state.getHandle() << std::endl;
+  		eventEMR.set();
 	}
 
 	Poco::Event & getEventEMR() {
@@ -344,7 +320,26 @@ public:
 
 private:
 	Poco::Event eventEMR;
-	const std::vector<std::string> _handles;
+};
+
+
+class ExamplePatientContextEventHandler : public SDCConsumerEventHandler<PatientContextState> {
+public:
+
+	ExamplePatientContextEventHandler(std::string handle) : SDCConsumerEventHandler(handle) {
+	}
+
+	virtual void onStateChanged(const PatientContextState & state) override {
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received patient context values changed for handle" << state.getHandle() << std::endl;
+  		eventEMR.set();
+	}
+
+	Poco::Event & getEventEMR() {
+		return eventEMR;
+	}
+
+private:
+	Poco::Event eventEMR;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1091,7 +1086,8 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         Tests::SimpleOSCP::ExampleConsumerEnumStringMetricHandler eces4(Tests::SimpleOSCP::ENUM_METRIC_HANDLE);
         Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler alertSignalsink(Tests::SimpleOSCP::ALERT_SIGNAL_HANDLE);
         Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler latchingAlertSignalsink(Tests::SimpleOSCP::ALERT_SIGNAL_LATCHING_HANDLE);
-        Tests::SimpleOSCP::ContextEventHandler ceh({"location_context_state", "patient_context_state"});
+        Tests::SimpleOSCP::ExampleLocationContextEventHandler locationEventHandler("location_context_state");
+        Tests::SimpleOSCP::ExamplePatientContextEventHandler  patientEventHandler("patient_context_state");
 
 
         // Discovery test
@@ -1143,7 +1139,8 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             CHECK_EQUAL(true, consumer.registerStateEventHandler(&alertSignalsink));
             CHECK_EQUAL(true, consumer.registerStateEventHandler(&latchingAlertSignalsink));
             // Register for context changed events
-            consumer.setContextStateChangedHandler(&ceh);
+            CHECK_EQUAL(true, consumer.registerStateEventHandler(&locationEventHandler));
+            CHECK_EQUAL(true, consumer.registerStateEventHandler(&patientEventHandler));
 
             Poco::Thread::sleep(2000);
 
@@ -1242,9 +1239,9 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
                 lcs.setContextAssociation(ContextAssociation::Assoc);
                 lcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
                 FutureInvocationState fis;
-                ceh.getEventEMR().reset();
+                locationEventHandler.getEventEMR().reset();
                 CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(lcs, fis));
-				CHECK_EQUAL(true, ceh.getEventEMR().tryWait(3000));
+				CHECK_EQUAL(true, locationEventHandler.getEventEMR().tryWait(3000));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "Location context test done...";
             }
@@ -1260,10 +1257,10 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
 						// FIXME: DateOfBirth does not work yet -> schema validation fail because union is not rightly implemented
 						//.setDateOfBirth("08.05.1945"));
 				FutureInvocationState fis;
-				ceh.getEventEMR().reset();
+				patientEventHandler.getEventEMR().reset();
 				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(pcs, fis));
 
-				CHECK_EQUAL(true, ceh.getEventEMR().tryWait(3000));
+				CHECK_EQUAL(true, patientEventHandler.getEventEMR().tryWait(3000));
 
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
 				DebugOut(DebugOut::Default, "SimpleOSCP") << "Patient context test done...";

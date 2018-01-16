@@ -56,7 +56,7 @@ public:
     */
     virtual std::string getHandle();
 
-private:
+protected:
     const std::string handle;
 
 };
