@@ -195,6 +195,7 @@ public:
     */
     void setConnectionLostHandler(OSCPConsumerConnectionLostHandler * handler);
 
+    // todo:kick?
     /**
     * @brief Set a handler which will be invoked if a context state change event arrives.
     *

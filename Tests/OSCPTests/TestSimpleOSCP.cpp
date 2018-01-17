@@ -278,10 +278,6 @@ public:
         DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
-    std::string getHandle() override {
-        return handle;
-    }
-
 	Poco::Event & getEventEAROff() {
 		return eventEAROff;
 	}
@@ -295,7 +291,6 @@ public:
 	}
 
 private:
-    const std::string handle;
     Poco::Event eventEAROff;
     Poco::Event eventEAROn;
     Poco::Event eventEARLatch;
@@ -1079,7 +1074,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         OSELib::OSCP::ServiceManager oscpsm;
         std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleOSCP::DEVICE_ENDPOINT_REFERENCE));
 
-
+        // create state handlers
         Tests::SimpleOSCP::ExampleConsumerNumericHandler eces1(Tests::SimpleOSCP::NUMERIC_METRIC_CURRENT_HANDLE);
         Tests::SimpleOSCP::ExampleConsumerNumericHandler eces2(Tests::SimpleOSCP::NUMERIC_METRIC_MAX_HANDLE);
         Tests::SimpleOSCP::ExampleConsumerStringMetricHandler eces3(Tests::SimpleOSCP::STRING_METRIC_HANDLE);
