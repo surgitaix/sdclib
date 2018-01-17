@@ -21,9 +21,7 @@
 // todo: maybe just fwd..
 #include "OSELib/DPWS/MDPWSStreamingAdapter.h"
 
-// fixme: kick
-#include "OSCLib/Util/DebugOut.h"
-using namespace OSCLib::Util;
+
 
 namespace OSCLib {
 namespace Data {

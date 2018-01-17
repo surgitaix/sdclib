@@ -52,6 +52,7 @@
 #include "OSCLib/Data/OSCP/MDIB/ClockState.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
@@ -627,10 +628,13 @@ template<typename T> void OSCPConsumer::onMultiStateChanged(const T & state) {
 	}
 }
 
+// metrices
 template void OSCPConsumer::onStateChanged(const EnumStringMetricState & state);
 template void OSCPConsumer::onStateChanged(const NumericMetricState & state);
 template void OSCPConsumer::onStateChanged(const StringMetricState & state);
 template void OSCPConsumer::onStateChanged(const RealTimeSampleArrayMetricState & state);
+template void OSCPConsumer::onStateChanged(const DistributionSampleArrayMetricState & state);
+// alerts
 template void OSCPConsumer::onStateChanged(const AlertSystemState & state);
 template void OSCPConsumer::onStateChanged(const AlertSignalState & state);
 template void OSCPConsumer::onStateChanged(const AlertConditionState & state);

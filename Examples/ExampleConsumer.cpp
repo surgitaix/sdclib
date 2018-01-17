@@ -43,6 +43,7 @@
 #include "OSELib/OSCP/ServiceManager.h"
 
 using namespace OSCLib;
+using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
 const std::string deviceEPR("UDI-EXAMPLEPROVIDER");

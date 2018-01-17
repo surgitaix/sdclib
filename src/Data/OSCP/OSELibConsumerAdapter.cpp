@@ -24,9 +24,11 @@
 #include "OSCLib/OSCLibrary.h"
 
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
+
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
+#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
@@ -271,9 +273,12 @@ private:
 		}
 		if (const auto state = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&metricState)) {
 			_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
-			return; //todo: !!!!!!!!!!s distribution state type
+			return;
 		}
-
+		if (const auto state = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(&metricState)) {
+			_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
+			return;
+		}
 
 		log_error([&] { return "Unknown metric state type, event will not be forwarded to handler!"; });
 	}
@@ -307,7 +312,7 @@ void OSELibConsumerAdapter::start() {
 	}
 
 	Poco::Net::ServerSocket ss;
-	// todo: IPv6 implementation
+	// todo: IPv6 implementation here!
 	const Poco::Net::IPAddress address(Poco::Net::IPAddress::Family::IPv4);
 	const Poco::Net::SocketAddress socketAddress(address, _port);
 	ss.bind(socketAddress);
