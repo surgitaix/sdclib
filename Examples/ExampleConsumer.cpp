@@ -15,7 +15,7 @@
   */
 
 /*
- * OSCPConsumerEventHandler.cpp
+ * ExampleConsumer.cpp
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: buerger

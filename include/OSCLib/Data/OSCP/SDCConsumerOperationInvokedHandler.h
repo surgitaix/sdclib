@@ -54,7 +54,7 @@ public:
     *
     * @return The handle
     */
-    virtual std::string getHandle();
+    std::string getHandle();
 
 protected:
     const std::string handle;

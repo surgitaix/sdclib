@@ -1,8 +1,31 @@
+/**
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation, either version 3 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  *
+  */
 
+/*
+ * OSCPConsumerEventHandler.cpp
+ *
+ *  @Copyright (C) 2018, SurgiTAIX AG
+ *  Author: buerger
+ *
+ *  This unit test checks the eventing mechanism for the udp based stream metrices: RealTimeSampleArrayMetric (time values) and DistributionSampleArrayMetric (other values)
+ *
+ */
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
@@ -17,6 +40,8 @@
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 
 #include "OSCLib/Data/OSCP/MDIB/MetaData.h"
@@ -43,11 +68,12 @@ namespace StreamOSCP {
 
 const std::string deviceEPR("UDI_STREAMINGTEST");
 
-class StreamConsumerEventHandler : public OSCPConsumerRealTimeSampleArrayMetricStateHandler {
+
+class StreamConsumerEventHandler : public SDCConsumerEventHandler<RealTimeSampleArrayMetricState> {
 public:
 	StreamConsumerEventHandler(const std::string & handle) :
-    	verifiedChunks(false),
-		handle(handle)
+		SDCConsumerEventHandler(handle),
+    	verifiedChunks(false)
     {
     }
 
@@ -63,8 +89,35 @@ public:
         }
     }
 
-    std::string getHandle() override {
-        return handle;
+    bool getVerifiedChunks() {
+    	Poco::Mutex::ScopedLock lock(mutex);
+        return verifiedChunks;
+    }
+
+private:
+    Poco::Mutex mutex;
+    bool verifiedChunks;
+};
+
+
+class StreamDistributionConsumerEventHandler : public SDCConsumerEventHandler<DistributionSampleArrayMetricState> {
+public:
+	StreamDistributionConsumerEventHandler(const std::string & handle) :
+		SDCConsumerEventHandler(handle),
+    	verifiedChunks(false)
+    {
+    }
+
+    void onStateChanged(const DistributionSampleArrayMetricState & state) override {
+    	Poco::Mutex::ScopedLock lock(mutex);
+        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk of a distibution! Handle: " << handle << std::endl;
+        std::vector<double> values = state.getMetricValue().getSamples();
+        verifiedChunks = true;
+
+        for (size_t i = 0; i < values.size(); i++) {
+            if (values[i] != double(i))
+                verifiedChunks = false;
+        }
     }
 
     bool getVerifiedChunks() {
@@ -75,8 +128,13 @@ public:
 private:
     Poco::Mutex mutex;
     bool verifiedChunks;
-    const std::string handle;
 };
+
+
+
+// TODO: implement DistributionEventHandler
+//
+
 
 class StreamProviderStateHandler : public OSCPProviderRealTimeSampleArrayMetricStateHandler {
 public:
@@ -111,7 +169,12 @@ private:
 class OSCPStreamHoldingDeviceProvider : public Util::Task {
 public:
 
-    OSCPStreamHoldingDeviceProvider() : oscpProvider(), streamHandler("handle_plethysmogram_stream"), streamHandlerAlt("handle_plethysmogram_stream_alt") {
+    OSCPStreamHoldingDeviceProvider() :
+    	oscpProvider(),
+    	streamEventHandler("handle_plethysmogram_stream"),
+    	streamEventHandlerAlt("handle_plethysmogram_stream_alt"),
+    	distributionEventHandler("handle_distribution_stream")
+	{
 
 		oscpProvider.setEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR);
 
@@ -119,20 +182,35 @@ public:
 		// Currentweight stream metric (read-only)
 		// Metric references the handler
 		RealTimeSampleArrayMetricDescriptor currentMetric("handle_plethysmogram_stream",
-				CodedValue(CodeIdentifier("MDCX_PLETHYSMOGRAM")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
+				CodedValue(CodeIdentifier("MDCX_VOLTAGE")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
 				MetricCategory::Msrmt,
 				MetricAvailability::Cont,
 				1,
 				xml_schema::Duration(0,0,0,0,0,0,1));
 
-		// alternative current matrix
+
+	    // alternative current matrix
 		// Metric references the handler
-	    RealTimeSampleArrayMetricDescriptor currentMetricAlt("handle_plethysmogram_stream_alt",
-	    		CodedValue(CodeIdentifier("MDCX_PLETHYSMOGRAM_ALT")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
-	    		MetricCategory::Msrmt,
-	    		MetricAvailability::Cont,
-	    		1,
-	    		xml_schema::Duration(0,0,0,0,0,0,1));
+		RealTimeSampleArrayMetricDescriptor currentMetricAlt("handle_plethysmogram_stream_alt",
+				CodedValue(CodeIdentifier("MDCS_VOLTAGE")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
+				MetricCategory::Msrmt,
+				MetricAvailability::Cont,
+				1,
+				xml_schema::Duration(0,0,0,0,0,0,1));
+
+
+		// set up a distibution metric
+		// Declares a sample array that represents linear value distributions in the form of arrays containing scaled sample values.
+		// In contrast to real-time sample arrays, distribution sample arrays provide observed spatial values, not time points.
+		// An example for a distribution sample array metric might be a fourier-transformed electroencephalogram to derive frequency distribution.
+		DistributionSampleArrayMetricDescriptor distributionMetric("handle_FFT_stream",
+				CodedValue(CodeIdentifier("MDCX_FFT_VOLTAGE_SQUARED")),
+				MetricCategory::Msrmt,
+				MetricAvailability::Cont,
+				CodedValue(CodeIdentifier("MDCX_FREQUENCY")),
+				Range().setUpper(3.1415).setLower(-3.1415),
+				1);
+
 
         // alternative current matrix: non-mandatory information
         currentMetricAlt.addTechnicalRange(Range().setLower(0).setUpper(2));
@@ -143,6 +221,7 @@ public:
         holdingDeviceParameters
 			.addMetric(currentMetric)
             .addMetric(currentMetricAlt)
+            .addMetric(distributionMetric)
 			.setSafetyClassification(SafetyClassification::Inf);
 
         // VMD
@@ -168,8 +247,8 @@ public:
 		oscpProvider.setMdDescription(mdDescription);
 
         // Add handler
-        oscpProvider.addMdSateHandler(&streamHandler);
-        oscpProvider.addMdSateHandler(&streamHandlerAlt);
+        oscpProvider.addMdSateHandler(&streamEventHandler);
+        oscpProvider.addMdSateHandler(&streamEventHandlerAlt);
     }
 
     void startup() {
@@ -181,16 +260,19 @@ public:
     }
 
     void updateStateValue(const SampleArrayValue & rtsav) {
-        streamHandler.updateStateValue(rtsav); // updates handles and the parent provider
-        streamHandlerAlt.updateStateValue(rtsav);
+        streamEventHandler.updateStateValue(rtsav); // updates handles and the parent provider
+        streamEventHandlerAlt.updateStateValue(rtsav);
+
     }
 
 private:
 
     OSCPProvider oscpProvider;
 
-    StreamProviderStateHandler streamHandler;
-    StreamProviderStateHandler streamHandlerAlt;
+    StreamProviderStateHandler streamEventHandler;
+    StreamProviderStateHandler streamEventHandlerAlt;
+    StreamDistributionConsumerEventHandler distributionEventHandler;
+
 
 public:
     
