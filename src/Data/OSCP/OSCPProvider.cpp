@@ -167,6 +167,9 @@ private:
     Poco::NotificationQueue & queue;
 };
 
+//template SDCProviderStateHandler<NumericMetricState>;
+
+
 template<class StateType>
 bool OSCPProvider::isMetricChangeAllowed(const StateType & state, OSCPProvider & provider) {
 	typename StateType::DescriptorType descriptor;

@@ -198,6 +198,8 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/OSCPConsumer.cpp
 ./src/Data/OSCP/SDCConsumerOperationInvokedHandler.cpp
 ./src/Data/OSCP/OSCPProvider.cpp
+# todo: kick provider state handlers
+./src/Data/OSCP/SDCProviderStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderActivateOperationHandler.cpp
 ./src/Data/OSCP/OSCPProviderAlertConditionStateHandler.cpp
 ./src/Data/OSCP/OSCPProviderAlertSignalStateHandler.cpp
@@ -484,7 +486,6 @@ list(APPEND OSCLibSOURCES
 ./datamodel/ws-policy.cxx
 ./datamodel/ws-streaming.cxx
 ./datamodel/wsdl-soap-binding.cxx
-
 )
 
 
@@ -498,9 +499,9 @@ Tests/UnitTests.cpp
 #Tests/OSCPTests/TestConnectionLost.cpp
 #Tests/OSCPTests/TestDICOM.cpp
 #Tests/OSCPTests/TestMultiOSCP.cpp
-Tests/OSCPTests/TestSimpleOSCP.cpp
+#Tests/OSCPTests/TestSimpleOSCP.cpp
 #Tests/OSCPTests/TestPeriodicEvents.cpp
-Tests/OSCPTests/TestStreamOSCP.cpp
+#Tests/OSCPTests/TestStreamOSCP.cpp
 Tests/UnitTest++/src/Test.cpp
 Tests/UnitTest++/src/TestList.cpp
 Tests/UnitTest++/src/TestRunner.cpp
@@ -538,9 +539,9 @@ add_executable(ExampleConsumer4SoftICEStreaming
 Examples/ExampleConsumer4SoftICEStreaming.cpp
 )
 
-add_executable(ExampleCachedProvider
-Examples/ExampleCachedProvider.cpp
-)
+#add_executable(ExampleCachedProvider
+#Examples/ExampleCachedProvider.cpp
+#)
 
 #add_executable(SimpleServiceDiscovery
 #Examples/SimpleServiceDiscovery.cpp
@@ -578,7 +579,7 @@ target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL
 target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleCachedProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ExampleCachedProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})

@@ -10,6 +10,12 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
+
+#include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsState.h"
+
+
 #include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
@@ -62,6 +68,21 @@ const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
 const std::string HANDLE_STRING_METRIC("handle_string");
+
+
+
+// todo: kick -> unused example
+class MdsComponentStateHandler : public SDCProviderComponentStateHandler<MdsState> {
+public:
+	MdsComponentStateHandler(std::string handle) : SDCProviderComponentStateHandler(handle) {};
+
+	MdsState getInitialState() {
+		return MdsState(descriptorHandle);
+	}
+};
+
+
+
 
 
 class NumericProviderStateHandlerGet : public OSCPProviderNumericMetricStateHandler {
@@ -310,15 +331,17 @@ private:
 
     OSCPProvider oscpProvider;
 
+    StreamProviderStateHandler streamProviderStateHandler;
+    StringProviderStateHandler stringProviderStateHandler;
+    NumericProviderStateHandlerGet numericProviderStateHandlerGet;
+    NumericProviderStateHandlerSet numericProviderStateHandlerSet;
+
+
     RealTimeSampleArrayMetricDescriptor streamMetricDescriptor;
     NumericMetricDescriptor setMetricDescriptor;
     NumericMetricDescriptor getMetricDescriptor;
     StringMetricDescriptor  stringMetricDescriptor;
 
-    StreamProviderStateHandler streamProviderStateHandler;
-    NumericProviderStateHandlerGet numericProviderStateHandlerGet;
-    NumericProviderStateHandlerSet numericProviderStateHandlerSet;
-    StringProviderStateHandler stringProviderStateHandler;
 
 public:
 

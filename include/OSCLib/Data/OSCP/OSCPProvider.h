@@ -55,7 +55,10 @@ namespace OSCP {
 class OSCPProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
 
+    // todo: kick after provider state handler refactoring
     friend class OSCPProviderMdStateHandler;
+
+    friend class SDCProviderStateHandler;
 
     // todo replace by friend class OSELibProviderAdapter
     friend struct OSELib::ContextReportServiceImpl;

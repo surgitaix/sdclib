@@ -59,7 +59,7 @@ public:
     void updateState(const OSCLib::Data::OSCP::LimitAlertConditionState & object);
 
 private:
-    template<class T> void notifyMDIBObjectChangedImpl(const T & object);
+    //template<class T> void notifyMDIBObjectChangedImpl(const T & object); // todo: kick if unit tests are running. doubles with base class
 };
 
 } /* namespace OSCP */

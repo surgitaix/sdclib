@@ -77,13 +77,13 @@ void OSCPProviderActivateOperationHandler::updateState(const OSCLib::Data::OSCP:
 	notifyMDIBObjectChangedImpl(object);
 }
 
-template<class T> void OSCPProviderActivateOperationHandler::notifyMDIBObjectChangedImpl(const T & object) {
-    if (parentProvider == nullptr) {
-    	log_error([] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
-    } else {
-        parentProvider->updateState(object);
-    }
-}
+//template<class T> void OSCPProviderActivateOperationHandler::notifyMDIBObjectChangedImpl(const T & object) {
+//    if (parentProvider == nullptr) {
+//    	log_error([] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
+//    } else {
+//        parentProvider->updateState(object);
+//    }
+//}
 
 } /* namespace OSCP */
 } /* namespace Data */

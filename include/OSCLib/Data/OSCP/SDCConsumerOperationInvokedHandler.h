@@ -59,6 +59,11 @@ public:
 protected:
     const std::string handle;
 
+private:
+    // prohibit copying! each state and each state handler is unique
+    SDCConsumerOperationInvokedHandler(const SDCConsumerOperationInvokedHandler &);
+
+
 };
 
 } /* namespace OSCP */

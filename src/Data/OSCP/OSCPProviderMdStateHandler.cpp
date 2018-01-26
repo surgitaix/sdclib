@@ -80,6 +80,7 @@ template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const Stri
 template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const WorkflowContextState & object);
 template void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const DistributionSampleArrayMetricState & object);
 
+// todo: kick if unit tests are running. doubles with base class
 template<class T> void OSCPProviderMdStateHandler::notifyMDIBObjectChangedImpl(const T & object) {
     if (parentProvider == nullptr) {
     	log_error([&] { return "Handler is used without calling OSCPProvider::addMdStateHandler!"; });
