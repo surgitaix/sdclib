@@ -1069,6 +1069,9 @@ void OSCPProvider::addMdSateHandler(OSCPProviderMdStateHandler * handler) {
     	}
     	log_error([&] { return "Could not add handler because no ActivateOperationDescriptor with matching handle was found."; });
     }
+
+    // TODO: Move streaming service to service controller
+    // add DistributionArray...
     else if (auto streamHandler = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler)) {
     	int port = OSCLibrary::getInstance().extractFreePort();
 //    	_adapter->addStreamingPort(4444);

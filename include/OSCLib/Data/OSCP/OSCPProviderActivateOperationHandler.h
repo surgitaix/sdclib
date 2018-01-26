@@ -43,7 +43,7 @@ public:
     *
     * @return invocation state
     */
-    virtual InvocationState onActivateRequest(const MdibContainer & mdib, const OperationInvocationContext & oic);
+    virtual InvocationState onActivateRequest(const MdibContainer & mdib, const OperationInvocationContext & oic) = 0;
 
     /**
     * @brief Notify all registered consumers about a changed MDIB object.

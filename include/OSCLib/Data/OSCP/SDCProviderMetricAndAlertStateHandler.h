@@ -24,7 +24,7 @@ public:
 	* @return The initial state
 	*/
 	SDCProviderMetricAndAlertStateHandler(std::string descriptorHandle) : SDCProviderStateHandler(descriptorHandle) {};
-	virtual ~SDCProviderMetricAndAlertStateHandler();
+	virtual ~SDCProviderMetricAndAlertStateHandler(){};
 
 
 	/**
@@ -38,7 +38,7 @@ public:
 	*
 	* @return The initial state
 	*/
-	virtual onStateChangeRequest(const TState & state, const OperationInvocationContext & oic) = 0;
+	virtual InvocationState onStateChangeRequest(const TState & state, const OperationInvocationContext & oic) = 0;
 
     /**
     * @brief the initial state has to be defined. It is needed to be called from within the framework.

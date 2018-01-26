@@ -13,6 +13,7 @@
 
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 
 
@@ -81,14 +82,10 @@ public:
 	}
 };
 
-
-
-
-
-class NumericProviderStateHandlerGet : public OSCPProviderNumericMetricStateHandler {
+class NumericProviderStateHandlerGet : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
 public:
 
-	NumericProviderStateHandlerGet(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+	NumericProviderStateHandlerGet(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
 	}
 
 
@@ -101,6 +98,12 @@ public:
 		return result;
 	}
 
+	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
+	InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+		return InvocationState::Fail;
+	}
+
+
 	NumericMetricState getInitialState() override {
 		NumericMetricState nms = createState(42.0);
 		return nms;
@@ -110,10 +113,38 @@ public:
 		NumericMetricState nms = createState(value);
 		updateState(nms);
 	}
-
-private:
-	std::string descriptorHandle;
 };
+
+
+//class NumericProviderStateHandlerGet : public OSCPProviderNumericMetricStateHandler {
+//public:
+//
+//	NumericProviderStateHandlerGet(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+//	}
+//
+//
+//	// Helper method
+//	NumericMetricState createState(double value) {
+//		NumericMetricState result(HANDLE_GET_METRIC);
+//		result
+//			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+//			.setActivationState(ComponentActivation::On);
+//		return result;
+//	}
+//
+//	NumericMetricState getInitialState() override {
+//		NumericMetricState nms = createState(42.0);
+//		return nms;
+//	}
+//
+//	void setNumericValue(double value) {
+//		NumericMetricState nms = createState(value);
+//		updateState(nms);
+//	}
+//
+//private:
+//	std::string descriptorHandle;
+//};
 
 
 
@@ -308,10 +339,7 @@ public:
 		oscpProvider.setMdDescription(mdDescription);
 
         // Add handler
-		oscpProvider.addMdSateHandler(&streamProviderStateHandler);
-		oscpProvider.addMdSateHandler(&numericProviderStateHandlerGet);
-		oscpProvider.addMdSateHandler(&numericProviderStateHandlerSet);
-		oscpProvider.addMdSateHandler(&stringProviderStateHandler);
+		//oscpProvider.addMdSateHandler(&numericProviderStateHandlerGet);
 
     }
 
@@ -364,7 +392,7 @@ public:
 			DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
 			// NumericMetricState
-			numericProviderStateHandlerGet.setNumericValue(42.0);
+			//numericProviderStateHandlerGet.setNumericValue(42.0);
 //			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to 42.0" << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
