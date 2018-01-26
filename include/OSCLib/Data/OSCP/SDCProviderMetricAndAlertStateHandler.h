@@ -1,8 +1,13 @@
 /*
- * OSCPProviderNumericMetricStateHandler.h
+ * SDCProviderMetricAndAlertStateHandler.h
  *
- *  Created on: 05.05.2015
- *      Author: roehser
+ *  Created on: 24.01.2018
+ *      Author: buerger
+ *
+ *      Use this state handler for all metrices and alerts. References regarding descriptor.
+ *		Use the inhereted update state method for internally updating the mdib's state.
+ *		Use onStateChangeRequest to define the behavior when a consumer requests the change of a state.
+ *
  */
 
 #ifndef SDCPROVIDERMETRICANDALERTSTATEHANDLER_H_
