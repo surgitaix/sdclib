@@ -15,8 +15,7 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
@@ -49,18 +48,18 @@ using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
 
-const std::string DEVICE_EPR("UDI-1234567890");
+const std::string DEVICE_EPR("UDI-EXAMPLEPROVIDER");
 
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
 
 
-class GetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
+class GetNumericMetricStateHandler : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
 public:
 
 	// The state handler take a string named as the descriptor for referencing
-	GetNumericMetricStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+	GetNumericMetricStateHandler(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
 	}
 
 
@@ -83,16 +82,18 @@ public:
 		updateState(nms);
 	}
 
-private:
-	std::string descriptorHandle;
+    // do nothing when a consumer ask to change the value -> return Fail
+    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+    	return InvocationState::Fail;
+    }
 };
 
 
 
-class SetNumericMetricStateHandler : public OSCPProviderNumericMetricStateHandler {
+class SetNumericMetricStateHandler : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
 public:
 	// The state handler take a string named as the descriptor for referencing
-    SetNumericMetricStateHandler(const std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+    SetNumericMetricStateHandler(const std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
@@ -132,17 +133,14 @@ public:
         }
 
     }
-
-private:
-    const std::string descriptorHandle;
 };
 
 
-
-class StreamProviderStateHandler : public OSCPProviderRealTimeSampleArrayMetricStateHandler {
+// implements a measurement state of several measured values
+class StreamProviderStateHandler : public SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> {
 public:
 	// The state handler take a string named as the descriptor for referencing
-    StreamProviderStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+    StreamProviderStateHandler(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
     }
 
     // Helper method
@@ -165,9 +163,10 @@ public:
         updateState(realTimeSampleArrayState);
     }
 
-
-private:
-    std::string descriptorHandle;
+    // do nothing when a consumer ask to change the value -> return Fail
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    	return InvocationState::Fail;
+    }
 };
 
 class OSCPStreamProvider : public Util::Task {
