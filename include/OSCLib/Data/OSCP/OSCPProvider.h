@@ -181,14 +181,14 @@ public:
     *
     * @param handler The handler
     */
-    void addMdSateHandler(OSCPProviderMdStateHandler * handler);
+    void addMdSateHandler(SDCProviderStateHandler * handler);
 
     /**
     * @brief Remove a request handler which provides states and processes incoming change requests from a consumer.
     *
     * @param handler The handler
     */
-    void removeMDStateHandler(OSCPProviderMdStateHandler * handler);
+    void removeMDStateHandler(SDCProviderStateHandler * handler);
 
     /**
      * @brief Set the endpoint reference.
@@ -345,7 +345,7 @@ private:
 
     std::atomic_ullong mdibVersion;
 
-    std::map<std::string, OSCPProviderMdStateHandler *> stateHandlers;
+    std::map<std::string, SDCProviderStateHandler *> stateHandlers;
 
 	std::shared_ptr<MdDescription> m_mdDescription;
     std::unique_ptr<OSELibProviderAdapter> _adapter;

@@ -40,7 +40,6 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
-
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.h"
@@ -53,6 +52,7 @@
 #include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderChannelStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderVmdStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"

@@ -52,10 +52,6 @@ NumericMetricState::NumericMetricState(
 		descriptorhandle
 )) {}
 
-
-// TODO: debugging -> remove
-//NumericMetricState::NumericMetricState() : data(CDM::NumericMetricState("empty test string")){}
-
 NumericMetricState::operator CDM::NumericMetricState() const {
 	return *data;
 }

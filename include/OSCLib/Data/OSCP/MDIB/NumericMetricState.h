@@ -55,7 +55,7 @@ public:
 		HandleRef descriptorhandle
 	); 
 private:
-	NumericMetricState() {};
+	NumericMetricState(){};
 public:
 	NumericMetricState(const NumericMetricState & object);
 	virtual ~NumericMetricState();
@@ -66,7 +66,6 @@ public:
     typedef CDM::NumericMetricState WrappedType;
     typedef NumericMetricDescriptor DescriptorType;
     typedef OSCPProviderNumericMetricStateHandler ProviderHandlerType;
-    typedef OSCPConsumerNumericMetricStateHandler ConsumerHandlerType;
 
 	NumericMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

@@ -66,7 +66,6 @@ public:
     typedef CDM::StringMetricState WrappedType;
     typedef StringMetricDescriptor DescriptorType;
     typedef OSCPProviderStringMetricStateHandler ProviderHandlerType;
-    typedef OSCPConsumerStringMetricStateHandler ConsumerHandlerType;
 
 	StringMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

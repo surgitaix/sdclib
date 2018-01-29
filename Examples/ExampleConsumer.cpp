@@ -36,6 +36,8 @@
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
+#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
 #include "OSCLib/Util/DebugOut.h"
@@ -65,12 +67,12 @@ public:
 
     void onStateChanged(const NumericMetricState & state) override {
         double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received value changed of " << this->getHandle() << ": " << val << std::endl;
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << this->getHandle() << ": " << val << std::endl;
         currentWeight = (float)val;
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << this->getHandle() << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (ID, STATE) of " << this->getHandle() << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
     }
 
     float getCurrentWeight() {
@@ -82,13 +84,31 @@ private:
 };
 
 
+// state handler for array values, uses udp instead of tcp. Faster. Considered for real time applications
+class StreamConsumerStateHandler : public SDCConsumerEventHandler<RealTimeSampleArrayMetricState> {
+public:
+	StreamConsumerStateHandler(std::string descriptorHandle) : SDCConsumerEventHandler(descriptorHandle) {}
+
+	void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
+		std::vector<double> values = state.getMetricValue().getSamples();
+
+		// simple check if the data is valid:
+		// assumption: sequence of values, increased by 1
+
+		std::string out("Content: ");
+		DebugOut(DebugOut::Default, "ExampleConsumer") << "Received chunk! Handle: " << state.getDescriptorHandle() << std::endl;
+		for (size_t i = 0; i < values.size(); i++) {
+			out.append(" " + std::to_string(values[i]));
+		}
+		DebugOut(DebugOut::Default, "ExampleConsumer") << out;
+	}
+};
 
 void waitForUserInput() {
 	std::string temp;
 	Util::DebugOut(Util::DebugOut::Default, "") << "Press key to proceed.";
 	std::cin >> temp;
 }
-
 
 
 
@@ -113,8 +133,11 @@ int main() {
 	// Discovery
 	OSELib::OSCP::ServiceManager oscpsm;
 	std::unique_ptr<Data::OSCP::OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+
+	// state handler
 	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
 	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
+	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
 
 	if (c != nullptr) {
 		Data::OSCP::OSCPConsumer & consumer = *c;
@@ -123,6 +146,7 @@ int main() {
 
 	    consumer.registerStateEventHandler(eh_get.get());
 	    consumer.registerStateEventHandler(eh_set.get());
+	    consumer.registerStateEventHandler(eh_stream.get());
         Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
 
         std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
@@ -132,9 +156,13 @@ int main() {
         consumer.commitState(*pMetricState, fis);
         Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
 
+
+
+
         waitForUserInput();
         consumer.unregisterStateEventHandler(eh_get.get());
         consumer.unregisterStateEventHandler(eh_set.get());
+        consumer.unregisterStateEventHandler(eh_stream.get());
 		consumer.disconnect();
 	} else {
 		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";

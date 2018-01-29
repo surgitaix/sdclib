@@ -68,7 +68,6 @@ public:
     typedef CDM::AlertSignalState WrappedType;
     typedef AlertSignalDescriptor DescriptorType;
     typedef OSCPProviderAlertSignalStateHandler ProviderHandlerType;
-    typedef OSCPConsumerAlertSignalStateHandler ConsumerHandlerType;
 
 	AlertSignalState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

@@ -84,7 +84,7 @@
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/OSCP/OperationTraits.h"
 
-
+#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 
 
 namespace OSCLib {

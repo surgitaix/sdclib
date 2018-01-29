@@ -17,6 +17,7 @@
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
+#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
@@ -195,6 +196,10 @@ MdState & MdState::addState(const PatientContextState & source) {
 }
 
 MdState & MdState::addState(const RealTimeSampleArrayMetricState & source) {
+	return addStateImpl(source);
+}
+
+MdState & MdState::addState(const DistributionSampleArrayMetricState & source) {
 	return addStateImpl(source);
 }
 

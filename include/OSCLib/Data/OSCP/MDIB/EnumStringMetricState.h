@@ -33,7 +33,6 @@
 #define ENUMSTRINGMETRICSTATE_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "osdm-fwd.hxx"
 
@@ -67,8 +66,6 @@ public:
     typedef CDM::EnumStringMetricState WrappedType;
     typedef EnumStringMetricDescriptor DescriptorType;
     typedef OSCPProviderEnumStringMetricStateHandler ProviderHandlerType;
-    //typedef OSCPConsumerEnumStringMetricStateHandler ConsumerHandlerType;
-    typedef SDCConsumerEventHandler<EnumStringMetricState> ConsumerHandlerType;
 
 	EnumStringMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

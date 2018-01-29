@@ -230,7 +230,7 @@ public:
         oscpProvider.addMdSateHandler(&curValueState);
 //        oscpProvider.addMDStateHandler(&channelState);
         oscpProvider.addMdSateHandler(&mdsState);
-//        oscpProvider.addMDStateHandler(&vmdState);
+        //oscpProvider.addMDStateHandler(&vmdState);
 
 
     }

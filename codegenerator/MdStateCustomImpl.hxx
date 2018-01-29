@@ -32,6 +32,7 @@
     MdState & addState(const OperatorContextState & source);
     MdState & addState(const PatientContextState & source);
     MdState & addState(const RealTimeSampleArrayMetricState & source);
+    MdState & addState(const DistributionSampleArrayMetricState & source);
     MdState & addState(const StringMetricState & source);
     MdState & addState(const WorkflowContextState & source);
     MdState & addState(const VmdState & source);

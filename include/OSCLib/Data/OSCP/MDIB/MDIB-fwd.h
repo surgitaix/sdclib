@@ -1,5 +1,5 @@
 /*
- * ConvertToCDM.h
+ * MDIB-fwd.h
  *
  *  Created on: 28.06.2017
  *      Author: buerger

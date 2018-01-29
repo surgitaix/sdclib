@@ -71,17 +71,6 @@ const std::string HANDLE_STREAM_METRIC("handle_stream");
 const std::string HANDLE_STRING_METRIC("handle_string");
 
 
-
-// todo: kick -> unused example
-class MdsComponentStateHandler : public SDCProviderComponentStateHandler<MdsState> {
-public:
-	MdsComponentStateHandler(std::string handle) : SDCProviderComponentStateHandler(handle) {};
-
-	MdsState getInitialState() {
-		return MdsState(descriptorHandle);
-	}
-};
-
 class NumericProviderStateHandlerGet : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
 public:
 
@@ -148,17 +137,17 @@ public:
 
 
 
-class NumericProviderStateHandlerSet : public OSCPProviderNumericMetricStateHandler {
+class NumericProviderStateHandlerSet : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
 public:
 
-    NumericProviderStateHandlerSet(const std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+    NumericProviderStateHandlerSet(const std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
     	// Invocation has been fired as WAITING when entering this method
     	notifyOperationInvoked(oic, InvocationState::Start);
     	// Do stuff
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProvider") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
         // if success return Finished
         return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
@@ -192,17 +181,13 @@ public:
         }
 
     }
-
-private:
-    const std::string descriptorHandle;
 };
 
 
-
-class StreamProviderStateHandler : public OSCPProviderRealTimeSampleArrayMetricStateHandler {
+class StreamProviderStateHandler : public SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> {
 public:
 
-    StreamProviderStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+    StreamProviderStateHandler(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
     }
 
     // Helper method
@@ -218,23 +203,24 @@ public:
         return createState();
     }
 
+    // disallow set operation for this state
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    	return InvocationState::Fail;
+    }
 
+
+    // convenient update method
     void updateStateValue(const SampleArrayValue & sav) {
         RealTimeSampleArrayMetricState realTimeSampleArrayState = createState();
         realTimeSampleArrayState
             .setMetricValue(sav);
         updateState(realTimeSampleArrayState);
     }
-
-
-private:
-    std::string descriptorHandle;
 };
 
-
-class StringProviderStateHandler : public OSCPProviderStringMetricStateHandler {
+class StringProviderStateHandler : public SDCProviderMetricAndAlertStateHandler<StringMetricState> {
 public:
-	StringProviderStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
+	StringProviderStateHandler(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
 
 	}
 
@@ -339,7 +325,11 @@ public:
 		oscpProvider.setMdDescription(mdDescription);
 
         // Add handler
-		//oscpProvider.addMdSateHandler(&numericProviderStateHandlerGet);
+		oscpProvider.addMdSateHandler(&numericProviderStateHandlerGet);
+		oscpProvider.addMdSateHandler(&streamProviderStateHandler);
+
+		oscpProvider.addMdSateHandler(&numericProviderStateHandlerSet);
+		oscpProvider.addMdSateHandler(&stringProviderStateHandler);
 
     }
 
@@ -378,7 +368,7 @@ public:
     virtual void runImpl() override {
 
     	// RealTimeArray
-		const std::size_t size(1000);
+		const std::size_t size(10);
 		RealTimeValueType samples;
 		for (std::size_t i = 0; i < size; i++) {
 			samples.push_back(i);
@@ -391,9 +381,9 @@ public:
 			}
 			DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
-			// NumericMetricState
-			//numericProviderStateHandlerGet.setNumericValue(42.0);
-//			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to 42.0" << std::endl;
+			// Update the NumericMetricState's value using the state handler's method
+			numericProviderStateHandlerGet.setNumericValue(index/size);
+			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to " << index/size << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
 

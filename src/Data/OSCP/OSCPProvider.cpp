@@ -17,7 +17,7 @@
 /*
  * OSCPProvider.cpp
  *
- *  @Copyright (C) 2017, SurgiTAIX AG
+ *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: roehser, besting, buerger
  */
 
@@ -34,6 +34,13 @@
 #include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
+
+#include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderActivateOperationHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
+
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionState.h"
@@ -272,11 +279,12 @@ MDM::ActivateResponse OSCPProvider::OnActivateAsync(const MDM::Activate & reques
 	return ar;
 }
 
+
 void OSCPProvider::OnActivate(const OperationInvocationContext & oic) {
-	std::map<std::string, OSCPProviderMdStateHandler *>::iterator it = stateHandlers.find(oic.operationHandle);
+	std::map<std::string, SDCProviderStateHandler *>::iterator it = stateHandlers.find(oic.operationHandle);
     if (it != stateHandlers.end()) {
-    	if (OSCPProviderActivateOperationHandler * handler = dynamic_cast<OSCPProviderActivateOperationHandler *>(it->second)) {
-    		const InvocationState isVal(handler->onActivateRequest(getMdib(), oic));
+    	if (SDCProviderActivateOperationHandler * handler = dynamic_cast<SDCProviderActivateOperationHandler *>(it->second)) {
+    		const InvocationState isVal(handler->onActivateRequest(oic));
     		notifyOperationInvoked(oic, isVal);
     		return;
     	}
@@ -948,48 +956,53 @@ void OSCPProvider::startup() {
     Poco::Mutex::ScopedLock lock(mutex);
     mdibStates = MdState(operationStates);
     for (const auto & handler : stateHandlers) {
-		if (OSCPProviderAlertConditionStateHandler * h = dynamic_cast<OSCPProviderAlertConditionStateHandler *>(handler.second)) {
+		if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderAlertSignalStateHandler * h = dynamic_cast<OSCPProviderAlertSignalStateHandler *>(handler.second)) {
+		} else if (SDCProviderMetricAndAlertStateHandler<AlertSignalState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<AlertSignalState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderEnumStringMetricStateHandler * h = dynamic_cast<OSCPProviderEnumStringMetricStateHandler *>(handler.second)) {
+		} else if (SDCProviderMetricAndAlertStateHandler<EnumStringMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<EnumStringMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderAlertSystemStateHandler * h = dynamic_cast<OSCPProviderAlertSystemStateHandler *>(handler.second)) {
+		} else if (SDCProviderMetricAndAlertStateHandler<AlertSystemState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<AlertSystemState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderLimitAlertConditionStateHandler * h = dynamic_cast<OSCPProviderLimitAlertConditionStateHandler *>(handler.second)) {
+		} else if (SDCProviderAlertConditionStateHandler<LimitAlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<LimitAlertConditionState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderNumericMetricStateHandler * h = dynamic_cast<OSCPProviderNumericMetricStateHandler *>(handler.second)) {
+		} else if (SDCProviderMetricAndAlertStateHandler<NumericMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<NumericMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderRealTimeSampleArrayMetricStateHandler * h = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler.second)) {
+		} else if (SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderStringMetricStateHandler * h = dynamic_cast<OSCPProviderStringMetricStateHandler *>(handler.second)) {
+		} else if (SDCProviderMetricAndAlertStateHandler<DistributionSampleArrayMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<DistributionSampleArrayMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderClockStateHandler * h = dynamic_cast<OSCPProviderClockStateHandler *>(handler.second)) {
+		} else if (SDCProviderMetricAndAlertStateHandler<StringMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<StringMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderMdsStateHandler * h = dynamic_cast<OSCPProviderMdsStateHandler*>(handler.second)) {
+		} else if (SDCProviderComponentStateHandler<ClockState> * h = dynamic_cast<SDCProviderComponentStateHandler<ClockState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderVmdStateHandler * h = dynamic_cast<OSCPProviderVmdStateHandler*>(handler.second)) {
+		} else if (SDCProviderComponentStateHandler<MdsState> * h = dynamic_cast<SDCProviderComponentStateHandler<MdsState>*>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (OSCPProviderChannelStateHandler * h = dynamic_cast<OSCPProviderChannelStateHandler*>(handler.second)) {
+		} else if (SDCProviderComponentStateHandler<VmdState> * h = dynamic_cast<SDCProviderComponentStateHandler<VmdState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (dynamic_cast<OSCPProviderActivateOperationHandler *>(handler.second)) {
+		} else if (SDCProviderComponentStateHandler<ChannelState>  * h = dynamic_cast<SDCProviderComponentStateHandler<ChannelState>*>(handler.second)) {
+			mdibStates.addState(h->getInitialState());
+		} else if (dynamic_cast<SDCProviderActivateOperationHandler *>(handler.second)) {
 			// NOOP
-		} else if (OSCPProviderSystemContextStateHandler * h = dynamic_cast<OSCPProviderSystemContextStateHandler *>(handler.second)) {
-			for (const auto & state : h->getEnsembleContextStates()) {
-				mdibStates.addState(state);
-			}
-			for (const auto & state : h->getLocationContextStates()) {
-				mdibStates.addState(state);
-			}
-			for (const auto & state : h->getOperatorContextStates()) {
-				mdibStates.addState(state);
-			}
-			for (const auto & state : h->getPatientContextStates()) {
-				mdibStates.addState(state);
-			}
-			for (const auto & state : h->getWorkflowContextStates()) {
-				mdibStates.addState(state);
-			}
+
+
+			// TODO: Implement context States
+//		} else if (OSCPProviderSystemContextStateHandler * h = dynamic_cast<OSCPProviderSystemContextStateHandler *>(handler.second)) {
+//			for (const auto & state : h->getEnsembleContextStates()) {
+//				mdibStates.addState(state);
+//			}
+//			for (const auto & state : h->getLocationContextStates()) {
+//				mdibStates.addState(state);
+//			}
+//			for (const auto & state : h->getOperatorContextStates()) {
+//				mdibStates.addState(state);
+//			}
+//			for (const auto & state : h->getPatientContextStates()) {
+//				mdibStates.addState(state);
+//			}
+//			for (const auto & state : h->getWorkflowContextStates()) {
+//				mdibStates.addState(state);
+//			}
 		} else {
     		log_fatal([&] { return "Unknown handler type! This is an implementation error in the OSCLib!"; });
     		exit(1);
@@ -1044,14 +1057,17 @@ template<class T> void OSCPProvider::replaceState(const T & object) {
 }
 
 
-void OSCPProvider::addMdSateHandler(OSCPProviderMdStateHandler * handler) {
+void OSCPProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
     handler->parentProvider = this;
 
     if (stateHandlers.find(handler->getDescriptorHandle()) != stateHandlers.end()) {
-    	log_error([&] { return "A OSCPProvider handler for handle " + handler->getDescriptorHandle() + " already exists. It will be overridden."; });
+    	log_error([&] { return "A SDCProvider handler for handle " + handler->getDescriptorHandle() + " already exists. It will be overridden."; });
     }
 
-    if (auto activate_handler = dynamic_cast<OSCPProviderActivateOperationHandler *>(handler)) {
+
+
+    // ToDo: Behold! check with simpleOSCP if this really works°!
+    if (auto activate_handler = dynamic_cast<SDCProviderActivateOperationHandler *>(handler)) {
     	const MdDescription mddescription(getMdDescription());
     	for (const auto & mds : mddescription.collectAllMdsDescriptors()) {
     		if (!mds.hasSco()) {
@@ -1070,9 +1086,10 @@ void OSCPProvider::addMdSateHandler(OSCPProviderMdStateHandler * handler) {
     	log_error([&] { return "Could not add handler because no ActivateOperationDescriptor with matching handle was found."; });
     }
 
+
     // TODO: Move streaming service to service controller
     // add DistributionArray...
-    else if (auto streamHandler = dynamic_cast<OSCPProviderRealTimeSampleArrayMetricStateHandler *>(handler)) {
+    else if (auto streamHandler = dynamic_cast<SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> *>(handler)) {
     	int port = OSCLibrary::getInstance().extractFreePort();
 //    	_adapter->addStreamingPort(4444);
     	// FIXME: delete after testing that streaming works on more than one address!
@@ -1087,7 +1104,7 @@ void OSCPProvider::addMdSateHandler(OSCPProviderMdStateHandler * handler) {
 }
 
 
-void OSCPProvider::removeMDStateHandler(OSCPProviderMdStateHandler * handler) {
+void OSCPProvider::removeMDStateHandler(SDCProviderStateHandler * handler) {
     stateHandlers.erase(handler->getDescriptorHandle());
 }
 
@@ -1130,9 +1147,9 @@ const std::string OSCPProvider::getEndpointReference() const {
 
 template<typename T> InvocationState OSCPProvider::onStateChangeRequest(const T & state, const OperationInvocationContext & oic) {
 	// Search by state handle AND by descriptor handle
-	std::map<std::string, OSCPProviderMdStateHandler *>::iterator it(stateHandlers.find(state.getDescriptorHandle()));
+	std::map<std::string, SDCProviderStateHandler *>::iterator it(stateHandlers.find(state.getDescriptorHandle()));
     if (it != stateHandlers.end()) {
-    	if (typename T::ProviderHandlerType * handler = dynamic_cast<typename T::ProviderHandlerType *>(it->second)) {
+    	if (SDCProviderMetricAndAlertStateHandler<T> * handler = dynamic_cast<SDCProviderMetricAndAlertStateHandler<T> *>(it->second)) {
         	return handler->onStateChangeRequest(state, oic);
     	}
     }

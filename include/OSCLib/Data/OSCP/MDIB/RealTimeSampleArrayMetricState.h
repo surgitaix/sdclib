@@ -66,7 +66,6 @@ public:
     typedef CDM::RealTimeSampleArrayMetricState WrappedType;
     typedef RealTimeSampleArrayMetricDescriptor DescriptorType;
     typedef OSCPProviderRealTimeSampleArrayMetricStateHandler ProviderHandlerType;
-    typedef OSCPConsumerRealTimeSampleArrayMetricStateHandler ConsumerHandlerType;
 
 	RealTimeSampleArrayMetricState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

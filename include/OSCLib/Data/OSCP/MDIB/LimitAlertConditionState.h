@@ -72,7 +72,6 @@ public:
     typedef CDM::LimitAlertConditionState WrappedType;
     typedef LimitAlertConditionDescriptor DescriptorType;
     typedef OSCPProviderLimitAlertConditionStateHandler ProviderHandlerType;
-    typedef OSCPConsumerLimitAlertConditionStateHandler ConsumerHandlerType;
 
 	LimitAlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;
