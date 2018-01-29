@@ -20,7 +20,7 @@ template <class TState>
 class SDCProviderComponentStateHandler : public SDCProviderStateHandler {
 public:
 	SDCProviderComponentStateHandler(std::string descriptorHandle) : SDCProviderStateHandler(descriptorHandle) {};
-	virtual ~SDCProviderComponentStateHandler();
+	virtual ~SDCProviderComponentStateHandler() {};
 
 	/**
     * @brief the initial state has to be defined. It is needed to be called from within the framework.

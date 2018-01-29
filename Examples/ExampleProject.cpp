@@ -5,8 +5,8 @@
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -48,10 +48,10 @@ const std::string HANDLE_MAX_WEIGHT_METRIC("handle_max");
 const std::string HANDLE_CURRENT_WEIGHT_METRIC("handle_cur");
 
 
-class MaxValueStateHandler : public OSCPProviderNumericMetricStateHandler {
+class MaxValueStateHandler : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
 public:
 
-    MaxValueStateHandler() {
+    MaxValueStateHandler(const std::string & descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle){
     }
 
     // called when the consumer is requesting to set the MaxValueStateHandler
@@ -69,7 +69,7 @@ public:
 
     // Helper method
     NumericMetricState createState() {
-        NumericMetricState result(HANDLE_MAX_WEIGHT_METRIC);
+        NumericMetricState result(descriptorHandle);
         result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
             .setActivationState(ComponentActivation::On);
@@ -93,16 +93,21 @@ public:
         	return 0;
         }
     }
-
 };
 
-class CurValueStateHandler : public OSCPProviderNumericMetricStateHandler {
+
+
+
+class CurValueStateHandler : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
 public:
 
-    CurValueStateHandler() {
+    CurValueStateHandler(const std::string & descriptorHandler) : SDCProviderMetricAndAlertStateHandler(descriptorHandler){
     }
 
-    // onStateChangeRequest not implemented (state is read-only - MEASUREMENT)
+    // state is read-only - MEASUREMENT -> onStateChangeRequest() returns Fail
+    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) {
+    	return InvocationState::Fail;
+    }
 
     // Helper method
     NumericMetricState createState(float value) {
@@ -110,7 +115,7 @@ public:
         result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Inv)).setValue(value))
             .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle(HANDLE_CURRENT_WEIGHT_METRIC);
+            .setDescriptorHandle(descriptorHandle);
         return result;
     }
 
@@ -129,15 +134,14 @@ public:
 };
 
 
-class MDSStateHandler : public OSCPProviderMdsStateHandler {
+class MdsStateHandler : public SDCProviderComponentStateHandler<MdsState> {
 public:
-    MDSStateHandler(const std::string & descriptorHandle) {
-        this->descriptorHandle = descriptorHandle;
+    MdsStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler(descriptorHandle){
     }
 
     // Helper method
     MdsState createState() {
-    	MdsState result(this->descriptorHandle);
+    	MdsState result(descriptorHandle);
         return result;
     }
 
@@ -147,9 +151,6 @@ public:
     	MdsState state = createState();
         return state;
     }
-
-private:
-    std::string descriptorHandle;
 };
 
 
@@ -161,6 +162,8 @@ public:
     OSCPHoldingDeviceProvider() :
     	oscpProvider(),
 		currentWeight(0),
+		maxValueState(HANDLE_MAX_WEIGHT_METRIC),
+		curValueState(HANDLE_CURRENT_WEIGHT_METRIC),
     	mdsState(MDS_HANDLE)
 //    	vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
@@ -260,7 +263,7 @@ private:
     MaxValueStateHandler maxValueState;
     CurValueStateHandler curValueState;
 
-    MDSStateHandler mdsState;
+    MdsStateHandler mdsState;
 };
 
 
