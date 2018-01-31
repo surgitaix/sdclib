@@ -41,17 +41,14 @@
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPProviderActivateOperationHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderAlertSignalStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderAlertSystemStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderActivateOperationHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
+
 #include "OSCLib/Data/OSCP/OSCPProviderSystemContextStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderMdsStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderChannelStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderVmdStateHandler.h"
+
+
 #include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
@@ -148,6 +145,11 @@ const std::string ALERT_CONDITION_HANDLE("handle_alert_condition_limit");
 const std::string ALERT_SIGNAL_HANDLE("handle_alert_signal");
 // 3. an latching alert signal which latched state is checked
 const std::string ALERT_SIGNAL_LATCHING_HANDLE("handle_alert_signal_latching");
+
+
+// component state handler
+const std::string ALERT_SYSTEM_HANDLE("handle_alert_system");
+const std::string CMD_HANDLE("cmd_handle");
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -402,10 +404,10 @@ public:
 	}
 };
 
-class MaxValueStateHandler : public OSCPProviderNumericMetricStateHandler {
+class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
 
-    MaxValueStateHandler() {
+    MaxValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
@@ -424,7 +426,7 @@ public:
 
     // Helper method
     NumericMetricState createState() {
-        NumericMetricState result(NUMERIC_METRIC_MAX_HANDLE);
+        NumericMetricState result(descriptorHandle);
         result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
             .setActivationState(ComponentActivation::On);
@@ -454,17 +456,19 @@ public:
 
 
 
-class CurValueStateHandler : public OSCPProviderNumericMetricStateHandler {
+class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
 
-    CurValueStateHandler() {
+    CurValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
-    // onStateChangeRequest not implemented (state is read-only - MEASUREMENT)
-
+	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
+	InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+		return InvocationState::Fail;
+	}
     // Helper method
     NumericMetricState createState(float value) {
-        NumericMetricState result(NUMERIC_METRIC_CURRENT_HANDLE);
+        NumericMetricState result(descriptorHandle);
         result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
             .setActivationState(ComponentActivation::On)
@@ -485,10 +489,10 @@ public:
 
 };
 
-class EnumStringMetricStateHandler : public OSCPProviderEnumStringMetricStateHandler {
+class EnumStringMetricStateHandler : public SDCProviderMDStateHandler<EnumStringMetricState> {
 public:
 
-	EnumStringMetricStateHandler() {
+	EnumStringMetricStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const EnumStringMetricState & state, const OperationInvocationContext & oic) override {
@@ -506,7 +510,7 @@ public:
 
     // Helper method
     EnumStringMetricState createState(const std::string & value) {
-        EnumStringMetricState result(ENUM_METRIC_HANDLE);
+        EnumStringMetricState result(descriptorHandle);
         result
             .setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
             .setActivationState(ComponentActivation::On);
@@ -519,10 +523,10 @@ public:
 
 };
 
-class StrValueStateHandler : public OSCPProviderStringMetricStateHandler {
+class StrValueStateHandler : public SDCProviderMDStateHandler<StringMetricState> {
 public:
 
-    StrValueStateHandler() {
+    StrValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic) override {
@@ -559,10 +563,10 @@ public:
 
 };
 
-class AlertSignalStateHandler : public OSCPProviderAlertSignalStateHandler {
+class AlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState> {
 public:
 
-	AlertSignalStateHandler() {
+	AlertSignalStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic) override {
@@ -593,10 +597,10 @@ public:
 
 };
 
-class LatchingAlertSignalStateHandler : public OSCPProviderAlertSignalStateHandler {
+class LatchingAlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState> {
 public:
 
-	LatchingAlertSignalStateHandler() {
+	LatchingAlertSignalStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic) override {
@@ -627,10 +631,10 @@ public:
 
 };
 
-class LimitAlertConditionStateHandler : public OSCPProviderLimitAlertConditionStateHandler {
+class LimitAlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState> {
 public:
 
-	LimitAlertConditionStateHandler() 
+	LimitAlertConditionStateHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle)
 	{
 	}
 
@@ -700,39 +704,43 @@ public:
 
 };
 
-class AlertSystemStateHandler : public OSCPProviderAlertSystemStateHandler {
+
+// todo: check if really working -> old api alert system is implemented like a metric
+class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState> {
 public:
 
-	AlertSystemStateHandler() {
+	AlertSystemStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle){
     }
 
 	AlertSystemState getInitialState() override {
-        AlertSystemState alertSystemState("handle_alert_system", AlertActivation::On);  // reference alert system descriptor's handle // Alert is activated
+        AlertSystemState alertSystemState(descriptorHandle, AlertActivation::On);  // reference alert system descriptor's handle // Alert is activated
         return alertSystemState;
     }
 
+	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
+	InvocationState onStateChangeRequest(const AlertSystemState & state, const OperationInvocationContext & oic) override {
+		return InvocationState::Fail;
+	}
+
 };
 
-class CommandHandler : public OSCPProviderActivateOperationHandler {
+
+// use this state handler for remote function calls
+class CommandHandler : public SDCProviderActivateOperationHandler {
 public:
 
-	CommandHandler() {
+	CommandHandler(std::string descriptorHandle) : SDCProviderActivateOperationHandler(descriptorHandle) {
     }
 
-	InvocationState onActivateRequest(const MdibContainer & , const OperationInvocationContext & ) override {
+	InvocationState onActivateRequest(const OperationInvocationContext & oic) override {
 		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: Received command!" << std::endl;
 		return InvocationState::Fin;
 	}
-
-	std::string getDescriptorHandle() override {
-		return "handle_cmd";
-	}
 };
 
-class AlwaysOnChannelStateHandler : public OSCPProviderChannelStateHandler {
+class AlwaysOnChannelStateHandler : public SDCProviderComponentStateHandler<ChannelState> {
 public:
-	AlwaysOnChannelStateHandler(const std::string & descriptorHandle) {
-        this->descriptorHandle = descriptorHandle;
+	AlwaysOnChannelStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler(descriptorHandle){
     }
 
     // Helper method
@@ -747,16 +755,12 @@ public:
     	ChannelState state = createState();
         return state;
     }
-
-private:
-    std::string descriptorHandle;
 };
 
 
-class AlwaysOnVmdStateHandler : public OSCPProviderVmdStateHandler {
+class AlwaysOnVmdStateHandler : public SDCProviderComponentStateHandler<VmdState> {
 public:
-	AlwaysOnVmdStateHandler(const std::string & descriptorHandle) {
-        this->descriptorHandle = descriptorHandle;
+	AlwaysOnVmdStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler(descriptorHandle){
     }
 
     // Helper method
@@ -771,19 +775,13 @@ public:
     	VmdState state = createState();
         return state;
     }
-
-private:
-    std::string descriptorHandle;
 };
 
 
 
-
-
-class AlwaysOnMdsStateHandler : public OSCPProviderMdsStateHandler {
+class AlwaysOnMdsStateHandler : public SDCProviderComponentStateHandler<MdsState> {
 public:
-    AlwaysOnMdsStateHandler(const std::string & descriptorHandle) {
-        this->descriptorHandle = descriptorHandle;
+    AlwaysOnMdsStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler(descriptorHandle){
     }
 
     // Helper method
@@ -798,10 +796,9 @@ public:
         MdsState state = createState();
         return state;
     }
-
-private:
-    std::string descriptorHandle;
 };
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Provider
@@ -812,15 +809,20 @@ public:
     OSCPHoldingDeviceProvider() :
     	currentWeight(0),
     	oscpProvider(),
-		curValueState(),
-		maxValueState(),
-		channelState(CHANNEL_DESCRIPTOR_HANDLE),
-		MdsState(MDS_HANDLE),
-		vmdState(VMD_DESCRIPTOR_HANDLE)
+    	curValueState(NUMERIC_METRIC_CURRENT_HANDLE),
+    	maxValueState(NUMERIC_METRIC_MAX_HANDLE),
+    	enumState(ENUM_METRIC_HANDLE),
+    	strValueState(STRING_METRIC_HANDLE),
+    	alertSigHandler(ALERT_SIGNAL_HANDLE),
+    	latchingAlertSigHandler(ALERT_SIGNAL_LATCHING_HANDLE),
+    	limitAlertConditionHandler(ALERT_CONDITION_HANDLE),
+    	alertSysHandler(ALERT_SYSTEM_HANDLE),
+    	cmdHandler(CMD_HANDLE),
+    	channelStateHandler(CHANNEL_DESCRIPTOR_HANDLE),
+    	mdsStateHandler(MDS_HANDLE),
+    	vmdStateHandler(VMD_DESCRIPTOR_HANDLE)
 	{
     	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
-
-
 
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
@@ -905,7 +907,7 @@ public:
 			.setConditionSignaled(ALERT_CONDITION_HANDLE);
 
         // Alerts
-        AlertSystemDescriptor alertSystem("handle_alert_system");
+        AlertSystemDescriptor alertSystem(ALERT_SYSTEM_HANDLE);
         alertSystem
 			.addAlertSignal(alertSignal)
 			.addAlertSignal(latchingAlertSignal)
@@ -981,9 +983,9 @@ public:
 		oscpProvider.addMdSateHandler(&latchingAlertSigHandler);
 		oscpProvider.addMdSateHandler(&alertSysHandler);
 		oscpProvider.addMdSateHandler(&cmdHandler);
-		oscpProvider.addMdSateHandler(&channelState);
-		oscpProvider.addMdSateHandler(&MdsState);
-		oscpProvider.addMdSateHandler(&vmdState);
+		oscpProvider.addMdSateHandler(&channelStateHandler);
+		oscpProvider.addMdSateHandler(&MdsStateHandler);
+		oscpProvider.addMdSateHandler(&vmdStateHandler);
 	}
 
     MdDescription getMdDescription() {
@@ -1024,18 +1026,20 @@ private:
 
     // State (handlers)
     ContextHandler contextStates;
+
     CurValueStateHandler curValueState;
     MaxValueStateHandler maxValueState;
     EnumStringMetricStateHandler enumState;
     StrValueStateHandler strValueState;
-    LimitAlertConditionStateHandler limitAlertConditionHandler;
+
     AlertSignalStateHandler alertSigHandler;
     LatchingAlertSignalStateHandler latchingAlertSigHandler;
+    LimitAlertConditionStateHandler limitAlertConditionHandler;
     AlertSystemStateHandler alertSysHandler;
     CommandHandler cmdHandler;
-    AlwaysOnChannelStateHandler channelState;
-    AlwaysOnMdsStateHandler MdsState;
-    AlwaysOnVmdStateHandler vmdState;
+    AlwaysOnChannelStateHandler channelStateHandler;
+    AlwaysOnMdsStateHandler mdsStateHandler;
+    AlwaysOnVmdStateHandler vmdStateHandler;
 };
 
 }

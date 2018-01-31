@@ -330,6 +330,9 @@ private:
     MDM::GetMdDescriptionResponse GetMdDescription(const MDM::GetMdDescription & request);
     MDM::GetMdStateResponse GetMdState(const MDM::GetMdState & request);
 
+    // For handling requests for context states:
+    // handle = empty -> all context states
+    // handle = specific handle -> get the context state referenced by this handle
     MDM::GetContextStatesResponse GetContextStates(const MDM::GetContextStates & request);
     MDM::SetContextStateResponse SetContextStateAsync(const MDM::SetContextState & request);
     void SetContextState(const MDM::SetContextState & request, const OperationInvocationContext & oic);

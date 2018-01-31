@@ -13,7 +13,7 @@
 
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
-#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
 
 
@@ -71,10 +71,10 @@ const std::string HANDLE_STREAM_METRIC("handle_stream");
 const std::string HANDLE_STRING_METRIC("handle_string");
 
 
-class NumericProviderStateHandlerGet : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
+class NumericProviderStateHandlerGet : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
 
-	NumericProviderStateHandlerGet(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
+	NumericProviderStateHandlerGet(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
 	}
 
 
@@ -137,10 +137,10 @@ public:
 
 
 
-class NumericProviderStateHandlerSet : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
+class NumericProviderStateHandlerSet : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
 
-    NumericProviderStateHandlerSet(const std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
+    NumericProviderStateHandlerSet(const std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
@@ -184,10 +184,10 @@ public:
 };
 
 
-class StreamProviderStateHandler : public SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> {
+class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> {
 public:
 
-    StreamProviderStateHandler(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
+    StreamProviderStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
     // Helper method
@@ -218,9 +218,9 @@ public:
     }
 };
 
-class StringProviderStateHandler : public SDCProviderMetricAndAlertStateHandler<StringMetricState> {
+class StringProviderStateHandler : public SDCProviderMDStateHandler<StringMetricState> {
 public:
-	StringProviderStateHandler(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
+	StringProviderStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
 
 	}
 

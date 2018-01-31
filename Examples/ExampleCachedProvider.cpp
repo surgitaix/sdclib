@@ -15,7 +15,7 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
@@ -55,11 +55,11 @@ const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
 
 
-class GetNumericMetricStateHandler : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
+class GetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
 
 	// The state handler take a string named as the descriptor for referencing
-	GetNumericMetricStateHandler(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
+	GetNumericMetricStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
 	}
 
 
@@ -90,10 +90,10 @@ public:
 
 
 
-class SetNumericMetricStateHandler : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
+class SetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
 	// The state handler take a string named as the descriptor for referencing
-    SetNumericMetricStateHandler(const std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
+    SetNumericMetricStateHandler(const std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
@@ -137,10 +137,10 @@ public:
 
 
 // implements a measurement state of several measured values
-class StreamProviderStateHandler : public SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> {
+class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> {
 public:
 	// The state handler take a string named as the descriptor for referencing
-    StreamProviderStateHandler(std::string descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle) {
+    StreamProviderStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
     // Helper method

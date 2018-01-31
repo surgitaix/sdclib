@@ -15,19 +15,21 @@
   */
 
 /*
- * TestStreamOSCP.cpp
+ * TestMultiStates.cpp
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: buerger
  *
- *  This unit test checks the eventing mechanism for the udp based stream metrices: RealTimeSampleArrayMetric (time values) and DistributionSampleArrayMetric (other values)
+ *  This unit test checks if the multi state implementation is working.
+ *  Context states are implemented as multi states. They are utilized here for testing the libraries multi state logic
+ *
  *
  */
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
 
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
@@ -311,7 +313,7 @@ private:
 
 
 public:
-    
+
     // Produce stream values
     // runImpl() gets called when starting the provider thread by the inherited function start()
     virtual void runImpl() override {
@@ -378,7 +380,7 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
             CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
             CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
             CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
-            
+
             provider.interrupt();
             c->unregisterStateEventHandler(eventHandler.get());
             c->unregisterStateEventHandler(eventHandlerAlt.get());
@@ -392,7 +394,7 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
 	catch (char const* exc)
 	{
 		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << exc;
-	}    
+	}
 	catch (...)
 	{
 		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Unknown exception occurred!";

@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef SDCPROVIDERMETRICANDALERTSTATEHANDLER_H_
-#define SDCPROVIDERMETRICANDALERTSTATEHANDLER_H_
+#ifndef SDCPROVIDERMDSTATEHANDLER_H_
+#define SDCPROVIDERMDSTATEHANDLER_H_
 
 #include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
 
@@ -20,7 +20,7 @@ namespace Data {
 namespace OSCP {
 
 template <class TState>
-class SDCProviderMetricAndAlertStateHandler : public SDCProviderStateHandler {
+class SDCProviderMDStateHandler : public SDCProviderStateHandler {
 public:
 
 	/**
@@ -28,8 +28,8 @@ public:
 	*
 	* @return The initial state
 	*/
-	SDCProviderMetricAndAlertStateHandler(std::string descriptorHandle) : SDCProviderStateHandler(descriptorHandle) {};
-	virtual ~SDCProviderMetricAndAlertStateHandler(){};
+	SDCProviderMDStateHandler(std::string descriptorHandle) : SDCProviderStateHandler(descriptorHandle) {};
+	virtual ~SDCProviderMDStateHandler(){};
 
 
 	/**
@@ -57,4 +57,4 @@ public:
 } /* namespace Data */
 } /* namespace OSCLib */
 
-#endif /* SDCPROVIDERMETRICANDALERTSTATEHANDLER_H_ */
+#endif /* SDCPROVIDERMDSTATEHANDLER_H_ */

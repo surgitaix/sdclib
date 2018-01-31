@@ -39,7 +39,7 @@
 #include "OSCLib/Data/OSCP/SDCProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
-#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h"
@@ -557,6 +557,7 @@ MDM::GetContextStatesResponse OSCPProvider::GetContextStates(const MDM::GetConte
 	}
 	// TODO: 0 = replace with real sequence ID
 	MDM::GetContextStatesResponse result(xml_schema::Uri("0"));
+	log_warning([&] { return "The requested states handle or descriptor handle does not fit any of the provider's states"; });
 	result.MdibVersion(getMdibVersion());
 	return result;
 }
@@ -958,21 +959,21 @@ void OSCPProvider::startup() {
     for (const auto & handler : stateHandlers) {
 		if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (SDCProviderMetricAndAlertStateHandler<AlertSignalState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<AlertSignalState> *>(handler.second)) {
+		} else if (SDCProviderMDStateHandler<AlertSignalState> * h = dynamic_cast<SDCProviderMDStateHandler<AlertSignalState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (SDCProviderMetricAndAlertStateHandler<EnumStringMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<EnumStringMetricState> *>(handler.second)) {
+		} else if (SDCProviderMDStateHandler<EnumStringMetricState> * h = dynamic_cast<SDCProviderMDStateHandler<EnumStringMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (SDCProviderMetricAndAlertStateHandler<AlertSystemState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<AlertSystemState> *>(handler.second)) {
+		} else if (SDCProviderMDStateHandler<AlertSystemState> * h = dynamic_cast<SDCProviderMDStateHandler<AlertSystemState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
 		} else if (SDCProviderAlertConditionStateHandler<LimitAlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<LimitAlertConditionState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (SDCProviderMetricAndAlertStateHandler<NumericMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<NumericMetricState> *>(handler.second)) {
+		} else if (SDCProviderMDStateHandler<NumericMetricState> * h = dynamic_cast<SDCProviderMDStateHandler<NumericMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> *>(handler.second)) {
+		} else if (SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> * h = dynamic_cast<SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (SDCProviderMetricAndAlertStateHandler<DistributionSampleArrayMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<DistributionSampleArrayMetricState> *>(handler.second)) {
+		} else if (SDCProviderMDStateHandler<DistributionSampleArrayMetricState> * h = dynamic_cast<SDCProviderMDStateHandler<DistributionSampleArrayMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
-		} else if (SDCProviderMetricAndAlertStateHandler<StringMetricState> * h = dynamic_cast<SDCProviderMetricAndAlertStateHandler<StringMetricState> *>(handler.second)) {
+		} else if (SDCProviderMDStateHandler<StringMetricState> * h = dynamic_cast<SDCProviderMDStateHandler<StringMetricState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
 		} else if (SDCProviderComponentStateHandler<ClockState> * h = dynamic_cast<SDCProviderComponentStateHandler<ClockState> *>(handler.second)) {
 			mdibStates.addState(h->getInitialState());
@@ -1089,7 +1090,7 @@ void OSCPProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
 
     // TODO: Move streaming service to service controller
     // add DistributionArray...
-    else if (auto streamHandler = dynamic_cast<SDCProviderMetricAndAlertStateHandler<RealTimeSampleArrayMetricState> *>(handler)) {
+    else if (auto streamHandler = dynamic_cast<SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> *>(handler)) {
     	int port = OSCLibrary::getInstance().extractFreePort();
 //    	_adapter->addStreamingPort(4444);
     	// FIXME: delete after testing that streaming works on more than one address!
@@ -1149,7 +1150,7 @@ template<typename T> InvocationState OSCPProvider::onStateChangeRequest(const T 
 	// Search by state handle AND by descriptor handle
 	std::map<std::string, SDCProviderStateHandler *>::iterator it(stateHandlers.find(state.getDescriptorHandle()));
     if (it != stateHandlers.end()) {
-    	if (SDCProviderMetricAndAlertStateHandler<T> * handler = dynamic_cast<SDCProviderMetricAndAlertStateHandler<T> *>(it->second)) {
+    	if (SDCProviderMDStateHandler<T> * handler = dynamic_cast<SDCProviderMDStateHandler<T> *>(it->second)) {
         	return handler->onStateChangeRequest(state, oic);
     	}
     }

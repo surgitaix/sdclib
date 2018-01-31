@@ -499,9 +499,10 @@ Tests/UnitTests.cpp
 #Tests/OSCPTests/TestConnectionLost.cpp
 #Tests/OSCPTests/TestDICOM.cpp
 #Tests/OSCPTests/TestMultiOSCP.cpp
+#Tests/OSCPTests/TestMultiStates.cpp
 #Tests/OSCPTests/TestSimpleOSCP.cpp
 #Tests/OSCPTests/TestPeriodicEvents.cpp
-#Tests/OSCPTests/TestStreamOSCP.cpp
+Tests/OSCPTests/TestStreamOSCP.cpp
 Tests/UnitTest++/src/Test.cpp
 Tests/UnitTest++/src/TestList.cpp
 Tests/UnitTest++/src/TestRunner.cpp
@@ -575,7 +576,7 @@ Examples/MDIBVisualizer.cpp
 SET(ADDITIONAL_LIBS "")
 
 target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(ExampleProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})

@@ -5,7 +5,7 @@
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
@@ -48,10 +48,10 @@ const std::string HANDLE_MAX_WEIGHT_METRIC("handle_max");
 const std::string HANDLE_CURRENT_WEIGHT_METRIC("handle_cur");
 
 
-class MaxValueStateHandler : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
+class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
 
-    MaxValueStateHandler(const std::string & descriptorHandle) : SDCProviderMetricAndAlertStateHandler(descriptorHandle){
+    MaxValueStateHandler(const std::string & descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle){
     }
 
     // called when the consumer is requesting to set the MaxValueStateHandler
@@ -98,10 +98,10 @@ public:
 
 
 
-class CurValueStateHandler : public SDCProviderMetricAndAlertStateHandler<NumericMetricState> {
+class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
 
-    CurValueStateHandler(const std::string & descriptorHandler) : SDCProviderMetricAndAlertStateHandler(descriptorHandler){
+    CurValueStateHandler(const std::string & descriptorHandler) : SDCProviderMDStateHandler(descriptorHandler){
     }
 
     // state is read-only - MEASUREMENT -> onStateChangeRequest() returns Fail
@@ -165,7 +165,6 @@ public:
 		maxValueState(HANDLE_MAX_WEIGHT_METRIC),
 		curValueState(HANDLE_CURRENT_WEIGHT_METRIC),
     	mdsState(MDS_HANDLE)
-//    	vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
     	oscpProvider.setEndpointReference(DEVICE_EPR);
         // Define semantic meaning of weight unit "kg", which will be used for defining the
@@ -231,9 +230,7 @@ public:
 		// State handler
         oscpProvider.addMdSateHandler(&maxValueState);
         oscpProvider.addMdSateHandler(&curValueState);
-//        oscpProvider.addMDStateHandler(&channelState);
         oscpProvider.addMdSateHandler(&mdsState);
-        //oscpProvider.addMDStateHandler(&vmdState);
 
 
     }
