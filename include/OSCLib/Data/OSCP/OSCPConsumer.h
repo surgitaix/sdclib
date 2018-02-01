@@ -256,8 +256,8 @@ private:
     void onStateChanged(const T & state);
     // In contrast to the method above, this method calls to all the state handlers identified by states handles. It also invokes by
     // the message dispacher to update the state handler identified by its descriptor
-    template<typename T>
-    void onMultiStateChanged(const T & state);
+//    template<typename T>
+//    void onMultiStateChanged(const T & state);
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is);
     void onConnectionLost();

@@ -76,46 +76,50 @@ struct ContextServiceEventSink : public OSCP::IContextServiceEventSink, public O
 		return "/ContextReportSink";
 	}
 
+	// todo: fix multistate implementation. this one only calls the state handlers which reference the descriptorsHandles
+	// when a state with a defined handle updated also the state with the regarding descriptor Handle is called.
+	// this is not right.
+
 	// casts to right inherited type and call the regarding method of the consumer
 	void delegateContextState(const CDM::AbstractContextState &contextState) {
 		if (const auto state = dynamic_cast<const CDM::LocationContextState *>(&contextState)) {
 			// dispatch to multi state callback
-			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
 			_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::PatientContextState *>(&contextState)) {
 			// dispatch to multi state callback
-			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
 			_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::WorkflowContextState *>(&contextState)) {
 			// dispatch to multi state callback
-			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
 			_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::EnsembleContextState *>(&contextState)) {
 			// dispatch to multi state callback
-			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
 			_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::OperatorContextState *>(&contextState)) {
 			// dispatch to multi state callback
-			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
 			_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::MeansContextState *>(&contextState)) {
 			// dispatch to multi state callback
-			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
 			_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(*state));
 			return;

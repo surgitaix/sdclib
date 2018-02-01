@@ -500,7 +500,7 @@ Tests/UnitTests.cpp
 #Tests/OSCPTests/TestDICOM.cpp
 #Tests/OSCPTests/TestMultiOSCP.cpp
 #Tests/OSCPTests/TestMultiStates.cpp
-#Tests/OSCPTests/TestSimpleOSCP.cpp
+Tests/OSCPTests/TestSimpleOSCP.cpp
 #Tests/OSCPTests/TestPeriodicEvents.cpp
 Tests/OSCPTests/TestStreamOSCP.cpp
 Tests/UnitTest++/src/Test.cpp

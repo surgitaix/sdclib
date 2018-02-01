@@ -105,37 +105,6 @@ public:
 };
 
 
-//class NumericProviderStateHandlerGet : public OSCPProviderNumericMetricStateHandler {
-//public:
-//
-//	NumericProviderStateHandlerGet(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
-//	}
-//
-//
-//	// Helper method
-//	NumericMetricState createState(double value) {
-//		NumericMetricState result(HANDLE_GET_METRIC);
-//		result
-//			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
-//			.setActivationState(ComponentActivation::On);
-//		return result;
-//	}
-//
-//	NumericMetricState getInitialState() override {
-//		NumericMetricState nms = createState(42.0);
-//		return nms;
-//	}
-//
-//	void setNumericValue(double value) {
-//		NumericMetricState nms = createState(value);
-//		updateState(nms);
-//	}
-//
-//private:
-//	std::string descriptorHandle;
-//};
-
-
 
 class NumericProviderStateHandlerSet : public SDCProviderMDStateHandler<NumericMetricState> {
 public:

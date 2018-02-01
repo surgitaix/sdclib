@@ -48,7 +48,8 @@ using namespace OSCLib;
 using namespace OSCLib::Util;
 using namespace OSCLib::Data::OSCP;
 
-const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
+//const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
+const std::string deviceEPR("UDI-1234567890");
 
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
@@ -114,7 +115,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    OSCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
+    OSCLibrary::getInstance().startup(OSELib::LogLevel::TRACE);
 	OSCLibrary::getInstance().setPortStart(12000);
 
     class MyConnectionLostHandler : public Data::OSCP::OSCPConsumerConnectionLostHandler {
@@ -135,8 +136,8 @@ int main() {
 	std::unique_ptr<Data::OSCP::OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 
 	// state handler
-	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
-	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
+	//std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
+	//std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
 	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
 
 	if (c != nullptr) {
@@ -144,24 +145,24 @@ int main() {
 	    std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 	    consumer.setConnectionLostHandler(myHandler.get());
 
-	    consumer.registerStateEventHandler(eh_get.get());
-	    consumer.registerStateEventHandler(eh_set.get());
+	    //consumer.registerStateEventHandler(eh_get.get());
+	    //consumer.registerStateEventHandler(eh_set.get());
 	    consumer.registerStateEventHandler(eh_stream.get());
         Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
 
-        std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
+        //std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
 
-        pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+        //pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
         FutureInvocationState fis;
-        consumer.commitState(*pMetricState, fis);
+        //consumer.commitState(*pMetricState, fis);
         Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
 
 
 
 
         waitForUserInput();
-        consumer.unregisterStateEventHandler(eh_get.get());
-        consumer.unregisterStateEventHandler(eh_set.get());
+        //consumer.unregisterStateEventHandler(eh_get.get());
+        //consumer.unregisterStateEventHandler(eh_set.get());
         consumer.unregisterStateEventHandler(eh_stream.get());
 		consumer.disconnect();
 	} else {

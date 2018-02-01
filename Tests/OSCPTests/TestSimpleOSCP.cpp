@@ -41,7 +41,7 @@
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
@@ -343,6 +343,12 @@ private:
 // Provider handlers
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Context states are handled like metrices or alerts
+
+// Note:
+// quasi-multi states can be implemented like single states as well. Since they have the same descriptor handle
+// each time a multi state (which has the same descritptor handle but differs in the handle attribute) changes,
+// the state hander is called. The user has to destinguish!
 
 class ContextHandler : public OSCPProviderSystemContextStateHandler {
 public:
@@ -705,7 +711,6 @@ public:
 };
 
 
-// todo: check if really working -> old api alert system is implemented like a metric
 class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState> {
 public:
 
@@ -721,7 +726,6 @@ public:
 	InvocationState onStateChangeRequest(const AlertSystemState & state, const OperationInvocationContext & oic) override {
 		return InvocationState::Fail;
 	}
-
 };
 
 

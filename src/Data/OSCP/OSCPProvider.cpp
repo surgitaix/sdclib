@@ -1061,6 +1061,10 @@ template<class T> void OSCPProvider::replaceState(const T & object) {
 void OSCPProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
     handler->parentProvider = this;
 
+
+    // TODO: Multistates implementation.. regarding to the SDC standard it should be possible to define states with the same descriptor handle!
+    // this is only possible for context states. maybe do a type check.
+    // but before implementing -> check the whole frameworks mechanics
     if (stateHandlers.find(handler->getDescriptorHandle()) != stateHandlers.end()) {
     	log_error([&] { return "A SDCProvider handler for handle " + handler->getDescriptorHandle() + " already exists. It will be overridden."; });
     }
@@ -1094,7 +1098,7 @@ void OSCPProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
     	int port = OSCLibrary::getInstance().extractFreePort();
 //    	_adapter->addStreamingPort(4444);
     	// FIXME: delete after testing that streaming works on more than one address!
-    	_adapter->addStreamingPort(5555);
+    	//_adapter->addStreamingPort(5555);
 
 
     	stateHandlers[handler->getDescriptorHandle()] = handler;

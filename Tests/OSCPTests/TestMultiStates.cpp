@@ -20,37 +20,46 @@
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: buerger
  *
+ *	! Multistates are not implemented right now ! a state handler is mapped uniquely defined by its descriptor handle! (map as data type)
+ *
  *  This unit test checks if the multi state implementation is working.
- *  Context states are implemented as multi states. They are utilized here for testing the libraries multi state logic
+ *  Context states are implemented as multi states. They are utilized here for testing the libraries multi state logic.
+ *  3 Tests:
+ *  1. Context is handled like a metric (single state: only descriptor handle is referenced) (true)
+ *  2. Descriptor handle is ambitious. Context state is referenced by handle attribute. (true)
+ *  3. Descriptor handle is ambitious. Context state is referenced by the wrong handle attribute. (fail)
  *
  *
  */
 #include "OSCLib/OSCLibrary.h"
+
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/SDCProviderMetricAndAlertStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 
-#include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
-
-#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
+// MDS and it's components
 #include "OSCLib/Data/OSCP/MDIB/MdDescription.h"
+#include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
+
+// Mdib data types
+#include "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/LocationDetail.h"
+
+#include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
+#include "OSCLib/Data/OSCP/MDIB/LocalizedText.h"
 #include "OSCLib/Data/OSCP/MDIB/Measurement.h"
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricDescriptor.h"
-#include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
 
-#include "OSCLib/Data/OSCP/MDIB/MetaData.h"
-#include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/Task.h"
+
+// Testing framework
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
 
@@ -67,199 +76,77 @@ using namespace OSCLib::Data::OSCP;
 
 namespace OSCLib {
 namespace Tests {
-namespace StreamOSCP {
+namespace multiStatesSDC {
 
-const std::string deviceEPR("UDI_STREAMINGTEST");
-
-
-class StreamConsumerEventHandler : public SDCConsumerEventHandler<RealTimeSampleArrayMetricState> {
-public:
-	StreamConsumerEventHandler(const std::string & handle) :
-		SDCConsumerEventHandler(handle),
-    	verifiedChunks(false)
-    {
-    }
-
-    void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
-    	Poco::Mutex::ScopedLock lock(mutex);
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << handle << std::endl;
-        std::vector<double> values = state.getMetricValue().getSamples();
-        verifiedChunks = true;
-
-        for (size_t i = 0; i < values.size(); i++) {
-            if (values[i] != double(i))
-                verifiedChunks = false;
-        }
-    }
-
-    bool getVerifiedChunks() {
-    	Poco::Mutex::ScopedLock lock(mutex);
-        return verifiedChunks;
-    }
-
-private:
-    Poco::Mutex mutex;
-    bool verifiedChunks;
-};
-
-
-class StreamDistributionConsumerEventHandler : public SDCConsumerEventHandler<DistributionSampleArrayMetricState> {
-public:
-	StreamDistributionConsumerEventHandler(const std::string & handle) :
-		SDCConsumerEventHandler(handle),
-    	verifiedChunks(false)
-    {
-    }
-
-    void onStateChanged(const DistributionSampleArrayMetricState & state) override {
-    	Poco::Mutex::ScopedLock lock(mutex);
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk of a distribution! Handle: " << handle << std::endl;
-        std::vector<double> values = state.getMetricValue().getSamples();
-        verifiedChunks = true;
-
-        for (size_t i = 0; i < values.size(); i++) {
-            if (values[i] != double(i))
-                verifiedChunks = false;
-        }
-    }
-
-    bool getVerifiedChunks() {
-    	Poco::Mutex::ScopedLock lock(mutex);
-        return verifiedChunks;
-    }
-
-private:
-    Poco::Mutex mutex;
-    bool verifiedChunks;
-};
+const std::string deviceEPR("UDI_MULTISTATESTEST");
 
 
 
-class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> {
+// a provider side multi state handler is defined just the same way as a single state handler.
+// But pay attention: the optional handle attribute must be set!
+class MultistateProviderStateHandler : public SDCProviderMDStateHandler<LocationContextState> {
 public:
 
-    StreamProviderStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
+	MultistateProviderStateHandler(std::string descriptorHandle, std::string handle) : SDCProviderMDStateHandler(descriptorHandle), handle(handle) {
     }
 
     // Helper method
-    RealTimeSampleArrayMetricState createState() {
-        RealTimeSampleArrayMetricState realTimeSampleArrayState(descriptorHandle);
-        realTimeSampleArrayState
-        	.setActivationState(ComponentActivation::On);
-        return realTimeSampleArrayState;
+	LocationContextState createMultiState() {
+    	LocationContextState locationContextState(descriptorHandle, handle);
+    	locationContextState
+        	.setLocationDetail(LocationDetail()
+        			.setFloor("Floor1")
+        			.setRoom("Room1"));
+        return locationContextState;
     }
 
-
-    RealTimeSampleArrayMetricState getInitialState() override {
-        return createState();
+	// the initial state has to be defined.
+	// It is called from within the framework
+	LocationContextState getInitialState() override {
+        return createMultiState();
     }
 
-    void updateStateValue(const SampleArrayValue & rtsav) {
-        RealTimeSampleArrayMetricState realTimeSampleArrayState = createState();
-        realTimeSampleArrayState
-            .setMetricValue(rtsav);
-        updateState(realTimeSampleArrayState);
+	// convenience function for changing the room value
+    void updateMultiStateValue(std::string room) {
+    	LocationContextState locationContextState = createMultiState();
+    	locationContextState
+        	.setLocationDetail(LocationDetail().setRoom(room));
+        updateState(locationContextState);
     }
 
+    // read-only state
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const LocationContextState & state, const OperationInvocationContext & oic) override {
     	return InvocationState::Fail;
     }
-};
 
-class DistributionProviderStateHandler : public SDCProviderMDStateHandler<DistributionSampleArrayMetricState> {
 public:
-
-	DistributionProviderStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
-
-    // Helper method
-    DistributionSampleArrayMetricState createState() {
-    	DistributionSampleArrayMetricState distributionSampleArrayState(descriptorHandle);
-    	distributionSampleArrayState
-        	.setActivationState(ComponentActivation::On);
-        return distributionSampleArrayState;
-    }
-
-
-    DistributionSampleArrayMetricState getInitialState() override {
-        return createState();
-    }
-
-    void updateStateValue(const SampleArrayValue & rtsav) {
-    	DistributionSampleArrayMetricState distributionSampleArrayState = createState();
-    	distributionSampleArrayState
-            .setMetricValue(rtsav);
-        updateState(distributionSampleArrayState);
-    }
-
-    // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const DistributionSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
-    	return InvocationState::Fail;
-    }
+    std::string handle;
 };
 
 
 
-
-
-class OSCPStreamHoldingDeviceProvider : public Util::Task {
+class SDCMultiStateTestProviders {
 public:
 
-    OSCPStreamHoldingDeviceProvider() :
+    SDCMultiStateTestProviders() :
     	oscpProvider(),
-    	streamEventHandler("handle_plethysmogram_stream"),
-    	streamEventHandlerAlt("handle_plethysmogram_stream_alt"),
-    	distributionEventHandler("handle_distribution_stream")
+    	multistateProviderStateHandler1_1("locationStateLikeSingleState_handle", "does_not_matter"),
+    	// this medical device has two states: one that contains information about the current room and one that contains information about the next room (at the same Floor)
+    	multistateProviderStateHandler2_1("locationContextAbitious_handle", "actualRoom_handle"),
+    	multistateProviderStateHandler2_2("locationContextAbitious_handle", "nextRoom_handle")
 	{
 
-		oscpProvider.setEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR);
+		oscpProvider.setEndpointReference(OSCLib::Tests::multiStatesSDC::deviceEPR);
 
 
-		// Currentweight stream metric (read-only)
-		// Metric references the handler
-		RealTimeSampleArrayMetricDescriptor currentMetric("handle_plethysmogram_stream",
-				CodedValue(CodeIdentifier("MDCX_VOLTAGE")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
-				MetricCategory::Msrmt,
-				MetricAvailability::Cont,
-				1,
-				xml_schema::Duration(0,0,0,0,0,0,1));
+		LocationContextDescriptor locationContextDescriptor1("locationStateLikeSingleState_handle");
+		LocationContextDescriptor locationContextDescriptor2("locationContextAbitious_handle");
 
-
-	    // alternative current matrix
-		// Metric references the handler
-		RealTimeSampleArrayMetricDescriptor currentMetricAlt("handle_plethysmogram_stream_alt",
-				CodedValue(CodeIdentifier("MDCS_VOLTAGE")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
-				MetricCategory::Msrmt,
-				MetricAvailability::Cont,
-				1,
-				xml_schema::Duration(0,0,0,0,0,0,1));
-
-
-		// set up a distibution metric
-		// Declares a sample array that represents linear value distributions in the form of arrays containing scaled sample values.
-		// In contrast to real-time sample arrays, distribution sample arrays provide observed spatial values, not time points.
-		// An example for a distribution sample array metric might be a fourier-transformed electroencephalogram to derive frequency distribution.
-		DistributionSampleArrayMetricDescriptor distributionMetric("handle_FFT_stream",
-				CodedValue(CodeIdentifier("MDCX_FFT_VOLTAGE_SQUARED")),
-				MetricCategory::Msrmt,
-				MetricAvailability::Cont,
-				CodedValue(CodeIdentifier("MDCX_FREQUENCY")),
-				Range().setUpper(3.1415).setLower(-3.1415),
-				1);
-
-
-        // alternative current matrix: non-mandatory information
-        currentMetricAlt.addTechnicalRange(Range().setLower(0).setUpper(2));
 
 
         // Channel
         ChannelDescriptor holdingDeviceParameters("handle_channel");
-        holdingDeviceParameters
-			.addMetric(currentMetric)
-            .addMetric(currentMetricAlt)
-            .addMetric(distributionMetric)
-			.setSafetyClassification(SafetyClassification::Inf);
 
         // VMD
         VmdDescriptor holdingDeviceModule("handle_vmd");
@@ -268,6 +155,10 @@ public:
         // MDS
         MdsDescriptor holdingDeviceSystem("handle_mds");
         holdingDeviceSystem
+			.setSystemContext(
+					SystemContextDescriptor("MDC_SYS_CON")
+					.setLocationContext(locationContextDescriptor1)
+					.setLocationContext(locationContextDescriptor2))
 			.setMetaData(
 				MetaData()
 					.addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
@@ -284,9 +175,9 @@ public:
 		oscpProvider.setMdDescription(mdDescription);
 
         // Add handler
-        oscpProvider.addMdSateHandler(&streamEventHandler);
-        oscpProvider.addMdSateHandler(&streamEventHandlerAlt);
-        oscpProvider.addMdSateHandler(&distributionEventHandler);
+        oscpProvider.addMdSateHandler(&multistateProviderStateHandler1_1);
+        oscpProvider.addMdSateHandler(&multistateProviderStateHandler2_1);
+        oscpProvider.addMdSateHandler(&multistateProviderStateHandler2_2);
     }
 
     void startup() {
@@ -297,94 +188,73 @@ public:
     	oscpProvider.shutdown();
     }
 
-    void updateStateValue(const SampleArrayValue & rtsav) {
-        streamEventHandler.updateStateValue(rtsav); // updates handles and the parent provider
-        streamEventHandlerAlt.updateStateValue(rtsav);
-        distributionEventHandler.updateStateValue(rtsav);
+    void updateStateValue(std::string room) {
+    	multistateProviderStateHandler1_1.updateMultiStateValue(room);
+    	multistateProviderStateHandler2_1.updateMultiStateValue(room);
+    	multistateProviderStateHandler2_2.updateMultiStateValue(std::string(room + "1"));
     }
 
 private:
 
     OSCPProvider oscpProvider;
 
-    StreamProviderStateHandler streamEventHandler;
-    StreamProviderStateHandler streamEventHandlerAlt;
-    DistributionProviderStateHandler distributionEventHandler;
+    // Test case 1
+    MultistateProviderStateHandler multistateProviderStateHandler1_1;
+    // Test case 2 & 3 (three only needs a consumer state handle referencing some non existing room)
+    MultistateProviderStateHandler multistateProviderStateHandler2_1;
+    MultistateProviderStateHandler multistateProviderStateHandler2_2;
 
 
-public:
-
-    // Produce stream values
-    // runImpl() gets called when starting the provider thread by the inherited function start()
-    virtual void runImpl() override {
-    	DebugOut(DebugOut::Default, "StreamOSCP") << "\nPoducer thread started." << std::endl;
-		const std::size_t size(1000);
-		std::vector<double> samples;
-		for (std::size_t i = 0; i < size; i++) {
-			samples.push_back(i);
-		}
-		long index(0);
-		while (!isInterrupted()) {
-			{
-                updateStateValue(
-						SampleArrayValue(MetricQuality(MeasurementValidity::Vld))
-						.setSamples(samples));
-
-			}
-			DebugOut(DebugOut::Default, "StreamOSCP") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
-			Poco::Thread::sleep(1000);
-			index += size;
-		}
-    }
 };
 
+
 }
 }
 }
 
-struct FixtureStreamOSCP : Tests::AbstractOSCLibFixture {
-	FixtureStreamOSCP() : AbstractOSCLibFixture("FixtureStreamOSCP", OSELib::LogLevel::NOTICE, 10000) {}
+struct FixtureMultiStatesTest: Tests::AbstractOSCLibFixture {
+	FixtureMultiStatesTest() : AbstractOSCLibFixture("FixtureMultiStateTest", OSELib::LogLevel::NOTICE, 10000) {}
 };
 
 SUITE(OSCP) {
-TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
+TEST_FIXTURE(FixtureMultiStatesTest, multistates)
 {
-	DebugOut::openLogFile("TestStream.log.txt", true);
+	DebugOut::openLogFile("TestMultiState.log", true);
 	try
 	{
         // Provider
-		Tests::StreamOSCP::OSCPStreamHoldingDeviceProvider provider;
-		DebugOut(DebugOut::Default, "StreamOSCP") << "Provider init.." << std::endl;
+		Tests::multiStatesSDC::SDCMultiStateTestProviders provider;
+		DebugOut(DebugOut::Default, "MultiStateSDC") << "Provider init.." << std::endl;
 		provider.startup();
 
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Consumer discovery..." << std::endl;
-        std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR));
-        std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream");
-        std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
-        std::shared_ptr<Tests::StreamOSCP::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamOSCP::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
+        DebugOut(DebugOut::Default, "MultiStateSDC") << "Consumer discovery..." << std::endl;
+        std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::multiStatesSDC::deviceEPR));
+//        std::shared_ptr<Tests::multiStatesSDC::  > eventHandler = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream");
+//        std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
+//        std::shared_ptr<Tests::StreamOSCP::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamOSCP::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
 
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);
 
         if (c != nullptr) {
-            c->registerStateEventHandler(eventHandler.get());
-            c->registerStateEventHandler(eventHandlerAlt.get());
-            c->registerStateEventHandler(eventHandlerDistribution.get());
-
-            provider.start();// starts provider in a thread and calls the overwritten function runImpl()
-
-			// Metric event reception test
-            Poco::Thread::sleep(10000);
-            CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
-            CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
-            CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
-
-            provider.interrupt();
-            c->unregisterStateEventHandler(eventHandler.get());
-            c->unregisterStateEventHandler(eventHandlerAlt.get());
-            c->unregisterStateEventHandler(eventHandlerDistribution.get());
+//            c->registerStateEventHandler(eventHandler.get());
+//            c->registerStateEventHandler(eventHandlerAlt.get());
+//            c->registerStateEventHandler(eventHandlerDistribution.get());
+//
+//            provider.start();// starts provider in a thread and calls the overwritten function runImpl()
+//
+//			// Metric event reception test
+//            Poco::Thread::sleep(10000);
+//            CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
+//            CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
+//            CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
+//
+//            provider.interrupt();
+//            c->unregisterStateEventHandler(eventHandler.get());
+//            c->unregisterStateEventHandler(eventHandlerAlt.get());
+//            c->unregisterStateEventHandler(eventHandlerDistribution.get());
             c->disconnect();
         }
 
@@ -393,11 +263,11 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
 	}
 	catch (char const* exc)
 	{
-		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << exc;
+		DebugOut(DebugOut::Default, std::cerr, "MultiStateSDC") << exc;
 	}
 	catch (...)
 	{
-		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Unknown exception occurred!";
+		DebugOut(DebugOut::Default, std::cerr, "MultiStateSDC") << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();
 }
