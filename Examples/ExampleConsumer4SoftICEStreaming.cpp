@@ -91,7 +91,7 @@ public:
             if (values[i] != double(i))
                 verifiedChunks = false;
         }
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << handle << ". Validity: " << verifiedChunks << std::endl;
+        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << descriptorHandle << ". Validity: " << verifiedChunks << std::endl;
     }
 
     bool getVerifiedChunks() {

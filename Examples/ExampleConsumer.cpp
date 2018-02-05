@@ -68,12 +68,12 @@ public:
 
     void onStateChanged(const NumericMetricState & state) override {
         double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << this->getHandle() << ": " << val << std::endl;
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << this->getDescriptorHandle() << ": " << val << std::endl;
         currentWeight = (float)val;
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (ID, STATE) of " << this->getHandle() << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
     }
 
     float getCurrentWeight() {

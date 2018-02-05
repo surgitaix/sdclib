@@ -174,14 +174,14 @@ public:
 
     void onStateChanged(const NumericMetricState & state) override {
         double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received value changed of " << descriptorHandle << ": " << val << std::endl;
     	Poco::Mutex::ScopedLock lock(mutex);
         weight = (float)val;
         eventEMR.set();
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
     float getWeight() {
@@ -212,12 +212,12 @@ public:
 
     void onStateChanged(const EnumStringMetricState & state) override {
     	const std::string val(state.getMetricValue().getValue());
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received value changed of " << descriptorHandle << ": " << val << std::endl;
         eventEMR.set();
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
 	Poco::Event & getEventEMR() {
@@ -268,7 +268,7 @@ public:
     }
 
     void onStateChanged(const AlertSignalState & state) override {
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received alert signal changed of " << handle << ", presence = " << EnumToString::convert(state.getPresence()) << std::endl;
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received alert signal changed of " << descriptorHandle << ", presence = " << EnumToString::convert(state.getPresence()) << std::endl;
         if (state.getPresence() == AlertSignalPresence::Off) {
         	eventEAROff.set();
         }
@@ -281,7 +281,7 @@ public:
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "SimpleOSCP") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
 	Poco::Event & getEventEAROff() {

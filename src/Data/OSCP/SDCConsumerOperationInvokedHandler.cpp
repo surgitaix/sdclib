@@ -27,7 +27,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-SDCConsumerOperationInvokedHandler::SDCConsumerOperationInvokedHandler(const std::string handle): handle(handle) {
+SDCConsumerOperationInvokedHandler::SDCConsumerOperationInvokedHandler(const std::string handle): descriptorHandle(handle) {
 
 }
 
@@ -40,8 +40,8 @@ void SDCConsumerOperationInvokedHandler::onOperationInvoked(const OperationInvoc
 }
 
 
-std::string SDCConsumerOperationInvokedHandler::getHandle() {
-	return handle;
+std::string SDCConsumerOperationInvokedHandler::getDescriptorHandle() {
+	return descriptorHandle;
 }
 
 } /* namespace OSCP */

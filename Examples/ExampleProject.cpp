@@ -316,14 +316,14 @@ public:
     // this method is called when a value changed in the provider
     void onStateChanged(const NumericMetricState & state) override {
         double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received value changed of " << descriptorHandle << ": " << val << std::endl;
         currentWeight = (float)val;
     }
 
     // this method is called each time an operation (e.g. a set operation) is called by the provider
     // use to customize the handling of your code, e.g. log/ prompt a message, do validity checks, ect.
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
     }
 
     float getCurrentWeight() {

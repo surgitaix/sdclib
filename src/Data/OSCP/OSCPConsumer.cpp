@@ -294,7 +294,7 @@ bool OSCPConsumer::unregisterFutureInvocationListener(int transactionId) {
 
 bool OSCPConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
     Poco::Mutex::ScopedLock lock(eventMutex);
-	eventHandlers[handler->getHandle()] = handler;
+	eventHandlers[handler->getDescriptorHandle()] = handler;
 	if (_adapter) {
 		_adapter->subscribeEvents();
 	}
@@ -303,7 +303,7 @@ bool OSCPConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler 
 
 bool OSCPConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
 	Poco::Mutex::ScopedLock lock(eventMutex);
-	eventHandlers.erase(handler->getHandle());
+	eventHandlers.erase(handler->getDescriptorHandle());
 
 	if (_adapter && eventHandlers.empty() && contextStateChangedHandler == nullptr) {
 		_adapter->unsubscribeEvents();

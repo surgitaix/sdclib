@@ -80,7 +80,7 @@ public:
 
     void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
     	Poco::Mutex::ScopedLock lock(mutex);
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << handle << std::endl;
+        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << descriptorHandle << std::endl;
         std::vector<double> values = state.getMetricValue().getSamples();
         verifiedChunks = true;
 
@@ -111,7 +111,7 @@ public:
 
     void onStateChanged(const DistributionSampleArrayMetricState & state) override {
     	Poco::Mutex::ScopedLock lock(mutex);
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk of a distribution! Handle: " << handle << std::endl;
+        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk of a distribution! Handle: " << descriptorHandle << std::endl;
         std::vector<double> values = state.getMetricValue().getSamples();
         verifiedChunks = true;
 

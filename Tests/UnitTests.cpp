@@ -53,8 +53,7 @@ int main()
 	//runTestSuite("OSCP");
 
 	// Only run test with a given name
-	runSingleTest("simpleoscp");
-	//runSingleTest("periodicevents");
+	runSingleTest("periodicevents");
 
 	return 0;
 }

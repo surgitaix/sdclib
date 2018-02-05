@@ -54,10 +54,10 @@ public:
     *
     * @return The handle
     */
-    std::string getHandle();
+    std::string getDescriptorHandle();
 
 protected:
-    const std::string handle;
+    const std::string descriptorHandle;
 
 private:
     // prohibit copying! each state and each state handler is unique
