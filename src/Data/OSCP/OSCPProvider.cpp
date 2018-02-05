@@ -55,7 +55,6 @@
 #include "OSCLib/Data/OSCP/MDIB/Defaults.h"
 #include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnumStringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -71,21 +70,24 @@
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/OperationInvocationContext.h"
-#include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
+
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h"
+#include "OSCLib/Data/OSCP/MDIB/MeansContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 #include "OSCLib/Data/OSCP/OSCPProviderActivateOperationHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSignalStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderAlertSystemStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProviderClockStateHandler.h"
@@ -582,42 +584,42 @@ MDM::SetContextStateResponse OSCPProvider::SetContextStateAsync(const MDM::SetCo
 	return genResponse(InvocationState::Wait);
 }
 
-void OSCPProvider::SetContextState(const MDM::SetContextState & request, const OperationInvocationContext & oic) {
-	std::vector<EnsembleContextState> ecStates;
-	std::vector<LocationContextState> lcStates;
-	std::vector<OperatorContextState> ocStates;
-	std::vector<PatientContextState> pcStates;
-	std::vector<WorkflowContextState> wcStates;
 
+
+template<class TState>
+void OSCPProvider::SetContextStateImpl(const TState & state,  const OperationInvocationContext & oic) {
+	// FIXME: check if writing to context state is allowed! = SCO exists
+	const InvocationState outState(onStateChangeRequest(state, oic));
+	notifyOperationInvoked(oic, outState);
+	if (outState == InvocationState::Fin) {
+		// Success
+		updateState(state);
+	}
+}
+
+void OSCPProvider::SetContextState(const MDM::SetContextState & request, const OperationInvocationContext & oic) {
 	for (const auto & nextState : request.ProposedContextState()) {
 		if (const CDM::PatientContextState * state = dynamic_cast<const CDM::PatientContextState *>(&nextState)) {
-			pcStates.push_back(ConvertFromCDM::convert(*state));
+			SetContextStateImpl(ConvertFromCDM::convert(*state), oic);
 		}
 		else if (const CDM::LocationContextState * state = dynamic_cast<const CDM::LocationContextState *>(&nextState)) {
-			lcStates.push_back(ConvertFromCDM::convert(*state));
+			SetContextStateImpl(ConvertFromCDM::convert(*state), oic);
 		}
 		else if (const CDM::EnsembleContextState * state = dynamic_cast<const CDM::EnsembleContextState *>(&nextState)) {
-			ecStates.push_back(ConvertFromCDM::convert(*state));
+			SetContextStateImpl(ConvertFromCDM::convert(*state), oic);
 		}
 		else if (const CDM::OperatorContextState * state = dynamic_cast<const CDM::OperatorContextState *>(&nextState)) {
-			ocStates.push_back(ConvertFromCDM::convert(*state));
+			SetContextStateImpl(ConvertFromCDM::convert(*state), oic);
 		}
 		else if (const CDM::WorkflowContextState * state = dynamic_cast<const CDM::WorkflowContextState *>(&nextState)) {
-			wcStates.push_back(ConvertFromCDM::convert(*state));
+			SetContextStateImpl(ConvertFromCDM::convert(*state), oic);
+		}
+		else if (const CDM::MeansContextState * state = dynamic_cast<const CDM::MeansContextState *>(&nextState)) {
+			SetContextStateImpl(ConvertFromCDM::convert(*state), oic);
 		}
 	}
-
-	for (auto & nextHandler : stateHandlers) {
-		if (OSCPProviderSystemContextStateHandler * handler = dynamic_cast<OSCPProviderSystemContextStateHandler *>(nextHandler.second)) {
-			const InvocationState outIS(handler->onStateChangeRequest(
-					ecStates, lcStates, ocStates, pcStates, wcStates, oic));
-			notifyOperationInvoked(oic, outIS);
-			return;
-		}
-	}
-
-	notifyOperationInvoked(oic, InvocationState::Fail);
 }
+
 
 MDM::GetMdibResponse OSCPProvider::GetMdib(const MDM::GetMdib & ) {
 	// TODO: 0 = replace with real sequence ID
@@ -660,10 +662,6 @@ void OSCPProvider::updateState(const AlertConditionState & object) {
 	notifyAlertEventImpl(object);
 }
 
-void OSCPProvider::updateState(const EnsembleContextState & object) {
-	notifyContextEventImpl(object);
-}
-
 void OSCPProvider::updateState(const EnumStringMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
@@ -673,22 +671,12 @@ void OSCPProvider::updateState(const LimitAlertConditionState & object) {
 	notifyAlertEventImpl(object);
 }
 
-void OSCPProvider::updateState(const LocationContextState & object) {
-	notifyContextEventImpl(object);
-}
-
 void OSCPProvider::updateState(const NumericMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
 
-void OSCPProvider::updateState(const OperatorContextState & object) {
-	notifyContextEventImpl(object);
-}
 
-void OSCPProvider::updateState(const PatientContextState & object) {
-	notifyContextEventImpl(object);
-}
 
 void OSCPProvider::updateState(const DistributionSampleArrayMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
@@ -706,7 +694,29 @@ void OSCPProvider::updateState(const StringMetricState & object) {
 	notifyEpisodicMetricImpl(object);
 }
 
+
+// context states
+void OSCPProvider::updateState(const EnsembleContextState & object) {
+	notifyContextEventImpl(object);
+}
+
+void OSCPProvider::updateState(const MeansContextState & object) {
+	notifyContextEventImpl(object);
+}
+
+void OSCPProvider::updateState(const LocationContextState & object) {
+	notifyContextEventImpl(object);
+}
+
 void OSCPProvider::updateState(const WorkflowContextState & object) {
+	notifyContextEventImpl(object);
+}
+
+void OSCPProvider::updateState(const PatientContextState & object) {
+	notifyContextEventImpl(object);
+}
+
+void OSCPProvider::updateState(const OperatorContextState & object) {
 	notifyContextEventImpl(object);
 }
 
@@ -904,11 +914,11 @@ void OSCPProvider::evaluateAlertConditions(const std::string & source) {
 	}
 
 	for (const auto & handler : stateHandlers) {
-		if (OSCPProviderAlertConditionStateHandler * h = dynamic_cast<OSCPProviderAlertConditionStateHandler *>(handler.second)) {
+		if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
 			if (std::find(relevantDescriptors.begin(), relevantDescriptors.end(), h->getDescriptorHandle()) != relevantDescriptors.end()) {
 				h->sourceHasChanged(source);
 			}
-		} else if (OSCPProviderLimitAlertConditionStateHandler * h = dynamic_cast<OSCPProviderLimitAlertConditionStateHandler *>(handler.second)) {
+		} else if (SDCProviderAlertConditionStateHandler<LimitAlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<LimitAlertConditionState> *>(handler.second)) {
 			if (std::find(relevantDescriptors.begin(), relevantDescriptors.end(), h->getDescriptorHandle()) != relevantDescriptors.end()) {
 				h->sourceHasChanged(source);
 			}
@@ -985,25 +995,19 @@ void OSCPProvider::startup() {
 			mdibStates.addState(h->getInitialState());
 		} else if (dynamic_cast<SDCProviderActivateOperationHandler *>(handler.second)) {
 			// NOOP
-
-
-			// TODO: Implement context States
-//		} else if (OSCPProviderSystemContextStateHandler * h = dynamic_cast<OSCPProviderSystemContextStateHandler *>(handler.second)) {
-//			for (const auto & state : h->getEnsembleContextStates()) {
-//				mdibStates.addState(state);
-//			}
-//			for (const auto & state : h->getLocationContextStates()) {
-//				mdibStates.addState(state);
-//			}
-//			for (const auto & state : h->getOperatorContextStates()) {
-//				mdibStates.addState(state);
-//			}
-//			for (const auto & state : h->getPatientContextStates()) {
-//				mdibStates.addState(state);
-//			}
-//			for (const auto & state : h->getWorkflowContextStates()) {
-//				mdibStates.addState(state);
-//			}
+			// well I gess not...
+		} else if (SDCProviderMDStateHandler<LocationContextState>  * h = dynamic_cast<SDCProviderMDStateHandler<LocationContextState>*>(handler.second)) {
+			mdibStates.addState(h->getInitialState());
+		} else if (SDCProviderMDStateHandler<PatientContextState>  * h = dynamic_cast<SDCProviderMDStateHandler<PatientContextState>*>(handler.second)) {
+			mdibStates.addState(h->getInitialState());
+		} else if (SDCProviderMDStateHandler<MeansContextState>  * h = dynamic_cast<SDCProviderMDStateHandler<MeansContextState>*>(handler.second)) {
+			mdibStates.addState(h->getInitialState());
+		} else if (SDCProviderMDStateHandler<WorkflowContextState>  * h = dynamic_cast<SDCProviderMDStateHandler<WorkflowContextState>*>(handler.second)) {
+			mdibStates.addState(h->getInitialState());
+		} else if (SDCProviderMDStateHandler<OperatorContextState>  * h = dynamic_cast<SDCProviderMDStateHandler<OperatorContextState>*>(handler.second)) {
+			mdibStates.addState(h->getInitialState());
+		} else if (SDCProviderMDStateHandler<EnsembleContextState>  * h = dynamic_cast<SDCProviderMDStateHandler<EnsembleContextState>*>(handler.second)) {
+			mdibStates.addState(h->getInitialState());
 		} else {
     		log_fatal([&] { return "Unknown handler type! This is an implementation error in the OSCLib!"; });
     		exit(1);
@@ -1151,7 +1155,6 @@ const std::string OSCPProvider::getEndpointReference() const {
 }
 
 template<typename T> InvocationState OSCPProvider::onStateChangeRequest(const T & state, const OperationInvocationContext & oic) {
-	// Search by state handle AND by descriptor handle
 	std::map<std::string, SDCProviderStateHandler *>::iterator it(stateHandlers.find(state.getDescriptorHandle()));
     if (it != stateHandlers.end()) {
     	if (SDCProviderMDStateHandler<T> * handler = dynamic_cast<SDCProviderMDStateHandler<T> *>(it->second)) {

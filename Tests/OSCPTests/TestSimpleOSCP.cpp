@@ -152,6 +152,10 @@ const std::string ALERT_SYSTEM_HANDLE("handle_alert_system");
 const std::string CMD_HANDLE("cmd_handle");
 
 
+// context states
+const std::string LOCATION_CONTEXT_HANDLE("location_context");
+const std::string PATIENT_CONTEXT_HANDLE("patient_context");
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Consumer event handlers
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -159,7 +163,7 @@ const std::string CMD_HANDLE("cmd_handle");
 
 class ExampleConsumerNumericHandler : public SDCConsumerEventHandler<NumericMetricState> {
 public:
-	ExampleConsumerNumericHandler(const std::string & handle) : SDCConsumerEventHandler(handle),
+	ExampleConsumerNumericHandler(const std::string & descriptorHandle) : SDCConsumerEventHandler(descriptorHandle),
     	weight(0)
 	{
 	}
@@ -198,7 +202,7 @@ private:
 
 class ExampleConsumerEnumStringMetricHandler : public SDCConsumerEventHandler<EnumStringMetricState> {
 public:
-	ExampleConsumerEnumStringMetricHandler(const std::string & handle) : SDCConsumerEventHandler(handle)
+	ExampleConsumerEnumStringMetricHandler(const std::string & descriptorHandle) : SDCConsumerEventHandler(descriptorHandle)
 	{
 	}
 
@@ -226,7 +230,7 @@ private:
 
 class ExampleConsumerStringMetricHandler : public SDCConsumerEventHandler<StringMetricState> {
 public:
-	ExampleConsumerStringMetricHandler(const std::string & handle) : SDCConsumerEventHandler(handle)
+	ExampleConsumerStringMetricHandler(const std::string & descriptorHandle) : SDCConsumerEventHandler(descriptorHandle)
 	{
 	}
 
@@ -255,7 +259,7 @@ private:
 
 class ExampleConsumerAlertSignalHandler : public SDCConsumerEventHandler<AlertSignalState> {
 public:
-	ExampleConsumerAlertSignalHandler(const std::string & handle) : SDCConsumerEventHandler(handle)
+	ExampleConsumerAlertSignalHandler(const std::string & descriptorHandle) : SDCConsumerEventHandler(descriptorHandle)
 	{
 	}
 
@@ -303,7 +307,7 @@ private:
 class ExampleLocationContextEventHandler : public SDCConsumerEventHandler<LocationContextState> {
 public:
 
-	ExampleLocationContextEventHandler(std::string handle) : SDCConsumerEventHandler(handle) {
+	ExampleLocationContextEventHandler(std::string descriptorHandle) : SDCConsumerEventHandler(descriptorHandle) {
 	}
 
 	virtual void onStateChanged(const LocationContextState & state) override {
@@ -323,7 +327,7 @@ private:
 class ExamplePatientContextEventHandler : public SDCConsumerEventHandler<PatientContextState> {
 public:
 
-	ExamplePatientContextEventHandler(std::string handle) : SDCConsumerEventHandler(handle) {
+	ExamplePatientContextEventHandler(std::string descriptorHandle) : SDCConsumerEventHandler(descriptorHandle) {
 	}
 
 	virtual void onStateChanged(const PatientContextState & state) override {
@@ -350,65 +354,42 @@ private:
 // each time a multi state (which has the same descritptor handle but differs in the handle attribute) changes,
 // the state hander is called. The user has to destinguish!
 
-class ContextHandler : public OSCPProviderSystemContextStateHandler {
+class LocationContextStateHandler : public SDCProviderMDStateHandler<LocationContextState> {
 public:
-	ContextHandler() {
-	}
-
-	virtual InvocationState onStateChangeRequest(
-		const std::vector<EnsembleContextState> & ,
-		const std::vector<LocationContextState> & lcStates,
-		const std::vector<OperatorContextState> & ,
-		const std::vector<PatientContextState> & pcStates,
-		const std::vector<WorkflowContextState> & ,
-		const OperationInvocationContext & ) override {
-
-		if (lcStates.empty() && pcStates.empty()) {
+	LocationContextStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {}
+	virtual InvocationState onStateChangeRequest(const LocationContextState & state,  const OperationInvocationContext & oic) override {
+		if (state.getDescriptorHandle() !=  LOCATION_CONTEXT_HANDLE)
 			return InvocationState::Fail;
-		}
-
-		if ((lcStates.size() > 0 && lcStates[0].getDescriptorHandle() != "location_context")
-			|| (pcStates.size() > 0 && pcStates[0].getDescriptorHandle() != "patient_context")) {
-			return InvocationState::Fail;
-		}
 
 		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: ContextHandler received state change request" << std::endl;
-		if (lcStates.size() > 0) {
-            updateState(lcStates[0]);
-		}
-		if (pcStates.size() > 0) {
-            updateState(pcStates[0]);
-        }
-	    return InvocationState::Fin;
+		return InvocationState::Fin;
 	}
 
-    // Get initial states
-	virtual std::vector<LocationContextState> getLocationContextStates() override {
-        LocationContextState locationState("location_context_state", "location_context");
-        // This device magically knows its location
-        locationState
-            .addIdentification(
-            InstanceIdentifier()
-            	.setRoot("MyHospital")
-            	.setExtension("Room 23"));
-		std::vector<LocationContextState> result;
-		result.push_back(locationState);
-		return result;
+	virtual LocationContextState getInitialState() override {
+		LocationContextState locationContextState(descriptorHandle, "multistate1");
+		return locationContextState;
 	}
 
-    // Get inital states
-    virtual std::vector<PatientContextState> getPatientContextStates() override {
-        PatientContextState patientState("patient_context_state", "patient_context");
-        patientState
-            .addIdentification(
-            InstanceIdentifier()
-				.setRoot("max")
-				.setExtension("mustermann"));
-        std::vector<PatientContextState> result;
-		result.push_back(patientState);
-		return result;
-	}
 };
+
+class PatientContextStateHandler : public SDCProviderMDStateHandler<PatientContextState> {
+public:
+	PatientContextStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {}
+	virtual InvocationState onStateChangeRequest(const PatientContextState & state,  const OperationInvocationContext & oic) override {
+		if (state.getDescriptorHandle() !=  PATIENT_CONTEXT_HANDLE)
+			return InvocationState::Fail;
+
+		DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: ContextHandler received state change request" << std::endl;
+		return InvocationState::Fin;
+	}
+
+	virtual PatientContextState getInitialState() override {
+		PatientContextState patientContextState(descriptorHandle, "multistate1");
+		return patientContextState;
+	}
+
+};
+
 
 class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
@@ -813,6 +794,8 @@ public:
     OSCPHoldingDeviceProvider() :
     	currentWeight(0),
     	oscpProvider(),
+    	locationContextStateHandler(LOCATION_CONTEXT_HANDLE),
+    	patientContextStateHandler(PATIENT_CONTEXT_HANDLE),
     	curValueState(NUMERIC_METRIC_CURRENT_HANDLE),
     	maxValueState(NUMERIC_METRIC_MAX_HANDLE),
     	enumState(ENUM_METRIC_HANDLE),
@@ -965,7 +948,7 @@ public:
         oscpProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
         oscpProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
 
-        ActivateOperationDescriptor aod("handle_cmd", NUMERIC_METRIC_MAX_HANDLE);
+        ActivateOperationDescriptor aod(CMD_HANDLE, NUMERIC_METRIC_MAX_HANDLE);
 
 		oscpProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
@@ -977,7 +960,8 @@ public:
 
         // State handlers
 
-		oscpProvider.addMdSateHandler(&contextStates);
+		oscpProvider.addMdSateHandler(&locationContextStateHandler);
+		oscpProvider.addMdSateHandler(&patientContextStateHandler);
 		oscpProvider.addMdSateHandler(&curValueState);
 		oscpProvider.addMdSateHandler(&enumState);
 		oscpProvider.addMdSateHandler(&maxValueState);
@@ -988,7 +972,7 @@ public:
 		oscpProvider.addMdSateHandler(&alertSysHandler);
 		oscpProvider.addMdSateHandler(&cmdHandler);
 		oscpProvider.addMdSateHandler(&channelStateHandler);
-		oscpProvider.addMdSateHandler(&MdsStateHandler);
+		oscpProvider.addMdSateHandler(&mdsStateHandler);
 		oscpProvider.addMdSateHandler(&vmdStateHandler);
 	}
 
@@ -1029,7 +1013,8 @@ private:
     OSCPProvider oscpProvider;
 
     // State (handlers)
-    ContextHandler contextStates;
+    LocationContextStateHandler locationContextStateHandler;
+    PatientContextStateHandler patientContextStateHandler;
 
     CurValueStateHandler curValueState;
     MaxValueStateHandler maxValueState;
@@ -1089,8 +1074,8 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         Tests::SimpleOSCP::ExampleConsumerEnumStringMetricHandler eces4(Tests::SimpleOSCP::ENUM_METRIC_HANDLE);
         Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler alertSignalsink(Tests::SimpleOSCP::ALERT_SIGNAL_HANDLE);
         Tests::SimpleOSCP::ExampleConsumerAlertSignalHandler latchingAlertSignalsink(Tests::SimpleOSCP::ALERT_SIGNAL_LATCHING_HANDLE);
-        Tests::SimpleOSCP::ExampleLocationContextEventHandler locationEventHandler("location_context_state");
-        Tests::SimpleOSCP::ExamplePatientContextEventHandler  patientEventHandler("patient_context_state");
+        Tests::SimpleOSCP::ExampleLocationContextEventHandler locationEventHandler(Tests::SimpleOSCP::LOCATION_CONTEXT_HANDLE);
+        Tests::SimpleOSCP::ExamplePatientContextEventHandler  patientEventHandler(Tests::SimpleOSCP::PATIENT_CONTEXT_HANDLE);
 
 
         // Discovery test
@@ -1115,6 +1100,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             		}
             	}
             }
+
             { // test presence of system context descriptors
             	std::unique_ptr<MdsDescriptor> pMdsDescriptor(mdib.getMdDescription().findDescriptor<MdsDescriptor>(Tests::SimpleOSCP::MDS_HANDLE));
             	if (pMdsDescriptor != nullptr) {
@@ -1232,13 +1218,14 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             {	// Activate test
                 DebugOut(DebugOut::Default, "SimpleOSCP") << "Activate test...";
                 FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == c->activate("handle_cmd", fis));
+				CHECK_EQUAL(true, InvocationState::Wait == c->activate(Tests::SimpleOSCP::CMD_HANDLE, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             }
 
             {	// Location context test
                 DebugOut(DebugOut::Default, "SimpleOSCP") << "Location context test...";
-                LocationContextState lcs("location_context", "location_context_state");
+                // todo: check here if working!
+                LocationContextState lcs(Tests::SimpleOSCP::LOCATION_CONTEXT_HANDLE, "location_context_state");
                 lcs.setContextAssociation(ContextAssociation::Assoc);
                 lcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
                 FutureInvocationState fis;
@@ -1250,7 +1237,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             }
             {	// Patient context test
             	DebugOut(DebugOut::Default, "SimpleOSCP") << "Patient context test...";
-				PatientContextState pcs("patient_context", "patient_context_state");
+				PatientContextState pcs(Tests::SimpleOSCP::PATIENT_CONTEXT_HANDLE, "patient_context_state");
 				pcs.setContextAssociation(ContextAssociation::Assoc);
 				pcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
 				pcs.setCoreData(PatientDemographicsCoreData()
@@ -1297,6 +1284,8 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
             CHECK_EQUAL(true, alertSignalsink.getEventEAROff().tryWait(Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             CHECK_EQUAL(true, alertSignalsink.getEventEAROn().tryWait(Tests::SimpleOSCP::DEFAULT_TIMEOUT));
             CHECK_EQUAL(true, latchingAlertSignalsink.getEventEARLatch().tryWait(Tests::SimpleOSCP::DEFAULT_TIMEOUT));
+
+
 
             CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces1));
             CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces2));

@@ -94,6 +94,7 @@ public:
     MdState & addState(const EnsembleContextState & source);
     MdState & addState(const EnumStringMetricState & source);
     MdState & addState(const LocationContextState & source);
+    MdState & addState(const MeansContextState & source);
     MdState & addState(const LimitAlertConditionState & source);
     MdState & addState(const MdsState & source);
     MdState & addState(const NumericMetricState & source);

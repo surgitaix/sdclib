@@ -16,6 +16,7 @@
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/PatientContextState.h"
+#include "OSCLib/Data/OSCP/MDIB/MeansContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/DistributionSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/Range.h"
@@ -180,6 +181,10 @@ MdState & MdState::addState(const LimitAlertConditionState & source) {
 }
 
 MdState & MdState::addState(const LocationContextState & source) {
+	return addStateImpl(source);
+}
+
+MdState & MdState::addState(const MeansContextState & source) {
 	return addStateImpl(source);
 }
 

@@ -280,6 +280,7 @@ public:
     void updateState(const NumericMetricState & object);
     void updateState(const OperatorContextState & object);
     void updateState(const PatientContextState & object);
+    void updateState(const MeansContextState & object);
     void updateState(const StringMetricState & object);
     void updateState(const RealTimeSampleArrayMetricState & object);
     void updateState(const WorkflowContextState & object);
@@ -336,6 +337,8 @@ private:
     MDM::GetContextStatesResponse GetContextStates(const MDM::GetContextStates & request);
     MDM::SetContextStateResponse SetContextStateAsync(const MDM::SetContextState & request);
     void SetContextState(const MDM::SetContextState & request, const OperationInvocationContext & oic);
+    template<typename TState>
+    void SetContextStateImpl(const TState & state,  const OperationInvocationContext & oic);
 
     template<class T>
     void addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor & ownerMDS);

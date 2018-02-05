@@ -277,6 +277,7 @@ private:
     Poco::Mutex eventMutex;
     std::map<std::string, SDCConsumerOperationInvokedHandler *> eventHandlers;
     OSCPConsumerConnectionLostHandler * connectionLostHandler;
+    // todo: kick
     OSCPConsumerSystemContextStateChangedHandler * contextStateChangedHandler;
     OSCPConsumerSubscriptionLostHandler * subscriptionLostHandler;
 
