@@ -21,6 +21,7 @@
  *  Author: buerger
  *
  *  This unit test checks the eventing mechanism for the udp based stream metrices: RealTimeSampleArrayMetric (time values) and DistributionSampleArrayMetric (other values)
+ *  At the current state of the IEEE 11073 SDC BICEPS specification the DSAMS is transported via TCP, maybe this changes soon. Then OSCPProvider::updateState has to be adapted accordingly
  *
  */
 #include "OSCLib/OSCLibrary.h"

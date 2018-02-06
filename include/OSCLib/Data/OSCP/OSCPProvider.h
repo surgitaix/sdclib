@@ -306,6 +306,9 @@ private:
 	void notifyEpisodicMetricImpl(const T & object);
 
     template<class T>
+    void notifyStreamMetricImpl(const T & object);
+
+    template<class T>
     void createSetOperationForContextDescriptor(const T & descriptor, MdsDescriptor & ownerMDS);
 
     template<class StateType>

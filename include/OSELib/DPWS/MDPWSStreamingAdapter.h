@@ -43,7 +43,7 @@ private:
 	//  callback function, implemented in OSELibConsumerAdapter
 	StreamNotificationDispatcher & m_streamNotificationDispatcher;
 
-	// todo: make list of socket for compatibility with other frameworkp
+	// todo: make list of socket for compatibility with other frameworks
 
 	Poco::Net::SocketAddress m_ipv4MulticastAddress;
 	Poco::Net::SocketAddress m_ipv6MulticastAddress;

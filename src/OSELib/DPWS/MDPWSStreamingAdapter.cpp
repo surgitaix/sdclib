@@ -130,12 +130,12 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 		log_warning([&]{return "From-field in streaming message does not exist";});
 	}
 
-	m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
+
 
 	if (message->Header().From().get().Address() == m_deviceDescription.getEPR()) {
 		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 	} else {
-		log_trace([&]{return "Message has wrong endpoint reference";});
+		log_error([&]{return "Message has wrong endpoint reference";});
 	}
 
 }

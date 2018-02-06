@@ -140,13 +140,13 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 			providers.push_back(p);
 			p->startup();
 			providerEPRs.emplace_back(p->getEndpointReference());
-//			Poco::Thread::sleep(2000);
+			Poco::Thread::sleep(1000);
 		}
 
 
 
 
-        Poco::Thread::sleep(10000);
+        Poco::Thread::sleep(2000);
 
         DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Starting discovery test...";
 

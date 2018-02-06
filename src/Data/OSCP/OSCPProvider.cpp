@@ -664,22 +664,24 @@ void OSCPProvider::updateState(const NumericMetricState & object) {
 }
 
 
+void OSCPProvider::updateState(const StringMetricState & object) {
+	evaluateAlertConditions(object.getDescriptorHandle());
+	notifyEpisodicMetricImpl(object);
+}
 
+
+// regarding to the given standard the DSAMS is implemented as an TCP transported Metric
 void OSCPProvider::updateState(const DistributionSampleArrayMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
 
-
+// UDP metrices
 void OSCPProvider::updateState(const RealTimeSampleArrayMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
-	notifyEpisodicMetricImpl(object);
+	notifyStreamMetricImpl(object);
 }
 
-void OSCPProvider::updateState(const StringMetricState & object) {
-	evaluateAlertConditions(object.getDescriptorHandle());
-	notifyEpisodicMetricImpl(object);
-}
 
 
 // context states
@@ -745,7 +747,8 @@ template<class T> void OSCPProvider::notifyContextEventImpl(const T & object) {
 	_adapter->notifyEvent(report);
 }
 
-template<class T> void OSCPProvider::notifyEpisodicMetricImpl(const T & object) {
+template<class T>
+void OSCPProvider::notifyEpisodicMetricImpl(const T & object) {
 	if (object.getDescriptorHandle().empty()) {
 		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
@@ -757,11 +760,34 @@ template<class T> void OSCPProvider::notifyEpisodicMetricImpl(const T & object) 
 	MDM::ReportPart1 reportPart;
 	reportPart.MetricState().push_back(ConvertToCDM::convert(object));
 
+	// TODO: replace sequence id
 	MDM::EpisodicMetricReport report(xml_schema::Uri("0"));
 	report.ReportPart().push_back(reportPart);
 
 	_adapter->notifyEvent(report);
 }
+
+template<class T>
+void OSCPProvider::notifyStreamMetricImpl(const T & object) {
+	if (object.getDescriptorHandle().empty()) {
+		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
+		return;
+	}
+
+	incrementMDIBVersion();
+	replaceState(object);
+
+	// TODO: replace sequence id
+	MDM::WaveformStream waveformStream(xml_schema::Uri("0"));
+
+	//waveformStream.State().at(0).
+	waveformStream.State().push_back(ConvertToCDM::convert(object));
+
+	_adapter->notifyEvent(waveformStream);
+
+}
+
+
 
 void OSCPProvider::firePeriodicReportImpl(const std::vector<std::string> & handles) {
 	if (handles.empty()) {
@@ -1086,10 +1112,10 @@ void OSCPProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
     // TODO: Move streaming service to service controller
     // add DistributionArray...
     else if (auto streamHandler = dynamic_cast<SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> *>(handler)) {
-    	int port = OSCLibrary::getInstance().extractFreePort();
+    	//int port = OSCLibrary::getInstance().extractFreePort();
 //    	_adapter->addStreamingPort(4444);
     	// FIXME: delete after testing that streaming works on more than one address!
-    	//_adapter->addStreamingPort(5555);
+    	_adapter->addStreamingPort(5555);
 
 
     	stateHandlers[handler->getDescriptorHandle()] = handler;

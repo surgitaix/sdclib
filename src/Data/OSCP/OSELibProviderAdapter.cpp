@@ -460,6 +460,13 @@ void OSELibProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & report
 	}
 }
 
+// WaveformStream uses UDP multicast, thus no subscription management is needed
+void OSELibProviderAdapter::notifyEvent(const MDM::WaveformStream & stream) {
+	_dpwsHost->sendStream(stream);
+}
+
+
+
 void OSELibProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
@@ -486,10 +493,6 @@ void OSELibProviderAdapter::notifyEvent(const MDM::OperationInvokedReport & repo
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::OperationInvokedReportTraits>(report);
 	}
-}
-
-void OSELibProviderAdapter::notifyEvent(const MDM::WaveformStream & stream) {
-	_dpwsHost->sendStream(stream);
 }
 
 unsigned int OSELibProviderAdapter::getPort() const {
