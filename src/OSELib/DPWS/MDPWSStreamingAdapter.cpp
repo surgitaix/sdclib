@@ -18,6 +18,8 @@
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
 
+#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
+
 #include "OSCLib/OSCLibrary.h"
 
 
@@ -113,6 +115,9 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 		return;
 	}
 
+
+
+
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;
 	const int received(socket.receiveFrom(buf.begin(), available, remoteAddr, 0));
@@ -126,18 +131,17 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 		return;
 	}
 
+
 	if (!message->Header().From().present()) {
 		log_warning([&]{return "From-field in streaming message does not exist";});
-	}
-
-
-
-	if (message->Header().From().get().Address() == m_deviceDescription.getEPR()) {
 		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 	} else {
-		log_error([&]{return "Message has wrong endpoint reference";});
+		if (message->Header().From().get().Address() == m_deviceDescription.getEPR()) {
+			m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
+		} else {
+			log_error([&]{return "Message has wrong endpoint reference. Message not dispatched.";});
+		}
 	}
-
 }
 
 
