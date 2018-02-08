@@ -1,6 +1,15 @@
-Update to version 2.1.0 D10_2017_10_05:
+Update to version 3.0.0 D10_2017_10_05_rev2:
 
-- updated to new participant model (data model), standard version: Draft 10
+- State handlers are templated now. Old API state handler classes deleted. 		
+- Use e.g. SDCConsumerEventHandler<NumericMetricState> instead.
+- Unified state handlers: No multistate handlers anymore. Multistates are also handled by SDCConsumerEventHandler. Use one handler per state and / or define a state handler for the descriptor that comprises all the multiple context state
+
+
+
+
+Update to version 2.1.0 D10_2017_10_05_rev2:
+
+- updated to new participant model (data model), standard version: Draft 10 Revision 2
 - implemented code generator for data model XSD wrapper classes
 - API adapted: 
 	- MDIB classes have no (publicly accessable) default constructor, user has to pass mandatory MDIB fields to the constructor (security feature)

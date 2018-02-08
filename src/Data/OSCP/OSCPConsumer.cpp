@@ -33,15 +33,7 @@
 #include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
-
-
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
-
-// adapt an delete..
-#include "OSCLib/Data/OSCP/OSCPConsumerSystemContextStateChangedHandler.h"
-
-
-
 #include "OSCLib/Data/OSCP/OSCPConsumerSubscriptionLostHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"

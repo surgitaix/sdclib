@@ -15,11 +15,6 @@
 #include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsState.h"
-
-
-#include "OSCLib/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProviderStringMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"

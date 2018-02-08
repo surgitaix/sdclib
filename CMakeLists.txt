@@ -198,24 +198,7 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/OSCPConsumer.cpp
 ./src/Data/OSCP/SDCConsumerOperationInvokedHandler.cpp
 ./src/Data/OSCP/OSCPProvider.cpp
-# todo: kick provider state handlers
 ./src/Data/OSCP/SDCProviderStateHandler.cpp
-./src/Data/OSCP/OSCPProviderActivateOperationHandler.cpp
-./src/Data/OSCP/OSCPProviderAlertConditionStateHandler.cpp
-./src/Data/OSCP/OSCPProviderAlertSignalStateHandler.cpp
-./src/Data/OSCP/OSCPProviderAlertSystemStateHandler.cpp
-./src/Data/OSCP/OSCPProviderChannelStateHandler.cpp
-./src/Data/OSCP/OSCPProviderClockStateHandler.cpp
-./src/Data/OSCP/OSCPProviderSystemContextStateHandler.cpp
-./src/Data/OSCP/OSCPProviderDistributionSampleArrayMetricStateHandler.cpp
-./src/Data/OSCP/OSCPProviderEnumStringMetricStateHandler.cpp
-./src/Data/OSCP/OSCPProviderMdsStateHandler.cpp
-./src/Data/OSCP/OSCPProviderLimitAlertConditionStateHandler.cpp
-./src/Data/OSCP/OSCPProviderMdStateHandler.cpp
-./src/Data/OSCP/OSCPProviderNumericMetricStateHandler.cpp
-./src/Data/OSCP/OSCPProviderRealTimeSampleArrayMetricStateHandler.cpp
-./src/Data/OSCP/OSCPProviderStringMetricStateHandler.cpp
-./src/Data/OSCP/OSCPProviderVmdStateHandler.cpp
 ./src/Data/OSCP/OSELibConsumerAdapter.cpp
 ./src/Data/OSCP/OSELibProviderAdapter.cpp
 ./src/Dev/DeviceCharacteristics.cpp

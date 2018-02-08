@@ -32,9 +32,8 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSELib/OSCP/OSCPConstants.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
-#include "OSCLib/Data/OSCP/OSCPProviderMdStateHandler.h"
 
+#include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"

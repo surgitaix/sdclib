@@ -31,7 +31,6 @@
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"

@@ -45,10 +45,6 @@
 #include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
-
-#include "OSCLib/Data/OSCP/OSCPProviderSystemContextStateHandler.h"
-
-
 #include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
