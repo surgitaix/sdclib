@@ -1,5 +1,5 @@
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -31,15 +31,15 @@
 #include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
 #include "OSELib/OSCP/OSCPConstants.h
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerAlertSignalStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerEnumStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerLimitAlertConditionStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerRealTimeSampleArrayMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumerAlertConditionStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerAlertSignalStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerEnumStringMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerLimitAlertConditionStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerNumericMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerRealTimeSampleArrayMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerStringMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Util/DebugOut.h"
 
 #include "OSELib/OSCP/ServiceManager.h"
@@ -205,11 +205,11 @@ int main (int argc, char * argv[])
 	}
 
 	DebugOut(DebugOut::Default, "GenericSubscription") << std::endl << "Startup";
-	OSCLibrary::getInstance().startup();
-	OSCLibrary::getInstance().setPortStart(42000);
+	SDCLibrary::getInstance().startup();
+	SDCLibrary::getInstance().setPortStart(42000);
 
 	OSELib::OSCP::ServiceManager oscpsm;
-	std::unique_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(epr));
+	std::unique_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(epr));
 	if (consumer) {
 		DebugOut(DebugOut::Default, "GenericSubscription") << "Connected to device with epr: " << epr;
 		const MDDescription mdd(consumer->getMdDescription());
@@ -222,7 +222,7 @@ int main (int argc, char * argv[])
 				AlertConditionDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerAlertConditionStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<SDCConsumerAlertConditionStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -231,7 +231,7 @@ int main (int argc, char * argv[])
 				AlertSignalDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerAlertSignalStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<SDCConsumerAlertSignalStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -240,7 +240,7 @@ int main (int argc, char * argv[])
 				EnumStringMetricDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerEnumStringMetricStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<SDCConsumerEnumStringMetricStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -249,7 +249,7 @@ int main (int argc, char * argv[])
 				LimitAlertConditionDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerLimitAlertConditionStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<SDCConsumerLimitAlertConditionStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -258,7 +258,7 @@ int main (int argc, char * argv[])
 				NumericMetricDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerNumericMetricStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<SDCConsumerNumericMetricStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -267,7 +267,7 @@ int main (int argc, char * argv[])
 				RealTimeSampleArrayMetricDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerRealTimeSampleArrayMetricStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<SDCConsumerRealTimeSampleArrayMetricStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -276,7 +276,7 @@ int main (int argc, char * argv[])
 				StringMetricDescriptor descriptor;
 				if (mdd.findDescriptor(handle, descriptor)) {
 					match = true;
-					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<OSCPConsumerStringMetricStateHandler>(handle));
+					std::unique_ptr<SDCConsumerOperationInvokedHandler> handler(new Handler<SDCConsumerStringMetricStateHandler>(handle));
 					consumer->registerStateEventHandler(handler.get());
 					handlers.push_back(std::move(handler));
 				}
@@ -296,7 +296,7 @@ int main (int argc, char * argv[])
 		DebugOut(DebugOut::Default, "GenericSubscription") << "Connection failed for epr: " << epr;
 	}
 
-	OSCLibrary::getInstance().shutdown();
+	SDCLibrary::getInstance().shutdown();
 	DebugOut(DebugOut::Default, "GenericSubscription") << "Shutdown" << std::endl;
 }
 

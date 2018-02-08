@@ -38,7 +38,7 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/WorkflowContextState.h"
 
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
 
 namespace OSCLib {
@@ -57,7 +57,7 @@ SDCProviderStateHandler::~SDCProviderStateHandler() {
 
 void SDCProviderStateHandler::notifyOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
     if (parentProvider == nullptr) {
-    	log_error([] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
+    	log_error([] { return "Handler is used without calling SDCProvider::addMDStateHandler!"; });
     } else {
     	parentProvider->notifyOperationInvoked(oic, is);
     }
@@ -65,7 +65,7 @@ void SDCProviderStateHandler::notifyOperationInvoked(const OperationInvocationCo
 
 void SDCProviderStateHandler::setAlertConditionPresence(const std::string alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
     if (parentProvider == nullptr) {
-    	log_error([&] { return "Handler is used without calling OSCPProvider::addMDStateHandler!"; });
+    	log_error([&] { return "Handler is used without calling SDCProvider::addMDStateHandler!"; });
     } else {
         parentProvider->setAlertConditionPresence(alertConditionHandle, conditionPresence, oic);
     }
@@ -94,13 +94,13 @@ template void SDCProviderStateHandler::updateState(const DistributionSampleArray
 template<class TState>
 void SDCProviderStateHandler::updateState(const TState & object) {
     if (parentProvider == nullptr) {
-    	log_error([&] { return "Handler is used without calling OSCPProvider::addMdStateHandler!"; });
+    	log_error([&] { return "Handler is used without calling SDCProvider::addMdStateHandler!"; });
     } else {
         parentProvider->updateState(object);
     }
 }
 
-OSCPProvider & SDCProviderStateHandler::getParentProvider() {
+SDCProvider & SDCProviderStateHandler::getParentProvider() {
 	return *parentProvider;
 }
 

@@ -1,10 +1,10 @@
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 #include "OSELib/OSCP/OSCPConstants.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
@@ -155,7 +155,7 @@ public:
 
 
 // This example shows one way of implementing the Provider
-// Since the OSCPProvider class is final, it is recommended to implement the OSCPProvider as a member variable of a container class to expand the OSCPProvider in a clear and convinient fashion
+// Since the SDCProvider class is final, it is recommended to implement the SDCProvider as a member variable of a container class to expand the SDCProvider in a clear and convinient fashion
 class OSCPHoldingDeviceProvider {
 public:
 
@@ -252,8 +252,8 @@ public:
 
 private:
 
-    // OSCPProvider for communication to the network
-    OSCPProvider oscpProvider;
+    // SDCProvider for communication to the network
+    SDCProvider oscpProvider;
 
     float currentWeight;
 
@@ -337,9 +337,9 @@ private:
 
 int main()
 {
-	OSCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
-	OSCLibrary::getInstance().setIP6enabled(false);
-	OSCLibrary::getInstance().setPortStart(11000);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
+	SDCLibrary::getInstance().setIP6enabled(false);
+	SDCLibrary::getInstance().setPortStart(11000);
 
 	OSELib::OSCP::ServiceManager oscpsm;
 	class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
@@ -363,9 +363,9 @@ int main()
 	std::cin >> temp;
 
 	// Discovery
-	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR));
+	std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR));
 	// alternatively: search the whole network
-//		std::vector<std::unique_ptr<OSCPConsumer>> consumers(oscpsm.discoverOSCP());
+//		std::vector<std::unique_ptr<SDCConsumer>> consumers(oscpsm.discoverOSCP());
 
 
 	if (c != nullptr) {
@@ -373,7 +373,7 @@ int main()
 		std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler(HANDLE_CURRENT_WEIGHT_METRIC));
 		std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler(HANDLE_MAX_WEIGHT_METRIC));
 
-		OSCPConsumer & consumer = *c;
+		SDCConsumer & consumer = *c;
 		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
 
 		// MDIB test
@@ -427,6 +427,6 @@ int main()
 	Poco::Thread::sleep(2000);
 
 	DebugOut(DebugOut::Default, "ExampleProject") << "Shutdown." << std::endl;
-	OSCLibrary::getInstance().shutdown();
+	SDCLibrary::getInstance().shutdown();
 
 }

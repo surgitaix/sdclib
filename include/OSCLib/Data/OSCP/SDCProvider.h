@@ -15,14 +15,14 @@
   */
 
 /*
- * OSCPProvider.h
+ * SDCProvider.h
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
 
-#ifndef OSCPPROVIDER_H_
-#define OSCPPROVIDER_H_
+#ifndef SDCPROVIDER_H_
+#define SDCPROVIDER_H_
 
 #include <atomic>
 #include <memory>
@@ -52,11 +52,11 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPProvider final : public OSELib::WithLogger {
+class SDCProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
 
     // todo: kick after provider state handler refactoring
-    friend class OSCPProviderMdStateHandler;
+    friend class SDCProviderMdStateHandler;
 
     friend class SDCProviderStateHandler;
 
@@ -67,8 +67,8 @@ class OSCPProvider final : public OSELib::WithLogger {
 
 
 public:
-    OSCPProvider();
-    virtual ~OSCPProvider();
+    SDCProvider();
+    virtual ~SDCProvider();
 
     /**
     * @brief Get the complete Medical Device Infomation Base (MDIB, description and states).
@@ -312,7 +312,7 @@ private:
     void createSetOperationForContextDescriptor(const T & descriptor, MdsDescriptor & ownerMDS);
 
     template<class StateType>
-    bool isMetricChangeAllowed(const StateType & state, OSCPProvider & provider);
+    bool isMetricChangeAllowed(const StateType & state, SDCProvider & provider);
 
 	MDM::SetValueResponse SetValueAsync(const MDM::SetValue & request);
     void SetValue(const MDM::SetValue & request, const OperationInvocationContext & oic);
@@ -379,4 +379,4 @@ private:
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* OSCPPROVIDER_H_ */
+#endif /* SDCROVIDER_H_ */

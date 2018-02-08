@@ -27,9 +27,9 @@
 
 
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumerConnectionLostHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
@@ -115,12 +115,12 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    OSCLibrary::getInstance().startup(OSELib::LogLevel::TRACE);
-	OSCLibrary::getInstance().setPortStart(12000);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::TRACE);
+	SDCLibrary::getInstance().setPortStart(12000);
 
-    class MyConnectionLostHandler : public Data::OSCP::OSCPConsumerConnectionLostHandler {
+    class MyConnectionLostHandler : public Data::OSCP::SDCConsumerConnectionLostHandler {
     public:
-    	MyConnectionLostHandler(Data::OSCP::OSCPConsumer & consumer) : consumer(consumer) {
+    	MyConnectionLostHandler(Data::OSCP::SDCConsumer & consumer) : consumer(consumer) {
     	}
     	void onConnectionLost() override {
     		std::cerr << "Connection lost, disconnecting... ";
@@ -128,12 +128,12 @@ int main() {
     		std::cerr << "disconnected." << std::endl;
     	}
     private:
-    	Data::OSCP::OSCPConsumer & consumer;
+    	Data::OSCP::SDCConsumer & consumer;
     };
 
 	// Discovery
 	OSELib::OSCP::ServiceManager oscpsm;
-	std::unique_ptr<Data::OSCP::OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	std::unique_ptr<Data::OSCP::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 
 	// state handler
 //	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
@@ -142,7 +142,7 @@ int main() {
 
 	try {
 		if (c != nullptr) {
-			Data::OSCP::OSCPConsumer & consumer = *c;
+			Data::OSCP::SDCConsumer & consumer = *c;
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
 
@@ -173,6 +173,6 @@ int main() {
 	} catch (std::exception & e){
 		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Exception: " << e.what() << std::endl;
 	}
-    OSCLibrary::getInstance().shutdown();
+    SDCLibrary::getInstance().shutdown();
     Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Shutdown." << std::endl;
 }

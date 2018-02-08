@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 
 #include "OSELib/Helper/WithLogger.h"
 
@@ -24,12 +24,12 @@ public:
 		testname(testname)
 	{
 		log_notice([&]{ return testname + ":  Startup."; });
-		OSCLibrary::getInstance().startup(debuglevel);
-        OSCLibrary::getInstance().setPortStart(portStart);
+		SDCLibrary::getInstance().startup(debuglevel);
+        SDCLibrary::getInstance().setPortStart(portStart);
 	}
 
 	virtual ~AbstractOSCLibFixture() {
-		OSCLibrary::getInstance().shutdown();
+		SDCLibrary::getInstance().shutdown();
 		log_notice([&]{ return testname + ":  Shutdown."; });
 	}
 

@@ -15,7 +15,7 @@
   */
 
 /*
- * OSCPProvider.cpp
+ * SDCProvider.cpp
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: roehser, besting, buerger
@@ -30,10 +30,10 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 #include "OSELib/OSCP/OSCPConstants.h"
 
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
@@ -111,7 +111,7 @@ public:
 
 class AsyncProviderInvoker : public Util::Task, OSELib::WithLogger {
 public:
-	AsyncProviderInvoker(OSCPProvider & provider,
+	AsyncProviderInvoker(SDCProvider & provider,
 			Poco::NotificationQueue & queue) :
 		WithLogger(OSELib::Log::OSCPPROVIDER),
 		provider(provider),
@@ -158,7 +158,7 @@ public:
     }
 
 private:
-    OSCPProvider & provider;
+    SDCProvider & provider;
     Poco::NotificationQueue & queue;
 };
 
@@ -166,7 +166,7 @@ private:
 
 
 template<class StateType>
-bool OSCPProvider::isMetricChangeAllowed(const StateType & state, OSCPProvider & provider) {
+bool SDCProvider::isMetricChangeAllowed(const StateType & state, SDCProvider & provider) {
 	typename StateType::DescriptorType descriptor;
 	if (!provider.getMdDescription().findDescriptor(state.getDescriptorHandle(), descriptor)) {
 		return false;
@@ -182,33 +182,33 @@ bool OSCPProvider::isMetricChangeAllowed(const StateType & state, OSCPProvider &
 	}
 }
 
-OSCPProvider::OSCPProvider() :
+SDCProvider::SDCProvider() :
 	WithLogger(OSELib::Log::OSCPPROVIDER),
 	periodicEventInterval(10, 0)
 {
 	atomicTransactionId.store(0);
 	mdibVersion.store(0);
     setEndpointReference(Poco::UUIDGenerator::defaultGenerator().create().toString());
-    const unsigned int port(OSCLibrary::getInstance().extractFreePort());
+    const unsigned int port(SDCLibrary::getInstance().extractFreePort());
     m_mdDescription = std::unique_ptr<MdDescription>(new MdDescription());
 	_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
 }
 
-OSCPProvider::~OSCPProvider() {
+SDCProvider::~SDCProvider() {
 
 }
 
-unsigned int OSCPProvider::incrementAndGetTransactionId() {
+unsigned int SDCProvider::incrementAndGetTransactionId() {
 	const unsigned int result = ++atomicTransactionId;
 	return result;
 }
 
 template<class T>
-void OSCPProvider::enqueueInvokeNotification(const T & request, const OperationInvocationContext & oic) {
+void SDCProvider::enqueueInvokeNotification(const T & request, const OperationInvocationContext & oic) {
 	invokeQueue.enqueueNotification(new SetNotification<T>(request, oic));
 }
 
-MDM::SetValueResponse OSCPProvider::SetValueAsync(const MDM::SetValue & request) {
+MDM::SetValueResponse SDCProvider::SetValueAsync(const MDM::SetValue & request) {
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 	const std::string metricHandle(getMdDescription().getOperationTargetForOperationHandle(oic.operationHandle));
 
@@ -233,7 +233,7 @@ MDM::SetValueResponse OSCPProvider::SetValueAsync(const MDM::SetValue & request)
 	return genResponse(InvocationState::Wait);
 }
 
-void OSCPProvider::SetValue(const MDM::SetValue & request, const OperationInvocationContext & oic) {
+void SDCProvider::SetValue(const MDM::SetValue & request, const OperationInvocationContext & oic) {
 	const std::string metricHandle(getMdDescription().getOperationTargetForOperationHandle(oic.operationHandle));
 
 	NumericMetricState nms;
@@ -256,7 +256,7 @@ void OSCPProvider::SetValue(const MDM::SetValue & request, const OperationInvoca
 	}
 }
 
-MDM::ActivateResponse OSCPProvider::OnActivateAsync(const MDM::Activate & request) {
+MDM::ActivateResponse SDCProvider::OnActivateAsync(const MDM::Activate & request) {
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 	notifyOperationInvoked(oic, InvocationState::Wait);
 	enqueueInvokeNotification(request, oic);
@@ -268,7 +268,7 @@ MDM::ActivateResponse OSCPProvider::OnActivateAsync(const MDM::Activate & reques
 }
 
 
-void OSCPProvider::OnActivate(const OperationInvocationContext & oic) {
+void SDCProvider::OnActivate(const OperationInvocationContext & oic) {
 	std::map<std::string, SDCProviderStateHandler *>::iterator it = stateHandlers.find(oic.operationHandle);
     if (it != stateHandlers.end()) {
     	if (SDCProviderActivateOperationHandler * handler = dynamic_cast<SDCProviderActivateOperationHandler *>(it->second)) {
@@ -280,7 +280,7 @@ void OSCPProvider::OnActivate(const OperationInvocationContext & oic) {
     notifyOperationInvoked(oic, InvocationState::Fail);
 }
 
-MDM::SetStringResponse OSCPProvider::SetStringAsync(const MDM::SetString & request) {
+MDM::SetStringResponse SDCProvider::SetStringAsync(const MDM::SetString & request) {
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 	const MdDescription mdd(getMdDescription());
 
@@ -335,7 +335,7 @@ MDM::SetStringResponse OSCPProvider::SetStringAsync(const MDM::SetString & reque
 }
 
 template<class T>
-void OSCPProvider::SetStringImpl(const T & state, const OperationInvocationContext & oic) {
+void SDCProvider::SetStringImpl(const T & state, const OperationInvocationContext & oic) {
 
 	const InvocationState outState(onStateChangeRequest(state, oic));
 	notifyOperationInvoked(oic, outState);
@@ -347,7 +347,7 @@ void OSCPProvider::SetStringImpl(const T & state, const OperationInvocationConte
 
 }
 
-void OSCPProvider::SetString(const MDM::SetString & request, const OperationInvocationContext & oic) {
+void SDCProvider::SetString(const MDM::SetString & request, const OperationInvocationContext & oic) {
 
 	const std::string & requestedStringVal(request.RequestedStringValue());
 
@@ -398,7 +398,7 @@ void OSCPProvider::SetString(const MDM::SetString & request, const OperationInvo
 
 
 template<typename StateType>
-void OSCPProvider::SetAlertStateImpl(const StateType & state, const OperationInvocationContext & oic) {
+void SDCProvider::SetAlertStateImpl(const StateType & state, const OperationInvocationContext & oic) {
 
 	const MdDescription mdd(getMdDescription());
 
@@ -417,7 +417,7 @@ void OSCPProvider::SetAlertStateImpl(const StateType & state, const OperationInv
     }
 }
 
-MDM::SetAlertStateResponse OSCPProvider::SetAlertStateAsync(const MDM::SetAlertState & request) {
+MDM::SetAlertStateResponse SDCProvider::SetAlertStateAsync(const MDM::SetAlertState & request) {
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 	const CDM::AbstractAlertState * incomingCDMState = &(request.ProposedAlertState());
 
@@ -457,7 +457,7 @@ MDM::SetAlertStateResponse OSCPProvider::SetAlertStateAsync(const MDM::SetAlertS
 	}
 }
 
-void OSCPProvider::SetAlertState(const MDM::SetAlertState & request, const OperationInvocationContext & oic) {
+void SDCProvider::SetAlertState(const MDM::SetAlertState & request, const OperationInvocationContext & oic) {
 
 	const CDM::AbstractAlertState * incomingCDMState = &(request.ProposedAlertState());
 
@@ -485,7 +485,7 @@ void OSCPProvider::SetAlertState(const MDM::SetAlertState & request, const Opera
 	}
 }
 
-MDM::GetMdStateResponse OSCPProvider::GetMdState(const MDM::GetMdState & request) {
+MDM::GetMdStateResponse SDCProvider::GetMdState(const MDM::GetMdState & request) {
     auto sdmMdStates(ConvertToCDM::convert(getMdState()));
 
     if (request.HandleRef().empty()) {
@@ -504,7 +504,7 @@ MDM::GetMdStateResponse OSCPProvider::GetMdState(const MDM::GetMdState & request
     }
 }
 
-MDM::GetContextStatesResponse OSCPProvider::GetContextStates(const MDM::GetContextStates & request) {
+MDM::GetContextStatesResponse SDCProvider::GetContextStates(const MDM::GetContextStates & request) {
 	const auto states(ConvertToCDM::convert(getMdState()));
 
 	//TODO: use real SequenceID, not 0
@@ -550,7 +550,7 @@ MDM::GetContextStatesResponse OSCPProvider::GetContextStates(const MDM::GetConte
 	return result;
 }
 
-MDM::SetContextStateResponse OSCPProvider::SetContextStateAsync(const MDM::SetContextState & request) {
+MDM::SetContextStateResponse SDCProvider::SetContextStateAsync(const MDM::SetContextState & request) {
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 
 	auto genResponse = [this, &oic](InvocationState v) {
@@ -573,7 +573,7 @@ MDM::SetContextStateResponse OSCPProvider::SetContextStateAsync(const MDM::SetCo
 
 
 template<class TState>
-void OSCPProvider::SetContextStateImpl(const TState & state,  const OperationInvocationContext & oic) {
+void SDCProvider::SetContextStateImpl(const TState & state,  const OperationInvocationContext & oic) {
 	// FIXME: check if writing to context state is allowed! = SCO exists
 	const InvocationState outState(onStateChangeRequest(state, oic));
 	notifyOperationInvoked(oic, outState);
@@ -583,7 +583,7 @@ void OSCPProvider::SetContextStateImpl(const TState & state,  const OperationInv
 	}
 }
 
-void OSCPProvider::SetContextState(const MDM::SetContextState & request, const OperationInvocationContext & oic) {
+void SDCProvider::SetContextState(const MDM::SetContextState & request, const OperationInvocationContext & oic) {
 	for (const auto & nextState : request.ProposedContextState()) {
 		if (const CDM::PatientContextState * state = dynamic_cast<const CDM::PatientContextState *>(&nextState)) {
 			SetContextStateImpl(ConvertFromCDM::convert(*state), oic);
@@ -607,14 +607,14 @@ void OSCPProvider::SetContextState(const MDM::SetContextState & request, const O
 }
 
 
-MDM::GetMdibResponse OSCPProvider::GetMdib(const MDM::GetMdib & ) {
+MDM::GetMdibResponse SDCProvider::GetMdib(const MDM::GetMdib & ) {
 	// TODO: 0 = replace with real sequence ID
 	MDM::GetMdibResponse mdib(xml_schema::Uri("0"),ConvertToCDM::convert(getMdib()));
 	mdib.MdibVersion(getMdibVersion());
     return mdib;
 }
 
-MDM::GetMdDescriptionResponse OSCPProvider::GetMdDescription(const MDM::GetMdDescription & request) {
+MDM::GetMdDescriptionResponse SDCProvider::GetMdDescription(const MDM::GetMdDescription & request) {
 	auto cdmMdd(ConvertToCDM::convert(getMdDescription()));
 
 	if (request.HandleRef().empty()) {
@@ -636,47 +636,47 @@ MDM::GetMdDescriptionResponse OSCPProvider::GetMdDescription(const MDM::GetMdDes
 	}
 }
 
-void OSCPProvider::updateState(const AlertSystemState & object) {
+void SDCProvider::updateState(const AlertSystemState & object) {
 	notifyAlertEventImpl(object);
 }
 
-void OSCPProvider::updateState(const AlertSignalState & object) {
+void SDCProvider::updateState(const AlertSignalState & object) {
 	notifyAlertEventImpl(object);
 }
 
-void OSCPProvider::updateState(const AlertConditionState & object) {
+void SDCProvider::updateState(const AlertConditionState & object) {
 	notifyAlertEventImpl(object);
 }
 
-void OSCPProvider::updateState(const EnumStringMetricState & object) {
+void SDCProvider::updateState(const EnumStringMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
 
-void OSCPProvider::updateState(const LimitAlertConditionState & object) {
+void SDCProvider::updateState(const LimitAlertConditionState & object) {
 	notifyAlertEventImpl(object);
 }
 
-void OSCPProvider::updateState(const NumericMetricState & object) {
+void SDCProvider::updateState(const NumericMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
 
 
-void OSCPProvider::updateState(const StringMetricState & object) {
+void SDCProvider::updateState(const StringMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
 
 
 // regarding to the given standard the DSAMS is implemented as an TCP transported Metric
-void OSCPProvider::updateState(const DistributionSampleArrayMetricState & object) {
+void SDCProvider::updateState(const DistributionSampleArrayMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
 
 // UDP metrices
-void OSCPProvider::updateState(const RealTimeSampleArrayMetricState & object) {
+void SDCProvider::updateState(const RealTimeSampleArrayMetricState & object) {
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyStreamMetricImpl(object);
 }
@@ -684,31 +684,31 @@ void OSCPProvider::updateState(const RealTimeSampleArrayMetricState & object) {
 
 
 // context states
-void OSCPProvider::updateState(const EnsembleContextState & object) {
+void SDCProvider::updateState(const EnsembleContextState & object) {
 	notifyContextEventImpl(object);
 }
 
-void OSCPProvider::updateState(const MeansContextState & object) {
+void SDCProvider::updateState(const MeansContextState & object) {
 	notifyContextEventImpl(object);
 }
 
-void OSCPProvider::updateState(const LocationContextState & object) {
+void SDCProvider::updateState(const LocationContextState & object) {
 	notifyContextEventImpl(object);
 }
 
-void OSCPProvider::updateState(const WorkflowContextState & object) {
+void SDCProvider::updateState(const WorkflowContextState & object) {
 	notifyContextEventImpl(object);
 }
 
-void OSCPProvider::updateState(const PatientContextState & object) {
+void SDCProvider::updateState(const PatientContextState & object) {
 	notifyContextEventImpl(object);
 }
 
-void OSCPProvider::updateState(const OperatorContextState & object) {
+void SDCProvider::updateState(const OperatorContextState & object) {
 	notifyContextEventImpl(object);
 }
 
-template<class T> void OSCPProvider::notifyAlertEventImpl(const T & object) {
+template<class T> void SDCProvider::notifyAlertEventImpl(const T & object) {
 	if (object.getDescriptorHandle().empty()) {
 		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
@@ -727,7 +727,7 @@ template<class T> void OSCPProvider::notifyAlertEventImpl(const T & object) {
 	_adapter->notifyEvent(report);
 }
 
-template<class T> void OSCPProvider::notifyContextEventImpl(const T & object) {
+template<class T> void SDCProvider::notifyContextEventImpl(const T & object) {
 	if (object.getDescriptorHandle().empty()) {
 		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
@@ -747,7 +747,7 @@ template<class T> void OSCPProvider::notifyContextEventImpl(const T & object) {
 }
 
 template<class T>
-void OSCPProvider::notifyEpisodicMetricImpl(const T & object) {
+void SDCProvider::notifyEpisodicMetricImpl(const T & object) {
 	if (object.getDescriptorHandle().empty()) {
 		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
@@ -767,7 +767,7 @@ void OSCPProvider::notifyEpisodicMetricImpl(const T & object) {
 }
 
 template<class T>
-void OSCPProvider::notifyStreamMetricImpl(const T & object) {
+void SDCProvider::notifyStreamMetricImpl(const T & object) {
 	if (object.getDescriptorHandle().empty()) {
 		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
@@ -788,7 +788,7 @@ void OSCPProvider::notifyStreamMetricImpl(const T & object) {
 
 
 
-void OSCPProvider::firePeriodicReportImpl(const std::vector<std::string> & handles) {
+void SDCProvider::firePeriodicReportImpl(const std::vector<std::string> & handles) {
 	if (handles.empty()) {
 		log_debug([&] { return "List of handles is empty, event will not be fired!"; });
 		return;
@@ -831,7 +831,7 @@ void OSCPProvider::firePeriodicReportImpl(const std::vector<std::string> & handl
 	_adapter->notifyEvent(periodicMetricReport);
 }
 
-void OSCPProvider::setAlertConditionPresence(const std::string & alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
+void SDCProvider::setAlertConditionPresence(const std::string & alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
 	const MdState mdsc(getMdState());
 
 	// Modify alert condition's presence
@@ -903,7 +903,7 @@ void OSCPProvider::setAlertConditionPresence(const std::string & alertConditionH
 	}
 }
 
-void OSCPProvider::evaluateAlertConditions(const std::string & source) {
+void SDCProvider::evaluateAlertConditions(const std::string & source) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	const MdDescription description(getMdDescription());
 
@@ -938,7 +938,7 @@ void OSCPProvider::evaluateAlertConditions(const std::string & source) {
 	}
 }
 
-MdibContainer OSCPProvider::getMdib() {
+MdibContainer SDCProvider::getMdib() {
     MdibContainer container;
 	Poco::Mutex::ScopedLock lock(mutex);
     container.setMdDescription(getMdDescription());
@@ -947,25 +947,25 @@ MdibContainer OSCPProvider::getMdib() {
     return container;
 }
 
-MdDescription OSCPProvider::getMdDescription() const {
+MdDescription SDCProvider::getMdDescription() const {
 	return *m_mdDescription;
 }
 
-MdState OSCPProvider::getMdState() {
+MdState SDCProvider::getMdState() {
 	Poco::Mutex::ScopedLock lock(mutex);
 	return mdibStates;
 }
 
-void OSCPProvider::startup() {
+void SDCProvider::startup() {
 	try {
 		_adapter->start();
 	} catch (const Poco::Net::NetException & e) {
 		// Case: poco exception saying that the socket is not free
 		// -> retry with another port
-		unsigned int port(OSCLibrary::getInstance().extractFreePort());
+		unsigned int port(SDCLibrary::getInstance().extractFreePort());
 		log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with port: " + std::to_string(port); });
 
-		OSCLibrary::getInstance().returnPortToPool(_adapter->getPort());
+		SDCLibrary::getInstance().returnPortToPool(_adapter->getPort());
 		_adapter.reset();
 		_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
 		this->startup();
@@ -1045,7 +1045,7 @@ void OSCPProvider::startup() {
     }
 }
 
-void OSCPProvider::shutdown() {
+void SDCProvider::shutdown() {
     if (providerInvoker) {
     	providerInvoker->interrupt();
     	providerInvoker.reset();
@@ -1056,7 +1056,7 @@ void OSCPProvider::shutdown() {
 	}
 }
 
-template<class T> void OSCPProvider::replaceState(const T & object) {
+template<class T> void SDCProvider::replaceState(const T & object) {
     Poco::Mutex::ScopedLock lock(mutex);
     // Check for existing state
     std::unique_ptr<CDM::MdState> cachedStates(ConvertToCDM::convert(mdibStates));
@@ -1074,7 +1074,7 @@ template<class T> void OSCPProvider::replaceState(const T & object) {
 }
 
 
-void OSCPProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
+void SDCProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
     handler->parentProvider = this;
 
 
@@ -1111,7 +1111,7 @@ void OSCPProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
     // TODO: Move streaming service to service controller
     // add DistributionArray...
     else if (auto streamHandler = dynamic_cast<SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> *>(handler)) {
-    	//int port = OSCLibrary::getInstance().extractFreePort();
+    	//int port = SDCLibrary::getInstance().extractFreePort();
 //    	_adapter->addStreamingPort(4444);
     	// FIXME: delete after testing that streaming works on more than one address!
     	_adapter->addStreamingPort(5555);
@@ -1125,21 +1125,21 @@ void OSCPProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
 }
 
 
-void OSCPProvider::removeMDStateHandler(SDCProviderStateHandler * handler) {
+void SDCProvider::removeMDStateHandler(SDCProviderStateHandler * handler) {
     stateHandlers.erase(handler->getDescriptorHandle());
 }
 
-void OSCPProvider::setEndpointReference(const std::string & epr) {
+void SDCProvider::setEndpointReference(const std::string & epr) {
 	this->endpointReference = epr;
 }
 
 
-void OSCPProvider::setMdDescription(const MdDescription & mdDescription) {
+void SDCProvider::setMdDescription(const MdDescription & mdDescription) {
 	Poco::Mutex::ScopedLock lock(getMutex());
 	m_mdDescription = std::make_shared<MdDescription>(mdDescription);
 }
 
-void OSCPProvider::setMdDescription(std::string xml) {
+void SDCProvider::setMdDescription(std::string xml) {
 	OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
 	auto rawMessage = OSELib::Helper::Message::create(xml);
 	auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
@@ -1162,11 +1162,11 @@ void OSCPProvider::setMdDescription(std::string xml) {
 
 
 
-const std::string OSCPProvider::getEndpointReference() const {
+const std::string SDCProvider::getEndpointReference() const {
 	return endpointReference;
 }
 
-template<typename T> InvocationState OSCPProvider::onStateChangeRequest(const T & state, const OperationInvocationContext & oic) {
+template<typename T> InvocationState SDCProvider::onStateChangeRequest(const T & state, const OperationInvocationContext & oic) {
 	std::map<std::string, SDCProviderStateHandler *>::iterator it(stateHandlers.find(state.getDescriptorHandle()));
     if (it != stateHandlers.end()) {
     	if (SDCProviderMDStateHandler<T> * handler = dynamic_cast<SDCProviderMDStateHandler<T> *>(it->second)) {
@@ -1176,7 +1176,7 @@ template<typename T> InvocationState OSCPProvider::onStateChangeRequest(const T 
     return InvocationState::Fail;
 }
 
-void OSCPProvider::notifyOperationInvoked(const OperationInvocationContext & oic, Data::OSCP::InvocationState is) {
+void SDCProvider::notifyOperationInvoked(const OperationInvocationContext & oic, Data::OSCP::InvocationState is) {
 	if (oic.transactionId == 0 && oic.operationHandle.empty())
 		return;
 
@@ -1191,7 +1191,7 @@ void OSCPProvider::notifyOperationInvoked(const OperationInvocationContext & oic
 }
 
 template<class T>
-void OSCPProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor & ownerMDS) {
+void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor & ownerMDS) {
 	// get sco object or create new
 	std::unique_ptr<CDM::ScoDescriptor> scoDescriptor(Defaults::ScoDescriptorInit(xml_schema::Uri("")));
 	if (ownerMDS.hasSco()) {
@@ -1263,92 +1263,92 @@ void OSCPProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescripto
 	}
 }
 
-void OSCPProvider::addActivateOperationForDescriptor(const ActivateOperationDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::addActivateOperationForDescriptor(const ActivateOperationDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	addSetOperationToSCOObjectImpl(*ConvertToCDM::convert(descriptor), ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const AlertConditionDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const AlertConditionDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	const CDM::SetAlertStateOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const AlertSignalDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const AlertSignalDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	const CDM::SetAlertStateOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const AlertSystemDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const AlertSystemDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	const CDM::SetAlertStateOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const EnumStringMetricDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const EnumStringMetricDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	const CDM::SetStringOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const LimitAlertConditionDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const LimitAlertConditionDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	const CDM::SetAlertStateOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const NumericMetricDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const NumericMetricDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	const CDM::SetValueOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const StringMetricDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const StringMetricDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	const CDM::SetStringOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
 
 template<class T>
-void OSCPProvider::createSetOperationForContextDescriptor(const T & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForContextDescriptor(const T & descriptor, MdsDescriptor & ownerMDS) {
 	const CDM::SetContextStateOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const PatientContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const PatientContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	createSetOperationForContextDescriptor(descriptor, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const LocationContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const LocationContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	createSetOperationForContextDescriptor(descriptor, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const EnsembleContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const EnsembleContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	createSetOperationForContextDescriptor(descriptor, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const OperatorContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const OperatorContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	createSetOperationForContextDescriptor(descriptor, ownerMDS);
 }
 
-void OSCPProvider::createSetOperationForDescriptor(const WorkflowContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
+void SDCProvider::createSetOperationForDescriptor(const WorkflowContextDescriptor & descriptor, MdsDescriptor & ownerMDS) {
 	createSetOperationForContextDescriptor(descriptor, ownerMDS);
 }
 
-const Dev::DeviceCharacteristics& OSCPProvider::getDeviceCharacteristics() const {
+const Dev::DeviceCharacteristics& SDCProvider::getDeviceCharacteristics() const {
 	return devicecharacteristics;
 }
 
-void OSCPProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics& deviceCharacteristics) {
+void SDCProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics& deviceCharacteristics) {
 	this->devicecharacteristics = deviceCharacteristics;
 }
 
-unsigned long long int OSCPProvider::getMdibVersion() const {
+unsigned long long int SDCProvider::getMdibVersion() const {
 	return mdibVersion;
 }
 
-void OSCPProvider::incrementMDIBVersion() {
+void SDCProvider::incrementMDIBVersion() {
 	mdibVersion++;
 }
 
-Poco::Mutex & OSCPProvider::getMutex() {
+Poco::Mutex & SDCProvider::getMutex() {
 	return mutex;
 }
 
-void OSCPProvider::setPeriodicEventInterval(const int seconds, const int milliseconds) {
+void SDCProvider::setPeriodicEventInterval(const int seconds, const int milliseconds) {
 	const Poco::Timespan interval (seconds, milliseconds);
 	if (interval > Poco::Timespan(0, 250)) {
 		Poco::Mutex::ScopedLock lock(mutex);
@@ -1356,17 +1356,17 @@ void OSCPProvider::setPeriodicEventInterval(const int seconds, const int millise
 	}
 }
 
-std::vector<std::string> OSCPProvider::getHandlesForPeriodicUpdate() {
+std::vector<std::string> SDCProvider::getHandlesForPeriodicUpdate() {
 	Poco::Mutex::ScopedLock lock(mutex);
 	return handlesForPeriodicUpdates;
 }
 
-void OSCPProvider::addHandleForPeriodicEvent(const std::string & handle) {
+void SDCProvider::addHandleForPeriodicEvent(const std::string & handle) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	handlesForPeriodicUpdates.push_back(handle);
 }
 
-void OSCPProvider::removeHandleForPeriodicEvent(const std::string & handle) {
+void SDCProvider::removeHandleForPeriodicEvent(const std::string & handle) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	auto iterator = std::find(handlesForPeriodicUpdates.begin(), handlesForPeriodicUpdates.end(), handle);
 	if (iterator != handlesForPeriodicUpdates.end()) {

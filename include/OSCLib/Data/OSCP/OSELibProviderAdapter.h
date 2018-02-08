@@ -20,7 +20,7 @@ namespace OSCP {
 
 class OSELibProviderAdapter {
 public:
-	OSELibProviderAdapter(OSCPProvider & provider, const unsigned int port);
+	OSELibProviderAdapter(SDCProvider & provider, const unsigned int port);
 	virtual ~OSELibProviderAdapter();
 
 	void start();
@@ -42,7 +42,7 @@ public:
 	void removeStreamingPort(const int port);
 
 private:
-	OSCPProvider & _provider;
+	SDCProvider & _provider;
 
 	mutable Poco::Mutex mutex;
 	std::unique_ptr<Poco::ThreadPool> _threadPool;

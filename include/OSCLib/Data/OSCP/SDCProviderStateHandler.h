@@ -40,7 +40,7 @@ namespace OSCP {
 
 
 class SDCProviderStateHandler : public OSELib::WithLogger {
-	friend class OSCPProvider;
+	friend class SDCProvider;
 public:
 	SDCProviderStateHandler(std::string desriptorHandle);
 	virtual ~SDCProviderStateHandler();
@@ -92,14 +92,14 @@ public:
     *
     * @return a reference to the provider.
     */
-    OSCPProvider & getParentProvider();
+    SDCProvider & getParentProvider();
 
 protected:
     //void notifyMDIBObjectChangedImpl(const TState & object);
 
     std::string descriptorHandle;
 
-    OSCPProvider * parentProvider;
+    SDCProvider * parentProvider;
 
 private:
     // prohibit copying! each state and each state handler is unique

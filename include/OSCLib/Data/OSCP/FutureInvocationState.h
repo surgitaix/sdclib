@@ -35,10 +35,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumer;
+class SDCConsumer;
 
 class FutureInvocationState {
-	friend class OSCPConsumer;
+	friend class SDCConsumer;
 public:
 	FutureInvocationState();
 	virtual ~FutureInvocationState();
@@ -51,7 +51,7 @@ private:
 	void setEvent(InvocationState actual);
 
 	int transactionId;
-	OSCPConsumer * consumer;
+	SDCConsumer * consumer;
 	Poco::Mutex mutex;
 
 	std::map<InvocationState, std::shared_ptr<Poco::Event>> invocationEvents;

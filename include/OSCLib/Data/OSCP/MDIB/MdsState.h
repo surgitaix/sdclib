@@ -46,8 +46,8 @@ private:
 	operator CDM::MdsState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
-	friend class OSCPProvider;
-	friend class OSCPConsumer;
+	friend class SDCProvider;
+	friend class SDCConsumer;
 	friend class MdState;
 	friend class MdDescription;
 public:
@@ -65,7 +65,6 @@ public:
     
     typedef CDM::MdsState WrappedType;
     typedef MdsDescriptor DescriptorType;
-    typedef OSCPProviderMdsStateHandler ProviderHandlerType;
 
 	MdsState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

@@ -1,5 +1,5 @@
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -23,10 +23,10 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSELib/OSCP/OSCPConstants.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerNumericMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerStringMetricStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumerNumericMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerStringMetricStateHandler.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Util/DebugOut.h"
 
 #include "OSELib/OSCP/ServiceManager.h"
@@ -42,7 +42,7 @@ using namespace OSCLib::Data::OSCP;
 
 const std::string deviceEPR("urn:uuid:4242d68b-40ef-486a-a019-6b00d1424201");
 
-class NumericEventHandler : public Data::OSCP::OSCPConsumerNumericMetricStateHandler {
+class NumericEventHandler : public Data::OSCP::SDCConsumerNumericMetricStateHandler {
 public:
 	NumericEventHandler(const std::string & handle) : handle(handle) {
 		receivedEventsCounter = 0;
@@ -65,7 +65,7 @@ private:
     const std::string handle;
 };
 
-class StringEventHandler : public Data::OSCP::OSCPConsumerStringMetricStateHandler {
+class StringEventHandler : public Data::OSCP::SDCConsumerStringMetricStateHandler {
 public:
 	StringEventHandler(const std::string & handle) : handle(handle) {
 		receivedEventsCounter = 0;
@@ -90,15 +90,15 @@ private:
 
 int main() {
 	DebugOut(DebugOut::Default, "ClientForUniRostockDevices") << std::endl << "Startup" << std::endl;
-    OSCLibrary::getInstance().startup();
-	OSCLibrary::getInstance().setPortStart(11111);
+    SDCLibrary::getInstance().startup();
+	SDCLibrary::getInstance().setPortStart(11111);
 
 	// Discovery
 	OSELib::OSCP::ServiceManager oscpsm;
-	std::unique_ptr<Data::OSCP::OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	std::unique_ptr<Data::OSCP::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 
 	if (c != nullptr) {
-		Data::OSCP::OSCPConsumer & consumer = *c;
+		Data::OSCP::SDCConsumer & consumer = *c;
         Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Discovery succeeded.";
 
         // used handles
@@ -335,7 +335,7 @@ int main() {
 		Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Discovery failed.";
 	}
 
-    OSCLibrary::getInstance().shutdown();
+    SDCLibrary::getInstance().shutdown();
 	DebugOut(DebugOut::Default, "ClientForUniRostockDevices") << "Shutdown" << std::endl;
 }
 

@@ -8,8 +8,8 @@
  *
  */
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
@@ -311,7 +311,7 @@ public:
 
 private:
 
-    OSCPProvider oscpProvider;
+    SDCProvider oscpProvider;
 
     StreamProviderStateHandler streamProviderStateHandler;
     StringProviderStateHandler stringProviderStateHandler;
@@ -361,9 +361,9 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    OSCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
-    OSCLibrary::getInstance().setIP6enabled(false);
-    OSCLibrary::getInstance().setIP4enabled(true);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
+    SDCLibrary::getInstance().setIP6enabled(false);
+    SDCLibrary::getInstance().setIP4enabled(true);
 
 	OSELib::OSCP::ServiceManager oscpsm;
 	OSCPStreamProvider provider;
@@ -377,5 +377,5 @@ int main()
 	// Shutdown
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Shutdown." << std::endl;
 	provider.shutdown();
-    OSCLibrary::getInstance().shutdown();
+    SDCLibrary::getInstance().shutdown();
 }

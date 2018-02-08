@@ -74,28 +74,28 @@ On both consumer and provider side, the library needs to be initialized before u
 // Include common library headers
 #include "OSCL.h"
 // Start framework
-OSCLibrary::getInstance().startup();
+SDCLibrary::getInstance().startup();
 // Optional (override ip autobinding): choose a network adapter by providing an IP address for new socket connections
-OSCLibrary::getInstance().setBindInterface("192.168.1.1");
+SDCLibrary::getInstance().setBindInterface("192.168.1.1");
 // Optional (override default port start): choose a global port start number used for bindings
-OSCLibrary::getInstance().setPortStart("2011");
+SDCLibrary::getInstance().setPortStart("2011");
 // Do something
 ...
 
-OSCLibrary::getInstance()->shutdown();
+SDCLibrary::getInstance()->shutdown();
 @endcode
 
-Please make sure to explicitly shutdown the library and all high level object such as consumers and providers. When calling the <b>OSCLibrary::getInstance()->shutdown()</b> all internal memory of the library is freed completely and immediately.
+Please make sure to explicitly shutdown the library and all high level object such as consumers and providers. When calling the <b>SDCLibrary::getInstance()->shutdown()</b> all internal memory of the library is freed completely and immediately.
 @code
 int main() {
   // Startup library and init consumer and provider
-  OSCLibrary::getInstance().startup();
+  SDCLibrary::getInstance().startup();
 
   // Do something
   ...
 
   // Shutdown library
-  OSCLibrary::getInstance().shutdown();
+  SDCLibrary::getInstance().shutdown();
 }
 @endcode
 
@@ -106,17 +106,17 @@ The API for the Open Surgical Communication Protocol (OSCP-API) is set on top of
 There are two main instances used for communication:
 
 <ul>
-  <li><b>OSCLib::Data::OSCP::OSCPProvider</b>: describes the device, and converts OSCP-conform requests into (proprietary) device commands</li>
-  <li><b>OSCLib::Data::OSCP::OSCPConsumer</b>: a client tool used to establish communication with an OSCPProvider</li>
+  <li><b>OSCLib::Data::OSCP::SDCProvider</b>: describes the device, and converts OSCP-conform requests into (proprietary) device commands</li>
+  <li><b>OSCLib::Data::OSCP::SDCConsumer</b>: a client tool used to establish communication with an SDCProvider</li>
 </ul>
 
 <p>Both instances implement a base set of methods defined by a common interface. This interface allows transparent access to the medical device information base (MDIB) which can be regarded as the database that contains the values defined by the CDM.</b> 
-<p>In order to integrate a medical device (or a medical information service) into an OSCP Network (i.e. writing an <b>OSCP-Connector</b>), you'll first have to implement an instance of OSCPProvider. The following sections describe this process using a simple example of implementing an OSCP-Connector for the EndoTAIX holding device system, a camera holding device for endoscopy.</p>
+<p>In order to integrate a medical device (or a medical information service) into an OSCP Network (i.e. writing an <b>OSCP-Connector</b>), you'll first have to implement an instance of SDCProvider. The following sections describe this process using a simple example of implementing an OSCP-Connector for the EndoTAIX holding device system, a camera holding device for endoscopy.</p>
 Working examples similar to this one can be found in the "Examples" folder, especially in <b>ExampleProject.cpp</b>. The unit tests <b>TestSimpleOSCP.cpp</b> and <b>TestStreamOSCP.cpp</b> might also help to illustrate the OSCP API.
 
 @subsection oscp_mbid The MDIB structure
 
-The MDIB structure is used to exchange information between the OSCPProvider and OSCPConsumer instances. The class structure behind it can be used to describe a medical device or a medical service statically and dynamically. The following (simplified) structure is used for the MDIB:
+The MDIB structure is used to exchange information between the SDCProvider and SDCConsumer instances. The class structure behind it can be used to describe a medical device or a medical service statically and dynamically. The following (simplified) structure is used for the MDIB:
 
 <ul>
   <li><b>MDIB</b>: the information base holding all static and dynamic sub-structures. Class-name: OSCLib::Data::OSCP::MDIBContainer</li>
@@ -147,19 +147,19 @@ Alert systems can be inserted at the level of the hydra MDS, the VMD or channel.
 
 @section oscp_provider The EndoTAIX OSCP Provider example
 
-This section provides a simplified example for an OSCPProvider instance for the EndoTAIX holding device system. The <b>OSCPHoldingDeviceProvider</b> class extends the <b>OSCLib::Data::OSCP::OSCPProvider</b> class. However, it is not required to subclass OSCPProvider. Instead, you can also use an instance as a member variable in another class.
+This section provides a simplified example for an SDCProvider instance for the EndoTAIX holding device system. The <b>OSCPHoldingDeviceProvider</b> class extends the <b>OSCLib::Data::OSCP::SDCProvider</b> class. However, it is not required to subclass SDCProvider. Instead, you can also use an instance as a member variable in another class.
 <p>Using <b>OSCProvider::addMDStateHandler</b> is a comfortable way to provide separate handlers for each state. This has the advantage, that code concerning devices's data will be encapsulated elsewhere. This will keep our class (OSCPHoldingDeviceProvider) short.</p>
 
 <P>In this example, the provider contains two metrics, which describe their purpose and properties:
 One for current weight (currentWeightMetric, read-only), which is measured using a force-torque-sensor attached to the arm. The other one defines the maximum weight limit (maxWeightMetric, read-write). Each metric also needs a corresponding <b>metric state</b> which contains the actual value.</p>
-Each metric state will be represented by a separate handler, which subclasses <b>OSCPProviderMDStateHandler</b>.
+Each metric state will be represented by a separate handler, which subclasses <b>SDCProviderMDStateHandler</b>.
 
 @subsection oscp_provider_basics_descriptive Implementation - The descriptive part
 
 The implementation of the provider's descriptive part can be structured as followed.
 
 @code
-class OSCPHoldingDeviceProvider : public OSCPProvider {
+class OSCPHoldingDeviceProvider : public SDCProvider {
 public:
   OSCPHoldingDeviceProvider() { ... }
 
@@ -278,14 +278,14 @@ OSCPHoldingDeviceProvider() {
 
 @subsection oscp_provider_basics_dynamic Implementation - The dynamic part
 
-<p>For the dynamic part, we have to implement handlers of a subtype of <b>OSCPProviderMDStateHandler</b> (e.g. <b>OSCPProviderNumericMetricStateHandler</b>) where each handler takes care of a single state, as already mentioned before. It defines the initial state at startup.
+<p>For the dynamic part, we have to implement handlers of a subtype of <b>SDCProviderMDStateHandler</b> (e.g. <b>SDCProviderNumericMetricStateHandler</b>) where each handler takes care of a single state, as already mentioned before. It defines the initial state at startup.
 The handler may then call the <b>updateState</b> method at any time to tell the framework about a state (value) change (e.g. if the real devices state changes). The internal MDIB will then be updated.</p>
 <p>If the state is writable (SETTING), the handler has to provide at least a type-specific implementation of <b>onStateChangeRequest</b> for a specific type (e.g. NumericMetricState or StringMetricState) which processes incoming change requests for our metric state.</p>
 Each state must refer to the descriptor's state handle. If multiple states refer to the same descriptor, each state must furthermore have its own state handle. Otherwise this is optional.
 
 @code
 // READ-ONLY state handler
-class CurValueStateHandler : public OSCPProviderNumericMetricStateHandler {
+class CurValueStateHandler : public SDCProviderNumericMetricStateHandler {
 public:
 
   CurValueStateHandler() {
@@ -321,7 +321,7 @@ The handler for the max value state:
 
 @code
 // READ-WRITE state handler
-class MaxValueStateHandler : public OSCPProviderNumericMetricStateHandler {
+class MaxValueStateHandler : public SDCProviderNumericMetricStateHandler {
 public:
 
   MaxValueStateHandler() {
@@ -372,7 +372,7 @@ public:
 We extend the constructor's code to add the handlers, which we define as members of the holding device provider class.
 
 @code
-class OSCPHoldingDeviceProvider : public OSCPProvider {
+class OSCPHoldingDeviceProvider : public SDCProvider {
 public:
   OSCPHoldingDeviceProvider() {
   
@@ -404,7 +404,7 @@ Starting the provider can be done by calling the method <b>startup</b>. The peri
  The provider can be stopped by calling </b>shutdown</b>:
 @code
 // Start framework
-OSCLibrary::getInstance()->startup();
+SDCLibrary::getInstance()->startup();
 
 // The OSCP Provider instance
 { 
@@ -420,17 +420,17 @@ OSCLibrary::getInstance()->startup();
 
 @section oscp_consumer The EndoTAIX OSCP Consumer example
 
-<p>An OSCPConsumer instance is always connected to exactly one OSCPProvider instance. OSCPConsumer instances can be retrieved via the ServiceManager by using its connection and discovery methods.</p>
+<p>An SDCConsumer instance is always connected to exactly one SDCProvider instance. SDCConsumer instances can be retrieved via the ServiceManager by using its connection and discovery methods.</p>
 
 @subsection oscp_consumer_servicemanager Discovery using the ServiceManager
 
-<p>An OSCPConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>OSCLib::Data::OSCP::OSCPServiceManager</b>).
-The ServiceManager is resposibe for the discovery of OSCPProvider instances. 
+<p>An SDCConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>OSCLib::Data::OSCP::OSCPServiceManager</b>).
+The ServiceManager is resposibe for the discovery of SDCProvider instances. 
 We will now discover the provider using the ServiceManager:
 
 @code
 OSCPServiceManager oscpsm;
-unique_ptr<OSCPConsumer> consumer = oscpsm.discoverEndpointReference("EPR_1234");
+unique_ptr<SDCConsumer> consumer = oscpsm.discoverEndpointReference("EPR_1234");
 if (consumer != nullptr) {
   ...
 }
@@ -440,17 +440,17 @@ It's also possible to directly connect using a known transport address:
 
 @code
 OSCPServiceManager oscpsm;
-unique_ptr<OSCPConsumer> consumer = oscpsm.connect("http://192.168.1.32:1234/UDI_1234");
+unique_ptr<SDCConsumer> consumer = oscpsm.connect("http://192.168.1.32:1234/UDI_1234");
 @endcode
 
 @subsection oscp_consumer_events Using the consumer - reception of events
 
 If we like to process events (in this case, the ones containing states for the current weight metric), we'll have to provide an event handler of a subtype of
-<b>OSCPConsumerEventHandler</b> (e.g. <b>OSCPConsumerNumericMetricStateHandler</b>), implement the <b>onStateChanged</b> (if the metric is writable!) and override the <b>getHandle</b> method. The <b>onStateChanged</b> method will be entered whenever the framework or the user code notify about a metric change (updateState).
+<b>SDCConsumerEventHandler</b> (e.g. <b>SDCConsumerNumericMetricStateHandler</b>), implement the <b>onStateChanged</b> (if the metric is writable!) and override the <b>getHandle</b> method. The <b>onStateChanged</b> method will be entered whenever the framework or the user code notify about a metric change (updateState).
 Optionally, the method <b>onOperationInvoked</b> can be overwritten to receive detailed notification about invocation states.
 
 @code
-class ExampleConsumerEventHandler : public OSCPConsumerNumericMetricStateHandler
+class ExampleConsumerEventHandler : public SDCConsumerNumericMetricStateHandler
 {
 public:
 
@@ -536,7 +536,7 @@ There are two possibilities of how to handle results of asynchronously committed
 
 <ul>
   <li>Synchronously wait for received invocation state(s) by using a <b>FutureInvocationState</b> object provided to the <b>commit</b> function. Then call <b>waitReceived</b> after the commit.</li>
-  <li>Handle operation invoked reports and episodic metric / alert / context reports in a user-defined subclass of subtypes of OSCPConsumerEventHandler (<b>onOperationInvoked</b> and <b>onStateChanged</b>) like shown before. The <b>FutureInvocationState</b> object can be used to get the right transaction ID which must somehow be taken into account by the handler.</li>
+  <li>Handle operation invoked reports and episodic metric / alert / context reports in a user-defined subclass of subtypes of SDCConsumerEventHandler (<b>onOperationInvoked</b> and <b>onStateChanged</b>) like shown before. The <b>FutureInvocationState</b> object can be used to get the right transaction ID which must somehow be taken into account by the handler.</li>
 </ul>
 
 So in each case, a <b>FutureInvocationState</b> object is needed, either to use its methods to actively wait for an event to occur or to get the transaction ID and compare it with events received elsewhere.
@@ -580,7 +580,7 @@ consumer.disconnect();
 We'd like to create an alert for the <b>limit condition</b> when the current weight value exceeds the maximum value and extend the holding device's provider with the following code.
 
 @code
-class OSCPHoldingDeviceProvider : public OSCPProvider {
+class OSCPHoldingDeviceProvider : public SDCProvider {
 public:
   OSCPHoldingDeviceProvider() {
   
@@ -640,11 +640,11 @@ private:
 }
 @endcode
 
-The <b>LimitAlertConditionStateHandler</b> and <b>AlertSignalStateHandler</b> classes extend the OSCPProviderAlertConditionStateHandler and the OSCPProviderAlertSignalStateHandler, resp.
+The <b>LimitAlertConditionStateHandler</b> and <b>AlertSignalStateHandler</b> classes extend the SDCProviderAlertConditionStateHandler and the SDCProviderAlertSignalStateHandler, resp.
 The method <b>sourceHasChanged</b> will be called whenever the referenced source state changed (e.g. updateState was called). The behavior of the method call to <b>setAlertConditionPresence</b> will be explained later.
 
 @code
-class LimitAlertConditionStateHandler : public OSCPProviderLimitAlertConditionStateHandler {
+class LimitAlertConditionStateHandler : public SDCProviderLimitAlertConditionStateHandler {
 public:
 
   LimitAlertConditionStateHandler() {
@@ -729,7 +729,7 @@ public:
 Changing the condition's presence will trigger all alert signals which are referenced. The implementation of the signal's state handler follows next.
 
 @code
-class AlertSignalStateHandler : public OSCPProviderAlertSignalStateHandler {
+class AlertSignalStateHandler : public SDCProviderAlertSignalStateHandler {
 public:
 
   AlertSignalStateHandler() {
@@ -769,7 +769,7 @@ public:
 Finally, the alarm system's state handler.
 
 @code
-class AlertSystemStateHandler : public OSCPProviderAlertSystemStateHandler {
+class AlertSystemStateHandler : public SDCProviderAlertSystemStateHandler {
 public:
 
   AlertSystemStateHandler() {
@@ -798,10 +798,10 @@ Calling the method <b>setAlertConditionPresence</b> will handle all alert signal
 
 @subsection oscp_alarm_system_consumer The consumer
 
-The consumer can be extended by a new state handler, to handle alert state events fired by the provider. Like the <b>ExampleConsumerEventHandler</b> described before, a similar subclass of <b>OSCPConsumerAlertSignalStateHandler</b> will be used. The new handler will be called <b>ExampleConsumerAlertEventHandler</b>.
+The consumer can be extended by a new state handler, to handle alert state events fired by the provider. Like the <b>ExampleConsumerEventHandler</b> described before, a similar subclass of <b>SDCConsumerAlertSignalStateHandler</b> will be used. The new handler will be called <b>ExampleConsumerAlertEventHandler</b>.
 
 @code
-class ExampleConsumerAlertEventHandler : public OSCPConsumerAlertSignalStateHandler {
+class ExampleConsumerAlertEventHandler : public SDCConsumerAlertSignalStateHandler {
 public:
   ExampleConsumerAlertEventHandler(const string & handle) :
     handle(handle) {
@@ -847,14 +847,14 @@ if (consumer.requestState("handle_alert_signal", alertSignal)) {
 @section oscp_code_snippets Useful code snippets and recipes
 
 @subsection oscp_streaming Streaming
-In order to provide streaming, the first thing to do is to define one or more streaming metrics members inside an OSCPProvider instance.
+In order to provide streaming, the first thing to do is to define one or more streaming metrics members inside an SDCProvider instance.
 <ul>
   <li>Create a member <b>RealTimeSampleArrayMetricDescriptor</b> and configure it in the constructor similar as shown before (define a unique handle for the descriptor).</li>
-  <li>Create a provider state handler subclassing <b>OSCPProviderRealTimeSampleArrayMetricStateHandler</b> (see example below).</li>
+  <li>Create a provider state handler subclassing <b>SDCProviderRealTimeSampleArrayMetricStateHandler</b> (see example below).</li>
 </ul>
 
 @code
-class StreamProviderStateHandler : public OSCPProviderRealTimeSampleArrayMetricStateHandler {
+class StreamProviderStateHandler : public SDCProviderRealTimeSampleArrayMetricStateHandler {
 public:
 
   StreamProviderStateHandler(std::string descriptorHandle) : descriptorHandle(descriptorHandle) {
@@ -906,10 +906,10 @@ stateHandler.updateStateValue(value);
 
 <p>The stream values are sent in blocks to all registered consumers whenever <b>updateState</b> is called.</p>
 
-In order to consume streaming, you can subclass <b>OSCPConsumerRealTimeSampleArrayMetricStateHandler</b>. You will then receive a block of next values instead.
+In order to consume streaming, you can subclass <b>SDCConsumerRealTimeSampleArrayMetricStateHandler</b>. You will then receive a block of next values instead.
 
 @code
-class StreamConsumerEventHandler : public OSCPConsumerRealTimeSampleArrayMetricStateHandler {
+class StreamConsumerEventHandler : public SDCConsumerRealTimeSampleArrayMetricStateHandler {
 
   ...
 
@@ -933,7 +933,7 @@ class StreamConsumerEventHandler : public OSCPConsumerRealTimeSampleArrayMetricS
 Definition of the handler on the provider's side:
 
 @code
-class CommandHandler : public OSCPProviderActivateOperationHandler {
+class CommandHandler : public SDCProviderActivateOperationHandler {
 public:
 
   CommandHandler() {
@@ -986,7 +986,7 @@ if (fis.waitReceived(InvocationState::FINISHED, 1000)) {
 To handle incoming commits on the provider's side, there can be only one handler which processes all incoming commits.
 
 @code
-class ContextHandler : public OSCPProviderContextStateHandler {
+class ContextHandler : public SDCProviderContextStateHandler {
 public:
 
   ContextHandler() {
@@ -1068,14 +1068,14 @@ ContextHandler contextHandler;  // Use this as private member in the provider
 addMDStateHandler(&contextHandler);  // Use in constructor
 @endcode
 
-On the consumer's side, requesting and committing context states is no more different than handling any other state, the same rules and methods (<b>requestState</b> and <b>commitState</b>) apply. To receive events, subclass <b>OSCPConsumerContextStateChangedHandler</b> and override <b>onContextStateChanged</b>.
+On the consumer's side, requesting and committing context states is no more different than handling any other state, the same rules and methods (<b>requestState</b> and <b>commitState</b>) apply. To receive events, subclass <b>SDCConsumerContextStateChangedHandler</b> and override <b>onContextStateChanged</b>.
 
 @subsection oscp_stringenums Using string enums
 
 On the provider side, please use the following steps (similar to the ones of conventional metrics):
 
 <ul>
-    <li>Create a handler by subclassing <b>OSCPProviderEnumStringMetricStateHandler</b> and override <b>onStateChangeRequest</b> and <b>getInitialState</b>. Initialize the handler's internal state (of type <b>EnumStringMetricState</b> in the constructor. Set a descriptor handle and optionally, a state handle (remember that you MUST set a state handle in cases when multiple states refer to the same descriptor!).</li>
+    <li>Create a handler by subclassing <b>SDCProviderEnumStringMetricStateHandler</b> and override <b>onStateChangeRequest</b> and <b>getInitialState</b>. Initialize the handler's internal state (of type <b>EnumStringMetricState</b> in the constructor. Set a descriptor handle and optionally, a state handle (remember that you MUST set a state handle in cases when multiple states refer to the same descriptor!).</li>
     <li>Create a member variable of the handler in the provider and add the handler using <b>addMDStateHandler</b></li>.
     <li>In provider constructor, add the metric descriptor to a channel (using <b>addMetric</b>). Then add a SET operation using <b>createSetOperationForDescriptor</b></li>, if the state shoulb be writable (consumer can commit)!
 </ul>
@@ -1084,7 +1084,7 @@ On the consumer side:
 
 <ul>
     <li>Use <b>requestState</b> and <b>commitState</b> to request and commit string enum states (as usual).</li>
-    <li>Subclass <b>OSCPConsumerEnumStringMetricStateHandler</b> and override <b>onStateChanged</b> method for the type <b>EnumStringMetricState</b>, if events need to be received. Then register the handler in the consumer (<b>registerStateEventHandler</b>). Don't forget to unregister!    
+    <li>Subclass <b>SDCConsumerEnumStringMetricStateHandler</b> and override <b>onStateChanged</b> method for the type <b>EnumStringMetricState</b>, if events need to be received. Then register the handler in the consumer (<b>registerStateEventHandler</b>). Don't forget to unregister!    
 </ul>
 
 **/

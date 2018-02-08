@@ -20,7 +20,7 @@
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/OSELibProviderAdapter.h"
 
 #include "OSELib/fwd.h"
@@ -85,7 +85,7 @@ private:
 
 struct ContextReportServiceImpl : public OSCP::IContextService {
 
-	ContextReportServiceImpl(OSCLib::Data::OSCP::OSCPProvider & provider, const DPWS::MetadataProvider & metadata, DPWS::SubscriptionManager & subscriptionManager) :
+	ContextReportServiceImpl(OSCLib::Data::OSCP::SDCProvider & provider, const DPWS::MetadataProvider & metadata, DPWS::SubscriptionManager & subscriptionManager) :
 		_provider(provider),
 		_metadata(metadata),
 		_subscriptionManager(subscriptionManager)
@@ -129,7 +129,7 @@ struct ContextReportServiceImpl : public OSCP::IContextService {
 	}
 
 private:
-	OSCLib::Data::OSCP::OSCPProvider & _provider;
+	OSCLib::Data::OSCP::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
 	DPWS::SubscriptionManager & _subscriptionManager;
 };
@@ -215,7 +215,7 @@ private:
 
 struct GetServiceImpl : public OSCP::IGetService {
 
-	GetServiceImpl(OSCLib::Data::OSCP::OSCPProvider & provider, const DPWS::MetadataProvider & metadata) :
+	GetServiceImpl(OSCLib::Data::OSCP::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
 		_provider(provider),
 		_metadata(metadata)
 	{
@@ -252,13 +252,13 @@ struct GetServiceImpl : public OSCP::IGetService {
 	}
 
 private:
-	OSCLib::Data::OSCP::OSCPProvider & _provider;
+	OSCLib::Data::OSCP::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
 };
 
 struct SetServiceImpl : public OSCP::ISetService {
 
-	SetServiceImpl(OSCLib::Data::OSCP::OSCPProvider & provider, const DPWS::MetadataProvider & metadata) :
+	SetServiceImpl(OSCLib::Data::OSCP::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
 		_provider(provider),
 		_metadata(metadata)
 	{
@@ -303,7 +303,7 @@ struct SetServiceImpl : public OSCP::ISetService {
 	}
 
 private:
-	OSCLib::Data::OSCP::OSCPProvider & _provider;
+	OSCLib::Data::OSCP::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
 };
 
@@ -313,7 +313,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSELibProviderAdapter::OSELibProviderAdapter(OSCPProvider & provider, const unsigned int port) :
+OSELibProviderAdapter::OSELibProviderAdapter(SDCProvider & provider, const unsigned int port) :
 	_provider(provider),
 	_threadPool(new Poco::ThreadPool()),
 	_port(port)
@@ -372,7 +372,7 @@ void OSELibProviderAdapter::start() {
 
 	class Factory : public OSELib::HTTP::FrontControllerAdapter {
 	public:
-		Factory(OSCPProvider & provider,
+		Factory(SDCProvider & provider,
 				const OSELib::DPWS::MetadataProvider & metadata,
 				OSELib::DPWS::MDPWSHostAdapter & dpwsHost,
 				OSELib::DPWS::SubscriptionManager & subscriptionManager,

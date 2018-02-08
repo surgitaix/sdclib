@@ -15,7 +15,7 @@
   */
 
 /*
- * OSCPConsumerEventHandler.cpp
+ * SDCConsumerEventHandler.cpp
  *
  *  @Copyright (C) 2014, SurgiTAIX AG
  *  Author: roehser, besting, buerger

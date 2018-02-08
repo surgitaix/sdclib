@@ -5,7 +5,7 @@
  *      Author: matthias
  */
 
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/DPWS/PingManager.h"
@@ -15,7 +15,7 @@
 namespace OSELib {
 namespace DPWS {
 
-PingManager::PingManager(OSCLib::Data::OSCP::OSCPConsumer & consumer) :
+PingManager::PingManager(OSCLib::Data::OSCP::SDCConsumer & consumer) :
 	_runnableAdapter(*this, &PingManager::run),
 	_consumer(consumer)
 {

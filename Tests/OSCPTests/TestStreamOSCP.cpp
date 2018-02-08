@@ -21,13 +21,13 @@
  *  Author: buerger
  *
  *  This unit test checks the eventing mechanism for the udp based stream metrices: RealTimeSampleArrayMetric (time values) and DistributionSampleArrayMetric (other values)
- *  At the current state of the IEEE 11073 SDC BICEPS specification the DSAMS is transported via TCP, maybe this changes soon. Then OSCPProvider::updateState has to be adapted accordingly
+ *  At the current state of the IEEE 11073 SDC BICEPS specification the DSAMS is transported via TCP, maybe this changes soon. Then SDCProvider::updateState has to be adapted accordingly
  *
  */
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
@@ -304,7 +304,7 @@ public:
 
 private:
 
-    OSCPProvider oscpProvider;
+    SDCProvider oscpProvider;
 
     StreamProviderStateHandler streamEventHandler;
     StreamProviderStateHandler streamEventHandlerAlt;
@@ -359,7 +359,7 @@ TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
         DebugOut(DebugOut::Default, "StreamOSCP") << "Consumer discovery..." << std::endl;
-        std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR));
+        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR));
         std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream");
         std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
         std::shared_ptr<Tests::StreamOSCP::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamOSCP::StreamDistributionConsumerEventHandler>("handle_distribution_stream");

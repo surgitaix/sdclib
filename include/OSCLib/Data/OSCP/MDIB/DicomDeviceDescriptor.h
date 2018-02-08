@@ -46,8 +46,8 @@ private:
 	operator CDM::DicomDeviceDescriptor() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
-	friend class OSCPProvider;
-	friend class OSCPConsumer;
+	friend class SDCProvider;
+	friend class SDCConsumer;
 	friend class MdState;
 	friend class MdDescription;
 public:

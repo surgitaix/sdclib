@@ -1,8 +1,8 @@
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 #include "OSELib/OSCP/OSCPConstants.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Util/DebugOut.h"
 
 #include "OSELib/OSCP/ServiceManager.h"
@@ -17,14 +17,14 @@ int main()
 {
 	const std::string testname("Test SimpleServiceDiscovery");
 	DebugOut(DebugOut::Default, "SimpleServiceDiscovery") << std::endl << "Startup: " << testname;
-	OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
 
 	int loopcounter = 0;
 	OSELib::OSCP::ServiceManager oscpsm;
 
 	while (loopcounter < 5) {
 		DebugOut(DebugOut::Default, "simpleservicediscovery") << "Refreshing ..." << std::flush;
-		std::vector<std::unique_ptr<OSCPConsumer> > results = oscpsm.discoverOSCP();
+		std::vector<std::unique_ptr<SDCConsumer> > results = oscpsm.discoverOSCP();
 
 		DebugOut(DebugOut::Default, "simpleservicediscovery") << "Found devices with these EPRs: ";
 

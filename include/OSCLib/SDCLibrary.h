@@ -15,7 +15,7 @@
   */
 
 /**
- *  @file OSCLibrary.h
+ *  @file SDCLibrary.h
  *  @project OSCLib
  *  @date 24.08.2011
  *  @author besting
@@ -44,13 +44,13 @@ namespace OSCLib {
 
 
 
-class OSCLibrary final : public OSELib::WithLogger {
+class SDCLibrary final : public OSELib::WithLogger {
 public:
 
-	OSCLibrary();
-	virtual ~OSCLibrary();
+	SDCLibrary();
+	virtual ~SDCLibrary();
 
-	static OSCLibrary & getInstance();
+	static SDCLibrary & getInstance();
 
 	/**
 	 * Startup framework.
@@ -108,8 +108,8 @@ private:
 	std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
 
 	// declaring copy-methods prevents from initializing multiple copies of singleton
-	OSCLibrary(OSCLibrary const&);
-	void operator=(OSCLibrary const&);
+	SDCLibrary(SDCLibrary const&);
+	void operator=(SDCLibrary const&);
 };
 
 } /* namespace OSCLib */

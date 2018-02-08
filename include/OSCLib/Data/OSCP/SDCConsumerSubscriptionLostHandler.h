@@ -15,22 +15,22 @@
   */
 
 /*
- * OSCPConsumerSubscriptionLostHandler.h
+ * SDCConsumerSubscriptionLostHandler.h
  *
  *  @Copyright (C) 2014, SurgiTAIX AG
  *  Author: roehser, besting
  */
 
-#ifndef OSCPCONSUMERSUBSCRIPTIONLOSTHANDLER_H_
-#define OSCPCONSUMERSUBSCRIPTIONLOSTHANDLER_H_
+#ifndef SDCCONSUMERSUBSCRIPTIONLOSTHANDLER_H_
+#define SDCCONSUMERSUBSCRIPTIONLOSTHANDLER_H_
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerSubscriptionLostHandler {
+class SDCConsumerSubscriptionLostHandler {
 public:
-    virtual ~OSCPConsumerSubscriptionLostHandler() {
+    virtual ~SDCConsumerSubscriptionLostHandler() {
     }
 
     /**
@@ -43,4 +43,4 @@ public:
 } /* namespace Data */
 } /* namespace OSCLib */
 
-#endif /* OSCPCONSUMERSUBSCRIPTIONLOSTHANDLER_H_ */
+#endif /* SDCCONSUMERSUBSCRIPTIONLOSTHANDLER_H_ */

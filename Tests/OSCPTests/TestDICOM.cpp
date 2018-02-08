@@ -1,7 +1,7 @@
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 //#include "OSCLib/Data/OSCP/MDIB/Base64Binary.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/DicomDeviceDescriptor.h"
@@ -79,7 +79,7 @@ public:
 
 private:
     // Provider object
-    OSCPProvider oscpProvider;
+    SDCProvider oscpProvider;
 
     // The current weight
     DicomDeviceDescriptor dicomDescriptor;
@@ -104,13 +104,13 @@ TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
 
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
-        std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::DICOMOSCP::DEVICE_ENDPOINT_REFERENCE));
+        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(Tests::DICOMOSCP::DEVICE_ENDPOINT_REFERENCE));
 
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);
 
 		if (c != nullptr) {
-			OSCPConsumer & consumer = *c;
+			SDCConsumer & consumer = *c;
             // MDIB test
             MdibContainer mdib(consumer.getMdib());
 

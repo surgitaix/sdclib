@@ -15,22 +15,22 @@
   */
 
 /*
- * OSCPConsumerConnectionLostHandler.h
+ * SDCConsumerConnectionLostHandler.h
  *
  *  @Copyright (C) 2014, SurgiTAIX AG
  *  Author: roehser, besting
  */
 
-#ifndef OSCPCONSUMERCONNECTIONLOSTHANDLER_H_
-#define OSCPCONSUMERCONNECTIONLOSTHANDLER_H_
+#ifndef SDCCONSUMERCONNECTIONLOSTHANDLER_H_
+#define SDCCONSUMERCONNECTIONLOSTHANDLER_H_
 
 namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumerConnectionLostHandler {
+class SDCConsumerConnectionLostHandler {
 public:
-    virtual ~OSCPConsumerConnectionLostHandler() {
+    virtual ~SDCConsumerConnectionLostHandler() {
     }
 
     /**
@@ -43,4 +43,4 @@ public:
 } /* namespace Data */
 } /* namespace OSCLib */
 
-#endif /* OSCPCONSUMERCONNECTIONLOSTHANDLER_H_ */
+#endif /* SDCCONSUMERCONNECTIONLOSTHANDLER_H_ */

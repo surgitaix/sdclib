@@ -32,7 +32,7 @@ class OSELibConsumerAdapter :
 		public OSELib::WithLogger
 {
 public:
-	OSELibConsumerAdapter(OSCPConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription);
+	OSELibConsumerAdapter(SDCConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription);
 	virtual ~OSELibConsumerAdapter();
 
 	void start();
@@ -69,7 +69,7 @@ private:
 	template<class RequestType>
 	Poco::URI getRequestURIFromDeviceDescription(const RequestType & request);
 
-	OSCPConsumer & _consumer;
+	SDCConsumer & _consumer;
 
 	mutable Poco::Mutex mutex;
 	std::unique_ptr<Poco::ThreadPool> _threadPool;

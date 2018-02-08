@@ -21,7 +21,7 @@
 #include "NormalizedMessageModel.hxx"
 #include "ws-addressing.hxx"
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 
@@ -42,7 +42,7 @@
 #include "OSCLib/Data/OSCP/MDIB/OperatorContextState.h"
 #include "OSCLib/Data/OSCP/MDIB/EnsembleContextState.h"
 
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/OSCP/OSELibConsumerAdapter.h"
 
@@ -66,7 +66,7 @@ using ContextServiceEventSinkController = OSCP::OSCPEventServiceController<OSCP:
 using EventReportEventSinkController = OSCP::OSCPEventServiceController<OSCP::IEventReportEventSink, OSCP::EventReportEventSinkHandler>;
 
 struct ContextServiceEventSink : public OSCP::IContextServiceEventSink, public OSELib::WithLogger  {
-	ContextServiceEventSink(OSCLib::Data::OSCP::OSCPConsumer & consumer) :
+	ContextServiceEventSink(OSCLib::Data::OSCP::SDCConsumer & consumer) :
 		WithLogger(OSELib::Log::EVENTSINK),
 		_consumer(consumer)
 	{
@@ -164,11 +164,11 @@ struct ContextServiceEventSink : public OSCP::IContextServiceEventSink, public O
 	}
 
 private:
-	OSCLib::Data::OSCP::OSCPConsumer & _consumer;
+	OSCLib::Data::OSCP::SDCConsumer & _consumer;
 };
 
 struct EventReportEventSink : public OSCP::IEventReportEventSink, public OSELib::WithLogger {
-	EventReportEventSink(OSCLib::Data::OSCP::OSCPConsumer & consumer) :
+	EventReportEventSink(OSCLib::Data::OSCP::SDCConsumer & consumer) :
 		WithLogger(Log::EVENTSINK),
 		_consumer(consumer)
 	{
@@ -223,7 +223,7 @@ struct EventReportEventSink : public OSCP::IEventReportEventSink, public OSELib:
 	}
 
 	virtual void dispatch(const OSCP::OperationInvokedReportTraits::ReportType & report) override {
-		// fixme move all to OSCPConsumer and change interface, so this method here only delegates. This should be done for all events
+		// fixme move all to SDCConsumer and change interface, so this method here only delegates. This should be done for all events
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -287,7 +287,7 @@ private:
 		log_error([&] { return "Unknown metric state type, event will not be forwarded to handler!"; });
 	}
 
-	OSCLib::Data::OSCP::OSCPConsumer & _consumer;
+	OSCLib::Data::OSCP::SDCConsumer & _consumer;
 };
 
 }
@@ -296,7 +296,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSELibConsumerAdapter::OSELibConsumerAdapter(OSCPConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription) :
+OSELibConsumerAdapter::OSELibConsumerAdapter(SDCConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription) :
 	WithLogger(OSELib::Log::OSCPCONSUMERADAPTER),
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
@@ -324,7 +324,7 @@ void OSELibConsumerAdapter::start() {
 
 	class Factory : public OSELib::HTTP::FrontControllerAdapter {
 	public:
-		Factory(OSCPConsumer & consumer) :
+		Factory(SDCConsumer & consumer) :
 			FrontControllerAdapter(_frontController),
 			contextServiceEventSink(consumer),
 			eventReportEventSink(consumer),
@@ -373,7 +373,7 @@ void OSELibConsumerAdapter::stop() {
 
 	if (_pingManager) {
 		_pingManager->disable();
-		OSCLibrary::getInstance().dumpPingManager(std::move(_pingManager));
+		SDCLibrary::getInstance().dumpPingManager(std::move(_pingManager));
 	}
 }
 

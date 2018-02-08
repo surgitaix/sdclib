@@ -46,8 +46,8 @@ private:
 	operator CDM::AlertSystemState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
-	friend class OSCPProvider;
-	friend class OSCPConsumer;
+	friend class SDCProvider;
+	friend class SDCConsumer;
 	friend class MdState;
 	friend class MdDescription;
 public:
@@ -67,7 +67,6 @@ public:
     
     typedef CDM::AlertSystemState WrappedType;
     typedef AlertSystemDescriptor DescriptorType;
-    typedef OSCPProviderAlertSystemStateHandler ProviderHandlerType;
 
 	AlertSystemState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

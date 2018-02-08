@@ -1,8 +1,8 @@
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
 #include "OSELib/OSCP/OSCPConstants.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSELib/Helper/WithLogger.h"
 
@@ -1428,7 +1428,7 @@ int main() {
 	DebugOut::DEBUG_LEVEL = DebugOut::Full;
 	const std::string testname("Create graphvis/dot files of all MDIBs of all found devices");
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Startup: " << testname;
-	OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpng {} -o {}.png";
 
 
@@ -1439,8 +1439,8 @@ int main() {
 
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Refreshing ..." << std::flush;
 		//const std::string deviceEPR("UDI-1234567890");
-		//std::shared_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(deviceEPR));
-		std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> results(oscpsm.discoverOSCP());
+		//std::shared_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(deviceEPR));
+		std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> results(oscpsm.discoverOSCP());
 
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found devices with these EPRs: " << std::endl;
 

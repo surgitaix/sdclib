@@ -31,11 +31,11 @@
  *
  *
  */
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 
 // MDS and it's components
@@ -196,7 +196,7 @@ public:
 
 private:
 
-    OSCPProvider oscpProvider;
+    SDCProvider oscpProvider;
 
     // Test case 1
     MultistateProviderStateHandler multistateProviderStateHandler1_1;
@@ -230,7 +230,7 @@ TEST_FIXTURE(FixtureMultiStatesTest, multistates)
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
         DebugOut(DebugOut::Default, "MultiStateSDC") << "Consumer discovery..." << std::endl;
-        std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::multiStatesSDC::deviceEPR));
+        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::multiStatesSDC::deviceEPR));
 //        std::shared_ptr<Tests::multiStatesSDC::  > eventHandler = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream");
 //        std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
 //        std::shared_ptr<Tests::StreamOSCP::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamOSCP::StreamDistributionConsumerEventHandler>("handle_distribution_stream");

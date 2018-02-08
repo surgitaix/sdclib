@@ -15,7 +15,7 @@
   */
 
 /**
- *  @file OSCLibrary.cpp
+ *  @file SDCLibrary.cpp
  *  @project OSCLib
  *  @date 24.08.2011
  *  @author besting
@@ -34,17 +34,17 @@
 
 #include <xercesc/util/PlatformUtils.hpp>
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 
 #include "OSELib/DPWS/PingManager.h"
 
 namespace OSCLib {
 
-const std::string CURRENT_LIB_VERSION("2.1.0");
+const std::string CURRENT_LIB_VERSION("3.0.0");
 
-OSCLibrary::OSCLibrary() :
+SDCLibrary::SDCLibrary() :
 	WithLogger(OSELib::Log::BASE),
 	initialized(false),
 	m_IP4enabled(true),
@@ -68,16 +68,16 @@ OSCLibrary::OSCLibrary() :
 	createPortLists(5000, 1000);
 }
 
-OSCLibrary::~OSCLibrary() {
+SDCLibrary::~SDCLibrary() {
     shutdown();
 }
 
-OSCLibrary & OSCLibrary::getInstance() {
-	static Poco::SingletonHolder<OSCLibrary> singletonHolder;
+SDCLibrary & SDCLibrary::getInstance() {
+	static Poco::SingletonHolder<SDCLibrary> singletonHolder;
 	return *singletonHolder.get();
 }
 
-void OSCLibrary::startup(OSELib::LogLevel debugLevel) {
+void SDCLibrary::startup(OSELib::LogLevel debugLevel) {
 	if (!initialized) {
 		initialized = true;
 		setDebugLevel(debugLevel);
@@ -88,7 +88,7 @@ void OSCLibrary::startup(OSELib::LogLevel debugLevel) {
 	}
 }
 
-void OSCLibrary::shutdown() {
+void SDCLibrary::shutdown() {
 	if (initialized) {
         initialized = false;
         _latestPingManager.reset();
@@ -96,7 +96,7 @@ void OSCLibrary::shutdown() {
 	}
 }
 
-void OSCLibrary::setPortStart(unsigned int start, unsigned int range) {
+void SDCLibrary::setPortStart(unsigned int start, unsigned int range) {
 	Poco::Mutex::ScopedLock lock(mutex);
 
 	const auto end(start + range);
@@ -105,7 +105,7 @@ void OSCLibrary::setPortStart(unsigned int start, unsigned int range) {
 	createPortLists(start, range);
 }
 
-void OSCLibrary::createPortLists(unsigned int start, unsigned int range) {
+void SDCLibrary::createPortLists(unsigned int start, unsigned int range) {
 	reservedPorts.clear();
 	for (unsigned int i = start; i < start + range; i++) {
 		reservedPorts.push_back(i);
@@ -113,50 +113,50 @@ void OSCLibrary::createPortLists(unsigned int start, unsigned int range) {
 	availablePorts = reservedPorts;
 }
 
-unsigned int OSCLibrary::extractFreePort() {
+unsigned int SDCLibrary::extractFreePort() {
 	Poco::Mutex::ScopedLock lock(mutex);
 	const unsigned int result(availablePorts.front());
 	availablePorts.pop_front();
 	return result;
 }
 
-void OSCLibrary::returnPortToPool(unsigned int port) {
+void SDCLibrary::returnPortToPool(unsigned int port) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (std::find(reservedPorts.begin(), reservedPorts.end(), port) != reservedPorts.end()) {
 		availablePorts.push_back(port);
 	}
 }
 
-void OSCLibrary::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager) {
+void SDCLibrary::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	_latestPingManager = std::move(pingManager);
 }
 
-bool OSCLibrary::isInitialized() {
+bool SDCLibrary::isInitialized() {
 	return initialized;
 }
 
-void OSCLibrary::setIP4enabled(bool IP4enabled) {
+void SDCLibrary::setIP4enabled(bool IP4enabled) {
 	m_IP4enabled = IP4enabled;
 }
 
-void OSCLibrary::setIP6enabled(bool IP6enabled) {
+void SDCLibrary::setIP6enabled(bool IP6enabled) {
 	m_IP6enabled = IP6enabled;
 }
 
-bool OSCLibrary::getIP4enabled() {
+bool SDCLibrary::getIP4enabled() {
 	return m_IP4enabled;
 }
 
-bool OSCLibrary::getIP6enabled() {
+bool SDCLibrary::getIP6enabled() {
 	return m_IP6enabled;
 }
 
-int OSCLibrary::getNumberOfReattemptsWithAnotherPort() const {
+int SDCLibrary::getNumberOfReattemptsWithAnotherPort() const {
 	return m_numberOfReattemptsWithAnotherPort;
 }
 
-void OSCLibrary::setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort) {
+void SDCLibrary::setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort) {
 	m_numberOfReattemptsWithAnotherPort = numberOfReattemptsWithAnotherPort;
 }
 

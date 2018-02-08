@@ -1,8 +1,8 @@
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumerConnectionLostHandler.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -91,7 +91,7 @@ public:
 
 private:
     // Provider object
-    OSCPProvider oscpProvider;
+    SDCProvider oscpProvider;
 
     const std::size_t epr;
     const std::size_t metrics;
@@ -110,9 +110,9 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 {
 	try
 	{
-	    class MyConnectionLostHandler : public Data::OSCP::OSCPConsumerConnectionLostHandler {
+	    class MyConnectionLostHandler : public Data::OSCP::SDCConsumerConnectionLostHandler {
 	    public:
-	    	MyConnectionLostHandler(Data::OSCP::OSCPConsumer & consumer) : consumer(consumer) {
+	    	MyConnectionLostHandler(Data::OSCP::SDCConsumer & consumer) : consumer(consumer) {
 	    	}
 	    	void onConnectionLost() override {
 	    		DebugOut logoutput(DebugOut::Default, std::cout, "connectionlostoscp");
@@ -125,7 +125,7 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 	    	std::atomic<bool> handlerVisited;
 
 	    private:
-	    	Data::OSCP::OSCPConsumer & consumer;
+	    	Data::OSCP::SDCConsumer & consumer;
 	    };
 
 	    DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Waiting for the Providers to startup...";
@@ -151,7 +151,7 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
         DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Starting discovery test...";
 
         OSELib::OSCP::ServiceManager sm;
-        std::vector<std::unique_ptr<OSCPConsumer>> consumers(sm.discoverOSCP());
+        std::vector<std::unique_ptr<SDCConsumer>> consumers(sm.discoverOSCP());
 
         bool foundAll = true;
         for (const auto & providerEPR : providerEPRs) {

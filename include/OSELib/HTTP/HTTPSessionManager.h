@@ -21,7 +21,7 @@ namespace HTTP {
 
 class SendWorker;
 
-// todo maybe generalize and also use for other client connections in the OSCPConsumerAdapter.
+// todo maybe generalize and also use for other client connections in the SDCConsumerAdapter.
 
 class HTTPSessionManager : public WithLogger {
 public:

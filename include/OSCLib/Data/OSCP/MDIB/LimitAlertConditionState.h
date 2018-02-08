@@ -46,8 +46,8 @@ private:
 	operator CDM::LimitAlertConditionState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
-	friend class OSCPProvider;
-	friend class OSCPConsumer;
+	friend class SDCProvider;
+	friend class SDCConsumer;
 	friend class MdState;
 	friend class MdDescription;
 public:
@@ -71,7 +71,6 @@ public:
     
     typedef CDM::LimitAlertConditionState WrappedType;
     typedef LimitAlertConditionDescriptor DescriptorType;
-    typedef OSCPProviderLimitAlertConditionStateHandler ProviderHandlerType;
 
 	LimitAlertConditionState & setStateVersion(const VersionCounter & value);
 	VersionCounter getStateVersion() const;

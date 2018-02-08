@@ -15,7 +15,7 @@
   */
 
 /*
- * OSCPConsumerEventHandler.cpp
+ * SDCConsumerEventHandler.cpp
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: buerger
@@ -26,8 +26,8 @@
  *
  */
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
@@ -109,16 +109,16 @@ private:
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Startup";
-    OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
-    OSCLibrary::getInstance().setIP4enabled(true);
-    OSCLibrary::getInstance().setIP6enabled(false);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+    SDCLibrary::getInstance().setIP4enabled(true);
+    SDCLibrary::getInstance().setIP6enabled(false);
 
     // Consumer is build via discovery
 	OSELib::OSCP::ServiceManager oscpsm;
 	DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Consumer discovery..." << std::endl;
 
 	// testing against SoftICE
-	std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 	std::shared_ptr<StreamConsumerEventHandler> streamEventHandler = std::make_shared<StreamConsumerEventHandler>(streamHandle);
 	std::shared_ptr<NumericConsumerEventHandler> getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_metric");
 	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");

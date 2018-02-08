@@ -1,10 +1,10 @@
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 
 #include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
@@ -393,7 +393,7 @@ public:
 
 private:
 	// Provider
-	OSCPProvider oscpProvider;
+	SDCProvider oscpProvider;
 
     // alert descriptors
 	AlertConditionDescriptor alertCondition;
@@ -443,7 +443,7 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
 
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
-        std::shared_ptr<OSCPConsumer> consumer(oscpsm.discoverEndpointReference(Tests::PeriodicEvents::DEVICE_ENDPOINT_REFERENCE));
+        std::shared_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(Tests::PeriodicEvents::DEVICE_ENDPOINT_REFERENCE));
 
         // Make test fail if discovery fails
         CHECK_EQUAL(true, consumer != nullptr);

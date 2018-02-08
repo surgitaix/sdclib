@@ -1,7 +1,7 @@
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -86,7 +86,7 @@ public:
 
 
 private:
-    OSCPProvider oscpProvider;
+    SDCProvider oscpProvider;
 
     const std::size_t epr;
     const std::size_t metrics;
@@ -123,7 +123,7 @@ TEST_FIXTURE(FixtureMultiOSCP, multioscp)
         DebugOut(DebugOut::Default, std::cout, "multioscp") << "Starting discovery test...";
 
         OSELib::OSCP::ServiceManager sm;
-        std::vector<std::unique_ptr<OSCPConsumer>> consumers(sm.discoverOSCP());
+        std::vector<std::unique_ptr<SDCConsumer>> consumers(sm.discoverOSCP());
 
         bool foundAll = true;
         for (const auto & providerEPR : providerEPRs) {

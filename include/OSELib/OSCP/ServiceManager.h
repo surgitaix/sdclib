@@ -42,7 +42,7 @@ public:
     * @param xaddr The address
     * @return The consumer or null
     */
-	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> connect(const std::string & xaddr);
+	std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> connect(const std::string & xaddr);
 
     /**
     * @brief Create a consumer and try to discover provider using EPR.
@@ -50,17 +50,17 @@ public:
     * @param epr The EPR
     * @return The consumer or null
     */
-	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> discoverEndpointReference(const std::string & epr);
+	std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> discoverEndpointReference(const std::string & epr);
 
     /**
     * @brief Discover all SDC providers currently available
     *
     * @return List of all providers
     */
-	std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> discoverOSCP();
+	std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> discoverOSCP();
 
 private:
-	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
+	std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
 	std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> _dpwsClient;
 	// todo: kick this helloCallback. Supposedly it is not needed.
 	std::unique_ptr<DPWS::HelloCallback> _helloCallback;

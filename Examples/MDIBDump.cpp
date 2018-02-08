@@ -1,5 +1,5 @@
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
@@ -28,8 +28,8 @@
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
 #include "OSELib/OSCP/OSCPConstants.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Util/DebugOut.h"
 
 #include "OSELib/OSCP/ServiceManager.h"
@@ -273,7 +273,7 @@ int main (int argc, char * argv[])
 {
 	const std::string testname(argc != 2 ? "Dump MDIBs of all found devices" : "Dump MDIBs of given EPR");
 	DebugOut(DebugOut::Default, "MDIBDump") << std::endl << "Startup: " << testname;
-	OSCLibrary::getInstance().startup();
+	SDCLibrary::getInstance().startup();
 
 	OSELib::OSCP::ServiceManager oscpsm;
 
@@ -281,11 +281,11 @@ int main (int argc, char * argv[])
 		DebugOut(DebugOut::Default, "MDIBDump") << "Refreshing ..." << std::flush;
 		Poco::Timestamp refreshStarted;
 
-		std::vector<std::unique_ptr<OSCPConsumer> > results;
+		std::vector<std::unique_ptr<SDCConsumer> > results;
 		if (argc != 2) {
 			results = oscpsm.discoverOSCP();
 		} else {
-			std::unique_ptr<OSCPConsumer> result(oscpsm.discoverEndpointReference(std::string(argv[1])));
+			std::unique_ptr<SDCConsumer> result(oscpsm.discoverEndpointReference(std::string(argv[1])));
 			if (result != nullptr) {
 				results.emplace_back(std::move(result));
 			}

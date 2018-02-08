@@ -15,7 +15,7 @@
   */
 
 /*
- * OSCPConsumer.cpp
+ * SDCConsumer.cpp
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: buerger, besting, roehser
@@ -28,13 +28,13 @@
 
 #include "osdm.hxx"
 
-#include "OSCLib/OSCLibrary.h"
+#include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
 #include "OSELib/OSCP/OSCPConstants.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumerConnectionLostHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
-#include "OSCLib/Data/OSCP/OSCPConsumerSubscriptionLostHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerSubscriptionLostHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSystemState.h"
 #include "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h"
@@ -154,7 +154,7 @@ MDM::SetContextState createRequestMessage(const WorkflowContextState & state, co
 	return result;
 }
 
-OSCPConsumer::OSCPConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription) :
+SDCConsumer::SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription) :
 		WithLogger(OSELib::Log::OSCPCONSUMER),
 		connectionLostHandler(nullptr),
 		contextStateChangedHandler(nullptr),
@@ -163,8 +163,8 @@ OSCPConsumer::OSCPConsumer(const OSELib::DPWS::DeviceDescription & deviceDescrip
 		_deviceDescription(deviceDescription)
 {
 	connected = false;
-	for (int i = 0; i < OSCLibrary::getInstance().getNumberOfReattemptsWithAnotherPort(); i++) {
-		const int port(OSCLibrary::getInstance().extractFreePort());
+	for (int i = 0; i < SDCLibrary::getInstance().getNumberOfReattemptsWithAnotherPort(); i++) {
+		const int port(SDCLibrary::getInstance().extractFreePort());
 		try {
 			_adapter = std::unique_ptr<OSELibConsumerAdapter>(new OSELibConsumerAdapter(*this, port, _deviceDescription));
 			_adapter->start();
@@ -172,41 +172,41 @@ OSCPConsumer::OSCPConsumer(const OSELib::DPWS::DeviceDescription & deviceDescrip
 			break;
 		} catch (const Poco::Net::NetException & e) {
 			log_error([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port."; });
-			OSCLibrary::getInstance().returnPortToPool(port);
+			SDCLibrary::getInstance().returnPortToPool(port);
 		} catch (const std::runtime_error & e) {
 			log_error([&] {return "Exception: " + std::string(e.what()); });
 		}
 	}
 	if (!connected) {
-		log_error([&] { return "Connecting to " + deviceDescription.getEPR() + " failed after " + std::to_string(OSCLibrary::getInstance().getNumberOfReattemptsWithAnotherPort()) + " attempts."; });
+		log_error([&] { return "Connecting to " + deviceDescription.getEPR() + " failed after " + std::to_string(SDCLibrary::getInstance().getNumberOfReattemptsWithAnotherPort()) + " attempts."; });
 	}
 
 }
 
-OSCPConsumer::~OSCPConsumer() {
+SDCConsumer::~SDCConsumer() {
 
     for (auto & fis : fisMap) {
     	fis.second->consumer = nullptr;
     }
-    if (OSCLibrary::getInstance().isInitialized() && _adapter)
+    if (SDCLibrary::getInstance().isInitialized() && _adapter)
     {
-        log_error([] { return "OSCPConsumer deleted before disconnected!"; });
+        log_error([] { return "SDCConsumer deleted before disconnected!"; });
     	disconnect();
     }
 }
 
-void OSCPConsumer::disconnect() {
+void SDCConsumer::disconnect() {
 	if (_adapter) {
 		_adapter->stop();
 		_adapter.reset();
 	}
 }
 
-void OSCPConsumer::setConnectionLostHandler(OSCPConsumerConnectionLostHandler * handler) {
+void SDCConsumer::setConnectionLostHandler(SDCConsumerConnectionLostHandler * handler) {
     connectionLostHandler = handler;
 }
 
-void OSCPConsumer::setContextStateChangedHandler(OSCPConsumerSystemContextStateChangedHandler * handler) {
+void SDCConsumer::setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * handler) {
     Poco::Mutex::ScopedLock lock(eventMutex);
 	contextStateChangedHandler = handler;
 	if (_adapter) {
@@ -214,30 +214,30 @@ void OSCPConsumer::setContextStateChangedHandler(OSCPConsumerSystemContextStateC
 	}
 }
 
-void OSCPConsumer::setSubscriptionLostHandler(OSCPConsumerSubscriptionLostHandler * handler) {
+void SDCConsumer::setSubscriptionLostHandler(SDCConsumerSubscriptionLostHandler * handler) {
     subscriptionLostHandler = handler;
 }
 
-void OSCPConsumer::onConnectionLost() {
+void SDCConsumer::onConnectionLost() {
     if (connectionLostHandler != nullptr) {
         connectionLostHandler->onConnectionLost();
     }
 }
 
-void OSCPConsumer::onSubscriptionLost() {
+void SDCConsumer::onSubscriptionLost() {
     if (subscriptionLostHandler != nullptr) {
         subscriptionLostHandler->onSubscriptionLost();
     }
 }
 
-MdibContainer OSCPConsumer::getMdib() {
+MdibContainer SDCConsumer::getMdib() {
 	if (!requestMdib()) {
 		onConnectionLost();
 	}
     return *mdib;
 }
 
-MdDescription OSCPConsumer::getMdDescription() {
+MdDescription SDCConsumer::getMdDescription() {
     const MDM::GetMdDescription request;
     auto response(_adapter->invoke(request));
 
@@ -258,7 +258,7 @@ MdDescription OSCPConsumer::getMdDescription() {
     return description;
 }
 
-MdDescription OSCPConsumer::getCachedMdDescription() {
+MdDescription SDCConsumer::getCachedMdDescription() {
 	if (mdib) {
 		return mdib->getMdDescription();
 	} else {
@@ -266,7 +266,7 @@ MdDescription OSCPConsumer::getCachedMdDescription() {
 	}
 }
 
-MdState OSCPConsumer::getMdState() {
+MdState SDCConsumer::getMdState() {
     const MDM::GetMdState request;
     std::unique_ptr<const MDM::GetMdStateResponse> response(_adapter->invoke(request));
 
@@ -279,12 +279,12 @@ MdState OSCPConsumer::getMdState() {
     return ConvertFromCDM::convert(response->MdState());
 }
 
-bool OSCPConsumer::unregisterFutureInvocationListener(int transactionId) {
+bool SDCConsumer::unregisterFutureInvocationListener(int transactionId) {
 	Poco::Mutex::ScopedLock lock(transactionMutex);
 	return fisMap.erase(transactionId) == 1;
 }
 
-bool OSCPConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
+bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
     Poco::Mutex::ScopedLock lock(eventMutex);
 	eventHandlers[handler->getDescriptorHandle()] = handler;
 	if (_adapter) {
@@ -293,7 +293,7 @@ bool OSCPConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler 
 	return true;
 }
 
-bool OSCPConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
+bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
 	Poco::Mutex::ScopedLock lock(eventMutex);
 	eventHandlers.erase(handler->getDescriptorHandle());
 
@@ -304,7 +304,7 @@ bool OSCPConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandle
     return true;
 }
 
-bool OSCPConsumer::requestMdib() {
+bool SDCConsumer::requestMdib() {
 	std::unique_ptr<const MDM::GetMdibResponse> response(requestCDMMdib());
 	if (response == nullptr) {
 		return false;
@@ -324,13 +324,13 @@ bool OSCPConsumer::requestMdib() {
 	return true;
 }
 
-std::unique_ptr<MDM::GetMdibResponse> OSCPConsumer::requestCDMMdib() {
+std::unique_ptr<MDM::GetMdibResponse> SDCConsumer::requestCDMMdib() {
     const MDM::GetMdib request;
     auto response(_adapter->invoke(request));
     return response;
 }
 
-std::string OSCPConsumer::requestRawMdib() {
+std::string SDCConsumer::requestRawMdib() {
 	std::unique_ptr<const MDM::GetMdibResponse> response(requestCDMMdib());
 	if (response == nullptr) {
 		log_error([] { return "MDIB request failed!"; });
@@ -346,7 +346,7 @@ std::string OSCPConsumer::requestRawMdib() {
 }
 
 // TODO: delete commitStateImpl() use one template class, use traits for Metrices: https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Member_Detector
-InvocationState OSCPConsumer::commitState(const EnumStringMetricState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const EnumStringMetricState & state, FutureInvocationState & fis) {
 	if (!state.hasMetricValue()) {
 		return InvocationState::Fail;
 	}
@@ -356,7 +356,7 @@ InvocationState OSCPConsumer::commitState(const EnumStringMetricState & state, F
 	return commitStateImpl<OSELib::OSCP::SetStringTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const NumericMetricState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const NumericMetricState & state, FutureInvocationState & fis) {
 	if (!state.hasMetricValue()) {
 		return InvocationState::Fail;
 	}
@@ -366,7 +366,7 @@ InvocationState OSCPConsumer::commitState(const NumericMetricState & state, Futu
 	return commitStateImpl<OSELib::OSCP::SetValueTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const StringMetricState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const StringMetricState & state, FutureInvocationState & fis) {
 	if (!state.hasMetricValue()) {
 		return InvocationState::Fail;
 	}
@@ -376,104 +376,104 @@ InvocationState OSCPConsumer::commitState(const StringMetricState & state, Futur
 	return commitStateImpl<OSELib::OSCP::SetStringTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const LocationContextState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const LocationContextState & state, FutureInvocationState & fis) {
 	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const EnsembleContextState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const EnsembleContextState & state, FutureInvocationState & fis) {
 	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const OperatorContextState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const OperatorContextState & state, FutureInvocationState & fis) {
 	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const PatientContextState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const PatientContextState & state, FutureInvocationState & fis) {
 	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const WorkflowContextState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const WorkflowContextState & state, FutureInvocationState & fis) {
 	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const AlertSystemState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const AlertSystemState & state, FutureInvocationState & fis) {
 	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const AlertSignalState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const AlertSignalState & state, FutureInvocationState & fis) {
 	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const AlertConditionState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const AlertConditionState & state, FutureInvocationState & fis) {
 	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const LimitAlertConditionState & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitState(const LimitAlertConditionState & state, FutureInvocationState & fis) {
 	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
 }
 
-InvocationState OSCPConsumer::commitState(const AlertSystemState & state) {
+InvocationState SDCConsumer::commitState(const AlertSystemState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const AlertSignalState & state) {
+InvocationState SDCConsumer::commitState(const AlertSignalState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const AlertConditionState & state) {
+InvocationState SDCConsumer::commitState(const AlertConditionState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const LimitAlertConditionState & state) {
+InvocationState SDCConsumer::commitState(const LimitAlertConditionState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const EnumStringMetricState & state) {
+InvocationState SDCConsumer::commitState(const EnumStringMetricState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const NumericMetricState & state) {
+InvocationState SDCConsumer::commitState(const NumericMetricState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const StringMetricState & state) {
+InvocationState SDCConsumer::commitState(const StringMetricState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const LocationContextState & state) {
+InvocationState SDCConsumer::commitState(const LocationContextState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const EnsembleContextState & state) {
+InvocationState SDCConsumer::commitState(const EnsembleContextState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const OperatorContextState & state) {
+InvocationState SDCConsumer::commitState(const OperatorContextState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const PatientContextState & state) {
+InvocationState SDCConsumer::commitState(const PatientContextState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
-InvocationState OSCPConsumer::commitState(const WorkflowContextState & state) {
+InvocationState SDCConsumer::commitState(const WorkflowContextState & state) {
 	FutureInvocationState dummy;
 	return commitState(state, dummy);
 }
 
 template<class OperationTraits, class StateType>
-InvocationState OSCPConsumer::commitStateImpl(const StateType & state, FutureInvocationState & fis) {
+InvocationState SDCConsumer::commitStateImpl(const StateType & state, FutureInvocationState & fis) {
 
 	if (state.getDescriptorHandle().empty()) {
 		log_error([] { return "Commit failed: descriptor handle is empty!"; });
@@ -514,7 +514,7 @@ InvocationState OSCPConsumer::commitStateImpl(const StateType & state, FutureInv
 	}
 }
 
-void OSCPConsumer::handleInvocationState(int transactionId, FutureInvocationState & fis) {
+void SDCConsumer::handleInvocationState(int transactionId, FutureInvocationState & fis) {
 	// Put user future state into map
 	Poco::Mutex::ScopedLock lock(transactionMutex);
 	fis.transactionId = transactionId;
@@ -530,12 +530,12 @@ void OSCPConsumer::handleInvocationState(int transactionId, FutureInvocationStat
     }
 }
 
-InvocationState OSCPConsumer::activate(const std::string & handle) {
+InvocationState SDCConsumer::activate(const std::string & handle) {
 	FutureInvocationState dummy;
 	return activate(handle, dummy);
 }
 
-InvocationState OSCPConsumer::activate(const std::string & handle, FutureInvocationState & fis) {
+InvocationState SDCConsumer::activate(const std::string & handle, FutureInvocationState & fis) {
 
     const MdDescription mdd(getCachedMdDescription());
 
@@ -550,25 +550,25 @@ InvocationState OSCPConsumer::activate(const std::string & handle, FutureInvocat
 }
 
 //// specialization needed for API
-template std::unique_ptr<AlertConditionState> OSCPConsumer::requestState<AlertConditionState>(const std::string & handle);
-template std::unique_ptr<AlertSignalState> OSCPConsumer::requestState<AlertSignalState>(const std::string & handle);
-template std::unique_ptr<AlertSystemState> OSCPConsumer::requestState<AlertSystemState>(const std::string & handle);
-template std::unique_ptr<ClockState> OSCPConsumer::requestState<ClockState>(const std::string & handle);
-template std::unique_ptr<EnsembleContextState> OSCPConsumer::requestState<EnsembleContextState>(const std::string & handle);
-template std::unique_ptr<EnumStringMetricState> OSCPConsumer::requestState<EnumStringMetricState>(const std::string & handle);
-template std::unique_ptr<LimitAlertConditionState> OSCPConsumer::requestState<LimitAlertConditionState>(const std::string & handle);
-template std::unique_ptr<LocationContextState> OSCPConsumer::requestState<LocationContextState>(const std::string & handle);
-template std::unique_ptr<NumericMetricState> OSCPConsumer::requestState<NumericMetricState>(const std::string & handle);
-template std::unique_ptr<OperatorContextState> OSCPConsumer::requestState<OperatorContextState>(const std::string & handle);
-template std::unique_ptr<PatientContextState> OSCPConsumer::requestState<PatientContextState>(const std::string & handle);
-template std::unique_ptr<StringMetricState> OSCPConsumer::requestState<StringMetricState>(const std::string & handle);
-template std::unique_ptr<WorkflowContextState> OSCPConsumer::requestState<WorkflowContextState>(const std::string & handle);
+template std::unique_ptr<AlertConditionState> SDCConsumer::requestState<AlertConditionState>(const std::string & handle);
+template std::unique_ptr<AlertSignalState> SDCConsumer::requestState<AlertSignalState>(const std::string & handle);
+template std::unique_ptr<AlertSystemState> SDCConsumer::requestState<AlertSystemState>(const std::string & handle);
+template std::unique_ptr<ClockState> SDCConsumer::requestState<ClockState>(const std::string & handle);
+template std::unique_ptr<EnsembleContextState> SDCConsumer::requestState<EnsembleContextState>(const std::string & handle);
+template std::unique_ptr<EnumStringMetricState> SDCConsumer::requestState<EnumStringMetricState>(const std::string & handle);
+template std::unique_ptr<LimitAlertConditionState> SDCConsumer::requestState<LimitAlertConditionState>(const std::string & handle);
+template std::unique_ptr<LocationContextState> SDCConsumer::requestState<LocationContextState>(const std::string & handle);
+template std::unique_ptr<NumericMetricState> SDCConsumer::requestState<NumericMetricState>(const std::string & handle);
+template std::unique_ptr<OperatorContextState> SDCConsumer::requestState<OperatorContextState>(const std::string & handle);
+template std::unique_ptr<PatientContextState> SDCConsumer::requestState<PatientContextState>(const std::string & handle);
+template std::unique_ptr<StringMetricState> SDCConsumer::requestState<StringMetricState>(const std::string & handle);
+template std::unique_ptr<WorkflowContextState> SDCConsumer::requestState<WorkflowContextState>(const std::string & handle);
 
 
 // TODO: implement and test! missing states -> RealTimeSampleArrayMetricState, DistributionSampleArrayMetricState
 
 template<class TStateType>
-std::unique_ptr<TStateType> OSCPConsumer::requestState(const std::string & handle) {
+std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & handle) {
 
     MDM::GetMdState request;
     request.HandleRef().push_back(handle);
@@ -600,7 +600,7 @@ std::unique_ptr<TStateType> OSCPConsumer::requestState(const std::string & handl
 	return nullptr;
 }
 
-template<typename T> void OSCPConsumer::onStateChanged(const T & state) {
+template<typename T> void SDCConsumer::onStateChanged(const T & state) {
     Poco::Mutex::ScopedLock lock(eventMutex);
     std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(state.getDescriptorHandle());
     if (it != eventHandlers.end()) {
@@ -610,7 +610,7 @@ template<typename T> void OSCPConsumer::onStateChanged(const T & state) {
     }
 }
 
-//template<typename T> void OSCPConsumer::onMultiStateChanged(const T & state) {
+//template<typename T> void SDCConsumer::onMultiStateChanged(const T & state) {
 //    Poco::Mutex::ScopedLock lock(eventMutex);
 //	std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(state.getHandle());
 //	if (it != eventHandlers.end()) {
@@ -621,32 +621,32 @@ template<typename T> void OSCPConsumer::onStateChanged(const T & state) {
 //}
 
 // metrices
-template void OSCPConsumer::onStateChanged(const EnumStringMetricState & state);
-template void OSCPConsumer::onStateChanged(const NumericMetricState & state);
-template void OSCPConsumer::onStateChanged(const StringMetricState & state);
-template void OSCPConsumer::onStateChanged(const RealTimeSampleArrayMetricState & state);
-template void OSCPConsumer::onStateChanged(const DistributionSampleArrayMetricState & state);
+template void SDCConsumer::onStateChanged(const EnumStringMetricState & state);
+template void SDCConsumer::onStateChanged(const NumericMetricState & state);
+template void SDCConsumer::onStateChanged(const StringMetricState & state);
+template void SDCConsumer::onStateChanged(const RealTimeSampleArrayMetricState & state);
+template void SDCConsumer::onStateChanged(const DistributionSampleArrayMetricState & state);
 // alerts
-template void OSCPConsumer::onStateChanged(const AlertSystemState & state);
-template void OSCPConsumer::onStateChanged(const AlertSignalState & state);
-template void OSCPConsumer::onStateChanged(const AlertConditionState & state);
-template void OSCPConsumer::onStateChanged(const LimitAlertConditionState & state);
+template void SDCConsumer::onStateChanged(const AlertSystemState & state);
+template void SDCConsumer::onStateChanged(const AlertSignalState & state);
+template void SDCConsumer::onStateChanged(const AlertConditionState & state);
+template void SDCConsumer::onStateChanged(const LimitAlertConditionState & state);
 // TODO: change! context states are multi states
-//template void OSCPConsumer::onMultiStateChanged(const WorkflowContextState & state);
-//template void OSCPConsumer::onMultiStateChanged(const PatientContextState & state);
-//template void OSCPConsumer::onMultiStateChanged(const LocationContextState& state);
-//template void OSCPConsumer::onMultiStateChanged(const OperatorContextState & state);
-//template void OSCPConsumer::onMultiStateChanged(const MeansContextState & state);
-//template void OSCPConsumer::onMultiStateChanged(const EnsembleContextState & state);
+//template void SDCConsumer::onMultiStateChanged(const WorkflowContextState & state);
+//template void SDCConsumer::onMultiStateChanged(const PatientContextState & state);
+//template void SDCConsumer::onMultiStateChanged(const LocationContextState& state);
+//template void SDCConsumer::onMultiStateChanged(const OperatorContextState & state);
+//template void SDCConsumer::onMultiStateChanged(const MeansContextState & state);
+//template void SDCConsumer::onMultiStateChanged(const EnsembleContextState & state);
 // as well as states referenced by a descriptor
-template void OSCPConsumer::onStateChanged(const WorkflowContextState & state);
-template void OSCPConsumer::onStateChanged(const PatientContextState & state);
-template void OSCPConsumer::onStateChanged(const LocationContextState& state);
-template void OSCPConsumer::onStateChanged(const OperatorContextState & state);
-template void OSCPConsumer::onStateChanged(const MeansContextState & state);
-template void OSCPConsumer::onStateChanged(const EnsembleContextState & state);
+template void SDCConsumer::onStateChanged(const WorkflowContextState & state);
+template void SDCConsumer::onStateChanged(const PatientContextState & state);
+template void SDCConsumer::onStateChanged(const LocationContextState& state);
+template void SDCConsumer::onStateChanged(const OperatorContextState & state);
+template void SDCConsumer::onStateChanged(const MeansContextState & state);
+template void SDCConsumer::onStateChanged(const EnsembleContextState & state);
 
-void OSCPConsumer::onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
+void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
     Poco::Mutex::ScopedLock lock(eventMutex);
 
 
@@ -686,17 +686,17 @@ void OSCPConsumer::onOperationInvoked(const OperationInvocationContext & oic, In
     transactionQueue.push_back(TransactionState(oic.transactionId, is));
 }
 
-std::string OSCPConsumer::getEndpointReference() {
+std::string SDCConsumer::getEndpointReference() {
 	return _deviceDescription.getEPR();
 }
 
-unsigned long long int OSCPConsumer::getLastKnownMdibVersion() {
+unsigned long long int SDCConsumer::getLastKnownMdibVersion() {
 	Poco::Mutex::ScopedLock lock(mdibVersionMutex);
 	unsigned long long int result = lastKnownMDIBVersion;
 	return result;
 }
 
-void OSCPConsumer::updateLastKnownMdibVersion(unsigned long long int newVersion) {
+void SDCConsumer::updateLastKnownMdibVersion(unsigned long long int newVersion) {
 	Poco::Mutex::ScopedLock lock(mdibVersionMutex);
 	if (lastKnownMDIBVersion < newVersion) {
 		lastKnownMDIBVersion = newVersion;

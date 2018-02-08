@@ -15,14 +15,14 @@
   */
 
 /*
- * OSCPConsumer.h
+ * SDCConsumer.h
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: roehser, besting, buerger
  */
 
-#ifndef OSCPCONSUMER_H_
-#define OSCPCONSUMER_H_
+#ifndef SDCCONSUMER_H_
+#define SDCCONSUMER_H_
 
 #include "OSCLib/Data/OSCP/OSCP-fwd.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
@@ -53,7 +53,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSCPConsumer final : public OSELib::WithLogger {
+class SDCConsumer final : public OSELib::WithLogger {
 friend class FutureInvocationState;
 friend class OSELibConsumerAdapter;
 // todo remove friend classes and only use oselibconsumer adapter
@@ -73,7 +73,7 @@ private:
 		const InvocationState invocationState;
 	};
 public:
-	virtual ~OSCPConsumer();
+	virtual ~SDCConsumer();
 
     /**
     * @brief Get the complete MDIB (description and states).
@@ -193,7 +193,7 @@ public:
     *
     * @param handler The handler
     */
-    void setConnectionLostHandler(OSCPConsumerConnectionLostHandler * handler);
+    void setConnectionLostHandler(SDCConsumerConnectionLostHandler * handler);
 
     // todo:kick?
     /**
@@ -201,14 +201,14 @@ public:
     *
     * @param handler The handler
     */
-    void setContextStateChangedHandler(OSCPConsumerSystemContextStateChangedHandler * handler);
+    void setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * handler);
 
     /**
     * @brief Set a handler which will be invoked if a renewal of a subscription fails.
     *
     * @param handler The handler
     */
-    void setSubscriptionLostHandler(OSCPConsumerSubscriptionLostHandler * handler);
+    void setSubscriptionLostHandler(SDCConsumerSubscriptionLostHandler * handler);
 
     /**
     * @brief Request Mdib in raw XML format.
@@ -232,7 +232,7 @@ public:
     unsigned long long int getLastKnownMdibVersion();
 
 private:
-    OSCPConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription);
+    SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription);
 
     /**
     * @brief Update the local MDIB using an RPC to the provider.
@@ -276,10 +276,10 @@ private:
 	Poco::Mutex requestMutex;
     Poco::Mutex eventMutex;
     std::map<std::string, SDCConsumerOperationInvokedHandler *> eventHandlers;
-    OSCPConsumerConnectionLostHandler * connectionLostHandler;
+    SDCConsumerConnectionLostHandler * connectionLostHandler;
     // todo: kick
-    OSCPConsumerSystemContextStateChangedHandler * contextStateChangedHandler;
-    OSCPConsumerSubscriptionLostHandler * subscriptionLostHandler;
+    SDCConsumerSystemContextStateChangedHandler * contextStateChangedHandler;
+    SDCConsumerSubscriptionLostHandler * subscriptionLostHandler;
 
     unsigned long long int lastKnownMDIBVersion;
     std::atomic<bool> connected;
@@ -292,4 +292,4 @@ private:
 } /* namespace OSCP */
 } /* namespace Data */
 } /* namespace OSCLib */
-#endif /* OSCPCONSUMER_H_ */
+#endif /* SDCCONSUMER_H_ */

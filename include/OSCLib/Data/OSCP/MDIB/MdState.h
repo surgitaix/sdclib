@@ -46,8 +46,8 @@ private:
 	operator CDM::MdState() const;
 	friend class ConvertFromCDM;
 	friend class ConvertToCDM;
-	friend class OSCPProvider;
-	friend class OSCPConsumer;
+	friend class SDCProvider;
+	friend class SDCConsumer;
 	friend class MdState;
 	friend class MdDescription;
 public:
@@ -94,9 +94,9 @@ public:
     MdState & addState(const EnsembleContextState & source);
     MdState & addState(const EnumStringMetricState & source);
     MdState & addState(const LocationContextState & source);
-    MdState & addState(const MeansContextState & source);
     MdState & addState(const LimitAlertConditionState & source);
     MdState & addState(const MdsState & source);
+    MdState & addState(const MeansContextState & source);
     MdState & addState(const NumericMetricState & source);
     MdState & addState(const OperatorContextState & source);
     MdState & addState(const PatientContextState & source);

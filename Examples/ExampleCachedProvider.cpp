@@ -13,8 +13,8 @@
 #include <fstream>
 #include <streambuf>
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/CodedValue.h"
@@ -208,7 +208,7 @@ public:
 private:
 
     // API provider class
-    OSCPProvider oscpProvider;
+    SDCProvider oscpProvider;
 
     // State Handlers
     // each state handler ist named the same way as regarding descriptor
@@ -251,9 +251,9 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Startup" << std::endl;
-    OSCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
-    OSCLibrary::getInstance().setIP6enabled(false);
-    OSCLibrary::getInstance().setIP4enabled(true);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+    SDCLibrary::getInstance().setIP6enabled(false);
+    SDCLibrary::getInstance().setIP4enabled(true);
 
 	OSELib::OSCP::ServiceManager oscpsm;
 	OSCPStreamProvider provider;
@@ -267,5 +267,5 @@ int main()
 	// Shutdown
 	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Shutdown." << std::endl;
 	provider.shutdown();
-    OSCLibrary::getInstance().shutdown();
+    SDCLibrary::getInstance().shutdown();
 }

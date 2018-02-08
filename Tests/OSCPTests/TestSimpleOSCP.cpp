@@ -37,10 +37,10 @@
 
 
 
-#include "OSCLib/OSCLibrary.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
-#include "OSCLib/Data/OSCP/OSCPProvider.h"
+#include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderActivateOperationHandler.h"
@@ -1006,7 +1006,7 @@ private:
     float currentWeight;
 
     // Provider object
-    OSCPProvider oscpProvider;
+    SDCProvider oscpProvider;
 
     // State (handlers)
     LocationContextStateHandler locationContextStateHandler;
@@ -1061,7 +1061,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         Poco::Thread::sleep(2000);
         // Consumer
         OSELib::OSCP::ServiceManager oscpsm;
-        std::shared_ptr<OSCPConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleOSCP::DEVICE_ENDPOINT_REFERENCE));
+        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleOSCP::DEVICE_ENDPOINT_REFERENCE));
 
         // create state handlers
         Tests::SimpleOSCP::ExampleConsumerNumericHandler eces1(Tests::SimpleOSCP::NUMERIC_METRIC_CURRENT_HANDLE);
@@ -1078,7 +1078,7 @@ TEST_FIXTURE(FixtureSimpleOSCP, simpleoscp)
         CHECK_EQUAL(true, c != nullptr);
 
 		if (c != nullptr) {
-			OSCPConsumer & consumer = *c;
+			SDCConsumer & consumer = *c;
             // MDIB test
             MdibContainer mdib(consumer.getMdib());
 

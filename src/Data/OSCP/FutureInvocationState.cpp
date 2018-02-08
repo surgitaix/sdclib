@@ -22,7 +22,7 @@
  */
 
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 
 namespace OSCLib {
 namespace Data {

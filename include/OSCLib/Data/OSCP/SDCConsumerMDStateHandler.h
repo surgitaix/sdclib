@@ -15,7 +15,7 @@
   */
 
 /*
- * OSCPConsumerAlertConditionStateHandler.h
+ * SDCConsumerAlertConditionStateHandler.h
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: buerger

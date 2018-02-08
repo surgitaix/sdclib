@@ -13,7 +13,7 @@
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
-#include "OSCLib/Data/OSCP/OSCPConsumer.h"
+#include "OSCLib/Data/OSCP/SDCConsumer.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
@@ -65,13 +65,13 @@ void ServiceManager::setHelloReceivedHandler(HelloReceivedHandler * handler) {
 	_helloCallback = std::unique_ptr<HelloCallback>(new HelloCallback(handler));
 }
 
-std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connect(const std::string & xaddr) {
+std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> ServiceManager::connect(const std::string & xaddr) {
 	std::list<std::string> xAddress_list;
 	xAddress_list.push_back(xaddr);
 	return connectXAddress(xAddress_list, "Unknown");
 }
 
-std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
+std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
 
 	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback  {
 		ResolveMatchCallback(Poco::Event & matchEvent) :
@@ -114,7 +114,7 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::discoverEndpoi
 	return nullptr;
 }
 
-std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> ServiceManager::discoverOSCP() {
+std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> ServiceManager::discoverOSCP() {
 
 	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
 		ProbeMatchCallback() {}
@@ -140,7 +140,7 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> ServiceManager::d
 	_dpwsClient->removeProbeMatchEventHandler(probeCb);
 	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb._results.size()); });
 
-	std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> results;
+	std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> results;
 	std::list<std::string> xAddress_list;
 
 	// probeCb._results contains the exact number of unique EPR in the network
@@ -166,7 +166,7 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer>> ServiceManager::d
 	return results;
 }
 
-std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) {
+std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) {
 	DPWS::DeviceDescription deviceDescription;
 
 	bool connectionPossible_flag = 0;
@@ -279,7 +279,7 @@ std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> ServiceManager::connectXAddres
 
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
-	std::unique_ptr<OSCLib::Data::OSCP::OSCPConsumer> result(new OSCLib::Data::OSCP::OSCPConsumer(deviceDescription));
+	std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> result(new OSCLib::Data::OSCP::SDCConsumer(deviceDescription));
 	if (!result->requestMdib()) {
 		result->disconnect();
 		return nullptr;
