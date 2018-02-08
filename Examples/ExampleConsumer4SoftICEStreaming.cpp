@@ -28,7 +28,7 @@
 
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
@@ -55,9 +55,9 @@ const std::string streamHandle("handle_stream");
 
 
 // Example for a minimum implementation of a consumer state handler
-class NumericConsumerEventHandler : public  SDCConsumerEventHandler<NumericMetricState> {
+class NumericConsumerEventHandler : public  SDCConsumerMDStateHandler<NumericMetricState> {
 public:
-	NumericConsumerEventHandler(const std::string & handle) :  SDCConsumerEventHandler(handle)
+	NumericConsumerEventHandler(const std::string & handle) :  SDCConsumerMDStateHandler(handle)
 	{
 	}
 
@@ -69,9 +69,9 @@ public:
 };
 
 
-class StreamConsumerEventHandler : public SDCConsumerEventHandler<RealTimeSampleArrayMetricState> {
+class StreamConsumerEventHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState> {
 public:
-	StreamConsumerEventHandler(const std::string & handle) : SDCConsumerEventHandler(handle),
+	StreamConsumerEventHandler(const std::string & handle) : SDCConsumerMDStateHandler(handle),
     	verifiedChunks(false)
     {
     }

@@ -34,7 +34,7 @@
 #include "OSCLib/OSCLibrary.h"
 
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 

@@ -45,7 +45,7 @@
 #include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderActivateOperationHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
-#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/AllowedValue.h"
 #include "OSCLib/Data/OSCP/MDIB/LimitAlertConditionDescriptor.h"
@@ -157,9 +157,9 @@ const std::string PATIENT_CONTEXT_HANDLE("patient_context");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-class ExampleConsumerNumericHandler : public SDCConsumerEventHandler<NumericMetricState> {
+class ExampleConsumerNumericHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
 public:
-	ExampleConsumerNumericHandler(const std::string & descriptorHandle) : SDCConsumerEventHandler(descriptorHandle),
+	ExampleConsumerNumericHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle),
     	weight(0)
 	{
 	}
@@ -196,9 +196,9 @@ private:
     Poco::Event eventEMR;
 };
 
-class ExampleConsumerEnumStringMetricHandler : public SDCConsumerEventHandler<EnumStringMetricState> {
+class ExampleConsumerEnumStringMetricHandler : public SDCConsumerMDStateHandler<EnumStringMetricState> {
 public:
-	ExampleConsumerEnumStringMetricHandler(const std::string & descriptorHandle) : SDCConsumerEventHandler(descriptorHandle)
+	ExampleConsumerEnumStringMetricHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
 	{
 	}
 
@@ -224,9 +224,9 @@ private:
     Poco::Event eventEMR;
 };
 
-class ExampleConsumerStringMetricHandler : public SDCConsumerEventHandler<StringMetricState> {
+class ExampleConsumerStringMetricHandler : public SDCConsumerMDStateHandler<StringMetricState> {
 public:
-	ExampleConsumerStringMetricHandler(const std::string & descriptorHandle) : SDCConsumerEventHandler(descriptorHandle)
+	ExampleConsumerStringMetricHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
 	{
 	}
 
@@ -253,9 +253,9 @@ private:
     Poco::Event eventEMR;
 };
 
-class ExampleConsumerAlertSignalHandler : public SDCConsumerEventHandler<AlertSignalState> {
+class ExampleConsumerAlertSignalHandler : public SDCConsumerMDStateHandler<AlertSignalState> {
 public:
-	ExampleConsumerAlertSignalHandler(const std::string & descriptorHandle) : SDCConsumerEventHandler(descriptorHandle)
+	ExampleConsumerAlertSignalHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
 	{
 	}
 
@@ -300,10 +300,10 @@ private:
 
 // context state handlers
 
-class ExampleLocationContextEventHandler : public SDCConsumerEventHandler<LocationContextState> {
+class ExampleLocationContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState> {
 public:
 
-	ExampleLocationContextEventHandler(std::string descriptorHandle) : SDCConsumerEventHandler(descriptorHandle) {
+	ExampleLocationContextEventHandler(std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle) {
 	}
 
 	virtual void onStateChanged(const LocationContextState & state) override {
@@ -320,10 +320,10 @@ private:
 };
 
 
-class ExamplePatientContextEventHandler : public SDCConsumerEventHandler<PatientContextState> {
+class ExamplePatientContextEventHandler : public SDCConsumerMDStateHandler<PatientContextState> {
 public:
 
-	ExamplePatientContextEventHandler(std::string descriptorHandle) : SDCConsumerEventHandler(descriptorHandle) {
+	ExamplePatientContextEventHandler(std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle) {
 	}
 
 	virtual void onStateChanged(const PatientContextState & state) override {

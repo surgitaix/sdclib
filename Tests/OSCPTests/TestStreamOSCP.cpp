@@ -26,7 +26,7 @@
  */
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
-#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 
@@ -71,10 +71,10 @@ namespace StreamOSCP {
 const std::string deviceEPR("UDI_STREAMINGTEST");
 
 
-class StreamConsumerEventHandler : public SDCConsumerEventHandler<RealTimeSampleArrayMetricState> {
+class StreamConsumerEventHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState> {
 public:
 	StreamConsumerEventHandler(const std::string & handle) :
-		SDCConsumerEventHandler(handle),
+		SDCConsumerMDStateHandler(handle),
     	verifiedChunks(false)
     {
     }
@@ -102,10 +102,10 @@ private:
 };
 
 
-class StreamDistributionConsumerEventHandler : public SDCConsumerEventHandler<DistributionSampleArrayMetricState> {
+class StreamDistributionConsumerEventHandler : public SDCConsumerMDStateHandler<DistributionSampleArrayMetricState> {
 public:
 	StreamDistributionConsumerEventHandler(const std::string & handle) :
-		SDCConsumerEventHandler(handle),
+		SDCConsumerMDStateHandler(handle),
     	verifiedChunks(false)
     {
     }

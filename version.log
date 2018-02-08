@@ -1,10 +1,8 @@
 Update to version 3.0.0 D10_2017_10_05_rev2:
 
 - State handlers are templated now. Old API state handler classes deleted. 		
-- Use e.g. SDCConsumerEventHandler<NumericMetricState> instead.
+- Use e.g. SDCProviderMDStateHandler<NumericMetricState> / SDCConsumerMDStateHandler<NumericMetricState> instead.
 - Unified state handlers: No multistate handlers anymore. Multistates are also handled by SDCConsumerEventHandler. Use one handler per state and / or define a state handler for the descriptor that comprises all the multiple context state
-
-
 
 
 Update to version 2.1.0 D10_2017_10_05_rev2:

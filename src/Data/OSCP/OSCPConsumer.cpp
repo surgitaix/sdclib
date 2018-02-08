@@ -76,7 +76,7 @@
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/OSCP/OperationTraits.h"
 
-#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 
 
 namespace OSCLib {
@@ -604,7 +604,7 @@ template<typename T> void OSCPConsumer::onStateChanged(const T & state) {
     Poco::Mutex::ScopedLock lock(eventMutex);
     std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(state.getDescriptorHandle());
     if (it != eventHandlers.end()) {
-    	if (SDCConsumerEventHandler<T> * handler = dynamic_cast<SDCConsumerEventHandler<T> *>(it->second)) {
+    	if (SDCConsumerMDStateHandler<T> * handler = dynamic_cast<SDCConsumerMDStateHandler<T> *>(it->second)) {
         	handler->onStateChanged(state);
     	}
     }
@@ -614,7 +614,7 @@ template<typename T> void OSCPConsumer::onStateChanged(const T & state) {
 //    Poco::Mutex::ScopedLock lock(eventMutex);
 //	std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(state.getHandle());
 //	if (it != eventHandlers.end()) {
-//		if (SDCConsumerEventHandler<T> * handler = dynamic_cast<SDCConsumerEventHandler<T> *>(it->second)) {
+//		if (SDCConsumerMDStateHandler<T> * handler = dynamic_cast<SDCConsumerMDStateHandler<T> *>(it->second)) {
 //			handler->onStateChanged(state);
 //		}
 //	}

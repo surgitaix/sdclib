@@ -30,7 +30,7 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/OSCPConsumerConnectionLostHandler.h"
-#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 #include "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
 #include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
@@ -58,9 +58,9 @@ const std::string HANDLE_STRING_METRIC("handle_string");
 
 
 
-class ExampleConsumerEventHandler : public SDCConsumerEventHandler<NumericMetricState> {
+class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
 public:
-    ExampleConsumerEventHandler(const std::string & handle) : SDCConsumerEventHandler(handle),
+    ExampleConsumerEventHandler(const std::string & handle) : SDCConsumerMDStateHandler(handle),
     	currentWeight(0)
 	{
     }
@@ -86,9 +86,9 @@ private:
 
 
 // state handler for array values, uses udp instead of tcp. Faster. Considered for real time applications
-class StreamConsumerStateHandler : public SDCConsumerEventHandler<RealTimeSampleArrayMetricState> {
+class StreamConsumerStateHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState> {
 public:
-	StreamConsumerStateHandler(std::string descriptorHandle) : SDCConsumerEventHandler(descriptorHandle) {}
+	StreamConsumerStateHandler(std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle) {}
 
 	void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
 		std::vector<double> values = state.getMetricValue().getSamples();

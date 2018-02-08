@@ -31,7 +31,7 @@ namespace OSCP {
 	class OSCPConsumerLimitAlertConditionStateHandler;
 	class OSCPConsumerSubscriptionLostHandler;
 
-//	class SDCConsumerEventHandler;
+//	class SDCConsumerMDStateHandler;
 //	class SDCConsumerOperationInvokedHandler;
 
 	class OSCPProvider;

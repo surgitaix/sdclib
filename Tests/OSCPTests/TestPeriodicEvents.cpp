@@ -2,7 +2,7 @@
 #include "OSCLib/OSCLibrary.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 
-#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderAlertConditionStateHandler.h"
@@ -66,9 +66,9 @@ const std::string VMD_DESCRIPTOR_HANDLE("vmd_handle");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-class ConsumerAlertConditionHandler : public SDCConsumerEventHandler<AlertConditionState> {
+class ConsumerAlertConditionHandler : public SDCConsumerMDStateHandler<AlertConditionState> {
 public:
-	ConsumerAlertConditionHandler(const std::string descriptorHandle) : SDCConsumerEventHandler(descriptorHandle),
+	ConsumerAlertConditionHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle),
 		counter(0)
 	{
 	}
@@ -93,9 +93,9 @@ private:
 
 
 // FIXME: right?????
-class ConsumerContextEventHandler : public SDCConsumerEventHandler<LocationContextState> {
+class ConsumerContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState> {
 public:
-	ConsumerContextEventHandler(const std::string descriptorHandle) : SDCConsumerEventHandler<LocationContextState>(descriptorHandle),
+	ConsumerContextEventHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler<LocationContextState>(descriptorHandle),
 		counter(0) {
 	}
 
@@ -117,9 +117,9 @@ private:
 	Poco::Event event;
 };
 
-class ConsumerDummyHandler : public SDCConsumerEventHandler<NumericMetricState> {
+class ConsumerDummyHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
 public:
-	ConsumerDummyHandler(const std::string descriptorHandle) : SDCConsumerEventHandler(descriptorHandle),
+	ConsumerDummyHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle),
 		counter(0)
 	{
 	}

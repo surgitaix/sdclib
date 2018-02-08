@@ -17,12 +17,12 @@
 /*
  * OSCPConsumerAlertConditionStateHandler.h
  *
- *  @Copyright (C) 2017, SurgiTAIX AG
+ *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: buerger
  */
 
-#ifndef SDCCONSUMEREVENTHANDLER_H_
-#define SDCCONSUMEREVENTHANDLER_H_
+#ifndef SDCCONSUMERMDSTATEHANDLER_H_
+#define SDCCONSUMERMDSTATEHANDLER_H_
 
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 
@@ -31,10 +31,10 @@ namespace Data {
 namespace OSCP {
 
 template<typename TState>
-class SDCConsumerEventHandler: public SDCConsumerOperationInvokedHandler {
+class SDCConsumerMDStateHandler: public SDCConsumerOperationInvokedHandler {
 public:
-	SDCConsumerEventHandler(const std::string handle) : SDCConsumerOperationInvokedHandler(handle) {}
-	virtual ~SDCConsumerEventHandler() {}
+	SDCConsumerMDStateHandler(const std::string handle) : SDCConsumerOperationInvokedHandler(handle) {}
+	virtual ~SDCConsumerMDStateHandler() {}
 
 	typedef TState StateType;
 
@@ -50,4 +50,4 @@ public:
 } /* namespace Data */
 } /* namespace OSCLib */
 
-#endif /* SDCCONSUMEREVENTHANDLER_H_ */
+#endif /* SDCCONSUMERMDSTATEHANDLER_H_ */

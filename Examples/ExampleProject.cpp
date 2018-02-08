@@ -3,7 +3,7 @@
 #include "OSELib/OSCP/OSCPConstants.h"
 #include "OSCLib/Data/OSCP/OSCPConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
-#include "OSCLib/Data/OSCP/SDCConsumerEventHandler.h"
+#include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
 #include "OSCLib/Data/OSCP/OSCPProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderMDStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCProviderComponentStateHandler.h"
@@ -303,12 +303,12 @@ private:
 
 
 
-// ExampleConsumerEventHandler extends SDCConsumerEventHandler, which is instanciated for NumericMetricState
+// ExampleConsumerEventHandler extends SDCConsumerMDStateHandler, which is instanciated for NumericMetricState
 // It's methods onStateChanged and onOperationInvoked are called from within this framework, each time the value is changed by the provider
 // All event handlers have to be registered, please see below.
-class ExampleConsumerEventHandler : public SDCConsumerEventHandler<NumericMetricState> {
+class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
 public:
-    ExampleConsumerEventHandler(const std::string & handle) : SDCConsumerEventHandler(handle),
+    ExampleConsumerEventHandler(const std::string & handle) : SDCConsumerMDStateHandler(handle),
     	currentWeight(0)
 	{
     }
