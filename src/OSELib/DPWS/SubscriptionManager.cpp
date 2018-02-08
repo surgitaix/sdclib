@@ -27,7 +27,7 @@
 #include "OSELib/SOAP/NormalizedMessageAdapter.h"
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
 #include "OSELib/SOAP/SoapActionCommand.h"
-#include "OSELib/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/SDCConstants.h"
 #include "OSELib/OSCP/ReportTraits.h"
 
 namespace OSELib {

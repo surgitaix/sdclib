@@ -27,7 +27,7 @@
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h"
-#include "OSELib/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/SDCConstants.h"
 #include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Util/DebugOut.h"

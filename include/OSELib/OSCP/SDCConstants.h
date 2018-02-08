@@ -15,15 +15,15 @@
   */
 
 /**
- *  @file OSCPConstants.h
+ *  @file SDCConstants.h
  *  @project OSCLib
  *  @date 24.01.2014
  *  @author besting
  *  @copyright (c) SurgiTAIX AG
  */
 
-#ifndef OSCP_OSCPCONSTANTS_H_
-#define OSCP_OSCPCONSTANTS_H_
+#ifndef OSCP_SDCCONSTANTS_H_
+#define OSCP_SDCCONSTANTS_H_
 
 #include <string>
 
@@ -103,4 +103,4 @@ const std::string EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT(NS_ORNET_STREAM_ID + "
 }
 }
 
-#endif /* OSCPCONSTANTS_H_ */
+#endif /* OSCP_SDCCONSTANTS_H_ */

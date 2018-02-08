@@ -33,8 +33,8 @@
 #include "Poco/Timespan.h"
 
 #include "OSCLib/Dev/DeviceCharacteristics.h"
-#include "OSCLib/Data/OSCP/OSCP-fwd.h"
-#include "OSCLib/Data/OSCP/OSELibProviderAdapter.h"
+#include "OSCLib/Data/OSCP/SDC-fwd.h"
+#include "OSCLib/Data/OSCP/SDCProviderAdapter.h"
 #include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
 #include "OSCLib/Data/OSCP/MDIB/MdState.h"
 
@@ -60,7 +60,7 @@ class SDCProvider final : public OSELib::WithLogger {
 
     friend class SDCProviderStateHandler;
 
-    // todo replace by friend class OSELibProviderAdapter
+    // todo replace by friend class SDCProviderAdapter
     friend struct OSELib::ContextReportServiceImpl;
     friend struct OSELib::GetServiceImpl;
     friend struct OSELib::SetServiceImpl;
@@ -357,7 +357,7 @@ private:
     std::map<std::string, SDCProviderStateHandler *> stateHandlers;
 
 	std::shared_ptr<MdDescription> m_mdDescription;
-    std::unique_ptr<OSELibProviderAdapter> _adapter;
+    std::unique_ptr<SDCProviderAdapter> _adapter;
     Dev::DeviceCharacteristics devicecharacteristics;
 	Poco::Mutex mutex;
 

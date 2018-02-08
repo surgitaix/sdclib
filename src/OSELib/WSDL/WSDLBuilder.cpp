@@ -5,7 +5,7 @@
  *      Author: roehser
  */
 
-#include <OSELib/OSCP/OSCPConstants.h>
+#include <OSELib/OSCP/SDCConstants.h>
 #include "wsdl-custom.hxx"
 #include "wsdl-soap-binding.hxx"
 #include "ws-addressing.hxx"

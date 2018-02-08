@@ -33,7 +33,7 @@
 #define WORKFLOWCONTEXTSTATE_H_
 
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/OSCP/OSCP-fwd.h"
+#include "OSCLib/Data/OSCP/SDC-fwd.h"
 #include "osdm-fwd.hxx"
 
 namespace OSCLib {

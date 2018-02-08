@@ -5,7 +5,7 @@
  *      Author: roehser
  */
 
-#include <OSELib/OSCP/OSCPConstants.h>
+#include <OSELib/OSCP/SDCConstants.h>
 #include "BICEPS_MessageModel.hxx"
 #include "NormalizedMessageModel.hxx"
 

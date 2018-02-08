@@ -40,7 +40,7 @@ private:
 	// todo: implement verify msg
 	//	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
 
-	//  callback function, implemented in OSELibConsumerAdapter
+	//  callback function, implemented in SDCConsumerAdapter
 	StreamNotificationDispatcher & m_streamNotificationDispatcher;
 
 	// todo: make list of socket for compatibility with other frameworks

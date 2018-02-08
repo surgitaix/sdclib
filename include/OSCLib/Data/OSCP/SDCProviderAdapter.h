@@ -1,16 +1,16 @@
 /*
- * OSELibProviderAdapter.h
+ * SDCProviderAdapter.h
  *
  *  Created on: 09.12.2015
  *      Author: matthias
  */
 
-#ifndef DATA_OSCP_OSELIBPROVIDERADAPTER_H_
-#define DATA_OSCP_OSELIBPROVIDERADAPTER_H_
+#ifndef DATA_OSCP_SDCPROVIDERADAPTER_H_
+#define DATA_OSCP_SDCPROVIDERADAPTER_H_
 
 #include "Poco/Mutex.h"
 
-#include "OSCP-fwd.h"
+#include "SDC-fwd.h"
 #include "OSELib/fwd.h"
 #include <set>
 
@@ -18,10 +18,10 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSELibProviderAdapter {
+class SDCProviderAdapter {
 public:
-	OSELibProviderAdapter(SDCProvider & provider, const unsigned int port);
-	virtual ~OSELibProviderAdapter();
+	SDCProviderAdapter(SDCProvider & provider, const unsigned int port);
+	virtual ~SDCProviderAdapter();
 
 	void start();
 	void stop();
@@ -59,4 +59,4 @@ private:
 } /* namespace Data */
 } /* namespace OSCLib */
 
-#endif /* DATA_OSCP_OSELIBPROVIDERADAPTER_H_ */
+#endif /* DATA_OSCP_SDCPROVIDERADAPTER_H_ */

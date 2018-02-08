@@ -1,5 +1,5 @@
 #set(CMAKE_VERBOSE_MAKEFILE ON)
-PROJECT (OSCLib)
+PROJECT (SDCLib)
 option(debug "Debug build" ON)
 option(crossCompile "Cross compile for arm" OFF)
 
@@ -69,7 +69,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     endif()
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
-set(OSCLibSOURCES
+set(SDCLibSOURCES
 ./src/Data/OSCP/MDIB/ActivateOperationDescriptor.cpp
 ./src/Data/OSCP/MDIB/ActivateOperationState.cpp
 ./src/Data/OSCP/MDIB/AlertConditionDescriptor.cpp
@@ -199,8 +199,8 @@ set(OSCLibSOURCES
 ./src/Data/OSCP/SDCConsumerOperationInvokedHandler.cpp
 ./src/Data/OSCP/SDCProvider.cpp
 ./src/Data/OSCP/SDCProviderStateHandler.cpp
-./src/Data/OSCP/OSELibConsumerAdapter.cpp
-./src/Data/OSCP/OSELibProviderAdapter.cpp
+./src/Data/OSCP/SDCConsumerAdapter.cpp
+./src/Data/OSCP/SDCProviderAdapter.cpp
 ./src/Dev/DeviceCharacteristics.cpp
 ./src/SDCLibrary.cpp
 ./src/OSELib/DPWS/ActiveSubscriptions.cpp
@@ -453,7 +453,7 @@ set(PocoSOURCES
 )
 
 
-list(APPEND OSCLibSOURCES 
+list(APPEND SDCLibSOURCES 
 ./datamodel/BICEPS_ParticipantModel.cxx
 ./datamodel/BICEPS_MessageModel.cxx
 ./datamodel/DICOMDeviceDescription.cxx
@@ -472,9 +472,9 @@ list(APPEND OSCLibSOURCES
 )
 
 
-list(APPEND OSCLibSOURCES ${PocoSOURCES})
+list(APPEND SDCLibSOURCES ${PocoSOURCES})
 
-add_library(OSCLib SHARED ${OSCLibSOURCES})
+add_library(SDCLib SHARED ${SDCLibSOURCES})
 
 
 add_executable(UnitTests
@@ -558,18 +558,18 @@ Examples/MDIBVisualizer.cpp
 
 SET(ADDITIONAL_LIBS "")
 
-target_link_libraries(OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(UnitTests OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleConsumer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleConsumer4SoftICEStreaming OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleCachedProvider OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(ExampleProject OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(SimpleServiceDiscovery OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(MDIBDump OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-target_link_libraries(MDIBVisualizer OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(GenericSubscription OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(DPWSDiscoveryClient OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(DPWSDiscoveryListener OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
-#target_link_libraries(ClientForUniRostockDevices OSCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(UnitTests SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleConsumer SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleConsumer4SoftICEStreaming SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleProvider SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleCachedProvider SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(ExampleProject SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(SimpleServiceDiscovery SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(MDIBDump SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+target_link_libraries(MDIBVisualizer SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(GenericSubscription SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(DPWSDiscoveryClient SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(DPWSDiscoveryListener SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
+#target_link_libraries(ClientForUniRostockDevices SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 

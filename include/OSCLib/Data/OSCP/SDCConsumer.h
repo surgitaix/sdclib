@@ -24,12 +24,12 @@
 #ifndef SDCCONSUMER_H_
 #define SDCCONSUMER_H_
 
-#include "OSCLib/Data/OSCP/OSCP-fwd.h"
+#include "OSCLib/Data/OSCP/SDC-fwd.h"
 #include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/MdibContainer.h"
 
 #include "OSELib/DPWS/DeviceDescription.h"
-#include "OSCLib/Data/OSCP/OSELibConsumerAdapter.h"
+#include "OSCLib/Data/OSCP/SDCConsumerAdapter.h"
 
 #include <atomic>
 #include <deque>
@@ -55,7 +55,7 @@ namespace OSCP {
 
 class SDCConsumer final : public OSELib::WithLogger {
 friend class FutureInvocationState;
-friend class OSELibConsumerAdapter;
+friend class SDCConsumerAdapter;
 // todo remove friend classes and only use oselibconsumer adapter
 friend struct OSELib::ContextServiceEventSink;
 friend struct OSELib::EventReportEventSink;
@@ -284,7 +284,7 @@ private:
     unsigned long long int lastKnownMDIBVersion;
     std::atomic<bool> connected;
     OSELib::DPWS::DeviceDescription _deviceDescription;
-    std::unique_ptr<OSELibConsumerAdapter> _adapter;
+    std::unique_ptr<SDCConsumerAdapter> _adapter;
 
 
 };

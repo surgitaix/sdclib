@@ -11,7 +11,7 @@
 #include "Poco/Thread.h"
 #include "Poco/RunnableAdapter.h"
 
-#include "OSCLib/Data/OSCP/OSCP-fwd.h"
+#include "OSCLib/Data/OSCP/SDC-fwd.h"
 #include "OSELib/fwd.h"
 
 namespace OSELib {

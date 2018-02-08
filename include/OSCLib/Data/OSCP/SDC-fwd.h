@@ -1,12 +1,12 @@
 /*
- * OSCP-fwd.h
+ * SDC-fwd.h
  *
  *  Created on: 04.05.2015
  *      Author: roehser
  */
 
-#ifndef OSCLIB_DATA_OSCP_OSCP_FWD_H_
-#define OSCLIB_DATA_OSCP_OSCP_FWD_H_
+#ifndef OSCLIB_DATA_OSCP_SDCFWD_H_
+#define OSCLIB_DATA_OSCP_SDCFWD_H_
 
 #include "MDIB/MDIB-fwd.h"
 
@@ -31,12 +31,8 @@ namespace OSCP {
 	class SDCConsumerLimitAlertConditionStateHandler;
 	class SDCConsumerSubscriptionLostHandler;
 
-//	class SDCConsumerMDStateHandler;
-//	class SDCConsumerOperationInvokedHandler;
-
 	class SDCProvider;
 	class SDCProviderMdStateHandler;
-	//class SDCProviderAlertConditionStateHandler;
 	class SDCProviderAlertSignalStateHandler;
 	class SDCProviderAlertSystemStateHandler;
 	class SDCProviderClockStateHandler;
@@ -48,13 +44,9 @@ namespace OSCP {
 	class SDCProviderStringMetricStateHandler;
 
 	class SDCProviderStateHandler;
-//	class SDCProviderActivateOperationHandler;
-//	class SDCProviderAlertConditionStateHandler;
-//	class SDCProviderComponentStateHandler;
-//	class SDCProviderMetricAndAlertStateHandler;
 }
 }
 }
 
 
-#endif /* OSCLIB_DATA_OSCP_OSCP_FWD_H_ */
+#endif /* OSCLIB_DATA_OSCP_SDCFWD_H_ */

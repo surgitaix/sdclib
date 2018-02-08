@@ -1,5 +1,5 @@
 /*
- * OSELibProviderAdapter.cpp
+ * SDCProviderAdapter.cpp
  *
  *  Created on: 09.12.2015
  *      Author: matthias
@@ -21,7 +21,7 @@
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
 #include "OSCLib/Data/OSCP/SDCProvider.h"
-#include "OSCLib/Data/OSCP/OSELibProviderAdapter.h"
+#include "OSCLib/Data/OSCP/SDCProviderAdapter.h"
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/DeviceServiceController.h"
@@ -40,19 +40,19 @@
 #include "OSELib/OSCP/IGetService.h"
 #include "OSELib/OSCP/ISetService.h"
 #include "OSELib/OSCP/OperationTraits.h"
-#include "OSELib/OSCP/OSCPConstants.h"
-#include "OSELib/OSCP/OSCPServiceController.h"
+#include "OSELib/OSCP/SDCConstants.h"
+#include "OSELib/OSCP/SDCServiceController.h"
 #include "OSELib/OSCP/ReportTraits.h"
 #include "OSELib/OSCP/SetServiceHandler.h"
 #include "OSELib/WSDL/WSDLBuilder.h"
 
 namespace OSELib {
 
-using ContextServiceController = OSCP::OSCPServiceController<OSCP::IContextService , OSCP::ContextServiceHandler>;
-using EventReportServiceController = OSCP::OSCPServiceController<OSCP::IEventReport, OSCP::EventReportServiceHandler>;
-using GetServiceController = OSCP::OSCPServiceController<OSCP::IGetService, OSCP::GetServiceHandler>;
-using SetServiceController = OSCP::OSCPServiceController<OSCP::ISetService, OSCP::SetServiceHandler>;
-using WaveformEventReportServiceController = OSCP::OSCPServiceController<OSCP::IEventReport, OSCP::WaveformReportServiceHandler>;
+using ContextServiceController = OSCP::SDCServiceController<OSCP::IContextService , OSCP::ContextServiceHandler>;
+using EventReportServiceController = OSCP::SDCServiceController<OSCP::IEventReport, OSCP::EventReportServiceHandler>;
+using GetServiceController = OSCP::SDCServiceController<OSCP::IGetService, OSCP::GetServiceHandler>;
+using SetServiceController = OSCP::SDCServiceController<OSCP::ISetService, OSCP::SetServiceHandler>;
+using WaveformEventReportServiceController = OSCP::SDCServiceController<OSCP::IEventReport, OSCP::WaveformReportServiceHandler>;
 
 struct DeviceImpl : public DPWS::IDevice {
 	DeviceImpl(const DPWS::MetadataProvider & metadata, DPWS::MDPWSHostAdapter & host) :
@@ -313,18 +313,18 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSELibProviderAdapter::OSELibProviderAdapter(SDCProvider & provider, const unsigned int port) :
+SDCProviderAdapter::SDCProviderAdapter(SDCProvider & provider, const unsigned int port) :
 	_provider(provider),
 	_threadPool(new Poco::ThreadPool()),
 	_port(port)
 {
 }
 
-OSELibProviderAdapter::~OSELibProviderAdapter() {
+SDCProviderAdapter::~SDCProviderAdapter() {
 
 }
 
-void OSELibProviderAdapter::start() {
+void SDCProviderAdapter::start() {
 
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_dpwsHost || _subscriptionManager || _httpServer) {
@@ -419,7 +419,7 @@ void OSELibProviderAdapter::start() {
 	_dpwsHost->start();
 }
 
-void OSELibProviderAdapter::stop() {
+void SDCProviderAdapter::stop() {
 
 	Poco::Mutex::ScopedLock lock(mutex);
 
@@ -439,21 +439,21 @@ void OSELibProviderAdapter::stop() {
 	_subscriptionManager.reset();
 }
 
-void OSELibProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport & report) {
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::EpisodicAlertReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const MDM::EpisodicContextReport & report) {
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicContextReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::EpisodicContextChangedReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & report) {
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::EpisodicMetricReportTraits>(report);
@@ -461,53 +461,53 @@ void OSELibProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & report
 }
 
 // WaveformStream uses UDP multicast, thus no subscription management is needed
-void OSELibProviderAdapter::notifyEvent(const MDM::WaveformStream & stream) {
+void SDCProviderAdapter::notifyEvent(const MDM::WaveformStream & stream) {
 	_dpwsHost->sendStream(stream);
 }
 
 
 
-void OSELibProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport & report) {
+void SDCProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::PeriodicAlertReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const MDM::PeriodicContextReport & report) {
+void SDCProviderAdapter::notifyEvent(const MDM::PeriodicContextReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::PeriodicContextChangedReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const MDM::PeriodicMetricReport & report) {
+void SDCProviderAdapter::notifyEvent(const MDM::PeriodicMetricReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::PeriodicMetricReportTraits>(report);
 	}
 }
 
-void OSELibProviderAdapter::notifyEvent(const MDM::OperationInvokedReport & report) {
+void SDCProviderAdapter::notifyEvent(const MDM::OperationInvokedReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::OSCP::OperationInvokedReportTraits>(report);
 	}
 }
 
-unsigned int OSELibProviderAdapter::getPort() const {
+unsigned int SDCProviderAdapter::getPort() const {
 	return _port;
 }
 
-void OSELibProviderAdapter::setPort(unsigned int port) {
+void SDCProviderAdapter::setPort(unsigned int port) {
 	_port = port;
 }
 
-void OSELibProviderAdapter::addStreamingPort(const int port) {
+void SDCProviderAdapter::addStreamingPort(const int port) {
 	streamingPorts.insert(port);
 }
 
-void OSELibProviderAdapter::removeStreamingPort(const int port) {
+void SDCProviderAdapter::removeStreamingPort(const int port) {
 	streamingPorts.erase(port);
 }
 

@@ -22,7 +22,7 @@
 #include "OSCLib/Data/OSCP/MDIB/StringMetricState.h"
 #include "OSCLib/Data/OSCP/MDIB/StringMetricValue.h"
 #include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSELib/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/SDCConstants.h"
 #include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerNumericMetricStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerStringMetricStateHandler.h"

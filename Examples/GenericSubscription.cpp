@@ -30,7 +30,7 @@
 #include "OSCLib/Data/OSCP/MDIB/Real
 #include "OSCLib/Data/OSCP/MDIB/RTValueType.h"
 #include "OSCLib/Data/OSCP/MDIB/VMDDescriptor.h"
-#include "OSELib/OSCP/OSCPConstants.h
+#include "OSELib/OSCP/SDCConstants.h
 #include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerAlertConditionStateHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerAlertSignalStateHandler.h"

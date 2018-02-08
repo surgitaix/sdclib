@@ -1,16 +1,16 @@
 /*
- * OSELibConsumerAdapter.h
+ * SDCConsumerAdapter.h
  *
  *  Created on: 10.12.2015
  *      Author: matthias
  */
 
-#ifndef DATA_OSCP_OSELIBCONSUMERADAPTER_H_
-#define DATA_OSCP_OSELIBCONSUMERADAPTER_H_
+#ifndef DATA_OSCP_SDCCONSUMERADAPTER_H_
+#define DATA_OSCP_SDCCONSUMERADAPTER_H_
 
 #include "Poco/Mutex.h"
 
-#include "OSCP-fwd.h"
+#include "SDC-fwd.h"
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
@@ -27,13 +27,13 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-class OSELibConsumerAdapter :
+class SDCConsumerAdapter :
 		public OSELib::DPWS::StreamNotificationDispatcher,
 		public OSELib::WithLogger
 {
 public:
-	OSELibConsumerAdapter(SDCConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription);
-	virtual ~OSELibConsumerAdapter();
+	SDCConsumerAdapter(SDCConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription);
+	virtual ~SDCConsumerAdapter();
 
 	void start();
 	void stop();
@@ -88,4 +88,4 @@ private:
 }
 } /* namespace OSELib */
 
-#endif /* DATA_OSCP_OSELIBCONSUMERADAPTER_H_ */
+#endif /* DATA_OSCP_SDCCONSUMERADAPTER_H_ */

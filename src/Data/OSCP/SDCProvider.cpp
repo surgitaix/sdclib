@@ -31,7 +31,7 @@
 #include "osdm.hxx"
 
 #include "OSCLib/SDCLibrary.h"
-#include "OSELib/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/SDCConstants.h"
 
 #include "OSCLib/Data/OSCP/SDCProvider.h"
 #include "OSCLib/Data/OSCP/SDCProviderStateHandler.h"
@@ -93,7 +93,7 @@
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesParserWrapper.h"
 #include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
-#include "OSCLib/Data/OSCP/OSELibProviderAdapter.h"
+#include "OSCLib/Data/OSCP/SDCProviderAdapter.h"
 
 namespace OSCLib {
 namespace Data {
@@ -191,7 +191,7 @@ SDCProvider::SDCProvider() :
     setEndpointReference(Poco::UUIDGenerator::defaultGenerator().create().toString());
     const unsigned int port(SDCLibrary::getInstance().extractFreePort());
     m_mdDescription = std::unique_ptr<MdDescription>(new MdDescription());
-	_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
+	_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this, port));
 }
 
 SDCProvider::~SDCProvider() {
@@ -967,7 +967,7 @@ void SDCProvider::startup() {
 
 		SDCLibrary::getInstance().returnPortToPool(_adapter->getPort());
 		_adapter.reset();
-		_adapter = std::unique_ptr<OSELibProviderAdapter>(new OSELibProviderAdapter(*this, port));
+		_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this, port));
 		this->startup();
 		return;
 	} catch (std::runtime_error & ex_re) {

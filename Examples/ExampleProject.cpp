@@ -1,6 +1,6 @@
 
 #include "OSCLib/SDCLibrary.h"
-#include "OSELib/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/SDCConstants.h"
 #include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"

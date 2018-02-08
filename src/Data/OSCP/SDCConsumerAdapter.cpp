@@ -1,5 +1,5 @@
 /*
- * OSELibConsumerAdapter.cpp
+ * SDCConsumerAdapter.cpp
  *
  *  Created on: 10.12.2015
  *      Author: matthias
@@ -44,7 +44,7 @@
 
 #include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/MDIB/custom/OperationInvocationContext.h"
-#include "OSCLib/Data/OSCP/OSELibConsumerAdapter.h"
+#include "OSCLib/Data/OSCP/SDCConsumerAdapter.h"
 
 #include "OSELib/DPWS/PingManager.h"
 #include "OSELib/DPWS/SubscriptionClient.h"
@@ -55,15 +55,15 @@
 #include "OSELib/OSCP/IContextServiceEventSink.h"
 #include "OSELib/OSCP/IEventReportEventSink.h"
 #include "OSELib/OSCP/OperationTraits.h"
-#include "OSELib/OSCP/OSCPConstants.h"
-#include "OSELib/OSCP/OSCPEventServiceController.h"
+#include "OSELib/OSCP/SDCConstants.h"
+#include "OSELib/OSCP/SDCEventServiceController.h"
 #include "OSELib/OSCP/ReportTraits.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 
 namespace OSELib {
 
-using ContextServiceEventSinkController = OSCP::OSCPEventServiceController<OSCP::IContextServiceEventSink , OSCP::ContextEventSinkHandler>;
-using EventReportEventSinkController = OSCP::OSCPEventServiceController<OSCP::IEventReportEventSink, OSCP::EventReportEventSinkHandler>;
+using ContextServiceEventSinkController = OSCP::SDCEventServiceController<OSCP::IContextServiceEventSink , OSCP::ContextEventSinkHandler>;
+using EventReportEventSinkController = OSCP::SDCEventServiceController<OSCP::IEventReportEventSink, OSCP::EventReportEventSinkHandler>;
 
 struct ContextServiceEventSink : public OSCP::IContextServiceEventSink, public OSELib::WithLogger  {
 	ContextServiceEventSink(OSCLib::Data::OSCP::SDCConsumer & consumer) :
@@ -296,7 +296,7 @@ namespace OSCLib {
 namespace Data {
 namespace OSCP {
 
-OSELibConsumerAdapter::OSELibConsumerAdapter(SDCConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription) :
+SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription) :
 	WithLogger(OSELib::Log::OSCPCONSUMERADAPTER),
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
@@ -306,10 +306,10 @@ OSELibConsumerAdapter::OSELibConsumerAdapter(SDCConsumer & consumer, const unsig
 {
 }
 
-OSELibConsumerAdapter::~OSELibConsumerAdapter() {
+SDCConsumerAdapter::~SDCConsumerAdapter() {
 }
 
-void OSELibConsumerAdapter::start() {
+void SDCConsumerAdapter::start() {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_httpServer) {
 		throw std::runtime_error("An http-Server is already running.");
@@ -358,7 +358,7 @@ void OSELibConsumerAdapter::start() {
 }
 
 
-void OSELibConsumerAdapter::stop() {
+void SDCConsumerAdapter::stop() {
 	Poco::Mutex::ScopedLock lock(mutex);
 
 	if (_httpServer) {
@@ -377,7 +377,7 @@ void OSELibConsumerAdapter::stop() {
 	}
 }
 
-void OSELibConsumerAdapter::subscribeEvents() {
+void SDCConsumerAdapter::subscribeEvents() {
 	if (_subscriptionClient) {
 		return;
 	}
@@ -408,21 +408,21 @@ void OSELibConsumerAdapter::subscribeEvents() {
 	_subscriptionClient = std::unique_ptr<OSELib::DPWS::SubscriptionClient>(new OSELib::DPWS::SubscriptionClient(subscriptions));
 }
 
-void OSELibConsumerAdapter::unsubscribeEvents() {
+void SDCConsumerAdapter::unsubscribeEvents() {
 	if (_subscriptionClient) {
 		_subscriptionClient.reset();
 	}
 }
 
 template<class TraitsType>
-std::unique_ptr<typename TraitsType::Response> OSELibConsumerAdapter::invokeImplWithEventSubscription(const typename TraitsType::Request & request, const Poco::URI & requestURI) {
+std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImplWithEventSubscription(const typename TraitsType::Request & request, const Poco::URI & requestURI) {
 	// We need to receive operation invoked events, so we do kind of emergency subscriptions here
 	subscribeEvents();
 	return invokeImpl<TraitsType>(request, requestURI);
 }
 
 template<class TraitsType>
-std::unique_ptr<typename TraitsType::Response> OSELibConsumerAdapter::invokeImpl(const typename TraitsType::Request & request, const Poco::URI & requestURI) {
+std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(const typename TraitsType::Request & request, const Poco::URI & requestURI) {
 
 	using Invoker = OSELib::SOAP::GenericSoapInvoke<TraitsType>;
 	std::unique_ptr<Invoker> invoker(new Invoker(requestURI, _grammarProvider));
@@ -439,82 +439,82 @@ std::unique_ptr<typename TraitsType::Response> OSELibConsumerAdapter::invokeImpl
 	return nullptr;
 }
 
-void OSELibConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType & notification) {
+void SDCConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType & notification) {
 	_consumer.onStateChanged(OSCLib::Data::OSCP::ConvertFromCDM::convert(notification.State().front()));
 }
 
 
 template<>
-Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::GetMDDescriptionTraits::Request & ) {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::GetMDDescriptionTraits::Request & ) {
 	return _deviceDescription.getGetServiceURI();
 }
 
 template<>
-Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::GetMDIBTraits::Request & ) {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::GetMDIBTraits::Request & ) {
 	return _deviceDescription.getGetServiceURI();
 }
 
 template<>
-Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::GetMdStateTraits::Request & ) {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::GetMdStateTraits::Request & ) {
 	return _deviceDescription.getGetServiceURI();
 }
 
 template<>
-Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::ActivateTraits::Request & ) {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::ActivateTraits::Request & ) {
 	return _deviceDescription.getSetServiceURI();
 }
 
 template<>
-Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::SetAlertStateTraits::Request & ) {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::SetAlertStateTraits::Request & ) {
 	return _deviceDescription.getSetServiceURI();
 }
 
 template<>
-Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::SetStringTraits::Request & ) {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::SetStringTraits::Request & ) {
 	return _deviceDescription.getSetServiceURI();
 }
 
 template<>
-Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::SetValueTraits::Request & ) {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::SetValueTraits::Request & ) {
 	return _deviceDescription.getSetServiceURI();
 }
 
 template<>
-Poco::URI OSELibConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::SetContextStateTraits::Request & ) {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::OSCP::SetContextStateTraits::Request & ) {
 	return _deviceDescription.getContextServiceURI();
 }
 
-std::unique_ptr<MDM::GetMdDescriptionResponse> OSELibConsumerAdapter::invoke(const MDM::GetMdDescription & request) {
+std::unique_ptr<MDM::GetMdDescriptionResponse> SDCConsumerAdapter::invoke(const MDM::GetMdDescription & request) {
 	return invokeImpl<OSELib::OSCP::GetMDDescriptionTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<MDM::GetMdibResponse> OSELibConsumerAdapter::invoke(const MDM::GetMdib & request) {
+std::unique_ptr<MDM::GetMdibResponse> SDCConsumerAdapter::invoke(const MDM::GetMdib & request) {
 	return invokeImpl<OSELib::OSCP::GetMDIBTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<MDM::GetMdStateResponse> OSELibConsumerAdapter::invoke(const MDM::GetMdState & request) {
+std::unique_ptr<MDM::GetMdStateResponse> SDCConsumerAdapter::invoke(const MDM::GetMdState & request) {
 	return invokeImpl<OSELib::OSCP::GetMdStateTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
 
-std::unique_ptr<MDM::ActivateResponse> OSELibConsumerAdapter::invoke(const MDM::Activate & request) {
+std::unique_ptr<MDM::ActivateResponse> SDCConsumerAdapter::invoke(const MDM::Activate & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::ActivateTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<MDM::SetAlertStateResponse> OSELibConsumerAdapter::invoke(const MDM::SetAlertState & request) {
+std::unique_ptr<MDM::SetAlertStateResponse> SDCConsumerAdapter::invoke(const MDM::SetAlertState & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::SetAlertStateTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<MDM::SetValueResponse> OSELibConsumerAdapter::invoke(const MDM::SetValue & request) {
+std::unique_ptr<MDM::SetValueResponse> SDCConsumerAdapter::invoke(const MDM::SetValue & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::SetValueTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
-std::unique_ptr<MDM::SetStringResponse> OSELibConsumerAdapter::invoke(const MDM::SetString & request) {
+std::unique_ptr<MDM::SetStringResponse> SDCConsumerAdapter::invoke(const MDM::SetString & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::SetStringTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 
 
-std::unique_ptr<MDM::SetContextStateResponse> OSELibConsumerAdapter::invoke(const MDM::SetContextState & request) {
+std::unique_ptr<MDM::SetContextStateResponse> SDCConsumerAdapter::invoke(const MDM::SetContextState & request) {
 	return invokeImplWithEventSubscription<OSELib::OSCP::SetContextStateTraits>(request, getRequestURIFromDeviceDescription(request));
 }
 

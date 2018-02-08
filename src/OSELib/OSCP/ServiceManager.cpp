@@ -18,7 +18,7 @@
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
-#include "OSELib/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/SDCConstants.h"
 #include "OSELib/OSCP/ServiceManager.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 

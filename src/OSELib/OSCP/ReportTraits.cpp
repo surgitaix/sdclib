@@ -7,7 +7,7 @@
 
 #include "OSELib/OSCP/IContextServiceEventSink.h"
 #include "OSELib/OSCP/IEventReportEventSink.h"
-#include "OSELib/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/SDCConstants.h"
 #include "OSELib/OSCP/ReportTraits.h"
 
 namespace OSELib {

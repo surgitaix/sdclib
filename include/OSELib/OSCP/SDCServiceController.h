@@ -1,13 +1,13 @@
 /*
- * OSCPServiceController.h
+ * SDCServiceController.h
  *
  *  Created on: 07.12.2015
  *      Author: matthias
  */
 
 
-#ifndef OSCP_OSCPSERVICECONTROLLER_H_
-#define OSCP_OSCPSERVICECONTROLLER_H_
+#ifndef OSCP_SDCSERVICECONTROLLER_H_
+#define OSCP_SDCSERVICECONTROLLER_H_
 
 #include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/Service.h"
@@ -19,9 +19,9 @@ namespace OSELib {
 namespace OSCP {
 
 template<class IServiceType, class ServiceHandlerType>
-class OSCPServiceController : public HTTP::Service {
+class SDCServiceController : public HTTP::Service {
 public:
-	OSCPServiceController(HTTP::FrontController & controller, IServiceType & serviceImpl) :
+	SDCServiceController(HTTP::FrontController & controller, IServiceType & serviceImpl) :
 		Service(controller, { serviceImpl.getBaseUri() }),
 		_serviceImpl(serviceImpl),
 		_wsdlController(controller, serviceImpl.getBaseUri() + "/description.wsdl", serviceImpl.getWSDL()),
@@ -30,7 +30,7 @@ public:
 		_schemaExtensionController(controller, serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_EXTENSION_POINT_NAME, SCHEMA::SCHEMA_EXTENSION_POINT_CONTENT)
 	{
 	}
-	virtual ~OSCPServiceController() = default;
+	virtual ~SDCServiceController() = default;
 
 	virtual Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & ) override {
 		return new ServiceHandlerType(_serviceImpl, _grammarProvider);
@@ -48,5 +48,5 @@ private:
 } /* namespace OSCP */
 } /* namespace OSELib */
 
-#endif /* OSCP_OSCPSERVICECONTROLLER_H_ */
+#endif /* OSCP_SDCSERVICECONTROLLER_H_ */
 

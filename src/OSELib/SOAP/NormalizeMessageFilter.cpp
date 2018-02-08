@@ -5,7 +5,7 @@
  *      Author: matthias
  */
 
-#include <OSELib/OSCP/OSCPConstants.h>
+#include <OSELib/OSCP/SDCConstants.h>
 #include "NormalizedMessageModel.hxx"
 
 #include "OSELib/DPWS/DPWS11Constants.h"

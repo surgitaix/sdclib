@@ -30,7 +30,7 @@
 
 #include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/OSCP/FutureInvocationState.h"
-#include "OSELib/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/SDCConstants.h"
 #include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Data/OSCP/SDCConsumerConnectionLostHandler.h"
 #include "OSCLib/Data/OSCP/SDCConsumerOperationInvokedHandler.h"
@@ -166,7 +166,7 @@ SDCConsumer::SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescripti
 	for (int i = 0; i < SDCLibrary::getInstance().getNumberOfReattemptsWithAnotherPort(); i++) {
 		const int port(SDCLibrary::getInstance().extractFreePort());
 		try {
-			_adapter = std::unique_ptr<OSELibConsumerAdapter>(new OSELibConsumerAdapter(*this, port, _deviceDescription));
+			_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(*this, port, _deviceDescription));
 			_adapter->start();
 			connected = true;
 			break;

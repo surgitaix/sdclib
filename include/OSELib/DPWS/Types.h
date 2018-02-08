@@ -90,7 +90,7 @@ public:
 };
 
 
-// callback interface between OSELibConsumerAdapter and DPWSStreamingClientSocketImpl (and thus the Poco reactor framework)
+// callback interface between SDCConsumerAdapter and DPWSStreamingClientSocketImpl (and thus the Poco reactor framework)
 class StreamNotificationDispatcher {
 protected:
 	StreamNotificationDispatcher() = default;
@@ -100,7 +100,7 @@ public:
 	virtual void dispatch(const WaveformStreamType & notification) = 0;
 };
 
-// callback interface between OSELibConsumerAdapter and OSELibConsumerAdapter
+// callback interface between SDCConsumerAdapter and SDCConsumerAdapter
 class StreamNotificationDispatcherAdapterInterface {
 protected:
 	StreamNotificationDispatcherAdapterInterface() = default;

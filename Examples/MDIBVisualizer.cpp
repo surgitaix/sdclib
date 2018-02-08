@@ -1,7 +1,7 @@
 
 #include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "OSELib/OSCP/OSCPConstants.h"
+#include "OSELib/OSCP/SDCConstants.h"
 #include "OSCLib/Data/OSCP/SDCConsumer.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSELib/Helper/WithLogger.h"

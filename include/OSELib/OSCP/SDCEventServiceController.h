@@ -1,12 +1,12 @@
 /*
- * OSCPServiceController.h
+ * SDCServiceController.h
  *
  *  Created on: 07.12.2015
  *      Author: matthias
  */
 
-#ifndef OSCP_OSCPEVENTSERVICECONTROLLER_H_
-#define OSCP_OSCPEVENTSERVICECONTROLLER_H_
+#ifndef OSCP_SDCEVENTSERVICECONTROLLER_H_
+#define OSCP_SDCEVENTSERVICECONTROLLER_H_
 
 #include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/Service.h"
@@ -18,14 +18,14 @@ namespace OSELib {
 namespace OSCP {
 
 template<class IServiceType, class ServiceHandlerType>
-class OSCPEventServiceController : public HTTP::Service {
+class SDCEventServiceController : public HTTP::Service {
 public:
-	OSCPEventServiceController(HTTP::FrontController & controller, IServiceType & serviceImpl) :
+	SDCEventServiceController(HTTP::FrontController & controller, IServiceType & serviceImpl) :
 		Service(controller, { serviceImpl.getBaseUri() }),
 		_serviceImpl(serviceImpl)
 	{
 	}
-	virtual ~OSCPEventServiceController() = default;
+	virtual ~SDCEventServiceController() = default;
 
 	virtual Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & ) override {
 		return new ServiceHandlerType(_serviceImpl, _grammarProvider);
@@ -39,4 +39,4 @@ private:
 } /* namespace OSCP */
 } /* namespace OSELib */
 
-#endif /* OSCP_OSCPEVENTSERVICECONTROLLER_H_ */
+#endif /* OSCP_SDCEVENTSERVICECONTROLLER_H_ */

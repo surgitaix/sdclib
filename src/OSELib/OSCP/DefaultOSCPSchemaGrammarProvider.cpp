@@ -5,7 +5,7 @@
  *      Author: matthias
  */
 
-#include <OSELib/OSCP/OSCPConstants.h>
+#include <OSELib/OSCP/SDCConstants.h>
 #include <OSELib/WSDL/schema.h>
 #include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
 
