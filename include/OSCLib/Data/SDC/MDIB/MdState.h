@@ -48,7 +48,6 @@ private:
 	friend class ConvertToCDM;
 	friend class SDCProvider;
 	friend class SDCConsumer;
-	friend class MdState;
 	friend class MdDescription;
 public:
 	MdState(

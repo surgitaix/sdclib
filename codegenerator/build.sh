@@ -9,6 +9,8 @@ mv ../src/Data/OSCP/MDIB/OperatingJurisdiction.cpp ./backup/src
 mv ../src/Data/OSCP/MDIB/OperationGroup.cpp ./backup/src
 mv ../src/Data/OSCP/MDIB/ScoState.cpp ./backup/src
 mv ../include/OSCLib/Data/OSCP/MDIB/ConvertToCDM.h ./backup
+mv ../include/OSCLib/Data/OSCP/MDIB/MdState.h ./backup
+mv ../include/OSCLib/Data/OSCP/MDIB/MdDescription.h ./backup
 
 # generate files
 python pyCodeGen.py
@@ -21,6 +23,8 @@ mv *.cpp ../src/Data/OSCP/MDIB/
 # replace the customized ones
 mv ./backup/src/* ../src/Data/OSCP/MDIB/
 mv  ./backup/ConvertToCDM.h ../include/OSCLib/Data/OSCP/MDIB/
+mv  ./backup/MdState.h ../include/OSCLib/Data/OSCP/MDIB/
+mv  ./backup/MdDescription.h ../include/OSCLib/Data/OSCP/MDIB/
 rm -rf backup
 
 # generate CMakeLists.txt block
