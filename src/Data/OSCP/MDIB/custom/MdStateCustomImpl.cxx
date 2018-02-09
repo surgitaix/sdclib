@@ -29,7 +29,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 

@@ -12,7 +12,7 @@
 #include "OSELib/Helper/WithLogger.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 class DefaultOSCPSchemaGrammarProvider : public Helper::SchemaGrammarProvider, public WithLogger {
 public:

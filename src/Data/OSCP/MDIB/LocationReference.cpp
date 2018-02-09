@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 LocationReference::LocationReference(
@@ -114,7 +114,7 @@ void LocationReference::clearIdentificationList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -16,7 +16,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 	// classes, that are implemented manually
 	class MdibContainer;
 	class OperationInvocationContext;

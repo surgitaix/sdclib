@@ -39,7 +39,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 AllowedValues::AllowedValues(
@@ -85,7 +85,7 @@ std::string AllowedValues::getValue() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

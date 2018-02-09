@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 ActivateOperationDescriptor::ActivateOperationDescriptor(
@@ -284,7 +284,7 @@ void ActivateOperationDescriptor::clearArgumentList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

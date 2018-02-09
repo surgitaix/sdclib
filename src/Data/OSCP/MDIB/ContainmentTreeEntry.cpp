@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 ContainmentTreeEntry::ContainmentTreeEntry(
@@ -95,7 +95,7 @@ bool ContainmentTreeEntry::hasType() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

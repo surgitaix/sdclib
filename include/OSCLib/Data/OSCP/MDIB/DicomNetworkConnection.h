@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class DicomNetworkConnection {
 private:
@@ -86,7 +86,7 @@ private:
 	std::shared_ptr<CDM::DicomNetworkConnection> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* DICOMNETWORKCONNECTION_H_ */

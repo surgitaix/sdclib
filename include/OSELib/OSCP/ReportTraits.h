@@ -5,7 +5,7 @@
 #include "osdm-fwd.hxx"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 struct DescriptionModificationReportTraits {
 	typedef MDM::DescriptionModificationReport ReportType;

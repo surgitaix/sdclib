@@ -45,7 +45,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 //const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
 const std::string deviceEPR("UDI-1234567890");
@@ -73,7 +73,7 @@ public:
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
     }
 
     float getCurrentWeight() {
@@ -118,9 +118,9 @@ int main() {
     SDCLibrary::getInstance().startup(OSELib::LogLevel::TRACE);
 	SDCLibrary::getInstance().setPortStart(12000);
 
-    class MyConnectionLostHandler : public Data::OSCP::SDCConsumerConnectionLostHandler {
+    class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
     public:
-    	MyConnectionLostHandler(Data::OSCP::SDCConsumer & consumer) : consumer(consumer) {
+    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
     	}
     	void onConnectionLost() override {
     		std::cerr << "Connection lost, disconnecting... ";
@@ -128,12 +128,12 @@ int main() {
     		std::cerr << "disconnected." << std::endl;
     	}
     private:
-    	Data::OSCP::SDCConsumer & consumer;
+    	Data::SDC::SDCConsumer & consumer;
     };
 
 	// Discovery
-	OSELib::OSCP::ServiceManager oscpsm;
-	std::unique_ptr<Data::OSCP::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	OSELib::SDC::ServiceManager oscpsm;
+	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 
 	// state handler
 //	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
@@ -142,7 +142,7 @@ int main() {
 
 	try {
 		if (c != nullptr) {
-			Data::OSCP::SDCConsumer & consumer = *c;
+			Data::SDC::SDCConsumer & consumer = *c;
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
 

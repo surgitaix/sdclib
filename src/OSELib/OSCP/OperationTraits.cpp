@@ -17,7 +17,7 @@
 #include "OSELib/OSCP/OperationTraits.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 std::string ActivateTraits::OperationName() {
 	return "Activate";

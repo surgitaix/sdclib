@@ -39,7 +39,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 Translation::Translation(
@@ -127,7 +127,7 @@ bool Translation::hasCodingSystemVersion() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

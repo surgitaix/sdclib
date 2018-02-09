@@ -44,7 +44,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(
@@ -417,7 +417,7 @@ void DistributionSampleArrayMetricDescriptor::clearTechnicalRangeList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -39,7 +39,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 LocationDetail::LocationDetail(
@@ -199,7 +199,7 @@ bool LocationDetail::hasFloor() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

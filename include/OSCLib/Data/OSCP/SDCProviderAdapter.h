@@ -16,7 +16,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SDCProviderAdapter {
 public:
@@ -55,7 +55,7 @@ private:
 	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

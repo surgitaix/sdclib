@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 AllowedValue::AllowedValue(
@@ -151,7 +151,7 @@ bool AllowedValue::hasCharacteristic() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

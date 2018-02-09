@@ -39,7 +39,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 SetMetricStateOperationState::SetMetricStateOperationState(
@@ -141,7 +141,7 @@ OperatingMode SetMetricStateOperationState::getOperatingMode() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

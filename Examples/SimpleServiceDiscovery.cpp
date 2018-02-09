@@ -11,7 +11,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
 
 	int loopcounter = 0;
-	OSELib::OSCP::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm;
 
 	while (loopcounter < 5) {
 		DebugOut(DebugOut::Default, "simpleservicediscovery") << "Refreshing ..." << std::flush;

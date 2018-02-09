@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class BatteryState {
 private:
@@ -147,7 +147,7 @@ private:
 	std::shared_ptr<CDM::BatteryState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* BATTERYSTATE_H_ */

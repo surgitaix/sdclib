@@ -39,7 +39,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 Range::Range(
@@ -178,7 +178,7 @@ bool Range::hasAbsoluteAccuracy() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

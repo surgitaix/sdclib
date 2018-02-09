@@ -17,7 +17,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 extern const std::string NOT_ASSIGNED;
 

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class OperatorContextDescriptor {
 private:
@@ -88,7 +88,7 @@ private:
 	std::shared_ptr<CDM::OperatorContextDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* OPERATORCONTEXTDESCRIPTOR_H_ */

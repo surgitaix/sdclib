@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 ChannelState::ChannelState(
@@ -255,7 +255,7 @@ bool ChannelState::hasOperatingCycles() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

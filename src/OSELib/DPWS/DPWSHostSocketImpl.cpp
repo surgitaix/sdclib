@@ -57,7 +57,7 @@ const MESSAGEMODEL::Envelope buildHelloMessage(const HelloType & notification) {
 const MESSAGEMODEL::Envelope buildStreamMessage(const MDM::WaveformStream  & notification, const AddressType epr) {
 	MESSAGEMODEL::Envelope::HeaderType header;
 	{
-		header.Action(xml_schema::Uri(OSCP::EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT));
+		header.Action(xml_schema::Uri(SDC::EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT));
 		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
 		header.From(epr);
 	}

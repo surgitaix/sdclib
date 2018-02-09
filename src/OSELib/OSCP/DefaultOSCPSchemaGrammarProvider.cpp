@@ -10,7 +10,7 @@
 #include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 DefaultOSCPSchemaGrammarProvider::DefaultOSCPSchemaGrammarProvider() : WithLogger(Log::SCHEMA) {
 

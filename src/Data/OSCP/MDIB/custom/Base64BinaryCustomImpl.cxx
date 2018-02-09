@@ -10,7 +10,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 std::vector<char> Base64Binary::getData() const {
 	std::vector<char> result;

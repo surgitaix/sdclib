@@ -39,7 +39,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 DicomNetworkConnection::DicomNetworkConnection(
@@ -138,7 +138,7 @@ void DicomNetworkConnection::clearTlsCipherSuiteList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ApprovedJurisdictions {
 private:
@@ -69,7 +69,7 @@ private:
 	std::shared_ptr<CDM::ApprovedJurisdictions> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* APPROVEDJURISDICTIONS_H_ */

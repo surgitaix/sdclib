@@ -16,7 +16,7 @@
 #include "OSELib/WSDL/schema.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 template<class IServiceType, class ServiceHandlerType>
 class SDCServiceController : public HTTP::Service {
@@ -45,7 +45,7 @@ private:
 	HTTP::StaticContentController _schemaExtensionController;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* OSCP_SDCSERVICECONTROLLER_H_ */

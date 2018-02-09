@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 SetStringOperationState::SetStringOperationState(
@@ -163,7 +163,7 @@ bool SetStringOperationState::hasAllowedValues() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

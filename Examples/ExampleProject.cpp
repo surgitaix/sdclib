@@ -34,7 +34,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 // Endpoint reference of the device -> unique ID
 const std::string DEVICE_EPR("UDI-EXAMPLEPROJECT");
@@ -323,7 +323,7 @@ public:
     // this method is called each time an operation (e.g. a set operation) is called by the provider
     // use to customize the handling of your code, e.g. log/ prompt a message, do validity checks, ect.
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << Data::OSCP::EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
     }
 
     float getCurrentWeight() {
@@ -341,8 +341,8 @@ int main()
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setPortStart(11000);
 
-	OSELib::OSCP::ServiceManager oscpsm;
-	class MyHandler : public OSELib::OSCP::HelloReceivedHandler {
+	OSELib::SDC::ServiceManager oscpsm;
+	class MyHandler : public OSELib::SDC::HelloReceivedHandler {
 	public:
 		MyHandler() {
 		}
@@ -393,7 +393,7 @@ int main()
 		try {
 			// Set state test (must fail due to read-only)
 			InvocationState invocationStateFirst = consumer.commitState(*pCurrentWeightState);
-			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (1st commit): " << Data::OSCP::EnumToString::convert(invocationStateFirst);
+			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (1st commit): " << Data::SDC::EnumToString::convert(invocationStateFirst);
 			if (InvocationState::Fail == invocationStateFirst) {
 				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state failed as expected.";
 			} else {
@@ -408,7 +408,7 @@ int main()
 
 		// Set state test (must succeed)
 		InvocationState invocationStateSecond  = consumer.commitState(*pMaxWeightState);
-		DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): " << Data::OSCP::EnumToString::convert(invocationStateSecond);
+		DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): " << Data::SDC::EnumToString::convert(invocationStateSecond);
 
 		Poco::Thread::sleep(1000);
 		consumer.unregisterStateEventHandler(eces1.get());

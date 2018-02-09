@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class Translation {
 private:
@@ -82,7 +82,7 @@ private:
 	std::shared_ptr<CDM::Translation> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* TRANSLATION_H_ */

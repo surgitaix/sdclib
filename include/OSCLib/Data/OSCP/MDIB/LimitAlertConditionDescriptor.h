@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class LimitAlertConditionDescriptor {
 private:
@@ -130,7 +130,7 @@ private:
 	std::shared_ptr<CDM::LimitAlertConditionDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* LIMITALERTCONDITIONDESCRIPTOR_H_ */

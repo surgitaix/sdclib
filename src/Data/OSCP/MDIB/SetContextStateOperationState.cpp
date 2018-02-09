@@ -39,7 +39,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 SetContextStateOperationState::SetContextStateOperationState(
@@ -141,7 +141,7 @@ OperatingMode SetContextStateOperationState::getOperatingMode() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ClinicalInfo {
 private:
@@ -88,7 +88,7 @@ private:
 	std::shared_ptr<CDM::ClinicalInfo> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* CLINICALINFO_H_ */

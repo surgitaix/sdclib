@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 CalibrationInfo::CalibrationInfo(
@@ -155,7 +155,7 @@ void CalibrationInfo::clearCalibrationDocumentationList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

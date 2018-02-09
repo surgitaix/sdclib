@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 MeansContextState::MeansContextState(
@@ -305,7 +305,7 @@ void MeansContextState::clearIdentificationList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

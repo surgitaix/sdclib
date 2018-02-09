@@ -39,7 +39,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 SetAlertStateOperationState::SetAlertStateOperationState(
@@ -141,7 +141,7 @@ OperatingMode SetAlertStateOperationState::getOperatingMode() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

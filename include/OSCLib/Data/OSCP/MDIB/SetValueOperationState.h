@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SetValueOperationState {
 private:
@@ -91,7 +91,7 @@ private:
 	std::shared_ptr<CDM::SetValueOperationState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* SETVALUEOPERATIONSTATE_H_ */

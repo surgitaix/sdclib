@@ -23,7 +23,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 namespace OSCLib {
 namespace Tests {
@@ -99,12 +99,12 @@ TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
 	try
 	{
         // Provider
-        Tests::DICOMOSCP::OSCPHoldingDeviceProvider provider;
+        Tests::DICOMSDC::OSCPHoldingDeviceProvider provider;
         provider.startup();    
 
         // Consumer
-        OSELib::OSCP::ServiceManager oscpsm;
-        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(Tests::DICOMOSCP::DEVICE_ENDPOINT_REFERENCE));
+        OSELib::SDC::ServiceManager oscpsm;
+        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(Tests::DICOMSDC::DEVICE_ENDPOINT_REFERENCE));
 
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);

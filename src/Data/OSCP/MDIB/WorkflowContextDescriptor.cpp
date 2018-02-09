@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 WorkflowContextDescriptor::WorkflowContextDescriptor(
@@ -149,7 +149,7 @@ bool WorkflowContextDescriptor::hasSafetyClassification() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -46,7 +46,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 SystemContextDescriptor::SystemContextDescriptor(
@@ -269,7 +269,7 @@ void SystemContextDescriptor::clearMeansContextList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -48,11 +48,11 @@
 
 namespace OSELib {
 
-using ContextServiceController = OSCP::SDCServiceController<OSCP::IContextService , OSCP::ContextServiceHandler>;
-using EventReportServiceController = OSCP::SDCServiceController<OSCP::IEventReport, OSCP::EventReportServiceHandler>;
-using GetServiceController = OSCP::SDCServiceController<OSCP::IGetService, OSCP::GetServiceHandler>;
-using SetServiceController = OSCP::SDCServiceController<OSCP::ISetService, OSCP::SetServiceHandler>;
-using WaveformEventReportServiceController = OSCP::SDCServiceController<OSCP::IEventReport, OSCP::WaveformReportServiceHandler>;
+using ContextServiceController = SDC::SDCServiceController<SDC::IContextService , SDC::ContextServiceHandler>;
+using EventReportServiceController = SDC::SDCServiceController<SDC::IEventReport, SDC::EventReportServiceHandler>;
+using GetServiceController = SDC::SDCServiceController<SDC::IGetService, SDC::GetServiceHandler>;
+using SetServiceController = SDC::SDCServiceController<SDC::ISetService, SDC::SetServiceHandler>;
+using WaveformEventReportServiceController = SDC::SDCServiceController<SDC::IEventReport, SDC::WaveformReportServiceHandler>;
 
 struct DeviceImpl : public DPWS::IDevice {
 	DeviceImpl(const DPWS::MetadataProvider & metadata, DPWS::MDPWSHostAdapter & host) :
@@ -83,9 +83,9 @@ private:
 	DPWS::MDPWSHostAdapter & _host;
 };
 
-struct ContextReportServiceImpl : public OSCP::IContextService {
+struct ContextReportServiceImpl : public SDC::IContextService {
 
-	ContextReportServiceImpl(OSCLib::Data::OSCP::SDCProvider & provider, const DPWS::MetadataProvider & metadata, DPWS::SubscriptionManager & subscriptionManager) :
+	ContextReportServiceImpl(OSCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata, DPWS::SubscriptionManager & subscriptionManager) :
 		_provider(provider),
 		_metadata(metadata),
 		_subscriptionManager(subscriptionManager)
@@ -97,12 +97,12 @@ struct ContextReportServiceImpl : public OSCP::IContextService {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_CONTEXTSERVICE_PORTTYPE);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::EpisodicContextChangedReportTraits> EpisodicContextChangedReportTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::PeriodicContextChangedReportTraits> PeriodicContextChangedReportTraits(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::GetContextStatesTraits> GetContextStatesTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::SetContextStateTraits> SetContextStateTraits(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::WaveformStreamTraits> WaveformStreamTraits(builder);
+		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_CONTEXTSERVICE_PORTTYPE);
+		WSDL::WSDLBuilderTraitAdapter<SDC::EpisodicContextChangedReportTraits> EpisodicContextChangedReportTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::PeriodicContextChangedReportTraits> PeriodicContextChangedReportTraits(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::GetContextStatesTraits> GetContextStatesTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::SetContextStateTraits> SetContextStateTraits(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::WaveformStreamTraits> WaveformStreamTraits(builder);
 		return builder.serialize();
 	}
 
@@ -119,22 +119,22 @@ struct ContextReportServiceImpl : public OSCP::IContextService {
 	virtual std::unique_ptr<DPWS::RenewTraits::Response> dispatch(const DPWS::RenewTraits::Request & request, const DPWS::RenewTraits::RequestIdentifier & identifier) override {
 		return _subscriptionManager.dispatch(request, identifier);
 	}
-	virtual std::unique_ptr<OSCP::GetContextStatesTraits::Response> dispatch(const OSCP::GetContextStatesTraits::Request & request) override {
+	virtual std::unique_ptr<SDC::GetContextStatesTraits::Response> dispatch(const SDC::GetContextStatesTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::GetContextStatesTraits::Response>(new OSCP::GetContextStatesTraits::Response(_provider.GetContextStates(request)));
+		return std::unique_ptr<SDC::GetContextStatesTraits::Response>(new SDC::GetContextStatesTraits::Response(_provider.GetContextStates(request)));
 	}
-	virtual std::unique_ptr<OSCP::SetContextStateTraits::Response> dispatch(const OSCP::SetContextStateTraits::Request & request) override {
+	virtual std::unique_ptr<SDC::SetContextStateTraits::Response> dispatch(const SDC::SetContextStateTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::SetContextStateTraits::Response>(new OSCP::SetContextStateTraits::Response(_provider.SetContextStateAsync(request)));
+		return std::unique_ptr<SDC::SetContextStateTraits::Response>(new SDC::SetContextStateTraits::Response(_provider.SetContextStateAsync(request)));
 	}
 
 private:
-	OSCLib::Data::OSCP::SDCProvider & _provider;
+	OSCLib::Data::SDC::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
 	DPWS::SubscriptionManager & _subscriptionManager;
 };
 
-struct EventReportServiceImpl : public OSCP::IEventReport {
+struct EventReportServiceImpl : public SDC::IEventReport {
 
 	EventReportServiceImpl(const DPWS::MetadataProvider & metadata, DPWS::SubscriptionManager & subscriptionManager) :
 		_metadata(metadata),
@@ -147,12 +147,12 @@ struct EventReportServiceImpl : public OSCP::IEventReport {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_REPORTSERVICE_PORTTYPE);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::EpisodicAlertReportTraits> EpisodicAlertReportTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::EpisodicMetricReportTraits> EpisodicMetricReportTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::OperationInvokedReportTraits> OperationInvokedReportAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::PeriodicAlertReportTraits> PeriodicAlertReportTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::PeriodicMetricReportTraits> PeriodicMetricReportTraitsAdapter(builder);
+		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_REPORTSERVICE_PORTTYPE);
+		WSDL::WSDLBuilderTraitAdapter<SDC::EpisodicAlertReportTraits> EpisodicAlertReportTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::EpisodicMetricReportTraits> EpisodicMetricReportTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::OperationInvokedReportTraits> OperationInvokedReportAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::PeriodicAlertReportTraits> PeriodicAlertReportTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::PeriodicMetricReportTraits> PeriodicMetricReportTraitsAdapter(builder);
 		return builder.serialize();
 	}
 
@@ -176,7 +176,7 @@ private:
 	DPWS::SubscriptionManager & _subscriptionManager;
 };
 
-struct WaveformReportServiceImpl : public OSCP::IEventReport {
+struct WaveformReportServiceImpl : public SDC::IEventReport {
 
 	WaveformReportServiceImpl(const DPWS::MetadataProvider & metadata, std::set<int> & streamingPorts) :
 		_metadata(metadata), _streamingPorts(streamingPorts)
@@ -188,8 +188,8 @@ struct WaveformReportServiceImpl : public OSCP::IEventReport {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_STREAMSERVICE_PORTTYPE);
-		builder.addStreamType(OSCP::WS_MEX_ORNET_STREAM_IDENTIFIER, OSCP::ACTION_ORNET_STREAM, OSCP::WS_MEX_ORNET_STREAM_TYPE, "WaveformStream");
+		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STREAMSERVICE_PORTTYPE);
+		builder.addStreamType(SDC::WS_MEX_ORNET_STREAM_IDENTIFIER, SDC::ACTION_ORNET_STREAM, SDC::WS_MEX_ORNET_STREAM_TYPE, "WaveformStream");
 		return builder.serialize();
 	}
 
@@ -213,9 +213,9 @@ private:
 	const std::set<int> & _streamingPorts;
 };
 
-struct GetServiceImpl : public OSCP::IGetService {
+struct GetServiceImpl : public SDC::IGetService {
 
-	GetServiceImpl(OSCLib::Data::OSCP::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
+	GetServiceImpl(OSCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
 		_provider(provider),
 		_metadata(metadata)
 	{
@@ -226,10 +226,10 @@ struct GetServiceImpl : public OSCP::IGetService {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_GETSERVICE_PORTTYPE);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMDDescriptionTraits> GetMDDescriptionTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMDIBTraits> GetMDIBTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::GetMdStateTraits> GetMDStateOperationAdapter(builder);
+		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_GETSERVICE_PORTTYPE);
+		WSDL::WSDLBuilderTraitAdapter<SDC::GetMDDescriptionTraits> GetMDDescriptionTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::GetMDIBTraits> GetMDIBTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::GetMdStateTraits> GetMDStateOperationAdapter(builder);
 		return builder.serialize();
 	}
 
@@ -238,27 +238,27 @@ struct GetServiceImpl : public OSCP::IGetService {
 		return _metadata.createGetServiceMetadata(serverAddress);
 	}
 
-	virtual std::unique_ptr<OSCP::GetMDDescriptionTraits::Response> dispatch(const OSCP::GetMDDescriptionTraits::Request & request) override {
+	virtual std::unique_ptr<SDC::GetMDDescriptionTraits::Response> dispatch(const SDC::GetMDDescriptionTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::GetMDDescriptionTraits::Response>(new OSCP::GetMDDescriptionTraits::Response(_provider.GetMdDescription(request)));
+		return std::unique_ptr<SDC::GetMDDescriptionTraits::Response>(new SDC::GetMDDescriptionTraits::Response(_provider.GetMdDescription(request)));
 	}
-	virtual std::unique_ptr<OSCP::GetMDIBTraits::Response> dispatch(const OSCP::GetMDIBTraits::Request & request) override {
+	virtual std::unique_ptr<SDC::GetMDIBTraits::Response> dispatch(const SDC::GetMDIBTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::GetMDIBTraits::Response>(new OSCP::GetMDIBTraits::Response(_provider.GetMdib(request)));
+		return std::unique_ptr<SDC::GetMDIBTraits::Response>(new SDC::GetMDIBTraits::Response(_provider.GetMdib(request)));
 	}
-	virtual std::unique_ptr<OSCP::GetMdStateTraits::Response> dispatch(const OSCP::GetMdStateTraits::Request & request) override {
+	virtual std::unique_ptr<SDC::GetMdStateTraits::Response> dispatch(const SDC::GetMdStateTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::GetMdStateTraits::Response>(new OSCP::GetMdStateTraits::Response(_provider.GetMdState(request)));
+		return std::unique_ptr<SDC::GetMdStateTraits::Response>(new SDC::GetMdStateTraits::Response(_provider.GetMdState(request)));
 	}
 
 private:
-	OSCLib::Data::OSCP::SDCProvider & _provider;
+	OSCLib::Data::SDC::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
 };
 
-struct SetServiceImpl : public OSCP::ISetService {
+struct SetServiceImpl : public SDC::ISetService {
 
-	SetServiceImpl(OSCLib::Data::OSCP::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
+	SetServiceImpl(OSCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
 		_provider(provider),
 		_metadata(metadata)
 	{
@@ -269,11 +269,11 @@ struct SetServiceImpl : public OSCP::ISetService {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_SETSERVICE_PORTTYPE);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::ActivateTraits> ActivateTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::SetAlertStateTraits> SetAlertStateTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::SetStringTraits> SetStringTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<OSCP::SetValueTraits> SetValueTraitsAdapter(builder);
+		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_SETSERVICE_PORTTYPE);
+		WSDL::WSDLBuilderTraitAdapter<SDC::ActivateTraits> ActivateTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::SetAlertStateTraits> SetAlertStateTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::SetStringTraits> SetStringTraitsAdapter(builder);
+		WSDL::WSDLBuilderTraitAdapter<SDC::SetValueTraits> SetValueTraitsAdapter(builder);
 
 		return builder.serialize();
 	}
@@ -282,28 +282,28 @@ struct SetServiceImpl : public OSCP::ISetService {
 		return _metadata.createSetServiceMetadata(serverAddress);
 	}
 
-	virtual std::unique_ptr<OSCP::ActivateTraits::Response> dispatch(const OSCP::ActivateTraits::Request & request) override {
+	virtual std::unique_ptr<SDC::ActivateTraits::Response> dispatch(const SDC::ActivateTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::ActivateTraits::Response>(new OSCP::ActivateTraits::Response(_provider.OnActivateAsync(request)));
+		return std::unique_ptr<SDC::ActivateTraits::Response>(new SDC::ActivateTraits::Response(_provider.OnActivateAsync(request)));
 	}
 
-	virtual std::unique_ptr<OSCP::SetAlertStateTraits::Response> dispatch(const OSCP::SetAlertStateTraits::Request & request) override {
+	virtual std::unique_ptr<SDC::SetAlertStateTraits::Response> dispatch(const SDC::SetAlertStateTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::SetAlertStateTraits::Response>(new OSCP::SetAlertStateTraits::Response(_provider.SetAlertStateAsync(request)));
+		return std::unique_ptr<SDC::SetAlertStateTraits::Response>(new SDC::SetAlertStateTraits::Response(_provider.SetAlertStateAsync(request)));
 	}
 
-	virtual std::unique_ptr<OSCP::SetStringTraits::Response> dispatch(const OSCP::SetStringTraits::Request & request) override {
+	virtual std::unique_ptr<SDC::SetStringTraits::Response> dispatch(const SDC::SetStringTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::SetStringTraits::Response>(new OSCP::SetStringTraits::Response(_provider.SetStringAsync(request)));
+		return std::unique_ptr<SDC::SetStringTraits::Response>(new SDC::SetStringTraits::Response(_provider.SetStringAsync(request)));
 	}
 
-	virtual std::unique_ptr<OSCP::SetValueTraits::Response> dispatch(const OSCP::SetValueTraits::Request & request) override {
+	virtual std::unique_ptr<SDC::SetValueTraits::Response> dispatch(const SDC::SetValueTraits::Request & request) override {
 		Poco::Mutex::ScopedLock lock(_provider.getMutex());
-		return std::unique_ptr<OSCP::SetValueTraits::Response>(new OSCP::SetValueTraits::Response(_provider.SetValueAsync(request)));
+		return std::unique_ptr<SDC::SetValueTraits::Response>(new SDC::SetValueTraits::Response(_provider.SetValueAsync(request)));
 	}
 
 private:
-	OSCLib::Data::OSCP::SDCProvider & _provider;
+	OSCLib::Data::SDC::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
 };
 
@@ -311,7 +311,7 @@ private:
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 SDCProviderAdapter::SDCProviderAdapter(SDCProvider & provider, const unsigned int port) :
 	_provider(provider),
@@ -352,7 +352,7 @@ void SDCProviderAdapter::start() {
 
 	OSELib::DPWS::TypesType types;
 	types.push_back(OSELib::DPWS::QName("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01", "MedicalDevice"));
-	types.push_back(OSELib::DPWS::QName(OSELib::OSCP::NS_WSDL_TARGET_NAMESPACE, "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_WSDL_TARGET_NAMESPACE, "MedicalDevice"));
 
 	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),
@@ -361,13 +361,13 @@ void SDCProviderAdapter::start() {
 			xAddresses));
 
 	const std::vector<xml_schema::Uri> allowedSubscriptionEventActions {
-				OSELib::OSCP::EpisodicAlertReportTraits::Action(),
-				OSELib::OSCP::EpisodicContextChangedReportTraits::Action(),
-				OSELib::OSCP::EpisodicMetricReportTraits::Action(),
-				OSELib::OSCP::OperationInvokedReportTraits::Action(),
-				OSELib::OSCP::PeriodicAlertReportTraits::Action(),
-				OSELib::OSCP::PeriodicContextChangedReportTraits::Action(),
-				OSELib::OSCP::PeriodicMetricReportTraits::Action() };
+				OSELib::SDC::EpisodicAlertReportTraits::Action(),
+				OSELib::SDC::EpisodicContextChangedReportTraits::Action(),
+				OSELib::SDC::EpisodicMetricReportTraits::Action(),
+				OSELib::SDC::OperationInvokedReportTraits::Action(),
+				OSELib::SDC::PeriodicAlertReportTraits::Action(),
+				OSELib::SDC::PeriodicContextChangedReportTraits::Action(),
+				OSELib::SDC::PeriodicMetricReportTraits::Action() };
 	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions));
 
 	class Factory : public OSELib::HTTP::FrontControllerAdapter {
@@ -442,21 +442,21 @@ void SDCProviderAdapter::stop() {
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
-		_subscriptionManager->fireEvent<OSELib::OSCP::EpisodicAlertReportTraits>(report);
+		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicAlertReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicContextReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
-		_subscriptionManager->fireEvent<OSELib::OSCP::EpisodicContextChangedReportTraits>(report);
+		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicContextChangedReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
-		_subscriptionManager->fireEvent<OSELib::OSCP::EpisodicMetricReportTraits>(report);
+		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicMetricReportTraits>(report);
 	}
 }
 
@@ -470,28 +470,28 @@ void SDCProviderAdapter::notifyEvent(const MDM::WaveformStream & stream) {
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
-		_subscriptionManager->fireEvent<OSELib::OSCP::PeriodicAlertReportTraits>(report);
+		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicAlertReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicContextReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
-		_subscriptionManager->fireEvent<OSELib::OSCP::PeriodicContextChangedReportTraits>(report);
+		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicContextChangedReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicMetricReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
-		_subscriptionManager->fireEvent<OSELib::OSCP::PeriodicMetricReportTraits>(report);
+		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicMetricReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::OperationInvokedReport & report) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_subscriptionManager) {
-		_subscriptionManager->fireEvent<OSELib::OSCP::OperationInvokedReportTraits>(report);
+		_subscriptionManager->fireEvent<OSELib::SDC::OperationInvokedReportTraits>(report);
 	}
 }
 
@@ -512,6 +512,6 @@ void SDCProviderAdapter::removeStreamingPort(const int port) {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

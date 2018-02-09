@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 BatteryDescriptor::BatteryDescriptor(
@@ -232,7 +232,7 @@ bool BatteryDescriptor::hasVoltageSpecified() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -44,7 +44,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 PerformedOrderDetail::PerformedOrderDetail(
@@ -213,7 +213,7 @@ void PerformedOrderDetail::clearResultingClinicalInfoList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

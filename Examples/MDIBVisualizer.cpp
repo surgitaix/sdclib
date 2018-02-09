@@ -25,7 +25,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 std::string stripCharacters(const std::string & input, const std::string & removeChars) {
 	std::string str(input);
@@ -1432,7 +1432,7 @@ int main() {
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpng {} -o {}.png";
 
 
-	OSELib::OSCP::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm;
 
 	//int loopcounter = 0;
 	//while (true) {
@@ -1440,7 +1440,7 @@ int main() {
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Refreshing ..." << std::flush;
 		//const std::string deviceEPR("UDI-1234567890");
 		//std::shared_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(deviceEPR));
-		std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> results(oscpsm.discoverOSCP());
+		std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> results(oscpsm.discoverOSCP());
 
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found devices with these EPRs: " << std::endl;
 
@@ -1455,7 +1455,7 @@ int main() {
 				outFile.open(filename, std::ios::trunc);
 				Poco::Timestamp now;
 
-				OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
+				OSELib::SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
 				auto rawMessage = OSELib::Helper::Message::create(consumer->requestRawMdib());
 				auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 

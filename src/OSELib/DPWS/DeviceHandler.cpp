@@ -58,5 +58,5 @@ void DeviceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest
 	response.send(SOAP::NormalizedMessageSerializer::serialize(*responseMessage));
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */

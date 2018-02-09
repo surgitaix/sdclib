@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class Range {
 private:
@@ -90,7 +90,7 @@ private:
 	std::shared_ptr<CDM::Range> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* RANGE_H_ */

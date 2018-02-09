@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 InstanceIdentifier::InstanceIdentifier() : data(Defaults::InstanceIdentifierInit()) {
 }
@@ -154,7 +154,7 @@ void InstanceIdentifier::clearIdentifierNameList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

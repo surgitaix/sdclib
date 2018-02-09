@@ -14,7 +14,7 @@
 #include "OSELib/Helper/WithLogger.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 class HelloReceivedHandler {
 public:
@@ -42,7 +42,7 @@ public:
     * @param xaddr The address
     * @return The consumer or null
     */
-	std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> connect(const std::string & xaddr);
+	std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> connect(const std::string & xaddr);
 
     /**
     * @brief Create a consumer and try to discover provider using EPR.
@@ -50,24 +50,24 @@ public:
     * @param epr The EPR
     * @return The consumer or null
     */
-	std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> discoverEndpointReference(const std::string & epr);
+	std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & epr);
 
     /**
     * @brief Discover all SDC providers currently available
     *
     * @return List of all providers
     */
-	std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> discoverOSCP();
+	std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> discoverOSCP();
 
 private:
-	std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
+	std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
 	std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> _dpwsClient;
 	// todo: kick this helloCallback. Supposedly it is not needed.
 	std::unique_ptr<DPWS::HelloCallback> _helloCallback;
 	mutable Poco::Mutex _mutex;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* OSELIB_OSCP_SERVICEMANAGER_H_ */

@@ -47,7 +47,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 const std::string deviceEPR("UDI-1234567890");
 
@@ -87,11 +87,11 @@ public:
         // assumption: sequence of values, increased by 1
         verifiedChunks = true;
         for (size_t i = 0; i < values.size(); i++) {
-//        	DebugOut(DebugOut::Default, "StreamOSCP") << values[i];
+//        	DebugOut(DebugOut::Default, "StreamSDC") << values[i];
             if (values[i] != double(i))
                 verifiedChunks = false;
         }
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << descriptorHandle << ". Validity: " << verifiedChunks << std::endl;
+        DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk! Handle: " << descriptorHandle << ". Validity: " << verifiedChunks << std::endl;
     }
 
     bool getVerifiedChunks() {
@@ -114,7 +114,7 @@ int main() {
     SDCLibrary::getInstance().setIP6enabled(false);
 
     // Consumer is build via discovery
-	OSELib::OSCP::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm;
 	DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Consumer discovery..." << std::endl;
 
 	// testing against SoftICE

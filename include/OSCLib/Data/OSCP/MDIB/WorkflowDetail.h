@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class WorkflowDetail {
 private:
@@ -100,7 +100,7 @@ private:
 	std::shared_ptr<CDM::WorkflowDetail> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* WORKFLOWDETAIL_H_ */

@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 VmdState::VmdState(
@@ -277,7 +277,7 @@ bool VmdState::hasOperatingJurisdiction() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

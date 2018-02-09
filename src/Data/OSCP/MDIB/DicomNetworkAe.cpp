@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 DicomNetworkAe::DicomNetworkAe(
@@ -165,7 +165,7 @@ void DicomNetworkAe::clearDescriptionList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

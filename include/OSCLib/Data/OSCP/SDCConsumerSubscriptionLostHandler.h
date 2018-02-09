@@ -26,7 +26,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SDCConsumerSubscriptionLostHandler {
 public:
@@ -39,7 +39,7 @@ public:
     virtual void onSubscriptionLost() = 0;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

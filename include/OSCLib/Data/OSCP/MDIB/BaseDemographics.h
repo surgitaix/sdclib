@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class BaseDemographics {
 private:
@@ -89,7 +89,7 @@ private:
 	std::shared_ptr<CDM::BaseDemographics> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* BASEDEMOGRAPHICS_H_ */

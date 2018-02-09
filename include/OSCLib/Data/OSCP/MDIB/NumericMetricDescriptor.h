@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class NumericMetricDescriptor {
 private:
@@ -155,7 +155,7 @@ private:
 	std::shared_ptr<CDM::NumericMetricDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* NUMERICMETRICDESCRIPTOR_H_ */

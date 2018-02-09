@@ -13,7 +13,7 @@
 #include "OSELib/OSCP/OperationTraits.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 class ISetService : public DPWS::IService {
 public:
@@ -25,7 +25,7 @@ public:
 	virtual std::unique_ptr<SetValueTraits::Response> dispatch(const SetValueTraits::Request & request) = 0;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* OSCP_ISETSERVICE_H_ */

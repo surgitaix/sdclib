@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 RelatedMeasurement::RelatedMeasurement(
@@ -126,7 +126,7 @@ void RelatedMeasurement::clearReferenceRangeList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

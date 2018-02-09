@@ -57,7 +57,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 std::string stateTypeAsString(const AlertConditionState & ) {
 	return "AlertConditionState";
@@ -208,7 +208,7 @@ int main (int argc, char * argv[])
 	SDCLibrary::getInstance().startup();
 	SDCLibrary::getInstance().setPortStart(42000);
 
-	OSELib::OSCP::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm;
 	std::unique_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(epr));
 	if (consumer) {
 		DebugOut(DebugOut::Default, "GenericSubscription") << "Connected to device with epr: " << epr;

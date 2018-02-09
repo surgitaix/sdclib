@@ -28,7 +28,7 @@
 #include <string>
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 const std::string NS_ADDRESSING("http://www.w3.org/2005/08/addressing");
 const std::string NS_EVENTING("http://schemas.xmlsoap.org/ws/2004/08/eventing");

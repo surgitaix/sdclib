@@ -26,7 +26,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 FutureInvocationState::FutureInvocationState() : transactionId(-1), consumer(nullptr) {
 	invocationEvents[InvocationState::Cnclld] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
@@ -63,6 +63,6 @@ void FutureInvocationState::setEvent(InvocationState actual) {
 	invocationEvents[actual]->set();
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

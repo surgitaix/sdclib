@@ -106,39 +106,39 @@ The API for the Open Surgical Communication Protocol (OSCP-API) is set on top of
 There are two main instances used for communication:
 
 <ul>
-  <li><b>OSCLib::Data::OSCP::SDCProvider</b>: describes the device, and converts OSCP-conform requests into (proprietary) device commands</li>
-  <li><b>OSCLib::Data::OSCP::SDCConsumer</b>: a client tool used to establish communication with an SDCProvider</li>
+  <li><b>OSCLib::Data::SDC::SDCProvider</b>: describes the device, and converts OSCP-conform requests into (proprietary) device commands</li>
+  <li><b>OSCLib::Data::SDC::SDCConsumer</b>: a client tool used to establish communication with an SDCProvider</li>
 </ul>
 
 <p>Both instances implement a base set of methods defined by a common interface. This interface allows transparent access to the medical device information base (MDIB) which can be regarded as the database that contains the values defined by the CDM.</b> 
 <p>In order to integrate a medical device (or a medical information service) into an OSCP Network (i.e. writing an <b>OSCP-Connector</b>), you'll first have to implement an instance of SDCProvider. The following sections describe this process using a simple example of implementing an OSCP-Connector for the EndoTAIX holding device system, a camera holding device for endoscopy.</p>
-Working examples similar to this one can be found in the "Examples" folder, especially in <b>ExampleProject.cpp</b>. The unit tests <b>TestSimpleOSCP.cpp</b> and <b>TestStreamOSCP.cpp</b> might also help to illustrate the OSCP API.
+Working examples similar to this one can be found in the "Examples" folder, especially in <b>ExampleProject.cpp</b>. The unit tests <b>TestSimpleSDC.cpp</b> and <b>TestStreamSDC.cpp</b> might also help to illustrate the OSCP API.
 
 @subsection oscp_mbid The MDIB structure
 
 The MDIB structure is used to exchange information between the SDCProvider and SDCConsumer instances. The class structure behind it can be used to describe a medical device or a medical service statically and dynamically. The following (simplified) structure is used for the MDIB:
 
 <ul>
-  <li><b>MDIB</b>: the information base holding all static and dynamic sub-structures. Class-name: OSCLib::Data::OSCP::MDIBContainer</li>
+  <li><b>MDIB</b>: the information base holding all static and dynamic sub-structures. Class-name: OSCLib::Data::SDC::MDIBContainer</li>
     <ul>
-      <li><b>Medical Device Description</b>: Describes the static part. Class-name: OSCLib::Data::OSCP::MDDescription</li>
+      <li><b>Medical Device Description</b>: Describes the static part. Class-name: OSCLib::Data::SDC::MDDescription</li>
         <ul>
-          <li><b>Hydra Medical Device System</b>: Describes the complete device or service. Class-name: OSCLib::Data::OSCP::HydraMDSDescriptor</li>
+          <li><b>Hydra Medical Device System</b>: Describes the complete device or service. Class-name: OSCLib::Data::SDC::HydraMDSDescriptor</li>
             <ul>
-              <li><b>Virtual Medical Device</b>: Describes a subsystem (e.g. a hardware- or software-modul). Class-name: OSCLib::Data::OSCP::VMDDescriptor</li>
+              <li><b>Virtual Medical Device</b>: Describes a subsystem (e.g. a hardware- or software-modul). Class-name: OSCLib::Data::SDC::VMDDescriptor</li>
                 <ul>
-                  <li><b>Channel</b>: Describes a group of metrics. Class-name: OSCLib::Data::OSCP::ChannelDescriptor</li>
+                  <li><b>Channel</b>: Describes a group of metrics. Class-name: OSCLib::Data::SDC::ChannelDescriptor</li>
                     <ul>
-                      <li><b>Metric</b>: Describes a primitive or complex data object (e.g. heart rate measurement). Sub-classes of: OSCLib::Data::OSCP::AbstractMetricDescriptor</li>
-                      <li><b>Context</b>: Describes a specifix context (e.g. location of patient demographics). Sub-classes of: OSCLib::Data::OSCP::AbstractContextDescriptor</li>
+                      <li><b>Metric</b>: Describes a primitive or complex data object (e.g. heart rate measurement). Sub-classes of: OSCLib::Data::SDC::AbstractMetricDescriptor</li>
+                      <li><b>Context</b>: Describes a specifix context (e.g. location of patient demographics). Sub-classes of: OSCLib::Data::SDC::AbstractContextDescriptor</li>
                     </ul>  
                 </ul> 
             </ul>
         </ul>
-      <li><b>Medical Devices States</b>: Containes the dynamic part. Class-name: OSCLib::Data::OSCP::MDState</li>
+      <li><b>Medical Devices States</b>: Containes the dynamic part. Class-name: OSCLib::Data::SDC::MDState</li>
         <ul>
-          <li><b>Metric State</b>: Describes the state of a references metric (e.g. current heart rate value). Sub-classes of: OSCLib::Data::OSCP::AbstractMetricState</li> (e.g. NumericMetricState, StringMetricState, etc.)
-          <li><b>Context State</b>: Describes the state of a specific context (e.g. patient demographics data). Sub-classes of: OSCLib::Data::OSCP::AbstractContextState</li></li> 
+          <li><b>Metric State</b>: Describes the state of a references metric (e.g. current heart rate value). Sub-classes of: OSCLib::Data::SDC::AbstractMetricState</li> (e.g. NumericMetricState, StringMetricState, etc.)
+          <li><b>Context State</b>: Describes the state of a specific context (e.g. patient demographics data). Sub-classes of: OSCLib::Data::SDC::AbstractContextState</li></li> 
         </ul>  
     </ul>
 </ul>
@@ -147,7 +147,7 @@ Alert systems can be inserted at the level of the hydra MDS, the VMD or channel.
 
 @section oscp_provider The EndoTAIX OSCP Provider example
 
-This section provides a simplified example for an SDCProvider instance for the EndoTAIX holding device system. The <b>OSCPHoldingDeviceProvider</b> class extends the <b>OSCLib::Data::OSCP::SDCProvider</b> class. However, it is not required to subclass SDCProvider. Instead, you can also use an instance as a member variable in another class.
+This section provides a simplified example for an SDCProvider instance for the EndoTAIX holding device system. The <b>OSCPHoldingDeviceProvider</b> class extends the <b>OSCLib::Data::SDC::SDCProvider</b> class. However, it is not required to subclass SDCProvider. Instead, you can also use an instance as a member variable in another class.
 <p>Using <b>OSCProvider::addMDStateHandler</b> is a comfortable way to provide separate handlers for each state. This has the advantage, that code concerning devices's data will be encapsulated elsewhere. This will keep our class (OSCPHoldingDeviceProvider) short.</p>
 
 <P>In this example, the provider contains two metrics, which describe their purpose and properties:
@@ -329,7 +329,7 @@ public:
 
   InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
     // Invocation has been fired as WAITING when entering this method
- 	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: MaxValueStateHandler received state change request" << std::endl;
+ 	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: MaxValueStateHandler received state change request" << std::endl;
 
   	notifyOperationInvoked(oic, InvocationState::STARTED);
 
@@ -424,7 +424,7 @@ SDCLibrary::getInstance()->startup();
 
 @subsection oscp_consumer_servicemanager Discovery using the ServiceManager
 
-<p>An SDCConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>OSCLib::Data::OSCP::OSCPServiceManager</b>).
+<p>An SDCConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>OSCLib::Data::SDC::OSCPServiceManager</b>).
 The ServiceManager is resposibe for the discovery of SDCProvider instances. 
 We will now discover the provider using the ServiceManager:
 
@@ -572,7 +572,7 @@ consumer.disconnect();
 
 @section oscp_alarm_system The alarm system
 
-<p>The structures and methods of the alarm system can be used to implement alarm situations using mostly <b>conditions</b> and <b>signals</b>. Descriptors and states exist for each of the latter. This section describes an extension of the previous example to produce and consume an alarm, if the current weight value exceeds the maximum value. A real implementation of this example can be found in the unit test <b>TestSimpleOSCP.cpp</b><p>
+<p>The structures and methods of the alarm system can be used to implement alarm situations using mostly <b>conditions</b> and <b>signals</b>. Descriptors and states exist for each of the latter. This section describes an extension of the previous example to produce and consume an alarm, if the current weight value exceeds the maximum value. A real implementation of this example can be found in the unit test <b>TestSimpleSDC.cpp</b><p>
 <p>An alert condition holds the information about an actual alarm situation, while an alert signal's purpose is to define, how exactly the condition should be reported. In general, multiple signals can reference the same condition. We start again with the descriptive part.</p>
 
 @subsection oscp_alarm_system_provide The provider
@@ -655,9 +655,9 @@ public:
     LimitAlertConditionState currentState;
     getParentProvider().getMdState().findState(state.getDescriptorHandle(), currentState);
 
-  	DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
+  	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
     if (state.getPresence() != currentState.getPresence()) {
-      DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << state.getPresence() << std::endl;
+      DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << state.getPresence() << std::endl;
       // do something...
     }
 
@@ -668,7 +668,7 @@ public:
   }
 
   void sourceHasChanged(const std::string & sourceHandle) override {
-    DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: LimitAlertConditionStateHandler monitored source state changed." << std::endl;
+    DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler monitored source state changed." << std::endl;
 
     // Check limit and trigger alarm condition, if needed (this method will then take care of handling all signal states)
     NumericMetricState sourceState;
@@ -737,7 +737,7 @@ public:
 
   InvocationState onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic) override {
     // Invocation has been fired as WAITING when entering this method
-    DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: AlertSignalStateHandler received state change: " << EnumToString::convert(state.getPresence()) << std::endl;
+    DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: AlertSignalStateHandler received state change: " << EnumToString::convert(state.getPresence()) << std::endl;
 
     notifyOperationInvoked(oic, InvocationState::STARTED);
 

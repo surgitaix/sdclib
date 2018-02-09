@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ImagingProcedure {
 private:
@@ -97,7 +97,7 @@ private:
 	std::shared_ptr<CDM::ImagingProcedure> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* IMAGINGPROCEDURE_H_ */

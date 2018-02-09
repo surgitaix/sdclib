@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 SetValueOperationDescriptor::SetValueOperationDescriptor(
@@ -247,7 +247,7 @@ bool SetValueOperationDescriptor::hasAccessLevel() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

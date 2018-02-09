@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ClockState {
 private:
@@ -152,7 +152,7 @@ private:
 	std::shared_ptr<CDM::ClockState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* CLOCKSTATE_H_ */

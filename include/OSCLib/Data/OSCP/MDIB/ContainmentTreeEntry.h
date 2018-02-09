@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ContainmentTreeEntry {
 private:
@@ -70,7 +70,7 @@ private:
 	std::shared_ptr<CDM::ContainmentTreeEntry> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* CONTAINMENTTREEENTRY_H_ */

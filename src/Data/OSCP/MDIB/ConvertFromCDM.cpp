@@ -133,7 +133,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 ConvertFromCDM::ConvertFromCDM() {
 
@@ -991,6 +991,6 @@ InvocationState ConvertFromCDM::convert(const MDM::InvocationState & source) {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

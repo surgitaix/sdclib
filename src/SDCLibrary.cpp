@@ -81,10 +81,10 @@ void SDCLibrary::startup(OSELib::LogLevel debugLevel) {
 	if (!initialized) {
 		initialized = true;
 		setDebugLevel(debugLevel);
-		log_notice([&]{ return "OSCLib version " + CURRENT_LIB_VERSION + " (C) 2016 SurgiTAIX AG"; });
+		log_notice([&]{ return "SDCLib version " + CURRENT_LIB_VERSION + " (C) 2016 SurgiTAIX AG"; });
         xercesc::XMLPlatformUtils::Initialize();
 	} else {
-		log_error([&]{ return "OSCLib already initialized!"; });
+		log_error([&]{ return "SDCLib already initialized!"; });
 	}
 }
 

@@ -14,7 +14,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 template<class U, class V>
 void ChannelDescriptor::getMetricDescriptors(std::vector<U> & result) const {

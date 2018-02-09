@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class VmdDescriptor {
 private:
@@ -110,7 +110,7 @@ private:
 	std::shared_ptr<CDM::VmdDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* VMDDESCRIPTOR_H_ */

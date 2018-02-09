@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 OrderDetail::OrderDetail(
@@ -172,7 +172,7 @@ void OrderDetail::clearImagingProcedureList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

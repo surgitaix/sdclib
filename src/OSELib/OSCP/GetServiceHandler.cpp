@@ -26,7 +26,7 @@
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 GetServiceHandler::GetServiceHandler(IGetService & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
 	_service(service),
@@ -62,5 +62,5 @@ void GetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpReq
 	response.send(SOAP::NormalizedMessageSerializer::serialize(*responseMessage));
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class RequestedOrderDetail {
 private:
@@ -104,7 +104,7 @@ private:
 	std::shared_ptr<CDM::RequestedOrderDetail> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* REQUESTEDORDERDETAIL_H_ */

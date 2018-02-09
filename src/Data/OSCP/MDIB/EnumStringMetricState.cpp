@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 EnumStringMetricState::EnumStringMetricState(
@@ -253,7 +253,7 @@ bool EnumStringMetricState::hasMetricValue() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

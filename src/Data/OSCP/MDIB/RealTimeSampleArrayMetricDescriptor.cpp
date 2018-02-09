@@ -43,7 +43,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 RealTimeSampleArrayMetricDescriptor::RealTimeSampleArrayMetricDescriptor(
@@ -402,7 +402,7 @@ void RealTimeSampleArrayMetricDescriptor::clearTechnicalRangeList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

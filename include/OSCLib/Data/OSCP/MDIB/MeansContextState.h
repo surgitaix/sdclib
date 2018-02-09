@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class MeansContextState {
 private:
@@ -125,7 +125,7 @@ private:
 	std::shared_ptr<CDM::MeansContextState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* MEANSCONTEXTSTATE_H_ */

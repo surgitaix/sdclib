@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class AlertSystemDescriptor {
 private:
@@ -113,7 +113,7 @@ private:
 	std::shared_ptr<CDM::AlertSystemDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* ALERTSYSTEMDESCRIPTOR_H_ */

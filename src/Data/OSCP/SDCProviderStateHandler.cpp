@@ -43,7 +43,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 SDCProviderStateHandler::SDCProviderStateHandler(std::string desriptorHandle) :
 	WithLogger(OSELib::Log::OSCPPROVIDER),
@@ -104,6 +104,6 @@ SDCProvider & SDCProviderStateHandler::getParentProvider() {
 	return *parentProvider;
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

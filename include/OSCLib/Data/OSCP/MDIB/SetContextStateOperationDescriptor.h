@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SetContextStateOperationDescriptor {
 private:
@@ -116,7 +116,7 @@ private:
 	std::shared_ptr<CDM::SetContextStateOperationDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* SETCONTEXTSTATEOPERATIONDESCRIPTOR_H_ */

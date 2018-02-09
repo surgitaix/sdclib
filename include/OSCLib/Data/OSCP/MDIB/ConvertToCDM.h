@@ -18,7 +18,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ConvertToCDM {
 public:
@@ -85,7 +85,7 @@ public:
 
 }; // class
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

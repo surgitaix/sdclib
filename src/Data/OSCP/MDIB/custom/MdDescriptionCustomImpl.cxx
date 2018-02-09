@@ -27,7 +27,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 //// template specialization for API
 template std::unique_ptr<AlertConditionDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;

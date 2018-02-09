@@ -4,7 +4,7 @@
 
 }; // class
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

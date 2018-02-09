@@ -241,7 +241,7 @@ void $(my.childclass:)::clear$(propertyList.nameSeveral:)() {
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class $(class.name:) {
 private:
@@ -292,7 +292,7 @@ private:
 .   append "$(class.name:).h"
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* $(class.NAME)_H_ */
@@ -321,7 +321,7 @@ private:
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 .define NumProperties = 0
 .for property 
@@ -378,7 +378,7 @@ $(class.name:) & $(class.name:)::set(const $(class.valuetype:) & value) {
 
 . printaccessorimplementation ("$(class.name:)", "$(class.name:)")
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

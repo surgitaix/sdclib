@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 CalibrationDocumentation::CalibrationDocumentation(
@@ -111,7 +111,7 @@ void CalibrationDocumentation::clearCalibrationResultList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

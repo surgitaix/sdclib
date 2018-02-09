@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class InstanceIdentifier {
 private:
@@ -84,7 +84,7 @@ private:
 	std::shared_ptr<CDM::InstanceIdentifier> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* INSTANCEIDENTIFIER_H_ */

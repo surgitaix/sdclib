@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class DicomTransferCapability {
 private:
@@ -81,7 +81,7 @@ private:
 	std::shared_ptr<CDM::DicomTransferCapability> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* DICOMTRANSFERCAPABILITY_H_ */

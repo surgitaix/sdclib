@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 OperatorContextDescriptor::OperatorContextDescriptor(
@@ -149,7 +149,7 @@ bool OperatorContextDescriptor::hasSafetyClassification() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

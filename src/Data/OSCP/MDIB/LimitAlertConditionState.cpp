@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 LimitAlertConditionState::LimitAlertConditionState(
@@ -296,7 +296,7 @@ bool LimitAlertConditionState::hasAutoLimitActivationState() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

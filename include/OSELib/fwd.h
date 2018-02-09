@@ -77,7 +77,7 @@ namespace OSELib {
 		class Service;
 	}
 
-	namespace OSCP {
+	namespace SDC {
 		class IContextService;
 		class IContextServiceEventSink;
 		class IEventReport;

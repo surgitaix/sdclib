@@ -44,7 +44,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 RequestedOrderDetail::RequestedOrderDetail(
@@ -228,7 +228,7 @@ InstanceIdentifier RequestedOrderDetail::getPlacerOrderNumber() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

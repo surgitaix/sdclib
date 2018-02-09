@@ -23,7 +23,7 @@
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 void HelloReceivedHandler::helloReceived(const std::string & ) {
 	WithLogger(Log::BASE).log_error([] { return "Method 'helloReceived' must be overridden!"; });
@@ -65,13 +65,13 @@ void ServiceManager::setHelloReceivedHandler(HelloReceivedHandler * handler) {
 	_helloCallback = std::unique_ptr<HelloCallback>(new HelloCallback(handler));
 }
 
-std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> ServiceManager::connect(const std::string & xaddr) {
+std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const std::string & xaddr) {
 	std::list<std::string> xAddress_list;
 	xAddress_list.push_back(xaddr);
 	return connectXAddress(xAddress_list, "Unknown");
 }
 
-std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
+std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
 
 	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback  {
 		ResolveMatchCallback(Poco::Event & matchEvent) :
@@ -114,7 +114,7 @@ std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> ServiceManager::discoverEndpoin
 	return nullptr;
 }
 
-std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> ServiceManager::discoverOSCP() {
+std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> ServiceManager::discoverOSCP() {
 
 	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
 		ProbeMatchCallback() {}
@@ -128,7 +128,7 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> ServiceManager::di
 	};
 
 	DPWS::TypesType types;
-	types.push_back(xml_schema::Qname(OSCP::NS_MESSAGE_MODEL, "MedicalDevice"));
+	types.push_back(xml_schema::Qname(SDC::NS_MESSAGE_MODEL, "MedicalDevice"));
 
 	DPWS::ProbeType probeFilter;
 	probeFilter.Types().set(types);
@@ -140,7 +140,7 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> ServiceManager::di
 	_dpwsClient->removeProbeMatchEventHandler(probeCb);
 	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb._results.size()); });
 
-	std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> results;
+	std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> results;
 	std::list<std::string> xAddress_list;
 
 	// probeCb._results contains the exact number of unique EPR in the network
@@ -166,7 +166,7 @@ std::vector<std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer>> ServiceManager::di
 	return results;
 }
 
-std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) {
+std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) {
 	DPWS::DeviceDescription deviceDescription;
 
 	bool connectionPossible_flag = 0;
@@ -279,7 +279,7 @@ std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> ServiceManager::connectXAddress
 
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
-	std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> result(new OSCLib::Data::OSCP::SDCConsumer(deviceDescription));
+	std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> result(new OSCLib::Data::SDC::SDCConsumer(deviceDescription));
 	if (!result->requestMdib()) {
 		result->disconnect();
 		return nullptr;
@@ -287,5 +287,5 @@ std::unique_ptr<OSCLib::Data::OSCP::SDCConsumer> ServiceManager::connectXAddress
 	return std::move(result);
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */

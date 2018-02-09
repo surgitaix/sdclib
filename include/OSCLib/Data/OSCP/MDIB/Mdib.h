@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class Mdib {
 private:
@@ -75,7 +75,7 @@ private:
 	std::shared_ptr<CDM::Mdib> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* MDIB_H_ */

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class DicomDeviceDescriptor {
 private:
@@ -122,7 +122,7 @@ private:
 	std::shared_ptr<CDM::DicomDeviceDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* DICOMDEVICEDESCRIPTOR_H_ */

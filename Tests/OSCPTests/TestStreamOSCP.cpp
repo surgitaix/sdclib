@@ -15,7 +15,7 @@
   */
 
 /*
- * TestStreamOSCP.cpp
+ * TestStreamSDC.cpp
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: buerger
@@ -62,11 +62,11 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 namespace OSCLib {
 namespace Tests {
-namespace StreamOSCP {
+namespace StreamSDC {
 
 const std::string deviceEPR("UDI_STREAMINGTEST");
 
@@ -81,7 +81,7 @@ public:
 
     void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
     	Poco::Mutex::ScopedLock lock(mutex);
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk! Handle: " << descriptorHandle << std::endl;
+        DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk! Handle: " << descriptorHandle << std::endl;
         std::vector<double> values = state.getMetricValue().getSamples();
         verifiedChunks = true;
 
@@ -112,7 +112,7 @@ public:
 
     void onStateChanged(const DistributionSampleArrayMetricState & state) override {
     	Poco::Mutex::ScopedLock lock(mutex);
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Received chunk of a distribution! Handle: " << descriptorHandle << std::endl;
+        DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk of a distribution! Handle: " << descriptorHandle << std::endl;
         std::vector<double> values = state.getMetricValue().getSamples();
         verifiedChunks = true;
 
@@ -212,7 +212,7 @@ public:
     	distributionEventHandler("handle_distribution_stream")
 	{
 
-		oscpProvider.setEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR);
+		oscpProvider.setEndpointReference(OSCLib::Tests::StreamSDC::deviceEPR);
 
 
 		// Currentweight stream metric (read-only)
@@ -316,7 +316,7 @@ public:
     // Produce stream values
     // runImpl() gets called when starting the provider thread by the inherited function start()
     virtual void runImpl() override {
-    	DebugOut(DebugOut::Default, "StreamOSCP") << "\nPoducer thread started." << std::endl;
+    	DebugOut(DebugOut::Default, "StreamSDC") << "\nPoducer thread started." << std::endl;
 		const std::size_t size(1000);
 		std::vector<double> samples;
 		for (std::size_t i = 0; i < size; i++) {
@@ -330,7 +330,7 @@ public:
 						.setSamples(samples));
 
 			}
-			DebugOut(DebugOut::Default, "StreamOSCP") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+			DebugOut(DebugOut::Default, "StreamSDC") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
 		}
@@ -341,28 +341,28 @@ public:
 }
 }
 
-struct FixtureStreamOSCP : Tests::AbstractOSCLibFixture {
-	FixtureStreamOSCP() : AbstractOSCLibFixture("FixtureStreamOSCP", OSELib::LogLevel::NOTICE, 10000) {}
+struct FixtureStreamSDC : Tests::AbstractOSCLibFixture {
+	FixtureStreamSDC() : AbstractOSCLibFixture("FixtureStreamSDC", OSELib::LogLevel::NOTICE, 10000) {}
 };
 
 SUITE(OSCP) {
-TEST_FIXTURE(FixtureStreamOSCP, streamoscp)
+TEST_FIXTURE(FixtureStreamSDC, streamoscp)
 {
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
         // Provider
-		Tests::StreamOSCP::OSCPStreamHoldingDeviceProvider provider;
-		DebugOut(DebugOut::Default, "StreamOSCP") << "Provider init.." << std::endl;
+		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider;
+		DebugOut(DebugOut::Default, "StreamSDC") << "Provider init.." << std::endl;
 		provider.startup();
 
         // Consumer
-        OSELib::OSCP::ServiceManager oscpsm;
-        DebugOut(DebugOut::Default, "StreamOSCP") << "Consumer discovery..." << std::endl;
-        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::StreamOSCP::deviceEPR));
-        std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream");
-        std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
-        std::shared_ptr<Tests::StreamOSCP::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamOSCP::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
+        OSELib::SDC::ServiceManager oscpsm;
+        DebugOut(DebugOut::Default, "StreamSDC") << "Consumer discovery..." << std::endl;
+        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::StreamSDC::deviceEPR));
+        std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
+        std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
+        std::shared_ptr<Tests::StreamSDC::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamSDC::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
 
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);

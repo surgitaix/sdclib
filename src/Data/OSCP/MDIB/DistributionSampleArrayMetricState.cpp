@@ -43,7 +43,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 DistributionSampleArrayMetricState::DistributionSampleArrayMetricState(
@@ -272,7 +272,7 @@ void DistributionSampleArrayMetricState::clearPhysiologicalRangeList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

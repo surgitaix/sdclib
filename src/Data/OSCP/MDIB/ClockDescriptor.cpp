@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 ClockDescriptor::ClockDescriptor(
@@ -208,7 +208,7 @@ void ClockDescriptor::clearTimeProtocolList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

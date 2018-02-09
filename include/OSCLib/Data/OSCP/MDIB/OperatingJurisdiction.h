@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class OperatingJurisdiction {
 private:
@@ -84,7 +84,7 @@ private:
 	std::shared_ptr<CDM::OperatingJurisdiction> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* OPERATINGJURISDICTION_H_ */

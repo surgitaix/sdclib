@@ -11,7 +11,7 @@
 #include "OSELib/OSCP/ReportTraits.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 xml_schema::Qname DescriptionModificationReportTraits::MessageType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());

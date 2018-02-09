@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 AlertConditionDescriptor::AlertConditionDescriptor(
@@ -277,7 +277,7 @@ void AlertConditionDescriptor::clearCauseInfoList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

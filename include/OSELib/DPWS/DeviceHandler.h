@@ -24,7 +24,7 @@ private:
 	IDevice & _service;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* DPWS_DEVICEHANDLER_H_ */

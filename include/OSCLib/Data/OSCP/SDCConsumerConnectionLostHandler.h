@@ -26,7 +26,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SDCConsumerConnectionLostHandler {
 public:
@@ -39,7 +39,7 @@ public:
     virtual void onConnectionLost() = 0;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

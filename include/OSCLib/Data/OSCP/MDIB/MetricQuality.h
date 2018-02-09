@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class MetricQuality {
 private:
@@ -82,7 +82,7 @@ private:
 	std::shared_ptr<CDM::MetricQuality> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* METRICQUALITY_H_ */

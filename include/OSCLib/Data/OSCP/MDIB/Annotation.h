@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class Annotation {
 private:
@@ -72,7 +72,7 @@ private:
 	std::shared_ptr<CDM::Annotation> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* ANNOTATION_H_ */

@@ -147,8 +147,8 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLFor
 
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(const std::set<int> & streamingPorts) const {
 	MetadataSection metadataSectionStream((MetadataDialect(OSELib::WS_MEX_DIALECT_STREAM)));
-	metadataSectionStream.Identifier(OSCP::WS_MEX_ORNET_STREAM_IDENTIFIER);
-	StreamDescriptions sd(OSCP::WS_MEX_ORNET_STREAM_IDENTIFIER);
+	metadataSectionStream.Identifier(SDC::WS_MEX_ORNET_STREAM_IDENTIFIER);
+	StreamDescriptions sd(SDC::WS_MEX_ORNET_STREAM_IDENTIFIER);
 	MDPWS::StreamTransmissionType stt;
 	int counter(0);
 	// only one multicast address is used but multiple ports are possible (but not used in the recommended implementation,
@@ -157,8 +157,8 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(
 	for (auto it : streamingPorts)
 	{
 		counter++;
-		stt.StreamAddress(OSCP::MDPWS_MCAST_ADDR + ":" + std::to_string(it));
-		StreamType st(stt,"WaveformStream" + std::to_string(counter),OSELib::OSCP::WS_MEX_ORNET_STREAM_TYPE);
+		stt.StreamAddress(SDC::MDPWS_MCAST_ADDR + ":" + std::to_string(it));
+		StreamType st(stt,"WaveformStream" + std::to_string(counter),OSELib::SDC::WS_MEX_ORNET_STREAM_TYPE);
 		sd.StreamType().push_back(st);
 	}
 	metadataSectionStream.StreamDescriptions().set(sd);
@@ -200,7 +200,7 @@ MetadataProvider::Hosted MetadataProvider::createHostedContextService(const std:
 	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getPHIServicePath());
 	Hosted::EndpointReferenceType hostedEPR(hostedEPRAddress);
 	Hosted::TypesType hostedTypes;
-	hostedTypes.push_back(xml_schema::Qname(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_CONTEXTSERVICE_PORTTYPE));
+	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_CONTEXTSERVICE_PORTTYPE));
 
 	Hosted::ServiceIdType hostedServiceId("ContextService");
 	Hosted hosted(hostedTypes, hostedServiceId);
@@ -212,7 +212,7 @@ MetadataProvider::Hosted MetadataProvider::createHostedGetService(const std::str
 	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getGetServicePath());
 	Hosted::EndpointReferenceType hostedEPR(hostedEPRAddress);
 	Hosted::TypesType hostedTypes;
-	hostedTypes.push_back(xml_schema::Qname(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_GETSERVICE_PORTTYPE));
+	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_GETSERVICE_PORTTYPE));
 
 	Hosted::ServiceIdType hostedServiceId("GetService");
 	Hosted hosted(hostedTypes, hostedServiceId);
@@ -224,7 +224,7 @@ MetadataProvider::Hosted MetadataProvider::createHostedEventReportService(const 
 	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getEventReportServicePath());
 	Hosted::EndpointReferenceType hostedEPR(hostedEPRAddress);
 	Hosted::TypesType hostedTypes;
-	hostedTypes.push_back(xml_schema::Qname(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_REPORTSERVICE_PORTTYPE));
+	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_REPORTSERVICE_PORTTYPE));
 
 	Hosted::ServiceIdType hostedServiceId("EventReport");
 	Hosted hosted(hostedTypes, hostedServiceId);
@@ -236,7 +236,7 @@ MetadataProvider::Hosted MetadataProvider::createHostedStreamReportService(const
 	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getWaveformStreamServicePath());
 	Hosted::EndpointReferenceType hostedEPR(hostedEPRAddress);
 	Hosted::TypesType hostedTypes;
-	hostedTypes.push_back(xml_schema::Qname(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_STREAMSERVICE_PORTTYPE));
+	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STREAMSERVICE_PORTTYPE));
 
 	Hosted::ServiceIdType hostedServiceId("WaveformEventReport");
 	Hosted hosted(hostedTypes, hostedServiceId);
@@ -248,7 +248,7 @@ MetadataProvider::Hosted MetadataProvider::createHostedSetService(const std::str
 	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getSetServicePath());
 	Hosted::EndpointReferenceType hostedEPR(hostedEPRAddress);
 	Hosted::TypesType hostedTypes;
-	hostedTypes.push_back(xml_schema::Qname(OSCP::NS_WSDL_TARGET_NAMESPACE, OSCP::QNAME_SETSERVICE_PORTTYPE));
+	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_SETSERVICE_PORTTYPE));
 
 	Hosted::ServiceIdType hostedServiceId("SetService");
 	Hosted hosted(hostedTypes, hostedServiceId);

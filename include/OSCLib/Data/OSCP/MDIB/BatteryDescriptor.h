@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class BatteryDescriptor {
 private:
@@ -106,7 +106,7 @@ private:
 	std::shared_ptr<CDM::BatteryDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* BATTERYDESCRIPTOR_H_ */

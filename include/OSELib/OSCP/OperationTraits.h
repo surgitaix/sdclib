@@ -7,7 +7,7 @@
 #include "OSELib/fwd.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 struct ActivateTraits {
 	typedef MDM::Activate Request;
@@ -129,6 +129,6 @@ struct SetValueTraits {
 
 
 
-}  // namespace OSCP
+}  // namespace SDC
 } /* namespace OSCLib */
 #endif /* SOAPOPERATIONTRAITS_H_ */

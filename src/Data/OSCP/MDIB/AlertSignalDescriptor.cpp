@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 AlertSignalDescriptor::AlertSignalDescriptor(
@@ -324,7 +324,7 @@ bool AlertSignalDescriptor::hasAcknowledgeTimeout() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

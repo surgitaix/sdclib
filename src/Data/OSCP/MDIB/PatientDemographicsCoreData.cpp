@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 PatientDemographicsCoreData::PatientDemographicsCoreData(
@@ -303,7 +303,7 @@ bool PatientDemographicsCoreData::hasRace() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

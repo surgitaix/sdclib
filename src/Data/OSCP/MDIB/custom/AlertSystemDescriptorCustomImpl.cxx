@@ -10,7 +10,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 AlertSystemDescriptor & AlertSystemDescriptor::addLimitAlertCondition(const LimitAlertConditionDescriptor & source) {
 	data->AlertCondition().push_back(ConvertToCDM::convert(source));

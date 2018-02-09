@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 ClinicalInfo::ClinicalInfo(
@@ -175,7 +175,7 @@ void ClinicalInfo::clearRelatedMeasurementList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

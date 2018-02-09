@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class PatientDemographicsCoreData {
 private:
@@ -119,7 +119,7 @@ private:
 	std::shared_ptr<CDM::PatientDemographicsCoreData> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* PATIENTDEMOGRAPHICSCOREDATA_H_ */

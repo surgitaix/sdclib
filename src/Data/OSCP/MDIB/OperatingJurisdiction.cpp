@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 OperatingJurisdiction::OperatingJurisdiction() : data(Defaults::OperatingJurisdictionInit()) {
 }
@@ -154,7 +154,7 @@ void OperatingJurisdiction::clearIdentifierNameList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

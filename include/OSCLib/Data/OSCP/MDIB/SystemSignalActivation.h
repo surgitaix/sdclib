@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SystemSignalActivation {
 private:
@@ -77,7 +77,7 @@ private:
 	std::shared_ptr<CDM::SystemSignalActivation> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* SYSTEMSIGNALACTIVATION_H_ */

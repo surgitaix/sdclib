@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class StringMetricState {
 private:
@@ -112,7 +112,7 @@ private:
 	std::shared_ptr<CDM::StringMetricState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* STRINGMETRICSTATE_H_ */

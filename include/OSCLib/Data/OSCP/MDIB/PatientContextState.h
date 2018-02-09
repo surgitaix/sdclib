@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class PatientContextState {
 private:
@@ -131,7 +131,7 @@ private:
 	std::shared_ptr<CDM::PatientContextState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* PATIENTCONTEXTSTATE_H_ */

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class Relation {
 private:
@@ -87,7 +87,7 @@ private:
 	std::shared_ptr<CDM::Relation> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* RELATION_H_ */

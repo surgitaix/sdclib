@@ -43,7 +43,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 NumericMetricDescriptor::NumericMetricDescriptor(
@@ -409,7 +409,7 @@ void NumericMetricDescriptor::clearTechnicalRangeList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

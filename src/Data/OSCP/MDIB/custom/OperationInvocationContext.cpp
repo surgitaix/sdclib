@@ -9,7 +9,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 OperationInvocationContext::OperationInvocationContext(const std::string & operationHandle, const unsigned int transactionId) :
 	operationHandle(operationHandle),
@@ -22,6 +22,6 @@ OperationInvocationContext::~OperationInvocationContext() {
 
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ActivateOperationDescriptor {
 private:
@@ -120,7 +120,7 @@ private:
 	std::shared_ptr<CDM::ActivateOperationDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* ACTIVATEOPERATIONDESCRIPTOR_H_ */

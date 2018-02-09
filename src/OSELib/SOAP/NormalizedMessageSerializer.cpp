@@ -19,9 +19,9 @@ std::string NormalizedMessageSerializer::serialize(const MESSAGEMODEL::Envelope 
 	std::ostringstream result;
 	xml_schema::NamespaceInfomap map;
 
-	map["wsa"].name = OSCP::NS_ADDRESSING;
+	map["wsa"].name = SDC::NS_ADDRESSING;
 	map["dpws"].name = OSELib::WS_NS_DPWS;
-	map["mm"].name = OSCP::NS_MESSAGE_MODEL;
+	map["mm"].name = SDC::NS_MESSAGE_MODEL;
 
 	// todo make dpws device metadata localizable. Currently the schema does not support it
 	/**Background and idea:

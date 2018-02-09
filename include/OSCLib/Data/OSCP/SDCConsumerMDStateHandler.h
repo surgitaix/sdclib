@@ -28,7 +28,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 template<typename TState>
 class SDCConsumerMDStateHandler: public SDCConsumerOperationInvokedHandler {
@@ -46,7 +46,7 @@ public:
     virtual void onStateChanged(const TState & state) = 0;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

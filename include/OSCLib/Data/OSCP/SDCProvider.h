@@ -50,7 +50,7 @@ namespace OSELib {
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SDCProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
@@ -293,7 +293,7 @@ protected:
     *
     * @param object The MDIB object
     */
-    void notifyOperationInvoked(const OperationInvocationContext & oic, Data::OSCP::InvocationState is);
+    void notifyOperationInvoked(const OperationInvocationContext & oic, Data::SDC::InvocationState is);
 
 private:
     void firePeriodicReportImpl(const std::vector<std::string> & handles);
@@ -376,7 +376,7 @@ private:
 
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* SDCROVIDER_H_ */

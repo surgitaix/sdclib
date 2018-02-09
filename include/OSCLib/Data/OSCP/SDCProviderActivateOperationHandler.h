@@ -15,7 +15,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SDCProviderActivateOperationHandler : public SDCProviderStateHandler {
 public:
@@ -35,7 +35,7 @@ public:
 
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

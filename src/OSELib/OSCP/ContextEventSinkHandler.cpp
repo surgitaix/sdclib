@@ -25,7 +25,7 @@
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 ContextEventSinkHandler::ContextEventSinkHandler(IContextServiceEventSink & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
 	_service(service),
@@ -58,5 +58,5 @@ void ContextEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & h
 	response.send("");
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */

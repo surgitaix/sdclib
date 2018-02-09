@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 ApprovedJurisdictions::ApprovedJurisdictions(
@@ -92,7 +92,7 @@ void ApprovedJurisdictions::clearApprovedJurisdictionList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

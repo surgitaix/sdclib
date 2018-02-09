@@ -13,7 +13,7 @@
 #include "OSELib/OSCP/ReportTraits.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 class IEventReportEventSink : public DPWS::IEventSink {
 public:
@@ -27,7 +27,7 @@ public:
 	virtual void dispatch(const WaveformStreamTraits::ReportType & request) = 0;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* DATA_OSCP_IEVENTREPORTEVENTSINK_H_ */

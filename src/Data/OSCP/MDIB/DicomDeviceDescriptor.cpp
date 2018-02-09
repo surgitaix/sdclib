@@ -46,7 +46,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 DicomDeviceDescriptor::DicomDeviceDescriptor(
@@ -308,7 +308,7 @@ void DicomDeviceDescriptor::clearStationNameList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

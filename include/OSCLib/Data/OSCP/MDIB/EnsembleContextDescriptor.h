@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class EnsembleContextDescriptor {
 private:
@@ -88,7 +88,7 @@ private:
 	std::shared_ptr<CDM::EnsembleContextDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* ENSEMBLECONTEXTDESCRIPTOR_H_ */

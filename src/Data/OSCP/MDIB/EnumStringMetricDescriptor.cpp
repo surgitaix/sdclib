@@ -43,7 +43,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 EnumStringMetricDescriptor::EnumStringMetricDescriptor(
@@ -374,7 +374,7 @@ void EnumStringMetricDescriptor::clearAllowedValueList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

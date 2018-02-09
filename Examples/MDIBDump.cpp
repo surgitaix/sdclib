@@ -45,7 +45,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 std::string stripCharacters(const std::string & input, const std::string & removeChars) {
 	std::string str(input);
@@ -275,7 +275,7 @@ int main (int argc, char * argv[])
 	DebugOut(DebugOut::Default, "MDIBDump") << std::endl << "Startup: " << testname;
 	SDCLibrary::getInstance().startup();
 
-	OSELib::OSCP::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm;
 
 	while (true) {
 		DebugOut(DebugOut::Default, "MDIBDump") << "Refreshing ..." << std::flush;

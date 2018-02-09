@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class AllowedValues {
 private:
@@ -72,7 +72,7 @@ private:
 	std::shared_ptr<CDM::AllowedValues> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* ALLOWEDVALUES_H_ */

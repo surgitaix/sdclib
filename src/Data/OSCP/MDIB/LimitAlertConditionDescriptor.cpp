@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 LimitAlertConditionDescriptor::LimitAlertConditionDescriptor(
@@ -313,7 +313,7 @@ bool LimitAlertConditionDescriptor::hasAutoLimitSupported() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

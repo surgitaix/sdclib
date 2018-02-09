@@ -41,7 +41,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 ChannelDescriptor::ChannelDescriptor(
@@ -168,7 +168,7 @@ void ChannelDescriptor::clearProductionSpecificationList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

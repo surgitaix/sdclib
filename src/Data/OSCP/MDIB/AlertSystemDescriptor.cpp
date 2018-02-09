@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 AlertSystemDescriptor::AlertSystemDescriptor(
@@ -250,7 +250,7 @@ void AlertSystemDescriptor::clearAlertSignalList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

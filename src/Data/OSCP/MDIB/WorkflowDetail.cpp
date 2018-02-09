@@ -46,7 +46,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 WorkflowDetail::WorkflowDetail(
@@ -212,7 +212,7 @@ void WorkflowDetail::clearRelevantClinicalInfoList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

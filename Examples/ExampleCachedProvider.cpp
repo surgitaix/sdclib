@@ -45,7 +45,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 
 const std::string DEVICE_EPR("UDI-EXAMPLEPROVIDER");
@@ -98,7 +98,7 @@ public:
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
-        DebugOut(DebugOut::Default, "SimpleOSCP") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
 
         notifyOperationInvoked(oic, InvocationState::Start);
 
@@ -255,7 +255,7 @@ int main()
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
 
-	OSELib::OSCP::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm;
 	OSCPStreamProvider provider;
 	provider.startup();
 	provider.start();

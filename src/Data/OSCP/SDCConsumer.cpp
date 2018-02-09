@@ -81,7 +81,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 MDM::SetAlertState createRequestMessage(const AlertConditionState & state, const std::string & operationHandle) {
 	MDM::SetAlertState result(operationHandle, ConvertToCDM::convert(state));
@@ -353,7 +353,7 @@ InvocationState SDCConsumer::commitState(const EnumStringMetricState & state, Fu
 	if (!state.getMetricValue().hasValue()) {
 		return InvocationState::Fail;
 	}
-	return commitStateImpl<OSELib::OSCP::SetStringTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetStringTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const NumericMetricState & state, FutureInvocationState & fis) {
@@ -363,7 +363,7 @@ InvocationState SDCConsumer::commitState(const NumericMetricState & state, Futur
 	if (!state.getMetricValue().hasValue()) {
 		return InvocationState::Fail;
 	}
-	return commitStateImpl<OSELib::OSCP::SetValueTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetValueTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const StringMetricState & state, FutureInvocationState & fis) {
@@ -373,43 +373,43 @@ InvocationState SDCConsumer::commitState(const StringMetricState & state, Future
 	if (!state.getMetricValue().hasValue()) {
 		return InvocationState::Fail;
 	}
-	return commitStateImpl<OSELib::OSCP::SetStringTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetStringTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const LocationContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const EnsembleContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const OperatorContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const PatientContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const WorkflowContextState & state, FutureInvocationState & fis) {
-	return commitStateImpl<OSELib::OSCP::SetContextStateTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const AlertSystemState & state, FutureInvocationState & fis) {
-	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const AlertSignalState & state, FutureInvocationState & fis) {
-	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const AlertConditionState & state, FutureInvocationState & fis) {
-	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const LimitAlertConditionState & state, FutureInvocationState & fis) {
-	return commitStateImpl<OSELib::OSCP::SetAlertStateTraits>(state, fis);
+	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(state, fis);
 }
 
 InvocationState SDCConsumer::commitState(const AlertSystemState & state) {
@@ -703,6 +703,6 @@ void SDCConsumer::updateLastKnownMdibVersion(unsigned long long int newVersion) 
 	}
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

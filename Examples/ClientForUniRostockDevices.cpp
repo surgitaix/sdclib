@@ -38,11 +38,11 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 const std::string deviceEPR("urn:uuid:4242d68b-40ef-486a-a019-6b00d1424201");
 
-class NumericEventHandler : public Data::OSCP::SDCConsumerNumericMetricStateHandler {
+class NumericEventHandler : public Data::SDC::SDCConsumerNumericMetricStateHandler {
 public:
 	NumericEventHandler(const std::string & handle) : handle(handle) {
 		receivedEventsCounter = 0;
@@ -51,7 +51,7 @@ public:
     virtual ~NumericEventHandler() {
     }
 
-    void onStateChanged(const Data::OSCP::NumericMetricState & ) override {
+    void onStateChanged(const Data::SDC::NumericMetricState & ) override {
         receivedEventsCounter++;
     }
 
@@ -65,7 +65,7 @@ private:
     const std::string handle;
 };
 
-class StringEventHandler : public Data::OSCP::SDCConsumerStringMetricStateHandler {
+class StringEventHandler : public Data::SDC::SDCConsumerStringMetricStateHandler {
 public:
 	StringEventHandler(const std::string & handle) : handle(handle) {
 		receivedEventsCounter = 0;
@@ -74,7 +74,7 @@ public:
     virtual ~StringEventHandler() {
     }
 
-    void onStateChanged(const Data::OSCP::StringMetricState & ) override {
+    void onStateChanged(const Data::SDC::StringMetricState & ) override {
         receivedEventsCounter++;
     }
 
@@ -94,11 +94,11 @@ int main() {
 	SDCLibrary::getInstance().setPortStart(11111);
 
 	// Discovery
-	OSELib::OSCP::ServiceManager oscpsm;
-	std::unique_ptr<Data::OSCP::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	OSELib::SDC::ServiceManager oscpsm;
+	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 
 	if (c != nullptr) {
-		Data::OSCP::SDCConsumer & consumer = *c;
+		Data::SDC::SDCConsumer & consumer = *c;
         Util::DebugOut(Util::DebugOut::Default, "ClientForUniRostockDevices") << "Discovery succeeded.";
 
         // used handles

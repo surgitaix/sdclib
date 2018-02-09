@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class Measurement {
 private:
@@ -77,7 +77,7 @@ private:
 	std::shared_ptr<CDM::Measurement> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* MEASUREMENT_H_ */

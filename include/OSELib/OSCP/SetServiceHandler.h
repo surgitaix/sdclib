@@ -12,7 +12,7 @@
 #include "OSELib/SOAP/HTTPRequestHandlerExceptionTrap.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 class SetServiceHandler : public SOAP::HTTPRequestHandlerExceptionTrap {
 public:
@@ -25,7 +25,7 @@ private:
 	Helper::XercesGrammarPoolProvider & _grammarProvider;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* OSCP_SETSERVICEHANDLER_H_ */

@@ -40,7 +40,7 @@
 #include "Poco/ScopedLock.h"
 
 using namespace OSCLib;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 namespace OSCLib {
 namespace Tests {
@@ -442,7 +442,7 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
         provider.setPeriodicEventInterval(0, 500);
 
         // Consumer
-        OSELib::OSCP::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm;
         std::shared_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(Tests::PeriodicEvents::DEVICE_ENDPOINT_REFERENCE));
 
         // Make test fail if discovery fails

@@ -12,7 +12,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class OperationInvocationContext {
 public:
@@ -28,7 +28,7 @@ public:
 	const unsigned int transactionId;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -45,7 +45,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 VmdDescriptor::VmdDescriptor(
@@ -253,7 +253,7 @@ void VmdDescriptor::clearChannelList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

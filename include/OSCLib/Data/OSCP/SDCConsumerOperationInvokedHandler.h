@@ -34,7 +34,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SDCConsumerOperationInvokedHandler {
 public:
@@ -66,7 +66,7 @@ private:
 
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

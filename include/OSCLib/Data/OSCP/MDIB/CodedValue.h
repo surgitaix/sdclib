@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class CodedValue {
 private:
@@ -99,7 +99,7 @@ private:
 	std::shared_ptr<CDM::CodedValue> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* CODEDVALUE_H_ */

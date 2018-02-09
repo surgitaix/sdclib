@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class PerformedOrderDetail {
 private:
@@ -96,7 +96,7 @@ private:
 	std::shared_ptr<CDM::PerformedOrderDetail> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* PERFORMEDORDERDETAIL_H_ */

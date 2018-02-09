@@ -43,7 +43,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 MdibContainer::MdibContainer() :
 		mddescription(new MdDescription()),
@@ -91,6 +91,6 @@ std::unique_ptr<TState> MdibContainer::findState(const std::string & handle) con
 
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

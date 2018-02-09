@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 OperationGroup::OperationGroup(
 		CodedValue type
@@ -127,7 +127,7 @@ bool OperationGroup::hasOperations() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

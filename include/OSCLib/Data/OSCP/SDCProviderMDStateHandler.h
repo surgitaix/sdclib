@@ -17,7 +17,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 template <class TState>
 class SDCProviderMDStateHandler : public SDCProviderStateHandler {
@@ -53,7 +53,7 @@ public:
     virtual TState getInitialState() = 0;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

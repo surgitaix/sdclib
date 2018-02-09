@@ -27,7 +27,7 @@
 #include "OSELib/SOAP/UnsubscribeActionCommand.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 EventReportServiceHandler::EventReportServiceHandler(IEventReport & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
 	_service(service),
@@ -64,5 +64,5 @@ void EventReportServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest &
 	response.send(SOAP::NormalizedMessageSerializer::serialize(*responseMessage));
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */

@@ -13,14 +13,14 @@
 #include "OSELib/DPWS/ISubscriptionManager.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 class IEventReport : public DPWS::IService, public DPWS::ISubscriptionManager {
 public:
 	virtual ~IEventReport() = default;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* OSCP_IEVENTREPORT_H_ */

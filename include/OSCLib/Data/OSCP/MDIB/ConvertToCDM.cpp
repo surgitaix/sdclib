@@ -131,7 +131,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 ConvertToCDM::ConvertToCDM() {
 
@@ -892,6 +892,6 @@ MDM::InvocationState ConvertToCDM::convert(const InvocationState & source) {
 	throw std::runtime_error("Illegal value for InvocationState");
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

@@ -18,7 +18,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 // needed from message model for API
 enum class InvocationState

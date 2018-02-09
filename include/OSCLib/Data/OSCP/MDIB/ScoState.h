@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ScoState {
 private:
@@ -96,7 +96,7 @@ private:
 	std::shared_ptr<CDM::ScoState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* SCOSTATE_H_ */

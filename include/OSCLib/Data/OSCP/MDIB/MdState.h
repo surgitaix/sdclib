@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class MdState {
 private:
@@ -139,7 +139,7 @@ private:
 	std::shared_ptr<CDM::MdState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* MDSTATE_H_ */

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SetStringOperationDescriptor {
 private:
@@ -117,7 +117,7 @@ private:
 	std::shared_ptr<CDM::SetStringOperationDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* SETSTRINGOPERATIONDESCRIPTOR_H_ */

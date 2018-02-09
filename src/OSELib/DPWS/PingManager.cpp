@@ -15,7 +15,7 @@
 namespace OSELib {
 namespace DPWS {
 
-PingManager::PingManager(OSCLib::Data::OSCP::SDCConsumer & consumer) :
+PingManager::PingManager(OSCLib::Data::SDC::SDCConsumer & consumer) :
 	_runnableAdapter(*this, &PingManager::run),
 	_consumer(consumer)
 {

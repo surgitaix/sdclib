@@ -14,6 +14,6 @@ InvocationState ConvertFromCDM::convert(const MDM::InvocationState & source) {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

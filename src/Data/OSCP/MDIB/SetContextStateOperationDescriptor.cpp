@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(
@@ -265,7 +265,7 @@ void SetContextStateOperationDescriptor::clearModifiableDataList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

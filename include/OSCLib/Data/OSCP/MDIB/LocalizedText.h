@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class LocalizedText {
 private:
@@ -85,7 +85,7 @@ private:
 	std::shared_ptr<CDM::LocalizedText> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* LOCALIZEDTEXT_H_ */

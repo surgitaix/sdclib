@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class PhysicalConnectorInfo {
 private:
@@ -74,7 +74,7 @@ private:
 	std::shared_ptr<CDM::PhysicalConnectorInfo> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* PHYSICALCONNECTORINFO_H_ */

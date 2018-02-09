@@ -22,11 +22,11 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 namespace OSCLib {
 namespace Tests {
-namespace MultiOSCP {
+namespace MultiSDC {
 
 class OSCPTestDeviceProvider {
 public:
@@ -92,7 +92,7 @@ private:
     const std::size_t metrics;
 };
 
-} /* namespace MultiOSCP */
+} /* namespace MultiSDC */
 } /* namespace Tests */
 } /* namespace OSCLib */
 
@@ -108,11 +108,11 @@ TEST_FIXTURE(FixtureMultiOSCP, multioscp)
 		constexpr std::size_t providerCount(10);
 		constexpr std::size_t metricCount(10);
 
-		std::vector<std::shared_ptr<Tests::MultiOSCP::OSCPTestDeviceProvider>> providers;
+		std::vector<std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
 
 		for (std::size_t i = 0; i < providerCount; i++) {
-			std::shared_ptr<Tests::MultiOSCP::OSCPTestDeviceProvider> p(new Tests::MultiOSCP::OSCPTestDeviceProvider(i, metricCount));
+			std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider> p(new Tests::MultiSDC::OSCPTestDeviceProvider(i, metricCount));
 			providers.push_back(p);
 			p->startup();
 			providerEPRs.emplace_back(p->getEndpointReference());
@@ -122,7 +122,7 @@ TEST_FIXTURE(FixtureMultiOSCP, multioscp)
 
         DebugOut(DebugOut::Default, std::cout, "multioscp") << "Starting discovery test...";
 
-        OSELib::OSCP::ServiceManager sm;
+        OSELib::SDC::ServiceManager sm;
         std::vector<std::unique_ptr<SDCConsumer>> consumers(sm.discoverOSCP());
 
         bool foundAll = true;

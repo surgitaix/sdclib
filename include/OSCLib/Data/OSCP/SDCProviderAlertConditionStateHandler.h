@@ -17,7 +17,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 template <class TState>
 class SDCProviderAlertConditionStateHandler : public SDCProviderMDStateHandler<TState> {
@@ -35,7 +35,7 @@ public:
 
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -51,7 +51,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 
 const std::string DEVICE_EPR("UDI-EXAMPLEPROVIDER");
@@ -365,7 +365,7 @@ int main()
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
 
-	OSELib::OSCP::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm;
 	OSCPStreamProvider provider;
 	provider.startup();
 	provider.start();

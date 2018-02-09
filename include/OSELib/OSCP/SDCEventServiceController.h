@@ -15,7 +15,7 @@
 #include "OSELib/WSDL/schema.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 template<class IServiceType, class ServiceHandlerType>
 class SDCEventServiceController : public HTTP::Service {
@@ -36,7 +36,7 @@ private:
 	DefaultOSCPSchemaGrammarProvider _grammarProvider;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* OSCP_SDCEVENTSERVICECONTROLLER_H_ */

@@ -39,7 +39,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 ApplyAnnotation::ApplyAnnotation(
@@ -99,7 +99,7 @@ unsigned int ApplyAnnotation::getSampleIndex() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

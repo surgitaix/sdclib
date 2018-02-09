@@ -30,7 +30,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class MdibContainer {
 public:
@@ -60,7 +60,7 @@ private:
     unsigned long long int mdibVersion;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* MDIBCONTAINER_H_ */

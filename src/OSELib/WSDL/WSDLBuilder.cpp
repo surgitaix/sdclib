@@ -30,22 +30,22 @@ WSDLBuilder::WSDLBuilder(const std::string & targetNamespace, const std::string 
 	// setup namespaces and prefixes
 	wsdl->targetNamespace(targetNamespace);
 	definePrefixMapping("tns", targetNamespace);
-	definePrefixMapping("wsa", OSCP::NS_ADDRESSING);
-	definePrefixMapping("wsdl", OSCP::NS_WSDL);
-	definePrefixMapping("soap", OSCP::NS_WSDL_SOAP_BINDING);
-	definePrefixMapping("xsd", OSCP::NS_XML_SCHEMA);
-	definePrefixMapping("mm", OSCP::NS_MESSAGE_MODEL);
-	definePrefixMapping("wsstm", OSCP::WS_MEX_ORNET_NS_STREAM);
-	definePrefixMapping("wsp", OSCP::WS_POLICY);
+	definePrefixMapping("wsa", SDC::NS_ADDRESSING);
+	definePrefixMapping("wsdl", SDC::NS_WSDL);
+	definePrefixMapping("soap", SDC::NS_WSDL_SOAP_BINDING);
+	definePrefixMapping("xsd", SDC::NS_XML_SCHEMA);
+	definePrefixMapping("mm", SDC::NS_MESSAGE_MODEL);
+	definePrefixMapping("wsstm", SDC::WS_MEX_ORNET_NS_STREAM);
+	definePrefixMapping("wsp", SDC::WS_POLICY);
 
 	// add wsdl imports
-	wsdl->import().push_back(WS::WSDL::TImport(OSCP::NS_MESSAGE_MODEL, SCHEMA::SCHEMA_MESSAGEMODEL_NAME));
+	wsdl->import().push_back(WS::WSDL::TImport(SDC::NS_MESSAGE_MODEL, SCHEMA::SCHEMA_MESSAGEMODEL_NAME));
 
 	// replace empty binding from constructor of binding_ by correctly defined soap binding
 	WS::WSDL::SOAP_BINDING::BindingType::StyleType bindingStyle(WS::WSDL::SOAP_BINDING::BindingType::StyleType::document);
 	WS::WSDL::SOAP_BINDING::BindingType soapBinding;
 	soapBinding.style(bindingStyle);
-	WS::WSDL::SOAP_BINDING::BindingType::TransportType transportType(OSCP::SOAP_HTTP_BINDING_URI);
+	WS::WSDL::SOAP_BINDING::BindingType::TransportType transportType(SDC::SOAP_HTTP_BINDING_URI);
 	soapBinding.transport(transportType);
 	binding_->binding(soapBinding);
 }

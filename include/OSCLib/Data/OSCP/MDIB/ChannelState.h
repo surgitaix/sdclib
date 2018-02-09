@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ChannelState {
 private:
@@ -112,7 +112,7 @@ private:
 	std::shared_ptr<CDM::ChannelState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* CHANNELSTATE_H_ */

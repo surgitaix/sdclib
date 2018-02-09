@@ -43,7 +43,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(
@@ -410,7 +410,7 @@ bool NeonatalPatientDemographicsCoreData::hasMother() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

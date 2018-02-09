@@ -11,7 +11,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 template <class WrapperOperationDescriptorType>
 void ScoDescriptor::collectOperationDescriptorImpl(std::vector<WrapperOperationDescriptorType> & out) const {

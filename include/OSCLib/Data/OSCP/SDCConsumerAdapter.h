@@ -25,7 +25,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SDCConsumerAdapter :
 		public OSELib::DPWS::StreamNotificationDispatcher,
@@ -76,7 +76,7 @@ private:
 
 	const unsigned int _port;
 	const OSELib::DPWS::DeviceDescription _deviceDescription;
-	OSELib::OSCP::DefaultOSCPSchemaGrammarProvider _grammarProvider;
+	OSELib::SDC::DefaultOSCPSchemaGrammarProvider _grammarProvider;
 	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
 //	std::unique_ptr<OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl> _streamClientSocketImpl;
 	OSELib::DPWS::Impl::MDPWSStreamingAdapter _streamClientSocketImpl;

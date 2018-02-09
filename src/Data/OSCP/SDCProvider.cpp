@@ -97,7 +97,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 template<class T>
 class SetNotification : public Poco::Notification {
@@ -1034,7 +1034,7 @@ void SDCProvider::startup() {
 		xml_schema::NamespaceInfomap map;
 		CDM::MdibContainer(xml, *ConvertToCDM::convert(getMdib()), map, OSELib::XML_ENCODING, xercesFlags);
 
-		OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
+		OSELib::SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
 		auto rawMessage = OSELib::Helper::Message::create(xml.str());
 		auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 		std::unique_ptr<CDM::Mdib> result(CDM::MdibContainer(xercesDocument->getDocument()));
@@ -1140,7 +1140,7 @@ void SDCProvider::setMdDescription(const MdDescription & mdDescription) {
 }
 
 void SDCProvider::setMdDescription(std::string xml) {
-	OSELib::OSCP::DefaultOSCPSchemaGrammarProvider grammarProvider;
+	OSELib::SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
 	auto rawMessage = OSELib::Helper::Message::create(xml);
 	auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 
@@ -1176,7 +1176,7 @@ template<typename T> InvocationState SDCProvider::onStateChangeRequest(const T &
     return InvocationState::Fail;
 }
 
-void SDCProvider::notifyOperationInvoked(const OperationInvocationContext & oic, Data::OSCP::InvocationState is) {
+void SDCProvider::notifyOperationInvoked(const OperationInvocationContext & oic, Data::SDC::InvocationState is) {
 	if (oic.transactionId == 0 && oic.operationHandle.empty())
 		return;
 
@@ -1374,6 +1374,6 @@ void SDCProvider::removeHandleForPeriodicEvent(const std::string & handle) {
 	}
 }
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class AlertSignalState {
 private:
@@ -108,7 +108,7 @@ private:
 	std::shared_ptr<CDM::AlertSignalState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* ALERTSIGNALSTATE_H_ */

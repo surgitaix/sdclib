@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class DistributionSampleArrayMetricDescriptor {
 private:
@@ -159,7 +159,7 @@ private:
 	std::shared_ptr<CDM::DistributionSampleArrayMetricDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* DISTRIBUTIONSAMPLEARRAYMETRICDESCRIPTOR_H_ */

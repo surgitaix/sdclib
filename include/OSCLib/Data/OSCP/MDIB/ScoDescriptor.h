@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class ScoDescriptor {
 private:
@@ -97,7 +97,7 @@ private:
 	std::shared_ptr<CDM::ScoDescriptor> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* SCODESCRIPTOR_H_ */

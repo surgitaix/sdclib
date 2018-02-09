@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SampleArrayValue {
 private:
@@ -100,7 +100,7 @@ private:
 	std::shared_ptr<CDM::SampleArrayValue> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* SAMPLEARRAYVALUE_H_ */

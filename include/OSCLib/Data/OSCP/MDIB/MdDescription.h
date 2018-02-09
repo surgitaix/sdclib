@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class MdDescription {
 private:
@@ -132,7 +132,7 @@ private:
 	std::shared_ptr<CDM::MdDescription> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* MDDESCRIPTION_H_ */

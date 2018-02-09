@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class MetaData {
 private:
@@ -101,7 +101,7 @@ private:
 	std::shared_ptr<CDM::MetaData> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* METADATA_H_ */

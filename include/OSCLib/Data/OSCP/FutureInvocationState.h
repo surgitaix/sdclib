@@ -33,7 +33,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SDCConsumer;
 
@@ -57,7 +57,7 @@ private:
 	std::map<InvocationState, std::shared_ptr<Poco::Event>> invocationEvents;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

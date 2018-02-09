@@ -26,11 +26,11 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 namespace OSCLib {
 namespace Tests {
-namespace ConnectionLostOSCP {
+namespace ConnectionLostSDC {
 
 class OSCPTestDeviceProvider {
 public:
@@ -97,22 +97,22 @@ private:
     const std::size_t metrics;
 };
 
-} /* namespace MultiOSCP */
+} /* namespace MultiSDC */
 } /* namespace Tests */
 } /* namespace OSCLib */
 
-struct FixtureConnectionLostOSCP : Tests::AbstractOSCLibFixture {
-	FixtureConnectionLostOSCP() : AbstractOSCLibFixture("FixtureConnectionLostOSCP", OSELib::LogLevel::NOTICE, 8150) {}
+struct FixtureConnectionLostSDC : Tests::AbstractOSCLibFixture {
+	FixtureConnectionLostSDC() : AbstractOSCLibFixture("FixtureConnectionLostSDC", OSELib::LogLevel::NOTICE, 8150) {}
 };
 
 SUITE(OSCP) {
-TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
+TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 {
 	try
 	{
-	    class MyConnectionLostHandler : public Data::OSCP::SDCConsumerConnectionLostHandler {
+	    class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
 	    public:
-	    	MyConnectionLostHandler(Data::OSCP::SDCConsumer & consumer) : consumer(consumer) {
+	    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
 	    	}
 	    	void onConnectionLost() override {
 	    		DebugOut logoutput(DebugOut::Default, std::cout, "connectionlostoscp");
@@ -125,18 +125,18 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 	    	std::atomic<bool> handlerVisited;
 
 	    private:
-	    	Data::OSCP::SDCConsumer & consumer;
+	    	Data::SDC::SDCConsumer & consumer;
 	    };
 
 	    DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Waiting for the Providers to startup...";
 
 		constexpr std::size_t providerCount(10);
 		constexpr std::size_t metricCount(10);
-		std::vector<std::shared_ptr<Tests::ConnectionLostOSCP::OSCPTestDeviceProvider>> providers;
+		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
 
 		for (std::size_t i = 0; i < providerCount; i++) {
-			std::shared_ptr<Tests::ConnectionLostOSCP::OSCPTestDeviceProvider> p(new Tests::ConnectionLostOSCP::OSCPTestDeviceProvider(i, metricCount));
+			std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider> p(new Tests::ConnectionLostSDC::OSCPTestDeviceProvider(i, metricCount));
 			providers.push_back(p);
 			p->startup();
 			providerEPRs.emplace_back(p->getEndpointReference());
@@ -150,7 +150,7 @@ TEST_FIXTURE(FixtureConnectionLostOSCP, connectionlostoscp)
 
         DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Starting discovery test...";
 
-        OSELib::OSCP::ServiceManager sm;
+        OSELib::SDC::ServiceManager sm;
         std::vector<std::unique_ptr<SDCConsumer>> consumers(sm.discoverOSCP());
 
         bool foundAll = true;

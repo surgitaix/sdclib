@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class WorkflowContextState {
 private:
@@ -131,7 +131,7 @@ private:
 	std::shared_ptr<CDM::WorkflowContextState> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* WORKFLOWCONTEXTSTATE_H_ */

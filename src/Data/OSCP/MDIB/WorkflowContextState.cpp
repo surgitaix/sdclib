@@ -42,7 +42,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 WorkflowContextState::WorkflowContextState(
@@ -327,7 +327,7 @@ bool WorkflowContextState::hasWorkflowDetail() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

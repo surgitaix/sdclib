@@ -72,7 +72,7 @@
 
 using namespace OSCLib;
 using namespace OSCLib::Util;
-using namespace OSCLib::Data::OSCP;
+using namespace OSCLib::Data::SDC;
 
 namespace OSCLib {
 namespace Tests {
@@ -228,12 +228,12 @@ TEST_FIXTURE(FixtureMultiStatesTest, multistates)
 		provider.startup();
 
         // Consumer
-        OSELib::OSCP::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm;
         DebugOut(DebugOut::Default, "MultiStateSDC") << "Consumer discovery..." << std::endl;
         std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::multiStatesSDC::deviceEPR));
-//        std::shared_ptr<Tests::multiStatesSDC::  > eventHandler = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream");
-//        std::shared_ptr<Tests::StreamOSCP::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamOSCP::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
-//        std::shared_ptr<Tests::StreamOSCP::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamOSCP::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
+//        std::shared_ptr<Tests::multiStatesSDC::  > eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
+//        std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
+//        std::shared_ptr<Tests::StreamSDC::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamSDC::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
 
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);

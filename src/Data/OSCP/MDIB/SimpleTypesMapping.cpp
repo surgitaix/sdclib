@@ -17,7 +17,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 EnumToString::EnumToString() {
 
@@ -331,6 +331,6 @@ std::string EnumToString::convert(InvocationState source) {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class CalibrationResult {
 private:
@@ -77,7 +77,7 @@ private:
 	std::shared_ptr<CDM::CalibrationResult> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* CALIBRATIONRESULT_H_ */

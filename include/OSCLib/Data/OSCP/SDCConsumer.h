@@ -44,14 +44,14 @@
 namespace OSELib {
 	struct ContextServiceEventSink;
 	struct EventReportEventSink;
-	namespace OSCP {
+	namespace SDC {
 		class ServiceManager;
 	}
 }
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class SDCConsumer final : public OSELib::WithLogger {
 friend class FutureInvocationState;
@@ -60,7 +60,7 @@ friend class SDCConsumerAdapter;
 friend struct OSELib::ContextServiceEventSink;
 friend struct OSELib::EventReportEventSink;
 friend class OSELib::DPWS::PingManager;
-friend class OSELib::OSCP::ServiceManager;
+friend class OSELib::SDC::ServiceManager;
 
 private:
 	struct TransactionState {
@@ -289,7 +289,7 @@ private:
 
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* SDCCONSUMER_H_ */

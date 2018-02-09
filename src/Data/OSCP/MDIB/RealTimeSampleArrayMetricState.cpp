@@ -43,7 +43,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 RealTimeSampleArrayMetricState::RealTimeSampleArrayMetricState(
@@ -272,7 +272,7 @@ void RealTimeSampleArrayMetricState::clearPhysiologicalRangeList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

@@ -14,7 +14,7 @@
 #include "OSELib/OSCP/OperationTraits.h"
 
 namespace OSELib {
-namespace OSCP {
+namespace SDC {
 
 class IContextService : public DPWS::IService, public DPWS::ISubscriptionManager {
 public:
@@ -25,7 +25,7 @@ public:
 	virtual std::unique_ptr<SetContextStateTraits::Response> dispatch(const SetContextStateTraits::Request & request) = 0;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* OSCP_ICONTEXTSERVICE_H_ */

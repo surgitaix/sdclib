@@ -132,7 +132,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 const std::string NOT_ASSIGNED("Invalid. Not assigned!");
 
@@ -593,6 +593,6 @@ CDM::ContainmentTreeEntry  * Defaults::ContainmentTreeEntryInit() {
 
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */

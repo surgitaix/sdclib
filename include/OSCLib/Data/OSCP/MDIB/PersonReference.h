@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class PersonReference {
 private:
@@ -74,7 +74,7 @@ private:
 	std::shared_ptr<CDM::PersonReference> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* PERSONREFERENCE_H_ */

@@ -38,7 +38,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 class PersonParticipation {
 private:
@@ -78,7 +78,7 @@ private:
 	std::shared_ptr<CDM::PersonParticipation> data;
 };
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 #endif /* PERSONPARTICIPATION_H_ */

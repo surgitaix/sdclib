@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 
 EnsembleContextDescriptor::EnsembleContextDescriptor(
@@ -149,7 +149,7 @@ bool EnsembleContextDescriptor::hasSafetyClassification() const {
 }
 	
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 

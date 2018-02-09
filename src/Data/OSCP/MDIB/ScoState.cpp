@@ -40,7 +40,7 @@
 
 namespace OSCLib {
 namespace Data {
-namespace OSCP {
+namespace SDC {
 
 ScoState::ScoState(
 		HandleRef descriptorhandle
@@ -187,7 +187,7 @@ void ScoState::clearOperationGroupList() {
 }
 
 
-} /* namespace OSCP */
+} /* namespace SDC */
 } /* namespace Data */
 } /* namespace OSCLib */
 
