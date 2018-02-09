@@ -12,8 +12,8 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/OperationTraits.h"
-#include "OSELib/OSCP/OperationTraits.h"
-#include "OSELib/OSCP/ReportTraits.h"
+#include "OSELib/SDC/OperationTraits.h"
+#include "OSELib/SDC/ReportTraits.h"
 
 namespace OSELib {
 namespace SOAP {

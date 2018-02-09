@@ -1,12 +1,12 @@
 
 #include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "OSELib/OSCP/SDCConstants.h"
-#include "OSCLib/Data/OSCP/SDCConsumer.h"
+#include "OSCLib/Data/SDC/MDIB/ConvertFromCDM.h"
+#include "OSELib/SDC/SDCConstants.h"
+#include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSELib/Helper/WithLogger.h"
 
-#include "OSELib/OSCP/ServiceManager.h"
+#include "OSELib/SDC/ServiceManager.h"
 
 #include "osdm.hxx"
 
@@ -21,7 +21,7 @@
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesParserWrapper.h"
-#include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
 
 using namespace OSCLib;
 using namespace OSCLib::Util;

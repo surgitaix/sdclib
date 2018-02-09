@@ -5,7 +5,7 @@
  *      Author: matthias
  */
 
-#include <OSELib/OSCP/SDCConstants.h>
+#include <OSELib/SDC/SDCConstants.h>
 #include "eventing.hxx"
 #include "NormalizedMessageModel.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"

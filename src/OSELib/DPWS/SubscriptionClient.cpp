@@ -14,7 +14,7 @@
 
 #include "OSELib/DPWS/SubscriptionClient.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
-#include "OSELib/OSCP/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
 
 namespace OSELib {
 namespace DPWS {

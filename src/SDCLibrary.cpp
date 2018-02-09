@@ -35,8 +35,8 @@
 #include <xercesc/util/PlatformUtils.hpp>
 
 #include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/OSCP/SDCConsumer.h"
-#include "OSCLib/Data/OSCP/SDCProvider.h"
+#include "OSCLib/Data/SDC/SDCConsumer.h"
+#include "OSCLib/Data/SDC/SDCProvider.h"
 
 #include "OSELib/DPWS/PingManager.h"
 

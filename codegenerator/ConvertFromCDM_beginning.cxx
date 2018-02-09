@@ -1,8 +1,8 @@
 
 
 // needed SimpleTypes?
-#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
+#include "OSCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "osdm.hxx"
 
 #include <stdexcept>

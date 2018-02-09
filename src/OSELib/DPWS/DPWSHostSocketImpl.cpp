@@ -13,7 +13,7 @@
 
 #include "NormalizedMessageModel.hxx"
 
-#include "OSELib/OSCP/SDCConstants.h"
+#include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/DPWS/DPWSHostSocketImpl.h"

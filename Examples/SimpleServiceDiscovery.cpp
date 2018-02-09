@@ -1,11 +1,11 @@
 
 #include "OSCLib/SDCLibrary.h"
-#include "OSELib/OSCP/SDCConstants.h"
-#include "OSCLib/Data/OSCP/SDCConsumer.h"
-#include "OSCLib/Data/OSCP/SDCProvider.h"
+#include "OSELib/SDC/SDCConstants.h"
+#include "OSCLib/Data/SDC/SDCConsumer.h"
+#include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Util/DebugOut.h"
 
-#include "OSELib/OSCP/ServiceManager.h"
+#include "OSELib/SDC/ServiceManager.h"
 
 #include "Poco/Thread.h"
 

@@ -27,8 +27,8 @@
 #include "OSELib/SOAP/NormalizedMessageAdapter.h"
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
 #include "OSELib/SOAP/SoapActionCommand.h"
-#include "OSELib/OSCP/SDCConstants.h"
-#include "OSELib/OSCP/ReportTraits.h"
+#include "OSELib/SDC/SDCConstants.h"
+#include "OSELib/SDC/ReportTraits.h"
 
 namespace OSELib {
 namespace DPWS {

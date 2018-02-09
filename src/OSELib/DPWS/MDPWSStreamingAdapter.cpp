@@ -18,7 +18,7 @@
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
 
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
+#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 
 #include "OSCLib/SDCLibrary.h"
 

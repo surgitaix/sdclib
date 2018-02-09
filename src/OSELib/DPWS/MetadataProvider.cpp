@@ -5,7 +5,7 @@
  *      Author: matthias
  */
 
-#include "OSELib/OSCP/SDCConstants.h"
+#include "OSELib/SDC/SDCConstants.h"
 #include "MetadataExchange.hxx"
 #include "MDPWS.hxx"
 

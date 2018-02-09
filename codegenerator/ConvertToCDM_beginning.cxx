@@ -1,6 +1,6 @@
 #include "osdm.hxx"
-#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
 #include <stdexcept>
 

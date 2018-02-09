@@ -235,8 +235,8 @@ void $(my.childclass:)::clear$(propertyList.nameSeveral:)() {
 #ifndef $(class.NAME)_H_
 #define $(class.NAME)_H_
 
-#include "OSCLib/Data/OSCP/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/OSCP/SDC-fwd.h"
+#include "OSCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
+#include "OSCLib/Data/SDC/SDC-fwd.h"
 #include "osdm-fwd.hxx"
 
 namespace OSCLib {
@@ -310,10 +310,10 @@ private:
 .   output "$(class.name:).cpp"
 .   printlicense ("$(class.name:).cpp")
 
-#include "OSCLib/Data/OSCP/MDIB/$(class.name:).h"
-#include "OSCLib/Data/OSCP/MDIB/ConvertToCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/ConvertFromCDM.h"
-#include "OSCLib/Data/OSCP/MDIB/Defaults.h"
+#include "OSCLib/Data/SDC/MDIB/$(class.name:).h"
+#include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
+#include "OSCLib/Data/SDC/MDIB/ConvertFromCDM.h"
+#include "OSCLib/Data/SDC/MDIB/Defaults.h"
 
 #include "osdm.hxx"
 

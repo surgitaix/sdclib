@@ -12,7 +12,7 @@
 #ifndef DATA_OSCP_MDIB_DEFAULTS_H_
 #define DATA_OSCP_MDIB_DEFAULTS_H_
 
-#include "OSCLib/Data/OSCP/MDIB/MDIB-fwd.h"
+#include "OSCLib/Data/SDC/MDIB/MDIB-fwd.h"
 #include "osdm-fwd.hxx"
 
 namespace OSCLib {

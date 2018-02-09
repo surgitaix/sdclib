@@ -27,18 +27,18 @@
  */
 
 #include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/OSCP/SDCConsumer.h"
-#include "OSCLib/Data/OSCP/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/OSCP/MDIB/MetricQuality.h"
-#include "OSCLib/Data/OSCP/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/OSCP/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h"
+#include "OSCLib/Data/SDC/SDCConsumer.h"
+#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "OSCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
+#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
+#include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
 
-#include "OSELib/OSCP/ServiceManager.h"
+#include "OSELib/SDC/ServiceManager.h"
 
 #include "Poco/Runnable.h"
 #include "Poco/Mutex.h"
