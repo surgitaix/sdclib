@@ -242,11 +242,13 @@ enum class CanEscalate
 {
 	Lo,
 	Me,
-	Hi
+	Hi,
+	None
 };
 
 enum class CanDeescalate
 {
+	Hi,
 	Me,
 	Lo,
 	None

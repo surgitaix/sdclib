@@ -454,12 +454,14 @@ CanEscalate ConvertFromCDM::convert(const CDM::CanEscalate & source) {
 		case CDM::CanEscalate::Lo: return CanEscalate::Lo;
 		case CDM::CanEscalate::Me: return CanEscalate::Me;
 		case CDM::CanEscalate::Hi: return CanEscalate::Hi;
+		case CDM::CanEscalate::None: return CanEscalate::None;
 	}
 	throw std::runtime_error("Illegal value for CanEscalate");
 }
 
 CanDeescalate ConvertFromCDM::convert(const CDM::CanDeescalate & source) {
 	switch (source) {
+		case CDM::CanDeescalate::Hi: return CanDeescalate::Hi;
 		case CDM::CanDeescalate::Me: return CanDeescalate::Me;
 		case CDM::CanDeescalate::Lo: return CanDeescalate::Lo;
 		case CDM::CanDeescalate::None: return CanDeescalate::None;
