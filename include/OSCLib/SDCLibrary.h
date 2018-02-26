@@ -48,7 +48,7 @@ class SDCLibrary final : public OSELib::WithLogger {
 public:
 
 	SDCLibrary();
-	virtual ~SDCLibrary();
+	~SDCLibrary();
 
 	static SDCLibrary & getInstance();
 

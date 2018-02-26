@@ -53,12 +53,6 @@ typedef std::string Extension;
 typedef std::string DateOfBirth;
 
 
-enum class DicomTransferRole
-{
-	Scu,
-	Scp
-};
-
 enum class MeasurementValidity
 {
 	Vld,
@@ -238,17 +232,21 @@ enum class PatientType
 	Oth
 };
 
+enum class DicomTransferRole
+{
+	Scu,
+	Scp
+};
+
 enum class CanEscalate
 {
 	Lo,
 	Me,
-	Hi,
-	None
+	Hi
 };
 
 enum class CanDeescalate
 {
-	Hi,
 	Me,
 	Lo,
 	None
@@ -290,7 +288,6 @@ class EnumToString {
 public:
 	EnumToString();
 	virtual ~EnumToString();
-	static std::string convert(DicomTransferRole source);
 	static std::string convert(MeasurementValidity source);
 	static std::string convert(LocalizedTextWidth source);
 	static std::string convert(SafetyClassification source);
@@ -313,6 +310,7 @@ public:
 	static std::string convert(ContextAssociation source);
 	static std::string convert(Sex source);
 	static std::string convert(PatientType source);
+	static std::string convert(DicomTransferRole source);
 	static std::string convert(CanEscalate source);
 	static std::string convert(CanDeescalate source);
 	static std::string convert(Kind source);

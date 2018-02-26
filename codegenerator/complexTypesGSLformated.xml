@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <classes script = "generate.gsl" >
 	<class name = "Mdib" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/MdDescription.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/MdState.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/MdDescription.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/MdState.h" />
 		<property name = "MdDescription" type = "MdDescription" optional = "true" />
 		<property name = "MdState" type = "MdState" optional = "true" />
 	</class>
 
 	<class name = "MdDescription" parent = "NULL" abstract = "false" customImpl = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/MdsDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/MdsDescriptor.h" />
 		<property name = "DescriptionVersion" type = "VersionCounter" optional = "true" />
 		<propertyList nameSingle = "Mds" nameSeveral = "MdsList" type = "MdsDescriptor" />
 	</class>
@@ -25,8 +25,8 @@
 	</class>
 
 	<class name = "CodedValue" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Translation.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Translation.h" />
 		<property name = "Code" type = "CodeIdentifier" optional = "false" />
 		<property name = "CodingSystem" type = "xml_schema::Uri" optional = "true" />
 		<property name = "CodingSystemVersion" type = "std::string" optional = "true" />
@@ -43,8 +43,8 @@
 	</class>
 
 	<class name = "InstanceIdentifier" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
 		<property name = "Root" type = "Root" optional = "true" />
 		<property name = "Extension" type = "Extension" optional = "true" />
@@ -60,13 +60,13 @@
 	</class>
 
 	<class name = "Measurement" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "MeasurementUnit" type = "CodedValue" optional = "false" />
 		<property name = "MeasuredValue" type = "double" optional = "false" />
 	</class>
 
 	<class name = "ApprovedJurisdictions" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
 		<propertyList nameSingle = "ApprovedJurisdiction" nameSeveral = "ApprovedJurisdictionList" type = "InstanceIdentifier" />
 	</class>
 
@@ -74,13 +74,13 @@
 	</class>
 
 	<class name = "PhysicalConnectorInfo" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
 		<property name = "Number" type = "int" optional = "true" />
 		<propertyList nameSingle = "Label" nameSeveral = "LabelList" type = "LocalizedText" />
 	</class>
 
 	<class name = "AbstractDescriptor" parent = "NULL" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
 		<property name = "Handle" type = "Handle" optional = "false" />
 		<property name = "DescriptorVersion" type = "VersionCounter" optional = "true" />
@@ -94,33 +94,33 @@
 	</class>
 
 	<class name = "AbstractMultiState" parent = "AbstractState" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "Category" type = "CodedValue" optional = "true" />
 		<property name = "Handle" type = "Handle" optional = "false" />
 	</class>
 
 	<class name = "AbstractDeviceComponentDescriptor" parent = "AbstractDescriptor" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/ProductionSpecification.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ProductionSpecification.h" />
 		<propertyList nameSingle = "ProductionSpecification" nameSeveral = "ProductionSpecificationList" type = "ProductionSpecification" />
 	</class>
 
 	<class name = "ProductionSpecification" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
 		<property name = "SpecType" type = "CodedValue" optional = "false" />
 		<property name = "ProductionSpec" type = "std::string" optional = "false" />
 		<property name = "ComponentId" type = "InstanceIdentifier" optional = "true" />
 	</class>
 
 	<class name = "AbstractComplexDeviceComponentDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/AlertSystemDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ScoDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/AlertSystemDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ScoDescriptor.h" />
 		<property name = "AlertSystem" type = "AlertSystemDescriptor" optional = "true" />
 		<property name = "Sco" type = "ScoDescriptor" optional = "true" />
 	</class>
 
 	<class name = "CalibrationInfo" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationDocumentation.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CalibrationDocumentation.h" />
 		<property name = "ComponentCalibrationState" type = "CalibrationState" optional = "true" />
 		<property name = "Type" type = "CalibrationType" optional = "true" />
 		<property name = "Time" type = "Timestamp" optional = "true" />
@@ -128,22 +128,22 @@
 	</class>
 
 	<class name = "CalibrationDocumentation" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationResult.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CalibrationResult.h" />
 		<propertyList nameSingle = "Documentation" nameSeveral = "DocumentationList" type = "LocalizedText" />
 		<propertyList nameSingle = "CalibrationResult" nameSeveral = "CalibrationResultList" type = "CalibrationResult" />
 	</class>
 
 	<class name = "CalibrationResult" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Measurement.h" />
 		<property name = "Code" type = "CodedValue" optional = "false" />
 		<property name = "Value" type = "Measurement" optional = "false" />
 	</class>
 
 	<class name = "AbstractDeviceComponentState" parent = "AbstractState" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/CalibrationInfo.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CalibrationInfo.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/PhysicalConnectorInfo.h" />
 		<property name = "CalibrationInfo" type = "CalibrationInfo" optional = "true" />
 		<property name = "NextCalibration" type = "CalibrationInfo" optional = "true" />
 		<property name = "PhysicalConnector" type = "PhysicalConnectorInfo" optional = "true" />
@@ -156,12 +156,12 @@
 	</class>
 
 	<class name = "MdsDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/MetaData.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/SystemContextDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ClockDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/BatteryDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ApprovedJurisdictions.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/VmdDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/MetaData.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/SystemContextDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ClockDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/BatteryDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ApprovedJurisdictions.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/VmdDescriptor.h" />
 		<property name = "MetaData" type = "MetaData" optional = "true" />
 		<property name = "SystemContext" type = "SystemContextDescriptor" optional = "true" />
 		<property name = "Clock" type = "ClockDescriptor" optional = "true" />
@@ -171,8 +171,8 @@
 	</class>
 
 	<class name = "MetaData" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Udi.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Udi.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
 		<property name = "LotNumber" type = "std::string" optional = "true" />
 		<property name = "ManufactureDate" type = "xml_schema::DateTime" optional = "true" />
 		<property name = "ExpirationDate" type = "xml_schema::DateTime" optional = "true" />
@@ -184,7 +184,7 @@
 	</class>
 
 	<class name = "Udi" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
 		<property name = "DeviceIdentifier" type = "std::string" optional = "false" />
 		<property name = "HumanReadableForm" type = "std::string" optional = "false" />
 		<property name = "Issuer" type = "InstanceIdentifier" optional = "false" />
@@ -192,7 +192,7 @@
 	</class>
 
 	<class name = "MdsState" parent = "AbstractComplexDeviceComponentState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/OperatingJurisdiction.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/OperatingJurisdiction.h" />
 		<typedef name = "DescriptorType" type = "MdsDescriptor" />
 		<property name = "OperatingJurisdiction" type = "OperatingJurisdiction" optional = "true" />
 		<property name = "Lang" type = "xml_schema::Language" optional = "true" />
@@ -200,14 +200,14 @@
 	</class>
 
 	<class name = "VmdDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/ApprovedJurisdictions.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ChannelDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ApprovedJurisdictions.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h" />
 		<property name = "ApprovedJurisdictions" type = "ApprovedJurisdictions" optional = "true" />
 		<propertyList nameSingle = "Channel" nameSeveral = "ChannelList" type = "ChannelDescriptor" />
 	</class>
 
 	<class name = "VmdState" parent = "AbstractComplexDeviceComponentState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/OperatingJurisdiction.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/OperatingJurisdiction.h" />
 		<property name = "OperatingJurisdiction" type = "OperatingJurisdiction" optional = "true" />
 	</class>
 
@@ -230,8 +230,8 @@
 	</class>
 
 	<class name = "AlertSystemDescriptor" parent = "AbstractAlertDescriptor" abstract = "false" customImpl = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/AlertConditionDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/AlertSignalDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/AlertConditionDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/AlertSignalDescriptor.h" />
 		<property name = "MaxPhysiologicalParallelAlarms" type = "unsigned int" optional = "true" />
 		<property name = "MaxTechnicalParallelAlarms" type = "unsigned int" optional = "true" />
 		<property name = "SelfCheckPeriod" type = "xml_schema::Duration" optional = "true" />
@@ -240,7 +240,7 @@
 	</class>
 
 	<class name = "AlertSystemState" parent = "AbstractAlertState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/SystemSignalActivation.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/SystemSignalActivation.h" />
 		<typedef name = "DescriptorType" type = "AlertSystemDescriptor" />
 		<property name = "LastSelfCheck" type = "Timestamp" optional = "true" />
 		<property name = "SelfCheckCount" type = "long long" optional = "true" />
@@ -250,19 +250,19 @@
 	</class>
 
 	<class name = "CauseInfo" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/RemedyInfo.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/RemedyInfo.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
 		<property name = "RemedyInfo" type = "RemedyInfo" optional = "true" />
 		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
 	</class>
 
 	<class name = "RemedyInfo" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
 		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
 	</class>
 
 	<class name = "AlertConditionDescriptor" parent = "AbstractAlertDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CauseInfo.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CauseInfo.h" />
 		<property name = "Kind" type = "AlertConditionKind" optional = "false" />
 		<property name = "Priority" type = "AlertConditionPriority" optional = "false" />
 		<property name = "DefaultConditionGenerationDelay" type = "xml_schema::Duration" optional = "true" />
@@ -282,13 +282,13 @@
 	</class>
 
 	<class name = "LimitAlertConditionDescriptor" parent = "AlertConditionDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
 		<property name = "MaxLimits" type = "Range" optional = "false" />
 		<property name = "AutoLimitSupported" type = "bool" optional = "true" />
 	</class>
 
 	<class name = "LimitAlertConditionState" parent = "AlertConditionState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
 		<typedef name = "DescriptorType" type = "LimitAlertConditionDescriptor" />
 		<property name = "Limits" type = "Range" optional = "false" />
 		<property name = "MonitoredAlertLimits" type = "AlertConditionMonitoredLimits" optional = "false" />
@@ -316,8 +316,8 @@
 	</class>
 
 	<class name = "AbstractMetricValue" parent = "NULL" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/MetricQuality.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Annotation.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/MetricQuality.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Annotation.h" />
 		<property name = "MetricQuality" type = "MetricQuality" optional = "false" />
 		<property name = "StartTime" type = "Timestamp" optional = "true" />
 		<property name = "StopTime" type = "Timestamp" optional = "true" />
@@ -332,7 +332,7 @@
 	</class>
 
 	<class name = "Annotation" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "false" />
 	</class>
 
@@ -345,7 +345,7 @@
 	</class>
 
 	<class name = "SampleArrayValue" parent = "AbstractMetricValue" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/ApplyAnnotation.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ApplyAnnotation.h" />
 		<property name = "Samples" type = "RealTimeValueType" optional = "true" />
 		<propertyList nameSingle = "ApplyAnnotation" nameSeveral = "ApplyAnnotationList" type = "ApplyAnnotation" />
 	</class>
@@ -356,8 +356,8 @@
 	</class>
 
 	<class name = "AbstractMetricDescriptor" parent = "AbstractDescriptor" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Relation.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Relation.h" />
 		<property name = "Unit" type = "CodedValue" optional = "false" />
 		<property name = "MetricCategory" type = "MetricCategory" optional = "false" />
 		<property name = "DerivationMethod" type = "DerivationMethod" optional = "true" />
@@ -372,8 +372,8 @@
 	</class>
 
 	<class name = "Relation" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
 		<property name = "Code" type = "CodedValue" optional = "true" />
 		<property name = "Identification" type = "InstanceIdentifier" optional = "true" />
 		<property name = "Kind" type = "Kind" optional = "false" />
@@ -381,8 +381,8 @@
 	</class>
 
 	<class name = "AbstractMetricState" parent = "AbstractState" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/PhysicalConnectorInfo.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/PhysicalConnectorInfo.h" />
 		<property name = "PhysicalConnector" type = "PhysicalConnectorInfo" optional = "true" />
 		<property name = "ActivationState" type = "ComponentActivation" optional = "true" />
 		<property name = "ActiveDeterminationPeriod" type = "xml_schema::Duration" optional = "true" />
@@ -391,7 +391,7 @@
 	</class>
 
 	<class name = "NumericMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
 		<typedef name = "StateType" type = "NumericMetricState" />
 		<property name = "Resolution" type = "double" optional = "false" />
 		<property name = "AveragingPeriod" type = "xml_schema::Duration" optional = "true" />
@@ -399,8 +399,8 @@
 	</class>
 
 	<class name = "NumericMetricState" parent = "AbstractMetricState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/NumericMetricValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/NumericMetricValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
 		<typedef name = "DescriptorType" type = "NumericMetricDescriptor" />
 		<property name = "MetricValue" type = "NumericMetricValue" optional = "true" />
 		<property name = "ActiveAveragingPeriod" type = "xml_schema::Duration" optional = "true" />
@@ -412,20 +412,20 @@
 	</class>
 
 	<class name = "StringMetricState" parent = "AbstractMetricState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/StringMetricValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/StringMetricValue.h" />
 		<typedef name = "DescriptorType" type = "StringMetricDescriptor" />
 		<property name = "MetricValue" type = "StringMetricValue" optional = "true" />
 	</class>
 
 	<class name = "EnumStringMetricDescriptor" parent = "StringMetricDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/AllowedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/AllowedValue.h" />
 		<propertyList nameSingle = "AllowedValue" nameSeveral = "AllowedValueList" type = "AllowedValue" />
 	</class>
 
 	<class name = "AllowedValue" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Measurement.h" />
 		<property name = "Value" type = "std::string" optional = "false" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
 		<property name = "Identification" type = "InstanceIdentifier" optional = "true" />
@@ -437,7 +437,7 @@
 	</class>
 
 	<class name = "RealTimeSampleArrayMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
 		<typedef name = "StateType" type = "RealTimeSampleArrayMetricState" />
 		<property name = "Resolution" type = "double" optional = "false" />
 		<property name = "SamplePeriod" type = "xml_schema::Duration" optional = "false" />
@@ -445,16 +445,16 @@
 	</class>
 
 	<class name = "RealTimeSampleArrayMetricState" parent = "AbstractMetricState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/SampleArrayValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
 		<typedef name = "DescriptorType" type = "RealTimeSampleArrayMetricDescriptor" />
 		<property name = "MetricValue" type = "SampleArrayValue" optional = "true" />
 		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeList" type = "Range" />
 	</class>
 
 	<class name = "DistributionSampleArrayMetricDescriptor" parent = "AbstractMetricDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "DomainUnit" type = "CodedValue" optional = "false" />
 		<property name = "DistributionRange" type = "Range" optional = "false" />
 		<property name = "Resolution" type = "double" optional = "false" />
@@ -462,8 +462,8 @@
 	</class>
 
 	<class name = "DistributionSampleArrayMetricState" parent = "AbstractMetricState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/SampleArrayValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/SampleArrayValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
 		<property name = "MetricValue" type = "SampleArrayValue" optional = "true" />
 		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeList" type = "Range" />
 	</class>
@@ -472,14 +472,14 @@
 	</class>
 
 	<class name = "ScoState" parent = "AbstractState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/OperationGroup.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/OperationGroup.h" />
 		<property name = "InvocationRequested" type = "OperationRef" optional = "true" />
 		<property name = "InvocationRequired" type = "OperationRef" optional = "true" />
 		<propertyList nameSingle = "OperationGroup" nameSeveral = "OperationGroupList" type = "OperationGroup" />
 	</class>
 
 	<class name = "OperationGroup" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "false" />
 		<property name = "OperatingMode" type = "OperatingMode" optional = "true" />
 		<property name = "Operations" type = "OperationRef" optional = "true" />
@@ -505,7 +505,7 @@
 	</class>
 
 	<class name = "SetValueOperationState" parent = "AbstractOperationState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
 		<propertyList nameSingle = "AllowedRange" nameSeveral = "AllowedRangeList" type = "Range" />
 	</class>
 
@@ -514,7 +514,7 @@
 	</class>
 
 	<class name = "SetStringOperationState" parent = "AbstractOperationState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/AllowedValues.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/AllowedValues.h" />
 		<property name = "AllowedValues" type = "AllowedValues" optional = "true" />
 	</class>
 
@@ -523,12 +523,12 @@
 	</class>
 
 	<class name = "ActivateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Argument.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Argument.h" />
 		<propertyList nameSingle = "Argument" nameSeveral = "ArgumentList" type = "Argument" />
 	</class>
 
 	<class name = "Argument" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "ArgName" type = "CodedValue" optional = "false" />
 		<property name = "Arg" type = "xml_schema::Qname" optional = "false" />
 	</class>
@@ -561,13 +561,13 @@
 	</class>
 
 	<class name = "ClockDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "Resolution" type = "xml_schema::Duration" optional = "true" />
 		<propertyList nameSingle = "TimeProtocol" nameSeveral = "TimeProtocolList" type = "CodedValue" />
 	</class>
 
 	<class name = "ClockState" parent = "AbstractDeviceComponentState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<typedef name = "DescriptorType" type = "ClockDescriptor" />
 		<property name = "ActiveSyncProtocol" type = "CodedValue" optional = "true" />
 		<property name = "DateAndTime" type = "Timestamp" optional = "true" />
@@ -580,14 +580,14 @@
 	</class>
 
 	<class name = "BatteryDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Measurement.h" />
 		<property name = "CapacityFullCharge" type = "Measurement" optional = "true" />
 		<property name = "CapacitySpecified" type = "Measurement" optional = "true" />
 		<property name = "VoltageSpecified" type = "Measurement" optional = "true" />
 	</class>
 
 	<class name = "BatteryState" parent = "AbstractDeviceComponentState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Measurement.h" />
 		<property name = "CapacityRemaining" type = "Measurement" optional = "true" />
 		<property name = "Voltage" type = "Measurement" optional = "true" />
 		<property name = "Current" type = "Measurement" optional = "true" />
@@ -598,12 +598,12 @@
 	</class>
 
 	<class name = "SystemContextDescriptor" parent = "AbstractDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/PatientContextDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocationContextDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/EnsembleContextDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/OperatorContextDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/WorkflowContextDescriptor.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/MeansContextDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/PatientContextDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocationContextDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/EnsembleContextDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/OperatorContextDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/WorkflowContextDescriptor.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/MeansContextDescriptor.h" />
 		<property name = "PatientContext" type = "PatientContextDescriptor" optional = "true" />
 		<property name = "LocationContext" type = "LocationContextDescriptor" optional = "true" />
 		<propertyList nameSingle = "EnsembleContext" nameSeveral = "EnsembleContextList" type = "EnsembleContextDescriptor" />
@@ -619,7 +619,7 @@
 	</class>
 
 	<class name = "AbstractContextState" parent = "AbstractMultiState" abstract = "true">
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
 		<property name = "ContextAssociation" type = "ContextAssociation" optional = "true" />
 		<property name = "BindingMdibVersion" type = "ReferencedVersion" optional = "true" />
 		<property name = "UnbindingMdibVersion" type = "ReferencedVersion" optional = "true" />
@@ -638,8 +638,8 @@
 	</class>
 
 	<class name = "PersonReference" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/BaseDemographics.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/BaseDemographics.h" />
 		<property name = "Name" type = "BaseDemographics" optional = "true" />
 		<propertyList nameSingle = "Identification" nameSeveral = "IdentificationList" type = "InstanceIdentifier" />
 	</class>
@@ -658,8 +658,8 @@
 	</class>
 
 	<class name = "PatientDemographicsCoreData" parent = "BaseDemographics" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Measurement.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "Sex" type = "Sex" optional = "true" />
 		<property name = "PatientType" type = "PatientType" optional = "true" />
 		<property name = "DateOfBirth" type = "DateOfBirth" optional = "true" />
@@ -669,8 +669,8 @@
 	</class>
 
 	<class name = "NeonatalPatientDemographicsCoreData" parent = "PatientDemographicsCoreData" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Measurement.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/PersonReference.h" />
 		<property name = "GestationalAge" type = "Measurement" optional = "true" />
 		<property name = "BirthLength" type = "Measurement" optional = "true" />
 		<property name = "BirthWeight" type = "Measurement" optional = "true" />
@@ -679,7 +679,7 @@
 	</class>
 
 	<class name = "PatientContextState" parent = "AbstractContextState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/PatientDemographicsCoreData.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/PatientDemographicsCoreData.h" />
 		<typedef name = "DescriptorType" type = "PatientContextDescriptor" />
 		<property name = "CoreData" type = "PatientDemographicsCoreData" optional = "true" />
 	</class>
@@ -689,7 +689,7 @@
 	</class>
 
 	<class name = "LocationContextState" parent = "AbstractContextState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/LocationDetail.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocationDetail.h" />
 		<typedef name = "DescriptorType" type = "LocationContextDescriptor" />
 		<property name = "LocationDetail" type = "LocationDetail" optional = "true" />
 	</class>
@@ -699,9 +699,9 @@
 	</class>
 
 	<class name = "ClinicalInfo" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/RelatedMeasurement.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/RelatedMeasurement.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
 		<property name = "Code" type = "CodedValue" optional = "true" />
 		<property name = "Criticality" type = "Criticality" optional = "true" />
@@ -710,23 +710,23 @@
 	</class>
 
 	<class name = "RelatedMeasurement" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Measurement.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ReferenceRange.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Measurement.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ReferenceRange.h" />
 		<property name = "Value" type = "Measurement" optional = "false" />
 		<property name = "Validity" type = "MeasurementValidity" optional = "true" />
 		<propertyList nameSingle = "ReferenceRange" nameSeveral = "ReferenceRangeList" type = "ReferenceRange" />
 	</class>
 
 	<class name = "ReferenceRange" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/Range.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/Range.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "Range" type = "Range" optional = "false" />
 		<property name = "Meaning" type = "CodedValue" optional = "true" />
 	</class>
 
 	<class name = "ImagingProcedure" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "AccessionIdentifier" type = "InstanceIdentifier" optional = "false" />
 		<property name = "RequestedProcedureId" type = "InstanceIdentifier" optional = "false" />
 		<property name = "StudyInstanceUid" type = "InstanceIdentifier" optional = "false" />
@@ -736,16 +736,16 @@
 	</class>
 
 	<class name = "LocationReference" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocationDetail.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocationDetail.h" />
 		<property name = "LocationDetail" type = "LocationDetail" optional = "true" />
 		<propertyList nameSingle = "Identification" nameSeveral = "IdentificationList" type = "InstanceIdentifier" />
 	</class>
 
 	<class name = "OrderDetail" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/PersonParticipation.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ImagingProcedure.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/PersonParticipation.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ImagingProcedure.h" />
 		<property name = "Start" type = "xml_schema::DateTime" optional = "true" />
 		<property name = "End" type = "xml_schema::DateTime" optional = "true" />
 		<propertyList nameSingle = "Performer" nameSeveral = "PerformerList" type = "PersonParticipation" />
@@ -754,24 +754,24 @@
 	</class>
 
 	<class name = "PersonParticipation" parent = "PersonReference" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<propertyList nameSingle = "Role" nameSeveral = "RoleList" type = "CodedValue" />
 	</class>
 
 	<class name = "WorkflowContextState" parent = "AbstractContextState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/WorkflowDetail.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/WorkflowDetail.h" />
 		<typedef name = "DescriptorType" type = "WorkflowContextDescriptor" />
 		<property name = "WorkflowDetail" type = "WorkflowDetail" optional = "true" />
 	</class>
 
 	<class name = "WorkflowDetail" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocationReference.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/RequestedOrderDetail.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/PerformedOrderDetail.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/PersonReference.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocationReference.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ClinicalInfo.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/RequestedOrderDetail.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/PerformedOrderDetail.h" />
 		<property name = "Patient" type = "PersonReference" optional = "false" />
 		<property name = "AssignedLocation" type = "LocationReference" optional = "true" />
 		<property name = "VisitNumber" type = "InstanceIdentifier" optional = "true" />
@@ -782,16 +782,16 @@
 	</class>
 
 	<class name = "RequestedOrderDetail" parent = "OrderDetail" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/PersonReference.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/PersonReference.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
 		<property name = "ReferringPhysician" type = "PersonReference" optional = "true" />
 		<property name = "RequestingPhysician" type = "PersonReference" optional = "true" />
 		<property name = "PlacerOrderNumber" type = "InstanceIdentifier" optional = "false" />
 	</class>
 
 	<class name = "PerformedOrderDetail" parent = "OrderDetail" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/InstanceIdentifier.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/ClinicalInfo.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ClinicalInfo.h" />
 		<property name = "FillerOrderNumber" type = "InstanceIdentifier" optional = "true" />
 		<propertyList nameSingle = "ResultingClinicalInfo" nameSeveral = "ResultingClinicalInfoList" type = "ClinicalInfo" />
 	</class>
@@ -801,7 +801,7 @@
 	</class>
 
 	<class name = "OperatorContextState" parent = "AbstractContextState" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/BaseDemographics.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/BaseDemographics.h" />
 		<typedef name = "DescriptorType" type = "OperatorContextDescriptor" />
 		<property name = "OperatorDetails" type = "BaseDemographics" optional = "true" />
 	</class>
@@ -821,12 +821,12 @@
 	</class>
 
 	<class name = "ContainmentTree" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/ContainmentTreeEntry.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/ContainmentTreeEntry.h" />
 		<propertyList nameSingle = "Entry" nameSeveral = "EntryList" type = "ContainmentTreeEntry" />
 	</class>
 
 	<class name = "ContainmentTreeEntry" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/CodedValue.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
 	</class>
 
@@ -837,8 +837,8 @@
 	</class>
 
 	<class name = "DicomNetworkAe" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/DicomTransferCapability.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/DicomTransferCapability.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
 		<property name = "AeTitle" type = "std::string" optional = "false" />
 		<property name = "NetworkConnectionReference" type = "xml_schema::Idrefs" optional = "false" />
 		<property name = "AssociationInitiator" type = "bool" optional = "false" />
@@ -855,9 +855,9 @@
 	</class>
 
 	<class name = "DicomDeviceDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkAe.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/DicomNetworkConnection.h" />
-		<include path = "OSCLib/Data/OSCP/MDIB/LocalizedText.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/DicomNetworkAe.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/DicomNetworkConnection.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
 		<property name = "IssuerOfPatientID" type = "std::string" optional = "true" />
 		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeList" type = "DicomNetworkAe" />
 		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionList" type = "DicomNetworkConnection" />

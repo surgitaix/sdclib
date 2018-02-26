@@ -68,7 +68,7 @@ class SDCProvider final : public OSELib::WithLogger {
 
 public:
     SDCProvider();
-    virtual ~SDCProvider();
+    ~SDCProvider();
 
     /**
     * @brief Get the complete Medical Device Infomation Base (MDIB, description and states).

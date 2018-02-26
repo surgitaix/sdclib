@@ -73,7 +73,7 @@ private:
 		const InvocationState invocationState;
 	};
 public:
-	virtual ~SDCConsumer();
+	~SDCConsumer();
 
     /**
     * @brief Get the complete MDIB (description and states).

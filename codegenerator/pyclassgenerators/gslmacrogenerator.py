@@ -41,7 +41,7 @@ class GSLClassBuilder(object):
         # consider those types abstract that are named that way:
         if not (complexTypeName.find('Abstract') != -1):
             if not (complexTypeName in self.__includedComplexTypes_list):
-                self.__includes = self.__includes + '\t\t<include path = \"OSCLib/Data/OSCP/MDIB/' + complexTypeName + '.h\" />\n'
+                self.__includes = self.__includes + '\t\t<include path = \"OSCLib/Data/SDC/MDIB/' + complexTypeName + '.h\" />\n'
                 self.__includedComplexTypes_list.append(complexTypeName)
         
     def addProperty(self, property_name, property_type, optionality_string):

@@ -27,7 +27,7 @@ public:
 class ServiceManager final: public WithLogger {
 public:
 	ServiceManager();
-	virtual ~ServiceManager();
+	~ServiceManager();
 
     /**
     * @brief Set a handler that will be called when device send DPWS hello.
