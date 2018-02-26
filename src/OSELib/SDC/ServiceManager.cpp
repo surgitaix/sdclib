@@ -14,6 +14,7 @@
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
 #include "OSCLib/Data/SDC/SDCConsumer.h"
+#include "OSCLib/SDCLibrary.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
@@ -93,7 +94,7 @@ std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 	DPWS::ResolveType resolveFilter((WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType(epr))));
 	_dpwsClient->addResolveMatchEventHandler(resolveFilter, resolveCb);
 	try {
-		matchEvent.wait(5000);
+		matchEvent.wait(OSCLib::SDCLibrary::getInstance().getDiscoveryTime());
 		log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
 	} catch (const Poco::TimeoutException & e) {
 	}
@@ -136,7 +137,7 @@ std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> ServiceManager::dis
 
 	ProbeMatchCallback probeCb;
 	_dpwsClient->addProbeMatchEventHandler(probeFilter, probeCb);
-	Poco::Thread::sleep(5000);
+	Poco::Thread::sleep(OSCLib::SDCLibrary::getInstance().getDiscoveryTime());
 	_dpwsClient->removeProbeMatchEventHandler(probeCb);
 	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb._results.size()); });
 

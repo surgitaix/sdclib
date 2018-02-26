@@ -18,7 +18,7 @@
  *  @file SDCLibrary.cpp
  *  @project OSCLib
  *  @date 24.08.2011
- *  @author besting
+ *  @author besting, buerger
  *  @copyright (c) SurgiTAIX AG
  *
  */
@@ -49,7 +49,8 @@ SDCLibrary::SDCLibrary() :
 	initialized(false),
 	m_IP4enabled(true),
 	m_IP6enabled(true),
-	m_numberOfReattemptsWithAnotherPort(3)
+	m_numberOfReattemptsWithAnotherPort(3),
+	m_discoveryTimeSec(5000)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
 	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel);
@@ -160,5 +161,12 @@ void SDCLibrary::setNumberOfReattemptsWithAnotherPort(const int numberOfReattemp
 	m_numberOfReattemptsWithAnotherPort = numberOfReattemptsWithAnotherPort;
 }
 
+void SDCLibrary::setDiscoveryTime(int discoveryTimeSec){
+	m_discoveryTimeSec = discoveryTimeSec;
+}
+
+int SDCLibrary::getDiscoveryTime(){
+	return m_discoveryTimeSec;
+}
 
 } /* namespace OSCLib */

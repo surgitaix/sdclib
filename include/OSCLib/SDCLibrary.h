@@ -93,12 +93,26 @@ public:
 	void setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort);
 
 
+    /**
+    * @brief Set the time the service manager waits for the device discovery
+    *
+    * @param discoveryTimeSec The time in seconds to wait while discovery
+    */
+	void setDiscoveryTime(int discoveryTimeSec);
+
+    /**
+    * @brief Get the time the service manager waits for the device discovery
+    *
+    * @return The time in seconds to wait for discovery
+    */
+	int getDiscoveryTime();
 private:
 
 	bool m_IP4enabled;
 	bool m_IP6enabled;
 	bool initialized;
 	int m_numberOfReattemptsWithAnotherPort;
+	int m_discoveryTimeSec;
 
 	void createPortLists(unsigned int portStart, unsigned int portRange = 1000);
 	std::deque<unsigned int> reservedPorts;
