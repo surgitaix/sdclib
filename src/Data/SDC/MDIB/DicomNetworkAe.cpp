@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/DicomTransferCapability.h"
 #include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -167,5 +167,5 @@ void DicomNetworkAe::clearDescriptionList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

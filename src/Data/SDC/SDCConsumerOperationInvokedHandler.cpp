@@ -23,7 +23,7 @@
 
 #include "OSCLib/Data/SDC/SDCConsumerOperationInvokedHandler.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -46,4 +46,4 @@ std::string SDCConsumerOperationInvokedHandler::getDescriptorHandle() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

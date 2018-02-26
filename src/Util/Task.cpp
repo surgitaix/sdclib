@@ -7,7 +7,7 @@
 
 #include "OSCLib/Util/Task.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Util {
 
 Task::Task() : isRunning(false) {
@@ -49,4 +49,4 @@ void Task::setIsRunning(bool value) {
 }
 
 } /* namespace Util */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

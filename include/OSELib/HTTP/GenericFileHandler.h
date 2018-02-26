@@ -25,6 +25,6 @@ private:
 };
 
 }
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* GENERICWSDLHANDLER_H_ */

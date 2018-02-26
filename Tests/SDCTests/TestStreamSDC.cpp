@@ -60,11 +60,11 @@
 #include "Poco/ScopedLock.h"
 #include "Poco/Thread.h"
 
-using namespace OSCLib;
-using namespace OSCLib::Util;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Tests {
 namespace StreamSDC {
 
@@ -212,7 +212,7 @@ public:
     	distributionEventHandler("handle_distribution_stream")
 	{
 
-		oscpProvider.setEndpointReference(OSCLib::Tests::StreamSDC::deviceEPR);
+		oscpProvider.setEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR);
 
 
 		// Currentweight stream metric (read-only)
@@ -359,7 +359,7 @@ TEST_FIXTURE(FixtureStreamSDC, streamoscp)
         // Consumer
         OSELib::SDC::ServiceManager oscpsm;
         DebugOut(DebugOut::Default, "StreamSDC") << "Consumer discovery..." << std::endl;
-        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(OSCLib::Tests::StreamSDC::deviceEPR));
+        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
         std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
         std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
         std::shared_ptr<Tests::StreamSDC::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamSDC::StreamDistributionConsumerEventHandler>("handle_distribution_stream");

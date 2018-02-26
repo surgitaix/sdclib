@@ -43,9 +43,9 @@
 
 #include <fstream>
 
-using namespace OSCLib;
-using namespace OSCLib::Util;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
 std::string stripCharacters(const std::string & input, const std::string & removeChars) {
 	std::string str(input);

@@ -2,6 +2,6 @@
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* DATA_OSCP_MDIB_CONVERTFROMCDM_H_ */

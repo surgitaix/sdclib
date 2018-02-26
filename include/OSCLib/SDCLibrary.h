@@ -40,7 +40,7 @@
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
-namespace OSCLib {
+namespace SDCLib {
 
 
 
@@ -96,14 +96,14 @@ public:
     /**
     * @brief Set the time the service manager waits for the device discovery
     *
-    * @param discoveryTimeSec The time in seconds to wait while discovery
+    * @param discoveryTimeSec The time in milliseconds to wait while discovery
     */
-	void setDiscoveryTime(int discoveryTimeSec);
+	void setDiscoveryTime(int discoveryTimeMilSec);
 
     /**
     * @brief Get the time the service manager waits for the device discovery
     *
-    * @return The time in seconds to wait for discovery
+    * @return The time in milliseconds to wait for discovery
     */
 	int getDiscoveryTime();
 private:
@@ -112,7 +112,7 @@ private:
 	bool m_IP6enabled;
 	bool initialized;
 	int m_numberOfReattemptsWithAnotherPort;
-	int m_discoveryTimeSec;
+	int m_discoveryTimeMilSec;
 
 	void createPortLists(unsigned int portStart, unsigned int portRange = 1000);
 	std::deque<unsigned int> reservedPorts;
@@ -126,5 +126,5 @@ private:
 	void operator=(SDCLibrary const&);
 };
 
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 #endif /* OSCLIB_H_ */

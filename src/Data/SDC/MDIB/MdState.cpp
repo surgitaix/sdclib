@@ -37,7 +37,7 @@
 #include "osdm.hxx"
 
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -96,5 +96,5 @@ bool MdState::hasStateVersion() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

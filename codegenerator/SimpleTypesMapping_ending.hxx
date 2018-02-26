@@ -5,6 +5,6 @@
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SIMPLETYPESMAPPING_H_ */

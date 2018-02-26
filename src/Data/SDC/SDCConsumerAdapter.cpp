@@ -66,7 +66,7 @@ using ContextServiceEventSinkController = SDC::SDCEventServiceController<SDC::IC
 using EventReportEventSinkController = SDC::SDCEventServiceController<SDC::IEventReportEventSink, SDC::EventReportEventSinkHandler>;
 
 struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OSELib::WithLogger  {
-	ContextServiceEventSink(OSCLib::Data::SDC::SDCConsumer & consumer) :
+	ContextServiceEventSink(SDCLib::Data::SDC::SDCConsumer & consumer) :
 		WithLogger(OSELib::Log::EVENTSINK),
 		_consumer(consumer)
 	{
@@ -84,44 +84,44 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 	void delegateContextState(const CDM::AbstractContextState &contextState) {
 		if (const auto state = dynamic_cast<const CDM::LocationContextState *>(&contextState)) {
 			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::PatientContextState *>(&contextState)) {
 			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::WorkflowContextState *>(&contextState)) {
 			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::EnsembleContextState *>(&contextState)) {
 			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::OperatorContextState *>(&contextState)) {
 			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::MeansContextState *>(&contextState)) {
 			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			// dispatch to state callback referenced by the multistate descriptor
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		log_error([&] { return "Unknown context state type, event will not be forwarded to handler!"; });
@@ -164,11 +164,11 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 	}
 
 private:
-	OSCLib::Data::SDC::SDCConsumer & _consumer;
+	SDCLib::Data::SDC::SDCConsumer & _consumer;
 };
 
 struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::WithLogger {
-	EventReportEventSink(OSCLib::Data::SDC::SDCConsumer & consumer) :
+	EventReportEventSink(SDCLib::Data::SDC::SDCConsumer & consumer) :
 		WithLogger(Log::EVENTSINK),
 		_consumer(consumer)
 	{
@@ -229,8 +229,8 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 		}
 		for (const auto & irp : report.ReportPart()) {
 			_consumer.onOperationInvoked(
-				OSCLib::Data::SDC::OperationInvocationContext(irp.OperationHandleRef(), irp.InvocationInfo().TransactionId()),
-				OSCLib::Data::SDC::ConvertFromCDM::convert(irp.InvocationInfo().InvocationState()));
+				SDCLib::Data::SDC::OperationInvocationContext(irp.OperationHandleRef(), irp.InvocationInfo().TransactionId()),
+				SDCLib::Data::SDC::ConvertFromCDM::convert(irp.InvocationInfo().InvocationState()));
 		}
 	}
 
@@ -243,20 +243,20 @@ private:
 
 	void dispatchAlertState(const CDM::AbstractAlertState & alertState) {
 		if (const auto state = dynamic_cast<const CDM::AlertSystemState *>(&alertState)) {
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::AlertSignalState *>(&alertState)) {
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::LimitAlertConditionState *>(&alertState)) {
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		// the order does matter here, because AlertConditionState is the parent class of LimitAlertConditionState
 		if (const auto state = dynamic_cast<const CDM::AlertConditionState *>(&alertState)) {
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		log_error([&] { return "Unknown alert state type, event will not be forwarded to handler!"; });
@@ -264,35 +264,35 @@ private:
 
 	void dispatchMetricState(const CDM::AbstractMetricState & metricState) {
 		if (const auto state = dynamic_cast<const CDM::EnumStringMetricState *>(&metricState)) {
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::NumericMetricState *>(&metricState)) {
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::StringMetricState *>(&metricState)) {
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&metricState)) {
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 		if (const auto state = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(&metricState)) {
-			_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(*state));
+			_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
 			return;
 		}
 
 		log_error([&] { return "Unknown metric state type, event will not be forwarded to handler!"; });
 	}
 
-	OSCLib::Data::SDC::SDCConsumer & _consumer;
+	SDCLib::Data::SDC::SDCConsumer & _consumer;
 };
 
 }
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -440,7 +440,7 @@ std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(co
 }
 
 void SDCConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType & notification) {
-	_consumer.onStateChanged(OSCLib::Data::SDC::ConvertFromCDM::convert(notification.State().front()));
+	_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(notification.State().front()));
 }
 
 

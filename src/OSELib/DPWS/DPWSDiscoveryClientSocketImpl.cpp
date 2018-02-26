@@ -71,7 +71,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
 	_resolveDispatcher(resolveDispatcher)
 {
 
-	if (OSCLib::SDCLibrary::getInstance().getIP4enabled()) {
+	if (SDCLib::SDCLibrary::getInstance().getIP4enabled()) {
 		_ipv4MulticastAddress = Poco::Net::SocketAddress(OSELib::UDP_MULTICAST_DISCOVERY_IP_V4, OSELib::UPD_MULTICAST_DISCOVERY_PORT);
 		_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), _ipv4MulticastAddress.port());
 		_ipv4MulticastDiscoverySocket = Poco::Net::MulticastSocket(_ipv4BindingAddress.family());
@@ -94,7 +94,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
 	}
 
 
-	if (OSCLib::SDCLibrary::getInstance().getIP6enabled()) {
+	if (SDCLib::SDCLibrary::getInstance().getIP6enabled()) {
 		_ipv6MulticastAddress = Poco::Net::SocketAddress (OSELib::UDP_MULTICAST_DISCOVERY_IP_V6, OSELib::UPD_MULTICAST_DISCOVERY_PORT);
 		_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), _ipv6MulticastAddress.port());
 		_ipv6MulticastDiscoverySocket = Poco::Net::MulticastSocket(_ipv6BindingAddress.family());

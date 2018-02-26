@@ -31,7 +31,7 @@
 #include <map>
 #include <memory>
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -59,6 +59,6 @@ private:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SRC_DATA_OSCP_FUTURETRANSACTIONSTATE_H_ */

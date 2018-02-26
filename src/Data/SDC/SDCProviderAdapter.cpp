@@ -85,7 +85,7 @@ private:
 
 struct ContextReportServiceImpl : public SDC::IContextService {
 
-	ContextReportServiceImpl(OSCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata, DPWS::SubscriptionManager & subscriptionManager) :
+	ContextReportServiceImpl(SDCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata, DPWS::SubscriptionManager & subscriptionManager) :
 		_provider(provider),
 		_metadata(metadata),
 		_subscriptionManager(subscriptionManager)
@@ -129,7 +129,7 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 	}
 
 private:
-	OSCLib::Data::SDC::SDCProvider & _provider;
+	SDCLib::Data::SDC::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
 	DPWS::SubscriptionManager & _subscriptionManager;
 };
@@ -215,7 +215,7 @@ private:
 
 struct GetServiceImpl : public SDC::IGetService {
 
-	GetServiceImpl(OSCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
+	GetServiceImpl(SDCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
 		_provider(provider),
 		_metadata(metadata)
 	{
@@ -252,13 +252,13 @@ struct GetServiceImpl : public SDC::IGetService {
 	}
 
 private:
-	OSCLib::Data::SDC::SDCProvider & _provider;
+	SDCLib::Data::SDC::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
 };
 
 struct SetServiceImpl : public SDC::ISetService {
 
-	SetServiceImpl(OSCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
+	SetServiceImpl(SDCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
 		_provider(provider),
 		_metadata(metadata)
 	{
@@ -303,13 +303,13 @@ struct SetServiceImpl : public SDC::ISetService {
 	}
 
 private:
-	OSCLib::Data::SDC::SDCProvider & _provider;
+	SDCLib::Data::SDC::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
 };
 
 }
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -514,4 +514,4 @@ void SDCProviderAdapter::removeStreamingPort(const int port) {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

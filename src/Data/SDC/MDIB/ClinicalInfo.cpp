@@ -40,7 +40,7 @@
 #include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "OSCLib/Data/SDC/MDIB/RelatedMeasurement.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -177,5 +177,5 @@ void ClinicalInfo::clearRelatedMeasurementList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

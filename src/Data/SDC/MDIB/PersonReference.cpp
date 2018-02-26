@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/SDC/MDIB/BaseDemographics.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -116,5 +116,5 @@ void PersonReference::clearIdentificationList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

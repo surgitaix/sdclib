@@ -26,7 +26,7 @@
 
 #include "OSCLib/Data/SDC/SDCConsumerOperationInvokedHandler.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -48,6 +48,6 @@ public:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SDCCONSUMERMDSTATEHANDLER_H_ */

@@ -36,7 +36,7 @@
 #include "OSCLib/Data/SDC/SDC-fwd.h"
 #include "osdm-fwd.hxx"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -157,5 +157,5 @@ private:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 #endif /* NUMERICMETRICDESCRIPTOR_H_ */

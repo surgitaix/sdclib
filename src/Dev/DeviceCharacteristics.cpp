@@ -28,7 +28,7 @@
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Dev {
 
 DeviceCharacteristics::DeviceCharacteristics()

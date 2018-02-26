@@ -32,7 +32,7 @@
 #include "OSCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "OSCLib/Data/SDC/MDIB/MDIB-fwd.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -68,6 +68,6 @@ private:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SDCCONSUMEROPERATIONINVOKEDHANDLER_H_ */

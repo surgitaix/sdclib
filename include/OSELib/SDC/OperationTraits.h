@@ -130,5 +130,5 @@ struct SetValueTraits {
 
 
 }  // namespace SDC
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 #endif /* SOAPOPERATIONTRAITS_H_ */

@@ -24,7 +24,7 @@
 #include "OSCLib/Data/SDC/FutureInvocationState.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -65,4 +65,4 @@ void FutureInvocationState::setEvent(InvocationState actual) {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

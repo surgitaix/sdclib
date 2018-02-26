@@ -19,7 +19,7 @@ namespace DPWS {
 
 class PingManager {
 public:
-	PingManager(OSCLib::Data::SDC::SDCConsumer & consumer);
+	PingManager(SDCLib::Data::SDC::SDCConsumer & consumer);
 	virtual ~PingManager();
 
 	void disable();
@@ -30,7 +30,7 @@ private:
 
 	Poco::Thread _thread;
 	Poco::RunnableAdapter<PingManager> _runnableAdapter;
-	OSCLib::Data::SDC::SDCConsumer & _consumer;
+	SDCLib::Data::SDC::SDCConsumer & _consumer;
 };
 
 } /* namespace DPWS */

@@ -96,5 +96,5 @@ struct WaveformStreamTraits {
 };
 
 }
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 #endif /* OSCPREPORTRAITS_H_ */

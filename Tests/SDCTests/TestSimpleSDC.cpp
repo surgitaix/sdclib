@@ -97,11 +97,11 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 
-using namespace OSCLib;
-using namespace OSCLib::Util;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Tests {
 namespace SimpleSDC {
 

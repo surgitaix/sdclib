@@ -15,7 +15,7 @@
 #include "OSCLib/Data/SDC/MDIB/MDIB-fwd.h"
 #include "osdm-fwd.hxx"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -140,6 +140,6 @@ public:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* DATA_OSCP_MDIB_DEFAULTS_H_ */

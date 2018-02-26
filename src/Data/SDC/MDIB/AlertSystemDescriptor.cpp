@@ -40,7 +40,7 @@
 #include "OSCLib/Data/SDC/MDIB/AlertSignalDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -252,5 +252,5 @@ void AlertSystemDescriptor::clearAlertSignalList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

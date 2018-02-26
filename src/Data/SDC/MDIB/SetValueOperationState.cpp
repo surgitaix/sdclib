@@ -38,7 +38,7 @@
 
 #include "OSCLib/Data/SDC/MDIB/Range.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -162,5 +162,5 @@ void SetValueOperationState::clearAllowedRangeList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

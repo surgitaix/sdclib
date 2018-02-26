@@ -13,7 +13,7 @@
 
 #include <atomic>
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Util {
 
 class Task : public Poco::Runnable {
@@ -36,6 +36,6 @@ private:
 };
 
 } /* namespace Util */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* UTIL_TASK_H_ */

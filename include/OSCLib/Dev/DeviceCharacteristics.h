@@ -29,7 +29,7 @@
 #include <string>
 #include <map>
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Dev {
 
 typedef std::map<std::string, std::string> LocalizedString;

@@ -15,7 +15,7 @@
 
 #include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -37,6 +37,6 @@ public:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SDCPROVIDERALERTCONDITIONSTATEHANDLER_H_ */

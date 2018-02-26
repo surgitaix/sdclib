@@ -28,7 +28,7 @@
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Util {
 
 /**
@@ -162,4 +162,4 @@ bool DebugOut::isLogFileGood() {
 }
 
 } /* namespace Util */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

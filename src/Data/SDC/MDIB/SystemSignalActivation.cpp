@@ -37,7 +37,7 @@
 #include "osdm.hxx"
 
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -101,5 +101,5 @@ AlertActivation SystemSignalActivation::getState() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

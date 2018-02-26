@@ -20,11 +20,11 @@
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
 
-using namespace OSCLib;
-using namespace OSCLib::Util;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Tests {
 namespace MultiSDC {
 
@@ -94,7 +94,7 @@ private:
 
 } /* namespace MultiSDC */
 } /* namespace Tests */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 struct FixtureMultiOSCP : Tests::AbstractOSCLibFixture {
 	FixtureMultiOSCP() : AbstractOSCLibFixture("FixtureMultiOSCP", OSELib::LogLevel::NOTICE, 8000) {}

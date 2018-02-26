@@ -36,9 +36,9 @@
 #include "Poco/DateTimeFormatter.h"
 #include "Poco/DateTimeFormat.h"
 
-using namespace OSCLib;
-using namespace OSCLib::Util;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
 const std::string deviceEPR("urn:uuid:4242d68b-40ef-486a-a019-6b00d1424201");
 

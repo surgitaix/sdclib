@@ -95,7 +95,7 @@
 #include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
 #include "OSCLib/Data/SDC/SDCProviderAdapter.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -1376,4 +1376,4 @@ void SDCProvider::removeHandleForPeriodicEvent(const std::string & handle) {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

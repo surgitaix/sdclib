@@ -39,10 +39,10 @@
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
 
-using namespace OSCLib;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Data::SDC;
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Tests {
 namespace PeriodicEvents {
 

@@ -24,7 +24,7 @@
 #ifndef SDCCONSUMERSUBSCRIPTIONLOSTHANDLER_H_
 #define SDCCONSUMERSUBSCRIPTIONLOSTHANDLER_H_
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -41,6 +41,6 @@ public:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SDCCONSUMERSUBSCRIPTIONLOSTHANDLER_H_ */

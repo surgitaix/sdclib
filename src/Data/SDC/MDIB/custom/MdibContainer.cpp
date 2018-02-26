@@ -41,7 +41,7 @@
 
 #include "osdm.hxx"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -93,4 +93,4 @@ std::unique_ptr<TState> MdibContainer::findState(const std::string & handle) con
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

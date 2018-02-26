@@ -15,7 +15,7 @@
 
 #include <stdexcept>
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -333,4 +333,4 @@ std::string EnumToString::convert(InvocationState source) {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

@@ -40,7 +40,7 @@
 #include "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h"
 #include "OSCLib/Data/SDC/MDIB/Measurement.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -153,5 +153,5 @@ bool AllowedValue::hasCharacteristic() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

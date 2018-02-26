@@ -40,7 +40,7 @@
 #include "OSCLib/Data/SDC/MDIB/CalibrationInfo.h"
 #include "OSCLib/Data/SDC/MDIB/PhysicalConnectorInfo.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -279,5 +279,5 @@ bool VmdState::hasOperatingJurisdiction() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

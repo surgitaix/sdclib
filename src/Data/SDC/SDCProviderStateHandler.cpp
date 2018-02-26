@@ -41,7 +41,7 @@
 #include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Data/SDC/SDCProviderStateHandler.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -106,4 +106,4 @@ SDCProvider & SDCProviderStateHandler::getParentProvider() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

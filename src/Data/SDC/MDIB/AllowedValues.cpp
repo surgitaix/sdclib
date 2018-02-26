@@ -37,7 +37,7 @@
 #include "osdm.hxx"
 
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -87,5 +87,5 @@ std::string AllowedValues::getValue() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/Measurement.h"
 #include "OSCLib/Data/SDC/MDIB/ReferenceRange.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -128,5 +128,5 @@ void RelatedMeasurement::clearReferenceRangeList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

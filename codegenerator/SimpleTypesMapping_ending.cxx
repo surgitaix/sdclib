@@ -16,4 +16,4 @@ std::string EnumToString::convert(InvocationState source) {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

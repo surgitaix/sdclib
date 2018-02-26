@@ -38,7 +38,7 @@
 
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -270,5 +270,5 @@ bool SetStringOperationDescriptor::hasMaxLength() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

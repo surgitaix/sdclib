@@ -34,7 +34,7 @@
 
 #include "OSELib/Helper/WithLogger.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -109,6 +109,6 @@ private:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SDCPROVIDERSTATEHANDLER_H_ */

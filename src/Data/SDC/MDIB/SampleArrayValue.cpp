@@ -40,7 +40,7 @@
 #include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
 #include "OSCLib/Data/SDC/MDIB/Annotation.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -210,5 +210,5 @@ void SampleArrayValue::clearApplyAnnotationList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

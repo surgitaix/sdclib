@@ -39,6 +39,6 @@ public:
 };
 
 } /* namespace Comm */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* INCLUDE_OSCLIB_COMM_HTTPCLIENTEXCHANGER_H_ */

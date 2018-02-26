@@ -37,7 +37,7 @@
 #include "osdm.hxx"
 
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -177,5 +177,5 @@ void BaseDemographics::clearMiddlenameList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

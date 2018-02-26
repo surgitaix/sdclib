@@ -49,7 +49,7 @@ namespace OSELib {
 	}
 }
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -291,5 +291,5 @@ private:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 #endif /* SDCCONSUMER_H_ */

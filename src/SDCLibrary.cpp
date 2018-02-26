@@ -40,7 +40,7 @@
 
 #include "OSELib/DPWS/PingManager.h"
 
-namespace OSCLib {
+namespace SDCLib {
 
 const std::string CURRENT_LIB_VERSION("3.0.0");
 
@@ -50,7 +50,7 @@ SDCLibrary::SDCLibrary() :
 	m_IP4enabled(true),
 	m_IP6enabled(true),
 	m_numberOfReattemptsWithAnotherPort(3),
-	m_discoveryTimeSec(5000)
+	m_discoveryTimeMilSec(5000)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
 	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel);
@@ -161,12 +161,12 @@ void SDCLibrary::setNumberOfReattemptsWithAnotherPort(const int numberOfReattemp
 	m_numberOfReattemptsWithAnotherPort = numberOfReattemptsWithAnotherPort;
 }
 
-void SDCLibrary::setDiscoveryTime(int discoveryTimeSec){
-	m_discoveryTimeSec = discoveryTimeSec;
+void SDCLibrary::setDiscoveryTime(int discoveryTimeMilSec){
+	m_discoveryTimeMilSec = discoveryTimeMilSec;
 }
 
 int SDCLibrary::getDiscoveryTime(){
-	return m_discoveryTimeSec;
+	return m_discoveryTimeMilSec;
 }
 
-} /* namespace OSCLib */
+} /* namespace SDCLib */

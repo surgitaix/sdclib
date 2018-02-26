@@ -41,7 +41,7 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(StreamNotificationDispatcher & stre
 
 	// only open a streaming socket, if the provider is providing a streaming service
 	if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
-		if ( OSCLib::SDCLibrary::getInstance().getIP4enabled() )
+		if ( SDCLib::SDCLibrary::getInstance().getIP4enabled() )
 		{
 			log_debug([&] {return "Host:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() + "Port: " + std::to_string(m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());});
 			m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_deviceDescription.getStreamMulticastAddressURIs().front().getHost(), m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());
@@ -61,7 +61,7 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(StreamNotificationDispatcher & stre
 			m_ipv4MulticastSocket.setBlocking(false);
 		}
 
-		if ( OSCLib::SDCLibrary::getInstance().getIP6enabled() )
+		if ( SDCLib::SDCLibrary::getInstance().getIP6enabled() )
 				{
 //			m_deviceDescription.getStreamMulticastAddressURIs().front().
 //					DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Host IPv6:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() << "Port: " + m_deviceDescription.getStreamMulticastAddressURIs().front().getPort() << std::endl;

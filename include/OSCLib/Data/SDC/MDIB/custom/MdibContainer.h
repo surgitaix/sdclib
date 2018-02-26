@@ -28,7 +28,7 @@
 
 #include <string>
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -62,5 +62,5 @@ private:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 #endif /* MDIBCONTAINER_H_ */

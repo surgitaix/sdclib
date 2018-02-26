@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/Argument.h"
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -286,5 +286,5 @@ void ActivateOperationDescriptor::clearArgumentList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

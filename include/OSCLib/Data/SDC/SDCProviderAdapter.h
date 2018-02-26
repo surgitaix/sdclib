@@ -14,7 +14,7 @@
 #include "OSELib/fwd.h"
 #include <set>
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -57,6 +57,6 @@ private:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* DATA_OSCP_SDCPROVIDERADAPTER_H_ */

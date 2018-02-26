@@ -71,6 +71,6 @@ private:
 };
 
 }
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* DEV_OSCP_WSDLBUILDER_H_ */

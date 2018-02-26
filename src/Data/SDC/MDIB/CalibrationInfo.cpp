@@ -38,7 +38,7 @@
 
 #include "OSCLib/Data/SDC/MDIB/CalibrationDocumentation.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -157,5 +157,5 @@ void CalibrationInfo::clearCalibrationDocumentationList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

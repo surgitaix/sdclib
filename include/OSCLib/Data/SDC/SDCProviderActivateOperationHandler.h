@@ -13,7 +13,7 @@
 
 #include "OSCLib/Data/SDC/SDCProviderStateHandler.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -37,6 +37,6 @@ public:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SDCPROVIDERACTIVATETOPERATIONSTATEHANDLER_H_ */

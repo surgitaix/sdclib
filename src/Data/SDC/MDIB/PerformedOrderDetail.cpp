@@ -42,7 +42,7 @@
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 #include "OSCLib/Data/SDC/MDIB/ImagingProcedure.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -215,5 +215,5 @@ void PerformedOrderDetail::clearResultingClinicalInfoList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

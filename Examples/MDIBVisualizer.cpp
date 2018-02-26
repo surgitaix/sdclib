@@ -23,9 +23,9 @@
 #include "OSELib/Helper/XercesParserWrapper.h"
 #include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
 
-using namespace OSCLib;
-using namespace OSCLib::Util;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
 std::string stripCharacters(const std::string & input, const std::string & removeChars) {
 	std::string str(input);
@@ -1440,7 +1440,7 @@ int main() {
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Refreshing ..." << std::flush;
 		//const std::string deviceEPR("UDI-1234567890");
 		//std::shared_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(deviceEPR));
-		std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> results(oscpsm.discoverOSCP());
+		std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> results(oscpsm.discoverOSCP());
 
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found devices with these EPRs: " << std::endl;
 

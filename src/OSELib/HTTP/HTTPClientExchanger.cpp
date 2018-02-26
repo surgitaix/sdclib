@@ -59,7 +59,7 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & ses
         if (res.getStatus() != Poco::Net::HTTPResponse::HTTP_OK && res.getStatus() != Poco::Net::HTTPResponse::HTTP_ACCEPTED) {
         	// todo throw instead of debug out
         	log_error([&] { return "HTTP request failed due to invalid HTTP response: " + res.getReason(); });
-//        	OSCLib::Util::DebugOut(OSCLib::Util::DebugOut::Error, "HTTPClientExchanger") << "HTTP request failed due to invalid HTTP response: " << res.getReason();
+//        	SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Error, "HTTPClientExchanger") << "HTTP request failed due to invalid HTTP response: " << res.getReason();
             return "";
         }
         std::string responseContent;
@@ -77,4 +77,4 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & ses
 }
 
 } /* namespace Comm */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

@@ -38,7 +38,7 @@
 
 #include "OSCLib/Data/SDC/MDIB/OperationGroup.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -189,5 +189,5 @@ void ScoState::clearOperationGroupList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

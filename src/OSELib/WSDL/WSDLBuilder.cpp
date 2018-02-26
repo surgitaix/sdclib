@@ -166,4 +166,4 @@ void WSDLBuilder::addMessage(const xml_schema::Qname & qname) {
 }
 
 }
-} /* namespace OSCLib */
+} /* namespace SDCLib */

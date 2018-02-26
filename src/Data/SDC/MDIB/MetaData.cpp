@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/Udi.h"
 #include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -233,5 +233,5 @@ void MetaData::clearSerialNumberList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
 #include "OSCLib/Data/SDC/MDIB/Annotation.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -191,5 +191,5 @@ bool StringMetricValue::hasValue() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

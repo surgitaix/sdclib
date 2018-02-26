@@ -16,7 +16,7 @@
 
 #include "osdm-fwd.hxx"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -325,6 +325,6 @@ public:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SIMPLETYPESMAPPING_H_ */

@@ -40,7 +40,7 @@
 #include "OSCLib/Data/SDC/MDIB/CalibrationInfo.h"
 #include "OSCLib/Data/SDC/MDIB/PhysicalConnectorInfo.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -416,5 +416,5 @@ void ClockState::clearReferenceSourceList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

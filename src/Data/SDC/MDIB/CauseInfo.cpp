@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/RemedyInfo.h"
 #include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -116,5 +116,5 @@ void CauseInfo::clearDescriptionList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

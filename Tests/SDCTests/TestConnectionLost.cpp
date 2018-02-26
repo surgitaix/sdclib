@@ -24,11 +24,11 @@
 
 #include <atomic>
 
-using namespace OSCLib;
-using namespace OSCLib::Util;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Tests {
 namespace ConnectionLostSDC {
 
@@ -99,7 +99,7 @@ private:
 
 } /* namespace MultiSDC */
 } /* namespace Tests */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 struct FixtureConnectionLostSDC : Tests::AbstractOSCLibFixture {
 	FixtureConnectionLostSDC() : AbstractOSCLibFixture("FixtureConnectionLostSDC", OSELib::LogLevel::NOTICE, 8150) {}

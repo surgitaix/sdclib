@@ -37,7 +37,7 @@
 #include "osdm.hxx"
 
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -180,5 +180,5 @@ bool Range::hasAbsoluteAccuracy() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

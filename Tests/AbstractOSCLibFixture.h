@@ -14,7 +14,7 @@
 
 #include "OSELib/Helper/WithLogger.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Tests {
 
 struct AbstractOSCLibFixture : public OSELib::WithLogger {

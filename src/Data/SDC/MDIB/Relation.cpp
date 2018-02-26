@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 #include "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -145,5 +145,5 @@ HandleRef Relation::getEntries() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

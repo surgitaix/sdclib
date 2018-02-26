@@ -10,7 +10,7 @@
 
 #include <string>
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -30,6 +30,6 @@ public:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* DATA_OSCP_MDIB_OPERATIONINVOCATIONCONTEXT_H_ */

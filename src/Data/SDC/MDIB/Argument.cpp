@@ -38,7 +38,7 @@
 
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -102,5 +102,5 @@ xml_schema::Qname Argument::getArg() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

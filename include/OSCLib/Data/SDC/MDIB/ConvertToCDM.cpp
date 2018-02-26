@@ -129,7 +129,7 @@
  */
 
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -894,4 +894,4 @@ MDM::InvocationState ConvertToCDM::convert(const InvocationState & source) {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

@@ -239,7 +239,7 @@ void $(my.childclass:)::clear$(propertyList.nameSeveral:)() {
 #include "OSCLib/Data/SDC/SDC-fwd.h"
 #include "osdm-fwd.hxx"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -294,7 +294,7 @@ private:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 #endif /* $(class.NAME)_H_ */
 .   close
 . endfor
@@ -319,7 +319,7 @@ private:
 
 .printincludes ("$(class.name:)")
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -380,7 +380,7 @@ $(class.name:) & $(class.name:)::set(const $(class.valuetype:) & value) {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 .   close
 

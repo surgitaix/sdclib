@@ -79,7 +79,7 @@
 #include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
 
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -705,4 +705,4 @@ void SDCConsumer::updateLastKnownMdibVersion(unsigned long long int newVersion) 
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

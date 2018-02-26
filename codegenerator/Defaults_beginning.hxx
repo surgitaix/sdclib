@@ -15,7 +15,7 @@
 #include "OSCLib/Data/SDC/MDIB/MDIB-fwd.h"
 #include "osdm-fwd.hxx"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 

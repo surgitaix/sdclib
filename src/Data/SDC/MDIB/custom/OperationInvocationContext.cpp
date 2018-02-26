@@ -7,7 +7,7 @@
 
 #include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -24,4 +24,4 @@ OperationInvocationContext::~OperationInvocationContext() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

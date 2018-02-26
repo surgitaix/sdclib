@@ -43,9 +43,9 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 
-using namespace OSCLib;
-using namespace OSCLib::Util;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
 //const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
 const std::string deviceEPR("UDI-1234567890");

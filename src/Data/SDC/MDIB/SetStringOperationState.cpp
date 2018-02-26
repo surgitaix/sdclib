@@ -38,7 +38,7 @@
 
 #include "OSCLib/Data/SDC/MDIB/AllowedValues.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -165,5 +165,5 @@ bool SetStringOperationState::hasAllowedValues() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

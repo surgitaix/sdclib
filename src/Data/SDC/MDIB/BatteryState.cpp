@@ -40,7 +40,7 @@
 #include "OSCLib/Data/SDC/MDIB/CalibrationInfo.h"
 #include "OSCLib/Data/SDC/MDIB/PhysicalConnectorInfo.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -405,5 +405,5 @@ bool BatteryState::hasChargeCycles() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

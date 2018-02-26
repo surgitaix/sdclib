@@ -40,7 +40,7 @@
 #include "OSCLib/Data/SDC/MDIB/CauseInfo.h"
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -315,5 +315,5 @@ bool LimitAlertConditionDescriptor::hasAutoLimitSupported() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

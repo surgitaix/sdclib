@@ -44,7 +44,7 @@
 #include "OSCLib/Data/SDC/MDIB/RequestedOrderDetail.h"
 #include "OSCLib/Data/SDC/MDIB/PerformedOrderDetail.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -214,5 +214,5 @@ void WorkflowDetail::clearRelevantClinicalInfoList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

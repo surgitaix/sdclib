@@ -10,7 +10,7 @@
 
 #include "MDIB/MDIB-fwd.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 

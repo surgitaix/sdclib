@@ -26,6 +26,6 @@ private:
 };
 
 }
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* STREAMREADER_H_ */

@@ -24,7 +24,7 @@
 #ifndef SDCCONSUMERCONNECTIONLOSTHANDLER_H_
 #define SDCCONSUMERCONNECTIONLOSTHANDLER_H_
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -41,6 +41,6 @@ public:
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 
 #endif /* SDCCONSUMERCONNECTIONLOSTHANDLER_H_ */

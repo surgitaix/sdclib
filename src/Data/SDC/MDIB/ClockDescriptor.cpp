@@ -40,7 +40,7 @@
 #include "OSCLib/Data/SDC/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -210,5 +210,5 @@ void ClockDescriptor::clearTimeProtocolList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "OSCLib/Data/SDC/MDIB/Translation.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -206,5 +206,5 @@ void CodedValue::clearTranslationList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

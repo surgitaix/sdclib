@@ -66,13 +66,13 @@ void ServiceManager::setHelloReceivedHandler(HelloReceivedHandler * handler) {
 	_helloCallback = std::unique_ptr<HelloCallback>(new HelloCallback(handler));
 }
 
-std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const std::string & xaddr) {
+std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const std::string & xaddr) {
 	std::list<std::string> xAddress_list;
 	xAddress_list.push_back(xaddr);
 	return connectXAddress(xAddress_list, "Unknown");
 }
 
-std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
+std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
 
 	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback  {
 		ResolveMatchCallback(Poco::Event & matchEvent) :
@@ -94,7 +94,7 @@ std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 	DPWS::ResolveType resolveFilter((WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType(epr))));
 	_dpwsClient->addResolveMatchEventHandler(resolveFilter, resolveCb);
 	try {
-		matchEvent.wait(OSCLib::SDCLibrary::getInstance().getDiscoveryTime());
+		matchEvent.wait(SDCLib::SDCLibrary::getInstance().getDiscoveryTime());
 		log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
 	} catch (const Poco::TimeoutException & e) {
 	}
@@ -115,7 +115,7 @@ std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 	return nullptr;
 }
 
-std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> ServiceManager::discoverOSCP() {
+std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> ServiceManager::discoverOSCP() {
 
 	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
 		ProbeMatchCallback() {}
@@ -137,11 +137,11 @@ std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> ServiceManager::dis
 
 	ProbeMatchCallback probeCb;
 	_dpwsClient->addProbeMatchEventHandler(probeFilter, probeCb);
-	Poco::Thread::sleep(OSCLib::SDCLibrary::getInstance().getDiscoveryTime());
+	Poco::Thread::sleep(SDCLib::SDCLibrary::getInstance().getDiscoveryTime());
 	_dpwsClient->removeProbeMatchEventHandler(probeCb);
 	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb._results.size()); });
 
-	std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> results;
+	std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> results;
 	std::list<std::string> xAddress_list;
 
 	// probeCb._results contains the exact number of unique EPR in the network
@@ -167,7 +167,7 @@ std::vector<std::unique_ptr<OSCLib::Data::SDC::SDCConsumer>> ServiceManager::dis
 	return results;
 }
 
-std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) {
+std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) {
 	DPWS::DeviceDescription deviceDescription;
 
 	bool connectionPossible_flag = 0;
@@ -280,7 +280,7 @@ std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
-	std::unique_ptr<OSCLib::Data::SDC::SDCConsumer> result(new OSCLib::Data::SDC::SDCConsumer(deviceDescription));
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(deviceDescription));
 	if (!result->requestMdib()) {
 		result->disconnect();
 		return nullptr;

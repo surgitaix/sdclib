@@ -38,7 +38,7 @@
 
 #include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -115,5 +115,5 @@ void MdDescription::clearMdsList() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

@@ -106,8 +106,8 @@ The API for the Open Surgical Communication Protocol (OSCP-API) is set on top of
 There are two main instances used for communication:
 
 <ul>
-  <li><b>OSCLib::Data::SDC::SDCProvider</b>: describes the device, and converts OSCP-conform requests into (proprietary) device commands</li>
-  <li><b>OSCLib::Data::SDC::SDCConsumer</b>: a client tool used to establish communication with an SDCProvider</li>
+  <li><b>SDCLib::Data::SDC::SDCProvider</b>: describes the device, and converts OSCP-conform requests into (proprietary) device commands</li>
+  <li><b>SDCLib::Data::SDC::SDCConsumer</b>: a client tool used to establish communication with an SDCProvider</li>
 </ul>
 
 <p>Both instances implement a base set of methods defined by a common interface. This interface allows transparent access to the medical device information base (MDIB) which can be regarded as the database that contains the values defined by the CDM.</b> 
@@ -119,26 +119,26 @@ Working examples similar to this one can be found in the "Examples" folder, espe
 The MDIB structure is used to exchange information between the SDCProvider and SDCConsumer instances. The class structure behind it can be used to describe a medical device or a medical service statically and dynamically. The following (simplified) structure is used for the MDIB:
 
 <ul>
-  <li><b>MDIB</b>: the information base holding all static and dynamic sub-structures. Class-name: OSCLib::Data::SDC::MDIBContainer</li>
+  <li><b>MDIB</b>: the information base holding all static and dynamic sub-structures. Class-name: SDCLib::Data::SDC::MDIBContainer</li>
     <ul>
-      <li><b>Medical Device Description</b>: Describes the static part. Class-name: OSCLib::Data::SDC::MDDescription</li>
+      <li><b>Medical Device Description</b>: Describes the static part. Class-name: SDCLib::Data::SDC::MDDescription</li>
         <ul>
-          <li><b>Hydra Medical Device System</b>: Describes the complete device or service. Class-name: OSCLib::Data::SDC::HydraMDSDescriptor</li>
+          <li><b>Hydra Medical Device System</b>: Describes the complete device or service. Class-name: SDCLib::Data::SDC::HydraMDSDescriptor</li>
             <ul>
-              <li><b>Virtual Medical Device</b>: Describes a subsystem (e.g. a hardware- or software-modul). Class-name: OSCLib::Data::SDC::VMDDescriptor</li>
+              <li><b>Virtual Medical Device</b>: Describes a subsystem (e.g. a hardware- or software-modul). Class-name: SDCLib::Data::SDC::VMDDescriptor</li>
                 <ul>
-                  <li><b>Channel</b>: Describes a group of metrics. Class-name: OSCLib::Data::SDC::ChannelDescriptor</li>
+                  <li><b>Channel</b>: Describes a group of metrics. Class-name: SDCLib::Data::SDC::ChannelDescriptor</li>
                     <ul>
-                      <li><b>Metric</b>: Describes a primitive or complex data object (e.g. heart rate measurement). Sub-classes of: OSCLib::Data::SDC::AbstractMetricDescriptor</li>
-                      <li><b>Context</b>: Describes a specifix context (e.g. location of patient demographics). Sub-classes of: OSCLib::Data::SDC::AbstractContextDescriptor</li>
+                      <li><b>Metric</b>: Describes a primitive or complex data object (e.g. heart rate measurement). Sub-classes of: SDCLib::Data::SDC::AbstractMetricDescriptor</li>
+                      <li><b>Context</b>: Describes a specifix context (e.g. location of patient demographics). Sub-classes of: SDCLib::Data::SDC::AbstractContextDescriptor</li>
                     </ul>  
                 </ul> 
             </ul>
         </ul>
-      <li><b>Medical Devices States</b>: Containes the dynamic part. Class-name: OSCLib::Data::SDC::MDState</li>
+      <li><b>Medical Devices States</b>: Containes the dynamic part. Class-name: SDCLib::Data::SDC::MDState</li>
         <ul>
-          <li><b>Metric State</b>: Describes the state of a references metric (e.g. current heart rate value). Sub-classes of: OSCLib::Data::SDC::AbstractMetricState</li> (e.g. NumericMetricState, StringMetricState, etc.)
-          <li><b>Context State</b>: Describes the state of a specific context (e.g. patient demographics data). Sub-classes of: OSCLib::Data::SDC::AbstractContextState</li></li> 
+          <li><b>Metric State</b>: Describes the state of a references metric (e.g. current heart rate value). Sub-classes of: SDCLib::Data::SDC::AbstractMetricState</li> (e.g. NumericMetricState, StringMetricState, etc.)
+          <li><b>Context State</b>: Describes the state of a specific context (e.g. patient demographics data). Sub-classes of: SDCLib::Data::SDC::AbstractContextState</li></li> 
         </ul>  
     </ul>
 </ul>
@@ -147,7 +147,7 @@ Alert systems can be inserted at the level of the hydra MDS, the VMD or channel.
 
 @section oscp_provider The EndoTAIX OSCP Provider example
 
-This section provides a simplified example for an SDCProvider instance for the EndoTAIX holding device system. The <b>OSCPHoldingDeviceProvider</b> class extends the <b>OSCLib::Data::SDC::SDCProvider</b> class. However, it is not required to subclass SDCProvider. Instead, you can also use an instance as a member variable in another class.
+This section provides a simplified example for an SDCProvider instance for the EndoTAIX holding device system. The <b>OSCPHoldingDeviceProvider</b> class extends the <b>SDCLib::Data::SDC::SDCProvider</b> class. However, it is not required to subclass SDCProvider. Instead, you can also use an instance as a member variable in another class.
 <p>Using <b>OSCProvider::addMDStateHandler</b> is a comfortable way to provide separate handlers for each state. This has the advantage, that code concerning devices's data will be encapsulated elsewhere. This will keep our class (OSCPHoldingDeviceProvider) short.</p>
 
 <P>In this example, the provider contains two metrics, which describe their purpose and properties:
@@ -424,7 +424,7 @@ SDCLibrary::getInstance()->startup();
 
 @subsection oscp_consumer_servicemanager Discovery using the ServiceManager
 
-<p>An SDCConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>OSCLib::Data::SDC::OSCPServiceManager</b>).
+<p>An SDCConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>SDCLib::Data::SDC::OSCPServiceManager</b>).
 The ServiceManager is resposibe for the discovery of SDCProvider instances. 
 We will now discover the provider using the ServiceManager:
 

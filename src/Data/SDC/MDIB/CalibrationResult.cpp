@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 #include "OSCLib/Data/SDC/MDIB/Measurement.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -103,5 +103,5 @@ Measurement CalibrationResult::getValue() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

@@ -130,7 +130,7 @@
 
 #include "osdm.hxx"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -595,4 +595,4 @@ CDM::ContainmentTreeEntry  * Defaults::ContainmentTreeEntryInit() {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */

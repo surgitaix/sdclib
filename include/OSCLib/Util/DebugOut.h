@@ -32,7 +32,7 @@
 #include <fstream>
 #include <sstream>
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Util {
 
 /**
@@ -96,5 +96,5 @@ private:
 };
 
 } /* namespace Util */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 #endif /* DEBUGSTREAM_H_ */

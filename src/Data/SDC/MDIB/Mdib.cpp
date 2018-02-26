@@ -39,7 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/MdDescription.h"
 #include "OSCLib/Data/SDC/MDIB/MdState.h"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 
@@ -119,5 +119,5 @@ bool Mdib::hasMdState() const {
 
 } /* namespace SDC */
 } /* namespace Data */
-} /* namespace OSCLib */
+} /* namespace SDCLib */
 

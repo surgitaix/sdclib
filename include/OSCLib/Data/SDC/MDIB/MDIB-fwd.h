@@ -14,7 +14,7 @@
 #ifndef OSCLIB_DATA_OSCP_MDIB_MDIB_FWD_H_
 #define OSCLIB_DATA_OSCP_MDIB_MDIB_FWD_H_
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 	// classes, that are implemented manually

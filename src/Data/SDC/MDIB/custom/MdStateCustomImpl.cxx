@@ -27,7 +27,7 @@
 
 #include "osdm.hxx"
 
-namespace OSCLib {
+namespace SDCLib {
 namespace Data {
 namespace SDC {
 

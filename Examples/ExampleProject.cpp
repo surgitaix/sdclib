@@ -32,9 +32,9 @@
 #include "Poco/Runnable.h"
 #include "Poco/Net/NetException.h"
 
-using namespace OSCLib;
-using namespace OSCLib::Util;
-using namespace OSCLib::Data::SDC;
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
 // Endpoint reference of the device -> unique ID
 const std::string DEVICE_EPR("UDI-EXAMPLEPROJECT");
@@ -340,6 +340,8 @@ int main()
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setPortStart(11000);
+	SDCLibrary::getInstance().setDiscoveryTime(4000);
+
 
 	OSELib::SDC::ServiceManager oscpsm;
 	class MyHandler : public OSELib::SDC::HelloReceivedHandler {

@@ -159,7 +159,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
 {
 	xercesc::XMLPlatformUtils::Initialize ();
 
-	if ( OSCLib::SDCLibrary::getInstance().getIP4enabled() ) {
+	if ( SDCLib::SDCLibrary::getInstance().getIP4enabled() ) {
 		ipv4MulticastListeningSocket.bind(ipv4BindingAddress, true);
 		for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
 			if (nextIf.supportsIPv4()
@@ -178,7 +178,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
 	}
 
 
-	if ( OSCLib::SDCLibrary::getInstance().getIP6enabled() ) {
+	if ( SDCLib::SDCLibrary::getInstance().getIP6enabled() ) {
 		ipv6MulticastListeningSocket.bind(ipv6BindingAddress, true);
 		for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
 			if (nextIf.supportsIPv6()
