@@ -282,7 +282,7 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 		return;
 	}
 	if (requestMessage->Header().MessageID().present()) {
-		if (not context.registerMessageId(requestMessage->Header().MessageID().get())) {
+		if (! context.registerMessageId(requestMessage->Header().MessageID().get())) {
 			return;
 		}
 	}
@@ -318,7 +318,7 @@ void DPWSHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotificati
 	}
 	{ // send unicast
 		const Poco::AutoPtr<SendUnicastMessage> message(rawMessage.cast<SendUnicastMessage>());
-		if (not message.isNull()) {
+		if (! message.isNull()) {
 			MESSAGEMODEL::Envelope messageEnvelope(message->content);
 			MESSAGEMODEL::Envelope::HeaderType::AppSequenceType appSequence(context.getInstanceId(), context.getNextMessageCounter());
 			messageEnvelope.Header().AppSequence(appSequence);
@@ -328,7 +328,7 @@ void DPWSHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotificati
 	}
 	{ // send multicast
 		const Poco::AutoPtr<SendMulticastMessage> message(rawMessage.cast<SendMulticastMessage>());
-		if (not message.isNull()) {
+		if (! message.isNull()) {
 
 			Poco::Net::SocketAddress multicastAddress(message->ipv4MulticastAddress);
 			if (socket.address().family() == Poco::Net::IPAddress::Family::IPv6) {

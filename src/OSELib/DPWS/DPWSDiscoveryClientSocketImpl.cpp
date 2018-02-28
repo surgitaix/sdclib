@@ -181,16 +181,16 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 	if (message == nullptr) {
 		return;
 	}
-	if (not message->Header().MessageID().present()) {
+	if (! message->Header().MessageID().present()) {
 		return;
 	}
-	if (not context.registerMessageId(message->Header().MessageID().get())) {
+	if (! context.registerMessageId(message->Header().MessageID().get())) {
 		return;
 	}
-	if (not message->Header().AppSequence().present()) {
+	if (! message->Header().AppSequence().present()) {
 		return;
 	}
-	if (not context.registerAppSequence(message->Header().AppSequence().get())) {
+	if (! context.registerAppSequence(message->Header().AppSequence().get())) {
 		return;
 	}
 	if (message->Body().Hello().present()) {

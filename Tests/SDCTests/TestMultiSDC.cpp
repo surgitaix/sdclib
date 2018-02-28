@@ -97,7 +97,7 @@ private:
 } /* namespace SDCLib */
 
 struct FixtureMultiOSCP : Tests::AbstractOSCLibFixture {
-	FixtureMultiOSCP() : AbstractOSCLibFixture("FixtureMultiOSCP", OSELib::LogLevel::NOTICE, 8000) {}
+	FixtureMultiOSCP() : AbstractOSCLibFixture("FixtureMultiOSCP", OSELib::LogLevel::Notice, 8000) {}
 };
 
 SUITE(OSCP) {

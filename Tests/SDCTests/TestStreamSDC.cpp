@@ -342,7 +342,7 @@ public:
 }
 
 struct FixtureStreamSDC : Tests::AbstractOSCLibFixture {
-	FixtureStreamSDC() : AbstractOSCLibFixture("FixtureStreamSDC", OSELib::LogLevel::NOTICE, 10000) {}
+	FixtureStreamSDC() : AbstractOSCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice, 10000) {}
 };
 
 SUITE(OSCP) {

@@ -1036,7 +1036,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixtureSimpleSDC : Tests::AbstractOSCLibFixture {
-	FixtureSimpleSDC() : AbstractOSCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::ERROR, 9000) {}
+	FixtureSimpleSDC() : AbstractOSCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error, 9000) {}
 };
 
 SUITE(OSCP) {

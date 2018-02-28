@@ -90,7 +90,7 @@ private:
 }
 
 struct FixtureDICOMOSCP : Tests::AbstractOSCLibFixture {
-	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", OSELib::LogLevel::NOTICE, 9050) {}
+	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", OSELib::LogLevel::Notice, 9050) {}
 };
 
 SUITE(OSCP) {

@@ -9,6 +9,7 @@
 #define HELPER_MESSAGE_H_
 
 #include <memory>
+#include <string>
 
 namespace OSELib {
 namespace Helper {

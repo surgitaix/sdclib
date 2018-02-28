@@ -109,7 +109,7 @@ private:
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
     SDCLibrary::getInstance().setIP4enabled(true);
     SDCLibrary::getInstance().setIP6enabled(false);
 

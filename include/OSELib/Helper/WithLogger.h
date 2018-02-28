@@ -39,16 +39,17 @@ namespace Log {
 	const std::string EVENTSINK(EVENTING + ".SINK");
 }
 
+//StF Refactored to avoid collision of ERROR with #def in wingdi.h
 enum class LogLevel {
-	NONE,
-	FATAL,
-	CRITICAL,
-	ERROR,
-	WARNING,
-	NOTICE,
-	INFORMATION,
-	DEBUG,
-	TRACE
+	None,
+	Fatal,
+	Critical,
+	Error,
+	Warning,
+	Notice,
+	Information,
+	Debug,
+	Trace
 };
 
 class WithLogger {

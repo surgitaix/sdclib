@@ -17,7 +17,7 @@ int main()
 {
 	const std::string testname("Test SimpleServiceDiscovery");
 	DebugOut(DebugOut::Default, "SimpleServiceDiscovery") << std::endl << "Startup: " << testname;
-	SDCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 
 	int loopcounter = 0;
 	OSELib::SDC::ServiceManager oscpsm;

@@ -337,7 +337,7 @@ private:
 
 int main()
 {
-	SDCLibrary::getInstance().startup(OSELib::LogLevel::ERROR);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setPortStart(11000);
 	SDCLibrary::getInstance().setDiscoveryTime(4000);

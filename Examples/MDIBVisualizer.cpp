@@ -1428,7 +1428,7 @@ int main() {
 	DebugOut::DEBUG_LEVEL = DebugOut::Full;
 	const std::string testname("Create graphvis/dot files of all MDIBs of all found devices");
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Startup: " << testname;
-	SDCLibrary::getInstance().startup(OSELib::LogLevel::DEBUG);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpng {} -o {}.png";
 
 

@@ -102,7 +102,7 @@ private:
 } /* namespace SDCLib */
 
 struct FixtureConnectionLostSDC : Tests::AbstractOSCLibFixture {
-	FixtureConnectionLostSDC() : AbstractOSCLibFixture("FixtureConnectionLostSDC", OSELib::LogLevel::NOTICE, 8150) {}
+	FixtureConnectionLostSDC() : AbstractOSCLibFixture("FixtureConnectionLostSDC", OSELib::LogLevel::Notice, 8150) {}
 };
 
 SUITE(OSCP) {

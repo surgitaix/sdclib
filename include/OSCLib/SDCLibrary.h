@@ -57,7 +57,7 @@ public:
 	 *
 	 * @param debugLevel The debug output level.
 	 */
-	void startup(OSELib::LogLevel debugLevel = OSELib::LogLevel::ERROR);
+	void startup(OSELib::LogLevel debugLevel = OSELib::LogLevel::Error);
 
 	/**
 	 * Shutdown framework.

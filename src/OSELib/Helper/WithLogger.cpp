@@ -72,15 +72,15 @@ void WithLogger::log_trace(std::function<std::string()> logmessage) const {
 
 void WithLogger::setDebugLevel(LogLevel logLevel) {
 	switch(logLevel) {
-		case LogLevel::NONE: _logger.setLevel(0); break;
-		case LogLevel::FATAL: _logger.setLevel(Poco::Message::Priority::PRIO_FATAL); break;
-		case LogLevel::CRITICAL: _logger.setLevel(Poco::Message::Priority::PRIO_CRITICAL); break;
-		case LogLevel::ERROR: _logger.setLevel(Poco::Message::Priority::PRIO_ERROR); break;
-		case LogLevel::WARNING: _logger.setLevel(Poco::Message::Priority::PRIO_WARNING); break;
-		case LogLevel::NOTICE: _logger.setLevel(Poco::Message::Priority::PRIO_NOTICE); break;
-		case LogLevel::INFORMATION: _logger.setLevel(Poco::Message::Priority::PRIO_INFORMATION); break;
-		case LogLevel::DEBUG: _logger.setLevel(Poco::Message::Priority::PRIO_DEBUG); break;
-		case LogLevel::TRACE: _logger.setLevel(Poco::Message::Priority::PRIO_TRACE); break;
+		case LogLevel::None: _logger.setLevel(0); break;
+		case LogLevel::Fatal: _logger.setLevel(Poco::Message::Priority::PRIO_FATAL); break;
+		case LogLevel::Critical: _logger.setLevel(Poco::Message::Priority::PRIO_CRITICAL); break;
+		case LogLevel::Error: _logger.setLevel(Poco::Message::Priority::PRIO_ERROR); break;
+		case LogLevel::Warning: _logger.setLevel(Poco::Message::Priority::PRIO_WARNING); break;
+		case LogLevel::Notice: _logger.setLevel(Poco::Message::Priority::PRIO_NOTICE); break;
+		case LogLevel::Information: _logger.setLevel(Poco::Message::Priority::PRIO_INFORMATION); break;
+		case LogLevel::Debug: _logger.setLevel(Poco::Message::Priority::PRIO_DEBUG); break;
+		case LogLevel::Trace: _logger.setLevel(Poco::Message::Priority::PRIO_TRACE); break;
 	}
 }
 

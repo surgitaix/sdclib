@@ -213,7 +213,7 @@ private:
 }
 
 struct FixtureMultiStatesTest: Tests::AbstractOSCLibFixture {
-	FixtureMultiStatesTest() : AbstractOSCLibFixture("FixtureMultiStateTest", OSELib::LogLevel::NOTICE, 10000) {}
+	FixtureMultiStatesTest() : AbstractOSCLibFixture("FixtureMultiStateTest", OSELib::LogLevel::Notice, 10000) {}
 };
 
 SUITE(OSCP) {

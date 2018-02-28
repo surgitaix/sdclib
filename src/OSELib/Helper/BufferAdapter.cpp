@@ -13,7 +13,11 @@ namespace Helper {
 BufferAdapter::BufferAdapter(const Poco::Buffer<char> & buffer, std::size_t length) :
 	std::istream(this),
 	_buffer(buffer),
+#ifdef min
+	_length(min(length, buffer.size())),
+#else
 	_length(std::min(length, buffer.size())),
+#endif
 	_position(0)
 {
 }

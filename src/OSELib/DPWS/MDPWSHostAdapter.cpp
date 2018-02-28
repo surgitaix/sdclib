@@ -70,19 +70,19 @@ void MDPWSHostAdapter::sendStream(const MDM::WaveformStream & stream) {
 }
 
 void MDPWSHostAdapter::sendHello() {
-	if (not _started) {
+	if (! _started) {
 		return;
 	}
 	HelloType hello(
 			_epr,
 			_metadataVersion);
-	if (not _scopes.empty()) {
+	if (! _scopes.empty()) {
 		hello.Scopes(_scopes);
 	}
-	if (not _types.empty()) {
+	if (! _types.empty()) {
 		hello.Types(_types);
 	}
-	if (not _xaddresses.empty()) {
+	if (! _xaddresses.empty()) {
 		hello.XAddrs(_xaddresses);
 	}
 	_impl->sendHello(hello);
@@ -90,17 +90,17 @@ void MDPWSHostAdapter::sendHello() {
 
 std::vector<ProbeMatchType> MDPWSHostAdapter::dispatch(const ProbeType & filter) {
 	ProbeMatchType match(_epr, _metadataVersion);
-	if (not _scopes.empty()) {
+	if (! _scopes.empty()) {
 		match.Scopes(_scopes);
 	}
-	if (not _types.empty()) {
+	if (! _types.empty()) {
 		match.Types(_types);
 	}
-	if (not _xaddresses.empty()) {
+	if (! _xaddresses.empty()) {
 		match.XAddrs(_xaddresses);
 	}
 	std::vector<ProbeMatchType> result;
-	if (not Impl::compare(filter, match)) {
+	if (! Impl::compare(filter, match)) {
 		return result;
 	} else {
 		result.push_back(match);
@@ -110,16 +110,16 @@ std::vector<ProbeMatchType> MDPWSHostAdapter::dispatch(const ProbeType & filter)
 
 std::unique_ptr<ResolveMatchType> MDPWSHostAdapter::dispatch(const ResolveType & filter) {
 	std::unique_ptr<ResolveMatchType> result(new ResolveMatchType(_epr, _metadataVersion));
-	if (not _scopes.empty()) {
+	if (! _scopes.empty()) {
 		result->Scopes(_scopes);
 	}
-	if (not _types.empty()) {
+	if (! _types.empty()) {
 		result->Types(_types);
 	}
-	if (not _xaddresses.empty()) {
+	if (! _xaddresses.empty()) {
 		result->XAddrs(_xaddresses);
 	}
-	if (not Impl::compare(filter, *result)) {
+	if (! Impl::compare(filter, *result)) {
 		return nullptr;
 	} else {
 		return result;
