@@ -19,7 +19,7 @@ StreamReader::~StreamReader() {
 }
 
 std::string StreamReader::getContent() {
-	constexpr std::size_t DEFAULT_BUFFER_SIZE(10000);
+	CONSTEXPR_MACRO std::size_t DEFAULT_BUFFER_SIZE(10000);
 	std::string result;
 	result.reserve(DEFAULT_BUFFER_SIZE);
 	std::string tmp;

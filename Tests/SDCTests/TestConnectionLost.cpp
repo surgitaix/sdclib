@@ -130,8 +130,8 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 
 	    DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Waiting for the Providers to startup...";
 
-		constexpr std::size_t providerCount(10);
-		constexpr std::size_t metricCount(10);
+		CONSTEXPR_MACRO std::size_t providerCount(10);
+		CONSTEXPR_MACRO std::size_t metricCount(10);
 		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
 

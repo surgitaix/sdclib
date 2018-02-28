@@ -82,7 +82,7 @@ void SubscriptionClient::run() {
 	const WS::EVENTING::ExpirationType defaultExpires("PT10S");
 	const WS::EVENTING::ExpirationType defaultRenew(defaultExpires);
 
-	constexpr int defaultWaitBeforeRenew (5000);
+	CONSTEXPR_MACRO int defaultWaitBeforeRenew (5000);
 
 	for (const auto & subscription : _subscriptions) {
 		// get information

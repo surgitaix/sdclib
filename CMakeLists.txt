@@ -77,7 +77,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.00)
         add_definitions(-DCONSTEXPR_MACRO= )
     else()
-        add_definitions(-DCONSTEXPR_MACRO=constexpr)
+        add_definitions(-DCONSTEXPR_MACRO=CONSTEXPR_MACRO)
     endif()
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 

@@ -105,8 +105,8 @@ TEST_FIXTURE(FixtureMultiOSCP, multioscp)
 {
 	try
 	{
-		constexpr std::size_t providerCount(10);
-		constexpr std::size_t metricCount(10);
+		CONSTEXPR_MACRO std::size_t providerCount(10);
+		CONSTEXPR_MACRO std::size_t metricCount(10);
 
 		std::vector<std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
