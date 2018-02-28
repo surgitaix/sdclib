@@ -44,28 +44,40 @@ if(COMPILER_SUPPORTS_CXX11)
 elseif(COMPILER_SUPPORTS_CXX0X)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 else()
-
-#
-        message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+	message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-ADD_DEFINITIONS(-D_POCO_NO_AUTOMATIC_LIBS)
-ADD_DEFINITIONS(-D_Foundation_EXPORTS)
-ADD_DEFINITIONS(-D_Net_EXPORTS)
 
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux") 
+    ADD_DEFINITIONS(-D_POCO_NO_AUTOMATIC_LIBS)
+    ADD_DEFINITIONS(-D_Foundation_EXPORTS)
+    ADD_DEFINITIONS(-D_Net_EXPORTS)
+
     ADD_DEFINITIONS(-D_LINUX)
+    ADD_DEFINITIONS(-Dlinux)
     set(XERCES_LIB xerces-c)
     set(PTHREAD_LIB pthread)
     set(PYTHON_LIB python2.7)
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
+    ADD_DEFINITIONS(-DPOCO_NO_AUTOMATIC_LIBS)
+    ADD_DEFINITIONS(-DFoundation_EXPORTS)
+    ADD_DEFINITIONS(-DNet_EXPORTS)
+
     ADD_DEFINITIONS(-D_WIN32)
     if (CMAKE_BUILD_TYPE STREQUAL Debug)
         set(XERCES_LIB xerces-c_3D.lib)
     else ()
         set(XERCES_LIB xerces-c_3.lib)
+    endif()
+
+    # define preprocessor macros for Visual Studio: no CONSTEXPR_MACRO before VS15
+    MESSAGE( STATUS "MSVS compiler version: " ${CMAKE_CXX_COMPILER_VERSION} )
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.00)
+        add_definitions(-DCONSTEXPR_MACRO= )
+    else()
+        add_definitions(-DCONSTEXPR_MACRO=constexpr)
     endif()
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
@@ -267,7 +279,8 @@ set(SDCLibSOURCES
 ./src/Util/DebugOut.cpp
 ./src/Util/Task.cpp
 )
-
+ 
+# using POCO 1.4
 set(PocoSOURCES 
 ./src/Dependencies/Poco/AbstractObserver.cpp
 ./src/Dependencies/Poco/Ascii.cpp
@@ -296,6 +309,9 @@ set(PocoSOURCES
 ./src/Dependencies/Poco/Error.cpp
 ./src/Dependencies/Poco/ErrorHandler.cpp
 ./src/Dependencies/Poco/Event.cpp
+
+./src/Dependencies/Poco/NamedEvent.cpp
+
 ./src/Dependencies/Poco/Exception.cpp
 ./src/Dependencies/Poco/File.cpp
 ./src/Dependencies/Poco/FileStream.cpp
@@ -316,8 +332,8 @@ set(PocoSOURCES
 ./src/Dependencies/Poco/MemoryPool.cpp
 ./src/Dependencies/Poco/MemoryStream.cpp
 ./src/Dependencies/Poco/Message.cpp
-./src/Dependencies/Poco/NullStream.cpp
 ./src/Dependencies/Poco/Mutex.cpp
+./src/Dependencies/Poco/NullStream.cpp
 ./src/Dependencies/Poco/PatternFormatter.cpp
 ./src/Dependencies/Poco/Pipe.cpp
 ./src/Dependencies/Poco/PipeImpl.cpp
@@ -556,7 +572,11 @@ Examples/MDIBVisualizer.cpp
 #)
 
 
-SET(ADDITIONAL_LIBS "")
+if(WIN32)
+	SET(ADDITIONAL_LIBS "iphlpapi" "ws2_32")
+else()
+	SET(ADDITIONAL_LIBS "")
+endif()
 
 target_link_libraries(SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 target_link_libraries(UnitTests SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
