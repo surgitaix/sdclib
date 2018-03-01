@@ -1,3 +1,9 @@
+Update to version 3.0.1 D10_2017_10_05_rev2:
+
+- Portable to Windows systems
+- Compilable / Runnable with Visual Studio 2013 (tested with XSD 4.0), Visual Studio 2015, Visual Studio 2017 (tested  with XSD 4.0, used msvcr120.dll from VS13, via CMake integrated in VS17)
+- Bugfixes 
+
 Update to version 3.0.0 D10_2017_10_05_rev2:
 
 - Nomenclature changed: OSC(P)* -> SDC*
