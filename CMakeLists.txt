@@ -72,9 +72,9 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
     ADD_DEFINITIONS(-D_WIN32)
     if (CMAKE_BUILD_TYPE STREQUAL Debug)
-        set(XERCES_LIB xerces-c_3D.lib)
+        set(XERCES_LIB xerces-c_3D)
     else ()
-        set(XERCES_LIB xerces-c_3.lib)
+        set(XERCES_LIB xerces-c_3)
     endif()
 
     # define preprocessor macros for Visual Studio: no CONSTEXPR_MACRO before VS15
@@ -82,7 +82,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.00)
         add_definitions(-DCONSTEXPR_MACRO= )
     else()
-        add_definitions(-DCONSTEXPR_MACRO=CONSTEXPR_MACRO)
+        add_definitions(-DCONSTEXPR_MACRO=constexpr)
     endif()
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
@@ -495,8 +495,12 @@ list(APPEND SDCLibSOURCES
 
 list(APPEND SDCLibSOURCES ${PocoSOURCES})
 
-add_library(SDCLib SHARED ${SDCLibSOURCES})
 
+if(WIN32)
+	add_library(OSCLib STATIC ${OSCLibSOURCES})
+else()
+	add_library(OSCLib SHARED ${OSCLibSOURCES})
+endif()
 
 add_executable(UnitTests
 Tests/UnitTests.cpp
