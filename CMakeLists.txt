@@ -12,6 +12,11 @@ if (crossCompile)
     SET(ARCH "arm-linux")
 endif()
 
+# define output directories for binaries
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
 # Configure paths for your environment 
 # - CAN be omitted in linux, if all dependencies (except pthread) are installed on the system using 'make install'
 # - MUST be specified for ARM cross-compilation!
@@ -25,7 +30,7 @@ SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to 
 SET(XERCES_LIB_DIR "${PROJECT_SOURCE_DIR}/../xerces/lib/" CACHE PATH "Path to XERCES-C libraries.")
 
 INCLUDE_DIRECTORIES("include" "datamodel" ${XSDCXX_INCLUDE_DIR} ${XERCES_INCLUDE_DIR} ${PTHREAD_INCLUDE_DIR})
-LINK_DIRECTORIES(${PTHREAD_LIB_DIR} ${XERCES_LIB_DIR})
+LINK_DIRECTORIES(${PTHREAD_LIB_DIR} ${XERCES_LIB_DIR} ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
 # Debug or Release build
 if (debug)
@@ -497,9 +502,9 @@ list(APPEND SDCLibSOURCES ${PocoSOURCES})
 
 
 if(WIN32)
-	add_library(OSCLib STATIC ${OSCLibSOURCES})
+	add_library(SDCLib STATIC ${SDCLibSOURCES})
 else()
-	add_library(OSCLib SHARED ${OSCLibSOURCES})
+	add_library(SDCLib SHARED ${SDCLibSOURCES})
 endif()
 
 add_executable(UnitTests
