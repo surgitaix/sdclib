@@ -30,8 +30,10 @@ LINK_DIRECTORIES(${PTHREAD_LIB_DIR} ${XERCES_LIB_DIR})
 # Debug or Release build
 if (debug)
     SET(CMAKE_BUILD_TYPE Debug)
-    # enable debug and profiling informations for sprof
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -g -O0 -Wall -Wextra")    
+    if(NOT WIN32)
+        # enable debug and profiling informations for sprof
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -g -O0 -Wall -Wextra")    
+    endif()
 else()
     SET(CMAKE_BUILD_TYPE Release)
 endif()
@@ -55,6 +57,9 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
     ADD_DEFINITIONS(-D_LINUX)
     ADD_DEFINITIONS(-Dlinux)
+    # constexpr macro / checking for C++11 is done above allready
+    add_definitions(-DCONSTEXPR_MACRO=constexpr)
+
     set(XERCES_LIB xerces-c)
     set(PTHREAD_LIB pthread)
     set(PYTHON_LIB python2.7)

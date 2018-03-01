@@ -194,12 +194,12 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 		return;
 	}
 	if (message->Body().Hello().present()) {
-		if (not verifyHello(*message)) {
+		if (! verifyHello(*message)) {
 			return;
 		}
 		_helloDispatcher.dispatch(message->Body().Hello().get());
 	} else if (message->Body().Bye().present()) {
-		if (not verifyBye(*message)) {
+		if (! verifyBye(*message)) {
 			return;
 		}
 		_byeDispatcher.dispatch(message->Body().Bye().get());
@@ -225,7 +225,7 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 		return;
 	}
 	if (message->Header().MessageID().present()) {
-		if (not context.registerMessageId(message->Header().MessageID().get())) {
+		if (! context.registerMessageId(message->Header().MessageID().get())) {
 			return;
 		}
 	}
@@ -261,11 +261,11 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable(Poco::Net::Writabl
 }
 
 bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & message) {
-	if (not message.Header().MessageID().present()) {
+	if (! message.Header().MessageID().present()) {
 		log_error([&] { return "Bye message: Missing MessageID."; });
 		return false;
 	}
-	if (not message.Header().Action().present()) {
+	if (! message.Header().Action().present()) {
 		log_error([&] { return "Bye message: Missing Action."; });
 		return false;
 	}
@@ -273,7 +273,7 @@ bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & mes
 		log_error([&] { return "Bye message: Invalid Action."; });
 		return false;
 	}
-	if (not message.Header().To().present()) {
+	if (! message.Header().To().present()) {
 		log_error([&] { return "Bye message: Missing To."; });
 		return false;
 	}
@@ -281,11 +281,11 @@ bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & mes
 		log_error([&] { return "Bye message: Invalid value of To."; });
 		return false;
 	}
-	if (not message.Header().AppSequence().present()) {
+	if (! message.Header().AppSequence().present()) {
 		log_error([&] { return "Bye message: Missing AppSequence."; });
 		return false;
 	}
-	if (not message.Body().Bye().present()) {
+	if (! message.Body().Bye().present()) {
 		log_error([&] { return "Bye message: Missing Body."; });
 		return false;
 	}
@@ -302,11 +302,11 @@ bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & mes
 }
 
 bool DPWSDiscoveryClientSocketImpl::verifyHello(const MESSAGEMODEL::Envelope & message) {
-	if (not message.Header().MessageID().present()) {
+	if (! message.Header().MessageID().present()) {
 		log_error([&] { return "Hello message: Missing MessageID."; });
 		return false;
 	}
-	if (not message.Header().Action().present()) {
+	if (! message.Header().Action().present()) {
 		log_error([&] { return "Hello message: Missing Action."; });
 		return false;
 	}
@@ -314,7 +314,7 @@ bool DPWSDiscoveryClientSocketImpl::verifyHello(const MESSAGEMODEL::Envelope & m
 		log_error([&] { return "Hello message: Invalid Action."; });
 		return false;
 	}
-	if (not message.Header().To().present()) {
+	if (! message.Header().To().present()) {
 		log_error([&] { return "Hello message: Missing To."; });
 		return false;
 	}
@@ -322,11 +322,11 @@ bool DPWSDiscoveryClientSocketImpl::verifyHello(const MESSAGEMODEL::Envelope & m
 		log_error([&] { return "Hello message: Invalid value of To."; });
 		return false;
 	}
-	if (not message.Header().AppSequence().present()) {
+	if (! message.Header().AppSequence().present()) {
 		log_error([&] { return "Hello message: Missing AppSequence."; });
 		return false;
 	}
-	if (not message.Body().Hello().present()) {
+	if (! message.Body().Hello().present()) {
 		log_error([&] { return "Hello message: Missing body."; });
 		return false;
 	}
