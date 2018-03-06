@@ -289,11 +289,11 @@ public:
 		oscpProvider.setMdDescription(mdDescription);
 
         // Add handler
-		oscpProvider.addMdSateHandler(&numericProviderStateHandlerGet);
-		oscpProvider.addMdSateHandler(&streamProviderStateHandler);
+		oscpProvider.addMdStateHandler(&numericProviderStateHandlerGet);
+		oscpProvider.addMdStateHandler(&streamProviderStateHandler);
 
-		oscpProvider.addMdSateHandler(&numericProviderStateHandlerSet);
-		oscpProvider.addMdSateHandler(&stringProviderStateHandler);
+		oscpProvider.addMdStateHandler(&numericProviderStateHandlerSet);
+		oscpProvider.addMdStateHandler(&stringProviderStateHandler);
 
     }
 
@@ -342,8 +342,9 @@ public:
 		while (!isInterrupted()) {
 			{
                 updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Vld)).setSamples(samples));
+                DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 			}
-			DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+
 
 			// Update the NumericMetricState's value using the state handler's method
 			numericProviderStateHandlerGet.setNumericValue(index/size);
@@ -361,7 +362,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
 

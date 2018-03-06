@@ -20,6 +20,8 @@
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
+#include "OSCLib/SDCLibrary.h"
+
 #include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Data/SDC/SDCProviderAdapter.h"
 
@@ -336,7 +338,8 @@ void SDCProviderAdapter::start() {
 	OSELib::DPWS::MetadataProvider metadata;
 
 	Poco::Net::ServerSocket ss;
-	const Poco::Net::IPAddress address(Poco::Net::IPAddress::Family::IPv4);
+//	const Poco::Net::IPAddress address(Poco::Net::IPAddress::Family::IPv4);
+	const Poco::Net::IPAddress address(SDCLibrary::getInstance().getBindAddress());
 	const Poco::Net::SocketAddress socketAddress(address, _port);
 	ss.bind(socketAddress);
 	ss.listen();

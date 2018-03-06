@@ -175,9 +175,9 @@ public:
 		oscpProvider.setMdDescription(mdDescription);
 
         // Add handler
-        oscpProvider.addMdSateHandler(&multistateProviderStateHandler1_1);
-        oscpProvider.addMdSateHandler(&multistateProviderStateHandler2_1);
-        oscpProvider.addMdSateHandler(&multistateProviderStateHandler2_2);
+        oscpProvider.addMdStateHandler(&multistateProviderStateHandler1_1);
+        oscpProvider.addMdStateHandler(&multistateProviderStateHandler2_1);
+        oscpProvider.addMdStateHandler(&multistateProviderStateHandler2_2);
     }
 
     void startup() {

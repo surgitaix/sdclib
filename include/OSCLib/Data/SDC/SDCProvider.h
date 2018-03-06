@@ -181,7 +181,7 @@ public:
     *
     * @param handler The handler
     */
-    void addMdSateHandler(SDCProviderStateHandler * handler);
+    void addMdStateHandler(SDCProviderStateHandler * handler);
 
     /**
     * @brief Remove a request handler which provides states and processes incoming change requests from a consumer.

@@ -1074,7 +1074,7 @@ template<class T> void SDCProvider::replaceState(const T & object) {
 }
 
 
-void SDCProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
+void SDCProvider::addMdStateHandler(SDCProviderStateHandler * handler) {
     handler->parentProvider = this;
 
 

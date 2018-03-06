@@ -228,9 +228,9 @@ public:
 
 
 		// State handler
-        oscpProvider.addMdSateHandler(&maxValueState);
-        oscpProvider.addMdSateHandler(&curValueState);
-        oscpProvider.addMdSateHandler(&mdsState);
+        oscpProvider.addMdStateHandler(&maxValueState);
+        oscpProvider.addMdStateHandler(&curValueState);
+        oscpProvider.addMdStateHandler(&mdsState);
 
 
     }

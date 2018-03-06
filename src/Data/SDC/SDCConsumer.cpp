@@ -563,6 +563,7 @@ template std::unique_ptr<OperatorContextState> SDCConsumer::requestState<Operato
 template std::unique_ptr<PatientContextState> SDCConsumer::requestState<PatientContextState>(const std::string & handle);
 template std::unique_ptr<StringMetricState> SDCConsumer::requestState<StringMetricState>(const std::string & handle);
 template std::unique_ptr<WorkflowContextState> SDCConsumer::requestState<WorkflowContextState>(const std::string & handle);
+template std::unique_ptr<RealTimeSampleArrayMetricState> SDCConsumer::requestState<RealTimeSampleArrayMetricState>(const std::string & handle);
 
 
 // TODO: implement and test! missing states -> RealTimeSampleArrayMetricState, DistributionSampleArrayMetricState

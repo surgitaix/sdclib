@@ -283,9 +283,9 @@ public:
 		oscpProvider.setMdDescription(mdDescription);
 
         // Add handler
-        oscpProvider.addMdSateHandler(&streamEventHandler);
-        oscpProvider.addMdSateHandler(&streamEventHandlerAlt);
-        oscpProvider.addMdSateHandler(&distributionEventHandler);
+        oscpProvider.addMdStateHandler(&streamEventHandler);
+        oscpProvider.addMdStateHandler(&streamEventHandlerAlt);
+        oscpProvider.addMdStateHandler(&distributionEventHandler);
     }
 
     void startup() {
@@ -346,7 +346,7 @@ struct FixtureStreamSDC : Tests::AbstractOSCLibFixture {
 };
 
 SUITE(OSCP) {
-TEST_FIXTURE(FixtureStreamSDC, streamoscp)
+TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 {
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
@@ -392,11 +392,11 @@ TEST_FIXTURE(FixtureStreamSDC, streamoscp)
 	}
 	catch (char const* exc)
 	{
-		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << exc;
+		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << exc;
 	}    
 	catch (...)
 	{
-		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Unknown exception occurred!";
+		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();
 }

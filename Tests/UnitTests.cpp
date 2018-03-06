@@ -50,10 +50,10 @@ int main()
 	//runTestSuite("Basics");
 //	runTestSuite("Advanced");
 	// RUN THIS for testing the whole framework
-	runTestSuite("OSCP");
+	//runTestSuite("OSCP");
 
 	// Only run test with a given name
-//	runSingleTest("multioscp");
+	runSingleTest("streamsdc");
 	return 0;
 }
 
