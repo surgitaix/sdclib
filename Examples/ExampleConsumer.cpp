@@ -47,10 +47,10 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
-//const std::string deviceEPR("UDI-1234567890");
+//const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
+const std::string deviceEPR("UDI-1234567890");
 
-const std::string HANDLE_SET_METRIC("handle_set");
+const std::string HANDLE_SET_METRIC("handle_metric");
 const std::string HANDLE_GET_METRIC("handle_get");
 //const std::string HANDLE_GET_METRIC("handle_metric");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
@@ -115,7 +115,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
 	SDCLibrary::getInstance().setPortStart(12000);
 
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {

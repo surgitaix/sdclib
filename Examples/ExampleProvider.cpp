@@ -54,7 +54,7 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 
-const std::string DEVICE_EPR("UDI-EXAMPLEPROVIDER");
+const std::string DEVICE_EPR("UDI-1234567890");
 
 const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
@@ -225,6 +225,7 @@ public:
     	stringProviderStateHandler(HANDLE_STRING_METRIC),
     	numericProviderStateHandlerGet(HANDLE_GET_METRIC),
     	numericProviderStateHandlerSet(HANDLE_SET_METRIC),
+
     	streamMetricDescriptor(HANDLE_STREAM_METRIC,
     		    		CodedValue("MDCX_EXAMPLE_STREAM"),
     		    		MetricCategory::Msrmt,
@@ -237,10 +238,10 @@ public:
 						MetricAvailability::Cont,
 						1.0),
 		getMetricDescriptor(HANDLE_GET_METRIC,
-						CodedValue("MDCX_EXAMPLE_GET"),
-						MetricCategory::Set,
-						MetricAvailability::Cont,
-						1),
+				CodedValue("MDCX_EXAMPLE_GET"),
+				MetricCategory::Set,
+				MetricAvailability::Cont,
+				1),
 		stringMetricDescriptor(HANDLE_STRING_METRIC,
 						CodedValue("MDCX_EXAMPLE_STRING"),
 						MetricCategory::Set,
@@ -278,6 +279,7 @@ public:
         		.addModelName(LocalizedText().setRef("EndoTAIX"))
         		.addSerialNumber("1234"))
         	.addVmd(holdingDeviceModule);
+
 
 
         oscpProvider.createSetOperationForDescriptor(setMetricDescriptor, holdingDeviceSystem);
@@ -362,7 +364,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
 
