@@ -1,4 +1,4 @@
-# OSCLib
+# SDCLib
 
 ## HowTo build
 
@@ -13,10 +13,13 @@
  - sudo apt-get install libxerces-c3.1
  - sudo apt-get install libxerces-c-dev
 
-## Build OSCLib using CMAKE
+## Build SDCLib using CMAKE
 - Example (Linux):
  - cmake .
  - make -j 4
 
 See the 'Examples' and 'Tests' folders for example implementations.
 Run './UnitTests' for running  OSCP related tests.
+
+## Optional dependencies for MdibVisualizer 
+- graphviz, evince, pdfunite
