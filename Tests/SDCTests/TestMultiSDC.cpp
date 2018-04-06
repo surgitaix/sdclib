@@ -31,9 +31,9 @@ namespace MultiSDC {
 class OSCPTestDeviceProvider {
 public:
 
-    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : oscpProvider(), epr(number), metrics(metricCount) {
+    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : sdcProvider(), epr(number), metrics(metricCount) {
 
-    	oscpProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
+    	sdcProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
 
         // Location context
         SystemContextDescriptor sc("systemcontext_handle_" + number);
@@ -66,27 +66,27 @@ public:
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(mds);
 
-		oscpProvider.setMdDescription(mdDescription);
+		sdcProvider.setMdDescription(mdDescription);
 
 
     }
 
     void startup() {
-    	oscpProvider.startup();
+    	sdcProvider.startup();
     }
 
     void shutdown() {
-    	oscpProvider.shutdown();
+    	sdcProvider.shutdown();
     }
 
     const std::string getEndpointReference() const {
-    	return oscpProvider.getEndpointReference();
+    	return sdcProvider.getEndpointReference();
     }
 
 
 
 private:
-    SDCProvider oscpProvider;
+    SDCProvider sdcProvider;
 
     const std::size_t epr;
     const std::size_t metrics;

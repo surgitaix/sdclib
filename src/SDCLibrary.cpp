@@ -49,9 +49,7 @@ SDCLibrary::SDCLibrary() :
 	initialized(false),
 	m_IP4enabled(true),
 	m_IP6enabled(true),
-	m_numberOfReattemptsWithAnotherPort(3),
-	m_discoveryTimeMilSec(5000),
-	m_bindAddress(Poco::Net::IPAddress::Family::IPv4)
+	m_discoveryTimeMilSec(5000)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
 	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel);
@@ -154,13 +152,6 @@ bool SDCLibrary::getIP6enabled() {
 	return m_IP6enabled;
 }
 
-int SDCLibrary::getNumberOfReattemptsWithAnotherPort() const {
-	return m_numberOfReattemptsWithAnotherPort;
-}
-
-void SDCLibrary::setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort) {
-	m_numberOfReattemptsWithAnotherPort = numberOfReattemptsWithAnotherPort;
-}
 
 void SDCLibrary::setDiscoveryTime(int discoveryTimeMilSec){
 	m_discoveryTimeMilSec = discoveryTimeMilSec;
@@ -168,14 +159,6 @@ void SDCLibrary::setDiscoveryTime(int discoveryTimeMilSec){
 
 int SDCLibrary::getDiscoveryTime(){
 	return m_discoveryTimeMilSec;
-}
-
-void SDCLibrary::setBindAddress(Poco::Net::IPAddress bindAddress) {
-	m_bindAddress = bindAddress;
-}
-
-Poco::Net::IPAddress SDCLibrary::getBindAddress() {
-	return m_bindAddress;
 }
 
 } /* namespace SDCLib */

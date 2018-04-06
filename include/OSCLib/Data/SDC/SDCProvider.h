@@ -32,6 +32,8 @@
 #include "Poco/Timestamp.h"
 #include "Poco/Timespan.h"
 
+#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
+
 #include "OSCLib/Dev/DeviceCharacteristics.h"
 #include "OSCLib/Data/SDC/SDC-fwd.h"
 #include "OSCLib/Data/SDC/SDCProviderAdapter.h"
@@ -69,6 +71,13 @@ class SDCProvider final : public OSELib::WithLogger {
 public:
     SDCProvider();
     ~SDCProvider();
+
+    /**
+	* @brief Set a customized configuration for the provider
+	*
+	* @param The MDPWS configuration
+	*/
+    void setConfiguration(MDPWSTransportLayerConfiguration config);
 
     /**
     * @brief Get the complete Medical Device Infomation Base (MDIB, description and states).
@@ -350,6 +359,7 @@ private:
     void enqueueInvokeNotification(const T & request, const OperationInvocationContext & oic);
 
     unsigned int incrementAndGetTransactionId();
+
     std::atomic_uint atomicTransactionId;
 
     std::atomic_ullong mdibVersion;
@@ -372,6 +382,8 @@ private:
     Poco::Timestamp lastPeriodicEvent;
     Poco::Timespan periodicEventInterval;
     
+    MDPWSTransportLayerConfiguration configuration;
+
 //    std::map<std::string, int> streamingPorts;
 
 };

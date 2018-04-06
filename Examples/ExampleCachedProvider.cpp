@@ -172,9 +172,9 @@ public:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() : oscpProvider(), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
+    OSCPStreamProvider() : sdcProvider(), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
 
-		oscpProvider.setEndpointReference(DEVICE_EPR);
+		sdcProvider.setEndpointReference(DEVICE_EPR);
 
 		// Load cached Mdib from file system
 		// Mdib is specified in xml
@@ -185,20 +185,20 @@ public:
 
 		DebugOut(DebugOut::Default, "ExampleCachedProvider") << mdDesciption_xml;
 
-		oscpProvider.setMdDescription(mdDesciption_xml);
+		sdcProvider.setMdDescription(mdDesciption_xml);
 
         // Add handler
-		oscpProvider.addMdStateHandler(&streamHandler);
-		oscpProvider.addMdStateHandler(&getNumericHandler);
-		oscpProvider.addMdStateHandler(&setNumericHandler);
+		sdcProvider.addMdStateHandler(&streamHandler);
+		sdcProvider.addMdStateHandler(&getNumericHandler);
+		sdcProvider.addMdStateHandler(&setNumericHandler);
     }
 
     void startup() {
-    	oscpProvider.startup();
+    	sdcProvider.startup();
     }
 
     void shutdown() {
-    	oscpProvider.shutdown();
+    	sdcProvider.shutdown();
     }
 
     void updateStateValue(const SampleArrayValue & sav) {
@@ -208,7 +208,7 @@ public:
 private:
 
     // API provider class
-    SDCProvider oscpProvider;
+    SDCProvider sdcProvider;
 
     // State Handlers
     // each state handler ist named the same way as regarding descriptor

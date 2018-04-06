@@ -35,8 +35,8 @@ const std::string MDS_HANDLE("dicom_mds");
 class OSCPHoldingDeviceProvider {
 public:
 
-    OSCPHoldingDeviceProvider() : oscpProvider(), dicomDescriptor(MDS_HANDLE) {
-    	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+    OSCPHoldingDeviceProvider() : sdcProvider(), dicomDescriptor(MDS_HANDLE) {
+    	sdcProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
     	std::vector<char> fakeCert;
     	fakeCert.push_back('a');
@@ -63,23 +63,23 @@ public:
     	holdingDeviceDescription.addMdsDescriptor(dicomDescriptor);
 
     	// set the providers description
-    	oscpProvider.setMdDescription(holdingDeviceDescription);
+    	sdcProvider.setMdDescription(holdingDeviceDescription);
 
     }
 
     void startup() {
-    	oscpProvider.startup();
+    	sdcProvider.startup();
     }
 
     void shutdown() {
-    	oscpProvider.shutdown();
+    	sdcProvider.shutdown();
     }
 
 
 
 private:
     // Provider object
-    SDCProvider oscpProvider;
+    SDCProvider sdcProvider;
 
     // The current weight
     DicomDeviceDescriptor dicomDescriptor;

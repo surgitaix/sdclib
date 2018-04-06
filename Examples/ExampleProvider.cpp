@@ -36,6 +36,8 @@
 #include "OSCLib/Data/SDC/MDIB/MetaData.h"
 #include "OSCLib/Dev/DeviceCharacteristics.h"
 #include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
+#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include "BICEPS_MessageModel-fwd.hxx"
 
@@ -48,6 +50,7 @@
 #include "Poco/Mutex.h"
 #include "Poco/ScopedLock.h"
 #include "Poco/Thread.h"
+#include "Poco/Net/IPAddress.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -84,6 +87,8 @@ public:
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
 	InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+		// extract information from the incoming operation
+		DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
 		return InvocationState::Fail;
 	}
 
@@ -112,6 +117,8 @@ public:
     	notifyOperationInvoked(oic, InvocationState::Start);
     	// Do stuff
         DebugOut(DebugOut::Default, "ExampleProvider") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
+        // extract information from the incoming operation
+        DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
         // if success return Finished
         return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
@@ -169,6 +176,8 @@ public:
 
     // disallow set operation for this state
     InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    	// extract information from the incoming operation
+    	DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
     	return InvocationState::Fail;
     }
 
@@ -220,7 +229,7 @@ class OSCPStreamProvider : public Util::Task {
 public:
 
     OSCPStreamProvider() :
-    	oscpProvider(),
+    	sdcProvider(),
     	streamProviderStateHandler(HANDLE_STREAM_METRIC),
     	stringProviderStateHandler(HANDLE_STRING_METRIC),
     	numericProviderStateHandlerGet(HANDLE_GET_METRIC),
@@ -248,10 +257,17 @@ public:
 						MetricAvailability::Cont)
     	{
 
-		oscpProvider.setEndpointReference(DEVICE_EPR);
+		sdcProvider.setEndpointReference(DEVICE_EPR);
 		Dev::DeviceCharacteristics devChar;
 		devChar.addFriendlyName("en", "OSCLib ExampleProvider");
-		oscpProvider.setDeviceCharacteristics(devChar);
+		sdcProvider.setDeviceCharacteristics(devChar);
+
+		// feature: bind provider to a specific interface
+		MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
+//		providerConfig.setBindAddress(Poco::Net::IPAddress("192.168.178.150"));
+		providerConfig.setPort(6464);
+		sdcProvider.setConfiguration(providerConfig);
+
 
         // Channel
         ChannelDescriptor holdingDeviceParameters(CHANNEL_DESCRIPTOR_HANDLE);
@@ -282,29 +298,29 @@ public:
 
 
 
-        oscpProvider.createSetOperationForDescriptor(setMetricDescriptor, holdingDeviceSystem);
+        sdcProvider.createSetOperationForDescriptor(setMetricDescriptor, holdingDeviceSystem);
 
         // create and add description
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
-		oscpProvider.setMdDescription(mdDescription);
+		sdcProvider.setMdDescription(mdDescription);
 
         // Add handler
-		oscpProvider.addMdStateHandler(&numericProviderStateHandlerGet);
-		oscpProvider.addMdStateHandler(&streamProviderStateHandler);
+		sdcProvider.addMdStateHandler(&numericProviderStateHandlerGet);
+		sdcProvider.addMdStateHandler(&streamProviderStateHandler);
 
-		oscpProvider.addMdStateHandler(&numericProviderStateHandlerSet);
-		oscpProvider.addMdStateHandler(&stringProviderStateHandler);
+		sdcProvider.addMdStateHandler(&numericProviderStateHandlerSet);
+		sdcProvider.addMdStateHandler(&stringProviderStateHandler);
 
     }
 
     void startup() {
-    	oscpProvider.startup();
+    	sdcProvider.startup();
     }
 
     void shutdown() {
-    	oscpProvider.shutdown();
+    	sdcProvider.shutdown();
     }
 
     void updateStateValue(const SampleArrayValue & sav) {
@@ -313,7 +329,7 @@ public:
 
 private:
 
-    SDCProvider oscpProvider;
+    SDCProvider sdcProvider;
 
     StreamProviderStateHandler streamProviderStateHandler;
     StringProviderStateHandler stringProviderStateHandler;
@@ -364,7 +380,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Notice);
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
 

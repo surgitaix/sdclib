@@ -31,7 +31,7 @@ namespace Log {
 	const std::string OSCP(BASE + ".OSCP");
 	const std::string OSCPCONSUMER(OSCP + ".CONSUMER");
 	const std::string OSCPCONSUMERADAPTER(OSCP + ".CONSUMERADAPTER");
-	const std::string OSCPPROVIDER(OSCP + ".PROVIDER");
+	const std::string sdcProvider(OSCP + ".PROVIDER");
 	const std::string SERVICEMANAGER(OSCP + ".SERVICEMANAGER");
 	const std::string HTTP(BASE + ".HTTP");
 	const std::string EVENTING(BASE + ".EVENTING");

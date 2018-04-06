@@ -39,6 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/SDC/FutureInvocationState.h"
+#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 #include "OSCLib/Util/DebugOut.h"
 
 #include "OSELib/SDC/ServiceManager.h"
@@ -115,7 +116,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 	SDCLibrary::getInstance().setPortStart(12000);
 
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
@@ -133,7 +134,11 @@ int main() {
 
 	// Discovery
 	OSELib::SDC::ServiceManager oscpsm;
-	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	// binding to a custom port
+	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
+	config.setPort(6465);
+
+	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
 
 	// state handler
 	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));

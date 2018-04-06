@@ -1431,8 +1431,6 @@ int main() {
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpdf {} -o {}.pdf";
 
-	ls *.dot | xargs -I {} dot -Tpdf {} -o MdibVisualizer_files/{}.pdf
-
 	OSELib::SDC::ServiceManager oscpsm;
 
 	//int loopcounter = 0;

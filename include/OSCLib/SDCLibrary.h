@@ -90,22 +90,6 @@ public:
 	void setIP6enabled(bool IP6enabled);
 	bool getIP4enabled();
 	bool getIP6enabled();
-	int getNumberOfReattemptsWithAnotherPort() const;
-	void setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort);
-
-    /**
-    * @brief Set the IP address the socket should be bound to. Use it if more than one network adapter is installed.
-    *
-    * @param bindAddress the ip address to be bound to.
-    */
-	void setBindAddress(Poco::Net::IPAddress bindAddress);
-
-	/**
-	    * @brief Get the IP address the socket will be bound to or is bound to.
-	    *
-	    * @return the ip address to be bound to.
-	    */
-	Poco::Net::IPAddress getBindAddress();
 
     /**
     * @brief Set the time the service manager waits for the device discovery
@@ -125,10 +109,7 @@ private:
 	bool m_IP4enabled;
 	bool m_IP6enabled;
 	bool initialized;
-	int m_numberOfReattemptsWithAnotherPort;
 	int m_discoveryTimeMilSec;
-
-	Poco::Net::IPAddress m_bindAddress;
 
 	void createPortLists(unsigned int portStart, unsigned int portRange = 1000);
 	std::deque<unsigned int> reservedPorts;

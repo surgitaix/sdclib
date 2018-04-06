@@ -312,7 +312,7 @@ public:
 	// the mandatory fields of the states and descriptors MUST be initialized in the constructor initializer list,
 	// the state handlers are recommended to be initialized in the constructor initializer list
 	OSCPDeviceProvider() :
-		oscpProvider(),
+		sdcProvider(),
 
 		alertCondition(ALERT_CONDITION_HANDLE, AlertConditionKind::Tec, AlertConditionPriority::Me),
 		dummyMetricDescriptor(METRIC_DUMMY_HANDLE, CodedValue(CodeIdentifier("codedvalue_dummy_handle")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0),
@@ -327,7 +327,7 @@ public:
 		mdsState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
-		oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+		sdcProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
     	// Alerts
         AlertSystemDescriptor alertSystem(ALERT_SYSTEM_HANDLE);
@@ -363,37 +363,37 @@ public:
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(deviceSystem);
 
-		oscpProvider.setMdDescription(mdDescription);
+		sdcProvider.setMdDescription(mdDescription);
 
         // State handlers
-        oscpProvider.addMdStateHandler(&alertSystemState);
-        oscpProvider.addMdStateHandler(&alertConditionState);
-        oscpProvider.addMdStateHandler(&channelState);
-        oscpProvider.addMdStateHandler(&locationContextState);
-        oscpProvider.addMdStateHandler(&dummyState);
-        oscpProvider.addMdStateHandler(&mdsState);
-        oscpProvider.addMdStateHandler(&vmdState);
+        sdcProvider.addMdStateHandler(&alertSystemState);
+        sdcProvider.addMdStateHandler(&alertConditionState);
+        sdcProvider.addMdStateHandler(&channelState);
+        sdcProvider.addMdStateHandler(&locationContextState);
+        sdcProvider.addMdStateHandler(&dummyState);
+        sdcProvider.addMdStateHandler(&mdsState);
+        sdcProvider.addMdStateHandler(&vmdState);
 	}
 
 	void startup() {
-		oscpProvider.startup();
+		sdcProvider.startup();
 	}
 
 	void shutdown() {
-		oscpProvider.shutdown();
+		sdcProvider.shutdown();
 	}
 
 	void addHandleForPeriodicEvent(const std::string & handle) {
-		oscpProvider.addHandleForPeriodicEvent(handle);
+		sdcProvider.addHandleForPeriodicEvent(handle);
 	}
 
 	void setPeriodicEventInterval(const int seconds, const int milliseconds) {
-		oscpProvider.setPeriodicEventInterval(seconds, milliseconds);
+		sdcProvider.setPeriodicEventInterval(seconds, milliseconds);
 	}
 
 private:
 	// Provider
-	SDCProvider oscpProvider;
+	SDCProvider sdcProvider;
 
     // alert descriptors
 	AlertConditionDescriptor alertCondition;

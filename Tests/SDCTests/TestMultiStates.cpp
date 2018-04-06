@@ -130,14 +130,14 @@ class SDCMultiStateTestProviders {
 public:
 
     SDCMultiStateTestProviders() :
-    	oscpProvider(),
+    	sdcProvider(),
     	multistateProviderStateHandler1_1("locationStateLikeSingleState_handle", "does_not_matter"),
     	// this medical device has two states: one that contains information about the current room and one that contains information about the next room (at the same Floor)
     	multistateProviderStateHandler2_1("locationContextAbitious_handle", "actualRoom_handle"),
     	multistateProviderStateHandler2_2("locationContextAbitious_handle", "nextRoom_handle")
 	{
 
-		oscpProvider.setEndpointReference(SDCLib::Tests::multiStatesSDC::deviceEPR);
+		sdcProvider.setEndpointReference(SDCLib::Tests::multiStatesSDC::deviceEPR);
 
 
 		LocationContextDescriptor locationContextDescriptor1("locationStateLikeSingleState_handle");
@@ -172,20 +172,20 @@ public:
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
-		oscpProvider.setMdDescription(mdDescription);
+		sdcProvider.setMdDescription(mdDescription);
 
         // Add handler
-        oscpProvider.addMdStateHandler(&multistateProviderStateHandler1_1);
-        oscpProvider.addMdStateHandler(&multistateProviderStateHandler2_1);
-        oscpProvider.addMdStateHandler(&multistateProviderStateHandler2_2);
+        sdcProvider.addMdStateHandler(&multistateProviderStateHandler1_1);
+        sdcProvider.addMdStateHandler(&multistateProviderStateHandler2_1);
+        sdcProvider.addMdStateHandler(&multistateProviderStateHandler2_2);
     }
 
     void startup() {
-    	oscpProvider.startup();
+    	sdcProvider.startup();
     }
 
     void shutdown() {
-    	oscpProvider.shutdown();
+    	sdcProvider.shutdown();
     }
 
     void updateStateValue(std::string room) {
@@ -196,7 +196,7 @@ public:
 
 private:
 
-    SDCProvider oscpProvider;
+    SDCProvider sdcProvider;
 
     // Test case 1
     MultistateProviderStateHandler multistateProviderStateHandler1_1;

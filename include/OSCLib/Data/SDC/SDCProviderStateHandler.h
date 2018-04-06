@@ -88,7 +88,7 @@ public:
 
     /**
     * @brief All state handlers need an access point to their parent provider. Can be used i.e. to search for information saved in the descriptor via:
-    * oscpProvider.getMdDescription().findDescriptor<T>(handle)
+    * sdcProvider.getMdDescription().findDescriptor<T>(handle)
     *
     * @return a reference to the provider.
     */
