@@ -35,8 +35,8 @@ namespace ConnectionLostSDC {
 class OSCPTestDeviceProvider {
 public:
 
-    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : oscpProvider(), epr(number), metrics(metricCount) {
-    	oscpProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
+    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : sdcProvider(), epr(number), metrics(metricCount) {
+    	sdcProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
 
         // System context
         SystemContextDescriptor sc("MDC_SYS_CON");
@@ -72,26 +72,26 @@ public:
         MdDescription mdDescription;
         mdDescription.addMdsDescriptor(mds);
 
-        oscpProvider.setMdDescription(mdDescription);
+        sdcProvider.setMdDescription(mdDescription);
 
     }
 
     void startup() {
-    	oscpProvider.startup();
+    	sdcProvider.startup();
     }
 
     void shutdown() {
-    	oscpProvider.shutdown();
+    	sdcProvider.shutdown();
     }
 
     const std::string getEndpointReference() const {
-    	return oscpProvider.getEndpointReference();
+    	return sdcProvider.getEndpointReference();
     }
 
 
 private:
     // Provider object
-    SDCProvider oscpProvider;
+    SDCProvider sdcProvider;
 
     const std::size_t epr;
     const std::size_t metrics;

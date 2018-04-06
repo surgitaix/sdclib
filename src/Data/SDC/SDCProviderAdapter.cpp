@@ -20,6 +20,8 @@
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
+#include "OSCLib/SDCLibrary.h"
+
 #include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Data/SDC/SDCProviderAdapter.h"
 
@@ -313,10 +315,9 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-SDCProviderAdapter::SDCProviderAdapter(SDCProvider & provider, const unsigned int port) :
+SDCProviderAdapter::SDCProviderAdapter(SDCProvider & provider) :
 	_provider(provider),
-	_threadPool(new Poco::ThreadPool()),
-	_port(port)
+	_threadPool(new Poco::ThreadPool())
 {
 }
 
@@ -324,7 +325,7 @@ SDCProviderAdapter::~SDCProviderAdapter() {
 
 }
 
-void SDCProviderAdapter::start() {
+void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_dpwsHost || _subscriptionManager || _httpServer) {
@@ -336,8 +337,8 @@ void SDCProviderAdapter::start() {
 	OSELib::DPWS::MetadataProvider metadata;
 
 	Poco::Net::ServerSocket ss;
-	const Poco::Net::IPAddress address(Poco::Net::IPAddress::Family::IPv4);
-	const Poco::Net::SocketAddress socketAddress(address, _port);
+	const Poco::Net::IPAddress address(config.getBindAddress());
+	const Poco::Net::SocketAddress socketAddress(address, config.getPort());
 	ss.bind(socketAddress);
 	ss.listen();
 
@@ -346,7 +347,7 @@ void SDCProviderAdapter::start() {
 		if (nextIf.supportsIPv4()
 			&& nextIf.address().isUnicast()
 			&& !nextIf.address().isLoopback()) {
-			xAddresses.push_back(OSELib::DPWS::AddressType("http://" + nextIf.address().toString() + ":" + std::to_string(_port) + metadata.getDeviceServicePath()));
+			xAddresses.push_back(OSELib::DPWS::AddressType("http://" + nextIf.address().toString() + ":" + std::to_string(config.getPort()) + metadata.getDeviceServicePath()));
 		}
 	}
 
@@ -493,14 +494,6 @@ void SDCProviderAdapter::notifyEvent(const MDM::OperationInvokedReport & report)
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::OperationInvokedReportTraits>(report);
 	}
-}
-
-unsigned int SDCProviderAdapter::getPort() const {
-	return _port;
-}
-
-void SDCProviderAdapter::setPort(unsigned int port) {
-	_port = port;
 }
 
 void SDCProviderAdapter::addStreamingPort(const int port) {

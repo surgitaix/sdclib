@@ -20,10 +20,10 @@ namespace SDC {
 
 class SDCProviderAdapter {
 public:
-	SDCProviderAdapter(SDCProvider & provider, const unsigned int port);
+	SDCProviderAdapter(SDCProvider & provider);
 	virtual ~SDCProviderAdapter();
 
-	void start();
+	void start(MDPWSTransportLayerConfiguration config);
 	void stop();
 
 	void notifyEvent(const MDM::EpisodicAlertReport & report);
@@ -35,9 +35,6 @@ public:
 	void notifyEvent(const MDM::OperationInvokedReport & report);
 	void notifyEvent(const MDM::WaveformStream & stream);
 
-	unsigned int getPort() const;
-	void setPort(unsigned int port);
-
 	void addStreamingPort(const int port);
 	void removeStreamingPort(const int port);
 
@@ -47,7 +44,6 @@ private:
 	mutable Poco::Mutex mutex;
 	std::unique_ptr<Poco::ThreadPool> _threadPool;
 
-	unsigned int _port;
 	std::set<int> streamingPorts;
 
 	std::unique_ptr<OSELib::DPWS::SubscriptionManager> _subscriptionManager;

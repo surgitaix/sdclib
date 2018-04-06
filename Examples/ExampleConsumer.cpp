@@ -39,6 +39,7 @@
 #include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/SDC/FutureInvocationState.h"
+#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 #include "OSCLib/Util/DebugOut.h"
 
 #include "OSELib/SDC/ServiceManager.h"
@@ -47,10 +48,10 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
-//const std::string deviceEPR("UDI-1234567890");
+//const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
+const std::string deviceEPR("UDI-1234567890");
 
-const std::string HANDLE_SET_METRIC("handle_set");
+const std::string HANDLE_SET_METRIC("handle_metric");
 const std::string HANDLE_GET_METRIC("handle_get");
 //const std::string HANDLE_GET_METRIC("handle_metric");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
@@ -115,7 +116,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 	SDCLibrary::getInstance().setPortStart(12000);
 
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
@@ -133,10 +134,14 @@ int main() {
 
 	// Discovery
 	OSELib::SDC::ServiceManager oscpsm;
-	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	// binding to a custom port
+	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
+	config.setPort(6465);
+
+	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
 
 	// state handler
-//	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
+	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
 	//std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
 	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
 
@@ -146,13 +151,14 @@ int main() {
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
 
-//			consumer.registerStateEventHandler(eh_get.get());
+			consumer.registerStateEventHandler(eh_get.get());
 //			consumer.registerStateEventHandler(eh_set.get());
 			consumer.registerStateEventHandler(eh_stream.get());
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
 
 			//std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
-
+			std::unique_ptr<RealTimeSampleArrayMetricState> pMetricState(consumer.requestState<RealTimeSampleArrayMetricState>(HANDLE_STREAM_METRIC));
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pMetricState->getMetricValue().getSamples().at(3);
 			//pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
 			FutureInvocationState fis;
 			//consumer.commitState(*pMetricState, fis);
@@ -162,7 +168,7 @@ int main() {
 
 
 			waitForUserInput();
-//			consumer.unregisterStateEventHandler(eh_get.get());
+			consumer.unregisterStateEventHandler(eh_get.get());
 			//consumer.unregisterStateEventHandler(eh_set.get());
 			consumer.unregisterStateEventHandler(eh_stream.get());
 			consumer.disconnect();

@@ -42,14 +42,13 @@
 
 namespace SDCLib {
 
-const std::string CURRENT_LIB_VERSION("3.0.0");
+const std::string CURRENT_LIB_VERSION("3.0.1");
 
 SDCLibrary::SDCLibrary() :
 	WithLogger(OSELib::Log::BASE),
 	initialized(false),
 	m_IP4enabled(true),
 	m_IP6enabled(true),
-	m_numberOfReattemptsWithAnotherPort(3),
 	m_discoveryTimeMilSec(5000)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
@@ -153,13 +152,6 @@ bool SDCLibrary::getIP6enabled() {
 	return m_IP6enabled;
 }
 
-int SDCLibrary::getNumberOfReattemptsWithAnotherPort() const {
-	return m_numberOfReattemptsWithAnotherPort;
-}
-
-void SDCLibrary::setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort) {
-	m_numberOfReattemptsWithAnotherPort = numberOfReattemptsWithAnotherPort;
-}
 
 void SDCLibrary::setDiscoveryTime(int discoveryTimeMilSec){
 	m_discoveryTimeMilSec = discoveryTimeMilSec;

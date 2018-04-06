@@ -37,8 +37,6 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(StreamNotificationDispatcher & stre
 	xercesc::XMLPlatformUtils::Initialize();
 	// todo: implement ipv6
 
-//		const Poco::Net::SocketAddress m_ipv4MulticastAddress("239.239.239.235", 5555); // make member vars
-
 	// only open a streaming socket, if the provider is providing a streaming service
 	if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
 		if ( SDCLib::SDCLibrary::getInstance().getIP4enabled() )
@@ -64,7 +62,7 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(StreamNotificationDispatcher & stre
 		if ( SDCLib::SDCLibrary::getInstance().getIP6enabled() )
 				{
 //			m_deviceDescription.getStreamMulticastAddressURIs().front().
-//					DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Host IPv6:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() << "Port: " + m_deviceDescription.getStreamMulticastAddressURIs().front().getPort() << std::endl;
+//					DebugOut(DebugOut::Default, std::cerr, "streamsdc") << "Host IPv6:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() << "Port: " + m_deviceDescription.getStreamMulticastAddressURIs().front().getPort() << std::endl;
 //					m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_deviceDescription.getStreamMulticastAddressURIs().front().getHost(), m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());
 //
 //					const Poco::Net::SocketAddress _ipv4MulticastStreamingBindingAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port()); // make member vars

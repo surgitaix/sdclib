@@ -45,12 +45,20 @@ public:
 	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connect(const std::string & xaddr);
 
     /**
-    * @brief Create a consumer and try to discover provider using EPR.
+    * @brief Create a consumer and try to discover provider using endpointreference (EPR).
     *
-    * @param epr The EPR
+    * @param epr The endpointreference
     * @return The consumer or null
     */
 	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & epr);
+
+    /**
+    * @brief Like discoverEndpointReference(const std::string & epr), but with a custom configuration
+    *
+    * @param epr The endpointreference configuration the custom configuration
+    * @return The consumer or null
+    */
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & epr, SDCLib::Data::SDC::MDPWSTransportLayerConfiguration ConsumerConfig);
 
     /**
     * @brief Discover all SDC providers currently available
@@ -65,6 +73,7 @@ private:
 	// todo: kick this helloCallback. Supposedly it is not needed.
 	std::unique_ptr<DPWS::HelloCallback> _helloCallback;
 	mutable Poco::Mutex _mutex;
+	SDCLib::Data::SDC::MDPWSTransportLayerConfiguration configuration;
 };
 
 } /* namespace SDC */

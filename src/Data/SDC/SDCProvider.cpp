@@ -113,7 +113,7 @@ class AsyncProviderInvoker : public Util::Task, OSELib::WithLogger {
 public:
 	AsyncProviderInvoker(SDCProvider & provider,
 			Poco::NotificationQueue & queue) :
-		WithLogger(OSELib::Log::OSCPPROVIDER),
+		WithLogger(OSELib::Log::sdcProvider),
 		provider(provider),
 		queue(queue){
     }
@@ -183,15 +183,15 @@ bool SDCProvider::isMetricChangeAllowed(const StateType & state, SDCProvider & p
 }
 
 SDCProvider::SDCProvider() :
-	WithLogger(OSELib::Log::OSCPPROVIDER),
-	periodicEventInterval(10, 0)
+	WithLogger(OSELib::Log::sdcProvider),
+	periodicEventInterval(10, 0),
+	configuration(MDPWSTransportLayerConfiguration())
 {
 	atomicTransactionId.store(0);
 	mdibVersion.store(0);
     setEndpointReference(Poco::UUIDGenerator::defaultGenerator().create().toString());
-    const unsigned int port(SDCLibrary::getInstance().extractFreePort());
     m_mdDescription = std::unique_ptr<MdDescription>(new MdDescription());
-	_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this, port));
+	_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this));
 }
 
 SDCProvider::~SDCProvider() {
@@ -956,23 +956,16 @@ MdState SDCProvider::getMdState() {
 	return mdibStates;
 }
 
+
 void SDCProvider::startup() {
 	try {
-		_adapter->start();
+		_adapter->start(configuration);
 	} catch (const Poco::Net::NetException & e) {
-		// Case: poco exception saying that the socket is not free
-		// -> retry with another port
-		unsigned int port(SDCLibrary::getInstance().extractFreePort());
-		log_notice([&] { return "Exception: " + std::string(e.what()) + " Retrying with port: " + std::to_string(port); });
-
-		SDCLibrary::getInstance().returnPortToPool(_adapter->getPort());
-		_adapter.reset();
-		_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this, port));
-		this->startup();
+		log_error([&] { return "Net Exception: " + std::string(e.what()) + " Socket unable to be opened. Provider startup aborted.";});
 		return;
 	} catch (std::runtime_error & ex_re) {
 		log_error([&] { return ex_re.what(); });
-
+		return;
 	}
 
     // Grab all states (start with all operation states and add states from user handlers)
@@ -1074,7 +1067,7 @@ template<class T> void SDCProvider::replaceState(const T & object) {
 }
 
 
-void SDCProvider::addMdSateHandler(SDCProviderStateHandler * handler) {
+void SDCProvider::addMdStateHandler(SDCProviderStateHandler * handler) {
     handler->parentProvider = this;
 
 
@@ -1372,6 +1365,11 @@ void SDCProvider::removeHandleForPeriodicEvent(const std::string & handle) {
 	if (iterator != handlesForPeriodicUpdates.end()) {
 		handlesForPeriodicUpdates.erase(iterator);
 	}
+}
+
+
+void SDCProvider::setConfiguration(MDPWSTransportLayerConfiguration config) {
+	configuration = config;
 }
 
 } /* namespace SDC */

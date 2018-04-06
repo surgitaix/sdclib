@@ -206,13 +206,13 @@ class OSCPStreamHoldingDeviceProvider : public Util::Task {
 public:
 
     OSCPStreamHoldingDeviceProvider() :
-    	oscpProvider(),
+    	sdcProvider(),
     	streamEventHandler("handle_plethysmogram_stream"),
     	streamEventHandlerAlt("handle_plethysmogram_stream_alt"),
     	distributionEventHandler("handle_distribution_stream")
 	{
 
-		oscpProvider.setEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR);
+		sdcProvider.setEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR);
 
 
 		// Currentweight stream metric (read-only)
@@ -280,20 +280,20 @@ public:
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
-		oscpProvider.setMdDescription(mdDescription);
+		sdcProvider.setMdDescription(mdDescription);
 
         // Add handler
-        oscpProvider.addMdSateHandler(&streamEventHandler);
-        oscpProvider.addMdSateHandler(&streamEventHandlerAlt);
-        oscpProvider.addMdSateHandler(&distributionEventHandler);
+        sdcProvider.addMdStateHandler(&streamEventHandler);
+        sdcProvider.addMdStateHandler(&streamEventHandlerAlt);
+        sdcProvider.addMdStateHandler(&distributionEventHandler);
     }
 
     void startup() {
-    	oscpProvider.startup();
+    	sdcProvider.startup();
     }
 
     void shutdown() {
-    	oscpProvider.shutdown();
+    	sdcProvider.shutdown();
     }
 
     void updateStateValue(const SampleArrayValue & rtsav) {
@@ -304,7 +304,7 @@ public:
 
 private:
 
-    SDCProvider oscpProvider;
+    SDCProvider sdcProvider;
 
     StreamProviderStateHandler streamEventHandler;
     StreamProviderStateHandler streamEventHandlerAlt;
@@ -346,7 +346,7 @@ struct FixtureStreamSDC : Tests::AbstractOSCLibFixture {
 };
 
 SUITE(OSCP) {
-TEST_FIXTURE(FixtureStreamSDC, streamoscp)
+TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 {
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
@@ -392,11 +392,11 @@ TEST_FIXTURE(FixtureStreamSDC, streamoscp)
 	}
 	catch (char const* exc)
 	{
-		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << exc;
+		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << exc;
 	}    
 	catch (...)
 	{
-		DebugOut(DebugOut::Default, std::cerr, "streamoscp") << "Unknown exception occurred!";
+		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();
 }

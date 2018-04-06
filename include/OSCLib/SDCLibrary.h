@@ -36,6 +36,7 @@
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
 #include "Poco/NotificationQueue.h"
+#include "Poco/Net/IPAddress.h"
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -89,9 +90,6 @@ public:
 	void setIP6enabled(bool IP6enabled);
 	bool getIP4enabled();
 	bool getIP6enabled();
-	int getNumberOfReattemptsWithAnotherPort() const;
-	void setNumberOfReattemptsWithAnotherPort(const int numberOfReattemptsWithAnotherPort);
-
 
     /**
     * @brief Set the time the service manager waits for the device discovery
@@ -111,7 +109,6 @@ private:
 	bool m_IP4enabled;
 	bool m_IP6enabled;
 	bool initialized;
-	int m_numberOfReattemptsWithAnotherPort;
 	int m_discoveryTimeMilSec;
 
 	void createPortLists(unsigned int portStart, unsigned int portRange = 1000);

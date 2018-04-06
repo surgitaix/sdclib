@@ -160,13 +160,13 @@ class OSCPHoldingDeviceProvider {
 public:
 
     OSCPHoldingDeviceProvider() :
-    	oscpProvider(),
+    	sdcProvider(),
 		currentWeight(0),
 		maxValueState(HANDLE_MAX_WEIGHT_METRIC),
 		curValueState(HANDLE_CURRENT_WEIGHT_METRIC),
     	mdsState(MDS_HANDLE)
 	{
-    	oscpProvider.setEndpointReference(DEVICE_EPR);
+    	sdcProvider.setEndpointReference(DEVICE_EPR);
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
 
@@ -215,7 +215,7 @@ public:
 					.setCodingSystem("OR.NET.Codings"));
 
         // the set operations have to be defined before adding the MdDescription
-        oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
+        sdcProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
         // add descriptor to description
         // the description contains all the devices static information
@@ -224,27 +224,27 @@ public:
 
 
         // set the providers description
-        oscpProvider.setMdDescription(holdingDeviceDescription);
+        sdcProvider.setMdDescription(holdingDeviceDescription);
 
 
 		// State handler
-        oscpProvider.addMdSateHandler(&maxValueState);
-        oscpProvider.addMdSateHandler(&curValueState);
-        oscpProvider.addMdSateHandler(&mdsState);
+        sdcProvider.addMdStateHandler(&maxValueState);
+        sdcProvider.addMdStateHandler(&curValueState);
+        sdcProvider.addMdStateHandler(&mdsState);
 
 
     }
 
     void startup() {
-    	oscpProvider.startup();
+    	sdcProvider.startup();
     }
 
     void shutdown() {
-    	oscpProvider.shutdown();
+    	sdcProvider.shutdown();
     }
 
     void setCurrentWeight(float value) {
-    	Poco::Mutex::ScopedLock lock(oscpProvider.getMutex());
+    	Poco::Mutex::ScopedLock lock(sdcProvider.getMutex());
     	currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "ExampleProject") << "Changed value: " << currentWeight << std::endl;
@@ -253,7 +253,7 @@ public:
 private:
 
     // SDCProvider for communication to the network
-    SDCProvider oscpProvider;
+    SDCProvider sdcProvider;
 
     float currentWeight;
 

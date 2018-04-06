@@ -45,6 +45,7 @@
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/SDC/SDCConsumerAdapter.h"
+#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include "OSELib/DPWS/PingManager.h"
 #include "OSELib/DPWS/SubscriptionClient.h"
@@ -296,13 +297,13 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription) :
+SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config) :
 	WithLogger(OSELib::Log::OSCPCONSUMERADAPTER),
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
-	_port(port),
 	_deviceDescription(deviceDescription),
-	_streamClientSocketImpl(*this, deviceDescription)
+	_streamClientSocketImpl(*this, deviceDescription),
+	configuration(config)
 {
 }
 
@@ -317,8 +318,8 @@ void SDCConsumerAdapter::start() {
 
 	Poco::Net::ServerSocket ss;
 	// todo: IPv6 implementation here!
-	const Poco::Net::IPAddress address(Poco::Net::IPAddress::Family::IPv4);
-	const Poco::Net::SocketAddress socketAddress(address, _port);
+	const Poco::Net::IPAddress address(configuration.getBindAddress());
+	const Poco::Net::SocketAddress socketAddress(address, configuration.getPort());
 	ss.bind(socketAddress);
 	ss.listen();
 
@@ -388,7 +389,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::EpisodicContextChangedReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicContextChangedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(_port) + "/ContextReportSink"),
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/ContextReportSink"),
 				_deviceDescription.getContextServiceURI(),
 				filter);
 	}
@@ -400,7 +401,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
 		filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(_port) + "/EventReportSink"),
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/EventReportSink"),
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}

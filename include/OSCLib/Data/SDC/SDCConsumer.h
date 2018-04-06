@@ -30,6 +30,7 @@
 
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSCLib/Data/SDC/SDCConsumerAdapter.h"
+#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include <atomic>
 #include <deque>
@@ -232,7 +233,7 @@ public:
     unsigned long long int getLastKnownMdibVersion();
 
 private:
-    SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription);
+    SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config);
 
     /**
     * @brief Update the local MDIB using an RPC to the provider.
@@ -286,6 +287,7 @@ private:
     OSELib::DPWS::DeviceDescription _deviceDescription;
     std::unique_ptr<SDCConsumerAdapter> _adapter;
 
+    MDPWSTransportLayerConfiguration configuration;
 
 };
 

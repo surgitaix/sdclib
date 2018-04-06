@@ -15,10 +15,10 @@
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
 #include "OSELib/DPWS/Types.h"
+#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include "OSELib/Helper/WithLogger.h"
 
-// todo: maybe just fwd..
 #include "OSELib/DPWS/MDPWSStreamingAdapter.h"
 
 
@@ -32,7 +32,7 @@ class SDCConsumerAdapter :
 		public OSELib::WithLogger
 {
 public:
-	SDCConsumerAdapter(SDCConsumer & consumer, const unsigned int port, const OSELib::DPWS::DeviceDescription & deviceDescription);
+	SDCConsumerAdapter(SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config);
 	virtual ~SDCConsumerAdapter();
 
 	void start();
@@ -74,7 +74,6 @@ private:
 	mutable Poco::Mutex mutex;
 	std::unique_ptr<Poco::ThreadPool> _threadPool;
 
-	const unsigned int _port;
 	const OSELib::DPWS::DeviceDescription _deviceDescription;
 	OSELib::SDC::DefaultOSCPSchemaGrammarProvider _grammarProvider;
 	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
@@ -82,6 +81,7 @@ private:
 	OSELib::DPWS::Impl::MDPWSStreamingAdapter _streamClientSocketImpl;
 	std::unique_ptr<OSELib::DPWS::SubscriptionClient> _subscriptionClient;
 	std::unique_ptr<OSELib::DPWS::PingManager> _pingManager;
+	MDPWSTransportLayerConfiguration configuration;
 };
 
 }

@@ -72,6 +72,7 @@
 #include "OSCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "OSCLib/Data/SDC/MDIB/StringMetricValue.h"
+#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SDC/OperationTraits.h"
@@ -154,33 +155,29 @@ MDM::SetContextState createRequestMessage(const WorkflowContextState & state, co
 	return result;
 }
 
-SDCConsumer::SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription) :
+SDCConsumer::SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config) :
 		WithLogger(OSELib::Log::OSCPCONSUMER),
 		connectionLostHandler(nullptr),
 		contextStateChangedHandler(nullptr),
 		subscriptionLostHandler(nullptr),
 		lastKnownMDIBVersion(0),
-		_deviceDescription(deviceDescription)
+		_deviceDescription(deviceDescription),
+		configuration(config)
 {
 	connected = false;
-	for (int i = 0; i < SDCLibrary::getInstance().getNumberOfReattemptsWithAnotherPort(); i++) {
-		const int port(SDCLibrary::getInstance().extractFreePort());
-		try {
-			_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(*this, port, _deviceDescription));
-			_adapter->start();
-			connected = true;
-			break;
-		} catch (const Poco::Net::NetException & e) {
-			log_error([&] { return "Exception: " + std::string(e.what()) + " Retrying with other port."; });
-			SDCLibrary::getInstance().returnPortToPool(port);
-		} catch (const std::runtime_error & e) {
-			log_error([&] {return "Exception: " + std::string(e.what()); });
-		}
-	}
-	if (!connected) {
-		log_error([&] { return "Connecting to " + deviceDescription.getEPR() + " failed after " + std::to_string(SDCLibrary::getInstance().getNumberOfReattemptsWithAnotherPort()) + " attempts."; });
+	try {
+		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(*this, _deviceDescription, configuration));
+		_adapter->start();
+		connected = true;
+	} catch (const Poco::Net::NetException & e) {
+		log_error([&] { return "Exception: " + std::string(e.what()) + " Opening socket impossible. Aborted."; });
+	} catch (const std::runtime_error & e) {
+		log_error([&] {return "Exception: " + std::string(e.what()); });
 	}
 
+	if (!connected) {
+		log_error([&] { return "Connecting to " + deviceDescription.getEPR() + " failed."; });
+	}
 }
 
 SDCConsumer::~SDCConsumer() {
@@ -563,6 +560,7 @@ template std::unique_ptr<OperatorContextState> SDCConsumer::requestState<Operato
 template std::unique_ptr<PatientContextState> SDCConsumer::requestState<PatientContextState>(const std::string & handle);
 template std::unique_ptr<StringMetricState> SDCConsumer::requestState<StringMetricState>(const std::string & handle);
 template std::unique_ptr<WorkflowContextState> SDCConsumer::requestState<WorkflowContextState>(const std::string & handle);
+template std::unique_ptr<RealTimeSampleArrayMetricState> SDCConsumer::requestState<RealTimeSampleArrayMetricState>(const std::string & handle);
 
 
 // TODO: implement and test! missing states -> RealTimeSampleArrayMetricState, DistributionSampleArrayMetricState

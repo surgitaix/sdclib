@@ -1,6 +1,11 @@
+Update to version 3.0.2 D10_2017_10_05_rev2:
+
+- SDCProvider and SDCConsumer network bindings are separately configurable
+
+
 Update to version 3.0.1 D10_2017_10_05_rev2:
 
-- Portable to Windows systems
+- Portable to Windows systems, mind that xerces and xsd header files and xerces .lib files must be downloaded seperately
 - Compilable / Runnable with Visual Studio 2013 (tested with XSD 4.0), Visual Studio 2015, Visual Studio 2017 (tested  with XSD 4.0, used msvcr120.dll from VS13, via CMake integrated in VS17)
 - Bugfixes 
 
@@ -23,7 +28,7 @@ Update to version 2.1.0 D10_2017_10_05_rev2:
 	
 Update to version 2.0.1:
 
-- OSCPProvider expanded: able to load MDDescription from xml file
+- sdcProvider expanded: able to load MDDescription from xml file
 - Selectable number of attempts to open a socket if port is blocked in OSCLibrary 
 - Bugfixes
 

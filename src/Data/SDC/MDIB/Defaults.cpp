@@ -129,6 +129,7 @@
 #include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
 #include "osdm.hxx"
+#include "MDPWS.hxx"
 
 namespace SDCLib {
 namespace Data {
@@ -162,6 +163,23 @@ CDM::DicomDeviceDescriptor  * Defaults::DicomDeviceDescriptorInit(Handle handle)
 }
 
 CDM::Mdib  * Defaults::MdibInit() {
+	// TODO: Delete -> Test Safety context
+	MDPWS::SelectorType safetySelector("SELECTOR_1");
+	MDPWS::SafetyContextDefType::SelectorSequence selectorSequence;
+	selectorSequence.push_back(safetySelector);
+	MDPWS::SafetyContextDefType safetyContextDef;
+	safetyContextDef.Selector(selectorSequence);
+	MDPWS::SafetyReqType safetyReq;
+	safetyReq.SafetyContextDef(safetyContextDef);
+
+	///////////////
+	//////////////////////////////
+	///////////////
+	//Hier weiter machen
+
+	EXT::ExtensionType extensionType;
+	//extensionType.ExtensionType(safetyReq);
+
 	return new CDM::Mdib(xml_schema::Uri("0"));
 }
 

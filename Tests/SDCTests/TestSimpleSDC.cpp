@@ -789,7 +789,7 @@ class OSCPHoldingDeviceProvider : public Util::Task {
 public:
     OSCPHoldingDeviceProvider() :
     	currentWeight(0),
-    	oscpProvider(),
+    	sdcProvider(),
     	locationContextStateHandler(LOCATION_CONTEXT_HANDLE),
     	patientContextStateHandler(PATIENT_CONTEXT_HANDLE),
     	curValueState(NUMERIC_METRIC_CURRENT_HANDLE),
@@ -805,7 +805,7 @@ public:
     	mdsStateHandler(MDS_HANDLE),
     	vmdStateHandler(VMD_DESCRIPTOR_HANDLE)
 	{
-    	oscpProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+    	sdcProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
@@ -937,51 +937,51 @@ public:
                 CodedValue("MDCX_CODE_ID_MDS")
                 .setCodingSystem("OR.NET.Codings"));
 
-        oscpProvider.createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
-        oscpProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
-        oscpProvider.createSetOperationForDescriptor(testEnumMetric, holdingDeviceSystem);
-        oscpProvider.createSetOperationForDescriptor(testStringMetric, holdingDeviceSystem);
-        oscpProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
-        oscpProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
+        sdcProvider.createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
+        sdcProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
+        sdcProvider.createSetOperationForDescriptor(testEnumMetric, holdingDeviceSystem);
+        sdcProvider.createSetOperationForDescriptor(testStringMetric, holdingDeviceSystem);
+        sdcProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
+        sdcProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
 
         ActivateOperationDescriptor aod(CMD_HANDLE, NUMERIC_METRIC_MAX_HANDLE);
 
-		oscpProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
+		sdcProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
 		// create and add description
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
-		oscpProvider.setMdDescription(mdDescription);
+		sdcProvider.setMdDescription(mdDescription);
 
         // State handlers
 
-		oscpProvider.addMdSateHandler(&locationContextStateHandler);
-		oscpProvider.addMdSateHandler(&patientContextStateHandler);
-		oscpProvider.addMdSateHandler(&curValueState);
-		oscpProvider.addMdSateHandler(&enumState);
-		oscpProvider.addMdSateHandler(&maxValueState);
-		oscpProvider.addMdSateHandler(&strValueState);
-		oscpProvider.addMdSateHandler(&limitAlertConditionHandler);
-		oscpProvider.addMdSateHandler(&alertSigHandler);
-		oscpProvider.addMdSateHandler(&latchingAlertSigHandler);
-		oscpProvider.addMdSateHandler(&alertSysHandler);
-		oscpProvider.addMdSateHandler(&cmdHandler);
-		oscpProvider.addMdSateHandler(&channelStateHandler);
-		oscpProvider.addMdSateHandler(&mdsStateHandler);
-		oscpProvider.addMdSateHandler(&vmdStateHandler);
+		sdcProvider.addMdStateHandler(&locationContextStateHandler);
+		sdcProvider.addMdStateHandler(&patientContextStateHandler);
+		sdcProvider.addMdStateHandler(&curValueState);
+		sdcProvider.addMdStateHandler(&enumState);
+		sdcProvider.addMdStateHandler(&maxValueState);
+		sdcProvider.addMdStateHandler(&strValueState);
+		sdcProvider.addMdStateHandler(&limitAlertConditionHandler);
+		sdcProvider.addMdStateHandler(&alertSigHandler);
+		sdcProvider.addMdStateHandler(&latchingAlertSigHandler);
+		sdcProvider.addMdStateHandler(&alertSysHandler);
+		sdcProvider.addMdStateHandler(&cmdHandler);
+		sdcProvider.addMdStateHandler(&channelStateHandler);
+		sdcProvider.addMdStateHandler(&mdsStateHandler);
+		sdcProvider.addMdStateHandler(&vmdStateHandler);
 	}
 
     MdDescription getMdDescription() {
-    	return oscpProvider.getMdDescription();
+    	return sdcProvider.getMdDescription();
     }
 
     void startup() {
-    	oscpProvider.startup();
+    	sdcProvider.startup();
     }
 
     void shutdown() {
-    	oscpProvider.shutdown();
+    	sdcProvider.shutdown();
     }
 
     // Update weight periodically
@@ -995,7 +995,7 @@ public:
     }
 
     void setCurrentWeight(float value) {
-        Poco::Mutex::ScopedLock lock(oscpProvider.getMutex());
+        Poco::Mutex::ScopedLock lock(sdcProvider.getMutex());
         currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "SimpleSDC") << "Changed value: " << currentWeight << std::endl;
@@ -1006,7 +1006,7 @@ private:
     float currentWeight;
 
     // Provider object
-    SDCProvider oscpProvider;
+    SDCProvider sdcProvider;
 
     // State (handlers)
     LocationContextStateHandler locationContextStateHandler;
