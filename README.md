@@ -25,6 +25,5 @@ Run './UnitTests' for running  OSCP related tests.
 - graphviz, evince, pdfunite
 
 ## For discovery and streaming the udp firewall ports need to be opened
-## Using Linux
-sudo ufw allow 3702/udp # discovery
-sudo ufw allow 5555/udp # streaming
+- sudo ufw allow 3702/udp # discovery
+- sudo ufw allow 5555/udp # streaming
