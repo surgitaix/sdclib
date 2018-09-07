@@ -23,3 +23,8 @@ Run './UnitTests' for running  OSCP related tests.
 
 ## Optional dependencies for MdibVisualizer 
 - graphviz, evince, pdfunite
+
+## For discovery and streaming the udp firewall ports need to be opened
+## Using Linux
+sudo ufw allow 3702/udp # discovery
+sudo ufw allow 5555/udp # streaming
