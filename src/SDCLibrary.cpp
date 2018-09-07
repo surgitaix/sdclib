@@ -65,7 +65,9 @@ SDCLibrary::SDCLibrary() :
 
 	getLogger().setChannel(formattingChannel);
 
-	createPortLists(5000, 1000);
+	// default ports chosen regarding to unlikely used ports:
+	// https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+	createPortLists(14000, 1000);
 }
 
 SDCLibrary::~SDCLibrary() {
