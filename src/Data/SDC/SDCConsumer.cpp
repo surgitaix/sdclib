@@ -187,8 +187,10 @@ SDCConsumer::~SDCConsumer() {
     }
     if (SDCLibrary::getInstance().isInitialized() && _adapter)
     {
-        log_error([] { return "SDCConsumer deleted before disconnected!"; });
+    	log_warning([] { return "SDCConsumer deleted before disconnected. For proper handling please disconnect the consumer first"; });
     	disconnect();
+    } else if (SDCLibrary::getInstance().isInitialized() && (_adapter.get() == nullptr)) {
+    	log_error([] { return "SDCConsumerAdapter does not exist / not initialized."; });
     }
 }
 

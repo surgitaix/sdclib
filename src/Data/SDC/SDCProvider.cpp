@@ -195,8 +195,13 @@ SDCProvider::SDCProvider() :
 }
 
 SDCProvider::~SDCProvider() {
-
+    if (SDCLibrary::getInstance().isInitialized() && _adapter)
+    {
+    	log_warning([] { return "SDCProvider deleted before shutdown. For proper handling please shutdown the provider first"; });
+    	shutdown();
+    }
 }
+
 
 unsigned int SDCProvider::incrementAndGetTransactionId() {
 	const unsigned int result = ++atomicTransactionId;
