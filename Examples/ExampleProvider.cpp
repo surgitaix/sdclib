@@ -44,7 +44,6 @@
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
-#include "OSELib/SDC/ServiceManager.h"
 
 #include "Poco/Runnable.h"
 #include "Poco/Mutex.h"
@@ -384,7 +383,6 @@ int main()
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
 
-	OSELib::SDC::ServiceManager oscpsm;
 	OSCPStreamProvider provider;
 	provider.startup();
 	provider.start();
