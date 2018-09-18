@@ -16,7 +16,7 @@
 
 /**
  *  @file DeviceCharacteristics.h
- *  @project OSCLib
+ *  @project SDCLib
  *  @date 05.07.2011
  *  @author besting
  *  @copyright (c) SurgiTAIX AG

@@ -54,7 +54,6 @@ const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
 
-
 class GetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
 public:
 

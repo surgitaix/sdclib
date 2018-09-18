@@ -16,7 +16,7 @@
 
 /**
  *  @file DebugOut.h
- *  @project OSCLib
+ *  @project SDCLib
  *  @date 12.07.2012
  *  @author besting
  *  @copyright (c) SurgiTAIX AG

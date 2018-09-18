@@ -16,7 +16,7 @@
 
 /**
  *  @file SDCLibrary.cpp
- *  @project OSCLib
+ *  @project SDCLib
  *  @date 04.04.2018
  *  @author buerger
  *  @copyright (c) SurgiTAIX AG

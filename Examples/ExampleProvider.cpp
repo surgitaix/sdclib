@@ -8,6 +8,11 @@
  *
  */
 
+
+#include "OSCLib/SDCLibrary2.h"
+#include "OSCLib/SDCInstance.h"
+
+
 #include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/SDC/SDCProvider.h"
 
@@ -368,7 +373,6 @@ public:
 			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to " << index/size << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
-
 		}
     }
 };
@@ -382,6 +386,12 @@ int main()
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Notice);
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
+
+
+    SDCLibrary2::getInstance().startup(OSELib::LogLevel::Debug);
+    SDCInstancePtr sdcInstance = SDCLibrary2::getInstance().createDefaultSDCInstance();
+
+
 
 	OSCPStreamProvider provider;
 	provider.startup();

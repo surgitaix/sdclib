@@ -226,6 +226,8 @@ set(SDCLibSOURCES
 ./src/Data/SDC/SDCProviderAdapter.cpp
 ./src/Dev/DeviceCharacteristics.cpp
 ./src/SDCLibrary.cpp
+./src/SDCLibrary2.cpp
+./src/SDCInstance.cpp
 ./src/OSELib/DPWS/ActiveSubscriptions.cpp
 ./src/OSELib/DPWS/DeviceDescription.cpp
 ./src/OSELib/DPWS/DeviceHandler.cpp

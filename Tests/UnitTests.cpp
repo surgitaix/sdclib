@@ -1,6 +1,6 @@
 /**
  *  @file UnitTests.cpp
- *  @project OSCLib
+ *  @project SDCLib
  *  @date 18.06.2012
  *  @author besting
  *  @copyright (c) SurgiTAIX AG

@@ -21,6 +21,10 @@
 #include "wsdl-soap-binding-fwd.hxx"
 #include "MDPWS-fwd.hxx"
 
+namespace SDCLib {
+	class SDCInstance;
+}
+
 namespace Poco {
 	namespace Net {
 		class HTTPClientSession;

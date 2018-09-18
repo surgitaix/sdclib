@@ -16,7 +16,7 @@
 
 /**
  *  @file SDCConstants.h
- *  @project OSCLib
+ *  @project SDCLib
  *  @date 24.01.2014
  *  @author besting
  *  @copyright (c) SurgiTAIX AG
