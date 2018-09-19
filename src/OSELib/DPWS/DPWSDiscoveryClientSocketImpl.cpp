@@ -244,7 +244,8 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 
 void DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotification * notification) {
 	const Poco::AutoPtr<Poco::Net::WritableNotification> pNf(notification);
-	Poco::Net::DatagramSocket socket(pNf->socket());
+	Poco::Net::MulticastSocket socket(pNf->socket());
+	socket.setTimeToLive(OSELib::UPD_MULTICAST_TIMETOLIVE);
 
 	const Poco::AutoPtr<Poco::Notification> rawMessage(_socketSendMessageQueue[socket].dequeueNotification());
 	if (rawMessage.isNull()) {

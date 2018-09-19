@@ -35,22 +35,23 @@ void SDCInstance::_cleanup()
     m_reservedPorts.clear();
     m_availablePorts.clear();
 
-
-    //_latestPingManager.reset();
-    // ....
-
 }
 
 void SDCInstance::sealAndInit()
 {
+
     if (isInit()) {
         return;
     }
     // ...
-
+    std::lock_guard<std::mutex> t_lock(m_mutex);
     m_init = true;
 }
 
+
+list<Poco::Net::NetworkInterface> SDCInstance::getNetworkInterfacesList() {
+	return m_networkInterfacesList;
+}
 
 void SDCInstance::createPortList(unsigned int start, unsigned int range)
 {
@@ -117,17 +118,18 @@ void SDCInstance::createPortList(unsigned int start, unsigned int range)
 //    return false;
 //}
 //
-//Poco::Net::IPAddress SDCInstance::getBindAddress() const
-//{
-//    return m_bindAddress;
-//}
-//
-//void SDCInstance::setPorts(unsigned int start, unsigned int range)
-//{
-//    log_information([&]{ return "Using ports: [" + std::to_string(start) + "," + std::to_string(start + range) + ")"; });
-//
-//    createPortList(start, range);
-//}
+
+bool SDCInstance::setPorts(list<unsigned int> portList) {
+	if (isInit()) {
+		return false;
+	}
+
+	for (const auto port : portList) {
+		m_availablePorts.clear();
+		m_availablePorts.push_back(port);
+	}
+	return true;
+}
 
 //unsigned int SDCInstance::extractFreePort()
 //{

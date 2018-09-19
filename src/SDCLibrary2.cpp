@@ -127,6 +127,10 @@ bool SDCLibrary2::isInitialized() {
 
 // "Factory" methods
 SDCInstancePtr SDCLibrary2::createDefaultSDCInstance() {
+	if (!isInterfaceAvailable()) {
+		return nullptr;
+	}
+
 	Poco::Mutex::ScopedLock lock(mutex);
 	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_PORT_START, SDCLib::Config::SDC_PORT_RANGE, m_availableNetworkInterfacesList));
 	// empty list since all network interfaces are assigned to the SDCInstance
@@ -135,7 +139,20 @@ SDCInstancePtr SDCLibrary2::createDefaultSDCInstance() {
 }
 
 
-SDCInstancePtr SDCLibrary2::bindToInterface(string interfaceName) {
+bool SDCLibrary2::isInterfaceAvailable() {
+	if (m_availableNetworkInterfacesList.empty()) {
+		log_warning([&] { return "No free network interface(s) available."; });
+		return false;
+	}
+	return true;
+}
+
+
+SDCInstancePtr SDCLibrary2::createBoundSDCInstance(string interfaceName) {
+	if (!isInterfaceAvailable()) {
+		return nullptr;
+	}
+
 	Poco::Mutex::ScopedLock lock(mutex);
 	list<Poco::Net::NetworkInterface> t_networkInterfacesList;
 
@@ -148,13 +165,20 @@ SDCInstancePtr SDCLibrary2::bindToInterface(string interfaceName) {
 		}	else {
 			++itr;
 		}
-
+	}
+	if (t_networkInterfacesList.empty()) {
+		log_error([&]{return "Interface not found."; });
+		return nullptr;
 	}
 	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_PORT_START, SDCLib::Config::SDC_PORT_RANGE, t_networkInterfacesList));
 	return move(t_sdcInstance);
 }
 
-SDCInstancePtr SDCLibrary2::bindToMultipleInterfaces(list<string> interfacesNamesList) {
+SDCInstancePtr SDCLibrary2::createBoundSDCInstance(list<string> interfacesNamesList) {
+	if (!isInterfaceAvailable()) {
+		return nullptr;
+	}
+
 	Poco::Mutex::ScopedLock lock(mutex);
 	list<Poco::Net::NetworkInterface> t_networkInterfacesList;
 
@@ -169,6 +193,10 @@ SDCInstancePtr SDCLibrary2::bindToMultipleInterfaces(list<string> interfacesName
 				++itr;
 			}
 		}
+	}
+	if (t_networkInterfacesList.empty()) {
+		log_error([&]{return "Interface(s) not found."; });
+		return nullptr;
 	}
 	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_PORT_START, SDCLib::Config::SDC_PORT_RANGE, t_networkInterfacesList));
 	return move(t_sdcInstance);

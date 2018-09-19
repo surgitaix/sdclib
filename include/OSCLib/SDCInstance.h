@@ -76,6 +76,15 @@ namespace SDCLib
 		*/
         bool isInit() const { return m_init; }
 
+        /**
+		* @brief Get the list of interfaces assigned to this SDCInstance.
+		*
+		* @return list of all assigend interfaces
+		*/
+        list<Poco::Net::NetworkInterface> getNetworkInterfacesList();
+
+
+
 
         // Port Management
         /**
@@ -83,8 +92,9 @@ namespace SDCLib
     	* 			If an interface is shut down, the formerly bound port is returned.
     	*
     	* @param A list of all ports to be used.
+    	* @return returns true if successful
     	*/
-        //void setPorts(list<unsigned int> portList);
+        bool setPorts(list<unsigned int> portList);
 
         /**
          * @brief Get the next free port number used for the bindings.

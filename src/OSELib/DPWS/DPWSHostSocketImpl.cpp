@@ -166,7 +166,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
 				&& nextIf.address().isUnicast()
 				&& !nextIf.address().isLoopback()) {
 				ipv4MulticastListeningSocket.joinGroup(ipv4DiscoveryMulticastAddress.host(), nextIf);
-				Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), 0), true);
+				Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), OSELib::UPD_MULTICAST_DISCOVERY_PORT), true);
 				datagramSocket.setBlocking(false);
 				// adds datagramSocket to the queue with a clear entry
 				socketSendMessageQueue[datagramSocket].clear();
@@ -186,7 +186,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
 				&& !nextIf.address().isLoopback()) {
 				try {
 				ipv6MulticastListeningSocket.joinGroup(ipv6DiscoveryMulticastAddress.host(), nextIf);
-				Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), 0), true);
+				Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), OSELib::UPD_MULTICAST_DISCOVERY_PORT), true);
 				datagramSocket.setBlocking(false);
 				// adds datagramSocket to the queue with a clear entry
 				socketSendMessageQueue[datagramSocket].clear();
@@ -309,7 +309,8 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 void DPWSHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotification * notification) {
 	processDelayedMessages();
 	const Poco::AutoPtr<Poco::Net::WritableNotification> pNf(notification);
-	Poco::Net::DatagramSocket socket(pNf->socket());
+	Poco::Net::MulticastSocket socket(pNf->socket());
+	socket.setTimeToLive(OSELib::UPD_MULTICAST_TIMETOLIVE);
 
 	const Poco::AutoPtr<Poco::Notification> rawMessage(socketSendMessageQueue[socket].dequeueNotification());
 	if (rawMessage.isNull()) {

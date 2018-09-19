@@ -93,7 +93,7 @@ public:
 	 * @return Pointer to SDCInstance that binds the SDCConsumer and SDCProvider the specified adapter's name
 	 */
 
-	SDCInstancePtr bindToInterface(string interfaceName);
+	SDCInstancePtr createBoundSDCInstance(string interfaceName);
 
 	/**
 	 * @brief Returns a SDCInstance, which is used the interface binding and port management of the framework.
@@ -101,8 +101,15 @@ public:
 	 *
 	 * @return Pointer to SDCInstance that binds the SDCConsumer and SDCProvider the specified adapters' names
 	 */
-	SDCInstancePtr bindToMultipleInterfaces(list<string> interfacesNamesList);
+	SDCInstancePtr createBoundSDCInstance(list<string> interfacesNamesList);
 
+	/**
+	 * @brief Checks if an unbound interface is still available. Interfaces are not returned to this singleton,
+	 * 			but part of the configuration.
+	 *
+	 * @return Returns true if an interface is still available
+	 */
+	bool isInterfaceAvailable();
 
 private:
 
@@ -120,6 +127,8 @@ private:
     SDCLibrary2(SDCLibrary2&& p_obj) = delete;
     SDCLibrary2& operator=(const SDCLibrary2& p_obj) = delete;
     SDCLibrary2& operator=(SDCLibrary2&& p_obj) = delete;
+
+
 };
 
 } /* namespace SDCLib */
