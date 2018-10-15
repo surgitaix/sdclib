@@ -30,7 +30,7 @@ namespace Impl {
 
 
 MDPWSStreamingAdapter::MDPWSStreamingAdapter(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription):
-		WithLogger(Log::DISCOVERY),
+		WithLogger(Log::STREAMING),
 		m_streamNotificationDispatcher(streamNotificationDispatcher),
 		m_deviceDescription(deviceDescription)
 {

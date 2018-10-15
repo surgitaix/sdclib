@@ -17,7 +17,9 @@ namespace DPWS {
 
 const std::string HTTPProtocolPrefix("http://");
 
-MetadataProvider::MetadataProvider() {
+MetadataProvider::MetadataProvider(SDCLib::Dev::DeviceCharacteristics deviceCharacteristics):
+	_deviceCharacteristics(deviceCharacteristics)
+{
 }
 
 std::string MetadataProvider::getDeviceServicePath() const {
@@ -105,7 +107,7 @@ WS::MEX::Metadata MetadataProvider::createStreamServiceMetadata(const std::strin
 }
 
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisModel() const {
-	ThisModel::ManufacturerType manufacturer("TestManufacturer");
+	ThisModel::ManufacturerType manufacturer(_deviceCharacteristics.getManufacturer());
 
 	ThisModel thisModel;
 	thisModel.Manufacturer().push_back(manufacturer);
@@ -117,10 +119,14 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisMod
 }
 
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisDevice() const {
-	ThisDevice::FriendlyNameType friendlyName("FriendlyName");
+	auto friendlyName = _deviceCharacteristics.getFriendlyNames();
 
+	// TODO: maybe add the regarding language tag (first element) of the deviceCharacteristics.
+	// note that here no field defined for that purpose
 	ThisDevice thisDevice;
-	thisDevice.FriendlyName().push_back(friendlyName);
+	for(auto &ent1 : friendlyName) {
+		thisDevice.FriendlyName().push_back(ent1.second);
+	}
 
 	MetadataSection result((MetadataDialect(OSELib::WS_MEX_DIALECT_DEVICE)));
 	result.ThisDevice().set(thisDevice);

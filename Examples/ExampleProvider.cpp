@@ -263,7 +263,7 @@ public:
 
 		sdcProvider.setEndpointReference(DEVICE_EPR);
 		Dev::DeviceCharacteristics devChar;
-		devChar.addFriendlyName("en", "OSCLib ExampleProvider");
+		devChar.addFriendlyName("en", "SDCLib ExampleProvider");
 		sdcProvider.setDeviceCharacteristics(devChar);
 
 		// feature: bind provider to a specific interface
@@ -403,6 +403,7 @@ int main()
 	OSCPStreamProvider provider;
 	provider.startup();
 	provider.start();
+
 
 	std::string temp;
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Press key to exit program.";

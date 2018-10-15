@@ -23,12 +23,12 @@ namespace Log {
  * event management on the provider side.
  *
  */
-	const std::string BASE("OSCLIB");
+	const std::string BASE("SDCLib");
 	const std::string RAWMESSAGES(BASE + ".RAW");
 	const std::string SCHEMA(RAWMESSAGES + ".SCHEMA");
 	const std::string SOAP(RAWMESSAGES + ".SOAP");
 	const std::string DISCOVERY(RAWMESSAGES + ".DISCOVERY");
-	const std::string OSCP(BASE + ".OSCP");
+	const std::string OSCP(BASE + ".SDC");
 	const std::string OSCPCONSUMER(OSCP + ".CONSUMER");
 	const std::string OSCPCONSUMERADAPTER(OSCP + ".CONSUMERADAPTER");
 	const std::string sdcProvider(OSCP + ".PROVIDER");
@@ -37,6 +37,7 @@ namespace Log {
 	const std::string EVENTING(BASE + ".EVENTING");
 	const std::string EVENTSOURCE(EVENTING + ".SOURCE");
 	const std::string EVENTSINK(EVENTING + ".SINK");
+	const std::string STREAMING(BASE + ".STREAMING");
 }
 
 //StF Refactored to avoid collision of ERROR with #def in wingdi.h

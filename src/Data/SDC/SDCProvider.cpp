@@ -1327,11 +1327,12 @@ void SDCProvider::createSetOperationForDescriptor(const WorkflowContextDescripto
 }
 
 const Dev::DeviceCharacteristics& SDCProvider::getDeviceCharacteristics() const {
-	return devicecharacteristics;
+	return _deviceCharacteristics;
 }
 
-void SDCProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics& deviceCharacteristics) {
-	this->devicecharacteristics = deviceCharacteristics;
+void SDCProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics deviceCharacteristics) {
+	_deviceCharacteristics = deviceCharacteristics;
+	_adapter->setDeviceCharacteristics(deviceCharacteristics);
 }
 
 unsigned long long int SDCProvider::getMdibVersion() const {

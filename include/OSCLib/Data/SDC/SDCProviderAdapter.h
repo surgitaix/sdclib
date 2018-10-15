@@ -38,6 +38,8 @@ public:
 	void addStreamingPort(const int port);
 	void removeStreamingPort(const int port);
 
+	void setDeviceCharacteristics(const Dev::DeviceCharacteristics deviceCharacteristics);
+
 private:
 	SDCProvider & _provider;
 
@@ -49,6 +51,8 @@ private:
 	std::unique_ptr<OSELib::DPWS::SubscriptionManager> _subscriptionManager;
 	std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter> _dpwsHost;
 	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
+
+	Dev::DeviceCharacteristics _deviceCharacteristics;
 };
 
 } /* namespace SDC */

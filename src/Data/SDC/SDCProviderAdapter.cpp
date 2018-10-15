@@ -159,7 +159,6 @@ struct EventReportServiceImpl : public SDC::IEventReport {
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		DPWS::MetadataProvider metadata;
 		return _metadata.createEventServiceMetadata(serverAddress);
 	}
 
@@ -196,7 +195,6 @@ struct WaveformReportServiceImpl : public SDC::IEventReport {
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		DPWS::MetadataProvider metadata;
 		return _metadata.createStreamServiceMetadata(serverAddress, _streamingPorts);
 	}
 
@@ -236,7 +234,6 @@ struct GetServiceImpl : public SDC::IGetService {
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		DPWS::MetadataProvider metadata;
 		return _metadata.createGetServiceMetadata(serverAddress);
 	}
 
@@ -332,9 +329,7 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 		throw std::runtime_error("Service is already running..");
 	}
 
-	// todo make this configurable by the provider. The best would be to get all neccessary dpws device/model information in the provider constructor and directly forward it here
-	// this should be done as copy, because the metadata should NOT be changeable during runtime.
-	OSELib::DPWS::MetadataProvider metadata;
+	OSELib::DPWS::MetadataProvider metadata(_deviceCharacteristics);
 
 	Poco::Net::ServerSocket ss;
 	const Poco::Net::IPAddress address(config.getBindAddress());
@@ -504,6 +499,9 @@ void SDCProviderAdapter::removeStreamingPort(const int port) {
 	streamingPorts.erase(port);
 }
 
+void SDCProviderAdapter::setDeviceCharacteristics(const Dev::DeviceCharacteristics deviceCharacteristics) {
+	_deviceCharacteristics = deviceCharacteristics;
+}
 
 } /* namespace SDC */
 } /* namespace Data */

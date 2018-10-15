@@ -9,14 +9,14 @@
 #define DPWS_METADATAPROVIDER_H_
 
 #include "OSELib/fwd.h"
+#include "OSCLib/Dev/DeviceCharacteristics.h"
 
 namespace OSELib {
 namespace DPWS {
 
 class MetadataProvider {
 public:
-	// todo make dpws ThisDevice/ThisModel metadata configurable
-	MetadataProvider();
+	MetadataProvider(SDCLib::Dev::DeviceCharacteristics);
 
 	std::string getDeviceServicePath() const;
 	std::string getEventReportServicePath() const;
@@ -63,6 +63,8 @@ private:
 	Hosted createHostedStreamReportService(const std::string & serverAddress) const;
 	Hosted createHostedGetService(const std::string & serverAddress) const;
 	Hosted createHostedSetService(const std::string & serverAddress) const;
+
+	SDCLib::Dev::DeviceCharacteristics _deviceCharacteristics;
 };
 
 } /* namespace DPWS */

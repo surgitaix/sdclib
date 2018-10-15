@@ -219,7 +219,7 @@ public:
      * @return The DPWS device characteristics
      */
 	const Dev::DeviceCharacteristics& getDeviceCharacteristics() const;
-	void setDeviceCharacteristics(const Dev::DeviceCharacteristics& deviceCharacteristics);
+	void setDeviceCharacteristics(const Dev::DeviceCharacteristics deviceCharacteristics);
 
 
     /**
@@ -368,7 +368,6 @@ private:
 
 	std::shared_ptr<MdDescription> m_mdDescription;
     std::unique_ptr<SDCProviderAdapter> _adapter;
-    Dev::DeviceCharacteristics devicecharacteristics;
 	Poco::Mutex mutex;
 
     std::string endpointReference;
@@ -383,6 +382,9 @@ private:
     Poco::Timespan periodicEventInterval;
     
     MDPWSTransportLayerConfiguration configuration;
+
+    // saving device's metadata
+    Dev::DeviceCharacteristics _deviceCharacteristics;
 
 //    std::map<std::string, int> streamingPorts;
 
