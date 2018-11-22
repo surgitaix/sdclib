@@ -610,3 +610,9 @@ target_link_libraries(MDIBVisualizer SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDIT
 #target_link_libraries(DPWSDiscoveryListener SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 #target_link_libraries(ClientForUniRostockDevices SDCLib ${PTHREAD_LIB} ${XERCES_LIB} ${ADDITIONAL_LIBS})
 
+
+#run tests
+include(CTest)
+enable_testing()
+add_subdirectory(CTestCases)
+
