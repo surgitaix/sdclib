@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -90,11 +90,11 @@ bool MetaData::getLotNumber(std::string & out) const {
 std::string MetaData::getLotNumber() const {
 	return ConvertFromCDM::convert(data->LotNumber().get());
 }
-	
+
 bool MetaData::hasLotNumber() const {
 	return data->LotNumber().present();
 }
-	
+
 MetaData & MetaData::setManufactureDate(const xml_schema::DateTime & value) {
 	data->ManufactureDate(ConvertToCDM::convert(value));
 	return *this;
@@ -111,11 +111,11 @@ bool MetaData::getManufactureDate(xml_schema::DateTime & out) const {
 xml_schema::DateTime MetaData::getManufactureDate() const {
 	return ConvertFromCDM::convert(data->ManufactureDate().get());
 }
-	
+
 bool MetaData::hasManufactureDate() const {
 	return data->ManufactureDate().present();
 }
-	
+
 MetaData & MetaData::setExpirationDate(const xml_schema::DateTime & value) {
 	data->ExpirationDate(ConvertToCDM::convert(value));
 	return *this;
@@ -132,11 +132,11 @@ bool MetaData::getExpirationDate(xml_schema::DateTime & out) const {
 xml_schema::DateTime MetaData::getExpirationDate() const {
 	return ConvertFromCDM::convert(data->ExpirationDate().get());
 }
-	
+
 bool MetaData::hasExpirationDate() const {
 	return data->ExpirationDate().present();
 }
-	
+
 MetaData & MetaData::setModelNumber(const std::string & value) {
 	data->ModelNumber(ConvertToCDM::convert(value));
 	return *this;
@@ -153,11 +153,11 @@ bool MetaData::getModelNumber(std::string & out) const {
 std::string MetaData::getModelNumber() const {
 	return ConvertFromCDM::convert(data->ModelNumber().get());
 }
-	
+
 bool MetaData::hasModelNumber() const {
 	return data->ModelNumber().present();
 }
-	
+
 MetaData & MetaData::addUdi(const Udi & value) {
 	data->Udi().push_back(ConvertToCDM::convert(value));
 	return *this;

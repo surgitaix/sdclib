@@ -1,40 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-	Please start and end a documentation by directly beginning after/ending before the opening/closing tag. Example:
-	<xsd:documentation>Here the doc starts [..SHAL.] and ends.</document>
-
-	Do not do something like this:
-	<xsd:documentation>
-		Here the doc starts [...] and ends.
-	</document>
-
-
-	Always begin a new line at the beginning of the line and do not indent with whitespaces or tabs. Example:
-	<xsd:documentation>Here the doc starts [...]
-Here, a new line starts [...]
-Another new line starts [...]
-and the doc ends.</document>
-
-	Do not do something like this:
-	<xsd:documentation>Here the doc starts [...]
-		Here, a new line starts [...]
-		Another new line starts [...]
-		and the doc ends.</document>
-
-	All these rules prevent the documentation output format (that is generated using Altova XML Spy) from looking awkward/not well-shaped.
-
-	=====
-
-	Please fulfill CamelCase notation for any elements that exist or will be inserted.
-
-	=====
-
-	Information: - Search for "TODO: add documentation" for missing documentation items.
-	             - Search for "[TODO: clarification]" for documentation items that have to clarified
--->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://p11073-10207/draft10/ext/2017/10/05" xmlns:pm="http://p11073-10207/draft10/pm/2017/10/05" xmlns:msg="http://p11073-10207/draft10/msg/2017/10/05" targetNamespace="http://p11073-10207/draft10/msg/2017/10/05" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft10-Revision2" xml:lang="en">
-	<xsd:import namespace="http://p11073-10207/draft10/ext/2017/10/05" schemaLocation="ExtensionPoint.xsd"/>
-	<xsd:import namespace="http://p11073-10207/draft10/pm/2017/10/05" schemaLocation="BICEPS_ParticipantModel.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" xmlns:msg="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
+	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" schemaLocation="ExtensionPoint.xsd"/>
+	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" schemaLocation="BICEPS_ParticipantModel.xsd"/>
 	<xsd:annotation>
 		<xsd:documentation>This XML schema defines the 'Basic Integrated Clinical Environment Protocol Specification' (BICEPS) that is a Domain Information Model (DIM) for point of care medical device communication.
 			It encompasses the device model and the corresponding messages.

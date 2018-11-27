@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 AlertSignalState::AlertSignalState(
 		HandleRef descriptorhandle
-		, 
+		,
 		AlertActivation activationstate
 ) : data(Defaults::AlertSignalStateInit(
 		descriptorhandle
@@ -94,11 +94,11 @@ bool AlertSignalState::getStateVersion(VersionCounter & out) const {
 VersionCounter AlertSignalState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool AlertSignalState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 AlertSignalState & AlertSignalState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -108,7 +108,7 @@ AlertSignalState & AlertSignalState::setDescriptorHandle(const HandleRef & value
 HandleRef AlertSignalState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 AlertSignalState & AlertSignalState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,11 +125,11 @@ bool AlertSignalState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion AlertSignalState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool AlertSignalState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 AlertSignalState & AlertSignalState::setActivationState(const AlertActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -139,7 +139,7 @@ AlertSignalState & AlertSignalState::setActivationState(const AlertActivation & 
 AlertActivation AlertSignalState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
-	
+
 AlertSignalState & AlertSignalState::setActualSignalGenerationDelay(const xml_schema::Duration & value) {
 	data->ActualSignalGenerationDelay(ConvertToCDM::convert(value));
 	return *this;
@@ -156,11 +156,11 @@ bool AlertSignalState::getActualSignalGenerationDelay(xml_schema::Duration & out
 xml_schema::Duration AlertSignalState::getActualSignalGenerationDelay() const {
 	return ConvertFromCDM::convert(data->ActualSignalGenerationDelay().get());
 }
-	
+
 bool AlertSignalState::hasActualSignalGenerationDelay() const {
 	return data->ActualSignalGenerationDelay().present();
 }
-	
+
 AlertSignalState & AlertSignalState::setPresence(const AlertSignalPresence & value) {
 	data->Presence(ConvertToCDM::convert(value));
 	return *this;
@@ -177,11 +177,11 @@ bool AlertSignalState::getPresence(AlertSignalPresence & out) const {
 AlertSignalPresence AlertSignalState::getPresence() const {
 	return ConvertFromCDM::convert(data->Presence().get());
 }
-	
+
 bool AlertSignalState::hasPresence() const {
 	return data->Presence().present();
 }
-	
+
 AlertSignalState & AlertSignalState::setLocation(const AlertSignalPrimaryLocation & value) {
 	data->Location(ConvertToCDM::convert(value));
 	return *this;
@@ -198,11 +198,11 @@ bool AlertSignalState::getLocation(AlertSignalPrimaryLocation & out) const {
 AlertSignalPrimaryLocation AlertSignalState::getLocation() const {
 	return ConvertFromCDM::convert(data->Location().get());
 }
-	
+
 bool AlertSignalState::hasLocation() const {
 	return data->Location().present();
 }
-	
+
 AlertSignalState & AlertSignalState::setSlot(const unsigned int & value) {
 	data->Slot(ConvertToCDM::convert(value));
 	return *this;
@@ -219,11 +219,11 @@ bool AlertSignalState::getSlot(unsigned int & out) const {
 unsigned int AlertSignalState::getSlot() const {
 	return ConvertFromCDM::convert(data->Slot().get());
 }
-	
+
 bool AlertSignalState::hasSlot() const {
 	return data->Slot().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,7 +45,7 @@ namespace SDC {
 
 SetMetricStateOperationDescriptor::SetMetricStateOperationDescriptor(
 		Handle handle
-		, 
+		,
 		HandleRef operationtarget
 ) : data(Defaults::SetMetricStateOperationDescriptorInit(
 		handle
@@ -95,11 +95,11 @@ bool SetMetricStateOperationDescriptor::getType(CodedValue & out) const {
 CodedValue SetMetricStateOperationDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool SetMetricStateOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -109,7 +109,7 @@ SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setHandle
 Handle SetMetricStateOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -126,11 +126,11 @@ bool SetMetricStateOperationDescriptor::getDescriptorVersion(VersionCounter & ou
 VersionCounter SetMetricStateOperationDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetMetricStateOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -147,11 +147,11 @@ bool SetMetricStateOperationDescriptor::getSafetyClassification(SafetyClassifica
 SafetyClassification SetMetricStateOperationDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool SetMetricStateOperationDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setOperationTarget(const HandleRef & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
@@ -161,7 +161,7 @@ SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setOperat
 HandleRef SetMetricStateOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
-	
+
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setMaxTimeToFinish(const xml_schema::Duration & value) {
 	data->MaxTimeToFinish(ConvertToCDM::convert(value));
 	return *this;
@@ -178,11 +178,11 @@ bool SetMetricStateOperationDescriptor::getMaxTimeToFinish(xml_schema::Duration 
 xml_schema::Duration SetMetricStateOperationDescriptor::getMaxTimeToFinish() const {
 	return ConvertFromCDM::convert(data->MaxTimeToFinish().get());
 }
-	
+
 bool SetMetricStateOperationDescriptor::hasMaxTimeToFinish() const {
 	return data->MaxTimeToFinish().present();
 }
-	
+
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setInvocationEffectiveTimeout(const xml_schema::Duration & value) {
 	data->InvocationEffectiveTimeout(ConvertToCDM::convert(value));
 	return *this;
@@ -199,17 +199,17 @@ bool SetMetricStateOperationDescriptor::getInvocationEffectiveTimeout(xml_schema
 xml_schema::Duration SetMetricStateOperationDescriptor::getInvocationEffectiveTimeout() const {
 	return ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
 }
-	
+
 bool SetMetricStateOperationDescriptor::hasInvocationEffectiveTimeout() const {
 	return data->InvocationEffectiveTimeout().present();
 }
-	
-SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setRetriggerable(const xml_schema::Duration & value) {
+
+SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setRetriggerable(const bool & value) {
 	data->Retriggerable(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetMetricStateOperationDescriptor::getRetriggerable(xml_schema::Duration & out) const {
+bool SetMetricStateOperationDescriptor::getRetriggerable(bool & out) const {
 	if (data->Retriggerable().present()) {
 		out = ConvertFromCDM::convert(data->Retriggerable().get());
 		return true;
@@ -217,14 +217,14 @@ bool SetMetricStateOperationDescriptor::getRetriggerable(xml_schema::Duration & 
 	return false;
 }
 
-xml_schema::Duration SetMetricStateOperationDescriptor::getRetriggerable() const {
+bool SetMetricStateOperationDescriptor::getRetriggerable() const {
 	return ConvertFromCDM::convert(data->Retriggerable().get());
 }
-	
+
 bool SetMetricStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
-	
+
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
 	data->AccessLevel(ConvertToCDM::convert(value));
 	return *this;
@@ -241,11 +241,11 @@ bool SetMetricStateOperationDescriptor::getAccessLevel(AccessLevel & out) const 
 AccessLevel SetMetricStateOperationDescriptor::getAccessLevel() const {
 	return ConvertFromCDM::convert(data->AccessLevel().get());
 }
-	
+
 bool SetMetricStateOperationDescriptor::hasAccessLevel() const {
 	return data->AccessLevel().present();
 }
-	
+
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::addModifiableData(const std::string & value) {
 	data->ModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;

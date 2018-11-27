@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	PatientContextDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	PatientContextDescriptor(){};
 public:
 	PatientContextDescriptor(const PatientContextDescriptor & object);
 	virtual ~PatientContextDescriptor();
-    
+
     void copyFrom(const PatientContextDescriptor & object);
     PatientContextDescriptor & operator=(const PatientContextDescriptor & object);
-    
+
     typedef CDM::PatientContextDescriptor WrappedType;
     typedef PatientContextState StateType;
 

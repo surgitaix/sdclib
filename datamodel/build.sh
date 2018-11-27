@@ -1,5 +1,5 @@
 # if not xsd 4.0 is installed but xsd 3.3: call xsdcxx instead
-xsd cxx-tree \
+xsdcxx cxx-tree \
 	--std c++11 \
 	--show-sloc \
 	--type-naming ucc \
@@ -10,9 +10,9 @@ xsd cxx-tree \
 	--hxx-suffix ".hxx" \
 	--cxx-suffix ".cxx" \
 	--ixx-suffix ".ixx" \
-	--namespace-map http://p11073-10207/draft10/pm/2017/10/05=CDM \
-	--namespace-map http://p11073-10207/draft10/ext/2017/10/05=EXT \
-	--namespace-map http://p11073-10207/draft10/msg/2017/10/05=MDM \
+	--namespace-map http://standards.ieee.org/downloads/11073/11073-10207-2017/participant=CDM \
+	--namespace-map http://standards.ieee.org/downloads/11073/11073-10207-2017/extension=EXT \
+	--namespace-map http://standards.ieee.org/downloads/11073/11073-10207-2017/message=MDM \
 	\
 	--namespace-map http://www.w3.org/2005/08/addressing=WS::ADDRESSING \
 	--namespace-map http://schemas.xmlsoap.org/ws/2004/09/mex=WS::MEX \
@@ -25,7 +25,7 @@ xsd cxx-tree \
 	--namespace-map http://schemas.xmlsoap.org/ws/2004/08/eventing=WS::EVENTING \
 	\
 	--namespace-map http://standardized.namespace.org/ws-streaming=WS::STREAMING \
-	--namespace-map http://standards.ieee.org/downloads/11073/11073-20702-201x/=MDPWS \
+	--namespace-map http://standards.ieee.org/downloads/11073/11073-20702-2016=MDPWS \
 	--namespace-map http://www.w3.org/ns/ws-policy=WS::POLICY \
 	--namespace-map http://www.w3.org/2003/05/soap-envelope=MESSAGEMODEL \
 	\

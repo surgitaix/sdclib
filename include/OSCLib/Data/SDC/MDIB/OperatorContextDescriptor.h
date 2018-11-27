@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	OperatorContextDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	OperatorContextDescriptor(){};
 public:
 	OperatorContextDescriptor(const OperatorContextDescriptor & object);
 	virtual ~OperatorContextDescriptor();
-    
+
     void copyFrom(const OperatorContextDescriptor & object);
     OperatorContextDescriptor & operator=(const OperatorContextDescriptor & object);
-    
+
     typedef CDM::OperatorContextDescriptor WrappedType;
     typedef OperatorContextState StateType;
 

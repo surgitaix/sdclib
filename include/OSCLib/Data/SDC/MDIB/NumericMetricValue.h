@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	NumericMetricValue(
 		MetricQuality metricquality
-	); 
+	);
 private:
 	NumericMetricValue(){};
 public:
 	NumericMetricValue(const NumericMetricValue & object);
 	virtual ~NumericMetricValue();
-    
+
     void copyFrom(const NumericMetricValue & object);
     NumericMetricValue & operator=(const NumericMetricValue & object);
-    
+
     typedef CDM::NumericMetricValue WrappedType;
 
 	NumericMetricValue & setMetricQuality(const MetricQuality & value);
@@ -86,7 +86,7 @@ public:
 	NumericMetricValue & addAnnotation(const Annotation & value);
 	std::vector<Annotation> getAnnotationList() const;
 	void clearAnnotationList();
-	
+
 	NumericMetricValue & setValue(const double & value);
 	double getValue() const;
 	bool getValue(double & out) const;

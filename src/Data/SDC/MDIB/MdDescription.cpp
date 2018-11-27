@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -89,11 +89,11 @@ bool MdDescription::getDescriptionVersion(VersionCounter & out) const {
 VersionCounter MdDescription::getDescriptionVersion() const {
 	return ConvertFromCDM::convert(data->DescriptionVersion().get());
 }
-	
+
 bool MdDescription::hasDescriptionVersion() const {
 	return data->DescriptionVersion().present();
 }
-	
+
 MdDescription & MdDescription::addMds(const MdsDescriptor & value) {
 	data->Mds().push_back(ConvertToCDM::convert(value));
 	return *this;

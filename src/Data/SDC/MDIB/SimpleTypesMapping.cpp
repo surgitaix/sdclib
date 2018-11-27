@@ -26,6 +26,14 @@ EnumToString::EnumToString() {
 EnumToString::~EnumToString() {
 
 }
+std::string EnumToString::convert(DicomTransferRole source) {
+	switch (source) {
+		case DicomTransferRole::Scu: return "Scu";
+		case DicomTransferRole::Scp: return "Scp";
+	}
+	throw std::runtime_error("Illegal value for DicomTransferRole");
+}
+
 std::string EnumToString::convert(MeasurementValidity source) {
 	switch (source) {
 		case MeasurementValidity::Vld: return "Vld";
@@ -79,7 +87,9 @@ std::string EnumToString::convert(CalibrationState source) {
 	switch (source) {
 		case CalibrationState::No: return "No";
 		case CalibrationState::Req: return "Req";
+		case CalibrationState::Run: return "Run";
 		case CalibrationState::Cal: return "Cal";
+		case CalibrationState::Oth: return "Oth";
 	}
 	throw std::runtime_error("Illegal value for CalibrationState");
 }
@@ -249,14 +259,6 @@ std::string EnumToString::convert(PatientType source) {
 	throw std::runtime_error("Illegal value for PatientType");
 }
 
-std::string EnumToString::convert(DicomTransferRole source) {
-	switch (source) {
-		case DicomTransferRole::Scu: return "Scu";
-		case DicomTransferRole::Scp: return "Scp";
-	}
-	throw std::runtime_error("Illegal value for DicomTransferRole");
-}
-
 std::string EnumToString::convert(CanEscalate source) {
 	switch (source) {
 		case CanEscalate::Lo: return "Lo";
@@ -293,6 +295,7 @@ std::string EnumToString::convert(AccessLevel source) {
 		case AccessLevel::CSUsr: return "CSUsr";
 		case AccessLevel::RO: return "RO";
 		case AccessLevel::SP: return "SP";
+		case AccessLevel::Oth: return "Oth";
 	}
 	throw std::runtime_error("Illegal value for AccessLevel");
 }

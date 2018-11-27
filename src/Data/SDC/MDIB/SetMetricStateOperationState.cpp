@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 SetMetricStateOperationState::SetMetricStateOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
 ) : data(Defaults::SetMetricStateOperationStateInit(
 		descriptorhandle
@@ -94,11 +94,11 @@ bool SetMetricStateOperationState::getStateVersion(VersionCounter & out) const {
 VersionCounter SetMetricStateOperationState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool SetMetricStateOperationState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 SetMetricStateOperationState & SetMetricStateOperationState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -108,7 +108,7 @@ SetMetricStateOperationState & SetMetricStateOperationState::setDescriptorHandle
 HandleRef SetMetricStateOperationState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 SetMetricStateOperationState & SetMetricStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,11 +125,11 @@ bool SetMetricStateOperationState::getDescriptorVersion(ReferencedVersion & out)
 ReferencedVersion SetMetricStateOperationState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetMetricStateOperationState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetMetricStateOperationState & SetMetricStateOperationState::setOperatingMode(const OperatingMode & value) {
 	data->OperatingMode(ConvertToCDM::convert(value));
 	return *this;
@@ -139,7 +139,7 @@ SetMetricStateOperationState & SetMetricStateOperationState::setOperatingMode(co
 OperatingMode SetMetricStateOperationState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

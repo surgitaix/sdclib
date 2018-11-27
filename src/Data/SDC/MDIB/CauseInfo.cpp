@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -90,11 +90,11 @@ bool CauseInfo::getRemedyInfo(RemedyInfo & out) const {
 RemedyInfo CauseInfo::getRemedyInfo() const {
 	return ConvertFromCDM::convert(data->RemedyInfo().get());
 }
-	
+
 bool CauseInfo::hasRemedyInfo() const {
 	return data->RemedyInfo().present();
 }
-	
+
 CauseInfo & CauseInfo::addDescription(const LocalizedText & value) {
 	data->Description().push_back(ConvertToCDM::convert(value));
 	return *this;

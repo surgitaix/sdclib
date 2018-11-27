@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -48,15 +48,15 @@ namespace SDC {
 
 RealTimeSampleArrayMetricDescriptor::RealTimeSampleArrayMetricDescriptor(
 		Handle handle
-		, 
+		,
 		CodedValue unit
-		, 
+		,
 		MetricCategory metriccategory
-		, 
+		,
 		MetricAvailability metricavailability
-		, 
+		,
 		double resolution
-		, 
+		,
 		xml_schema::Duration sampleperiod
 ) : data(Defaults::RealTimeSampleArrayMetricDescriptorInit(
 		handle
@@ -114,11 +114,11 @@ bool RealTimeSampleArrayMetricDescriptor::getType(CodedValue & out) const {
 CodedValue RealTimeSampleArrayMetricDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool RealTimeSampleArrayMetricDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -128,7 +128,7 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setHa
 Handle RealTimeSampleArrayMetricDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool RealTimeSampleArrayMetricDescriptor::getDescriptorVersion(VersionCounter & 
 VersionCounter RealTimeSampleArrayMetricDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool RealTimeSampleArrayMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -166,11 +166,11 @@ bool RealTimeSampleArrayMetricDescriptor::getSafetyClassification(SafetyClassifi
 SafetyClassification RealTimeSampleArrayMetricDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool RealTimeSampleArrayMetricDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;
@@ -180,7 +180,7 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setUn
 CodedValue RealTimeSampleArrayMetricDescriptor::getUnit() const {
 	return ConvertFromCDM::convert(data->Unit());
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setMetricCategory(const MetricCategory & value) {
 	data->MetricCategory(ConvertToCDM::convert(value));
 	return *this;
@@ -190,7 +190,7 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setMe
 MetricCategory RealTimeSampleArrayMetricDescriptor::getMetricCategory() const {
 	return ConvertFromCDM::convert(data->MetricCategory());
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setDerivationMethod(const DerivationMethod & value) {
 	data->DerivationMethod(ConvertToCDM::convert(value));
 	return *this;
@@ -207,11 +207,11 @@ bool RealTimeSampleArrayMetricDescriptor::getDerivationMethod(DerivationMethod &
 DerivationMethod RealTimeSampleArrayMetricDescriptor::getDerivationMethod() const {
 	return ConvertFromCDM::convert(data->DerivationMethod().get());
 }
-	
+
 bool RealTimeSampleArrayMetricDescriptor::hasDerivationMethod() const {
 	return data->DerivationMethod().present();
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
 	data->MetricAvailability(ConvertToCDM::convert(value));
 	return *this;
@@ -221,7 +221,7 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setMe
 MetricAvailability RealTimeSampleArrayMetricDescriptor::getMetricAvailability() const {
 	return ConvertFromCDM::convert(data->MetricAvailability());
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
 	data->MaxMeasurementTime(ConvertToCDM::convert(value));
 	return *this;
@@ -238,11 +238,11 @@ bool RealTimeSampleArrayMetricDescriptor::getMaxMeasurementTime(xml_schema::Dura
 xml_schema::Duration RealTimeSampleArrayMetricDescriptor::getMaxMeasurementTime() const {
 	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 }
-	
+
 bool RealTimeSampleArrayMetricDescriptor::hasMaxMeasurementTime() const {
 	return data->MaxMeasurementTime().present();
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
@@ -259,11 +259,11 @@ bool RealTimeSampleArrayMetricDescriptor::getMaxDelayTime(xml_schema::Duration &
 xml_schema::Duration RealTimeSampleArrayMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
-	
+
 bool RealTimeSampleArrayMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
 	data->DeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -280,11 +280,11 @@ bool RealTimeSampleArrayMetricDescriptor::getDeterminationPeriod(xml_schema::Dur
 xml_schema::Duration RealTimeSampleArrayMetricDescriptor::getDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
 }
-	
+
 bool RealTimeSampleArrayMetricDescriptor::hasDeterminationPeriod() const {
 	return data->DeterminationPeriod().present();
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -301,11 +301,11 @@ bool RealTimeSampleArrayMetricDescriptor::getLifeTimePeriod(xml_schema::Duration
 xml_schema::Duration RealTimeSampleArrayMetricDescriptor::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
-	
+
 bool RealTimeSampleArrayMetricDescriptor::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setActivationDuration(const xml_schema::Duration & value) {
 	data->ActivationDuration(ConvertToCDM::convert(value));
 	return *this;
@@ -322,11 +322,11 @@ bool RealTimeSampleArrayMetricDescriptor::getActivationDuration(xml_schema::Dura
 xml_schema::Duration RealTimeSampleArrayMetricDescriptor::getActivationDuration() const {
 	return ConvertFromCDM::convert(data->ActivationDuration().get());
 }
-	
+
 bool RealTimeSampleArrayMetricDescriptor::hasActivationDuration() const {
 	return data->ActivationDuration().present();
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -372,7 +372,7 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setRe
 double RealTimeSampleArrayMetricDescriptor::getResolution() const {
 	return ConvertFromCDM::convert(data->Resolution());
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setSamplePeriod(const xml_schema::Duration & value) {
 	data->SamplePeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -382,7 +382,7 @@ RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::setSa
 xml_schema::Duration RealTimeSampleArrayMetricDescriptor::getSamplePeriod() const {
 	return ConvertFromCDM::convert(data->SamplePeriod());
 }
-	
+
 RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor::addTechnicalRange(const Range & value) {
 	data->TechnicalRange().push_back(ConvertToCDM::convert(value));
 	return *this;

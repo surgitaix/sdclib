@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	ActivateOperationDescriptor(
 		Handle handle
-		, 
+		,
 		HandleRef operationtarget
-	); 
+	);
 private:
 	ActivateOperationDescriptor(){};
 public:
 	ActivateOperationDescriptor(const ActivateOperationDescriptor & object);
 	virtual ~ActivateOperationDescriptor();
-    
+
     void copyFrom(const ActivateOperationDescriptor & object);
     ActivateOperationDescriptor & operator=(const ActivateOperationDescriptor & object);
-    
+
     typedef CDM::ActivateOperationDescriptor WrappedType;
 
 	ActivateOperationDescriptor & setType(const CodedValue & value);
@@ -98,9 +98,9 @@ public:
 	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
 	bool hasInvocationEffectiveTimeout() const;
 
-	ActivateOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
-	xml_schema::Duration getRetriggerable() const;
-	bool getRetriggerable(xml_schema::Duration & out) const;
+	ActivateOperationDescriptor & setRetriggerable(const bool & value);
+	bool getRetriggerable() const;
+	bool getRetriggerable(bool & out) const;
 	bool hasRetriggerable() const;
 
 	ActivateOperationDescriptor & setAccessLevel(const AccessLevel & value);
@@ -111,11 +111,11 @@ public:
 	ActivateOperationDescriptor & addModifiableData(const std::string & value);
 	std::vector<std::string> getModifiableDataList() const;
 	void clearModifiableDataList();
-	
+
 	ActivateOperationDescriptor & addArgument(const Argument & value);
 	std::vector<Argument> getArgumentList() const;
 	void clearArgumentList();
-	
+
 private:
 	std::shared_ptr<CDM::ActivateOperationDescriptor> data;
 };

@@ -1,7 +1,7 @@
 
 #include "OSCLib/Data/SDC/MDIB/Base64Binary.h"
-#include "OSCLib/Data/SDC/MDIB/custom/ConvertFromCDM.h"
-#include "OSCLib/Data/SDC/MDIB/custom/ConvertToCDM.h"
+#include "OSCLib/Data/SDC/MDIB/ConvertFromCDM.h"
+#include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
 #include <memory>
 #include <vector>

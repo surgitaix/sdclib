@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	VmdDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	VmdDescriptor(){};
 public:
 	VmdDescriptor(const VmdDescriptor & object);
 	virtual ~VmdDescriptor();
-    
+
     void copyFrom(const VmdDescriptor & object);
     VmdDescriptor & operator=(const VmdDescriptor & object);
-    
+
     typedef CDM::VmdDescriptor WrappedType;
 
 	VmdDescriptor & setType(const CodedValue & value);
@@ -86,7 +86,7 @@ public:
 	VmdDescriptor & addProductionSpecification(const ProductionSpecification & value);
 	std::vector<ProductionSpecification> getProductionSpecificationList() const;
 	void clearProductionSpecificationList();
-	
+
 	VmdDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;
@@ -105,7 +105,7 @@ public:
 	VmdDescriptor & addChannel(const ChannelDescriptor & value);
 	std::vector<ChannelDescriptor> getChannelList() const;
 	void clearChannelList();
-	
+
 private:
 	std::shared_ptr<CDM::VmdDescriptor> data;
 };

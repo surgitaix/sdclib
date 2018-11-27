@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,7 +45,7 @@ namespace SDC {
 
 SetComponentStateOperationDescriptor::SetComponentStateOperationDescriptor(
 		Handle handle
-		, 
+		,
 		HandleRef operationtarget
 ) : data(Defaults::SetComponentStateOperationDescriptorInit(
 		handle
@@ -95,11 +95,11 @@ bool SetComponentStateOperationDescriptor::getType(CodedValue & out) const {
 CodedValue SetComponentStateOperationDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool SetComponentStateOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -109,7 +109,7 @@ SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::set
 Handle SetComponentStateOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -126,11 +126,11 @@ bool SetComponentStateOperationDescriptor::getDescriptorVersion(VersionCounter &
 VersionCounter SetComponentStateOperationDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetComponentStateOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -147,11 +147,11 @@ bool SetComponentStateOperationDescriptor::getSafetyClassification(SafetyClassif
 SafetyClassification SetComponentStateOperationDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool SetComponentStateOperationDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setOperationTarget(const HandleRef & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
@@ -161,7 +161,7 @@ SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::set
 HandleRef SetComponentStateOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
-	
+
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setMaxTimeToFinish(const xml_schema::Duration & value) {
 	data->MaxTimeToFinish(ConvertToCDM::convert(value));
 	return *this;
@@ -178,11 +178,11 @@ bool SetComponentStateOperationDescriptor::getMaxTimeToFinish(xml_schema::Durati
 xml_schema::Duration SetComponentStateOperationDescriptor::getMaxTimeToFinish() const {
 	return ConvertFromCDM::convert(data->MaxTimeToFinish().get());
 }
-	
+
 bool SetComponentStateOperationDescriptor::hasMaxTimeToFinish() const {
 	return data->MaxTimeToFinish().present();
 }
-	
+
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setInvocationEffectiveTimeout(const xml_schema::Duration & value) {
 	data->InvocationEffectiveTimeout(ConvertToCDM::convert(value));
 	return *this;
@@ -199,17 +199,17 @@ bool SetComponentStateOperationDescriptor::getInvocationEffectiveTimeout(xml_sch
 xml_schema::Duration SetComponentStateOperationDescriptor::getInvocationEffectiveTimeout() const {
 	return ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
 }
-	
+
 bool SetComponentStateOperationDescriptor::hasInvocationEffectiveTimeout() const {
 	return data->InvocationEffectiveTimeout().present();
 }
-	
-SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setRetriggerable(const xml_schema::Duration & value) {
+
+SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setRetriggerable(const bool & value) {
 	data->Retriggerable(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetComponentStateOperationDescriptor::getRetriggerable(xml_schema::Duration & out) const {
+bool SetComponentStateOperationDescriptor::getRetriggerable(bool & out) const {
 	if (data->Retriggerable().present()) {
 		out = ConvertFromCDM::convert(data->Retriggerable().get());
 		return true;
@@ -217,14 +217,14 @@ bool SetComponentStateOperationDescriptor::getRetriggerable(xml_schema::Duration
 	return false;
 }
 
-xml_schema::Duration SetComponentStateOperationDescriptor::getRetriggerable() const {
+bool SetComponentStateOperationDescriptor::getRetriggerable() const {
 	return ConvertFromCDM::convert(data->Retriggerable().get());
 }
-	
+
 bool SetComponentStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
-	
+
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
 	data->AccessLevel(ConvertToCDM::convert(value));
 	return *this;
@@ -241,11 +241,11 @@ bool SetComponentStateOperationDescriptor::getAccessLevel(AccessLevel & out) con
 AccessLevel SetComponentStateOperationDescriptor::getAccessLevel() const {
 	return ConvertFromCDM::convert(data->AccessLevel().get());
 }
-	
+
 bool SetComponentStateOperationDescriptor::hasAccessLevel() const {
 	return data->AccessLevel().present();
 }
-	
+
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::addModifiableData(const std::string & value) {
 	data->ModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;

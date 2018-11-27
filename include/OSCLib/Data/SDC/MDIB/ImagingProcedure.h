@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,22 +53,22 @@ private:
 public:
 	ImagingProcedure(
 		InstanceIdentifier accessionidentifier
-		, 
+		,
 		InstanceIdentifier requestedprocedureid
-		, 
+		,
 		InstanceIdentifier studyinstanceuid
-		, 
+		,
 		InstanceIdentifier scheduledprocedurestepid
-	); 
+	);
 private:
 	ImagingProcedure(){};
 public:
 	ImagingProcedure(const ImagingProcedure & object);
 	virtual ~ImagingProcedure();
-    
+
     void copyFrom(const ImagingProcedure & object);
     ImagingProcedure & operator=(const ImagingProcedure & object);
-    
+
     typedef CDM::ImagingProcedure WrappedType;
 
 	ImagingProcedure & setAccessionIdentifier(const InstanceIdentifier & value);

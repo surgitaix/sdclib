@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 AlertConditionState::AlertConditionState(
 		HandleRef descriptorhandle
-		, 
+		,
 		AlertActivation activationstate
 ) : data(Defaults::AlertConditionStateInit(
 		descriptorhandle
@@ -94,11 +94,11 @@ bool AlertConditionState::getStateVersion(VersionCounter & out) const {
 VersionCounter AlertConditionState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool AlertConditionState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 AlertConditionState & AlertConditionState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -108,7 +108,7 @@ AlertConditionState & AlertConditionState::setDescriptorHandle(const HandleRef &
 HandleRef AlertConditionState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 AlertConditionState & AlertConditionState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,11 +125,11 @@ bool AlertConditionState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion AlertConditionState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool AlertConditionState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 AlertConditionState & AlertConditionState::setActivationState(const AlertActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -139,7 +139,7 @@ AlertConditionState & AlertConditionState::setActivationState(const AlertActivat
 AlertActivation AlertConditionState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState());
 }
-	
+
 AlertConditionState & AlertConditionState::setActualConditionGenerationDelay(const xml_schema::Duration & value) {
 	data->ActualConditionGenerationDelay(ConvertToCDM::convert(value));
 	return *this;
@@ -156,11 +156,11 @@ bool AlertConditionState::getActualConditionGenerationDelay(xml_schema::Duration
 xml_schema::Duration AlertConditionState::getActualConditionGenerationDelay() const {
 	return ConvertFromCDM::convert(data->ActualConditionGenerationDelay().get());
 }
-	
+
 bool AlertConditionState::hasActualConditionGenerationDelay() const {
 	return data->ActualConditionGenerationDelay().present();
 }
-	
+
 AlertConditionState & AlertConditionState::setActualPriority(const AlertConditionPriority & value) {
 	data->ActualPriority(ConvertToCDM::convert(value));
 	return *this;
@@ -177,11 +177,11 @@ bool AlertConditionState::getActualPriority(AlertConditionPriority & out) const 
 AlertConditionPriority AlertConditionState::getActualPriority() const {
 	return ConvertFromCDM::convert(data->ActualPriority().get());
 }
-	
+
 bool AlertConditionState::hasActualPriority() const {
 	return data->ActualPriority().present();
 }
-	
+
 AlertConditionState & AlertConditionState::setRank(const int & value) {
 	data->Rank(ConvertToCDM::convert(value));
 	return *this;
@@ -198,11 +198,11 @@ bool AlertConditionState::getRank(int & out) const {
 int AlertConditionState::getRank() const {
 	return ConvertFromCDM::convert(data->Rank().get());
 }
-	
+
 bool AlertConditionState::hasRank() const {
 	return data->Rank().present();
 }
-	
+
 AlertConditionState & AlertConditionState::setPresence(const bool & value) {
 	data->Presence(ConvertToCDM::convert(value));
 	return *this;
@@ -219,11 +219,11 @@ bool AlertConditionState::getPresence(bool & out) const {
 bool AlertConditionState::getPresence() const {
 	return ConvertFromCDM::convert(data->Presence().get());
 }
-	
+
 bool AlertConditionState::hasPresence() const {
 	return data->Presence().present();
 }
-	
+
 AlertConditionState & AlertConditionState::setDeterminationTime(const Timestamp & value) {
 	data->DeterminationTime(ConvertToCDM::convert(value));
 	return *this;
@@ -240,11 +240,11 @@ bool AlertConditionState::getDeterminationTime(Timestamp & out) const {
 Timestamp AlertConditionState::getDeterminationTime() const {
 	return ConvertFromCDM::convert(data->DeterminationTime().get());
 }
-	
+
 bool AlertConditionState::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

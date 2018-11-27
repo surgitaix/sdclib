@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,22 +53,22 @@ private:
 public:
 	DicomNetworkAe(
 		std::string aetitle
-		, 
+		,
 		xml_schema::Idrefs networkconnectionreference
-		, 
+		,
 		bool associationinitiator
-		, 
+		,
 		bool associationacceptor
-	); 
+	);
 private:
 	DicomNetworkAe(){};
 public:
 	DicomNetworkAe(const DicomNetworkAe & object);
 	virtual ~DicomNetworkAe();
-    
+
     void copyFrom(const DicomNetworkAe & object);
     DicomNetworkAe & operator=(const DicomNetworkAe & object);
-    
+
     typedef CDM::DicomNetworkAe WrappedType;
 
 	DicomNetworkAe & setAeTitle(const std::string & value);
@@ -86,11 +86,11 @@ public:
 	DicomNetworkAe & addTransferCapability(const DicomTransferCapability & value);
 	std::vector<DicomTransferCapability> getTransferCapabilityList() const;
 	void clearTransferCapabilityList();
-	
+
 	DicomNetworkAe & addDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getDescriptionList() const;
 	void clearDescriptionList();
-	
+
 private:
 	std::shared_ptr<CDM::DicomNetworkAe> data;
 };

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	AlertConditionState(
 		HandleRef descriptorhandle
-		, 
+		,
 		AlertActivation activationstate
-	); 
+	);
 private:
 	AlertConditionState(){};
 public:
 	AlertConditionState(const AlertConditionState & object);
 	virtual ~AlertConditionState();
-    
+
     void copyFrom(const AlertConditionState & object);
     AlertConditionState & operator=(const AlertConditionState & object);
-    
+
     typedef CDM::AlertConditionState WrappedType;
     typedef AlertConditionDescriptor DescriptorType;
 

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	DicomNetworkConnection(
 		xml_schema::Id id
-		, 
+		,
 		std::string hostname
-	); 
+	);
 private:
 	DicomNetworkConnection(){};
 public:
 	DicomNetworkConnection(const DicomNetworkConnection & object);
 	virtual ~DicomNetworkConnection();
-    
+
     void copyFrom(const DicomNetworkConnection & object);
     DicomNetworkConnection & operator=(const DicomNetworkConnection & object);
-    
+
     typedef CDM::DicomNetworkConnection WrappedType;
 
 	DicomNetworkConnection & setid(const xml_schema::Id & value);
@@ -81,7 +81,7 @@ public:
 	DicomNetworkConnection & addTlsCipherSuite(const std::string & value);
 	std::vector<std::string> getTlsCipherSuiteList() const;
 	void clearTlsCipherSuiteList();
-	
+
 private:
 	std::shared_ptr<CDM::DicomNetworkConnection> data;
 };

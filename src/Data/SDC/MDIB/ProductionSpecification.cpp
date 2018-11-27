@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -46,7 +46,7 @@ namespace SDC {
 
 ProductionSpecification::ProductionSpecification(
 		CodedValue spectype
-		, 
+		,
 		std::string productionspec
 ) : data(Defaults::ProductionSpecificationInit(
 		spectype
@@ -89,7 +89,7 @@ ProductionSpecification & ProductionSpecification::setSpecType(const CodedValue 
 CodedValue ProductionSpecification::getSpecType() const {
 	return ConvertFromCDM::convert(data->SpecType());
 }
-	
+
 ProductionSpecification & ProductionSpecification::setProductionSpec(const std::string & value) {
 	data->ProductionSpec(ConvertToCDM::convert(value));
 	return *this;
@@ -99,7 +99,7 @@ ProductionSpecification & ProductionSpecification::setProductionSpec(const std::
 std::string ProductionSpecification::getProductionSpec() const {
 	return ConvertFromCDM::convert(data->ProductionSpec());
 }
-	
+
 ProductionSpecification & ProductionSpecification::setComponentId(const InstanceIdentifier & value) {
 	data->ComponentId(ConvertToCDM::convert(value));
 	return *this;
@@ -116,11 +116,11 @@ bool ProductionSpecification::getComponentId(InstanceIdentifier & out) const {
 InstanceIdentifier ProductionSpecification::getComponentId() const {
 	return ConvertFromCDM::convert(data->ComponentId().get());
 }
-	
+
 bool ProductionSpecification::hasComponentId() const {
 	return data->ComponentId().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

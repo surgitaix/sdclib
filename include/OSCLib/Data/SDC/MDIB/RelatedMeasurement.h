@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	RelatedMeasurement(
 		Measurement value
-	); 
+	);
 private:
 	RelatedMeasurement(){};
 public:
 	RelatedMeasurement(const RelatedMeasurement & object);
 	virtual ~RelatedMeasurement();
-    
+
     void copyFrom(const RelatedMeasurement & object);
     RelatedMeasurement & operator=(const RelatedMeasurement & object);
-    
+
     typedef CDM::RelatedMeasurement WrappedType;
 
 	RelatedMeasurement & setValue(const Measurement & value);
@@ -76,7 +76,7 @@ public:
 	RelatedMeasurement & addReferenceRange(const ReferenceRange & value);
 	std::vector<ReferenceRange> getReferenceRangeList() const;
 	void clearReferenceRangeList();
-	
+
 private:
 	std::shared_ptr<CDM::RelatedMeasurement> data;
 };

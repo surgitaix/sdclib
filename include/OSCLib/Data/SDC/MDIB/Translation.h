@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	Translation(
 		CodeIdentifier code
-	); 
+	);
 private:
 	Translation(){};
 public:
 	Translation(const Translation & object);
 	virtual ~Translation();
-    
+
     void copyFrom(const Translation & object);
     Translation & operator=(const Translation & object);
-    
+
     typedef CDM::Translation WrappedType;
 
 	Translation & setCode(const CodeIdentifier & value);

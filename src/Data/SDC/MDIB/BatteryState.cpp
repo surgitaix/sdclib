@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -93,11 +93,11 @@ bool BatteryState::getStateVersion(VersionCounter & out) const {
 VersionCounter BatteryState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool BatteryState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 BatteryState & BatteryState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -107,7 +107,7 @@ BatteryState & BatteryState::setDescriptorHandle(const HandleRef & value) {
 HandleRef BatteryState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 BatteryState & BatteryState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,11 +124,11 @@ bool BatteryState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion BatteryState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool BatteryState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 BatteryState & BatteryState::setCalibrationInfo(const CalibrationInfo & value) {
 	data->CalibrationInfo(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool BatteryState::getCalibrationInfo(CalibrationInfo & out) const {
 CalibrationInfo BatteryState::getCalibrationInfo() const {
 	return ConvertFromCDM::convert(data->CalibrationInfo().get());
 }
-	
+
 bool BatteryState::hasCalibrationInfo() const {
 	return data->CalibrationInfo().present();
 }
-	
+
 BatteryState & BatteryState::setNextCalibration(const CalibrationInfo & value) {
 	data->NextCalibration(ConvertToCDM::convert(value));
 	return *this;
@@ -166,11 +166,11 @@ bool BatteryState::getNextCalibration(CalibrationInfo & out) const {
 CalibrationInfo BatteryState::getNextCalibration() const {
 	return ConvertFromCDM::convert(data->NextCalibration().get());
 }
-	
+
 bool BatteryState::hasNextCalibration() const {
 	return data->NextCalibration().present();
 }
-	
+
 BatteryState & BatteryState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
 	data->PhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
@@ -187,11 +187,11 @@ bool BatteryState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
 PhysicalConnectorInfo BatteryState::getPhysicalConnector() const {
 	return ConvertFromCDM::convert(data->PhysicalConnector().get());
 }
-	
+
 bool BatteryState::hasPhysicalConnector() const {
 	return data->PhysicalConnector().present();
 }
-	
+
 BatteryState & BatteryState::setActivationState(const ComponentActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -208,11 +208,11 @@ bool BatteryState::getActivationState(ComponentActivation & out) const {
 ComponentActivation BatteryState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState().get());
 }
-	
+
 bool BatteryState::hasActivationState() const {
 	return data->ActivationState().present();
 }
-	
+
 BatteryState & BatteryState::setOperatingHours(const unsigned int & value) {
 	data->OperatingHours(ConvertToCDM::convert(value));
 	return *this;
@@ -229,11 +229,11 @@ bool BatteryState::getOperatingHours(unsigned int & out) const {
 unsigned int BatteryState::getOperatingHours() const {
 	return ConvertFromCDM::convert(data->OperatingHours().get());
 }
-	
+
 bool BatteryState::hasOperatingHours() const {
 	return data->OperatingHours().present();
 }
-	
+
 BatteryState & BatteryState::setOperatingCycles(const int & value) {
 	data->OperatingCycles(ConvertToCDM::convert(value));
 	return *this;
@@ -250,11 +250,11 @@ bool BatteryState::getOperatingCycles(int & out) const {
 int BatteryState::getOperatingCycles() const {
 	return ConvertFromCDM::convert(data->OperatingCycles().get());
 }
-	
+
 bool BatteryState::hasOperatingCycles() const {
 	return data->OperatingCycles().present();
 }
-	
+
 BatteryState & BatteryState::setCapacityRemaining(const Measurement & value) {
 	data->CapacityRemaining(ConvertToCDM::convert(value));
 	return *this;
@@ -271,11 +271,11 @@ bool BatteryState::getCapacityRemaining(Measurement & out) const {
 Measurement BatteryState::getCapacityRemaining() const {
 	return ConvertFromCDM::convert(data->CapacityRemaining().get());
 }
-	
+
 bool BatteryState::hasCapacityRemaining() const {
 	return data->CapacityRemaining().present();
 }
-	
+
 BatteryState & BatteryState::setVoltage(const Measurement & value) {
 	data->Voltage(ConvertToCDM::convert(value));
 	return *this;
@@ -292,11 +292,11 @@ bool BatteryState::getVoltage(Measurement & out) const {
 Measurement BatteryState::getVoltage() const {
 	return ConvertFromCDM::convert(data->Voltage().get());
 }
-	
+
 bool BatteryState::hasVoltage() const {
 	return data->Voltage().present();
 }
-	
+
 BatteryState & BatteryState::setCurrent(const Measurement & value) {
 	data->Current(ConvertToCDM::convert(value));
 	return *this;
@@ -313,11 +313,11 @@ bool BatteryState::getCurrent(Measurement & out) const {
 Measurement BatteryState::getCurrent() const {
 	return ConvertFromCDM::convert(data->Current().get());
 }
-	
+
 bool BatteryState::hasCurrent() const {
 	return data->Current().present();
 }
-	
+
 BatteryState & BatteryState::setTemperature(const Measurement & value) {
 	data->Temperature(ConvertToCDM::convert(value));
 	return *this;
@@ -334,11 +334,11 @@ bool BatteryState::getTemperature(Measurement & out) const {
 Measurement BatteryState::getTemperature() const {
 	return ConvertFromCDM::convert(data->Temperature().get());
 }
-	
+
 bool BatteryState::hasTemperature() const {
 	return data->Temperature().present();
 }
-	
+
 BatteryState & BatteryState::setRemainingBatteryTime(const Measurement & value) {
 	data->RemainingBatteryTime(ConvertToCDM::convert(value));
 	return *this;
@@ -355,11 +355,11 @@ bool BatteryState::getRemainingBatteryTime(Measurement & out) const {
 Measurement BatteryState::getRemainingBatteryTime() const {
 	return ConvertFromCDM::convert(data->RemainingBatteryTime().get());
 }
-	
+
 bool BatteryState::hasRemainingBatteryTime() const {
 	return data->RemainingBatteryTime().present();
 }
-	
+
 BatteryState & BatteryState::setChargeStatus(const ChargeStatus & value) {
 	data->ChargeStatus(ConvertToCDM::convert(value));
 	return *this;
@@ -376,11 +376,11 @@ bool BatteryState::getChargeStatus(ChargeStatus & out) const {
 ChargeStatus BatteryState::getChargeStatus() const {
 	return ConvertFromCDM::convert(data->ChargeStatus().get());
 }
-	
+
 bool BatteryState::hasChargeStatus() const {
 	return data->ChargeStatus().present();
 }
-	
+
 BatteryState & BatteryState::setChargeCycles(const unsigned int & value) {
 	data->ChargeCycles(ConvertToCDM::convert(value));
 	return *this;
@@ -397,11 +397,11 @@ bool BatteryState::getChargeCycles(unsigned int & out) const {
 unsigned int BatteryState::getChargeCycles() const {
 	return ConvertFromCDM::convert(data->ChargeCycles().get());
 }
-	
+
 bool BatteryState::hasChargeCycles() const {
 	return data->ChargeCycles().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

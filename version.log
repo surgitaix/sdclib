@@ -1,3 +1,8 @@
+Update to version 3.1.0 final standard: 
+
+- Update to latest standard version
+- Standard xsd can be found here: http://standards.ieee.org/downloads/11073/
+
 Update to version 3.0.2 D10_2017_10_05_rev2:
 
 - SDCProvider and SDCConsumer network bindings are separately configurable

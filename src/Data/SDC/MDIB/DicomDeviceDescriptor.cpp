@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -97,11 +97,11 @@ bool DicomDeviceDescriptor::getType(CodedValue & out) const {
 CodedValue DicomDeviceDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool DicomDeviceDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 DicomDeviceDescriptor & DicomDeviceDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -111,7 +111,7 @@ DicomDeviceDescriptor & DicomDeviceDescriptor::setHandle(const Handle & value) {
 Handle DicomDeviceDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 DicomDeviceDescriptor & DicomDeviceDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -128,11 +128,11 @@ bool DicomDeviceDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter DicomDeviceDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool DicomDeviceDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 DicomDeviceDescriptor & DicomDeviceDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -149,11 +149,11 @@ bool DicomDeviceDescriptor::getSafetyClassification(SafetyClassification & out) 
 SafetyClassification DicomDeviceDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool DicomDeviceDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 DicomDeviceDescriptor & DicomDeviceDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -188,11 +188,11 @@ bool DicomDeviceDescriptor::getAlertSystem(AlertSystemDescriptor & out) const {
 AlertSystemDescriptor DicomDeviceDescriptor::getAlertSystem() const {
 	return ConvertFromCDM::convert(data->AlertSystem().get());
 }
-	
+
 bool DicomDeviceDescriptor::hasAlertSystem() const {
 	return data->AlertSystem().present();
 }
-	
+
 DicomDeviceDescriptor & DicomDeviceDescriptor::setSco(const ScoDescriptor & value) {
 	data->Sco(ConvertToCDM::convert(value));
 	return *this;
@@ -209,11 +209,11 @@ bool DicomDeviceDescriptor::getSco(ScoDescriptor & out) const {
 ScoDescriptor DicomDeviceDescriptor::getSco() const {
 	return ConvertFromCDM::convert(data->Sco().get());
 }
-	
+
 bool DicomDeviceDescriptor::hasSco() const {
 	return data->Sco().present();
 }
-	
+
 DicomDeviceDescriptor & DicomDeviceDescriptor::setIssuerOfPatientID(const std::string & value) {
 	data->IssuerOfPatientID(ConvertToCDM::convert(value));
 	return *this;
@@ -230,11 +230,11 @@ bool DicomDeviceDescriptor::getIssuerOfPatientID(std::string & out) const {
 std::string DicomDeviceDescriptor::getIssuerOfPatientID() const {
 	return ConvertFromCDM::convert(data->IssuerOfPatientID().get());
 }
-	
+
 bool DicomDeviceDescriptor::hasIssuerOfPatientID() const {
 	return data->IssuerOfPatientID().present();
 }
-	
+
 DicomDeviceDescriptor & DicomDeviceDescriptor::addNetworkAe(const DicomNetworkAe & value) {
 	data->NetworkAe().push_back(ConvertToCDM::convert(value));
 	return *this;

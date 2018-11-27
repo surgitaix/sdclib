@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -90,7 +90,7 @@ WorkflowDetail & WorkflowDetail::setPatient(const PersonReference & value) {
 PersonReference WorkflowDetail::getPatient() const {
 	return ConvertFromCDM::convert(data->Patient());
 }
-	
+
 WorkflowDetail & WorkflowDetail::setAssignedLocation(const LocationReference & value) {
 	data->AssignedLocation(ConvertToCDM::convert(value));
 	return *this;
@@ -107,11 +107,11 @@ bool WorkflowDetail::getAssignedLocation(LocationReference & out) const {
 LocationReference WorkflowDetail::getAssignedLocation() const {
 	return ConvertFromCDM::convert(data->AssignedLocation().get());
 }
-	
+
 bool WorkflowDetail::hasAssignedLocation() const {
 	return data->AssignedLocation().present();
 }
-	
+
 WorkflowDetail & WorkflowDetail::setVisitNumber(const InstanceIdentifier & value) {
 	data->VisitNumber(ConvertToCDM::convert(value));
 	return *this;
@@ -128,11 +128,11 @@ bool WorkflowDetail::getVisitNumber(InstanceIdentifier & out) const {
 InstanceIdentifier WorkflowDetail::getVisitNumber() const {
 	return ConvertFromCDM::convert(data->VisitNumber().get());
 }
-	
+
 bool WorkflowDetail::hasVisitNumber() const {
 	return data->VisitNumber().present();
 }
-	
+
 WorkflowDetail & WorkflowDetail::setRequestedOrderDetail(const RequestedOrderDetail & value) {
 	data->RequestedOrderDetail(ConvertToCDM::convert(value));
 	return *this;
@@ -149,11 +149,11 @@ bool WorkflowDetail::getRequestedOrderDetail(RequestedOrderDetail & out) const {
 RequestedOrderDetail WorkflowDetail::getRequestedOrderDetail() const {
 	return ConvertFromCDM::convert(data->RequestedOrderDetail().get());
 }
-	
+
 bool WorkflowDetail::hasRequestedOrderDetail() const {
 	return data->RequestedOrderDetail().present();
 }
-	
+
 WorkflowDetail & WorkflowDetail::setPerformedOrderDetail(const PerformedOrderDetail & value) {
 	data->PerformedOrderDetail(ConvertToCDM::convert(value));
 	return *this;
@@ -170,11 +170,11 @@ bool WorkflowDetail::getPerformedOrderDetail(PerformedOrderDetail & out) const {
 PerformedOrderDetail WorkflowDetail::getPerformedOrderDetail() const {
 	return ConvertFromCDM::convert(data->PerformedOrderDetail().get());
 }
-	
+
 bool WorkflowDetail::hasPerformedOrderDetail() const {
 	return data->PerformedOrderDetail().present();
 }
-	
+
 WorkflowDetail & WorkflowDetail::addDangerCode(const CodedValue & value) {
 	data->DangerCode().push_back(ConvertToCDM::convert(value));
 	return *this;

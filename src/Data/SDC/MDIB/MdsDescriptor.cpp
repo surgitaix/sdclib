@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -100,11 +100,11 @@ bool MdsDescriptor::getType(CodedValue & out) const {
 CodedValue MdsDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool MdsDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 MdsDescriptor & MdsDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -114,7 +114,7 @@ MdsDescriptor & MdsDescriptor::setHandle(const Handle & value) {
 Handle MdsDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 MdsDescriptor & MdsDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -131,11 +131,11 @@ bool MdsDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter MdsDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool MdsDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 MdsDescriptor & MdsDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -152,11 +152,11 @@ bool MdsDescriptor::getSafetyClassification(SafetyClassification & out) const {
 SafetyClassification MdsDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool MdsDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 MdsDescriptor & MdsDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -191,11 +191,11 @@ bool MdsDescriptor::getAlertSystem(AlertSystemDescriptor & out) const {
 AlertSystemDescriptor MdsDescriptor::getAlertSystem() const {
 	return ConvertFromCDM::convert(data->AlertSystem().get());
 }
-	
+
 bool MdsDescriptor::hasAlertSystem() const {
 	return data->AlertSystem().present();
 }
-	
+
 MdsDescriptor & MdsDescriptor::setSco(const ScoDescriptor & value) {
 	data->Sco(ConvertToCDM::convert(value));
 	return *this;
@@ -212,11 +212,11 @@ bool MdsDescriptor::getSco(ScoDescriptor & out) const {
 ScoDescriptor MdsDescriptor::getSco() const {
 	return ConvertFromCDM::convert(data->Sco().get());
 }
-	
+
 bool MdsDescriptor::hasSco() const {
 	return data->Sco().present();
 }
-	
+
 MdsDescriptor & MdsDescriptor::setMetaData(const MetaData & value) {
 	data->MetaData(ConvertToCDM::convert(value));
 	return *this;
@@ -233,11 +233,11 @@ bool MdsDescriptor::getMetaData(MetaData & out) const {
 MetaData MdsDescriptor::getMetaData() const {
 	return ConvertFromCDM::convert(data->MetaData().get());
 }
-	
+
 bool MdsDescriptor::hasMetaData() const {
 	return data->MetaData().present();
 }
-	
+
 MdsDescriptor & MdsDescriptor::setSystemContext(const SystemContextDescriptor & value) {
 	data->SystemContext(ConvertToCDM::convert(value));
 	return *this;
@@ -254,11 +254,11 @@ bool MdsDescriptor::getSystemContext(SystemContextDescriptor & out) const {
 SystemContextDescriptor MdsDescriptor::getSystemContext() const {
 	return ConvertFromCDM::convert(data->SystemContext().get());
 }
-	
+
 bool MdsDescriptor::hasSystemContext() const {
 	return data->SystemContext().present();
 }
-	
+
 MdsDescriptor & MdsDescriptor::setClock(const ClockDescriptor & value) {
 	data->Clock(ConvertToCDM::convert(value));
 	return *this;
@@ -275,11 +275,11 @@ bool MdsDescriptor::getClock(ClockDescriptor & out) const {
 ClockDescriptor MdsDescriptor::getClock() const {
 	return ConvertFromCDM::convert(data->Clock().get());
 }
-	
+
 bool MdsDescriptor::hasClock() const {
 	return data->Clock().present();
 }
-	
+
 MdsDescriptor & MdsDescriptor::setApprovedJurisdictions(const ApprovedJurisdictions & value) {
 	data->ApprovedJurisdictions(ConvertToCDM::convert(value));
 	return *this;
@@ -296,11 +296,11 @@ bool MdsDescriptor::getApprovedJurisdictions(ApprovedJurisdictions & out) const 
 ApprovedJurisdictions MdsDescriptor::getApprovedJurisdictions() const {
 	return ConvertFromCDM::convert(data->ApprovedJurisdictions().get());
 }
-	
+
 bool MdsDescriptor::hasApprovedJurisdictions() const {
 	return data->ApprovedJurisdictions().present();
 }
-	
+
 MdsDescriptor & MdsDescriptor::addBattery(const BatteryDescriptor & value) {
 	data->Battery().push_back(ConvertToCDM::convert(value));
 	return *this;

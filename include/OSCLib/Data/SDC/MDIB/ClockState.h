@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	ClockState(
 		HandleRef descriptorhandle
-		, 
+		,
 		bool remotesync
-	); 
+	);
 private:
 	ClockState(){};
 public:
 	ClockState(const ClockState & object);
 	virtual ~ClockState();
-    
+
     void copyFrom(const ClockState & object);
     ClockState & operator=(const ClockState & object);
-    
+
     typedef CDM::ClockState WrappedType;
     typedef ClockDescriptor DescriptorType;
 
@@ -147,7 +147,7 @@ public:
 	ClockState & addReferenceSource(const std::string & value);
 	std::vector<std::string> getReferenceSourceList() const;
 	void clearReferenceSourceList();
-	
+
 private:
 	std::shared_ptr<CDM::ClockState> data;
 };

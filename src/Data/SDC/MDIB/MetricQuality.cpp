@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -83,7 +83,7 @@ MetricQuality & MetricQuality::setValidity(const MeasurementValidity & value) {
 MeasurementValidity MetricQuality::getValidity() const {
 	return ConvertFromCDM::convert(data->Validity());
 }
-	
+
 MetricQuality & MetricQuality::setMode(const GenerationMode & value) {
 	data->Mode(ConvertToCDM::convert(value));
 	return *this;
@@ -100,11 +100,11 @@ bool MetricQuality::getMode(GenerationMode & out) const {
 GenerationMode MetricQuality::getMode() const {
 	return ConvertFromCDM::convert(data->Mode().get());
 }
-	
+
 bool MetricQuality::hasMode() const {
 	return data->Mode().present();
 }
-	
+
 MetricQuality & MetricQuality::setQi(const QualityIndicator & value) {
 	data->Qi(ConvertToCDM::convert(value));
 	return *this;
@@ -121,11 +121,11 @@ bool MetricQuality::getQi(QualityIndicator & out) const {
 QualityIndicator MetricQuality::getQi() const {
 	return ConvertFromCDM::convert(data->Qi().get());
 }
-	
+
 bool MetricQuality::hasQi() const {
 	return data->Qi().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

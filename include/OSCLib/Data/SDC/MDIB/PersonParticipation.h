@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	PersonParticipation(
-	); 
+	);
 	PersonParticipation(const PersonParticipation & object);
 	virtual ~PersonParticipation();
-    
+
     void copyFrom(const PersonParticipation & object);
     PersonParticipation & operator=(const PersonParticipation & object);
-    
+
     typedef CDM::PersonParticipation WrappedType;
 
 	PersonParticipation & setName(const BaseDemographics & value);
@@ -69,11 +69,11 @@ public:
 	PersonParticipation & addIdentification(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
-	
+
 	PersonParticipation & addRole(const CodedValue & value);
 	std::vector<CodedValue> getRoleList() const;
 	void clearRoleList();
-	
+
 private:
 	std::shared_ptr<CDM::PersonParticipation> data;
 };

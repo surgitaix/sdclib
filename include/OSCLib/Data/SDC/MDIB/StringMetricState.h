@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	StringMetricState(
 		HandleRef descriptorhandle
-	); 
+	);
 private:
 	StringMetricState(){};
 public:
 	StringMetricState(const StringMetricState & object);
 	virtual ~StringMetricState();
-    
+
     void copyFrom(const StringMetricState & object);
     StringMetricState & operator=(const StringMetricState & object);
-    
+
     typedef CDM::StringMetricState WrappedType;
     typedef StringMetricDescriptor DescriptorType;
 
@@ -102,7 +102,7 @@ public:
 	StringMetricState & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
+
 	StringMetricState & setMetricValue(const StringMetricValue & value);
 	StringMetricValue getMetricValue() const;
 	bool getMetricValue(StringMetricValue & out) const;

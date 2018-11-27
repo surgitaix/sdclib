@@ -2383,7 +2383,7 @@ namespace MESSAGEMODEL
 
       // GetContextStates
       //
-      if (n.name () == "GetContextStates" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "GetContextStates" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< GetContextStatesType > r (
           GetContextStatesTraits::create (i, f, this));
@@ -2397,7 +2397,7 @@ namespace MESSAGEMODEL
 
       // GetContextStatesResponse
       //
-      if (n.name () == "GetContextStatesResponse" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "GetContextStatesResponse" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< GetContextStatesResponseType > r (
           GetContextStatesResponseTraits::create (i, f, this));
@@ -2411,7 +2411,7 @@ namespace MESSAGEMODEL
 
       // SetContextState
       //
-      if (n.name () == "SetContextState" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "SetContextState" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< SetContextStateType > r (
           SetContextStateTraits::create (i, f, this));
@@ -2425,7 +2425,7 @@ namespace MESSAGEMODEL
 
       // SetContextStateResponse
       //
-      if (n.name () == "SetContextStateResponse" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "SetContextStateResponse" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< SetContextStateResponseType > r (
           SetContextStateResponseTraits::create (i, f, this));
@@ -2439,7 +2439,7 @@ namespace MESSAGEMODEL
 
       // EpisodicContextReport
       //
-      if (n.name () == "EpisodicContextReport" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "EpisodicContextReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< EpisodicContextReportType > r (
           EpisodicContextReportTraits::create (i, f, this));
@@ -2453,7 +2453,7 @@ namespace MESSAGEMODEL
 
       // PeriodicContextReport
       //
-      if (n.name () == "PeriodicContextReport" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "PeriodicContextReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< PeriodicContextReportType > r (
           PeriodicContextReportTraits::create (i, f, this));
@@ -2467,7 +2467,7 @@ namespace MESSAGEMODEL
 
       // EpisodicAlertReport
       //
-      if (n.name () == "EpisodicAlertReport" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "EpisodicAlertReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< EpisodicAlertReportType > r (
           EpisodicAlertReportTraits::create (i, f, this));
@@ -2481,7 +2481,7 @@ namespace MESSAGEMODEL
 
       // EpisodicMetricReport
       //
-      if (n.name () == "EpisodicMetricReport" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "EpisodicMetricReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< EpisodicMetricReportType > r (
           EpisodicMetricReportTraits::create (i, f, this));
@@ -2495,7 +2495,7 @@ namespace MESSAGEMODEL
 
       // PeriodicAlertReport
       //
-      if (n.name () == "PeriodicAlertReport" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "PeriodicAlertReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< PeriodicAlertReportType > r (
           PeriodicAlertReportTraits::create (i, f, this));
@@ -2509,7 +2509,7 @@ namespace MESSAGEMODEL
 
       // PeriodicMetricReport
       //
-      if (n.name () == "PeriodicMetricReport" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "PeriodicMetricReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< PeriodicMetricReportType > r (
           PeriodicMetricReportTraits::create (i, f, this));
@@ -2523,7 +2523,7 @@ namespace MESSAGEMODEL
 
       // OperationInvokedReport
       //
-      if (n.name () == "OperationInvokedReport" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "OperationInvokedReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< OperationInvokedReportType > r (
           OperationInvokedReportTraits::create (i, f, this));
@@ -2537,7 +2537,7 @@ namespace MESSAGEMODEL
 
       // GetMdDescription
       //
-      if (n.name () == "GetMdDescription" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "GetMdDescription" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< GetMdDescriptionType > r (
           GetMdDescriptionTraits::create (i, f, this));
@@ -2551,7 +2551,7 @@ namespace MESSAGEMODEL
 
       // GetMdDescriptionResponse
       //
-      if (n.name () == "GetMdDescriptionResponse" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "GetMdDescriptionResponse" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< GetMdDescriptionResponseType > r (
           GetMdDescriptionResponseTraits::create (i, f, this));
@@ -2565,7 +2565,7 @@ namespace MESSAGEMODEL
 
       // GetMdib
       //
-      if (n.name () == "GetMdib" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "GetMdib" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< GetMdibType > r (
           GetMdibTraits::create (i, f, this));
@@ -2579,7 +2579,7 @@ namespace MESSAGEMODEL
 
       // GetMdibResponse
       //
-      if (n.name () == "GetMdibResponse" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "GetMdibResponse" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< GetMdibResponseType > r (
           GetMdibResponseTraits::create (i, f, this));
@@ -2593,7 +2593,7 @@ namespace MESSAGEMODEL
 
       // GetMdState
       //
-      if (n.name () == "GetMdState" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "GetMdState" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< GetMdStateType > r (
           GetMdStateTraits::create (i, f, this));
@@ -2607,7 +2607,7 @@ namespace MESSAGEMODEL
 
       // GetMdStateResponse
       //
-      if (n.name () == "GetMdStateResponse" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "GetMdStateResponse" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< GetMdStateResponseType > r (
           GetMdStateResponseTraits::create (i, f, this));
@@ -2621,7 +2621,7 @@ namespace MESSAGEMODEL
 
       // Activate
       //
-      if (n.name () == "Activate" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "Activate" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ActivateType > r (
           ActivateTraits::create (i, f, this));
@@ -2635,7 +2635,7 @@ namespace MESSAGEMODEL
 
       // ActivateResponse
       //
-      if (n.name () == "ActivateResponse" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "ActivateResponse" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ActivateResponseType > r (
           ActivateResponseTraits::create (i, f, this));
@@ -2649,7 +2649,7 @@ namespace MESSAGEMODEL
 
       // SetAlertState
       //
-      if (n.name () == "SetAlertState" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "SetAlertState" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< SetAlertStateType > r (
           SetAlertStateTraits::create (i, f, this));
@@ -2663,7 +2663,7 @@ namespace MESSAGEMODEL
 
       // SetAlertStateResponse
       //
-      if (n.name () == "SetAlertStateResponse" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "SetAlertStateResponse" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< SetAlertStateResponseType > r (
           SetAlertStateResponseTraits::create (i, f, this));
@@ -2677,7 +2677,7 @@ namespace MESSAGEMODEL
 
       // SetString
       //
-      if (n.name () == "SetString" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "SetString" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< SetStringType > r (
           SetStringTraits::create (i, f, this));
@@ -2691,7 +2691,7 @@ namespace MESSAGEMODEL
 
       // SetStringResponse
       //
-      if (n.name () == "SetStringResponse" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "SetStringResponse" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< SetStringResponseType > r (
           SetStringResponseTraits::create (i, f, this));
@@ -2705,7 +2705,7 @@ namespace MESSAGEMODEL
 
       // SetValue
       //
-      if (n.name () == "SetValue" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "SetValue" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< SetValueType > r (
           SetValueTraits::create (i, f, this));
@@ -2719,7 +2719,7 @@ namespace MESSAGEMODEL
 
       // SetValueResponse
       //
-      if (n.name () == "SetValueResponse" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "SetValueResponse" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< SetValueResponseType > r (
           SetValueResponseTraits::create (i, f, this));
@@ -2733,7 +2733,7 @@ namespace MESSAGEMODEL
 
       // WaveformStream
       //
-      if (n.name () == "WaveformStream" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "WaveformStream" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< WaveformStreamType > r (
           WaveformStreamTraits::create (i, f, this));
@@ -4730,7 +4730,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetContextStates",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.GetContextStates ();
@@ -4743,7 +4743,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetContextStatesResponse",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.GetContextStatesResponse ();
@@ -4756,7 +4756,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetContextState",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.SetContextState ();
@@ -4769,7 +4769,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetContextStateResponse",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.SetContextStateResponse ();
@@ -4782,7 +4782,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "EpisodicContextReport",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.EpisodicContextReport ();
@@ -4795,7 +4795,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "PeriodicContextReport",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.PeriodicContextReport ();
@@ -4808,7 +4808,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "EpisodicAlertReport",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.EpisodicAlertReport ();
@@ -4821,7 +4821,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "EpisodicMetricReport",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.EpisodicMetricReport ();
@@ -4834,7 +4834,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "PeriodicAlertReport",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.PeriodicAlertReport ();
@@ -4847,7 +4847,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "PeriodicMetricReport",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.PeriodicMetricReport ();
@@ -4860,7 +4860,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "OperationInvokedReport",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.OperationInvokedReport ();
@@ -4873,7 +4873,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetMdDescription",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.GetMdDescription ();
@@ -4886,7 +4886,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetMdDescriptionResponse",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.GetMdDescriptionResponse ();
@@ -4899,7 +4899,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetMdib",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.GetMdib ();
@@ -4912,7 +4912,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetMdibResponse",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.GetMdibResponse ();
@@ -4925,7 +4925,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetMdState",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.GetMdState ();
@@ -4938,7 +4938,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "GetMdStateResponse",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.GetMdStateResponse ();
@@ -4951,7 +4951,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Activate",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.Activate ();
@@ -4964,7 +4964,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ActivateResponse",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.ActivateResponse ();
@@ -4977,7 +4977,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetAlertState",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.SetAlertState ();
@@ -4990,7 +4990,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetAlertStateResponse",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.SetAlertStateResponse ();
@@ -5003,7 +5003,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetString",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.SetString ();
@@ -5016,7 +5016,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetStringResponse",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.SetStringResponse ();
@@ -5029,7 +5029,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetValue",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.SetValue ();
@@ -5042,7 +5042,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "SetValueResponse",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.SetValueResponse ();
@@ -5055,7 +5055,7 @@ namespace MESSAGEMODEL
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "WaveformStream",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *i.WaveformStream ();

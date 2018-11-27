@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 ApplyAnnotation::ApplyAnnotation(
 		unsigned int annotationindex
-		, 
+		,
 		unsigned int sampleindex
 ) : data(Defaults::ApplyAnnotationInit(
 		annotationindex
@@ -87,7 +87,7 @@ ApplyAnnotation & ApplyAnnotation::setAnnotationIndex(const unsigned int & value
 unsigned int ApplyAnnotation::getAnnotationIndex() const {
 	return ConvertFromCDM::convert(data->AnnotationIndex());
 }
-	
+
 ApplyAnnotation & ApplyAnnotation::setSampleIndex(const unsigned int & value) {
 	data->SampleIndex(ConvertToCDM::convert(value));
 	return *this;
@@ -97,7 +97,7 @@ ApplyAnnotation & ApplyAnnotation::setSampleIndex(const unsigned int & value) {
 unsigned int ApplyAnnotation::getSampleIndex() const {
 	return ConvertFromCDM::convert(data->SampleIndex());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

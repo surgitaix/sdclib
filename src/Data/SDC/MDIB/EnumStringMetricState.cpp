@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -93,11 +93,11 @@ bool EnumStringMetricState::getStateVersion(VersionCounter & out) const {
 VersionCounter EnumStringMetricState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool EnumStringMetricState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 EnumStringMetricState & EnumStringMetricState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -107,7 +107,7 @@ EnumStringMetricState & EnumStringMetricState::setDescriptorHandle(const HandleR
 HandleRef EnumStringMetricState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 EnumStringMetricState & EnumStringMetricState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,11 +124,11 @@ bool EnumStringMetricState::getDescriptorVersion(ReferencedVersion & out) const 
 ReferencedVersion EnumStringMetricState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool EnumStringMetricState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 EnumStringMetricState & EnumStringMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
 	data->PhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool EnumStringMetricState::getPhysicalConnector(PhysicalConnectorInfo & out) co
 PhysicalConnectorInfo EnumStringMetricState::getPhysicalConnector() const {
 	return ConvertFromCDM::convert(data->PhysicalConnector().get());
 }
-	
+
 bool EnumStringMetricState::hasPhysicalConnector() const {
 	return data->PhysicalConnector().present();
 }
-	
+
 EnumStringMetricState & EnumStringMetricState::setActivationState(const ComponentActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -166,11 +166,11 @@ bool EnumStringMetricState::getActivationState(ComponentActivation & out) const 
 ComponentActivation EnumStringMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState().get());
 }
-	
+
 bool EnumStringMetricState::hasActivationState() const {
 	return data->ActivationState().present();
 }
-	
+
 EnumStringMetricState & EnumStringMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
 	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -187,11 +187,11 @@ bool EnumStringMetricState::getActiveDeterminationPeriod(xml_schema::Duration & 
 xml_schema::Duration EnumStringMetricState::getActiveDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 }
-	
+
 bool EnumStringMetricState::hasActiveDeterminationPeriod() const {
 	return data->ActiveDeterminationPeriod().present();
 }
-	
+
 EnumStringMetricState & EnumStringMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -208,11 +208,11 @@ bool EnumStringMetricState::getLifeTimePeriod(xml_schema::Duration & out) const 
 xml_schema::Duration EnumStringMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
-	
+
 bool EnumStringMetricState::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
-	
+
 EnumStringMetricState & EnumStringMetricState::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -247,11 +247,11 @@ bool EnumStringMetricState::getMetricValue(StringMetricValue & out) const {
 StringMetricValue EnumStringMetricState::getMetricValue() const {
 	return ConvertFromCDM::convert(data->MetricValue().get());
 }
-	
+
 bool EnumStringMetricState::hasMetricValue() const {
 	return data->MetricValue().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

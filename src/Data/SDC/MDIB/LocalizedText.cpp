@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -88,11 +88,11 @@ bool LocalizedText::getRef(LocalizedTextRef & out) const {
 LocalizedTextRef LocalizedText::getRef() const {
 	return ConvertFromCDM::convert(data->Ref().get());
 }
-	
+
 bool LocalizedText::hasRef() const {
 	return data->Ref().present();
 }
-	
+
 LocalizedText & LocalizedText::setLang(const xml_schema::Language & value) {
 	data->Lang(ConvertToCDM::convert(value));
 	return *this;
@@ -109,11 +109,11 @@ bool LocalizedText::getLang(xml_schema::Language & out) const {
 xml_schema::Language LocalizedText::getLang() const {
 	return ConvertFromCDM::convert(data->Lang().get());
 }
-	
+
 bool LocalizedText::hasLang() const {
 	return data->Lang().present();
 }
-	
+
 LocalizedText & LocalizedText::setVersion(const ReferencedVersion & value) {
 	data->Version(ConvertToCDM::convert(value));
 	return *this;
@@ -130,11 +130,11 @@ bool LocalizedText::getVersion(ReferencedVersion & out) const {
 ReferencedVersion LocalizedText::getVersion() const {
 	return ConvertFromCDM::convert(data->Version().get());
 }
-	
+
 bool LocalizedText::hasVersion() const {
 	return data->Version().present();
 }
-	
+
 LocalizedText & LocalizedText::setTextWidth(const LocalizedTextWidth & value) {
 	data->TextWidth(ConvertToCDM::convert(value));
 	return *this;
@@ -151,11 +151,11 @@ bool LocalizedText::getTextWidth(LocalizedTextWidth & out) const {
 LocalizedTextWidth LocalizedText::getTextWidth() const {
 	return ConvertFromCDM::convert(data->TextWidth().get());
 }
-	
+
 bool LocalizedText::hasTextWidth() const {
 	return data->TextWidth().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

@@ -25,6 +25,10 @@ class Defaults {
 public:
 	Defaults();
 	virtual ~Defaults();
+	static CDM::DicomTransferCapability * DicomTransferCapabilityInit(std::string sopclass, DicomTransferRole transferrole);
+	static CDM::DicomNetworkAe * DicomNetworkAeInit(std::string aetitle, xml_schema::Idrefs networkconnectionreference, bool associationinitiator, bool associationacceptor);
+	static CDM::DicomNetworkConnection * DicomNetworkConnectionInit(xml_schema::Id id, std::string hostname);
+	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptorInit(Handle handle);
 	static CDM::Mdib * MdibInit();
 	static CDM::MdDescription * MdDescriptionInit();
 	static CDM::MdState * MdStateInit();
@@ -66,7 +70,7 @@ public:
 	static CDM::StringMetricValue * StringMetricValueInit(MetricQuality metricquality);
 	static CDM::SampleArrayValue * SampleArrayValueInit(MetricQuality metricquality);
 	static CDM::ApplyAnnotation * ApplyAnnotationInit(unsigned int annotationindex, unsigned int sampleindex);
-	static CDM::Relation * RelationInit(Kind kind, HandleRef entries);
+	static CDM::Relation * RelationInit(Kind kind, EntryRef entries);
 	static CDM::NumericMetricDescriptor * NumericMetricDescriptorInit(Handle handle, CodedValue unit, MetricCategory metriccategory, MetricAvailability metricavailability, double resolution);
 	static CDM::NumericMetricState * NumericMetricStateInit(HandleRef descriptorhandle);
 	static CDM::StringMetricDescriptor * StringMetricDescriptorInit(Handle handle, CodedValue unit, MetricCategory metriccategory, MetricAvailability metricavailability);
@@ -85,7 +89,7 @@ public:
 	static CDM::SetValueOperationState * SetValueOperationStateInit(HandleRef descriptorhandle, OperatingMode operatingmode);
 	static CDM::SetStringOperationDescriptor * SetStringOperationDescriptorInit(Handle handle, HandleRef operationtarget);
 	static CDM::SetStringOperationState * SetStringOperationStateInit(HandleRef descriptorhandle, OperatingMode operatingmode);
-	static CDM::AllowedValues * AllowedValuesInit(std::string value);
+	static CDM::AllowedValues * AllowedValuesInit();
 	static CDM::ActivateOperationDescriptor * ActivateOperationDescriptorInit(Handle handle, HandleRef operationtarget);
 	static CDM::Argument * ArgumentInit(CodedValue argname, xml_schema::Qname arg);
 	static CDM::ActivateOperationState * ActivateOperationStateInit(HandleRef descriptorhandle, OperatingMode operatingmode);
@@ -132,10 +136,6 @@ public:
 	static CDM::EnsembleContextState * EnsembleContextStateInit(HandleRef descriptorhandle, Handle handle);
 	static CDM::ContainmentTree * ContainmentTreeInit();
 	static CDM::ContainmentTreeEntry * ContainmentTreeEntryInit();
-	static CDM::DicomTransferCapability * DicomTransferCapabilityInit(std::string sopclass, DicomTransferRole transferrole);
-	static CDM::DicomNetworkAe * DicomNetworkAeInit(std::string aetitle, xml_schema::Idrefs networkconnectionreference, bool associationinitiator, bool associationacceptor);
-	static CDM::DicomNetworkConnection * DicomNetworkConnectionInit(xml_schema::Id id, std::string hostname);
-	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptorInit(Handle handle);
 };
 
 } /* namespace SDC */

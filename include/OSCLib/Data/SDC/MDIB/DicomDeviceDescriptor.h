@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	DicomDeviceDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	DicomDeviceDescriptor(){};
 public:
 	DicomDeviceDescriptor(const DicomDeviceDescriptor & object);
 	virtual ~DicomDeviceDescriptor();
-    
+
     void copyFrom(const DicomDeviceDescriptor & object);
     DicomDeviceDescriptor & operator=(const DicomDeviceDescriptor & object);
-    
+
     typedef CDM::DicomDeviceDescriptor WrappedType;
 
 	DicomDeviceDescriptor & setType(const CodedValue & value);
@@ -86,7 +86,7 @@ public:
 	DicomDeviceDescriptor & addProductionSpecification(const ProductionSpecification & value);
 	std::vector<ProductionSpecification> getProductionSpecificationList() const;
 	void clearProductionSpecificationList();
-	
+
 	DicomDeviceDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;
@@ -105,19 +105,19 @@ public:
 	DicomDeviceDescriptor & addNetworkAe(const DicomNetworkAe & value);
 	std::vector<DicomNetworkAe> getNetworkAeList() const;
 	void clearNetworkAeList();
-	
+
 	DicomDeviceDescriptor & addNetworkConnection(const DicomNetworkConnection & value);
 	std::vector<DicomNetworkConnection> getNetworkConnectionList() const;
 	void clearNetworkConnectionList();
-	
+
 	DicomDeviceDescriptor & addDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getDescriptionList() const;
 	void clearDescriptionList();
-	
+
 	DicomDeviceDescriptor & addStationName(const LocalizedText & value);
 	std::vector<LocalizedText> getStationNameList() const;
 	void clearStationNameList();
-	
+
 private:
 	std::shared_ptr<CDM::DicomDeviceDescriptor> data;
 };

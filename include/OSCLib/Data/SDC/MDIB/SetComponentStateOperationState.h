@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	SetComponentStateOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
-	); 
+	);
 private:
 	SetComponentStateOperationState(){};
 public:
 	SetComponentStateOperationState(const SetComponentStateOperationState & object);
 	virtual ~SetComponentStateOperationState();
-    
+
     void copyFrom(const SetComponentStateOperationState & object);
     SetComponentStateOperationState & operator=(const SetComponentStateOperationState & object);
-    
+
     typedef CDM::SetComponentStateOperationState WrappedType;
 
 	SetComponentStateOperationState & setStateVersion(const VersionCounter & value);

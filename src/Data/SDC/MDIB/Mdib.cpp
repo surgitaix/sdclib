@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -90,11 +90,11 @@ bool Mdib::getMdDescription(MdDescription & out) const {
 MdDescription Mdib::getMdDescription() const {
 	return ConvertFromCDM::convert(data->MdDescription().get());
 }
-	
+
 bool Mdib::hasMdDescription() const {
 	return data->MdDescription().present();
 }
-	
+
 Mdib & Mdib::setMdState(const MdState & value) {
 	data->MdState(ConvertToCDM::convert(value));
 	return *this;
@@ -111,11 +111,11 @@ bool Mdib::getMdState(MdState & out) const {
 MdState Mdib::getMdState() const {
 	return ConvertFromCDM::convert(data->MdState().get());
 }
-	
+
 bool Mdib::hasMdState() const {
 	return data->MdState().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

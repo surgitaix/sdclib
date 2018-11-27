@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	SampleArrayValue(
 		MetricQuality metricquality
-	); 
+	);
 private:
 	SampleArrayValue(){};
 public:
 	SampleArrayValue(const SampleArrayValue & object);
 	virtual ~SampleArrayValue();
-    
+
     void copyFrom(const SampleArrayValue & object);
     SampleArrayValue & operator=(const SampleArrayValue & object);
-    
+
     typedef CDM::SampleArrayValue WrappedType;
 
 	SampleArrayValue & setMetricQuality(const MetricQuality & value);
@@ -86,7 +86,7 @@ public:
 	SampleArrayValue & addAnnotation(const Annotation & value);
 	std::vector<Annotation> getAnnotationList() const;
 	void clearAnnotationList();
-	
+
 	SampleArrayValue & setSamples(const RealTimeValueType & value);
 	RealTimeValueType getSamples() const;
 	bool getSamples(RealTimeValueType & out) const;
@@ -95,7 +95,7 @@ public:
 	SampleArrayValue & addApplyAnnotation(const ApplyAnnotation & value);
 	std::vector<ApplyAnnotation> getApplyAnnotationList() const;
 	void clearApplyAnnotationList();
-	
+
 private:
 	std::shared_ptr<CDM::SampleArrayValue> data;
 };

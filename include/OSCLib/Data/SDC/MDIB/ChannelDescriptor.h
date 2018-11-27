@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	ChannelDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	ChannelDescriptor(){};
 public:
 	ChannelDescriptor(const ChannelDescriptor & object);
 	virtual ~ChannelDescriptor();
-    
+
     void copyFrom(const ChannelDescriptor & object);
     ChannelDescriptor & operator=(const ChannelDescriptor & object);
-    
+
     typedef CDM::ChannelDescriptor WrappedType;
 
 	ChannelDescriptor & setType(const CodedValue & value);
@@ -86,7 +86,7 @@ public:
 	ChannelDescriptor & addProductionSpecification(const ProductionSpecification & value);
 	std::vector<ProductionSpecification> getProductionSpecificationList() const;
 	void clearProductionSpecificationList();
-	
+
 
 	std::vector<EnumStringMetricDescriptor> getEnumStringMetricDescriptorList() const;
 	std::vector<NumericMetricDescriptor> getNumericMetricDescriptorList() const;

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	SetContextStateOperationDescriptor(
 		Handle handle
-		, 
+		,
 		HandleRef operationtarget
-	); 
+	);
 private:
 	SetContextStateOperationDescriptor(){};
 public:
 	SetContextStateOperationDescriptor(const SetContextStateOperationDescriptor & object);
 	virtual ~SetContextStateOperationDescriptor();
-    
+
     void copyFrom(const SetContextStateOperationDescriptor & object);
     SetContextStateOperationDescriptor & operator=(const SetContextStateOperationDescriptor & object);
-    
+
     typedef CDM::SetContextStateOperationDescriptor WrappedType;
 
 	SetContextStateOperationDescriptor & setType(const CodedValue & value);
@@ -98,9 +98,9 @@ public:
 	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
 	bool hasInvocationEffectiveTimeout() const;
 
-	SetContextStateOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
-	xml_schema::Duration getRetriggerable() const;
-	bool getRetriggerable(xml_schema::Duration & out) const;
+	SetContextStateOperationDescriptor & setRetriggerable(const bool & value);
+	bool getRetriggerable() const;
+	bool getRetriggerable(bool & out) const;
 	bool hasRetriggerable() const;
 
 	SetContextStateOperationDescriptor & setAccessLevel(const AccessLevel & value);
@@ -111,7 +111,7 @@ public:
 	SetContextStateOperationDescriptor & addModifiableData(const std::string & value);
 	std::vector<std::string> getModifiableDataList() const;
 	void clearModifiableDataList();
-	
+
 private:
 	std::shared_ptr<CDM::SetContextStateOperationDescriptor> data;
 };

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -91,11 +91,11 @@ bool MeansContextDescriptor::getType(CodedValue & out) const {
 CodedValue MeansContextDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool MeansContextDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 MeansContextDescriptor & MeansContextDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -105,7 +105,7 @@ MeansContextDescriptor & MeansContextDescriptor::setHandle(const Handle & value)
 Handle MeansContextDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 MeansContextDescriptor & MeansContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -122,11 +122,11 @@ bool MeansContextDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter MeansContextDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool MeansContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 MeansContextDescriptor & MeansContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -143,11 +143,11 @@ bool MeansContextDescriptor::getSafetyClassification(SafetyClassification & out)
 SafetyClassification MeansContextDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool MeansContextDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

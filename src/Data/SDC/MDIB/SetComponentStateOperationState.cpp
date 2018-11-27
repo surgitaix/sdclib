@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 SetComponentStateOperationState::SetComponentStateOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
 ) : data(Defaults::SetComponentStateOperationStateInit(
 		descriptorhandle
@@ -94,11 +94,11 @@ bool SetComponentStateOperationState::getStateVersion(VersionCounter & out) cons
 VersionCounter SetComponentStateOperationState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool SetComponentStateOperationState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 SetComponentStateOperationState & SetComponentStateOperationState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -108,7 +108,7 @@ SetComponentStateOperationState & SetComponentStateOperationState::setDescriptor
 HandleRef SetComponentStateOperationState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 SetComponentStateOperationState & SetComponentStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,11 +125,11 @@ bool SetComponentStateOperationState::getDescriptorVersion(ReferencedVersion & o
 ReferencedVersion SetComponentStateOperationState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetComponentStateOperationState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetComponentStateOperationState & SetComponentStateOperationState::setOperatingMode(const OperatingMode & value) {
 	data->OperatingMode(ConvertToCDM::convert(value));
 	return *this;
@@ -139,7 +139,7 @@ SetComponentStateOperationState & SetComponentStateOperationState::setOperatingM
 OperatingMode SetComponentStateOperationState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

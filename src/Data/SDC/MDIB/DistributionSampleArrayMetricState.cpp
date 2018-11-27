@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -94,11 +94,11 @@ bool DistributionSampleArrayMetricState::getStateVersion(VersionCounter & out) c
 VersionCounter DistributionSampleArrayMetricState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool DistributionSampleArrayMetricState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -108,7 +108,7 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setDesc
 HandleRef DistributionSampleArrayMetricState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,11 +125,11 @@ bool DistributionSampleArrayMetricState::getDescriptorVersion(ReferencedVersion 
 ReferencedVersion DistributionSampleArrayMetricState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool DistributionSampleArrayMetricState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
 	data->PhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
@@ -146,11 +146,11 @@ bool DistributionSampleArrayMetricState::getPhysicalConnector(PhysicalConnectorI
 PhysicalConnectorInfo DistributionSampleArrayMetricState::getPhysicalConnector() const {
 	return ConvertFromCDM::convert(data->PhysicalConnector().get());
 }
-	
+
 bool DistributionSampleArrayMetricState::hasPhysicalConnector() const {
 	return data->PhysicalConnector().present();
 }
-	
+
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActivationState(const ComponentActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -167,11 +167,11 @@ bool DistributionSampleArrayMetricState::getActivationState(ComponentActivation 
 ComponentActivation DistributionSampleArrayMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState().get());
 }
-	
+
 bool DistributionSampleArrayMetricState::hasActivationState() const {
 	return data->ActivationState().present();
 }
-	
+
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
 	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -188,11 +188,11 @@ bool DistributionSampleArrayMetricState::getActiveDeterminationPeriod(xml_schema
 xml_schema::Duration DistributionSampleArrayMetricState::getActiveDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 }
-	
+
 bool DistributionSampleArrayMetricState::hasActiveDeterminationPeriod() const {
 	return data->ActiveDeterminationPeriod().present();
 }
-	
+
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -209,11 +209,11 @@ bool DistributionSampleArrayMetricState::getLifeTimePeriod(xml_schema::Duration 
 xml_schema::Duration DistributionSampleArrayMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
-	
+
 bool DistributionSampleArrayMetricState::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
-	
+
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -248,11 +248,11 @@ bool DistributionSampleArrayMetricState::getMetricValue(SampleArrayValue & out) 
 SampleArrayValue DistributionSampleArrayMetricState::getMetricValue() const {
 	return ConvertFromCDM::convert(data->MetricValue().get());
 }
-	
+
 bool DistributionSampleArrayMetricState::hasMetricValue() const {
 	return data->MetricValue().present();
 }
-	
+
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::addPhysiologicalRange(const Range & value) {
 	data->PhysiologicalRange().push_back(ConvertToCDM::convert(value));
 	return *this;

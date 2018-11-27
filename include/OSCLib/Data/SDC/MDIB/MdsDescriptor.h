@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	MdsDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	MdsDescriptor(){};
 public:
 	MdsDescriptor(const MdsDescriptor & object);
 	virtual ~MdsDescriptor();
-    
+
     void copyFrom(const MdsDescriptor & object);
     MdsDescriptor & operator=(const MdsDescriptor & object);
-    
+
     typedef CDM::MdsDescriptor WrappedType;
 
 	MdsDescriptor & setType(const CodedValue & value);
@@ -86,7 +86,7 @@ public:
 	MdsDescriptor & addProductionSpecification(const ProductionSpecification & value);
 	std::vector<ProductionSpecification> getProductionSpecificationList() const;
 	void clearProductionSpecificationList();
-	
+
 	MdsDescriptor & setAlertSystem(const AlertSystemDescriptor & value);
 	AlertSystemDescriptor getAlertSystem() const;
 	bool getAlertSystem(AlertSystemDescriptor & out) const;
@@ -120,11 +120,11 @@ public:
 	MdsDescriptor & addBattery(const BatteryDescriptor & value);
 	std::vector<BatteryDescriptor> getBatteryList() const;
 	void clearBatteryList();
-	
+
 	MdsDescriptor & addVmd(const VmdDescriptor & value);
 	std::vector<VmdDescriptor> getVmdList() const;
 	void clearVmdList();
-	
+
 private:
 	std::shared_ptr<CDM::MdsDescriptor> data;
 };

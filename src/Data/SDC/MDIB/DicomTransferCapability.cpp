@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 DicomTransferCapability::DicomTransferCapability(
 		std::string sopclass
-		, 
+		,
 		DicomTransferRole transferrole
 ) : data(Defaults::DicomTransferCapabilityInit(
 		sopclass
@@ -87,7 +87,7 @@ DicomTransferCapability & DicomTransferCapability::setSopClass(const std::string
 std::string DicomTransferCapability::getSopClass() const {
 	return ConvertFromCDM::convert(data->SopClass());
 }
-	
+
 DicomTransferCapability & DicomTransferCapability::setTransferRole(const DicomTransferRole & value) {
 	data->TransferRole(ConvertToCDM::convert(value));
 	return *this;
@@ -97,7 +97,7 @@ DicomTransferCapability & DicomTransferCapability::setTransferRole(const DicomTr
 DicomTransferRole DicomTransferCapability::getTransferRole() const {
 	return ConvertFromCDM::convert(data->TransferRole());
 }
-	
+
 DicomTransferCapability & DicomTransferCapability::addTransferSyntax(const std::string & value) {
 	data->TransferSyntax().push_back(ConvertToCDM::convert(value));
 	return *this;

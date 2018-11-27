@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	MdsState(
 		HandleRef descriptorhandle
-	); 
+	);
 private:
 	MdsState(){};
 public:
 	MdsState(const MdsState & object);
 	virtual ~MdsState();
-    
+
     void copyFrom(const MdsState & object);
     MdsState & operator=(const MdsState & object);
-    
+
     typedef CDM::MdsState WrappedType;
     typedef MdsDescriptor DescriptorType;
 

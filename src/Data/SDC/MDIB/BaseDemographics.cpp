@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -88,11 +88,11 @@ bool BaseDemographics::getGivenname(std::string & out) const {
 std::string BaseDemographics::getGivenname() const {
 	return ConvertFromCDM::convert(data->Givenname().get());
 }
-	
+
 bool BaseDemographics::hasGivenname() const {
 	return data->Givenname().present();
 }
-	
+
 BaseDemographics & BaseDemographics::setFamilyname(const std::string & value) {
 	data->Familyname(ConvertToCDM::convert(value));
 	return *this;
@@ -109,11 +109,11 @@ bool BaseDemographics::getFamilyname(std::string & out) const {
 std::string BaseDemographics::getFamilyname() const {
 	return ConvertFromCDM::convert(data->Familyname().get());
 }
-	
+
 bool BaseDemographics::hasFamilyname() const {
 	return data->Familyname().present();
 }
-	
+
 BaseDemographics & BaseDemographics::setBirthname(const std::string & value) {
 	data->Birthname(ConvertToCDM::convert(value));
 	return *this;
@@ -130,11 +130,11 @@ bool BaseDemographics::getBirthname(std::string & out) const {
 std::string BaseDemographics::getBirthname() const {
 	return ConvertFromCDM::convert(data->Birthname().get());
 }
-	
+
 bool BaseDemographics::hasBirthname() const {
 	return data->Birthname().present();
 }
-	
+
 BaseDemographics & BaseDemographics::setTitle(const std::string & value) {
 	data->Title(ConvertToCDM::convert(value));
 	return *this;
@@ -151,11 +151,11 @@ bool BaseDemographics::getTitle(std::string & out) const {
 std::string BaseDemographics::getTitle() const {
 	return ConvertFromCDM::convert(data->Title().get());
 }
-	
+
 bool BaseDemographics::hasTitle() const {
 	return data->Title().present();
 }
-	
+
 BaseDemographics & BaseDemographics::addMiddlename(const std::string & value) {
 	data->Middlename().push_back(ConvertToCDM::convert(value));
 	return *this;

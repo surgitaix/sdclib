@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	RequestedOrderDetail(
 		InstanceIdentifier placerordernumber
-	); 
+	);
 private:
 	RequestedOrderDetail(){};
 public:
 	RequestedOrderDetail(const RequestedOrderDetail & object);
 	virtual ~RequestedOrderDetail();
-    
+
     void copyFrom(const RequestedOrderDetail & object);
     RequestedOrderDetail & operator=(const RequestedOrderDetail & object);
-    
+
     typedef CDM::RequestedOrderDetail WrappedType;
 
 	RequestedOrderDetail & setStart(const xml_schema::DateTime & value);
@@ -78,15 +78,15 @@ public:
 	RequestedOrderDetail & addPerformer(const PersonParticipation & value);
 	std::vector<PersonParticipation> getPerformerList() const;
 	void clearPerformerList();
-	
+
 	RequestedOrderDetail & addService(const CodedValue & value);
 	std::vector<CodedValue> getServiceList() const;
 	void clearServiceList();
-	
+
 	RequestedOrderDetail & addImagingProcedure(const ImagingProcedure & value);
 	std::vector<ImagingProcedure> getImagingProcedureList() const;
 	void clearImagingProcedureList();
-	
+
 	RequestedOrderDetail & setReferringPhysician(const PersonReference & value);
 	PersonReference getReferringPhysician() const;
 	bool getReferringPhysician(PersonReference & out) const;

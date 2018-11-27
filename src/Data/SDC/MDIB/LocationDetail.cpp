@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -88,11 +88,11 @@ bool LocationDetail::getPoC(std::string & out) const {
 std::string LocationDetail::getPoC() const {
 	return ConvertFromCDM::convert(data->PoC().get());
 }
-	
+
 bool LocationDetail::hasPoC() const {
 	return data->PoC().present();
 }
-	
+
 LocationDetail & LocationDetail::setRoom(const std::string & value) {
 	data->Room(ConvertToCDM::convert(value));
 	return *this;
@@ -109,11 +109,11 @@ bool LocationDetail::getRoom(std::string & out) const {
 std::string LocationDetail::getRoom() const {
 	return ConvertFromCDM::convert(data->Room().get());
 }
-	
+
 bool LocationDetail::hasRoom() const {
 	return data->Room().present();
 }
-	
+
 LocationDetail & LocationDetail::setBed(const std::string & value) {
 	data->Bed(ConvertToCDM::convert(value));
 	return *this;
@@ -130,11 +130,11 @@ bool LocationDetail::getBed(std::string & out) const {
 std::string LocationDetail::getBed() const {
 	return ConvertFromCDM::convert(data->Bed().get());
 }
-	
+
 bool LocationDetail::hasBed() const {
 	return data->Bed().present();
 }
-	
+
 LocationDetail & LocationDetail::setFacility(const std::string & value) {
 	data->Facility(ConvertToCDM::convert(value));
 	return *this;
@@ -151,11 +151,11 @@ bool LocationDetail::getFacility(std::string & out) const {
 std::string LocationDetail::getFacility() const {
 	return ConvertFromCDM::convert(data->Facility().get());
 }
-	
+
 bool LocationDetail::hasFacility() const {
 	return data->Facility().present();
 }
-	
+
 LocationDetail & LocationDetail::setBuilding(const std::string & value) {
 	data->Building(ConvertToCDM::convert(value));
 	return *this;
@@ -172,11 +172,11 @@ bool LocationDetail::getBuilding(std::string & out) const {
 std::string LocationDetail::getBuilding() const {
 	return ConvertFromCDM::convert(data->Building().get());
 }
-	
+
 bool LocationDetail::hasBuilding() const {
 	return data->Building().present();
 }
-	
+
 LocationDetail & LocationDetail::setFloor(const std::string & value) {
 	data->Floor(ConvertToCDM::convert(value));
 	return *this;
@@ -193,11 +193,11 @@ bool LocationDetail::getFloor(std::string & out) const {
 std::string LocationDetail::getFloor() const {
 	return ConvertFromCDM::convert(data->Floor().get());
 }
-	
+
 bool LocationDetail::hasFloor() const {
 	return data->Floor().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

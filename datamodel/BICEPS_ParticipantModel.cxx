@@ -4738,6 +4738,30 @@ namespace CDM
   }
 
 
+  // EntryRef
+  //
+
+  EntryRef::
+  EntryRef ()
+  : ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (this)
+  {
+  }
+
+  EntryRef::
+  EntryRef (size_type n, const ::CDM::HandleRef& x)
+  : ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (n, x, this)
+  {
+  }
+
+  EntryRef::
+  EntryRef (const EntryRef& o,
+            ::xml_schema::Flags f,
+            ::xml_schema::Container* c)
+  : ::xml_schema::SimpleType (o, f, c),
+    ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (o, f, this)
+  {
+  }
+
   // AbstractMetricDescriptor
   // 
 
@@ -5881,12 +5905,6 @@ namespace CDM
   Retriggerable (const RetriggerableOptional& x)
   {
     this->Retriggerable_ = x;
-  }
-
-  void AbstractOperationDescriptor::
-  Retriggerable (::std::unique_ptr< RetriggerableType > x)
-  {
-    this->Retriggerable_.set (std::move (x));
   }
 
   const AbstractOperationDescriptor::AccessLevelOptional& AbstractOperationDescriptor::
@@ -10320,28 +10338,22 @@ namespace CDM
   // AllowedValues
   // 
 
-  const AllowedValues::ValueType& AllowedValues::
+  const AllowedValues::ValueSequence& AllowedValues::
   Value () const
   {
-    return this->Value_.get ();
+    return this->Value_;
   }
 
-  AllowedValues::ValueType& AllowedValues::
+  AllowedValues::ValueSequence& AllowedValues::
   Value ()
   {
-    return this->Value_.get ();
+    return this->Value_;
   }
 
   void AllowedValues::
-  Value (const ValueType& x)
+  Value (const ValueSequence& s)
   {
-    this->Value_.set (x);
-  }
-
-  void AllowedValues::
-  Value (::std::unique_ptr< ValueType > x)
-  {
-    this->Value_.set (std::move (x));
+    this->Value_ = s;
   }
 
 
@@ -11308,7 +11320,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -11336,7 +11348,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MdDescription",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MdDescriptionType >,
             false, true, i, n, f, this));
 
@@ -11364,7 +11376,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MdState",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MdStateType >,
             false, true, i, n, f, this));
 
@@ -11455,7 +11467,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Mdib >
   _xsd_Mdib_type_factory_init (
     "Mdib",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MdDescription
   //
@@ -11512,7 +11524,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -11540,7 +11552,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Mds",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MdsType >,
             false, true, i, n, f, this));
 
@@ -11606,7 +11618,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdDescription >
   _xsd_MdDescription_type_factory_init (
     "MdDescription",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MdState
   //
@@ -11663,7 +11675,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -11691,7 +11703,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "State",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< StateType >,
             false, true, i, n, f, this));
 
@@ -11757,7 +11769,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdState >
   _xsd_MdState_type_factory_init (
     "MdState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MeasurementValidity
   //
@@ -11847,7 +11859,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MeasurementValidity >
   _xsd_MeasurementValidity_type_factory_init (
     "MeasurementValidity",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // Timestamp
   //
@@ -11907,7 +11919,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Timestamp >
   _xsd_Timestamp_type_factory_init (
     "Timestamp",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // VersionCounter
   //
@@ -11967,7 +11979,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, VersionCounter >
   _xsd_VersionCounter_type_factory_init (
     "VersionCounter",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ReferencedVersion
   //
@@ -12027,7 +12039,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ReferencedVersion >
   _xsd_ReferencedVersion_type_factory_init (
     "ReferencedVersion",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // CodeIdentifier
   //
@@ -12105,7 +12117,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CodeIdentifier >
   _xsd_CodeIdentifier_type_factory_init (
     "CodeIdentifier",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SymbolicCodeName
   //
@@ -12183,7 +12195,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SymbolicCodeName >
   _xsd_SymbolicCodeName_type_factory_init (
     "SymbolicCodeName",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LocalizedTextRef
   //
@@ -12261,7 +12273,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocalizedTextRef >
   _xsd_LocalizedTextRef_type_factory_init (
     "LocalizedTextRef",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LocalizedTextContent
   //
@@ -12339,7 +12351,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocalizedTextContent >
   _xsd_LocalizedTextContent_type_factory_init (
     "LocalizedTextContent",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LocalizedTextWidth
   //
@@ -12423,7 +12435,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocalizedTextWidth >
   _xsd_LocalizedTextWidth_type_factory_init (
     "LocalizedTextWidth",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LocalizedText
   //
@@ -12564,7 +12576,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocalizedText >
   _xsd_LocalizedText_type_factory_init (
     "LocalizedText",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // CodedValue
   //
@@ -12636,7 +12648,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -12664,7 +12676,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CodingSystemName",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CodingSystemNameType >,
             false, true, i, n, f, this));
 
@@ -12689,7 +12701,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ConceptDescription",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ConceptDescriptionType >,
             false, true, i, n, f, this));
 
@@ -12710,7 +12722,7 @@ namespace CDM
 
       // Translation
       //
-      if (n.name () == "Translation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "Translation" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< TranslationType > r (
           TranslationTraits::create (i, f, this));
@@ -12796,7 +12808,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CodedValue >
   _xsd_CodedValue_type_factory_init (
     "CodedValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // InstanceIdentifier
   //
@@ -12859,7 +12871,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -12887,7 +12899,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -12915,7 +12927,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "IdentifierName",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< IdentifierNameType >,
             false, true, i, n, f, this));
 
@@ -12989,7 +13001,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, InstanceIdentifier >
   _xsd_InstanceIdentifier_type_factory_init (
     "InstanceIdentifier",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // Range
   //
@@ -13055,7 +13067,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -13151,7 +13163,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Range >
   _xsd_Range_type_factory_init (
     "Range",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // Measurement
   //
@@ -13219,7 +13231,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -13247,7 +13259,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MeasurementUnit",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MeasurementUnitType >,
             false, true, i, n, f, this));
 
@@ -13276,7 +13288,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "MeasurementUnit",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     while (p.more_attributes ())
@@ -13330,7 +13342,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Measurement >
   _xsd_Measurement_type_factory_init (
     "Measurement",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SafetyClassification
   //
@@ -13410,7 +13422,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SafetyClassification >
   _xsd_SafetyClassification_type_factory_init (
     "SafetyClassification",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ComponentActivation
   //
@@ -13494,7 +13506,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ComponentActivation >
   _xsd_ComponentActivation_type_factory_init (
     "ComponentActivation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ApprovedJurisdictions
   //
@@ -13545,7 +13557,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ApprovedJurisdiction",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ApprovedJurisdictionType >,
             false, true, i, n, f, this));
 
@@ -13596,7 +13608,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ApprovedJurisdictions >
   _xsd_ApprovedJurisdictions_type_factory_init (
     "ApprovedJurisdictions",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // OperatingJurisdiction
   //
@@ -13639,7 +13651,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperatingJurisdiction >
   _xsd_OperatingJurisdiction_type_factory_init (
     "OperatingJurisdiction",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // Handle
   //
@@ -13717,7 +13729,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Handle >
   _xsd_Handle_type_factory_init (
     "Handle",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // HandleRef
   //
@@ -13795,7 +13807,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, HandleRef >
   _xsd_HandleRef_type_factory_init (
     "HandleRef",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // PhysicalConnectorInfo
   //
@@ -13852,7 +13864,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -13880,7 +13892,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Label",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< LabelType >,
             false, true, i, n, f, this));
 
@@ -13946,7 +13958,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PhysicalConnectorInfo >
   _xsd_PhysicalConnectorInfo_type_factory_init (
     "PhysicalConnectorInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractDescriptor
   //
@@ -14009,7 +14021,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -14037,7 +14049,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -14127,7 +14139,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractDescriptor >
   _xsd_AbstractDescriptor_type_factory_init (
     "AbstractDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractState
   //
@@ -14187,7 +14199,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -14276,7 +14288,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractState >
   _xsd_AbstractState_type_factory_init (
     "AbstractState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractMultiState
   //
@@ -14333,7 +14345,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Category",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CategoryType >,
             false, true, i, n, f, this));
 
@@ -14410,7 +14422,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractMultiState >
   _xsd_AbstractMultiState_type_factory_init (
     "AbstractMultiState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractDeviceComponentDescriptor
   //
@@ -14459,7 +14471,7 @@ namespace CDM
 
       // ProductionSpecification
       //
-      if (n.name () == "ProductionSpecification" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "ProductionSpecification" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< ProductionSpecificationType > r (
           ProductionSpecificationTraits::create (i, f, this));
@@ -14500,7 +14512,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractDeviceComponentDescriptor >
   _xsd_AbstractDeviceComponentDescriptor_type_factory_init (
     "AbstractDeviceComponentDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractComplexDeviceComponentDescriptor
   //
@@ -14556,7 +14568,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AlertSystem",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< AlertSystemType >,
             false, true, i, n, f, this));
 
@@ -14584,7 +14596,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Sco",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ScoType >,
             false, true, i, n, f, this));
 
@@ -14639,7 +14651,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractComplexDeviceComponentDescriptor >
   _xsd_AbstractComplexDeviceComponentDescriptor_type_factory_init (
     "AbstractComplexDeviceComponentDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // CalibrationState
   //
@@ -14685,11 +14697,11 @@ namespace CDM
     ::xsd::cxx::tree::enum_comparator< char > c (_xsd_CalibrationState_literals_);
     const Value* i (::std::lower_bound (
                       _xsd_CalibrationState_indexes_,
-                      _xsd_CalibrationState_indexes_ + 3,
+                      _xsd_CalibrationState_indexes_ + 5,
                       *this,
                       c));
 
-    if (i == _xsd_CalibrationState_indexes_ + 3 || _xsd_CalibrationState_literals_[*i] != *this)
+    if (i == _xsd_CalibrationState_indexes_ + 5 || _xsd_CalibrationState_literals_[*i] != *this)
     {
       throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
     }
@@ -14698,26 +14710,30 @@ namespace CDM
   }
 
   const char* const CalibrationState::
-  _xsd_CalibrationState_literals_[3] =
+  _xsd_CalibrationState_literals_[5] =
   {
     "No",
     "Req",
-    "Cal"
+    "Run",
+    "Cal",
+    "Oth"
   };
 
   const CalibrationState::Value CalibrationState::
-  _xsd_CalibrationState_indexes_[3] =
+  _xsd_CalibrationState_indexes_[5] =
   {
     ::CDM::CalibrationState::Cal,
     ::CDM::CalibrationState::No,
-    ::CDM::CalibrationState::Req
+    ::CDM::CalibrationState::Oth,
+    ::CDM::CalibrationState::Req,
+    ::CDM::CalibrationState::Run
   };
 
   static
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CalibrationState >
   _xsd_CalibrationState_type_factory_init (
     "CalibrationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // CalibrationType
   //
@@ -14797,7 +14813,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CalibrationType >
   _xsd_CalibrationType_type_factory_init (
     "CalibrationType",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // CalibrationInfo
   //
@@ -14860,7 +14876,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -14884,7 +14900,7 @@ namespace CDM
 
       // CalibrationDocumentation
       //
-      if (n.name () == "CalibrationDocumentation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "CalibrationDocumentation" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< CalibrationDocumentationType > r (
           CalibrationDocumentationTraits::create (i, f, this));
@@ -14954,7 +14970,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CalibrationInfo >
   _xsd_CalibrationInfo_type_factory_init (
     "CalibrationInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractDeviceComponentState
   //
@@ -15022,7 +15038,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CalibrationInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CalibrationInfoType >,
             false, true, i, n, f, this));
 
@@ -15050,7 +15066,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "NextCalibration",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< NextCalibrationType >,
             false, true, i, n, f, this));
 
@@ -15078,7 +15094,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PhysicalConnector",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PhysicalConnectorType >,
             false, true, i, n, f, this));
 
@@ -15164,7 +15180,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractDeviceComponentState >
   _xsd_AbstractDeviceComponentState_type_factory_init (
     "AbstractDeviceComponentState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractComplexDeviceComponentState
   //
@@ -15207,7 +15223,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractComplexDeviceComponentState >
   _xsd_AbstractComplexDeviceComponentState_type_factory_init (
     "AbstractComplexDeviceComponentState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MdsDescriptor
   //
@@ -15271,7 +15287,7 @@ namespace CDM
 
       // MetaData
       //
-      if (n.name () == "MetaData" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "MetaData" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< MetaDataType > r (
           MetaDataTraits::create (i, f, this));
@@ -15289,7 +15305,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SystemContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< SystemContextType >,
             false, true, i, n, f, this));
 
@@ -15317,7 +15333,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Clock",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ClockType >,
             false, true, i, n, f, this));
 
@@ -15345,7 +15361,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Battery",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< BatteryType >,
             false, true, i, n, f, this));
 
@@ -15370,7 +15386,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ApprovedJurisdictions",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ApprovedJurisdictionsType >,
             false, true, i, n, f, this));
 
@@ -15398,7 +15414,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Vmd",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< VmdType >,
             false, true, i, n, f, this));
 
@@ -15454,7 +15470,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdsDescriptor >
   _xsd_MdsDescriptor_type_factory_init (
     "MdsDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MdsOperatingMode
   //
@@ -15534,7 +15550,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdsOperatingMode >
   _xsd_MdsOperatingMode_type_factory_init (
     "MdsOperatingMode",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MdsState
   //
@@ -15593,7 +15609,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperatingJurisdiction",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< OperatingJurisdictionType >,
             false, true, i, n, f, this));
 
@@ -15670,7 +15686,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MdsState >
   _xsd_MdsState_type_factory_init (
     "MdsState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // VmdDescriptor
   //
@@ -15726,7 +15742,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ApprovedJurisdictions",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ApprovedJurisdictionsType >,
             false, true, i, n, f, this));
 
@@ -15754,7 +15770,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Channel",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ChannelType >,
             false, true, i, n, f, this));
 
@@ -15806,7 +15822,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, VmdDescriptor >
   _xsd_VmdDescriptor_type_factory_init (
     "VmdDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // VmdState
   //
@@ -15859,7 +15875,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperatingJurisdiction",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< OperatingJurisdictionType >,
             false, true, i, n, f, this));
 
@@ -15913,7 +15929,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, VmdState >
   _xsd_VmdState_type_factory_init (
     "VmdState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ChannelDescriptor
   //
@@ -15966,7 +15982,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Metric",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MetricType >,
             false, true, i, n, f, this));
 
@@ -16017,7 +16033,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ChannelDescriptor >
   _xsd_ChannelDescriptor_type_factory_init (
     "ChannelDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ChannelState
   //
@@ -16060,7 +16076,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ChannelState >
   _xsd_ChannelState_type_factory_init (
     "ChannelState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractAlertDescriptor
   //
@@ -16103,7 +16119,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractAlertDescriptor >
   _xsd_AbstractAlertDescriptor_type_factory_init (
     "AbstractAlertDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractAlertState
   //
@@ -16196,7 +16212,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractAlertState >
   _xsd_AbstractAlertState_type_factory_init (
     "AbstractAlertState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertActivation
   //
@@ -16274,7 +16290,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertActivation >
   _xsd_AlertActivation_type_factory_init (
     "AlertActivation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SystemSignalActivation
   //
@@ -16380,7 +16396,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SystemSignalActivation >
   _xsd_SystemSignalActivation_type_factory_init (
     "SystemSignalActivation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertSystemDescriptor
   //
@@ -16445,7 +16461,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AlertCondition",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< AlertConditionType >,
             false, true, i, n, f, this));
 
@@ -16470,7 +16486,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AlertSignal",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< AlertSignalType >,
             false, true, i, n, f, this));
 
@@ -16552,7 +16568,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSystemDescriptor >
   _xsd_AlertSystemDescriptor_type_factory_init (
     "AlertSystemDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertSystemState
   //
@@ -16619,7 +16635,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SystemSignalActivation",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< SystemSignalActivationType >,
             false, true, i, n, f, this));
 
@@ -16707,7 +16723,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSystemState >
   _xsd_AlertSystemState_type_factory_init (
     "AlertSystemState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // CauseInfo
   //
@@ -16764,7 +16780,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -16792,7 +16808,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RemedyInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< RemedyInfoType >,
             false, true, i, n, f, this));
 
@@ -16820,7 +16836,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Description",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< DescriptionType >,
             false, true, i, n, f, this));
 
@@ -16873,7 +16889,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CauseInfo >
   _xsd_CauseInfo_type_factory_init (
     "CauseInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // RemedyInfo
   //
@@ -16927,7 +16943,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -16955,7 +16971,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Description",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< DescriptionType >,
             false, true, i, n, f, this));
 
@@ -17007,7 +17023,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RemedyInfo >
   _xsd_RemedyInfo_type_factory_init (
     "RemedyInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertConditionKind
   //
@@ -17085,7 +17101,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionKind >
   _xsd_AlertConditionKind_type_factory_init (
     "AlertConditionKind",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertConditionPriority
   //
@@ -17165,7 +17181,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionPriority >
   _xsd_AlertConditionPriority_type_factory_init (
     "AlertConditionPriority",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertConditionDescriptor
   //
@@ -17238,7 +17254,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Source",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< SourceType >,
             false, true, i, n, f, this));
 
@@ -17263,7 +17279,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CauseInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CauseInfoType >,
             false, true, i, n, f, this));
 
@@ -17373,7 +17389,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionDescriptor >
   _xsd_AlertConditionDescriptor_type_factory_init (
     "AlertConditionDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertConditionReference
   //
@@ -17422,7 +17438,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionReference >
   _xsd_AlertConditionReference_type_factory_init (
     "AlertConditionReference",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertConditionState
   //
@@ -17549,7 +17565,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionState >
   _xsd_AlertConditionState_type_factory_init (
     "AlertConditionState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LimitAlertConditionDescriptor
   //
@@ -17623,7 +17639,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MaxLimits",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MaxLimitsType >,
             false, true, i, n, f, this));
 
@@ -17652,7 +17668,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "MaxLimits",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     p.reset_attributes ();
@@ -17700,7 +17716,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LimitAlertConditionDescriptor >
   _xsd_LimitAlertConditionDescriptor_type_factory_init (
     "LimitAlertConditionDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertConditionMonitoredLimits
   //
@@ -17780,7 +17796,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertConditionMonitoredLimits >
   _xsd_AlertConditionMonitoredLimits_type_factory_init (
     "AlertConditionMonitoredLimits",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LimitAlertConditionState
   //
@@ -17856,7 +17872,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Limits",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< LimitsType >,
             false, true, i, n, f, this));
 
@@ -17885,7 +17901,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Limits",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     p.reset_attributes ();
@@ -17947,7 +17963,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LimitAlertConditionState >
   _xsd_LimitAlertConditionState_type_factory_init (
     "LimitAlertConditionState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertSignalManifestation
   //
@@ -18027,7 +18043,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalManifestation >
   _xsd_AlertSignalManifestation_type_factory_init (
     "AlertSignalManifestation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertSignalDescriptor
   //
@@ -18208,7 +18224,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalDescriptor >
   _xsd_AlertSignalDescriptor_type_factory_init (
     "AlertSignalDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertSignalPresence
   //
@@ -18288,7 +18304,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalPresence >
   _xsd_AlertSignalPresence_type_factory_init (
     "AlertSignalPresence",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertSignalPrimaryLocation
   //
@@ -18364,7 +18380,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalPrimaryLocation >
   _xsd_AlertSignalPrimaryLocation_type_factory_init (
     "AlertSignalPrimaryLocation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AlertSignalState
   //
@@ -18481,7 +18497,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AlertSignalState >
   _xsd_AlertSignalState_type_factory_init (
     "AlertSignalState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // QualityIndicator
   //
@@ -18541,7 +18557,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, QualityIndicator >
   _xsd_QualityIndicator_type_factory_init (
     "QualityIndicator",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // GenerationMode
   //
@@ -18619,7 +18635,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, GenerationMode >
   _xsd_GenerationMode_type_factory_init (
     "GenerationMode",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractMetricValue
   //
@@ -18697,7 +18713,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -18721,7 +18737,7 @@ namespace CDM
 
       // MetricQuality
       //
-      if (n.name () == "MetricQuality" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "MetricQuality" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< MetricQualityType > r (
           MetricQualityTraits::create (i, f, this));
@@ -18735,7 +18751,7 @@ namespace CDM
 
       // Annotation
       //
-      if (n.name () == "Annotation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "Annotation" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< AnnotationType > r (
           AnnotationTraits::create (i, f, this));
@@ -18751,7 +18767,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "MetricQuality",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     while (p.more_attributes ())
@@ -18813,7 +18829,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractMetricValue >
   _xsd_AbstractMetricValue_type_factory_init (
     "AbstractMetricValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // NumericMetricValue
   //
@@ -18905,7 +18921,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, NumericMetricValue >
   _xsd_NumericMetricValue_type_factory_init (
     "NumericMetricValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // StringMetricValue
   //
@@ -18997,7 +19013,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StringMetricValue >
   _xsd_StringMetricValue_type_factory_init (
     "StringMetricValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // RealTimeValueType
   //
@@ -19046,7 +19062,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RealTimeValueType >
   _xsd_RealTimeValueType_type_factory_init (
     "RealTimeValueType",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SampleArrayValue
   //
@@ -19106,7 +19122,7 @@ namespace CDM
 
       // ApplyAnnotation
       //
-      if (n.name () == "ApplyAnnotation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "ApplyAnnotation" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< ApplyAnnotationType > r (
           ApplyAnnotationTraits::create (i, f, this));
@@ -19163,7 +19179,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SampleArrayValue >
   _xsd_SampleArrayValue_type_factory_init (
     "SampleArrayValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MetricCategory
   //
@@ -19247,7 +19263,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MetricCategory >
   _xsd_MetricCategory_type_factory_init (
     "MetricCategory",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // DerivationMethod
   //
@@ -19323,7 +19339,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DerivationMethod >
   _xsd_DerivationMethod_type_factory_init (
     "DerivationMethod",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MetricAvailability
   //
@@ -19399,7 +19415,56 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MetricAvailability >
   _xsd_MetricAvailability_type_factory_init (
     "MetricAvailability",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
+
+  // EntryRef
+  //
+
+  EntryRef::
+  EntryRef (const ::xercesc::DOMElement& e,
+            ::xml_schema::Flags f,
+            ::xml_schema::Container* c)
+  : ::xml_schema::SimpleType (e, f, c),
+    ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (e, f, this)
+  {
+  }
+
+  EntryRef::
+  EntryRef (const ::xercesc::DOMAttr& a,
+            ::xml_schema::Flags f,
+            ::xml_schema::Container* c)
+  : ::xml_schema::SimpleType (a, f, c),
+    ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (a, f, this)
+  {
+  }
+
+  EntryRef::
+  EntryRef (const ::std::string& s,
+            const ::xercesc::DOMElement* e,
+            ::xml_schema::Flags f,
+            ::xml_schema::Container* c)
+  : ::xml_schema::SimpleType (s, e, f, c),
+    ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (s, e, f, this)
+  {
+  }
+
+  EntryRef* EntryRef::
+  _clone (::xml_schema::Flags f,
+          ::xml_schema::Container* c) const
+  {
+    return new class EntryRef (*this, f, c);
+  }
+
+  EntryRef::
+  ~EntryRef ()
+  {
+  }
+
+  static
+  const ::xsd::cxx::tree::type_factory_initializer< 0, char, EntryRef >
+  _xsd_EntryRef_type_factory_init (
+    "EntryRef",
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractMetricDescriptor
   //
@@ -19505,7 +19570,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Unit",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< UnitType >,
             false, true, i, n, f, this));
 
@@ -19533,7 +19598,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "BodySite",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< BodySiteType >,
             false, true, i, n, f, this));
 
@@ -19554,7 +19619,7 @@ namespace CDM
 
       // Relation
       //
-      if (n.name () == "Relation" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "Relation" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< RelationType > r (
           RelationTraits::create (i, f, this));
@@ -19570,7 +19635,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Unit",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     p.reset_attributes ();
@@ -19683,7 +19748,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractMetricDescriptor >
   _xsd_AbstractMetricDescriptor_type_factory_init (
     "AbstractMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractMetricState
   //
@@ -19748,7 +19813,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "BodySite",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< BodySiteType >,
             false, true, i, n, f, this));
 
@@ -19773,7 +19838,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PhysicalConnector",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PhysicalConnectorType >,
             false, true, i, n, f, this));
 
@@ -19858,7 +19923,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractMetricState >
   _xsd_AbstractMetricState_type_factory_init (
     "AbstractMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // NumericMetricDescriptor
   //
@@ -19940,7 +20005,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TechnicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TechnicalRangeType >,
             false, true, i, n, f, this));
 
@@ -20021,7 +20086,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, NumericMetricDescriptor >
   _xsd_NumericMetricDescriptor_type_factory_init (
     "NumericMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // NumericMetricState
   //
@@ -20080,7 +20145,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MetricValue",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MetricValueType >,
             false, true, i, n, f, this));
 
@@ -20108,7 +20173,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PhysiologicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PhysiologicalRangeType >,
             false, true, i, n, f, this));
 
@@ -20176,7 +20241,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, NumericMetricState >
   _xsd_NumericMetricState_type_factory_init (
     "NumericMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // StringMetricDescriptor
   //
@@ -20237,7 +20302,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StringMetricDescriptor >
   _xsd_StringMetricDescriptor_type_factory_init (
     "StringMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // StringMetricState
   //
@@ -20290,7 +20355,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MetricValue",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MetricValueType >,
             false, true, i, n, f, this));
 
@@ -20344,7 +20409,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StringMetricState >
   _xsd_StringMetricState_type_factory_init (
     "StringMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // EnumStringMetricDescriptor
   //
@@ -20412,7 +20477,7 @@ namespace CDM
 
       // AllowedValue
       //
-      if (n.name () == "AllowedValue" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "AllowedValue" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< AllowedValueType > r (
           AllowedValueTraits::create (i, f, this));
@@ -20453,7 +20518,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, EnumStringMetricDescriptor >
   _xsd_EnumStringMetricDescriptor_type_factory_init (
     "EnumStringMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // EnumStringMetricState
   //
@@ -20496,7 +20561,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, EnumStringMetricState >
   _xsd_EnumStringMetricState_type_factory_init (
     "EnumStringMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // RealTimeSampleArrayMetricDescriptor
   //
@@ -20580,7 +20645,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TechnicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TechnicalRangeType >,
             false, true, i, n, f, this));
 
@@ -20668,7 +20733,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RealTimeSampleArrayMetricDescriptor >
   _xsd_RealTimeSampleArrayMetricDescriptor_type_factory_init (
     "RealTimeSampleArrayMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // RealTimeSampleArrayMetricState
   //
@@ -20724,7 +20789,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MetricValue",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MetricValueType >,
             false, true, i, n, f, this));
 
@@ -20752,7 +20817,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PhysiologicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PhysiologicalRangeType >,
             false, true, i, n, f, this));
 
@@ -20804,7 +20869,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RealTimeSampleArrayMetricState >
   _xsd_RealTimeSampleArrayMetricState_type_factory_init (
     "RealTimeSampleArrayMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // DistributionSampleArrayMetricDescriptor
   //
@@ -20894,7 +20959,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TechnicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TechnicalRangeType >,
             false, true, i, n, f, this));
 
@@ -20919,7 +20984,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DomainUnit",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< DomainUnitType >,
             false, true, i, n, f, this));
 
@@ -20947,7 +21012,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DistributionRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< DistributionRangeType >,
             false, true, i, n, f, this));
 
@@ -20976,14 +21041,14 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "DomainUnit",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     if (!DistributionRange_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "DistributionRange",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     p.reset_attributes ();
@@ -21040,7 +21105,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DistributionSampleArrayMetricDescriptor >
   _xsd_DistributionSampleArrayMetricDescriptor_type_factory_init (
     "DistributionSampleArrayMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // DistributionSampleArrayMetricState
   //
@@ -21096,7 +21161,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MetricValue",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MetricValueType >,
             false, true, i, n, f, this));
 
@@ -21124,7 +21189,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PhysiologicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PhysiologicalRangeType >,
             false, true, i, n, f, this));
 
@@ -21176,7 +21241,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DistributionSampleArrayMetricState >
   _xsd_DistributionSampleArrayMetricState_type_factory_init (
     "DistributionSampleArrayMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // OperationRef
   //
@@ -21225,14 +21290,14 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperationRef >
   _xsd_OperationRef_type_factory_init (
     "OperationRef",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ScoDescriptor
   //
 
   ScoDescriptor::
   ScoDescriptor (const HandleType& Handle)
-  : ::CDM::AbstractDescriptor (Handle),
+  : ::CDM::AbstractDeviceComponentDescriptor (Handle),
     Operation_ (this)
   {
   }
@@ -21241,7 +21306,7 @@ namespace CDM
   ScoDescriptor (const ScoDescriptor& x,
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
-  : ::CDM::AbstractDescriptor (x, f, c),
+  : ::CDM::AbstractDeviceComponentDescriptor (x, f, c),
     Operation_ (x.Operation_, f, this)
   {
   }
@@ -21250,7 +21315,7 @@ namespace CDM
   ScoDescriptor (const ::xercesc::DOMElement& e,
                  ::xml_schema::Flags f,
                  ::xml_schema::Container* c)
-  : ::CDM::AbstractDescriptor (e, f | ::xml_schema::Flags::base, c),
+  : ::CDM::AbstractDeviceComponentDescriptor (e, f | ::xml_schema::Flags::base, c),
     Operation_ (this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
@@ -21264,7 +21329,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractDescriptor::parse (p, f);
+    this->::CDM::AbstractDeviceComponentDescriptor::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -21278,7 +21343,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Operation",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< OperationType >,
             false, true, i, n, f, this));
 
@@ -21313,7 +21378,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractDescriptor& > (*this) = x;
+      static_cast< ::CDM::AbstractDeviceComponentDescriptor& > (*this) = x;
       this->Operation_ = x.Operation_;
     }
 
@@ -21329,14 +21394,14 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ScoDescriptor >
   _xsd_ScoDescriptor_type_factory_init (
     "ScoDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ScoState
   //
 
   ScoState::
   ScoState (const DescriptorHandleType& DescriptorHandle)
-  : ::CDM::AbstractState (DescriptorHandle),
+  : ::CDM::AbstractDeviceComponentState (DescriptorHandle),
     OperationGroup_ (this),
     InvocationRequested_ (this),
     InvocationRequired_ (this)
@@ -21347,7 +21412,7 @@ namespace CDM
   ScoState (const ScoState& x,
             ::xml_schema::Flags f,
             ::xml_schema::Container* c)
-  : ::CDM::AbstractState (x, f, c),
+  : ::CDM::AbstractDeviceComponentState (x, f, c),
     OperationGroup_ (x.OperationGroup_, f, this),
     InvocationRequested_ (x.InvocationRequested_, f, this),
     InvocationRequired_ (x.InvocationRequired_, f, this)
@@ -21358,7 +21423,7 @@ namespace CDM
   ScoState (const ::xercesc::DOMElement& e,
             ::xml_schema::Flags f,
             ::xml_schema::Container* c)
-  : ::CDM::AbstractState (e, f | ::xml_schema::Flags::base, c),
+  : ::CDM::AbstractDeviceComponentState (e, f | ::xml_schema::Flags::base, c),
     OperationGroup_ (this),
     InvocationRequested_ (this),
     InvocationRequired_ (this)
@@ -21374,7 +21439,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractState::parse (p, f);
+    this->::CDM::AbstractDeviceComponentState::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -21384,7 +21449,7 @@ namespace CDM
 
       // OperationGroup
       //
-      if (n.name () == "OperationGroup" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "OperationGroup" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< OperationGroupType > r (
           OperationGroupTraits::create (i, f, this));
@@ -21430,7 +21495,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractState& > (*this) = x;
+      static_cast< ::CDM::AbstractDeviceComponentState& > (*this) = x;
       this->OperationGroup_ = x.OperationGroup_;
       this->InvocationRequested_ = x.InvocationRequested_;
       this->InvocationRequired_ = x.InvocationRequired_;
@@ -21448,7 +21513,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ScoState >
   _xsd_ScoState_type_factory_init (
     "ScoState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractOperationDescriptor
   //
@@ -21581,7 +21646,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractOperationDescriptor >
   _xsd_AbstractOperationDescriptor_type_factory_init (
     "AbstractOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractSetStateOperationDescriptor
   //
@@ -21636,7 +21701,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ModifiableData",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ModifiableDataType >,
             false, true, i, n, f, this));
 
@@ -21687,7 +21752,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractSetStateOperationDescriptor >
   _xsd_AbstractSetStateOperationDescriptor_type_factory_init (
     "AbstractSetStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // OperatingMode
   //
@@ -21765,7 +21830,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperatingMode >
   _xsd_OperatingMode_type_factory_init (
     "OperatingMode",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractOperationState
   //
@@ -21858,7 +21923,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractOperationState >
   _xsd_AbstractOperationState_type_factory_init (
     "AbstractOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetValueOperationDescriptor
   //
@@ -21903,7 +21968,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetValueOperationDescriptor >
   _xsd_SetValueOperationDescriptor_type_factory_init (
     "SetValueOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetValueOperationState
   //
@@ -21958,7 +22023,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AllowedRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< AllowedRangeType >,
             false, true, i, n, f, this));
 
@@ -22009,7 +22074,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetValueOperationState >
   _xsd_SetValueOperationState_type_factory_init (
     "SetValueOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetStringOperationDescriptor
   //
@@ -22096,7 +22161,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetStringOperationDescriptor >
   _xsd_SetStringOperationDescriptor_type_factory_init (
     "SetStringOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetStringOperationState
   //
@@ -22147,7 +22212,7 @@ namespace CDM
 
       // AllowedValues
       //
-      if (n.name () == "AllowedValues" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "AllowedValues" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< AllowedValuesType > r (
           AllowedValuesTraits::create (i, f, this));
@@ -22191,7 +22256,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetStringOperationState >
   _xsd_SetStringOperationState_type_factory_init (
     "SetStringOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ActivateOperationDescriptor
   //
@@ -22242,7 +22307,7 @@ namespace CDM
 
       // Argument
       //
-      if (n.name () == "Argument" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "Argument" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< ArgumentType > r (
           ArgumentTraits::create (i, f, this));
@@ -22283,7 +22348,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ActivateOperationDescriptor >
   _xsd_ActivateOperationDescriptor_type_factory_init (
     "ActivateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ActivateOperationState
   //
@@ -22328,7 +22393,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ActivateOperationState >
   _xsd_ActivateOperationState_type_factory_init (
     "ActivateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetContextStateOperationDescriptor
   //
@@ -22373,7 +22438,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetContextStateOperationDescriptor >
   _xsd_SetContextStateOperationDescriptor_type_factory_init (
     "SetContextStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetContextStateOperationState
   //
@@ -22418,7 +22483,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetContextStateOperationState >
   _xsd_SetContextStateOperationState_type_factory_init (
     "SetContextStateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetMetricStateOperationDescriptor
   //
@@ -22463,7 +22528,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetMetricStateOperationDescriptor >
   _xsd_SetMetricStateOperationDescriptor_type_factory_init (
     "SetMetricStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetMetricStateOperationState
   //
@@ -22508,7 +22573,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetMetricStateOperationState >
   _xsd_SetMetricStateOperationState_type_factory_init (
     "SetMetricStateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetComponentStateOperationDescriptor
   //
@@ -22553,7 +22618,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetComponentStateOperationDescriptor >
   _xsd_SetComponentStateOperationDescriptor_type_factory_init (
     "SetComponentStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetComponentStateOperationState
   //
@@ -22598,7 +22663,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetComponentStateOperationState >
   _xsd_SetComponentStateOperationState_type_factory_init (
     "SetComponentStateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetAlertStateOperationDescriptor
   //
@@ -22643,7 +22708,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetAlertStateOperationDescriptor >
   _xsd_SetAlertStateOperationDescriptor_type_factory_init (
     "SetAlertStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SetAlertStateOperationState
   //
@@ -22688,7 +22753,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SetAlertStateOperationState >
   _xsd_SetAlertStateOperationState_type_factory_init (
     "SetAlertStateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // TimeZone
   //
@@ -22766,7 +22831,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, TimeZone >
   _xsd_TimeZone_type_factory_init (
     "TimeZone",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ClockDescriptor
   //
@@ -22822,7 +22887,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TimeProtocol",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TimeProtocolType >,
             false, true, i, n, f, this));
 
@@ -22889,7 +22954,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ClockDescriptor >
   _xsd_ClockDescriptor_type_factory_init (
     "ClockDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ClockState
   //
@@ -22964,7 +23029,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ActiveSyncProtocol",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ActiveSyncProtocolType >,
             false, true, i, n, f, this));
 
@@ -22992,7 +23057,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ReferenceSource",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ReferenceSourceType >,
             false, true, i, n, f, this));
 
@@ -23102,7 +23167,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ClockState >
   _xsd_ClockState_type_factory_init (
     "ClockState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // BatteryDescriptor
   //
@@ -23161,7 +23226,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CapacityFullCharge",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CapacityFullChargeType >,
             false, true, i, n, f, this));
 
@@ -23189,7 +23254,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CapacitySpecified",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CapacitySpecifiedType >,
             false, true, i, n, f, this));
 
@@ -23217,7 +23282,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "VoltageSpecified",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< VoltageSpecifiedType >,
             false, true, i, n, f, this));
 
@@ -23273,7 +23338,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, BatteryDescriptor >
   _xsd_BatteryDescriptor_type_factory_init (
     "BatteryDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // BatteryState
   //
@@ -23344,7 +23409,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CapacityRemaining",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CapacityRemainingType >,
             false, true, i, n, f, this));
 
@@ -23372,7 +23437,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Voltage",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< VoltageType >,
             false, true, i, n, f, this));
 
@@ -23400,7 +23465,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Current",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CurrentType >,
             false, true, i, n, f, this));
 
@@ -23428,7 +23493,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Temperature",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TemperatureType >,
             false, true, i, n, f, this));
 
@@ -23456,7 +23521,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RemainingBatteryTime",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< RemainingBatteryTimeType >,
             false, true, i, n, f, this));
 
@@ -23537,14 +23602,14 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, BatteryState >
   _xsd_BatteryState_type_factory_init (
     "BatteryState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SystemContextDescriptor
   //
 
   SystemContextDescriptor::
   SystemContextDescriptor (const HandleType& Handle)
-  : ::CDM::AbstractDescriptor (Handle),
+  : ::CDM::AbstractDeviceComponentDescriptor (Handle),
     PatientContext_ (this),
     LocationContext_ (this),
     EnsembleContext_ (this),
@@ -23558,7 +23623,7 @@ namespace CDM
   SystemContextDescriptor (const SystemContextDescriptor& x,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractDescriptor (x, f, c),
+  : ::CDM::AbstractDeviceComponentDescriptor (x, f, c),
     PatientContext_ (x.PatientContext_, f, this),
     LocationContext_ (x.LocationContext_, f, this),
     EnsembleContext_ (x.EnsembleContext_, f, this),
@@ -23572,7 +23637,7 @@ namespace CDM
   SystemContextDescriptor (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f,
                            ::xml_schema::Container* c)
-  : ::CDM::AbstractDescriptor (e, f | ::xml_schema::Flags::base, c),
+  : ::CDM::AbstractDeviceComponentDescriptor (e, f | ::xml_schema::Flags::base, c),
     PatientContext_ (this),
     LocationContext_ (this),
     EnsembleContext_ (this),
@@ -23591,7 +23656,7 @@ namespace CDM
   parse (::xsd::cxx::xml::dom::parser< char >& p,
          ::xml_schema::Flags f)
   {
-    this->::CDM::AbstractDescriptor::parse (p, f);
+    this->::CDM::AbstractDeviceComponentDescriptor::parse (p, f);
 
     for (; p.more_content (); p.next_content (false))
     {
@@ -23605,7 +23670,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PatientContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PatientContextType >,
             false, true, i, n, f, this));
 
@@ -23633,7 +23698,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "LocationContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< LocationContextType >,
             false, true, i, n, f, this));
 
@@ -23661,7 +23726,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "EnsembleContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< EnsembleContextType >,
             false, true, i, n, f, this));
 
@@ -23686,7 +23751,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperatorContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< OperatorContextType >,
             false, true, i, n, f, this));
 
@@ -23711,7 +23776,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "WorkflowContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< WorkflowContextType >,
             false, true, i, n, f, this));
 
@@ -23736,7 +23801,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MeansContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MeansContextType >,
             false, true, i, n, f, this));
 
@@ -23771,7 +23836,7 @@ namespace CDM
   {
     if (this != &x)
     {
-      static_cast< ::CDM::AbstractDescriptor& > (*this) = x;
+      static_cast< ::CDM::AbstractDeviceComponentDescriptor& > (*this) = x;
       this->PatientContext_ = x.PatientContext_;
       this->LocationContext_ = x.LocationContext_;
       this->EnsembleContext_ = x.EnsembleContext_;
@@ -23792,14 +23857,14 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SystemContextDescriptor >
   _xsd_SystemContextDescriptor_type_factory_init (
     "SystemContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // SystemContextState
   //
 
   SystemContextState::
   SystemContextState (const DescriptorHandleType& DescriptorHandle)
-  : ::CDM::AbstractState (DescriptorHandle)
+  : ::CDM::AbstractDeviceComponentState (DescriptorHandle)
   {
   }
 
@@ -23807,7 +23872,7 @@ namespace CDM
   SystemContextState (const SystemContextState& x,
                       ::xml_schema::Flags f,
                       ::xml_schema::Container* c)
-  : ::CDM::AbstractState (x, f, c)
+  : ::CDM::AbstractDeviceComponentState (x, f, c)
   {
   }
 
@@ -23815,7 +23880,7 @@ namespace CDM
   SystemContextState (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f,
                       ::xml_schema::Container* c)
-  : ::CDM::AbstractState (e, f, c)
+  : ::CDM::AbstractDeviceComponentState (e, f, c)
   {
   }
 
@@ -23835,7 +23900,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SystemContextState >
   _xsd_SystemContextState_type_factory_init (
     "SystemContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractContextDescriptor
   //
@@ -23878,7 +23943,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractContextDescriptor >
   _xsd_AbstractContextDescriptor_type_factory_init (
     "AbstractContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ContextAssociation
   //
@@ -23958,7 +24023,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ContextAssociation >
   _xsd_ContextAssociation_type_factory_init (
     "ContextAssociation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // AbstractContextState
   //
@@ -24031,7 +24096,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Validator",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ValidatorType >,
             false, true, i, n, f, this));
 
@@ -24056,7 +24121,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -24152,7 +24217,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractContextState >
   _xsd_AbstractContextState_type_factory_init (
     "AbstractContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // BaseDemographics
   //
@@ -24218,7 +24283,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -24246,7 +24311,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Givenname",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< GivennameType >,
             false, true, i, n, f, this));
 
@@ -24274,7 +24339,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Middlename",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MiddlenameType >,
             false, true, i, n, f, this));
 
@@ -24299,7 +24364,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Familyname",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< FamilynameType >,
             false, true, i, n, f, this));
 
@@ -24327,7 +24392,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Birthname",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< BirthnameType >,
             false, true, i, n, f, this));
 
@@ -24355,7 +24420,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Title",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TitleType >,
             false, true, i, n, f, this));
 
@@ -24414,7 +24479,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, BaseDemographics >
   _xsd_BaseDemographics_type_factory_init (
     "BaseDemographics",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // PersonReference
   //
@@ -24471,7 +24536,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -24499,7 +24564,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -24524,7 +24589,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Name",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< NameType >,
             false, true, i, n, f, this));
 
@@ -24580,7 +24645,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PersonReference >
   _xsd_PersonReference_type_factory_init (
     "PersonReference",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LocationDetail
   //
@@ -24649,7 +24714,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -24752,7 +24817,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocationDetail >
   _xsd_LocationDetail_type_factory_init (
     "LocationDetail",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // PatientContextDescriptor
   //
@@ -24795,7 +24860,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PatientContextDescriptor >
   _xsd_PatientContextDescriptor_type_factory_init (
     "PatientContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // Sex
   //
@@ -24875,7 +24940,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Sex >
   _xsd_Sex_type_factory_init (
     "Sex",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // PatientType
   //
@@ -24961,7 +25026,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PatientType >
   _xsd_PatientType_type_factory_init (
     "PatientType",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // PatientDemographicsCoreData
   //
@@ -25029,7 +25094,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Sex",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< SexType >,
             false, true, i, n, f, this));
 
@@ -25057,7 +25122,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PatientType",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PatientTypeType >,
             false, true, i, n, f, this));
 
@@ -25081,7 +25146,7 @@ namespace CDM
 
       // DateOfBirth
       //
-      if (n.name () == "DateOfBirth" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "DateOfBirth" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< DateOfBirthType > r (
           DateOfBirthTraits::create (i, f, this));
@@ -25099,7 +25164,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Height",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< HeightType >,
             false, true, i, n, f, this));
 
@@ -25127,7 +25192,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Weight",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< WeightType >,
             false, true, i, n, f, this));
 
@@ -25155,7 +25220,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Race",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< RaceType >,
             false, true, i, n, f, this));
 
@@ -25214,7 +25279,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PatientDemographicsCoreData >
   _xsd_PatientDemographicsCoreData_type_factory_init (
     "PatientDemographicsCoreData",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // NeonatalPatientDemographicsCoreData
   //
@@ -25279,7 +25344,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "GestationalAge",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< GestationalAgeType >,
             false, true, i, n, f, this));
 
@@ -25307,7 +25372,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "BirthLength",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< BirthLengthType >,
             false, true, i, n, f, this));
 
@@ -25335,7 +25400,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "BirthWeight",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< BirthWeightType >,
             false, true, i, n, f, this));
 
@@ -25363,7 +25428,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "HeadCircumference",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< HeadCircumferenceType >,
             false, true, i, n, f, this));
 
@@ -25391,7 +25456,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Mother",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MotherType >,
             false, true, i, n, f, this));
 
@@ -25449,7 +25514,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, NeonatalPatientDemographicsCoreData >
   _xsd_NeonatalPatientDemographicsCoreData_type_factory_init (
     "NeonatalPatientDemographicsCoreData",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // PatientContextState
   //
@@ -25504,7 +25569,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CoreData",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CoreDataType >,
             false, true, i, n, f, this));
 
@@ -25558,7 +25623,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PatientContextState >
   _xsd_PatientContextState_type_factory_init (
     "PatientContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LocationContextDescriptor
   //
@@ -25601,7 +25666,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocationContextDescriptor >
   _xsd_LocationContextDescriptor_type_factory_init (
     "LocationContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LocationContextState
   //
@@ -25656,7 +25721,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "LocationDetail",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< LocationDetailType >,
             false, true, i, n, f, this));
 
@@ -25710,7 +25775,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocationContextState >
   _xsd_LocationContextState_type_factory_init (
     "LocationContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // WorkflowContextDescriptor
   //
@@ -25753,7 +25818,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, WorkflowContextDescriptor >
   _xsd_WorkflowContextDescriptor_type_factory_init (
     "WorkflowContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ClinicalInfo
   //
@@ -25819,7 +25884,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -25847,7 +25912,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -25875,7 +25940,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Code",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CodeType >,
             false, true, i, n, f, this));
 
@@ -25899,7 +25964,7 @@ namespace CDM
 
       // Criticality
       //
-      if (n.name () == "Criticality" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "Criticality" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< CriticalityType > r (
           CriticalityTraits::create (i, f, this));
@@ -25917,7 +25982,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Description",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< DescriptionType >,
             false, true, i, n, f, this));
 
@@ -25938,7 +26003,7 @@ namespace CDM
 
       // RelatedMeasurement
       //
-      if (n.name () == "RelatedMeasurement" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "RelatedMeasurement" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< RelatedMeasurementType > r (
           RelatedMeasurementTraits::create (i, f, this));
@@ -25984,7 +26049,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ClinicalInfo >
   _xsd_ClinicalInfo_type_factory_init (
     "ClinicalInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ImagingProcedure
   //
@@ -26072,7 +26137,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -26100,7 +26165,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AccessionIdentifier",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< AccessionIdentifierType >,
             false, true, i, n, f, this));
 
@@ -26128,7 +26193,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RequestedProcedureId",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< RequestedProcedureIdType >,
             false, true, i, n, f, this));
 
@@ -26156,7 +26221,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "StudyInstanceUid",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< StudyInstanceUidType >,
             false, true, i, n, f, this));
 
@@ -26184,7 +26249,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ScheduledProcedureStepId",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ScheduledProcedureStepIdType >,
             false, true, i, n, f, this));
 
@@ -26212,7 +26277,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Modality",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ModalityType >,
             false, true, i, n, f, this));
 
@@ -26240,7 +26305,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ProtocolCode",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ProtocolCodeType >,
             false, true, i, n, f, this));
 
@@ -26269,28 +26334,28 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "AccessionIdentifier",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     if (!RequestedProcedureId_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "RequestedProcedureId",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     if (!StudyInstanceUid_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "StudyInstanceUid",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     if (!ScheduledProcedureStepId_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ScheduledProcedureStepId",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -26328,7 +26393,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ImagingProcedure >
   _xsd_ImagingProcedure_type_factory_init (
     "ImagingProcedure",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // LocationReference
   //
@@ -26385,7 +26450,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -26413,7 +26478,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -26438,7 +26503,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "LocationDetail",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< LocationDetailType >,
             false, true, i, n, f, this));
 
@@ -26494,7 +26559,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, LocationReference >
   _xsd_LocationReference_type_factory_init (
     "LocationReference",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // OrderDetail
   //
@@ -26560,7 +26625,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -26588,7 +26653,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Start",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< StartType >,
             false, true, i, n, f, this));
 
@@ -26616,7 +26681,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "End",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< EndType >,
             false, true, i, n, f, this));
 
@@ -26644,7 +26709,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Performer",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PerformerType >,
             false, true, i, n, f, this));
 
@@ -26669,7 +26734,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Service",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ServiceType >,
             false, true, i, n, f, this));
 
@@ -26694,7 +26759,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ImagingProcedure",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ImagingProcedureType >,
             false, true, i, n, f, this));
 
@@ -26750,7 +26815,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OrderDetail >
   _xsd_OrderDetail_type_factory_init (
     "OrderDetail",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // PersonParticipation
   //
@@ -26803,7 +26868,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Role",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< RoleType >,
             false, true, i, n, f, this));
 
@@ -26854,7 +26919,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, PersonParticipation >
   _xsd_PersonParticipation_type_factory_init (
     "PersonParticipation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // WorkflowContextState
   //
@@ -26905,7 +26970,7 @@ namespace CDM
 
       // WorkflowDetail
       //
-      if (n.name () == "WorkflowDetail" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "WorkflowDetail" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< WorkflowDetailType > r (
           WorkflowDetailTraits::create (i, f, this));
@@ -26949,7 +27014,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, WorkflowContextState >
   _xsd_WorkflowContextState_type_factory_init (
     "WorkflowContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // OperatorContextDescriptor
   //
@@ -26992,7 +27057,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperatorContextDescriptor >
   _xsd_OperatorContextDescriptor_type_factory_init (
     "OperatorContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // OperatorContextState
   //
@@ -27047,7 +27112,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperatorDetails",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< OperatorDetailsType >,
             false, true, i, n, f, this));
 
@@ -27101,7 +27166,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, OperatorContextState >
   _xsd_OperatorContextState_type_factory_init (
     "OperatorContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MeansContextDescriptor
   //
@@ -27144,7 +27209,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MeansContextDescriptor >
   _xsd_MeansContextDescriptor_type_factory_init (
     "MeansContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // MeansContextState
   //
@@ -27189,7 +27254,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, MeansContextState >
   _xsd_MeansContextState_type_factory_init (
     "MeansContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // EnsembleContextDescriptor
   //
@@ -27232,7 +27297,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, EnsembleContextDescriptor >
   _xsd_EnsembleContextDescriptor_type_factory_init (
     "EnsembleContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // EnsembleContextState
   //
@@ -27277,7 +27342,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, EnsembleContextState >
   _xsd_EnsembleContextState_type_factory_init (
     "EnsembleContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ContainmentTree
   //
@@ -27343,7 +27408,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -27371,7 +27436,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Entry",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< EntryType >,
             false, true, i, n, f, this));
 
@@ -27458,7 +27523,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ContainmentTree >
   _xsd_ContainmentTree_type_factory_init (
     "ContainmentTree",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // ContainmentTreeEntry
   //
@@ -27524,7 +27589,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -27552,7 +27617,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -27642,7 +27707,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, ContainmentTreeEntry >
   _xsd_ContainmentTreeEntry_type_factory_init (
     "ContainmentTreeEntry",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
   // Translation
   //
@@ -27702,7 +27767,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -27989,7 +28054,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SpecType",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< SpecTypeType >,
             false, true, i, n, f, this));
 
@@ -28017,7 +28082,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ProductionSpec",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ProductionSpecType >,
             false, true, i, n, f, this));
 
@@ -28045,7 +28110,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ComponentId",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ComponentIdType >,
             false, true, i, n, f, this));
 
@@ -28074,14 +28139,14 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "SpecType",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     if (!ProductionSpec_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ProductionSpec",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -28163,7 +28228,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Documentation",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< DocumentationType >,
             false, true, i, n, f, this));
 
@@ -28184,7 +28249,7 @@ namespace CDM
 
       // CalibrationResult
       //
-      if (n.name () == "CalibrationResult" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "CalibrationResult" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< CalibrationResultType > r (
           CalibrationResultTraits::create (i, f, this));
@@ -28295,7 +28360,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -28319,7 +28384,7 @@ namespace CDM
 
       // Udi
       //
-      if (n.name () == "Udi" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "Udi" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< UdiType > r (
           UdiTraits::create (i, f, this));
@@ -28334,7 +28399,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "LotNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< LotNumberType >,
             false, true, i, n, f, this));
 
@@ -28362,7 +28427,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Manufacturer",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ManufacturerType >,
             false, true, i, n, f, this));
 
@@ -28387,7 +28452,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ManufactureDate",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ManufactureDateType >,
             false, true, i, n, f, this));
 
@@ -28415,7 +28480,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ExpirationDate",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ExpirationDateType >,
             false, true, i, n, f, this));
 
@@ -28443,7 +28508,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ModelName",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ModelNameType >,
             false, true, i, n, f, this));
 
@@ -28468,7 +28533,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ModelNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ModelNumberType >,
             false, true, i, n, f, this));
 
@@ -28496,7 +28561,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SerialNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< SerialNumberType >,
             false, true, i, n, f, this));
 
@@ -28743,7 +28808,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -28888,7 +28953,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -28916,7 +28981,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -28945,7 +29010,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Type",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -29136,7 +29201,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -29164,7 +29229,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Code",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CodeType >,
             false, true, i, n, f, this));
 
@@ -29192,7 +29257,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -29347,7 +29412,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Value",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ValueType >,
             false, true, i, n, f, this));
 
@@ -29375,7 +29440,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -29403,7 +29468,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -29431,7 +29496,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Characteristic",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CharacteristicType >,
             false, true, i, n, f, this));
 
@@ -29460,7 +29525,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Value",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -29559,7 +29624,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -29587,7 +29652,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< TypeType >,
             false, true, i, n, f, this));
 
@@ -29616,7 +29681,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Type",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     while (p.more_attributes ())
@@ -29710,11 +29775,11 @@ namespace CDM
     ::xsd::cxx::tree::enum_comparator< char > c (_xsd_AccessLevel_literals_);
     const Value* i (::std::lower_bound (
                       _xsd_AccessLevel_indexes_,
-                      _xsd_AccessLevel_indexes_ + 4,
+                      _xsd_AccessLevel_indexes_ + 5,
                       *this,
                       c));
 
-    if (i == _xsd_AccessLevel_indexes_ + 4 || _xsd_AccessLevel_literals_[*i] != *this)
+    if (i == _xsd_AccessLevel_indexes_ + 5 || _xsd_AccessLevel_literals_[*i] != *this)
     {
       throw ::xsd::cxx::tree::unexpected_enumerator < char > (*this);
     }
@@ -29723,18 +29788,20 @@ namespace CDM
   }
 
   const char* const AccessLevel::
-  _xsd_AccessLevel_literals_[4] =
+  _xsd_AccessLevel_literals_[5] =
   {
     "Usr",
     "CSUsr",
     "RO",
-    "SP"
+    "SP",
+    "Oth"
   };
 
   const AccessLevel::Value AccessLevel::
-  _xsd_AccessLevel_indexes_[4] =
+  _xsd_AccessLevel_indexes_[5] =
   {
     ::CDM::AccessLevel::CSUsr,
+    ::CDM::AccessLevel::Oth,
     ::CDM::AccessLevel::RO,
     ::CDM::AccessLevel::SP,
     ::CDM::AccessLevel::Usr
@@ -29744,16 +29811,9 @@ namespace CDM
   //
 
   AllowedValues::
-  AllowedValues (const ValueType& Value)
+  AllowedValues ()
   : ::xml_schema::Type (),
-    Value_ (Value, this)
-  {
-  }
-
-  AllowedValues::
-  AllowedValues (::std::unique_ptr< ValueType > Value)
-  : ::xml_schema::Type (),
-    Value_ (std::move (Value), this)
+    Value_ (this)
   {
   }
 
@@ -29796,36 +29856,26 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Value",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ValueType >,
             false, true, i, n, f, this));
 
         if (tmp.get () != 0)
         {
-          if (!Value_.present ())
-          {
-            ::std::unique_ptr< ValueType > r (
-              dynamic_cast< ValueType* > (tmp.get ()));
+          ::std::unique_ptr< ValueType > r (
+            dynamic_cast< ValueType* > (tmp.get ()));
 
-            if (r.get ())
-              tmp.release ();
-            else
-              throw ::xsd::cxx::tree::not_derived< char > ();
+          if (r.get ())
+            tmp.release ();
+          else
+            throw ::xsd::cxx::tree::not_derived< char > ();
 
-            this->Value_.set (::std::move (r));
-            continue;
-          }
+          this->Value_.push_back (::std::move (r));
+          continue;
         }
       }
 
       break;
-    }
-
-    if (!Value_.present ())
-    {
-      throw ::xsd::cxx::tree::expected_element< char > (
-        "Value",
-        "http://p11073-10207/draft10/pm/2017/10/05");
     }
   }
 
@@ -29924,7 +29974,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ArgName",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ArgNameType >,
             false, true, i, n, f, this));
 
@@ -29952,7 +30002,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Arg",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ArgType >,
             false, true, i, n, f, this));
 
@@ -29981,14 +30031,14 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ArgName",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     if (!Arg_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Arg",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -30260,7 +30310,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Value",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ValueType >,
             false, true, i, n, f, this));
 
@@ -30284,7 +30334,7 @@ namespace CDM
 
       // ReferenceRange
       //
-      if (n.name () == "ReferenceRange" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "ReferenceRange" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< ReferenceRangeType > r (
           ReferenceRangeTraits::create (i, f, this));
@@ -30300,7 +30350,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Value",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     while (p.more_attributes ())
@@ -30427,7 +30477,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -30455,7 +30505,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Patient",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PatientType >,
             false, true, i, n, f, this));
 
@@ -30483,7 +30533,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AssignedLocation",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< AssignedLocationType >,
             false, true, i, n, f, this));
 
@@ -30511,7 +30561,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "VisitNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< VisitNumberType >,
             false, true, i, n, f, this));
 
@@ -30539,7 +30589,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DangerCode",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< DangerCodeType >,
             false, true, i, n, f, this));
 
@@ -30564,7 +30614,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RelevantClinicalInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< RelevantClinicalInfoType >,
             false, true, i, n, f, this));
 
@@ -30585,7 +30635,7 @@ namespace CDM
 
       // RequestedOrderDetail
       //
-      if (n.name () == "RequestedOrderDetail" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "RequestedOrderDetail" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< RequestedOrderDetailType > r (
           RequestedOrderDetailTraits::create (i, f, this));
@@ -30599,7 +30649,7 @@ namespace CDM
 
       // PerformedOrderDetail
       //
-      if (n.name () == "PerformedOrderDetail" && n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+      if (n.name () == "PerformedOrderDetail" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         ::std::unique_ptr< PerformedOrderDetailType > r (
           PerformedOrderDetailTraits::create (i, f, this));
@@ -30618,7 +30668,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Patient",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -30715,7 +30765,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Code",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< CodeType >,
             false, true, i, n, f, this));
 
@@ -30743,7 +30793,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Value",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ValueType >,
             false, true, i, n, f, this));
 
@@ -30772,14 +30822,14 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Code",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     if (!Value_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Value",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -30897,7 +30947,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -30925,7 +30975,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DeviceIdentifier",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< DeviceIdentifierType >,
             false, true, i, n, f, this));
 
@@ -30953,7 +31003,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "HumanReadableForm",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< HumanReadableFormType >,
             false, true, i, n, f, this));
 
@@ -30981,7 +31031,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Issuer",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< IssuerType >,
             false, true, i, n, f, this));
 
@@ -31009,7 +31059,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Jurisdiction",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< JurisdictionType >,
             false, true, i, n, f, this));
 
@@ -31038,21 +31088,21 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "DeviceIdentifier",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     if (!HumanReadableForm_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "HumanReadableForm",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
 
     if (!Issuer_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Issuer",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -31222,7 +31272,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Range",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< RangeType >,
             false, true, i, n, f, this));
 
@@ -31250,7 +31300,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Meaning",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< MeaningType >,
             false, true, i, n, f, this));
 
@@ -31279,7 +31329,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Range",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -31374,7 +31424,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ReferringPhysician",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ReferringPhysicianType >,
             false, true, i, n, f, this));
 
@@ -31402,7 +31452,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RequestingPhysician",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< RequestingPhysicianType >,
             false, true, i, n, f, this));
 
@@ -31430,7 +31480,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "PlacerOrderNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< PlacerOrderNumberType >,
             false, true, i, n, f, this));
 
@@ -31459,7 +31509,7 @@ namespace CDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "PlacerOrderNumber",
-        "http://p11073-10207/draft10/pm/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
     }
   }
 
@@ -31543,7 +31593,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "FillerOrderNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< FillerOrderNumberType >,
             false, true, i, n, f, this));
 
@@ -31571,7 +31621,7 @@ namespace CDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ResultingClinicalInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             &::xsd::cxx::tree::factory_impl< ResultingClinicalInfoType >,
             false, true, i, n, f, this));
 
@@ -31841,7 +31891,7 @@ namespace CDM
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "MdibContainer",
-        "http://p11073-10207/draft10/pm/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
         &::xsd::cxx::tree::factory_impl< ::CDM::Mdib >,
         true, true, e, n, f, 0));
 
@@ -31862,7 +31912,7 @@ namespace CDM
       n.name (),
       n.namespace_ (),
       "MdibContainer",
-      "http://p11073-10207/draft10/pm/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
@@ -31890,7 +31940,7 @@ namespace CDM
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "MdibContainer",
-        "http://p11073-10207/draft10/pm/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
         &::xsd::cxx::tree::factory_impl< ::CDM::Mdib >,
         true, true, e, n, f, 0));
 
@@ -31912,7 +31962,7 @@ namespace CDM
       n.name (),
       n.namespace_ (),
       "MdibContainer",
-      "http://p11073-10207/draft10/pm/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
   }
 }
 
@@ -31950,7 +32000,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -31958,7 +32008,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -31977,7 +32027,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MdDescription",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -31985,7 +32035,7 @@ namespace CDM
         else
           tsm.serialize (
             "MdDescription",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -32004,7 +32054,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MdState",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -32012,7 +32062,7 @@ namespace CDM
         else
           tsm.serialize (
             "MdState",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -32057,7 +32107,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Mdib >
   _xsd_Mdib_type_serializer_init (
     "Mdib",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32079,7 +32129,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -32087,7 +32137,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -32107,7 +32157,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Mds",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -32115,7 +32165,7 @@ namespace CDM
         else
           tsm.serialize (
             "Mds",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -32137,7 +32187,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdDescription >
   _xsd_MdDescription_type_serializer_init (
     "MdDescription",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32159,7 +32209,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -32167,7 +32217,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -32187,7 +32237,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "State",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -32195,7 +32245,7 @@ namespace CDM
         else
           tsm.serialize (
             "State",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -32217,7 +32267,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdState >
   _xsd_MdState_type_serializer_init (
     "MdState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32243,7 +32293,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MeasurementValidity >
   _xsd_MeasurementValidity_type_serializer_init (
     "MeasurementValidity",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32269,7 +32319,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Timestamp >
   _xsd_Timestamp_type_serializer_init (
     "Timestamp",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32295,7 +32345,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, VersionCounter >
   _xsd_VersionCounter_type_serializer_init (
     "VersionCounter",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32321,7 +32371,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ReferencedVersion >
   _xsd_ReferencedVersion_type_serializer_init (
     "ReferencedVersion",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32347,7 +32397,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CodeIdentifier >
   _xsd_CodeIdentifier_type_serializer_init (
     "CodeIdentifier",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32373,7 +32423,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SymbolicCodeName >
   _xsd_SymbolicCodeName_type_serializer_init (
     "SymbolicCodeName",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32399,7 +32449,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocalizedTextRef >
   _xsd_LocalizedTextRef_type_serializer_init (
     "LocalizedTextRef",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32425,7 +32475,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocalizedTextContent >
   _xsd_LocalizedTextContent_type_serializer_init (
     "LocalizedTextContent",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32451,7 +32501,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocalizedTextWidth >
   _xsd_LocalizedTextWidth_type_serializer_init (
     "LocalizedTextWidth",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32512,7 +32562,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocalizedText >
   _xsd_LocalizedText_type_serializer_init (
     "LocalizedText",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32534,7 +32584,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -32542,7 +32592,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -32562,7 +32612,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CodingSystemName",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -32570,7 +32620,7 @@ namespace CDM
         else
           tsm.serialize (
             "CodingSystemName",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -32590,7 +32640,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ConceptDescription",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -32598,7 +32648,7 @@ namespace CDM
         else
           tsm.serialize (
             "ConceptDescription",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -32612,7 +32662,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Translation",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -32670,7 +32720,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CodedValue >
   _xsd_CodedValue_type_serializer_init (
     "CodedValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32692,7 +32742,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -32700,7 +32750,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -32719,7 +32769,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -32727,7 +32777,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -32747,7 +32797,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "IdentifierName",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -32755,7 +32805,7 @@ namespace CDM
         else
           tsm.serialize (
             "IdentifierName",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -32789,7 +32839,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, InstanceIdentifier >
   _xsd_InstanceIdentifier_type_serializer_init (
     "InstanceIdentifier",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32811,7 +32861,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -32819,7 +32869,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -32889,7 +32939,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Range >
   _xsd_Range_type_serializer_init (
     "Range",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32911,7 +32961,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -32919,7 +32969,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -32936,7 +32986,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "MeasurementUnit",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -32944,7 +32994,7 @@ namespace CDM
       else
         tsm.serialize (
           "MeasurementUnit",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -32964,7 +33014,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Measurement >
   _xsd_Measurement_type_serializer_init (
     "Measurement",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -32990,7 +33040,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SafetyClassification >
   _xsd_SafetyClassification_type_serializer_init (
     "SafetyClassification",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33016,7 +33066,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ComponentActivation >
   _xsd_ComponentActivation_type_serializer_init (
     "ComponentActivation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33039,7 +33089,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ApprovedJurisdiction",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -33047,7 +33097,7 @@ namespace CDM
         else
           tsm.serialize (
             "ApprovedJurisdiction",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -33057,7 +33107,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ApprovedJurisdictions >
   _xsd_ApprovedJurisdictions_type_serializer_init (
     "ApprovedJurisdictions",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33070,7 +33120,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperatingJurisdiction >
   _xsd_OperatingJurisdiction_type_serializer_init (
     "OperatingJurisdiction",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33096,7 +33146,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Handle >
   _xsd_Handle_type_serializer_init (
     "Handle",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33122,7 +33172,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, HandleRef >
   _xsd_HandleRef_type_serializer_init (
     "HandleRef",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33144,7 +33194,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -33152,7 +33202,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -33172,7 +33222,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Label",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -33180,7 +33230,7 @@ namespace CDM
         else
           tsm.serialize (
             "Label",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -33202,7 +33252,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PhysicalConnectorInfo >
   _xsd_PhysicalConnectorInfo_type_serializer_init (
     "PhysicalConnectorInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33224,7 +33274,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -33232,7 +33282,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -33251,7 +33301,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33259,7 +33309,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33304,7 +33354,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractDescriptor >
   _xsd_AbstractDescriptor_type_serializer_init (
     "AbstractDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33326,7 +33376,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -33334,7 +33384,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -33379,7 +33429,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractState >
   _xsd_AbstractState_type_serializer_init (
     "AbstractState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33401,7 +33451,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Category",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33409,7 +33459,7 @@ namespace CDM
         else
           tsm.serialize (
             "Category",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33430,7 +33480,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractMultiState >
   _xsd_AbstractMultiState_type_serializer_init (
     "AbstractMultiState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33447,7 +33497,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ProductionSpecification",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -33458,7 +33508,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractDeviceComponentDescriptor >
   _xsd_AbstractDeviceComponentDescriptor_type_serializer_init (
     "AbstractDeviceComponentDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33480,7 +33530,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AlertSystem",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33488,7 +33538,7 @@ namespace CDM
         else
           tsm.serialize (
             "AlertSystem",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33507,7 +33557,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Sco",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33515,7 +33565,7 @@ namespace CDM
         else
           tsm.serialize (
             "Sco",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33525,7 +33575,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractComplexDeviceComponentDescriptor >
   _xsd_AbstractComplexDeviceComponentDescriptor_type_serializer_init (
     "AbstractComplexDeviceComponentDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33551,7 +33601,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CalibrationState >
   _xsd_CalibrationState_type_serializer_init (
     "CalibrationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33577,7 +33627,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CalibrationType >
   _xsd_CalibrationType_type_serializer_init (
     "CalibrationType",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33599,7 +33649,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -33607,7 +33657,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -33621,7 +33671,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "CalibrationDocumentation",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -33668,7 +33718,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CalibrationInfo >
   _xsd_CalibrationInfo_type_serializer_init (
     "CalibrationInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33690,7 +33740,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CalibrationInfo",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33698,7 +33748,7 @@ namespace CDM
         else
           tsm.serialize (
             "CalibrationInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33717,7 +33767,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "NextCalibration",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33725,7 +33775,7 @@ namespace CDM
         else
           tsm.serialize (
             "NextCalibration",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33744,7 +33794,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PhysicalConnector",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33752,7 +33802,7 @@ namespace CDM
         else
           tsm.serialize (
             "PhysicalConnector",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33798,7 +33848,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractDeviceComponentState >
   _xsd_AbstractDeviceComponentState_type_serializer_init (
     "AbstractDeviceComponentState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33811,7 +33861,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractComplexDeviceComponentState >
   _xsd_AbstractComplexDeviceComponentState_type_serializer_init (
     "AbstractComplexDeviceComponentState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -33826,7 +33876,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "MetaData",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *i.MetaData ();
@@ -33846,7 +33896,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SystemContext",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33854,7 +33904,7 @@ namespace CDM
         else
           tsm.serialize (
             "SystemContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33873,7 +33923,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Clock",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33881,7 +33931,7 @@ namespace CDM
         else
           tsm.serialize (
             "Clock",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33901,7 +33951,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Battery",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -33909,7 +33959,7 @@ namespace CDM
         else
           tsm.serialize (
             "Battery",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -33928,7 +33978,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ApprovedJurisdictions",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -33936,7 +33986,7 @@ namespace CDM
         else
           tsm.serialize (
             "ApprovedJurisdictions",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -33956,7 +34006,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Vmd",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -33964,7 +34014,7 @@ namespace CDM
         else
           tsm.serialize (
             "Vmd",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -33974,7 +34024,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdsDescriptor >
   _xsd_MdsDescriptor_type_serializer_init (
     "MdsDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34000,7 +34050,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdsOperatingMode >
   _xsd_MdsOperatingMode_type_serializer_init (
     "MdsOperatingMode",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34022,7 +34072,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "OperatingJurisdiction",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -34030,7 +34080,7 @@ namespace CDM
         else
           tsm.serialize (
             "OperatingJurisdiction",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -34064,7 +34114,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MdsState >
   _xsd_MdsState_type_serializer_init (
     "MdsState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34086,7 +34136,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ApprovedJurisdictions",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -34094,7 +34144,7 @@ namespace CDM
         else
           tsm.serialize (
             "ApprovedJurisdictions",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -34114,7 +34164,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Channel",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -34122,7 +34172,7 @@ namespace CDM
         else
           tsm.serialize (
             "Channel",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -34132,7 +34182,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, VmdDescriptor >
   _xsd_VmdDescriptor_type_serializer_init (
     "VmdDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34154,7 +34204,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "OperatingJurisdiction",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -34162,7 +34212,7 @@ namespace CDM
         else
           tsm.serialize (
             "OperatingJurisdiction",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -34172,7 +34222,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, VmdState >
   _xsd_VmdState_type_serializer_init (
     "VmdState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34195,7 +34245,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Metric",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -34203,7 +34253,7 @@ namespace CDM
         else
           tsm.serialize (
             "Metric",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -34213,7 +34263,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ChannelDescriptor >
   _xsd_ChannelDescriptor_type_serializer_init (
     "ChannelDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34226,7 +34276,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ChannelState >
   _xsd_ChannelState_type_serializer_init (
     "ChannelState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34239,7 +34289,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractAlertDescriptor >
   _xsd_AbstractAlertDescriptor_type_serializer_init (
     "AbstractAlertDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34263,7 +34313,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractAlertState >
   _xsd_AbstractAlertState_type_serializer_init (
     "AbstractAlertState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34289,7 +34339,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertActivation >
   _xsd_AlertActivation_type_serializer_init (
     "AlertActivation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34324,7 +34374,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SystemSignalActivation >
   _xsd_SystemSignalActivation_type_serializer_init (
     "SystemSignalActivation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34347,7 +34397,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AlertCondition",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -34355,7 +34405,7 @@ namespace CDM
         else
           tsm.serialize (
             "AlertCondition",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -34375,7 +34425,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AlertSignal",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -34383,7 +34433,7 @@ namespace CDM
         else
           tsm.serialize (
             "AlertSignal",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -34429,7 +34479,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSystemDescriptor >
   _xsd_AlertSystemDescriptor_type_serializer_init (
     "AlertSystemDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34452,7 +34502,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SystemSignalActivation",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -34460,7 +34510,7 @@ namespace CDM
         else
           tsm.serialize (
             "SystemSignalActivation",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -34518,7 +34568,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSystemState >
   _xsd_AlertSystemState_type_serializer_init (
     "AlertSystemState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34540,7 +34590,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -34548,7 +34598,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -34567,7 +34617,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "RemedyInfo",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -34575,7 +34625,7 @@ namespace CDM
         else
           tsm.serialize (
             "RemedyInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -34595,7 +34645,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Description",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -34603,7 +34653,7 @@ namespace CDM
         else
           tsm.serialize (
             "Description",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -34613,7 +34663,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CauseInfo >
   _xsd_CauseInfo_type_serializer_init (
     "CauseInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34635,7 +34685,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -34643,7 +34693,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -34663,7 +34713,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Description",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -34671,7 +34721,7 @@ namespace CDM
         else
           tsm.serialize (
             "Description",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -34681,7 +34731,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RemedyInfo >
   _xsd_RemedyInfo_type_serializer_init (
     "RemedyInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34707,7 +34757,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionKind >
   _xsd_AlertConditionKind_type_serializer_init (
     "AlertConditionKind",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34733,7 +34783,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionPriority >
   _xsd_AlertConditionPriority_type_serializer_init (
     "AlertConditionPriority",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34756,7 +34806,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Source",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -34764,7 +34814,7 @@ namespace CDM
         else
           tsm.serialize (
             "Source",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -34784,7 +34834,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CauseInfo",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -34792,7 +34842,7 @@ namespace CDM
         else
           tsm.serialize (
             "CauseInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -34860,7 +34910,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionDescriptor >
   _xsd_AlertConditionDescriptor_type_serializer_init (
     "AlertConditionDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34886,7 +34936,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionReference >
   _xsd_AlertConditionReference_type_serializer_init (
     "AlertConditionReference",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34959,7 +35009,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionState >
   _xsd_AlertConditionState_type_serializer_init (
     "AlertConditionState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -34979,7 +35029,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "MaxLimits",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -34987,7 +35037,7 @@ namespace CDM
       else
         tsm.serialize (
           "MaxLimits",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -35008,7 +35058,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LimitAlertConditionDescriptor >
   _xsd_LimitAlertConditionDescriptor_type_serializer_init (
     "LimitAlertConditionDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35034,7 +35084,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertConditionMonitoredLimits >
   _xsd_AlertConditionMonitoredLimits_type_serializer_init (
     "AlertConditionMonitoredLimits",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35054,7 +35104,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Limits",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -35062,7 +35112,7 @@ namespace CDM
       else
         tsm.serialize (
           "Limits",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -35094,7 +35144,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LimitAlertConditionState >
   _xsd_LimitAlertConditionState_type_serializer_init (
     "LimitAlertConditionState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35120,7 +35170,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalManifestation >
   _xsd_AlertSignalManifestation_type_serializer_init (
     "AlertSignalManifestation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35239,7 +35289,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalDescriptor >
   _xsd_AlertSignalDescriptor_type_serializer_init (
     "AlertSignalDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35265,7 +35315,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalPresence >
   _xsd_AlertSignalPresence_type_serializer_init (
     "AlertSignalPresence",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35291,7 +35341,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalPrimaryLocation >
   _xsd_AlertSignalPrimaryLocation_type_serializer_init (
     "AlertSignalPrimaryLocation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35352,7 +35402,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AlertSignalState >
   _xsd_AlertSignalState_type_serializer_init (
     "AlertSignalState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35378,7 +35428,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, QualityIndicator >
   _xsd_QualityIndicator_type_serializer_init (
     "QualityIndicator",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35404,7 +35454,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, GenerationMode >
   _xsd_GenerationMode_type_serializer_init (
     "GenerationMode",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35426,7 +35476,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -35434,7 +35484,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -35445,7 +35495,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "MetricQuality",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << i.MetricQuality ();
@@ -35460,7 +35510,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Annotation",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -35507,7 +35557,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractMetricValue >
   _xsd_AbstractMetricValue_type_serializer_init (
     "AbstractMetricValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35532,7 +35582,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, NumericMetricValue >
   _xsd_NumericMetricValue_type_serializer_init (
     "NumericMetricValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35557,7 +35607,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StringMetricValue >
   _xsd_StringMetricValue_type_serializer_init (
     "StringMetricValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35583,7 +35633,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RealTimeValueType >
   _xsd_RealTimeValueType_type_serializer_init (
     "RealTimeValueType",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35600,7 +35650,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ApplyAnnotation",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -35623,7 +35673,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SampleArrayValue >
   _xsd_SampleArrayValue_type_serializer_init (
     "SampleArrayValue",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35649,7 +35699,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MetricCategory >
   _xsd_MetricCategory_type_serializer_init (
     "MetricCategory",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35675,7 +35725,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DerivationMethod >
   _xsd_DerivationMethod_type_serializer_init (
     "DerivationMethod",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35701,7 +35751,33 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MetricAvailability >
   _xsd_MetricAvailability_type_serializer_init (
     "MetricAvailability",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
+
+
+  void
+  operator<< (::xercesc::DOMElement& e, const EntryRef& i)
+  {
+    e << static_cast< const ::xsd::cxx::tree::list< ::CDM::HandleRef, char >& > (i);
+  }
+
+  void
+  operator<< (::xercesc::DOMAttr& a, const EntryRef& i)
+  {
+    a << static_cast< const ::xsd::cxx::tree::list< ::CDM::HandleRef, char >& > (i);
+  }
+
+  void
+  operator<< (::xml_schema::ListStream& l,
+              const EntryRef& i)
+  {
+    l << static_cast< const ::xsd::cxx::tree::list< ::CDM::HandleRef, char >& > (i);
+  }
+
+  static
+  const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EntryRef >
+  _xsd_EntryRef_type_serializer_init (
+    "EntryRef",
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35721,7 +35797,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Unit",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -35729,7 +35805,7 @@ namespace CDM
       else
         tsm.serialize (
           "Unit",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -35748,7 +35824,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "BodySite",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -35756,7 +35832,7 @@ namespace CDM
         else
           tsm.serialize (
             "BodySite",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -35770,7 +35846,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Relation",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -35875,7 +35951,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractMetricDescriptor >
   _xsd_AbstractMetricDescriptor_type_serializer_init (
     "AbstractMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -35898,7 +35974,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "BodySite",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -35906,7 +35982,7 @@ namespace CDM
         else
           tsm.serialize (
             "BodySite",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -35925,7 +36001,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PhysicalConnector",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -35933,7 +36009,7 @@ namespace CDM
         else
           tsm.serialize (
             "PhysicalConnector",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -35979,7 +36055,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractMetricState >
   _xsd_AbstractMetricState_type_serializer_init (
     "AbstractMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36002,7 +36078,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TechnicalRange",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -36010,7 +36086,7 @@ namespace CDM
         else
           tsm.serialize (
             "TechnicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -36043,7 +36119,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, NumericMetricDescriptor >
   _xsd_NumericMetricDescriptor_type_serializer_init (
     "NumericMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36065,7 +36141,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MetricValue",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -36073,7 +36149,7 @@ namespace CDM
         else
           tsm.serialize (
             "MetricValue",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -36093,7 +36169,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PhysiologicalRange",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -36101,7 +36177,7 @@ namespace CDM
         else
           tsm.serialize (
             "PhysiologicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -36123,7 +36199,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, NumericMetricState >
   _xsd_NumericMetricState_type_serializer_init (
     "NumericMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36136,7 +36212,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StringMetricDescriptor >
   _xsd_StringMetricDescriptor_type_serializer_init (
     "StringMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36158,7 +36234,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MetricValue",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -36166,7 +36242,7 @@ namespace CDM
         else
           tsm.serialize (
             "MetricValue",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -36176,7 +36252,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StringMetricState >
   _xsd_StringMetricState_type_serializer_init (
     "StringMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36193,7 +36269,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "AllowedValue",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -36204,7 +36280,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EnumStringMetricDescriptor >
   _xsd_EnumStringMetricDescriptor_type_serializer_init (
     "EnumStringMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36217,7 +36293,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EnumStringMetricState >
   _xsd_EnumStringMetricState_type_serializer_init (
     "EnumStringMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36240,7 +36316,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TechnicalRange",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -36248,7 +36324,7 @@ namespace CDM
         else
           tsm.serialize (
             "TechnicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -36280,7 +36356,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RealTimeSampleArrayMetricDescriptor >
   _xsd_RealTimeSampleArrayMetricDescriptor_type_serializer_init (
     "RealTimeSampleArrayMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36302,7 +36378,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MetricValue",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -36310,7 +36386,7 @@ namespace CDM
         else
           tsm.serialize (
             "MetricValue",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -36330,7 +36406,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PhysiologicalRange",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -36338,7 +36414,7 @@ namespace CDM
         else
           tsm.serialize (
             "PhysiologicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -36348,7 +36424,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RealTimeSampleArrayMetricState >
   _xsd_RealTimeSampleArrayMetricState_type_serializer_init (
     "RealTimeSampleArrayMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36371,7 +36447,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TechnicalRange",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -36379,7 +36455,7 @@ namespace CDM
         else
           tsm.serialize (
             "TechnicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -36396,7 +36472,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "DomainUnit",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -36404,7 +36480,7 @@ namespace CDM
       else
         tsm.serialize (
           "DomainUnit",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -36420,7 +36496,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "DistributionRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -36428,7 +36504,7 @@ namespace CDM
       else
         tsm.serialize (
           "DistributionRange",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -36448,7 +36524,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DistributionSampleArrayMetricDescriptor >
   _xsd_DistributionSampleArrayMetricDescriptor_type_serializer_init (
     "DistributionSampleArrayMetricDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36470,7 +36546,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MetricValue",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -36478,7 +36554,7 @@ namespace CDM
         else
           tsm.serialize (
             "MetricValue",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -36498,7 +36574,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PhysiologicalRange",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -36506,7 +36582,7 @@ namespace CDM
         else
           tsm.serialize (
             "PhysiologicalRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -36516,7 +36592,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DistributionSampleArrayMetricState >
   _xsd_DistributionSampleArrayMetricState_type_serializer_init (
     "DistributionSampleArrayMetricState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36542,13 +36618,13 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperationRef >
   _xsd_OperationRef_type_serializer_init (
     "OperationRef",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
   operator<< (::xercesc::DOMElement& e, const ScoDescriptor& i)
   {
-    e << static_cast< const ::CDM::AbstractDescriptor& > (i);
+    e << static_cast< const ::CDM::AbstractDeviceComponentDescriptor& > (i);
 
     // Operation
     //
@@ -36565,7 +36641,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Operation",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -36573,7 +36649,7 @@ namespace CDM
         else
           tsm.serialize (
             "Operation",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -36583,13 +36659,13 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ScoDescriptor >
   _xsd_ScoDescriptor_type_serializer_init (
     "ScoDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
   operator<< (::xercesc::DOMElement& e, const ScoState& i)
   {
-    e << static_cast< const ::CDM::AbstractState& > (i);
+    e << static_cast< const ::CDM::AbstractDeviceComponentState& > (i);
 
     // OperationGroup
     //
@@ -36600,7 +36676,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "OperationGroup",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -36635,7 +36711,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ScoState >
   _xsd_ScoState_type_serializer_init (
     "ScoState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36707,7 +36783,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractOperationDescriptor >
   _xsd_AbstractOperationDescriptor_type_serializer_init (
     "AbstractOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36730,7 +36806,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ModifiableData",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -36738,7 +36814,7 @@ namespace CDM
         else
           tsm.serialize (
             "ModifiableData",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -36748,7 +36824,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractSetStateOperationDescriptor >
   _xsd_AbstractSetStateOperationDescriptor_type_serializer_init (
     "AbstractSetStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36774,7 +36850,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperatingMode >
   _xsd_OperatingMode_type_serializer_init (
     "OperatingMode",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36798,7 +36874,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractOperationState >
   _xsd_AbstractOperationState_type_serializer_init (
     "AbstractOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36811,7 +36887,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetValueOperationDescriptor >
   _xsd_SetValueOperationDescriptor_type_serializer_init (
     "SetValueOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36834,7 +36910,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AllowedRange",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -36842,7 +36918,7 @@ namespace CDM
         else
           tsm.serialize (
             "AllowedRange",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -36852,7 +36928,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetValueOperationState >
   _xsd_SetValueOperationState_type_serializer_init (
     "SetValueOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36877,7 +36953,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetStringOperationDescriptor >
   _xsd_SetStringOperationDescriptor_type_serializer_init (
     "SetStringOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36892,7 +36968,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "AllowedValues",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *i.AllowedValues ();
@@ -36903,7 +36979,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetStringOperationState >
   _xsd_SetStringOperationState_type_serializer_init (
     "SetStringOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36920,7 +36996,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Argument",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -36931,7 +37007,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ActivateOperationDescriptor >
   _xsd_ActivateOperationDescriptor_type_serializer_init (
     "ActivateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36944,7 +37020,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ActivateOperationState >
   _xsd_ActivateOperationState_type_serializer_init (
     "ActivateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36957,7 +37033,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetContextStateOperationDescriptor >
   _xsd_SetContextStateOperationDescriptor_type_serializer_init (
     "SetContextStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36970,7 +37046,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetContextStateOperationState >
   _xsd_SetContextStateOperationState_type_serializer_init (
     "SetContextStateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36983,7 +37059,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetMetricStateOperationDescriptor >
   _xsd_SetMetricStateOperationDescriptor_type_serializer_init (
     "SetMetricStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -36996,7 +37072,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetMetricStateOperationState >
   _xsd_SetMetricStateOperationState_type_serializer_init (
     "SetMetricStateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37009,7 +37085,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetComponentStateOperationDescriptor >
   _xsd_SetComponentStateOperationDescriptor_type_serializer_init (
     "SetComponentStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37022,7 +37098,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetComponentStateOperationState >
   _xsd_SetComponentStateOperationState_type_serializer_init (
     "SetComponentStateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37035,7 +37111,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetAlertStateOperationDescriptor >
   _xsd_SetAlertStateOperationDescriptor_type_serializer_init (
     "SetAlertStateOperationDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37048,7 +37124,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SetAlertStateOperationState >
   _xsd_SetAlertStateOperationState_type_serializer_init (
     "SetAlertStateOperationState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37074,7 +37150,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, TimeZone >
   _xsd_TimeZone_type_serializer_init (
     "TimeZone",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37097,7 +37173,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TimeProtocol",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -37105,7 +37181,7 @@ namespace CDM
         else
           tsm.serialize (
             "TimeProtocol",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -37127,7 +37203,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ClockDescriptor >
   _xsd_ClockDescriptor_type_serializer_init (
     "ClockDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37149,7 +37225,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ActiveSyncProtocol",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37157,7 +37233,7 @@ namespace CDM
         else
           tsm.serialize (
             "ActiveSyncProtocol",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37177,7 +37253,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ReferenceSource",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -37185,7 +37261,7 @@ namespace CDM
         else
           tsm.serialize (
             "ReferenceSource",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -37266,7 +37342,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ClockState >
   _xsd_ClockState_type_serializer_init (
     "ClockState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37288,7 +37364,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CapacityFullCharge",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37296,7 +37372,7 @@ namespace CDM
         else
           tsm.serialize (
             "CapacityFullCharge",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37315,7 +37391,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CapacitySpecified",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37323,7 +37399,7 @@ namespace CDM
         else
           tsm.serialize (
             "CapacitySpecified",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37342,7 +37418,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "VoltageSpecified",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37350,7 +37426,7 @@ namespace CDM
         else
           tsm.serialize (
             "VoltageSpecified",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37360,7 +37436,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, BatteryDescriptor >
   _xsd_BatteryDescriptor_type_serializer_init (
     "BatteryDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37382,7 +37458,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CapacityRemaining",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37390,7 +37466,7 @@ namespace CDM
         else
           tsm.serialize (
             "CapacityRemaining",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37409,7 +37485,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Voltage",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37417,7 +37493,7 @@ namespace CDM
         else
           tsm.serialize (
             "Voltage",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37436,7 +37512,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Current",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37444,7 +37520,7 @@ namespace CDM
         else
           tsm.serialize (
             "Current",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37463,7 +37539,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Temperature",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37471,7 +37547,7 @@ namespace CDM
         else
           tsm.serialize (
             "Temperature",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37490,7 +37566,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "RemainingBatteryTime",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37498,7 +37574,7 @@ namespace CDM
         else
           tsm.serialize (
             "RemainingBatteryTime",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37532,13 +37608,13 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, BatteryState >
   _xsd_BatteryState_type_serializer_init (
     "BatteryState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
   operator<< (::xercesc::DOMElement& e, const SystemContextDescriptor& i)
   {
-    e << static_cast< const ::CDM::AbstractDescriptor& > (i);
+    e << static_cast< const ::CDM::AbstractDeviceComponentDescriptor& > (i);
 
     // PatientContext
     //
@@ -37554,7 +37630,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PatientContext",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37562,7 +37638,7 @@ namespace CDM
         else
           tsm.serialize (
             "PatientContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37581,7 +37657,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "LocationContext",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37589,7 +37665,7 @@ namespace CDM
         else
           tsm.serialize (
             "LocationContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37609,7 +37685,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "EnsembleContext",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -37617,7 +37693,7 @@ namespace CDM
         else
           tsm.serialize (
             "EnsembleContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -37637,7 +37713,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "OperatorContext",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -37645,7 +37721,7 @@ namespace CDM
         else
           tsm.serialize (
             "OperatorContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -37665,7 +37741,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "WorkflowContext",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -37673,7 +37749,7 @@ namespace CDM
         else
           tsm.serialize (
             "WorkflowContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -37693,7 +37769,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MeansContext",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -37701,7 +37777,7 @@ namespace CDM
         else
           tsm.serialize (
             "MeansContext",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -37711,20 +37787,20 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SystemContextDescriptor >
   _xsd_SystemContextDescriptor_type_serializer_init (
     "SystemContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
   operator<< (::xercesc::DOMElement& e, const SystemContextState& i)
   {
-    e << static_cast< const ::CDM::AbstractState& > (i);
+    e << static_cast< const ::CDM::AbstractDeviceComponentState& > (i);
   }
 
   static
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SystemContextState >
   _xsd_SystemContextState_type_serializer_init (
     "SystemContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37737,7 +37813,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractContextDescriptor >
   _xsd_AbstractContextDescriptor_type_serializer_init (
     "AbstractContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37763,7 +37839,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ContextAssociation >
   _xsd_ContextAssociation_type_serializer_init (
     "ContextAssociation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37786,7 +37862,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Validator",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -37794,7 +37870,7 @@ namespace CDM
         else
           tsm.serialize (
             "Validator",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -37814,7 +37890,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -37822,7 +37898,7 @@ namespace CDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -37892,7 +37968,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractContextState >
   _xsd_AbstractContextState_type_serializer_init (
     "AbstractContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -37914,7 +37990,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -37922,7 +37998,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -37941,7 +38017,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Givenname",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -37949,7 +38025,7 @@ namespace CDM
         else
           tsm.serialize (
             "Givenname",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -37969,7 +38045,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Middlename",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -37977,7 +38053,7 @@ namespace CDM
         else
           tsm.serialize (
             "Middlename",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -37996,7 +38072,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Familyname",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38004,7 +38080,7 @@ namespace CDM
         else
           tsm.serialize (
             "Familyname",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38023,7 +38099,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Birthname",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38031,7 +38107,7 @@ namespace CDM
         else
           tsm.serialize (
             "Birthname",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38050,7 +38126,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Title",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38058,7 +38134,7 @@ namespace CDM
         else
           tsm.serialize (
             "Title",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38068,7 +38144,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, BaseDemographics >
   _xsd_BaseDemographics_type_serializer_init (
     "BaseDemographics",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38090,7 +38166,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -38098,7 +38174,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -38118,7 +38194,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -38126,7 +38202,7 @@ namespace CDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -38145,7 +38221,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Name",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38153,7 +38229,7 @@ namespace CDM
         else
           tsm.serialize (
             "Name",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38163,7 +38239,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PersonReference >
   _xsd_PersonReference_type_serializer_init (
     "PersonReference",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38185,7 +38261,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -38193,7 +38269,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -38275,7 +38351,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocationDetail >
   _xsd_LocationDetail_type_serializer_init (
     "LocationDetail",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38288,7 +38364,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PatientContextDescriptor >
   _xsd_PatientContextDescriptor_type_serializer_init (
     "PatientContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38314,7 +38390,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Sex >
   _xsd_Sex_type_serializer_init (
     "Sex",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38340,7 +38416,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PatientType >
   _xsd_PatientType_type_serializer_init (
     "PatientType",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38362,7 +38438,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Sex",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38370,7 +38446,7 @@ namespace CDM
         else
           tsm.serialize (
             "Sex",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38389,7 +38465,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "PatientType",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38397,7 +38473,7 @@ namespace CDM
         else
           tsm.serialize (
             "PatientType",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38409,7 +38485,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "DateOfBirth",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *i.DateOfBirth ();
@@ -38429,7 +38505,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Height",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38437,7 +38513,7 @@ namespace CDM
         else
           tsm.serialize (
             "Height",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38456,7 +38532,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Weight",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38464,7 +38540,7 @@ namespace CDM
         else
           tsm.serialize (
             "Weight",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38483,7 +38559,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Race",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38491,7 +38567,7 @@ namespace CDM
         else
           tsm.serialize (
             "Race",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38501,7 +38577,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PatientDemographicsCoreData >
   _xsd_PatientDemographicsCoreData_type_serializer_init (
     "PatientDemographicsCoreData",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38523,7 +38599,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "GestationalAge",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38531,7 +38607,7 @@ namespace CDM
         else
           tsm.serialize (
             "GestationalAge",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38550,7 +38626,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "BirthLength",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38558,7 +38634,7 @@ namespace CDM
         else
           tsm.serialize (
             "BirthLength",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38577,7 +38653,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "BirthWeight",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38585,7 +38661,7 @@ namespace CDM
         else
           tsm.serialize (
             "BirthWeight",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38604,7 +38680,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "HeadCircumference",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38612,7 +38688,7 @@ namespace CDM
         else
           tsm.serialize (
             "HeadCircumference",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38631,7 +38707,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Mother",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38639,7 +38715,7 @@ namespace CDM
         else
           tsm.serialize (
             "Mother",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38649,7 +38725,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, NeonatalPatientDemographicsCoreData >
   _xsd_NeonatalPatientDemographicsCoreData_type_serializer_init (
     "NeonatalPatientDemographicsCoreData",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38671,7 +38747,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CoreData",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38679,7 +38755,7 @@ namespace CDM
         else
           tsm.serialize (
             "CoreData",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38689,7 +38765,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PatientContextState >
   _xsd_PatientContextState_type_serializer_init (
     "PatientContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38702,7 +38778,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocationContextDescriptor >
   _xsd_LocationContextDescriptor_type_serializer_init (
     "LocationContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38724,7 +38800,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "LocationDetail",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38732,7 +38808,7 @@ namespace CDM
         else
           tsm.serialize (
             "LocationDetail",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38742,7 +38818,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocationContextState >
   _xsd_LocationContextState_type_serializer_init (
     "LocationContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38755,7 +38831,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, WorkflowContextDescriptor >
   _xsd_WorkflowContextDescriptor_type_serializer_init (
     "WorkflowContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38777,7 +38853,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -38785,7 +38861,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -38804,7 +38880,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38812,7 +38888,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38831,7 +38907,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Code",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -38839,7 +38915,7 @@ namespace CDM
         else
           tsm.serialize (
             "Code",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -38851,7 +38927,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Criticality",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *i.Criticality ();
@@ -38872,7 +38948,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Description",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -38880,7 +38956,7 @@ namespace CDM
         else
           tsm.serialize (
             "Description",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -38894,7 +38970,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "RelatedMeasurement",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -38905,7 +38981,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ClinicalInfo >
   _xsd_ClinicalInfo_type_serializer_init (
     "ClinicalInfo",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -38927,7 +39003,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -38935,7 +39011,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -38952,7 +39028,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "AccessionIdentifier",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -38960,7 +39036,7 @@ namespace CDM
       else
         tsm.serialize (
           "AccessionIdentifier",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -38976,7 +39052,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "RequestedProcedureId",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -38984,7 +39060,7 @@ namespace CDM
       else
         tsm.serialize (
           "RequestedProcedureId",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -39000,7 +39076,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "StudyInstanceUid",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -39008,7 +39084,7 @@ namespace CDM
       else
         tsm.serialize (
           "StudyInstanceUid",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -39024,7 +39100,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ScheduledProcedureStepId",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -39032,7 +39108,7 @@ namespace CDM
       else
         tsm.serialize (
           "ScheduledProcedureStepId",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -39050,7 +39126,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Modality",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -39058,7 +39134,7 @@ namespace CDM
         else
           tsm.serialize (
             "Modality",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -39077,7 +39153,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ProtocolCode",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -39085,7 +39161,7 @@ namespace CDM
         else
           tsm.serialize (
             "ProtocolCode",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -39095,7 +39171,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ImagingProcedure >
   _xsd_ImagingProcedure_type_serializer_init (
     "ImagingProcedure",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39117,7 +39193,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -39125,7 +39201,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -39145,7 +39221,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -39153,7 +39229,7 @@ namespace CDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -39172,7 +39248,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "LocationDetail",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -39180,7 +39256,7 @@ namespace CDM
         else
           tsm.serialize (
             "LocationDetail",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -39190,7 +39266,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, LocationReference >
   _xsd_LocationReference_type_serializer_init (
     "LocationReference",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39212,7 +39288,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -39220,7 +39296,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -39239,7 +39315,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Start",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -39247,7 +39323,7 @@ namespace CDM
         else
           tsm.serialize (
             "Start",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -39266,7 +39342,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "End",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -39274,7 +39350,7 @@ namespace CDM
         else
           tsm.serialize (
             "End",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -39294,7 +39370,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Performer",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -39302,7 +39378,7 @@ namespace CDM
         else
           tsm.serialize (
             "Performer",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -39322,7 +39398,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Service",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -39330,7 +39406,7 @@ namespace CDM
         else
           tsm.serialize (
             "Service",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -39350,7 +39426,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ImagingProcedure",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -39358,7 +39434,7 @@ namespace CDM
         else
           tsm.serialize (
             "ImagingProcedure",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -39368,7 +39444,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OrderDetail >
   _xsd_OrderDetail_type_serializer_init (
     "OrderDetail",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39391,7 +39467,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Role",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -39399,7 +39475,7 @@ namespace CDM
         else
           tsm.serialize (
             "Role",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -39409,7 +39485,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, PersonParticipation >
   _xsd_PersonParticipation_type_serializer_init (
     "PersonParticipation",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39424,7 +39500,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "WorkflowDetail",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *i.WorkflowDetail ();
@@ -39435,7 +39511,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, WorkflowContextState >
   _xsd_WorkflowContextState_type_serializer_init (
     "WorkflowContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39448,7 +39524,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperatorContextDescriptor >
   _xsd_OperatorContextDescriptor_type_serializer_init (
     "OperatorContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39470,7 +39546,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "OperatorDetails",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -39478,7 +39554,7 @@ namespace CDM
         else
           tsm.serialize (
             "OperatorDetails",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -39488,7 +39564,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, OperatorContextState >
   _xsd_OperatorContextState_type_serializer_init (
     "OperatorContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39501,7 +39577,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MeansContextDescriptor >
   _xsd_MeansContextDescriptor_type_serializer_init (
     "MeansContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39514,7 +39590,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, MeansContextState >
   _xsd_MeansContextState_type_serializer_init (
     "MeansContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39527,7 +39603,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EnsembleContextDescriptor >
   _xsd_EnsembleContextDescriptor_type_serializer_init (
     "EnsembleContextDescriptor",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39540,7 +39616,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, EnsembleContextState >
   _xsd_EnsembleContextState_type_serializer_init (
     "EnsembleContextState",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39562,7 +39638,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -39570,7 +39646,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -39590,7 +39666,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Entry",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -39598,7 +39674,7 @@ namespace CDM
         else
           tsm.serialize (
             "Entry",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -39656,7 +39732,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ContainmentTree >
   _xsd_ContainmentTree_type_serializer_init (
     "ContainmentTree",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39678,7 +39754,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -39686,7 +39762,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -39705,7 +39781,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -39713,7 +39789,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -39771,7 +39847,7 @@ namespace CDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, ContainmentTreeEntry >
   _xsd_ContainmentTreeEntry_type_serializer_init (
     "ContainmentTreeEntry",
-    "http://p11073-10207/draft10/pm/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
 
 
   void
@@ -39895,7 +39971,7 @@ namespace CDM
     if (typeid (::CDM::Mdib) == typeid (s))
     {
       if (n.name () == "MdibContainer" &&
-          n.namespace_ () == "http://p11073-10207/draft10/pm/2017/10/05")
+          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant")
       {
         e << s;
       }
@@ -39905,14 +39981,14 @@ namespace CDM
           n.name (),
           n.namespace_ (),
           "MdibContainer",
-          "http://p11073-10207/draft10/pm/2017/10/05");
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant");
       }
     }
     else
     {
       ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "MdibContainer",
-        "http://p11073-10207/draft10/pm/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
         e, n, s);
     }
   }
@@ -39928,14 +40004,14 @@ namespace CDM
     {
       d = ::xsd::cxx::xml::dom::serialize< char > (
         "MdibContainer",
-        "http://p11073-10207/draft10/pm/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
         m, f);
     }
     else
     {
       d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "MdibContainer",
-        "http://p11073-10207/draft10/pm/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
         m, s, f);
     }
 
@@ -39962,7 +40038,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -39970,7 +40046,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -40066,7 +40142,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "SpecType",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -40074,7 +40150,7 @@ namespace CDM
       else
         tsm.serialize (
           "SpecType",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -40090,7 +40166,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ProductionSpec",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -40098,7 +40174,7 @@ namespace CDM
       else
         tsm.serialize (
           "ProductionSpec",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -40116,7 +40192,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ComponentId",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40124,7 +40200,7 @@ namespace CDM
         else
           tsm.serialize (
             "ComponentId",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40150,7 +40226,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Documentation",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -40158,7 +40234,7 @@ namespace CDM
         else
           tsm.serialize (
             "Documentation",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -40172,7 +40248,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "CalibrationResult",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -40198,7 +40274,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -40206,7 +40282,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -40220,7 +40296,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Udi",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -40240,7 +40316,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "LotNumber",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40248,7 +40324,7 @@ namespace CDM
         else
           tsm.serialize (
             "LotNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40268,7 +40344,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Manufacturer",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -40276,7 +40352,7 @@ namespace CDM
         else
           tsm.serialize (
             "Manufacturer",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -40295,7 +40371,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ManufactureDate",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40303,7 +40379,7 @@ namespace CDM
         else
           tsm.serialize (
             "ManufactureDate",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40322,7 +40398,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ExpirationDate",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40330,7 +40406,7 @@ namespace CDM
         else
           tsm.serialize (
             "ExpirationDate",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40350,7 +40426,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ModelName",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -40358,7 +40434,7 @@ namespace CDM
         else
           tsm.serialize (
             "ModelName",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -40377,7 +40453,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ModelNumber",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40385,7 +40461,7 @@ namespace CDM
         else
           tsm.serialize (
             "ModelNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40405,7 +40481,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SerialNumber",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -40413,7 +40489,7 @@ namespace CDM
         else
           tsm.serialize (
             "SerialNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -40476,7 +40552,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -40484,7 +40560,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -40544,7 +40620,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -40552,7 +40628,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -40569,7 +40645,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -40577,7 +40653,7 @@ namespace CDM
       else
         tsm.serialize (
           "Type",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
   }
@@ -40629,7 +40705,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -40637,7 +40713,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -40656,7 +40732,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Code",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40664,7 +40740,7 @@ namespace CDM
         else
           tsm.serialize (
             "Code",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40683,7 +40759,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40691,7 +40767,7 @@ namespace CDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40736,7 +40812,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Value",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -40744,7 +40820,7 @@ namespace CDM
       else
         tsm.serialize (
           "Value",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -40762,7 +40838,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Type",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40770,7 +40846,7 @@ namespace CDM
         else
           tsm.serialize (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40789,7 +40865,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40797,7 +40873,7 @@ namespace CDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40816,7 +40892,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Characteristic",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -40824,7 +40900,7 @@ namespace CDM
         else
           tsm.serialize (
             "Characteristic",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -40849,7 +40925,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -40857,7 +40933,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -40874,7 +40950,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Type",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -40882,7 +40958,7 @@ namespace CDM
       else
         tsm.serialize (
           "Type",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -40941,22 +41017,26 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const AllowedValues::ValueType& x (i.Value ());
-      if (typeid (AllowedValues::ValueType) == typeid (x))
+      for (AllowedValues::ValueConstIterator
+           b (i.Value ().begin ()), n (i.Value ().end ());
+           b != n; ++b)
       {
-        ::xercesc::DOMElement& s (
-          ::xsd::cxx::xml::dom::create_element (
-            "Value",
-            "http://p11073-10207/draft10/pm/2017/10/05",
-            e));
+        if (typeid (AllowedValues::ValueType) == typeid (*b))
+        {
+          ::xercesc::DOMElement& s (
+            ::xsd::cxx::xml::dom::create_element (
+              "Value",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
+              e));
 
-        s << x;
+          s << *b;
+        }
+        else
+          tsm.serialize (
+            "Value",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
+            false, true, e, *b);
       }
-      else
-        tsm.serialize (
-          "Value",
-          "http://p11073-10207/draft10/pm/2017/10/05",
-          false, true, e, x);
     }
   }
 
@@ -40977,7 +41057,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ArgName",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -40985,7 +41065,7 @@ namespace CDM
       else
         tsm.serialize (
           "ArgName",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -41001,7 +41081,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Arg",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41009,7 +41089,7 @@ namespace CDM
       else
         tsm.serialize (
           "Arg",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
   }
@@ -41088,7 +41168,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Value",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41096,7 +41176,7 @@ namespace CDM
       else
         tsm.serialize (
           "Value",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -41109,7 +41189,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReferenceRange",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *b;
@@ -41147,7 +41227,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -41155,7 +41235,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -41172,7 +41252,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Patient",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41180,7 +41260,7 @@ namespace CDM
       else
         tsm.serialize (
           "Patient",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -41198,7 +41278,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AssignedLocation",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -41206,7 +41286,7 @@ namespace CDM
         else
           tsm.serialize (
             "AssignedLocation",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -41225,7 +41305,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "VisitNumber",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -41233,7 +41313,7 @@ namespace CDM
         else
           tsm.serialize (
             "VisitNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -41253,7 +41333,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "DangerCode",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -41261,7 +41341,7 @@ namespace CDM
         else
           tsm.serialize (
             "DangerCode",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -41281,7 +41361,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "RelevantClinicalInfo",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -41289,7 +41369,7 @@ namespace CDM
         else
           tsm.serialize (
             "RelevantClinicalInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }
@@ -41301,7 +41381,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "RequestedOrderDetail",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *i.RequestedOrderDetail ();
@@ -41314,7 +41394,7 @@ namespace CDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "PerformedOrderDetail",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
       s << *i.PerformedOrderDetail ();
@@ -41338,7 +41418,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Code",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41346,7 +41426,7 @@ namespace CDM
       else
         tsm.serialize (
           "Code",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -41362,7 +41442,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Value",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41370,7 +41450,7 @@ namespace CDM
       else
         tsm.serialize (
           "Value",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
   }
@@ -41394,7 +41474,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -41402,7 +41482,7 @@ namespace CDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -41419,7 +41499,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "DeviceIdentifier",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41427,7 +41507,7 @@ namespace CDM
       else
         tsm.serialize (
           "DeviceIdentifier",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -41443,7 +41523,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "HumanReadableForm",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41451,7 +41531,7 @@ namespace CDM
       else
         tsm.serialize (
           "HumanReadableForm",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -41467,7 +41547,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Issuer",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41475,7 +41555,7 @@ namespace CDM
       else
         tsm.serialize (
           "Issuer",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -41493,7 +41573,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Jurisdiction",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -41501,7 +41581,7 @@ namespace CDM
         else
           tsm.serialize (
             "Jurisdiction",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -41543,7 +41623,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Range",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41551,7 +41631,7 @@ namespace CDM
       else
         tsm.serialize (
           "Range",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
 
@@ -41569,7 +41649,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Meaning",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -41577,7 +41657,7 @@ namespace CDM
         else
           tsm.serialize (
             "Meaning",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -41602,7 +41682,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ReferringPhysician",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -41610,7 +41690,7 @@ namespace CDM
         else
           tsm.serialize (
             "ReferringPhysician",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -41629,7 +41709,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "RequestingPhysician",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -41637,7 +41717,7 @@ namespace CDM
         else
           tsm.serialize (
             "RequestingPhysician",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -41654,7 +41734,7 @@ namespace CDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "PlacerOrderNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             e));
 
         s << x;
@@ -41662,7 +41742,7 @@ namespace CDM
       else
         tsm.serialize (
           "PlacerOrderNumber",
-          "http://p11073-10207/draft10/pm/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           false, true, e, x);
     }
   }
@@ -41686,7 +41766,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "FillerOrderNumber",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << x;
@@ -41694,7 +41774,7 @@ namespace CDM
         else
           tsm.serialize (
             "FillerOrderNumber",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, x);
       }
     }
@@ -41714,7 +41794,7 @@ namespace CDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ResultingClinicalInfo",
-              "http://p11073-10207/draft10/pm/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
               e));
 
           s << *b;
@@ -41722,7 +41802,7 @@ namespace CDM
         else
           tsm.serialize (
             "ResultingClinicalInfo",
-            "http://p11073-10207/draft10/pm/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
             false, true, e, *b);
       }
     }

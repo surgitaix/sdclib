@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,7 +45,7 @@ namespace SDC {
 
 Measurement::Measurement(
 		CodedValue measurementunit
-		, 
+		,
 		double measuredvalue
 ) : data(Defaults::MeasurementInit(
 		measurementunit
@@ -88,7 +88,7 @@ Measurement & Measurement::setMeasurementUnit(const CodedValue & value) {
 CodedValue Measurement::getMeasurementUnit() const {
 	return ConvertFromCDM::convert(data->MeasurementUnit());
 }
-	
+
 Measurement & Measurement::setMeasuredValue(const double & value) {
 	data->MeasuredValue(ConvertToCDM::convert(value));
 	return *this;
@@ -98,7 +98,7 @@ Measurement & Measurement::setMeasuredValue(const double & value) {
 double Measurement::getMeasuredValue() const {
 	return ConvertFromCDM::convert(data->MeasuredValue());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

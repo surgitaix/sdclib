@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,22 +53,22 @@ private:
 public:
 	EnumStringMetricDescriptor(
 		Handle handle
-		, 
+		,
 		CodedValue unit
-		, 
+		,
 		MetricCategory metriccategory
-		, 
+		,
 		MetricAvailability metricavailability
-	); 
+	);
 private:
 	EnumStringMetricDescriptor(){};
 public:
 	EnumStringMetricDescriptor(const EnumStringMetricDescriptor & object);
 	virtual ~EnumStringMetricDescriptor();
-    
+
     void copyFrom(const EnumStringMetricDescriptor & object);
     EnumStringMetricDescriptor & operator=(const EnumStringMetricDescriptor & object);
-    
+
     typedef CDM::EnumStringMetricDescriptor WrappedType;
 
 	EnumStringMetricDescriptor & setType(const CodedValue & value);
@@ -131,15 +131,15 @@ public:
 	EnumStringMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
+
 	EnumStringMetricDescriptor & addRelation(const Relation & value);
 	std::vector<Relation> getRelationList() const;
 	void clearRelationList();
-	
+
 	EnumStringMetricDescriptor & addAllowedValue(const AllowedValue & value);
 	std::vector<AllowedValue> getAllowedValueList() const;
 	void clearAllowedValueList();
-	
+
 private:
 	std::shared_ptr<CDM::EnumStringMetricDescriptor> data;
 };

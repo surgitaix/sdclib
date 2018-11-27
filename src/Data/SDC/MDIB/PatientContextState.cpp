@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -47,7 +47,7 @@ namespace SDC {
 
 PatientContextState::PatientContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
 ) : data(Defaults::PatientContextStateInit(
 		descriptorhandle
@@ -97,11 +97,11 @@ bool PatientContextState::getStateVersion(VersionCounter & out) const {
 VersionCounter PatientContextState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool PatientContextState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 PatientContextState & PatientContextState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -111,7 +111,7 @@ PatientContextState & PatientContextState::setDescriptorHandle(const HandleRef &
 HandleRef PatientContextState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 PatientContextState & PatientContextState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -128,11 +128,11 @@ bool PatientContextState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion PatientContextState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool PatientContextState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 PatientContextState & PatientContextState::setCategory(const CodedValue & value) {
 	data->Category(ConvertToCDM::convert(value));
 	return *this;
@@ -149,11 +149,11 @@ bool PatientContextState::getCategory(CodedValue & out) const {
 CodedValue PatientContextState::getCategory() const {
 	return ConvertFromCDM::convert(data->Category().get());
 }
-	
+
 bool PatientContextState::hasCategory() const {
 	return data->Category().present();
 }
-	
+
 PatientContextState & PatientContextState::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -163,7 +163,7 @@ PatientContextState & PatientContextState::setHandle(const Handle & value) {
 Handle PatientContextState::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 PatientContextState & PatientContextState::setContextAssociation(const ContextAssociation & value) {
 	data->ContextAssociation(ConvertToCDM::convert(value));
 	return *this;
@@ -180,11 +180,11 @@ bool PatientContextState::getContextAssociation(ContextAssociation & out) const 
 ContextAssociation PatientContextState::getContextAssociation() const {
 	return ConvertFromCDM::convert(data->ContextAssociation().get());
 }
-	
+
 bool PatientContextState::hasContextAssociation() const {
 	return data->ContextAssociation().present();
 }
-	
+
 PatientContextState & PatientContextState::setBindingMdibVersion(const ReferencedVersion & value) {
 	data->BindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -201,11 +201,11 @@ bool PatientContextState::getBindingMdibVersion(ReferencedVersion & out) const {
 ReferencedVersion PatientContextState::getBindingMdibVersion() const {
 	return ConvertFromCDM::convert(data->BindingMdibVersion().get());
 }
-	
+
 bool PatientContextState::hasBindingMdibVersion() const {
 	return data->BindingMdibVersion().present();
 }
-	
+
 PatientContextState & PatientContextState::setUnbindingMdibVersion(const ReferencedVersion & value) {
 	data->UnbindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -222,11 +222,11 @@ bool PatientContextState::getUnbindingMdibVersion(ReferencedVersion & out) const
 ReferencedVersion PatientContextState::getUnbindingMdibVersion() const {
 	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
 }
-	
+
 bool PatientContextState::hasUnbindingMdibVersion() const {
 	return data->UnbindingMdibVersion().present();
 }
-	
+
 PatientContextState & PatientContextState::setBindingStartTime(const Timestamp & value) {
 	data->BindingStartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -243,11 +243,11 @@ bool PatientContextState::getBindingStartTime(Timestamp & out) const {
 Timestamp PatientContextState::getBindingStartTime() const {
 	return ConvertFromCDM::convert(data->BindingStartTime().get());
 }
-	
+
 bool PatientContextState::hasBindingStartTime() const {
 	return data->BindingStartTime().present();
 }
-	
+
 PatientContextState & PatientContextState::setBindingEndTime(const Timestamp & value) {
 	data->BindingEndTime(ConvertToCDM::convert(value));
 	return *this;
@@ -264,11 +264,11 @@ bool PatientContextState::getBindingEndTime(Timestamp & out) const {
 Timestamp PatientContextState::getBindingEndTime() const {
 	return ConvertFromCDM::convert(data->BindingEndTime().get());
 }
-	
+
 bool PatientContextState::hasBindingEndTime() const {
 	return data->BindingEndTime().present();
 }
-	
+
 PatientContextState & PatientContextState::addValidator(const InstanceIdentifier & value) {
 	data->Validator().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -321,11 +321,11 @@ bool PatientContextState::getCoreData(PatientDemographicsCoreData & out) const {
 PatientDemographicsCoreData PatientContextState::getCoreData() const {
 	return ConvertFromCDM::convert(data->CoreData().get());
 }
-	
+
 bool PatientContextState::hasCoreData() const {
 	return data->CoreData().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

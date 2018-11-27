@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	DistributionSampleArrayMetricState(
 		HandleRef descriptorhandle
-	); 
+	);
 private:
 	DistributionSampleArrayMetricState(){};
 public:
 	DistributionSampleArrayMetricState(const DistributionSampleArrayMetricState & object);
 	virtual ~DistributionSampleArrayMetricState();
-    
+
     void copyFrom(const DistributionSampleArrayMetricState & object);
     DistributionSampleArrayMetricState & operator=(const DistributionSampleArrayMetricState & object);
-    
+
     typedef CDM::DistributionSampleArrayMetricState WrappedType;
 
 	DistributionSampleArrayMetricState & setStateVersion(const VersionCounter & value);
@@ -101,7 +101,7 @@ public:
 	DistributionSampleArrayMetricState & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
+
 	DistributionSampleArrayMetricState & setMetricValue(const SampleArrayValue & value);
 	SampleArrayValue getMetricValue() const;
 	bool getMetricValue(SampleArrayValue & out) const;
@@ -110,7 +110,7 @@ public:
 	DistributionSampleArrayMetricState & addPhysiologicalRange(const Range & value);
 	std::vector<Range> getPhysiologicalRangeList() const;
 	void clearPhysiologicalRangeList();
-	
+
 private:
 	std::shared_ptr<CDM::DistributionSampleArrayMetricState> data;
 };

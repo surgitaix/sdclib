@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -96,11 +96,11 @@ bool VmdDescriptor::getType(CodedValue & out) const {
 CodedValue VmdDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool VmdDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 VmdDescriptor & VmdDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -110,7 +110,7 @@ VmdDescriptor & VmdDescriptor::setHandle(const Handle & value) {
 Handle VmdDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 VmdDescriptor & VmdDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -127,11 +127,11 @@ bool VmdDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter VmdDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool VmdDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 VmdDescriptor & VmdDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -148,11 +148,11 @@ bool VmdDescriptor::getSafetyClassification(SafetyClassification & out) const {
 SafetyClassification VmdDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool VmdDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 VmdDescriptor & VmdDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -187,11 +187,11 @@ bool VmdDescriptor::getAlertSystem(AlertSystemDescriptor & out) const {
 AlertSystemDescriptor VmdDescriptor::getAlertSystem() const {
 	return ConvertFromCDM::convert(data->AlertSystem().get());
 }
-	
+
 bool VmdDescriptor::hasAlertSystem() const {
 	return data->AlertSystem().present();
 }
-	
+
 VmdDescriptor & VmdDescriptor::setSco(const ScoDescriptor & value) {
 	data->Sco(ConvertToCDM::convert(value));
 	return *this;
@@ -208,11 +208,11 @@ bool VmdDescriptor::getSco(ScoDescriptor & out) const {
 ScoDescriptor VmdDescriptor::getSco() const {
 	return ConvertFromCDM::convert(data->Sco().get());
 }
-	
+
 bool VmdDescriptor::hasSco() const {
 	return data->Sco().present();
 }
-	
+
 VmdDescriptor & VmdDescriptor::setApprovedJurisdictions(const ApprovedJurisdictions & value) {
 	data->ApprovedJurisdictions(ConvertToCDM::convert(value));
 	return *this;
@@ -229,11 +229,11 @@ bool VmdDescriptor::getApprovedJurisdictions(ApprovedJurisdictions & out) const 
 ApprovedJurisdictions VmdDescriptor::getApprovedJurisdictions() const {
 	return ConvertFromCDM::convert(data->ApprovedJurisdictions().get());
 }
-	
+
 bool VmdDescriptor::hasApprovedJurisdictions() const {
 	return data->ApprovedJurisdictions().present();
 }
-	
+
 VmdDescriptor & VmdDescriptor::addChannel(const ChannelDescriptor & value) {
 	data->Channel().push_back(ConvertToCDM::convert(value));
 	return *this;

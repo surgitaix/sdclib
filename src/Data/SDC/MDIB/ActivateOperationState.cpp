@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 ActivateOperationState::ActivateOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
 ) : data(Defaults::ActivateOperationStateInit(
 		descriptorhandle
@@ -94,11 +94,11 @@ bool ActivateOperationState::getStateVersion(VersionCounter & out) const {
 VersionCounter ActivateOperationState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool ActivateOperationState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 ActivateOperationState & ActivateOperationState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -108,7 +108,7 @@ ActivateOperationState & ActivateOperationState::setDescriptorHandle(const Handl
 HandleRef ActivateOperationState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 ActivateOperationState & ActivateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,11 +125,11 @@ bool ActivateOperationState::getDescriptorVersion(ReferencedVersion & out) const
 ReferencedVersion ActivateOperationState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool ActivateOperationState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 ActivateOperationState & ActivateOperationState::setOperatingMode(const OperatingMode & value) {
 	data->OperatingMode(ConvertToCDM::convert(value));
 	return *this;
@@ -139,7 +139,7 @@ ActivateOperationState & ActivateOperationState::setOperatingMode(const Operatin
 OperatingMode ActivateOperationState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	NumericMetricState(
 		HandleRef descriptorhandle
-	); 
+	);
 private:
 	NumericMetricState(){};
 public:
 	NumericMetricState(const NumericMetricState & object);
 	virtual ~NumericMetricState();
-    
+
     void copyFrom(const NumericMetricState & object);
     NumericMetricState & operator=(const NumericMetricState & object);
-    
+
     typedef CDM::NumericMetricState WrappedType;
     typedef NumericMetricDescriptor DescriptorType;
 
@@ -102,7 +102,7 @@ public:
 	NumericMetricState & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
+
 	NumericMetricState & setMetricValue(const NumericMetricValue & value);
 	NumericMetricValue getMetricValue() const;
 	bool getMetricValue(NumericMetricValue & out) const;
@@ -116,7 +116,7 @@ public:
 	NumericMetricState & addPhysiologicalRange(const Range & value);
 	std::vector<Range> getPhysiologicalRangeList() const;
 	void clearPhysiologicalRangeList();
-	
+
 private:
 	std::shared_ptr<CDM::NumericMetricState> data;
 };

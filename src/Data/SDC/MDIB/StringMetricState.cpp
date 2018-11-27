@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -93,11 +93,11 @@ bool StringMetricState::getStateVersion(VersionCounter & out) const {
 VersionCounter StringMetricState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool StringMetricState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 StringMetricState & StringMetricState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -107,7 +107,7 @@ StringMetricState & StringMetricState::setDescriptorHandle(const HandleRef & val
 HandleRef StringMetricState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 StringMetricState & StringMetricState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,11 +124,11 @@ bool StringMetricState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion StringMetricState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool StringMetricState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 StringMetricState & StringMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
 	data->PhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool StringMetricState::getPhysicalConnector(PhysicalConnectorInfo & out) const 
 PhysicalConnectorInfo StringMetricState::getPhysicalConnector() const {
 	return ConvertFromCDM::convert(data->PhysicalConnector().get());
 }
-	
+
 bool StringMetricState::hasPhysicalConnector() const {
 	return data->PhysicalConnector().present();
 }
-	
+
 StringMetricState & StringMetricState::setActivationState(const ComponentActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -166,11 +166,11 @@ bool StringMetricState::getActivationState(ComponentActivation & out) const {
 ComponentActivation StringMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState().get());
 }
-	
+
 bool StringMetricState::hasActivationState() const {
 	return data->ActivationState().present();
 }
-	
+
 StringMetricState & StringMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
 	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -187,11 +187,11 @@ bool StringMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out)
 xml_schema::Duration StringMetricState::getActiveDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 }
-	
+
 bool StringMetricState::hasActiveDeterminationPeriod() const {
 	return data->ActiveDeterminationPeriod().present();
 }
-	
+
 StringMetricState & StringMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -208,11 +208,11 @@ bool StringMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
 xml_schema::Duration StringMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
-	
+
 bool StringMetricState::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
-	
+
 StringMetricState & StringMetricState::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -247,11 +247,11 @@ bool StringMetricState::getMetricValue(StringMetricValue & out) const {
 StringMetricValue StringMetricState::getMetricValue() const {
 	return ConvertFromCDM::convert(data->MetricValue().get());
 }
-	
+
 bool StringMetricState::hasMetricValue() const {
 	return data->MetricValue().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

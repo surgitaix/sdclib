@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	EnsembleContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
-	); 
+	);
 private:
 	EnsembleContextState(){};
 public:
 	EnsembleContextState(const EnsembleContextState & object);
 	virtual ~EnsembleContextState();
-    
+
     void copyFrom(const EnsembleContextState & object);
     EnsembleContextState & operator=(const EnsembleContextState & object);
-    
+
     typedef CDM::EnsembleContextState WrappedType;
     typedef EnsembleContextDescriptor DescriptorType;
 
@@ -117,11 +117,11 @@ public:
 	EnsembleContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidatorList() const;
 	void clearValidatorList();
-	
+
 	EnsembleContextState & addIdentification(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
-	
+
 private:
 	std::shared_ptr<CDM::EnsembleContextState> data;
 };

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -43,9 +43,7 @@ namespace SDC {
 
 
 AllowedValues::AllowedValues(
-		std::string value
 ) : data(Defaults::AllowedValuesInit(
-		value
 )) {}
 
 AllowedValues::operator CDM::AllowedValues() const {
@@ -74,16 +72,24 @@ AllowedValues & AllowedValues:: operator=(const AllowedValues & object) {
 }
 
 
-AllowedValues & AllowedValues::setValue(const std::string & value) {
-	data->Value(ConvertToCDM::convert(value));
+AllowedValues & AllowedValues::addValue(const std::string & value) {
+	data->Value().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
-
-std::string AllowedValues::getValue() const {
-	return ConvertFromCDM::convert(data->Value());
+std::vector<std::string> AllowedValues::getValueList() const {
+	std::vector<std::string> result;
+	result.reserve(data->Value().size());
+	for (const auto & value: data->Value()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
 }
-	
+
+void AllowedValues::clearValueList() {
+	data->Value().clear();
+}
+
 
 } /* namespace SDC */
 } /* namespace Data */

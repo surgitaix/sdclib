@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	BatteryDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	BatteryDescriptor(){};
 public:
 	BatteryDescriptor(const BatteryDescriptor & object);
 	virtual ~BatteryDescriptor();
-    
+
     void copyFrom(const BatteryDescriptor & object);
     BatteryDescriptor & operator=(const BatteryDescriptor & object);
-    
+
     typedef CDM::BatteryDescriptor WrappedType;
 
 	BatteryDescriptor & setType(const CodedValue & value);
@@ -86,7 +86,7 @@ public:
 	BatteryDescriptor & addProductionSpecification(const ProductionSpecification & value);
 	std::vector<ProductionSpecification> getProductionSpecificationList() const;
 	void clearProductionSpecificationList();
-	
+
 	BatteryDescriptor & setCapacityFullCharge(const Measurement & value);
 	Measurement getCapacityFullCharge() const;
 	bool getCapacityFullCharge(Measurement & out) const;

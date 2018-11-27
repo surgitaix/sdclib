@@ -841,7 +841,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StreamSourceType >
   _xsd_StreamSourceType_type_factory_init (
     "StreamSourceType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // StreamTransmissionType
   //
@@ -898,7 +898,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "StreamAddress",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< StreamAddressType >,
             false, true, i, n, f, this));
 
@@ -926,7 +926,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "StreamPeriod",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< StreamPeriodType >,
             false, true, i, n, f, this));
 
@@ -995,7 +995,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StreamTransmissionType >
   _xsd_StreamTransmissionType_type_factory_init (
     "StreamTransmissionType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // StreamTypeType
   //
@@ -1073,7 +1073,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "StreamTransmission",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< StreamTransmissionType >,
             false, true, i, n, f, this));
 
@@ -1102,7 +1102,7 @@ namespace MDPWS
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "StreamTransmission",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016");
     }
 
     while (p.more_attributes ())
@@ -1183,7 +1183,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StreamTypeType >
   _xsd_StreamTypeType_type_factory_init (
     "StreamTypeType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // StreamDescriptionsType
   //
@@ -1236,7 +1236,7 @@ namespace MDPWS
 
       // Types
       //
-      if (n.name () == "Types" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+      if (n.name () == "Types" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
       {
         ::std::unique_ptr< TypesType > r (
           TypesTraits::create (i, f, this));
@@ -1254,7 +1254,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "StreamType",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< StreamTypeType >,
             false, true, i, n, f, this));
 
@@ -1327,7 +1327,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, StreamDescriptionsType >
   _xsd_StreamDescriptionsType_type_factory_init (
     "StreamDescriptionsType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // SafetyReqAssertionType
   //
@@ -1437,7 +1437,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SafetyReqAssertionType >
   _xsd_SafetyReqAssertionType_type_factory_init (
     "SafetyReqAssertionType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // SelectorType
   //
@@ -1549,7 +1549,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SelectorType >
   _xsd_SelectorType_type_factory_init (
     "SelectorType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // SafetyReqType
   //
@@ -1603,7 +1603,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DualChannelDef",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< DualChannelDefType >,
             false, true, i, n, f, this));
 
@@ -1631,7 +1631,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SafetyContextDef",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< SafetyContextDefType >,
             false, true, i, n, f, this));
 
@@ -1686,7 +1686,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SafetyReqType >
   _xsd_SafetyReqType_type_factory_init (
     "SafetyReqType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // DualChannelDefType
   //
@@ -1743,7 +1743,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Selector",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< SelectorType >,
             false, true, i, n, f, this));
 
@@ -1815,7 +1815,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DualChannelDefType >
   _xsd_DualChannelDefType_type_factory_init (
     "DualChannelDefType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // SafetyContextDefType
   //
@@ -1866,7 +1866,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Selector",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< SelectorType >,
             false, true, i, n, f, this));
 
@@ -1917,7 +1917,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SafetyContextDefType >
   _xsd_SafetyContextDefType_type_factory_init (
     "SafetyContextDefType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // SafetyInfoType
   //
@@ -1971,7 +1971,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DualChannel",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< DualChannelType >,
             false, true, i, n, f, this));
 
@@ -1999,7 +1999,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SafetyContext",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< SafetyContextType >,
             false, true, i, n, f, this));
 
@@ -2054,7 +2054,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SafetyInfoType >
   _xsd_SafetyInfoType_type_factory_init (
     "SafetyInfoType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // DualChannelType
   //
@@ -2105,7 +2105,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DcValue",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< DcValueType >,
             false, true, i, n, f, this));
 
@@ -2156,7 +2156,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DualChannelType >
   _xsd_DualChannelType_type_factory_init (
     "DualChannelType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // SafetyContextType
   //
@@ -2207,7 +2207,7 @@ namespace MDPWS
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "CtxtValue",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             &::xsd::cxx::tree::factory_impl< CtxtValueType >,
             false, true, i, n, f, this));
 
@@ -2258,7 +2258,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, SafetyContextType >
   _xsd_SafetyContextType_type_factory_init (
     "SafetyContextType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // DcValueType
   //
@@ -2354,7 +2354,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DcValueType >
   _xsd_DcValueType_type_factory_init (
     "DcValueType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // CtxtValueType
   //
@@ -2450,7 +2450,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, CtxtValueType >
   _xsd_CtxtValueType_type_factory_init (
     "CtxtValueType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
   // Types
   //
@@ -2730,7 +2730,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamSourceType >,
         true, true, e, n, f, 0));
 
@@ -2751,7 +2751,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "StreamSource",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 
   ::std::unique_ptr< ::MDPWS::StreamSourceType >
@@ -2779,7 +2779,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamSourceType >,
         true, true, e, n, f, 0));
 
@@ -2801,7 +2801,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "StreamSource",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 
   ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
@@ -3019,7 +3019,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamDescriptionsType >,
         true, true, e, n, f, 0));
 
@@ -3040,7 +3040,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "StreamDescriptions",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 
   ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
@@ -3068,7 +3068,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamDescriptionsType >,
         true, true, e, n, f, 0));
 
@@ -3090,7 +3090,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "StreamDescriptions",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 
   ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
@@ -3308,7 +3308,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyReqAssertionType >,
         true, true, e, n, f, 0));
 
@@ -3329,7 +3329,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "SafetyReqAssertion",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 
   ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
@@ -3357,7 +3357,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyReqAssertionType >,
         true, true, e, n, f, 0));
 
@@ -3379,7 +3379,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "SafetyReqAssertion",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 
   ::std::unique_ptr< ::MDPWS::SafetyReqType >
@@ -3597,7 +3597,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyReqType >,
         true, true, e, n, f, 0));
 
@@ -3618,7 +3618,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "SafetyReq",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 
   ::std::unique_ptr< ::MDPWS::SafetyReqType >
@@ -3646,7 +3646,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyReqType >,
         true, true, e, n, f, 0));
 
@@ -3668,7 +3668,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "SafetyReq",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 
   ::std::unique_ptr< ::MDPWS::SafetyInfoType >
@@ -3886,7 +3886,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyInfoType >,
         true, true, e, n, f, 0));
 
@@ -3907,7 +3907,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "SafetyInfo",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 
   ::std::unique_ptr< ::MDPWS::SafetyInfoType >
@@ -3935,7 +3935,7 @@ namespace MDPWS
     ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
       ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
         "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyInfoType >,
         true, true, e, n, f, 0));
 
@@ -3957,7 +3957,7 @@ namespace MDPWS
       n.name (),
       n.namespace_ (),
       "SafetyInfo",
-      "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
   }
 }
 
@@ -3986,7 +3986,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StreamSourceType >
   _xsd_StreamSourceType_type_serializer_init (
     "StreamSourceType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -4110,7 +4110,7 @@ namespace MDPWS
     if (typeid (::MDPWS::StreamSourceType) == typeid (s))
     {
       if (n.name () == "StreamSource" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
       {
         e << s;
       }
@@ -4120,14 +4120,14 @@ namespace MDPWS
           n.name (),
           n.namespace_ (),
           "StreamSource",
-          "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
       }
     }
     else
     {
       ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         e, n, s);
     }
   }
@@ -4143,14 +4143,14 @@ namespace MDPWS
     {
       d = ::xsd::cxx::xml::dom::serialize< char > (
         "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, f);
     }
     else
     {
       d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, s, f);
     }
 
@@ -4177,7 +4177,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "StreamAddress",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << x;
@@ -4185,7 +4185,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "StreamAddress",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, x);
       }
     }
@@ -4204,7 +4204,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "StreamPeriod",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << x;
@@ -4212,7 +4212,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "StreamPeriod",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, x);
       }
     }
@@ -4234,7 +4234,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StreamTransmissionType >
   _xsd_StreamTransmissionType_type_serializer_init (
     "StreamTransmissionType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -4254,7 +4254,7 @@ namespace MDPWS
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "StreamTransmission",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             e));
 
         s << x;
@@ -4262,7 +4262,7 @@ namespace MDPWS
       else
         tsm.serialize (
           "StreamTransmission",
-          "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+          "http://standards.ieee.org/downloads/11073/11073-20702-2016",
           false, true, e, x);
     }
 
@@ -4317,7 +4317,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StreamTypeType >
   _xsd_StreamTypeType_type_serializer_init (
     "StreamTypeType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -4332,7 +4332,7 @@ namespace MDPWS
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Types",
-          "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+          "http://standards.ieee.org/downloads/11073/11073-20702-2016",
           e));
 
       s << *i.Types ();
@@ -4353,7 +4353,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "StreamType",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << *b;
@@ -4361,7 +4361,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "StreamType",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, *b);
       }
     }
@@ -4382,7 +4382,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, StreamDescriptionsType >
   _xsd_StreamDescriptionsType_type_serializer_init (
     "StreamDescriptionsType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -4506,7 +4506,7 @@ namespace MDPWS
     if (typeid (::MDPWS::StreamDescriptionsType) == typeid (s))
     {
       if (n.name () == "StreamDescriptions" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
       {
         e << s;
       }
@@ -4516,14 +4516,14 @@ namespace MDPWS
           n.name (),
           n.namespace_ (),
           "StreamDescriptions",
-          "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
       }
     }
     else
     {
       ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         e, n, s);
     }
   }
@@ -4539,14 +4539,14 @@ namespace MDPWS
     {
       d = ::xsd::cxx::xml::dom::serialize< char > (
         "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, f);
     }
     else
     {
       d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, s, f);
     }
 
@@ -4586,7 +4586,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SafetyReqAssertionType >
   _xsd_SafetyReqAssertionType_type_serializer_init (
     "SafetyReqAssertionType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -4710,7 +4710,7 @@ namespace MDPWS
     if (typeid (::MDPWS::SafetyReqAssertionType) == typeid (s))
     {
       if (n.name () == "SafetyReqAssertion" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
       {
         e << s;
       }
@@ -4720,14 +4720,14 @@ namespace MDPWS
           n.name (),
           n.namespace_ (),
           "SafetyReqAssertion",
-          "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
       }
     }
     else
     {
       ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         e, n, s);
     }
   }
@@ -4743,14 +4743,14 @@ namespace MDPWS
     {
       d = ::xsd::cxx::xml::dom::serialize< char > (
         "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, f);
     }
     else
     {
       d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, s, f);
     }
 
@@ -4779,7 +4779,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SelectorType >
   _xsd_SelectorType_type_serializer_init (
     "SelectorType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -4801,7 +4801,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "DualChannelDef",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << x;
@@ -4809,7 +4809,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "DualChannelDef",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, x);
       }
     }
@@ -4828,7 +4828,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SafetyContextDef",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << x;
@@ -4836,7 +4836,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "SafetyContextDef",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, x);
       }
     }
@@ -4846,7 +4846,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SafetyReqType >
   _xsd_SafetyReqType_type_serializer_init (
     "SafetyReqType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -4970,7 +4970,7 @@ namespace MDPWS
     if (typeid (::MDPWS::SafetyReqType) == typeid (s))
     {
       if (n.name () == "SafetyReq" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
       {
         e << s;
       }
@@ -4980,14 +4980,14 @@ namespace MDPWS
           n.name (),
           n.namespace_ (),
           "SafetyReq",
-          "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
       }
     }
     else
     {
       ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         e, n, s);
     }
   }
@@ -5003,14 +5003,14 @@ namespace MDPWS
     {
       d = ::xsd::cxx::xml::dom::serialize< char > (
         "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, f);
     }
     else
     {
       d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, s, f);
     }
 
@@ -5038,7 +5038,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Selector",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << *b;
@@ -5046,7 +5046,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "Selector",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, *b);
       }
     }
@@ -5080,7 +5080,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DualChannelDefType >
   _xsd_DualChannelDefType_type_serializer_init (
     "DualChannelDefType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -5103,7 +5103,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Selector",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << *b;
@@ -5111,7 +5111,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "Selector",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, *b);
       }
     }
@@ -5121,7 +5121,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SafetyContextDefType >
   _xsd_SafetyContextDefType_type_serializer_init (
     "SafetyContextDefType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -5143,7 +5143,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "DualChannel",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << x;
@@ -5151,7 +5151,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "DualChannel",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, x);
       }
     }
@@ -5170,7 +5170,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SafetyContext",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << x;
@@ -5178,7 +5178,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "SafetyContext",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, x);
       }
     }
@@ -5188,7 +5188,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SafetyInfoType >
   _xsd_SafetyInfoType_type_serializer_init (
     "SafetyInfoType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -5312,7 +5312,7 @@ namespace MDPWS
     if (typeid (::MDPWS::SafetyInfoType) == typeid (s))
     {
       if (n.name () == "SafetyInfo" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-201x/")
+          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
       {
         e << s;
       }
@@ -5322,14 +5322,14 @@ namespace MDPWS
           n.name (),
           n.namespace_ (),
           "SafetyInfo",
-          "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
       }
     }
     else
     {
       ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         e, n, s);
     }
   }
@@ -5345,14 +5345,14 @@ namespace MDPWS
     {
       d = ::xsd::cxx::xml::dom::serialize< char > (
         "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, f);
     }
     else
     {
       d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
         "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
         m, s, f);
     }
 
@@ -5380,7 +5380,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "DcValue",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << *b;
@@ -5388,7 +5388,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "DcValue",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, *b);
       }
     }
@@ -5398,7 +5398,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DualChannelType >
   _xsd_DualChannelType_type_serializer_init (
     "DualChannelType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -5421,7 +5421,7 @@ namespace MDPWS
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "CtxtValue",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               e));
 
           s << *b;
@@ -5429,7 +5429,7 @@ namespace MDPWS
         else
           tsm.serialize (
             "CtxtValue",
-            "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+            "http://standards.ieee.org/downloads/11073/11073-20702-2016",
             false, true, e, *b);
       }
     }
@@ -5439,7 +5439,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, SafetyContextType >
   _xsd_SafetyContextType_type_serializer_init (
     "SafetyContextType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -5463,7 +5463,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DcValueType >
   _xsd_DcValueType_type_serializer_init (
     "DcValueType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void
@@ -5487,7 +5487,7 @@ namespace MDPWS
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, CtxtValueType >
   _xsd_CtxtValueType_type_serializer_init (
     "CtxtValueType",
-    "http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+    "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
 
   void

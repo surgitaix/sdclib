@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 SetAlertStateOperationState::SetAlertStateOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
 ) : data(Defaults::SetAlertStateOperationStateInit(
 		descriptorhandle
@@ -94,11 +94,11 @@ bool SetAlertStateOperationState::getStateVersion(VersionCounter & out) const {
 VersionCounter SetAlertStateOperationState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool SetAlertStateOperationState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -108,7 +108,7 @@ SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorHandle(c
 HandleRef SetAlertStateOperationState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,11 +125,11 @@ bool SetAlertStateOperationState::getDescriptorVersion(ReferencedVersion & out) 
 ReferencedVersion SetAlertStateOperationState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetAlertStateOperationState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetAlertStateOperationState & SetAlertStateOperationState::setOperatingMode(const OperatingMode & value) {
 	data->OperatingMode(ConvertToCDM::convert(value));
 	return *this;
@@ -139,7 +139,7 @@ SetAlertStateOperationState & SetAlertStateOperationState::setOperatingMode(cons
 OperatingMode SetAlertStateOperationState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

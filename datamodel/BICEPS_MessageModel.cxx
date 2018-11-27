@@ -2935,7 +2935,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, TransactionId >
   _xsd_TransactionId_type_factory_init (
     "TransactionId",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // InvocationState
   //
@@ -3021,7 +3021,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, InvocationState >
   _xsd_InvocationState_type_factory_init (
     "InvocationState",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // InvocationError
   //
@@ -3101,7 +3101,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, InvocationError >
   _xsd_InvocationError_type_factory_init (
     "InvocationError",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // InvocationInfo
   //
@@ -3177,7 +3177,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -3205,7 +3205,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TransactionId",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< TransactionIdType >,
             false, true, i, n, f, this));
 
@@ -3233,7 +3233,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "InvocationState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< InvocationStateType >,
             false, true, i, n, f, this));
 
@@ -3261,7 +3261,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "InvocationError",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< InvocationErrorType >,
             false, true, i, n, f, this));
 
@@ -3289,7 +3289,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "InvocationErrorMessage",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< InvocationErrorMessageType >,
             false, true, i, n, f, this));
 
@@ -3315,14 +3315,14 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "TransactionId",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
 
     if (!InvocationState_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "InvocationState",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -3358,7 +3358,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, InvocationInfo >
   _xsd_InvocationInfo_type_factory_init (
     "InvocationInfo",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractGet
   //
@@ -3409,7 +3409,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -3463,7 +3463,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractGet >
   _xsd_AbstractGet_type_factory_init (
     "AbstractGet",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractGetResponse
   //
@@ -3523,7 +3523,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -3612,7 +3612,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractGetResponse >
   _xsd_AbstractGetResponse_type_factory_init (
     "AbstractGetResponse",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractReportPart
   //
@@ -3666,7 +3666,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -3694,7 +3694,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "SourceMds",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< SourceMdsType >,
             false, true, i, n, f, this));
 
@@ -3749,7 +3749,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractReportPart >
   _xsd_AbstractReportPart_type_factory_init (
     "AbstractReportPart",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractReport
   //
@@ -3809,7 +3809,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -3898,7 +3898,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractReport >
   _xsd_AbstractReport_type_factory_init (
     "AbstractReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractSet
   //
@@ -3960,7 +3960,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -3988,7 +3988,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperationHandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< OperationHandleRefType >,
             false, true, i, n, f, this));
 
@@ -4017,7 +4017,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "OperationHandleRef",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -4050,7 +4050,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractSet >
   _xsd_AbstractSet_type_factory_init (
     "AbstractSet",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractSetResponse
   //
@@ -4126,7 +4126,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -4154,7 +4154,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "InvocationInfo",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< InvocationInfoType >,
             false, true, i, n, f, this));
 
@@ -4183,7 +4183,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "InvocationInfo",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
 
     while (p.more_attributes ())
@@ -4251,7 +4251,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractSetResponse >
   _xsd_AbstractSetResponse_type_factory_init (
     "AbstractSetResponse",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractContextReport
   //
@@ -4300,7 +4300,7 @@ namespace MDM
 
       // ReportPart
       //
-      if (n.name () == "ReportPart" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "ReportPart" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ReportPartType > r (
           ReportPartTraits::create (i, f, this));
@@ -4341,7 +4341,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractContextReport >
   _xsd_AbstractContextReport_type_factory_init (
     "AbstractContextReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // VersionFrame
   //
@@ -4432,7 +4432,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, VersionFrame >
   _xsd_VersionFrame_type_factory_init (
     "VersionFrame",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // TimeFrame
   //
@@ -4523,7 +4523,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, TimeFrame >
   _xsd_TimeFrame_type_factory_init (
     "TimeFrame",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractMetricReport
   //
@@ -4572,7 +4572,7 @@ namespace MDM
 
       // ReportPart
       //
-      if (n.name () == "ReportPart" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "ReportPart" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ReportPartType > r (
           ReportPartTraits::create (i, f, this));
@@ -4613,7 +4613,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractMetricReport >
   _xsd_AbstractMetricReport_type_factory_init (
     "AbstractMetricReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractComponentReport
   //
@@ -4662,7 +4662,7 @@ namespace MDM
 
       // ReportPart
       //
-      if (n.name () == "ReportPart" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "ReportPart" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ReportPartType > r (
           ReportPartTraits::create (i, f, this));
@@ -4703,7 +4703,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractComponentReport >
   _xsd_AbstractComponentReport_type_factory_init (
     "AbstractComponentReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractAlertReport
   //
@@ -4752,7 +4752,7 @@ namespace MDM
 
       // ReportPart
       //
-      if (n.name () == "ReportPart" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "ReportPart" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ReportPartType > r (
           ReportPartTraits::create (i, f, this));
@@ -4793,7 +4793,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractAlertReport >
   _xsd_AbstractAlertReport_type_factory_init (
     "AbstractAlertReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // AbstractOperationalStateReport
   //
@@ -4842,7 +4842,7 @@ namespace MDM
 
       // ReportPart
       //
-      if (n.name () == "ReportPart" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "ReportPart" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ReportPartType > r (
           ReportPartTraits::create (i, f, this));
@@ -4883,7 +4883,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, AbstractOperationalStateReport >
   _xsd_AbstractOperationalStateReport_type_factory_init (
     "AbstractOperationalStateReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // DescriptionModificationType
   //
@@ -4961,7 +4961,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, DescriptionModificationType >
   _xsd_DescriptionModificationType_type_factory_init (
     "DescriptionModificationType",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // RetrievabilityMethod
   //
@@ -5041,7 +5041,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RetrievabilityMethod >
   _xsd_RetrievabilityMethod_type_factory_init (
     "RetrievabilityMethod",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // RetrievabilityInfo
   //
@@ -5098,7 +5098,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -5180,7 +5180,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, RetrievabilityInfo >
   _xsd_RetrievabilityInfo_type_factory_init (
     "RetrievabilityInfo",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
   // GetMdib
   //
@@ -5279,7 +5279,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Mdib",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< MdibType >,
             false, true, i, n, f, this));
 
@@ -5308,7 +5308,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "Mdib",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -5387,7 +5387,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< HandleRefType >,
             false, true, i, n, f, this));
 
@@ -5494,7 +5494,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MdDescription",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< MdDescriptionType >,
             false, true, i, n, f, this));
 
@@ -5523,7 +5523,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "MdDescription",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -5602,7 +5602,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< HandleRefType >,
             false, true, i, n, f, this));
 
@@ -5709,7 +5709,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MdState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< MdStateType >,
             false, true, i, n, f, this));
 
@@ -5738,7 +5738,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "MdState",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -5817,7 +5817,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< HandleRefType >,
             false, true, i, n, f, this));
 
@@ -5915,7 +5915,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ContextStateType >,
             false, true, i, n, f, this));
 
@@ -6016,7 +6016,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Identification",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< IdentificationType >,
             false, true, i, n, f, this));
 
@@ -6128,7 +6128,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ContextStateType >,
             false, true, i, n, f, this));
 
@@ -6229,7 +6229,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Filter",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< FilterType >,
             false, true, i, n, f, this));
 
@@ -6341,7 +6341,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ContextStateType >,
             false, true, i, n, f, this));
 
@@ -6446,7 +6446,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ProposedContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ProposedContextStateType >,
             false, true, i, n, f, this));
 
@@ -6591,7 +6591,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ContextStateType >,
             false, true, i, n, f, this));
 
@@ -6775,7 +6775,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Ref",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< RefType >,
             false, true, i, n, f, this));
 
@@ -6800,7 +6800,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Version",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< VersionType >,
             false, true, i, n, f, this));
 
@@ -6828,7 +6828,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Lang",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< LangType >,
             false, true, i, n, f, this));
 
@@ -6853,7 +6853,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TextWidth",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< TextWidthType >,
             false, true, i, n, f, this));
 
@@ -6874,7 +6874,7 @@ namespace MDM
 
       // NumberOfLines
       //
-      if (n.name () == "NumberOfLines" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "NumberOfLines" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         this->NumberOfLines_.push_back (NumberOfLinesTraits::create (i, f, this));
         continue;
@@ -6963,7 +6963,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Text",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< TextType >,
             false, true, i, n, f, this));
 
@@ -7098,7 +7098,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Lang",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< LangType >,
             false, true, i, n, f, this));
 
@@ -7202,7 +7202,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "DescriptorRevisions",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< DescriptorRevisionsType >,
             false, true, i, n, f, this));
 
@@ -7230,7 +7230,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TimeFrame",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< TimeFrameType >,
             false, true, i, n, f, this));
 
@@ -7258,7 +7258,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Handle",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< HandleType >,
             false, true, i, n, f, this));
 
@@ -7358,7 +7358,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Descriptor",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< DescriptorType >,
             false, true, i, n, f, this));
 
@@ -7462,7 +7462,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "StateRevisions",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< StateRevisionsType >,
             false, true, i, n, f, this));
 
@@ -7490,7 +7490,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "TimeFrame",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< TimeFrameType >,
             false, true, i, n, f, this));
 
@@ -7518,7 +7518,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Handle",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< HandleType >,
             false, true, i, n, f, this));
 
@@ -7618,7 +7618,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "State",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< StateType >,
             false, true, i, n, f, this));
 
@@ -7721,7 +7721,7 @@ namespace MDM
 
       // RequestedNumericValue
       //
-      if (n.name () == "RequestedNumericValue" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "RequestedNumericValue" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         if (!RequestedNumericValue_.present ())
         {
@@ -7737,7 +7737,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "RequestedNumericValue",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -7872,7 +7872,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "RequestedStringValue",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< RequestedStringValueType >,
             false, true, i, n, f, this));
 
@@ -7901,7 +7901,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "RequestedStringValue",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -8030,7 +8030,7 @@ namespace MDM
 
       // Argument
       //
-      if (n.name () == "Argument" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "Argument" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ArgumentType > r (
           ArgumentTraits::create (i, f, this));
@@ -8182,7 +8182,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ProposedAlertState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ProposedAlertStateType >,
             false, true, i, n, f, this));
 
@@ -8211,7 +8211,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ProposedAlertState",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -8344,7 +8344,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ProposedComponentState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ProposedComponentStateType >,
             false, true, i, n, f, this));
 
@@ -8496,7 +8496,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ProposedMetricState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ProposedMetricStateType >,
             false, true, i, n, f, this));
 
@@ -8637,7 +8637,7 @@ namespace MDM
 
       // ReportPart
       //
-      if (n.name () == "ReportPart" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "ReportPart" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ReportPartType > r (
           ReportPartTraits::create (i, f, this));
@@ -8725,7 +8725,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< HandleRefType >,
             false, true, i, n, f, this));
 
@@ -8832,7 +8832,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ContainmentTree",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ContainmentTreeType >,
             false, true, i, n, f, this));
 
@@ -8861,7 +8861,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ContainmentTree",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -8940,7 +8940,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< HandleRefType >,
             false, true, i, n, f, this));
 
@@ -9038,7 +9038,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Descriptor",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< DescriptorType >,
             false, true, i, n, f, this));
 
@@ -9136,7 +9136,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "MetricState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< MetricStateType >,
             false, true, i, n, f, this));
 
@@ -9308,7 +9308,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ComponentState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ComponentStateType >,
             false, true, i, n, f, this));
 
@@ -9480,7 +9480,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "AlertState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< AlertStateType >,
             false, true, i, n, f, this));
 
@@ -9652,7 +9652,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "OperationState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< OperationStateType >,
             false, true, i, n, f, this));
 
@@ -9820,7 +9820,7 @@ namespace MDM
 
       // ReportPart
       //
-      if (n.name () == "ReportPart" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "ReportPart" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ReportPartType > r (
           ReportPartTraits::create (i, f, this));
@@ -9904,7 +9904,7 @@ namespace MDM
 
       // ReportPart
       //
-      if (n.name () == "ReportPart" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "ReportPart" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ReportPartType > r (
           ReportPartTraits::create (i, f, this));
@@ -9992,7 +9992,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "State",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< StateType >,
             false, true, i, n, f, this));
 
@@ -10086,7 +10086,7 @@ namespace MDM
 
       // Value
       //
-      if (n.name () == "Value" && n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+      if (n.name () == "Value" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
       {
         ::std::unique_ptr< ValueType > r (
           ValueTraits::create (i, f, this));
@@ -10172,7 +10172,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "By",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ByType >,
             false, true, i, n, f, this));
 
@@ -10279,7 +10279,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             &::xsd::cxx::tree::factory_impl< ExtensionType >,
             true, true, i, n, f, this));
 
@@ -10307,7 +10307,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ArgValue",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ArgValueType >,
             false, true, i, n, f, this));
 
@@ -10336,7 +10336,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ArgValue",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -10439,7 +10439,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "InvocationInfo",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< InvocationInfoType >,
             false, true, i, n, f, this));
 
@@ -10467,7 +10467,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "InvocationSource",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< InvocationSourceType >,
             false, true, i, n, f, this));
 
@@ -10496,14 +10496,14 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "InvocationInfo",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
 
     if (!InvocationSource_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "InvocationSource",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
 
     while (p.more_attributes ())
@@ -10622,7 +10622,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ErrorCode",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ErrorCodeType >,
             false, true, i, n, f, this));
 
@@ -10650,7 +10650,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "ErrorInfo",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< ErrorInfoType >,
             false, true, i, n, f, this));
 
@@ -10679,7 +10679,7 @@ namespace MDM
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "ErrorCode",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -10768,7 +10768,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Descriptor",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< DescriptorType >,
             false, true, i, n, f, this));
 
@@ -10793,7 +10793,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "State",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< StateType >,
             false, true, i, n, f, this));
 
@@ -10917,7 +10917,7 @@ namespace MDM
         ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
           ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
             "Value",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             &::xsd::cxx::tree::factory_impl< Value1Type >,
             false, true, i, n, f, this));
 
@@ -11215,7 +11215,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdib" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdib > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdib, char >::create (
@@ -11227,7 +11227,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdib",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdib >
@@ -11253,7 +11253,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetMdib" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdib > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdib, char >::create (
@@ -11265,7 +11265,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdib",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdibResponse >
@@ -11481,7 +11481,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdibResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdibResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdibResponse, char >::create (
@@ -11493,7 +11493,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdibResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdibResponse >
@@ -11519,7 +11519,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetMdibResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdibResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdibResponse, char >::create (
@@ -11531,7 +11531,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdibResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdDescription >
@@ -11747,7 +11747,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdDescription" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdDescription > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdDescription, char >::create (
@@ -11759,7 +11759,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdDescription",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdDescription >
@@ -11785,7 +11785,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetMdDescription" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdDescription > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdDescription, char >::create (
@@ -11797,7 +11797,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdDescription",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
@@ -12013,7 +12013,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdDescriptionResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdDescriptionResponse, char >::create (
@@ -12025,7 +12025,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdDescriptionResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
@@ -12051,7 +12051,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetMdDescriptionResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdDescriptionResponse, char >::create (
@@ -12063,7 +12063,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdDescriptionResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdState >
@@ -12279,7 +12279,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdState > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdState, char >::create (
@@ -12291,7 +12291,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdState >
@@ -12317,7 +12317,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetMdState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdState > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdState, char >::create (
@@ -12329,7 +12329,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdStateResponse >
@@ -12545,7 +12545,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdStateResponse, char >::create (
@@ -12557,7 +12557,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetMdStateResponse >
@@ -12583,7 +12583,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetMdStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetMdStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetMdStateResponse, char >::create (
@@ -12595,7 +12595,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetMdStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStates >
@@ -12811,7 +12811,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStates" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStates > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStates, char >::create (
@@ -12823,7 +12823,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStates",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStates >
@@ -12849,7 +12849,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetContextStates" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStates > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStates, char >::create (
@@ -12861,7 +12861,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStates",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesResponse >
@@ -13077,7 +13077,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesResponse, char >::create (
@@ -13089,7 +13089,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesResponse >
@@ -13115,7 +13115,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetContextStatesResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesResponse, char >::create (
@@ -13127,7 +13127,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
@@ -13343,7 +13343,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesByIdentification" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByIdentification, char >::create (
@@ -13355,7 +13355,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesByIdentification",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
@@ -13381,7 +13381,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetContextStatesByIdentification" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByIdentification, char >::create (
@@ -13393,7 +13393,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesByIdentification",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
@@ -13609,7 +13609,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesByIdentificationResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByIdentificationResponse, char >::create (
@@ -13621,7 +13621,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesByIdentificationResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
@@ -13647,7 +13647,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetContextStatesByIdentificationResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByIdentificationResponse, char >::create (
@@ -13659,7 +13659,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesByIdentificationResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
@@ -13875,7 +13875,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesByFilter" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesByFilter > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByFilter, char >::create (
@@ -13887,7 +13887,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesByFilter",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
@@ -13913,7 +13913,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetContextStatesByFilter" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesByFilter > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByFilter, char >::create (
@@ -13925,7 +13925,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesByFilter",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
@@ -14141,7 +14141,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesByFilterResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByFilterResponse, char >::create (
@@ -14153,7 +14153,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesByFilterResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
@@ -14179,7 +14179,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetContextStatesByFilterResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByFilterResponse, char >::create (
@@ -14191,7 +14191,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContextStatesByFilterResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetContextState >
@@ -14407,7 +14407,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetContextState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetContextState > r (
         ::xsd::cxx::tree::traits< ::MDM::SetContextState, char >::create (
@@ -14419,7 +14419,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetContextState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetContextState >
@@ -14445,7 +14445,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetContextState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetContextState > r (
         ::xsd::cxx::tree::traits< ::MDM::SetContextState, char >::create (
@@ -14457,7 +14457,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetContextState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetContextStateResponse >
@@ -14673,7 +14673,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetContextStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetContextStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetContextStateResponse, char >::create (
@@ -14685,7 +14685,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetContextStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetContextStateResponse >
@@ -14711,7 +14711,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetContextStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetContextStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetContextStateResponse, char >::create (
@@ -14723,7 +14723,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetContextStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicContextReport >
@@ -14939,7 +14939,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicContextReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicContextReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicContextReport, char >::create (
@@ -14951,7 +14951,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicContextReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicContextReport >
@@ -14977,7 +14977,7 @@ namespace MDM
                        0);
 
     if (n.name () == "PeriodicContextReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicContextReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicContextReport, char >::create (
@@ -14989,7 +14989,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicContextReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicContextReport >
@@ -15205,7 +15205,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicContextReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicContextReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicContextReport, char >::create (
@@ -15217,7 +15217,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicContextReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicContextReport >
@@ -15243,7 +15243,7 @@ namespace MDM
                        0);
 
     if (n.name () == "EpisodicContextReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicContextReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicContextReport, char >::create (
@@ -15255,7 +15255,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicContextReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetLocalizedText >
@@ -15471,7 +15471,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetLocalizedText" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetLocalizedText > r (
         ::xsd::cxx::tree::traits< ::MDM::GetLocalizedText, char >::create (
@@ -15483,7 +15483,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetLocalizedText",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetLocalizedText >
@@ -15509,7 +15509,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetLocalizedText" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetLocalizedText > r (
         ::xsd::cxx::tree::traits< ::MDM::GetLocalizedText, char >::create (
@@ -15521,7 +15521,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetLocalizedText",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
@@ -15737,7 +15737,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetLocalizedTextResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetLocalizedTextResponse, char >::create (
@@ -15749,7 +15749,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetLocalizedTextResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
@@ -15775,7 +15775,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetLocalizedTextResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetLocalizedTextResponse, char >::create (
@@ -15787,7 +15787,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetLocalizedTextResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetSupportedLanguages >
@@ -16003,7 +16003,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetSupportedLanguages" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetSupportedLanguages > r (
         ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguages, char >::create (
@@ -16015,7 +16015,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetSupportedLanguages",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetSupportedLanguages >
@@ -16041,7 +16041,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetSupportedLanguages" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetSupportedLanguages > r (
         ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguages, char >::create (
@@ -16053,7 +16053,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetSupportedLanguages",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
@@ -16269,7 +16269,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetSupportedLanguagesResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguagesResponse, char >::create (
@@ -16281,7 +16281,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetSupportedLanguagesResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
@@ -16307,7 +16307,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetSupportedLanguagesResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguagesResponse, char >::create (
@@ -16319,7 +16319,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetSupportedLanguagesResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
@@ -16535,7 +16535,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetDescriptorsFromArchive" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > r (
         ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchive, char >::create (
@@ -16547,7 +16547,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetDescriptorsFromArchive",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
@@ -16573,7 +16573,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetDescriptorsFromArchive" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > r (
         ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchive, char >::create (
@@ -16585,7 +16585,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetDescriptorsFromArchive",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
@@ -16801,7 +16801,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetDescriptorsFromArchiveResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchiveResponse, char >::create (
@@ -16813,7 +16813,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetDescriptorsFromArchiveResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
@@ -16839,7 +16839,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetDescriptorsFromArchiveResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchiveResponse, char >::create (
@@ -16851,7 +16851,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetDescriptorsFromArchiveResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetStatesFromArchive >
@@ -17067,7 +17067,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetStatesFromArchive" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetStatesFromArchive > r (
         ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchive, char >::create (
@@ -17079,7 +17079,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetStatesFromArchive",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetStatesFromArchive >
@@ -17105,7 +17105,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetStatesFromArchive" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetStatesFromArchive > r (
         ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchive, char >::create (
@@ -17117,7 +17117,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetStatesFromArchive",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
@@ -17333,7 +17333,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetStatesFromArchiveResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchiveResponse, char >::create (
@@ -17345,7 +17345,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetStatesFromArchiveResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
@@ -17371,7 +17371,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetStatesFromArchiveResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchiveResponse, char >::create (
@@ -17383,7 +17383,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetStatesFromArchiveResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetValue >
@@ -17599,7 +17599,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetValue" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetValue > r (
         ::xsd::cxx::tree::traits< ::MDM::SetValue, char >::create (
@@ -17611,7 +17611,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetValue",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetValue >
@@ -17637,7 +17637,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetValue" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetValue > r (
         ::xsd::cxx::tree::traits< ::MDM::SetValue, char >::create (
@@ -17649,7 +17649,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetValue",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetValueResponse >
@@ -17865,7 +17865,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetValueResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetValueResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetValueResponse, char >::create (
@@ -17877,7 +17877,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetValueResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetValueResponse >
@@ -17903,7 +17903,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetValueResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetValueResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetValueResponse, char >::create (
@@ -17915,7 +17915,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetValueResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetString >
@@ -18131,7 +18131,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetString" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetString > r (
         ::xsd::cxx::tree::traits< ::MDM::SetString, char >::create (
@@ -18143,7 +18143,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetString",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetString >
@@ -18169,7 +18169,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetString" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetString > r (
         ::xsd::cxx::tree::traits< ::MDM::SetString, char >::create (
@@ -18181,7 +18181,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetString",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetStringResponse >
@@ -18397,7 +18397,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetStringResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetStringResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetStringResponse, char >::create (
@@ -18409,7 +18409,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetStringResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetStringResponse >
@@ -18435,7 +18435,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetStringResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetStringResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetStringResponse, char >::create (
@@ -18447,7 +18447,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetStringResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::Activate >
@@ -18663,7 +18663,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "Activate" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::Activate > r (
         ::xsd::cxx::tree::traits< ::MDM::Activate, char >::create (
@@ -18675,7 +18675,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "Activate",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::Activate >
@@ -18701,7 +18701,7 @@ namespace MDM
                        0);
 
     if (n.name () == "Activate" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::Activate > r (
         ::xsd::cxx::tree::traits< ::MDM::Activate, char >::create (
@@ -18713,7 +18713,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "Activate",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::ActivateResponse >
@@ -18929,7 +18929,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "ActivateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::ActivateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::ActivateResponse, char >::create (
@@ -18941,7 +18941,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "ActivateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::ActivateResponse >
@@ -18967,7 +18967,7 @@ namespace MDM
                        0);
 
     if (n.name () == "ActivateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::ActivateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::ActivateResponse, char >::create (
@@ -18979,7 +18979,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "ActivateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetAlertState >
@@ -19195,7 +19195,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetAlertState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetAlertState > r (
         ::xsd::cxx::tree::traits< ::MDM::SetAlertState, char >::create (
@@ -19207,7 +19207,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetAlertState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetAlertState >
@@ -19233,7 +19233,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetAlertState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetAlertState > r (
         ::xsd::cxx::tree::traits< ::MDM::SetAlertState, char >::create (
@@ -19245,7 +19245,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetAlertState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetAlertStateResponse >
@@ -19461,7 +19461,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetAlertStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetAlertStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetAlertStateResponse, char >::create (
@@ -19473,7 +19473,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetAlertStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetAlertStateResponse >
@@ -19499,7 +19499,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetAlertStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetAlertStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetAlertStateResponse, char >::create (
@@ -19511,7 +19511,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetAlertStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetComponentState >
@@ -19727,7 +19727,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetComponentState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetComponentState > r (
         ::xsd::cxx::tree::traits< ::MDM::SetComponentState, char >::create (
@@ -19739,7 +19739,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetComponentState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetComponentState >
@@ -19765,7 +19765,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetComponentState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetComponentState > r (
         ::xsd::cxx::tree::traits< ::MDM::SetComponentState, char >::create (
@@ -19777,7 +19777,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetComponentState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetComponentStateResponse >
@@ -19993,7 +19993,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetComponentStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetComponentStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetComponentStateResponse, char >::create (
@@ -20005,7 +20005,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetComponentStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetComponentStateResponse >
@@ -20031,7 +20031,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetComponentStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetComponentStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetComponentStateResponse, char >::create (
@@ -20043,7 +20043,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetComponentStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetMetricState >
@@ -20259,7 +20259,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetMetricState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetMetricState > r (
         ::xsd::cxx::tree::traits< ::MDM::SetMetricState, char >::create (
@@ -20271,7 +20271,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetMetricState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetMetricState >
@@ -20297,7 +20297,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetMetricState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetMetricState > r (
         ::xsd::cxx::tree::traits< ::MDM::SetMetricState, char >::create (
@@ -20309,7 +20309,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetMetricState",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetMetricStateResponse >
@@ -20525,7 +20525,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetMetricStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetMetricStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetMetricStateResponse, char >::create (
@@ -20537,7 +20537,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetMetricStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SetMetricStateResponse >
@@ -20563,7 +20563,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SetMetricStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SetMetricStateResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::SetMetricStateResponse, char >::create (
@@ -20575,7 +20575,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SetMetricStateResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::OperationInvokedReport >
@@ -20791,7 +20791,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "OperationInvokedReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::OperationInvokedReport > r (
         ::xsd::cxx::tree::traits< ::MDM::OperationInvokedReport, char >::create (
@@ -20803,7 +20803,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "OperationInvokedReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::OperationInvokedReport >
@@ -20829,7 +20829,7 @@ namespace MDM
                        0);
 
     if (n.name () == "OperationInvokedReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::OperationInvokedReport > r (
         ::xsd::cxx::tree::traits< ::MDM::OperationInvokedReport, char >::create (
@@ -20841,7 +20841,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "OperationInvokedReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContainmentTree >
@@ -21057,7 +21057,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContainmentTree" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContainmentTree > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContainmentTree, char >::create (
@@ -21069,7 +21069,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContainmentTree",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContainmentTree >
@@ -21095,7 +21095,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetContainmentTree" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContainmentTree > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContainmentTree, char >::create (
@@ -21107,7 +21107,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContainmentTree",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
@@ -21323,7 +21323,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContainmentTreeResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContainmentTreeResponse, char >::create (
@@ -21335,7 +21335,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContainmentTreeResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
@@ -21361,7 +21361,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetContainmentTreeResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetContainmentTreeResponse, char >::create (
@@ -21373,7 +21373,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetContainmentTreeResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetDescriptor >
@@ -21589,7 +21589,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetDescriptor" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetDescriptor > r (
         ::xsd::cxx::tree::traits< ::MDM::GetDescriptor, char >::create (
@@ -21601,7 +21601,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetDescriptor",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetDescriptor >
@@ -21627,7 +21627,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetDescriptor" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetDescriptor > r (
         ::xsd::cxx::tree::traits< ::MDM::GetDescriptor, char >::create (
@@ -21639,7 +21639,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetDescriptor",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetDescriptorResponse >
@@ -21855,7 +21855,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetDescriptorResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetDescriptorResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetDescriptorResponse, char >::create (
@@ -21867,7 +21867,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetDescriptorResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::GetDescriptorResponse >
@@ -21893,7 +21893,7 @@ namespace MDM
                        0);
 
     if (n.name () == "GetDescriptorResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::GetDescriptorResponse > r (
         ::xsd::cxx::tree::traits< ::MDM::GetDescriptorResponse, char >::create (
@@ -21905,7 +21905,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "GetDescriptorResponse",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicMetricReport >
@@ -22121,7 +22121,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicMetricReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicMetricReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicMetricReport, char >::create (
@@ -22133,7 +22133,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicMetricReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicMetricReport >
@@ -22159,7 +22159,7 @@ namespace MDM
                        0);
 
     if (n.name () == "EpisodicMetricReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicMetricReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicMetricReport, char >::create (
@@ -22171,7 +22171,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicMetricReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicMetricReport >
@@ -22387,7 +22387,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicMetricReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicMetricReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicMetricReport, char >::create (
@@ -22399,7 +22399,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicMetricReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicMetricReport >
@@ -22425,7 +22425,7 @@ namespace MDM
                        0);
 
     if (n.name () == "PeriodicMetricReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicMetricReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicMetricReport, char >::create (
@@ -22437,7 +22437,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicMetricReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicComponentReport >
@@ -22653,7 +22653,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicComponentReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicComponentReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicComponentReport, char >::create (
@@ -22665,7 +22665,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicComponentReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicComponentReport >
@@ -22691,7 +22691,7 @@ namespace MDM
                        0);
 
     if (n.name () == "EpisodicComponentReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicComponentReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicComponentReport, char >::create (
@@ -22703,7 +22703,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicComponentReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicComponentReport >
@@ -22919,7 +22919,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicComponentReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicComponentReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicComponentReport, char >::create (
@@ -22931,7 +22931,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicComponentReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicComponentReport >
@@ -22957,7 +22957,7 @@ namespace MDM
                        0);
 
     if (n.name () == "PeriodicComponentReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicComponentReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicComponentReport, char >::create (
@@ -22969,7 +22969,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicComponentReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicAlertReport >
@@ -23185,7 +23185,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicAlertReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicAlertReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicAlertReport, char >::create (
@@ -23197,7 +23197,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicAlertReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicAlertReport >
@@ -23223,7 +23223,7 @@ namespace MDM
                        0);
 
     if (n.name () == "EpisodicAlertReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicAlertReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicAlertReport, char >::create (
@@ -23235,7 +23235,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicAlertReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicAlertReport >
@@ -23451,7 +23451,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicAlertReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicAlertReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicAlertReport, char >::create (
@@ -23463,7 +23463,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicAlertReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicAlertReport >
@@ -23489,7 +23489,7 @@ namespace MDM
                        0);
 
     if (n.name () == "PeriodicAlertReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicAlertReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicAlertReport, char >::create (
@@ -23501,7 +23501,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicAlertReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
@@ -23717,7 +23717,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicOperationalStateReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicOperationalStateReport, char >::create (
@@ -23729,7 +23729,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicOperationalStateReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
@@ -23755,7 +23755,7 @@ namespace MDM
                        0);
 
     if (n.name () == "EpisodicOperationalStateReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > r (
         ::xsd::cxx::tree::traits< ::MDM::EpisodicOperationalStateReport, char >::create (
@@ -23767,7 +23767,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "EpisodicOperationalStateReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
@@ -23983,7 +23983,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicOperationalStateReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicOperationalStateReport, char >::create (
@@ -23995,7 +23995,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicOperationalStateReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
@@ -24021,7 +24021,7 @@ namespace MDM
                        0);
 
     if (n.name () == "PeriodicOperationalStateReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > r (
         ::xsd::cxx::tree::traits< ::MDM::PeriodicOperationalStateReport, char >::create (
@@ -24033,7 +24033,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "PeriodicOperationalStateReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SystemErrorReport >
@@ -24249,7 +24249,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SystemErrorReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SystemErrorReport > r (
         ::xsd::cxx::tree::traits< ::MDM::SystemErrorReport, char >::create (
@@ -24261,7 +24261,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SystemErrorReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::SystemErrorReport >
@@ -24287,7 +24287,7 @@ namespace MDM
                        0);
 
     if (n.name () == "SystemErrorReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::SystemErrorReport > r (
         ::xsd::cxx::tree::traits< ::MDM::SystemErrorReport, char >::create (
@@ -24299,7 +24299,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "SystemErrorReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::DescriptionModificationReport >
@@ -24515,7 +24515,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "DescriptionModificationReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::DescriptionModificationReport > r (
         ::xsd::cxx::tree::traits< ::MDM::DescriptionModificationReport, char >::create (
@@ -24527,7 +24527,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "DescriptionModificationReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::DescriptionModificationReport >
@@ -24553,7 +24553,7 @@ namespace MDM
                        0);
 
     if (n.name () == "DescriptionModificationReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::DescriptionModificationReport > r (
         ::xsd::cxx::tree::traits< ::MDM::DescriptionModificationReport, char >::create (
@@ -24565,7 +24565,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "DescriptionModificationReport",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::WaveformStream >
@@ -24781,7 +24781,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "WaveformStream" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::WaveformStream > r (
         ::xsd::cxx::tree::traits< ::MDM::WaveformStream, char >::create (
@@ -24793,7 +24793,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "WaveformStream",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::WaveformStream >
@@ -24819,7 +24819,7 @@ namespace MDM
                        0);
 
     if (n.name () == "WaveformStream" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::WaveformStream > r (
         ::xsd::cxx::tree::traits< ::MDM::WaveformStream, char >::create (
@@ -24831,7 +24831,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "WaveformStream",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::ObservedValueStream >
@@ -25047,7 +25047,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "ObservedValueStream" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::ObservedValueStream > r (
         ::xsd::cxx::tree::traits< ::MDM::ObservedValueStream, char >::create (
@@ -25059,7 +25059,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "ObservedValueStream",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::ObservedValueStream >
@@ -25085,7 +25085,7 @@ namespace MDM
                        0);
 
     if (n.name () == "ObservedValueStream" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::ObservedValueStream > r (
         ::xsd::cxx::tree::traits< ::MDM::ObservedValueStream, char >::create (
@@ -25097,7 +25097,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "ObservedValueStream",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::Retrievability >
@@ -25313,7 +25313,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "Retrievability" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::Retrievability > r (
         ::xsd::cxx::tree::traits< ::MDM::Retrievability, char >::create (
@@ -25325,7 +25325,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "Retrievability",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 
   ::std::unique_ptr< ::MDM::Retrievability >
@@ -25351,7 +25351,7 @@ namespace MDM
                        0);
 
     if (n.name () == "Retrievability" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       ::std::unique_ptr< ::MDM::Retrievability > r (
         ::xsd::cxx::tree::traits< ::MDM::Retrievability, char >::create (
@@ -25363,7 +25363,7 @@ namespace MDM
       n.name (),
       n.namespace_ (),
       "Retrievability",
-      "http://p11073-10207/draft10/msg/2017/10/05");
+      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
   }
 }
 
@@ -25405,7 +25405,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, TransactionId >
   _xsd_TransactionId_type_serializer_init (
     "TransactionId",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -25431,7 +25431,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, InvocationState >
   _xsd_InvocationState_type_serializer_init (
     "InvocationState",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -25457,7 +25457,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, InvocationError >
   _xsd_InvocationError_type_serializer_init (
     "InvocationError",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -25479,7 +25479,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -25487,7 +25487,7 @@ namespace MDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -25504,7 +25504,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "TransactionId",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -25512,7 +25512,7 @@ namespace MDM
       else
         tsm.serialize (
           "TransactionId",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
 
@@ -25528,7 +25528,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "InvocationState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -25536,7 +25536,7 @@ namespace MDM
       else
         tsm.serialize (
           "InvocationState",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
 
@@ -25554,7 +25554,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "InvocationError",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << x;
@@ -25562,7 +25562,7 @@ namespace MDM
         else
           tsm.serialize (
             "InvocationError",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, x);
       }
     }
@@ -25582,7 +25582,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "InvocationErrorMessage",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -25590,7 +25590,7 @@ namespace MDM
         else
           tsm.serialize (
             "InvocationErrorMessage",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -25600,7 +25600,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, InvocationInfo >
   _xsd_InvocationInfo_type_serializer_init (
     "InvocationInfo",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -25622,7 +25622,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -25630,7 +25630,7 @@ namespace MDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -25640,7 +25640,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractGet >
   _xsd_AbstractGet_type_serializer_init (
     "AbstractGet",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -25662,7 +25662,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -25670,7 +25670,7 @@ namespace MDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -25715,7 +25715,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractGetResponse >
   _xsd_AbstractGetResponse_type_serializer_init (
     "AbstractGetResponse",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -25737,7 +25737,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -25745,7 +25745,7 @@ namespace MDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -25764,7 +25764,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "SourceMds",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << x;
@@ -25772,7 +25772,7 @@ namespace MDM
         else
           tsm.serialize (
             "SourceMds",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, x);
       }
     }
@@ -25782,7 +25782,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractReportPart >
   _xsd_AbstractReportPart_type_serializer_init (
     "AbstractReportPart",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -25804,7 +25804,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -25812,7 +25812,7 @@ namespace MDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -25857,7 +25857,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractReport >
   _xsd_AbstractReport_type_serializer_init (
     "AbstractReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -25879,7 +25879,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -25887,7 +25887,7 @@ namespace MDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -25904,7 +25904,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "OperationHandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -25912,7 +25912,7 @@ namespace MDM
       else
         tsm.serialize (
           "OperationHandleRef",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
   }
@@ -25921,7 +25921,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractSet >
   _xsd_AbstractSet_type_serializer_init (
     "AbstractSet",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -25943,7 +25943,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -25951,7 +25951,7 @@ namespace MDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -25968,7 +25968,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "InvocationInfo",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -25976,7 +25976,7 @@ namespace MDM
       else
         tsm.serialize (
           "InvocationInfo",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
 
@@ -26020,7 +26020,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractSetResponse >
   _xsd_AbstractSetResponse_type_serializer_init (
     "AbstractSetResponse",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -26142,7 +26142,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdib" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -26152,7 +26152,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetMdib",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -26164,7 +26164,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetMdib",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetMdib_ (*d, s, f);
@@ -26290,7 +26290,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdibResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -26300,7 +26300,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetMdibResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -26312,7 +26312,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetMdibResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetMdibResponse_ (*d, s, f);
@@ -26438,7 +26438,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdDescription" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -26448,7 +26448,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetMdDescription",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -26460,7 +26460,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetMdDescription",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetMdDescription_ (*d, s, f);
@@ -26586,7 +26586,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdDescriptionResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -26596,7 +26596,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetMdDescriptionResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -26608,7 +26608,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetMdDescriptionResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetMdDescriptionResponse_ (*d, s, f);
@@ -26734,7 +26734,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -26744,7 +26744,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetMdState",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -26756,7 +26756,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetMdState",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetMdState_ (*d, s, f);
@@ -26882,7 +26882,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetMdStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -26892,7 +26892,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetMdStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -26904,7 +26904,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetMdStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetMdStateResponse_ (*d, s, f);
@@ -27030,7 +27030,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStates" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -27040,7 +27040,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetContextStates",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -27052,7 +27052,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetContextStates",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetContextStates_ (*d, s, f);
@@ -27178,7 +27178,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -27188,7 +27188,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetContextStatesResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -27200,7 +27200,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetContextStatesResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetContextStatesResponse_ (*d, s, f);
@@ -27326,7 +27326,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesByIdentification" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -27336,7 +27336,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetContextStatesByIdentification",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -27348,7 +27348,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetContextStatesByIdentification",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetContextStatesByIdentification_ (*d, s, f);
@@ -27474,7 +27474,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesByIdentificationResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -27484,7 +27484,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetContextStatesByIdentificationResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -27496,7 +27496,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetContextStatesByIdentificationResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetContextStatesByIdentificationResponse_ (*d, s, f);
@@ -27622,7 +27622,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesByFilter" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -27632,7 +27632,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetContextStatesByFilter",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -27644,7 +27644,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetContextStatesByFilter",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetContextStatesByFilter_ (*d, s, f);
@@ -27770,7 +27770,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContextStatesByFilterResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -27780,7 +27780,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetContextStatesByFilterResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -27792,7 +27792,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetContextStatesByFilterResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetContextStatesByFilterResponse_ (*d, s, f);
@@ -27918,7 +27918,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetContextState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -27928,7 +27928,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetContextState",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -27940,7 +27940,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetContextState",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetContextState_ (*d, s, f);
@@ -28066,7 +28066,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetContextStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -28076,7 +28076,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetContextStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -28088,7 +28088,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetContextStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetContextStateResponse_ (*d, s, f);
@@ -28109,7 +28109,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReportPart",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -28120,7 +28120,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractContextReport >
   _xsd_AbstractContextReport_type_serializer_init (
     "AbstractContextReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -28242,7 +28242,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicContextReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -28252,7 +28252,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "PeriodicContextReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -28264,7 +28264,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "PeriodicContextReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::PeriodicContextReport_ (*d, s, f);
@@ -28390,7 +28390,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicContextReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -28400,7 +28400,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "EpisodicContextReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -28412,7 +28412,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "EpisodicContextReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::EpisodicContextReport_ (*d, s, f);
@@ -28538,7 +28538,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetLocalizedText" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -28548,7 +28548,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetLocalizedText",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -28560,7 +28560,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetLocalizedText",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetLocalizedText_ (*d, s, f);
@@ -28686,7 +28686,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetLocalizedTextResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -28696,7 +28696,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetLocalizedTextResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -28708,7 +28708,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetLocalizedTextResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetLocalizedTextResponse_ (*d, s, f);
@@ -28834,7 +28834,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetSupportedLanguages" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -28844,7 +28844,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetSupportedLanguages",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -28856,7 +28856,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetSupportedLanguages",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetSupportedLanguages_ (*d, s, f);
@@ -28982,7 +28982,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetSupportedLanguagesResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -28992,7 +28992,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetSupportedLanguagesResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -29004,7 +29004,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetSupportedLanguagesResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetSupportedLanguagesResponse_ (*d, s, f);
@@ -29045,7 +29045,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, VersionFrame >
   _xsd_VersionFrame_type_serializer_init (
     "VersionFrame",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -29082,7 +29082,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, TimeFrame >
   _xsd_TimeFrame_type_serializer_init (
     "TimeFrame",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -29204,7 +29204,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetDescriptorsFromArchive" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -29214,7 +29214,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetDescriptorsFromArchive",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -29226,7 +29226,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetDescriptorsFromArchive",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetDescriptorsFromArchive_ (*d, s, f);
@@ -29352,7 +29352,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetDescriptorsFromArchiveResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -29362,7 +29362,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetDescriptorsFromArchiveResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -29374,7 +29374,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetDescriptorsFromArchiveResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetDescriptorsFromArchiveResponse_ (*d, s, f);
@@ -29500,7 +29500,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetStatesFromArchive" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -29510,7 +29510,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetStatesFromArchive",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -29522,7 +29522,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetStatesFromArchive",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetStatesFromArchive_ (*d, s, f);
@@ -29648,7 +29648,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetStatesFromArchiveResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -29658,7 +29658,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetStatesFromArchiveResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -29670,7 +29670,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetStatesFromArchiveResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetStatesFromArchiveResponse_ (*d, s, f);
@@ -29796,7 +29796,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetValue" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -29806,7 +29806,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetValue",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -29818,7 +29818,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetValue",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetValue_ (*d, s, f);
@@ -29944,7 +29944,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetValueResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -29954,7 +29954,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetValueResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -29966,7 +29966,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetValueResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetValueResponse_ (*d, s, f);
@@ -30092,7 +30092,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetString" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -30102,7 +30102,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetString",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -30114,7 +30114,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetString",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetString_ (*d, s, f);
@@ -30240,7 +30240,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetStringResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -30250,7 +30250,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetStringResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -30262,7 +30262,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetStringResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetStringResponse_ (*d, s, f);
@@ -30388,7 +30388,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "Activate" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -30398,7 +30398,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "Activate",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -30410,7 +30410,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "Activate",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::Activate_ (*d, s, f);
@@ -30536,7 +30536,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "ActivateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -30546,7 +30546,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "ActivateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -30558,7 +30558,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "ActivateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::ActivateResponse_ (*d, s, f);
@@ -30684,7 +30684,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetAlertState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -30694,7 +30694,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetAlertState",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -30706,7 +30706,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetAlertState",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetAlertState_ (*d, s, f);
@@ -30832,7 +30832,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetAlertStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -30842,7 +30842,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetAlertStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -30854,7 +30854,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetAlertStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetAlertStateResponse_ (*d, s, f);
@@ -30980,7 +30980,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetComponentState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -30990,7 +30990,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetComponentState",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -31002,7 +31002,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetComponentState",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetComponentState_ (*d, s, f);
@@ -31128,7 +31128,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetComponentStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -31138,7 +31138,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetComponentStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -31150,7 +31150,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetComponentStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetComponentStateResponse_ (*d, s, f);
@@ -31276,7 +31276,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetMetricState" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -31286,7 +31286,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetMetricState",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -31298,7 +31298,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetMetricState",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetMetricState_ (*d, s, f);
@@ -31424,7 +31424,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SetMetricStateResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -31434,7 +31434,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SetMetricStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -31446,7 +31446,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SetMetricStateResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SetMetricStateResponse_ (*d, s, f);
@@ -31572,7 +31572,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "OperationInvokedReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -31582,7 +31582,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "OperationInvokedReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -31594,7 +31594,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "OperationInvokedReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::OperationInvokedReport_ (*d, s, f);
@@ -31720,7 +31720,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContainmentTree" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -31730,7 +31730,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetContainmentTree",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -31742,7 +31742,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetContainmentTree",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetContainmentTree_ (*d, s, f);
@@ -31868,7 +31868,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetContainmentTreeResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -31878,7 +31878,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetContainmentTreeResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -31890,7 +31890,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetContainmentTreeResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetContainmentTreeResponse_ (*d, s, f);
@@ -32016,7 +32016,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetDescriptor" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -32026,7 +32026,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetDescriptor",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -32038,7 +32038,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetDescriptor",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetDescriptor_ (*d, s, f);
@@ -32164,7 +32164,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "GetDescriptorResponse" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -32174,7 +32174,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "GetDescriptorResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -32186,7 +32186,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "GetDescriptorResponse",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::GetDescriptorResponse_ (*d, s, f);
@@ -32207,7 +32207,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReportPart",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -32218,7 +32218,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractMetricReport >
   _xsd_AbstractMetricReport_type_serializer_init (
     "AbstractMetricReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -32340,7 +32340,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicMetricReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -32350,7 +32350,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "EpisodicMetricReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -32362,7 +32362,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "EpisodicMetricReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::EpisodicMetricReport_ (*d, s, f);
@@ -32488,7 +32488,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicMetricReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -32498,7 +32498,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "PeriodicMetricReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -32510,7 +32510,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "PeriodicMetricReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::PeriodicMetricReport_ (*d, s, f);
@@ -32531,7 +32531,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReportPart",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -32542,7 +32542,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractComponentReport >
   _xsd_AbstractComponentReport_type_serializer_init (
     "AbstractComponentReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -32664,7 +32664,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicComponentReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -32674,7 +32674,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "EpisodicComponentReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -32686,7 +32686,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "EpisodicComponentReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::EpisodicComponentReport_ (*d, s, f);
@@ -32812,7 +32812,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicComponentReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -32822,7 +32822,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "PeriodicComponentReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -32834,7 +32834,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "PeriodicComponentReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::PeriodicComponentReport_ (*d, s, f);
@@ -32855,7 +32855,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReportPart",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -32866,7 +32866,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractAlertReport >
   _xsd_AbstractAlertReport_type_serializer_init (
     "AbstractAlertReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -32988,7 +32988,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicAlertReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -32998,7 +32998,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "EpisodicAlertReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -33010,7 +33010,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "EpisodicAlertReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::EpisodicAlertReport_ (*d, s, f);
@@ -33136,7 +33136,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicAlertReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -33146,7 +33146,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "PeriodicAlertReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -33158,7 +33158,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "PeriodicAlertReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::PeriodicAlertReport_ (*d, s, f);
@@ -33179,7 +33179,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReportPart",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -33190,7 +33190,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, AbstractOperationalStateReport >
   _xsd_AbstractOperationalStateReport_type_serializer_init (
     "AbstractOperationalStateReport",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -33312,7 +33312,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "EpisodicOperationalStateReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -33322,7 +33322,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "EpisodicOperationalStateReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -33334,7 +33334,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "EpisodicOperationalStateReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::EpisodicOperationalStateReport_ (*d, s, f);
@@ -33460,7 +33460,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "PeriodicOperationalStateReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -33470,7 +33470,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "PeriodicOperationalStateReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -33482,7 +33482,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "PeriodicOperationalStateReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::PeriodicOperationalStateReport_ (*d, s, f);
@@ -33608,7 +33608,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "SystemErrorReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -33618,7 +33618,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "SystemErrorReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -33630,7 +33630,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "SystemErrorReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::SystemErrorReport_ (*d, s, f);
@@ -33660,7 +33660,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, DescriptionModificationType >
   _xsd_DescriptionModificationType_type_serializer_init (
     "DescriptionModificationType",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -33782,7 +33782,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "DescriptionModificationReport" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -33792,7 +33792,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "DescriptionModificationReport",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -33804,7 +33804,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "DescriptionModificationReport",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::DescriptionModificationReport_ (*d, s, f);
@@ -33930,7 +33930,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "WaveformStream" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -33940,7 +33940,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "WaveformStream",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -33952,7 +33952,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "WaveformStream",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::WaveformStream_ (*d, s, f);
@@ -34078,7 +34078,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "ObservedValueStream" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -34088,7 +34088,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "ObservedValueStream",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -34100,7 +34100,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "ObservedValueStream",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::ObservedValueStream_ (*d, s, f);
@@ -34130,7 +34130,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RetrievabilityMethod >
   _xsd_RetrievabilityMethod_type_serializer_init (
     "RetrievabilityMethod",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -34152,7 +34152,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -34160,7 +34160,7 @@ namespace MDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -34193,7 +34193,7 @@ namespace MDM
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, RetrievabilityInfo >
   _xsd_RetrievabilityInfo_type_serializer_init (
     "RetrievabilityInfo",
-    "http://p11073-10207/draft10/msg/2017/10/05");
+    "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
 
   void
@@ -34315,7 +34315,7 @@ namespace MDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "Retrievability" &&
-        n.namespace_ () == "http://p11073-10207/draft10/msg/2017/10/05")
+        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
     {
       e << s;
     }
@@ -34325,7 +34325,7 @@ namespace MDM
         n.name (),
         n.namespace_ (),
         "Retrievability",
-        "http://p11073-10207/draft10/msg/2017/10/05");
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
     }
   }
 
@@ -34337,7 +34337,7 @@ namespace MDM
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "Retrievability",
-        "http://p11073-10207/draft10/msg/2017/10/05",
+        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
         m, f));
 
     ::MDM::Retrievability_ (*d, s, f);
@@ -34367,7 +34367,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "Mdib",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -34375,7 +34375,7 @@ namespace MDM
       else
         tsm.serialize (
           "Mdib",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
   }
@@ -34400,7 +34400,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "HandleRef",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34408,7 +34408,7 @@ namespace MDM
         else
           tsm.serialize (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34431,7 +34431,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "MdDescription",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -34439,7 +34439,7 @@ namespace MDM
       else
         tsm.serialize (
           "MdDescription",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
   }
@@ -34464,7 +34464,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "HandleRef",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34472,7 +34472,7 @@ namespace MDM
         else
           tsm.serialize (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34495,7 +34495,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "MdState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -34503,7 +34503,7 @@ namespace MDM
       else
         tsm.serialize (
           "MdState",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
   }
@@ -34528,7 +34528,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "HandleRef",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34536,7 +34536,7 @@ namespace MDM
         else
           tsm.serialize (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34562,7 +34562,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ContextState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34570,7 +34570,7 @@ namespace MDM
         else
           tsm.serialize (
             "ContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34596,7 +34596,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Identification",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34604,7 +34604,7 @@ namespace MDM
         else
           tsm.serialize (
             "Identification",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34642,7 +34642,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ContextState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34650,7 +34650,7 @@ namespace MDM
         else
           tsm.serialize (
             "ContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34676,7 +34676,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Filter",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34684,7 +34684,7 @@ namespace MDM
         else
           tsm.serialize (
             "Filter",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34722,7 +34722,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ContextState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34730,7 +34730,7 @@ namespace MDM
         else
           tsm.serialize (
             "ContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34756,7 +34756,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ProposedContextState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34764,7 +34764,7 @@ namespace MDM
         else
           tsm.serialize (
             "ProposedContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34796,7 +34796,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ContextState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34804,7 +34804,7 @@ namespace MDM
         else
           tsm.serialize (
             "ContextState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34842,7 +34842,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Ref",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34850,7 +34850,7 @@ namespace MDM
         else
           tsm.serialize (
             "Ref",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34869,7 +34869,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Version",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << x;
@@ -34877,7 +34877,7 @@ namespace MDM
         else
           tsm.serialize (
             "Version",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, x);
       }
     }
@@ -34897,7 +34897,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Lang",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34905,7 +34905,7 @@ namespace MDM
         else
           tsm.serialize (
             "Lang",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34925,7 +34925,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TextWidth",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34933,7 +34933,7 @@ namespace MDM
         else
           tsm.serialize (
             "TextWidth",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -34947,7 +34947,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "NumberOfLines",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -34974,7 +34974,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Text",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -34982,7 +34982,7 @@ namespace MDM
         else
           tsm.serialize (
             "Text",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35014,7 +35014,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Lang",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35022,7 +35022,7 @@ namespace MDM
         else
           tsm.serialize (
             "Lang",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35047,7 +35047,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "DescriptorRevisions",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << x;
@@ -35055,7 +35055,7 @@ namespace MDM
         else
           tsm.serialize (
             "DescriptorRevisions",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, x);
       }
     }
@@ -35074,7 +35074,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TimeFrame",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << x;
@@ -35082,7 +35082,7 @@ namespace MDM
         else
           tsm.serialize (
             "TimeFrame",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, x);
       }
     }
@@ -35102,7 +35102,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Handle",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35110,7 +35110,7 @@ namespace MDM
         else
           tsm.serialize (
             "Handle",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35136,7 +35136,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Descriptor",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35144,7 +35144,7 @@ namespace MDM
         else
           tsm.serialize (
             "Descriptor",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35169,7 +35169,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "StateRevisions",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << x;
@@ -35177,7 +35177,7 @@ namespace MDM
         else
           tsm.serialize (
             "StateRevisions",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, x);
       }
     }
@@ -35196,7 +35196,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "TimeFrame",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << x;
@@ -35204,7 +35204,7 @@ namespace MDM
         else
           tsm.serialize (
             "TimeFrame",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, x);
       }
     }
@@ -35224,7 +35224,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Handle",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35232,7 +35232,7 @@ namespace MDM
         else
           tsm.serialize (
             "Handle",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35258,7 +35258,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "State",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35266,7 +35266,7 @@ namespace MDM
         else
           tsm.serialize (
             "State",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35283,7 +35283,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "RequestedNumericValue",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << ::xml_schema::AsDecimal(i.RequestedNumericValue ());
@@ -35313,7 +35313,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "RequestedStringValue",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -35321,7 +35321,7 @@ namespace MDM
       else
         tsm.serialize (
           "RequestedStringValue",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
   }
@@ -35346,7 +35346,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Argument",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -35376,7 +35376,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ProposedAlertState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -35384,7 +35384,7 @@ namespace MDM
       else
         tsm.serialize (
           "ProposedAlertState",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
   }
@@ -35415,7 +35415,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ProposedComponentState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35423,7 +35423,7 @@ namespace MDM
         else
           tsm.serialize (
             "ProposedComponentState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35455,7 +35455,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ProposedMetricState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35463,7 +35463,7 @@ namespace MDM
         else
           tsm.serialize (
             "ProposedMetricState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35489,7 +35489,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReportPart",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -35516,7 +35516,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "HandleRef",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35524,7 +35524,7 @@ namespace MDM
         else
           tsm.serialize (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35547,7 +35547,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ContainmentTree",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -35555,7 +35555,7 @@ namespace MDM
       else
         tsm.serialize (
           "ContainmentTree",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
   }
@@ -35580,7 +35580,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "HandleRef",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35588,7 +35588,7 @@ namespace MDM
         else
           tsm.serialize (
             "HandleRef",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35614,7 +35614,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Descriptor",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35622,7 +35622,7 @@ namespace MDM
         else
           tsm.serialize (
             "Descriptor",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35648,7 +35648,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "MetricState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35656,7 +35656,7 @@ namespace MDM
         else
           tsm.serialize (
             "MetricState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35694,7 +35694,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ComponentState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35702,7 +35702,7 @@ namespace MDM
         else
           tsm.serialize (
             "ComponentState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35740,7 +35740,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "AlertState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35748,7 +35748,7 @@ namespace MDM
         else
           tsm.serialize (
             "AlertState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35786,7 +35786,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "OperationState",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35794,7 +35794,7 @@ namespace MDM
         else
           tsm.serialize (
             "OperationState",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35826,7 +35826,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReportPart",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -35847,7 +35847,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "ReportPart",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -35874,7 +35874,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "State",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35882,7 +35882,7 @@ namespace MDM
         else
           tsm.serialize (
             "State",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35902,7 +35902,7 @@ namespace MDM
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "Value",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
       s << *b;
@@ -35929,7 +35929,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "By",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -35937,7 +35937,7 @@ namespace MDM
         else
           tsm.serialize (
             "By",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -35962,7 +35962,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Extension",
-              "http://p11073-10207/draft10/ext/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
               e));
 
           s << x;
@@ -35970,7 +35970,7 @@ namespace MDM
         else
           tsm.serialize (
             "Extension",
-            "http://p11073-10207/draft10/ext/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/extension",
             true, true, e, x);
       }
     }
@@ -35987,7 +35987,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ArgValue",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -35995,7 +35995,7 @@ namespace MDM
       else
         tsm.serialize (
           "ArgValue",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
   }
@@ -36017,7 +36017,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "InvocationInfo",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -36025,7 +36025,7 @@ namespace MDM
       else
         tsm.serialize (
           "InvocationInfo",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
 
@@ -36041,7 +36041,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "InvocationSource",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -36049,7 +36049,7 @@ namespace MDM
       else
         tsm.serialize (
           "InvocationSource",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
 
@@ -36094,7 +36094,7 @@ namespace MDM
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
             "ErrorCode",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             e));
 
         s << x;
@@ -36102,7 +36102,7 @@ namespace MDM
       else
         tsm.serialize (
           "ErrorCode",
-          "http://p11073-10207/draft10/msg/2017/10/05",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           false, true, e, x);
     }
 
@@ -36120,7 +36120,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "ErrorInfo",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << x;
@@ -36128,7 +36128,7 @@ namespace MDM
         else
           tsm.serialize (
             "ErrorInfo",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, x);
       }
     }
@@ -36154,7 +36154,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Descriptor",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -36162,7 +36162,7 @@ namespace MDM
         else
           tsm.serialize (
             "Descriptor",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -36182,7 +36182,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "State",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << *b;
@@ -36190,7 +36190,7 @@ namespace MDM
         else
           tsm.serialize (
             "State",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, *b);
       }
     }
@@ -36239,7 +36239,7 @@ namespace MDM
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "Value",
-              "http://p11073-10207/draft10/msg/2017/10/05",
+              "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
               e));
 
           s << x;
@@ -36247,7 +36247,7 @@ namespace MDM
         else
           tsm.serialize (
             "Value",
-            "http://p11073-10207/draft10/msg/2017/10/05",
+            "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
             false, true, e, x);
       }
     }

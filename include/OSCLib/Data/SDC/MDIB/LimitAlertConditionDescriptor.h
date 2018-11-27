@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,22 +53,22 @@ private:
 public:
 	LimitAlertConditionDescriptor(
 		Handle handle
-		, 
+		,
 		AlertConditionKind kind
-		, 
+		,
 		AlertConditionPriority priority
-		, 
+		,
 		Range maxlimits
-	); 
+	);
 private:
 	LimitAlertConditionDescriptor(){};
 public:
 	LimitAlertConditionDescriptor(const LimitAlertConditionDescriptor & object);
 	virtual ~LimitAlertConditionDescriptor();
-    
+
     void copyFrom(const LimitAlertConditionDescriptor & object);
     LimitAlertConditionDescriptor & operator=(const LimitAlertConditionDescriptor & object);
-    
+
     typedef CDM::LimitAlertConditionDescriptor WrappedType;
 
 	LimitAlertConditionDescriptor & setType(const CodedValue & value);
@@ -113,11 +113,11 @@ public:
 	LimitAlertConditionDescriptor & addSource(const HandleRef & value);
 	std::vector<HandleRef> getSourceList() const;
 	void clearSourceList();
-	
+
 	LimitAlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
 	std::vector<CauseInfo> getCauseInfoList() const;
 	void clearCauseInfoList();
-	
+
 	LimitAlertConditionDescriptor & setMaxLimits(const Range & value);
 	Range getMaxLimits() const;
 

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	EnumStringMetricState(
 		HandleRef descriptorhandle
-	); 
+	);
 private:
 	EnumStringMetricState(){};
 public:
 	EnumStringMetricState(const EnumStringMetricState & object);
 	virtual ~EnumStringMetricState();
-    
+
     void copyFrom(const EnumStringMetricState & object);
     EnumStringMetricState & operator=(const EnumStringMetricState & object);
-    
+
     typedef CDM::EnumStringMetricState WrappedType;
     typedef EnumStringMetricDescriptor DescriptorType;
 
@@ -102,7 +102,7 @@ public:
 	EnumStringMetricState & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
+
 	EnumStringMetricState & setMetricValue(const StringMetricValue & value);
 	StringMetricValue getMetricValue() const;
 	bool getMetricValue(StringMetricValue & out) const;

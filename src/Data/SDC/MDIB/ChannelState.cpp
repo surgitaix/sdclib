@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -92,11 +92,11 @@ bool ChannelState::getStateVersion(VersionCounter & out) const {
 VersionCounter ChannelState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool ChannelState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 ChannelState & ChannelState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -106,7 +106,7 @@ ChannelState & ChannelState::setDescriptorHandle(const HandleRef & value) {
 HandleRef ChannelState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 ChannelState & ChannelState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -123,11 +123,11 @@ bool ChannelState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion ChannelState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool ChannelState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 ChannelState & ChannelState::setCalibrationInfo(const CalibrationInfo & value) {
 	data->CalibrationInfo(ConvertToCDM::convert(value));
 	return *this;
@@ -144,11 +144,11 @@ bool ChannelState::getCalibrationInfo(CalibrationInfo & out) const {
 CalibrationInfo ChannelState::getCalibrationInfo() const {
 	return ConvertFromCDM::convert(data->CalibrationInfo().get());
 }
-	
+
 bool ChannelState::hasCalibrationInfo() const {
 	return data->CalibrationInfo().present();
 }
-	
+
 ChannelState & ChannelState::setNextCalibration(const CalibrationInfo & value) {
 	data->NextCalibration(ConvertToCDM::convert(value));
 	return *this;
@@ -165,11 +165,11 @@ bool ChannelState::getNextCalibration(CalibrationInfo & out) const {
 CalibrationInfo ChannelState::getNextCalibration() const {
 	return ConvertFromCDM::convert(data->NextCalibration().get());
 }
-	
+
 bool ChannelState::hasNextCalibration() const {
 	return data->NextCalibration().present();
 }
-	
+
 ChannelState & ChannelState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
 	data->PhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
@@ -186,11 +186,11 @@ bool ChannelState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
 PhysicalConnectorInfo ChannelState::getPhysicalConnector() const {
 	return ConvertFromCDM::convert(data->PhysicalConnector().get());
 }
-	
+
 bool ChannelState::hasPhysicalConnector() const {
 	return data->PhysicalConnector().present();
 }
-	
+
 ChannelState & ChannelState::setActivationState(const ComponentActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -207,11 +207,11 @@ bool ChannelState::getActivationState(ComponentActivation & out) const {
 ComponentActivation ChannelState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState().get());
 }
-	
+
 bool ChannelState::hasActivationState() const {
 	return data->ActivationState().present();
 }
-	
+
 ChannelState & ChannelState::setOperatingHours(const unsigned int & value) {
 	data->OperatingHours(ConvertToCDM::convert(value));
 	return *this;
@@ -228,11 +228,11 @@ bool ChannelState::getOperatingHours(unsigned int & out) const {
 unsigned int ChannelState::getOperatingHours() const {
 	return ConvertFromCDM::convert(data->OperatingHours().get());
 }
-	
+
 bool ChannelState::hasOperatingHours() const {
 	return data->OperatingHours().present();
 }
-	
+
 ChannelState & ChannelState::setOperatingCycles(const int & value) {
 	data->OperatingCycles(ConvertToCDM::convert(value));
 	return *this;
@@ -249,11 +249,11 @@ bool ChannelState::getOperatingCycles(int & out) const {
 int ChannelState::getOperatingCycles() const {
 	return ConvertFromCDM::convert(data->OperatingCycles().get());
 }
-	
+
 bool ChannelState::hasOperatingCycles() const {
 	return data->OperatingCycles().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

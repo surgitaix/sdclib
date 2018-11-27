@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,28 +53,28 @@ private:
 public:
 	DistributionSampleArrayMetricDescriptor(
 		Handle handle
-		, 
+		,
 		CodedValue unit
-		, 
+		,
 		MetricCategory metriccategory
-		, 
+		,
 		MetricAvailability metricavailability
-		, 
+		,
 		CodedValue domainunit
-		, 
+		,
 		Range distributionrange
-		, 
+		,
 		double resolution
-	); 
+	);
 private:
 	DistributionSampleArrayMetricDescriptor(){};
 public:
 	DistributionSampleArrayMetricDescriptor(const DistributionSampleArrayMetricDescriptor & object);
 	virtual ~DistributionSampleArrayMetricDescriptor();
-    
+
     void copyFrom(const DistributionSampleArrayMetricDescriptor & object);
     DistributionSampleArrayMetricDescriptor & operator=(const DistributionSampleArrayMetricDescriptor & object);
-    
+
     typedef CDM::DistributionSampleArrayMetricDescriptor WrappedType;
 
 	DistributionSampleArrayMetricDescriptor & setType(const CodedValue & value);
@@ -137,11 +137,11 @@ public:
 	DistributionSampleArrayMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
+
 	DistributionSampleArrayMetricDescriptor & addRelation(const Relation & value);
 	std::vector<Relation> getRelationList() const;
 	void clearRelationList();
-	
+
 	DistributionSampleArrayMetricDescriptor & setDomainUnit(const CodedValue & value);
 	CodedValue getDomainUnit() const;
 
@@ -154,7 +154,7 @@ public:
 	DistributionSampleArrayMetricDescriptor & addTechnicalRange(const Range & value);
 	std::vector<Range> getTechnicalRangeList() const;
 	void clearTechnicalRangeList();
-	
+
 private:
 	std::shared_ptr<CDM::DistributionSampleArrayMetricDescriptor> data;
 };

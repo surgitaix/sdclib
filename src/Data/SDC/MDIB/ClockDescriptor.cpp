@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -93,11 +93,11 @@ bool ClockDescriptor::getType(CodedValue & out) const {
 CodedValue ClockDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool ClockDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 ClockDescriptor & ClockDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -107,7 +107,7 @@ ClockDescriptor & ClockDescriptor::setHandle(const Handle & value) {
 Handle ClockDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 ClockDescriptor & ClockDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,11 +124,11 @@ bool ClockDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter ClockDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool ClockDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 ClockDescriptor & ClockDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool ClockDescriptor::getSafetyClassification(SafetyClassification & out) const 
 SafetyClassification ClockDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool ClockDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 ClockDescriptor & ClockDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -184,11 +184,11 @@ bool ClockDescriptor::getResolution(xml_schema::Duration & out) const {
 xml_schema::Duration ClockDescriptor::getResolution() const {
 	return ConvertFromCDM::convert(data->Resolution().get());
 }
-	
+
 bool ClockDescriptor::hasResolution() const {
 	return data->Resolution().present();
 }
-	
+
 ClockDescriptor & ClockDescriptor::addTimeProtocol(const CodedValue & value) {
 	data->TimeProtocol().push_back(ConvertToCDM::convert(value));
 	return *this;

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	SetStringOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
-	); 
+	);
 private:
 	SetStringOperationState(){};
 public:
 	SetStringOperationState(const SetStringOperationState & object);
 	virtual ~SetStringOperationState();
-    
+
     void copyFrom(const SetStringOperationState & object);
     SetStringOperationState & operator=(const SetStringOperationState & object);
-    
+
     typedef CDM::SetStringOperationState WrappedType;
 
 	SetStringOperationState & setStateVersion(const VersionCounter & value);

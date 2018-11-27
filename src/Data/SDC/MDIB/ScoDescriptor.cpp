@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -36,6 +36,7 @@
 
 #include "osdm.hxx"
 
+#include "OSCLib/Data/SDC/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 
 namespace SDCLib {
@@ -91,11 +92,11 @@ bool ScoDescriptor::getType(CodedValue & out) const {
 CodedValue ScoDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool ScoDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 ScoDescriptor & ScoDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -105,7 +106,7 @@ ScoDescriptor & ScoDescriptor::setHandle(const Handle & value) {
 Handle ScoDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 ScoDescriptor & ScoDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -122,11 +123,11 @@ bool ScoDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter ScoDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool ScoDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 ScoDescriptor & ScoDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -143,11 +144,29 @@ bool ScoDescriptor::getSafetyClassification(SafetyClassification & out) const {
 SafetyClassification ScoDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool ScoDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
+ScoDescriptor & ScoDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> ScoDescriptor::getProductionSpecificationList() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void ScoDescriptor::clearProductionSpecificationList() {
+	data->ProductionSpecification().clear();
+}
+
 
 } /* namespace SDC */
 } /* namespace Data */

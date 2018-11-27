@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,19 +52,19 @@ private:
 	friend class MdDescription;
 public:
 	ApprovedJurisdictions(
-	); 
+	);
 	ApprovedJurisdictions(const ApprovedJurisdictions & object);
 	virtual ~ApprovedJurisdictions();
-    
+
     void copyFrom(const ApprovedJurisdictions & object);
     ApprovedJurisdictions & operator=(const ApprovedJurisdictions & object);
-    
+
     typedef CDM::ApprovedJurisdictions WrappedType;
 
 	ApprovedJurisdictions & addApprovedJurisdiction(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getApprovedJurisdictionList() const;
 	void clearApprovedJurisdictionList();
-	
+
 private:
 	std::shared_ptr<CDM::ApprovedJurisdictions> data;
 };

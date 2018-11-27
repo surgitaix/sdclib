@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	MeansContextDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	MeansContextDescriptor(){};
 public:
 	MeansContextDescriptor(const MeansContextDescriptor & object);
 	virtual ~MeansContextDescriptor();
-    
+
     void copyFrom(const MeansContextDescriptor & object);
     MeansContextDescriptor & operator=(const MeansContextDescriptor & object);
-    
+
     typedef CDM::MeansContextDescriptor WrappedType;
 
 	MeansContextDescriptor & setType(const CodedValue & value);

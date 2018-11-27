@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	PersonReference(
-	); 
+	);
 	PersonReference(const PersonReference & object);
 	virtual ~PersonReference();
-    
+
     void copyFrom(const PersonReference & object);
     PersonReference & operator=(const PersonReference & object);
-    
+
     typedef CDM::PersonReference WrappedType;
 
 	PersonReference & setName(const BaseDemographics & value);
@@ -69,7 +69,7 @@ public:
 	PersonReference & addIdentification(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
-	
+
 private:
 	std::shared_ptr<CDM::PersonReference> data;
 };

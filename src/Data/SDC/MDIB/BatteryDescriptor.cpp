@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -93,11 +93,11 @@ bool BatteryDescriptor::getType(CodedValue & out) const {
 CodedValue BatteryDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool BatteryDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 BatteryDescriptor & BatteryDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -107,7 +107,7 @@ BatteryDescriptor & BatteryDescriptor::setHandle(const Handle & value) {
 Handle BatteryDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 BatteryDescriptor & BatteryDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,11 +124,11 @@ bool BatteryDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter BatteryDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool BatteryDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 BatteryDescriptor & BatteryDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool BatteryDescriptor::getSafetyClassification(SafetyClassification & out) cons
 SafetyClassification BatteryDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool BatteryDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 BatteryDescriptor & BatteryDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -184,11 +184,11 @@ bool BatteryDescriptor::getCapacityFullCharge(Measurement & out) const {
 Measurement BatteryDescriptor::getCapacityFullCharge() const {
 	return ConvertFromCDM::convert(data->CapacityFullCharge().get());
 }
-	
+
 bool BatteryDescriptor::hasCapacityFullCharge() const {
 	return data->CapacityFullCharge().present();
 }
-	
+
 BatteryDescriptor & BatteryDescriptor::setCapacitySpecified(const Measurement & value) {
 	data->CapacitySpecified(ConvertToCDM::convert(value));
 	return *this;
@@ -205,11 +205,11 @@ bool BatteryDescriptor::getCapacitySpecified(Measurement & out) const {
 Measurement BatteryDescriptor::getCapacitySpecified() const {
 	return ConvertFromCDM::convert(data->CapacitySpecified().get());
 }
-	
+
 bool BatteryDescriptor::hasCapacitySpecified() const {
 	return data->CapacitySpecified().present();
 }
-	
+
 BatteryDescriptor & BatteryDescriptor::setVoltageSpecified(const Measurement & value) {
 	data->VoltageSpecified(ConvertToCDM::convert(value));
 	return *this;
@@ -226,11 +226,11 @@ bool BatteryDescriptor::getVoltageSpecified(Measurement & out) const {
 Measurement BatteryDescriptor::getVoltageSpecified() const {
 	return ConvertFromCDM::convert(data->VoltageSpecified().get());
 }
-	
+
 bool BatteryDescriptor::hasVoltageSpecified() const {
 	return data->VoltageSpecified().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

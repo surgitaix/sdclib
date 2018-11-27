@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	PatientContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
-	); 
+	);
 private:
 	PatientContextState(){};
 public:
 	PatientContextState(const PatientContextState & object);
 	virtual ~PatientContextState();
-    
+
     void copyFrom(const PatientContextState & object);
     PatientContextState & operator=(const PatientContextState & object);
-    
+
     typedef CDM::PatientContextState WrappedType;
     typedef PatientContextDescriptor DescriptorType;
 
@@ -117,11 +117,11 @@ public:
 	PatientContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidatorList() const;
 	void clearValidatorList();
-	
+
 	PatientContextState & addIdentification(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
-	
+
 	PatientContextState & setCoreData(const PatientDemographicsCoreData & value);
 	PatientDemographicsCoreData getCoreData() const;
 	bool getCoreData(PatientDemographicsCoreData & out) const;

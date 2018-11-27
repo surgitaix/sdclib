@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	SystemSignalActivation(
 		AlertSignalManifestation manifestation
-		, 
+		,
 		AlertActivation state
-	); 
+	);
 private:
 	SystemSignalActivation(){};
 public:
 	SystemSignalActivation(const SystemSignalActivation & object);
 	virtual ~SystemSignalActivation();
-    
+
     void copyFrom(const SystemSignalActivation & object);
     SystemSignalActivation & operator=(const SystemSignalActivation & object);
-    
+
     typedef CDM::SystemSignalActivation WrappedType;
 
 	SystemSignalActivation & setManifestation(const AlertSignalManifestation & value);

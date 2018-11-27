@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -88,11 +88,11 @@ bool MdState::getStateVersion(VersionCounter & out) const {
 VersionCounter MdState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool MdState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

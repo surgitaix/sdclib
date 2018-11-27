@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	Measurement(
 		CodedValue measurementunit
-		, 
+		,
 		double measuredvalue
-	); 
+	);
 private:
 	Measurement(){};
 public:
 	Measurement(const Measurement & object);
 	virtual ~Measurement();
-    
+
     void copyFrom(const Measurement & object);
     Measurement & operator=(const Measurement & object);
-    
+
     typedef CDM::Measurement WrappedType;
 
 	Measurement & setMeasurementUnit(const CodedValue & value);

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,7 +45,7 @@ namespace SDC {
 
 Argument::Argument(
 		CodedValue argname
-		, 
+		,
 		xml_schema::Qname arg
 ) : data(Defaults::ArgumentInit(
 		argname
@@ -88,7 +88,7 @@ Argument & Argument::setArgName(const CodedValue & value) {
 CodedValue Argument::getArgName() const {
 	return ConvertFromCDM::convert(data->ArgName());
 }
-	
+
 Argument & Argument::setArg(const xml_schema::Qname & value) {
 	data->Arg(ConvertToCDM::convert(value));
 	return *this;
@@ -98,7 +98,7 @@ Argument & Argument::setArg(const xml_schema::Qname & value) {
 xml_schema::Qname Argument::getArg() const {
 	return ConvertFromCDM::convert(data->Arg());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

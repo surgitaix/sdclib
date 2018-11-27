@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	AlertSystemState(
 		HandleRef descriptorhandle
-		, 
+		,
 		AlertActivation activationstate
-	); 
+	);
 private:
 	AlertSystemState(){};
 public:
 	AlertSystemState(const AlertSystemState & object);
 	virtual ~AlertSystemState();
-    
+
     void copyFrom(const AlertSystemState & object);
     AlertSystemState & operator=(const AlertSystemState & object);
-    
+
     typedef CDM::AlertSystemState WrappedType;
     typedef AlertSystemDescriptor DescriptorType;
 
@@ -107,7 +107,7 @@ public:
 	AlertSystemState & addSystemSignalActivation(const SystemSignalActivation & value);
 	std::vector<SystemSignalActivation> getSystemSignalActivationList() const;
 	void clearSystemSignalActivationList();
-	
+
 private:
 	std::shared_ptr<CDM::AlertSystemState> data;
 };
