@@ -2,9 +2,21 @@
 PROJECT (SDCLib)
 option(debug "Debug build" ON)
 option(crossCompile "Cross compile for arm" OFF)
+option(test "Test build" ON)
 
 cmake_minimum_required(VERSION 2.8)
 SET(ARCH "x86_64")
+
+
+if(test)
+	add_definitions(-DFINAL_CLASS=)
+	add_definitions(-DPROTECTED_MEMBER=protected)
+else()
+	add_definitions(-DFINAL_CLASS=final)
+	add_definitions(-DPROTECTED_MEMBER=private)
+endif()
+
+
 
 if (crossCompile)
     set(CMAKE_C_COMPILER "arm-linux-gnueabihf-gcc")

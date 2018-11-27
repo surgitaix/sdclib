@@ -19,7 +19,6 @@
                         <xs:simpleType>
                            <xs:restriction base="xs:string">
                               <xs:enumeration value="urn:docs-oasis-open-org:ws-dd:ns:discovery:2009:01" />
-                              <xs:enumeration value="test" />
                            </xs:restriction>
                         </xs:simpleType>
                      </xs:element>

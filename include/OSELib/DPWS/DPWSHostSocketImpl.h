@@ -39,6 +39,10 @@ public:
 	void sendHello(const HelloType & hello);
 	void sendStream(const MDM::WaveformStream & stream, const AddressType epr);
 
+PROTECTED_MEMBER:
+	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> socketSendMessageQueue;
+
+
 private:
 	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
 	void onDatagrammSocketWritable(Poco::Net::WritableNotification * notification);
@@ -62,7 +66,6 @@ private:
 	Poco::Net::MulticastSocket ipv4MulticastListeningSocket;
 	Poco::Net::MulticastSocket ipv6MulticastListeningSocket;
 
-	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> socketSendMessageQueue;
 	Poco::TimedNotificationQueue delayedMessages;
 	std::default_random_engine generator;
 	std::uniform_int_distribution<unsigned int> distribution;
