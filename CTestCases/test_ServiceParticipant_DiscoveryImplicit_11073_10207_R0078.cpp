@@ -37,69 +37,33 @@
 #include "Poco/Thread.h"
 #include "Poco/Net/IPAddress.h"
 
+//Sample Provider. Exchange for your provider under test.
+#include "Tools/TestProvider.h"
+
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-
-const std::string DEVICE_EPR("TestProvider");
-
-
-class OSCPStreamProvider : public Util::Task {
-public:
-
-    OSCPStreamProvider() :
-    	sdcProvider()
-    	{
-
-    	MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
-		providerConfig.setPort(6462);
-		sdcProvider.setConfiguration(providerConfig);
-		sdcProvider.setEndpointReference(DEVICE_EPR);
-
-
-    }
-
-    void startup() {
-    	sdcProvider.startup();
-    }
-
-    void shutdown() {
-    	sdcProvider.shutdown();
-    }
-
-private:
-
-    SDCProvider sdcProvider;
-
-
-public:
-    virtual void runImpl() override {
-		while (!isInterrupted()) {
-			{
-			}
-			Poco::Thread::sleep(1000);
-		}
-    }
-};
-
+//Device endpoint reference change to your devices
+const std::string DEVICE_EPR("Test_Provider");
 
 int main() {
 	// Startup
-	std::cout << "Test against requirement R0078 from IEEE 11073-10207 A BICEPS BINDING SHALL provide means for implicit discovery:";
-	DebugOut(DebugOut::Default, "TestProvider") << "Startup";
+	std::cout << "Test against requirement R0078 from IEEE 11073-10207 A BICEPS BINDING SHALL provide means for implicit discovery:"
+			  << std::endl;
+	//Network configuration
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 
-	OSCPStreamProvider provider;
+	//Sample Provider startup. Exchange for your provider under test.
+	TestTools::TestProvider provider;
 	provider.startup();
 	provider.start();
 
-	Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setPortStart(12000);
 
+	//Handler of SDCConsumer to disconnect on connection loss
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
     public:
     	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
@@ -114,12 +78,11 @@ int main() {
     };
 
 
-	// Discovery
 	OSELib::SDC::ServiceManager oscpsm;
-	// binding to a custom port
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(6463);
 
+	// Discovery
 	auto consumers(oscpsm.discoverOSCP());
 	std::unique_ptr<Data::SDC::SDCConsumer> c = nullptr;
 
@@ -132,8 +95,8 @@ int main() {
 			Data::SDC::SDCConsumer & consumer = *c;
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
-			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Discovery succeeded.";
-			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test passed";
+			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Discovery succeeded." << std::endl;
+			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test passed" << std::endl;
 
 			consumer.disconnect();
 			provider.shutdown();
@@ -141,14 +104,14 @@ int main() {
 
 
 			} else {
-			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Discovery failed.";
+			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Discovery failed." << std::endl;
 			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test failed";
 
 		}
 
 	} catch (std::exception & e){
 		Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Exception: " << e.what() << std::endl;
-		Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test failed";
+		Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test failed" << std::endl;
 	}
 	SDCLibrary::getInstance().shutdown();
 	Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Shutdown." << std::endl;

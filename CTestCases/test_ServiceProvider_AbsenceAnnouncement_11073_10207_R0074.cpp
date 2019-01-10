@@ -1,10 +1,10 @@
 /*
- * test_ServiceProvider_ReadyAnnouncement_11073_10207_R0073.cpp
+ * test_ServiceProvider_AbsenceAnnouncement_11073_10207_R0074.cpp
  *
  *  Created on: Nov 7, 2018
  *      Author: rosenau
  *
- *      Test against requirement R0073 from IEEE 11073-10207 A SERVICE PROVIDER SHALL announce its presence if it is ready to exchange MESSAGEs with a SERVICE CONSUMER
+ *      Test against requirement R0074 from IEEE 11073-10207 A SERVICE PROVIDER SHOULD announce its upcoming absence if it is switching to a mode where it is not ready to exchange MESSAGEs with a SERVICE CONSUMER temporarily.
  */
 
 #include "OSCLib/SDCInstance.h"
@@ -39,27 +39,15 @@ using namespace SDCLib::Data::SDC;
 
 const std::string DEVICE_EPR("TestProvider");
 
+
 int main() {
-	std::cout << "Test against requirement R0073 from IEEE 11073-10207 A SERVICE PROVIDER SHALL announce its presence if it is ready to exchange MESSAGEs with a SERVICE CONSUMER:";
+	std::cout << "Test against requirement R0074 from IEEE 11073-10207 A SERVICE PROVIDER SHOULD announce its upcoming absence if it is switching to a mode where it is not ready to exchange MESSAGEs with a SERVICE CONSUMER temporarily:";
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 	SDCLibrary::getInstance().setPortStart(12000);
 
 	OSELib::SDC::ServiceManager oscpsm;
-
-	class MyHelloReceivedHandler : public OSELib::SDC::HelloReceivedHandler {
-	public:
-		MyHelloReceivedHandler() {};
-		void helloReceived(const std::string &) override {
-			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Hello received";
-			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test passed";
-		}
-
-
-	};
-	std::unique_ptr<MyHelloReceivedHandler> helloReceivedTester(new MyHelloReceivedHandler);
-	oscpsm.setHelloReceivedHandler(helloReceivedTester.get());
 
 	TestTools::TestProvider provider;
 	provider.startup();

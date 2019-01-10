@@ -1,9 +1,6 @@
 list(APPEND TOOLSSOURCES
 ./MulticastHandler.cpp
-./TestSOAPMessageProvider.cpp
-./TestSOAPMessageProviderAdapter.cpp
-#./TestSOAPMessageSocketImpl.cpp
-#./TestSOAPMessageHostAdapter.cpp
+./TestProvider.cpp
 )
 
 if(WIN32)

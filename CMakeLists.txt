@@ -9,11 +9,9 @@ SET(ARCH "x86_64")
 
 
 if(test)
-	add_definitions(-DFINAL_CLASS=)
-	add_definitions(-DPROTECTED_MEMBER=protected)
+	add_definitions(-DTESTBUILD=true)
 else()
-	add_definitions(-DFINAL_CLASS=final)
-	add_definitions(-DPROTECTED_MEMBER=private)
+	add_definitions(-DTESTBUILD=false)
 endif()
 
 

@@ -43,6 +43,8 @@
 #include "xercesc/dom/DOM.hpp"
 #include "xercesc/util/XMLString.hpp"
 
+#include "Tools/TestProvider.h"
+
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -57,50 +59,6 @@ static const testCases_t testCases = {
 		{"wsa:To", "urn:docs-oasis-open-org:ws-dd:ns:discovery:2009:01"},
 		{"p2:Types", "dpws:MedicalDevice mdpws:MedicalDevice"}
 };
-
-
-
-
-
-
-class OSCPStreamProvider : public Util::Task {
-public:
-
-    OSCPStreamProvider() :
-    	sdcProvider()
-    	{
-
-    	MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
-		providerConfig.setPort(6460);
-		sdcProvider.setConfiguration(providerConfig);
-		sdcProvider.setEndpointReference(DEVICE_EPR);
-
-
-    }
-
-    void startup() {
-    	sdcProvider.startup();
-    }
-
-    void shutdown() {
-    	sdcProvider.shutdown();
-    }
-
-private:
-
-    SDCProvider sdcProvider;
-
-
-public:
-    virtual void runImpl() override {
-		while (!isInterrupted()) {
-			{
-			}
-			Poco::Thread::sleep(1000);
-		}
-    }
-};
-
 
 
 class helloTestHandler: public TestTools::MulticastHandler{
@@ -267,7 +225,7 @@ int main() {
 	OSELib::SDC::ServiceManager oscpsm;
 	helloTestHandler multicastHandler;
 
-	OSCPStreamProvider provider;
+	TestTools::TestProvider provider;
 	provider.startup();
 	provider.start();
 
