@@ -50,6 +50,7 @@ int main() {
 	OSELib::SDC::ServiceManager oscpsm;
 
 	TestTools::TestProvider provider;
+	provider.setPort(6470);
 	provider.startup();
 	provider.start();
 
@@ -57,7 +58,7 @@ int main() {
 	SDCLibrary::getInstance().shutdown();
 
 	SDCLibrary::getInstance().shutdown();
-	Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Shutdown." << std::endl;
+	std::cout << "Test failed";
 }
 
 

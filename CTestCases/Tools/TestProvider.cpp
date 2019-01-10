@@ -7,10 +7,11 @@
 
 #include "TestProvider.h"
 
-const std::string DEVICE_EPR("Test_Provider");
+const int DEFAULT_PORT(6464);
 
 namespace TestTools {
 
+const std::string DEFAULT_TEST_DEVICE_EPR("Test_Provider");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("channel_descriptor_handle");
 const std::string VMD_DESCRIPTOR_HANDLE("vmd_descriptor_handle");
 const std::string MDS_DESCRIPTOR_HANDLE("mds_descriptor_handle");
@@ -50,18 +51,26 @@ TestProvider::TestProvider():
 
 
 	//Endpoint Name
-	sdcProvider.setEndpointReference(DEVICE_EPR);
-
-	//Network configuration
-	MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
-	providerConfig.setPort(6464);
-	sdcProvider.setConfiguration(providerConfig);
+	setEndPointReference(DEFAULT_TEST_DEVICE_EPR);
+	setPort(DEFAULT_PORT);
 }
+
 
 TestProvider::~TestProvider() {
 
 }
 
+void TestProvider::setEndPointReference(std::string endpointRef)
+{
+	sdcProvider.setEndpointReference(endpointRef);
+}
+
+void TestProvider::setPort(int port) {
+	//Network configuration
+	MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
+	providerConfig.setPort(port);
+	sdcProvider.setConfiguration(providerConfig);
+}
 
 void TestProvider::startup() {
 	//forwarding of the startup function

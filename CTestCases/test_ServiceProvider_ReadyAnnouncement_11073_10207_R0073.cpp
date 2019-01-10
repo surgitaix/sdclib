@@ -62,14 +62,12 @@ int main() {
 	oscpsm.setHelloReceivedHandler(helloReceivedTester.get());
 
 	TestTools::TestProvider provider;
+	provider.setPort(6476);
 	provider.startup();
 	provider.start();
 
 	provider.shutdown();
 	SDCLibrary::getInstance().shutdown();
-
-	SDCLibrary::getInstance().shutdown();
-	Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Shutdown." << std::endl;
 }
 
 

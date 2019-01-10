@@ -163,7 +163,7 @@ public:
     {
 
     	MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
-		providerConfig.setPort(6462);
+		providerConfig.setPort(6472);
 		sdcProvider.setConfiguration(providerConfig);
 		sdcProvider.setEndpointReference(DEVICE_EPR);
 
@@ -233,7 +233,7 @@ int main()
 	OSELib::SDC::ServiceManager oscpsm;
 	// binding to a custom port
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
-	config.setPort(6467);
+	config.setPort(6473);
 
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, config));
 
@@ -257,5 +257,5 @@ int main()
 	SDCLibrary::getInstance().shutdown();
 	Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Shutdown." << std::endl;
 
-
+	std::cout << "Test failed";
 }

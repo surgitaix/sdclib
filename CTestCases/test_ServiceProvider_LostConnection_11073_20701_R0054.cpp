@@ -31,7 +31,7 @@ int main()
 	OSELib::SDC::ServiceManager oscpsm;
 	// binding to a custom port
 	MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
-	providerConfig.setPort(6460);
+	providerConfig.setPort(6474);
 
 	SDCProvider sdcProvider;
 	sdcProvider.setConfiguration(providerConfig);
@@ -39,7 +39,7 @@ int main()
 	sdcProvider.startup();
 
 	MDPWSTransportLayerConfiguration consumerConfig = MDPWSTransportLayerConfiguration();
-	consumerConfig.setPort(6461);
+	consumerConfig.setPort(6475);
 
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, consumerConfig));
 	if(c != nullptr) {

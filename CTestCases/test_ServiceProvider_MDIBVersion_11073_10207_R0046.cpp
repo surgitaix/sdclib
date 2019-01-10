@@ -65,6 +65,8 @@ int main ()
 //
 //	StringMetricState stringMetricState(HANDLE_String_METRIC);
 //	sdcProvider.updateState(stringMetricState);
+
+	std::cout << "Test failed";
 }
 
 

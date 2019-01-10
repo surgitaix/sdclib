@@ -39,9 +39,6 @@ public:
 	void sendHello(const HelloType & hello);
 	void sendStream(const MDM::WaveformStream & stream, const AddressType epr);
 
-PROTECTED_MEMBER:
-	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> socketSendMessageQueue;
-
 
 private:
 	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
@@ -74,6 +71,9 @@ private:
 
 	Poco::Thread reactorThread;
 	Poco::Net::SocketReactor reactor;
+
+	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> socketSendMessageQueue;
+
 };
 
 } /* namespace Impl */

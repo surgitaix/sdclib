@@ -59,9 +59,6 @@ public:
 	void addByeEventHandler(ByeCallback & callback);
 	void removeByeEventHandler(ByeCallback & callback);
 
-PROTECTED_MEMBER:
-	std::unique_ptr<Impl::DPWSDiscoveryClientSocketImpl> _impl;
-
 
 private:
 	virtual void dispatch(const ProbeMatchType & notification) override;
@@ -77,6 +74,9 @@ private:
 	std::vector<ByeCallback*> _byeHandlers;
 
 	mutable std::mutex _mutex;
+
+
+	std::unique_ptr<Impl::DPWSDiscoveryClientSocketImpl> _impl;
 };
 
 } /* namespace DPWS */

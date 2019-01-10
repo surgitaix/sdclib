@@ -57,11 +57,15 @@ int main()
 	sdcProvider.setMdDescription(mdDescription);
 	sdcProvider.startup();
 
-	LocationContextDescriptor locationContextDesc(LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
-	systemContextDesc.setLocationContext(locationContextDesc);
+	try {
+		LocationContextDescriptor locationContextDesc(LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
+		systemContextDesc.setLocationContext(locationContextDesc);
+	}
+	catch(...) {
+		std::cout << "Test passed";
+		return 0;
+	}
 
-
-	// Shutdown
-	DebugOut(DebugOut::Default, "TestProvider") << "Shutdown." << std::endl;
+	std::cout << "Test failed";
 
 }

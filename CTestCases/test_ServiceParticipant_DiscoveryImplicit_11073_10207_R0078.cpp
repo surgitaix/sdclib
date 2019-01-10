@@ -58,29 +58,15 @@ int main() {
 
 	//Sample Provider startup. Exchange for your provider under test.
 	TestTools::TestProvider provider;
+	provider.setPort(6464);
 	provider.startup();
 	provider.start();
 
 	SDCLibrary::getInstance().setPortStart(12000);
 
-	//Handler of SDCConsumer to disconnect on connection loss
-    class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
-    public:
-    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
-    	}
-    	void onConnectionLost() override {
-    		std::cerr << "Connection lost, disconnecting... ";
-    		consumer.disconnect();
-    		std::cerr << "disconnected." << std::endl;
-    	}
-    private:
-    	Data::SDC::SDCConsumer & consumer;
-    };
-
-
 	OSELib::SDC::ServiceManager oscpsm;
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
-	config.setPort(6463);
+	config.setPort(6465);
 
 	// Discovery
 	auto consumers(oscpsm.discoverOSCP());
@@ -93,8 +79,6 @@ int main() {
 	try {
 		if (c != nullptr) {
 			Data::SDC::SDCConsumer & consumer = *c;
-			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
-			consumer.setConnectionLostHandler(myHandler.get());
 			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Discovery succeeded." << std::endl;
 			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test passed" << std::endl;
 

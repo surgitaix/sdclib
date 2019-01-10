@@ -124,6 +124,9 @@ public:
 	TestProvider();
 	virtual ~TestProvider();
 
+	void setPort(int port);
+	void setEndPointReference(std::string endpointRef);
+
 	void startup();
 	void shutdown();
 

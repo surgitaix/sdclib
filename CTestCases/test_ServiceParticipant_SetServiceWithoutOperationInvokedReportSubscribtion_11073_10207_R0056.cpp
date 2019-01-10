@@ -73,27 +73,15 @@ int main() {
 	SDCLibrary::getInstance().setIP4enabled(true);
 
 	TestTools::TestProvider provider;
+	provider.setPort(6468);
 	provider.startup();
 	provider.start();
-
-	class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
-	public:
-	 	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
-	  	}
-	  	void onConnectionLost() override {
-	   		std::cerr << "Connection lost, disconnecting... ";
-	 		consumer.disconnect();
-	   		std::cerr << "disconnected." << std::endl;
-	   	}
-	private:
-	   	Data::SDC::SDCConsumer & consumer;
-	};
 
 	//Discovery
 	OSELib::SDC::ServiceManager oscpsm;
 	// binding to a custom port
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
-	config.setPort(6467);
+	config.setPort(6469);
 
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, config));
 
@@ -102,8 +90,6 @@ int main() {
 
 	if (c != nullptr) {
 		Data::SDC::SDCConsumer & consumer = *c;
-		std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
-		consumer.setConnectionLostHandler(myHandler.get());
 
 		SettableConsumerNumericMetricStateHandler settableNumicMetricStateHandler(HANDLE_SET_NUMERICMETRIC);
 

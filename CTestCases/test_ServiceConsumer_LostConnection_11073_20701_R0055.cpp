@@ -43,6 +43,7 @@ int main()
 
 	//Sample Provider.
 	TestTools::TestProvider provider;
+	provider.setPort(6460);
 	provider.startup();
 	provider.start();
 

@@ -54,7 +54,7 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SDCProvider FINAL_CLASS : public OSELib::WithLogger {
+class SDCProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
 
     // todo: kick after provider state handler refactoring
@@ -305,9 +305,6 @@ protected:
     void notifyOperationInvoked(const OperationInvocationContext & oic, Data::SDC::InvocationState is);
 
 
-PROTECTED_MEMBER:
-	std::unique_ptr<SDCProviderAdapter> _adapter;
-
 
 private:
     void firePeriodicReportImpl(const std::vector<std::string> & handles);
@@ -389,6 +386,9 @@ private:
 
     // saving device's metadata
     Dev::DeviceCharacteristics _deviceCharacteristics;
+
+	std::unique_ptr<SDCProviderAdapter> _adapter;
+
 
 //    std::map<std::string, int> streamingPorts;
 
