@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -48,11 +48,11 @@ namespace SDC {
 
 EnumStringMetricDescriptor::EnumStringMetricDescriptor(
 		Handle handle
-		, 
+		,
 		CodedValue unit
-		, 
+		,
 		MetricCategory metriccategory
-		, 
+		,
 		MetricAvailability metricavailability
 ) : data(Defaults::EnumStringMetricDescriptorInit(
 		handle
@@ -106,11 +106,11 @@ bool EnumStringMetricDescriptor::getType(CodedValue & out) const {
 CodedValue EnumStringMetricDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool EnumStringMetricDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -120,7 +120,7 @@ EnumStringMetricDescriptor & EnumStringMetricDescriptor::setHandle(const Handle 
 Handle EnumStringMetricDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -137,11 +137,11 @@ bool EnumStringMetricDescriptor::getDescriptorVersion(VersionCounter & out) cons
 VersionCounter EnumStringMetricDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool EnumStringMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -158,11 +158,11 @@ bool EnumStringMetricDescriptor::getSafetyClassification(SafetyClassification & 
 SafetyClassification EnumStringMetricDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool EnumStringMetricDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;
@@ -172,7 +172,7 @@ EnumStringMetricDescriptor & EnumStringMetricDescriptor::setUnit(const CodedValu
 CodedValue EnumStringMetricDescriptor::getUnit() const {
 	return ConvertFromCDM::convert(data->Unit());
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMetricCategory(const MetricCategory & value) {
 	data->MetricCategory(ConvertToCDM::convert(value));
 	return *this;
@@ -182,7 +182,7 @@ EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMetricCategory(const
 MetricCategory EnumStringMetricDescriptor::getMetricCategory() const {
 	return ConvertFromCDM::convert(data->MetricCategory());
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setDerivationMethod(const DerivationMethod & value) {
 	data->DerivationMethod(ConvertToCDM::convert(value));
 	return *this;
@@ -199,11 +199,11 @@ bool EnumStringMetricDescriptor::getDerivationMethod(DerivationMethod & out) con
 DerivationMethod EnumStringMetricDescriptor::getDerivationMethod() const {
 	return ConvertFromCDM::convert(data->DerivationMethod().get());
 }
-	
+
 bool EnumStringMetricDescriptor::hasDerivationMethod() const {
 	return data->DerivationMethod().present();
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
 	data->MetricAvailability(ConvertToCDM::convert(value));
 	return *this;
@@ -213,7 +213,7 @@ EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMetricAvailability(c
 MetricAvailability EnumStringMetricDescriptor::getMetricAvailability() const {
 	return ConvertFromCDM::convert(data->MetricAvailability());
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
 	data->MaxMeasurementTime(ConvertToCDM::convert(value));
 	return *this;
@@ -230,11 +230,11 @@ bool EnumStringMetricDescriptor::getMaxMeasurementTime(xml_schema::Duration & ou
 xml_schema::Duration EnumStringMetricDescriptor::getMaxMeasurementTime() const {
 	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 }
-	
+
 bool EnumStringMetricDescriptor::hasMaxMeasurementTime() const {
 	return data->MaxMeasurementTime().present();
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
@@ -251,11 +251,11 @@ bool EnumStringMetricDescriptor::getMaxDelayTime(xml_schema::Duration & out) con
 xml_schema::Duration EnumStringMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
-	
+
 bool EnumStringMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
 	data->DeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -272,11 +272,11 @@ bool EnumStringMetricDescriptor::getDeterminationPeriod(xml_schema::Duration & o
 xml_schema::Duration EnumStringMetricDescriptor::getDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
 }
-	
+
 bool EnumStringMetricDescriptor::hasDeterminationPeriod() const {
 	return data->DeterminationPeriod().present();
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -293,11 +293,11 @@ bool EnumStringMetricDescriptor::getLifeTimePeriod(xml_schema::Duration & out) c
 xml_schema::Duration EnumStringMetricDescriptor::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
-	
+
 bool EnumStringMetricDescriptor::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::setActivationDuration(const xml_schema::Duration & value) {
 	data->ActivationDuration(ConvertToCDM::convert(value));
 	return *this;
@@ -314,11 +314,11 @@ bool EnumStringMetricDescriptor::getActivationDuration(xml_schema::Duration & ou
 xml_schema::Duration EnumStringMetricDescriptor::getActivationDuration() const {
 	return ConvertFromCDM::convert(data->ActivationDuration().get());
 }
-	
+
 bool EnumStringMetricDescriptor::hasActivationDuration() const {
 	return data->ActivationDuration().present();
 }
-	
+
 EnumStringMetricDescriptor & EnumStringMetricDescriptor::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;

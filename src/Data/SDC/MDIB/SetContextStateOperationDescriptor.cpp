@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,7 +45,7 @@ namespace SDC {
 
 SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(
 		Handle handle
-		, 
+		,
 		HandleRef operationtarget
 ) : data(Defaults::SetContextStateOperationDescriptorInit(
 		handle
@@ -95,11 +95,11 @@ bool SetContextStateOperationDescriptor::getType(CodedValue & out) const {
 CodedValue SetContextStateOperationDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool SetContextStateOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -109,7 +109,7 @@ SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setHand
 Handle SetContextStateOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -126,11 +126,11 @@ bool SetContextStateOperationDescriptor::getDescriptorVersion(VersionCounter & o
 VersionCounter SetContextStateOperationDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetContextStateOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -147,11 +147,11 @@ bool SetContextStateOperationDescriptor::getSafetyClassification(SafetyClassific
 SafetyClassification SetContextStateOperationDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool SetContextStateOperationDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setOperationTarget(const HandleRef & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
@@ -161,7 +161,7 @@ SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setOper
 HandleRef SetContextStateOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
-	
+
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setMaxTimeToFinish(const xml_schema::Duration & value) {
 	data->MaxTimeToFinish(ConvertToCDM::convert(value));
 	return *this;
@@ -178,11 +178,11 @@ bool SetContextStateOperationDescriptor::getMaxTimeToFinish(xml_schema::Duration
 xml_schema::Duration SetContextStateOperationDescriptor::getMaxTimeToFinish() const {
 	return ConvertFromCDM::convert(data->MaxTimeToFinish().get());
 }
-	
+
 bool SetContextStateOperationDescriptor::hasMaxTimeToFinish() const {
 	return data->MaxTimeToFinish().present();
 }
-	
+
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setInvocationEffectiveTimeout(const xml_schema::Duration & value) {
 	data->InvocationEffectiveTimeout(ConvertToCDM::convert(value));
 	return *this;
@@ -199,17 +199,17 @@ bool SetContextStateOperationDescriptor::getInvocationEffectiveTimeout(xml_schem
 xml_schema::Duration SetContextStateOperationDescriptor::getInvocationEffectiveTimeout() const {
 	return ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
 }
-	
+
 bool SetContextStateOperationDescriptor::hasInvocationEffectiveTimeout() const {
 	return data->InvocationEffectiveTimeout().present();
 }
-	
-SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setRetriggerable(const xml_schema::Duration & value) {
+
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setRetriggerable(const bool & value) {
 	data->Retriggerable(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetContextStateOperationDescriptor::getRetriggerable(xml_schema::Duration & out) const {
+bool SetContextStateOperationDescriptor::getRetriggerable(bool & out) const {
 	if (data->Retriggerable().present()) {
 		out = ConvertFromCDM::convert(data->Retriggerable().get());
 		return true;
@@ -217,14 +217,14 @@ bool SetContextStateOperationDescriptor::getRetriggerable(xml_schema::Duration &
 	return false;
 }
 
-xml_schema::Duration SetContextStateOperationDescriptor::getRetriggerable() const {
+bool SetContextStateOperationDescriptor::getRetriggerable() const {
 	return ConvertFromCDM::convert(data->Retriggerable().get());
 }
-	
+
 bool SetContextStateOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
-	
+
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
 	data->AccessLevel(ConvertToCDM::convert(value));
 	return *this;
@@ -241,11 +241,11 @@ bool SetContextStateOperationDescriptor::getAccessLevel(AccessLevel & out) const
 AccessLevel SetContextStateOperationDescriptor::getAccessLevel() const {
 	return ConvertFromCDM::convert(data->AccessLevel().get());
 }
-	
+
 bool SetContextStateOperationDescriptor::hasAccessLevel() const {
 	return data->AccessLevel().present();
 }
-	
+
 SetContextStateOperationDescriptor & SetContextStateOperationDescriptor::addModifiableData(const std::string & value) {
 	data->ModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;

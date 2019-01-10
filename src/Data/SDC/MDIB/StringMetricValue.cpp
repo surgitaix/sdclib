@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -85,7 +85,7 @@ StringMetricValue & StringMetricValue::setMetricQuality(const MetricQuality & va
 MetricQuality StringMetricValue::getMetricQuality() const {
 	return ConvertFromCDM::convert(data->MetricQuality());
 }
-	
+
 StringMetricValue & StringMetricValue::setStartTime(const Timestamp & value) {
 	data->StartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -102,11 +102,11 @@ bool StringMetricValue::getStartTime(Timestamp & out) const {
 Timestamp StringMetricValue::getStartTime() const {
 	return ConvertFromCDM::convert(data->StartTime().get());
 }
-	
+
 bool StringMetricValue::hasStartTime() const {
 	return data->StartTime().present();
 }
-	
+
 StringMetricValue & StringMetricValue::setStopTime(const Timestamp & value) {
 	data->StopTime(ConvertToCDM::convert(value));
 	return *this;
@@ -123,11 +123,11 @@ bool StringMetricValue::getStopTime(Timestamp & out) const {
 Timestamp StringMetricValue::getStopTime() const {
 	return ConvertFromCDM::convert(data->StopTime().get());
 }
-	
+
 bool StringMetricValue::hasStopTime() const {
 	return data->StopTime().present();
 }
-	
+
 StringMetricValue & StringMetricValue::setDeterminationTime(const Timestamp & value) {
 	data->DeterminationTime(ConvertToCDM::convert(value));
 	return *this;
@@ -144,11 +144,11 @@ bool StringMetricValue::getDeterminationTime(Timestamp & out) const {
 Timestamp StringMetricValue::getDeterminationTime() const {
 	return ConvertFromCDM::convert(data->DeterminationTime().get());
 }
-	
+
 bool StringMetricValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
-	
+
 StringMetricValue & StringMetricValue::addAnnotation(const Annotation & value) {
 	data->Annotation().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -183,11 +183,11 @@ bool StringMetricValue::getValue(std::string & out) const {
 std::string StringMetricValue::getValue() const {
 	return ConvertFromCDM::convert(data->Value().get());
 }
-	
+
 bool StringMetricValue::hasValue() const {
 	return data->Value().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

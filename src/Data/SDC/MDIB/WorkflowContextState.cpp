@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -47,7 +47,7 @@ namespace SDC {
 
 WorkflowContextState::WorkflowContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
 ) : data(Defaults::WorkflowContextStateInit(
 		descriptorhandle
@@ -97,11 +97,11 @@ bool WorkflowContextState::getStateVersion(VersionCounter & out) const {
 VersionCounter WorkflowContextState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool WorkflowContextState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 WorkflowContextState & WorkflowContextState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -111,7 +111,7 @@ WorkflowContextState & WorkflowContextState::setDescriptorHandle(const HandleRef
 HandleRef WorkflowContextState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 WorkflowContextState & WorkflowContextState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -128,11 +128,11 @@ bool WorkflowContextState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion WorkflowContextState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool WorkflowContextState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 WorkflowContextState & WorkflowContextState::setCategory(const CodedValue & value) {
 	data->Category(ConvertToCDM::convert(value));
 	return *this;
@@ -149,11 +149,11 @@ bool WorkflowContextState::getCategory(CodedValue & out) const {
 CodedValue WorkflowContextState::getCategory() const {
 	return ConvertFromCDM::convert(data->Category().get());
 }
-	
+
 bool WorkflowContextState::hasCategory() const {
 	return data->Category().present();
 }
-	
+
 WorkflowContextState & WorkflowContextState::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -163,7 +163,7 @@ WorkflowContextState & WorkflowContextState::setHandle(const Handle & value) {
 Handle WorkflowContextState::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 WorkflowContextState & WorkflowContextState::setContextAssociation(const ContextAssociation & value) {
 	data->ContextAssociation(ConvertToCDM::convert(value));
 	return *this;
@@ -180,11 +180,11 @@ bool WorkflowContextState::getContextAssociation(ContextAssociation & out) const
 ContextAssociation WorkflowContextState::getContextAssociation() const {
 	return ConvertFromCDM::convert(data->ContextAssociation().get());
 }
-	
+
 bool WorkflowContextState::hasContextAssociation() const {
 	return data->ContextAssociation().present();
 }
-	
+
 WorkflowContextState & WorkflowContextState::setBindingMdibVersion(const ReferencedVersion & value) {
 	data->BindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -201,11 +201,11 @@ bool WorkflowContextState::getBindingMdibVersion(ReferencedVersion & out) const 
 ReferencedVersion WorkflowContextState::getBindingMdibVersion() const {
 	return ConvertFromCDM::convert(data->BindingMdibVersion().get());
 }
-	
+
 bool WorkflowContextState::hasBindingMdibVersion() const {
 	return data->BindingMdibVersion().present();
 }
-	
+
 WorkflowContextState & WorkflowContextState::setUnbindingMdibVersion(const ReferencedVersion & value) {
 	data->UnbindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -222,11 +222,11 @@ bool WorkflowContextState::getUnbindingMdibVersion(ReferencedVersion & out) cons
 ReferencedVersion WorkflowContextState::getUnbindingMdibVersion() const {
 	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
 }
-	
+
 bool WorkflowContextState::hasUnbindingMdibVersion() const {
 	return data->UnbindingMdibVersion().present();
 }
-	
+
 WorkflowContextState & WorkflowContextState::setBindingStartTime(const Timestamp & value) {
 	data->BindingStartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -243,11 +243,11 @@ bool WorkflowContextState::getBindingStartTime(Timestamp & out) const {
 Timestamp WorkflowContextState::getBindingStartTime() const {
 	return ConvertFromCDM::convert(data->BindingStartTime().get());
 }
-	
+
 bool WorkflowContextState::hasBindingStartTime() const {
 	return data->BindingStartTime().present();
 }
-	
+
 WorkflowContextState & WorkflowContextState::setBindingEndTime(const Timestamp & value) {
 	data->BindingEndTime(ConvertToCDM::convert(value));
 	return *this;
@@ -264,11 +264,11 @@ bool WorkflowContextState::getBindingEndTime(Timestamp & out) const {
 Timestamp WorkflowContextState::getBindingEndTime() const {
 	return ConvertFromCDM::convert(data->BindingEndTime().get());
 }
-	
+
 bool WorkflowContextState::hasBindingEndTime() const {
 	return data->BindingEndTime().present();
 }
-	
+
 WorkflowContextState & WorkflowContextState::addValidator(const InstanceIdentifier & value) {
 	data->Validator().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -321,11 +321,11 @@ bool WorkflowContextState::getWorkflowDetail(WorkflowDetail & out) const {
 WorkflowDetail WorkflowContextState::getWorkflowDetail() const {
 	return ConvertFromCDM::convert(data->WorkflowDetail().get());
 }
-	
+
 bool WorkflowContextState::hasWorkflowDetail() const {
 	return data->WorkflowDetail().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

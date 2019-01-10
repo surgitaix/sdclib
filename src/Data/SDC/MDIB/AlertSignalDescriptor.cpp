@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,9 +45,9 @@ namespace SDC {
 
 AlertSignalDescriptor::AlertSignalDescriptor(
 		Handle handle
-		, 
+		,
 		AlertSignalManifestation manifestation
-		, 
+		,
 		bool latching
 ) : data(Defaults::AlertSignalDescriptorInit(
 		handle
@@ -99,11 +99,11 @@ bool AlertSignalDescriptor::getType(CodedValue & out) const {
 CodedValue AlertSignalDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool AlertSignalDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -113,7 +113,7 @@ AlertSignalDescriptor & AlertSignalDescriptor::setHandle(const Handle & value) {
 Handle AlertSignalDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -130,11 +130,11 @@ bool AlertSignalDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter AlertSignalDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool AlertSignalDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -151,11 +151,11 @@ bool AlertSignalDescriptor::getSafetyClassification(SafetyClassification & out) 
 SafetyClassification AlertSignalDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool AlertSignalDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setConditionSignaled(const HandleRef & value) {
 	data->ConditionSignaled(ConvertToCDM::convert(value));
 	return *this;
@@ -172,11 +172,11 @@ bool AlertSignalDescriptor::getConditionSignaled(HandleRef & out) const {
 HandleRef AlertSignalDescriptor::getConditionSignaled() const {
 	return ConvertFromCDM::convert(data->ConditionSignaled().get());
 }
-	
+
 bool AlertSignalDescriptor::hasConditionSignaled() const {
 	return data->ConditionSignaled().present();
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setManifestation(const AlertSignalManifestation & value) {
 	data->Manifestation(ConvertToCDM::convert(value));
 	return *this;
@@ -186,7 +186,7 @@ AlertSignalDescriptor & AlertSignalDescriptor::setManifestation(const AlertSigna
 AlertSignalManifestation AlertSignalDescriptor::getManifestation() const {
 	return ConvertFromCDM::convert(data->Manifestation());
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setLatching(const bool & value) {
 	data->Latching(ConvertToCDM::convert(value));
 	return *this;
@@ -196,7 +196,7 @@ AlertSignalDescriptor & AlertSignalDescriptor::setLatching(const bool & value) {
 bool AlertSignalDescriptor::getLatching() const {
 	return ConvertFromCDM::convert(data->Latching());
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setDefaultSignalGenerationDelay(const xml_schema::Duration & value) {
 	data->DefaultSignalGenerationDelay(ConvertToCDM::convert(value));
 	return *this;
@@ -213,11 +213,11 @@ bool AlertSignalDescriptor::getDefaultSignalGenerationDelay(xml_schema::Duration
 xml_schema::Duration AlertSignalDescriptor::getDefaultSignalGenerationDelay() const {
 	return ConvertFromCDM::convert(data->DefaultSignalGenerationDelay().get());
 }
-	
+
 bool AlertSignalDescriptor::hasDefaultSignalGenerationDelay() const {
 	return data->DefaultSignalGenerationDelay().present();
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setMinSignalGenerationDelay(const xml_schema::Duration & value) {
 	data->MinSignalGenerationDelay(ConvertToCDM::convert(value));
 	return *this;
@@ -234,11 +234,11 @@ bool AlertSignalDescriptor::getMinSignalGenerationDelay(xml_schema::Duration & o
 xml_schema::Duration AlertSignalDescriptor::getMinSignalGenerationDelay() const {
 	return ConvertFromCDM::convert(data->MinSignalGenerationDelay().get());
 }
-	
+
 bool AlertSignalDescriptor::hasMinSignalGenerationDelay() const {
 	return data->MinSignalGenerationDelay().present();
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setMaxSignalGenerationDelay(const xml_schema::Duration & value) {
 	data->MaxSignalGenerationDelay(ConvertToCDM::convert(value));
 	return *this;
@@ -255,11 +255,11 @@ bool AlertSignalDescriptor::getMaxSignalGenerationDelay(xml_schema::Duration & o
 xml_schema::Duration AlertSignalDescriptor::getMaxSignalGenerationDelay() const {
 	return ConvertFromCDM::convert(data->MaxSignalGenerationDelay().get());
 }
-	
+
 bool AlertSignalDescriptor::hasMaxSignalGenerationDelay() const {
 	return data->MaxSignalGenerationDelay().present();
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setSignalDelegationSupported(const bool & value) {
 	data->SignalDelegationSupported(ConvertToCDM::convert(value));
 	return *this;
@@ -276,11 +276,11 @@ bool AlertSignalDescriptor::getSignalDelegationSupported(bool & out) const {
 bool AlertSignalDescriptor::getSignalDelegationSupported() const {
 	return ConvertFromCDM::convert(data->SignalDelegationSupported().get());
 }
-	
+
 bool AlertSignalDescriptor::hasSignalDelegationSupported() const {
 	return data->SignalDelegationSupported().present();
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setAcknowledgementSupported(const bool & value) {
 	data->AcknowledgementSupported(ConvertToCDM::convert(value));
 	return *this;
@@ -297,11 +297,11 @@ bool AlertSignalDescriptor::getAcknowledgementSupported(bool & out) const {
 bool AlertSignalDescriptor::getAcknowledgementSupported() const {
 	return ConvertFromCDM::convert(data->AcknowledgementSupported().get());
 }
-	
+
 bool AlertSignalDescriptor::hasAcknowledgementSupported() const {
 	return data->AcknowledgementSupported().present();
 }
-	
+
 AlertSignalDescriptor & AlertSignalDescriptor::setAcknowledgeTimeout(const xml_schema::Duration & value) {
 	data->AcknowledgeTimeout(ConvertToCDM::convert(value));
 	return *this;
@@ -318,11 +318,11 @@ bool AlertSignalDescriptor::getAcknowledgeTimeout(xml_schema::Duration & out) co
 xml_schema::Duration AlertSignalDescriptor::getAcknowledgeTimeout() const {
 	return ConvertFromCDM::convert(data->AcknowledgeTimeout().get());
 }
-	
+
 bool AlertSignalDescriptor::hasAcknowledgeTimeout() const {
 	return data->AcknowledgeTimeout().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

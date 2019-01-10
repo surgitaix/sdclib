@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -86,7 +86,7 @@ AllowedValue & AllowedValue::setValue(const std::string & value) {
 std::string AllowedValue::getValue() const {
 	return ConvertFromCDM::convert(data->Value());
 }
-	
+
 AllowedValue & AllowedValue::setType(const CodedValue & value) {
 	data->Type(ConvertToCDM::convert(value));
 	return *this;
@@ -103,11 +103,11 @@ bool AllowedValue::getType(CodedValue & out) const {
 CodedValue AllowedValue::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool AllowedValue::hasType() const {
 	return data->Type().present();
 }
-	
+
 AllowedValue & AllowedValue::setIdentification(const InstanceIdentifier & value) {
 	data->Identification(ConvertToCDM::convert(value));
 	return *this;
@@ -124,11 +124,11 @@ bool AllowedValue::getIdentification(InstanceIdentifier & out) const {
 InstanceIdentifier AllowedValue::getIdentification() const {
 	return ConvertFromCDM::convert(data->Identification().get());
 }
-	
+
 bool AllowedValue::hasIdentification() const {
 	return data->Identification().present();
 }
-	
+
 AllowedValue & AllowedValue::setCharacteristic(const Measurement & value) {
 	data->Characteristic(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool AllowedValue::getCharacteristic(Measurement & out) const {
 Measurement AllowedValue::getCharacteristic() const {
 	return ConvertFromCDM::convert(data->Characteristic().get());
 }
-	
+
 bool AllowedValue::hasCharacteristic() const {
 	return data->Characteristic().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	AlertSystemDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	AlertSystemDescriptor(){};
 public:
 	AlertSystemDescriptor(const AlertSystemDescriptor & object);
 	virtual ~AlertSystemDescriptor();
-    
+
     void copyFrom(const AlertSystemDescriptor & object);
     AlertSystemDescriptor & operator=(const AlertSystemDescriptor & object);
-    
+
     typedef CDM::AlertSystemDescriptor WrappedType;
 
 	AlertSystemDescriptor & setType(const CodedValue & value);
@@ -101,11 +101,11 @@ public:
 	AlertSystemDescriptor & addAlertCondition(const AlertConditionDescriptor & value);
 	std::vector<AlertConditionDescriptor> getAlertConditionList() const;
 	void clearAlertConditionList();
-	
+
 	AlertSystemDescriptor & addAlertSignal(const AlertSignalDescriptor & value);
 	std::vector<AlertSignalDescriptor> getAlertSignalList() const;
 	void clearAlertSignalList();
-	
+
 
 	AlertSystemDescriptor & addLimitAlertCondition(const LimitAlertConditionDescriptor & source);
 	std::vector<LimitAlertConditionDescriptor> getLimitAlertConditionList() const;

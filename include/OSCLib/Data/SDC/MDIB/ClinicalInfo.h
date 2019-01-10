@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	ClinicalInfo(
-	); 
+	);
 	ClinicalInfo(const ClinicalInfo & object);
 	virtual ~ClinicalInfo();
-    
+
     void copyFrom(const ClinicalInfo & object);
     ClinicalInfo & operator=(const ClinicalInfo & object);
-    
+
     typedef CDM::ClinicalInfo WrappedType;
 
 	ClinicalInfo & setType(const CodedValue & value);
@@ -79,11 +79,11 @@ public:
 	ClinicalInfo & addDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getDescriptionList() const;
 	void clearDescriptionList();
-	
+
 	ClinicalInfo & addRelatedMeasurement(const RelatedMeasurement & value);
 	std::vector<RelatedMeasurement> getRelatedMeasurementList() const;
 	void clearRelatedMeasurementList();
-	
+
 private:
 	std::shared_ptr<CDM::ClinicalInfo> data;
 };

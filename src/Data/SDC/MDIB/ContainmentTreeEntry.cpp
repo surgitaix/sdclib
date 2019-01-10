@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -89,11 +89,11 @@ bool ContainmentTreeEntry::getType(CodedValue & out) const {
 CodedValue ContainmentTreeEntry::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool ContainmentTreeEntry::hasType() const {
 	return data->Type().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

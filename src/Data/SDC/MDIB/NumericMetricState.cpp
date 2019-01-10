@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -94,11 +94,11 @@ bool NumericMetricState::getStateVersion(VersionCounter & out) const {
 VersionCounter NumericMetricState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool NumericMetricState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 NumericMetricState & NumericMetricState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -108,7 +108,7 @@ NumericMetricState & NumericMetricState::setDescriptorHandle(const HandleRef & v
 HandleRef NumericMetricState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 NumericMetricState & NumericMetricState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,11 +125,11 @@ bool NumericMetricState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion NumericMetricState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool NumericMetricState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 NumericMetricState & NumericMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
 	data->PhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
@@ -146,11 +146,11 @@ bool NumericMetricState::getPhysicalConnector(PhysicalConnectorInfo & out) const
 PhysicalConnectorInfo NumericMetricState::getPhysicalConnector() const {
 	return ConvertFromCDM::convert(data->PhysicalConnector().get());
 }
-	
+
 bool NumericMetricState::hasPhysicalConnector() const {
 	return data->PhysicalConnector().present();
 }
-	
+
 NumericMetricState & NumericMetricState::setActivationState(const ComponentActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -167,11 +167,11 @@ bool NumericMetricState::getActivationState(ComponentActivation & out) const {
 ComponentActivation NumericMetricState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState().get());
 }
-	
+
 bool NumericMetricState::hasActivationState() const {
 	return data->ActivationState().present();
 }
-	
+
 NumericMetricState & NumericMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
 	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -188,11 +188,11 @@ bool NumericMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out
 xml_schema::Duration NumericMetricState::getActiveDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
 }
-	
+
 bool NumericMetricState::hasActiveDeterminationPeriod() const {
 	return data->ActiveDeterminationPeriod().present();
 }
-	
+
 NumericMetricState & NumericMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -209,11 +209,11 @@ bool NumericMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
 xml_schema::Duration NumericMetricState::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
-	
+
 bool NumericMetricState::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
-	
+
 NumericMetricState & NumericMetricState::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -248,11 +248,11 @@ bool NumericMetricState::getMetricValue(NumericMetricValue & out) const {
 NumericMetricValue NumericMetricState::getMetricValue() const {
 	return ConvertFromCDM::convert(data->MetricValue().get());
 }
-	
+
 bool NumericMetricState::hasMetricValue() const {
 	return data->MetricValue().present();
 }
-	
+
 NumericMetricState & NumericMetricState::setActiveAveragingPeriod(const xml_schema::Duration & value) {
 	data->ActiveAveragingPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -269,11 +269,11 @@ bool NumericMetricState::getActiveAveragingPeriod(xml_schema::Duration & out) co
 xml_schema::Duration NumericMetricState::getActiveAveragingPeriod() const {
 	return ConvertFromCDM::convert(data->ActiveAveragingPeriod().get());
 }
-	
+
 bool NumericMetricState::hasActiveAveragingPeriod() const {
 	return data->ActiveAveragingPeriod().present();
 }
-	
+
 NumericMetricState & NumericMetricState::addPhysiologicalRange(const Range & value) {
 	data->PhysiologicalRange().push_back(ConvertToCDM::convert(value));
 	return *this;

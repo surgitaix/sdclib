@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -92,11 +92,11 @@ bool NeonatalPatientDemographicsCoreData::getGivenname(std::string & out) const 
 std::string NeonatalPatientDemographicsCoreData::getGivenname() const {
 	return ConvertFromCDM::convert(data->Givenname().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasGivenname() const {
 	return data->Givenname().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setFamilyname(const std::string & value) {
 	data->Familyname(ConvertToCDM::convert(value));
 	return *this;
@@ -113,11 +113,11 @@ bool NeonatalPatientDemographicsCoreData::getFamilyname(std::string & out) const
 std::string NeonatalPatientDemographicsCoreData::getFamilyname() const {
 	return ConvertFromCDM::convert(data->Familyname().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasFamilyname() const {
 	return data->Familyname().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setBirthname(const std::string & value) {
 	data->Birthname(ConvertToCDM::convert(value));
 	return *this;
@@ -134,11 +134,11 @@ bool NeonatalPatientDemographicsCoreData::getBirthname(std::string & out) const 
 std::string NeonatalPatientDemographicsCoreData::getBirthname() const {
 	return ConvertFromCDM::convert(data->Birthname().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasBirthname() const {
 	return data->Birthname().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setTitle(const std::string & value) {
 	data->Title(ConvertToCDM::convert(value));
 	return *this;
@@ -155,11 +155,11 @@ bool NeonatalPatientDemographicsCoreData::getTitle(std::string & out) const {
 std::string NeonatalPatientDemographicsCoreData::getTitle() const {
 	return ConvertFromCDM::convert(data->Title().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasTitle() const {
 	return data->Title().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::addMiddlename(const std::string & value) {
 	data->Middlename().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -194,11 +194,11 @@ bool NeonatalPatientDemographicsCoreData::getSex(Sex & out) const {
 Sex NeonatalPatientDemographicsCoreData::getSex() const {
 	return ConvertFromCDM::convert(data->Sex().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasSex() const {
 	return data->Sex().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setPatientType(const PatientType & value) {
 	data->PatientType(ConvertToCDM::convert(value));
 	return *this;
@@ -215,11 +215,11 @@ bool NeonatalPatientDemographicsCoreData::getPatientType(PatientType & out) cons
 PatientType NeonatalPatientDemographicsCoreData::getPatientType() const {
 	return ConvertFromCDM::convert(data->PatientType().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasPatientType() const {
 	return data->PatientType().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setDateOfBirth(const DateOfBirth & value) {
 	data->DateOfBirth(ConvertToCDM::convert(value));
 	return *this;
@@ -236,11 +236,11 @@ bool NeonatalPatientDemographicsCoreData::getDateOfBirth(DateOfBirth & out) cons
 DateOfBirth NeonatalPatientDemographicsCoreData::getDateOfBirth() const {
 	return ConvertFromCDM::convert(data->DateOfBirth().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasDateOfBirth() const {
 	return data->DateOfBirth().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setHeight(const Measurement & value) {
 	data->Height(ConvertToCDM::convert(value));
 	return *this;
@@ -257,11 +257,11 @@ bool NeonatalPatientDemographicsCoreData::getHeight(Measurement & out) const {
 Measurement NeonatalPatientDemographicsCoreData::getHeight() const {
 	return ConvertFromCDM::convert(data->Height().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasHeight() const {
 	return data->Height().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setWeight(const Measurement & value) {
 	data->Weight(ConvertToCDM::convert(value));
 	return *this;
@@ -278,11 +278,11 @@ bool NeonatalPatientDemographicsCoreData::getWeight(Measurement & out) const {
 Measurement NeonatalPatientDemographicsCoreData::getWeight() const {
 	return ConvertFromCDM::convert(data->Weight().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasWeight() const {
 	return data->Weight().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setRace(const CodedValue & value) {
 	data->Race(ConvertToCDM::convert(value));
 	return *this;
@@ -299,11 +299,11 @@ bool NeonatalPatientDemographicsCoreData::getRace(CodedValue & out) const {
 CodedValue NeonatalPatientDemographicsCoreData::getRace() const {
 	return ConvertFromCDM::convert(data->Race().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasRace() const {
 	return data->Race().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setGestationalAge(const Measurement & value) {
 	data->GestationalAge(ConvertToCDM::convert(value));
 	return *this;
@@ -320,11 +320,11 @@ bool NeonatalPatientDemographicsCoreData::getGestationalAge(Measurement & out) c
 Measurement NeonatalPatientDemographicsCoreData::getGestationalAge() const {
 	return ConvertFromCDM::convert(data->GestationalAge().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasGestationalAge() const {
 	return data->GestationalAge().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setBirthLength(const Measurement & value) {
 	data->BirthLength(ConvertToCDM::convert(value));
 	return *this;
@@ -341,11 +341,11 @@ bool NeonatalPatientDemographicsCoreData::getBirthLength(Measurement & out) cons
 Measurement NeonatalPatientDemographicsCoreData::getBirthLength() const {
 	return ConvertFromCDM::convert(data->BirthLength().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasBirthLength() const {
 	return data->BirthLength().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setBirthWeight(const Measurement & value) {
 	data->BirthWeight(ConvertToCDM::convert(value));
 	return *this;
@@ -362,11 +362,11 @@ bool NeonatalPatientDemographicsCoreData::getBirthWeight(Measurement & out) cons
 Measurement NeonatalPatientDemographicsCoreData::getBirthWeight() const {
 	return ConvertFromCDM::convert(data->BirthWeight().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasBirthWeight() const {
 	return data->BirthWeight().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setHeadCircumference(const Measurement & value) {
 	data->HeadCircumference(ConvertToCDM::convert(value));
 	return *this;
@@ -383,11 +383,11 @@ bool NeonatalPatientDemographicsCoreData::getHeadCircumference(Measurement & out
 Measurement NeonatalPatientDemographicsCoreData::getHeadCircumference() const {
 	return ConvertFromCDM::convert(data->HeadCircumference().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasHeadCircumference() const {
 	return data->HeadCircumference().present();
 }
-	
+
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setMother(const PersonReference & value) {
 	data->Mother(ConvertToCDM::convert(value));
 	return *this;
@@ -404,11 +404,11 @@ bool NeonatalPatientDemographicsCoreData::getMother(PersonReference & out) const
 PersonReference NeonatalPatientDemographicsCoreData::getMother() const {
 	return ConvertFromCDM::convert(data->Mother().get());
 }
-	
+
 bool NeonatalPatientDemographicsCoreData::hasMother() const {
 	return data->Mother().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

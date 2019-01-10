@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -46,7 +46,7 @@ namespace SDC {
 
 MeansContextState::MeansContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
 ) : data(Defaults::MeansContextStateInit(
 		descriptorhandle
@@ -96,11 +96,11 @@ bool MeansContextState::getStateVersion(VersionCounter & out) const {
 VersionCounter MeansContextState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool MeansContextState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 MeansContextState & MeansContextState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -110,7 +110,7 @@ MeansContextState & MeansContextState::setDescriptorHandle(const HandleRef & val
 HandleRef MeansContextState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 MeansContextState & MeansContextState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -127,11 +127,11 @@ bool MeansContextState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion MeansContextState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool MeansContextState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 MeansContextState & MeansContextState::setCategory(const CodedValue & value) {
 	data->Category(ConvertToCDM::convert(value));
 	return *this;
@@ -148,11 +148,11 @@ bool MeansContextState::getCategory(CodedValue & out) const {
 CodedValue MeansContextState::getCategory() const {
 	return ConvertFromCDM::convert(data->Category().get());
 }
-	
+
 bool MeansContextState::hasCategory() const {
 	return data->Category().present();
 }
-	
+
 MeansContextState & MeansContextState::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -162,7 +162,7 @@ MeansContextState & MeansContextState::setHandle(const Handle & value) {
 Handle MeansContextState::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 MeansContextState & MeansContextState::setContextAssociation(const ContextAssociation & value) {
 	data->ContextAssociation(ConvertToCDM::convert(value));
 	return *this;
@@ -179,11 +179,11 @@ bool MeansContextState::getContextAssociation(ContextAssociation & out) const {
 ContextAssociation MeansContextState::getContextAssociation() const {
 	return ConvertFromCDM::convert(data->ContextAssociation().get());
 }
-	
+
 bool MeansContextState::hasContextAssociation() const {
 	return data->ContextAssociation().present();
 }
-	
+
 MeansContextState & MeansContextState::setBindingMdibVersion(const ReferencedVersion & value) {
 	data->BindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -200,11 +200,11 @@ bool MeansContextState::getBindingMdibVersion(ReferencedVersion & out) const {
 ReferencedVersion MeansContextState::getBindingMdibVersion() const {
 	return ConvertFromCDM::convert(data->BindingMdibVersion().get());
 }
-	
+
 bool MeansContextState::hasBindingMdibVersion() const {
 	return data->BindingMdibVersion().present();
 }
-	
+
 MeansContextState & MeansContextState::setUnbindingMdibVersion(const ReferencedVersion & value) {
 	data->UnbindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -221,11 +221,11 @@ bool MeansContextState::getUnbindingMdibVersion(ReferencedVersion & out) const {
 ReferencedVersion MeansContextState::getUnbindingMdibVersion() const {
 	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
 }
-	
+
 bool MeansContextState::hasUnbindingMdibVersion() const {
 	return data->UnbindingMdibVersion().present();
 }
-	
+
 MeansContextState & MeansContextState::setBindingStartTime(const Timestamp & value) {
 	data->BindingStartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -242,11 +242,11 @@ bool MeansContextState::getBindingStartTime(Timestamp & out) const {
 Timestamp MeansContextState::getBindingStartTime() const {
 	return ConvertFromCDM::convert(data->BindingStartTime().get());
 }
-	
+
 bool MeansContextState::hasBindingStartTime() const {
 	return data->BindingStartTime().present();
 }
-	
+
 MeansContextState & MeansContextState::setBindingEndTime(const Timestamp & value) {
 	data->BindingEndTime(ConvertToCDM::convert(value));
 	return *this;
@@ -263,11 +263,11 @@ bool MeansContextState::getBindingEndTime(Timestamp & out) const {
 Timestamp MeansContextState::getBindingEndTime() const {
 	return ConvertFromCDM::convert(data->BindingEndTime().get());
 }
-	
+
 bool MeansContextState::hasBindingEndTime() const {
 	return data->BindingEndTime().present();
 }
-	
+
 MeansContextState & MeansContextState::addValidator(const InstanceIdentifier & value) {
 	data->Validator().push_back(ConvertToCDM::convert(value));
 	return *this;

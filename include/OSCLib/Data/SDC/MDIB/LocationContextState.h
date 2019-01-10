@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	LocationContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
-	); 
+	);
 private:
 	LocationContextState(){};
 public:
 	LocationContextState(const LocationContextState & object);
 	virtual ~LocationContextState();
-    
+
     void copyFrom(const LocationContextState & object);
     LocationContextState & operator=(const LocationContextState & object);
-    
+
     typedef CDM::LocationContextState WrappedType;
     typedef LocationContextDescriptor DescriptorType;
 
@@ -117,11 +117,11 @@ public:
 	LocationContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidatorList() const;
 	void clearValidatorList();
-	
+
 	LocationContextState & addIdentification(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
-	
+
 	LocationContextState & setLocationDetail(const LocationDetail & value);
 	LocationDetail getLocationDetail() const;
 	bool getLocationDetail(LocationDetail & out) const;

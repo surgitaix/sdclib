@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,26 +53,26 @@ private:
 public:
 	RealTimeSampleArrayMetricDescriptor(
 		Handle handle
-		, 
+		,
 		CodedValue unit
-		, 
+		,
 		MetricCategory metriccategory
-		, 
+		,
 		MetricAvailability metricavailability
-		, 
+		,
 		double resolution
-		, 
+		,
 		xml_schema::Duration sampleperiod
-	); 
+	);
 private:
 	RealTimeSampleArrayMetricDescriptor(){};
 public:
 	RealTimeSampleArrayMetricDescriptor(const RealTimeSampleArrayMetricDescriptor & object);
 	virtual ~RealTimeSampleArrayMetricDescriptor();
-    
+
     void copyFrom(const RealTimeSampleArrayMetricDescriptor & object);
     RealTimeSampleArrayMetricDescriptor & operator=(const RealTimeSampleArrayMetricDescriptor & object);
-    
+
     typedef CDM::RealTimeSampleArrayMetricDescriptor WrappedType;
     typedef RealTimeSampleArrayMetricState StateType;
 
@@ -136,11 +136,11 @@ public:
 	RealTimeSampleArrayMetricDescriptor & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
+
 	RealTimeSampleArrayMetricDescriptor & addRelation(const Relation & value);
 	std::vector<Relation> getRelationList() const;
 	void clearRelationList();
-	
+
 	RealTimeSampleArrayMetricDescriptor & setResolution(const double & value);
 	double getResolution() const;
 
@@ -150,7 +150,7 @@ public:
 	RealTimeSampleArrayMetricDescriptor & addTechnicalRange(const Range & value);
 	std::vector<Range> getTechnicalRangeList() const;
 	void clearTechnicalRangeList();
-	
+
 private:
 	std::shared_ptr<CDM::RealTimeSampleArrayMetricDescriptor> data;
 };

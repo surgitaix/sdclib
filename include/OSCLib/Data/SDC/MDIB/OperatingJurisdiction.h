@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	OperatingJurisdiction(
-	); 
+	);
 	OperatingJurisdiction(const OperatingJurisdiction & object);
 	virtual ~OperatingJurisdiction();
-    
+
     void copyFrom(const OperatingJurisdiction & object);
     OperatingJurisdiction & operator=(const OperatingJurisdiction & object);
-    
+
     typedef CDM::OperatingJurisdiction WrappedType;
 
 	OperatingJurisdiction & setType(const CodedValue & value);
@@ -79,7 +79,7 @@ public:
 	OperatingJurisdiction & addIdentifierName(const LocalizedText & value);
 	std::vector<LocalizedText> getIdentifierNameList() const;
 	void clearIdentifierNameList();
-	
+
 private:
 	std::shared_ptr<CDM::OperatingJurisdiction> data;
 };

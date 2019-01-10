@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -46,11 +46,11 @@ namespace SDC {
 
 ImagingProcedure::ImagingProcedure(
 		InstanceIdentifier accessionidentifier
-		, 
+		,
 		InstanceIdentifier requestedprocedureid
-		, 
+		,
 		InstanceIdentifier studyinstanceuid
-		, 
+		,
 		InstanceIdentifier scheduledprocedurestepid
 ) : data(Defaults::ImagingProcedureInit(
 		accessionidentifier
@@ -97,7 +97,7 @@ ImagingProcedure & ImagingProcedure::setAccessionIdentifier(const InstanceIdenti
 InstanceIdentifier ImagingProcedure::getAccessionIdentifier() const {
 	return ConvertFromCDM::convert(data->AccessionIdentifier());
 }
-	
+
 ImagingProcedure & ImagingProcedure::setRequestedProcedureId(const InstanceIdentifier & value) {
 	data->RequestedProcedureId(ConvertToCDM::convert(value));
 	return *this;
@@ -107,7 +107,7 @@ ImagingProcedure & ImagingProcedure::setRequestedProcedureId(const InstanceIdent
 InstanceIdentifier ImagingProcedure::getRequestedProcedureId() const {
 	return ConvertFromCDM::convert(data->RequestedProcedureId());
 }
-	
+
 ImagingProcedure & ImagingProcedure::setStudyInstanceUid(const InstanceIdentifier & value) {
 	data->StudyInstanceUid(ConvertToCDM::convert(value));
 	return *this;
@@ -117,7 +117,7 @@ ImagingProcedure & ImagingProcedure::setStudyInstanceUid(const InstanceIdentifie
 InstanceIdentifier ImagingProcedure::getStudyInstanceUid() const {
 	return ConvertFromCDM::convert(data->StudyInstanceUid());
 }
-	
+
 ImagingProcedure & ImagingProcedure::setScheduledProcedureStepId(const InstanceIdentifier & value) {
 	data->ScheduledProcedureStepId(ConvertToCDM::convert(value));
 	return *this;
@@ -127,7 +127,7 @@ ImagingProcedure & ImagingProcedure::setScheduledProcedureStepId(const InstanceI
 InstanceIdentifier ImagingProcedure::getScheduledProcedureStepId() const {
 	return ConvertFromCDM::convert(data->ScheduledProcedureStepId());
 }
-	
+
 ImagingProcedure & ImagingProcedure::setModality(const CodedValue & value) {
 	data->Modality(ConvertToCDM::convert(value));
 	return *this;
@@ -144,11 +144,11 @@ bool ImagingProcedure::getModality(CodedValue & out) const {
 CodedValue ImagingProcedure::getModality() const {
 	return ConvertFromCDM::convert(data->Modality().get());
 }
-	
+
 bool ImagingProcedure::hasModality() const {
 	return data->Modality().present();
 }
-	
+
 ImagingProcedure & ImagingProcedure::setProtocolCode(const CodedValue & value) {
 	data->ProtocolCode(ConvertToCDM::convert(value));
 	return *this;
@@ -165,11 +165,11 @@ bool ImagingProcedure::getProtocolCode(CodedValue & out) const {
 CodedValue ImagingProcedure::getProtocolCode() const {
 	return ConvertFromCDM::convert(data->ProtocolCode().get());
 }
-	
+
 bool ImagingProcedure::hasProtocolCode() const {
 	return data->ProtocolCode().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

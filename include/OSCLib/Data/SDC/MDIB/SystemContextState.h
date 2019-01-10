@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	SystemContextState(
 		HandleRef descriptorhandle
-	); 
+	);
 private:
 	SystemContextState(){};
 public:
 	SystemContextState(const SystemContextState & object);
 	virtual ~SystemContextState();
-    
+
     void copyFrom(const SystemContextState & object);
     SystemContextState & operator=(const SystemContextState & object);
-    
+
     typedef CDM::SystemContextState WrappedType;
 
 	SystemContextState & setStateVersion(const VersionCounter & value);
@@ -77,6 +77,36 @@ public:
 	ReferencedVersion getDescriptorVersion() const;
 	bool getDescriptorVersion(ReferencedVersion & out) const;
 	bool hasDescriptorVersion() const;
+
+	SystemContextState & setCalibrationInfo(const CalibrationInfo & value);
+	CalibrationInfo getCalibrationInfo() const;
+	bool getCalibrationInfo(CalibrationInfo & out) const;
+	bool hasCalibrationInfo() const;
+
+	SystemContextState & setNextCalibration(const CalibrationInfo & value);
+	CalibrationInfo getNextCalibration() const;
+	bool getNextCalibration(CalibrationInfo & out) const;
+	bool hasNextCalibration() const;
+
+	SystemContextState & setPhysicalConnector(const PhysicalConnectorInfo & value);
+	PhysicalConnectorInfo getPhysicalConnector() const;
+	bool getPhysicalConnector(PhysicalConnectorInfo & out) const;
+	bool hasPhysicalConnector() const;
+
+	SystemContextState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
+
+	SystemContextState & setOperatingHours(const unsigned int & value);
+	unsigned int getOperatingHours() const;
+	bool getOperatingHours(unsigned int & out) const;
+	bool hasOperatingHours() const;
+
+	SystemContextState & setOperatingCycles(const int & value);
+	int getOperatingCycles() const;
+	bool getOperatingCycles(int & out) const;
+	bool hasOperatingCycles() const;
 
 private:
 	std::shared_ptr<CDM::SystemContextState> data;

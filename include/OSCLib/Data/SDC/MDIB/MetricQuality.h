@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	MetricQuality(
 		MeasurementValidity validity
-	); 
+	);
 private:
 	MetricQuality(){};
 public:
 	MetricQuality(const MetricQuality & object);
 	virtual ~MetricQuality();
-    
+
     void copyFrom(const MetricQuality & object);
     MetricQuality & operator=(const MetricQuality & object);
-    
+
     typedef CDM::MetricQuality WrappedType;
 
 	MetricQuality & setValidity(const MeasurementValidity & value);

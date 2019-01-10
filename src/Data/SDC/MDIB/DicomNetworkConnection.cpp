@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 DicomNetworkConnection::DicomNetworkConnection(
 		xml_schema::Id id
-		, 
+		,
 		std::string hostname
 ) : data(Defaults::DicomNetworkConnectionInit(
 		id
@@ -87,7 +87,7 @@ DicomNetworkConnection & DicomNetworkConnection::setid(const xml_schema::Id & va
 xml_schema::Id DicomNetworkConnection::getid() const {
 	return ConvertFromCDM::convert(data->id());
 }
-	
+
 DicomNetworkConnection & DicomNetworkConnection::setHostname(const std::string & value) {
 	data->Hostname(ConvertToCDM::convert(value));
 	return *this;
@@ -97,7 +97,7 @@ DicomNetworkConnection & DicomNetworkConnection::setHostname(const std::string &
 std::string DicomNetworkConnection::getHostname() const {
 	return ConvertFromCDM::convert(data->Hostname());
 }
-	
+
 DicomNetworkConnection & DicomNetworkConnection::setPort(const unsigned short & value) {
 	data->Port(ConvertToCDM::convert(value));
 	return *this;
@@ -114,11 +114,11 @@ bool DicomNetworkConnection::getPort(unsigned short & out) const {
 unsigned short DicomNetworkConnection::getPort() const {
 	return ConvertFromCDM::convert(data->Port().get());
 }
-	
+
 bool DicomNetworkConnection::hasPort() const {
 	return data->Port().present();
 }
-	
+
 DicomNetworkConnection & DicomNetworkConnection::addTlsCipherSuite(const std::string & value) {
 	data->TlsCipherSuite().push_back(ConvertToCDM::convert(value));
 	return *this;

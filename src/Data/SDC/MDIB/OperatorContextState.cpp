@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -47,7 +47,7 @@ namespace SDC {
 
 OperatorContextState::OperatorContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
 ) : data(Defaults::OperatorContextStateInit(
 		descriptorhandle
@@ -97,11 +97,11 @@ bool OperatorContextState::getStateVersion(VersionCounter & out) const {
 VersionCounter OperatorContextState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool OperatorContextState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 OperatorContextState & OperatorContextState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -111,7 +111,7 @@ OperatorContextState & OperatorContextState::setDescriptorHandle(const HandleRef
 HandleRef OperatorContextState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 OperatorContextState & OperatorContextState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -128,11 +128,11 @@ bool OperatorContextState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion OperatorContextState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool OperatorContextState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 OperatorContextState & OperatorContextState::setCategory(const CodedValue & value) {
 	data->Category(ConvertToCDM::convert(value));
 	return *this;
@@ -149,11 +149,11 @@ bool OperatorContextState::getCategory(CodedValue & out) const {
 CodedValue OperatorContextState::getCategory() const {
 	return ConvertFromCDM::convert(data->Category().get());
 }
-	
+
 bool OperatorContextState::hasCategory() const {
 	return data->Category().present();
 }
-	
+
 OperatorContextState & OperatorContextState::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -163,7 +163,7 @@ OperatorContextState & OperatorContextState::setHandle(const Handle & value) {
 Handle OperatorContextState::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 OperatorContextState & OperatorContextState::setContextAssociation(const ContextAssociation & value) {
 	data->ContextAssociation(ConvertToCDM::convert(value));
 	return *this;
@@ -180,11 +180,11 @@ bool OperatorContextState::getContextAssociation(ContextAssociation & out) const
 ContextAssociation OperatorContextState::getContextAssociation() const {
 	return ConvertFromCDM::convert(data->ContextAssociation().get());
 }
-	
+
 bool OperatorContextState::hasContextAssociation() const {
 	return data->ContextAssociation().present();
 }
-	
+
 OperatorContextState & OperatorContextState::setBindingMdibVersion(const ReferencedVersion & value) {
 	data->BindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -201,11 +201,11 @@ bool OperatorContextState::getBindingMdibVersion(ReferencedVersion & out) const 
 ReferencedVersion OperatorContextState::getBindingMdibVersion() const {
 	return ConvertFromCDM::convert(data->BindingMdibVersion().get());
 }
-	
+
 bool OperatorContextState::hasBindingMdibVersion() const {
 	return data->BindingMdibVersion().present();
 }
-	
+
 OperatorContextState & OperatorContextState::setUnbindingMdibVersion(const ReferencedVersion & value) {
 	data->UnbindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -222,11 +222,11 @@ bool OperatorContextState::getUnbindingMdibVersion(ReferencedVersion & out) cons
 ReferencedVersion OperatorContextState::getUnbindingMdibVersion() const {
 	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
 }
-	
+
 bool OperatorContextState::hasUnbindingMdibVersion() const {
 	return data->UnbindingMdibVersion().present();
 }
-	
+
 OperatorContextState & OperatorContextState::setBindingStartTime(const Timestamp & value) {
 	data->BindingStartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -243,11 +243,11 @@ bool OperatorContextState::getBindingStartTime(Timestamp & out) const {
 Timestamp OperatorContextState::getBindingStartTime() const {
 	return ConvertFromCDM::convert(data->BindingStartTime().get());
 }
-	
+
 bool OperatorContextState::hasBindingStartTime() const {
 	return data->BindingStartTime().present();
 }
-	
+
 OperatorContextState & OperatorContextState::setBindingEndTime(const Timestamp & value) {
 	data->BindingEndTime(ConvertToCDM::convert(value));
 	return *this;
@@ -264,11 +264,11 @@ bool OperatorContextState::getBindingEndTime(Timestamp & out) const {
 Timestamp OperatorContextState::getBindingEndTime() const {
 	return ConvertFromCDM::convert(data->BindingEndTime().get());
 }
-	
+
 bool OperatorContextState::hasBindingEndTime() const {
 	return data->BindingEndTime().present();
 }
-	
+
 OperatorContextState & OperatorContextState::addValidator(const InstanceIdentifier & value) {
 	data->Validator().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -321,11 +321,11 @@ bool OperatorContextState::getOperatorDetails(BaseDemographics & out) const {
 BaseDemographics OperatorContextState::getOperatorDetails() const {
 	return ConvertFromCDM::convert(data->OperatorDetails().get());
 }
-	
+
 bool OperatorContextState::hasOperatorDetails() const {
 	return data->OperatorDetails().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

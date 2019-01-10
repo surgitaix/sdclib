@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	CalibrationInfo(
-	); 
+	);
 	CalibrationInfo(const CalibrationInfo & object);
 	virtual ~CalibrationInfo();
-    
+
     void copyFrom(const CalibrationInfo & object);
     CalibrationInfo & operator=(const CalibrationInfo & object);
-    
+
     typedef CDM::CalibrationInfo WrappedType;
 
 	CalibrationInfo & setComponentCalibrationState(const CalibrationState & value);
@@ -79,7 +79,7 @@ public:
 	CalibrationInfo & addCalibrationDocumentation(const CalibrationDocumentation & value);
 	std::vector<CalibrationDocumentation> getCalibrationDocumentationList() const;
 	void clearCalibrationDocumentationList();
-	
+
 private:
 	std::shared_ptr<CDM::CalibrationInfo> data;
 };

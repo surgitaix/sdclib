@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	ProductionSpecification(
 		CodedValue spectype
-		, 
+		,
 		std::string productionspec
-	); 
+	);
 private:
 	ProductionSpecification(){};
 public:
 	ProductionSpecification(const ProductionSpecification & object);
 	virtual ~ProductionSpecification();
-    
+
     void copyFrom(const ProductionSpecification & object);
     ProductionSpecification & operator=(const ProductionSpecification & object);
-    
+
     typedef CDM::ProductionSpecification WrappedType;
 
 	ProductionSpecification & setSpecType(const CodedValue & value);

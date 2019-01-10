@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	RealTimeSampleArrayMetricState(
 		HandleRef descriptorhandle
-	); 
+	);
 private:
 	RealTimeSampleArrayMetricState(){};
 public:
 	RealTimeSampleArrayMetricState(const RealTimeSampleArrayMetricState & object);
 	virtual ~RealTimeSampleArrayMetricState();
-    
+
     void copyFrom(const RealTimeSampleArrayMetricState & object);
     RealTimeSampleArrayMetricState & operator=(const RealTimeSampleArrayMetricState & object);
-    
+
     typedef CDM::RealTimeSampleArrayMetricState WrappedType;
     typedef RealTimeSampleArrayMetricDescriptor DescriptorType;
 
@@ -102,7 +102,7 @@ public:
 	RealTimeSampleArrayMetricState & addBodySite(const CodedValue & value);
 	std::vector<CodedValue> getBodySiteList() const;
 	void clearBodySiteList();
-	
+
 	RealTimeSampleArrayMetricState & setMetricValue(const SampleArrayValue & value);
 	SampleArrayValue getMetricValue() const;
 	bool getMetricValue(SampleArrayValue & out) const;
@@ -111,7 +111,7 @@ public:
 	RealTimeSampleArrayMetricState & addPhysiologicalRange(const Range & value);
 	std::vector<Range> getPhysiologicalRangeList() const;
 	void clearPhysiologicalRangeList();
-	
+
 private:
 	std::shared_ptr<CDM::RealTimeSampleArrayMetricState> data;
 };

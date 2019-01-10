@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -83,7 +83,7 @@ Translation & Translation::setCode(const CodeIdentifier & value) {
 CodeIdentifier Translation::getCode() const {
 	return ConvertFromCDM::convert(data->Code());
 }
-	
+
 Translation & Translation::setCodingSystem(const xml_schema::Uri & value) {
 	data->CodingSystem(ConvertToCDM::convert(value));
 	return *this;
@@ -100,11 +100,11 @@ bool Translation::getCodingSystem(xml_schema::Uri & out) const {
 xml_schema::Uri Translation::getCodingSystem() const {
 	return ConvertFromCDM::convert(data->CodingSystem().get());
 }
-	
+
 bool Translation::hasCodingSystem() const {
 	return data->CodingSystem().present();
 }
-	
+
 Translation & Translation::setCodingSystemVersion(const std::string & value) {
 	data->CodingSystemVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -121,11 +121,11 @@ bool Translation::getCodingSystemVersion(std::string & out) const {
 std::string Translation::getCodingSystemVersion() const {
 	return ConvertFromCDM::convert(data->CodingSystemVersion().get());
 }
-	
+
 bool Translation::hasCodingSystemVersion() const {
 	return data->CodingSystemVersion().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

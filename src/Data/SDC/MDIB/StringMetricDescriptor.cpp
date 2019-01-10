@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -47,11 +47,11 @@ namespace SDC {
 
 StringMetricDescriptor::StringMetricDescriptor(
 		Handle handle
-		, 
+		,
 		CodedValue unit
-		, 
+		,
 		MetricCategory metriccategory
-		, 
+		,
 		MetricAvailability metricavailability
 ) : data(Defaults::StringMetricDescriptorInit(
 		handle
@@ -105,11 +105,11 @@ bool StringMetricDescriptor::getType(CodedValue & out) const {
 CodedValue StringMetricDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool StringMetricDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -119,7 +119,7 @@ StringMetricDescriptor & StringMetricDescriptor::setHandle(const Handle & value)
 Handle StringMetricDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -136,11 +136,11 @@ bool StringMetricDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter StringMetricDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool StringMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -157,11 +157,11 @@ bool StringMetricDescriptor::getSafetyClassification(SafetyClassification & out)
 SafetyClassification StringMetricDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool StringMetricDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;
@@ -171,7 +171,7 @@ StringMetricDescriptor & StringMetricDescriptor::setUnit(const CodedValue & valu
 CodedValue StringMetricDescriptor::getUnit() const {
 	return ConvertFromCDM::convert(data->Unit());
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setMetricCategory(const MetricCategory & value) {
 	data->MetricCategory(ConvertToCDM::convert(value));
 	return *this;
@@ -181,7 +181,7 @@ StringMetricDescriptor & StringMetricDescriptor::setMetricCategory(const MetricC
 MetricCategory StringMetricDescriptor::getMetricCategory() const {
 	return ConvertFromCDM::convert(data->MetricCategory());
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setDerivationMethod(const DerivationMethod & value) {
 	data->DerivationMethod(ConvertToCDM::convert(value));
 	return *this;
@@ -198,11 +198,11 @@ bool StringMetricDescriptor::getDerivationMethod(DerivationMethod & out) const {
 DerivationMethod StringMetricDescriptor::getDerivationMethod() const {
 	return ConvertFromCDM::convert(data->DerivationMethod().get());
 }
-	
+
 bool StringMetricDescriptor::hasDerivationMethod() const {
 	return data->DerivationMethod().present();
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
 	data->MetricAvailability(ConvertToCDM::convert(value));
 	return *this;
@@ -212,7 +212,7 @@ StringMetricDescriptor & StringMetricDescriptor::setMetricAvailability(const Met
 MetricAvailability StringMetricDescriptor::getMetricAvailability() const {
 	return ConvertFromCDM::convert(data->MetricAvailability());
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
 	data->MaxMeasurementTime(ConvertToCDM::convert(value));
 	return *this;
@@ -229,11 +229,11 @@ bool StringMetricDescriptor::getMaxMeasurementTime(xml_schema::Duration & out) c
 xml_schema::Duration StringMetricDescriptor::getMaxMeasurementTime() const {
 	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 }
-	
+
 bool StringMetricDescriptor::hasMaxMeasurementTime() const {
 	return data->MaxMeasurementTime().present();
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
@@ -250,11 +250,11 @@ bool StringMetricDescriptor::getMaxDelayTime(xml_schema::Duration & out) const {
 xml_schema::Duration StringMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
-	
+
 bool StringMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
 	data->DeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -271,11 +271,11 @@ bool StringMetricDescriptor::getDeterminationPeriod(xml_schema::Duration & out) 
 xml_schema::Duration StringMetricDescriptor::getDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
 }
-	
+
 bool StringMetricDescriptor::hasDeterminationPeriod() const {
 	return data->DeterminationPeriod().present();
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -292,11 +292,11 @@ bool StringMetricDescriptor::getLifeTimePeriod(xml_schema::Duration & out) const
 xml_schema::Duration StringMetricDescriptor::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
-	
+
 bool StringMetricDescriptor::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::setActivationDuration(const xml_schema::Duration & value) {
 	data->ActivationDuration(ConvertToCDM::convert(value));
 	return *this;
@@ -313,11 +313,11 @@ bool StringMetricDescriptor::getActivationDuration(xml_schema::Duration & out) c
 xml_schema::Duration StringMetricDescriptor::getActivationDuration() const {
 	return ConvertFromCDM::convert(data->ActivationDuration().get());
 }
-	
+
 bool StringMetricDescriptor::hasActivationDuration() const {
 	return data->ActivationDuration().present();
 }
-	
+
 StringMetricDescriptor & StringMetricDescriptor::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,7 +45,7 @@ namespace SDC {
 
 SetValueOperationDescriptor::SetValueOperationDescriptor(
 		Handle handle
-		, 
+		,
 		HandleRef operationtarget
 ) : data(Defaults::SetValueOperationDescriptorInit(
 		handle
@@ -95,11 +95,11 @@ bool SetValueOperationDescriptor::getType(CodedValue & out) const {
 CodedValue SetValueOperationDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool SetValueOperationDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 SetValueOperationDescriptor & SetValueOperationDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -109,7 +109,7 @@ SetValueOperationDescriptor & SetValueOperationDescriptor::setHandle(const Handl
 Handle SetValueOperationDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 SetValueOperationDescriptor & SetValueOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -126,11 +126,11 @@ bool SetValueOperationDescriptor::getDescriptorVersion(VersionCounter & out) con
 VersionCounter SetValueOperationDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetValueOperationDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetValueOperationDescriptor & SetValueOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -147,11 +147,11 @@ bool SetValueOperationDescriptor::getSafetyClassification(SafetyClassification &
 SafetyClassification SetValueOperationDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool SetValueOperationDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 SetValueOperationDescriptor & SetValueOperationDescriptor::setOperationTarget(const HandleRef & value) {
 	data->OperationTarget(ConvertToCDM::convert(value));
 	return *this;
@@ -161,7 +161,7 @@ SetValueOperationDescriptor & SetValueOperationDescriptor::setOperationTarget(co
 HandleRef SetValueOperationDescriptor::getOperationTarget() const {
 	return ConvertFromCDM::convert(data->OperationTarget());
 }
-	
+
 SetValueOperationDescriptor & SetValueOperationDescriptor::setMaxTimeToFinish(const xml_schema::Duration & value) {
 	data->MaxTimeToFinish(ConvertToCDM::convert(value));
 	return *this;
@@ -178,11 +178,11 @@ bool SetValueOperationDescriptor::getMaxTimeToFinish(xml_schema::Duration & out)
 xml_schema::Duration SetValueOperationDescriptor::getMaxTimeToFinish() const {
 	return ConvertFromCDM::convert(data->MaxTimeToFinish().get());
 }
-	
+
 bool SetValueOperationDescriptor::hasMaxTimeToFinish() const {
 	return data->MaxTimeToFinish().present();
 }
-	
+
 SetValueOperationDescriptor & SetValueOperationDescriptor::setInvocationEffectiveTimeout(const xml_schema::Duration & value) {
 	data->InvocationEffectiveTimeout(ConvertToCDM::convert(value));
 	return *this;
@@ -199,17 +199,17 @@ bool SetValueOperationDescriptor::getInvocationEffectiveTimeout(xml_schema::Dura
 xml_schema::Duration SetValueOperationDescriptor::getInvocationEffectiveTimeout() const {
 	return ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
 }
-	
+
 bool SetValueOperationDescriptor::hasInvocationEffectiveTimeout() const {
 	return data->InvocationEffectiveTimeout().present();
 }
-	
-SetValueOperationDescriptor & SetValueOperationDescriptor::setRetriggerable(const xml_schema::Duration & value) {
+
+SetValueOperationDescriptor & SetValueOperationDescriptor::setRetriggerable(const bool & value) {
 	data->Retriggerable(ConvertToCDM::convert(value));
 	return *this;
 }
 
-bool SetValueOperationDescriptor::getRetriggerable(xml_schema::Duration & out) const {
+bool SetValueOperationDescriptor::getRetriggerable(bool & out) const {
 	if (data->Retriggerable().present()) {
 		out = ConvertFromCDM::convert(data->Retriggerable().get());
 		return true;
@@ -217,14 +217,14 @@ bool SetValueOperationDescriptor::getRetriggerable(xml_schema::Duration & out) c
 	return false;
 }
 
-xml_schema::Duration SetValueOperationDescriptor::getRetriggerable() const {
+bool SetValueOperationDescriptor::getRetriggerable() const {
 	return ConvertFromCDM::convert(data->Retriggerable().get());
 }
-	
+
 bool SetValueOperationDescriptor::hasRetriggerable() const {
 	return data->Retriggerable().present();
 }
-	
+
 SetValueOperationDescriptor & SetValueOperationDescriptor::setAccessLevel(const AccessLevel & value) {
 	data->AccessLevel(ConvertToCDM::convert(value));
 	return *this;
@@ -241,11 +241,11 @@ bool SetValueOperationDescriptor::getAccessLevel(AccessLevel & out) const {
 AccessLevel SetValueOperationDescriptor::getAccessLevel() const {
 	return ConvertFromCDM::convert(data->AccessLevel().get());
 }
-	
+
 bool SetValueOperationDescriptor::hasAccessLevel() const {
 	return data->AccessLevel().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

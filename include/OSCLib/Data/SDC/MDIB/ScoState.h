@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	ScoState(
 		HandleRef descriptorhandle
-	); 
+	);
 private:
 	ScoState(){};
 public:
 	ScoState(const ScoState & object);
 	virtual ~ScoState();
-    
+
     void copyFrom(const ScoState & object);
     ScoState & operator=(const ScoState & object);
-    
+
     typedef CDM::ScoState WrappedType;
 
 	ScoState & setStateVersion(const VersionCounter & value);
@@ -78,6 +78,36 @@ public:
 	bool getDescriptorVersion(ReferencedVersion & out) const;
 	bool hasDescriptorVersion() const;
 
+	ScoState & setCalibrationInfo(const CalibrationInfo & value);
+	CalibrationInfo getCalibrationInfo() const;
+	bool getCalibrationInfo(CalibrationInfo & out) const;
+	bool hasCalibrationInfo() const;
+
+	ScoState & setNextCalibration(const CalibrationInfo & value);
+	CalibrationInfo getNextCalibration() const;
+	bool getNextCalibration(CalibrationInfo & out) const;
+	bool hasNextCalibration() const;
+
+	ScoState & setPhysicalConnector(const PhysicalConnectorInfo & value);
+	PhysicalConnectorInfo getPhysicalConnector() const;
+	bool getPhysicalConnector(PhysicalConnectorInfo & out) const;
+	bool hasPhysicalConnector() const;
+
+	ScoState & setActivationState(const ComponentActivation & value);
+	ComponentActivation getActivationState() const;
+	bool getActivationState(ComponentActivation & out) const;
+	bool hasActivationState() const;
+
+	ScoState & setOperatingHours(const unsigned int & value);
+	unsigned int getOperatingHours() const;
+	bool getOperatingHours(unsigned int & out) const;
+	bool hasOperatingHours() const;
+
+	ScoState & setOperatingCycles(const int & value);
+	int getOperatingCycles() const;
+	bool getOperatingCycles(int & out) const;
+	bool hasOperatingCycles() const;
+
 	ScoState & setInvocationRequested(const OperationRef & value);
 	OperationRef getInvocationRequested() const;
 	bool getInvocationRequested(OperationRef & out) const;
@@ -91,7 +121,7 @@ public:
 	ScoState & addOperationGroup(const OperationGroup & value);
 	std::vector<OperationGroup> getOperationGroupList() const;
 	void clearOperationGroupList();
-	
+
 private:
 	std::shared_ptr<CDM::ScoState> data;
 };

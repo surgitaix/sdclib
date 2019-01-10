@@ -1,7 +1,3 @@
-#include "OSCLib/Data/SDC/MDIB/DicomTransferCapability.h"
-#include "OSCLib/Data/SDC/MDIB/DicomNetworkAe.h"
-#include "OSCLib/Data/SDC/MDIB/DicomNetworkConnection.h"
-#include "OSCLib/Data/SDC/MDIB/DicomDeviceDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/Mdib.h"
 #include "OSCLib/Data/SDC/MDIB/MdDescription.h"
 #include "OSCLib/Data/SDC/MDIB/MdState.h"
@@ -109,6 +105,10 @@
 #include "OSCLib/Data/SDC/MDIB/EnsembleContextState.h"
 #include "OSCLib/Data/SDC/MDIB/ContainmentTree.h"
 #include "OSCLib/Data/SDC/MDIB/ContainmentTreeEntry.h"
+#include "OSCLib/Data/SDC/MDIB/DicomTransferCapability.h"
+#include "OSCLib/Data/SDC/MDIB/DicomNetworkAe.h"
+#include "OSCLib/Data/SDC/MDIB/DicomNetworkConnection.h"
+#include "OSCLib/Data/SDC/MDIB/DicomDeviceDescriptor.h"
 
 
 /*
@@ -129,7 +129,6 @@
 #include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
 #include "osdm.hxx"
-#include "MDPWS.hxx"
 
 namespace SDCLib {
 namespace Data {
@@ -146,41 +145,9 @@ Defaults::~Defaults() {
 }
 
 
-CDM::DicomTransferCapability  * Defaults::DicomTransferCapabilityInit(std::string sopclass, DicomTransferRole transferrole) {
-	return new CDM::DicomTransferCapability(ConvertToCDM::convert(sopclass), ConvertToCDM::convert(transferrole));
-}
-
-CDM::DicomNetworkAe  * Defaults::DicomNetworkAeInit(std::string aetitle, xml_schema::Idrefs networkconnectionreference, bool associationinitiator, bool associationacceptor) {
-	return new CDM::DicomNetworkAe(ConvertToCDM::convert(aetitle), ConvertToCDM::convert(networkconnectionreference), ConvertToCDM::convert(associationinitiator), ConvertToCDM::convert(associationacceptor));
-}
-
-CDM::DicomNetworkConnection  * Defaults::DicomNetworkConnectionInit(xml_schema::Id id, std::string hostname) {
-	return new CDM::DicomNetworkConnection(ConvertToCDM::convert(id), ConvertToCDM::convert(hostname));
-}
-
-CDM::DicomDeviceDescriptor  * Defaults::DicomDeviceDescriptorInit(Handle handle) {
-	return new CDM::DicomDeviceDescriptor(ConvertToCDM::convert(handle));
-}
-
 CDM::Mdib  * Defaults::MdibInit() {
-	// TODO: Delete -> Test Safety context
-	MDPWS::SelectorType safetySelector("SELECTOR_1");
-	MDPWS::SafetyContextDefType::SelectorSequence selectorSequence;
-	selectorSequence.push_back(safetySelector);
-	MDPWS::SafetyContextDefType safetyContextDef;
-	safetyContextDef.Selector(selectorSequence);
-	MDPWS::SafetyReqType safetyReq;
-	safetyReq.SafetyContextDef(safetyContextDef);
-
-	///////////////
-	//////////////////////////////
-	///////////////
-	//Hier weiter machen
-
-	EXT::ExtensionType extensionType;
-	//extensionType.ExtensionType(safetyReq);
-
-	return new CDM::Mdib(xml_schema::Uri("0"));
+	// todo: real sequence id. maybe as a setting?
+	return new CDM::Mdib(xml_schema::Uri("uri:surgitaixplaceholder:123456789"));
 }
 
 CDM::MdDescription  * Defaults::MdDescriptionInit() {
@@ -192,9 +159,7 @@ CDM::MdState  * Defaults::MdStateInit() {
 }
 
 CDM::LocalizedText  * Defaults::LocalizedTextInit() {
-	// it is important to call the string constructor instead of the default constructor
-	// xsd does not respect minLenght for strings in schemas, but validation would fail otherwise
-	return new CDM::LocalizedText(NOT_ASSIGNED);
+	return new CDM::LocalizedText();
 }
 
 CDM::CodedValue  * Defaults::CodedValueInit(CodeIdentifier code) {
@@ -345,8 +310,10 @@ CDM::ApplyAnnotation  * Defaults::ApplyAnnotationInit(unsigned int annotationind
 	return new CDM::ApplyAnnotation(ConvertToCDM::convert(annotationindex), ConvertToCDM::convert(sampleindex));
 }
 
-CDM::Relation  * Defaults::RelationInit(Kind kind, HandleRef entries) {
-	return new CDM::Relation(ConvertToCDM::convert(kind), ConvertToCDM::convert(entries));
+CDM::Relation  * Defaults::RelationInit(Kind kind, EntryRef entries) {
+	auto asdf = CDM::EntryRef();
+//	return new CDM::Relation(ConvertToCDM::convert(kind), ConvertToCDM::convert(entries));
+	return new CDM::Relation(ConvertToCDM::convert(kind), asdf);
 }
 
 CDM::NumericMetricDescriptor  * Defaults::NumericMetricDescriptorInit(Handle handle, CodedValue unit, MetricCategory metriccategory, MetricAvailability metricavailability, double resolution) {
@@ -421,8 +388,8 @@ CDM::SetStringOperationState  * Defaults::SetStringOperationStateInit(HandleRef 
 	return new CDM::SetStringOperationState(ConvertToCDM::convert(descriptorhandle), ConvertToCDM::convert(operatingmode));
 }
 
-CDM::AllowedValues  * Defaults::AllowedValuesInit(std::string value) {
-	return new CDM::AllowedValues(ConvertToCDM::convert(value));
+CDM::AllowedValues  * Defaults::AllowedValuesInit() {
+	return new CDM::AllowedValues();
 }
 
 CDM::ActivateOperationDescriptor  * Defaults::ActivateOperationDescriptorInit(Handle handle, HandleRef operationtarget) {
@@ -607,6 +574,22 @@ CDM::ContainmentTree  * Defaults::ContainmentTreeInit() {
 
 CDM::ContainmentTreeEntry  * Defaults::ContainmentTreeEntryInit() {
 	return new CDM::ContainmentTreeEntry();
+}
+
+CDM::DicomTransferCapability  * Defaults::DicomTransferCapabilityInit(std::string sopclass, DicomTransferRole transferrole) {
+	return new CDM::DicomTransferCapability(ConvertToCDM::convert(sopclass), ConvertToCDM::convert(transferrole));
+}
+
+CDM::DicomNetworkAe  * Defaults::DicomNetworkAeInit(std::string aetitle, xml_schema::Idrefs networkconnectionreference, bool associationinitiator, bool associationacceptor) {
+	return new CDM::DicomNetworkAe(ConvertToCDM::convert(aetitle), ConvertToCDM::convert(networkconnectionreference), ConvertToCDM::convert(associationinitiator), ConvertToCDM::convert(associationacceptor));
+}
+
+CDM::DicomNetworkConnection  * Defaults::DicomNetworkConnectionInit(xml_schema::Id id, std::string hostname) {
+	return new CDM::DicomNetworkConnection(ConvertToCDM::convert(id), ConvertToCDM::convert(hostname));
+}
+
+CDM::DicomDeviceDescriptor  * Defaults::DicomDeviceDescriptorInit(Handle handle) {
+	return new CDM::DicomDeviceDescriptor(ConvertToCDM::convert(handle));
 }
 
 

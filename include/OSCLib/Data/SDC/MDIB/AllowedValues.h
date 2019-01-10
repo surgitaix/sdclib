@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,21 +52,18 @@ private:
 	friend class MdDescription;
 public:
 	AllowedValues(
-		std::string value
-	); 
-private:
-	AllowedValues(){};
-public:
+	);
 	AllowedValues(const AllowedValues & object);
 	virtual ~AllowedValues();
-    
+
     void copyFrom(const AllowedValues & object);
     AllowedValues & operator=(const AllowedValues & object);
-    
+
     typedef CDM::AllowedValues WrappedType;
 
-	AllowedValues & setValue(const std::string & value);
-	std::string getValue() const;
+	AllowedValues & addValue(const std::string & value);
+	std::vector<std::string> getValueList() const;
+	void clearValueList();
 
 private:
 	std::shared_ptr<CDM::AllowedValues> data;

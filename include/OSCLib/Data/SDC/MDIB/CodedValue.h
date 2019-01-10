@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	CodedValue(
 		CodeIdentifier code
-	); 
+	);
 private:
 	CodedValue(){};
 public:
 	CodedValue(const CodedValue & object);
 	virtual ~CodedValue();
-    
+
     void copyFrom(const CodedValue & object);
     CodedValue & operator=(const CodedValue & object);
-    
+
     typedef CDM::CodedValue WrappedType;
 
 	CodedValue & setCode(const CodeIdentifier & value);
@@ -86,15 +86,15 @@ public:
 	CodedValue & addCodingSystemName(const LocalizedText & value);
 	std::vector<LocalizedText> getCodingSystemNameList() const;
 	void clearCodingSystemNameList();
-	
+
 	CodedValue & addConceptDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getConceptDescriptionList() const;
 	void clearConceptDescriptionList();
-	
+
 	CodedValue & addTranslation(const Translation & value);
 	std::vector<Translation> getTranslationList() const;
 	void clearTranslationList();
-	
+
 private:
 	std::shared_ptr<CDM::CodedValue> data;
 };

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	SetAlertStateOperationDescriptor(
 		Handle handle
-		, 
+		,
 		HandleRef operationtarget
-	); 
+	);
 private:
 	SetAlertStateOperationDescriptor(){};
 public:
 	SetAlertStateOperationDescriptor(const SetAlertStateOperationDescriptor & object);
 	virtual ~SetAlertStateOperationDescriptor();
-    
+
     void copyFrom(const SetAlertStateOperationDescriptor & object);
     SetAlertStateOperationDescriptor & operator=(const SetAlertStateOperationDescriptor & object);
-    
+
     typedef CDM::SetAlertStateOperationDescriptor WrappedType;
 
 	SetAlertStateOperationDescriptor & setType(const CodedValue & value);
@@ -98,9 +98,9 @@ public:
 	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
 	bool hasInvocationEffectiveTimeout() const;
 
-	SetAlertStateOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
-	xml_schema::Duration getRetriggerable() const;
-	bool getRetriggerable(xml_schema::Duration & out) const;
+	SetAlertStateOperationDescriptor & setRetriggerable(const bool & value);
+	bool getRetriggerable() const;
+	bool getRetriggerable(bool & out) const;
 	bool hasRetriggerable() const;
 
 	SetAlertStateOperationDescriptor & setAccessLevel(const AccessLevel & value);
@@ -111,7 +111,7 @@ public:
 	SetAlertStateOperationDescriptor & addModifiableData(const std::string & value);
 	std::vector<std::string> getModifiableDataList() const;
 	void clearModifiableDataList();
-	
+
 private:
 	std::shared_ptr<CDM::SetAlertStateOperationDescriptor> data;
 };

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	AllowedValue(
 		std::string value
-	); 
+	);
 private:
 	AllowedValue(){};
 public:
 	AllowedValue(const AllowedValue & object);
 	virtual ~AllowedValue();
-    
+
     void copyFrom(const AllowedValue & object);
     AllowedValue & operator=(const AllowedValue & object);
-    
+
     typedef CDM::AllowedValue WrappedType;
 
 	AllowedValue & setValue(const std::string & value);

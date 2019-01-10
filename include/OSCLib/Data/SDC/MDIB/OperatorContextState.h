@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	OperatorContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
-	); 
+	);
 private:
 	OperatorContextState(){};
 public:
 	OperatorContextState(const OperatorContextState & object);
 	virtual ~OperatorContextState();
-    
+
     void copyFrom(const OperatorContextState & object);
     OperatorContextState & operator=(const OperatorContextState & object);
-    
+
     typedef CDM::OperatorContextState WrappedType;
     typedef OperatorContextDescriptor DescriptorType;
 
@@ -117,11 +117,11 @@ public:
 	OperatorContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidatorList() const;
 	void clearValidatorList();
-	
+
 	OperatorContextState & addIdentification(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
-	
+
 	OperatorContextState & setOperatorDetails(const BaseDemographics & value);
 	BaseDemographics getOperatorDetails() const;
 	bool getOperatorDetails(BaseDemographics & out) const;

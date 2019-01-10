@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -85,7 +85,7 @@ ReferenceRange & ReferenceRange::setRange(const Range & value) {
 Range ReferenceRange::getRange() const {
 	return ConvertFromCDM::convert(data->Range());
 }
-	
+
 ReferenceRange & ReferenceRange::setMeaning(const CodedValue & value) {
 	data->Meaning(ConvertToCDM::convert(value));
 	return *this;
@@ -102,11 +102,11 @@ bool ReferenceRange::getMeaning(CodedValue & out) const {
 CodedValue ReferenceRange::getMeaning() const {
 	return ConvertFromCDM::convert(data->Meaning().get());
 }
-	
+
 bool ReferenceRange::hasMeaning() const {
 	return data->Meaning().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	SystemContextDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	SystemContextDescriptor(){};
 public:
 	SystemContextDescriptor(const SystemContextDescriptor & object);
 	virtual ~SystemContextDescriptor();
-    
+
     void copyFrom(const SystemContextDescriptor & object);
     SystemContextDescriptor & operator=(const SystemContextDescriptor & object);
-    
+
     typedef CDM::SystemContextDescriptor WrappedType;
 
 	SystemContextDescriptor & setType(const CodedValue & value);
@@ -83,6 +83,10 @@ public:
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
 
+	SystemContextDescriptor & addProductionSpecification(const ProductionSpecification & value);
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
+
 	SystemContextDescriptor & setPatientContext(const PatientContextDescriptor & value);
 	PatientContextDescriptor getPatientContext() const;
 	bool getPatientContext(PatientContextDescriptor & out) const;
@@ -96,19 +100,19 @@ public:
 	SystemContextDescriptor & addEnsembleContext(const EnsembleContextDescriptor & value);
 	std::vector<EnsembleContextDescriptor> getEnsembleContextList() const;
 	void clearEnsembleContextList();
-	
+
 	SystemContextDescriptor & addOperatorContext(const OperatorContextDescriptor & value);
 	std::vector<OperatorContextDescriptor> getOperatorContextList() const;
 	void clearOperatorContextList();
-	
+
 	SystemContextDescriptor & addWorkflowContext(const WorkflowContextDescriptor & value);
 	std::vector<WorkflowContextDescriptor> getWorkflowContextList() const;
 	void clearWorkflowContextList();
-	
+
 	SystemContextDescriptor & addMeansContext(const MeansContextDescriptor & value);
 	std::vector<MeansContextDescriptor> getMeansContextList() const;
 	void clearMeansContextList();
-	
+
 private:
 	std::shared_ptr<CDM::SystemContextDescriptor> data;
 };

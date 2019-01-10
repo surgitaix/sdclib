@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -90,11 +90,11 @@ bool LocationReference::getLocationDetail(LocationDetail & out) const {
 LocationDetail LocationReference::getLocationDetail() const {
 	return ConvertFromCDM::convert(data->LocationDetail().get());
 }
-	
+
 bool LocationReference::hasLocationDetail() const {
 	return data->LocationDetail().present();
 }
-	
+
 LocationReference & LocationReference::addIdentification(const InstanceIdentifier & value) {
 	data->Identification().push_back(ConvertToCDM::convert(value));
 	return *this;

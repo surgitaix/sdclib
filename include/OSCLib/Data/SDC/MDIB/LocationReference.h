@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	LocationReference(
-	); 
+	);
 	LocationReference(const LocationReference & object);
 	virtual ~LocationReference();
-    
+
     void copyFrom(const LocationReference & object);
     LocationReference & operator=(const LocationReference & object);
-    
+
     typedef CDM::LocationReference WrappedType;
 
 	LocationReference & setLocationDetail(const LocationDetail & value);
@@ -69,7 +69,7 @@ public:
 	LocationReference & addIdentification(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
-	
+
 private:
 	std::shared_ptr<CDM::LocationReference> data;
 };

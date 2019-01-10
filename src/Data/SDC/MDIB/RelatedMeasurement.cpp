@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -85,7 +85,7 @@ RelatedMeasurement & RelatedMeasurement::setValue(const Measurement & value) {
 Measurement RelatedMeasurement::getValue() const {
 	return ConvertFromCDM::convert(data->Value());
 }
-	
+
 RelatedMeasurement & RelatedMeasurement::setValidity(const MeasurementValidity & value) {
 	data->Validity(ConvertToCDM::convert(value));
 	return *this;
@@ -102,11 +102,11 @@ bool RelatedMeasurement::getValidity(MeasurementValidity & out) const {
 MeasurementValidity RelatedMeasurement::getValidity() const {
 	return ConvertFromCDM::convert(data->Validity().get());
 }
-	
+
 bool RelatedMeasurement::hasValidity() const {
 	return data->Validity().present();
 }
-	
+
 RelatedMeasurement & RelatedMeasurement::addReferenceRange(const ReferenceRange & value) {
 	data->ReferenceRange().push_back(ConvertToCDM::convert(value));
 	return *this;

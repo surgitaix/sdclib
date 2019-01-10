@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,20 +53,20 @@ private:
 public:
 	Udi(
 		std::string deviceidentifier
-		, 
+		,
 		std::string humanreadableform
-		, 
+		,
 		InstanceIdentifier issuer
-	); 
+	);
 private:
 	Udi(){};
 public:
 	Udi(const Udi & object);
 	virtual ~Udi();
-    
+
     void copyFrom(const Udi & object);
     Udi & operator=(const Udi & object);
-    
+
     typedef CDM::Udi WrappedType;
 
 	Udi & setDeviceIdentifier(const std::string & value);

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -91,11 +91,11 @@ bool PatientContextDescriptor::getType(CodedValue & out) const {
 CodedValue PatientContextDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool PatientContextDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 PatientContextDescriptor & PatientContextDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -105,7 +105,7 @@ PatientContextDescriptor & PatientContextDescriptor::setHandle(const Handle & va
 Handle PatientContextDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 PatientContextDescriptor & PatientContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -122,11 +122,11 @@ bool PatientContextDescriptor::getDescriptorVersion(VersionCounter & out) const 
 VersionCounter PatientContextDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool PatientContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 PatientContextDescriptor & PatientContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -143,11 +143,11 @@ bool PatientContextDescriptor::getSafetyClassification(SafetyClassification & ou
 SafetyClassification PatientContextDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool PatientContextDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

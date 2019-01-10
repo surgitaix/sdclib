@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	WorkflowDetail(
 		PersonReference patient
-	); 
+	);
 private:
 	WorkflowDetail(){};
 public:
 	WorkflowDetail(const WorkflowDetail & object);
 	virtual ~WorkflowDetail();
-    
+
     void copyFrom(const WorkflowDetail & object);
     WorkflowDetail & operator=(const WorkflowDetail & object);
-    
+
     typedef CDM::WorkflowDetail WrappedType;
 
 	WorkflowDetail & setPatient(const PersonReference & value);
@@ -91,11 +91,11 @@ public:
 	WorkflowDetail & addDangerCode(const CodedValue & value);
 	std::vector<CodedValue> getDangerCodeList() const;
 	void clearDangerCodeList();
-	
+
 	WorkflowDetail & addRelevantClinicalInfo(const ClinicalInfo & value);
 	std::vector<ClinicalInfo> getRelevantClinicalInfoList() const;
 	void clearRelevantClinicalInfoList();
-	
+
 private:
 	std::shared_ptr<CDM::WorkflowDetail> data;
 };

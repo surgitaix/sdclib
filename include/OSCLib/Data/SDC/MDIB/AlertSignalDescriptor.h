@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,20 +53,20 @@ private:
 public:
 	AlertSignalDescriptor(
 		Handle handle
-		, 
+		,
 		AlertSignalManifestation manifestation
-		, 
+		,
 		bool latching
-	); 
+	);
 private:
 	AlertSignalDescriptor(){};
 public:
 	AlertSignalDescriptor(const AlertSignalDescriptor & object);
 	virtual ~AlertSignalDescriptor();
-    
+
     void copyFrom(const AlertSignalDescriptor & object);
     AlertSignalDescriptor & operator=(const AlertSignalDescriptor & object);
-    
+
     typedef CDM::AlertSignalDescriptor WrappedType;
 
 	AlertSignalDescriptor & setType(const CodedValue & value);

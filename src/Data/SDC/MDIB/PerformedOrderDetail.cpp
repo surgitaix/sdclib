@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -93,11 +93,11 @@ bool PerformedOrderDetail::getStart(xml_schema::DateTime & out) const {
 xml_schema::DateTime PerformedOrderDetail::getStart() const {
 	return ConvertFromCDM::convert(data->Start().get());
 }
-	
+
 bool PerformedOrderDetail::hasStart() const {
 	return data->Start().present();
 }
-	
+
 PerformedOrderDetail & PerformedOrderDetail::setEnd(const xml_schema::DateTime & value) {
 	data->End(ConvertToCDM::convert(value));
 	return *this;
@@ -114,11 +114,11 @@ bool PerformedOrderDetail::getEnd(xml_schema::DateTime & out) const {
 xml_schema::DateTime PerformedOrderDetail::getEnd() const {
 	return ConvertFromCDM::convert(data->End().get());
 }
-	
+
 bool PerformedOrderDetail::hasEnd() const {
 	return data->End().present();
 }
-	
+
 PerformedOrderDetail & PerformedOrderDetail::addPerformer(const PersonParticipation & value) {
 	data->Performer().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -189,11 +189,11 @@ bool PerformedOrderDetail::getFillerOrderNumber(InstanceIdentifier & out) const 
 InstanceIdentifier PerformedOrderDetail::getFillerOrderNumber() const {
 	return ConvertFromCDM::convert(data->FillerOrderNumber().get());
 }
-	
+
 bool PerformedOrderDetail::hasFillerOrderNumber() const {
 	return data->FillerOrderNumber().present();
 }
-	
+
 PerformedOrderDetail & PerformedOrderDetail::addResultingClinicalInfo(const ClinicalInfo & value) {
 	data->ResultingClinicalInfo().push_back(ConvertToCDM::convert(value));
 	return *this;

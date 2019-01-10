@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,9 +45,9 @@ namespace SDC {
 
 Udi::Udi(
 		std::string deviceidentifier
-		, 
+		,
 		std::string humanreadableform
-		, 
+		,
 		InstanceIdentifier issuer
 ) : data(Defaults::UdiInit(
 		deviceidentifier
@@ -92,7 +92,7 @@ Udi & Udi::setDeviceIdentifier(const std::string & value) {
 std::string Udi::getDeviceIdentifier() const {
 	return ConvertFromCDM::convert(data->DeviceIdentifier());
 }
-	
+
 Udi & Udi::setHumanReadableForm(const std::string & value) {
 	data->HumanReadableForm(ConvertToCDM::convert(value));
 	return *this;
@@ -102,7 +102,7 @@ Udi & Udi::setHumanReadableForm(const std::string & value) {
 std::string Udi::getHumanReadableForm() const {
 	return ConvertFromCDM::convert(data->HumanReadableForm());
 }
-	
+
 Udi & Udi::setIssuer(const InstanceIdentifier & value) {
 	data->Issuer(ConvertToCDM::convert(value));
 	return *this;
@@ -112,7 +112,7 @@ Udi & Udi::setIssuer(const InstanceIdentifier & value) {
 InstanceIdentifier Udi::getIssuer() const {
 	return ConvertFromCDM::convert(data->Issuer());
 }
-	
+
 Udi & Udi::setJurisdiction(const InstanceIdentifier & value) {
 	data->Jurisdiction(ConvertToCDM::convert(value));
 	return *this;
@@ -129,11 +129,11 @@ bool Udi::getJurisdiction(InstanceIdentifier & out) const {
 InstanceIdentifier Udi::getJurisdiction() const {
 	return ConvertFromCDM::convert(data->Jurisdiction().get());
 }
-	
+
 bool Udi::hasJurisdiction() const {
 	return data->Jurisdiction().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

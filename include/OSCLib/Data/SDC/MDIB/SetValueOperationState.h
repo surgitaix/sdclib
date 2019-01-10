@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	SetValueOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
-	); 
+	);
 private:
 	SetValueOperationState(){};
 public:
 	SetValueOperationState(const SetValueOperationState & object);
 	virtual ~SetValueOperationState();
-    
+
     void copyFrom(const SetValueOperationState & object);
     SetValueOperationState & operator=(const SetValueOperationState & object);
-    
+
     typedef CDM::SetValueOperationState WrappedType;
 
 	SetValueOperationState & setStateVersion(const VersionCounter & value);
@@ -86,7 +86,7 @@ public:
 	SetValueOperationState & addAllowedRange(const Range & value);
 	std::vector<Range> getAllowedRangeList() const;
 	void clearAllowedRangeList();
-	
+
 private:
 	std::shared_ptr<CDM::SetValueOperationState> data;
 };

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	DicomTransferCapability(
 		std::string sopclass
-		, 
+		,
 		DicomTransferRole transferrole
-	); 
+	);
 private:
 	DicomTransferCapability(){};
 public:
 	DicomTransferCapability(const DicomTransferCapability & object);
 	virtual ~DicomTransferCapability();
-    
+
     void copyFrom(const DicomTransferCapability & object);
     DicomTransferCapability & operator=(const DicomTransferCapability & object);
-    
+
     typedef CDM::DicomTransferCapability WrappedType;
 
 	DicomTransferCapability & setSopClass(const std::string & value);
@@ -76,7 +76,7 @@ public:
 	DicomTransferCapability & addTransferSyntax(const std::string & value);
 	std::vector<std::string> getTransferSyntaxList() const;
 	void clearTransferSyntaxList();
-	
+
 private:
 	std::shared_ptr<CDM::DicomTransferCapability> data;
 };

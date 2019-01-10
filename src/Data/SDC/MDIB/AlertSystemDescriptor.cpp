@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -93,11 +93,11 @@ bool AlertSystemDescriptor::getType(CodedValue & out) const {
 CodedValue AlertSystemDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool AlertSystemDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 AlertSystemDescriptor & AlertSystemDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -107,7 +107,7 @@ AlertSystemDescriptor & AlertSystemDescriptor::setHandle(const Handle & value) {
 Handle AlertSystemDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 AlertSystemDescriptor & AlertSystemDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,11 +124,11 @@ bool AlertSystemDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter AlertSystemDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool AlertSystemDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 AlertSystemDescriptor & AlertSystemDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool AlertSystemDescriptor::getSafetyClassification(SafetyClassification & out) 
 SafetyClassification AlertSystemDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool AlertSystemDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 AlertSystemDescriptor & AlertSystemDescriptor::setMaxPhysiologicalParallelAlarms(const unsigned int & value) {
 	data->MaxPhysiologicalParallelAlarms(ConvertToCDM::convert(value));
 	return *this;
@@ -166,11 +166,11 @@ bool AlertSystemDescriptor::getMaxPhysiologicalParallelAlarms(unsigned int & out
 unsigned int AlertSystemDescriptor::getMaxPhysiologicalParallelAlarms() const {
 	return ConvertFromCDM::convert(data->MaxPhysiologicalParallelAlarms().get());
 }
-	
+
 bool AlertSystemDescriptor::hasMaxPhysiologicalParallelAlarms() const {
 	return data->MaxPhysiologicalParallelAlarms().present();
 }
-	
+
 AlertSystemDescriptor & AlertSystemDescriptor::setMaxTechnicalParallelAlarms(const unsigned int & value) {
 	data->MaxTechnicalParallelAlarms(ConvertToCDM::convert(value));
 	return *this;
@@ -187,11 +187,11 @@ bool AlertSystemDescriptor::getMaxTechnicalParallelAlarms(unsigned int & out) co
 unsigned int AlertSystemDescriptor::getMaxTechnicalParallelAlarms() const {
 	return ConvertFromCDM::convert(data->MaxTechnicalParallelAlarms().get());
 }
-	
+
 bool AlertSystemDescriptor::hasMaxTechnicalParallelAlarms() const {
 	return data->MaxTechnicalParallelAlarms().present();
 }
-	
+
 AlertSystemDescriptor & AlertSystemDescriptor::setSelfCheckPeriod(const xml_schema::Duration & value) {
 	data->SelfCheckPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -208,11 +208,11 @@ bool AlertSystemDescriptor::getSelfCheckPeriod(xml_schema::Duration & out) const
 xml_schema::Duration AlertSystemDescriptor::getSelfCheckPeriod() const {
 	return ConvertFromCDM::convert(data->SelfCheckPeriod().get());
 }
-	
+
 bool AlertSystemDescriptor::hasSelfCheckPeriod() const {
 	return data->SelfCheckPeriod().present();
 }
-	
+
 AlertSystemDescriptor & AlertSystemDescriptor::addAlertCondition(const AlertConditionDescriptor & value) {
 	data->AlertCondition().push_back(ConvertToCDM::convert(value));
 	return *this;

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,7 +45,7 @@ namespace SDC {
 
 SetValueOperationState::SetValueOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
 ) : data(Defaults::SetValueOperationStateInit(
 		descriptorhandle
@@ -95,11 +95,11 @@ bool SetValueOperationState::getStateVersion(VersionCounter & out) const {
 VersionCounter SetValueOperationState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool SetValueOperationState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 SetValueOperationState & SetValueOperationState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -109,7 +109,7 @@ SetValueOperationState & SetValueOperationState::setDescriptorHandle(const Handl
 HandleRef SetValueOperationState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 SetValueOperationState & SetValueOperationState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -126,11 +126,11 @@ bool SetValueOperationState::getDescriptorVersion(ReferencedVersion & out) const
 ReferencedVersion SetValueOperationState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetValueOperationState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetValueOperationState & SetValueOperationState::setOperatingMode(const OperatingMode & value) {
 	data->OperatingMode(ConvertToCDM::convert(value));
 	return *this;
@@ -140,7 +140,7 @@ SetValueOperationState & SetValueOperationState::setOperatingMode(const Operatin
 OperatingMode SetValueOperationState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode());
 }
-	
+
 SetValueOperationState & SetValueOperationState::addAllowedRange(const Range & value) {
 	data->AllowedRange().push_back(ConvertToCDM::convert(value));
 	return *this;

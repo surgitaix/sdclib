@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -92,11 +92,11 @@ bool ChannelDescriptor::getType(CodedValue & out) const {
 CodedValue ChannelDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool ChannelDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 ChannelDescriptor & ChannelDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -106,7 +106,7 @@ ChannelDescriptor & ChannelDescriptor::setHandle(const Handle & value) {
 Handle ChannelDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 ChannelDescriptor & ChannelDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -123,11 +123,11 @@ bool ChannelDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter ChannelDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool ChannelDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 ChannelDescriptor & ChannelDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -144,11 +144,11 @@ bool ChannelDescriptor::getSafetyClassification(SafetyClassification & out) cons
 SafetyClassification ChannelDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool ChannelDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 ChannelDescriptor & ChannelDescriptor::addProductionSpecification(const ProductionSpecification & value) {
 	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;

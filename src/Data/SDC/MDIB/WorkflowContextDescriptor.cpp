@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -91,11 +91,11 @@ bool WorkflowContextDescriptor::getType(CodedValue & out) const {
 CodedValue WorkflowContextDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool WorkflowContextDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 WorkflowContextDescriptor & WorkflowContextDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -105,7 +105,7 @@ WorkflowContextDescriptor & WorkflowContextDescriptor::setHandle(const Handle & 
 Handle WorkflowContextDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 WorkflowContextDescriptor & WorkflowContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -122,11 +122,11 @@ bool WorkflowContextDescriptor::getDescriptorVersion(VersionCounter & out) const
 VersionCounter WorkflowContextDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool WorkflowContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 WorkflowContextDescriptor & WorkflowContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -143,11 +143,11 @@ bool WorkflowContextDescriptor::getSafetyClassification(SafetyClassification & o
 SafetyClassification WorkflowContextDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool WorkflowContextDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

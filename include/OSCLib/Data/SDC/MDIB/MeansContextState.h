@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	MeansContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
-	); 
+	);
 private:
 	MeansContextState(){};
 public:
 	MeansContextState(const MeansContextState & object);
 	virtual ~MeansContextState();
-    
+
     void copyFrom(const MeansContextState & object);
     MeansContextState & operator=(const MeansContextState & object);
-    
+
     typedef CDM::MeansContextState WrappedType;
 
 	MeansContextState & setStateVersion(const VersionCounter & value);
@@ -116,11 +116,11 @@ public:
 	MeansContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidatorList() const;
 	void clearValidatorList();
-	
+
 	MeansContextState & addIdentification(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
-	
+
 private:
 	std::shared_ptr<CDM::MeansContextState> data;
 };

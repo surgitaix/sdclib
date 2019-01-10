@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -89,11 +89,11 @@ bool CalibrationInfo::getComponentCalibrationState(CalibrationState & out) const
 CalibrationState CalibrationInfo::getComponentCalibrationState() const {
 	return ConvertFromCDM::convert(data->ComponentCalibrationState().get());
 }
-	
+
 bool CalibrationInfo::hasComponentCalibrationState() const {
 	return data->ComponentCalibrationState().present();
 }
-	
+
 CalibrationInfo & CalibrationInfo::setType(const CalibrationType & value) {
 	data->Type(ConvertToCDM::convert(value));
 	return *this;
@@ -110,11 +110,11 @@ bool CalibrationInfo::getType(CalibrationType & out) const {
 CalibrationType CalibrationInfo::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool CalibrationInfo::hasType() const {
 	return data->Type().present();
 }
-	
+
 CalibrationInfo & CalibrationInfo::setTime(const Timestamp & value) {
 	data->Time(ConvertToCDM::convert(value));
 	return *this;
@@ -131,11 +131,11 @@ bool CalibrationInfo::getTime(Timestamp & out) const {
 Timestamp CalibrationInfo::getTime() const {
 	return ConvertFromCDM::convert(data->Time().get());
 }
-	
+
 bool CalibrationInfo::hasTime() const {
 	return data->Time().present();
 }
-	
+
 CalibrationInfo & CalibrationInfo::addCalibrationDocumentation(const CalibrationDocumentation & value) {
 	data->CalibrationDocumentation().push_back(ConvertToCDM::convert(value));
 	return *this;

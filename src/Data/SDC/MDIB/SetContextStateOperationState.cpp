@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 SetContextStateOperationState::SetContextStateOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
 ) : data(Defaults::SetContextStateOperationStateInit(
 		descriptorhandle
@@ -94,11 +94,11 @@ bool SetContextStateOperationState::getStateVersion(VersionCounter & out) const 
 VersionCounter SetContextStateOperationState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool SetContextStateOperationState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 SetContextStateOperationState & SetContextStateOperationState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -108,7 +108,7 @@ SetContextStateOperationState & SetContextStateOperationState::setDescriptorHand
 HandleRef SetContextStateOperationState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 SetContextStateOperationState & SetContextStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -125,11 +125,11 @@ bool SetContextStateOperationState::getDescriptorVersion(ReferencedVersion & out
 ReferencedVersion SetContextStateOperationState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetContextStateOperationState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetContextStateOperationState & SetContextStateOperationState::setOperatingMode(const OperatingMode & value) {
 	data->OperatingMode(ConvertToCDM::convert(value));
 	return *this;
@@ -139,7 +139,7 @@ SetContextStateOperationState & SetContextStateOperationState::setOperatingMode(
 OperatingMode SetContextStateOperationState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

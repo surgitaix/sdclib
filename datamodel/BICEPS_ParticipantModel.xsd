@@ -1,57 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-	Please start and end a documentation by directly beginning after/ending before the opening/closing tag. Example:
-	<xsd:documentation>Here the doc starts [...] and ends.</document>
-
-	Do not do something like this:
-	<xsd:documentation>
-		Here the doc starts [...] and ends.
-	</document>
-
-
-	Always begin a new line at the beginning of the line and do not indent with whitespaces or tabs. Example:
-	<xsd:documentation>Here the doc starts [...]
-Here, a new line starts [...]
-Another new line starts [...]
-and the doc ends.</document>
-
-	Do not do something like this:
-	<xsd:documentation>Here the doc starts [...]
-		Here, a new line starts [...]
-		Another new line starts [...]
-		and the doc ends.</document>
-
-	All these rules prevent the documentation output format (that is generated using Altova XML Spy) from looking akward/not well-shaped.
-
-	=====
-
-	Please fulfill CamelCase notation for any elements that exist or will be inserted.
-
-	=====
-
-	Information: - Search for "TODO: add documentation" for missing documentation items.
-	             - Search for "[TODO: clarification]" for documentation items that have to clarified
--->
-<!--
-Abbreviations
-=============
-
-MDIB = Medical Device Information Base
-MDS = Medical Device System
-VMD = Virtual Medical Device
-FDA = U.S. Food and Drug Administration
-UDI = Unique Device Identification
-SCO = Service Control Object
-DST = Daylight Saving Time
-GMT = Greenwich Mean Time
-EBWW = Eyeball-And-Wristwatch Method
-NTP = Network Time Protocol
-PV = Patient Visit
-PL = Person Location
-MRN = Medical Record Number
--->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://p11073-10207/draft10/ext/2017/10/05" xmlns:pm="http://p11073-10207/draft10/pm/2017/10/05" targetNamespace="http://p11073-10207/draft10/pm/2017/10/05" elementFormDefault="qualified" attributeFormDefault="unqualified" version="P11073-10207_Draft10-Revision2" xml:lang="en">
-	<xsd:import namespace="http://p11073-10207/draft10/ext/2017/10/05" schemaLocation="ExtensionPoint.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
+	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" schemaLocation="ExtensionPoint.xsd"/>
 	<xsd:annotation>
 		<xsd:documentation>This XML schema defines the 'Basic Integrated Clinical Environment Protocol Specification' (BICEPS) that is a Domain Information Model (DIM) for point of care medical device communication. It encompasses the device model and the corresponding messages. This XML Schema is based on the ISO/IEEE 11073-10201 Domain Information Model standard, which belongs to the "Point-of-care medical device communication" standard family in ISO/IEEE 11073. This standard family should not to be confused with the ISO/IEEE 11073 "Personal Health Device" standard family.
 While former is based on the standards ISO/IEEE 11073-10101, 11073-10201, 11073-20101, and 11073-30200, the latter is based on ISO/IEEE 11073-20601 and ISO/IEEE 11073-104xx.
@@ -253,7 +202,7 @@ NOTE—SymbolicCodeName is the equivalent of the Reference ID attribute that is 
 			<xsd:documentation>Content restriction for pm:LocalizedText ELEMENTs.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
-			<xsd:minLength value="1"/>
+			<xsd:minLength value="0"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:simpleType name="LocalizedTextWidth">
@@ -728,7 +677,7 @@ Example: a METRIC state is associated with a METRIC descriptor (pm:AbstractDescr
 					<xsd:element name="Category" type="pm:CodedValue" minOccurs="0">
 						<xsd:annotation>
 							<xsd:documentation>A CODED VALUE that allows to categorize a multi state inside the set of multi states that belong to a descriptor of a certain type.
-NOTE—Using the pm:AbstractMultiState/pm:Category it is possible to represent, e.g., different steps in a workflow (multiple states) with different association states. This is in contrast to the pm:WorkflowContextDescriptor/pm:Type where different workflow types are described that the POC MEDICAL DEVICE supports. See Clause 5.2.6 for more details.</xsd:documentation>
+NOTE—By using the pm:AbstractMultiState/pm:Category it is possible to represent, e.g., different steps in a workflow (multiple states) with different association states. This is in contrast to the pm:WorkflowContextDescriptor/pm:Type where different workflow types are described that the POC MEDICAL DEVICE supports. See Clause 5.2.6 for more details.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -814,9 +763,19 @@ NOTE—In modular systems, dynamically plugged-in modules would typically be mod
 					<xsd:documentation>Req = Calibration Required. Defines that a component requires a calibration.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
+			<xsd:enumeration value="Run">
+				<xsd:annotation>
+					<xsd:documentation>Run = Running. Defines that a calibration for a component is running.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
 			<xsd:enumeration value="Cal">
 				<xsd:annotation>
 					<xsd:documentation>Cal = Calibrated. Defines that a component is calibrated.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Oth">
+				<xsd:annotation>
+					<xsd:documentation>Oth = Other. The calibration state is defined by other means.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 		</xsd:restriction>
@@ -1062,7 +1021,7 @@ NOTE 2—If needed, the UDI's distinct identification code can be inserted as an
 					</xsd:element>
 					<xsd:element name="Vmd" type="pm:VmdDescriptor" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
-							<xsd:documentation>Ordered list of VMDs that belongs to the MDS. The list is ordered by the position of the VMD in the list where the ELEMENT with a lower list index has a higher clinical relevance then any entry with a higher list index. The SERVICE PROVIDER defines the clinical relevance and MAY reorder the list at any time.</xsd:documentation>
+							<xsd:documentation>Ordered list of VMDs that belongs to the MDS. The list is ordered by the position of the VMD in the list where the ELEMENT with a lower list index has a higher clinical relevance than any entry with a higher list index. The SERVICE PROVIDER defines the clinical relevance and MAY reorder the list at any time.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -1103,7 +1062,7 @@ NOTE 2—If needed, the UDI's distinct identification code can be inserted as an
 		<xsd:complexContent>
 			<xsd:extension base="pm:AbstractComplexDeviceComponentState">
 				<xsd:sequence>
-					<xsd:element name="OperatingJurisdiction" minOccurs="0" type="pm:OperatingJurisdiction">
+					<xsd:element name="OperatingJurisdiction" type="pm:OperatingJurisdiction" minOccurs="0">
 						<xsd:annotation>
 							<xsd:documentation>The current region information that is configured for the MDS. See also pm:OperatingJurisdiction. OperatingJurisdiction SHALL NOT be inserted if there is no pm:MdsDescriptor/pm:ApprovedJurisdictions list present.</xsd:documentation>
 						</xsd:annotation>
@@ -1126,7 +1085,7 @@ NOTE 2—If needed, the UDI's distinct identification code can be inserted as an
 		<xsd:annotation>
 			<xsd:documentation>VmdDescriptor describes a VMD. A VMD is an abstraction for a module (medical-related subsystem) of an MDS. According to IEEE 11073-10201, an MDS with one VMD is a single purpose POC MEDICAL DEVICE in contrast to an MDS with multiple VMDs that has multiple purposes.
 
-Example of a multiple purpose POC MEDICAL DEVICE: an anesthesia workstation (one MDS) with a ventilation unit (one VMD), a patient monitoring unit (another VMD), and gas delivery/monitor system (another VMD). In the IEEE 11073-10201 a VMD may not be a hardware module, it also can be pure software.</xsd:documentation>
+Example of a multiple purpose POC MEDICAL DEVICE: an anesthesia workstation (one MDS) with a ventilation unit (one VMD), a patient monitoring unit (another VMD), and gas delivery/monitor system (another VMD). In the IEEE 11073-10201 a VMD might not be a hardware module, it also can be pure software.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
 			<xsd:extension base="pm:AbstractComplexDeviceComponentDescriptor">
@@ -1138,7 +1097,7 @@ Example of a multiple purpose POC MEDICAL DEVICE: an anesthesia workstation (one
 					</xsd:element>
 					<xsd:element name="Channel" type="pm:ChannelDescriptor" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
-							<xsd:documentation>Ordered list of CHANNELs that allow hierarchical information organization of METRICs or ALERT SYSTEMs. The list is ordered by the position of the CHANNEL in the list where the ELEMENT with a lower list index has a higher clinical relevance then any entry with a higher list index. The SERVICE PROVIDER defines the clinical relevance and may reorder the list at any time.</xsd:documentation>
+							<xsd:documentation>Ordered list of CHANNELs that allow hierarchical information organization of METRICs or ALERT SYSTEMs. The list is ordered by the position of the CHANNEL in the list where the ELEMENT with a lower list index has a higher clinical relevance than any entry with a higher list index. The SERVICE PROVIDER defines the clinical relevance and MAY reorder the list at any time.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -1152,7 +1111,7 @@ Example of a multiple purpose POC MEDICAL DEVICE: an anesthesia workstation (one
 		<xsd:complexContent>
 			<xsd:extension base="pm:AbstractComplexDeviceComponentState">
 				<xsd:sequence>
-					<xsd:element name="OperatingJurisdiction" minOccurs="0" type="pm:OperatingJurisdiction">
+					<xsd:element name="OperatingJurisdiction" type="pm:OperatingJurisdiction" minOccurs="0">
 						<xsd:annotation>
 							<xsd:documentation>The current region information that is configured for the VMD. See also pm:OperatingJurisdiction. OperatingJurisdiction SHALL NOT be inserted if there is no pm:VmdDescriptor/pm:ApprovedJurisdictions list present.</xsd:documentation>
 						</xsd:annotation>
@@ -1172,7 +1131,7 @@ Example: an example would be a blood pressure VMD with one CHANNEL to group toge
 				<xsd:sequence>
 					<xsd:element name="Metric" type="pm:AbstractMetricDescriptor" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
-							<xsd:documentation>List of METRICs that are grouped into the CHANNEL. The list is ordered by the position of the METRIC in the list where the ELEMENT with a lower list index has a higher clinical relevance then any entry with a higher list index. The SERVICE PROVIDER defines the clinical relevance and may reorder the list at any time.</xsd:documentation>
+							<xsd:documentation>List of METRICs that are grouped into the CHANNEL. The list is ordered by the position of the METRIC in the list where the ELEMENT with a lower list index has a higher clinical relevance than any entry with a higher list index. The SERVICE PROVIDER defines the clinical relevance and MAY reorder the list at any time.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -1809,7 +1768,7 @@ In the case of a FALLBACK ALERT SIGNAL, DefaultSignalGenerationDelay is the defa
 					<xsd:annotation>
 						<xsd:documentation>The slot is a 0-based index that allows a prioritization of the ALERT SIGNAL w.r.t. signal tangibility. The Slot SHOULD be used if the medium for signal generation has only a limited capability of parallel signal generation. The smaller the slot index, the higher is the priority in generation of the signal.
 
-Example: if a signal is audible and there are different audio signals for different ALERT SIGNALs, and more than one ALERT SIGNAL has to be generated, the generating system has to decide which of the ALERT SIGNALs it generates as overlaying audio signals, may be not desirable. For example, if the first ALERT SIGNAL has a slot number of 0 and the second ALERT SIGNAL has a slot number 1 and both signals are active, than the ALERT SYSTEM generates only the ALERT SIGNAL with the slot number 0.</xsd:documentation>
+Example: if a signal is audible and there are different audio signals for different ALERT SIGNALs, and more than one ALERT SIGNAL has to be generated, the generating system has to decide which of the ALERT SIGNALs it generates as overlaying audio signals might not be desirable. For example, if the first ALERT SIGNAL has a slot number of 0 and the second ALERT SIGNAL has a slot number 1 and both signals are active, than the ALERT SYSTEM generates only the ALERT SIGNAL with the slot number 0.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
 			</xsd:extension>
@@ -1890,10 +1849,10 @@ NOTE—In case of other values the enclosing METRIC is allowed to possess a dete
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="Annotation" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Annotation of a METRIC state value.</xsd:documentation>
+				</xsd:annotation>
 				<xsd:complexType>
-					<xsd:annotation>
-						<xsd:documentation>Annotation of a METRIC state value.</xsd:documentation>
-					</xsd:annotation>
 					<xsd:sequence>
 						<xsd:element ref="ext:Extension" minOccurs="0"/>
 						<xsd:element name="Type" type="pm:CodedValue">
@@ -2071,6 +2030,12 @@ Example: non-invasive blood pressure measurement.</xsd:documentation>
 			</xsd:enumeration>
 		</xsd:restriction>
 	</xsd:simpleType>
+	<xsd:simpleType name="EntryRef">
+		<xsd:annotation>
+			<xsd:documentation>A list of CONTAINMENT TREE ENTRY handle references.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:list itemType="pm:HandleRef"/>
+	</xsd:simpleType>
 	<xsd:complexType name="AbstractMetricDescriptor">
 		<xsd:annotation>
 			<xsd:documentation>An abstract descriptor for a METRIC.</xsd:documentation>
@@ -2153,7 +2118,7 @@ NOTE—By that a SERVICE PROVIDER can, e.g., group sets of recommendations or pr
 									</xsd:restriction>
 								</xsd:simpleType>
 							</xsd:attribute>
-							<xsd:attribute name="Entries" use="required" type="pm:HandleRef">
+							<xsd:attribute name="Entries" type="pm:EntryRef" use="required">
 								<xsd:annotation>
 									<xsd:documentation>List of HANDLE references that relate to the METRIC. The relationship flavor is defined in ./pm:Relation/@Kind.</xsd:documentation>
 								</xsd:annotation>
@@ -2188,7 +2153,7 @@ NOTE—By that a SERVICE PROVIDER can, e.g., group sets of recommendations or pr
 				<xsd:attribute name="MaxDelayTime" type="xsd:duration" use="optional">
 					<xsd:annotation>
 						<xsd:documentation>Maximum delay to real time. 
-For a measurement or calculation, the maximum delay to real time is the estimated or known maximum difference between the point in time when a physical variable value has been present and when the value has been computed and is ready for communication. This may include an averaging period, but it does not include the communication delay. 
+For a measurement or calculation, the maximum delay to real time is the estimated or known maximum difference between the point in time when a physical variable value has been present and when the value has been computed and is ready for communication. This MAY include an averaging period, but it does not include the communication delay. 
 For a setting, the maximum delay to real time is the estimated or known maximum difference between the point in time when a setting has been confirmed to be applicable and the time when the setting becomes effective on the actuator. This does not include any communication delay.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
@@ -2229,7 +2194,7 @@ NOTE—ActivationDuration is used to indicate the time that a measurement is per
 					<xsd:element name="BodySite" type="pm:CodedValue" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
 							<xsd:documentation>OPTIONAL list of CODED VALUEs that describe the body sites where the measurement is performed or where the setting is applied to.
-This list of body sites MAY provide more details to location of the measurement or setting that may be available at runtime only or that changes at runtime of the POC MEDICAL DEVICE. It SHOULD NOT contradict the location that has been listed in the descriptor.
+This list of body sites MAY provide more details to location of the measurement or setting that are be available at runtime only or that changes at runtime of the POC MEDICAL DEVICE. It SHOULD NOT contradict the location that has been listed in the descriptor.
 
 Example: if in the descriptor the location "Upper Abdomen" is defined, than the state's body site give more details to where the measurement is performed like "Upper Right Quadrant" and "Liver".</xsd:documentation>
 						</xsd:annotation>
@@ -2507,11 +2472,11 @@ NOTE—This is not an alarming range.</xsd:documentation>
 			<xsd:documentation>ScoDescriptor describes the capabilities of the SCO.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="pm:AbstractDescriptor">
+			<xsd:extension base="pm:AbstractDeviceComponentDescriptor">
 				<xsd:sequence>
 					<xsd:element name="Operation" type="pm:AbstractOperationDescriptor" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
-							<xsd:documentation>A list of operations that are provided by the SCO.</xsd:documentation>
+							<xsd:documentation>A list of operations that are provided by the SCO. The list is ordered by the position of the operation in the list where the ELEMENT with a lower list index has a higher clinical relevance than any entry with a higher list index. The SERVICE PROVIDER defines the clinical relevance and MAY reorder the list at any time.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -2523,7 +2488,7 @@ NOTE—This is not an alarming range.</xsd:documentation>
 			<xsd:documentation>Corresponding state of pm:ScoDescriptor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="pm:AbstractState">
+			<xsd:extension base="pm:AbstractDeviceComponentState">
 				<xsd:sequence>
 					<xsd:element name="OperationGroup" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
@@ -2545,7 +2510,7 @@ NOTE—This is not an alarming range.</xsd:documentation>
 							</xsd:attribute>
 							<xsd:attribute name="Operations" type="pm:OperationRef">
 								<xsd:annotation>
-									<xsd:documentation>Handle references to all operations enclosed by the operation group.</xsd:documentation>
+									<xsd:documentation>Handle references to all operations enclosed by the operation group. The list is ordered such that the entry with a lower list index has a higher clinical relevance than any entry with a higher list index. The SERVICE PROVIDER defines the clinical relevance and MAY reorder the list at any time.</xsd:documentation>
 								</xsd:annotation>
 							</xsd:attribute>
 						</xsd:complexType>
@@ -2587,7 +2552,7 @@ NOTE—This is not an alarming range.</xsd:documentation>
 NOTE—Example: if an arbitrary client remotely controls the cutter of a high frequency cutting device, due to safety reasons the cutter trigger might have a timeout until it stops automatically. To enable continuous activation, the client has to send repeated triggers within the given InvocationEffectiveTimeout duration.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
-				<xsd:attribute name="Retriggerable" type="xsd:duration">
+				<xsd:attribute name="Retriggerable" type="xsd:boolean">
 					<xsd:annotation>
 						<xsd:documentation>Retriggerable is only applicable if ./@InvocationEffectiveTimeout is set. If set to "true", then Retriggerable indicates that a call to the activate operation resets the current ./@InvocationEffectiveTimeout, otherwise it will be left as it is until ./@InvocationEffectiveTimeout times out.
 
@@ -2620,6 +2585,11 @@ __R5054: Access to the invocation of the operation SHALL be restricted to the de
 							<xsd:enumeration value="SP">
 								<xsd:annotation>
 									<xsd:documentation>SP = Service Personnel. Access is restricted to SERVICE PERSONNEL.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+							<xsd:enumeration value="Oth">
+								<xsd:annotation>
+									<xsd:documentation>Oth = Other. Access is restricted by other means (e.g., an extension).</xsd:documentation>
 								</xsd:annotation>
 							</xsd:enumeration>
 						</xsd:restriction>
@@ -2738,7 +2708,7 @@ NOTE—The given ranges need to be a (strict or non-strict) subset of the techni
 						</xsd:annotation>
 						<xsd:complexType>
 							<xsd:sequence>
-								<xsd:element name="Value" type="xsd:string">
+								<xsd:element name="Value" type="xsd:string" minOccurs="1" maxOccurs="unbounded">
 									<xsd:annotation>
 										<xsd:documentation>A single allowed value that can be requested.</xsd:documentation>
 									</xsd:annotation>
@@ -2905,7 +2875,9 @@ Examples: MDC:MDC_TIME_SYNC_NTPV3 if the clock is synchronized using NTP v3.0 (R
 				</xsd:sequence>
 				<xsd:attribute name="DateAndTime" type="pm:Timestamp">
 					<xsd:annotation>
-						<xsd:documentation>Current date/time setting. As the current date/time changes at a high frequency, a change of this value SHALL NOT cause an update of the state version unless it has been synchronized either remotely or manually. This ELEMENT may be filled if the clock is explicitly requested.</xsd:documentation>
+						<xsd:documentation>Current date/time setting. As the current date/time changes at a high frequency, a change of this value SHALL NOT cause an update of the state version unless it has been synchronized either remotely or manually.
+
+NOTE—DateAndTime could be filled when the clock is explicitly requested.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
 				<xsd:attribute name="RemoteSync" type="xsd:boolean" use="required">
@@ -3054,7 +3026,7 @@ Enumerations "Shtdn" and "NotRdy" are undefined for BatteryState.</xsd:documenta
 			<xsd:documentation>The context of an MDS that lists the possible relationship of a POC MEDICAL DEVICE into its usage environment by means of context descriptors. Context descriptors do not contain any stateful information. They only assert that the underlying MDS can provide corresponding context state information.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="pm:AbstractDescriptor">
+			<xsd:extension base="pm:AbstractDeviceComponentDescriptor">
 				<xsd:sequence>
 					<xsd:element name="PatientContext" type="pm:PatientContextDescriptor" minOccurs="0">
 						<xsd:annotation>
@@ -3107,7 +3079,7 @@ A SERVICE PROVIDER SHALL NOT insert or delete the context descriptor ELEMENT dur
 			<xsd:documentation>Corresponding state of pm:SystemContextDescriptor. This state comes with no additional attributes.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="pm:AbstractState"/>
+			<xsd:extension base="pm:AbstractDeviceComponentState"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!--Sub-section: Base Types-->
@@ -3160,7 +3132,7 @@ A SERVICE PROVIDER SHALL NOT insert or delete the context descriptor ELEMENT dur
 					</xsd:element>
 					<xsd:element name="Identification" type="pm:InstanceIdentifier" minOccurs="0" maxOccurs="unbounded">
 						<xsd:annotation>
-							<xsd:documentation>OPTIONAL ordered list of identifiers for the context. The list is ordered by the position of the identifiers in the list where the ELEMENT with the lower list index has a higher relevance then any entry with a higher list index. The SERVICE PROVIDER defines the relevance and may reorder the list at any time.
+							<xsd:documentation>OPTIONAL ordered list of identifiers for the context. The list is ordered by the position of the identifiers in the list where the ELEMENT with the lower list index has a higher relevance than any entry with a higher list index. The SERVICE PROVIDER defines the relevance and MAY reorder the list at any time.
 
 NOTE 1—Identification can be used to span a communication context between SERVICE PROVIDERs and SERVICE CONSUMERs.
 NOTE 2—Identification can be empty, e.g., if pm:AbstractContextState/@ContextAssociation is "No".</xsd:documentation>
@@ -3707,10 +3679,10 @@ A limit of sixty-four (64) characters is required to allow compatibility with DI
 			<xsd:extension base="pm:AbstractContextState">
 				<xsd:sequence>
 					<xsd:element name="WorkflowDetail" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>A workflow step for a clinical treatment or diagnostic procedure or monitoring procedure.</xsd:documentation>
+						</xsd:annotation>
 						<xsd:complexType>
-							<xsd:annotation>
-								<xsd:documentation>A workflow step for a clinical treatment or diagnostic procedure or monitoring procedure.</xsd:documentation>
-							</xsd:annotation>
 							<xsd:sequence>
 								<xsd:element ref="ext:Extension" minOccurs="0"/>
 								<xsd:element name="Patient" type="pm:PersonReference">

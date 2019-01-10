@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	OrderDetail(
-	); 
+	);
 	OrderDetail(const OrderDetail & object);
 	virtual ~OrderDetail();
-    
+
     void copyFrom(const OrderDetail & object);
     OrderDetail & operator=(const OrderDetail & object);
-    
+
     typedef CDM::OrderDetail WrappedType;
 
 	OrderDetail & setStart(const xml_schema::DateTime & value);
@@ -74,15 +74,15 @@ public:
 	OrderDetail & addPerformer(const PersonParticipation & value);
 	std::vector<PersonParticipation> getPerformerList() const;
 	void clearPerformerList();
-	
+
 	OrderDetail & addService(const CodedValue & value);
 	std::vector<CodedValue> getServiceList() const;
 	void clearServiceList();
-	
+
 	OrderDetail & addImagingProcedure(const ImagingProcedure & value);
 	std::vector<ImagingProcedure> getImagingProcedureList() const;
 	void clearImagingProcedureList();
-	
+
 private:
 	std::shared_ptr<CDM::OrderDetail> data;
 };

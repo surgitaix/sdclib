@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	SetMetricStateOperationDescriptor(
 		Handle handle
-		, 
+		,
 		HandleRef operationtarget
-	); 
+	);
 private:
 	SetMetricStateOperationDescriptor(){};
 public:
 	SetMetricStateOperationDescriptor(const SetMetricStateOperationDescriptor & object);
 	virtual ~SetMetricStateOperationDescriptor();
-    
+
     void copyFrom(const SetMetricStateOperationDescriptor & object);
     SetMetricStateOperationDescriptor & operator=(const SetMetricStateOperationDescriptor & object);
-    
+
     typedef CDM::SetMetricStateOperationDescriptor WrappedType;
 
 	SetMetricStateOperationDescriptor & setType(const CodedValue & value);
@@ -98,9 +98,9 @@ public:
 	bool getInvocationEffectiveTimeout(xml_schema::Duration & out) const;
 	bool hasInvocationEffectiveTimeout() const;
 
-	SetMetricStateOperationDescriptor & setRetriggerable(const xml_schema::Duration & value);
-	xml_schema::Duration getRetriggerable() const;
-	bool getRetriggerable(xml_schema::Duration & out) const;
+	SetMetricStateOperationDescriptor & setRetriggerable(const bool & value);
+	bool getRetriggerable() const;
+	bool getRetriggerable(bool & out) const;
 	bool hasRetriggerable() const;
 
 	SetMetricStateOperationDescriptor & setAccessLevel(const AccessLevel & value);
@@ -111,7 +111,7 @@ public:
 	SetMetricStateOperationDescriptor & addModifiableData(const std::string & value);
 	std::vector<std::string> getModifiableDataList() const;
 	void clearModifiableDataList();
-	
+
 private:
 	std::shared_ptr<CDM::SetMetricStateOperationDescriptor> data;
 };

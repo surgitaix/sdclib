@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	LocationDetail(
-	); 
+	);
 	LocationDetail(const LocationDetail & object);
 	virtual ~LocationDetail();
-    
+
     void copyFrom(const LocationDetail & object);
     LocationDetail & operator=(const LocationDetail & object);
-    
+
     typedef CDM::LocationDetail WrappedType;
 
 	LocationDetail & setPoC(const std::string & value);

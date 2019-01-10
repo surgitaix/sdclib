@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -85,7 +85,7 @@ NumericMetricValue & NumericMetricValue::setMetricQuality(const MetricQuality & 
 MetricQuality NumericMetricValue::getMetricQuality() const {
 	return ConvertFromCDM::convert(data->MetricQuality());
 }
-	
+
 NumericMetricValue & NumericMetricValue::setStartTime(const Timestamp & value) {
 	data->StartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -102,11 +102,11 @@ bool NumericMetricValue::getStartTime(Timestamp & out) const {
 Timestamp NumericMetricValue::getStartTime() const {
 	return ConvertFromCDM::convert(data->StartTime().get());
 }
-	
+
 bool NumericMetricValue::hasStartTime() const {
 	return data->StartTime().present();
 }
-	
+
 NumericMetricValue & NumericMetricValue::setStopTime(const Timestamp & value) {
 	data->StopTime(ConvertToCDM::convert(value));
 	return *this;
@@ -123,11 +123,11 @@ bool NumericMetricValue::getStopTime(Timestamp & out) const {
 Timestamp NumericMetricValue::getStopTime() const {
 	return ConvertFromCDM::convert(data->StopTime().get());
 }
-	
+
 bool NumericMetricValue::hasStopTime() const {
 	return data->StopTime().present();
 }
-	
+
 NumericMetricValue & NumericMetricValue::setDeterminationTime(const Timestamp & value) {
 	data->DeterminationTime(ConvertToCDM::convert(value));
 	return *this;
@@ -144,11 +144,11 @@ bool NumericMetricValue::getDeterminationTime(Timestamp & out) const {
 Timestamp NumericMetricValue::getDeterminationTime() const {
 	return ConvertFromCDM::convert(data->DeterminationTime().get());
 }
-	
+
 bool NumericMetricValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
-	
+
 NumericMetricValue & NumericMetricValue::addAnnotation(const Annotation & value) {
 	data->Annotation().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -183,11 +183,11 @@ bool NumericMetricValue::getValue(double & out) const {
 double NumericMetricValue::getValue() const {
 	return ConvertFromCDM::convert(data->Value().get());
 }
-	
+
 bool NumericMetricValue::hasValue() const {
 	return data->Value().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

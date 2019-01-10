@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,19 +52,19 @@ private:
 	friend class MdDescription;
 public:
 	RemedyInfo(
-	); 
+	);
 	RemedyInfo(const RemedyInfo & object);
 	virtual ~RemedyInfo();
-    
+
     void copyFrom(const RemedyInfo & object);
     RemedyInfo & operator=(const RemedyInfo & object);
-    
+
     typedef CDM::RemedyInfo WrappedType;
 
 	RemedyInfo & addDescription(const LocalizedText & value);
 	std::vector<LocalizedText> getDescriptionList() const;
 	void clearDescriptionList();
-	
+
 private:
 	std::shared_ptr<CDM::RemedyInfo> data;
 };

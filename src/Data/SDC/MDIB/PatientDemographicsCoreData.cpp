@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -90,11 +90,11 @@ bool PatientDemographicsCoreData::getGivenname(std::string & out) const {
 std::string PatientDemographicsCoreData::getGivenname() const {
 	return ConvertFromCDM::convert(data->Givenname().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasGivenname() const {
 	return data->Givenname().present();
 }
-	
+
 PatientDemographicsCoreData & PatientDemographicsCoreData::setFamilyname(const std::string & value) {
 	data->Familyname(ConvertToCDM::convert(value));
 	return *this;
@@ -111,11 +111,11 @@ bool PatientDemographicsCoreData::getFamilyname(std::string & out) const {
 std::string PatientDemographicsCoreData::getFamilyname() const {
 	return ConvertFromCDM::convert(data->Familyname().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasFamilyname() const {
 	return data->Familyname().present();
 }
-	
+
 PatientDemographicsCoreData & PatientDemographicsCoreData::setBirthname(const std::string & value) {
 	data->Birthname(ConvertToCDM::convert(value));
 	return *this;
@@ -132,11 +132,11 @@ bool PatientDemographicsCoreData::getBirthname(std::string & out) const {
 std::string PatientDemographicsCoreData::getBirthname() const {
 	return ConvertFromCDM::convert(data->Birthname().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasBirthname() const {
 	return data->Birthname().present();
 }
-	
+
 PatientDemographicsCoreData & PatientDemographicsCoreData::setTitle(const std::string & value) {
 	data->Title(ConvertToCDM::convert(value));
 	return *this;
@@ -153,11 +153,11 @@ bool PatientDemographicsCoreData::getTitle(std::string & out) const {
 std::string PatientDemographicsCoreData::getTitle() const {
 	return ConvertFromCDM::convert(data->Title().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasTitle() const {
 	return data->Title().present();
 }
-	
+
 PatientDemographicsCoreData & PatientDemographicsCoreData::addMiddlename(const std::string & value) {
 	data->Middlename().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -192,11 +192,11 @@ bool PatientDemographicsCoreData::getSex(Sex & out) const {
 Sex PatientDemographicsCoreData::getSex() const {
 	return ConvertFromCDM::convert(data->Sex().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasSex() const {
 	return data->Sex().present();
 }
-	
+
 PatientDemographicsCoreData & PatientDemographicsCoreData::setPatientType(const PatientType & value) {
 	data->PatientType(ConvertToCDM::convert(value));
 	return *this;
@@ -213,11 +213,11 @@ bool PatientDemographicsCoreData::getPatientType(PatientType & out) const {
 PatientType PatientDemographicsCoreData::getPatientType() const {
 	return ConvertFromCDM::convert(data->PatientType().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasPatientType() const {
 	return data->PatientType().present();
 }
-	
+
 PatientDemographicsCoreData & PatientDemographicsCoreData::setDateOfBirth(const DateOfBirth & value) {
 	data->DateOfBirth(ConvertToCDM::convert(value));
 	return *this;
@@ -234,11 +234,11 @@ bool PatientDemographicsCoreData::getDateOfBirth(DateOfBirth & out) const {
 DateOfBirth PatientDemographicsCoreData::getDateOfBirth() const {
 	return ConvertFromCDM::convert(data->DateOfBirth().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasDateOfBirth() const {
 	return data->DateOfBirth().present();
 }
-	
+
 PatientDemographicsCoreData & PatientDemographicsCoreData::setHeight(const Measurement & value) {
 	data->Height(ConvertToCDM::convert(value));
 	return *this;
@@ -255,11 +255,11 @@ bool PatientDemographicsCoreData::getHeight(Measurement & out) const {
 Measurement PatientDemographicsCoreData::getHeight() const {
 	return ConvertFromCDM::convert(data->Height().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasHeight() const {
 	return data->Height().present();
 }
-	
+
 PatientDemographicsCoreData & PatientDemographicsCoreData::setWeight(const Measurement & value) {
 	data->Weight(ConvertToCDM::convert(value));
 	return *this;
@@ -276,11 +276,11 @@ bool PatientDemographicsCoreData::getWeight(Measurement & out) const {
 Measurement PatientDemographicsCoreData::getWeight() const {
 	return ConvertFromCDM::convert(data->Weight().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasWeight() const {
 	return data->Weight().present();
 }
-	
+
 PatientDemographicsCoreData & PatientDemographicsCoreData::setRace(const CodedValue & value) {
 	data->Race(ConvertToCDM::convert(value));
 	return *this;
@@ -297,11 +297,11 @@ bool PatientDemographicsCoreData::getRace(CodedValue & out) const {
 CodedValue PatientDemographicsCoreData::getRace() const {
 	return ConvertFromCDM::convert(data->Race().get());
 }
-	
+
 bool PatientDemographicsCoreData::hasRace() const {
 	return data->Race().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

@@ -46,12 +46,19 @@ typedef std::string HandleRef;
 typedef std::vector<std::string> AlertConditionReference;
 typedef double QualityIndicator;
 typedef std::vector<double> RealTimeValueType;
+typedef std::vector<std::string> EntryRef;
 typedef std::vector<std::string> OperationRef;
 typedef std::string TimeZone;
 typedef xml_schema::Uri Root;
 typedef std::string Extension;
 typedef std::string DateOfBirth;
 
+
+enum class DicomTransferRole
+{
+	Scu,
+	Scp
+};
 
 enum class MeasurementValidity
 {
@@ -98,7 +105,9 @@ enum class CalibrationState
 {
 	No,
 	Req,
-	Cal
+	Run,
+	Cal,
+	Oth
 };
 
 enum class CalibrationType
@@ -232,12 +241,6 @@ enum class PatientType
 	Oth
 };
 
-enum class DicomTransferRole
-{
-	Scu,
-	Scp
-};
-
 enum class CanEscalate
 {
 	Lo,
@@ -267,7 +270,8 @@ enum class AccessLevel
 	Usr,
 	CSUsr,
 	RO,
-	SP
+	SP,
+	Oth
 };
 
 enum class ChargeStatus
@@ -288,6 +292,7 @@ class EnumToString {
 public:
 	EnumToString();
 	virtual ~EnumToString();
+	static std::string convert(DicomTransferRole source);
 	static std::string convert(MeasurementValidity source);
 	static std::string convert(LocalizedTextWidth source);
 	static std::string convert(SafetyClassification source);
@@ -310,7 +315,6 @@ public:
 	static std::string convert(ContextAssociation source);
 	static std::string convert(Sex source);
 	static std::string convert(PatientType source);
-	static std::string convert(DicomTransferRole source);
 	static std::string convert(CanEscalate source);
 	static std::string convert(CanDeescalate source);
 	static std::string convert(Kind source);

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,19 +52,19 @@ private:
 	friend class MdDescription;
 public:
 	ContainmentTree(
-	); 
+	);
 	ContainmentTree(const ContainmentTree & object);
 	virtual ~ContainmentTree();
-    
+
     void copyFrom(const ContainmentTree & object);
     ContainmentTree & operator=(const ContainmentTree & object);
-    
+
     typedef CDM::ContainmentTree WrappedType;
 
 	ContainmentTree & addEntry(const ContainmentTreeEntry & value);
 	std::vector<ContainmentTreeEntry> getEntryList() const;
 	void clearEntryList();
-	
+
 private:
 	std::shared_ptr<CDM::ContainmentTree> data;
 };

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	Relation(
 		Kind kind
-		, 
-		HandleRef entries
-	); 
+		,
+		EntryRef entries
+	);
 private:
 	Relation(){};
 public:
 	Relation(const Relation & object);
 	virtual ~Relation();
-    
+
     void copyFrom(const Relation & object);
     Relation & operator=(const Relation & object);
-    
+
     typedef CDM::Relation WrappedType;
 
 	Relation & setCode(const CodedValue & value);
@@ -80,8 +80,8 @@ public:
 	Relation & setKind(const Kind & value);
 	Kind getKind() const;
 
-	Relation & setEntries(const HandleRef & value);
-	HandleRef getEntries() const;
+	Relation & setEntries(const EntryRef & value);
+	EntryRef getEntries() const;
 
 private:
 	std::shared_ptr<CDM::Relation> data;

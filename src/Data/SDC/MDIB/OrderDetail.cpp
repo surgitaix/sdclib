@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -91,11 +91,11 @@ bool OrderDetail::getStart(xml_schema::DateTime & out) const {
 xml_schema::DateTime OrderDetail::getStart() const {
 	return ConvertFromCDM::convert(data->Start().get());
 }
-	
+
 bool OrderDetail::hasStart() const {
 	return data->Start().present();
 }
-	
+
 OrderDetail & OrderDetail::setEnd(const xml_schema::DateTime & value) {
 	data->End(ConvertToCDM::convert(value));
 	return *this;
@@ -112,11 +112,11 @@ bool OrderDetail::getEnd(xml_schema::DateTime & out) const {
 xml_schema::DateTime OrderDetail::getEnd() const {
 	return ConvertFromCDM::convert(data->End().get());
 }
-	
+
 bool OrderDetail::hasEnd() const {
 	return data->End().present();
 }
-	
+
 OrderDetail & OrderDetail::addPerformer(const PersonParticipation & value) {
 	data->Performer().push_back(ConvertToCDM::convert(value));
 	return *this;

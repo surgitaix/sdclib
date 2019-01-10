@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	LocalizedText(
-	); 
+	);
 	LocalizedText(const LocalizedText & object);
 	virtual ~LocalizedText();
-    
+
     void copyFrom(const LocalizedText & object);
     LocalizedText & operator=(const LocalizedText & object);
-    
+
     typedef CDM::LocalizedText WrappedType;
 
 	LocalizedText & setRef(const LocalizedTextRef & value);

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	ClockDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	ClockDescriptor(){};
 public:
 	ClockDescriptor(const ClockDescriptor & object);
 	virtual ~ClockDescriptor();
-    
+
     void copyFrom(const ClockDescriptor & object);
     ClockDescriptor & operator=(const ClockDescriptor & object);
-    
+
     typedef CDM::ClockDescriptor WrappedType;
 
 	ClockDescriptor & setType(const CodedValue & value);
@@ -86,7 +86,7 @@ public:
 	ClockDescriptor & addProductionSpecification(const ProductionSpecification & value);
 	std::vector<ProductionSpecification> getProductionSpecificationList() const;
 	void clearProductionSpecificationList();
-	
+
 	ClockDescriptor & setResolution(const xml_schema::Duration & value);
 	xml_schema::Duration getResolution() const;
 	bool getResolution(xml_schema::Duration & out) const;
@@ -95,7 +95,7 @@ public:
 	ClockDescriptor & addTimeProtocol(const CodedValue & value);
 	std::vector<CodedValue> getTimeProtocolList() const;
 	void clearTimeProtocolList();
-	
+
 private:
 	std::shared_ptr<CDM::ClockDescriptor> data;
 };

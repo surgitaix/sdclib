@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -46,8 +46,8 @@ namespace SDC {
 
 Relation::Relation(
 		Kind kind
-		, 
-		HandleRef entries
+		,
+		EntryRef entries
 ) : data(Defaults::RelationInit(
 		kind
 		,
@@ -96,11 +96,11 @@ bool Relation::getCode(CodedValue & out) const {
 CodedValue Relation::getCode() const {
 	return ConvertFromCDM::convert(data->Code().get());
 }
-	
+
 bool Relation::hasCode() const {
 	return data->Code().present();
 }
-	
+
 Relation & Relation::setIdentification(const InstanceIdentifier & value) {
 	data->Identification(ConvertToCDM::convert(value));
 	return *this;
@@ -117,11 +117,11 @@ bool Relation::getIdentification(InstanceIdentifier & out) const {
 InstanceIdentifier Relation::getIdentification() const {
 	return ConvertFromCDM::convert(data->Identification().get());
 }
-	
+
 bool Relation::hasIdentification() const {
 	return data->Identification().present();
 }
-	
+
 Relation & Relation::setKind(const Kind & value) {
 	data->Kind(ConvertToCDM::convert(value));
 	return *this;
@@ -131,17 +131,17 @@ Relation & Relation::setKind(const Kind & value) {
 Kind Relation::getKind() const {
 	return ConvertFromCDM::convert(data->Kind());
 }
-	
-Relation & Relation::setEntries(const HandleRef & value) {
-	data->Entries(ConvertToCDM::convert(value));
+
+Relation & Relation::setEntries(const EntryRef & value) {
+	data->Entries(ConvertToCDM::convert1(value));
 	return *this;
 }
 
 
-HandleRef Relation::getEntries() const {
+EntryRef Relation::getEntries() const {
 	return ConvertFromCDM::convert(data->Entries());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

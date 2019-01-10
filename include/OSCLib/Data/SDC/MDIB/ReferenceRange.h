@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	ReferenceRange(
 		Range range
-	); 
+	);
 private:
 	ReferenceRange(){};
 public:
 	ReferenceRange(const ReferenceRange & object);
 	virtual ~ReferenceRange();
-    
+
     void copyFrom(const ReferenceRange & object);
     ReferenceRange & operator=(const ReferenceRange & object);
-    
+
     typedef CDM::ReferenceRange WrappedType;
 
 	ReferenceRange & setRange(const Range & value);

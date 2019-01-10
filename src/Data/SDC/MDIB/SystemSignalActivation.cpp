@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -44,7 +44,7 @@ namespace SDC {
 
 SystemSignalActivation::SystemSignalActivation(
 		AlertSignalManifestation manifestation
-		, 
+		,
 		AlertActivation state
 ) : data(Defaults::SystemSignalActivationInit(
 		manifestation
@@ -87,7 +87,7 @@ SystemSignalActivation & SystemSignalActivation::setManifestation(const AlertSig
 AlertSignalManifestation SystemSignalActivation::getManifestation() const {
 	return ConvertFromCDM::convert(data->Manifestation());
 }
-	
+
 SystemSignalActivation & SystemSignalActivation::setState(const AlertActivation & value) {
 	data->State(ConvertToCDM::convert(value));
 	return *this;
@@ -97,7 +97,7 @@ SystemSignalActivation & SystemSignalActivation::setState(const AlertActivation 
 AlertActivation SystemSignalActivation::getState() const {
 	return ConvertFromCDM::convert(data->State());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

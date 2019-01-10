@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -42,6 +42,7 @@
 #include "OSCLib/Data/SDC/MDIB/OperatorContextDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/WorkflowContextDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/MeansContextDescriptor.h"
+#include "OSCLib/Data/SDC/MDIB/ProductionSpecification.h"
 #include "OSCLib/Data/SDC/MDIB/CodedValue.h"
 
 namespace SDCLib {
@@ -97,11 +98,11 @@ bool SystemContextDescriptor::getType(CodedValue & out) const {
 CodedValue SystemContextDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool SystemContextDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 SystemContextDescriptor & SystemContextDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -111,7 +112,7 @@ SystemContextDescriptor & SystemContextDescriptor::setHandle(const Handle & valu
 Handle SystemContextDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 SystemContextDescriptor & SystemContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -128,11 +129,11 @@ bool SystemContextDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter SystemContextDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SystemContextDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SystemContextDescriptor & SystemContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -149,11 +150,29 @@ bool SystemContextDescriptor::getSafetyClassification(SafetyClassification & out
 SafetyClassification SystemContextDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool SystemContextDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
+SystemContextDescriptor & SystemContextDescriptor::addProductionSpecification(const ProductionSpecification & value) {
+	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	return *this;
+}
+
+std::vector<ProductionSpecification> SystemContextDescriptor::getProductionSpecificationList() const {
+	std::vector<ProductionSpecification> result;
+	result.reserve(data->ProductionSpecification().size());
+	for (const auto & value: data->ProductionSpecification()) {
+		result.push_back(ConvertFromCDM::convert(value));
+	}
+	return result;
+}
+
+void SystemContextDescriptor::clearProductionSpecificationList() {
+	data->ProductionSpecification().clear();
+}
+
 SystemContextDescriptor & SystemContextDescriptor::setPatientContext(const PatientContextDescriptor & value) {
 	data->PatientContext(ConvertToCDM::convert(value));
 	return *this;
@@ -170,11 +189,11 @@ bool SystemContextDescriptor::getPatientContext(PatientContextDescriptor & out) 
 PatientContextDescriptor SystemContextDescriptor::getPatientContext() const {
 	return ConvertFromCDM::convert(data->PatientContext().get());
 }
-	
+
 bool SystemContextDescriptor::hasPatientContext() const {
 	return data->PatientContext().present();
 }
-	
+
 SystemContextDescriptor & SystemContextDescriptor::setLocationContext(const LocationContextDescriptor & value) {
 	data->LocationContext(ConvertToCDM::convert(value));
 	return *this;
@@ -191,11 +210,11 @@ bool SystemContextDescriptor::getLocationContext(LocationContextDescriptor & out
 LocationContextDescriptor SystemContextDescriptor::getLocationContext() const {
 	return ConvertFromCDM::convert(data->LocationContext().get());
 }
-	
+
 bool SystemContextDescriptor::hasLocationContext() const {
 	return data->LocationContext().present();
 }
-	
+
 SystemContextDescriptor & SystemContextDescriptor::addEnsembleContext(const EnsembleContextDescriptor & value) {
 	data->EnsembleContext().push_back(ConvertToCDM::convert(value));
 	return *this;

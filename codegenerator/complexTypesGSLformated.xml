@@ -1,5 +1,40 @@
 <?xml version="1.0"?>
 <classes script = "generate.gsl" >
+	<class name = "DicomTransferCapability" parent = "NULL" abstract = "false">
+		<property name = "SopClass" type = "std::string" optional = "false" />
+		<property name = "TransferRole" type = "DicomTransferRole" optional = "false" />
+		<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxList" type = "std::string" />
+	</class>
+
+	<class name = "DicomNetworkAe" parent = "NULL" abstract = "false">
+		<include path = "OSCLib/Data/SDC/MDIB/DicomTransferCapability.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
+		<property name = "AeTitle" type = "std::string" optional = "false" />
+		<property name = "NetworkConnectionReference" type = "xml_schema::Idrefs" optional = "false" />
+		<property name = "AssociationInitiator" type = "bool" optional = "false" />
+		<property name = "AssociationAcceptor" type = "bool" optional = "false" />
+		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityList" type = "DicomTransferCapability" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
+	</class>
+
+	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
+		<property name = "id" type = "xml_schema::Id" optional = "false" />
+		<property name = "Hostname" type = "std::string" optional = "false" />
+		<property name = "Port" type = "unsigned short" optional = "true" />
+		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteList" type = "std::string" />
+	</class>
+
+	<class name = "DicomDeviceDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
+		<include path = "OSCLib/Data/SDC/MDIB/DicomNetworkAe.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/DicomNetworkConnection.h" />
+		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
+		<property name = "IssuerOfPatientID" type = "std::string" optional = "true" />
+		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeList" type = "DicomNetworkAe" />
+		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionList" type = "DicomNetworkConnection" />
+		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
+		<propertyList nameSingle = "StationName" nameSeveral = "StationNameList" type = "LocalizedText" />
+	</class>
+
 	<class name = "Mdib" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/SDC/MDIB/MdDescription.h" />
 		<include path = "OSCLib/Data/SDC/MDIB/MdState.h" />
@@ -377,7 +412,7 @@
 		<property name = "Code" type = "CodedValue" optional = "true" />
 		<property name = "Identification" type = "InstanceIdentifier" optional = "true" />
 		<property name = "Kind" type = "Kind" optional = "false" />
-		<property name = "Entries" type = "HandleRef" optional = "false" />
+		<property name = "Entries" type = "EntryRef" optional = "false" />
 	</class>
 
 	<class name = "AbstractMetricState" parent = "AbstractState" abstract = "true">
@@ -468,10 +503,10 @@
 		<propertyList nameSingle = "PhysiologicalRange" nameSeveral = "PhysiologicalRangeList" type = "Range" />
 	</class>
 
-	<class name = "ScoDescriptor" parent = "AbstractDescriptor" abstract = "false" customImpl = "true">
+	<class name = "ScoDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false" customImpl = "true">
 	</class>
 
-	<class name = "ScoState" parent = "AbstractState" abstract = "false">
+	<class name = "ScoState" parent = "AbstractDeviceComponentState" abstract = "false">
 		<include path = "OSCLib/Data/SDC/MDIB/OperationGroup.h" />
 		<property name = "InvocationRequested" type = "OperationRef" optional = "true" />
 		<property name = "InvocationRequired" type = "OperationRef" optional = "true" />
@@ -489,7 +524,7 @@
 		<property name = "OperationTarget" type = "HandleRef" optional = "false" />
 		<property name = "MaxTimeToFinish" type = "xml_schema::Duration" optional = "true" />
 		<property name = "InvocationEffectiveTimeout" type = "xml_schema::Duration" optional = "true" />
-		<property name = "Retriggerable" type = "xml_schema::Duration" optional = "true" />
+		<property name = "Retriggerable" type = "bool" optional = "true" />
 		<property name = "AccessLevel" type = "AccessLevel" optional = "true" />
 	</class>
 
@@ -519,7 +554,7 @@
 	</class>
 
 	<class name = "AllowedValues" parent = "NULL" abstract = "false">
-		<property name = "Value" type = "std::string" optional = "false" />
+		<propertyList nameSingle = "Value" nameSeveral = "ValueList" type = "std::string" />
 	</class>
 
 	<class name = "ActivateOperationDescriptor" parent = "AbstractSetStateOperationDescriptor" abstract = "false">
@@ -597,7 +632,7 @@
 		<property name = "ChargeCycles" type = "unsigned int" optional = "true" />
 	</class>
 
-	<class name = "SystemContextDescriptor" parent = "AbstractDescriptor" abstract = "false">
+	<class name = "SystemContextDescriptor" parent = "AbstractDeviceComponentDescriptor" abstract = "false">
 		<include path = "OSCLib/Data/SDC/MDIB/PatientContextDescriptor.h" />
 		<include path = "OSCLib/Data/SDC/MDIB/LocationContextDescriptor.h" />
 		<include path = "OSCLib/Data/SDC/MDIB/EnsembleContextDescriptor.h" />
@@ -612,7 +647,7 @@
 		<propertyList nameSingle = "MeansContext" nameSeveral = "MeansContextList" type = "MeansContextDescriptor" />
 	</class>
 
-	<class name = "SystemContextState" parent = "AbstractState" abstract = "false">
+	<class name = "SystemContextState" parent = "AbstractDeviceComponentState" abstract = "false">
 	</class>
 
 	<class name = "AbstractContextDescriptor" parent = "AbstractDescriptor" abstract = "true">
@@ -828,41 +863,6 @@
 	<class name = "ContainmentTreeEntry" parent = "NULL" abstract = "false">
 		<include path = "OSCLib/Data/SDC/MDIB/CodedValue.h" />
 		<property name = "Type" type = "CodedValue" optional = "true" />
-	</class>
-
-	<class name = "DicomTransferCapability" parent = "NULL" abstract = "false">
-		<property name = "SopClass" type = "std::string" optional = "false" />
-		<property name = "TransferRole" type = "DicomTransferRole" optional = "false" />
-		<propertyList nameSingle = "TransferSyntax" nameSeveral = "TransferSyntaxList" type = "std::string" />
-	</class>
-
-	<class name = "DicomNetworkAe" parent = "NULL" abstract = "false">
-		<include path = "OSCLib/Data/SDC/MDIB/DicomTransferCapability.h" />
-		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
-		<property name = "AeTitle" type = "std::string" optional = "false" />
-		<property name = "NetworkConnectionReference" type = "xml_schema::Idrefs" optional = "false" />
-		<property name = "AssociationInitiator" type = "bool" optional = "false" />
-		<property name = "AssociationAcceptor" type = "bool" optional = "false" />
-		<propertyList nameSingle = "TransferCapability" nameSeveral = "TransferCapabilityList" type = "DicomTransferCapability" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
-	</class>
-
-	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
-		<property name = "id" type = "xml_schema::Id" optional = "false" />
-		<property name = "Hostname" type = "std::string" optional = "false" />
-		<property name = "Port" type = "unsigned short" optional = "true" />
-		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteList" type = "std::string" />
-	</class>
-
-	<class name = "DicomDeviceDescriptor" parent = "AbstractComplexDeviceComponentDescriptor" abstract = "false">
-		<include path = "OSCLib/Data/SDC/MDIB/DicomNetworkAe.h" />
-		<include path = "OSCLib/Data/SDC/MDIB/DicomNetworkConnection.h" />
-		<include path = "OSCLib/Data/SDC/MDIB/LocalizedText.h" />
-		<property name = "IssuerOfPatientID" type = "std::string" optional = "true" />
-		<propertyList nameSingle = "NetworkAe" nameSeveral = "NetworkAeList" type = "DicomNetworkAe" />
-		<propertyList nameSingle = "NetworkConnection" nameSeveral = "NetworkConnectionList" type = "DicomNetworkConnection" />
-		<propertyList nameSingle = "Description" nameSeveral = "DescriptionList" type = "LocalizedText" />
-		<propertyList nameSingle = "StationName" nameSeveral = "StationNameList" type = "LocalizedText" />
 	</class>
 
 </classes>

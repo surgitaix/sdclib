@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	PerformedOrderDetail(
-	); 
+	);
 	PerformedOrderDetail(const PerformedOrderDetail & object);
 	virtual ~PerformedOrderDetail();
-    
+
     void copyFrom(const PerformedOrderDetail & object);
     PerformedOrderDetail & operator=(const PerformedOrderDetail & object);
-    
+
     typedef CDM::PerformedOrderDetail WrappedType;
 
 	PerformedOrderDetail & setStart(const xml_schema::DateTime & value);
@@ -74,15 +74,15 @@ public:
 	PerformedOrderDetail & addPerformer(const PersonParticipation & value);
 	std::vector<PersonParticipation> getPerformerList() const;
 	void clearPerformerList();
-	
+
 	PerformedOrderDetail & addService(const CodedValue & value);
 	std::vector<CodedValue> getServiceList() const;
 	void clearServiceList();
-	
+
 	PerformedOrderDetail & addImagingProcedure(const ImagingProcedure & value);
 	std::vector<ImagingProcedure> getImagingProcedureList() const;
 	void clearImagingProcedureList();
-	
+
 	PerformedOrderDetail & setFillerOrderNumber(const InstanceIdentifier & value);
 	InstanceIdentifier getFillerOrderNumber() const;
 	bool getFillerOrderNumber(InstanceIdentifier & out) const;
@@ -91,7 +91,7 @@ public:
 	PerformedOrderDetail & addResultingClinicalInfo(const ClinicalInfo & value);
 	std::vector<ClinicalInfo> getResultingClinicalInfoList() const;
 	void clearResultingClinicalInfoList();
-	
+
 private:
 	std::shared_ptr<CDM::PerformedOrderDetail> data;
 };

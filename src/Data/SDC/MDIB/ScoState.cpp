@@ -127,7 +127,7 @@ bool ScoState::hasDescriptorVersion() const {
 }
 	
 ScoState & ScoState::setInvocationRequested(const OperationRef & value) {
-	data->InvocationRequested(ConvertToCDM::convert1(value));
+	data->InvocationRequested(ConvertToCDM::convert2(value));
 	return *this;
 }
 
@@ -148,7 +148,7 @@ bool ScoState::hasInvocationRequested() const {
 }
 	
 ScoState & ScoState::setInvocationRequired(const OperationRef & value) {
-	data->InvocationRequired(ConvertToCDM::convert1(value));
+	data->InvocationRequired(ConvertToCDM::convert2(value));
 	return *this;
 }
 

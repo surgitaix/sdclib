@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -45,7 +45,7 @@ namespace SDC {
 
 SetStringOperationState::SetStringOperationState(
 		HandleRef descriptorhandle
-		, 
+		,
 		OperatingMode operatingmode
 ) : data(Defaults::SetStringOperationStateInit(
 		descriptorhandle
@@ -95,11 +95,11 @@ bool SetStringOperationState::getStateVersion(VersionCounter & out) const {
 VersionCounter SetStringOperationState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool SetStringOperationState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 SetStringOperationState & SetStringOperationState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -109,7 +109,7 @@ SetStringOperationState & SetStringOperationState::setDescriptorHandle(const Han
 HandleRef SetStringOperationState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 SetStringOperationState & SetStringOperationState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -126,11 +126,11 @@ bool SetStringOperationState::getDescriptorVersion(ReferencedVersion & out) cons
 ReferencedVersion SetStringOperationState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool SetStringOperationState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 SetStringOperationState & SetStringOperationState::setOperatingMode(const OperatingMode & value) {
 	data->OperatingMode(ConvertToCDM::convert(value));
 	return *this;
@@ -140,7 +140,7 @@ SetStringOperationState & SetStringOperationState::setOperatingMode(const Operat
 OperatingMode SetStringOperationState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode());
 }
-	
+
 SetStringOperationState & SetStringOperationState::setAllowedValues(const AllowedValues & value) {
 	data->AllowedValues(ConvertToCDM::convert(value));
 	return *this;
@@ -157,11 +157,11 @@ bool SetStringOperationState::getAllowedValues(AllowedValues & out) const {
 AllowedValues SetStringOperationState::getAllowedValues() const {
 	return ConvertFromCDM::convert(data->AllowedValues().get());
 }
-	
+
 bool SetStringOperationState::hasAllowedValues() const {
 	return data->AllowedValues().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

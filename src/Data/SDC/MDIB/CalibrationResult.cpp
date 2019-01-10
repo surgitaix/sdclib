@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -46,7 +46,7 @@ namespace SDC {
 
 CalibrationResult::CalibrationResult(
 		CodedValue code
-		, 
+		,
 		Measurement value
 ) : data(Defaults::CalibrationResultInit(
 		code
@@ -89,7 +89,7 @@ CalibrationResult & CalibrationResult::setCode(const CodedValue & value) {
 CodedValue CalibrationResult::getCode() const {
 	return ConvertFromCDM::convert(data->Code());
 }
-	
+
 CalibrationResult & CalibrationResult::setValue(const Measurement & value) {
 	data->Value(ConvertToCDM::convert(value));
 	return *this;
@@ -99,7 +99,7 @@ CalibrationResult & CalibrationResult::setValue(const Measurement & value) {
 Measurement CalibrationResult::getValue() const {
 	return ConvertFromCDM::convert(data->Value());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

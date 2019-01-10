@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -46,11 +46,11 @@ namespace SDC {
 
 DicomNetworkAe::DicomNetworkAe(
 		std::string aetitle
-		, 
+		,
 		xml_schema::Idrefs networkconnectionreference
-		, 
+		,
 		bool associationinitiator
-		, 
+		,
 		bool associationacceptor
 ) : data(Defaults::DicomNetworkAeInit(
 		aetitle
@@ -97,7 +97,7 @@ DicomNetworkAe & DicomNetworkAe::setAeTitle(const std::string & value) {
 std::string DicomNetworkAe::getAeTitle() const {
 	return ConvertFromCDM::convert(data->AeTitle());
 }
-	
+
 DicomNetworkAe & DicomNetworkAe::setNetworkConnectionReference(const xml_schema::Idrefs & value) {
 	data->NetworkConnectionReference(ConvertToCDM::convert(value));
 	return *this;
@@ -107,7 +107,7 @@ DicomNetworkAe & DicomNetworkAe::setNetworkConnectionReference(const xml_schema:
 xml_schema::Idrefs DicomNetworkAe::getNetworkConnectionReference() const {
 	return ConvertFromCDM::convert(data->NetworkConnectionReference());
 }
-	
+
 DicomNetworkAe & DicomNetworkAe::setAssociationInitiator(const bool & value) {
 	data->AssociationInitiator(ConvertToCDM::convert(value));
 	return *this;
@@ -117,7 +117,7 @@ DicomNetworkAe & DicomNetworkAe::setAssociationInitiator(const bool & value) {
 bool DicomNetworkAe::getAssociationInitiator() const {
 	return ConvertFromCDM::convert(data->AssociationInitiator());
 }
-	
+
 DicomNetworkAe & DicomNetworkAe::setAssociationAcceptor(const bool & value) {
 	data->AssociationAcceptor(ConvertToCDM::convert(value));
 	return *this;
@@ -127,7 +127,7 @@ DicomNetworkAe & DicomNetworkAe::setAssociationAcceptor(const bool & value) {
 bool DicomNetworkAe::getAssociationAcceptor() const {
 	return ConvertFromCDM::convert(data->AssociationAcceptor());
 }
-	
+
 DicomNetworkAe & DicomNetworkAe::addTransferCapability(const DicomTransferCapability & value) {
 	data->TransferCapability().push_back(ConvertToCDM::convert(value));
 	return *this;

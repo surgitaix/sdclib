@@ -783,7 +783,7 @@ namespace WS
           ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
             ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
               "StreamDescriptions",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               &::xsd::cxx::tree::factory_impl< StreamDescriptionsType >,
               true, true, i, n, f, this));
 
@@ -4188,7 +4188,7 @@ namespace WS
             ::xercesc::DOMElement& s (
               ::xsd::cxx::xml::dom::create_element (
                 "StreamDescriptions",
-                "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+                "http://standards.ieee.org/downloads/11073/11073-20702-2016",
                 e));
 
             s << x;
@@ -4196,7 +4196,7 @@ namespace WS
           else
             tsm.serialize (
               "StreamDescriptions",
-              "http://standards.ieee.org/downloads/11073/11073-20702-201x/",
+              "http://standards.ieee.org/downloads/11073/11073-20702-2016",
               true, true, e, x);
         }
       }

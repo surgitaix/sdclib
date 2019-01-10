@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -93,11 +93,11 @@ bool MdsState::getStateVersion(VersionCounter & out) const {
 VersionCounter MdsState::getStateVersion() const {
 	return ConvertFromCDM::convert(data->StateVersion().get());
 }
-	
+
 bool MdsState::hasStateVersion() const {
 	return data->StateVersion().present();
 }
-	
+
 MdsState & MdsState::setDescriptorHandle(const HandleRef & value) {
 	data->DescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
@@ -107,7 +107,7 @@ MdsState & MdsState::setDescriptorHandle(const HandleRef & value) {
 HandleRef MdsState::getDescriptorHandle() const {
 	return ConvertFromCDM::convert(data->DescriptorHandle());
 }
-	
+
 MdsState & MdsState::setDescriptorVersion(const ReferencedVersion & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -124,11 +124,11 @@ bool MdsState::getDescriptorVersion(ReferencedVersion & out) const {
 ReferencedVersion MdsState::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool MdsState::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 MdsState & MdsState::setCalibrationInfo(const CalibrationInfo & value) {
 	data->CalibrationInfo(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool MdsState::getCalibrationInfo(CalibrationInfo & out) const {
 CalibrationInfo MdsState::getCalibrationInfo() const {
 	return ConvertFromCDM::convert(data->CalibrationInfo().get());
 }
-	
+
 bool MdsState::hasCalibrationInfo() const {
 	return data->CalibrationInfo().present();
 }
-	
+
 MdsState & MdsState::setNextCalibration(const CalibrationInfo & value) {
 	data->NextCalibration(ConvertToCDM::convert(value));
 	return *this;
@@ -166,11 +166,11 @@ bool MdsState::getNextCalibration(CalibrationInfo & out) const {
 CalibrationInfo MdsState::getNextCalibration() const {
 	return ConvertFromCDM::convert(data->NextCalibration().get());
 }
-	
+
 bool MdsState::hasNextCalibration() const {
 	return data->NextCalibration().present();
 }
-	
+
 MdsState & MdsState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
 	data->PhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
@@ -187,11 +187,11 @@ bool MdsState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
 PhysicalConnectorInfo MdsState::getPhysicalConnector() const {
 	return ConvertFromCDM::convert(data->PhysicalConnector().get());
 }
-	
+
 bool MdsState::hasPhysicalConnector() const {
 	return data->PhysicalConnector().present();
 }
-	
+
 MdsState & MdsState::setActivationState(const ComponentActivation & value) {
 	data->ActivationState(ConvertToCDM::convert(value));
 	return *this;
@@ -208,11 +208,11 @@ bool MdsState::getActivationState(ComponentActivation & out) const {
 ComponentActivation MdsState::getActivationState() const {
 	return ConvertFromCDM::convert(data->ActivationState().get());
 }
-	
+
 bool MdsState::hasActivationState() const {
 	return data->ActivationState().present();
 }
-	
+
 MdsState & MdsState::setOperatingHours(const unsigned int & value) {
 	data->OperatingHours(ConvertToCDM::convert(value));
 	return *this;
@@ -229,11 +229,11 @@ bool MdsState::getOperatingHours(unsigned int & out) const {
 unsigned int MdsState::getOperatingHours() const {
 	return ConvertFromCDM::convert(data->OperatingHours().get());
 }
-	
+
 bool MdsState::hasOperatingHours() const {
 	return data->OperatingHours().present();
 }
-	
+
 MdsState & MdsState::setOperatingCycles(const int & value) {
 	data->OperatingCycles(ConvertToCDM::convert(value));
 	return *this;
@@ -250,11 +250,11 @@ bool MdsState::getOperatingCycles(int & out) const {
 int MdsState::getOperatingCycles() const {
 	return ConvertFromCDM::convert(data->OperatingCycles().get());
 }
-	
+
 bool MdsState::hasOperatingCycles() const {
 	return data->OperatingCycles().present();
 }
-	
+
 MdsState & MdsState::setOperatingJurisdiction(const OperatingJurisdiction & value) {
 	data->OperatingJurisdiction(ConvertToCDM::convert(value));
 	return *this;
@@ -271,11 +271,11 @@ bool MdsState::getOperatingJurisdiction(OperatingJurisdiction & out) const {
 OperatingJurisdiction MdsState::getOperatingJurisdiction() const {
 	return ConvertFromCDM::convert(data->OperatingJurisdiction().get());
 }
-	
+
 bool MdsState::hasOperatingJurisdiction() const {
 	return data->OperatingJurisdiction().present();
 }
-	
+
 MdsState & MdsState::setLang(const xml_schema::Language & value) {
 	data->Lang(ConvertToCDM::convert(value));
 	return *this;
@@ -292,11 +292,11 @@ bool MdsState::getLang(xml_schema::Language & out) const {
 xml_schema::Language MdsState::getLang() const {
 	return ConvertFromCDM::convert(data->Lang().get());
 }
-	
+
 bool MdsState::hasLang() const {
 	return data->Lang().present();
 }
-	
+
 MdsState & MdsState::setOperatingMode(const MdsOperatingMode & value) {
 	data->OperatingMode(ConvertToCDM::convert(value));
 	return *this;
@@ -313,11 +313,11 @@ bool MdsState::getOperatingMode(MdsOperatingMode & out) const {
 MdsOperatingMode MdsState::getOperatingMode() const {
 	return ConvertFromCDM::convert(data->OperatingMode().get());
 }
-	
+
 bool MdsState::hasOperatingMode() const {
 	return data->OperatingMode().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

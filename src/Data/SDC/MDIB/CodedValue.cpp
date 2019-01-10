@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -85,7 +85,7 @@ CodedValue & CodedValue::setCode(const CodeIdentifier & value) {
 CodeIdentifier CodedValue::getCode() const {
 	return ConvertFromCDM::convert(data->Code());
 }
-	
+
 CodedValue & CodedValue::setCodingSystem(const xml_schema::Uri & value) {
 	data->CodingSystem(ConvertToCDM::convert(value));
 	return *this;
@@ -102,11 +102,11 @@ bool CodedValue::getCodingSystem(xml_schema::Uri & out) const {
 xml_schema::Uri CodedValue::getCodingSystem() const {
 	return ConvertFromCDM::convert(data->CodingSystem().get());
 }
-	
+
 bool CodedValue::hasCodingSystem() const {
 	return data->CodingSystem().present();
 }
-	
+
 CodedValue & CodedValue::setCodingSystemVersion(const std::string & value) {
 	data->CodingSystemVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -123,11 +123,11 @@ bool CodedValue::getCodingSystemVersion(std::string & out) const {
 std::string CodedValue::getCodingSystemVersion() const {
 	return ConvertFromCDM::convert(data->CodingSystemVersion().get());
 }
-	
+
 bool CodedValue::hasCodingSystemVersion() const {
 	return data->CodingSystemVersion().present();
 }
-	
+
 CodedValue & CodedValue::setSymbolicCodeName(const SymbolicCodeName & value) {
 	data->SymbolicCodeName(ConvertToCDM::convert(value));
 	return *this;
@@ -144,11 +144,11 @@ bool CodedValue::getSymbolicCodeName(SymbolicCodeName & out) const {
 SymbolicCodeName CodedValue::getSymbolicCodeName() const {
 	return ConvertFromCDM::convert(data->SymbolicCodeName().get());
 }
-	
+
 bool CodedValue::hasSymbolicCodeName() const {
 	return data->SymbolicCodeName().present();
 }
-	
+
 CodedValue & CodedValue::addCodingSystemName(const LocalizedText & value) {
 	data->CodingSystemName().push_back(ConvertToCDM::convert(value));
 	return *this;

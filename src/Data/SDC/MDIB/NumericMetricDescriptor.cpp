@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -48,13 +48,13 @@ namespace SDC {
 
 NumericMetricDescriptor::NumericMetricDescriptor(
 		Handle handle
-		, 
+		,
 		CodedValue unit
-		, 
+		,
 		MetricCategory metriccategory
-		, 
+		,
 		MetricAvailability metricavailability
-		, 
+		,
 		double resolution
 ) : data(Defaults::NumericMetricDescriptorInit(
 		handle
@@ -110,11 +110,11 @@ bool NumericMetricDescriptor::getType(CodedValue & out) const {
 CodedValue NumericMetricDescriptor::getType() const {
 	return ConvertFromCDM::convert(data->Type().get());
 }
-	
+
 bool NumericMetricDescriptor::hasType() const {
 	return data->Type().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setHandle(const Handle & value) {
 	data->Handle(ConvertToCDM::convert(value));
 	return *this;
@@ -124,7 +124,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::setHandle(const Handle & valu
 Handle NumericMetricDescriptor::getHandle() const {
 	return ConvertFromCDM::convert(data->Handle());
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setDescriptorVersion(const VersionCounter & value) {
 	data->DescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
@@ -141,11 +141,11 @@ bool NumericMetricDescriptor::getDescriptorVersion(VersionCounter & out) const {
 VersionCounter NumericMetricDescriptor::getDescriptorVersion() const {
 	return ConvertFromCDM::convert(data->DescriptorVersion().get());
 }
-	
+
 bool NumericMetricDescriptor::hasDescriptorVersion() const {
 	return data->DescriptorVersion().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setSafetyClassification(const SafetyClassification & value) {
 	data->SafetyClassification(ConvertToCDM::convert(value));
 	return *this;
@@ -162,11 +162,11 @@ bool NumericMetricDescriptor::getSafetyClassification(SafetyClassification & out
 SafetyClassification NumericMetricDescriptor::getSafetyClassification() const {
 	return ConvertFromCDM::convert(data->SafetyClassification().get());
 }
-	
+
 bool NumericMetricDescriptor::hasSafetyClassification() const {
 	return data->SafetyClassification().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setUnit(const CodedValue & value) {
 	data->Unit(ConvertToCDM::convert(value));
 	return *this;
@@ -176,7 +176,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::setUnit(const CodedValue & va
 CodedValue NumericMetricDescriptor::getUnit() const {
 	return ConvertFromCDM::convert(data->Unit());
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setMetricCategory(const MetricCategory & value) {
 	data->MetricCategory(ConvertToCDM::convert(value));
 	return *this;
@@ -186,7 +186,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::setMetricCategory(const Metri
 MetricCategory NumericMetricDescriptor::getMetricCategory() const {
 	return ConvertFromCDM::convert(data->MetricCategory());
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setDerivationMethod(const DerivationMethod & value) {
 	data->DerivationMethod(ConvertToCDM::convert(value));
 	return *this;
@@ -203,11 +203,11 @@ bool NumericMetricDescriptor::getDerivationMethod(DerivationMethod & out) const 
 DerivationMethod NumericMetricDescriptor::getDerivationMethod() const {
 	return ConvertFromCDM::convert(data->DerivationMethod().get());
 }
-	
+
 bool NumericMetricDescriptor::hasDerivationMethod() const {
 	return data->DerivationMethod().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
 	data->MetricAvailability(ConvertToCDM::convert(value));
 	return *this;
@@ -217,7 +217,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::setMetricAvailability(const M
 MetricAvailability NumericMetricDescriptor::getMetricAvailability() const {
 	return ConvertFromCDM::convert(data->MetricAvailability());
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
 	data->MaxMeasurementTime(ConvertToCDM::convert(value));
 	return *this;
@@ -234,11 +234,11 @@ bool NumericMetricDescriptor::getMaxMeasurementTime(xml_schema::Duration & out) 
 xml_schema::Duration NumericMetricDescriptor::getMaxMeasurementTime() const {
 	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
 }
-	
+
 bool NumericMetricDescriptor::hasMaxMeasurementTime() const {
 	return data->MaxMeasurementTime().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
 	data->MaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
@@ -255,11 +255,11 @@ bool NumericMetricDescriptor::getMaxDelayTime(xml_schema::Duration & out) const 
 xml_schema::Duration NumericMetricDescriptor::getMaxDelayTime() const {
 	return ConvertFromCDM::convert(data->MaxDelayTime().get());
 }
-	
+
 bool NumericMetricDescriptor::hasMaxDelayTime() const {
 	return data->MaxDelayTime().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
 	data->DeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -276,11 +276,11 @@ bool NumericMetricDescriptor::getDeterminationPeriod(xml_schema::Duration & out)
 xml_schema::Duration NumericMetricDescriptor::getDeterminationPeriod() const {
 	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
 }
-	
+
 bool NumericMetricDescriptor::hasDeterminationPeriod() const {
 	return data->DeterminationPeriod().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
 	data->LifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -297,11 +297,11 @@ bool NumericMetricDescriptor::getLifeTimePeriod(xml_schema::Duration & out) cons
 xml_schema::Duration NumericMetricDescriptor::getLifeTimePeriod() const {
 	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
 }
-	
+
 bool NumericMetricDescriptor::hasLifeTimePeriod() const {
 	return data->LifeTimePeriod().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setActivationDuration(const xml_schema::Duration & value) {
 	data->ActivationDuration(ConvertToCDM::convert(value));
 	return *this;
@@ -318,11 +318,11 @@ bool NumericMetricDescriptor::getActivationDuration(xml_schema::Duration & out) 
 xml_schema::Duration NumericMetricDescriptor::getActivationDuration() const {
 	return ConvertFromCDM::convert(data->ActivationDuration().get());
 }
-	
+
 bool NumericMetricDescriptor::hasActivationDuration() const {
 	return data->ActivationDuration().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::addBodySite(const CodedValue & value) {
 	data->BodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -368,7 +368,7 @@ NumericMetricDescriptor & NumericMetricDescriptor::setResolution(const double & 
 double NumericMetricDescriptor::getResolution() const {
 	return ConvertFromCDM::convert(data->Resolution());
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::setAveragingPeriod(const xml_schema::Duration & value) {
 	data->AveragingPeriod(ConvertToCDM::convert(value));
 	return *this;
@@ -385,11 +385,11 @@ bool NumericMetricDescriptor::getAveragingPeriod(xml_schema::Duration & out) con
 xml_schema::Duration NumericMetricDescriptor::getAveragingPeriod() const {
 	return ConvertFromCDM::convert(data->AveragingPeriod().get());
 }
-	
+
 bool NumericMetricDescriptor::hasAveragingPeriod() const {
 	return data->AveragingPeriod().present();
 }
-	
+
 NumericMetricDescriptor & NumericMetricDescriptor::addTechnicalRange(const Range & value) {
 	data->TechnicalRange().push_back(ConvertToCDM::convert(value));
 	return *this;

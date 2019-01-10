@@ -298,6 +298,7 @@ bool MdDescription::removeMdsDescriptor(const MdsDescriptor & object) {
 			return true;
 		}
 	}
+	return false;
 }
 
 template bool MdDescription::removeMdsDescriptor<MdsDescriptor>(const MdsDescriptor & source);

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	WorkflowContextDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	WorkflowContextDescriptor(){};
 public:
 	WorkflowContextDescriptor(const WorkflowContextDescriptor & object);
 	virtual ~WorkflowContextDescriptor();
-    
+
     void copyFrom(const WorkflowContextDescriptor & object);
     WorkflowContextDescriptor & operator=(const WorkflowContextDescriptor & object);
-    
+
     typedef CDM::WorkflowContextDescriptor WrappedType;
     typedef WorkflowContextState StateType;
 

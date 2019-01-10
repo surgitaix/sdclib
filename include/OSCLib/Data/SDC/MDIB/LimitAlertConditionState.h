@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,22 +53,22 @@ private:
 public:
 	LimitAlertConditionState(
 		HandleRef descriptorhandle
-		, 
+		,
 		AlertActivation activationstate
-		, 
+		,
 		Range limits
-		, 
+		,
 		AlertConditionMonitoredLimits monitoredalertlimits
-	); 
+	);
 private:
 	LimitAlertConditionState(){};
 public:
 	LimitAlertConditionState(const LimitAlertConditionState & object);
 	virtual ~LimitAlertConditionState();
-    
+
     void copyFrom(const LimitAlertConditionState & object);
     LimitAlertConditionState & operator=(const LimitAlertConditionState & object);
-    
+
     typedef CDM::LimitAlertConditionState WrappedType;
     typedef LimitAlertConditionDescriptor DescriptorType;
 

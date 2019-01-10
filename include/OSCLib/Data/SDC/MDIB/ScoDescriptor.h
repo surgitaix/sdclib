@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,16 +53,16 @@ private:
 public:
 	ScoDescriptor(
 		Handle handle
-	); 
+	);
 private:
 	ScoDescriptor(){};
 public:
 	ScoDescriptor(const ScoDescriptor & object);
 	virtual ~ScoDescriptor();
-    
+
     void copyFrom(const ScoDescriptor & object);
     ScoDescriptor & operator=(const ScoDescriptor & object);
-    
+
     typedef CDM::ScoDescriptor WrappedType;
 
 	ScoDescriptor & setType(const CodedValue & value);
@@ -82,6 +82,10 @@ public:
 	SafetyClassification getSafetyClassification() const;
 	bool getSafetyClassification(SafetyClassification & out) const;
 	bool hasSafetyClassification() const;
+
+	ScoDescriptor & addProductionSpecification(const ProductionSpecification & value);
+	std::vector<ProductionSpecification> getProductionSpecificationList() const;
+	void clearProductionSpecificationList();
 
 
 	std::vector<ActivateOperationDescriptor> collectAllActivateOperationDescriptors() const;

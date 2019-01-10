@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	WorkflowContextState(
 		HandleRef descriptorhandle
-		, 
+		,
 		Handle handle
-	); 
+	);
 private:
 	WorkflowContextState(){};
 public:
 	WorkflowContextState(const WorkflowContextState & object);
 	virtual ~WorkflowContextState();
-    
+
     void copyFrom(const WorkflowContextState & object);
     WorkflowContextState & operator=(const WorkflowContextState & object);
-    
+
     typedef CDM::WorkflowContextState WrappedType;
     typedef WorkflowContextDescriptor DescriptorType;
 
@@ -117,11 +117,11 @@ public:
 	WorkflowContextState & addValidator(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getValidatorList() const;
 	void clearValidatorList();
-	
+
 	WorkflowContextState & addIdentification(const InstanceIdentifier & value);
 	std::vector<InstanceIdentifier> getIdentificationList() const;
 	void clearIdentificationList();
-	
+
 	WorkflowContextState & setWorkflowDetail(const WorkflowDetail & value);
 	WorkflowDetail getWorkflowDetail() const;
 	bool getWorkflowDetail(WorkflowDetail & out) const;

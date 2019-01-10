@@ -2342,7 +2342,9 @@ namespace CDM
     {
       No,
       Req,
-      Cal
+      Run,
+      Cal,
+      Oth
     };
 
     CalibrationState (Value v);
@@ -2388,8 +2390,8 @@ namespace CDM
     _xsd_CalibrationState_convert () const;
 
     public:
-    static const char* const _xsd_CalibrationState_literals_[3];
-    static const Value _xsd_CalibrationState_indexes_[3];
+    static const char* const _xsd_CalibrationState_literals_[5];
+    static const Value _xsd_CalibrationState_indexes_[5];
   };
 
   class CalibrationType: public ::xml_schema::String
@@ -5821,6 +5823,45 @@ namespace CDM
     static const Value _xsd_MetricAvailability_indexes_[2];
   };
 
+  class EntryRef: public ::xml_schema::SimpleType,
+    public ::xsd::cxx::tree::list< ::CDM::HandleRef, char >
+  {
+    public:
+    EntryRef ();
+
+    EntryRef (size_type n, const ::CDM::HandleRef& x);
+
+    template < typename I >
+    EntryRef (const I& begin, const I& end)
+    : ::xsd::cxx::tree::list< ::CDM::HandleRef, char > (begin, end, this)
+    {
+    }
+
+    EntryRef (const ::xercesc::DOMElement& e,
+              ::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0);
+
+    EntryRef (const ::xercesc::DOMAttr& a,
+              ::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0);
+
+    EntryRef (const ::std::string& s,
+              const ::xercesc::DOMElement* e,
+              ::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0);
+
+    EntryRef (const EntryRef& x,
+              ::xml_schema::Flags f = 0,
+              ::xml_schema::Container* c = 0);
+
+    virtual EntryRef*
+    _clone (::xml_schema::Flags f = 0,
+            ::xml_schema::Container* c = 0) const;
+
+    virtual 
+    ~EntryRef ();
+  };
+
   class AbstractMetricDescriptor: public ::CDM::AbstractDescriptor
   {
     public:
@@ -7001,7 +7042,7 @@ namespace CDM
     ~OperationRef ();
   };
 
-  class ScoDescriptor: public ::CDM::AbstractDescriptor
+  class ScoDescriptor: public ::CDM::AbstractDeviceComponentDescriptor
   {
     public:
     // Operation
@@ -7054,7 +7095,7 @@ namespace CDM
     OperationSequence Operation_;
   };
 
-  class ScoState: public ::CDM::AbstractState
+  class ScoState: public ::CDM::AbstractDeviceComponentState
   {
     public:
     // OperationGroup
@@ -7215,7 +7256,7 @@ namespace CDM
 
     // Retriggerable
     //
-    typedef ::xml_schema::Duration RetriggerableType;
+    typedef ::xml_schema::Boolean RetriggerableType;
     typedef ::xsd::cxx::tree::optional< RetriggerableType > RetriggerableOptional;
     typedef ::xsd::cxx::tree::traits< RetriggerableType, char > RetriggerableTraits;
 
@@ -7230,9 +7271,6 @@ namespace CDM
 
     void
     Retriggerable (const RetriggerableOptional& x);
-
-    void
-    Retriggerable (::std::unique_ptr< RetriggerableType > p);
 
     // AccessLevel
     //
@@ -8514,7 +8552,7 @@ namespace CDM
     ChargeCyclesOptional ChargeCycles_;
   };
 
-  class SystemContextDescriptor: public ::CDM::AbstractDescriptor
+  class SystemContextDescriptor: public ::CDM::AbstractDeviceComponentDescriptor
   {
     public:
     // PatientContext
@@ -8665,7 +8703,7 @@ namespace CDM
     MeansContextSequence MeansContext_;
   };
 
-  class SystemContextState: public ::CDM::AbstractState
+  class SystemContextState: public ::CDM::AbstractDeviceComponentState
   {
     public:
     // Constructors.
@@ -12246,7 +12284,7 @@ namespace CDM
 
     // Entries
     //
-    typedef ::CDM::HandleRef EntriesType;
+    typedef ::CDM::EntryRef EntriesType;
     typedef ::xsd::cxx::tree::traits< EntriesType, char > EntriesTraits;
 
     const EntriesType&
@@ -12549,7 +12587,8 @@ namespace CDM
       Usr,
       CSUsr,
       RO,
-      SP
+      SP,
+      Oth
     };
 
     AccessLevel (Value v);
@@ -12595,8 +12634,8 @@ namespace CDM
     _xsd_AccessLevel_convert () const;
 
     public:
-    static const char* const _xsd_AccessLevel_literals_[4];
-    static const Value _xsd_AccessLevel_indexes_[4];
+    static const char* const _xsd_AccessLevel_literals_[5];
+    static const Value _xsd_AccessLevel_indexes_[5];
   };
 
   class AllowedValues: public ::xml_schema::Type
@@ -12605,25 +12644,23 @@ namespace CDM
     // Value
     //
     typedef ::xml_schema::String ValueType;
+    typedef ::xsd::cxx::tree::sequence< ValueType > ValueSequence;
+    typedef ValueSequence::iterator ValueIterator;
+    typedef ValueSequence::const_iterator ValueConstIterator;
     typedef ::xsd::cxx::tree::traits< ValueType, char > ValueTraits;
 
-    const ValueType&
+    const ValueSequence&
     Value () const;
 
-    ValueType&
+    ValueSequence&
     Value ();
 
     void
-    Value (const ValueType& x);
-
-    void
-    Value (::std::unique_ptr< ValueType > p);
+    Value (const ValueSequence& s);
 
     // Constructors.
     //
-    AllowedValues (const ValueType&);
-
-    AllowedValues (::std::unique_ptr< ValueType >);
+    AllowedValues ();
 
     AllowedValues (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
@@ -12651,7 +12688,7 @@ namespace CDM
            ::xml_schema::Flags);
 
     protected:
-    ::xsd::cxx::tree::one< ValueType > Value_;
+    ValueSequence Value_;
   };
 
   class Argument: public ::xml_schema::Type
@@ -14239,6 +14276,16 @@ namespace CDM
   void
   operator<< (::xml_schema::ListStream&,
               const MetricAvailability&);
+
+  void
+  operator<< (::xercesc::DOMElement&, const EntryRef&);
+
+  void
+  operator<< (::xercesc::DOMAttr&, const EntryRef&);
+
+  void
+  operator<< (::xml_schema::ListStream&,
+              const EntryRef&);
 
   void
   operator<< (::xercesc::DOMElement&, const AbstractMetricDescriptor&);

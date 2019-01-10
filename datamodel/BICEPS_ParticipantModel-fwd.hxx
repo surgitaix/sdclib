@@ -330,6 +330,7 @@ namespace CDM
   class MetricCategory;
   class DerivationMethod;
   class MetricAvailability;
+  class EntryRef;
   class AbstractMetricDescriptor;
   class AbstractMetricState;
   class NumericMetricDescriptor;

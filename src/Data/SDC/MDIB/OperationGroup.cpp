@@ -106,7 +106,7 @@ bool OperationGroup::hasOperatingMode() const {
 }
 	
 OperationGroup & OperationGroup::setOperations(const OperationRef & value) {
-	data->Operations(ConvertToCDM::convert1(value));
+	data->Operations(ConvertToCDM::convert2(value));
 	return *this;
 }
 

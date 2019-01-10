@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -88,11 +88,11 @@ bool Range::getLower(double & out) const {
 double Range::getLower() const {
 	return ConvertFromCDM::convert(data->Lower().get());
 }
-	
+
 bool Range::hasLower() const {
 	return data->Lower().present();
 }
-	
+
 Range & Range::setUpper(const double & value) {
 	data->Upper(ConvertToCDM::convert(value));
 	return *this;
@@ -109,11 +109,11 @@ bool Range::getUpper(double & out) const {
 double Range::getUpper() const {
 	return ConvertFromCDM::convert(data->Upper().get());
 }
-	
+
 bool Range::hasUpper() const {
 	return data->Upper().present();
 }
-	
+
 Range & Range::setStepWidth(const double & value) {
 	data->StepWidth(ConvertToCDM::convert(value));
 	return *this;
@@ -130,11 +130,11 @@ bool Range::getStepWidth(double & out) const {
 double Range::getStepWidth() const {
 	return ConvertFromCDM::convert(data->StepWidth().get());
 }
-	
+
 bool Range::hasStepWidth() const {
 	return data->StepWidth().present();
 }
-	
+
 Range & Range::setRelativeAccuracy(const double & value) {
 	data->RelativeAccuracy(ConvertToCDM::convert(value));
 	return *this;
@@ -151,11 +151,11 @@ bool Range::getRelativeAccuracy(double & out) const {
 double Range::getRelativeAccuracy() const {
 	return ConvertFromCDM::convert(data->RelativeAccuracy().get());
 }
-	
+
 bool Range::hasRelativeAccuracy() const {
 	return data->RelativeAccuracy().present();
 }
-	
+
 Range & Range::setAbsoluteAccuracy(const double & value) {
 	data->AbsoluteAccuracy(ConvertToCDM::convert(value));
 	return *this;
@@ -172,11 +172,11 @@ bool Range::getAbsoluteAccuracy(double & out) const {
 double Range::getAbsoluteAccuracy() const {
 	return ConvertFromCDM::convert(data->AbsoluteAccuracy().get());
 }
-	
+
 bool Range::hasAbsoluteAccuracy() const {
 	return data->AbsoluteAccuracy().present();
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	PatientDemographicsCoreData(
-	); 
+	);
 	PatientDemographicsCoreData(const PatientDemographicsCoreData & object);
 	virtual ~PatientDemographicsCoreData();
-    
+
     void copyFrom(const PatientDemographicsCoreData & object);
     PatientDemographicsCoreData & operator=(const PatientDemographicsCoreData & object);
-    
+
     typedef CDM::PatientDemographicsCoreData WrappedType;
 
 	PatientDemographicsCoreData & setGivenname(const std::string & value);
@@ -84,7 +84,7 @@ public:
 	PatientDemographicsCoreData & addMiddlename(const std::string & value);
 	std::vector<std::string> getMiddlenameList() const;
 	void clearMiddlenameList();
-	
+
 	PatientDemographicsCoreData & setSex(const Sex & value);
 	Sex getSex() const;
 	bool getSex(Sex & out) const;

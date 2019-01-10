@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,20 +53,20 @@ private:
 public:
 	AlertConditionDescriptor(
 		Handle handle
-		, 
+		,
 		AlertConditionKind kind
-		, 
+		,
 		AlertConditionPriority priority
-	); 
+	);
 private:
 	AlertConditionDescriptor(){};
 public:
 	AlertConditionDescriptor(const AlertConditionDescriptor & object);
 	virtual ~AlertConditionDescriptor();
-    
+
     void copyFrom(const AlertConditionDescriptor & object);
     AlertConditionDescriptor & operator=(const AlertConditionDescriptor & object);
-    
+
     typedef CDM::AlertConditionDescriptor WrappedType;
 
 	AlertConditionDescriptor & setType(const CodedValue & value);
@@ -111,11 +111,11 @@ public:
 	AlertConditionDescriptor & addSource(const HandleRef & value);
 	std::vector<HandleRef> getSourceList() const;
 	void clearSourceList();
-	
+
 	AlertConditionDescriptor & addCauseInfo(const CauseInfo & value);
 	std::vector<CauseInfo> getCauseInfoList() const;
 	void clearCauseInfoList();
-	
+
 private:
 	std::shared_ptr<CDM::AlertConditionDescriptor> data;
 };

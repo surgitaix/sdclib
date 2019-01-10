@@ -42,7 +42,7 @@
 
 namespace SDCLib {
 
-const std::string CURRENT_LIB_VERSION("3.0.1");
+const std::string CURRENT_LIB_VERSION("3.1.0");
 
 SDCLibrary::SDCLibrary() :
 	WithLogger(OSELib::Log::BASE),

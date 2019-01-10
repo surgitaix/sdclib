@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -95,11 +95,11 @@ bool RequestedOrderDetail::getStart(xml_schema::DateTime & out) const {
 xml_schema::DateTime RequestedOrderDetail::getStart() const {
 	return ConvertFromCDM::convert(data->Start().get());
 }
-	
+
 bool RequestedOrderDetail::hasStart() const {
 	return data->Start().present();
 }
-	
+
 RequestedOrderDetail & RequestedOrderDetail::setEnd(const xml_schema::DateTime & value) {
 	data->End(ConvertToCDM::convert(value));
 	return *this;
@@ -116,11 +116,11 @@ bool RequestedOrderDetail::getEnd(xml_schema::DateTime & out) const {
 xml_schema::DateTime RequestedOrderDetail::getEnd() const {
 	return ConvertFromCDM::convert(data->End().get());
 }
-	
+
 bool RequestedOrderDetail::hasEnd() const {
 	return data->End().present();
 }
-	
+
 RequestedOrderDetail & RequestedOrderDetail::addPerformer(const PersonParticipation & value) {
 	data->Performer().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -191,11 +191,11 @@ bool RequestedOrderDetail::getReferringPhysician(PersonReference & out) const {
 PersonReference RequestedOrderDetail::getReferringPhysician() const {
 	return ConvertFromCDM::convert(data->ReferringPhysician().get());
 }
-	
+
 bool RequestedOrderDetail::hasReferringPhysician() const {
 	return data->ReferringPhysician().present();
 }
-	
+
 RequestedOrderDetail & RequestedOrderDetail::setRequestingPhysician(const PersonReference & value) {
 	data->RequestingPhysician(ConvertToCDM::convert(value));
 	return *this;
@@ -212,11 +212,11 @@ bool RequestedOrderDetail::getRequestingPhysician(PersonReference & out) const {
 PersonReference RequestedOrderDetail::getRequestingPhysician() const {
 	return ConvertFromCDM::convert(data->RequestingPhysician().get());
 }
-	
+
 bool RequestedOrderDetail::hasRequestingPhysician() const {
 	return data->RequestingPhysician().present();
 }
-	
+
 RequestedOrderDetail & RequestedOrderDetail::setPlacerOrderNumber(const InstanceIdentifier & value) {
 	data->PlacerOrderNumber(ConvertToCDM::convert(value));
 	return *this;
@@ -226,7 +226,7 @@ RequestedOrderDetail & RequestedOrderDetail::setPlacerOrderNumber(const Instance
 InstanceIdentifier RequestedOrderDetail::getPlacerOrderNumber() const {
 	return ConvertFromCDM::convert(data->PlacerOrderNumber());
 }
-	
+
 
 } /* namespace SDC */
 } /* namespace Data */

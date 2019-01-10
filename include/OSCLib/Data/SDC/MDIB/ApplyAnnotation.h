@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -53,18 +53,18 @@ private:
 public:
 	ApplyAnnotation(
 		unsigned int annotationindex
-		, 
+		,
 		unsigned int sampleindex
-	); 
+	);
 private:
 	ApplyAnnotation(){};
 public:
 	ApplyAnnotation(const ApplyAnnotation & object);
 	virtual ~ApplyAnnotation();
-    
+
     void copyFrom(const ApplyAnnotation & object);
     ApplyAnnotation & operator=(const ApplyAnnotation & object);
-    
+
     typedef CDM::ApplyAnnotation WrappedType;
 
 	ApplyAnnotation & setAnnotationIndex(const unsigned int & value);

@@ -3,11 +3,11 @@
 xmlns:tns="http://schemas.xmlsoap.org/ws/2004/09/mex"
 xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01" 
 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-xmlns:mpdws="http://standards.ieee.org/downloads/11073/11073-20702-201x/"
+xmlns:mpdws="http://standards.ieee.org/downloads/11073/11073-20702-2016"
 elementFormDefault="qualified" blockDefault="#all">
 
 <xs:import namespace="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01" schemaLocation="wsdd-dpws-1.1-schema-os.xsd"/>
-<xs:import namespace="http://standards.ieee.org/downloads/11073/11073-20702-201x/" schemaLocation="MDPWS.xsd"/>
+<xs:import namespace="http://standards.ieee.org/downloads/11073/11073-20702-2016" schemaLocation="MDPWS.xsd"/>
   
   <xs:element name="GetMetadata">
     <xs:complexType>

@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -52,13 +52,13 @@ private:
 	friend class MdDescription;
 public:
 	MetaData(
-	); 
+	);
 	MetaData(const MetaData & object);
 	virtual ~MetaData();
-    
+
     void copyFrom(const MetaData & object);
     MetaData & operator=(const MetaData & object);
-    
+
     typedef CDM::MetaData WrappedType;
 
 	MetaData & setLotNumber(const std::string & value);
@@ -84,19 +84,19 @@ public:
 	MetaData & addUdi(const Udi & value);
 	std::vector<Udi> getUdiList() const;
 	void clearUdiList();
-	
+
 	MetaData & addManufacturer(const LocalizedText & value);
 	std::vector<LocalizedText> getManufacturerList() const;
 	void clearManufacturerList();
-	
+
 	MetaData & addModelName(const LocalizedText & value);
 	std::vector<LocalizedText> getModelNameList() const;
 	void clearModelNameList();
-	
+
 	MetaData & addSerialNumber(const std::string & value);
 	std::vector<std::string> getSerialNumberList() const;
 	void clearSerialNumberList();
-	
+
 private:
 	std::shared_ptr<CDM::MetaData> data;
 };

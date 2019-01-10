@@ -20,12 +20,12 @@
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, buerger, roehser
  */
- 
+
 /**
  * THIS FILE IS GENERATED AUTOMATICALLY! DO NOT MODIFY!
  *
  * YOUR CHANGES WILL BE OVERWRITTEN!
- * 
+ *
  * USE THE DEFINITION FILES IN THE FOLDER "codegenerator" INSTEAD!
  */
 
@@ -86,7 +86,7 @@ SampleArrayValue & SampleArrayValue::setMetricQuality(const MetricQuality & valu
 MetricQuality SampleArrayValue::getMetricQuality() const {
 	return ConvertFromCDM::convert(data->MetricQuality());
 }
-	
+
 SampleArrayValue & SampleArrayValue::setStartTime(const Timestamp & value) {
 	data->StartTime(ConvertToCDM::convert(value));
 	return *this;
@@ -103,11 +103,11 @@ bool SampleArrayValue::getStartTime(Timestamp & out) const {
 Timestamp SampleArrayValue::getStartTime() const {
 	return ConvertFromCDM::convert(data->StartTime().get());
 }
-	
+
 bool SampleArrayValue::hasStartTime() const {
 	return data->StartTime().present();
 }
-	
+
 SampleArrayValue & SampleArrayValue::setStopTime(const Timestamp & value) {
 	data->StopTime(ConvertToCDM::convert(value));
 	return *this;
@@ -124,11 +124,11 @@ bool SampleArrayValue::getStopTime(Timestamp & out) const {
 Timestamp SampleArrayValue::getStopTime() const {
 	return ConvertFromCDM::convert(data->StopTime().get());
 }
-	
+
 bool SampleArrayValue::hasStopTime() const {
 	return data->StopTime().present();
 }
-	
+
 SampleArrayValue & SampleArrayValue::setDeterminationTime(const Timestamp & value) {
 	data->DeterminationTime(ConvertToCDM::convert(value));
 	return *this;
@@ -145,11 +145,11 @@ bool SampleArrayValue::getDeterminationTime(Timestamp & out) const {
 Timestamp SampleArrayValue::getDeterminationTime() const {
 	return ConvertFromCDM::convert(data->DeterminationTime().get());
 }
-	
+
 bool SampleArrayValue::hasDeterminationTime() const {
 	return data->DeterminationTime().present();
 }
-	
+
 SampleArrayValue & SampleArrayValue::addAnnotation(const Annotation & value) {
 	data->Annotation().push_back(ConvertToCDM::convert(value));
 	return *this;
@@ -184,11 +184,11 @@ bool SampleArrayValue::getSamples(RealTimeValueType & out) const {
 RealTimeValueType SampleArrayValue::getSamples() const {
 	return ConvertFromCDM::convert(data->Samples().get());
 }
-	
+
 bool SampleArrayValue::hasSamples() const {
 	return data->Samples().present();
 }
-	
+
 SampleArrayValue & SampleArrayValue::addApplyAnnotation(const ApplyAnnotation & value) {
 	data->ApplyAnnotation().push_back(ConvertToCDM::convert(value));
 	return *this;
