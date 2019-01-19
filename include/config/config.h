@@ -38,13 +38,9 @@ namespace SDCLib
         const std::string CURRENT_LIB_VERSION("3.0.3");
 
         // Specify these values in your firewall settings to pass the allowed port range (running tests and examples!)
-        const unsigned int SDC_PORT_START = 14000;
-        const unsigned int SDC_PORT_RANGE = 1000;
-        const unsigned int SDC_PORT_END = SDC_PORT_START + SDC_PORT_RANGE;
-
-        // Examples
-        const unsigned int SDC_EXAMPLE_PROVIDER_PORT = 14001;
-        const unsigned int SDC_EXAMPLE_CONSUMER_PORT = 14002;
+        const unsigned int SDC_ALLOWED_PORT_START = 14000;
+        const unsigned int SDC_ALLOWED_PORT_RANGE = 1000;
+        const unsigned int SDC_ALLOWED_PORT_END = SDC_ALLOWED_PORT_START + SDC_ALLOWED_PORT_RANGE;
     }
 }
 

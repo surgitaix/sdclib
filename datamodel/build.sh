@@ -1,5 +1,31 @@
+#!/bin/bash
+################################################################################
+#
+# Author: Fabian Baumeister, TODO
+#
+# Helper script for xsdcxx
+#
+################################################################################
+
+
+# Name of the folder
+DIRNAME=generated
+
+# Cleanup
+echo "Cleanup..."
+rm -rf $DIRNAME
+
+# Create the new dir
+echo "Creating new Folder..."
+mkdir $DIRNAME
+
+# Switch to xsd dir
+cd ./xsd/
+
+echo "Generating!"
 # if not xsd 4.0 is installed but xsd 3.3: call xsdcxx instead
 xsdcxx cxx-tree \
+    --output-dir ../$DIRNAME \
 	--std c++11 \
 	--show-sloc \
 	--type-naming ucc \
@@ -38,4 +64,12 @@ xsdcxx cxx-tree \
 	ws-policy.xsd ws-streaming.xsd \
 	NormalizedMessageModel.xsd \
 	DICOMDeviceDescription.xsd
+
+	
+	
+# tmp solution
+cd ..
+
+cp osdm.hxx $DIRNAME/osdm.hxx
+cp osdm-fwd.hxx $DIRNAME/osdm-fwd.hxx
 

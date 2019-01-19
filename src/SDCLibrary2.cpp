@@ -132,10 +132,10 @@ SDCInstancePtr SDCLibrary2::createDefaultSDCInstance() {
 	}
 
 	Poco::Mutex::ScopedLock lock(mutex);
-	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_PORT_START, SDCLib::Config::SDC_PORT_RANGE, m_availableNetworkInterfacesList));
+	SDCInstancePtr t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_ALLOWED_PORT_RANGE, m_availableNetworkInterfacesList));
 	// empty list since all network interfaces are assigned to the SDCInstance
 	m_availableNetworkInterfacesList.clear();
-	return move(t_sdcInstance);
+	return t_sdcInstance;
 }
 
 
@@ -148,15 +148,15 @@ bool SDCLibrary2::isInterfaceAvailable() {
 }
 
 
-SDCInstancePtr SDCLibrary2::createBoundSDCInstance(string interfaceName) {
+SDCInstancePtr SDCLibrary2::createBoundSDCInstance(std::string interfaceName) {
 	if (!isInterfaceAvailable()) {
 		return nullptr;
 	}
 
 	Poco::Mutex::ScopedLock lock(mutex);
-	list<Poco::Net::NetworkInterface> t_networkInterfacesList;
+	std::list<Poco::Net::NetworkInterface> t_networkInterfacesList;
 
-	for (list<Poco::Net::NetworkInterface>::iterator itr = m_availableNetworkInterfacesList.begin(); itr != m_availableNetworkInterfacesList.end(); )
+	for (auto itr = m_availableNetworkInterfacesList.begin(); itr != m_availableNetworkInterfacesList.end(); )
 	{
 		if (itr->adapterName() == interfaceName) {
 			t_networkInterfacesList.push_back(*itr);
@@ -170,20 +170,20 @@ SDCInstancePtr SDCLibrary2::createBoundSDCInstance(string interfaceName) {
 		log_error([&]{return "Interface not found."; });
 		return nullptr;
 	}
-	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_PORT_START, SDCLib::Config::SDC_PORT_RANGE, t_networkInterfacesList));
-	return move(t_sdcInstance);
+	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_ALLOWED_PORT_RANGE, t_networkInterfacesList));
+	return t_sdcInstance;
 }
 
-SDCInstancePtr SDCLibrary2::createBoundSDCInstance(list<string> interfacesNamesList) {
+SDCInstancePtr SDCLibrary2::createBoundSDCInstance(std::list<std::string> interfacesNamesList) {
 	if (!isInterfaceAvailable()) {
 		return nullptr;
 	}
 
 	Poco::Mutex::ScopedLock lock(mutex);
-	list<Poco::Net::NetworkInterface> t_networkInterfacesList;
+	std::list<Poco::Net::NetworkInterface> t_networkInterfacesList;
 
-	for (string netInterfaceName: interfacesNamesList) {
-		for (list<Poco::Net::NetworkInterface>::iterator itr = m_availableNetworkInterfacesList.begin(); itr != m_availableNetworkInterfacesList.end(); )
+	for (std::string netInterfaceName: interfacesNamesList) {
+		for (std::list<Poco::Net::NetworkInterface>::iterator itr = m_availableNetworkInterfacesList.begin(); itr != m_availableNetworkInterfacesList.end(); )
 		{
 			if (itr->adapterName() == netInterfaceName) {
 				t_networkInterfacesList.push_back(*itr);
@@ -198,8 +198,8 @@ SDCInstancePtr SDCLibrary2::createBoundSDCInstance(list<string> interfacesNamesL
 		log_error([&]{return "Interface(s) not found."; });
 		return nullptr;
 	}
-	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_PORT_START, SDCLib::Config::SDC_PORT_RANGE, t_networkInterfacesList));
-	return move(t_sdcInstance);
+	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_ALLOWED_PORT_RANGE, t_networkInterfacesList));
+	return t_sdcInstance;
 }
 
 

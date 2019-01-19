@@ -2,7 +2,7 @@
 
 using namespace SDCLib;
 
-SDCInstance::SDCInstance(unsigned int portStart, unsigned int portRange, const list<Poco::Net::NetworkInterface> networkInterfacesList) :
+SDCInstance::SDCInstance(unsigned int portStart, unsigned int portRange, const std::list<Poco::Net::NetworkInterface> networkInterfacesList) :
 			WithLogger(OSELib::Log::BASE),
 			m_init(false)
 {
@@ -49,7 +49,7 @@ void SDCInstance::sealAndInit()
 }
 
 
-list<Poco::Net::NetworkInterface> SDCInstance::getNetworkInterfacesList() {
+std::list<Poco::Net::NetworkInterface> SDCInstance::getNetworkInterfacesList() {
 	return m_networkInterfacesList;
 }
 
@@ -119,7 +119,7 @@ void SDCInstance::createPortList(unsigned int start, unsigned int range)
 //}
 //
 
-bool SDCInstance::setPorts(list<unsigned int> portList) {
+bool SDCInstance::setPorts(std::list<unsigned int> portList) {
 	if (isInit()) {
 		return false;
 	}

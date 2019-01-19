@@ -36,8 +36,6 @@
 #include <list>
 #include <deque>
 
-using namespace std;
-
 namespace SDCLib
 {
     class SDCInstance : public OSELib::WithLogger
@@ -48,15 +46,15 @@ namespace SDCLib
 
     	// each adapter thread needs writing access to this class,
     	// thus synchronization mechanisms need to be implemented
-        mutable mutex m_mutex;
+        mutable std::mutex m_mutex;
 
-        list<Poco::Net::NetworkInterface> m_networkInterfacesList;
+        std::list<Poco::Net::NetworkInterface> m_networkInterfacesList;
 
         bool m_init = false;
         unsigned int m_discoveryTime; // in ms
 
-        bool ip4enabled;
-        bool ip6enabled;
+        bool ip4enabled = false;
+        bool ip6enabled = false;
 
         std::deque<unsigned int> m_reservedPorts;
         std::deque<unsigned int> m_availablePorts;
@@ -81,7 +79,7 @@ namespace SDCLib
 		*
 		* @return list of all assigend interfaces
 		*/
-        list<Poco::Net::NetworkInterface> getNetworkInterfacesList();
+        std::list<Poco::Net::NetworkInterface> getNetworkInterfacesList();
 
 
 
@@ -94,7 +92,7 @@ namespace SDCLib
     	* @param A list of all ports to be used.
     	* @return returns true if successful
     	*/
-        bool setPorts(list<unsigned int> portList);
+        bool setPorts(std::list<unsigned int> portList);
 
         /**
          * @brief Get the next free port number used for the bindings.
@@ -163,7 +161,7 @@ namespace SDCLib
     private:
         // do not allow the user to initialize SDCInstance objects.
         // Only the SDCLibrary (friend) is allowed to init these since it manages the network interfaces
-        SDCInstance(unsigned int portStart, unsigned int portRange, const list<Poco::Net::NetworkInterface> networkInterfacesList);
+        SDCInstance(unsigned int portStart, unsigned int portRange, const std::list<Poco::Net::NetworkInterface> networkInterfacesList);
         // limit copy functionality to friend classes (SDCLibrary), since each class uniquely represents one or more network interfaces
         SDCInstance(const SDCInstance& p_obj);
 
