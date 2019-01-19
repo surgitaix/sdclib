@@ -1,6 +1,2 @@
 #SDCLib pars
 doc/
-
-# Misc files
-.directory
-*.kdev4
