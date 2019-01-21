@@ -19,7 +19,7 @@ public:
 	ContextServiceHandler(IContextService & service, Helper::XercesGrammarPoolProvider & grammarProvider);
 
 private:
-	virtual void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) override;
+	void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) override;
 
 	IContextService & _service;
 	Helper::XercesGrammarPoolProvider & _grammarProvider;

@@ -73,8 +73,8 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 	{
 	}
 
-	virtual std::string getBaseUri() const override {
-		return "/ContextReportSink";
+	std::string getBaseUri() const override {
+		return std::string("/ContextReportSink");
 	}
 
 	// todo: fix multistate implementation. this one only calls the state handlers which reference the descriptorsHandles
@@ -130,7 +130,7 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 
 
 	// dispatch episodic reports and delegate the contained context states
-	virtual void dispatch(const SDC::EpisodicContextChangedReportTraits::ReportType & report) override {
+	void dispatch(const SDC::EpisodicContextChangedReportTraits::ReportType & report) override {
 
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
@@ -148,7 +148,7 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 	}
 
 	// dispatch periodic reports and delegate the contained context states
-	virtual void dispatch(const SDC::PeriodicContextChangedReportTraits::ReportType & report) override {
+	void dispatch(const SDC::PeriodicContextChangedReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -175,11 +175,11 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 	{
 	}
 
-	virtual std::string getBaseUri() const override {
-		return "/EventReportSink";
+	std::string getBaseUri() const override {
+		return std::string("/EventReportSink");
 	}
 
-	virtual void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & report) override {
+	void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -190,7 +190,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 		}
 	}
 
-	virtual void dispatch(const SDC::EpisodicMetricReportTraits::ReportType & report) override {
+	void dispatch(const SDC::EpisodicMetricReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -201,7 +201,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 		}
 	}
 
-	virtual void dispatch(const SDC::PeriodicAlertReportTraits::ReportType & report) override {
+	void dispatch(const SDC::PeriodicAlertReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -212,7 +212,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 		}
 	}
 
-	virtual void dispatch(const SDC::PeriodicMetricReportTraits::ReportType & report) override {
+	void dispatch(const SDC::PeriodicMetricReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -223,7 +223,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 		}
 	}
 
-	virtual void dispatch(const SDC::OperationInvokedReportTraits::ReportType & report) override {
+	void dispatch(const SDC::OperationInvokedReportTraits::ReportType & report) override {
 		// fixme move all to SDCConsumer and change interface, so this method here only delegates. This should be done for all events
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
@@ -236,7 +236,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 	}
 
 	// todo: more elegant implementation of streaming possible?
-	virtual void dispatch(const SDC::WaveformStreamTraits::ReportType & report) override {
+	void dispatch(const SDC::WaveformStreamTraits::ReportType & report) override {
 		//
 	}
 
@@ -434,7 +434,7 @@ std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(co
 		if (response->MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(response->MdibVersion().get());
 		}
-		return std::move(response);
+		return response;
 	}
 
 	return nullptr;

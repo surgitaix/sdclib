@@ -46,7 +46,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> UnsubscribeActionCommand::dispatch(const
 	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(createResponseMessageFromRequestMessage(request));
 	responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::UnsubscribeTraits::ResponseAction()));
 
-	return std::move(responseMessage);
+	return responseMessage;
 }
 
 } /* namespace SOAP */

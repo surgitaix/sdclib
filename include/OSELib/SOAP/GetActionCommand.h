@@ -19,7 +19,7 @@ public:
 	GetActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> requestMessage, const WS::MEX::Metadata & metadata);
 	virtual ~GetActionCommand();
 
-	virtual std::unique_ptr<MESSAGEMODEL::Envelope> dispatch(const MESSAGEMODEL::Envelope & request) override;
+	std::unique_ptr<MESSAGEMODEL::Envelope> dispatch(const MESSAGEMODEL::Envelope & request) override;
 
 private:
 	std::unique_ptr<WS::MEX::Metadata> _metadata;

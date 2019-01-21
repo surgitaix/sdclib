@@ -60,10 +60,10 @@ public:
 	void removeByeEventHandler(ByeCallback & callback);
 
 private:
-	virtual void dispatch(const ProbeMatchType & notification) override;
-	virtual void dispatch(const ResolveMatchType & notification) override;
-	virtual void dispatch(const ByeType & notification) override;
-	virtual void dispatch(const HelloType & notification) override;
+	void dispatch(const ProbeMatchType & notification) override;
+	void dispatch(const ResolveMatchType & notification) override;
+	void dispatch(const ByeType & notification) override;
+	void dispatch(const HelloType & notification) override;
 
 	typedef std::tuple<ProbeType, ProbeMatchCallback *> ProbeMatchHandler;
 	typedef std::tuple<ResolveType, ResolveMatchCallback *> ResolveMatchHandler;

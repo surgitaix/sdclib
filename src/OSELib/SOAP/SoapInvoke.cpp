@@ -39,7 +39,7 @@ std::unique_ptr<MESSAGEMODEL::Header> SoapInvoke::createHeader() {
 	header->MessageID().set(MessageIDType(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	using ToType = MESSAGEMODEL::Envelope::HeaderType::ToType;
 	header->To().set(ToType(_requestURI.toString()));
-	return std::move(header);
+	return header;
 }
 
 std::unique_ptr<MESSAGEMODEL::Body> SoapInvoke::createBody() {

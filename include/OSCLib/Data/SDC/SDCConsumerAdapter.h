@@ -57,7 +57,7 @@ public:
 private:
 
 	// callback from _streamClientSocketImpl
-	virtual void dispatch(const OSELib::DPWS::WaveformStreamType & notification) override;
+	void dispatch(const OSELib::DPWS::WaveformStreamType & notification) override;
 
 	// Variables
 	template<class TraitsType>

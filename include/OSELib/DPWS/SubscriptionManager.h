@@ -24,9 +24,9 @@ public:
 	template <class TraitsType>
 	void fireEvent(const typename TraitsType::ReportType & report);
 
-	virtual std::unique_ptr<SubscribeTraits::Response> dispatch(const SubscribeTraits::Request & request) override;
-	virtual std::unique_ptr<UnsubscribeTraits::Response> dispatch(const UnsubscribeTraits::Request & request, const UnsubscribeTraits::RequestIdentifier & identifier) override;
-	virtual std::unique_ptr<RenewTraits::Response> dispatch(const RenewTraits::Request & request, const RenewTraits::RequestIdentifier & identifier) override;
+	std::unique_ptr<SubscribeTraits::Response> dispatch(const SubscribeTraits::Request & request) override;
+	std::unique_ptr<UnsubscribeTraits::Response> dispatch(const UnsubscribeTraits::Request & request, const UnsubscribeTraits::RequestIdentifier & identifier) override;
+	std::unique_ptr<RenewTraits::Response> dispatch(const RenewTraits::Request & request, const RenewTraits::RequestIdentifier & identifier) override;
 
 private:
 	ActiveSubscriptions _subscriptions;

@@ -37,12 +37,12 @@ public:
 	void setTypes(const TypesType & types);
 	void setXAddresses(const XAddressesType & xaddresses);
 
-	virtual std::vector<ProbeMatchType> dispatch(const ProbeType & filter) override;
+	std::vector<ProbeMatchType> dispatch(const ProbeType & filter) override;
 
 private:
 	void sendHello();
 
-	virtual std::unique_ptr<ResolveMatchType> dispatch(const ResolveType & filter) override;
+	std::unique_ptr<ResolveMatchType> dispatch(const ResolveType & filter) override;
 
 	bool _started;
 	const AddressType _epr;

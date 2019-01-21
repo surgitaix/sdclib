@@ -18,7 +18,7 @@ class SubscribeActionCommand : public GenericSoapActionCommand<DPWS::SubscribeTr
 public:
 	SubscribeActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> requestMessage, DPWS::SubscribeTraits::Dispatcher & dispatcher, const std::string & subscriptionManagerAddress);
 
-	virtual std::unique_ptr<MESSAGEMODEL::Envelope> postprocessResponse(std::unique_ptr<MESSAGEMODEL::Envelope> response) override;
+	std::unique_ptr<MESSAGEMODEL::Envelope> postprocessResponse(std::unique_ptr<MESSAGEMODEL::Envelope> response) override;
 
 private:
 	const WS::ADDRESSING::AttributedURIType _subscriptionManagerAddress;
