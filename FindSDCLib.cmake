@@ -14,17 +14,16 @@
 # git submodules a little troublesome
 ################################################################################
 
+# Already found!
+if(SDC_FOUND)
+    RETURN()
+endif()
 
 # Find the root folder inside the dependencies - This script is inside it!
 
 # Just search for this file in the SDC Root folder
 find_path(PATH_SDC_ROOT FindSDCLib.cmake ${PATH_SDC_SEARCH})
 message(STATUS "Searching for SDCLib files in ${PATH_SDC_SEARCH}")
-
-# Already found!
-if(SDC_FOUND)
-    RETURN()
-endif()
 
 # Init Flag to false
 set(SDC_FOUND FALSE)
