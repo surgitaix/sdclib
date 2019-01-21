@@ -40,12 +40,15 @@
 //Sample Provider. Exchange for your provider under test.
 #include "Tools/TestProvider.h"
 
+//Sample Consumer. Exchange for you consumer under test.
+#include "Tools/TestConsumer.h"
+
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 //Device endpoint reference change to your devices
-const std::string DEVICE_EPR("Test_Provider");
+const std::string DEVICE_EPR("TestProvider");
 
 int main() {
 	// Startup
@@ -68,6 +71,9 @@ int main() {
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(6465);
 
+	TestTools::TestConsumer consumer;
+	consumer.start();
+
 	// Discovery
 	auto consumers(oscpsm.discoverOSCP());
 	std::unique_ptr<Data::SDC::SDCConsumer> c = nullptr;
@@ -78,7 +84,7 @@ int main() {
 
 	try {
 		if (c != nullptr) {
-			Data::SDC::SDCConsumer & consumer = *c;
+			consumer.setConsumer(std::move(c));
 			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Discovery succeeded." << std::endl;
 			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test passed" << std::endl;
 

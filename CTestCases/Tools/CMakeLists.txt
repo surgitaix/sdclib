@@ -1,6 +1,9 @@
 list(APPEND TOOLSSOURCES
 ./MulticastHandler.cpp
 ./TestProvider.cpp
+./TestConsumer.cpp
+./PulseOximeterProvider.cpp
+./PulseOximeterConsumer.cpp
 )
 
 if(WIN32)

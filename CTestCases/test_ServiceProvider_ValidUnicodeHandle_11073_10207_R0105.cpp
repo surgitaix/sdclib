@@ -98,7 +98,6 @@ int main()
 	testCases.insert(std::make_pair("\uFFFE", false));
 	testCases.insert(std::make_pair("test" + std::string("\uFFFE") + "string", false));
 
-	bool testPassed = true;
 
 	for(const auto& testCase : testCases)
 	{
@@ -113,10 +112,10 @@ int main()
 		if(exception != testCase.second)
 		{
 			std::cout << "Test failed at: " << testCase.first << std::endl;
-			testPassed = false;
+			exit(0);
 		}
 	}
-	if(testPassed)
-		std::cout << "Test passed";
+
+	std::cout << "Test passed";
 }
 

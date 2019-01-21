@@ -52,6 +52,8 @@ int main()
 	sdcProvider.shutdown();
     SDCLibrary::getInstance().shutdown();
 
+    std::cout << "Test failed";
+
 
 }
 

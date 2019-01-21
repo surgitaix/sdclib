@@ -20,14 +20,16 @@
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
-
 #include "Tools/TestProvider.h"
+
+#include "Tools/TestConsumer.h"
+
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-const std::string DEVICE_EPR("Test_Provider");
+const std::string DEVICE_EPR("TestProvider");
 
 
 int main() {
@@ -49,9 +51,15 @@ int main() {
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(6467);
 
+	TestTools::TestConsumer consumer;
+	consumer.start();
+
 	// Discovery
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, config));
-	Data::SDC::SDCConsumer & consumer = *c;
+	if(c == nullptr) {
+		std::cout << "ERROR";
+	}
+	consumer.setConsumer(std::move(c));
 
 	const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
 	xml_schema::NamespaceInfomap map;
@@ -62,10 +70,9 @@ int main() {
 	MDM::GetMdibResponse providerMdib(xml_schema::Uri("0"),ConvertToCDM::convert(provider.getMdib()));
 	providerMdib.MdibVersion(provider.getMdib().getMdibVersion());
 	CDM::MdibContainer(providerMdibStringRepresentation, providerMdib.Mdib(), map, OSELib::XML_ENCODING, xercesFlags);
-	MDM::GetMdibResponse cosumerMdib(xml_schema::Uri("0"), ConvertToCDM::convert(consumer.getMdib()));
-	cosumerMdib.MdibVersion(consumer.getMdib().getMdibVersion());
+	MDM::GetMdibResponse cosumerMdib(xml_schema::Uri("0"), ConvertToCDM::convert(consumer.getConsumer()->getMdib()));
+	cosumerMdib.MdibVersion(consumer.getConsumer()->getMdib().getMdibVersion());
 	CDM::MdibContainer(consumerMdibStringRepresentation, cosumerMdib.Mdib(), map, OSELib::XML_ENCODING, xercesFlags);
-
 
 	if(providerMdibStringRepresentation.str() == consumerMdibStringRepresentation.str())
 	{

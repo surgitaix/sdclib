@@ -39,6 +39,8 @@ const std::string intendationLevel1("  ");
 CONSTEXPR_MACRO std::size_t lineLength(80);
 const std::string separator(lineLength, '-');
 
+using namespace xercesc;
+
 namespace TestTools {
 
 struct messagedata_t {
@@ -58,6 +60,10 @@ public:
 	virtual void onByeMessageReceived(messagedata_t messagedata);
 	virtual void onUnknownDataReceived(messagedata_t messagedata);
 	virtual void onHelloMessageReceived(messagedata_t messagedata);
+
+	bool checkExpectedValue(xercesc::DOMElement* rootElement, std::string tag, std::string expectedValue);
+	xercesc::DOMElement* getRootElement(std::string xmlString);
+
 
 }; /* namespace TestTools */
 }

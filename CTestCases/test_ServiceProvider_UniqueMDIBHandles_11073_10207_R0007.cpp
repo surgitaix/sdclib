@@ -5,6 +5,7 @@
  *      Author: rosenau
  */
 
+#include <iostream>
 #include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
@@ -42,7 +43,7 @@ public:
 
 int main()
 {
-	SDCLibrary::getInstance().startup(OSELib::LogLevel::Notice);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	NumericMetricStateHandler nmsHandler1(HANDLE_NUMERICMETRIC);
 	NumericMetricStateHandler nmsHandler2(HANDLE_NUMERICMETRIC);
 
@@ -59,12 +60,17 @@ int main()
 			1.0);
 
 	ChannelDescriptor deviceParameters(CHANNEL_DESCRIPTOR_HANDLE);
-	deviceParameters.setSafetyClassification(SafetyClassification::MedC)
-					.addMetric(nmd1).addMetric(nmd2);
 
+	try {
+		deviceParameters.setSafetyClassification(SafetyClassification::MedC)
+						.addMetric(nmd1).addMetric(nmd2);
+
+	}
+	catch(...) {
+		std::cout << "Test passed";
+	}
 	VmdDescriptor deviceModule(VMD_DESCRIPTOR_HANDLE);
 	deviceModule.addChannel(deviceParameters);
-
 	MdsDescriptor deviceSystem(MDS_DESCRIPTOR_HANDLE);
 	deviceSystem.addVmd(deviceModule);
 
@@ -76,6 +82,7 @@ int main()
 	sdcProvider.addMdStateHandler(&nmsHandler1);
 	sdcProvider.addMdStateHandler(&nmsHandler2);
 	SDCLibrary::getInstance().shutdown();
+	std::cout << "Test failed";
 }
 
 

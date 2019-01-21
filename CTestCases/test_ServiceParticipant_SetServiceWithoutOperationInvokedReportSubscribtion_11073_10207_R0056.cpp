@@ -42,8 +42,9 @@
 
 #include "Tools/TestProvider.h"
 
+#include "Tools/TestConsumer.h"
+
 const std::string DEVICE_EPR("TestProvider");
-const std::string HANDLE_SET_NUMERICMETRIC("handle_set_numericmetric");
 
 
 using namespace SDCLib;
@@ -51,24 +52,12 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 
-class SettableConsumerNumericMetricStateHandler : public SDCConsumerMDStateHandler<NumericMetricState>
-{
-public:
-	SettableConsumerNumericMetricStateHandler(std::string descriptionHandler) : SDCConsumerMDStateHandler(descriptionHandler) {
-	}
-
-	void onStateChanged(const NumericMetricState &state) override{
-		Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Received periodic state of " << descriptorHandle << " " <<  state.getMetricValue().getValue() << std::endl;
-	}
-
-};
-
 
 int main() {
 	std::cout << "Test against requirement R0056  A SERVICE CONSUMER SHALL subscribe to msg:OperationInvokedReport"
 			  << " before invoking request-response SERVICE OPERATIONs of the SET SERVICE" << std::endl;
 
-	SDCLibrary::getInstance().startup(OSELib::LogLevel::Notice);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 
@@ -83,27 +72,18 @@ int main() {
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(6469);
 
+	TestTools::TestConsumer consumer;
+	consumer.start();
+
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, config));
 
-	std::shared_ptr<SettableConsumerNumericMetricStateHandler> setHandler(new SettableConsumerNumericMetricStateHandler(HANDLE_SET_NUMERICMETRIC));
-
-
 	if (c != nullptr) {
-		Data::SDC::SDCConsumer & consumer = *c;
+		consumer.setConsumer(std::move(c));
 
-		SettableConsumerNumericMetricStateHandler settableNumicMetricStateHandler(HANDLE_SET_NUMERICMETRIC);
-
-		consumer.registerStateEventHandler(setHandler.get());
-
-		std::unique_ptr<NumericMetricState> setNumericMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_NUMERICMETRIC));
-		setNumericMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(1.0));
-		FutureInvocationState fis;
-		consumer.commitState(*setNumericMetricState, fis);
-		Util::DebugOut(Util::DebugOut::Default, "Consumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
-
-
+		consumer.registerNumericMetricStateSetHandler();
+		consumer.setNumericMetricStateValue(2.0);
 		Poco::Thread::sleep(2000);
-		consumer.unregisterStateEventHandler(setHandler.get());
+		consumer.unregisterNumericMetricStateSetHandler();
 
 		consumer.disconnect();
 	}

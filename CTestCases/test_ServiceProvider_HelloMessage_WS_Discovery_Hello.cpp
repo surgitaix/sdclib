@@ -35,14 +35,6 @@
 #include "OSELib/Helper/WithLogger.h"
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
-
-#include "xercesc/parsers/XercesDOMParser.hpp"
-#include "xercesc/sax/HandlerBase.hpp"
-#include "xercesc/framework/MemBufInputSource.hpp"
-#include "xercesc/sax/ErrorHandler.hpp"
-#include "xercesc/dom/DOM.hpp"
-#include "xercesc/util/XMLString.hpp"
-
 #include "Tools/TestProvider.h"
 
 
@@ -57,7 +49,7 @@ const std::string DEVICE_EPR("TestProvider");
 typedef  std::vector<std::pair<std::string, std::string>> testCases_t;
 static const testCases_t testCases = {
 		{"wsa:To", "urn:docs-oasis-open-org:ws-dd:ns:discovery:2009:01"},
-		{"p2:Types", "dpws:MedicalDevice mdpws:MedicalDevice"}
+		{"p2:Types", "dpws:MedicalDevice mm:MedicalDevice"}
 };
 
 
@@ -97,63 +89,6 @@ public:
 
 	}
 
-	xercesc::DOMElement* getRootElement(std::string xmlString)
-	{
-		xercesc::DOMElement* root = nullptr;
-		//Parse XML to DOMelement
-		xercesc::XercesDOMParser* parser = new XercesDOMParser();
-		xercesc::MemBufInputSource memBuffer((unsigned char*)xmlString.c_str(), xmlString.size(), "dummy");
-		parser->setValidationScheme(XercesDOMParser::Val_Always);
-		xercesc::ErrorHandler* errorHandler = (ErrorHandler*) new HandlerBase();
-		parser->setErrorHandler(errorHandler);
-
-		try {
-			parser->parse(memBuffer);
-		} catch(const XMLException& xmlException) {
-			cerr << "unable to parse xml to dom" << xmlException.getMessage() << endl;
-		} catch(const DOMException& domException) {
-			cerr << "unable to parse xml to dom" << domException.getMessage() << endl;
-		} catch (...) {
-			cerr << "unable to parse xml to dom" << endl;
-		}
-
-		xercesc::DOMDocument* xmlDom = parser->getDocument();
-		root = xmlDom->getDocumentElement();
-		return root;
-	}
-
-	bool checkExpectedValue(xercesc::DOMElement* rootElement, std::string tag, std::string expectedValue)
-	{
-		bool passed = false;
-		xercesc::DOMElement* root = rootElement;
-		char *tagAsChar = &tag[0u];
-		XMLCh* transcodedTag = XMLString::transcode(tagAsChar);
-		xercesc::DOMNodeList* toChildren = root->getElementsByTagName(transcodedTag);
-		XMLString::release(&transcodedTag);
-
-		const XMLSize_t nodeCount = toChildren->getLength();
-
-		if(nodeCount == 1) {
-			xercesc::DOMNode* toNode = toChildren->item(0);
-			char* temp = XMLString::transcode(toNode->getTextContent());
-			std::string nodeValue(temp);
-			XMLString::release(&temp);
-			//check value against required value
-			if(nodeValue != expectedValue) {
-				cout << nodeValue << "unequal to " << expectedValue << endl;
-				passed = false;
-			}
-			else {
-				passed = true;
-			}
-		}
-		else {
-			cout << "Multiple nodes with Type wsa:To" << endl;
-			passed = false;
-		}
-		return passed;
-	}
-
 	bool validateValues(TestTools::messagedata_t messagedata)	{
 		xercesc::DOMElement* root = getRootElement(messagedata.socketData);
 		if (root == nullptr) {
@@ -176,7 +111,7 @@ public:
 
 		OSELib::SOAP::CommonSoapPreprocessing soapHandling(_grammarProvider);
 		try {
-			soapHandling.parse(OSELib::SCHEMA::RECOREDED_HELLOMESSAGE);
+			soapHandling.parse(messagedata.socketData);
 		}
 		catch (std::exception &e) {
 			std::cout << e.what();
@@ -225,15 +160,16 @@ int main() {
 	OSELib::SDC::ServiceManager oscpsm;
 	helloTestHandler multicastHandler;
 
-	TestTools::TestProvider provider;
-	provider.startup();
-	provider.start();
 
 	Poco::Net::SocketReactor reactor;
 	reactor.addEventHandler(ipv4Socket, Poco::Observer<TestTools::MulticastHandler, Poco::Net::ReadableNotification>(multicastHandler, &TestTools::MulticastHandler::onMulticastSocketReadable));
 
 	Poco::Thread reactorThread;
 	reactorThread.start(reactor);
+
+	TestTools::TestProvider provider;
+	provider.startup();
+	provider.start();
 
 	int i = 0;
 

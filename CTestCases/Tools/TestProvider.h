@@ -139,8 +139,8 @@ public:
 
 private:
 	SDCProvider sdcProvider;
-	TestNumericMetricStateGetHandler nmsGetHandler;
 	TestNumericMetricStateSetHandler nmsSetHandler;
+	TestNumericMetricStateGetHandler nmsGetHandler;
 	NumericMetricDescriptor nmsSetDescriptor;
 
 };

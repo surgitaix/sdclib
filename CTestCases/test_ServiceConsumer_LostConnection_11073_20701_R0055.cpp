@@ -21,6 +21,7 @@
 #include "OSCLib/Util/DebugOut.h"
 
 #include "Tools/TestProvider.h"
+#include "Tools/TestConsumer.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -35,7 +36,7 @@ int main()
 			  << std::endl;
 
 	//Network configuration
-	SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 
@@ -46,6 +47,10 @@ int main()
 	provider.setPort(6460);
 	provider.startup();
 	provider.start();
+
+	//Sample Consumer
+	TestTools::TestConsumer consumer;
+	consumer.start();
 
 	MDPWSTransportLayerConfiguration consumerConfig = MDPWSTransportLayerConfiguration();
 	consumerConfig.setPort(6461);
@@ -61,16 +66,13 @@ int main()
 	// Discovery
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, consumerConfig));
 	if(c != nullptr) {
-		SDCConsumer &consumer = *c;
+		consumer.setConsumer(std::move(c));
 		consumer.setConnectionLostHandler(&connectionLostHandler);
 		provider.~TestProvider();
 		Poco::Thread::sleep(20000);
 		consumer.disconnect();
 	}
-
     SDCLibrary::getInstance().shutdown();
-
-
 }
 
 

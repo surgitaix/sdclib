@@ -12,7 +12,6 @@
 
 #include "OSCLib/SDCInstance.h"
 
-
 #include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/SDC/SDCProvider.h"
 
