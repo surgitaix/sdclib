@@ -642,33 +642,40 @@ MDM::GetMdDescriptionResponse SDCProvider::GetMdDescription(const MDM::GetMdDesc
 }
 
 void SDCProvider::updateState(const AlertSystemState & object) {
+	updateMDIB(object);
 	notifyAlertEventImpl(object);
 }
 
 void SDCProvider::updateState(const AlertSignalState & object) {
+	updateMDIB(object);
 	notifyAlertEventImpl(object);
 }
 
 void SDCProvider::updateState(const AlertConditionState & object) {
+	updateMDIB(object);
 	notifyAlertEventImpl(object);
 }
 
 void SDCProvider::updateState(const EnumStringMetricState & object) {
+	updateMDIB(object);
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
 
 void SDCProvider::updateState(const LimitAlertConditionState & object) {
+	updateMDIB(object);
 	notifyAlertEventImpl(object);
 }
 
 void SDCProvider::updateState(const NumericMetricState & object) {
+	updateMDIB(object);
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
 
 
 void SDCProvider::updateState(const StringMetricState & object) {
+	updateMDIB(object);
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
@@ -676,12 +683,14 @@ void SDCProvider::updateState(const StringMetricState & object) {
 
 // regarding to the given standard the DSAMS is implemented as an TCP transported Metric
 void SDCProvider::updateState(const DistributionSampleArrayMetricState & object) {
+	updateMDIB(object);
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyEpisodicMetricImpl(object);
 }
 
 // UDP metrices
 void SDCProvider::updateState(const RealTimeSampleArrayMetricState & object) {
+	updateMDIB(object);
 	evaluateAlertConditions(object.getDescriptorHandle());
 	notifyStreamMetricImpl(object);
 }
@@ -690,27 +699,39 @@ void SDCProvider::updateState(const RealTimeSampleArrayMetricState & object) {
 
 // context states
 void SDCProvider::updateState(const EnsembleContextState & object) {
+	updateMDIB(object);
 	notifyContextEventImpl(object);
 }
 
 void SDCProvider::updateState(const MeansContextState & object) {
+	updateMDIB(object);
 	notifyContextEventImpl(object);
 }
 
 void SDCProvider::updateState(const LocationContextState & object) {
+	updateMDIB(object);
 	notifyContextEventImpl(object);
 }
 
 void SDCProvider::updateState(const WorkflowContextState & object) {
+	updateMDIB(object);
 	notifyContextEventImpl(object);
 }
 
 void SDCProvider::updateState(const PatientContextState & object) {
+	updateMDIB(object);
 	notifyContextEventImpl(object);
 }
 
 void SDCProvider::updateState(const OperatorContextState & object) {
+	updateMDIB(object);
 	notifyContextEventImpl(object);
+}
+
+template<class T> void SDCProvider::updateMDIB(const T & object) {
+	//Changing the MDIB -> MDIB Version gets increased.
+	incrementMDIBVersion();
+	replaceState(object);
 }
 
 template<class T> void SDCProvider::notifyAlertEventImpl(const T & object) {
@@ -718,9 +739,6 @@ template<class T> void SDCProvider::notifyAlertEventImpl(const T & object) {
 		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
 	}
-
-	incrementMDIBVersion();
-	replaceState(object);
 	
 	// TODO: replace sequence id
 	MDM::EpisodicAlertReport report(xml_schema::Uri("0"));
@@ -737,9 +755,6 @@ template<class T> void SDCProvider::notifyContextEventImpl(const T & object) {
 		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
 	}
-
-	incrementMDIBVersion();
-	replaceState(object);
 
 	MDM::ReportPart reportPart;
 
@@ -758,9 +773,6 @@ void SDCProvider::notifyEpisodicMetricImpl(const T & object) {
 		return;
 	}
 
-	incrementMDIBVersion();
-	replaceState(object);
-
 	MDM::ReportPart1 reportPart;
 	reportPart.MetricState().push_back(ConvertToCDM::convert(object));
 
@@ -777,9 +789,6 @@ void SDCProvider::notifyStreamMetricImpl(const T & object) {
 		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
 	}
-
-	incrementMDIBVersion();
-	replaceState(object);
 
 	// TODO: replace sequence id
 	MDM::WaveformStream waveformStream(xml_schema::Uri("0"));
