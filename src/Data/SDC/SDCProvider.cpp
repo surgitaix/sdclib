@@ -729,6 +729,7 @@ void SDCProvider::updateState(const OperatorContextState & object) {
 }
 
 template<class T> void SDCProvider::updateMDIB(const T & object) {
+	//Changing the MDIB -> MDIB Version gets increased.
 	incrementMDIBVersion();
 	replaceState(object);
 }
