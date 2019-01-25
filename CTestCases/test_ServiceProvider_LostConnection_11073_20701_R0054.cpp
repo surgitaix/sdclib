@@ -23,7 +23,7 @@ const std::string DEVICE_EPR("TestProvider");
 
 int main()
 {
-	SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 

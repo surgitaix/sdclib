@@ -69,6 +69,8 @@ PulseOximeterProvider::PulseOximeterProvider():
 	VmdDescriptor pulseOximeterVmd(PULSE_OXIMETER_VMD_HANDLE);
 	pulseOximeterVmd.addChannel(pulseChannel);
 	pulseOximeterVmd.addChannel(satO2Channel);
+
+	//AlertSystem
 	addAlertSystem(pulseOximeterVmd);
 
 	//MDS
@@ -77,8 +79,6 @@ PulseOximeterProvider::PulseOximeterProvider():
 
 	MdDescription pulseOximeterMdDesction;
 	pulseOximeterMdDesction.addMdsDescriptor(pulseOximeterMds);
-
-	std::cout << pulseOximeterMdDesction.collectAllLimitAlertConditionDescriptors().size();
 
 	sdcProvider.setMdDescription(pulseOximeterMdDesction);
 	sdcProvider.addMdStateHandler(&pulseRateGetHandler);

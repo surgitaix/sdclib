@@ -310,6 +310,9 @@ private:
     void firePeriodicReportImpl(const std::vector<std::string> & handles);
 
     template<class T>
+    void updateMDIB(const T &object);
+
+    template<class T>
     void notifyAlertEventImpl(const T & object);
     template<class T>
     void notifyContextEventImpl(const T & object);

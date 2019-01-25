@@ -41,6 +41,32 @@ public:
 
 	};
 
+
+	class SystemAlertConsumerStateHandler : public SDCConsumerMDStateHandler<AlertSystemState> {
+	public:
+		SystemAlertConsumerStateHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
+		{
+
+		}
+
+		void onStateChanged(const AlertSystemState &) override {
+			Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received alert condition change of " << descriptorHandle << std::endl;
+		}
+	};
+
+	class AlertConsumerStateHandler : public SDCConsumerMDStateHandler<AlertConditionState> {
+	public:
+		AlertConsumerStateHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
+		{
+
+		}
+
+		void onStateChanged(const AlertConditionState &) override {
+			Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received alert condition change of " << descriptorHandle << std::endl;
+
+		}
+	};
+
 	TestConsumer();
 	virtual ~TestConsumer();
 

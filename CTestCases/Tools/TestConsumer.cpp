@@ -31,9 +31,6 @@ void TestConsumer::setConsumer(std::unique_ptr<SDCConsumer> sdcConsumer) {
 }
 
 std::shared_ptr<SDCConsumer> TestConsumer::getConsumer() {
-	if (consumer == nullptr)
-		std::cout << "NULL";
-	std::cout << consumer->getEndpointReference();
 	return consumer;
 }
 

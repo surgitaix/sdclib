@@ -20,8 +20,8 @@
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
+#include "Tools/HelperMethods.h"
 #include "Tools/TestProvider.h"
-
 #include "Tools/TestConsumer.h"
 
 
@@ -61,20 +61,7 @@ int main() {
 	}
 	consumer.setConsumer(std::move(c));
 
-	const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
-	xml_schema::NamespaceInfomap map;
-
-	//String representation of the Mdib of the provider and consumer.
-	std::ostringstream providerMdibStringRepresentation;
-	std::ostringstream consumerMdibStringRepresentation;
-	MDM::GetMdibResponse providerMdib(xml_schema::Uri("0"),ConvertToCDM::convert(provider.getMdib()));
-	providerMdib.MdibVersion(provider.getMdib().getMdibVersion());
-	CDM::MdibContainer(providerMdibStringRepresentation, providerMdib.Mdib(), map, OSELib::XML_ENCODING, xercesFlags);
-	MDM::GetMdibResponse cosumerMdib(xml_schema::Uri("0"), ConvertToCDM::convert(consumer.getConsumer()->getMdib()));
-	cosumerMdib.MdibVersion(consumer.getConsumer()->getMdib().getMdibVersion());
-	CDM::MdibContainer(consumerMdibStringRepresentation, cosumerMdib.Mdib(), map, OSELib::XML_ENCODING, xercesFlags);
-
-	if(providerMdibStringRepresentation.str() == consumerMdibStringRepresentation.str())
+	if(TestTools::getStringRepresentationOfMDIB(consumer.getConsumer()->getMdib()) == TestTools::getStringRepresentationOfMDIB(provider.getMdib()))
 	{
 		std::cout << "Test passed";
 	}

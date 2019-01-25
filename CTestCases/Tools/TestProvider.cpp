@@ -6,6 +6,9 @@
  */
 
 #include "TestProvider.h"
+#include "HelperMethods.h"
+#include "OSCLib/Data/SDC/MDIB/MdState.h"
+#include "OSCLib/Data/SDC/MDIB/SetMetricStateOperationState.h"
 
 const int DEFAULT_PORT(6464);
 
@@ -16,26 +19,38 @@ const std::string CHANNEL_DESCRIPTOR_HANDLE("channel_descriptor_handle");
 const std::string VMD_DESCRIPTOR_HANDLE("vmd_descriptor_handle");
 const std::string MDS_DESCRIPTOR_HANDLE("mds_descriptor_handle");
 
-
 TestProvider::TestProvider():
 	sdcProvider(),
 	nmsSetHandler(HANDLE_SET_NUMERIC_METRIC),
 	nmsGetHandler(HANDLE_GET_NUMERIC_METRIC),
+	alertConditionStateHandler(HANDLE_ALERT_CONDITION),
+	alertSystemStateHandler(HANDLE_ALERT_SYSTEM),
 	nmsSetDescriptor(HANDLE_SET_NUMERIC_METRIC,
 	CodedValue("MDCX_EXAMPLE_SET"),
 	MetricCategory::Set,
 	MetricAvailability::Cont,
-	1.0)
+	1.0),
+	nmsGetDescriptor(HANDLE_GET_NUMERIC_METRIC,
+	CodedValue("MDCX_EXMAPLE_GET"),
+	MetricCategory::Msrmt,
+	MetricAvailability::Cont,
+	1.0),
+	alertSystemDescriptor(HANDLE_ALERT_SYSTEM)
 {
 	//Configuration of sdcProvider according to the specification of the TestProvider
 	//Channel
 	ChannelDescriptor deviceParameters(CHANNEL_DESCRIPTOR_HANDLE);
 	deviceParameters.setSafetyClassification(SafetyClassification::MedC)
-					.addMetric(nmsSetDescriptor);
+					.addMetric(nmsSetDescriptor)
+					.addMetric(nmsGetDescriptor);
 
 	//VMD
 	VmdDescriptor deviceModule(VMD_DESCRIPTOR_HANDLE);
 	deviceModule.addChannel(deviceParameters);
+
+	//AlertSystem
+	addAlertSystem(deviceModule);
+
 
 	//MDS
 	MdsDescriptor deviceSystem(MDS_DESCRIPTOR_HANDLE);
@@ -46,9 +61,12 @@ TestProvider::TestProvider():
 	MdDescription mdDescription;
 	mdDescription.addMdsDescriptor(deviceSystem);
 
-	sdcProvider.addMdStateHandler(&nmsSetHandler);
-	sdcProvider.addHandleForPeriodicEvent(HANDLE_SET_NUMERIC_METRIC);
+	sdcProvider.setMdDescription(mdDescription);
 
+	sdcProvider.addMdStateHandler(&nmsSetHandler);
+	sdcProvider.addMdStateHandler(&nmsGetHandler);
+	sdcProvider.addMdStateHandler(&alertConditionStateHandler);
+	sdcProvider.addHandleForPeriodicEvent(HANDLE_SET_NUMERIC_METRIC);
 
 	//Endpoint Name
 	setEndPointReference(DEFAULT_TEST_DEVICE_EPR);
@@ -108,5 +126,27 @@ void TestProvider::runImpl() {
 	}
 }
 
+
+void TestProvider::setOperationMode(std::string descriptorHandle, OperatingMode operatingMode) {
+//	SetMetricStateOperationState OperationState(*sdcProvider.getMdState().findState<SetMetricStateOperationState>(descriptorHandle));
+//	OperationState.setOperatingMode(operatingMode);
+}
+
+
+void TestProvider::addAlertSystem(VmdDescriptor & vmdDesc) {
+	AlertConditionDescriptor alertConditionDescriptor(HANDLE_ALERT_CONDITION,
+		AlertConditionKind::Phy,
+		AlertConditionPriority::Hi
+	);
+	alertConditionDescriptor.addSource(HANDLE_GET_NUMERIC_METRIC);
+	alertSystemDescriptor.addAlertCondition(alertConditionDescriptor);
+	vmdDesc.setAlertSystem(alertSystemDescriptor);
+}
+
+
+void TestProvider::setNumericMetricValue(double val) {
+	nmsGetHandler.setNumericcMetricValue(val);
+	auto metricValue = sdcProvider.getMdState().findState<NumericMetricState>(HANDLE_GET_NUMERIC_METRIC);
+}
 
 } /* namespace TestTools */
