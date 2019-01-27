@@ -46,12 +46,12 @@ set (SDCLibrary_VERSION_LAST    3)
 
 # What to enable?
 
-# Tests - Default to OFF
-set (SDC_TESTS      OFF CACHE STRING "Enable Building Tests")
+# Tests - Default to ON
+set (SDC_TESTS      ON CACHE STRING "Enable Building Tests")
 set_property(CACHE SDC_TESTS PROPERTY STRINGS "ON" "OFF")
 
-# Examples - Default to OFF
-set (SDC_EXAMPLES   OFF CACHE STRING "Enable Building Examples")
+# Examples - Default to ON
+set (SDC_EXAMPLES   ON CACHE STRING "Enable Building Examples")
 set_property(CACHE SDC_EXAMPLES PROPERTY STRINGS "ON" "OFF")
 ################################################################################
 
@@ -277,7 +277,10 @@ add_subdirectory(${PATH_DATAMODEL_ROOT})
 # src folder
 add_subdirectory(${PATH_SRC_ROOT})
 
-set(PATH_SDC_SEARCH ".")
+set(SDCLib_SEARCH_DIRS ".")
+# Out of source build
+#set(SDCLib_ADDITIONAL_LIBRARY_DIRS "../SDCLib_build/bin")
+
 
 # Examples
 if(SDC_EXAMPLES)

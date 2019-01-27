@@ -1,12 +1,14 @@
 # -*- cmake -*-
 
 
-# NOTE: TEMPORARY WORK! ONLY FOR THIS GIT REPO!
-#       PATH_SDC_BUILD must be defined first!
+# NOTE: TEMPORARY WORK! WIP!
+#       SDCLib_SEARCH_DIRS must be defined first!
+#       Building out of source specify SDCLib_ADDITIONAL_LIBRARY_DIRS
 
 # - Find SDCLib
 # Find the SDCLib includes and libraries
-# This module defines PATH_SDC_ROOT, PATH_SDC_INCLUDES, SDCLib and SDC_FOUND
+# This module defines:
+# SDCLib_ROOT_DIR, SDCLib_INCLUDE_DIRS, SDCLib_LIBRARY_DIRS, SDCLib_FOUND
 
 ################################################################################
 # Here we have to add a few pathes to get it working
@@ -14,89 +16,150 @@
 # git submodules a little troublesome
 ################################################################################
 
+################################################################################
 # Already found!
-if(SDC_FOUND)
+if(SDCLib_FOUND)
     RETURN()
 endif()
-
-# Find the root folder inside the dependencies - This script is inside it!
-
-# Just search for this file in the SDC Root folder
-find_path(PATH_SDC_ROOT FindSDCLib.cmake ${PATH_SDC_SEARCH})
-message(STATUS "Searching for SDCLib files in ${PATH_SDC_SEARCH}")
 
 # Init Flag to false
-set(SDC_FOUND FALSE)
+set(SDCLib_FOUND FALSE)
+################################################################################
+
+
+################################################################################
+# Check if necessary variables have been specified
+if (NOT SDCLib_SEARCH_DIRS)
+    message(FATAL_ERROR "PLEASE SPECIFY SDCLib_SEARCH_DIRS!")
+    RETURN()
+endif()
+################################################################################
+
+
+
+
+################################################################################
+# Find the root folder inside the dependencies - This script is inside it!
+# Just search for this file in the SDC Root folder
+find_path(SDCLib_ROOT_DIR FindSDCLib.cmake ${SDCLib_SEARCH_DIRS})
+message(STATUS "-Searching for SDCLib files in ${SDCLib_SEARCH_DIRS}")
 
 # Found?
-if (PATH_SDC_ROOT)
-    message(STATUS "-Found SDC Root Folder!")
+# Set Bin folder and manage library dirs
+if (SDCLib_ROOT_DIR)
+    message(STATUS "-Found SDC Root Folder: ${SDCLib_ROOT_DIR}!")
+    # Additional Library Dirs?
+    if (SDCLib_ADDITIONAL_LIBRARY_DIRS)
+        message(STATUS "-Detected SDCLib_ADDITIONAL_LIBRARY_DIRS!")
+        message(STATUS "-Adding ${SDCLib_ADDITIONAL_LIBRARY_DIRS} to SDCLib_LIBRARY_DIRS...")
+        set(SDCLib_LIBRARY_DIRS ${SDCLib_ADDITIONAL_LIBRARY_DIRS})
+    else()
+        message(STATUS "-Adding ${SDCLib_ROOT_DIR} to SDCLib_LIBRARY_DIRS...")
+        set(SDCLib_LIBRARY_DIRS ${SDCLib_ROOT_DIR})
+    endif()
 else ()
-    message(STATUS "Please specify PATH_SDC_SEARCH Variable!")
+    message(SEND_ERROR "Could not find SDC Root folder!")
     RETURN()
 endif ()
+################################################################################
 
-# Found both: Set include dirs and lib
-if (PATH_SDC_ROOT)
-#
-    set(PATH_SDC_INCLUDES   ${PATH_SDC_ROOT}/include
+
+
+################################################################################
+# Includes SDCLib_INCLUDE_DIRS
+message(STATUS "-Searching for SDC Include Files...")
+################################################################################
+
+set(SDCLib_INCLUDE_DIRS     ${SDCLib_ROOT_DIR}/include
                             # OSCLib
-                            ${PATH_SDC_ROOT}/include/OSCLib
-                            ${PATH_SDC_ROOT}/include/OSCLib/Data/SDC
-                            ${PATH_SDC_ROOT}/include/OSCLib/Data/SDC/MDIB
-                            ${PATH_SDC_ROOT}/include/OSCLib/Data/SDC/MDIB/custom
-                            ${PATH_SDC_ROOT}/include/OSCLib/Dev
-                            ${PATH_SDC_ROOT}/include/OSCLib/Util
+                            ${SDCLib_ROOT_DIR}/include/OSCLib
+                            ${SDCLib_ROOT_DIR}/include/OSCLib/Data/SDC
+                            ${SDCLib_ROOT_DIR}/include/OSCLib/Data/SDC/MDIB
+                            ${SDCLib_ROOT_DIR}/include/OSCLib/Data/SDC/MDIB/custom
+                            ${SDCLib_ROOT_DIR}/include/OSCLib/Dev
+                            ${SDCLib_ROOT_DIR}/include/OSCLib/Util
                             # OSELib
-                            ${PATH_SDC_ROOT}/include/OSELib
-                            ${PATH_SDC_ROOT}/include/DPWS
-                            ${PATH_SDC_ROOT}/include/Helper
-                            ${PATH_SDC_ROOT}/include/HTTP
-                            ${PATH_SDC_ROOT}/include/SDC
-                            ${PATH_SDC_ROOT}/include/SOAP
-                            ${PATH_SDC_ROOT}/include/WSDL
+                            ${SDCLib_ROOT_DIR}/include/OSELib
+                            ${SDCLib_ROOT_DIR}/include/DPWS
+                            ${SDCLib_ROOT_DIR}/include/Helper
+                            ${SDCLib_ROOT_DIR}/include/HTTP
+                            ${SDCLib_ROOT_DIR}/include/SDC
+                            ${SDCLib_ROOT_DIR}/include/SOAP
+                            ${SDCLib_ROOT_DIR}/include/WSDL
                             # Poco
-                            ${PATH_SDC_ROOT}/Dependencies/Poco/Foundation/include/
-                            ${PATH_SDC_ROOT}/Dependencies/Poco/Net/include/
+                            ${SDCLib_ROOT_DIR}/Dependencies/Poco/Foundation/include/
+                            ${SDCLib_ROOT_DIR}/Dependencies/Poco/Net/include/
                             # tclap
-                            ${PATH_SDC_ROOT}/include/tclap
+                            ${SDCLib_ROOT_DIR}/include/tclap
                             # datamodel
-                            ${PATH_SDC_ROOT}/datamodel/generated
-    )
+                            ${SDCLib_ROOT_DIR}/datamodel/generated
+)
+################################################################################
 
-    if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-        # Set the library based on build type
-        if(CMAKE_BUILD_TYPE)
-            if(CMAKE_BUILD_TYPE STREQUAL "Release")
-                set(SDCLib ${PATH_SDC_BUILD}/bin/libSDCLib.so)
-            else()
-                set(SDCLib ${PATH_SDC_BUILD}/bin/libSDCLib_d.so)
-            endif()
+
+
+################################################################################
+# Clear the given path of all symlinks
+get_filename_component(SDCLib_SEARCH_BIN ${SDCLib_LIBRARY_DIRS} REALPATH)
+################################################################################
+# Platform specific Parameters
+#
+# FIXME: Check if files are really there!
+if (CMAKE_SYSTEM_NAME MATCHES "Linux")
+    # Set the library based on build type
+    if (CMAKE_BUILD_TYPE)
+        if (CMAKE_BUILD_TYPE STREQUAL "Release")
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib.so)
         else()
-            message(STATUS "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib_d.so)
         endif()
-        # Append Xerces - quick hack - remove this for cleaner resource management later
-        list(APPEND SDCLib ${XercesLibrary})
-
-        ################################################################################
-        # XERCES - qnd
-        # Note: Dependency - Just for convenience (bad style!)
-        #       Adding SDCLib as shared lib, we need xerces too
-        #       As quick hack, append it to the SDCLib variable
-        ################################################################################
-        find_library(XercesLibrary NAMES xerces-c REQUIRED)
-        ################################################################################
-
-
-        # Set Flag
-        set(SDC_FOUND TRUE)
-        message(STATUS "-SDC_FOUND !")
     else()
-        message(STATUS "TODO...")
+        message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
+        RETURN()
     endif()
-else()
-    message(STATUS "Failed...")
 endif()
 
+# FIXME: Check if files are there!
+if (CMAKE_SYSTEM_NAME MATCHES "Windows")
+    message(s"CMAKE_SYSTEM_NAME WINDOWS: UNTESTED!")
+    # Set the library based on build type
+    if(CMAKE_BUILD_TYPE)
+        if(CMAKE_BUILD_TYPE STREQUAL "Release")
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib.dll)
+        else()
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib_d.dll)
+        endif()
+    else()
+        message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
+        RETURN()
+    endif()
+endif()
+################################################################################
 
+
+
+################################################################################
+# Search for given libary file
+################################################################################
+# Not Found
+if (NOT EXISTS ${SDCLib_LIBRARIES})
+    message(WARNING "Could not find ${SDCLib_LIBRARIES}!")
+endif()
+# Set flag
+set(SDCLib_FOUND TRUE)
+################################################################################
+
+
+################################################################################
+################################################################################
+################################################################################
+# XERCES - qnd
+# Note: Dependency - Just for convenience (bad style!)
+#       Adding SDCLib as shared lib, we need xerces too
+#       As quick hack, append it to the SDCLib variable
+################################################################################
+message(STATUS "-Looking for XercesLibrary...")
+find_library(XercesLibrary NAMES xerces-c REQUIRED)
+# Append Xerces - quick hack - remove this for cleaner resource management later
+list(APPEND SDCLib_LIBRARIES ${XercesLibrary})
 ################################################################################
