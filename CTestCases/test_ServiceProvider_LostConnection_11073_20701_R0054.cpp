@@ -15,6 +15,8 @@
 
 #include "OSCLib/Util/DebugOut.h"
 
+#include "Tools/HelperMethods.h"
+
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
@@ -31,7 +33,7 @@ int main()
 	OSELib::SDC::ServiceManager oscpsm;
 	// binding to a custom port
 	MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
-	providerConfig.setPort(6474);
+	providerConfig.setPort(TestTools::getFreePort());
 
 	SDCProvider sdcProvider;
 	sdcProvider.setConfiguration(providerConfig);
@@ -39,7 +41,7 @@ int main()
 	sdcProvider.startup();
 
 	MDPWSTransportLayerConfiguration consumerConfig = MDPWSTransportLayerConfiguration();
-	consumerConfig.setPort(6475);
+	consumerConfig.setPort(TestTools::getFreePort());
 
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, consumerConfig));
 	if(c != nullptr) {

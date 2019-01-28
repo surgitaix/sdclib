@@ -8,12 +8,16 @@
 #ifndef CTESTCASES_TOOLS_HELPERMETHODS_H_
 #define CTESTCASES_TOOLS_HELPERMETHODS_H_
 
+#include <iostream>
 #include "osdm.hxx"
 #include "OSELib/DPWS/DPWS11Constants.h"
 
 #include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Data/SDC/MDIB/custom/MdibContainer.h"
 #include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
+
+#include "Poco/Net/SocketAddress.h"
+#include "Poco/Net/ServerSocket.h"
 
 
 using namespace SDCLib;
@@ -36,6 +40,14 @@ static auto as_integer(Enumeration const value)
     -> typename std::underlying_type<Enumeration>::type
 {
     return static_cast<typename std::underlying_type<Enumeration>::type>(value);
+}
+
+static unsigned short getFreePort() {
+	Poco::Net::SocketAddress socketAddress(0);
+	Poco::Net::ServerSocket socket(socketAddress);
+	unsigned short portNumber = socket.address().port();
+	//std::cout << portNumber << std::endl;
+	return portNumber;
 }
 
 } //end namespace TestTools

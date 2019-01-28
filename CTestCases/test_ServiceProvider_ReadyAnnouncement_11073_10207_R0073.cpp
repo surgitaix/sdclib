@@ -29,6 +29,7 @@
 #include "Poco/Thread.h"
 #include "Poco/Net/IPAddress.h"
 
+#include "Tools/HelperMethods.h"
 #include "Tools/TestProvider.h"
 
 using namespace SDCLib;
@@ -61,7 +62,7 @@ int main() {
 	oscpsm.setHelloReceivedHandler(helloReceivedTester.get());
 
 	TestTools::TestProvider provider;
-	provider.setPort(6476);
+	provider.setPort(TestTools::getFreePort());
 	provider.startup();
 	provider.start();
 

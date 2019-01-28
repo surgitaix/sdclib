@@ -37,6 +37,8 @@
 #include "Poco/Thread.h"
 #include "Poco/Net/IPAddress.h"
 
+#include "Tools/HelperMethods.h"
+
 //Sample Provider. Exchange for your provider under test.
 #include "Tools/TestProvider.h"
 
@@ -61,7 +63,7 @@ int main() {
 
 	//Sample Provider startup. Exchange for your provider under test.
 	TestTools::TestProvider provider;
-	provider.setPort(6464);
+	provider.setPort(TestTools::getFreePort());
 	provider.startup();
 	provider.start();
 
@@ -69,7 +71,7 @@ int main() {
 
 	OSELib::SDC::ServiceManager oscpsm;
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
-	config.setPort(6465);
+	config.setPort(TestTools::getFreePort());
 
 	TestTools::TestConsumer consumer;
 	consumer.start();

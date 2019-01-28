@@ -26,6 +26,8 @@
 #include "OSELib/Helper/WithLogger.h"
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
+
+#include "Tools/HelperMethods.h"
 #include "Tools/TestProvider.h"
 
 using namespace SDCLib;
@@ -144,7 +146,7 @@ int main() {
 	ByeTestHandler multicastHandler;
 
 	TestTools::TestProvider provider;
-	provider.setPort(6470);
+	provider.setPort(TestTools::getFreePort());
 	provider.startup();
 	provider.start();
 	Poco::Net::SocketReactor reactor;

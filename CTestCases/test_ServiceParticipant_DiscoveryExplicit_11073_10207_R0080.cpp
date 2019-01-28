@@ -10,21 +10,14 @@
 
 #include "OSCLib/SDCInstance.h"
 #include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
 #include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 #include "OSELib/SDC/ServiceManager.h"
 
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
-
-#include "Poco/Runnable.h"
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
-#include "Poco/Thread.h"
-#include "Poco/Net/IPAddress.h"
+#include "Tools/HelperMethods.h"
 
 //Sample Provider. Exchange for your provider under test.
 #include "Tools/TestProvider.h"
@@ -51,7 +44,7 @@ int main() {
 
 	//Sample Provider startup. Exchange for your provider under test.
 	TestTools::TestProvider provider;
-	provider.setPort(6462);
+	provider.setPort(TestTools::getFreePort());
 	provider.startup();
 	provider.start();
 
@@ -59,7 +52,7 @@ int main() {
 
 	OSELib::SDC::ServiceManager oscpsm;
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
-	config.setPort(6463);
+	config.setPort(TestTools::getFreePort());
 
 	//sample Consumer startup. Echange for your consumer.
 	TestTools::TestConsumer consumer;
@@ -75,7 +68,6 @@ int main() {
 
 
 			consumer.disconnect();
-			provider.shutdown();
 		    SDCLibrary::getInstance().shutdown();
 			} else {
 			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Discovery failed." << std::endl;
@@ -87,6 +79,7 @@ int main() {
 		Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Exception: " << e.what() << std::endl;
 		Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test failed" << std::endl;
 	}
+	provider.shutdown();
     SDCLibrary::getInstance().shutdown();
     Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Shutdown." << std::endl;
 }

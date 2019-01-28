@@ -10,15 +10,13 @@
 
 #include <iostream>
 
-#include "osdm.hxx"
-
 #include "OSCLib/SDCInstance.h"
 #include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 #include "OSELib/SDC/ServiceManager.h"
-#include "OSELib/DPWS/DPWS11Constants.h"
-#include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
+
+#include "OSCLib/Util/DebugOut.h"
 
 #include "Tools/HelperMethods.h"
 #include "Tools/TestProvider.h"
@@ -35,13 +33,14 @@ const std::string DEVICE_EPR("TestProvider");
 int main() {
 	std::cout << "Test against requirement R0062 from IEEE 11073-10207 A SERVICE PROVIDER SHALL provide a GET SERVICE."
 			  << std::endl;
+	//Network configuration
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 
-	//Example Provider. Exchange for your provider.
+	//Sample Provider startup. Exchange for your provider under test.
 	TestTools::TestProvider provider;
-	provider.setPort(6466);
+	provider.setPort(TestTools::getFreePort());
 	provider.startup();
 	provider.start();
 
@@ -49,25 +48,28 @@ int main() {
 
 	OSELib::SDC::ServiceManager oscpsm;
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
-	config.setPort(6467);
+	config.setPort(TestTools::getFreePort());
 
+	//sample Consumer startup. Echange for your consumer.
 	TestTools::TestConsumer consumer;
 	consumer.start();
-
 	// Discovery
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, config));
-	if(c == nullptr) {
-		std::cout << "ERROR";
-	}
-	consumer.setConsumer(std::move(c));
+	if(c != nullptr) {
+		consumer.setConsumer(std::move(c));
 
-	if(TestTools::getStringRepresentationOfMDIB(consumer.getConsumer()->getMdib()) == TestTools::getStringRepresentationOfMDIB(provider.getMdib()))
-	{
-		std::cout << "Test passed";
+		if(TestTools::getStringRepresentationOfMDIB(consumer.getConsumer()->getMdib()) == TestTools::getStringRepresentationOfMDIB(provider.getMdib()))
+		{
+			std::cout << "Test passed";
+		}
+		else {
+			std::cout << "Test failed";
+		}
+		consumer.disconnect();
 	}
-	else
-		std::cout << "Test failed";
 
+	provider.shutdown();
+    SDCLibrary::getInstance().shutdown();
 }
 
 

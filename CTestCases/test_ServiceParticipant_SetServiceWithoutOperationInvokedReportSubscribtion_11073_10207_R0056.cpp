@@ -40,6 +40,8 @@
 
 #include "OSCLib/Util/DebugOut.h"
 
+#include "Tools/HelperMethods.h"
+
 #include "Tools/TestProvider.h"
 
 #include "Tools/TestConsumer.h"
@@ -62,7 +64,7 @@ int main() {
 	SDCLibrary::getInstance().setIP4enabled(true);
 
 	TestTools::TestProvider provider;
-	provider.setPort(6468);
+	provider.setPort(TestTools::getFreePort());
 	provider.startup();
 	provider.start();
 
@@ -70,7 +72,7 @@ int main() {
 	OSELib::SDC::ServiceManager oscpsm;
 	// binding to a custom port
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
-	config.setPort(6469);
+	config.setPort(TestTools::getFreePort());
 
 	TestTools::TestConsumer consumer;
 	consumer.start();

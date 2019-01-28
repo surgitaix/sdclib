@@ -35,12 +35,12 @@ int main()
 	SDCLibrary::getInstance().setPortStart(12000);
 
 	TestTools::TestProvider provider;
-	provider.setPort(6478);
+	provider.setPort(TestTools::getFreePort());
 	provider.startup();
 	provider.start();
 
 	provider.setNumericMetricValue(20);
-	//std::cout << TestTools::getStringRepresentationOfMDIB(provider.getMdib());
+
 
 	provider.shutdown();
 	SDCLibrary::getInstance().shutdown();
