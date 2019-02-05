@@ -83,7 +83,7 @@ public:
 	 *
 	 * @return Pointer to SDCInstance that binds the SDCConsumer and SDCProvider to all available network interfaces
 	 */
-	SDCInstancePtr createDefaultSDCInstance();
+	SDCInstance_shared_ptr createDefaultSDCInstance();
 
 	/**
 	 * @brief Returns a SDCInstance, which is used the interface binding and port management of the framework.
@@ -92,7 +92,7 @@ public:
 	 * @return Pointer to SDCInstance that binds the SDCConsumer and SDCProvider the specified adapter's name
 	 */
 
-	SDCInstancePtr createBoundSDCInstance(std::string interfaceName);
+	SDCInstance_shared_ptr createBoundSDCInstance(std::string interfaceName);
 
 	/**
 	 * @brief Returns a SDCInstance, which is used the interface binding and port management of the framework.
@@ -100,7 +100,7 @@ public:
 	 *
 	 * @return Pointer to SDCInstance that binds the SDCConsumer and SDCProvider the specified adapters' names
 	 */
-	SDCInstancePtr createBoundSDCInstance(std::list<std::string> interfacesNamesList);
+	SDCInstance_shared_ptr createBoundSDCInstance(std::list<std::string> interfacesNamesList);
 
 	/**
 	 * @brief Checks if an unbound interface is still available. Interfaces are not returned to this singleton,

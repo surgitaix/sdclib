@@ -390,7 +390,7 @@ int main()
     std::list<std::string> asdf;
     asdf.push_back("enp0s3");
     asdf.push_back("docker0");
-    SDCInstancePtr sdcInstance2 = SDCLibrary2::getInstance().createBoundSDCInstance(asdf);
+    auto sdcInstance2 = SDCLibrary2::getInstance().createBoundSDCInstance(asdf);
 
 //    DebugOut(DebugOut::Default, "ExampleProvider") << "Interfaces Names:" << std::endl;
 //    const auto interfaceList = sdcInstance->getNetworkInterfacesList();

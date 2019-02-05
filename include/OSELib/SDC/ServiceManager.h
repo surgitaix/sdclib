@@ -13,6 +13,9 @@
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
+#include "OSCLib/Prerequisites.h"
+#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
+
 namespace OSELib {
 namespace SDC {
 
