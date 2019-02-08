@@ -1,27 +1,27 @@
-# Current Module
-set( CURRENT_MODULE_NAME SDCLib )
+# Current Target
+set( CURRENT_TARGET_NAME SDCLib )
 # Add this for better project structure after cmake generation
-project(${CURRENT_MODULE_NAME})
+project(${CURRENT_TARGET_NAME})
 
 # Add an empty target first - FIXME: Why distinguish here. Does PIC flag solve it?
 if(WIN32)
-	add_library(${CURRENT_MODULE_NAME} STATIC "")
+	add_library(${CURRENT_TARGET_NAME} STATIC "")
 else()
-	add_library(${CURRENT_MODULE_NAME} SHARED "")
+	add_library(${CURRENT_TARGET_NAME} SHARED "")
 endif()
 
-message(STATUS "Adding Module ${CURRENT_MODULE_NAME}...")
+message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")
 
 # Variables for better handling
 set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
 
 
 # Better Handling of Public Header Files
-set(MODULE_PUBLIC_HEADERS   "")
+set(TARGET_PUBLIC_HEADERS   "")
 
 
 # Add the sources to the target
-target_sources(${CURRENT_MODULE_NAME}
+target_sources(${CURRENT_TARGET_NAME}
     PRIVATE
         # Source Files
         ${SRC_DIR}/Data/SDC/MDIB/ActivateOperationDescriptor.cpp
@@ -229,49 +229,49 @@ target_sources(${CURRENT_MODULE_NAME}
         #
         # Add the includes too (for better generation)
         # Public Headers
-        #${MODULE_PUBLIC_HEADERS}
+        #${TARGET_PUBLIC_HEADERS}
     #PUBLIC
-        #${MODULE_PUBLIC_HEADERS}
+        #${TARGET_PUBLIC_HEADERS}
 )
 
 
 # Make sure include dirs can be found inside the project
-target_include_directories( ${CURRENT_MODULE_NAME} PUBLIC ${SRC_DIR} )
-target_include_directories( ${CURRENT_MODULE_NAME} PUBLIC ${PATH_SRC_ROOT} )
-target_include_directories( ${CURRENT_MODULE_NAME} PUBLIC ${PATH_INCLUDE_ROOT} )
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${SRC_DIR} )
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_SRC_ROOT} )
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT} )
 
 # Poco
-target_compile_definitions( ${CURRENT_MODULE_NAME} PUBLIC POCO_NO_AUTOMATIC_LIBS )
-target_compile_definitions( ${CURRENT_MODULE_NAME} PUBLIC Foundation_EXPORTS )
-target_compile_definitions( ${CURRENT_MODULE_NAME} PUBLIC Net_EXPORTS )
-target_include_directories( ${CURRENT_MODULE_NAME} PUBLIC ${PATH_POCO_INCLUDE})
+target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC POCO_NO_AUTOMATIC_LIBS )
+target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC Foundation_EXPORTS )
+target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC Net_EXPORTS )
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_POCO_INCLUDE})
 
 
 # Packages
 
 # DataModel
-target_link_libraries(${CURRENT_MODULE_NAME} PUBLIC $<TARGET_OBJECTS:DataModel>)
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC $<TARGET_OBJECTS:DataModel>)
 # Note: 2nd line for cmake < 3.12
-target_include_directories( ${CURRENT_MODULE_NAME} PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
 
 # Threads
-target_link_libraries(${CURRENT_MODULE_NAME} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 # Xerces
-target_link_libraries(${CURRENT_MODULE_NAME} PUBLIC ${XercesLibrary})
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${XercesLibrary})
 # Poco
-target_link_libraries(${CURRENT_MODULE_NAME} PUBLIC ${POCO_LIBRARIES})
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${POCO_LIBRARIES})
 
 
 # build
-set_target_properties(  ${CURRENT_MODULE_NAME}
+set_target_properties(  ${CURRENT_TARGET_NAME}
                         PROPERTIES
                         RUNTIME_OUTPUT_DIRECTORY ${PATH_RUNTIME_OUTPUT}
                         LIBRARY_OUTPUT_DIRECTORY ${PATH_LIBRARY_OUTPUT}
                         ARCHIVE_OUTPUT_DIRECTORY ${PATH_ARCHIVE_OUTPUT}
-                        DEBUG_POSTFIX _d
+                        DEBUG_POSTFIX ${DEBUG_POSTFIX_OUTPUT}
                         )
 # install
-install(TARGETS ${CURRENT_MODULE_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE}
+install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE}
             RUNTIME DESTINATION ${PATH_INSTALL_RUNTIME}
             LIBRARY DESTINATION ${PATH_INSTALL_LIBRARY}
             ARCHIVE DESTINATION ${PATH_INSTALL_ARCHIVE}
