@@ -44,7 +44,7 @@ public:
 	void addContextServiceURI(const Poco::URI & uri);
 
 	Poco::URI getEventServiceURI() const;
-	void addEventServiceURI(const Poco::URI & uri);
+	void addStateEventReportServiceURI(const Poco::URI & uri);
 
 	Poco::URI getGetServiceURI() const;
 	void addGetServiceURI(const Poco::URI & uri);
@@ -52,7 +52,7 @@ public:
 	Poco::URI getSetServiceURI() const;
 	void addSetServiceURI(const Poco::URI & uri);
 
-	void addWaveformEventReportURI(const Poco::URI & uri);
+	void addWaveformServiceURI(const Poco::URI & uri);
 	Poco::URI getWaveformEventReportURI() const;
 
 	void addStreamMulticastAddressURI(const Poco::URI & uri);
