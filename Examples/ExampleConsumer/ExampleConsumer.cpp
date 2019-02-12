@@ -149,7 +149,7 @@ int main() {
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration(t_SDCInstance);
 	config.setPort(6465);
 
-	//std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
+//	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
 	auto c(oscpsm.discoverOSCP());
 
 	// state handler
@@ -158,7 +158,7 @@ int main() {
 	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
 
 	try {
-        if (c[0] != nullptr) {
+		if (c[0] != nullptr) {
 			Data::SDC::SDCConsumer & consumer = *c[0];
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
