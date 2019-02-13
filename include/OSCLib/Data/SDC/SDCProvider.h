@@ -304,8 +304,14 @@ protected:
     */
     void notifyOperationInvoked(const OperationInvocationContext & oic, Data::SDC::InvocationState is);
 
+
+
 private:
     void firePeriodicReportImpl(const std::vector<std::string> & handles);
+
+    //Sets the updated state within the MDIB and increases the MDIBVersion
+    template<class T>
+    void updateMDIB(const T &object);
 
     template<class T>
     void notifyAlertEventImpl(const T & object);
@@ -367,7 +373,6 @@ private:
     std::map<std::string, SDCProviderStateHandler *> stateHandlers;
 
 	std::shared_ptr<MdDescription> m_mdDescription;
-    std::unique_ptr<SDCProviderAdapter> _adapter;
 	Poco::Mutex mutex;
 
     std::string endpointReference;
@@ -385,6 +390,9 @@ private:
 
     // saving device's metadata
     Dev::DeviceCharacteristics _deviceCharacteristics;
+
+	std::unique_ptr<SDCProviderAdapter> _adapter;
+
 
 //    std::map<std::string, int> streamingPorts;
 
