@@ -17,8 +17,8 @@
 /**
  *  @file SDCInstance.h
  *  @project SDCLib
- *  @date 17.09.2018
- *  @author baumeister, buerger
+ *  @date 14.02.2019
+ *  @author baumeister
  *  @copyright (c) SurgiTAIX AG
  *
  */
@@ -26,150 +26,156 @@
 #define SDCLIB_SDCINSTANCE_H
 
 #include "Prerequisites.h"
-
-#include "Poco/Net/NetworkInterface.h"
-
 #include "config/config.h"
-#include "OSELib/Helper/WithLogger.h"
 
-#include <mutex>
-#include <list>
-#include <deque>
+#include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/DPWS/PingManager.h"
+
+#include <Poco/Net/NetworkInterface.h>
+#include <Poco/Net/SocketDefs.h>
+
 
 namespace SDCLib
 {
-    class SDCInstance : public OSELib::WithLogger
+    const Poco::Net::IPAddress SUBNET_CLASS_A = Poco::Net::IPAddress("255.0.0.0");
+    const Poco::Net::IPAddress SUBNET_CLASS_B = Poco::Net::IPAddress("255.255.0.0");
+    const Poco::Net::IPAddress SUBNET_CLASS_C = Poco::Net::IPAddress("255.255.255.0");
+
+    using IPAddress = Poco::Net::IPAddress;
+    using IPAddressList = std::vector<IPAddress>;
+
+    using SDCInstanceID = std::string;
+
+    class NetInterface {
+    public:
+        std::string m_name;
+        IPAddress m_IPv4;
+        IPAddress m_IPv6;
+        Poco::Net::NetworkInterface m_if;
+
+        bool SO_REUSEADDR_FLAG = true;
+        bool SO_REUSEPORT_FLAG = true;
+
+
+        NetInterface (const Poco::Net::NetworkInterface& p_if)
+          : m_if(p_if) {
+              m_name = m_if.adapterName();
+
+        }
+      };
+
+    using NetInterface_shared_ptr = std::shared_ptr<NetInterface>;
+    using NI_List = std::vector<NetInterface_shared_ptr>;
+
+    class SDCInstance
     {
     private:
 
-    	friend class SDCLibrary2;
+        static unsigned s_IDcounter;
+        SDCInstanceID m_ID;
 
-    	// each adapter thread needs writing access to this class,
-    	// thus synchronization mechanisms need to be implemented
         mutable std::mutex m_mutex;
 
-        std::list<Poco::Net::NetworkInterface> m_networkInterfacesList;
-
         bool m_init = false;
-        unsigned int m_discoveryTime; // in ms
+        NI_List ml_networkInterfaces;
 
-        bool ip4enabled = false;
-        bool ip6enabled = false;
+        bool m_IP4enabled = true;
+        bool m_IP6enabled = true;
 
-        std::deque<unsigned int> m_reservedPorts;
-        std::deque<unsigned int> m_availablePorts;
+        SDCPort m_portStart = Config::SDC_ALLOWED_PORT_START;
+        SDCPort m_portRange = Config::SDC_ALLOWED_PORT_RANGE;
+        std::chrono::milliseconds m_discoveryTime = std::chrono::milliseconds(3000);
+
+        std::deque<SDCPort> m_reservedPorts;
+        std::deque<SDCPort> m_availablePorts;
+
+        std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
+
+
+        // Network settings
+        std::string m_MULTICAST_IPv4 = OSELib::UDP_MULTICAST_DISCOVERY_IP_V4;
+        std::string m_MULTICAST_IPv6 = OSELib::UDP_MULTICAST_DISCOVERY_IP_V6;
+        std::string m_STREAMING_IPv4 = OSELib::UDP_MULTICAST_STREAMING_IP_V4;
+        std::string m_STREAMING_IPv6 = OSELib::UDP_MULTICAST_STREAMING_IP_V6;
+
+        SDCPort m_PORT_MULTICASTv4 = OSELib::UPD_MULTICAST_DISCOVERY_PORT;
+        SDCPort m_PORT_MULTICASTv6 = OSELib::UPD_MULTICAST_DISCOVERY_PORT;
+        SDCPort m_PORT_STREAMINGv4 = OSELib::UPD_MULTICAST_STREAMING_PORT;
+        SDCPort m_PORT_STREAMINGv6 = OSELib::UPD_MULTICAST_STREAMING_PORT;
 
     public:
+
+        SDCInstance();
+
+        // Special Member Functions
+        SDCInstance(const SDCInstance& p_obj) = delete;
+        SDCInstance(SDCInstance&& p_obj) = delete;
         SDCInstance& operator=(const SDCInstance& p_obj) = delete;
         SDCInstance& operator=(SDCInstance&& p_obj) = delete;
         ~SDCInstance();
 
-
-        /**
-		* @brief Returns the initialization status. The Library needs to be initialized before
-		* 		being handed over to the framework. After initializations the defined ports are fixed
-		* 		and cannot be changed afterwards.
-		*
-		* @return initialization status
-		*/
+        SDCInstanceID getID() const { return m_ID; }
         bool isInit() const { return m_init; }
 
-        /**
-		* @brief Get the list of interfaces assigned to this SDCInstance.
-		*
-		* @return list of all assigend interfaces
-		*/
-        std::list<Poco::Net::NetworkInterface> getNetworkInterfacesList();
+        bool bindToDefaultNetworkInterface();
+        bool bindToInterface(const std::string& ps_networkInterfaceName);
+        NI_List getNetworkInterfaces() const { return ml_networkInterfaces; }
+        size_t getNumNetworkInterfaces() const { return ml_networkInterfaces.size(); }
+        bool _networkInterfaceBoundTo(std::string ps_adapterName) const;
+        bool isBound() const;
 
+        // Internal usage
+        std::string _getMulticastIPv4() const { return m_MULTICAST_IPv4; }
+        std::string _getMulticastIPv6() const { return m_MULTICAST_IPv6; }
+        std::string _getStreamingIPv4() const { return m_STREAMING_IPv4; }
+        std::string _getStreamingIPv6() const { return m_STREAMING_IPv6; }
+        SDCPort _getMulticastPortv4() const { return m_PORT_MULTICASTv4; }
+        SDCPort _getMulticastPortv6() const { return m_PORT_MULTICASTv6; }
+        SDCPort _getStreamingPortv4() const { return m_PORT_STREAMINGv4; }
+        SDCPort _getStreamingPortv6() const { return m_PORT_STREAMINGv6; }
 
+        // Configure own Params
+        bool setDiscoveryConfigV4(std::string ps_IP_MC, SDCPort p_portMC, std::string ps_IP_Streaming, SDCPort p_portStreaming);
+        bool setDiscoveryConfigV6(std::string ps_IP_MC, SDCPort p_portMC, std::string ps_IP_Streaming, SDCPort p_portStreaming);
 
+        // Note: Only works with IPv4 IPAddresses!
+        bool belongsToSDCInstance(Poco::Net::IPAddress p_IP) const;
 
         // Port Management
-        /**
-    	* @brief Defines the ports to be used for the interfaces. The ports are taken out in the order of the list
-    	* 			If an interface is shut down, the formerly bound port is returned.
-    	*
-    	* @param A list of all ports to be used.
-    	* @return returns true if successful
-    	*/
-        bool setPorts(std::list<unsigned int> portList);
+        // Call before init!
+        // Portrange: [start, start + range)
+        bool setPortConfig(SDCPort p_start, SDCPort p_range);
 
-        /**
-         * @brief Get the next free port number used for the bindings.
-         *
-         * @return The next free port number to use
-         */
-        unsigned int getFreePort() const;
-
-        /**
-		 * @brief If an interface is shut down, the formerly bound port is returned.
-		 *
-		 * @param The freed port
-		 */
-        void returnPortToPool(unsigned int p_port);
+        bool extractFreePort(SDCPort& p_port);
+        void returnPortToPool(SDCPort p_port);
 
         // IP4 / IP6
-        /**
-		 * @brief Returns true if IP v4 is activated for the interfaces
-		 *
-		 * @return Status of the IP v4 activation
-		 */
         bool getIP4enabled() const;
-
-        /**
-		 * @brief Returns true if IP v6 is activated for the interfaces
-		 *
-		 * @return Status of the IP v6 activation
-		 */
         bool getIP6enabled() const;
-
-        /**
-		 * @brief Set the status of the IP v4 activation for all regarding interfaces
-		 *
-		 * @param Status of the IP v4 activation
-		 */
-        void setIP4enabled(bool ipv4Status);
-
-        /**
-		 * @brief Set the status of the IP v6 activation for all regarding interfaces
-		 *
-		 * @param Status of the IP v6 activation
-		 */
-        void setIP6enabled(bool ipv6Status);
+        bool setIP4enabled(bool p_set);
+        bool setIP6enabled(bool p_set);
 
         // Discovery Time
         /**
-		 * @brief Sets the time the ServiceManager is searching the network for discovery
-		 *
-		 * @param The discovery time in ms
-		 */
-        bool setDiscoveryTime(int discoveryTimeMilSec);
-
+         * @brief Set the time the service manager waits for the device discovery
+         *
+         * @param discoveryTimeSec The time in milliseconds to wait while discovery
+         */
+        bool setDiscoveryTime(std::chrono::milliseconds p_time);
         /**
-		 * @brief Gets the time the ServiceManager is searching the network for discovery
-		 *
-		 * @return The discovery time in ms
-		 */
-        int getDiscoveryTime() const;
+         * @brief Get the time the service manager waits for the device discovery
+         *
+         * @return The time in milliseconds to wait for discovery
+         */
+        std::chrono::milliseconds getDiscoveryTime() const;
 
-		/**
-		 * @brief Seals the SDCInstance and initialized the class. This have to be done before handing the class over to
-		 * 			SDCConsumer or SDCProvider. The classes settings (ports, interfaces) cannot be changed afterwards.
-		 */
-        void sealAndInit();
+        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
 
     private:
-        // do not allow the user to initialize SDCInstance objects.
-        // Only the SDCLibrary (friend) is allowed to init these since it manages the network interfaces
-        SDCInstance(unsigned int portStart, unsigned int portRange, const std::list<Poco::Net::NetworkInterface> networkInterfacesList);
-        // limit copy functionality to friend classes (SDCLibrary), since each class uniquely represents one or more network interfaces
-        SDCInstance(const SDCInstance& p_obj);
 
-        void createPortList(unsigned int portStart, unsigned int portRange);
+        void createPortLists(SDCPort p_start, SDCPort p_range = 1000);
 
-
-
-
+        void init();
         void _cleanup();
 
     };

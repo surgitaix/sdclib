@@ -23,22 +23,21 @@
  *
  */
 
-#include "Poco/ConsoleChannel.h"
-#include "Poco/FormattingChannel.h"
-#include "Poco/Notification.h"
-#include "Poco/PatternFormatter.h"
-#include "Poco/ScopedLock.h"
-#include "Poco/SimpleFileChannel.h"
-#include "Poco/SingletonHolder.h"
-#include "Poco/SplitterChannel.h"
-
-#include <xercesc/util/PlatformUtils.hpp>
-
 #include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Data/SDC/SDCProvider.h"
 
+
 #include "OSELib/DPWS/PingManager.h"
+
+#include <Poco/ConsoleChannel.h>
+#include <Poco/FormattingChannel.h>
+#include <Poco/PatternFormatter.h>
+#include <Poco/ScopedLock.h>
+#include <Poco/SimpleFileChannel.h>
+#include <Poco/SplitterChannel.h>
+
+#include <xercesc/util/PlatformUtils.hpp>
 
 namespace SDCLib {
 
@@ -46,9 +45,6 @@ const std::string CURRENT_LIB_VERSION("3.1.0");
 
 SDCLibrary::SDCLibrary() :
 	WithLogger(OSELib::Log::BASE),
-	initialized(false),
-	m_IP4enabled(true),
-	m_IP6enabled(true),
 	m_discoveryTimeMilSec(5000)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);

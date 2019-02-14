@@ -45,7 +45,7 @@
 
 #include "OSELib/DPWS/PingManager.h"
 
-namespace SDCLib {
+using namespace SDCLib;
 
 const std::string CURRENT_LIB_VERSION("3.0.1");
 
@@ -121,13 +121,11 @@ void SDCLibrary2::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pin
 	_latestPingManager = std::move(pingManager);
 }
 
-bool SDCLibrary2::isInitialized() {
-	return initialized;
-}
+
 
 // "Factory" methods
 SDCInstance_shared_ptr SDCLibrary2::createDefaultSDCInstance() {
-	if (!isInterfaceAvailable()) {
+	/*if (!isInterfaceAvailable()) {
 		return nullptr;
 	}
 
@@ -135,21 +133,23 @@ SDCInstance_shared_ptr SDCLibrary2::createDefaultSDCInstance() {
 	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_ALLOWED_PORT_RANGE, m_availableNetworkInterfacesList));
 	// empty list since all network interfaces are assigned to the SDCInstance
 	m_availableNetworkInterfacesList.clear();
-	return t_sdcInstance;
+	return t_sdcInstance;*/
+    return nullptr;
 }
 
 
 bool SDCLibrary2::isInterfaceAvailable() {
-	if (m_availableNetworkInterfacesList.empty()) {
+	/*if (m_availableNetworkInterfacesList.empty()) {
 		log_warning([&] { return "No free network interface(s) available."; });
 		return false;
 	}
-	return true;
+	return true;*/
+    return false;
 }
 
 
 SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::string interfaceName) {
-	if (!isInterfaceAvailable()) {
+	/*if (!isInterfaceAvailable()) {
 		return nullptr;
 	}
 
@@ -171,11 +171,13 @@ SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::string interface
 		return nullptr;
 	}
 	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_ALLOWED_PORT_RANGE, t_networkInterfacesList));
-	return t_sdcInstance;
+	return t_sdcInstance;*/
+    return nullptr;
 }
 
-SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::list<std::string> interfacesNamesList) {
-	if (!isInterfaceAvailable()) {
+SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::list<std::string> interfacesNamesList)
+{
+	/*if (!isInterfaceAvailable()) {
 		return nullptr;
 	}
 
@@ -200,8 +202,6 @@ SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::list<std::string
 	}
 	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_ALLOWED_PORT_RANGE, t_networkInterfacesList));
 	return t_sdcInstance;
+    */
+    return nullptr;
 }
-
-
-
-} /* namespace SDCLib */

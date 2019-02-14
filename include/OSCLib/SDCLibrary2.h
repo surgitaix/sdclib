@@ -68,7 +68,7 @@ public:
 	 *
 	 * @return initialization status of the framework
 	 */
-	bool isInitialized();
+	bool isInitialized() { return initialized; }
 
 
 	void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);

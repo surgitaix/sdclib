@@ -106,9 +106,10 @@ public:
 	int getDiscoveryTime();
 private:
 
-	bool m_IP4enabled;
-	bool m_IP6enabled;
-	bool initialized;
+    bool initialized = false;
+	bool m_IP4enabled = true;
+	bool m_IP6enabled = true;
+
 	int m_discoveryTimeMilSec;
 
 	void createPortLists(unsigned int portStart, unsigned int portRange = 1000);

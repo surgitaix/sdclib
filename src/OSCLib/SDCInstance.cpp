@@ -1,17 +1,15 @@
 #include "OSCLib/SDCInstance.h"
 
+#include "OSCLib/SDCLibrary.h"
+
 using namespace SDCLib;
 
-SDCInstance::SDCInstance(unsigned int portStart, unsigned int portRange, const std::list<Poco::Net::NetworkInterface> networkInterfacesList) :
-			WithLogger(OSELib::Log::BASE),
-			m_init(false)
-{
-	for (const auto interface : networkInterfacesList) {
-		m_networkInterfacesList.push_back(interface);
-	}
+unsigned SDCInstance::s_IDcounter = 1;
 
-    // Create the Portlist
-    createPortList(portStart, portRange);
+SDCInstance::SDCInstance()
+{
+    // Init the class FIXME
+    init();
 }
 
 
@@ -35,174 +33,323 @@ void SDCInstance::_cleanup()
     m_reservedPorts.clear();
     m_availablePorts.clear();
 
+
+    _latestPingManager.reset();
+    // ....
+
 }
 
-void SDCInstance::sealAndInit()
+void SDCInstance::init()
 {
-
     if (isInit()) {
         return;
     }
+
+    // Create the Portlist
+    createPortLists(m_portStart, m_portRange);
+
+    // Startup if not done yet
+    if (!SDCLibrary::getInstance().isInitialized()) {
+        SDCLibrary::getInstance().startup();
+    }
+
+    // Just a simple name
+    m_ID = "SDCInstance-" + std::to_string(s_IDcounter++);
+
     // ...
-    std::lock_guard<std::mutex> t_lock(m_mutex);
+
     m_init = true;
 }
 
+bool SDCInstance::bindToDefaultNetworkInterface()
+{
+    if (!isInit()) {
+        return false;
+    }
+    // NOTE: Temporary Hack qnd
+    // Bind to the first that is not the loopback device and matches our criteria
+    auto tl_interfaces = Poco::Net::NetworkInterface::list(true, true);
+    for (auto t_interface : tl_interfaces) {
+        if (t_interface.isLoopback()) { continue; }
+        if (!t_interface.address().isUnicast()) { continue; }
 
-std::list<Poco::Net::NetworkInterface> SDCInstance::getNetworkInterfacesList() {
-	return m_networkInterfacesList;
+        // Must at least support one of the following
+        if (!t_interface.supportsIPv4() && !t_interface.supportsIPv6()) { continue; }
+
+        // Bind
+        return bindToInterface(t_interface.adapterName());
+    }
+    return false;
+}
+bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName)
+{
+    if (!isInit()) {
+        return false;
+    }
+
+    assert(!ps_networkInterfaceName.empty());
+
+    // Is there an Interface with the given name running?
+    // Qnd for now...
+    auto tl_interfaces = Poco::Net::NetworkInterface::list(true, true);
+    for (const auto & t_interface : tl_interfaces) {
+
+        // We got a match! - qnd: just take the first one
+        if (t_interface.adapterName() == ps_networkInterfaceName) {
+
+            // Already bound to it?
+            if (_networkInterfaceBoundTo(ps_networkInterfaceName)) {
+                return false;
+            }
+
+            // Must at least support one of the following
+            if (!t_interface.supportsIPv4() && !t_interface.supportsIPv6()) {
+                return false;
+            }
+            // Lock
+            std::lock_guard<std::mutex> t_lock(m_mutex);
+
+            // Create the struct
+            auto t_if = std::make_shared<NetInterface>(t_interface);
+
+            // Grab the address
+
+            // IPv4? Else disable!
+            if (t_interface.supportsIPv4()) {
+                IPAddress t_IPv4;
+                try {
+                    t_interface.firstAddress(t_IPv4, Poco::Net::IPAddress::IPv4);
+                    t_if->m_IPv4 = t_IPv4;
+                }
+                catch (...) { }
+            }
+            else { setIP4enabled(false); }
+
+
+            // IPv6? Else disable!
+            if (t_interface.supportsIPv6()) {
+                IPAddress t_IPv6;
+                try {
+                    t_interface.firstAddress(t_IPv6, Poco::Net::IPAddress::IPv6);
+                    t_if->m_IPv6 = t_IPv6;
+                }
+                catch (...) { }
+            }
+            else { setIP6enabled(false); }
+
+            // Add
+            ml_networkInterfaces.push_back(t_if);
+
+            //std::cout << "SDCInstance bound to: " << t_if->m_name << " (" << t_if->m_IPv4 << ", " << t_if->m_IPv6 << ").\n";
+            return true;
+        }
+    }
+    return false;
+}
+bool SDCInstance::_networkInterfaceBoundTo(std::string ps_adapterName) const
+{
+    if (!isInit()) {
+        return false;
+    }
+    assert(!ps_adapterName.empty());
+
+    for (auto t_if : ml_networkInterfaces) {
+        if (t_if->m_name == ps_adapterName) {
+            return true;
+        }
+    }
+    return false;
+}
+bool SDCInstance::isBound() const
+{
+    if (!isInit()) {
+        return false;
+    }
+    return !ml_networkInterfaces.empty();
 }
 
-void SDCInstance::createPortList(unsigned int start, unsigned int range)
+bool SDCInstance::setDiscoveryConfigV4(std::string ps_IP_MC, SDCPort p_portMC, std::string ps_IP_Streaming, SDCPort p_portStreaming)
+{
+    assert(!ps_IP_MC.empty());
+    assert(p_portMC != 0);
+    assert(!ps_IP_Streaming.empty());
+    assert(p_portStreaming != 0);
+
+    // Quick check if the passed values are valid
+    Poco::Net::IPAddress t_MC, t_STR;
+    if (!Poco::Net::IPAddress::tryParse(ps_IP_MC, t_MC) || !Poco::Net::IPAddress::tryParse(ps_IP_Streaming, t_STR)) {
+        return false;
+    }
+    // AddressFamily
+    if ((t_MC.family() != Poco::Net::AddressFamily::IPv4) || (t_STR.family() != Poco::Net::AddressFamily::IPv4)) {
+        return false;
+    }
+
+    // Set
+    m_MULTICAST_IPv4 = ps_IP_MC;
+    m_PORT_MULTICASTv4 = p_portMC;
+    m_STREAMING_IPv4 = ps_IP_Streaming;
+    m_PORT_STREAMINGv4 = p_portStreaming;
+    return true;
+}
+bool SDCInstance::setDiscoveryConfigV6(std::string ps_IP_MC, SDCPort p_portMC, std::string ps_IP_Streaming, SDCPort p_portStreaming)
+{
+    assert(!ps_IP_MC.empty());
+    assert(p_portMC != 0);
+    assert(!ps_IP_Streaming.empty());
+    assert(p_portStreaming != 0);
+
+    // Quick check if the passed values are valid
+    Poco::Net::IPAddress t_MC, t_STR;
+    if (!Poco::Net::IPAddress::tryParse(ps_IP_MC, t_MC) || !Poco::Net::IPAddress::tryParse(ps_IP_Streaming, t_STR)) {
+        return false;
+    }
+    // AddressFamily
+    if ((t_MC.family() != Poco::Net::AddressFamily::IPv6) || (t_STR.family() != Poco::Net::AddressFamily::IPv6)) {
+        return false;
+    }
+
+    // Set
+    m_MULTICAST_IPv6 = ps_IP_MC;
+    m_PORT_MULTICASTv6 = p_portMC;
+    m_STREAMING_IPv6 = ps_IP_Streaming;
+    m_PORT_STREAMINGv6 = p_portStreaming;
+    return true;
+}
+
+bool SDCInstance::belongsToSDCInstance(Poco::Net::IPAddress p_IP) const
+{
+    if (!isInit()) {
+        return false;
+    }
+
+    // Only for IPv4!
+    if (p_IP.family() != Poco::Net::IPAddress::IPv4) {
+        return false;
+    }
+
+    // Multicast?
+    if (p_IP == Poco::Net::IPAddress(m_MULTICAST_IPv4)) {
+        return true;
+    }
+
+    // Unicast
+    for (auto& t_if : ml_networkInterfaces) {
+        auto t_subnetMask = t_if->m_if.subnetMask();
+        auto t_networkInterface = t_if->m_IPv4;
+
+        // First Convert both (address & mask)
+        t_networkInterface.mask(t_subnetMask);
+        p_IP.mask(t_subnetMask);
+        // Compare - Found one?
+        if (t_networkInterface == p_IP) {
+            return true;
+        }
+    }
+    // No match
+    return false;
+}
+
+bool SDCInstance::setPortConfig(SDCPort p_start, SDCPort p_range)
+{
+    if(isInit()) {
+        return false;
+    }
+
+    assert(p_start != 0);
+    assert(p_range != 0);
+
+    m_portStart = p_start;
+    m_portRange = p_range;
+    return true;
+}
+void SDCInstance::createPortLists(SDCPort p_start, SDCPort p_range)
 {
     // No well-known ports allowed!
-    if (!(start > 1024)) {
-    	log_error([&] { return "Established ports (> 1024) are not allowed."; });
-    	return;
-    };
+    assert(p_start > 1024);
+    assert(p_range != 0);
 
     // Lock
     std::lock_guard<std::mutex> t_lock(m_mutex);
 
     m_reservedPorts.clear();
-    for (auto i = start; i < start + range; ++i) {
+    for (auto i = p_start; i < p_start + p_range; ++i) {
         m_reservedPorts.push_back(i);
     }
     m_availablePorts = m_reservedPorts;
 }
+bool SDCInstance::extractFreePort(SDCPort& p_port)
+{
+    // Lock
+    std::lock_guard<std::mutex> t_lock(m_mutex);
 
+    // No ports available!
+    if (m_availablePorts.empty()) {
+        return false;
+    }
 
+    // Grab the value
+    p_port = m_availablePorts.front();
 
-//bool SDCInstance::bindToDefaultNetworkInterface()
-//{
-//    if (!isInit()) {
-//        return false;
-//    }
-//    // NOTE: Temporary Hack qnd
-//    // Bind to the first that is not the loopback device
-//    auto tl_interfaces = Poco::Net::NetworkInterface::list(true, true);
-//    for (auto t_interface : tl_interfaces) {
-//        if (t_interface.isLoopback()) {
-//            continue;
-//        }
-//        return bindToInterface(t_interface.adapterName());
-//    }
-//    return false;
-//}
-//bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName)
-//{
-//    if (!isInit()) {
-//        return false;
-//    }
-//
-//    assert(!ps_networkInterfaceName.empty());
-//
-//
-//    // Is there an Interface with the given name running?
-//    // Qnd for now...
-//    auto tl_interfaces = Poco::Net::NetworkInterface::list(true, true);
-//    for (auto t_interface : tl_interfaces) {
-//
-//        if (t_interface.adapterName() == ps_networkInterfaceName) {
-//            // Lock
-//            std::lock_guard<std::mutex> t_lock(m_mutex);
-//            // Grab the address
-//            m_bindAddress = t_interface.address();
-//            m_networkInterfaceName = ps_networkInterfaceName;
-//            m_init = true;
-//
-//            //std::cout << "SDCInstance bound to: " << ms_networkInterfaceName << " (" << m_bindAddress << ").\n";
-//            return true;
-//        }
-//    }
-//    return false;
-//}
-//
+    // Remove it from the collection
+    m_availablePorts.pop_front();
+    return true;
+}
+void SDCInstance::returnPortToPool(SDCPort p_port)
+{
+    // Lock
+    std::lock_guard<std::mutex> t_lock(m_mutex);
+    auto t_resultReserved = std::find(m_reservedPorts.begin(), m_reservedPorts.end(), p_port);
+    auto t_resultAvailable = std::find(m_availablePorts.begin(), m_availablePorts.end(), p_port);
 
-bool SDCInstance::setPorts(std::list<unsigned int> portList) {
-	if (isInit()) {
-		return false;
-	}
-
-	for (const auto port : portList) {
-		m_availablePorts.clear();
-		m_availablePorts.push_back(port);
-	}
-	return true;
+    // 2 Requirements: Inside reserved list, but not already returned! - Quick fix
+    // Performance issue, maybe add a "returned" flag to the reservedPorts - list...(use of "using" keyword etc.) -> One lookup only
+    if ((t_resultReserved != m_reservedPorts.end()) && (t_resultAvailable == m_availablePorts.end())) {
+        m_availablePorts.push_back(p_port);
+    }
 }
 
-//unsigned int SDCInstance::extractFreePort()
-//{
-//    // Lock
-//    std::lock_guard<std::mutex> t_lock(m_mutex);
-//
-//    // Grab the value
-//    const unsigned int t_result = m_availablePorts.front();
-//
-//    // Remove it from the collection
-//    m_availablePorts.pop_front();
-//
-//    // Return it
-//    return t_result;
-//}
-//void SDCInstance::returnPortToPool(unsigned int p_port)
-//{
-//    // Lock
-//    std::lock_guard<std::mutex> t_lock(m_mutex);
-//    auto t_resultReserved = std::find(m_reservedPorts.begin(), m_reservedPorts.end(), p_port);
-//    auto t_resultAvailable = std::find(m_availablePorts.begin(), m_availablePorts.end(), p_port);
-//
-//    // 2 Requirements: Inside reserved list, but not already returned! - Quick fix
-//    // Performance issue, maybe add a "returned" flag to the reservedPorts - list...(use of "using" keyword etc.) -> One lookup only
-//    if ((t_resultReserved != m_reservedPorts.end()) && (t_resultAvailable == m_availablePorts.end())) {
-//        m_availablePorts.push_back(p_port);
-//    }
-//}
-//
-//
-//// Forward to SDCLibrary
-//bool SDCInstance::getIP4enabled() const
-//{
-//    // Just forward it
-//    return SDCLibrary::getInstance().getIP4enabled();
-//}
-//void SDCInstance::setIP4enabled(bool p_set) const
-//{
-//    // Just forward it
-//    SDCLibrary::getInstance().setIP4enabled(p_set);
-//}
-//bool SDCInstance::getIP6enabled() const
-//{
-//    // Just forward it
-//    return SDCLibrary::getInstance().getIP6enabled();
-//}
-//void SDCInstance::setIP6enabled(bool p_set) const
-//{
-//    // Just forward it
-//    SDCLibrary::getInstance().setIP6enabled(p_set);
-//}
-//// DiscoveryTime
-//int SDCInstance::getDiscoveryTime() const
-//{
-//    // Just forward it
-//    return SDCLibrary::getInstance().getDiscoveryTime();
-//}
-//
-//bool SDCInstance::setDiscoveryTime(int p_discoveryTimeMilSec) const
-//{
-//    // Dont change after initialization?
-//    if (isInit()) {
-//        return false;
-//    }
-//
-//
-//    // Just forward it
-//    SDCLibrary::getInstance().setDiscoveryTime(p_discoveryTimeMilSec);
-//    return true;
-//}
 
-//void SDCInstance::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager)
-//{
-//    std::lock_guard<std::mutex> t_lock(m_mutex);
-//    _latestPingManager = std::move(pingManager);
-//}
+// Forward to SDCLibrary
+bool SDCInstance::getIP4enabled() const
+{
+    return m_IP4enabled;
+}
+bool SDCInstance::setIP4enabled(bool p_set)
+{
+    // Set it
+    m_IP4enabled = p_set;
+    return true;
+}
+bool SDCInstance::getIP6enabled() const
+{
+    return m_IP6enabled;
+}
+bool SDCInstance::setIP6enabled(bool p_set)
+{
+    // Set it
+    m_IP6enabled = p_set;
+    return true;
+}
+// DiscoveryTime
+std::chrono::milliseconds SDCInstance::getDiscoveryTime() const
+{
+    return m_discoveryTime;
+}
+bool SDCInstance::setDiscoveryTime(std::chrono::milliseconds p_time)
+{
+    assert(p_time != std::chrono::milliseconds::zero());
+
+    // Dont change after initialization?
+    if (isInit()) {
+        return false;
+    }
+    // Set it
+    m_discoveryTime = p_time;
+    return true;
+}
+void SDCInstance::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager)
+{
+    std::lock_guard<std::mutex> t_lock(m_mutex);
+    _latestPingManager = std::move(pingManager);
+}

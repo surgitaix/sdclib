@@ -1,6 +1,6 @@
 /* Prerequisites of SDCLib
  *
- * (c)2018 Fabian Baumeister
+ * (c)2019 Fabian Baumeister
  *
  *
  */
