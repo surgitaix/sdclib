@@ -18,14 +18,14 @@
 namespace OSELib {
 namespace DPWS {
 
-MDPWSDiscoveryClientAdapter::MDPWSDiscoveryClientAdapter() :
-	_impl(new Impl::DPWSDiscoveryClientSocketImpl(*this, *this, *this, *this))
+MDPWSDiscoveryClientAdapter::MDPWSDiscoveryClientAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance)
+: _impl(new Impl::DPWSDiscoveryClientSocketImpl(p_SDCInstance, *this, *this, *this, *this))
 {
 }
 
 MDPWSDiscoveryClientAdapter::~MDPWSDiscoveryClientAdapter() = default;
 
-void MDPWSDiscoveryClientAdapter::addProbeMatchEventHandler(const ProbeType & filter, ProbeMatchCallback & callback) {
+void MDPWSDiscoveryClientAdapter::addProbeMatchEventHandler(const ProbeType filter, ProbeMatchCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	_probeMatchHandlers.push_back(ProbeMatchHandler(filter, &callback));
 	_impl->sendProbe(filter);
@@ -39,7 +39,7 @@ void MDPWSDiscoveryClientAdapter::removeProbeMatchEventHandler(ProbeMatchCallbac
 	}
 }
 
-void MDPWSDiscoveryClientAdapter::addResolveMatchEventHandler(const ResolveType & filter, ResolveMatchCallback & callback) {
+void MDPWSDiscoveryClientAdapter::addResolveMatchEventHandler(const ResolveType filter, ResolveMatchCallback & callback) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	_resolveMatchHandlers.push_back(ResolveMatchHandler(filter, &callback));
 	_impl->sendResolve(filter);

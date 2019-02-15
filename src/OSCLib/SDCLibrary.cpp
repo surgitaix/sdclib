@@ -17,8 +17,8 @@
 /**
  *  @file SDCLibrary.cpp
  *  @project SDCLib
- *  @date 24.08.2011
- *  @author besting, buerger
+ *  @date 15.02.2019
+ *  @author besting, buerger, baumeister
  *  @copyright (c) SurgiTAIX AG
  *
  */
@@ -39,9 +39,7 @@
 
 #include <xercesc/util/PlatformUtils.hpp>
 
-namespace SDCLib {
-
-const std::string CURRENT_LIB_VERSION("3.1.0");
+using namespace SDCLib;
 
 SDCLibrary::SDCLibrary() :
 	WithLogger(OSELib::Log::BASE),
@@ -79,7 +77,7 @@ void SDCLibrary::startup(OSELib::LogLevel debugLevel) {
 	if (!initialized) {
 		initialized = true;
 		setDebugLevel(debugLevel);
-		log_notice([&]{ return "SDCLib version " + CURRENT_LIB_VERSION + " (C) 2016 SurgiTAIX AG"; });
+		log_notice([&]{ return "SDCLib version " + Config::CURRENT_LIB_VERSION + " (C) " + Config::CURRENT_C_YEAR + " " + Config::STR_SURGITAIX; });
         xercesc::XMLPlatformUtils::Initialize();
 	} else {
 		log_error([&]{ return "SDCLib already initialized!"; });
@@ -158,5 +156,3 @@ void SDCLibrary::setDiscoveryTime(int discoveryTimeMilSec){
 int SDCLibrary::getDiscoveryTime(){
 	return m_discoveryTimeMilSec;
 }
-
-} /* namespace SDCLib */

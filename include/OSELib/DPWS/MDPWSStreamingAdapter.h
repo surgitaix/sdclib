@@ -23,6 +23,8 @@
 
 #include "OSELib/DPWS/DeviceDescription.h"
 
+#include "OSCLib/Prerequisites.h"
+
 namespace OSELib {
 namespace DPWS {
 namespace Impl {
@@ -30,7 +32,7 @@ namespace Impl {
 
 class MDPWSStreamingAdapter : public WithLogger {
 public:
-	MDPWSStreamingAdapter(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
+    MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
 
 	~MDPWSStreamingAdapter();
 
@@ -39,6 +41,8 @@ private:
 
 	// todo: implement verify msg
 	//	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
+
+    SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
 
 	//  callback function, implemented in SDCConsumerAdapter
 	StreamNotificationDispatcher & m_streamNotificationDispatcher;

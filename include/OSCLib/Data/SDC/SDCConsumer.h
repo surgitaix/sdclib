@@ -233,7 +233,7 @@ public:
     unsigned long long int getLastKnownMdibVersion();
 
 private:
-    SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config);
+    SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config);
 
     /**
     * @brief Update the local MDIB using an RPC to the provider.

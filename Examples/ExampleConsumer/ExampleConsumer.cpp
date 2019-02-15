@@ -132,10 +132,21 @@ int main() {
     	Data::SDC::SDCConsumer & consumer;
     };
 
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
+
 	// Discovery
-	OSELib::SDC::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
 	// binding to a custom port
-	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
+	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration(t_SDCInstance);
 	config.setPort(6465);
 
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));

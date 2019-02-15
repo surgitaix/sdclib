@@ -17,7 +17,7 @@
 /**
  *  @file config.h.in
  *  @project SDCLib
- *  @date 28.08.2018
+ *  @date 15.02.2019
  *  @author baumeister
  *  @copyright (c) SurgiTAIX AG
  *
@@ -36,6 +36,10 @@ namespace SDCLib
         const int SDCLIBRARY_VERSION_MIDDLE = 0;
         const int SDCLIBRARY_VERSION_LAST = 3;
         const std::string CURRENT_LIB_VERSION("3.0.3");
+
+        const std::string CURRENT_C_YEAR("2019"); // Copyright year
+
+        const std::string STR_SURGITAIX("SurgiTAIX AG"); // Company name
 
         // Specify these values in your firewall settings to pass the allowed port range (running tests and examples!)
         const unsigned int SDC_ALLOWED_PORT_START = 14000;

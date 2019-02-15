@@ -13,8 +13,9 @@
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
+#include "OSCLib/SDCInstance.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/Util/DebugOut.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
@@ -22,19 +23,22 @@
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/SDC/ServiceManager.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
+#include "OSELib/DPWS/MetadataProvider.h"
 
-namespace OSELib {
-namespace SDC {
+
+using namespace OSELib::SDC;
 
 void HelloReceivedHandler::helloReceived(const std::string & ) {
 	WithLogger(Log::BASE).log_error([] { return "Method 'helloReceived' must be overridden!"; });
 }
 
-ServiceManager::ServiceManager() :
-	WithLogger(Log::SERVICEMANAGER),
-	_dpwsClient(new DPWS::MDPWSDiscoveryClientAdapter()),
-	configuration()
+ServiceManager::ServiceManager(SDCLib::SDCInstance_shared_ptr p_SDCInstance)
+ : WithLogger(Log::SERVICEMANAGER)
+ , m_SDCInstance(p_SDCInstance)
+ , _dpwsClient(new DPWS::MDPWSDiscoveryClientAdapter(m_SDCInstance))
+ , configuration(m_SDCInstance)
 {
+
 }
 
 ServiceManager::~ServiceManager() {
@@ -74,6 +78,9 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const st
 }
 
 std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr, SDCLib::Data::SDC::MDPWSTransportLayerConfiguration consumerConfig) {
+    // FIXME: MDPWSTransportLayerConfiguration !
+    std::cout << "FIXME! ServiceManager::discoverEndpointReference() MDPWSTransportLayerConfiguration passed by value!" << std::endl;
+    // Note: Diese Methode sollte eig. nicht mehr nötig sein, da nun alles SDCInstance zentriert ist...
 	configuration = consumerConfig;
 	return discoverEndpointReference(epr);
 }
@@ -82,12 +89,12 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
 
 	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback  {
-		ResolveMatchCallback(Poco::Event & matchEvent) :
+		explicit ResolveMatchCallback(Poco::Event & matchEvent) :
 			_matchEvent(matchEvent) {
 		}
-		virtual ~ResolveMatchCallback() = default;
+		~ResolveMatchCallback() = default;
 
-		virtual void resolveMatch(const DPWS::ResolveMatchType & n) override {
+		void resolveMatch(const DPWS::ResolveMatchType & n) override {
 			_result = std::unique_ptr<DPWS::ResolveMatchType>(new DPWS::ResolveMatchType(n));
 			_matchEvent.set();
 		}
@@ -95,34 +102,55 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 		std::unique_ptr<DPWS::ResolveMatchType> _result;
 	};
 
-	Poco::Event matchEvent;
-	ResolveMatchCallback resolveCb(matchEvent);
+    Poco::Event matchEvent;
+    ResolveMatchCallback resolveCb(matchEvent);
 
-	DPWS::ResolveType resolveFilter((WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType(epr))));
-	_dpwsClient->addResolveMatchEventHandler(resolveFilter, resolveCb);
+    DPWS::ResolveType resolveFilter((WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType(epr))));
+    _dpwsClient->addResolveMatchEventHandler(resolveFilter, resolveCb);
 	try {
-		matchEvent.wait(SDCLib::SDCLibrary::getInstance().getDiscoveryTime());
+
+     // FIXME: CRASH HERE... MUTEX ISSUE? WAKEUP (UNLOCK) FROM DIFFERENT THREAD NOT ALLOWED? OWNER PROBLEM? BUG IN POCO?
+        bool t_result = matchEvent.tryWait(m_SDCInstance->getDiscoveryTime().count());
+		if (!t_result) {
+             SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Default, "ServiceManager") <<  "discoverEndpointReference::TIMEOUT." << std::endl;
+        }
 		log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
-	} catch (const Poco::TimeoutException & e) {
-	}
-	_dpwsClient->removeResolveMatchEventHandler(resolveCb);
+     }
+     catch (...)
+     {
+         SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Default, "ServiceManager") <<  "discoverEndpointReference::CATCH..." << std::endl;
+     }
+    /*try {
+        matchEvent.wait(SDCLib::SDCLibrary::getInstance().getDiscoveryTime());
+        log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
+      } catch (const Poco::TimeoutException & e) {
+        } */
+    _dpwsClient->removeResolveMatchEventHandler(resolveCb);
 
-	std::list<std::string> xAddress_list;
+    std::list<std::string> xAddress_list;
 
-	if (resolveCb._result && resolveCb._result->XAddrs().present()) {
-		for (const auto & xaddr : resolveCb._result->XAddrs().get()) {
-			xAddress_list.push_back(xaddr);
-		}
-		auto result(connectXAddress(xAddress_list, resolveCb._result->EndpointReference().Address()));
-		if (result) {
-			return std::move(result);
-		}
-	}
+    if (resolveCb._result && resolveCb._result->XAddrs().present()) {
+        for (const auto & xaddr : resolveCb._result->XAddrs().get()) {
+            xAddress_list.push_back(xaddr);
+          }
+        auto result(connectXAddress(xAddress_list, resolveCb._result->EndpointReference().Address()));
+        if (result) {
+            return std::move(result);
+          }
+      }
 
-	return nullptr;
+    return nullptr;
 }
 
-std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> ServiceManager::discoverOSCP() {
+ServiceManager::AsyncDiscoverResults ServiceManager::async_discoverOSCP() const
+{
+    auto t_invoke = [](const OSELib::SDC::ServiceManager* p_serviceManager) {
+        return p_serviceManager->discoverOSCP();
+      };
+    return std::async(std::launch::async, t_invoke, this);
+}
+
+ServiceManager::DiscoverResults ServiceManager::discoverOSCP() const {
 
 	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
 		ProbeMatchCallback() {}
@@ -131,7 +159,6 @@ std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> ServiceManager::dis
 		virtual void probeMatch(const DPWS::ProbeMatchType & n) override {
 			_results.emplace_back(n);
 		}
-
 		std::vector<DPWS::ProbeMatchType> _results;
 	};
 
@@ -144,12 +171,13 @@ std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> ServiceManager::dis
 
 	ProbeMatchCallback probeCb;
 	_dpwsClient->addProbeMatchEventHandler(probeFilter, probeCb);
-	Poco::Thread::sleep(SDCLib::SDCLibrary::getInstance().getDiscoveryTime());
+    // BLOCKING THE WHOLE THREAD?...
+	Poco::Thread::sleep(m_SDCInstance->getDiscoveryTime().count());
 	_dpwsClient->removeProbeMatchEventHandler(probeCb);
 	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb._results.size()); });
 
-	std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> results;
-	std::list<std::string> xAddress_list;
+	ServiceManager::DiscoverResults results;
+	std::list<std::string> xAddress_list;                      // FIXME: Why use a list here? use vector!
 
 	// probeCb._results contains the exact number of unique EPR in the network
 	for (const auto & probeResult : probeCb._results) {
@@ -157,24 +185,24 @@ std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> ServiceManager::dis
 			log_debug([&] { return "No xAddresses in response for epr: " + probeResult.EndpointReference().Address(); });
 			continue;
 		}
-
+		
 		// one EPR may be connected via multiple network interfaces
+		// TODO: Optimize this by using a std::vector for xAddress_list and reserve space for xAddress_list before running this loop!
 		for (const auto & xaddr : probeResult.XAddrs().get()) {
 			log_notice([&] { return "Trying xAddress: " + xaddr; });
 			xAddress_list.push_back(xaddr);
 		}
-		auto result(connectXAddress(xAddress_list, probeResult.EndpointReference().Address()));
-		if (result) {
-			results.emplace_back(std::move(result));
-		}
+        // TODO:    You can optimize this by taking this step into the connectXAddress function!
+        results.emplace_back(std::move(connectXAddress(xAddress_list, probeResult.EndpointReference().Address())));
+		
+		// TODO: Clear the list at the beginning of a new loop, so we dont clear it at the last loop (destroyed anyway) -> performance!
 		xAddress_list.clear();
 	}
-
 
 	return results;
 }
 
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) {
+std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) const {
 	DPWS::DeviceDescription deviceDescription;
 
 	bool connectionPossible_flag = 0;
@@ -287,7 +315,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(deviceDescription, configuration));
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(m_SDCInstance, deviceDescription, configuration));
 
 	if (!result->isConnected()) {
 		result->disconnect();
@@ -300,6 +328,3 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 	}
 	return std::move(result);
 }
-
-} /* namespace SDC */
-} /* namespace OSELib */

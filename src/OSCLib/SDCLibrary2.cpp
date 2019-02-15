@@ -47,8 +47,6 @@
 
 using namespace SDCLib;
 
-const std::string CURRENT_LIB_VERSION("3.0.1");
-
 SDCLibrary2::SDCLibrary2() :
 	WithLogger(OSELib::Log::BASE),
 	initialized(false)
@@ -88,7 +86,7 @@ void SDCLibrary2::startup(OSELib::LogLevel debugLevel) {
 	if (!initialized) {
 		initialized = true;
 		setDebugLevel(debugLevel);
-		log_notice([&]{ return "SDCLib version " + CURRENT_LIB_VERSION + " (C) 2018 SurgiTAIX AG"; });
+		log_notice([&]{ return "SDCLib version " + Config::CURRENT_LIB_VERSION + " (C) 2018 SurgiTAIX AG"; });
 
 		// init parser
         xercesc::XMLPlatformUtils::Initialize();

@@ -205,8 +205,8 @@ public:
 class OSCPStreamHoldingDeviceProvider : public Util::Task {
 public:
 
-    OSCPStreamHoldingDeviceProvider() :
-    	sdcProvider(),
+    OSCPStreamHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    	sdcProvider(p_SDCInstance),
     	streamEventHandler("handle_plethysmogram_stream"),
     	streamEventHandlerAlt("handle_plethysmogram_stream_alt"),
     	distributionEventHandler("handle_distribution_stream")
@@ -351,13 +351,24 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
+        // Create a new SDCInstance (no flag will auto init)
+        auto t_SDCInstance = std::make_shared<SDCInstance>();
+        // Some restriction
+        t_SDCInstance->setIP6enabled(false);
+        t_SDCInstance->setIP4enabled(true);
+        // Bind it to interface that matches the internal criteria (usually the first enumerated)
+        if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+            std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+            return;
+        }
+
         // Provider
-		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider;
+		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider(t_SDCInstance);
 		DebugOut(DebugOut::Default, "StreamSDC") << "Provider init.." << std::endl;
 		provider.startup();
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
         DebugOut(DebugOut::Default, "StreamSDC") << "Consumer discovery..." << std::endl;
         std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
         std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");

@@ -13,15 +13,13 @@
 
 #include "NormalizedMessageModel.hxx"
 
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/SDCInstance.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
 #include "OSELib/Helper/BufferAdapter.h"
 
-namespace OSELib {
-namespace DPWS {
-namespace Impl {
+using namespace OSELib::DPWS::Impl;
 
 struct SendMulticastMessage : public Poco::Notification {
 	SendMulticastMessage(const std::string & message) :
@@ -29,7 +27,7 @@ struct SendMulticastMessage : public Poco::Notification {
 	const std::string content_;
 };
 
-const MESSAGEMODEL::Envelope buildProbeMessage(const ProbeType & filter) {
+const MESSAGEMODEL::Envelope buildProbeMessage(const OSELib::DPWS::ProbeType & filter) {
 	MESSAGEMODEL::Envelope::HeaderType header;
 	{
 		header.Action(probeUri);
@@ -44,7 +42,7 @@ const MESSAGEMODEL::Envelope buildProbeMessage(const ProbeType & filter) {
 	return MESSAGEMODEL::Envelope(header, body);
 }
 
-const MESSAGEMODEL::Envelope buildResolveMessage(const ResolveType & filter) {
+const MESSAGEMODEL::Envelope buildResolveMessage(const OSELib::DPWS::ResolveType & filter) {
 	MESSAGEMODEL::Envelope::HeaderType header;
 	{
 		header.Action(resolveUri);
@@ -60,107 +58,167 @@ const MESSAGEMODEL::Envelope buildResolveMessage(const ResolveType & filter) {
 }
 
 DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
+        SDCLib::SDCInstance_shared_ptr p_SDCInstance,
 		ByeNotificationDispatcher & byeDispatcher,
 		HelloNotificationDispatcher & helloDispatcher,
 		ProbeMatchNotificationDispatcher & probeMatchDispatcher,
 		ResolveMatchNotificationDispatcher & resolveDispatcher) :
 	WithLogger(Log::DISCOVERY),
+	m_SDCInstance(p_SDCInstance),
 	_byeDispatcher(byeDispatcher),
 	_helloDispatcher(helloDispatcher),
 	_probeMatchDispatcher(probeMatchDispatcher),
-	_resolveDispatcher(resolveDispatcher)
+	_resolveDispatcher(resolveDispatcher),
+    m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getMulticastIPv4(), p_SDCInstance->_getMulticastPortv4())),
+    m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getMulticastIPv6(), p_SDCInstance->_getMulticastPortv6()))
 {
 
-	if (SDCLib::SDCLibrary::getInstance().getIP4enabled()) {
-		_ipv4MulticastAddress = Poco::Net::SocketAddress(OSELib::UDP_MULTICAST_DISCOVERY_IP_V4, OSELib::UPD_MULTICAST_DISCOVERY_PORT);
-		_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), _ipv4MulticastAddress.port());
-		_ipv4MulticastDiscoverySocket = Poco::Net::MulticastSocket(_ipv4BindingAddress.family());
+    if (m_SDCInstance->getIP4enabled()) {
 
-		_ipv4MulticastDiscoverySocket.bind(_ipv4BindingAddress, true);
-		for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-			if (nextIf.supportsIPv4()
-				&& nextIf.address().isUnicast()
-				&& !nextIf.address().isLoopback()) {
-				_ipv4MulticastDiscoverySocket.joinGroup(_ipv4MulticastAddress.host(), nextIf);
-				Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), 0), true);
-				datagramSocket.setBlocking(false);
-				_reactor.addEventHandler(datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
-				_socketSendMessageQueue[datagramSocket].clear();
-			}
-		}
-		_ipv4MulticastDiscoverySocket.setBlocking(false);
-
-		_reactor.addEventHandler(_ipv4MulticastDiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
+        // Bind only interfaces we specified
+        if (m_SDCInstance->isBound()) {
+            m_ipv4DiscoverySocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
+            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+                try
+                {
+                    auto t_IP = Poco::Net::IPAddress::Family::IPv4;
+                    auto t_ipv4BindingAddress = Poco::Net::SocketAddress(t_IP, m_ipv4MulticastAddress.port());
+                    m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
+                    m_ipv4DiscoverySocket.joinGroup(m_ipv4MulticastAddress.host(), t_interface->m_if);
+                    Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv4, m_ipv4MulticastAddress.port()), t_interface->SO_REUSEADDR_FLAG);
+                    t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
+                    t_datagramSocket.setBlocking(false);
+                    m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
+                    m_socketSendMessageQueue[t_datagramSocket].clear();
+                }
+                catch (...) {
+                    // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
+                    log_error([&] { return "Something went wrong in binding to : " + t_interface->m_name; });
+                    continue;
+                }
+            }
+        }
+        else
+        {
+            // Bind on 0.0.0.0
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port());
+            m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
+            // Add all interfaces
+            for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
+                if (nextIf.supportsIPv4() && nextIf.address().isUnicast() && !nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4).isLoopback()) {
+                    try
+                    {
+                        // Note: Fails if we enumerate a bridge that is already connected
+                        m_ipv4DiscoverySocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
+                        Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port()), m_SO_REUSEADDR_FLAG);
+                        t_datagramSocket.setReusePort(m_SO_REUSEPORT_FLAG);
+                        t_datagramSocket.setBlocking(false);
+                        m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
+                        m_socketSendMessageQueue[t_datagramSocket].clear();
+                    }
+                    catch (...) {
+                        log_error([&] { return "Something went wrong in binding to : " + nextIf.adapterName(); });
+                        continue;
+                    }
+                }
+            }
+        }
+        m_reactor.addEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
+        m_ipv4DiscoverySocket.setBlocking(false);
 	}
+    if (m_SDCInstance->getIP6enabled()) {
 
+        // Bind only interfaces we specified
+        if (m_SDCInstance->isBound()) {
+            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+                auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
+                m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
 
-	if (SDCLib::SDCLibrary::getInstance().getIP6enabled()) {
-		_ipv6MulticastAddress = Poco::Net::SocketAddress (OSELib::UDP_MULTICAST_DISCOVERY_IP_V6, OSELib::UPD_MULTICAST_DISCOVERY_PORT);
-		_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), _ipv6MulticastAddress.port());
-		_ipv6MulticastDiscoverySocket = Poco::Net::MulticastSocket(_ipv6BindingAddress.family());
+                m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), t_interface->m_if);
+                Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv6, m_ipv6MulticastAddress.port()), t_interface->SO_REUSEADDR_FLAG);
+                t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
+                t_datagramSocket.setBlocking(false);
+                m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
+                m_socketSendMessageQueue[t_datagramSocket].clear();
+            }
+          }
+        else {
+            // Bind on 0.0.0.0
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6MulticastAddress.port());
+            m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
 
-		_ipv6MulticastDiscoverySocket.bind(_ipv6BindingAddress, true);
-		for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-			if (nextIf.supportsIPv6()
-				&& nextIf.address().isUnicast()
-				&& !nextIf.address().isLoopback()) {
-				try {
-				_ipv6MulticastDiscoverySocket.joinGroup(_ipv6MulticastAddress.host(), nextIf);
-				Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), 0), true);
-				datagramSocket.setBlocking(false);
-				_reactor.addEventHandler(datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
-				_socketSendMessageQueue[datagramSocket].clear();
-				} catch (...) {
-					// todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
-					log_error([&] { return "Some thing went wrong"; });
-				}
-			}
-		}
-		_ipv6MulticastDiscoverySocket.setBlocking(false);
-
-		_reactor.addEventHandler(_ipv6MulticastDiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
+            // Add all interfaces
+            for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
+                if (nextIf.supportsIPv6() && nextIf.address().isUnicast() && !nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6).isLoopback()) {
+                        try {
+                            m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), nextIf);
+                            Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6MulticastAddress.port()), m_SO_REUSEADDR_FLAG);
+                            t_datagramSocket.setReusePort(m_SO_REUSEPORT_FLAG);
+                            t_datagramSocket.setBlocking(false);
+                            m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
+                            m_socketSendMessageQueue[t_datagramSocket].clear();
+                          } catch (...) {
+                              // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
+                              log_error([&] { return "Something went wrong"; });
+                            }
+                      }
+              }
+            m_reactor.addEventHandler(m_ipv6DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
+          }
+		m_ipv6DiscoverySocket.setBlocking(false);
 	}
-
-
 	xercesc::XMLPlatformUtils::Initialize ();
 
-	_reactorThread.start(_reactor);
+	m_reactorThread.start(m_reactor);
 }
 
 DPWSDiscoveryClientSocketImpl::~DPWSDiscoveryClientSocketImpl() {
-	_reactor.removeEventHandler(_ipv4MulticastDiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
-	_reactor.removeEventHandler(_ipv6MulticastDiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
+	m_reactor.removeEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
+	m_reactor.removeEventHandler(m_ipv6DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 
-	for (auto & messagingSocketMapping : _socketSendMessageQueue) {
-		_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
-		_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));
+    for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+        try
+        {
+            if (m_SDCInstance->getIP4enabled()) { m_ipv4DiscoverySocket.leaveGroup(m_ipv4MulticastAddress.host(), t_interface->m_if); }
+            if (m_SDCInstance->getIP6enabled()) { m_ipv6DiscoverySocket.leaveGroup(m_ipv6MulticastAddress.host(), t_interface->m_if); }
+        }
+        catch (...) {
+            // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
+            log_error([&] { return "Some thing went wrong leaving : " + t_interface->m_name; });
+            continue;
+        }
+    }
+
+	for (auto & messagingSocketMapping : m_socketSendMessageQueue) {
+		m_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
+		m_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));
 	}
 
-	_reactor.stop();
-	_reactorThread.join();
+	m_reactor.stop();
+	m_reactorThread.join();
 
 	xercesc::XMLPlatformUtils::Terminate ();
 }
 
-void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType & filter) {
+void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType filter) {
 	const MESSAGEMODEL::Envelope message(buildProbeMessage(filter));
 	if (message.Header().MessageID().present()) {
 		context.registerMessageId(message.Header().MessageID().get());
 	}
-	for (auto & socketQueue : _socketSendMessageQueue) {
+	for (auto & socketQueue : m_socketSendMessageQueue) {
 		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message)));
-		_reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));
+		m_reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));
 	}
 }
 
-void DPWSDiscoveryClientSocketImpl::sendResolve(const ResolveType & filter) {
+void DPWSDiscoveryClientSocketImpl::sendResolve(const ResolveType filter) {
 	const MESSAGEMODEL::Envelope message(buildResolveMessage(filter));
 	if (message.Header().MessageID().present()) {
 		context.registerMessageId(message.Header().MessageID().get());
 	}
-	for (auto & socketQueue : _socketSendMessageQueue) {
+	for (auto & socketQueue : m_socketSendMessageQueue) {
 		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message)));
-		_reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));
+		m_reactor.addEventHandler(socketQueue.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));
 	}
 }
 
@@ -171,6 +229,13 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 	if (available == 0) {
 		return;
 	}
+
+    // Only read if this belongs to this SDCInstance!
+    if (m_SDCInstance->isBound()) {
+        if (!m_SDCInstance->belongsToSDCInstance(socket.address().host())) {
+            return;
+        }
+    }
 
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;
@@ -215,6 +280,13 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 		return;
 	}
 
+	// Only read if this belongs to this SDCInstance!
+    if (m_SDCInstance->isBound()) {
+        if (!m_SDCInstance->belongsToSDCInstance(socket.address().host())) {
+            return;
+        }
+    }
+
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;
 	const int received(socket.receiveFrom(buf.begin(), available, remoteAddr, 0));
@@ -244,18 +316,23 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 
 void DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotification * notification) {
 	const Poco::AutoPtr<Poco::Net::WritableNotification> pNf(notification);
-	Poco::Net::MulticastSocket socket(pNf->socket());
-	socket.setTimeToLive(OSELib::UPD_MULTICAST_TIMETOLIVE);
+    // By Sebastian TTL
+	// Poco::Net::DatagramSocket socket(pNf->socket());
+    Poco::Net::MulticastSocket socket(pNf->socket());
+    socket.setTimeToLive(OSELib::UPD_MULTICAST_TIMETOLIVE);
 
-	const Poco::AutoPtr<Poco::Notification> rawMessage(_socketSendMessageQueue[socket].dequeueNotification());
+    // We dont want the query back
+    socket.setLoopback(false);
+	
+	const Poco::AutoPtr<Poco::Notification> rawMessage(m_socketSendMessageQueue[socket].dequeueNotification());
 	if (rawMessage.isNull()) {
 		notification->source().removeEventHandler(socket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));
 		return;
 	}
 	const Poco::AutoPtr<SendMulticastMessage> message(rawMessage.cast<SendMulticastMessage>());
-	Poco::Net::SocketAddress multicastAddress(_ipv4MulticastAddress);
+	Poco::Net::SocketAddress multicastAddress(m_ipv4MulticastAddress);
 	if (socket.address().family() == Poco::Net::IPAddress::Family::IPv6) {
-		multicastAddress = _ipv6MulticastAddress;
+		multicastAddress = m_ipv6MulticastAddress;
 	}
 
 	socket.sendTo(message->content_.c_str(), message->content_.size(), multicastAddress, 0);
@@ -342,7 +419,3 @@ bool DPWSDiscoveryClientSocketImpl::verifyHello(const MESSAGEMODEL::Envelope & m
 
 	return true;
 }
-
-} /* namespace Impl */
-} /* namespace DPWS */
-} /* namespace OSELib */

@@ -40,6 +40,7 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
+#include "SDCInstance.h"
 
 namespace SDCLib {
 

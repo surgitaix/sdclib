@@ -787,9 +787,9 @@ public:
 
 class OSCPHoldingDeviceProvider : public Util::Task {
 public:
-    OSCPHoldingDeviceProvider() :
+    OSCPHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
     	currentWeight(0),
-    	sdcProvider(),
+    	sdcProvider(p_SDCInstance),
     	locationContextStateHandler(LOCATION_CONTEXT_HANDLE),
     	patientContextStateHandler(PATIENT_CONTEXT_HANDLE),
     	curValueState(NUMERIC_METRIC_CURRENT_HANDLE),
@@ -995,7 +995,7 @@ public:
     }
 
     void setCurrentWeight(float value) {
-        Poco::Mutex::ScopedLock lock(sdcProvider.getMutex());
+        Poco::Mutex::ScopedLock lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
         currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "SimpleSDC") << "Changed value: " << currentWeight << std::endl;
@@ -1006,6 +1006,7 @@ private:
     float currentWeight;
 
     // Provider object
+    Poco::Mutex m_mutex;
     SDCProvider sdcProvider;
 
     // State (handlers)
@@ -1045,8 +1046,19 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 	DebugOut::openLogFile("Test.log.txt", true);
 	try
 	{
+        // Create a new SDCInstance (no flag will auto init)
+        auto t_SDCInstance = std::make_shared<SDCInstance>();
+        // Some restriction
+        t_SDCInstance->setIP6enabled(false);
+        t_SDCInstance->setIP4enabled(true);
+        // Bind it to interface that matches the internal criteria (usually the first enumerated)
+        if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+            std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+            return;
+        }
+
         // Provider
-        Tests::SimpleSDC::OSCPHoldingDeviceProvider provider;
+        Tests::SimpleSDC::OSCPHoldingDeviceProvider provider(t_SDCInstance);
         provider.startup();
         provider.start();
 
@@ -1060,7 +1072,7 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 
         Poco::Thread::sleep(2000);
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
         std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
 
         // create state handlers

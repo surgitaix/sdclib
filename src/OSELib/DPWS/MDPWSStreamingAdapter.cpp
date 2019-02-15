@@ -20,46 +20,57 @@
 
 #include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/SDCInstance.h"
 
 
-namespace OSELib {
-namespace DPWS {
-namespace Impl {
+using namespace OSELib::DPWS::Impl;
 
-
-
-MDPWSStreamingAdapter::MDPWSStreamingAdapter(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription):
-		WithLogger(Log::STREAMING),
-		m_streamNotificationDispatcher(streamNotificationDispatcher),
-		m_deviceDescription(deviceDescription)
+MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription):
+	WithLogger(Log::DISCOVERY),
+    m_SDCInstance(p_SDCInstance),
+	m_streamNotificationDispatcher(streamNotificationDispatcher),
+	m_deviceDescription(deviceDescription)
 {
 	xercesc::XMLPlatformUtils::Initialize();
 	// todo: implement ipv6
+    // only open a streaming socket, if the provider is providing a streaming service
+    // BUT: BIND IT TO THE SDC INSTANCE ADDRESS!
+    if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
+        if ( m_SDCInstance->getIP4enabled() ) {
+            log_debug([&] {return "Host:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() + "Port: " + std::to_string(m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());});
+            //m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_deviceDescription.getStreamMulticastAddressURIs().front().getHost(), m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());
+            m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_SDCInstance->_getStreamingIPv4(), m_SDCInstance->_getStreamingPortv4());
 
-	// only open a streaming socket, if the provider is providing a streaming service
-	if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
-		if ( SDCLib::SDCLibrary::getInstance().getIP4enabled() )
-		{
-			log_debug([&] {return "Host:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() + "Port: " + std::to_string(m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());});
-			m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_deviceDescription.getStreamMulticastAddressURIs().front().getHost(), m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());
-
-			const Poco::Net::SocketAddress _ipv4MulticastStreamingBindingAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port()); // make member vars
-			m_ipv4MulticastSocket = Poco::Net::MulticastSocket(_ipv4MulticastStreamingBindingAddress.family());
-
-			m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, true);
-			// bind all network adapters to socket
-			for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-				if (nextIf.supportsIPv4()
-					&& !nextIf.address().isLoopback()
-					&& nextIf.address().isUnicast()) { // devices network adapters have a unicast IP
-					m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
-				}
-			}
+            // Bind only interfaces we specified
+            if (m_SDCInstance->isBound()) {
+                m_ipv4MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
+                for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+                    try {
+                        auto t_ipv4MulticastStreamingBindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
+                        m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
+                        m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), t_interface->m_if);
+                    } catch (...) {
+                      // todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
+                      log_error([&] { return "Another thing went wrong"; });
+                    }
+                }
+            }
+            else {
+                // bind all network adapters to socket
+                for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
+                    // devices network adapters have a unicast IP
+                    if (nextIf.supportsIPv4() && !nextIf.address().isLoopback() && nextIf.address().isUnicast()) {
+                            // make member vars
+                            const Poco::Net::SocketAddress _ipv4MulticastStreamingBindingAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port());
+                            m_ipv4MulticastSocket = Poco::Net::MulticastSocket(_ipv4MulticastStreamingBindingAddress.family());
+                            m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, true);
+                            m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
+                          }
+                  }
+            }
 			m_ipv4MulticastSocket.setBlocking(false);
 		}
-
-		if ( SDCLib::SDCLibrary::getInstance().getIP6enabled() )
+        if ( m_SDCInstance->getIP6enabled() )
 				{
 //			m_deviceDescription.getStreamMulticastAddressURIs().front().
 //					DebugOut(DebugOut::Default, std::cerr, "streamsdc") << "Host IPv6:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() << "Port: " + m_deviceDescription.getStreamMulticastAddressURIs().front().getPort() << std::endl;
@@ -112,9 +123,10 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 	if (available == 0) {
 		return;
 	}
-
-
-
+    // Only read if this belongs to this SDCInstance!
+    if (!m_SDCInstance->belongsToSDCInstance(socket.address().host())) {
+        return;
+    }
 
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;
@@ -141,10 +153,4 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 		}
 	}
 }
-
-
-} /* namespace Impl */
-} /* namespace DPWS */
-} /* namespace OSELib */
-
 

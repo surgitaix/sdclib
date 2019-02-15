@@ -232,8 +232,8 @@ private:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() :
-    	sdcProvider(),
+    OSCPStreamProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    	sdcProvider(p_SDCInstance),
     	streamProviderStateHandler(HANDLE_STREAM_METRIC),
     	stringProviderStateHandler(HANDLE_STRING_METRIC),
     	numericProviderStateHandlerGet(HANDLE_GET_METRIC),
@@ -267,7 +267,7 @@ public:
 		sdcProvider.setDeviceCharacteristics(devChar);
 
 		// feature: bind provider to a specific interface
-		MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
+		MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration(p_SDCInstance);
 //		providerConfig.setBindAddress(Poco::Net::IPAddress("192.168.178.150"));
 		providerConfig.setPort(6464);
 		sdcProvider.setConfiguration(providerConfig);
@@ -383,23 +383,20 @@ int main()
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Notice);
-    SDCLibrary::getInstance().setIP6enabled(false);
-    SDCLibrary::getInstance().setIP4enabled(true);
-
     SDCLibrary2::getInstance().startup(OSELib::LogLevel::Debug);
-    std::list<std::string> asdf;
-    asdf.push_back("enp0s3");
-    asdf.push_back("docker0");
-    auto sdcInstance2 = SDCLibrary2::getInstance().createBoundSDCInstance(asdf);
 
-//    DebugOut(DebugOut::Default, "ExampleProvider") << "Interfaces Names:" << std::endl;
-//    const auto interfaceList = sdcInstance->getNetworkInterfacesList();
-//    for (const auto interface : interfaceList) {
-//    	DebugOut(DebugOut::Default, "ExampleProvider") << interface.adapterName() << std::endl;
-//    }
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
 
-
-	OSCPStreamProvider provider;
+	OSCPStreamProvider provider(t_SDCInstance);
 	provider.startup();
 	provider.start();
 

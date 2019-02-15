@@ -35,7 +35,7 @@ namespace ConnectionLostSDC {
 class OSCPTestDeviceProvider {
 public:
 
-    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : sdcProvider(), epr(number), metrics(metricCount) {
+    OSCPTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t number, const std::size_t metricCount) : sdcProvider(p_SDCInstance), epr(number), metrics(metricCount) {
     	sdcProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
 
         // System context
@@ -135,8 +135,19 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
 
+        // Create a new SDCInstance (no flag will auto init)
+        auto t_SDCInstance = std::make_shared<SDCInstance>();
+        // Some restriction
+        t_SDCInstance->setIP6enabled(false);
+        t_SDCInstance->setIP4enabled(true);
+        // Bind it to interface that matches the internal criteria (usually the first enumerated)
+        if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+            std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+            return;
+        }
+
 		for (std::size_t i = 0; i < providerCount; i++) {
-			std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider> p(new Tests::ConnectionLostSDC::OSCPTestDeviceProvider(i, metricCount));
+			std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider> p(new Tests::ConnectionLostSDC::OSCPTestDeviceProvider(t_SDCInstance, i, metricCount));
 			providers.push_back(p);
 			p->startup();
 			providerEPRs.emplace_back(p->getEndpointReference());
@@ -150,7 +161,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 
         DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Starting discovery test...";
 
-        OSELib::SDC::ServiceManager sm;
+        OSELib::SDC::ServiceManager sm(t_SDCInstance);
         std::vector<std::unique_ptr<SDCConsumer>> consumers(sm.discoverOSCP());
 
         bool foundAll = true;

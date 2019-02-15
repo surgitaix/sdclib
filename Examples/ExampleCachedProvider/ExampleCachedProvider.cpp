@@ -171,7 +171,7 @@ public:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() : sdcProvider(), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
+    OSCPStreamProvider(SDCInstance_shared_ptr p_SDCInstance) : sdcProvider(p_SDCInstance), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
 
 		sdcProvider.setEndpointReference(DEVICE_EPR);
 
@@ -256,11 +256,20 @@ int main()
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
-    SDCLibrary::getInstance().setIP6enabled(false);
-    SDCLibrary::getInstance().setIP4enabled(true);
 
-	OSELib::SDC::ServiceManager oscpsm;
-	OSCPStreamProvider provider;
+	// Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
+	
+    OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+	OSCPStreamProvider provider(t_SDCInstance);
 	provider.startup();
 	provider.start();
 

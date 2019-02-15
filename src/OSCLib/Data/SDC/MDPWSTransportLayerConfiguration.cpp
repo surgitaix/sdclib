@@ -15,55 +15,59 @@
   */
 
 /**
- *  @file SDCLibrary.cpp
+ *  @file MDPWSTransportLayerConfiguration.cpp
  *  @project SDCLib
- *  @date 04.04.2018
- *  @author buerger
+ *  @date 14.02.2019
+ *  @author buerger, baumeister
  *  @copyright (c) SurgiTAIX AG
  *
  */
 
-#include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
-namespace SDCLib {
-namespace Data {
-namespace SDC {
+#include "OSCLib/SDCInstance.h"
+
+#include <iostream>
+
+using namespace SDCLib::Data::SDC;
 
 // default configuration
-MDPWSTransportLayerConfiguration::MDPWSTransportLayerConfiguration() :
-		m_httpBindAddress(Poco::Net::IPAddress::Family::IPv4),
-		customPortFlag(false) {
-	m_port = SDCLib::SDCLibrary::getInstance().extractFreePort();
+MDPWSTransportLayerConfiguration::MDPWSTransportLayerConfiguration(SDCLib::SDCInstance_shared_ptr p_SDCInstance)
+  : m_SDCInstance(p_SDCInstance)
+{
+    assert(m_SDCInstance != nullptr);
+
+    Poco::Net::IPAddress t_IP = Poco::Net::IPAddress(Poco::Net::AddressFamily::IPv4);
+    if (m_SDCInstance->isBound()) {
+        t_IP = m_SDCInstance->getNetworkInterfaces()[0]->m_IPv4;
+    }
+    // Socket: Address + Port
+    m_httpBindAddress = t_IP;
+    // Extract a free port - DEBUG //FIXME
+   if (!m_SDCInstance->extractFreePort(m_port)) {
+       std::cout << "MDPWSTransportLayerConfiguration::Constructor: FAILED EXTRACTING FREE PORT!" << std::endl;
+   }
+
 }
 
-MDPWSTransportLayerConfiguration::~MDPWSTransportLayerConfiguration() {
-	if (!customPortFlag) {
-		SDCLib::SDCLibrary::getInstance().returnPortToPool(m_port);
-	}
+MDPWSTransportLayerConfiguration::~MDPWSTransportLayerConfiguration()
+{
+    if (!customPortFlag) {
+        m_SDCInstance->returnPortToPool(m_port);
+    }
 }
 
-void MDPWSTransportLayerConfiguration::setBindAddress(Poco::Net::IPAddress bindAddress) {
-	m_httpBindAddress = bindAddress;
+void MDPWSTransportLayerConfiguration::setBindAddress(Poco::Net::IPAddress bindAddress)
+{
+    m_httpBindAddress = bindAddress;
 }
 
-Poco::Net::IPAddress MDPWSTransportLayerConfiguration::getBindAddress() {
-	return m_httpBindAddress;
-}
-
-unsigned int MDPWSTransportLayerConfiguration::getPort() {
-	return m_port;
-}
-
-void MDPWSTransportLayerConfiguration::setPort(unsigned int port) {
+void MDPWSTransportLayerConfiguration::setPort(SDCLib::SDCPort port)
+{
 	m_port = port;
 	// return the standard port to the pool
-	if (!customPortFlag) {
-		SDCLibrary::getInstance().returnPortToPool(m_port);
+    if (!customPortFlag) {
+        m_SDCInstance->returnPortToPool(m_port);
 		customPortFlag = true;
 	}
 }
-
-} /* namespace SDC */
-} /* namespace Data */
-} /* namespace SDCLib */

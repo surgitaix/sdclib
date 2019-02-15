@@ -105,7 +105,7 @@ namespace SDCLib
 
     public:
 
-        SDCInstance();
+        SDCInstance(bool p_init = true);
 
         // Special Member Functions
         SDCInstance(const SDCInstance& p_obj) = delete;

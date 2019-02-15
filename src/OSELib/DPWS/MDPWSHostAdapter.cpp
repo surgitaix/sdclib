@@ -13,25 +13,23 @@
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/DPWS/MDPWSHostAdapter.h"
 
-namespace OSELib {
-namespace DPWS {
+using namespace OSELib::DPWS;
 
 MDPWSHostAdapter::MDPWSHostAdapter(
+        SDCLib::SDCInstance_shared_ptr p_SDCInstance,
 		const AddressType & epr,
 		const ScopesType & scopes,
 		const TypesType & types,
 		const XAddressesType & xaddresses,
 		int metadataVersion) :
-	_started(false),
 	_epr(epr),
 	_scopes(scopes),
 	_types(types),
 	_xaddresses(xaddresses),
 	_metadataVersion(metadataVersion),
-	_impl(new Impl::DPWSHostSocketImpl(*this, *this))
+    _impl(new Impl::DPWSHostSocketImpl(p_SDCInstance, *this, *this))
 {
 }
-
 MDPWSHostAdapter::~MDPWSHostAdapter() = default;
 
 void MDPWSHostAdapter::start() {
@@ -125,6 +123,3 @@ std::unique_ptr<ResolveMatchType> MDPWSHostAdapter::dispatch(const ResolveType &
 		return result;
 	}
 }
-
-} /* namespace DPWS */
-} /* namespace OSELib */

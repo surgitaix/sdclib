@@ -20,8 +20,7 @@
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
-#include "OSCLib/SDCLibrary.h"
-
+#include "OSCLib/SDCInstance.h"
 #include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Data/SDC/SDCProviderAdapter.h"
 
@@ -122,11 +121,9 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 		return _subscriptionManager.dispatch(request, identifier);
 	}
 	virtual std::unique_ptr<SDC::GetContextStatesTraits::Response> dispatch(const SDC::GetContextStatesTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<SDC::GetContextStatesTraits::Response>(new SDC::GetContextStatesTraits::Response(_provider.GetContextStates(request)));
 	}
 	virtual std::unique_ptr<SDC::SetContextStateTraits::Response> dispatch(const SDC::SetContextStateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<SDC::SetContextStateTraits::Response>(new SDC::SetContextStateTraits::Response(_provider.SetContextStateAsync(request)));
 	}
 
@@ -238,15 +235,12 @@ struct GetServiceImpl : public SDC::IGetService {
 	}
 
 	virtual std::unique_ptr<SDC::GetMDDescriptionTraits::Response> dispatch(const SDC::GetMDDescriptionTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<SDC::GetMDDescriptionTraits::Response>(new SDC::GetMDDescriptionTraits::Response(_provider.GetMdDescription(request)));
 	}
 	virtual std::unique_ptr<SDC::GetMDIBTraits::Response> dispatch(const SDC::GetMDIBTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<SDC::GetMDIBTraits::Response>(new SDC::GetMDIBTraits::Response(_provider.GetMdib(request)));
 	}
 	virtual std::unique_ptr<SDC::GetMdStateTraits::Response> dispatch(const SDC::GetMdStateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<SDC::GetMdStateTraits::Response>(new SDC::GetMdStateTraits::Response(_provider.GetMdState(request)));
 	}
 
@@ -282,22 +276,18 @@ struct SetServiceImpl : public SDC::ISetService {
 	}
 
 	virtual std::unique_ptr<SDC::ActivateTraits::Response> dispatch(const SDC::ActivateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<SDC::ActivateTraits::Response>(new SDC::ActivateTraits::Response(_provider.OnActivateAsync(request)));
 	}
 
 	virtual std::unique_ptr<SDC::SetAlertStateTraits::Response> dispatch(const SDC::SetAlertStateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<SDC::SetAlertStateTraits::Response>(new SDC::SetAlertStateTraits::Response(_provider.SetAlertStateAsync(request)));
 	}
 
 	virtual std::unique_ptr<SDC::SetStringTraits::Response> dispatch(const SDC::SetStringTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<SDC::SetStringTraits::Response>(new SDC::SetStringTraits::Response(_provider.SetStringAsync(request)));
 	}
 
 	virtual std::unique_ptr<SDC::SetValueTraits::Response> dispatch(const SDC::SetValueTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
 		return std::unique_ptr<SDC::SetValueTraits::Response>(new SDC::SetValueTraits::Response(_provider.SetValueAsync(request)));
 	}
 
@@ -321,15 +311,16 @@ SDCProviderAdapter::SDCProviderAdapter(SDCProvider & provider) :
 SDCProviderAdapter::~SDCProviderAdapter() {
 
 }
-
-void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
+void SDCProviderAdapter::start(const MDPWSTransportLayerConfiguration config) {
 
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_dpwsHost || _subscriptionManager || _httpServer) {
 		throw std::runtime_error("Service is already running..");
 	}
 
-	OSELib::DPWS::MetadataProvider metadata(_deviceCharacteristics);
+	// todo make this configurable by the provider. The best would be to get all neccessary dpws device/model information in the provider constructor and directly forward it here
+	// this should be done as copy, because the metadata should NOT be changeable during runtime.
+	OSELib::DPWS::MetadataProvider metadata(_provider.getDeviceCharacteristics());
 
 	Poco::Net::ServerSocket ss;
 	const Poco::Net::IPAddress address(config.getBindAddress());
@@ -338,19 +329,28 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 	ss.listen();
 
 	OSELib::DPWS::XAddressesType xAddresses;
-	for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-		if (nextIf.supportsIPv4()
-			&& nextIf.address().isUnicast()
-			&& !nextIf.address().isLoopback()) {
-			xAddresses.push_back(OSELib::DPWS::AddressType("http://" + nextIf.address().toString() + ":" + std::to_string(config.getPort()) + metadata.getDeviceServicePath()));
-		}
-	}
+
+    auto t_SDCInstance = _provider.getSDCInstance();
+	// Bound: Only add the bound address
+	if (t_SDCInstance->isBound()) {
+        xAddresses.push_back(OSELib::DPWS::AddressType("http://" + config.getBindAddress().toString() + ":" + std::to_string(config.getPort()) + metadata.getDeviceServicePath()));
+    }
+    else {
+        // Add all interfaces
+        for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
+            if (nextIf.supportsIPv4()
+                && nextIf.address().isUnicast()
+                && !nextIf.address().isLoopback()) {
+                xAddresses.push_back(OSELib::DPWS::AddressType("http://" + nextIf.address().toString() + ":" + std::to_string(config.getPort()) + metadata.getDeviceServicePath()));
+            }
+        }
+    }
 
 	OSELib::DPWS::TypesType types;
 	types.push_back(OSELib::DPWS::QName("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01", "MedicalDevice"));
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_WSDL_TARGET_NAMESPACE, "MedicalDevice"));
 
-	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(
+    _dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(t_SDCInstance,
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),
 			OSELib::DPWS::ScopesType(),
 			types,
@@ -499,9 +499,6 @@ void SDCProviderAdapter::removeStreamingPort(const int port) {
 	streamingPorts.erase(port);
 }
 
-void SDCProviderAdapter::setDeviceCharacteristics(const Dev::DeviceCharacteristics deviceCharacteristics) {
-	_deviceCharacteristics = deviceCharacteristics;
-}
 
 } /* namespace SDC */
 } /* namespace Data */

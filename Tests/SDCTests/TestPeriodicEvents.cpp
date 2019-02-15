@@ -35,10 +35,6 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 
-#include "Poco/Event.h"
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
-
 using namespace SDCLib;
 using namespace SDCLib::Data::SDC;
 
@@ -311,8 +307,8 @@ class OSCPDeviceProvider {
 public:
 	// the mandatory fields of the states and descriptors MUST be initialized in the constructor initializer list,
 	// the state handlers are recommended to be initialized in the constructor initializer list
-	OSCPDeviceProvider() :
-		sdcProvider(),
+	OSCPDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+		sdcProvider(p_SDCInstance),
 
 		alertCondition(ALERT_CONDITION_HANDLE, AlertConditionKind::Tec, AlertConditionPriority::Me),
 		dummyMetricDescriptor(METRIC_DUMMY_HANDLE, CodedValue(CodeIdentifier("codedvalue_dummy_handle")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0),
@@ -430,9 +426,20 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
 {
 	try
 	{
+        // Create a new SDCInstance (no flag will auto init)
+        auto t_SDCInstance = std::make_shared<SDCInstance>();
+        // Some restriction
+        t_SDCInstance->setIP6enabled(false);
+        t_SDCInstance->setIP4enabled(true);
+        // Bind it to interface that matches the internal criteria (usually the first enumerated)
+        if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+            std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+            return;
+        }
+
         // Provider
-        Tests::PeriodicEvents::OSCPDeviceProvider provider;
-        provider.startup();    
+        Tests::PeriodicEvents::OSCPDeviceProvider provider(t_SDCInstance);
+        provider.startup();
 
         // enable periodic event for metrices
         provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::ALERT_CONDITION_HANDLE);
@@ -442,7 +449,7 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
         provider.setPeriodicEventInterval(0, 500);
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
         std::shared_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(Tests::PeriodicEvents::DEVICE_ENDPOINT_REFERENCE));
 
         // Make test fail if discovery fails

@@ -40,9 +40,11 @@ set( PROJECT_NAME "SDCLibrary") # in case you need it in a config file
 project(${PROJECT_NAME})
 
 # Version numbers -> Will be written to the config file
-set (SDCLibrary_VERSION_FIRST   3)
-set (SDCLibrary_VERSION_MIDDLE  0)
-set (SDCLibrary_VERSION_LAST    3)
+set (SDCLibrary_VERSION_FIRST          3)
+set (SDCLibrary_VERSION_MIDDLE         0)
+set (SDCLibrary_VERSION_LAST           3)
+set (SDCLibrary_C_YEAR              2019)
+set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
 # What to enable?
 

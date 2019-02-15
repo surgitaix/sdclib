@@ -29,7 +29,7 @@ public:
 
 class ServiceManager final: public WithLogger {
 public:
-	ServiceManager();
+	ServiceManager(SDCLib::SDCInstance_shared_ptr p_SDCInstance);
 	~ServiceManager();
 
     /**
@@ -61,6 +61,7 @@ public:
     * @param epr The endpointreference configuration the custom configuration
     * @return The consumer or null
     */
+    // FIXME MDPWSTransportLayerConfiguration
 	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & epr, SDCLib::Data::SDC::MDPWSTransportLayerConfiguration ConsumerConfig);
 
     /**
@@ -68,15 +69,30 @@ public:
     *
     * @return List of all providers
     */
-	std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> discoverOSCP();
+    using DiscoverResults = std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>>;
+	DiscoverResults discoverOSCP() const;
+
+    /**
+     * @brief Discover all SDC providers currently available in an async manner
+     * 
+     * @return std::future of a list of all providers (DiscoverResults)
+     */
+    using AsyncDiscoverResults  = std::future<DiscoverResults>;
+    AsyncDiscoverResults async_discoverOSCP() const;
 
 private:
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
-	std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> _dpwsClient;
-	// todo: kick this helloCallback. Supposedly it is not needed.
+
+    SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
+    std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> _dpwsClient;
+
+    // todo: kick this helloCallback. Supposedly it is not needed.
 	std::unique_ptr<DPWS::HelloCallback> _helloCallback;
 	mutable Poco::Mutex _mutex;
 	SDCLib::Data::SDC::MDPWSTransportLayerConfiguration configuration;
+
+
+    //  DONT MIX MEMBER FUNCTIONS AND DATA...
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr) const;
 };
 
 } /* namespace SDC */

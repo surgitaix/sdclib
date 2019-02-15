@@ -155,7 +155,7 @@ MDM::SetContextState createRequestMessage(const WorkflowContextState & state, co
 	return result;
 }
 
-SDCConsumer::SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config) :
+SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config) :
 		WithLogger(OSELib::Log::OSCPCONSUMER),
 		connectionLostHandler(nullptr),
 		contextStateChangedHandler(nullptr),
@@ -166,7 +166,7 @@ SDCConsumer::SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescripti
 {
 	connected = false;
 	try {
-		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(*this, _deviceDescription, configuration));
+		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(p_SDCInstance, *this, _deviceDescription, configuration));
 		_adapter->start();
 		connected = true;
 	} catch (const Poco::Net::NetException & e) {

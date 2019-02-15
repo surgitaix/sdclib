@@ -27,10 +27,7 @@
 #include <atomic>
 #include <memory>
 
-#include "Poco/NotificationQueue.h"
-#include "Poco/Mutex.h"
-#include "Poco/Timestamp.h"
-#include "Poco/Timespan.h"
+#include "OSCLib/Prerequisites.h"
 
 #include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
@@ -41,6 +38,11 @@
 #include "OSCLib/Data/SDC/MDIB/MdState.h"
 
 #include "OSELib/Helper/WithLogger.h"
+
+#include <Poco/NotificationQueue.h>
+#include <Poco/Mutex.h>
+#include <Poco/Timestamp.h>
+#include <Poco/Timespan.h>
 
 
 // todo remove
@@ -69,7 +71,7 @@ class SDCProvider final : public OSELib::WithLogger {
 
 
 public:
-    SDCProvider();
+    SDCProvider(SDCInstance_shared_ptr p_SDCInstance);
     ~SDCProvider();
 
     /**
@@ -219,7 +221,7 @@ public:
      * @return The DPWS device characteristics
      */
 	const Dev::DeviceCharacteristics& getDeviceCharacteristics() const;
-	void setDeviceCharacteristics(const Dev::DeviceCharacteristics deviceCharacteristics);
+	void setDeviceCharacteristics(const Dev::DeviceCharacteristics p_deviceCharacteristics);
 
 
     /**
@@ -234,16 +236,6 @@ public:
      * @brief Increment Mdib version by 1.
      */
     void incrementMDIBVersion();
-
-    Poco::Mutex & getMutex();
-    
-    void lock() {
-    	getMutex().lock();
-    }
-
-    void unlock() {
-    	getMutex().unlock();
-    }    
 
     /**
      * @brief Set the periodic event fire interval.
@@ -295,6 +287,10 @@ public:
     void updateState(const WorkflowContextState & object);
     void updateState(const DistributionSampleArrayMetricState & object);
 
+
+    SDCInstance_shared_ptr getSDCInstance() const {return m_SDCInstance; }
+
+
 protected:
 
     /**
@@ -303,7 +299,6 @@ protected:
     * @param object The MDIB object
     */
     void notifyOperationInvoked(const OperationInvocationContext & oic, Data::SDC::InvocationState is);
-
 
 
 private:
@@ -366,6 +361,9 @@ private:
 
     unsigned int incrementAndGetTransactionId();
 
+
+    SDCInstance_shared_ptr m_SDCInstance = nullptr;
+
     std::atomic_uint atomicTransactionId;
 
     std::atomic_ullong mdibVersion;
@@ -373,7 +371,9 @@ private:
     std::map<std::string, SDCProviderStateHandler *> stateHandlers;
 
 	std::shared_ptr<MdDescription> m_mdDescription;
-	Poco::Mutex mutex;
+    std::unique_ptr<SDCProviderAdapter> _adapter;
+    Dev::DeviceCharacteristics m_devicecharacteristics;
+	Poco::Mutex m_mutex;
 
     std::string endpointReference;
 
@@ -384,15 +384,9 @@ private:
 
     std::vector<std::string> handlesForPeriodicUpdates;
     Poco::Timestamp lastPeriodicEvent;
-    Poco::Timespan periodicEventInterval;
-    
+    Poco::Timespan periodicEventInterval = Poco::Timespan(10, 0);
+
     MDPWSTransportLayerConfiguration configuration;
-
-    // saving device's metadata
-    Dev::DeviceCharacteristics _deviceCharacteristics;
-
-	std::unique_ptr<SDCProviderAdapter> _adapter;
-
 
 //    std::map<std::string, int> streamingPorts;
 

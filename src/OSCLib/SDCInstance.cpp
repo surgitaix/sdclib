@@ -2,14 +2,18 @@
 
 #include "OSCLib/SDCLibrary.h"
 
+
+#include <iostream>
+
 using namespace SDCLib;
 
 unsigned SDCInstance::s_IDcounter = 1;
 
-SDCInstance::SDCInstance()
+SDCInstance::SDCInstance(bool p_init)
 {
-    // Init the class FIXME
-    init();
+    if(p_init) {
+        init();
+    }
 }
 
 
@@ -76,8 +80,13 @@ bool SDCInstance::bindToDefaultNetworkInterface()
         // Must at least support one of the following
         if (!t_interface.supportsIPv4() && !t_interface.supportsIPv6()) { continue; }
 
-        // Bind
-        return bindToInterface(t_interface.adapterName());
+        // Matching the criteria?
+        if((m_IP4enabled && t_interface.supportsIPv4()) || (m_IP6enabled && t_interface.supportsIPv6())) {
+            // Try to bind (else try the next one)
+            if(bindToInterface(t_interface.adapterName())) {
+                return true;
+            }
+        }
     }
     return false;
 }
@@ -140,7 +149,7 @@ bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName)
             // Add
             ml_networkInterfaces.push_back(t_if);
 
-            //std::cout << "SDCInstance bound to: " << t_if->m_name << " (" << t_if->m_IPv4 << ", " << t_if->m_IPv6 << ").\n";
+            std::cout << "\nSDCInstance bound to: " << t_if->m_name << " (" << t_if->m_IPv4 << ", " << t_if->m_IPv6 << ").\n";
             return true;
         }
     }

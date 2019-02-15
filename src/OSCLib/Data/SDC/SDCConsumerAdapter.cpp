@@ -21,7 +21,7 @@
 #include "NormalizedMessageModel.hxx"
 #include "ws-addressing.hxx"
 
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/SDCInstance.h"
 
 #include "OSCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 
@@ -73,8 +73,8 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 	{
 	}
 
-	std::string getBaseUri() const override {
-		return std::string("/ContextReportSink");
+	virtual std::string getBaseUri() const override {
+		return "/ContextReportSink";
 	}
 
 	// todo: fix multistate implementation. this one only calls the state handlers which reference the descriptorsHandles
@@ -130,7 +130,7 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 
 
 	// dispatch episodic reports and delegate the contained context states
-	void dispatch(const SDC::EpisodicContextChangedReportTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::EpisodicContextChangedReportTraits::ReportType & report) override {
 
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
@@ -148,7 +148,7 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 	}
 
 	// dispatch periodic reports and delegate the contained context states
-	void dispatch(const SDC::PeriodicContextChangedReportTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::PeriodicContextChangedReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -175,11 +175,11 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 	{
 	}
 
-	std::string getBaseUri() const override {
-		return std::string("/EventReportSink");
+	virtual std::string getBaseUri() const override {
+		return "/EventReportSink";
 	}
 
-	void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -190,7 +190,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 		}
 	}
 
-	void dispatch(const SDC::EpisodicMetricReportTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::EpisodicMetricReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -201,7 +201,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 		}
 	}
 
-	void dispatch(const SDC::PeriodicAlertReportTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::PeriodicAlertReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -212,7 +212,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 		}
 	}
 
-	void dispatch(const SDC::PeriodicMetricReportTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::PeriodicMetricReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -223,7 +223,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 		}
 	}
 
-	void dispatch(const SDC::OperationInvokedReportTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::OperationInvokedReportTraits::ReportType & report) override {
 		// fixme move all to SDCConsumer and change interface, so this method here only delegates. This should be done for all events
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
@@ -236,7 +236,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 	}
 
 	// todo: more elegant implementation of streaming possible?
-	void dispatch(const SDC::WaveformStreamTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::WaveformStreamTraits::ReportType & report) override {
 		//
 	}
 
@@ -297,12 +297,12 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config) :
+SDCConsumerAdapter::SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription, const MDPWSTransportLayerConfiguration& config) :
 	WithLogger(OSELib::Log::OSCPCONSUMERADAPTER),
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
 	_deviceDescription(deviceDescription),
-	_streamClientSocketImpl(*this, deviceDescription),
+	_streamClientSocketImpl(p_SDCInstance, *this, deviceDescription),
 	configuration(config)
 {
 }
@@ -374,7 +374,7 @@ void SDCConsumerAdapter::stop() {
 
 	if (_pingManager) {
 		_pingManager->disable();
-		SDCLibrary::getInstance().dumpPingManager(std::move(_pingManager));
+		configuration.getSDCInstance()->dumpPingManager(std::move(_pingManager));
 	}
 }
 
@@ -434,7 +434,7 @@ std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(co
 		if (response->MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(response->MdibVersion().get());
 		}
-		return response;
+		return std::move(response);
 	}
 
 	return nullptr;

@@ -21,6 +21,7 @@
 
 #include "OSELib/DPWS/MDPWSStreamingAdapter.h"
 
+#include "OSCLib/Prerequisites.h"
 
 
 namespace SDCLib {
@@ -32,7 +33,7 @@ class SDCConsumerAdapter :
 		public OSELib::WithLogger
 {
 public:
-	SDCConsumerAdapter(SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config);
+    SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription, const MDPWSTransportLayerConfiguration& config);
 	virtual ~SDCConsumerAdapter();
 
 	void start();

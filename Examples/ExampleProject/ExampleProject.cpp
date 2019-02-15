@@ -159,8 +159,8 @@ public:
 class OSCPHoldingDeviceProvider {
 public:
 
-    OSCPHoldingDeviceProvider() :
-    	sdcProvider(),
+    OSCPHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    	sdcProvider(p_SDCInstance),
 		currentWeight(0),
 		maxValueState(HANDLE_MAX_WEIGHT_METRIC),
 		curValueState(HANDLE_CURRENT_WEIGHT_METRIC),
@@ -244,7 +244,7 @@ public:
     }
 
     void setCurrentWeight(float value) {
-    	Poco::Mutex::ScopedLock lock(sdcProvider.getMutex());
+    	Poco::Mutex::ScopedLock lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
     	currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "ExampleProject") << "Changed value: " << currentWeight << std::endl;
@@ -252,6 +252,7 @@ public:
 
 private:
 
+    Poco::Mutex m_mutex;
     // SDCProvider for communication to the network
     SDCProvider sdcProvider;
 
@@ -338,12 +339,21 @@ private:
 int main()
 {
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
-	SDCLibrary::getInstance().setIP6enabled(false);
-	SDCLibrary::getInstance().setPortStart(11000);
-	SDCLibrary::getInstance().setDiscoveryTime(4000);
+	SDCLibrary::getInstance().setPortStart(11000); // FIXME
+	SDCLibrary::getInstance().setDiscoveryTime(4000); // FIXME
 
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
 
-	OSELib::SDC::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
 	class MyHandler : public OSELib::SDC::HelloReceivedHandler {
 	public:
 		MyHandler() {
@@ -355,7 +365,7 @@ int main()
 	std::unique_ptr<MyHandler> myHandler(new MyHandler());
 	oscpsm.setHelloReceivedHandler(myHandler.get());
 	// Provider
-	OSCPHoldingDeviceProvider provider;
+	OSCPHoldingDeviceProvider provider(t_SDCInstance);
 	provider.startup();
 	DummyValueProducer dummyValueProducer(&provider);
 	dummyValueProducer.start();

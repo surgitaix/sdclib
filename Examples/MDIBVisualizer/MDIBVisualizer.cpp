@@ -1431,7 +1431,9 @@ int main() {
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpdf {} -o {}.pdf";
 
-	OSELib::SDC::ServiceManager oscpsm;
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
 
 	//int loopcounter = 0;
 	//while (true) {
