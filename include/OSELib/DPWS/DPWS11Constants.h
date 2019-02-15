@@ -105,7 +105,7 @@ const std::string WS_DISCOVERY_URN("urn:docs-oasis-open-org:ws-dd:ns:discovery:2
 const std::string WS_MEX_DIALECT_MODEL("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01/ThisModel");
 const std::string WS_MEX_DIALECT_DEVICE("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01/ThisDevice");
 const std::string WS_MEX_DIALECT_WSDL("http://schemas.xmlsoap.org/wsdl/");
-const std::string WS_MEX_DIALECT_STREAM("http://standards.ieee.org/downloads/11073/11073-20702-201x/");
+const std::string WS_MEX_DIALECT_STREAM("http://standards.ieee.org/downloads/11073/11073-20702-2016/");
 
 const std::string WS_MEX_DIALECT_REL("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01/Relationship");
 const std::string WS_MEX_REL_HOST("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01/host");

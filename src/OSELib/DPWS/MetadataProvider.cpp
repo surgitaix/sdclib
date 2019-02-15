@@ -232,7 +232,7 @@ MetadataProvider::Hosted MetadataProvider::createHostedEventReportService(const 
 	Hosted::TypesType hostedTypes;
 	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE));
 
-	Hosted::ServiceIdType hostedServiceId("StateEventReport");
+	Hosted::ServiceIdType hostedServiceId("StateEventService");
 	Hosted hosted(hostedTypes, hostedServiceId);
 	hosted.EndpointReference().push_back(hostedEPR);
 	return hosted;

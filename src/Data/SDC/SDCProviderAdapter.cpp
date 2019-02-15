@@ -347,8 +347,8 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 	}
 
 	OSELib::DPWS::TypesType types;
-	types.push_back(OSELib::DPWS::QName("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01", "MedicalDevice"));
-	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_WSDL_TARGET_NAMESPACE, "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
 
 	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),

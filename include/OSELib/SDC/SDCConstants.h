@@ -43,6 +43,7 @@ const std::string NS_MDPWS("http://standards.ieee.org/downloads/11073/11073-2070
 const std::string WS_MEX_ORNET_NS_STREAM("http://standardized.namespace.org/ws-streaming");
 const std::string NS_ORNET_STREAM_ID(NS_SERVICE_DESCRIPTION + "/WaveformService");
 const std::string WS_POLICY("http://www.w3.org/ns/ws-policy");
+const std::string NS_DPWS("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01");
 
 const std::string MDPWS_MCAST_ADDR("soap.udp://239.239.239.235");
 const int MDPWS_MCAST_PORT(5555);
