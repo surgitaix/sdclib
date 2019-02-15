@@ -1422,6 +1422,8 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 		result << "}" << std::endl;
 		return result.str();
 	}
+	//FIXME: Empty string is an error?
+	return std::string();
 }
 
 int main() {

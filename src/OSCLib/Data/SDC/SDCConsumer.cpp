@@ -157,10 +157,6 @@ MDM::SetContextState createRequestMessage(const WorkflowContextState & state, co
 
 SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config) :
 		WithLogger(OSELib::Log::OSCPCONSUMER),
-		connectionLostHandler(nullptr),
-		contextStateChangedHandler(nullptr),
-		subscriptionLostHandler(nullptr),
-		lastKnownMDIBVersion(0),
 		_deviceDescription(deviceDescription),
 		configuration(config)
 {
@@ -686,7 +682,7 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, Inv
     transactionQueue.push_back(TransactionState(oic.transactionId, is));
 }
 
-std::string SDCConsumer::getEndpointReference() {
+std::string SDCConsumer::getEndpointReference() const {
 	return _deviceDescription.getEPR();
 }
 

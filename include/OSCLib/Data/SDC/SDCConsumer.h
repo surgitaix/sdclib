@@ -108,7 +108,7 @@ public:
     * @return True, if registration was successful
     */
     bool registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler);
-    
+
     /**
     * @brief Unregister notification.
     *
@@ -185,7 +185,7 @@ public:
     *
     * @return True, if connected
     */
-    bool isConnected() {
+    bool isConnected() const {
         return connected;
     }
 
@@ -223,7 +223,7 @@ public:
     *
     * @return The EPR
     */
-    std::string getEndpointReference();
+    std::string getEndpointReference() const;
 
     /**
     * @brief Get last known Mdib version.
@@ -268,6 +268,7 @@ private:
     //
     //Variables
     //
+
     std::map<int, FutureInvocationState *> fisMap;
     Poco::Mutex transactionMutex;
 
@@ -277,16 +278,17 @@ private:
 	Poco::Mutex requestMutex;
     Poco::Mutex eventMutex;
     std::map<std::string, SDCConsumerOperationInvokedHandler *> eventHandlers;
-    SDCConsumerConnectionLostHandler * connectionLostHandler;
+    SDCConsumerConnectionLostHandler * connectionLostHandler = nullptr;
     // todo: kick
-    SDCConsumerSystemContextStateChangedHandler * contextStateChangedHandler;
-    SDCConsumerSubscriptionLostHandler * subscriptionLostHandler;
+    SDCConsumerSystemContextStateChangedHandler * contextStateChangedHandler = nullptr;
+    SDCConsumerSubscriptionLostHandler * subscriptionLostHandler = nullptr;
 
-    unsigned long long int lastKnownMDIBVersion;
+    unsigned long long int lastKnownMDIBVersion = 0;
     std::atomic<bool> connected;
     OSELib::DPWS::DeviceDescription _deviceDescription;
     std::unique_ptr<SDCConsumerAdapter> _adapter;
 
+    // FIXME
     MDPWSTransportLayerConfiguration configuration;
 
 };
