@@ -145,10 +145,12 @@ endif()
 
 # Note: Just randomly took a port range that is not densly occupied from:
 # https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
-set(SDC_ALLOWED_PORT_START 14000 CACHE STRING "Start Port of allowed port range.")
-set(SDC_ALLOWED_PORT_RANGE  1000 CACHE STRING "Port Range of allowed ports as offset from the Start Port.")
+set(SDC_ALLOWED_PORT_START 14000 CACHE STRING "Start Port of allowed port range. [Make sure your firewall settings match these value]")
+set(SDC_ALLOWED_PORT_RANGE  2000 CACHE STRING "Port Range of allowed ports as offset from the Start Port. [Make sure your firewall settings match these value]")
+set(SDC_DEFAULT_PORT_RANGE  1000 CACHE STRING "Passed default Port Range if none is specified in configuration.")
 mark_as_advanced(SDC_ALLOWED_PORT_START)
 mark_as_advanced(SDC_ALLOWED_PORT_RANGE)
+mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
 
 
 ################################################################################

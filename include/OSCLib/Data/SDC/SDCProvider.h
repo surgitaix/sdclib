@@ -113,7 +113,7 @@ public:
     *
     * @return The MD state container
     */
-    MdState getMdState();
+    MdState getMdState() const;
 
     /**
     * @brief Activates the SetOperation of a state defined in descriptor in the ownerMDS.
@@ -302,7 +302,7 @@ protected:
 
 
 private:
-    void firePeriodicReportImpl(const std::vector<std::string> & handles);
+    void firePeriodicReportImpl();
 
     //Sets the updated state within the MDIB and increases the MDIBVersion
     template<class T>
@@ -373,7 +373,7 @@ private:
 	std::shared_ptr<MdDescription> m_mdDescription;
     std::unique_ptr<SDCProviderAdapter> _adapter;
     Dev::DeviceCharacteristics m_devicecharacteristics;
-	Poco::Mutex m_mutex;
+	mutable Poco::Mutex m_mutex;
 
     std::string endpointReference;
 

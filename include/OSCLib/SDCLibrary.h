@@ -72,7 +72,7 @@ public:
 	 *
 	 * @param portStart The next free port number to use
 	 */
-	void setPortStart(unsigned int portStart, unsigned int portRange = 1000);
+	void setPortStart(unsigned int portStart, unsigned int portRange = Config::SDC_DEFAULT_PORT_RANGE);
 
 	/**
 	 * Get the next global free port number used for bindings which are automatically created.

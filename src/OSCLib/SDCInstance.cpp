@@ -43,10 +43,10 @@ void SDCInstance::_cleanup()
 
 }
 
-void SDCInstance::init()
+bool SDCInstance::init()
 {
     if (isInit()) {
-        return;
+        return false;
     }
 
     // Create the Portlist
@@ -63,6 +63,7 @@ void SDCInstance::init()
     // ...
 
     m_init = true;
+    return true;
 }
 
 bool SDCInstance::bindToDefaultNetworkInterface()
@@ -282,8 +283,16 @@ void SDCInstance::createPortLists(SDCPort p_start, SDCPort p_range)
     std::lock_guard<std::mutex> t_lock(m_mutex);
 
     m_reservedPorts.clear();
-    for (auto i = p_start; i < p_start + p_range; ++i) {
-        m_reservedPorts.push_back(i);
+
+    // Make sure the loop wont run over
+    std::size_t t_start = p_start;
+    std::size_t t_range = p_range;
+
+    auto t_end = t_start + t_range;
+    assert(t_end < std::numeric_limits<unsigned short>::max());
+
+    for (auto i = t_start; i < t_end; ++i) {
+        m_reservedPorts.emplace_back(static_cast<SDCPort>(i));
     }
     m_availablePorts = m_reservedPorts;
 }

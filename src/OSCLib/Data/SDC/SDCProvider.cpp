@@ -152,9 +152,9 @@ public:
 			return;
 		}
 
-		Poco::Mutex::ScopedLock lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
+		//Poco::Mutex::ScopedLock lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
 		if (provider.periodicEventInterval < provider.lastPeriodicEvent.elapsed()) {
-			provider.firePeriodicReportImpl(provider.getHandlesForPeriodicUpdate());
+			provider.firePeriodicReportImpl();
 			provider.lastPeriodicEvent.update();
 		}
     }
@@ -208,9 +208,9 @@ SDCProvider::~SDCProvider() {
 }
 
 
-unsigned int SDCProvider::incrementAndGetTransactionId() {
-	const unsigned int result = ++atomicTransactionId;
-	return result;
+unsigned int SDCProvider::incrementAndGetTransactionId()
+{
+    return (++atomicTransactionId);
 }
 
 template<class T>
@@ -822,7 +822,7 @@ void SDCProvider::notifyEpisodicMetricImpl(const T & object) {
 template<class T>
 void SDCProvider::notifyStreamMetricImpl(const T & object) {
 	if (object.getDescriptorHandle().empty()) {
-		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
+		log_error([] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
 	}
 
@@ -838,13 +838,15 @@ void SDCProvider::notifyStreamMetricImpl(const T & object) {
 
 
 
-void SDCProvider::firePeriodicReportImpl(const std::vector<std::string> & handles) {
-	if (handles.empty()) {
-		log_debug([&] { return "List of handles is empty, event will not be fired!"; });
+void SDCProvider::firePeriodicReportImpl() {
+
+    Poco::Mutex::ScopedLock lock(m_mutex);
+
+	if (handlesForPeriodicUpdates.empty()) {
+		log_debug([] { return "List of handles is empty, event will not be fired!"; });
 		return;
 	}
 
-	Poco::Mutex::ScopedLock lock(m_mutex);
 	const auto mdstate(ConvertToCDM::convert(getMdState()));
 
 	MDM::ReportPart3 periodicAlertReportPart;
@@ -852,7 +854,7 @@ void SDCProvider::firePeriodicReportImpl(const std::vector<std::string> & handle
 	MDM::ReportPart1 periodicMetricReportPart;
 
 	for(const auto & state: mdstate->State()) {
-		if (std::find(handles.begin(), handles.end(), state.DescriptorHandle()) != handles.end()) {
+		if (std::find(handlesForPeriodicUpdates.begin(), handlesForPeriodicUpdates.end(), state.DescriptorHandle()) != handlesForPeriodicUpdates.end()) {
 			if (auto castedState = dynamic_cast<const CDM::AbstractAlertState *>(&state)) {
 				periodicAlertReportPart.AlertState().push_back(*castedState);
 			}
@@ -998,12 +1000,12 @@ MdibContainer SDCProvider::getMdib() {
 }
 
 MdDescription SDCProvider::getMdDescription() const {
+    // FIXME
 	return *m_mdDescription;
 }
 
-MdState SDCProvider::getMdState() {
-	// FIXME: Moved the Mutex here, still working?
-    Poco::Mutex::ScopedLock lock(m_mutex);
+MdState SDCProvider::getMdState() const {
+    Poco::Mutex::ScopedLock lock(m_mutex); // FIXME
 	return mdibStates;
 }
 
@@ -1154,7 +1156,7 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler * handler) {
 
     // TODO: Move streaming service to service controller
     // add DistributionArray...
-    else if (auto streamHandler = dynamic_cast<SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> *>(handler)) {
+    else if (/*auto streamHandler = */dynamic_cast<SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> *>(handler)) {
         //int port = SDCLibrary::getInstance().extractFreePort();
         //_adapter->addStreamingPort(4444);
         // FIXME: delete after testing that streaming works on more than one address!
@@ -1236,7 +1238,9 @@ void SDCProvider::notifyOperationInvoked(const OperationInvocationContext & oic,
 
 template<class T>
 void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor & ownerMDS) {
-	// get sco object or create new
+
+    Poco::Mutex::ScopedLock lock(m_mutex);
+    // get sco object or create new
 	std::unique_ptr<CDM::ScoDescriptor> scoDescriptor(Defaults::ScoDescriptorInit(xml_schema::Uri("")));
 	if (ownerMDS.hasSco()) {
 		scoDescriptor = ConvertToCDM::convert(ownerMDS.getSco());
@@ -1249,11 +1253,9 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor
 	scoDescriptor->Operation().push_back(source);
 	ownerMDS.setSco(ConvertFromCDM::convert(*scoDescriptor));
 
-	Poco::Mutex::ScopedLock lock(m_mutex);
-
 	// Now add a state object for the sco descriptor to the cached states.
 	std::unique_ptr<CDM::MdState> cachedOperationStates(ConvertToCDM::convert(operationStates));
-	bool existingOperationStateFound(false);
+	bool existingOperationStateFound{false};
 	for (const auto & state : cachedOperationStates->State()) {
 		if (state.DescriptorHandle() == source.Handle()) {
 			if (dynamic_cast<const CDM::AbstractOperationState *>(&state)) {
@@ -1268,6 +1270,7 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor
 		// NOOP
 		return;
 	} else {
+        // FIXME: dynamic_casts are ""SLOW""
 		// add new operation state
 		if (dynamic_cast<const CDM::SetValueOperationDescriptor *>(std::addressof(source))) {
 			CDM::SetValueOperationState operationState(
@@ -1275,7 +1278,6 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
 		}
-		// FIXME: a) dynamic_casts are ""SLOW"" b) compiler Warning -Waddress (Address never be NULL)! (const T & source) and -Wnonnull-compare
 		else if (dynamic_cast<const CDM::SetStringOperationDescriptor *>(std::addressof(source))) {
 			CDM::SetStringOperationState operationState(
 					source.Handle(),
@@ -1302,6 +1304,9 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
 		}
+		else {
+            log_error([] { return "SDCProvider::addSetOperationToSCOObjectImpl: dynamic_cast found no match for source!"; });
+        }
 
 		// replace cached states by update.
 		operationStates = ConvertFromCDM::convert(*cachedOperationStates);

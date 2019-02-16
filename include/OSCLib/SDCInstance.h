@@ -83,7 +83,7 @@ namespace SDCLib
         bool m_IP6enabled = true;
 
         SDCPort m_portStart = Config::SDC_ALLOWED_PORT_START;
-        SDCPort m_portRange = Config::SDC_ALLOWED_PORT_RANGE;
+        SDCPort m_portRange = Config::SDC_DEFAULT_PORT_RANGE;
         std::chrono::milliseconds m_discoveryTime = std::chrono::milliseconds(3000);
 
         std::deque<SDCPort> m_reservedPorts;
@@ -115,6 +115,8 @@ namespace SDCLib
         ~SDCInstance();
 
         SDCInstanceID getID() const { return m_ID; }
+
+        bool init();
         bool isInit() const { return m_init; }
 
         bool bindToDefaultNetworkInterface();
@@ -175,7 +177,7 @@ namespace SDCLib
 
         void createPortLists(SDCPort p_start, SDCPort p_range = 1000);
 
-        void init();
+        
         void _cleanup();
 
     };

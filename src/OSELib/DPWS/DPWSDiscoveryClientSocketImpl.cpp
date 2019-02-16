@@ -85,7 +85,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
                     auto t_ipv4BindingAddress = Poco::Net::SocketAddress(t_IP, m_ipv4MulticastAddress.port());
                     m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
                     m_ipv4DiscoverySocket.joinGroup(m_ipv4MulticastAddress.host(), t_interface->m_if);
-                    Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv4, m_ipv4MulticastAddress.port()), t_interface->SO_REUSEADDR_FLAG);
+                    Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv4, m_ipv4DatagrammSocketPort), t_interface->SO_REUSEADDR_FLAG);
                     t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
                     t_datagramSocket.setBlocking(false);
                     m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
@@ -110,7 +110,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
                     {
                         // Note: Fails if we enumerate a bridge that is already connected
                         m_ipv4DiscoverySocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
-                        Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port()), m_SO_REUSEADDR_FLAG);
+                        Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4DatagrammSocketPort), m_SO_REUSEADDR_FLAG);
                         t_datagramSocket.setReusePort(m_SO_REUSEPORT_FLAG);
                         t_datagramSocket.setBlocking(false);
                         m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
@@ -135,7 +135,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
                 m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
 
                 m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), t_interface->m_if);
-                Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv6, m_ipv6MulticastAddress.port()), t_interface->SO_REUSEADDR_FLAG);
+                Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv6, m_ipv6DatagrammSocketPort), t_interface->SO_REUSEADDR_FLAG);
                 t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
                 t_datagramSocket.setBlocking(false);
                 m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
@@ -152,7 +152,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
                 if (nextIf.supportsIPv6() && nextIf.address().isUnicast() && !nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6).isLoopback()) {
                         try {
                             m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), nextIf);
-                            Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6MulticastAddress.port()), m_SO_REUSEADDR_FLAG);
+                            Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6DatagrammSocketPort), m_SO_REUSEADDR_FLAG);
                             t_datagramSocket.setReusePort(m_SO_REUSEPORT_FLAG);
                             t_datagramSocket.setBlocking(false);
                             m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
@@ -200,7 +200,7 @@ DPWSDiscoveryClientSocketImpl::~DPWSDiscoveryClientSocketImpl() {
 	xercesc::XMLPlatformUtils::Terminate ();
 }
 
-void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType filter) {
+void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType& filter) {
 	const MESSAGEMODEL::Envelope message(buildProbeMessage(filter));
 	if (message.Header().MessageID().present()) {
 		context.registerMessageId(message.Header().MessageID().get());
@@ -211,7 +211,7 @@ void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType filter) {
 	}
 }
 
-void DPWSDiscoveryClientSocketImpl::sendResolve(const ResolveType filter) {
+void DPWSDiscoveryClientSocketImpl::sendResolve(const ResolveType& filter) {
 	const MESSAGEMODEL::Envelope message(buildResolveMessage(filter));
 	if (message.Header().MessageID().present()) {
 		context.registerMessageId(message.Header().MessageID().get());
@@ -230,11 +230,11 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 		return;
 	}
 
-    // Only read if this belongs to this SDCInstance!
-    if (m_SDCInstance->isBound()) {
-        if (!m_SDCInstance->belongsToSDCInstance(socket.address().host())) {
-            return;
-        }
+    // Only read if this belongs to this SDCInstance! - Peek first
+    Poco::Net::SocketAddress t_sender;
+    socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
+    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
+        return;
     }
 
 	Poco::Buffer<char> buf(available);
@@ -280,11 +280,11 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 		return;
 	}
 
-	// Only read if this belongs to this SDCInstance!
-    if (m_SDCInstance->isBound()) {
-        if (!m_SDCInstance->belongsToSDCInstance(socket.address().host())) {
-            return;
-        }
+	// Only read if this belongs to this SDCInstance! - Peek first
+    Poco::Net::SocketAddress t_sender;
+    socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
+    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
+        return;
     }
 
 	Poco::Buffer<char> buf(available);
@@ -320,9 +320,6 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable(Poco::Net::Writabl
 	// Poco::Net::DatagramSocket socket(pNf->socket());
     Poco::Net::MulticastSocket socket(pNf->socket());
     socket.setTimeToLive(OSELib::UPD_MULTICAST_TIMETOLIVE);
-
-    // We dont want the query back
-    socket.setLoopback(false);
 	
 	const Poco::AutoPtr<Poco::Notification> rawMessage(m_socketSendMessageQueue[socket].dequeueNotification());
 	if (rawMessage.isNull()) {

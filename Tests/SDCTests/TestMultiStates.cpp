@@ -31,7 +31,7 @@
  *
  *
  */
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/SDCInstance.h"
 
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
@@ -207,13 +207,12 @@ private:
 
 };
 
-
 }
 }
 }
 
 struct FixtureMultiStatesTest: Tests::AbstractOSCLibFixture {
-	FixtureMultiStatesTest() : AbstractOSCLibFixture("FixtureMultiStateTest", OSELib::LogLevel::Notice, 10000) {}
+	FixtureMultiStatesTest() : AbstractOSCLibFixture("FixtureMultiStateTest", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 60) {}
 };
 
 SUITE(OSCP) {
@@ -222,13 +221,15 @@ TEST_FIXTURE(FixtureMultiStatesTest, multistates)
 	DebugOut::openLogFile("TestMultiState.log", true);
 	try
 	{
+        auto t_SDCInstance = getSDCInstance();
+
         // Provider
 		Tests::multiStatesSDC::SDCMultiStateTestProviders provider;
 		DebugOut(DebugOut::Default, "MultiStateSDC") << "Provider init.." << std::endl;
 		provider.startup();
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
         DebugOut(DebugOut::Default, "MultiStateSDC") << "Consumer discovery..." << std::endl;
         std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(SDCLib::Tests::multiStatesSDC::deviceEPR));
 //        std::shared_ptr<Tests::multiStatesSDC::  > eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");

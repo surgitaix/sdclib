@@ -37,7 +37,7 @@
 
 
 
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/SDCInstance.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Data/SDC/FutureInvocationState.h"
 #include "OSCLib/Data/SDC/SDCProvider.h"
@@ -429,7 +429,7 @@ public:
         	// In real applications, check if state has an observed value and if the observed value has a value!
         	return (float)result->getMetricValue().getValue();
         } else {
-        	DebugOut(DebugOut::Default, "ExampleProvider") << "Maximum weight metric not found." << std::endl;
+            DebugOut(DebugOut::Default, "SimpleSDC") << "Maximum weight metric not found." << std::endl;
         	return 0;
         }
     }
@@ -1037,25 +1037,16 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixtureSimpleSDC : Tests::AbstractOSCLibFixture {
-	FixtureSimpleSDC() : AbstractOSCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error, 9000) {}
+	FixtureSimpleSDC() : AbstractOSCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error, SDCLib::Config::SDC_ALLOWED_PORT_START + 100) {}
 };
 
 SUITE(OSCP) {
-TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
+TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 {
 	DebugOut::openLogFile("Test.log.txt", true);
 	try
 	{
-        // Create a new SDCInstance (no flag will auto init)
-        auto t_SDCInstance = std::make_shared<SDCInstance>();
-        // Some restriction
-        t_SDCInstance->setIP6enabled(false);
-        t_SDCInstance->setIP4enabled(true);
-        // Bind it to interface that matches the internal criteria (usually the first enumerated)
-        if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-            std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
-            return;
-        }
+        auto t_SDCInstance = getSDCInstance();
 
         // Provider
         Tests::SimpleSDC::OSCPHoldingDeviceProvider provider(t_SDCInstance);
@@ -1073,7 +1064,7 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
         Poco::Thread::sleep(2000);
         // Consumer
         OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
-        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
+        auto t_consumer(oscpsm.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
 
         // create state handlers
         Tests::SimpleSDC::ExampleConsumerNumericHandler eces1(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE);
@@ -1087,12 +1078,11 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 
 
         // Discovery test
-        CHECK_EQUAL(true, c != nullptr);
+        CHECK_EQUAL(true, t_consumer != nullptr);
 
-		if (c != nullptr) {
-			SDCConsumer & consumer = *c;
+		if (t_consumer != nullptr) {
             // MDIB test
-            MdibContainer mdib(consumer.getMdib());
+            MdibContainer mdib(t_consumer->getMdib());
 
             { // test access to system metadata of mds implemented by provider above
             	std::unique_ptr<MdsDescriptor> pMdsDescriptor(mdib.getMdDescription().findDescriptor<MdsDescriptor>(Tests::SimpleSDC::MDS_HANDLE));
@@ -1128,28 +1118,28 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
             }
 
             // Register for consumer events
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&eces1));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&eces2));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&eces3));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&eces4));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&eces1));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&eces2));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&eces3));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&eces4));
             // Register for alert signal events
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&alertSignalsink));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&latchingAlertSignalsink));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&alertSignalsink));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&latchingAlertSignalsink));
             // Register for context changed events
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&locationEventHandler));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&patientEventHandler));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&locationEventHandler));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&patientEventHandler));
 
             Poco::Thread::sleep(2000);
 
             {	// Ensure that requests for wrong handles fail.
-            	DebugOut(DebugOut::Default, "SimpleSDC") << "Numeric test..." << std::endl;
-				DebugOut(DebugOut::Default, "SimpleSDC") << "SHOULD FAIL: " << std::endl;
+                DebugOut(DebugOut::Default, m_details.testName) << "Numeric test..." << std::endl;
+                DebugOut(DebugOut::Default, m_details.testName) << "SHOULD FAIL: " << std::endl;
 				NumericMetricState tempState(" ");
-				std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("unknown"));
+				std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>("unknown"));
             	CHECK_EQUAL(false, pTempNMS != nullptr);
             }
             {	// Request state of current weight
-				std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
+                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 				CHECK_EQUAL(true, pTempNMS->hasMetricValue());
 				if (pTempNMS->hasMetricValue()) {
@@ -1158,34 +1148,34 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 				}
             }
             {	// Ensure that (read-only) metrics without matching SetOperation cannot be set.
-            	DebugOut(DebugOut::Default, "SimpleSDC") << "SHOULD FAIL: " << std::endl;
-            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
+                DebugOut(DebugOut::Default, m_details.testName) << "SHOULD FAIL: " << std::endl;
+                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
             	CHECK_EQUAL(true, pTempNMS != nullptr);
-            	CHECK_EQUAL(true, InvocationState::Fail == consumer.commitState(*pTempNMS));
+                CHECK_EQUAL(true, InvocationState::Fail == t_consumer->commitState(*pTempNMS));
             }
             {	// Get state of maximum weight
-            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
+                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 				double maxWeight = pTempNMS->getMetricValue().getValue();
 				CHECK_EQUAL(2.0, maxWeight);
             }
             {	// Get state of test enum
-            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
+                std::unique_ptr<EnumStringMetricState> pTempESMS(t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
 				CHECK_EQUAL(true, pTempESMS != nullptr);
 				const std::string enumValue(pTempESMS->getMetricValue().getValue());
 				CHECK_EQUAL("hello", enumValue);
             }
             {	// Set state of test enum with allowed enum value
-            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
+                std::unique_ptr<EnumStringMetricState> pTempESMS(t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
             	CHECK_EQUAL(true, pTempESMS != nullptr);
 
             	pTempESMS->setMetricValue(pTempESMS->getMetricValue().setValue("bon jour"));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempESMS, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(*pTempESMS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
             }
             {	// Set state of test enum with illegal enum value
-            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
+                std::unique_ptr<EnumStringMetricState> pTempESMS(t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
             	CHECK_EQUAL(true, pTempESMS != nullptr);
 
 				const std::string enumValue(pTempESMS->getMetricValue().getValue());
@@ -1193,7 +1183,7 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 
 				pTempESMS->setMetricValue(pTempESMS->getMetricValue().setValue("bye"));
 				FutureInvocationState fis;
-				consumer.commitState(*pTempESMS, fis);
+				t_consumer->commitState(*pTempESMS, fis);
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fail, Tests::SimpleSDC::DEFAULT_TIMEOUT));
             }
 
@@ -1202,49 +1192,49 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
             Poco::Thread::sleep(8000);
 
 			{	// Set state test for a numeric metric state (must succeed, use state handle instead of descriptor handle)
-            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
+                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 
 				// Here, we increase max weight to switch condition presence => results in alert signal presence
 				pTempNMS->setMetricValue(pTempNMS->getMetricValue().setValue(10));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempNMS, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(*pTempNMS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
 			}
 
             {	// Set state test for a string metric state (must succeed)
-                DebugOut(DebugOut::Default, "SimpleSDC") << "String test...";
-            	std::unique_ptr<StringMetricState> pTempNMS(consumer.requestState<StringMetricState>(Tests::SimpleSDC::STRING_METRIC_HANDLE));
+                DebugOut(DebugOut::Default, m_details.testName) << "String test...";
+                std::unique_ptr<StringMetricState> pTempNMS(t_consumer->requestState<StringMetricState>(Tests::SimpleSDC::STRING_METRIC_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 
 				pTempNMS->setMetricValue(pTempNMS->getMetricValue().setValue("Test2"));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempNMS, fis));
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(*pTempNMS, fis));
+                CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
             }
 
             {	// Activate test
-                DebugOut(DebugOut::Default, "SimpleSDC") << "Activate test...";
+                DebugOut(DebugOut::Default, m_details.testName) << "Activate test...";
                 FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == c->activate(Tests::SimpleSDC::CMD_HANDLE, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->activate(Tests::SimpleSDC::CMD_HANDLE, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
             }
 
             {	// Location context test
-                DebugOut(DebugOut::Default, "SimpleSDC") << "Location context test...";
+                DebugOut(DebugOut::Default, m_details.testName) << "Location context test...";
                 // todo: check here if working!
                 LocationContextState lcs(Tests::SimpleSDC::LOCATION_CONTEXT_HANDLE, "location_context_state");
                 lcs.setContextAssociation(ContextAssociation::Assoc);
                 lcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
                 FutureInvocationState fis;
                 locationEventHandler.getEventEMR().reset();
-                CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(lcs, fis));
+                CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(lcs, fis));
 				CHECK_EQUAL(true, locationEventHandler.getEventEMR().tryWait(3000));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
-				DebugOut(DebugOut::Default, "SimpleSDC") << "Location context test done...";
+				DebugOut(DebugOut::Default, m_details.testName) << "Location context test done...";
             }
             {	// Patient context test
-            	DebugOut(DebugOut::Default, "SimpleSDC") << "Patient context test...";
+                DebugOut(DebugOut::Default, m_details.testName) << "Patient context test...";
 				PatientContextState pcs(Tests::SimpleSDC::PATIENT_CONTEXT_HANDLE, "patient_context_state");
 				pcs.setContextAssociation(ContextAssociation::Assoc);
 				pcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
@@ -1256,12 +1246,12 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 						//.setDateOfBirth("08.05.1945"));
 				FutureInvocationState fis;
 				patientEventHandler.getEventEMR().reset();
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(pcs, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(pcs, fis));
 
 				CHECK_EQUAL(true, patientEventHandler.getEventEMR().tryWait(3000));
 
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
-				DebugOut(DebugOut::Default, "SimpleSDC") << "Patient context test done...";
+				DebugOut(DebugOut::Default, m_details.testName) << "Patient context test done...";
 			}
             // Run for some time to receive and display incoming metric events.
 			Poco::Thread::sleep(5000);
@@ -1270,13 +1260,13 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 			provider.interrupt();
 
 			{	// Switch alert signal state off
-            	std::unique_ptr<AlertSignalState> pTempASS(consumer.requestState<AlertSignalState>(Tests::SimpleSDC::ALERT_SIGNAL_HANDLE));
+                std::unique_ptr<AlertSignalState> pTempASS(t_consumer->requestState<AlertSignalState>(Tests::SimpleSDC::ALERT_SIGNAL_HANDLE));
 				CHECK_EQUAL(true, pTempASS != nullptr);
 
 
 				pTempASS->setPresence(AlertSignalPresence::Off);
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempASS, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(*pTempASS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
 			}
 
@@ -1295,26 +1285,26 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 
 
 
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces1));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces2));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces3));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces4));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&alertSignalsink));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&latchingAlertSignalsink));
-            
-            consumer.setContextStateChangedHandler(nullptr);
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&eces1));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&eces2));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&eces3));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&eces4));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&alertSignalsink));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&latchingAlertSignalsink));
 
-            DebugOut(DebugOut::Default, "SimpleSDC") << "Finished...";
-            
-            consumer.disconnect();
-		}
+            t_consumer->setContextStateChangedHandler(nullptr);
+
+            DebugOut(DebugOut::Default, m_details.testName) << "Finished...";
+
+            t_consumer->disconnect();
+        }
 
         Poco::Thread::sleep(2000);
         provider.shutdown();
     } catch (char const* exc) {
-		DebugOut(DebugOut::Default, std::cerr, "simpleoscp") << exc;
+		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
 	} catch (...) {
-		DebugOut(DebugOut::Default, std::cerr, "simpleoscp") << "Unknown exception occurred!";
+		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();
 }

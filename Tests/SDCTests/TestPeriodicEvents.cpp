@@ -1,5 +1,5 @@
 
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/SDCInstance.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 
 #include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
@@ -42,7 +42,6 @@ namespace SDCLib {
 namespace Tests {
 namespace PeriodicEvents {
 
-const std::string TESTNAME("PeriodicEvents");
 
 const std::string DEVICE_ENDPOINT_REFERENCE("EPR_PERIODIC_EVENT_TEST");
 const std::string DEVICE_UDI("UDI_PERIODIC_EVENT_TEST");
@@ -418,7 +417,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixturePeriodicEvents : Tests::AbstractOSCLibFixture {
-	FixturePeriodicEvents() : AbstractOSCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::Error, 9100) {}
+	FixturePeriodicEvents() : AbstractOSCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::Error, SDCLib::Config::SDC_ALLOWED_PORT_START + 80) {}
 };
 
 SUITE(OSCP) {
@@ -426,16 +425,7 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
 {
 	try
 	{
-        // Create a new SDCInstance (no flag will auto init)
-        auto t_SDCInstance = std::make_shared<SDCInstance>();
-        // Some restriction
-        t_SDCInstance->setIP6enabled(false);
-        t_SDCInstance->setIP4enabled(true);
-        // Bind it to interface that matches the internal criteria (usually the first enumerated)
-        if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-            std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
-            return;
-        }
+        auto t_SDCInstance = getSDCInstance();
 
         // Provider
         Tests::PeriodicEvents::OSCPDeviceProvider provider(t_SDCInstance);
@@ -486,11 +476,11 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
 
         provider.shutdown();
     } catch (char const* exc) {
-    	Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << exc;
+        Util::DebugOut(Util::DebugOut::Default, std::cerr, m_details.testName) << exc;
     }catch (Poco::SystemException *e){
-    	Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << e->message();
+        Util::DebugOut(Util::DebugOut::Default, std::cerr, m_details.testName) << e->message();
 	} catch (...) {
-		Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << "Unknown exception occurred!";
+        Util::DebugOut(Util::DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
 }
 }

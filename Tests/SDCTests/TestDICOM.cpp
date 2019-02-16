@@ -1,5 +1,5 @@
 
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/SDCInstance.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Data/SDC/SDCProvider.h"
 //#include "OSCLib/Data/SDC/MDIB/Base64Binary.h"
@@ -90,7 +90,7 @@ private:
 }
 
 struct FixtureDICOMOSCP : Tests::AbstractOSCLibFixture {
-	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", OSELib::LogLevel::Notice, 9050) {}
+	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 20) {}
 };
 
 SUITE(OSCP) {

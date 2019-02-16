@@ -1,5 +1,5 @@
 
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/SDCInstance.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h"
@@ -31,15 +31,20 @@ namespace MultiSDC {
 class OSCPTestDeviceProvider {
 public:
 
-    OSCPTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t number, const std::size_t metricCount) : sdcProvider(p_SDCInstance), epr(number), metrics(metricCount) {
+    OSCPTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t number, const std::size_t metricCount)
+    : sdcProvider(p_SDCInstance)
+    , m_eprID(number)
+    , metrics(metricCount)
+    {
 
-    	sdcProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
+        sdcProvider.setEndpointReference(std::string("UDI_") + std::to_string(m_eprID));
 
-        // Location context
-        SystemContextDescriptor sc("systemcontext_handle_" + number);
+        Dev::DeviceCharacteristics devChar;
+		devChar.addFriendlyName("en", "Test TestMultiSDC " + std::to_string(m_eprID));
+		sdcProvider.setDeviceCharacteristics(devChar);
 
         // Channel
-        ChannelDescriptor testChannel("channel_handle" + number);
+        ChannelDescriptor testChannel(std::string("channel_handle") + std::to_string(m_eprID));
         testChannel.setSafetyClassification(SafetyClassification::MedA);
         for (std::size_t i = 0; i < metrics; i++) {
         	NumericMetricDescriptor nmd("handle_cur" + std::to_string(i), CodedValue(CodeIdentifier("MDCX_CODE_ID_WEIGHT")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0);
@@ -47,28 +52,25 @@ public:
         }
 
         // VMD
-        VmdDescriptor testVmd("vmd_handle_" + number);
-        testVmd.addChannel(testChannel);
+        VmdDescriptor t_vmd(std::string("vmd_handle_") + std::to_string(m_eprID));
+        t_vmd.addChannel(testChannel);
 
         // MDS
-        MdsDescriptor mds("mds_handle_" + number);
-        mds.setMetaData(
-        		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
-        		.setModelNumber("1")
-        		.addModelName(LocalizedText().setRef("EndoTAIX"))
-        		.addSerialNumber("1234"))
-			.setSystemContext(sc)
-			.setType(CodedValue(CodeIdentifier("MDCX_CODE_ID_MDS"))
-			   .addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")));
-        mds.addVmd(testVmd);
+        MdsDescriptor t_Mds(std::string("mds_handle_") + std::to_string(m_eprID));
+        t_Mds.setType(CodedValue("MDC_DEV_DOCU_POSE_MDS")
+            .addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
+            .setMetaData(
+                MetaData().addManufacturer(LocalizedText().setRef(SDCLib::Config::STR_SURGITAIX))
+                          .setModelNumber("1")
+                          .addModelName(LocalizedText().setRef("EndoTAIX"))
+                          .addSerialNumber(SDCLib::Config::CURRENT_C_YEAR))
+            .addVmd(t_vmd);
 
         // create and add description
 		MdDescription mdDescription;
-		mdDescription.addMdsDescriptor(mds);
+		mdDescription.addMdsDescriptor(t_Mds);
 
 		sdcProvider.setMdDescription(mdDescription);
-
-
     }
 
     void startup() {
@@ -88,7 +90,7 @@ public:
 private:
     SDCProvider sdcProvider;
 
-    const std::size_t epr;
+    const std::size_t m_eprID;
     const std::size_t metrics;
 };
 
@@ -97,24 +99,16 @@ private:
 } /* namespace SDCLib */
 
 struct FixtureMultiOSCP : Tests::AbstractOSCLibFixture {
-	FixtureMultiOSCP() : AbstractOSCLibFixture("FixtureMultiOSCP", OSELib::LogLevel::Notice, 8000) {}
+	FixtureMultiOSCP() : AbstractOSCLibFixture("FixtureMultiOSCP", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 40) {}
 };
 
+
 SUITE(OSCP) {
-TEST_FIXTURE(FixtureMultiOSCP, multioscp)
+TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
 {
 	try
 	{
-        // Create a new SDCInstance (no flag will auto init)
-        auto t_SDCInstance = std::make_shared<SDCInstance>();
-        // Some restriction
-        t_SDCInstance->setIP6enabled(false);
-        t_SDCInstance->setIP4enabled(true);
-        // Bind it to interface that matches the internal criteria (usually the first enumerated)
-        if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-            std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
-            return;
-        }
+        auto t_SDCInstance = getSDCInstance();
 
 		CONSTEXPR_MACRO std::size_t providerCount(10);
 		CONSTEXPR_MACRO std::size_t metricCount(10);
@@ -131,7 +125,7 @@ TEST_FIXTURE(FixtureMultiOSCP, multioscp)
 
         Poco::Thread::sleep(2000);
 
-        DebugOut(DebugOut::Default, std::cout, "multioscp") << "Starting discovery test...";
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
         OSELib::SDC::ServiceManager sm(t_SDCInstance);
         std::vector<std::unique_ptr<SDCConsumer>> consumers(sm.discoverOSCP());
@@ -146,14 +140,14 @@ TEST_FIXTURE(FixtureMultiOSCP, multioscp)
 				}
 			}
 			if (!foundOne) {
-				DebugOut(DebugOut::Default, std::cout, "multioscp") << "Missing epr: " << providerEPR << std::endl;
+				DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Missing epr: " << providerEPR << std::endl;
 			}
 			foundAll &= foundOne;
         }
         CHECK_EQUAL(true, foundAll);
 
         for (auto & nextConsumer : consumers) {
-        	DebugOut(DebugOut::Default, std::cout, "multioscp") << "Found " << nextConsumer->getEndpointReference();
+            DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Found " << nextConsumer->getEndpointReference();
         }
 
         Poco::Thread::sleep(2000);
@@ -165,9 +159,9 @@ TEST_FIXTURE(FixtureMultiOSCP, multioscp)
         	next->shutdown();
         }
     } catch (char const* exc) {
-		DebugOut(DebugOut::Default, std::cerr, "multioscp") << exc;
+		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
 	} catch (...) {
-		DebugOut(DebugOut::Default, std::cerr, "multioscp") << "Unknown exception occurred!";
+		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();
 }

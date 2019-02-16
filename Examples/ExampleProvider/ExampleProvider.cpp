@@ -9,12 +9,11 @@
  */
 
 
-#include "OSCLib/SDCLibrary2.h"
-#include "OSCLib/SDCInstance.h"
 
+#include "OSCLib/Data/SDC/SDCProvider.h"
 
 #include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
+#include "OSCLib/SDCInstance.h"
 
 #include "OSCLib/Data/SDC/SDCProviderComponentStateHandler.h"
 #include "OSCLib/Data/SDC/SDCProviderStateHandler.h"
@@ -42,13 +41,9 @@
 #include "OSCLib/Dev/DeviceCharacteristics.h"
 #include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
-#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
-
-#include "BICEPS_MessageModel-fwd.hxx"
 
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
-
 
 #include "Poco/Runnable.h"
 #include "Poco/Mutex.h"
@@ -266,12 +261,6 @@ public:
 		devChar.addFriendlyName("en", "SDCLib ExampleProvider");
 		sdcProvider.setDeviceCharacteristics(devChar);
 
-		// feature: bind provider to a specific interface
-		MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration(p_SDCInstance);
-//		providerConfig.setBindAddress(Poco::Net::IPAddress("192.168.178.150"));
-		providerConfig.setPort(6464);
-		sdcProvider.setConfiguration(providerConfig);
-
 
         // Channel
         ChannelDescriptor holdingDeviceParameters(CHANNEL_DESCRIPTOR_HANDLE);
@@ -294,10 +283,10 @@ public:
         	.setType(CodedValue("MDC_DEV_DOCU_POSE_MDS")
         			.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
         	.setMetaData(
-        		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
-        		.setModelNumber("1")
-        		.addModelName(LocalizedText().setRef("EndoTAIX"))
-        		.addSerialNumber("1234"))
+                MetaData().addManufacturer(LocalizedText().setRef(SDCLib::Config::STR_SURGITAIX))
+                .setModelNumber("1")
+                .addModelName(LocalizedText().setRef("EndoTAIX"))
+                .addSerialNumber(SDCLib::Config::CURRENT_C_YEAR))
         	.addVmd(holdingDeviceModule);
 
 
@@ -383,7 +372,6 @@ int main()
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Notice);
-    SDCLibrary2::getInstance().startup(OSELib::LogLevel::Debug);
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>();

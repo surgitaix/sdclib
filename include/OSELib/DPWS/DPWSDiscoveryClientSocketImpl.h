@@ -36,9 +36,9 @@ public:
 
 	~DPWSDiscoveryClientSocketImpl();
 
-	void sendProbe(const ProbeType filter);
+	void sendProbe(const ProbeType& filter);
 
-	void sendResolve(const ResolveType filter);
+	void sendResolve(const ResolveType& filter);
 
 private:
 	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
@@ -59,6 +59,9 @@ private:
 	const Poco::Net::SocketAddress m_ipv6MulticastAddress;
 	Poco::Net::MulticastSocket m_ipv4DiscoverySocket;
 	Poco::Net::MulticastSocket m_ipv6DiscoverySocket;
+
+    SDCLib::SDCPort m_ipv4DatagrammSocketPort = 0; // 0 = Any free Port
+    SDCLib::SDCPort m_ipv6DatagrammSocketPort = 0; // 0 = Any free Port
 
 	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> m_socketSendMessageQueue;
 

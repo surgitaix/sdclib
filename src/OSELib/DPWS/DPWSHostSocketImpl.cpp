@@ -342,6 +342,13 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 		return;
 	}
 
+	// Only read if this belongs to this SDCInstance! - Peek first
+    Poco::Net::SocketAddress t_sender;
+    socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
+    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
+        return;
+    }
+
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;
 	const int received(socket.receiveFrom(buf.begin(), available, remoteAddr, 0));

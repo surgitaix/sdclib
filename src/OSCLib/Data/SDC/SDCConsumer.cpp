@@ -181,13 +181,8 @@ SDCConsumer::~SDCConsumer() {
     for (auto & fis : fisMap) {
     	fis.second->consumer = nullptr;
     }
-    if (SDCLibrary::getInstance().isInitialized() && _adapter)
-    {
-    	log_warning([] { return "SDCConsumer deleted before disconnected. For proper handling please disconnect the consumer first"; });
-    	disconnect();
-    } else if (SDCLibrary::getInstance().isInitialized() && (_adapter.get() == nullptr)) {
-    	log_error([] { return "SDCConsumerAdapter does not exist / not initialized."; });
-    }
+
+    disconnect();
 }
 
 void SDCConsumer::disconnect() {

@@ -86,7 +86,7 @@ void SDCLibrary2::startup(OSELib::LogLevel debugLevel) {
 	if (!initialized) {
 		initialized = true;
 		setDebugLevel(debugLevel);
-		log_notice([&]{ return "SDCLib version " + Config::CURRENT_LIB_VERSION + " (C) 2018 SurgiTAIX AG"; });
+		log_notice([&]{ return "SDCLib version " + Config::CURRENT_LIB_VERSION + " (C) " + Config::CURRENT_C_YEAR + " " + Config::STR_SURGITAIX; });
 
 		// init parser
         xercesc::XMLPlatformUtils::Initialize();
@@ -128,7 +128,7 @@ SDCInstance_shared_ptr SDCLibrary2::createDefaultSDCInstance() {
 	}
 
 	Poco::Mutex::ScopedLock lock(mutex);
-	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_ALLOWED_PORT_RANGE, m_availableNetworkInterfacesList));
+	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_DEFAULT_PORT_RANGE, m_availableNetworkInterfacesList));
 	// empty list since all network interfaces are assigned to the SDCInstance
 	m_availableNetworkInterfacesList.clear();
 	return t_sdcInstance;*/
@@ -168,7 +168,7 @@ SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::string interface
 		log_error([&]{return "Interface not found."; });
 		return nullptr;
 	}
-	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_ALLOWED_PORT_RANGE, t_networkInterfacesList));
+	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_DEFAULT_PORT_RANGE, t_networkInterfacesList));
 	return t_sdcInstance;*/
     return nullptr;
 }
@@ -198,7 +198,7 @@ SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::list<std::string
 		log_error([&]{return "Interface(s) not found."; });
 		return nullptr;
 	}
-	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_ALLOWED_PORT_RANGE, t_networkInterfacesList));
+	auto t_sdcInstance = std::shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_ALLOWED_PORT_START, SDCLib::Config::SDC_DEFAULT_PORT_RANGE, t_networkInterfacesList));
 	return t_sdcInstance;
     */
     return nullptr;
