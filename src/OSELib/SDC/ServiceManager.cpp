@@ -163,7 +163,7 @@ ServiceManager::DiscoverResults ServiceManager::discoverOSCP() const {
 	};
 
 	DPWS::TypesType types;
-	types.push_back(xml_schema::Qname(SDC::NS_MESSAGE_MODEL, "MedicalDevice"));
+	types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
 
 	DPWS::ProbeType probeFilter;
 	probeFilter.Types().set(types);
@@ -254,27 +254,31 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 				}
 
 				for (const auto & hosted : metadata.Relationship().get().Hosted()) {
-					if (hosted.ServiceId() == "ContextService") {
+					if (hosted.ServiceId() == QNAME_CONTEXTSERVICE_PORTTYPE) {
 						for (const auto & iter : hosted.EndpointReference()) {
 							deviceDescription.addContextServiceURI(Poco::URI(iter.Address()));
 						}
-					} else if (hosted.ServiceId() == "EventReport") {
+					} else if (hosted.ServiceId() == QNAME_STATEEVENTREPORTSERVICE_PORTTYPE) {
 						for (const auto & iter : hosted.EndpointReference()) {
-							deviceDescription.addEventServiceURI(Poco::URI(iter.Address()));
+							deviceDescription.addStateEventReportServiceURI(Poco::URI(iter.Address()));
 						}
-					} else if (hosted.ServiceId() == "GetService") {
+					} else if (hosted.ServiceId() == QNAME_GETSERVICE_PORTTYPE) {
 						for (const auto & iter : hosted.EndpointReference()) {
 							deviceDescription.addGetServiceURI(Poco::URI(iter.Address()));
 						}
-					} else if (hosted.ServiceId() == "SetService") {
+					} else if (hosted.ServiceId() == QNAME_SETSERVICE_PORTTYPE) {
 						for (const auto & iter : hosted.EndpointReference()) {
 							deviceDescription.addSetServiceURI(Poco::URI(iter.Address()));
 						}
-					} else if (hosted.ServiceId() == "WaveformEventReport") {
+					} else if (hosted.ServiceId() == QNAME_WAVEFORMSERVICE_PORTTYPE) {
 						for (const auto & iter : hosted.EndpointReference()) {
-							deviceDescription.addWaveformEventReportURI(Poco::URI(iter.Address()));
+							deviceDescription.addWaveformServiceURI(Poco::URI(iter.Address()));
 						}
 					}
+					else {
+                        log_error([&]() { return std::string("ServiceManager::connectXAddress failed! No match for ServiceId: " + hosted.ServiceId() + "!"); });
+                        return nullptr; // FIXME if an unknown ServiceId is passed everything crashes. This has to be taken care of!
+                    }
 				}
 			}
 		}
@@ -326,5 +330,5 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		result->disconnect();
 		return nullptr;
 	}
-	return std::move(result);
+	return result;
 }

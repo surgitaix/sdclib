@@ -116,7 +116,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
 	SDCLibrary::getInstance().setPortStart(12000);
 
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
@@ -149,7 +149,8 @@ int main() {
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration(t_SDCInstance);
 	config.setPort(6465);
 
-	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
+	//std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
+	auto c(oscpsm.discoverOSCP());
 
 	// state handler
 	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
@@ -157,8 +158,8 @@ int main() {
 	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
 
 	try {
-		if (c != nullptr) {
-			Data::SDC::SDCConsumer & consumer = *c;
+        if (c[0] != nullptr) {
+			Data::SDC::SDCConsumer & consumer = *c[0];
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
 

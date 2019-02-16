@@ -76,7 +76,7 @@ Poco::URI DeviceDescription::getEventServiceURI() const {
 		}
 		throw std::runtime_error("All EventServiceURIs are not valid.");
 }
-void DeviceDescription::addEventServiceURI(const Poco::URI & uri) {
+void DeviceDescription::addStateEventReportServiceURI(const Poco::URI & uri) {
 	_eventServiceURIs.push_back(uri);
 }
 
@@ -104,7 +104,7 @@ void DeviceDescription::addSetServiceURI(const Poco::URI & uri) {
 	_setServiceURIs.push_back(uri);
 }
 
-void DeviceDescription::addWaveformEventReportURI(const Poco::URI & uri) {
+void DeviceDescription::addWaveformServiceURI(const Poco::URI & uri) {
 	_waveformEventReportURIs.push_back(uri);
 }
 
