@@ -38,5 +38,9 @@ set_target_properties(  ${CURRENT_MODULE_NAME}
 # install
 install(TARGETS ${CURRENT_MODULE_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE} RUNTIME DESTINATION ${PATH_INSTALL_RUNTIME})
 
+
+# Copy file to build folder
+configure_file(${SRC_DIR}/cachedMdib.xml ${PATH_RUNTIME_OUTPUT}/cachedMdib.xml COPYONLY)
+
 # ...
 

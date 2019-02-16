@@ -47,6 +47,7 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
+const std::string ts_file("cachedMdib.xml");
 
 const std::string DEVICE_EPR("UDI-EXAMPLEPROVIDER");
 
@@ -171,16 +172,17 @@ public:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider(SDCInstance_shared_ptr p_SDCInstance) : sdcProvider(p_SDCInstance), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
+    OSCPStreamProvider(SDCInstance_shared_ptr p_SDCInstance, std::ifstream& p_stream) : sdcProvider(p_SDCInstance), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
+
+        assert(p_stream.is_open());
 
 		sdcProvider.setEndpointReference(DEVICE_EPR);
 
-		// Load cached Mdib from file system
-		// Mdib is specified in xml
-		std::ifstream t("Examples/cachedMdib.xml");
+
 		std::stringstream buffer;
-		buffer << t.rdbuf();
+		buffer << p_stream.rdbuf();
 		std::string mdDesciption_xml = buffer.str();
+        p_stream.close();
 
 		DebugOut(DebugOut::Default, "ExampleCachedProvider") << mdDesciption_xml;
 
@@ -253,6 +255,15 @@ public:
 
 int main()
 {
+    // Load cached Mdib from file system
+    // Mdib is specified in xml
+    std::ifstream t_stream(ts_file);
+    // Found?
+    if(!t_stream.is_open()) {
+        DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Could not open " << ts_file << "\n";
+        return -1;
+    }
+
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
@@ -267,9 +278,9 @@ int main()
         std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
-	
+
     OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
-	OSCPStreamProvider provider(t_SDCInstance);
+	OSCPStreamProvider provider(t_SDCInstance, t_stream);
 	provider.startup();
 	provider.start();
 
