@@ -14,10 +14,6 @@ Task::Task() : isRunning(false) {
 
 }
 
-Task::~Task() {
-
-}
-
 void Task::run() {
 	while (true) {
 		if (isInterrupted()) {

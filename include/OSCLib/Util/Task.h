@@ -19,7 +19,7 @@ namespace Util {
 class Task : public Poco::Runnable {
 public:
 	Task();
-	virtual ~Task();
+	virtual ~Task() = default;
 
 	virtual void run();
 	virtual void runImpl() = 0;
