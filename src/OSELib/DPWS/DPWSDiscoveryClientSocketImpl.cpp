@@ -5,19 +5,20 @@
  *      Author: matthias
  */
 
-#include <iostream>
-
-#include "Poco/Buffer.h"
-#include "Poco/UUIDGenerator.h"
-#include "Poco/Net/SocketAddress.h"
-
-#include "NormalizedMessageModel.hxx"
-
+#include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
 #include "OSCLib/SDCInstance.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/DPWSCommon.h"
-#include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
 #include "OSELib/Helper/BufferAdapter.h"
+
+#include "NormalizedMessageModel.hxx"
+
+#include <iostream>
+
+#include <Poco/Buffer.h>
+#include <Poco/UUIDGenerator.h>
+#include <Poco/Net/SocketAddress.h>
+
 
 using namespace OSELib::DPWS::Impl;
 
@@ -74,7 +75,6 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
 {
 
     if (m_SDCInstance->getIP4enabled()) {
-
         // Bind only interfaces we specified
         if (m_SDCInstance->isBound()) {
             m_ipv4DiscoverySocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
@@ -85,6 +85,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
                     auto t_ipv4BindingAddress = Poco::Net::SocketAddress(t_IP, m_ipv4MulticastAddress.port());
                     m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
                     m_ipv4DiscoverySocket.joinGroup(m_ipv4MulticastAddress.host(), t_interface->m_if);
+                    // DatagramSocket
                     Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv4, m_ipv4DatagrammSocketPort), t_interface->SO_REUSEADDR_FLAG);
                     t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
                     t_datagramSocket.setBlocking(false);
@@ -123,8 +124,10 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
                 }
             }
         }
-        m_reactor.addEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
+        // Nonblocking
         m_ipv4DiscoverySocket.setBlocking(false);
+        // Add Ipv4 Socket EventHandler
+        m_reactor.addEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 	}
     if (m_SDCInstance->getIP6enabled()) {
 
@@ -133,8 +136,8 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
             for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
                 auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
                 m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-
                 m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), t_interface->m_if);
+                // DatagramSocket
                 Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv6, m_ipv6DatagrammSocketPort), t_interface->SO_REUSEADDR_FLAG);
                 t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
                 t_datagramSocket.setBlocking(false);
@@ -162,11 +165,13 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
                               log_error([&] { return "Something went wrong"; });
                             }
                       }
-              }
-            m_reactor.addEventHandler(m_ipv6DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
-          }
-		m_ipv6DiscoverySocket.setBlocking(false);
-	}
+            }
+        }
+        // Nonblocking
+        m_ipv6DiscoverySocket.setBlocking(false);
+        // Add Ipv6 Socket EventHandler
+        m_reactor.addEventHandler(m_ipv6DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
+    }
 	xercesc::XMLPlatformUtils::Initialize ();
 
 	m_reactorThread.start(m_reactor);

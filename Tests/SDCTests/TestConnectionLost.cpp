@@ -144,7 +144,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 
 	    DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
 
-		constexpr std::size_t t_providerCount{10};
+		CONSTEXPR_MACRO std::size_t t_providerCount{10};
 		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> t_providerEPRs;
 
@@ -153,12 +153,13 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 		for (std::size_t i = 0; i < t_providerCount; ++i) {
 			auto p = std::make_shared<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>(t_SDCInstance, i);
 			providers.push_back(p);
-			p->startup();
 			t_providerEPRs.emplace_back(p->getEndpointReference());
-            Poco::Thread::sleep(1000);
+            // Startup
+            p->startup();
 		}
+		// Wait for startup...
+        Poco::Thread::sleep(5000);
 
-        Poco::Thread::sleep(2000);
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
@@ -203,8 +204,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
         for (auto & next : providers) {
         	next->shutdown();
         }
-
-        Poco::Thread::sleep(10000);
+        Poco::Thread::sleep(5000);
 
         for (const auto handler : connectionLostHanders) {
         	CHECK_EQUAL(true, handler->handlerVisited);

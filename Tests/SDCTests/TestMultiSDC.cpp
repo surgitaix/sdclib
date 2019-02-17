@@ -116,24 +116,25 @@ TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
 		std::vector<std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
 
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
 		for (std::size_t i = 0; i < providerCount; i++) {
 			std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider> p(new Tests::MultiSDC::OSCPTestDeviceProvider(t_SDCInstance, i, metricCount));
 			providers.push_back(p);
+            providerEPRs.emplace_back(p->getEndpointReference());
 			p->startup();
-			providerEPRs.emplace_back(p->getEndpointReference());
 		}
-
-        Poco::Thread::sleep(2000);
+        // Wait for startup...
+        Poco::Thread::sleep(5000);
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
         OSELib::SDC::ServiceManager sm(t_SDCInstance);
-        std::vector<std::unique_ptr<SDCConsumer>> consumers(sm.discoverOSCP());
+        auto tl_consumers(sm.discoverOSCP());
 
         bool foundAll = true;
         for (const auto & providerEPR : providerEPRs) {
         	bool foundOne = false;
-			for (const auto & consumer : consumers) {
+			for (const auto & consumer : tl_consumers) {
 				if (consumer->getEndpointReference() == providerEPR) {
 					foundOne = true;
 					break;
@@ -146,13 +147,14 @@ TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
         }
         CHECK_EQUAL(true, foundAll);
 
-        for (auto & nextConsumer : consumers) {
+        for (auto & nextConsumer : tl_consumers) {
             DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Found " << nextConsumer->getEndpointReference();
         }
 
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting...";
         Poco::Thread::sleep(2000);
 
-        for (auto & next : consumers) {
+        for (auto & next : tl_consumers) {
         	next->disconnect();
         }
         for (auto & next : providers) {

@@ -319,8 +319,9 @@ public:
     	DebugOut(DebugOut::Default, "StreamSDC") << "\nPoducer thread started." << std::endl;
 		const std::size_t size(1000);
 		std::vector<double> samples;
-		for (std::size_t i = 0; i < size; i++) {
-			samples.push_back(i);
+        samples.reserve(size);
+		for (std::size_t i = 0; i < samples.size(); i++) {
+			samples[i] = static_cast<double>(i);
 		}
 		long index(0);
 		while (!isInterrupted()) {
@@ -376,7 +377,8 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
             provider.start();// starts provider in a thread and calls the overwritten function runImpl()
 
 			// Metric event reception test
-            Poco::Thread::sleep(10000);
+			DebugOut(DebugOut::Default, m_details.testName) << "Waiting..." << std::endl;
+            Poco::Thread::sleep(4000);
             CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
             CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
             CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
@@ -387,8 +389,6 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
             c->unregisterStateEventHandler(eventHandlerDistribution.get());
             c->disconnect();
         }
-
-        Poco::Thread::sleep(2000);
         provider.shutdown();
 	}
 	catch (char const* exc)

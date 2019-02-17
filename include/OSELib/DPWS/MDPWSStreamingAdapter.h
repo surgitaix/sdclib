@@ -9,21 +9,18 @@
 #define INCLUDE_OSELIB_DPWS_DPWSSTREAMINGCLIENTSOCKETIMPL_H_
 
 
-#include "Poco/NotificationQueue.h"
-#include "Poco/Thread.h"
-//#include "Poco/Net/DatagramSocket.h"
-#include "Poco/Net/MulticastSocket.h"
-#include "Poco/Net/SocketNotification.h"
-#include "Poco/Net/SocketReactor.h"
-
+#include "OSCLib/Prerequisites.h"
+#include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/fwd.h"
-#include "OSELib/DPWS/MessagingContext.h"
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/WithLogger.h"
 
-#include "OSELib/DPWS/DeviceDescription.h"
+#include <Poco/NotificationQueue.h>
+#include <Poco/Thread.h>
+#include <Poco/Net/MulticastSocket.h>
+#include <Poco/Net/SocketNotification.h>
+#include <Poco/Net/SocketReactor.h>
 
-#include "OSCLib/Prerequisites.h"
 
 namespace OSELib {
 namespace DPWS {
@@ -49,21 +46,18 @@ private:
 
 	// todo: make list of socket for compatibility with other frameworks
 
-	Poco::Net::SocketAddress m_ipv4MulticastAddress;
-	Poco::Net::SocketAddress m_ipv6MulticastAddress;
-	const Poco::Net::SocketAddress m_ipv4BindingAddress;
-	const Poco::Net::SocketAddress m_ipv6BindingAddress;
+	const Poco::Net::SocketAddress m_ipv4MulticastAddress;
+	const Poco::Net::SocketAddress m_ipv6MulticastAddress;
 	Poco::Net::MulticastSocket m_ipv4MulticastSocket;
 	Poco::Net::MulticastSocket m_ipv6MulticastSocket;
 
 	const DeviceDescription & m_deviceDescription;
 
-//	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> _socketSendMessageQueue;
+	Poco::Thread m_reactorThread;
+	Poco::Net::SocketReactor m_reactor;
 
-//	MessagingContext context; ?????
-
-	Poco::Thread _reactorThread;
-	Poco::Net::SocketReactor _reactor;
+    bool m_SO_REUSEADDR_FLAG = true; // Default flag when binding to all adapters
+    bool m_SO_REUSEPORT_FLAG = true; // Default flag when binding to all adapters
 };
 
 } /* namespace Impl */

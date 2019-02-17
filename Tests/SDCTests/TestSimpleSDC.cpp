@@ -1060,7 +1060,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
         mdDescription.addMdsDescriptor(mds_test);
 
         CHECK_EQUAL(true, mdDescription.removeMdsDescriptor(mds_test));
-
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Discover EPR...";
         Poco::Thread::sleep(2000);
         // Consumer
         OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
@@ -1129,6 +1129,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
             CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&locationEventHandler));
             CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&patientEventHandler));
 
+            DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting...";
             Poco::Thread::sleep(2000);
 
             {	// Ensure that requests for wrong handles fail.

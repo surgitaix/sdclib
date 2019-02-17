@@ -8,18 +8,20 @@
 #ifndef OSELIB_DPWS_DPWSDISCOVERYCLIENTSOCKETIMPL_H_
 #define OSELIB_DPWS_DPWSDISCOVERYCLIENTSOCKETIMPL_H_
 
-#include "Poco/NotificationQueue.h"
-#include "Poco/Thread.h"
-#include "Poco/Net/DatagramSocket.h"
-#include "Poco/Net/MulticastSocket.h"
-#include "Poco/Net/SocketNotification.h"
-#include "Poco/Net/SocketReactor.h"
-
 #include "OSCLib/Prerequisites.h"
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/MessagingContext.h"
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/WithLogger.h"
+
+#include <Poco/NotificationQueue.h>
+#include <Poco/Thread.h>
+#include <Poco/Net/DatagramSocket.h>
+#include <Poco/Net/MulticastSocket.h>
+#include <Poco/Net/SocketNotification.h>
+#include <Poco/Net/SocketReactor.h>
+
+
 
 namespace OSELib {
 namespace DPWS {
@@ -70,8 +72,8 @@ private:
 	Poco::Thread m_reactorThread;
 	Poco::Net::SocketReactor m_reactor;
 
-    bool m_SO_REUSEADDR_FLAG = true;
-    bool m_SO_REUSEPORT_FLAG = true;
+    bool m_SO_REUSEADDR_FLAG = true; // Default flag when binding to all adapters
+    bool m_SO_REUSEPORT_FLAG = true; // Default flag when binding to all adapters
 };
 
 } /* namespace Impl */

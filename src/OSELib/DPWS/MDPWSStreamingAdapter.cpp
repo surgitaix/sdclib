@@ -2,114 +2,122 @@
  * MDPWSStreamingAdapter.cpp
  *
  *  Created on: Nov 3, 2016
- *      Author: sebastian
+ *      Author: sebastian, baumeister
  */
 
-#include <iostream>
-
-#include "Poco/Buffer.h"
-#include "Poco/UUIDGenerator.h"
-#include "Poco/Net/SocketAddress.h"
-
-#include "NormalizedMessageModel.hxx"
-
 #include "OSELib/DPWS/MDPWSStreamingAdapter.h"
-#include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSCLib/SDCInstance.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
 
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
-
-#include "OSCLib/SDCInstance.h"
-
+#include "NormalizedMessageModel.hxx"
 
 using namespace OSELib::DPWS::Impl;
 
-MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription):
+MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription) :
 	WithLogger(Log::DISCOVERY),
     m_SDCInstance(p_SDCInstance),
 	m_streamNotificationDispatcher(streamNotificationDispatcher),
-	m_deviceDescription(deviceDescription)
+	m_deviceDescription(deviceDescription),
+	m_ipv4MulticastAddress(Poco::Net::SocketAddress(m_SDCInstance->_getStreamingIPv4(), m_SDCInstance->_getStreamingPortv4())),
+	m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getStreamingIPv6(), p_SDCInstance->_getStreamingPortv6()))
 {
-	xercesc::XMLPlatformUtils::Initialize();
-	// todo: implement ipv6
-    // only open a streaming socket, if the provider is providing a streaming service
-    // BUT: BIND IT TO THE SDC INSTANCE ADDRESS!
-    if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
-        if ( m_SDCInstance->getIP4enabled() ) {
-            log_debug([&] {return "Host:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() + "Port: " + std::to_string(m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());});
-            //m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_deviceDescription.getStreamMulticastAddressURIs().front().getHost(), m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());
-            m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_SDCInstance->_getStreamingIPv4(), m_SDCInstance->_getStreamingPortv4());
-
-            // Bind only interfaces we specified
-            if (m_SDCInstance->isBound()) {
-                m_ipv4MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
-                for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
-                    try {
-                        auto t_ipv4MulticastStreamingBindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
-                        m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
-                        m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), t_interface->m_if);
-                    } catch (...) {
-                      // todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
-                      log_error([&] { return "Another thing went wrong"; });
-                    }
+    if ( m_SDCInstance->getIP4enabled() ) {
+        // Bind only interfaces we specified
+        if (m_SDCInstance->isBound()) {
+            m_ipv4MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
+            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+                try {
+                    auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
+                    m_ipv4MulticastSocket.bind(t_bindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
+                    m_ipv4MulticastSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
+                    m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), t_interface->m_if);
+                } catch (...) {
+                    // todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
+                    log_error([] { return "Another thing went wrong"; });
                 }
             }
-            else {
-                // bind all network adapters to socket
-                for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-                    // devices network adapters have a unicast IP
-                    if (nextIf.supportsIPv4() && !nextIf.address().isLoopback() && nextIf.address().isUnicast()) {
-                            // make member vars
-                            const Poco::Net::SocketAddress _ipv4MulticastStreamingBindingAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port());
-                            m_ipv4MulticastSocket = Poco::Net::MulticastSocket(_ipv4MulticastStreamingBindingAddress.family());
-                            m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, true);
-                            m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
-                          }
-                  }
+        }
+        else {
+            // bind all network adapters to socket
+            for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
+                // devices network adapters have a unicast IP
+                if (nextIf.supportsIPv4() && !nextIf.address().isLoopback() && nextIf.address().isUnicast()) {
+                    // make member vars
+                    const Poco::Net::SocketAddress t_bindingAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port());
+                    m_ipv4MulticastSocket = Poco::Net::MulticastSocket(t_bindingAddress.family());
+                    m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
+                    m_ipv4MulticastSocket.setReusePort(m_SO_REUSEPORT_FLAG);
+                    m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
+                }
             }
-			m_ipv4MulticastSocket.setBlocking(false);
-		}
-        if ( m_SDCInstance->getIP6enabled() )
-				{
-//			m_deviceDescription.getStreamMulticastAddressURIs().front().
-//					DebugOut(DebugOut::Default, std::cerr, "streamsdc") << "Host IPv6:" + m_deviceDescription.getStreamMulticastAddressURIs().front().getHost() << "Port: " + m_deviceDescription.getStreamMulticastAddressURIs().front().getPort() << std::endl;
-//					m_ipv4MulticastAddress = Poco::Net::SocketAddress(m_deviceDescription.getStreamMulticastAddressURIs().front().getHost(), m_deviceDescription.getStreamMulticastAddressURIs().front().getPort());
-//
-//					const Poco::Net::SocketAddress _ipv4MulticastStreamingBindingAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port()); // make member vars
-//					m_ipv4MulticastSocket = Poco::Net::MulticastSocket(_ipv4MulticastStreamingBindingAddress.family());
-//
-//					m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, true);
-//					// bind all network adapters to socket
-//					for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-//						if (nextIf.supportsIPv4()
-//							&& !nextIf.address().isLoopback()
-//							&& nextIf.address().isUnicast()) { // devices network adapters have a unicast IP
-//							m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
-//						}
-//					}
-//					m_ipv4MulticastSocket.setBlocking(false);
-				}
+        }
+        // Nonblocking
+        m_ipv4MulticastSocket.setBlocking(false);
+        // Add Ipv4 Socket EventHandler
+        m_reactor.addEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
+    }
+    if ( m_SDCInstance->getIP6enabled() ) {
 
+        // Bind only interfaces we specified
+        if (m_SDCInstance->isBound()) {
+            m_ipv6MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
+            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+                try {
+                    auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
+                    m_ipv6MulticastSocket.bind(t_bindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
+                    m_ipv6MulticastSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
+                    m_ipv6MulticastSocket.joinGroup(m_ipv6MulticastAddress.host(), t_interface->m_if);
+                } catch (...) {
+                    // todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
+                    log_error([] { return "Another thing went wrong"; });
+                }
+            }
+        }
+        else {
+            // bind all network adapters to socket
+            for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
+                // devices network adapters have a unicast IP
+                if (nextIf.supportsIPv6() && !nextIf.address().isLoopback() && nextIf.address().isUnicast()) {
+                    // make member vars
+                    const Poco::Net::SocketAddress t_bindingAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6MulticastAddress.port());
+                    m_ipv6MulticastSocket = Poco::Net::MulticastSocket(t_bindingAddress.family());
+                    m_ipv6MulticastSocket.bind(m_ipv6MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
+                    m_ipv6MulticastSocket.setReusePort(m_SO_REUSEPORT_FLAG);
+                    m_ipv6MulticastSocket.joinGroup(m_ipv6MulticastAddress.host(), nextIf);
+                }
+            }
+        }
+        // Nonblocking
+        m_ipv6MulticastSocket.setBlocking(false);
+        // Add Ipv6 Socket EventHandler
+        m_reactor.addEventHandler(m_ipv6MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
+    }
 
-		_reactor.addEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
+    xercesc::XMLPlatformUtils::Initialize();
 
-		_reactorThread.start(_reactor);
-	}
+    m_reactorThread.start(m_reactor);
 }
 
 MDPWSStreamingAdapter::~MDPWSStreamingAdapter() {
-	if (!m_deviceDescription.getStreamMulticastAddressURIs().empty()) {
-		_reactor.removeEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
-	}
+    m_reactor.removeEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
+    m_reactor.removeEventHandler(m_ipv6MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
 
-//	for (auto & messagingSocketMapping : _socketSendMessageQueue) {
-//		_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
-//		_reactor.removeEventHandler(messagingSocketMapping.first, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));
-//	}
+    for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+        try
+        {
+            if (m_SDCInstance->getIP4enabled()) { m_ipv4MulticastSocket.leaveGroup(m_ipv4MulticastAddress.host(), t_interface->m_if); }
+            if (m_SDCInstance->getIP6enabled()) { m_ipv6MulticastSocket.leaveGroup(m_ipv6MulticastAddress.host(), t_interface->m_if); }
+        }
+        catch (...) {
+            // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
+            log_error([&] { return "Some thing went wrong leaving : " + t_interface->m_name; });
+            continue;
+        }
+    }
 
-	_reactor.stop();
-	_reactorThread.join();
+	m_reactor.stop();
+	m_reactorThread.join();
 
 	xercesc::XMLPlatformUtils::Terminate ();
 }
@@ -123,8 +131,11 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 	if (available == 0) {
 		return;
 	}
-    // Only read if this belongs to this SDCInstance!
-    if (!m_SDCInstance->belongsToSDCInstance(socket.address().host())) {
+
+    // Only read if this belongs to this SDCInstance! - Peek first
+    Poco::Net::SocketAddress t_sender;
+    socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
+    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
         return;
     }
 
