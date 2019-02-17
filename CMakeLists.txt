@@ -298,9 +298,3 @@ if(SDC_TESTS)
     add_subdirectory(${PATH_TESTS_ROOT})
 ENDIF()
 #...
-
-
-
-
-
-
