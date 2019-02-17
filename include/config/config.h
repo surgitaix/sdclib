@@ -46,6 +46,8 @@ namespace SDCLib
         const unsigned int SDC_ALLOWED_PORT_RANGE = 2000;
         const unsigned int SDC_ALLOWED_PORT_END = SDC_ALLOWED_PORT_START + SDC_ALLOWED_PORT_RANGE;
         const unsigned int SDC_DEFAULT_PORT_RANGE = 1000;
+
+        const unsigned int SDC_DISCOVERY_TIMEOUT_MS = 4000;
     }
 }
 

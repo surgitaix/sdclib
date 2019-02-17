@@ -84,7 +84,7 @@ namespace SDCLib
 
         SDCPort m_portStart = Config::SDC_ALLOWED_PORT_START;
         SDCPort m_portRange = Config::SDC_DEFAULT_PORT_RANGE;
-        std::chrono::milliseconds m_discoveryTime = std::chrono::milliseconds(3000);
+        std::chrono::milliseconds m_discoveryTime = std::chrono::milliseconds(Config::SDC_DISCOVERY_TIMEOUT_MS);
 
         std::deque<SDCPort> m_reservedPorts;
         std::deque<SDCPort> m_availablePorts;

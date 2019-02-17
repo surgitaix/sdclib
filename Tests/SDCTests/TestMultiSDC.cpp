@@ -120,7 +120,7 @@ TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
 		for (std::size_t i = 0; i < providerCount; i++) {
 			std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider> p(new Tests::MultiSDC::OSCPTestDeviceProvider(t_SDCInstance, i, metricCount));
 			providers.push_back(p);
-            providerEPRs.emplace_back(p->getEndpointReference());
+            providerEPRs.push_back(p->getEndpointReference());
 			p->startup();
 		}
         // Wait for startup...
@@ -152,7 +152,6 @@ TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
         }
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting...";
-        Poco::Thread::sleep(2000);
 
         for (auto & next : tl_consumers) {
         	next->disconnect();
@@ -160,6 +159,7 @@ TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
         for (auto & next : providers) {
         	next->shutdown();
         }
+        Poco::Thread::sleep(2000);
     } catch (char const* exc) {
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
 	} catch (...) {

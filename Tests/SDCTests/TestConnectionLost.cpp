@@ -136,7 +136,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 	    		handlerVisited = true;
 	    	}
 
-	    	std::atomic<bool> handlerVisited;
+            std::atomic<bool> handlerVisited{false};
 
 	    private:
 	    	Data::SDC::SDCConsumer & consumer;
@@ -153,9 +153,10 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 		for (std::size_t i = 0; i < t_providerCount; ++i) {
 			auto p = std::make_shared<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>(t_SDCInstance, i);
 			providers.push_back(p);
-			t_providerEPRs.emplace_back(p->getEndpointReference());
+			t_providerEPRs.push_back(p->getEndpointReference());
             // Startup
             p->startup();
+            Poco::Thread::sleep(1000);
 		}
 		// Wait for startup...
         Poco::Thread::sleep(5000);
@@ -166,10 +167,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
         OSELib::SDC::ServiceManager sm(t_SDCInstance);
         auto tl_consumers{sm.discoverOSCP()};
 
-        // Quick check - 10 Providers found
-        CHECK_EQUAL(t_providerCount, tl_consumers.size());
-
-        // Are they "our" Providers?
+        // Found all the providers?
         bool foundAll = true;
         for (const auto & providerEPR : t_providerEPRs) {
         	bool foundOne = false;
@@ -200,21 +198,26 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
         	connectionLostHanders.push_back(myHandler);
         }
 
-        DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Shutting down all Providers...";
-        for (auto & next : providers) {
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Shutting down all Providers...\n";
+        for (auto next : providers) {
         	next->shutdown();
         }
-        Poco::Thread::sleep(5000);
 
-        for (const auto handler : connectionLostHanders) {
+        // Wait long enough for all to get a call... FIXME: Sometimes this test fails. Just because the timings arent correct.
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for connectionLostHanders...\n";
+        Poco::Thread::sleep(8000);
+
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Checking connectionLostHandlers...\n";
+
+        for (auto & handler : connectionLostHanders) {
         	CHECK_EQUAL(true, handler->handlerVisited);
         }
-
-    } catch (char const* exc) {
-		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
-	} catch (...) {
-		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
+	catch (...) {
+		DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Unknown exception occurred!";
+	}
+	DebugOut(DebugOut::Default, std::cout, m_details.testName) << "CloseLogFile...\n";
 	DebugOut::closeLogFile();
+    DebugOut(DebugOut::Default, std::cout, m_details.testName) << "\nFinished Test!\n";
 }
 }

@@ -374,6 +374,8 @@ private:
     std::unique_ptr<SDCProviderAdapter> _adapter;
     Dev::DeviceCharacteristics m_devicecharacteristics;
 	mutable Poco::Mutex m_mutex;
+    mutable Poco::Mutex m_setAsyncMutex;
+    mutable Poco::Mutex m_mdibMutex;
 
     std::string endpointReference;
 

@@ -152,6 +152,9 @@ mark_as_advanced(SDC_ALLOWED_PORT_START)
 mark_as_advanced(SDC_ALLOWED_PORT_RANGE)
 mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
 
+set(SDC_DISCOVERY_TIMEOUT_MS 4000 CACHE STRING "Time in milliseconds a Discovery will take.")
+mark_as_advanced(SDC_DISCOVERY_TIMEOUT_MS)
+
 
 ################################################################################
 
