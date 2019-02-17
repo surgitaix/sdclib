@@ -29,7 +29,7 @@ SET(XSDCXX_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xsd/include" CACHE PATH "Path t
 SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
 SET(XERCES_LIB_DIR "${PROJECT_SOURCE_DIR}/../xerces/lib/" CACHE PATH "Path to XERCES-C libraries.")
 
-INCLUDE_DIRECTORIES("include" "datamodel" ${XSDCXX_INCLUDE_DIR} ${XERCES_INCLUDE_DIR} ${PTHREAD_INCLUDE_DIR})
+INCLUDE_DIRECTORIES("include" "datamodel" "datamodel/generated" ${XSDCXX_INCLUDE_DIR} ${XERCES_INCLUDE_DIR} ${PTHREAD_INCLUDE_DIR})
 LINK_DIRECTORIES(${PTHREAD_LIB_DIR} ${XERCES_LIB_DIR} ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
 # Debug or Release build
@@ -96,7 +96,7 @@ set(SDCLibSOURCES
 ./src/OSCLib/SDCLibrary.cpp
 ./src/OSCLib/SDCLibrary2.cpp
 ./src/OSCLib/SDCInstance.cpp
-./src/OSCLib/OSCLib/Data/SDC/MDIB/ActivateOperationDescriptor.cpp
+./src/OSCLib/Data/SDC/MDIB/ActivateOperationDescriptor.cpp
 ./src/OSCLib/Data/SDC/MDIB/ActivateOperationState.cpp
 ./src/OSCLib/Data/SDC/MDIB/AlertConditionDescriptor.cpp
 ./src/OSCLib/Data/SDC/MDIB/AlertConditionState.cpp
