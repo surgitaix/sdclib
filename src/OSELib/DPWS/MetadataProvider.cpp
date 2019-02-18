@@ -26,24 +26,24 @@ std::string MetadataProvider::getDeviceServicePath() const {
 	return "/Device";
 }
 
-std::string MetadataProvider::getEventReportServicePath() const {
-	return "/EventReport";
+std::string MetadataProvider::getStateEventReportServicePath() const {
+	return std::string("/" + SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
 }
 
 std::string MetadataProvider::getGetServicePath() const {
-	return "/GetService";
+	return std::string("/" + SDC::QNAME_GETSERVICE_PORTTYPE);
 }
 
-std::string MetadataProvider::getPHIServicePath() const {
-	return "/ContextService";
+std::string MetadataProvider::getContextServicePath() const {
+	return std::string("/" + SDC::QNAME_CONTEXTSERVICE_PORTTYPE);
 }
 
 std::string MetadataProvider::getSetServicePath() const {
-	return "/SetService";
+	return std::string("/" + SDC::QNAME_SETSERVICE_PORTTYPE);
 }
 
-std::string MetadataProvider::getWaveformStreamServicePath() const {
-	return "/WaveformEventReport";
+std::string MetadataProvider::getWaveformServicePath() const {
+	return std::string("/" + SDC::QNAME_WAVEFORMSERVICE_PORTTYPE);
 }
 
 WS::MEX::Metadata MetadataProvider::createDeviceMetadata(const std::string & serverAddress) const {
@@ -135,19 +135,19 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisDev
 
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForContextService(const std::string & serverAddress) const {
 	MetadataSection metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
-	metadataSectionWsdl.Location().set(MetadataLocation(HTTPProtocolPrefix + serverAddress + getPHIServicePath() + "/description.wsdl"));
+	metadataSectionWsdl.Location().set(MetadataLocation(HTTPProtocolPrefix + serverAddress + getContextServicePath() + "/description.wsdl"));
 	return metadataSectionWsdl;
 }
 
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForEventReportService(const std::string & serverAddress) const {
 	MetadataSection metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
-	metadataSectionWsdl.Location().set(MetadataLocation(HTTPProtocolPrefix + serverAddress + getEventReportServicePath() + "/description.wsdl"));
+	metadataSectionWsdl.Location().set(MetadataLocation(HTTPProtocolPrefix + serverAddress + getStateEventReportServicePath() + "/description.wsdl"));
 	return metadataSectionWsdl;
 }
 
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForWaveformReportService(const std::string & serverAddress) const {
 	MetadataSection metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
-	metadataSectionWsdl.Location().set(MetadataLocation(HTTPProtocolPrefix + serverAddress + getWaveformStreamServicePath() + "/description.wsdl"));
+	metadataSectionWsdl.Location().set(MetadataLocation(HTTPProtocolPrefix + serverAddress + getWaveformServicePath() + "/description.wsdl"));
 	return metadataSectionWsdl;
 }
 
@@ -203,7 +203,7 @@ MetadataProvider::Host MetadataProvider::createHostMetadata(const std::string & 
 }
 
 MetadataProvider::Hosted MetadataProvider::createHostedContextService(const std::string & serverAddress) const {
-	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getPHIServicePath());
+	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getContextServicePath());
 	Hosted::EndpointReferenceType hostedEPR(hostedEPRAddress);
 	Hosted::TypesType hostedTypes;
 	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_CONTEXTSERVICE_PORTTYPE));
@@ -227,24 +227,24 @@ MetadataProvider::Hosted MetadataProvider::createHostedGetService(const std::str
 }
 
 MetadataProvider::Hosted MetadataProvider::createHostedEventReportService(const std::string & serverAddress) const {
-	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getEventReportServicePath());
+	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getStateEventReportServicePath());
 	Hosted::EndpointReferenceType hostedEPR(hostedEPRAddress);
 	Hosted::TypesType hostedTypes;
-	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_REPORTSERVICE_PORTTYPE));
+	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE));
 
-	Hosted::ServiceIdType hostedServiceId("EventReport");
+	Hosted::ServiceIdType hostedServiceId("StateEventService");
 	Hosted hosted(hostedTypes, hostedServiceId);
 	hosted.EndpointReference().push_back(hostedEPR);
 	return hosted;
 }
 
 MetadataProvider::Hosted MetadataProvider::createHostedStreamReportService(const std::string & serverAddress) const {
-	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getWaveformStreamServicePath());
+	Hosted::EndpointReferenceType::AddressType hostedEPRAddress(HTTPProtocolPrefix + serverAddress + getWaveformServicePath());
 	Hosted::EndpointReferenceType hostedEPR(hostedEPRAddress);
 	Hosted::TypesType hostedTypes;
-	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STREAMSERVICE_PORTTYPE));
+	hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_WAVEFORMSERVICE_PORTTYPE));
 
-	Hosted::ServiceIdType hostedServiceId("WaveformEventReport");
+	Hosted::ServiceIdType hostedServiceId("WaveformService");
 	Hosted hosted(hostedTypes, hostedServiceId);
 	hosted.EndpointReference().push_back(hostedEPR);
 	return hosted;

@@ -184,6 +184,11 @@ public:
 
 		DebugOut(DebugOut::Default, "ExampleCachedProvider") << mdDesciption_xml;
 
+		// set DPWS metadata, e.g. for the displayed friendly name
+		Dev::DeviceCharacteristics devChar;
+		devChar.addFriendlyName("en", "SDCLib ExampleProvider");
+		sdcProvider.setDeviceCharacteristics(devChar);
+
 		sdcProvider.setMdDescription(mdDesciption_xml);
 
         // Add handler
@@ -233,11 +238,11 @@ public:
 			{
                 updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Vld)).setSamples(RealTimeValueType(samples)));
 			}
-			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+			DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
 			// generate NumericMetricState
 			getNumericHandler.setNumericValue(42.0);
-			DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "NumericMetric: value changed to 42.0" << std::endl;
+			DebugOut(DebugOut::Default, "ExampleCachedProvider") << "NumericMetric: value changed to 42.0" << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
 		}
@@ -249,7 +254,7 @@ public:
 int main()
 {
 	// Startup
-	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Startup" << std::endl;
+	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
@@ -260,11 +265,11 @@ int main()
 	provider.start();
 
 	std::string temp;
-	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Press key to exit program.";
+	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Press key to exit program.";
 	std::cin >> temp;
 
 	// Shutdown
-	DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Shutdown." << std::endl;
+	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Shutdown." << std::endl;
 	provider.shutdown();
     SDCLibrary::getInstance().shutdown();
 }

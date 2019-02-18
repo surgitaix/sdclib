@@ -20,7 +20,7 @@ std::string DescriptionModificationReportTraits::NotificationName() {
 	return "DescriptionModificationReport";
 }
 xml_schema::Qname DescriptionModificationReportTraits::PortType() {
-	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_REPORTSERVICE_PORTTYPE);
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
 }
 std::string DescriptionModificationReportTraits::Action() {
 	return EVENT_ACTION_CDM_DESCRIPTION_MODIFICATION_REPORT;
@@ -33,7 +33,7 @@ std::string EpisodicAlertReportTraits::NotificationName() {
 	return "EpisodicAlertReport";
 }
 xml_schema::Qname EpisodicAlertReportTraits::PortType() {
-	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_REPORTSERVICE_PORTTYPE);
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
 }
 std::string EpisodicAlertReportTraits::Action() {
 	return EVENT_ACTION_CDM_EPISODIC_ALERT_REPORT;
@@ -65,7 +65,7 @@ std::string EpisodicMetricReportTraits::NotificationName() {
 	return "EpisodicMetricReport";
 }
 xml_schema::Qname EpisodicMetricReportTraits::PortType() {
-	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_REPORTSERVICE_PORTTYPE);
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
 }
 std::string EpisodicMetricReportTraits::Action() {
 	return EVENT_ACTION_CDM_EPISODIC_METRIC_REPORT;
@@ -81,7 +81,7 @@ std::string OperationInvokedReportTraits::NotificationName() {
 	return "OperationInvokedReport";
 }
 xml_schema::Qname OperationInvokedReportTraits::PortType() {
-	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_REPORTSERVICE_PORTTYPE);
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
 }
 std::string OperationInvokedReportTraits::Action() {
 	return EVENT_ACTION_CDM_OPERATION_INVOKED_REPORT;
@@ -97,7 +97,7 @@ std::string PeriodicAlertReportTraits::NotificationName() {
 	return "PeriodicAlertReport";
 }
 xml_schema::Qname PeriodicAlertReportTraits::PortType() {
-	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_REPORTSERVICE_PORTTYPE);
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
 }
 std::string PeriodicAlertReportTraits::Action() {
 	return EVENT_ACTION_CDM_PERIODIC_ALERT_REPORT;
@@ -129,7 +129,7 @@ std::string PeriodicMetricReportTraits::NotificationName() {
 	return "PeriodicMetricReport";
 }
 xml_schema::Qname PeriodicMetricReportTraits::PortType() {
-	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_REPORTSERVICE_PORTTYPE);
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
 }
 std::string PeriodicMetricReportTraits::Action() {
 	return EVENT_ACTION_CDM_PERIODIC_METRIC_REPORT;
@@ -146,7 +146,7 @@ std::string WaveformStreamTraits::NotificationName() {
 	return "WaveformStreamReport";
 }
 xml_schema::Qname WaveformStreamTraits::PortType() {
-	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STREAMSERVICE_PORTTYPE);
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_WAVEFORMSERVICE_PORTTYPE);
 }
 std::string WaveformStreamTraits::Action() {
 	return EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT;

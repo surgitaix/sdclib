@@ -95,7 +95,7 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 	}
 
 	virtual std::string getBaseUri() const override {
-		return _metadata.getPHIServicePath();
+		return _metadata.getContextServicePath();
 	}
 
 	virtual std::string getWSDL() override {
@@ -145,11 +145,11 @@ struct EventReportServiceImpl : public SDC::IEventReport {
 	}
 
 	virtual std::string getBaseUri() const override {
-		return _metadata.getEventReportServicePath();
+		return _metadata.getStateEventReportServicePath();
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_REPORTSERVICE_PORTTYPE);
+		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
 		WSDL::WSDLBuilderTraitAdapter<SDC::EpisodicAlertReportTraits> EpisodicAlertReportTraitsAdapter(builder);
 		WSDL::WSDLBuilderTraitAdapter<SDC::EpisodicMetricReportTraits> EpisodicMetricReportTraitsAdapter(builder);
 		WSDL::WSDLBuilderTraitAdapter<SDC::OperationInvokedReportTraits> OperationInvokedReportAdapter(builder);
@@ -185,11 +185,11 @@ struct WaveformReportServiceImpl : public SDC::IEventReport {
 	}
 
 	virtual std::string getBaseUri() const override {
-		return _metadata.getWaveformStreamServicePath();
+		return _metadata.getWaveformServicePath();
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STREAMSERVICE_PORTTYPE);
+		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_WAVEFORMSERVICE_PORTTYPE);
 		builder.addStreamType(SDC::WS_MEX_ORNET_STREAM_IDENTIFIER, SDC::ACTION_ORNET_STREAM, SDC::WS_MEX_ORNET_STREAM_TYPE, "WaveformStream");
 		return builder.serialize();
 	}
@@ -347,8 +347,8 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 	}
 
 	OSELib::DPWS::TypesType types;
-	types.push_back(OSELib::DPWS::QName("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01", "MedicalDevice"));
-	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_WSDL_TARGET_NAMESPACE, "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
 
 	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),

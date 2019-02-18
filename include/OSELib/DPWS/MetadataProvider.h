@@ -19,11 +19,11 @@ public:
 	MetadataProvider(SDCLib::Dev::DeviceCharacteristics);
 
 	std::string getDeviceServicePath() const;
-	std::string getEventReportServicePath() const;
+	std::string getStateEventReportServicePath() const;
 	std::string getGetServicePath() const;
-	std::string getPHIServicePath() const;
+	std::string getContextServicePath() const;
 	std::string getSetServicePath() const;
-	std::string getWaveformStreamServicePath() const;
+	std::string getWaveformServicePath() const;
 
 	WS::MEX::Metadata createDeviceMetadata(const std::string & serverAddress) const;
 	WS::MEX::Metadata createContextServiceMetadata(const std::string & serverAddress) const;
