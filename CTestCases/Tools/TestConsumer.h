@@ -18,7 +18,6 @@
 #include "OSCLib/Data/SDC/FutureInvocationState.h"
 #include "OSCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
 
-
 using namespace SDCLib;
 using namespace SDCLib::Data;
 using namespace SDCLib::Util;

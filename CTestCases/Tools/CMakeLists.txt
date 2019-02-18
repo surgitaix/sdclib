@@ -6,6 +6,8 @@ list(APPEND TOOLSSOURCES
 ./PulseOximeterConsumer.cpp
 )
 
+add_subdirectory(TestProviderStateHandler)
+
 if(WIN32)
 	add_library(Tools STATIC ${TOOLSSOURCES})
 else()

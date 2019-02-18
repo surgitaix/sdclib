@@ -43,6 +43,7 @@
 #include "OSCLib/Data/SDC/MDIB/AlertConditionState.h"
 #include "OSCLib/Data/SDC/MDIB/AlertSystemState.h"
 #include "OSCLib/Data/SDC/MDIB/AlertSignalState.h"
+#include "OSCLib/Data/SDC/MDIB/AlertSignalDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/AlertConditionDescriptor.h"
 
 #include "OSCLib/Data/SDC/MDIB/custom/MdibContainer.h"
@@ -52,6 +53,9 @@
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
+#include "TestProviderStateHandler/NumericMetricStateGetHandler.h"
+#include "TestProviderStateHandler/NumericMetricStateSetHandler.h"
+
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -59,80 +63,12 @@ using namespace SDCLib::Data::SDC;
 
 namespace TestTools {
 
-const std::string HANDLE_GET_NUMERIC_METRIC("handle_get_numeric_metric");
-const std::string HANDLE_SET_NUMERIC_METRIC("handle_set_numeric_metric");
-const std::string HANDLE_ALERT_CONDITION("handle_alert");
-const std::string HANDLE_SYSTEM_ALERT_STATE("handle_system_alert_state");
-const std::string HANDLE_ALERT_SYSTEM("handle_alert_system");
-
-
 class TestProvider : public Util::Task{
-
-	class TestNumericMetricStateGetHandler : public SDCProviderMDStateHandler<NumericMetricState>{
-	public:
-		TestNumericMetricStateGetHandler(std::string decriptorHandle) : SDCProviderMDStateHandler(decriptorHandle) {
-		}
-
-		//This Handler only allows to get a value not to set it.
-		InvocationState onStateChangeRequest(const NumericMetricState &state, const OperationInvocationContext &oic) override {
-			return InvocationState::Fail;
-		}
-
-
-		// Helper method
-		NumericMetricState createState(double value) {
-			NumericMetricState result(HANDLE_GET_NUMERIC_METRIC);
-			result
-				.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
-				.setActivationState(ComponentActivation::On);
-			return result;
-		}
-
-		// InitialValue of the NumericMetricState
-		NumericMetricState getInitialState() override {
-			NumericMetricState nms = createState(14.09);
-			return nms;
-		}
-
-		// Change of NumericMetricStateValue
-		void setNumericcMetricValue(double value) {
-			NumericMetricState nms = createState(value);
-			updateState(nms);
-		}
-	};
-
-	class TestNumericMetricStateSetHandler : public SDCProviderMDStateHandler<NumericMetricState>
-	{
-	public:
-		TestNumericMetricStateSetHandler(const std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-			}
-
-		InvocationState onStateChangeRequest(const NumericMetricState &state, const OperationInvocationContext &oic) {
-			DebugOut(DebugOut::Default, "SettableNumericMetricState") << "Provider: received state cange request. State's value "
-					<< state.getMetricValue().getValue() << std::endl;
-
-	        notifyOperationInvoked(oic, InvocationState::Start);
-	        return InvocationState::Fin;
-	    }
-
-		NumericMetricState createState() {
-			NumericMetricState result(HANDLE_SET_NUMERIC_METRIC);
-			result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(0.0))
-				  .setActivationState(ComponentActivation::On);
-			return result;
-		}
-
-		NumericMetricState getInitialState() override {
-			NumericMetricState result = createState();
-			return result;
-		}
-	};
-
-	class AlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<AlertConditionState>
+	class PhysicalAlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<AlertConditionState>
 	{
 	public:
 
-		AlertConditionStateHandler(std::string decriptorHandle) : SDCProviderAlertConditionStateHandler(decriptorHandle) {
+		PhysicalAlertConditionStateHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle) {
 		}
 
 		void sourceHasChanged(const std::string & sourceHandle) override {
@@ -149,15 +85,43 @@ class TestProvider : public Util::Task{
 				return;
 			}
 			if (sourceValue.getValue() == 20){
-				setAlert(AlertActivation::On);
-				std::cout << "ALERT!";
+				setPresent(true);
 			}
 		}
 
+		void setPresent(bool present) {
+			AlertConditionState newState = createState();
+			newState.setPresence(present);
+			updateState(newState);
+		}
 
-		void setAlert(const AlertActivation & alertActivation) {
-			AlertConditionState newAlertState(HANDLE_ALERT_CONDITION, alertActivation);
-			updateState(newAlertState);
+
+		InvocationState onStateChangeRequest(const AlertConditionState & state, const OperationInvocationContext & oic) override {
+			notifyOperationInvoked(oic, InvocationState::Start);
+			// Do something if a state change is requested
+			// return Finished if successful
+			return InvocationState::Fin;
+		}
+
+		AlertConditionState createState() {
+			AlertConditionState result(getDescriptorHandle(), AlertActivation::On);
+			return result;
+		}
+
+		AlertConditionState getInitialState() override {
+			AlertConditionState initialState = createState();
+			return initialState;
+		}
+	};
+
+	class TechnicalAlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<AlertConditionState>
+	{
+	public:
+		TechnicalAlertConditionStateHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle) {
+		}
+
+		void sourceHasChanged(const std::string & sourceHandle) override {
+			//This technical alert is independent of any source represented in the MDIB and only gets directly set by the provider.
 		}
 
 		InvocationState onStateChangeRequest(const AlertConditionState & state, const OperationInvocationContext & oic) override {
@@ -167,26 +131,18 @@ class TestProvider : public Util::Task{
 			return InvocationState::Fin;
 		}
 
-
 		AlertConditionState getInitialState() override {
-			AlertConditionState result(HANDLE_ALERT_CONDITION, AlertActivation::Off);
+			AlertConditionState result(getDescriptorHandle(), AlertActivation::On);
 			return result;
 		}
 
-	private:
-		std::string descriptorHandle;
-
 	};
 
-	class AlertSystemStateHandler : public SDCProviderAlertConditionStateHandler<AlertSystemState> {
+
+
+	class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState> {
 	public:
-		AlertSystemStateHandler(const std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle)
-		{
-
-		}
-
-		void sourceHasChanged(const std::string & sourceHandle) override {
-			std::cout << sourceHandle;
+		AlertSystemStateHandler(const std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
 		}
 
 		InvocationState onStateChangeRequest(const AlertSystemState &, const OperationInvocationContext & oic) override {
@@ -197,13 +153,31 @@ class TestProvider : public Util::Task{
 		}
 
 		AlertSystemState getInitialState() override {
-			AlertSystemState result(HANDLE_SYSTEM_ALERT_STATE, AlertActivation::Off);
+			AlertSystemState result(getDescriptorHandle(), AlertActivation::On);
 			return result;
 		}
 
-		void setAlert(const AlertActivation & alertActivation) {
-			AlertSystemState newAlertState(HANDLE_SYSTEM_ALERT_STATE, alertActivation);
-			updateState(newAlertState);
+		void setActivationState(AlertActivation alertActivationState) {
+			AlertSystemState result(getDescriptorHandle(), alertActivationState);
+			updateState(result);
+		}
+	};
+
+	class AlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState> {
+	public:
+		AlertSignalStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
+		}
+
+		AlertSignalState getInitialState() override {
+			AlertSignalState initState(getDescriptorHandle(), AlertActivation::On);
+			return initState;
+		}
+
+		InvocationState onStateChangeRequest(const AlertSignalState &, const OperationInvocationContext & oic) override {
+			notifyOperationInvoked(oic, InvocationState::Start);
+			// Do something if a state change is requested
+			// return Finished if successful
+			return InvocationState::Fin;
 		}
 
 	};
@@ -211,6 +185,9 @@ class TestProvider : public Util::Task{
 public:
 	TestProvider();
 	virtual ~TestProvider();
+
+	TestProvider(const TestProvider &) = delete;
+	TestProvider operator=(const TestProvider &) = delete;
 
 	void setPort(int port);
 	void setEndPointReference(std::string endpointRef);
@@ -228,16 +205,21 @@ public:
 
 	void setNumericMetricValue(double val);
 
+    void setAlertConditionPresence(const std::string & alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic);
 
+    void setAlertSystemActivationState(AlertActivation AlertAcitvationState);
 
 private:
 	void addAlertSystem(VmdDescriptor & vmdDesc);
 
 
 	SDCProvider sdcProvider;
-	TestNumericMetricStateSetHandler nmsSetHandler;
-	TestNumericMetricStateGetHandler nmsGetHandler;
-    AlertConditionStateHandler alertConditionStateHandler;
+	NumericMetricStateSetHandler nmsSetHandler;
+	NumericMetricStateGetHandler nmsGetHandler;
+    PhysicalAlertConditionStateHandler phyAlertConditionStateHandler;
+    AlertSignalStateHandler phyAlertSignalHandler;
+    TechnicalAlertConditionStateHandler techAlertConditionStateHandler;
+    AlertSignalStateHandler techAlertSignalHandler;
     AlertSystemStateHandler alertSystemStateHandler;
     NumericMetricDescriptor nmsSetDescriptor;
 	NumericMetricDescriptor nmsGetDescriptor;

@@ -22,7 +22,10 @@ const std::string SYSTEM_CONTEXT_DESCRIPTOR_HANDLE("system_context_descriptor");
 const std::string MDS_DESCRIPTOR_HANDLE("mds_descriptor_handle");
 
 int main() {
-	std::cout << "Test against requirement 11073-10207-5.2.7 SystemContext pm:PatientContextDescriptor and pm:LocationContextDesriptor SHALL be appear once or never within the SystemContextDescriptor. Other ContextDescriptors may appear multiple times and have multiple states." << std::endl;
+	std::cout << "Test against requirement 11073-10207-5.2.7 SystemContext pm:PatientContextDescriptor and "
+			  << "pm:LocationContextDesriptor SHALL be appear once or never within the SystemContextDescriptor. "
+			  << "Other ContextDescriptors may appear multiple times and have multiple states."
+			  << std::endl;
 
 	PatientContextDescriptor patientContextDesc1(PATIENT_CONTEXT_DESCRIPTOR_HANDLE1);
 	PatientContextDescriptor patientContextDesc2(PATIENT_CONTEXT_DESCRIPTOR_HANDLE2);

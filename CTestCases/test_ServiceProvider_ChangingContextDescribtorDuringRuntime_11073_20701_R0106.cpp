@@ -1,5 +1,5 @@
 /*
- * test_ServiceProvider_ChangingContextDescribtorDuringRuntime_11073_20701_R0106.cpp
+ * test_ServiceProvider_ChangingContextDescribtorDuringRuntime_11073_10207_R0106.cpp
  *
  *  Created on: Dec 7, 2018
  *      Author: rosenau
@@ -41,6 +41,13 @@ const std::string LOCATION_CONTEXT_DESCRIPTOR_HANDLE("location_context_descripto
 
 int main()
 {
+	std::cout << "Test against requirement 11073-10207-R0106: "
+			  << "Any context descriptor SHALL NOT be removed "
+			  << "from or added to the MDIB during runtime, "
+			  << "except if the hosting MDS is removed or added "
+			  << "to the MDIB"
+			  << std::endl;
+
 	SDCProvider sdcProvider;
 	SystemContextDescriptor systemContextDesc(SYSTEM_CONTEXT_DESCRIPTOR_HANDLE);
 
@@ -62,47 +69,51 @@ int main()
 	sdcProvider.setMdDescription(mdDescription);
 	sdcProvider.startup();
 
+	bool passed = true;
+
 	LocationContextDescriptor locationContextDesc(LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
 	systemContextDesc.setLocationContext(locationContextDesc);
 	if(sdcProvider.getMdDescription().getMdsList().front().getSystemContext().hasLocationContext()) {
-		std::cout << "Test failed";
-		exit(0);
+		std::cout << "Test failed: LocationContextDescriptor could be set while the provider is running.";
+		passed = false;
 	}
 
 	PatientContextDescriptor patientContextDesc(PATIENT_CONTEXT_DESCRIPTOR_HANDLE);
 	systemContextDesc.setPatientContext(patientContextDesc);
 	if(sdcProvider.getMdDescription().getMdsList().front().getSystemContext().hasPatientContext()) {
-		std::cout << "Test failed";
-		exit(0);
+		std::cout << "Test failed: PatientContextDescriptor could be set while the provider is running.";
+		passed = false;
 	}
 
 	WorkflowContextDescriptor workflowContextDesc(WORKFLOW_CONTEXT_DESCRIPTOR_HANDLE);
 	systemContextDesc.addWorkflowContext(workflowContextDesc);
 	if(!sdcProvider.getMdDescription().getMdsList().front().getSystemContext().getWorkflowContextList().empty()) {
-		std::cout << "Test failed";
-		exit(0);
+		std::cout << "Test failed: WorkflowContextDescriptor could be set while the provider is running.";
+		passed = false;
 	}
 
 	OperatorContextDescriptor operatorContextDesc(OPERATOR_CONTEXT_DESCRIPTOR_HANDLE);
 	systemContextDesc.addOperatorContext(operatorContextDesc);
 	if(!sdcProvider.getMdDescription().getMdsList().front().getSystemContext().getOperatorContextList().empty()) {
-		std::cout << "Test failed";
-		exit(0);
+		std::cout << "Test failed: OperatorContextDescriptor could be set while the provider is running.";
+		passed = false;
 	}
 
 	MeansContextDescriptor meansContextDesc(MEANS_CONTEXT_DESCRIPTOR_HANDLE);
 	systemContextDesc.addMeansContext(meansContextDesc);
 	if(!sdcProvider.getMdDescription().getMdsList().front().getSystemContext().getMeansContextList().empty()) {
-		std::cout << "Test failed";
-		exit(0);
+		std::cout << "Test failed: MeansContextDescriptor could be set while the provider is running.";
+		passed = false;
 	}
 
 	EnsembleContextDescriptor ensembleContextDesc(ENSEMBLE_CONTEXT_DESCRIPTOR_HANDLE);
 	systemContextDesc.addEnsembleContext(ensembleContextDesc);
 	if(!sdcProvider.getMdDescription().getMdsList().front().getSystemContext().getEnsembleContextList().empty()) {
-		std::cout << "Test failed";
-		exit(0);
+		std::cout << "Test failed: EnsembleContextDescriptor could be set while the provider is running.";
+		passed = false;
 	}
 
-	std::cout << "Test passed";
+	if (passed) {
+		std::cout << "Test passed";
+	}
 }

@@ -38,7 +38,7 @@ int main() {
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 
-	//Sample Provider startup. Exchange for your provider under test.
+	//Sample Provider startup.
 	TestTools::TestProvider provider;
 	provider.setPort(TestTools::getFreePort());
 	provider.startup();
@@ -46,18 +46,18 @@ int main() {
 
 	SDCLibrary::getInstance().setPortStart(12000);
 
+	// Discovery
+	TestTools::TestConsumer consumer;
+	consumer.start();
+
 	OSELib::SDC::ServiceManager oscpsm;
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(TestTools::getFreePort());
-
-	//sample Consumer startup. Echange for your consumer.
-	TestTools::TestConsumer consumer;
-	consumer.start();
-	// Discovery
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, config));
 	if(c != nullptr) {
 		consumer.setConsumer(std::move(c));
 
+		//String compare between string representation of provider MDIB and received MDIB of the consumer.
 		if(TestTools::getStringRepresentationOfMDIB(consumer.getConsumer()->getMdib()) == TestTools::getStringRepresentationOfMDIB(provider.getMdib()))
 		{
 			std::cout << "Test passed";

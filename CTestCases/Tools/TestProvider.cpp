@@ -9,21 +9,20 @@
 #include "HelperMethods.h"
 #include "OSCLib/Data/SDC/MDIB/MdState.h"
 #include "OSCLib/Data/SDC/MDIB/SetMetricStateOperationState.h"
+#include "TestProviderHandleNames.h"
 
 const int DEFAULT_PORT(6464);
 
 namespace TestTools {
 
-const std::string DEFAULT_TEST_DEVICE_EPR("TestProvider");
-const std::string CHANNEL_DESCRIPTOR_HANDLE("channel_descriptor_handle");
-const std::string VMD_DESCRIPTOR_HANDLE("vmd_descriptor_handle");
-const std::string MDS_DESCRIPTOR_HANDLE("mds_descriptor_handle");
-
 TestProvider::TestProvider():
 	sdcProvider(),
 	nmsSetHandler(HANDLE_SET_NUMERIC_METRIC),
 	nmsGetHandler(HANDLE_GET_NUMERIC_METRIC),
-	alertConditionStateHandler(HANDLE_ALERT_CONDITION),
+	phyAlertConditionStateHandler(HANDLE_PHYSICAL_ALERT_CONDITION),
+	phyAlertSignalHandler(HANDLE_PHYSICAL_ALERT_SIGNAL),
+	techAlertConditionStateHandler(HANDLE_TECHNICAL_ALERT_CONDITION),
+	techAlertSignalHandler(HANDLE_TECHNICAL_ALERT_SIGNAL),
 	alertSystemStateHandler(HANDLE_ALERT_SYSTEM),
 	nmsSetDescriptor(HANDLE_SET_NUMERIC_METRIC,
 	CodedValue("MDCX_EXAMPLE_SET"),
@@ -65,7 +64,11 @@ TestProvider::TestProvider():
 
 	sdcProvider.addMdStateHandler(&nmsSetHandler);
 	sdcProvider.addMdStateHandler(&nmsGetHandler);
-	sdcProvider.addMdStateHandler(&alertConditionStateHandler);
+	sdcProvider.addMdStateHandler(&phyAlertConditionStateHandler);
+	sdcProvider.addMdStateHandler(&phyAlertSignalHandler);
+	sdcProvider.addMdStateHandler(&techAlertConditionStateHandler);
+	sdcProvider.addMdStateHandler(&techAlertSignalHandler);
+	sdcProvider.addMdStateHandler(&alertSystemStateHandler);
 	sdcProvider.addHandleForPeriodicEvent(HANDLE_SET_NUMERIC_METRIC);
 
 	//Endpoint Name
@@ -134,12 +137,30 @@ void TestProvider::setOperationMode(std::string descriptorHandle, OperatingMode 
 
 
 void TestProvider::addAlertSystem(VmdDescriptor & vmdDesc) {
-	AlertConditionDescriptor alertConditionDescriptor(HANDLE_ALERT_CONDITION,
+	AlertConditionDescriptor phyAlertConditionDescriptor(HANDLE_PHYSICAL_ALERT_CONDITION,
 		AlertConditionKind::Phy,
 		AlertConditionPriority::Hi
 	);
-	alertConditionDescriptor.addSource(HANDLE_GET_NUMERIC_METRIC);
-	alertSystemDescriptor.addAlertCondition(alertConditionDescriptor);
+	phyAlertConditionDescriptor.addSource(HANDLE_PHYSICAL_ALERT_CONDITION);
+	AlertSignalDescriptor phyAlertSignalDescriptor(HANDLE_PHYSICAL_ALERT_SIGNAL,
+		AlertSignalManifestation::Aud,
+		true);
+	phyAlertSignalDescriptor.setConditionSignaled(HANDLE_PHYSICAL_ALERT_CONDITION);
+
+	AlertConditionDescriptor techAlertConditionDescriptor(HANDLE_TECHNICAL_ALERT_CONDITION,
+		AlertConditionKind::Tec,
+		AlertConditionPriority::Me
+	);
+	AlertSignalDescriptor techAlertSignalDescriptor(HANDLE_TECHNICAL_ALERT_SIGNAL,
+		AlertSignalManifestation::Aud,
+		true);
+	techAlertSignalDescriptor.setConditionSignaled(HANDLE_TECHNICAL_ALERT_CONDITION);
+
+
+	alertSystemDescriptor.addAlertCondition(phyAlertConditionDescriptor);
+	alertSystemDescriptor.addAlertSignal(phyAlertSignalDescriptor);
+	alertSystemDescriptor.addAlertCondition(techAlertConditionDescriptor);
+	alertSystemDescriptor.addAlertSignal(techAlertSignalDescriptor);
 	vmdDesc.setAlertSystem(alertSystemDescriptor);
 }
 
@@ -147,6 +168,14 @@ void TestProvider::addAlertSystem(VmdDescriptor & vmdDesc) {
 void TestProvider::setNumericMetricValue(double val) {
 	nmsGetHandler.setNumericcMetricValue(val);
 	auto metricValue = sdcProvider.getMdState().findState<NumericMetricState>(HANDLE_GET_NUMERIC_METRIC);
+}
+
+void TestProvider::setAlertConditionPresence(const std::string & alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
+	sdcProvider.setAlertConditionPresence(alertConditionHandle, conditionPresence, oic);
+}
+
+void TestProvider::setAlertSystemActivationState(AlertActivation AlertActivationState) {
+	alertSystemStateHandler.setActivationState(AlertActivationState);
 }
 
 } /* namespace TestTools */

@@ -7,11 +7,8 @@
 
 #include <algorithm>
 #include <memory>
+#include "TestProviderHandleNames.h"
 #include "TestConsumer.h"
-
-
-const std::string HANDLE_SET_NUMERICMETRIC("handle_set_numeric_metric");
-
 
 namespace TestTools {
 
@@ -61,20 +58,20 @@ void TestConsumer::setNumericMetricStateValue(double val)
 	if(setHandler == nullptr) {
 		return;
 	}
-	std::unique_ptr<NumericMetricState> setNumericMetricState(consumer->requestState<NumericMetricState>(HANDLE_SET_NUMERICMETRIC));
+	std::unique_ptr<NumericMetricState> setNumericMetricState(consumer->requestState<NumericMetricState>(HANDLE_SET_NUMERIC_METRIC));
 	setNumericMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(val));
 	FutureInvocationState fis;
 	consumer->commitState(*setNumericMetricState, fis);
 	Util::DebugOut(Util::DebugOut::Default, "Consumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
 }
 
-void TestConsumer::registerNumericMetricStateSetHandler()
-{
+
+void TestConsumer::registerNumericMetricStateSetHandler(){
 	if(consumer == nullptr) {
 		return;
 	}
 	else {
-		setHandler = std::make_shared<SettableConsumerNumericMetricStateHandler>(HANDLE_SET_NUMERICMETRIC);
+		setHandler = std::make_shared<SettableConsumerNumericMetricStateHandler>(HANDLE_SET_NUMERIC_METRIC);
 		consumer->registerStateEventHandler(setHandler.get());
 	}
 }

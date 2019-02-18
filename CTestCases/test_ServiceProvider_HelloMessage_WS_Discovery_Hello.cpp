@@ -136,7 +136,8 @@ private:
 
 
 int main() {
-	std::cout << "Test against requirements from WS-Discovery 4.1 Hello for outgoing hello messages :";
+	std::cout << "Test against requirements from WS-Discovery 4.1 Hello for outgoing hello messages :"
+			  << std::endl;
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
@@ -167,24 +168,26 @@ int main() {
 	Poco::Thread reactorThread;
 	reactorThread.start(reactor);
 
-	TestTools::TestProvider provider;
-	provider.startup();
-	provider.start();
+//	TestTools::TestProvider provider;
+//	provider.startup();
+//	provider.start();
 
-	int i = 0;
-
-	while(i < 10)
-	{
-		sleep(1);
-		if(multicastHandler.gotHello())
-			break;
-		i++;
-	}
-	if(i >= 10)
-	{
-		cout << "Time out" << std::endl;
-		cout << "Test failed" << std::endl;
-	}
+//	int i = 0;
+//
+//	while(i < 10)
+//	{
+//		sleep(1);
+//		if(multicastHandler.gotHello())
+//			break;
+//		i++;
+//	}
+//	if(i >= 10)
+//	{
+//		cout << "Time out" << std::endl;
+//		cout << "Test failed" << std::endl;
+//	}
+	std::string t;
+	cin >> t;
 
 
 	reactor.removeEventHandler(ipv4Socket, Poco::Observer<TestTools::MulticastHandler, Poco::Net::ReadableNotification>(multicastHandler, &TestTools::MulticastHandler::onMulticastSocketReadable));	reactor.stop();
@@ -192,7 +195,7 @@ int main() {
 
 	xercesc::XMLPlatformUtils::Terminate ();
 
-	provider.shutdown();
+//	provider.shutdown();
 	SDCLibrary::getInstance().shutdown();
 
 	SDCLibrary::getInstance().shutdown();

@@ -18,31 +18,27 @@
 #include "OSCLib/Util/Task.h"
 
 #include "Tools/HelperMethods.h"
-
-//Sample Provider. Exchange for your provider under test.
 #include "Tools/TestProvider.h"
-
-//Sample Consumer. Exchange for your consumer under test.
 #include "Tools/TestConsumer.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-//Device endpoint reference change to your devices
 const std::string DEVICE_EPR("TestProvider");
 
 
 int main() {
 	// Startup
-	std::cout << "Test against requirement R0080 from IEEE 11073-10207 A BICEPS BINDING SHALL provide means for explicit discovery:"
+	std::cout << "Test against requirement R0080 from IEEE 11073-10207: A BICEPS BINDING SHALL provide means "
+			  << "for explicit discovery:"
 			  << std::endl;
 	//Network configuration
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 
-	//Sample Provider startup. Exchange for your provider under test.
+	//Provider setup
 	TestTools::TestProvider provider;
 	provider.setPort(TestTools::getFreePort());
 	provider.startup();
@@ -50,16 +46,15 @@ int main() {
 
 	SDCLibrary::getInstance().setPortStart(12000);
 
+	// Discovery
+	TestTools::TestConsumer consumer;
+	consumer.start();
+
 	OSELib::SDC::ServiceManager oscpsm;
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(TestTools::getFreePort());
 
-	//sample Consumer startup. Echange for your consumer.
-	TestTools::TestConsumer consumer;
-	consumer.start();
-	// Discovery
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, config));
-
 	try {
 		if (c != nullptr) {
 			consumer.setConsumer(std::move(c));
@@ -70,7 +65,7 @@ int main() {
 			consumer.disconnect();
 		    SDCLibrary::getInstance().shutdown();
 			} else {
-			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Discovery failed." << std::endl;
+			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Discovery failed: Provider was not found." << std::endl;
 			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test failed" << std::endl;
 
 		}

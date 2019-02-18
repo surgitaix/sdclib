@@ -40,7 +40,9 @@ using namespace SDCLib::Data::SDC;
 const std::string DEVICE_EPR("TestProvider");
 
 int main() {
-	std::cout << "Test against requirement R0073 from IEEE 11073-10207 A SERVICE PROVIDER SHALL announce its presence if it is ready to exchange MESSAGEs with a SERVICE CONSUMER:";
+	std::cout << "Test against requirement R0073 from IEEE 11073-10207 A SERVICE PROVIDER SHALL announce"
+			  << " its presence if it is ready to exchange MESSAGEs with a SERVICE CONSUMER:"
+			  << std::endl;
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
@@ -55,8 +57,6 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Hello received";
 			Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Test passed";
 		}
-
-
 	};
 	std::unique_ptr<MyHelloReceivedHandler> helloReceivedTester(new MyHelloReceivedHandler);
 	oscpsm.setHelloReceivedHandler(helloReceivedTester.get());

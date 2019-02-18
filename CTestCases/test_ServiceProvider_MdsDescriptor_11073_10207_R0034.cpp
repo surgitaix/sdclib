@@ -15,6 +15,12 @@ using namespace SDCLib::Data::SDC;
 
 int main()
 {
+	std::cout << "Test against requirement 11073-10207-R0034: A Service PROVIDER SHALL "
+			  << "increment pm:AbstractDescriptor/@DescriptorVersion by 1 if the content "
+			  << "or an ATTRIBUTE of the descriptor have changed and if the child "
+			  << "ELEMENT itself is not derived from pm:AbstractDescriptor"
+			  << std::endl;
+
 	MdsDescriptor mdsDescriptor("testMdsDescriptor");
 	mdsDescriptor.setDescriptorVersion(0);
 	mdsDescriptor.setHandle("changedTestMdsDescriptor");

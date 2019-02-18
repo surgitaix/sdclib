@@ -40,8 +40,7 @@ using namespace xercesc;
 const std::string DEVICE_EPR("TestProvider");
 typedef  std::vector<std::pair<std::string, std::string>> testCases_t;
 static const testCases_t testCases = {
-		{"wsa:To", "urn:docs-oasis-open-org:ws-dd:ns:discovery:2009:01"},
-		{"p2:Types", "dpws:MedicalDevice mdpws:MedicalDevice"}
+		{"wsa:To", "urn:docs-oasis-open-org:ws-dd:ns:discovery:2009:01"}
 };
 
 
@@ -84,8 +83,9 @@ public:
 		}
 		for(auto test : testCases)
 		{
-			if (!checkExpectedValue(root, test.first, test.second))
+			if (!checkExpectedValue(root, test.first, test.second)) {
 				return false;
+			}
 		}
 		return true;
 	}
@@ -94,6 +94,7 @@ public:
 	{
 		if(!validateValues(messagedata)) {
 			std::cout << "Test failed" << endl;
+			ByeProcessed = true;
 			return;
 		}
 
@@ -102,37 +103,46 @@ public:
 			soapHandling.parse(messagedata.socketData);
 		}
 		catch (std::exception &e) {
-			std::cout << e.what();
-			std::cout << "Test failed";
+			std::cout << e.what() << std::endl;
+			std::cout << "Test failed" << std::endl;
+			ByeProcessed = true;
 			return;
 		}
 
 		std::cout << "Test passed" << endl;
-		ByeReceived = true;
+		ByeProcessed = true;
 	}
 
-	bool gotBye()
+	bool getByeProcessed()
 	{
-		return ByeReceived;
+		return ByeProcessed;
 	}
 
 private:
 	ByeSchemaGrammarProvider _grammarProvider;
-	bool ByeReceived = false;
+	bool ByeProcessed = false;
 
 
 };
 
 
 int main() {
-	std::cout << "Test against requirement R0074 from IEEE 11073-10207 A SERVICE PROVIDER SHOULD announce its upcoming absence if it is switching to a mode where it is not ready to exchange MESSAGEs with a SERVICE CONSUMER temporarily:";
-	SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
+	std::cout << "Test against requirement R0074 from IEEE 11073-10207 A SERVICE PROVIDER SHOULD "
+			  << "announce its upcoming absence if it is switching to a mode where it is not ready "
+			  << "to exchange MESSAGEs with a SERVICE CONSUMER temporarily:";
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 	SDCLibrary::getInstance().setPortStart(12000);
 
 	xercesc::XMLPlatformUtils::Initialize ();
+	//Provider setup
+	TestTools::TestProvider provider;
+	provider.setPort(TestTools::getFreePort());
+	provider.startup();
+	provider.start();
 
+	//Binding multicastHandler to ipv4 socket.
 	Poco::Net::SocketAddress ipv4MulticastAddress(UDP_MULTICAST_IP_V4, UPD_MULTICAST_DISCOVERY_PORT);
 	Poco::Net::SocketAddress ipv4BindingAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), ipv4MulticastAddress.port());
 	Poco::Net::MulticastSocket ipv4Socket(ipv4BindingAddress.family());
@@ -141,29 +151,19 @@ int main() {
 	std::cout << "Joining ipv4 group " << ipv4MulticastAddress.host().toString() << std::endl;
 	ipv4Socket.joinGroup(ipv4MulticastAddress.host());
 	ipv4Socket.setBlocking(false);
-
-	OSELib::SDC::ServiceManager oscpsm;
-	ByeTestHandler multicastHandler;
-
-	TestTools::TestProvider provider;
-	provider.setPort(TestTools::getFreePort());
-	provider.startup();
-	provider.start();
 	Poco::Net::SocketReactor reactor;
-
+	ByeTestHandler multicastHandler;
 	reactor.addEventHandler(ipv4Socket, Poco::Observer<TestTools::MulticastHandler, Poco::Net::ReadableNotification>(multicastHandler, &TestTools::MulticastHandler::onMulticastSocketReadable));
-
 	Poco::Thread reactorThread;
 	reactorThread.start(reactor);
+
 	provider.shutdown();
 
-	int i = 0;
-
-	while(i < 10)
+	unsigned int i = 0;
+	//Wait for Bye being processed but not longer than 10s.
+	while(!multicastHandler.getByeProcessed() && i < 10)
 	{
 		sleep(1);
-		if(multicastHandler.gotBye())
-			break;
 		i++;
 	}
 	if(i >= 10)
@@ -172,15 +172,9 @@ int main() {
 		cout << "Test failed" << std::endl;
 	}
 
-
+	//Clean up
 	reactor.removeEventHandler(ipv4Socket, Poco::Observer<TestTools::MulticastHandler, Poco::Net::ReadableNotification>(multicastHandler, &TestTools::MulticastHandler::onMulticastSocketReadable));	reactor.stop();
 	reactorThread.join();
-
-	xercesc::XMLPlatformUtils::Terminate ();
-
-	provider.shutdown();
-	SDCLibrary::getInstance().shutdown();
-
 	SDCLibrary::getInstance().shutdown();
 	Util::DebugOut(Util::DebugOut::Default, "TestConsumer") << "Shutdown." << std::endl;
 }

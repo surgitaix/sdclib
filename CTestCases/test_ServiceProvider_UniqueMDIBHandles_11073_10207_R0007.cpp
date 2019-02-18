@@ -43,6 +43,8 @@ public:
 
 int main()
 {
+	std::cout << "All HANDLEs SHALL be unique within one MDIB sequence of a SERVICE PROVIDER"
+			  << std::endl;
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	NumericMetricStateHandler nmsHandler1(HANDLE_NUMERICMETRIC);
 	NumericMetricStateHandler nmsHandler2(HANDLE_NUMERICMETRIC);

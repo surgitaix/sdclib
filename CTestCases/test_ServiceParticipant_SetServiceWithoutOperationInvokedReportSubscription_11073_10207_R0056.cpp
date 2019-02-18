@@ -41,10 +41,9 @@
 #include "OSCLib/Util/DebugOut.h"
 
 #include "Tools/HelperMethods.h"
-
 #include "Tools/TestProvider.h"
-
 #include "Tools/TestConsumer.h"
+#include "Tools/TestProviderHandleNames.h"
 
 const std::string DEVICE_EPR("TestProvider");
 
@@ -69,21 +68,28 @@ int main() {
 	provider.start();
 
 	//Discovery
+	TestTools::TestConsumer consumer;
+	consumer.start();
+
 	OSELib::SDC::ServiceManager oscpsm;
 	// binding to a custom port
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(TestTools::getFreePort());
-
-	TestTools::TestConsumer consumer;
-	consumer.start();
-
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR, config));
 
 	if (c != nullptr) {
 		consumer.setConsumer(std::move(c));
 
 		consumer.registerNumericMetricStateSetHandler();
-		consumer.setNumericMetricStateValue(2.0);
+		int testValue = 2;
+		consumer.setNumericMetricStateValue(testValue);
+		if (testValue == provider.getMdState().findState<NumericMetricState>(TestTools::HANDLE_SET_NUMERIC_METRIC)->getMetricValue().getValue()) {
+			std::cout << std::endl << "SetNumericMetricValue was successful, even though no subscription to OperationInvokedReport is present" << std::endl;
+			std::cout << "Test failed";
+		}
+		else {
+			std::cout << "Test passed";
+		}
 		Poco::Thread::sleep(2000);
 		consumer.unregisterNumericMetricStateSetHandler();
 

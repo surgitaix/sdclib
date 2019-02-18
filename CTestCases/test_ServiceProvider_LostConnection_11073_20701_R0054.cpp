@@ -25,6 +25,9 @@ const std::string DEVICE_EPR("TestProvider");
 
 int main()
 {
+	std::cout << "Test against requirement 11073-20701-R0054: An SDC SERVICE PROVIDER MAY detect "
+			  << "lost connections to an SDC SERVICE CONSUMER by defining a short "
+			  << "expiration time for subscriptions.";
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);

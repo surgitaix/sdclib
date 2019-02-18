@@ -59,7 +59,8 @@ private:
 
 int main() {
 	std::cout << "Test against requirement 11073-10207-R0133 A service provider shall be associated with a maximum of "
-			  << "a particular context descriptor at a time:" << std::endl;
+			  << "a particular context descriptor at a time:"
+			  << std::endl;
 
 	LocationContextDescriptor locationContextDesc(LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
 	LocationContextStateHandler locationContextStateHandler1(LOCATION_CONTEXT_DESCRIPTOR_HANDLE, LOCATION_CONTEXT_STATE_HANDLE1);

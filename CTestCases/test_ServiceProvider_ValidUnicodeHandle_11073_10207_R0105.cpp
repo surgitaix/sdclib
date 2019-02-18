@@ -74,7 +74,9 @@ void GetUnicodeCharAsUtf8(unsigned int code, char chars[5])
 
 int main()
 {
-	std::cout << "Test against requirement 11073-10207-R0105 A HANDLE SHALL consist of characters that match only valid Unicode codes greater than U+0020, except for U+FFFD (replacement character)";
+	std::cout << "Test against requirement 11073-10207-R0105 A HANDLE SHALL consist of characters "
+			  << "that match only valid Unicode codes greater than U+0020, except for U+FFFD (replacement character)"
+			  << std::endl;
 	std::map<std::string, bool> testCases;
 
 	//Unicode Symbols < U+0021 as single character and inside of a string

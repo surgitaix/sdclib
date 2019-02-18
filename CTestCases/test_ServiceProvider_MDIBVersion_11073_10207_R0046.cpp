@@ -29,35 +29,39 @@ const std::string HANDLE_String_METRIC("handle_string_metric");
 
 int main ()
 {
+	std::cout << "Test against requirement 11073-10207-R0046: A SERVICE PROVIDER SHALL increment "
+			  << "pm:MdibVersionGroup/@MdibVersion by 1 every time pm:MdDescription/DescriptionVersion "
+			  << "or pm:MdState/@StateVersion have changed"
+			  << std::endl;
 	AlertConditionState alertConditionState(HANDLE_ALERT_CONDITION, AlertActivation::Off);
 	SDCProvider sdcProvider;
-	std::cout << sdcProvider.getMdibVersion() << std::endl;
+	std::cout << "mdibVerion=" << sdcProvider.getMdibVersion() << std::endl;
 	sdcProvider.updateState(alertConditionState);
 	alertConditionState.setStateVersion(0);
 	std::cout << "alertVerision" << alertConditionState.getStateVersion() << std::endl;
-	std::cout << sdcProvider.getMdibVersion() << std::endl;
+	std::cout << "mdibVerion=" << sdcProvider.getMdibVersion() << std::endl;
 	sdcProvider.updateState(alertConditionState);
 	std::cout << "alertVerision" << alertConditionState.getStateVersion() << std::endl;
-	std::cout << sdcProvider.getMdibVersion() << std::endl;
+	std::cout << "mdibVerion=" << sdcProvider.getMdibVersion() << std::endl;
 
 	AlertSystemState alertSystemState(HANDLE_ALERT_SYSTEM, AlertActivation::Off);
 	sdcProvider.updateState(alertSystemState);
-	std::cout << sdcProvider.getMdibVersion() << std::endl;
+	std::cout << "mdibVerion=" << sdcProvider.getMdibVersion() << std::endl;
 
 	AlertSignalState alertSignalState(HANDLE_ALERT_SIGNAL, AlertActivation::Off);
 	sdcProvider.updateState(alertSignalState);
-	std::cout << sdcProvider.getMdibVersion() << std::endl;
+	std::cout << "mdibVerion=" << sdcProvider.getMdibVersion() << std::endl;
 
 	EnumStringMetricState enumStringMetricState(HANDLE_ENUM_STRING_METRIC);
 	sdcProvider.updateState(enumStringMetricState);
-	std::cout << sdcProvider.getMdibVersion() << std::endl;
+	std::cout << "mdibVerion=" << sdcProvider.getMdibVersion() << std::endl;
 
 	Range range;
 	range.setUpper(0.0);
 	range.setLower(0.0);
 	LimitAlertConditionState limitAlertConditionState(HANDLE_LIMIT_ALERT_CONDITION, AlertActivation::Off, range, AlertConditionMonitoredLimits::All);
 	sdcProvider.updateState(limitAlertConditionState);
-	std::cout << sdcProvider.getMdibVersion() << std::endl;
+	std::cout << "mdibVerion="<<  sdcProvider.getMdibVersion() << std::endl;
 //
 //	NumericMetricState numericMetricState(HANDLE_NUMERIC_METRIC);
 //	sdcProvider.updateState(numericMetricState);

@@ -53,7 +53,8 @@ void MulticastHandler::onResolveMessageReceived(messagedata_t messagedata) {
 void MulticastHandler::onByeMessageReceived(messagedata_t messagedata) {
 	const std::string printMessage("Received Bye from " + messagedata.remoteAddr.toString() + " ");
 	std::cout << printMessage << std::string(lineLength - printMessage.size(), '-') << std::endl;
-	WS::DISCOVERY::Bye(std::cout, messagedata.message->Body().Bye().get());
+	std::cout << messagedata.socketData;
+	//WS::DISCOVERY::Bye(std::cout, messagedata.message->Body().Bye().get());
 	std::cout << separator << std::endl << std::endl;
 }
 
@@ -68,7 +69,8 @@ void MulticastHandler::onUnknownDataReceived(messagedata_t messagedata) {
 void MulticastHandler::onHelloMessageReceived(messagedata_t messagedata) {
 	const std::string printMessage("Received Hello from " + messagedata.remoteAddr.toString() + " ");
 	std::cout << printMessage << std::string(lineLength - printMessage.size(), '-') << std::endl;
-	WS::DISCOVERY::Hello(std::cout, messagedata.message->Body().Hello().get());
+	std::cout << messagedata.socketData;
+	//WS::DISCOVERY::Hello(std::cout, messagedata.message->Body().Hello().get());
 	std::cout << separator << std::endl << std::endl;
 }
 
@@ -176,9 +178,12 @@ bool MulticastHandler::checkExpectedValue(xercesc::DOMElement* rootElement, std:
 			passed = true;
 		}
 	}
-	else {
-		std::cout << "Multiple nodes with Type wsa:To" << std::endl;
+	else if (nodeCount > 1){
+		std::cout << "Multiple nodes with Type " << tag << std::endl;
 		passed = false;
+	}
+	else {
+		std::cout << "No node with Type " << tag << " exists." <<std::endl;
 	}
 	return passed;
 }

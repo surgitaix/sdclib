@@ -38,11 +38,7 @@
 #include "Poco/Net/IPAddress.h"
 
 #include "Tools/HelperMethods.h"
-
-//Sample Provider. Exchange for your provider under test.
 #include "Tools/TestProvider.h"
-
-//Sample Consumer. Exchange for you consumer under test.
 #include "Tools/TestConsumer.h"
 
 using namespace SDCLib;
@@ -54,7 +50,8 @@ const std::string DEVICE_EPR("TestProvider");
 
 int main() {
 	// Startup
-	std::cout << "Test against requirement R0078 from IEEE 11073-10207 A BICEPS BINDING SHALL provide means for implicit discovery:"
+	std::cout << "Test against requirement R0078 from IEEE 11073-10207 A BICEPS BINDING SHALL provide means "
+			  << "for implicit discovery:"
 			  << std::endl;
 	//Network configuration
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
@@ -69,14 +66,13 @@ int main() {
 
 	SDCLibrary::getInstance().setPortStart(12000);
 
-	OSELib::SDC::ServiceManager oscpsm;
-	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
-	config.setPort(TestTools::getFreePort());
-
+	// Discovery
 	TestTools::TestConsumer consumer;
 	consumer.start();
 
-	// Discovery
+	OSELib::SDC::ServiceManager oscpsm;
+	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
+	config.setPort(TestTools::getFreePort());
 	auto consumers(oscpsm.discoverOSCP());
 	std::unique_ptr<Data::SDC::SDCConsumer> c = nullptr;
 
