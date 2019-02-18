@@ -136,7 +136,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 	    		handlerVisited = true;
 	    	}
 
-            std::atomic<bool> handlerVisited{false};
+            std::atomic<bool> handlerVisited = ATOMIC_VAR_INIT(false);
 
 	    private:
 	    	Data::SDC::SDCConsumer & consumer;

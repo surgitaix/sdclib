@@ -326,29 +326,6 @@ void SDCInstance::returnPortToPool(SDCPort p_port)
         m_availablePorts.push_back(p_port);
     }
 }
-
-
-// Forward to SDCLibrary
-bool SDCInstance::getIP4enabled() const
-{
-    return m_IP4enabled;
-}
-bool SDCInstance::setIP4enabled(bool p_set)
-{
-    // Set it
-    m_IP4enabled = p_set;
-    return true;
-}
-bool SDCInstance::getIP6enabled() const
-{
-    return m_IP6enabled;
-}
-bool SDCInstance::setIP6enabled(bool p_set)
-{
-    // Set it
-    m_IP6enabled = p_set;
-    return true;
-}
 // DiscoveryTime
 std::chrono::milliseconds SDCInstance::getDiscoveryTime() const
 {

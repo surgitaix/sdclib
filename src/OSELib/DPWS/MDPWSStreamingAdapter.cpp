@@ -16,7 +16,7 @@ using namespace OSELib::DPWS::Impl;
 
 MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription) :
 	WithLogger(Log::DISCOVERY),
-    m_SDCInstance(p_SDCInstance),
+	m_SDCInstance(p_SDCInstance),
 	m_streamNotificationDispatcher(streamNotificationDispatcher),
 	m_deviceDescription(deviceDescription),
 	m_ipv4MulticastAddress(Poco::Net::SocketAddress(m_SDCInstance->_getStreamingIPv4(), m_SDCInstance->_getStreamingPortv4())),

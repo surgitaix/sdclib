@@ -40,9 +40,10 @@ private:
 	//	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
 
     SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
-
-	//  callback function, implemented in SDCConsumerAdapter
+    //  callback function, implemented in SDCConsumerAdapter
 	StreamNotificationDispatcher & m_streamNotificationDispatcher;
+
+    const DeviceDescription & m_deviceDescription;
 
 	// todo: make list of socket for compatibility with other frameworks
 
@@ -50,8 +51,6 @@ private:
 	const Poco::Net::SocketAddress m_ipv6MulticastAddress;
 	Poco::Net::MulticastSocket m_ipv4MulticastSocket;
 	Poco::Net::MulticastSocket m_ipv6MulticastSocket;
-
-	const DeviceDescription & m_deviceDescription;
 
 	Poco::Thread m_reactorThread;
 	Poco::Net::SocketReactor m_reactor;

@@ -76,11 +76,11 @@ namespace SDCLib
 
         mutable std::mutex m_mutex;
 
-        bool m_init = false;
+        std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
         NI_List ml_networkInterfaces;
 
-        bool m_IP4enabled = true;
-        bool m_IP6enabled = true;
+        std::atomic<bool> m_IP4enabled = ATOMIC_VAR_INIT(true);
+        std::atomic<bool> m_IP6enabled = ATOMIC_VAR_INIT(true);
 
         SDCPort m_portStart = Config::SDC_ALLOWED_PORT_START;
         SDCPort m_portRange = Config::SDC_DEFAULT_PORT_RANGE;
@@ -152,10 +152,10 @@ namespace SDCLib
         void returnPortToPool(SDCPort p_port);
 
         // IP4 / IP6
-        bool getIP4enabled() const;
-        bool getIP6enabled() const;
-        bool setIP4enabled(bool p_set);
-        bool setIP6enabled(bool p_set);
+        bool getIP4enabled() const { return m_IP4enabled; }
+        bool getIP6enabled() const { return m_IP6enabled; }
+        void setIP4enabled(bool p_set) { m_IP4enabled = p_set; }
+        void setIP6enabled(bool p_set) { m_IP6enabled = p_set; }
 
         // Discovery Time
         /**
@@ -175,9 +175,8 @@ namespace SDCLib
 
     private:
 
-        void createPortLists(SDCPort p_start, SDCPort p_range = 1000);
+        void createPortLists(SDCPort p_start, SDCPort p_range = Config::SDC_DEFAULT_PORT_RANGE);
 
-        
         void _cleanup();
 
     };
