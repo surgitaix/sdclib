@@ -13,8 +13,8 @@
  - sudo apt-get install libxerces-c3.1
  - sudo apt-get install libxerces-c-dev
 
-#####***Note:*** on Ubuntu 18.04 and higher libxerces-c version has changed to 3.2:
- -- sudo apt-get install libxerces-c3.2
+##### ***Note:*** on Ubuntu 18.04 and higher libxerces-c version has changed to 3.2:
+ - sudo apt-get install libxerces-c3.2
 
 ## Build SDCLib using CMAKE
 - Example (Linux):
