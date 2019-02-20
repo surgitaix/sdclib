@@ -52,8 +52,10 @@ const std::string MDPWS_STREAMTRANSMISSIONTYPE(NS_MDPWS + "/StreamTransmissionTy
 const std::string ACTION_ORNET_STREAM(NS_SERVICE_DESCRIPTION + "/WaveformService/WaveformStream");
 const std::string WS_MEX_ORNET_STREAM_IDENTIFIER(NS_SERVICE_DESCRIPTION + "/WaveformService");
 const std::string WS_MEX_ORNET_STREAM_TYPE("http://docs.oasis-open.org/ws-dd/soapoverudp/1.1/os/wsdd-soapoverudp-1.1-spec-os.html");
+const std::string WS_MEX_DIALECT_STREAM("http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
-const std::string WS_MEX_ORNET_DIALECT_STREAM("http://standardized.namespace.org/ws-streaming/StreamDescriptions");
+//const std::string WS_MEX_ORNET_DIALECT_STREAM("http://standardized.namespace.org/ws-streaming/StreamDescriptions");
+
 
 const std::string SOAP_HTTP_BINDING_URI("http://schemas.xmlsoap.org/soap/http");
 
