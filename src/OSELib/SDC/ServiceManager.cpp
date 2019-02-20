@@ -293,7 +293,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		if (response_metadata != nullptr) {
 
 			for (const auto & metadata_iter : response_metadata->MetadataSection()) {
-				if (metadata_iter.Dialect() != OSELib::WS_MEX_DIALECT_STREAM
+				if (metadata_iter.Dialect() != SDC::WS_MEX_DIALECT_STREAM
 					|| !metadata_iter.StreamDescriptions().present()
 					|| metadata_iter.StreamDescriptions().get().StreamType().empty()
 					|| !metadata_iter.StreamDescriptions().get().StreamType().front().StreamTransmission().StreamAddress().present()
