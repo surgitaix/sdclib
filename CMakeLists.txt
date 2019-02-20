@@ -41,12 +41,39 @@ project(${PROJECT_NAME})
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          3)
-set (SDCLibrary_VERSION_MIDDLE         0)
-set (SDCLibrary_VERSION_LAST           3)
+set (SDCLibrary_VERSION_MIDDLE         1)
+set (SDCLibrary_VERSION_LAST           0)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
+
+
+################################################################################
+# Check Compiler Version
+################################################################################
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.8.1)
+        message(FATAL_ERROR "GCC version must be at least 4.8.1!")
+    endif()
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 3.3)
+        message(FATAL_ERROR "Clang version must be at least 3.3!")
+    endif()
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 18.0)
+        message(FATAL_ERROR "MSVC version must be at least 18.0!")
+    endif()
+else()
+    message(FATAL_ERROR "No supported Compiler detected. Checked for GCC(4.8.1+), Clang(3.3+) or MSVC(18.0+).")
+endif()
+################################################################################
+
+
+
+
+################################################################################
 # What to enable?
+################################################################################
 
 # Tests - Default to ON
 set (SDC_TESTS      ON CACHE STRING "Enable Building Tests")
@@ -132,7 +159,7 @@ if(COMPILER_SUPPORTS_CXX11)
 elseif(COMPILER_SUPPORTS_CXX0X)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 else()
-	message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+	message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 ################################################################################
 
