@@ -152,7 +152,7 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLFor
 }
 
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(const std::set<int> & streamingPorts) const {
-	MetadataSection metadataSectionStream((MetadataDialect(OSELib::WS_MEX_DIALECT_STREAM)));
+	MetadataSection metadataSectionStream((MetadataDialect(SDC::WS_MEX_DIALECT_STREAM)));
 	metadataSectionStream.Identifier(SDC::WS_MEX_ORNET_STREAM_IDENTIFIER);
 	StreamDescriptions sd(SDC::WS_MEX_ORNET_STREAM_IDENTIFIER);
 	MDPWS::StreamTransmissionType stt;
