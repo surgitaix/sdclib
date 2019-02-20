@@ -205,7 +205,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 
         // Wait long enough for all to get a call... FIXME: Sometimes this test fails. Just because the timings arent correct.
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for connectionLostHanders...\n";
-        Poco::Thread::sleep(8000);
+        Poco::Thread::sleep(1000);
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Checking connectionLostHandlers...\n";
 

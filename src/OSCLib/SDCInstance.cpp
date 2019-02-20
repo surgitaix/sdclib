@@ -238,19 +238,14 @@ bool SDCInstance::belongsToSDCInstance(Poco::Net::IPAddress p_IP) const
         return false;
     }
 
-    // Multicast?
-    if (p_IP == Poco::Net::IPAddress(m_MULTICAST_IPv4)) {
-        return true;
-    }
-
     // Unicast
     for (auto& t_if : ml_networkInterfaces) {
         auto t_subnetMask = t_if->m_if.subnetMask();
         auto t_networkInterface = t_if->m_IPv4;
 
         // First Convert both (address & mask)
-        t_networkInterface.mask(t_subnetMask);
-        p_IP.mask(t_subnetMask);
+        //FIXMEt_networkInterface.mask(t_subnetMask);
+        //FIXMEp_IP.mask(t_subnetMask);
         // Compare - Found one?
         if (t_networkInterface == p_IP) {
             return true;
@@ -260,18 +255,15 @@ bool SDCInstance::belongsToSDCInstance(Poco::Net::IPAddress p_IP) const
     return false;
 }
 
-bool SDCInstance::setPortConfig(SDCPort p_start, SDCPort p_range)
+void SDCInstance::setPortConfig(SDCPort p_start, SDCPort p_range, bool p_shuffle)
 {
-    if(isInit()) {
-        return false;
-    }
-
-    assert(p_start != 0);
+    // No well-known ports allowed!
+    assert(p_start > 1024);
     assert(p_range != 0);
 
     m_portStart = p_start;
     m_portRange = p_range;
-    return true;
+    m_shufflePortList = p_shuffle;
 }
 void SDCInstance::createPortLists(SDCPort p_start, SDCPort p_range)
 {
@@ -294,6 +286,13 @@ void SDCInstance::createPortLists(SDCPort p_start, SDCPort p_range)
     for (auto i = t_start; i < t_end; ++i) {
         m_reservedPorts.emplace_back(static_cast<SDCPort>(i));
     }
+
+    // If specified: shuffle (Mostly used on development time for lingering sockets!)
+    if(m_shufflePortList) {
+        srand(time(nullptr));
+        std::random_shuffle(m_reservedPorts.begin(), m_reservedPorts.end(), [](SDCPort p) { return std::rand()%p;});
+    }
+
     m_availablePorts = m_reservedPorts;
 }
 bool SDCInstance::extractFreePort(SDCPort& p_port)

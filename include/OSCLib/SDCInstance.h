@@ -84,6 +84,7 @@ namespace SDCLib
 
         SDCPort m_portStart = Config::SDC_ALLOWED_PORT_START;
         SDCPort m_portRange = Config::SDC_DEFAULT_PORT_RANGE;
+        bool m_shufflePortList = false;
         std::chrono::milliseconds m_discoveryTime = std::chrono::milliseconds(Config::SDC_DISCOVERY_TIMEOUT_MS);
 
         std::deque<SDCPort> m_reservedPorts;
@@ -146,7 +147,7 @@ namespace SDCLib
         // Port Management
         // Call before init!
         // Portrange: [start, start + range)
-        bool setPortConfig(SDCPort p_start, SDCPort p_range);
+        void setPortConfig(SDCPort p_start, SDCPort p_range, bool p_shuffle = false);
 
         bool extractFreePort(SDCPort& p_port);
         void returnPortToPool(SDCPort p_port);

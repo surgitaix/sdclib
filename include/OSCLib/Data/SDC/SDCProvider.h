@@ -60,8 +60,6 @@ class SDCProvider final : public OSELib::WithLogger {
     friend class AsyncProviderInvoker;
 
     // todo: kick after provider state handler refactoring
-    friend class SDCProviderMdStateHandler;
-
     friend class SDCProviderStateHandler;
 
     // todo replace by friend class SDCProviderAdapter
@@ -72,6 +70,13 @@ class SDCProvider final : public OSELib::WithLogger {
 
 public:
     SDCProvider(SDCInstance_shared_ptr p_SDCInstance);
+
+    // Special Member Functions
+    SDCProvider(const SDCProvider& p_obj) = delete;
+    SDCProvider(SDCProvider&& p_obj) = delete;
+    SDCProvider& operator=(const SDCProvider& p_obj) = delete;
+    SDCProvider& operator=(SDCProvider&& p_obj) = delete;
+
     ~SDCProvider();
 
     /**
