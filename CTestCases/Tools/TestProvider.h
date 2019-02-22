@@ -53,8 +53,8 @@
 #include "OSCLib/Util/DebugOut.h"
 #include "OSCLib/Util/Task.h"
 
-#include "TestProviderStateHandler/NumericMetricStateGetHandler.h"
-#include "TestProviderStateHandler/NumericMetricStateSetHandler.h"
+#include "StateHandler/NumericMetricStateGetHandler.h"
+#include "StateHandler/NumericMetricStateSetHandler.h"
 
 
 using namespace SDCLib;
