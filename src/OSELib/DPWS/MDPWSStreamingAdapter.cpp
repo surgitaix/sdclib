@@ -22,33 +22,43 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SD
 	m_ipv4MulticastAddress(Poco::Net::SocketAddress(m_SDCInstance->_getStreamingIPv4(), m_SDCInstance->_getStreamingPortv4())),
 	m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getStreamingIPv6(), p_SDCInstance->_getStreamingPortv6()))
 {
-    if ( m_SDCInstance->getIP4enabled() ) {
-        // Bind only interfaces we specified
+    if (m_SDCInstance->getIP4enabled())
+    {
+        // Create MulticastSocket
+        m_ipv4MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
+
+        // Add only interfaces bound to the SDCInstance
         if (m_SDCInstance->isBound()) {
-            m_ipv4MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
+            // Bind MulticastSocket
+            auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
+            m_ipv4MulticastSocket.bind(t_bindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
                 try {
-                    auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
-                    m_ipv4MulticastSocket.bind(t_bindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
-                    m_ipv4MulticastSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
+                    // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                     m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), t_interface->m_if);
-                } catch (...) {
-                    // todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
-                    log_error([] { return "Another thing went wrong"; });
+                }
+                catch (...) {
+                    log_error([&] { return "Something went wrong in binding to : " + t_interface->m_name; });
+                    continue;
                 }
             }
         }
         else {
-            // bind all network adapters to socket
+            // Bind MulticastSocket
+            const Poco::Net::SocketAddress t_bindingAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
+            m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
+            // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-                // devices network adapters have a unicast IP
                 if (nextIf.supportsIPv4() && !nextIf.address().isLoopback() && nextIf.address().isUnicast()) {
-                    // make member vars
-                    const Poco::Net::SocketAddress t_bindingAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port());
-                    m_ipv4MulticastSocket = Poco::Net::MulticastSocket(t_bindingAddress.family());
-                    m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-                    m_ipv4MulticastSocket.setReusePort(m_SO_REUSEPORT_FLAG);
-                    m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
+                    try
+                    {
+                        // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
+                        m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
+                    }
+                    catch (...) {
+                        log_error([&] { return "Something went wrong in binding to : " + nextIf.adapterName(); });
+                        continue;
+                    }
                 }
             }
         }
@@ -57,34 +67,45 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SD
         // Add Ipv4 Socket EventHandler
         m_reactor.addEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
     }
-    if ( m_SDCInstance->getIP6enabled() ) {
+    if (m_SDCInstance->getIP6enabled())
+    {
+        // Create MulticastSocket
+        m_ipv6MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
 
-        // Bind only interfaces we specified
+        // Add only interfaces bound to the SDCInstance
         if (m_SDCInstance->isBound()) {
-            m_ipv6MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
+            // Bind MulticastSocket
+            auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
+            m_ipv6MulticastSocket.bind(t_bindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
-                try {
-                    auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
-                    m_ipv6MulticastSocket.bind(t_bindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
-                    m_ipv6MulticastSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
+                try
+                {
+                    // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                     m_ipv6MulticastSocket.joinGroup(m_ipv6MulticastAddress.host(), t_interface->m_if);
-                } catch (...) {
-                    // todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
-                    log_error([] { return "Another thing went wrong"; });
+                }
+                catch (...) {
+                    log_error([&] { return "Something went wrong in binding to : " + t_interface->m_name; });
+                    continue;
                 }
             }
         }
         else {
-            // bind all network adapters to socket
+            // Bind MulticastSocket
+            const Poco::Net::SocketAddress t_bindingAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
+            m_ipv6MulticastSocket.bind(m_ipv6MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
+            // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
                 // devices network adapters have a unicast IP
                 if (nextIf.supportsIPv6() && !nextIf.address().isLoopback() && nextIf.address().isUnicast()) {
-                    // make member vars
-                    const Poco::Net::SocketAddress t_bindingAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6MulticastAddress.port());
-                    m_ipv6MulticastSocket = Poco::Net::MulticastSocket(t_bindingAddress.family());
-                    m_ipv6MulticastSocket.bind(m_ipv6MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-                    m_ipv6MulticastSocket.setReusePort(m_SO_REUSEPORT_FLAG);
-                    m_ipv6MulticastSocket.joinGroup(m_ipv6MulticastAddress.host(), nextIf);
+                    try
+                    {
+                        // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
+                        m_ipv6MulticastSocket.joinGroup(m_ipv6MulticastAddress.host(), nextIf);
+                    }
+                    catch (...) {
+                        log_error([&] { return "Something went wrong in binding to : " + nextIf.adapterName(); });
+                        continue;
+                    }
                 }
             }
         }

@@ -71,7 +71,7 @@ namespace SDCLib
     {
     private:
 
-        static unsigned s_IDcounter;
+        static std::atomic_uint s_IDcounter;
         SDCInstanceID m_ID;
 
         mutable std::mutex m_mutex;

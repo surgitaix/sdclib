@@ -13,8 +13,6 @@
 
 #include "NormalizedMessageModel.hxx"
 
-#include <iostream>
-
 #include <Poco/Buffer.h>
 #include <Poco/UUIDGenerator.h>
 #include <Poco/Net/SocketAddress.h>
@@ -74,16 +72,21 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
     m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getMulticastIPv6(), p_SDCInstance->_getMulticastPortv6()))
 {
 
-    if (m_SDCInstance->getIP4enabled()) {
-        // Bind only interfaces we specified
+    if (m_SDCInstance->getIP4enabled())
+    {
+        // Create DiscoverySocket
+        m_ipv4DiscoverySocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
+
+        // Add only interfaces bound to the SDCInstance
         if (m_SDCInstance->isBound()) {
-            m_ipv4DiscoverySocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
+            // Bind DiscoverySocket
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
+            m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
+            // Add all interfaces
             for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
                 try
                 {
-                    auto t_IP = Poco::Net::IPAddress::Family::IPv4;
-                    auto t_ipv4BindingAddress = Poco::Net::SocketAddress(t_IP, m_ipv4MulticastAddress.port());
-                    m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
+                    // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                     m_ipv4DiscoverySocket.joinGroup(m_ipv4MulticastAddress.host(), t_interface->m_if);
                     // DatagramSocket
                     Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv4, m_ipv4DatagrammSocketPort), t_interface->SO_REUSEADDR_FLAG);
@@ -99,9 +102,8 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
                 }
             }
         }
-        else
-        {
-            // Bind on 0.0.0.0
+        else {
+            // Bind DiscoverySocket
             auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port());
             m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
@@ -109,8 +111,9 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
                 if (nextIf.supportsIPv4() && nextIf.address().isUnicast() && !nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4).isLoopback()) {
                     try
                     {
-                        // Note: Fails if we enumerate a bridge that is already connected
+                        // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                         m_ipv4DiscoverySocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
+                        // DatagramSocket
                         Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4DatagrammSocketPort), m_SO_REUSEADDR_FLAG);
                         t_datagramSocket.setReusePort(m_SO_REUSEPORT_FLAG);
                         t_datagramSocket.setBlocking(false);
@@ -129,42 +132,55 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add Ipv4 Socket EventHandler
         m_reactor.addEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 	}
-    if (m_SDCInstance->getIP6enabled()) {
+    if (m_SDCInstance->getIP6enabled())
+    {
+        // Create DiscoverySocket
+        m_ipv6DiscoverySocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
 
-        // Bind only interfaces we specified
+        // Add only interfaces bound to the SDCInstance
         if (m_SDCInstance->isBound()) {
+            // Bind DiscoverySocket
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
+            m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
-                auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
-                m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-                m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), t_interface->m_if);
-                // DatagramSocket
-                Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv6, m_ipv6DatagrammSocketPort), t_interface->SO_REUSEADDR_FLAG);
-                t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
-                t_datagramSocket.setBlocking(false);
-                m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
-                m_socketSendMessageQueue[t_datagramSocket].clear();
+                try {
+                    // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
+                    m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), t_interface->m_if);
+                    // DatagramSocket
+                    Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv6, m_ipv6DatagrammSocketPort), t_interface->SO_REUSEADDR_FLAG);
+                    t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
+                    t_datagramSocket.setBlocking(false);
+                    m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
+                    m_socketSendMessageQueue[t_datagramSocket].clear();
+                }
+                catch (...) {
+                    // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
+                    log_error([&] { return "Something went wrong in binding to : " + t_interface->m_name; });
+                    continue;
+                }
             }
-          }
+        }
         else {
-            // Bind on 0.0.0.0
+            // Bind DiscoverySocket
             auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6MulticastAddress.port());
             m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-
             // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
                 if (nextIf.supportsIPv6() && nextIf.address().isUnicast() && !nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6).isLoopback()) {
-                        try {
-                            m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), nextIf);
-                            Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6DatagrammSocketPort), m_SO_REUSEADDR_FLAG);
-                            t_datagramSocket.setReusePort(m_SO_REUSEPORT_FLAG);
-                            t_datagramSocket.setBlocking(false);
-                            m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
-                            m_socketSendMessageQueue[t_datagramSocket].clear();
-                          } catch (...) {
-                              // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
-                              log_error([&] { return "Something went wrong"; });
-                            }
-                      }
+                    try {
+                        // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
+                        m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), nextIf);
+                        // DatagramSocket
+                        Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6DatagrammSocketPort), m_SO_REUSEADDR_FLAG);
+                        t_datagramSocket.setReusePort(m_SO_REUSEPORT_FLAG);
+                        t_datagramSocket.setBlocking(false);
+                        m_reactor.addEventHandler(t_datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));
+                        m_socketSendMessageQueue[t_datagramSocket].clear();
+                    } catch (...) {
+                        // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
+                        log_error([&] { return "Something went wrong"; });
+                    }
+                }
             }
         }
         // Nonblocking
@@ -284,13 +300,6 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 	if (available == 0) {
 		return;
 	}
-
-	// Only read if this belongs to this SDCInstance! - Peek first
-    Poco::Net::SocketAddress t_sender;
-    socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
-    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
-        return;
-    }
 
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;

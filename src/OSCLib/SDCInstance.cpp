@@ -7,7 +7,7 @@
 
 using namespace SDCLib;
 
-unsigned SDCInstance::s_IDcounter = 1;
+std::atomic_uint SDCInstance::s_IDcounter = ATOMIC_VAR_INIT(0);
 
 SDCInstance::SDCInstance(bool p_init)
 {
@@ -233,21 +233,20 @@ bool SDCInstance::belongsToSDCInstance(Poco::Net::IPAddress p_IP) const
         return false;
     }
 
-    // Only for IPv4!
-    if (p_IP.family() != Poco::Net::IPAddress::IPv4) {
-        return false;
-    }
-
     // Unicast
-    for (auto& t_if : ml_networkInterfaces) {
-        auto t_subnetMask = t_if->m_if.subnetMask();
-        auto t_networkInterface = t_if->m_IPv4;
-
-        // First Convert both (address & mask)
-        //FIXMEt_networkInterface.mask(t_subnetMask);
-        //FIXMEp_IP.mask(t_subnetMask);
+    for (const auto& t_if : ml_networkInterfaces)
+    {
+        // Default to IPv4
+        auto t_networkInterfaceIP = t_if->m_IPv4;
+        // IPv6?
+        if(t_if->m_if.supportsIPv6() && (p_IP.family() == Poco::Net::AddressFamily::IPv6)) {
+            t_networkInterfaceIP = t_if->m_IPv6;
+        }
+        /*auto t_subnetMask = t_if->m_if.subnetMask();
+        t_networkInterfaceIP.mask(t_subnetMask);
+        p_IP.mask(t_subnetMask);*/
         // Compare - Found one?
-        if (t_networkInterface == p_IP) {
+        if (t_networkInterfaceIP == p_IP) {
             return true;
         }
     }

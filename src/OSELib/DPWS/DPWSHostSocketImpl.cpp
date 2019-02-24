@@ -157,16 +157,22 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
 {
 	xercesc::XMLPlatformUtils::Initialize ();
 
-    if ( m_SDCInstance->getIP4enabled() ) {
-        // Bind only interfaces we specified
+    if (m_SDCInstance->getIP4enabled())
+    {
+        // Create ListeningSocket
+        m_ipv4MulticastListeningSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
+
+        // Add only interfaces bound to the SDCInstance
         if (p_SDCInstance->isBound()) {
-            m_ipv4MulticastListeningSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
+            // Bind ListeningSocket
+            auto t_ipv4BindingAddress = m_ipv4DiscoveryMulticastAddress;
+            m_ipv4MulticastListeningSocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
                 try
                 {
-                    auto t_ipv4BindingAddress = m_ipv4DiscoveryMulticastAddress;
-                    m_ipv4MulticastListeningSocket.bind(t_ipv4BindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
+                    // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                     m_ipv4MulticastListeningSocket.joinGroup(m_ipv4DiscoveryMulticastAddress.host(), t_interface->m_if);
+                    // DatagramSocket
                     Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv4, m_ipv4DiscoveryMulticastAddress.port()), t_interface->SO_REUSEADDR_FLAG);
                     t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
                     t_datagramSocket.setBlocking(false);
@@ -180,17 +186,17 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
             }
         }
         else {
-            // Bind on 0.0.0.0
+            // Bind ListeningSocket
             auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4DiscoveryMulticastAddress.port());
             m_ipv4MulticastListeningSocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-
             // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
                 if (nextIf.supportsIPv4() && nextIf.address().isUnicast() && !nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4).isLoopback()) {
                     try
                     {
-                        // Note: Fails if we enumerate a bridge that is already connected
+                        // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                         m_ipv4MulticastListeningSocket.joinGroup(m_ipv4DiscoveryMulticastAddress.host(), nextIf);
+                        // DatagramSocket
                         Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4DiscoveryMulticastAddress.port()), m_SO_REUSEADDR_FLAG);
                         t_datagramSocket.setReusePort(m_SO_REUSEPORT_FLAG);
                         t_datagramSocket.setBlocking(false);
@@ -198,27 +204,34 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
                         socketSendMessageQueue[t_datagramSocket].clear();
                     }
                     catch (...) {
+                        log_error([&] { return "Something went wrong in binding to : " + nextIf.adapterName(); });
                         continue;
                     }
                 }
             }
         }
+        // Nonblocking
         m_ipv4MulticastListeningSocket.setBlocking(false);
+        // Add Ipv4 Socket EventHandler
         reactor.addEventHandler(m_ipv4MulticastListeningSocket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSHostSocketImpl::onMulticastSocketReadable));
         reactor.addEventHandler(m_ipv4MulticastListeningSocket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSHostSocketImpl::onTimeOut));
-	}
+    }
+    if (m_SDCInstance->getIP6enabled())
+    {
+        // Create ListeningSocket
+        m_ipv6MulticastListeningSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
 
-
-    if ( m_SDCInstance->getIP6enabled() ) {
-        // Bind only interfaces we specified
+        // Add only interfaces bound to the SDCInstance
         if (m_SDCInstance->isBound()) {
-            m_ipv4MulticastListeningSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
+            // Bind ListeningSocket
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6DiscoveryMulticastAddress.port());
+            m_ipv6MulticastListeningSocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
                 try
                 {
-                    auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6DiscoveryMulticastAddress.port());
-                    m_ipv6MulticastListeningSocket.bind(t_ipv6BindingAddress, t_interface->SO_REUSEADDR_FLAG, t_interface->SO_REUSEPORT_FLAG);
+                    // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                     m_ipv6MulticastListeningSocket.joinGroup(m_ipv6DiscoveryMulticastAddress.host(), t_interface->m_if);
+                    // DatagramSocket
                     Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(t_interface->m_IPv6, m_ipv6DiscoveryMulticastAddress.port()), t_interface->SO_REUSEADDR_FLAG);
                     t_datagramSocket.setReusePort(t_interface->SO_REUSEPORT_FLAG);
                     t_datagramSocket.setBlocking(false);
@@ -226,39 +239,40 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
                     socketSendMessageQueue[t_datagramSocket].clear();
                 }
                 catch (...) {
+                    // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
+                    log_error([&] { return "Something went wrong in binding to : " + t_interface->m_name; });
                     continue;
                 }
             }
         }
         else {
-            // Bind on 0.0.0.0
+            // Bind ListeningSocket
             auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6DiscoveryMulticastAddress.port());
             m_ipv6MulticastListeningSocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-
             // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
                 if (nextIf.supportsIPv6() && nextIf.address().isUnicast() && !nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6).isLoopback()) {
                     try {
+                        // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                         m_ipv6MulticastListeningSocket.joinGroup(m_ipv6DiscoveryMulticastAddress.host(), nextIf);
+                        // DatagramSocket
                         Poco::Net::DatagramSocket t_datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6DiscoveryMulticastAddress.port()), m_SO_REUSEADDR_FLAG);
                         t_datagramSocket.setReusePort(m_SO_REUSEPORT_FLAG);
                         t_datagramSocket.setBlocking(false);
-                        // adds datagramSocket to the queue with a clear entry
                         socketSendMessageQueue[t_datagramSocket].clear();
                     } catch (...) {
-                          // todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
-                          log_error([&] { return "Another thing went wrong"; });
+                        // todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
+                        log_error([&] { return "Another thing went wrong"; });
                     }
-                  }
-              }
+                }
+            }
         }
-
+        // Nonblocking
         m_ipv6MulticastListeningSocket.setBlocking(false);
-
+        // Add Ipv6 Socket EventHandler
         reactor.addEventHandler(m_ipv6MulticastListeningSocket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSHostSocketImpl::onMulticastSocketReadable));
         reactor.addEventHandler(m_ipv6MulticastListeningSocket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSHostSocketImpl::onTimeOut));
-	}
-
+    }
 
 
 	reactorThread.start(reactor);
@@ -342,7 +356,7 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 		return;
 	}
 
-	// Only read if this belongs to this SDCInstance! - Peek first
+    // FIXMEOnly read if this belongs to this SDCInstance! - Peek first
     Poco::Net::SocketAddress t_sender;
     socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
     if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
@@ -429,6 +443,8 @@ Poco::Timestamp DPWSHostSocketImpl::createDelay() {
 }
 
 void DPWSHostSocketImpl::processDelayedMessages() {
+
+    // FIXME!
 	if (delayedMessages.empty()) {
 		reactor.setTimeout(Poco::Timespan(0, 0, 0, 0, 250000));
 		return;

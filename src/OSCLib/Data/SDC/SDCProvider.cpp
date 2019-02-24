@@ -202,7 +202,7 @@ SDCProvider::SDCProvider(SDCInstance_shared_ptr p_SDCInstance)
 
 SDCProvider::~SDCProvider()
 {
-    if (_adapter)
+    if (m_SDCInstance->isInit() && _adapter)
     {
         log_warning([] { return "SDCProvider deleted before shutdown. For proper handling please shutdown the provider first"; });
         shutdown();
