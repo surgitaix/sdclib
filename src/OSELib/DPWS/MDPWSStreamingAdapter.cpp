@@ -153,12 +153,12 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 		return;
 	}
 
-    // Only read if this belongs to this SDCInstance! - Peek first
-    Poco::Net::SocketAddress t_sender;
+    // FIXMEOnly read if this belongs to this SDCInstance! - Peek first
+    /*Poco::Net::SocketAddress t_sender;
     socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
     if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
         return;
-    }
+    }*/
 
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;

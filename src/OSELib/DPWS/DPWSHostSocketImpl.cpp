@@ -357,11 +357,11 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 	}
 
     // FIXMEOnly read if this belongs to this SDCInstance! - Peek first
-    Poco::Net::SocketAddress t_sender;
+    /*Poco::Net::SocketAddress t_sender;
     socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
-    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
+    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(socket.address.host())) {
         return;
-    }
+    }*/
 
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;
