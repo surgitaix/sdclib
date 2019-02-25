@@ -71,13 +71,11 @@ void ServiceManager::setHelloReceivedHandler(HelloReceivedHandler * handler) {
 	_helloCallback = std::unique_ptr<HelloCallback>(new HelloCallback(handler));
 }
 
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const std::string & xaddr) {
-	std::list<std::string> xAddress_list;
-	xAddress_list.push_back(xaddr);
-	return connectXAddress(xAddress_list, "Unknown");
+SDCLib::Data::SDC::SDCConsumer_unique_ptr ServiceManager::connect(const std::string & xaddr) {
+	return connectXAddress({ xaddr }, "Unknown");
 }
 
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr, SDCLib::Data::SDC::MDPWSTransportLayerConfiguration consumerConfig) {
+SDCLib::Data::SDC::SDCConsumer_unique_ptr ServiceManager::discoverEndpointReference(const std::string & epr, SDCLib::Data::SDC::MDPWSTransportLayerConfiguration consumerConfig) {
     // FIXME: MDPWSTransportLayerConfiguration !
     std::cout << "FIXME! ServiceManager::discoverEndpointReference() MDPWSTransportLayerConfiguration passed by value!" << std::endl;
     // Note: Diese Methode sollte eig. nicht mehr nötig sein, da nun alles SDCInstance zentriert ist...
@@ -86,7 +84,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 }
 
 
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
+SDCLib::Data::SDC::SDCConsumer_unique_ptr ServiceManager::discoverEndpointReference(const std::string & epr) {
 
 	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback  {
 		explicit ResolveMatchCallback(Poco::Event & matchEvent) :
@@ -127,17 +125,14 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
         } */
     _dpwsClient->removeResolveMatchEventHandler(resolveCb);
 
-    std::list<std::string> xAddress_list;
+    std::vector<std::string> xAddress_list;
 
     if (resolveCb._result && resolveCb._result->XAddrs().present()) {
         for (const auto & xaddr : resolveCb._result->XAddrs().get()) {
-            xAddress_list.push_back(xaddr);
-          }
-        auto result(connectXAddress(xAddress_list, resolveCb._result->EndpointReference().Address()));
-        if (result) {
-            return std::move(result);
-          }
-      }
+            xAddress_list.emplace_back(xaddr);
+        }
+        return connectXAddress(xAddress_list, resolveCb._result->EndpointReference().Address());
+    }
 
     return nullptr;
 }
@@ -177,7 +172,7 @@ ServiceManager::DiscoverResults ServiceManager::discoverOSCP() const {
 	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb._results.size()); });
 
 	ServiceManager::DiscoverResults results;
-	std::list<std::string> xAddress_list;                      // FIXME: Why use a list here? use vector!
+	std::vector<std::string> xAddress_list;
 
 	// probeCb._results contains the exact number of unique EPR in the network
 	for (const auto & probeResult : probeCb._results) {
@@ -190,10 +185,10 @@ ServiceManager::DiscoverResults ServiceManager::discoverOSCP() const {
 		// TODO: Optimize this by using a std::vector for xAddress_list and reserve space for xAddress_list before running this loop!
 		for (const auto & xaddr : probeResult.XAddrs().get()) {
 			log_notice([&] { return "Trying xAddress: " + xaddr; });
-			xAddress_list.push_back(xaddr);
+			xAddress_list.emplace_back(xaddr);
 		}
         // TODO:    You can optimize this by taking this step into the connectXAddress function!
-        results.emplace_back(std::move(connectXAddress(xAddress_list, probeResult.EndpointReference().Address())));
+        results.emplace_back(connectXAddress(xAddress_list, probeResult.EndpointReference().Address()));
 		
 		// TODO: Clear the list at the beginning of a new loop, so we dont clear it at the last loop (destroyed anyway) -> performance!
 		xAddress_list.clear();
@@ -202,7 +197,7 @@ ServiceManager::DiscoverResults ServiceManager::discoverOSCP() const {
 	return results;
 }
 
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) const {
+SDCLib::Data::SDC::SDCConsumer_unique_ptr ServiceManager::connectXAddress(const std::vector<std::string>& xaddress_list, const std::string & epr) const {
 	DPWS::DeviceDescription deviceDescription;
 
 	bool connectionPossible_flag = 0;
@@ -319,7 +314,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(m_SDCInstance, deviceDescription, configuration));
+	SDCLib::Data::SDC::SDCConsumer_unique_ptr result(new SDCLib::Data::SDC::SDCConsumer(m_SDCInstance, deviceDescription, configuration));
 
 	if (!result->isConnected()) {
 		result->disconnect();

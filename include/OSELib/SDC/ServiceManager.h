@@ -92,7 +92,7 @@ private:
 
 
     //  DONT MIX MEMBER FUNCTIONS AND DATA...
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr) const;
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const std::vector<std::string>& xaddress, const std::string & epr) const;
 };
 
 } /* namespace SDC */

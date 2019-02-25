@@ -51,6 +51,7 @@ namespace SDCLib
             namespace SDC {
 
                 class SDCConsumer;
+                using SDCConsumer_unique_ptr = std::unique_ptr<SDCConsumer>;
                 using ConsumerList_unique = std::vector<std::unique_ptr<SDCConsumer>>;
 
                 class SDCProvider;

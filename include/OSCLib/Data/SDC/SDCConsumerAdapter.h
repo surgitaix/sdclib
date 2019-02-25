@@ -36,7 +36,7 @@ public:
     SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription, const MDPWSTransportLayerConfiguration& config);
 	virtual ~SDCConsumerAdapter();
 
-	void start();
+	bool start();
 	void stop();
 
 	std::unique_ptr<MDM::GetMdDescriptionResponse> invoke(const MDM::GetMdDescription & request);

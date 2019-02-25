@@ -305,15 +305,15 @@ SDCConsumerAdapter::SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInsta
 	_streamClientSocketImpl(p_SDCInstance, *this, deviceDescription),
 	configuration(config)
 {
+
 }
 
-SDCConsumerAdapter::~SDCConsumerAdapter() {
-}
+SDCConsumerAdapter::~SDCConsumerAdapter() = default;
 
-void SDCConsumerAdapter::start() {
+bool SDCConsumerAdapter::start() {
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_httpServer) {
-		throw std::runtime_error("An http-Server is already running.");
+		return false;
 	}
 
 	Poco::Net::ServerSocket ss;
@@ -352,10 +352,13 @@ void SDCConsumerAdapter::start() {
 
 	if (_pingManager) {
 		//todo maybe throw because starting twice is clearly an error
-		return;
+        // FIXME FIXME FIXME:
+        // (ERROR != THROWING) DONT USE EXCEPTIONS AS FLOW CONTROL AND DONT JUST THROW JUST BECAUSE YOU CAN... THIS IS NOT JAVA... USE assert, static_assert, logging etc.
+		return false;
 	}
 
 	_pingManager = std::unique_ptr<OSELib::DPWS::PingManager>(new OSELib::DPWS::PingManager(_consumer));
+    return true;
 }
 
 

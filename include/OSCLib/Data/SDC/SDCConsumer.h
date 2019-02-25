@@ -74,6 +74,14 @@ private:
 		const InvocationState invocationState;
 	};
 public:
+
+    // Special Member Functions
+    SDCConsumer() = delete;
+    SDCConsumer(const SDCConsumer& p_obj) = delete;
+    SDCConsumer(SDCConsumer&& p_obj) = delete;
+    SDCConsumer& operator=(const SDCConsumer& p_obj) = delete;
+    SDCConsumer& operator=(SDCConsumer&& p_obj) = delete;
+
 	~SDCConsumer();
 
     /**
@@ -284,9 +292,9 @@ private:
     SDCConsumerSubscriptionLostHandler * subscriptionLostHandler = nullptr;
 
     unsigned long long int lastKnownMDIBVersion = 0;
-    std::atomic<bool> connected;
+    std::atomic<bool> connected = ATOMIC_VAR_INIT(false);
     OSELib::DPWS::DeviceDescription _deviceDescription;
-    std::unique_ptr<SDCConsumerAdapter> _adapter;
+    std::unique_ptr<SDCConsumerAdapter> _adapter = nullptr;
 
     // FIXME
     MDPWSTransportLayerConfiguration configuration;

@@ -161,16 +161,24 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSE
 		_deviceDescription(deviceDescription),
 		configuration(config)
 {
-	connected = false;
+    // DONT DO THIS INSIDE THE CTOR! FIXME! FIXME
 	try {
 		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(p_SDCInstance, *this, _deviceDescription, configuration));
-		_adapter->start();
-		connected = true;
+		if(!_adapter->start()) {
+            log_error([] { return "Could not start ConsumerAdapter!"; });
+            disconnect();
+        }
+        else {
+            connected = true;
+        }
 	} catch (const Poco::Net::NetException & e) {
 		log_error([&] { return "Exception: " + std::string(e.what()) + " Opening socket impossible. Aborted."; });
-	} catch (const std::runtime_error & e) {
-		log_error([&] {return "Exception: " + std::string(e.what()); });
-	}
+        disconnect();
+    }
+	catch(...) {
+        log_error([] {return "Unknown Exception: Could not create ConsumerAdapter!"; });
+        disconnect();
+    }
 
 	if (!connected) {
 		log_error([&] { return "Connecting to " + deviceDescription.getEPR() + " failed."; });
@@ -183,12 +191,13 @@ SDCConsumer::~SDCConsumer() {
     	fis.second->consumer = nullptr;
     }
     // FIXME: This is not threadsafe!
-    if (_adapter)
+    if (_adapter != nullptr)
     {
         log_warning([] { return "SDCConsumer deleted before disconnected. For proper handling please disconnect the consumer first"; });
         disconnect();
         // FIXME: What does this tell us? The dtor should handle a proper disconnect for us!
-    } else if (SDCLibrary::getInstance().isInitialized() && (_adapter.get() == nullptr)) {
+    }
+    else {
         log_error([] { return "SDCConsumerAdapter does not exist / not initialized."; });
     }
 }
