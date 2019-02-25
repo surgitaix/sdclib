@@ -153,6 +153,7 @@ public:
 			return;
 		}
 
+		Poco::Mutex::ScopedLock lock(provider.getMutex());
 		if (provider.periodicEventInterval < provider.lastPeriodicEvent.elapsed()) {
 			provider.firePeriodicReportImpl();
 			provider.lastPeriodicEvent.update();
@@ -221,10 +222,6 @@ void SDCProvider::enqueueInvokeNotification(const T & request, const OperationIn
 }
 
 MDM::SetValueResponse SDCProvider::SetValueAsync(const MDM::SetValue & request) {
-
-    // FIXME: Moved the Mutex here, still working?
-    Poco::Mutex::ScopedLock lock(m_setAsyncMutex);
-
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 	const std::string metricHandle(getMdDescription().getOperationTargetForOperationHandle(oic.operationHandle));
 
@@ -273,10 +270,6 @@ void SDCProvider::SetValue(const MDM::SetValue & request, const OperationInvocat
 }
 
 MDM::ActivateResponse SDCProvider::OnActivateAsync(const MDM::Activate & request) {
-
-    // FIXME: Moved the Mutex here, still working?
-    Poco::Mutex::ScopedLock lock(m_setAsyncMutex);
-
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 	notifyOperationInvoked(oic, InvocationState::Wait);
 	enqueueInvokeNotification(request, oic);
@@ -301,10 +294,6 @@ void SDCProvider::OnActivate(const OperationInvocationContext & oic) {
 }
 
 MDM::SetStringResponse SDCProvider::SetStringAsync(const MDM::SetString & request) {
-
-    // FIXME: Moved the Mutex here, still working?
-    Poco::Mutex::ScopedLock lock(m_setAsyncMutex);
-
     const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 	const MdDescription mdd(getMdDescription());
 
@@ -442,9 +431,6 @@ void SDCProvider::SetAlertStateImpl(const StateType & state, const OperationInvo
 }
 
 MDM::SetAlertStateResponse SDCProvider::SetAlertStateAsync(const MDM::SetAlertState & request) {
-    // FIXME: Moved the Mutex here, still working?
-    Poco::Mutex::ScopedLock lock(m_setAsyncMutex);
-
 	const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 	const CDM::AbstractAlertState * incomingCDMState = &(request.ProposedAlertState());
 
@@ -532,10 +518,6 @@ MDM::GetMdStateResponse SDCProvider::GetMdState(const MDM::GetMdState & request)
 }
 
 MDM::GetContextStatesResponse SDCProvider::GetContextStates(const MDM::GetContextStates & request) {
-
-    // FIXME: Moved the Mutex here, still working?
-    Poco::Mutex::ScopedLock lock(m_mutex);
-
     const auto states(ConvertToCDM::convert(getMdState()));
 
 	//TODO: use real SequenceID, not 0
@@ -582,10 +564,6 @@ MDM::GetContextStatesResponse SDCProvider::GetContextStates(const MDM::GetContex
 }
 
 MDM::SetContextStateResponse SDCProvider::SetContextStateAsync(const MDM::SetContextState & request) {
-
-    // FIXME: Moved the Mutex here, still working?
-    Poco::Mutex::ScopedLock lock(m_setAsyncMutex);
-
     const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
 
 	auto genResponse = [this, &oic](InvocationState v) {
@@ -643,10 +621,6 @@ void SDCProvider::SetContextState(const MDM::SetContextState & request, const Op
 
 
 MDM::GetMdibResponse SDCProvider::GetMdib(const MDM::GetMdib & ) {
-
-    // FIXME: Moved the Mutex here, still working?
-    Poco::Mutex::ScopedLock lock(m_mdibMutex);
-
 	// TODO: 0 = replace with real sequence ID
 	MDM::GetMdibResponse mdib(xml_schema::Uri("0"),ConvertToCDM::convert(getMdib()));
 	mdib.MdibVersion(getMdibVersion());
@@ -654,10 +628,6 @@ MDM::GetMdibResponse SDCProvider::GetMdib(const MDM::GetMdib & ) {
 }
 
 MDM::GetMdDescriptionResponse SDCProvider::GetMdDescription(const MDM::GetMdDescription & request) {
-
-    // FIXME: Moved the Mutex here, still working?
-    Poco::Mutex::ScopedLock lock(m_mdibMutex);
-
     auto cdmMdd(ConvertToCDM::convert(getMdDescription()));
 
 	if (request.HandleRef().empty()) {
@@ -841,14 +811,12 @@ void SDCProvider::notifyStreamMetricImpl(const T & object) {
 
 
 void SDCProvider::firePeriodicReportImpl() {
-
-    Poco::Mutex::ScopedLock lock(m_mutex);
-
 	if (handlesForPeriodicUpdates.empty()) {
 		log_debug([] { return "List of handles is empty, event will not be fired!"; });
 		return;
 	}
 
+	Poco::Mutex::ScopedLock lock(m_mutex);
 	const auto mdstate(ConvertToCDM::convert(getMdState()));
 
 	MDM::ReportPart3 periodicAlertReportPart;
@@ -994,7 +962,7 @@ void SDCProvider::evaluateAlertConditions(const std::string & source) {
 
 MdibContainer SDCProvider::getMdib() {
     MdibContainer container;
-	Poco::Mutex::ScopedLock lock(m_mdibMutex);
+	Poco::Mutex::ScopedLock lock(m_mutex);
     container.setMdDescription(getMdDescription());
 	container.setMdState(getMdState());
 	container.setMdibVersion(getMdibVersion());
@@ -1002,12 +970,11 @@ MdibContainer SDCProvider::getMdib() {
 }
 
 MdDescription SDCProvider::getMdDescription() const {
-    Poco::Mutex::ScopedLock lock(m_mdibMutex);
 	return *m_mdDescription;
 }
 
 MdState SDCProvider::getMdState() const {
-    Poco::Mutex::ScopedLock lock(m_mdibMutex);
+	Poco::Mutex::ScopedLock lock(m_mutex);
 	return mdibStates;
 }
 
@@ -1095,6 +1062,7 @@ void SDCProvider::startup() {
 
 void SDCProvider::shutdown()
 {
+    // FIXME: This really needs to be fixed... Shutdown takes some time, synchro etc...
     if (providerInvoker) {
     	providerInvoker->interrupt();
     	providerInvoker.reset();
@@ -1103,6 +1071,12 @@ void SDCProvider::shutdown()
 		_adapter->stop();
 		_adapter.reset();
 	}
+
+	// Clear MdDescription
+	if(m_mdDescription != nullptr) {
+        m_mdDescription->clearMdsList();
+        m_mdDescription.reset();
+    }
 }
 
 template<class T> void SDCProvider::replaceState(const T & object) {
@@ -1183,7 +1157,7 @@ void SDCProvider::setEndpointReference(const std::string & epr) {
 
 
 void SDCProvider::setMdDescription(const MdDescription & mdDescription) {
-	Poco::Mutex::ScopedLock lock(m_mdibMutex);
+	Poco::Mutex::ScopedLock lock(getMutex());
 	m_mdDescription = std::make_shared<MdDescription>(mdDescription);
 }
 
@@ -1195,7 +1169,7 @@ void SDCProvider::setMdDescription(std::string xml) {
 	std::unique_ptr<CDM::Mdib> result(CDM::MdibContainer(xercesDocument->getDocument()));
 
 	if (result != nullptr) {
-		Poco::Mutex::ScopedLock lock(m_mdibMutex);
+		Poco::Mutex::ScopedLock lock(getMutex());
 		if (result->MdDescription().present()) {
 			this->m_mdDescription.reset(new MdDescription(ConvertFromCDM::convert(result->MdDescription().get())));
 		}
@@ -1241,9 +1215,7 @@ void SDCProvider::notifyOperationInvoked(const OperationInvocationContext & oic,
 
 template<class T>
 void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor & ownerMDS) {
-
-    Poco::Mutex::ScopedLock lock(m_mdibMutex);
-    // get sco object or create new
+	// get sco object or create new
 	std::unique_ptr<CDM::ScoDescriptor> scoDescriptor(Defaults::ScoDescriptorInit(xml_schema::Uri("")));
 	if (ownerMDS.hasSco()) {
 		scoDescriptor = ConvertToCDM::convert(ownerMDS.getSco());
@@ -1255,6 +1227,8 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor
 	// add operation descriptor to sco and write back to mds
 	scoDescriptor->Operation().push_back(source);
 	ownerMDS.setSco(ConvertFromCDM::convert(*scoDescriptor));
+
+	Poco::Mutex::ScopedLock lock(m_mutex);
 
 	// Now add a state object for the sco descriptor to the cached states.
 	std::unique_ptr<CDM::MdState> cachedOperationStates(ConvertToCDM::convert(operationStates));
@@ -1395,6 +1369,10 @@ unsigned long long int SDCProvider::getMdibVersion() const {
 
 void SDCProvider::incrementMDIBVersion() {
 	mdibVersion++;
+}
+
+Poco::Mutex & SDCProvider::getMutex() {
+	return m_mutex;
 }
 
 void SDCProvider::setPeriodicEventInterval(const int seconds, const int milliseconds) {

@@ -159,7 +159,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
             Poco::Thread::sleep(1000);
 		}
 		// Wait for startup...
-        Poco::Thread::sleep(5000);
+        Poco::Thread::sleep(2000);
 
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
@@ -205,12 +205,14 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 
         // Wait long enough for all to get a call... FIXME: Sometimes this test fails. Just because the timings arent correct.
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for connectionLostHanders...\n";
-        Poco::Thread::sleep(1000);
+
+        Poco::Thread::sleep(10000); // Long enough to get all, or we get an error...
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Checking connectionLostHandlers...\n";
 
         for (auto & handler : connectionLostHanders) {
-        	CHECK_EQUAL(true, handler->handlerVisited);
+            CHECK_EQUAL(true, handler->handlerVisited);
+            handler.reset();
         }
 	}
 	catch (...) {

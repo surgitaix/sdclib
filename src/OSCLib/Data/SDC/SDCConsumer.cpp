@@ -182,11 +182,12 @@ SDCConsumer::~SDCConsumer() {
     for (auto & fis : fisMap) {
     	fis.second->consumer = nullptr;
     }
-    // Careful this is not threadsafe!
+    // FIXME: This is not threadsafe!
     if (_adapter)
     {
         log_warning([] { return "SDCConsumer deleted before disconnected. For proper handling please disconnect the consumer first"; });
         disconnect();
+        // FIXME: What does this tell us? The dtor should handle a proper disconnect for us!
     } else if (SDCLibrary::getInstance().isInitialized() && (_adapter.get() == nullptr)) {
         log_error([] { return "SDCConsumerAdapter does not exist / not initialized."; });
     }

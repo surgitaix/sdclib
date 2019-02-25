@@ -122,6 +122,7 @@ TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
 			providers.push_back(p);
             providerEPRs.push_back(p->getEndpointReference());
 			p->startup();
+            Poco::Thread::sleep(500);
 		}
         // Wait for startup...
         Poco::Thread::sleep(5000);

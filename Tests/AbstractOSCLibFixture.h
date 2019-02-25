@@ -19,7 +19,7 @@ namespace Tests {
 
 struct AbstractOSCLibFixture : public OSELib::WithLogger {
 public:
-	AbstractOSCLibFixture(const std::string & testname, OSELib::LogLevel debuglevel, SDCPort portStart, SDCPort portRange = SDCLib::Config::SDC_DEFAULT_PORT_RANGE) :
+	AbstractOSCLibFixture(const std::string & testname, OSELib::LogLevel debuglevel, SDCPort portStart, SDCPort portRange = SDCLib::Config::SDC_DEFAULT_PORT_RANGE, bool p_shufflePorts = true) :
 		WithLogger(OSELib::Log::BASE),
 		testname(testname)
 	{
@@ -50,7 +50,7 @@ public:
 
         // Configure Portrange
         log_notice([&]{ return "Configure Portrange [" +std::to_string(portStart) + "," + std::to_string(portStart+portRange) + ")..."; });
-        m_SDCInstance->setPortConfig(portStart, portRange);
+        m_SDCInstance->setPortConfig(portStart, portRange, p_shufflePorts);
 
         // Init
         log_notice([]{ return "Init SDCInstance..."; });
