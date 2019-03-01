@@ -46,7 +46,7 @@ xml_schema::Qname EpisodicContextChangedReportTraits::MessageType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());
 }
 std::string EpisodicContextChangedReportTraits::NotificationName() {
-	return "EpisodicContextChangedReport";
+	return "EpisodicContextReport";
 }
 xml_schema::Qname EpisodicContextChangedReportTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_CONTEXTSERVICE_PORTTYPE);
@@ -110,7 +110,7 @@ xml_schema::Qname PeriodicContextChangedReportTraits::MessageType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());
 }
 std::string PeriodicContextChangedReportTraits::NotificationName() {
-	return "PeriodicContextChangedReport";
+	return "PeriodicContextReport";
 }
 xml_schema::Qname PeriodicContextChangedReportTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_CONTEXTSERVICE_PORTTYPE);
@@ -143,7 +143,7 @@ xml_schema::Qname WaveformStreamTraits::MessageType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());
 }
 std::string WaveformStreamTraits::NotificationName() {
-	return "WaveformStreamReport";
+	return "WaveformStream";
 }
 xml_schema::Qname WaveformStreamTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_WAVEFORMSERVICE_PORTTYPE);

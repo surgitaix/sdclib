@@ -12,6 +12,7 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
+#include "OSELib/DPWS/DeviceDescription.h"
 
 namespace OSELib {
 namespace SDC {
@@ -69,6 +70,7 @@ public:
 
 private:
 	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
+	void resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & metadata,	OSELib::DPWS::DeviceDescription & deviceDescription);
 	std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> _dpwsClient;
 	// todo: kick this helloCallback. Supposedly it is not needed.
 	std::unique_ptr<DPWS::HelloCallback> _helloCallback;

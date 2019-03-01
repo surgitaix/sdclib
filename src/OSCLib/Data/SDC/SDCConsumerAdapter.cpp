@@ -399,12 +399,22 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::EpisodicMetricReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicAlertReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
+		// fixme: move to SetService
 		filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
 		subscriptions.emplace_back(
 				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/EventReportSink"),
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}
+//	{
+//		WS::EVENTING::FilterType filter;
+//		// fixme: move to SetService
+//		//filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
+//		subscriptions.emplace_back(
+//				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/EventReportSink"),
+//				_deviceDescription.getEventServiceURI(),
+//				filter);
+//	}
 
 	_subscriptionClient = std::unique_ptr<OSELib::DPWS::SubscriptionClient>(new OSELib::DPWS::SubscriptionClient(subscriptions));
 }

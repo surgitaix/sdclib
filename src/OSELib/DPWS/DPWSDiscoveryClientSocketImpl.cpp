@@ -82,6 +82,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
 				&& nextIf.address().isUnicast()
 				&& !nextIf.address().isLoopback()) {
 				_ipv4MulticastDiscoverySocket.joinGroup(_ipv4MulticastAddress.host(), nextIf);
+				_ipv4MulticastDiscoverySocket.setTimeToLive(UPD_MULTICAST_TIMETOLIVE);
 				Poco::Net::DatagramSocket datagramSocket(Poco::Net::SocketAddress(nextIf.firstAddress(Poco::Net::IPAddress::Family::IPv4), 0), true);
 				datagramSocket.setBlocking(false);
 				_reactor.addEventHandler(datagramSocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable));

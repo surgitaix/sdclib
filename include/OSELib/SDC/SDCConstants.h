@@ -36,7 +36,7 @@ const std::string NS_DOMAIN_MODEL("http://standards.ieee.org/downloads/11073/110
 const std::string NS_MESSAGE_MODEL("http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 const std::string NS_SERVICE_DESCRIPTION("http://standards.ieee.org/downloads/11073/11073-20701-2018");
 const std::string NS_WSDL("http://schemas.xmlsoap.org/wsdl/");
-const std::string NS_WSDL_TARGET_NAMESPACE("http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
+const std::string NS_WSDL_TARGET_NAMESPACE("http://standards.ieee.org/downloads/11073/11073-20701-2018");
 const std::string NS_WSDL_SOAP_BINDING("http://schemas.xmlsoap.org/wsdl/soap/");
 const std::string NS_XML_SCHEMA("http://www.w3.org/2001/XMLSchema");
 const std::string NS_MDPWS("http://standards.ieee.org/downloads/11073/11073-20702-2016");
@@ -97,10 +97,11 @@ const std::string ACTION_CDM_SET_VALUE_RESPONSE(NS_SERVICE_DESCRIPTION + "/" + Q
 const std::string EVENT_ACTION_CDM_DESCRIPTION_MODIFICATION_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_STATEEVENTREPORTSERVICE_PORTTYPE + "/DescriptionModificationReport");
 const std::string EVENT_ACTION_CDM_EPISODIC_ALERT_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_STATEEVENTREPORTSERVICE_PORTTYPE + "/EpisodicAlertReport");
 const std::string EVENT_ACTION_CDM_PERIODIC_ALERT_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_STATEEVENTREPORTSERVICE_PORTTYPE + "/PeriodicAlertReport");
-const std::string EVENT_ACTION_CDM_EPISODIC_CONTEXT_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_CONTEXTSERVICE_PORTTYPE + "/EpisodicContextChangedReport");
-const std::string EVENT_ACTION_CDM_PERIODIC_CONTEXT_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_CONTEXTSERVICE_PORTTYPE + "/PeriodicContextChangedReport");
+const std::string EVENT_ACTION_CDM_EPISODIC_CONTEXT_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_CONTEXTSERVICE_PORTTYPE + "/EpisodicContextReport");
+const std::string EVENT_ACTION_CDM_PERIODIC_CONTEXT_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_CONTEXTSERVICE_PORTTYPE + "/PeriodicContextReport");
 const std::string EVENT_ACTION_CDM_EPISODIC_METRIC_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_STATEEVENTREPORTSERVICE_PORTTYPE + "/EpisodicMetricReport");
 const std::string EVENT_ACTION_CDM_PERIODIC_METRIC_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_STATEEVENTREPORTSERVICE_PORTTYPE + "/PeriodicMetricReport");
+// moved to set service
 const std::string EVENT_ACTION_CDM_OPERATION_INVOKED_REPORT(NS_SERVICE_DESCRIPTION + "/" + QNAME_STATEEVENTREPORTSERVICE_PORTTYPE + "/OperationInvokedReport");
 const std::string EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT(NS_ORNET_STREAM_ID + "/WaveformStream");
 

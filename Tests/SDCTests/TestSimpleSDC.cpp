@@ -945,6 +945,7 @@ public:
         sdcProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
 
         ActivateOperationDescriptor aod(CMD_HANDLE, NUMERIC_METRIC_MAX_HANDLE);
+        aod.setRetriggerable(true);
 
 		sdcProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 

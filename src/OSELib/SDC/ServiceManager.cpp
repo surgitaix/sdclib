@@ -138,6 +138,8 @@ std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> ServiceManager::dis
 	DPWS::TypesType types;
 	types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
 
+	xml_schema::Qname asdf(SDC::NS_MDPWS, "MedicalDevice");
+
 	DPWS::ProbeType probeFilter;
 	probeFilter.Types().set(types);
 
@@ -173,6 +175,54 @@ std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> ServiceManager::dis
 
 	return results;
 }
+
+
+void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & metadata,	DPWS::DeviceDescription & deviceDescription) {
+	for (const auto & hosted : metadata.Relationship().get().Hosted()) {
+		for (auto hosted_type : hosted.Types()) {
+			if (hosted_type.name() == QNAME_CONTEXTSERVICE_PORTTYPE) {
+				log_debug([&]{return "ContextService found";});
+				for (const auto & iter : hosted.EndpointReference()) {
+					deviceDescription.addContextServiceURI(Poco::URI(iter.Address()));
+				}
+			}
+		}
+		for (auto hosted_type : hosted.Types()) {
+			if (hosted_type.name() == QNAME_STATEEVENTREPORTSERVICE_PORTTYPE) {
+				log_debug([&]{return "StateEventReportService found";});
+				for (const auto & iter : hosted.EndpointReference()) {
+					deviceDescription.addStateEventReportServiceURI(Poco::URI(iter.Address()));
+				}
+			}
+		}
+		for (auto hosted_type : hosted.Types()) {
+			if (hosted_type.name() == QNAME_GETSERVICE_PORTTYPE) {
+				log_debug([&]{return "GetService found";});
+				for (const auto & iter : hosted.EndpointReference()) {
+					deviceDescription.addGetServiceURI(Poco::URI(iter.Address()));
+				}
+			}
+		}
+		for (auto hosted_type : hosted.Types()) {
+			if (hosted_type.name() == QNAME_SETSERVICE_PORTTYPE) {
+				log_debug([&]{return "SetService found";});
+				for (const auto & iter : hosted.EndpointReference()) {
+					deviceDescription.addSetServiceURI(Poco::URI(iter.Address()));
+				}
+			}
+		}
+		for (auto hosted_type : hosted.Types()) {
+			if (hosted_type.name() == QNAME_WAVEFORMSERVICE_PORTTYPE) {
+				log_debug([&]{return "WaveformService found";});
+				for (const auto & iter : hosted.EndpointReference()) {
+					deviceDescription.addWaveformServiceURI(Poco::URI(iter.Address()));
+				}
+			}
+		}
+	}
+
+}
+
 
 std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const std::list<std::string> xaddress_list, const std::string & epr) {
 	DPWS::DeviceDescription deviceDescription;
@@ -225,29 +275,9 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 					continue;
 				}
 
-				for (const auto & hosted : metadata.Relationship().get().Hosted()) {
-					if (hosted.ServiceId() == QNAME_CONTEXTSERVICE_PORTTYPE) {
-						for (const auto & iter : hosted.EndpointReference()) {
-							deviceDescription.addContextServiceURI(Poco::URI(iter.Address()));
-						}
-					} else if (hosted.ServiceId() == QNAME_STATEEVENTREPORTSERVICE_PORTTYPE) {
-						for (const auto & iter : hosted.EndpointReference()) {
-							deviceDescription.addStateEventReportServiceURI(Poco::URI(iter.Address()));
-						}
-					} else if (hosted.ServiceId() == QNAME_GETSERVICE_PORTTYPE) {
-						for (const auto & iter : hosted.EndpointReference()) {
-							deviceDescription.addGetServiceURI(Poco::URI(iter.Address()));
-						}
-					} else if (hosted.ServiceId() == QNAME_SETSERVICE_PORTTYPE) {
-						for (const auto & iter : hosted.EndpointReference()) {
-							deviceDescription.addSetServiceURI(Poco::URI(iter.Address()));
-						}
-					} else if (hosted.ServiceId() == QNAME_WAVEFORMSERVICE_PORTTYPE) {
-						for (const auto & iter : hosted.EndpointReference()) {
-							deviceDescription.addWaveformServiceURI(Poco::URI(iter.Address()));
-						}
-					}
-				}
+				resolveServiceURIsFromMetadata(metadata, deviceDescription);
+
+
 			}
 		}
 

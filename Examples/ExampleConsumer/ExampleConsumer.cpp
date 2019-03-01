@@ -48,11 +48,14 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-//const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
 const std::string deviceEPR("UDI-1234567890");
 
-const std::string HANDLE_SET_METRIC("handle_metric");
+
+
+const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
+//const std::string HANDLE_GET_METRIC("handle_SpO2");
+
 //const std::string HANDLE_GET_METRIC("handle_metric");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
 const std::string HANDLE_STRING_METRIC("handle_string");
@@ -138,39 +141,46 @@ int main() {
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(6465);
 
-//	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
-	auto c(oscpsm.discoverOSCP());
+	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
+//	auto c(oscpsm.discoverOSCP());
 
 	// state handler
 	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
-	//std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
+	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
 	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
 
 	try {
-		if (c[0] != nullptr) {
-			Data::SDC::SDCConsumer & consumer = *c[0];
+		if (c != nullptr) {
+//		if (c[0] != nullptr) {
+//			Data::SDC::SDCConsumer & consumer = *c[0];
+			Data::SDC::SDCConsumer & consumer = *c;
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
 
-			consumer.registerStateEventHandler(eh_get.get());
-//			consumer.registerStateEventHandler(eh_set.get());
-			consumer.registerStateEventHandler(eh_stream.get());
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
 
-			//std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
-			std::unique_ptr<RealTimeSampleArrayMetricState> pMetricState(consumer.requestState<RealTimeSampleArrayMetricState>(HANDLE_STREAM_METRIC));
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pMetricState->getMetricValue().getSamples().at(3);
-			//pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+			consumer.registerStateEventHandler(eh_get.get());
+			consumer.registerStateEventHandler(eh_set.get());
+			consumer.registerStateEventHandler(eh_stream.get());
+
+
+
+			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pGetMetricState->getMetricValue().getValue();
+			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
+
+			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+//			std::unique_ptr<RealTimeSampleArrayMetricState> pMetricState(consumer.requestState<RealTimeSampleArrayMetricState>(HANDLE_STREAM_METRIC));
+//			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pMetricState->getMetricValue().getSamples().at(3);
+
 			FutureInvocationState fis;
-			//consumer.commitState(*pMetricState, fis);
+			consumer.commitState(*pMetricState, fis);
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
-
-
 
 
 			waitForUserInput();
 			consumer.unregisterStateEventHandler(eh_get.get());
-			//consumer.unregisterStateEventHandler(eh_set.get());
+			consumer.unregisterStateEventHandler(eh_set.get());
 			consumer.unregisterStateEventHandler(eh_stream.get());
 			consumer.disconnect();
 		} else {
