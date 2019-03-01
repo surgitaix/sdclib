@@ -29,7 +29,7 @@ public:
 	* @return The initial state
 	*/
 	SDCProviderMDStateHandler(std::string descriptorHandle) : SDCProviderStateHandler(descriptorHandle) {};
-	virtual ~SDCProviderMDStateHandler(){};
+	virtual ~SDCProviderMDStateHandler() = default;
 
 
 	/**

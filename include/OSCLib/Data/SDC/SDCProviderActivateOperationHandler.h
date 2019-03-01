@@ -20,7 +20,7 @@ namespace SDC {
 class SDCProviderActivateOperationHandler : public SDCProviderStateHandler {
 public:
 	SDCProviderActivateOperationHandler(std::string descriptorHandle) : SDCProviderStateHandler(descriptorHandle) {};
-	virtual ~SDCProviderActivateOperationHandler() {};
+	virtual ~SDCProviderActivateOperationHandler() = default;
 
     /**
     * @brief Called on incoming consumer request for activation

@@ -29,7 +29,7 @@ public:
 	* @return The initial state
 	*/
 	SDCProviderAlertConditionStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler<TState>(descriptorHandle) {};
-	virtual ~SDCProviderAlertConditionStateHandler(){};
+	virtual ~SDCProviderAlertConditionStateHandler() = default;
 
 	virtual void sourceHasChanged(const std::string & sourceHandle) = 0;
 

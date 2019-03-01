@@ -34,7 +34,7 @@ template<typename TState>
 class SDCConsumerMDStateHandler: public SDCConsumerOperationInvokedHandler {
 public:
 	SDCConsumerMDStateHandler(const std::string handle) : SDCConsumerOperationInvokedHandler(handle) {}
-	virtual ~SDCConsumerMDStateHandler() {}
+	virtual ~SDCConsumerMDStateHandler() = default;
 
 	typedef TState StateType;
 

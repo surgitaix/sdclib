@@ -30,8 +30,7 @@ namespace SDC {
 
 class SDCConsumerSubscriptionLostHandler {
 public:
-    virtual ~SDCConsumerSubscriptionLostHandler() {
-    }
+    virtual ~SDCConsumerSubscriptionLostHandler() = default;
 
     /**
     * @brief This method will be called if subscription renewal has failed.

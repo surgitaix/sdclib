@@ -30,8 +30,7 @@ namespace SDC {
 
 class SDCConsumerConnectionLostHandler {
 public:
-    virtual ~SDCConsumerConnectionLostHandler() {
-    }
+    virtual ~SDCConsumerConnectionLostHandler() = default;
 
     /**
     * @brief This method will be called if a ping has failed.
