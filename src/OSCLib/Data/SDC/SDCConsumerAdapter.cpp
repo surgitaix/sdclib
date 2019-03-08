@@ -368,9 +368,9 @@ void SDCConsumerAdapter::stop() {
 
 	while (_httpServer->currentConnections() != 0) {
 		Poco::Thread::sleep(100);
+		_httpServer.reset();
 	}
 
-	_httpServer.reset();
 
 	if (_pingManager) {
 		_pingManager->disable();

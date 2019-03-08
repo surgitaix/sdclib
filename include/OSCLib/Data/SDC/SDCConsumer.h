@@ -234,6 +234,7 @@ public:
 
 private:
     SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config);
+    SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription, std::shared_ptr<MDPWSTransportLayerConfiguration> config);
 
     /**
     * @brief Update the local MDIB using an RPC to the provider.

@@ -382,27 +382,13 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Notice);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
-
-    SDCLibrary2::getInstance().startup(OSELib::LogLevel::Debug);
-    list<string> asdf;
-    asdf.push_back("enp0s3");
-    asdf.push_back("docker0");
-    SDCInstancePtr sdcInstance2 = SDCLibrary2::getInstance().createBoundSDCInstance(asdf);
-
-//    DebugOut(DebugOut::Default, "ExampleProvider") << "Interfaces Names:" << std::endl;
-//    const auto interfaceList = sdcInstance->getNetworkInterfacesList();
-//    for (const auto interface : interfaceList) {
-//    	DebugOut(DebugOut::Default, "ExampleProvider") << interface.adapterName() << std::endl;
-//    }
-
 
 	OSCPStreamProvider provider;
 	provider.startup();
 	provider.start();
-
 
 	std::string temp;
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Press key to exit program.";
