@@ -343,7 +343,8 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(m_SDCInstance, deviceDescription, configuration));
+    SDCLib::Data::SDC::MDPWSTransportLayerConfiguration newConfiguration = SDCLib::Data::SDC::MDPWSTransportLayerConfiguration(m_SDCInstance);
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(m_SDCInstance, deviceDescription, newConfiguration));
 
 	if (!result->isConnected()) {
 		result->disconnect();

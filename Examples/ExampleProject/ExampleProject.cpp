@@ -105,7 +105,7 @@ public:
     }
 
     // state is read-only - MEASUREMENT -> onStateChangeRequest() returns Fail
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) {
     	return InvocationState::Fail;
     }
 

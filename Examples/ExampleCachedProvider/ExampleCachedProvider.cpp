@@ -83,7 +83,7 @@ public:
 	}
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -164,7 +164,7 @@ public:
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
