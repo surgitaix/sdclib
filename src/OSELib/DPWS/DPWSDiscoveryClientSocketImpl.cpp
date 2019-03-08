@@ -129,6 +129,8 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         }
         // Nonblocking
         m_ipv4DiscoverySocket.setBlocking(false);
+        // TTL
+        m_ipv4DiscoverySocket.setTimeToLive(UPD_MULTICAST_TIMETOLIVE);
         // Add Ipv4 Socket EventHandler
         m_reactor.addEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 	}
@@ -185,6 +187,8 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         }
         // Nonblocking
         m_ipv6DiscoverySocket.setBlocking(false);
+        // TTL
+        m_ipv6DiscoverySocket.setTimeToLive(UPD_MULTICAST_TIMETOLIVE);
         // Add Ipv6 Socket EventHandler
         m_reactor.addEventHandler(m_ipv6DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
     }

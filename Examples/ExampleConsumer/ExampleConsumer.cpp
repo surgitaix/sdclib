@@ -48,12 +48,10 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-//const std::string deviceEPR("UDI-EXAMPLEPROVIDER");
 const std::string deviceEPR("UDI-1234567890");
 
-const std::string HANDLE_SET_METRIC("handle_metric");
+const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
-//const std::string HANDLE_GET_METRIC("handle_metric");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
 const std::string HANDLE_STRING_METRIC("handle_string");
 
@@ -116,7 +114,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 	SDCLibrary::getInstance().setPortStart(12000);
 
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
@@ -149,39 +147,47 @@ int main() {
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration(t_SDCInstance);
 	config.setPort(6465);
 
-//	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
-	auto c(oscpsm.discoverOSCP());
+	// for explicit discovery
+	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
+
+	// for implicit discovery
+//	auto c(oscpsm.discoverOSCP());
 
 	// state handler
 	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
-	//std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
+	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
 	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
 
 	try {
-		if (c[0] != nullptr) {
-			Data::SDC::SDCConsumer & consumer = *c[0];
+		if (c != nullptr) {
+//		if (c[0] != nullptr) { // implicit
+//			Data::SDC::SDCConsumer & consumer = *c[0]; // implicit
+			Data::SDC::SDCConsumer & consumer = *c;
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
 
-			consumer.registerStateEventHandler(eh_get.get());
-//			consumer.registerStateEventHandler(eh_set.get());
-			consumer.registerStateEventHandler(eh_stream.get());
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
 
-			//std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
-			std::unique_ptr<RealTimeSampleArrayMetricState> pMetricState(consumer.requestState<RealTimeSampleArrayMetricState>(HANDLE_STREAM_METRIC));
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pMetricState->getMetricValue().getSamples().at(3);
-			//pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+			consumer.registerStateEventHandler(eh_get.get());
+			consumer.registerStateEventHandler(eh_set.get());
+			consumer.registerStateEventHandler(eh_stream.get());
+
+			// read-only metric (get-service)
+			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pGetMetricState->getMetricValue().getValue();
+
+			// read-write metric (set-service)
+			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
+			// prepare the metric state (in this example a metric is set)
+			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+			// commit the metric to the provider
 			FutureInvocationState fis;
-			//consumer.commitState(*pMetricState, fis);
+			consumer.commitState(*pMetricState, fis);
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
-
-
-
 
 			waitForUserInput();
 			consumer.unregisterStateEventHandler(eh_get.get());
-			//consumer.unregisterStateEventHandler(eh_set.get());
+			consumer.unregisterStateEventHandler(eh_set.get());
 			consumer.unregisterStateEventHandler(eh_stream.get());
 			consumer.disconnect();
 		} else {

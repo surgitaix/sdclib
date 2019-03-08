@@ -12,6 +12,7 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
+#include "OSELib/DPWS/DeviceDescription.h"
 
 #include "OSCLib/Prerequisites.h"
 #include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
@@ -70,7 +71,7 @@ public:
     * @return List of all providers
     */
     using DiscoverResults = std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>>;
-	DiscoverResults discoverOSCP() const;
+	DiscoverResults discoverOSCP();
 
     /**
      * @brief Discover all SDC providers currently available in an async manner
@@ -78,7 +79,7 @@ public:
      * @return std::future of a list of all providers (DiscoverResults)
      */
     using AsyncDiscoverResults  = std::future<DiscoverResults>;
-    AsyncDiscoverResults async_discoverOSCP() const;
+    AsyncDiscoverResults async_discoverOSCP();
 
 private:
 
@@ -92,7 +93,8 @@ private:
 
 
     //  DONT MIX MEMBER FUNCTIONS AND DATA...
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const std::vector<std::string>& xaddress, const std::string & epr) const;
+    std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
+    void resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & metadata, OSELib::DPWS::DeviceDescription & deviceDescription);
 };
 
 } /* namespace SDC */

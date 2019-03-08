@@ -371,7 +371,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Notice);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>();
@@ -387,7 +387,6 @@ int main()
 	OSCPStreamProvider provider(t_SDCInstance);
 	provider.startup();
 	provider.start();
-
 
 	std::string temp;
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Press key to exit program.";
