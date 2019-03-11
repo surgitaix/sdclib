@@ -105,7 +105,9 @@ void SubscriptionClient::run() {
 		if (!response
 			|| !response->SubscriptionManager().ReferenceParameters().present()
 			|| !response->SubscriptionManager().ReferenceParameters().get().Identifier().present()) {
-			log_fatal([&] { return "Subscribing failed!!!"; });
+			log_fatal([&] { return "Subscribing failed."; });
+		} else {
+			log_information([&] { return "Subscription accomplished"; });
 		}
 
 		_subscriptionIdentifiers.emplace(subscription.first, response->SubscriptionManager().ReferenceParameters().get().Identifier().get());

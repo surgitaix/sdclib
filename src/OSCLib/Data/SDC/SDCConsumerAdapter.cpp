@@ -384,6 +384,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 	}
 
 	std::vector<OSELib::DPWS::SubscriptionClient::SubscriptionInformation> subscriptions;
+	// context reports
 	{
 		WS::EVENTING::FilterType filter;
 		filter.push_back(OSELib::SDC::EpisodicContextChangedReportTraits::Action());
@@ -393,12 +394,21 @@ void SDCConsumerAdapter::subscribeEvents() {
 				_deviceDescription.getContextServiceURI(),
 				filter);
 	}
+	// Event reports
 	{
 		WS::EVENTING::FilterType filter;
 		filter.push_back(OSELib::SDC::EpisodicAlertReportTraits::Action());
 		filter.push_back(OSELib::SDC::EpisodicMetricReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicAlertReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
+		subscriptions.emplace_back(
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/EventReportSink"),
+				_deviceDescription.getEventServiceURI(),
+				filter);
+	}
+	// operation invoked report // fixme: läuft mit SDCLib/J nicht mit openSDC
+	{
+		WS::EVENTING::FilterType filter;
 		// fixme: move to SetService
 		filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
 		subscriptions.emplace_back(
@@ -406,15 +416,6 @@ void SDCConsumerAdapter::subscribeEvents() {
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}
-//	{
-//		WS::EVENTING::FilterType filter;
-//		// fixme: move to SetService
-//		//filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
-//		subscriptions.emplace_back(
-//				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/EventReportSink"),
-//				_deviceDescription.getEventServiceURI(),
-//				filter);
-//	}
 
 	_subscriptionClient = std::unique_ptr<OSELib::DPWS::SubscriptionClient>(new OSELib::DPWS::SubscriptionClient(subscriptions));
 }
