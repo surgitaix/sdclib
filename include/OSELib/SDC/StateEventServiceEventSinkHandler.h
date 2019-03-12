@@ -14,14 +14,14 @@
 namespace OSELib {
 namespace SDC {
 
-class EventReportEventSinkHandler : public SOAP::HTTPRequestHandlerExceptionTrap {
+class StateEventServiceEventSinkHandler : public SOAP::HTTPRequestHandlerExceptionTrap {
 public:
-	EventReportEventSinkHandler(IEventReportEventSink & service, Helper::XercesGrammarPoolProvider & grammarProvider);
+	StateEventServiceEventSinkHandler(IStateEventServiceEventSink & service, Helper::XercesGrammarPoolProvider & grammarProvider);
 
 private:
 	virtual void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse);
 
-	IEventReportEventSink & _service;
+	IStateEventServiceEventSink & _service;
 	Helper::XercesGrammarPoolProvider & _grammarProvider;
 };
 

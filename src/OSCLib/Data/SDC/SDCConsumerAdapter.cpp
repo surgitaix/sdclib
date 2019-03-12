@@ -52,9 +52,9 @@
 #include "OSELib/Helper/WithLogger.h"
 #include "OSELib/HTTP/FrontControllerAdapter.h"
 #include "OSELib/SDC/ContextEventSinkHandler.h"
-#include "OSELib/SDC/EventReportEventSinkHandler.h"
+#include "OSELib/SDC/StateEventServiceEventSinkHandler.h"
 #include "OSELib/SDC/IContextServiceEventSink.h"
-#include "OSELib/SDC/IEventReportEventSink.h"
+#include "OSELib/SDC/IStateEventServiceEventSink.h"
 #include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/SDC/SDCEventServiceController.h"
@@ -64,7 +64,9 @@
 namespace OSELib {
 
 using ContextServiceEventSinkController = SDC::SDCEventServiceController<SDC::IContextServiceEventSink , SDC::ContextEventSinkHandler>;
-using EventReportEventSinkController = SDC::SDCEventServiceController<SDC::IEventReportEventSink, SDC::EventReportEventSinkHandler>;
+using EventReportEventSinkController = SDC::SDCEventServiceController<SDC::IStateEventServiceEventSink, SDC::StateEventServiceEventSinkHandler>;
+using SetServiceSinkController = SDC::SDCEventServiceController<SDC::IStateEventServiceEventSink, SDC::StateEventServiceEventSinkHandler>;
+
 
 struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OSELib::WithLogger  {
 	ContextServiceEventSink(SDCLib::Data::SDC::SDCConsumer & consumer) :
@@ -168,7 +170,7 @@ private:
 	SDCLib::Data::SDC::SDCConsumer & _consumer;
 };
 
-struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::WithLogger {
+struct EventReportEventSink : public SDC::IStateEventServiceEventSink, public OSELib::WithLogger {
 	EventReportEventSink(SDCLib::Data::SDC::SDCConsumer & consumer) :
 		WithLogger(Log::EVENTSINK),
 		_consumer(consumer)
@@ -412,7 +414,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		// fixme: move to SetService
 		filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/EventReportSink"),
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/SetServiceSink"),
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}

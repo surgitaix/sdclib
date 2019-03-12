@@ -271,7 +271,7 @@ set(SDCLibSOURCES
 ./src/OSELib/SDC/ContextEventSinkHandler.cpp
 ./src/OSELib/SDC/ContextServiceHandler.cpp
 ./src/OSELib/SDC/DefaultOSCPSchemaGrammarProvider.cpp
-./src/OSELib/SDC/EventReportEventSinkHandler.cpp
+./src/OSELib/SDC/StateEventServiceEventSinkHandler.cpp
 ./src/OSELib/SDC/EventReportServiceHandler.cpp
 ./src/OSELib/SDC/GetServiceHandler.cpp
 ./src/OSELib/SDC/OperationTraits.cpp

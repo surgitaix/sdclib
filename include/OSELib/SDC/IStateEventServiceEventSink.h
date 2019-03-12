@@ -15,9 +15,9 @@
 namespace OSELib {
 namespace SDC {
 
-class IEventReportEventSink : public DPWS::IEventSink {
+class IStateEventServiceEventSink : public DPWS::IEventSink {
 public:
-	virtual ~IEventReportEventSink() = default;
+	virtual ~IStateEventServiceEventSink() = default;
 
 	virtual void dispatch(const EpisodicAlertReportTraits::ReportType & request) = 0;
 	virtual void dispatch(const EpisodicMetricReportTraits::ReportType & request) = 0;

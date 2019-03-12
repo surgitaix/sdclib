@@ -14,7 +14,7 @@
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
-#include "OSELib/SDC/EventReportEventSinkHandler.h"
+#include "OSELib/SDC/StateEventServiceEventSinkHandler.h"
 #include "OSELib/SDC/IGetService.h"
 #include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SOAP/Command.h"
@@ -27,13 +27,13 @@
 namespace OSELib {
 namespace SDC {
 
-EventReportEventSinkHandler::EventReportEventSinkHandler(IEventReportEventSink & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
+StateEventServiceEventSinkHandler::StateEventServiceEventSinkHandler(IStateEventServiceEventSink & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
 	_service(service),
 	_grammarProvider(grammarProvider)
 {
 }
 
-void EventReportEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) {
+void StateEventServiceEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) {
 
 	SOAP::CommonSoapPreprocessing soapHandling(_grammarProvider);
 	soapHandling.parse(httpRequest.stream());
