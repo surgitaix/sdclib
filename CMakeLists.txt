@@ -278,6 +278,7 @@ set(SDCLibSOURCES
 ./src/OSELib/SDC/ReportTraits.cpp
 ./src/OSELib/SDC/ServiceManager.cpp
 ./src/OSELib/SDC/SetServiceHandler.cpp
+./src/OSELib/SDC/SetServiceEventSinkHandler.cpp
 ./src/OSELib/SOAP/CommonSoapPreprocessing.cpp
 ./src/OSELib/SOAP/GetActionCommand.cpp
 ./src/OSELib/SOAP/GetMetadataActionCommand.cpp

@@ -53,8 +53,10 @@
 #include "OSELib/HTTP/FrontControllerAdapter.h"
 #include "OSELib/SDC/ContextEventSinkHandler.h"
 #include "OSELib/SDC/StateEventServiceEventSinkHandler.h"
+#include "OSELib/SDC/SetServiceEventSinkHandler.h"
 #include "OSELib/SDC/IContextServiceEventSink.h"
 #include "OSELib/SDC/IStateEventServiceEventSink.h"
+#include "OSELib/SDC/ISetServiceEventSink.h"
 #include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/SDC/SDCEventServiceController.h"
@@ -64,8 +66,8 @@
 namespace OSELib {
 
 using ContextServiceEventSinkController = SDC::SDCEventServiceController<SDC::IContextServiceEventSink , SDC::ContextEventSinkHandler>;
-using EventReportEventSinkController = SDC::SDCEventServiceController<SDC::IStateEventServiceEventSink, SDC::StateEventServiceEventSinkHandler>;
-using SetServiceSinkController = SDC::SDCEventServiceController<SDC::IStateEventServiceEventSink, SDC::StateEventServiceEventSinkHandler>;
+using StateEventServiceEventSinkController = SDC::SDCEventServiceController<SDC::IStateEventServiceEventSink, SDC::StateEventServiceEventSinkHandler>;
+using SetServiceEventSinkController = SDC::SDCEventServiceController<SDC::ISetServiceEventSink, SDC::SetServiceEventSinkHandler>;
 
 
 struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OSELib::WithLogger  {
@@ -76,7 +78,7 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 	}
 
 	virtual std::string getBaseUri() const override {
-		return "/ContextReportSink";
+		return "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE;
 	}
 
 	// todo: fix multistate implementation. this one only calls the state handlers which reference the descriptorsHandles
@@ -178,7 +180,7 @@ struct EventReportEventSink : public SDC::IStateEventServiceEventSink, public OS
 	}
 
 	virtual std::string getBaseUri() const override {
-		return "/EventReportSink";
+		return std::string("/" + SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
 	}
 
 	virtual void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & report) override {
@@ -222,18 +224,6 @@ struct EventReportEventSink : public SDC::IStateEventServiceEventSink, public OS
 			for (const auto & state : reportPart.MetricState()) {
 				dispatchMetricState(state);
 			}
-		}
-	}
-
-	virtual void dispatch(const SDC::OperationInvokedReportTraits::ReportType & report) override {
-		// fixme move all to SDCConsumer and change interface, so this method here only delegates. This should be done for all events
-		if (report.MdibVersion().present()) {
-			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
-		}
-		for (const auto & irp : report.ReportPart()) {
-			_consumer.onOperationInvoked(
-				SDCLib::Data::SDC::OperationInvocationContext(irp.OperationHandleRef(), irp.InvocationInfo().TransactionId()),
-				SDCLib::Data::SDC::ConvertFromCDM::convert(irp.InvocationInfo().InvocationState()));
 		}
 	}
 
@@ -293,6 +283,36 @@ private:
 	SDCLib::Data::SDC::SDCConsumer & _consumer;
 };
 
+
+struct SetServiceEventSink : public SDC::ISetServiceEventSink, public OSELib::WithLogger {
+	SetServiceEventSink(SDCLib::Data::SDC::SDCConsumer & consumer) :
+		WithLogger(Log::EVENTSINK),
+		_consumer(consumer)
+	{
+	}
+
+	virtual std::string getBaseUri() const override {
+		return "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE;
+	}
+
+	virtual void dispatch(const SDC::OperationInvokedReportTraits::ReportType & report) override {
+		// fixme move all to SDCConsumer and change interface, so this method here only delegates. This should be done for all events
+		if (report.MdibVersion().present()) {
+			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
+		}
+		for (const auto & irp : report.ReportPart()) {
+			_consumer.onOperationInvoked(
+				SDCLib::Data::SDC::OperationInvocationContext(irp.OperationHandleRef(), irp.InvocationInfo().TransactionId()),
+				SDCLib::Data::SDC::ConvertFromCDM::convert(irp.InvocationInfo().InvocationState()));
+		}
+	}
+
+private:
+
+	SDCLib::Data::SDC::SDCConsumer & _consumer;
+};
+
+
 }
 
 namespace SDCLib {
@@ -329,10 +349,12 @@ void SDCConsumerAdapter::start() {
 	public:
 		Factory(SDCConsumer & consumer) :
 			FrontControllerAdapter(_frontController),
-			contextServiceEventSink(consumer),
-			eventReportEventSink(consumer),
-			_contextServiceEventSinkService(_frontController, contextServiceEventSink),
-			_eventReportEventSinkService(_frontController, eventReportEventSink)
+			_contextServiceEventSink(consumer),
+			_eventReportEventSink(consumer),
+			_setServiceEventSink(consumer),
+			_contextServiceEventSinkServiceController(_frontController, _contextServiceEventSink),
+			_eventReportEventSinkServiceController(_frontController, _eventReportEventSink),
+			_setServiceEventSinkController(_frontController, _setServiceEventSink)
 		{
 		}
 
@@ -341,11 +363,14 @@ void SDCConsumerAdapter::start() {
 	private:
 		OSELib::HTTP::FrontController _frontController;
 
-		OSELib::ContextServiceEventSink contextServiceEventSink;
-		OSELib::EventReportEventSink eventReportEventSink;
+		OSELib::ContextServiceEventSink _contextServiceEventSink;
+		OSELib::EventReportEventSink _eventReportEventSink;
+		OSELib::SetServiceEventSink _setServiceEventSink;
 
-		OSELib::ContextServiceEventSinkController _contextServiceEventSinkService;
-		OSELib::EventReportEventSinkController _eventReportEventSinkService;
+		OSELib::ContextServiceEventSinkController _contextServiceEventSinkServiceController;
+		OSELib::StateEventServiceEventSinkController _eventReportEventSinkServiceController;
+		OSELib::SetServiceEventSinkController _setServiceEventSinkController;
+
 	};
 
 	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_consumer), *_threadPool, ss,  new Poco::Net::HTTPServerParams));
@@ -392,7 +417,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::EpisodicContextChangedReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicContextChangedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/ContextReportSink"),
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
 				_deviceDescription.getContextServiceURI(),
 				filter);
 	}
@@ -404,7 +429,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::PeriodicAlertReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/EventReportSink"),
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}
@@ -414,7 +439,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		// fixme: move to SetService
 		filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/SetServiceSink"),
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}

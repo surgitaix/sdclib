@@ -1,5 +1,5 @@
 /*
- * EventReportEventSinkHandler.h
+ * StateEventServiceEventSinkHandler.h
  *
  *  Created on: 10.12.2015
  *      Author: matthias

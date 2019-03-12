@@ -49,13 +49,13 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 // SDCLib/J
-//const std::string deviceEPR("UDI-1234567890");
-//const std::string HANDLE_GET_METRIC("handle_metric");
-//const std::string HANDLE_STREAM_METRIC("handle_stream");
+const std::string deviceEPR("UDI-1234567890");
+const std::string HANDLE_GET_METRIC("handle_metric");
+const std::string HANDLE_STREAM_METRIC("handle_stream");
 
 // openSDC
-const std::string deviceEPR("urn:uuid:4242d68b-40ef-486a-a019-6b00d1424200");
-const std::string HANDLE_GET_METRIC("handle_pulse");
+//const std::string deviceEPR("urn:uuid:4242d68b-40ef-486a-a019-6b00d1424200");
+//const std::string HANDLE_GET_METRIC("handle_pulse");
 
 //SDCLib/C
 //const std::string deviceEPR("UDI-1234567890");
@@ -124,7 +124,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 	SDCLibrary::getInstance().setPortStart(12000);
 
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
@@ -152,7 +152,7 @@ int main() {
 	// state handler
 	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
 //	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
-//	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
+	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
 
 	try {
 		if (c != nullptr) {
@@ -164,7 +164,7 @@ int main() {
 
 			consumer.registerStateEventHandler(eh_get.get());
 //			consumer.registerStateEventHandler(eh_set.get());
-//			consumer.registerStateEventHandler(eh_stream.get());
+			consumer.registerStateEventHandler(eh_stream.get());
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
 
 
@@ -187,7 +187,7 @@ int main() {
 			waitForUserInput();
 			consumer.unregisterStateEventHandler(eh_get.get());
 			//consumer.unregisterStateEventHandler(eh_set.get());
-//			consumer.unregisterStateEventHandler(eh_stream.get());
+			consumer.unregisterStateEventHandler(eh_stream.get());
 			consumer.disconnect();
 		} else {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";

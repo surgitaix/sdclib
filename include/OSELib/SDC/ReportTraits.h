@@ -47,7 +47,7 @@ struct EpisodicMetricReportTraits {
 
 struct OperationInvokedReportTraits {
 	typedef MDM::OperationInvokedReport ReportType;
-	typedef IStateEventServiceEventSink Dispatcher;
+	typedef ISetServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();

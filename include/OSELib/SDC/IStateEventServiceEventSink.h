@@ -1,5 +1,5 @@
 /*
- * IEventReportEventSink.h
+ * IStateEventServiceEventSink.h
  *
  *  Created on: 10.12.2015
  *      Author: matthias
@@ -23,7 +23,6 @@ public:
 	virtual void dispatch(const EpisodicMetricReportTraits::ReportType & request) = 0;
 	virtual void dispatch(const PeriodicAlertReportTraits::ReportType & request) = 0;
 	virtual void dispatch(const PeriodicMetricReportTraits::ReportType & request) = 0;
-	virtual void dispatch(const OperationInvokedReportTraits::ReportType & request) = 0;
 	virtual void dispatch(const WaveformStreamTraits::ReportType & request) = 0;
 };
 

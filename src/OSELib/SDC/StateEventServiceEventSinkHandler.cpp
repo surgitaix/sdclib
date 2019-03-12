@@ -46,14 +46,12 @@ void StateEventServiceEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerR
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicAlertReportTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else if (soapAction == EpisodicMetricReportTraits::Action()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicMetricReportTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == OperationInvokedReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<OperationInvokedReportTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else if (soapAction == PeriodicAlertReportTraits::Action()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicAlertReportTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else if (soapAction == PeriodicMetricReportTraits::Action()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicMetricReportTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else {
-		log_error([&] { return "EventReportEventSinkHandler can't handle action: " + soapAction; });
+		log_error([&] { return "StateEventServiceEventSinkHandler can't handle action: " + soapAction; });
 	}
 
 	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(command->Run());
