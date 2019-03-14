@@ -85,7 +85,7 @@ public:
 	}
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
-	InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext & oic) override {
 		// extract information from the incoming operation
 		DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
 		return InvocationState::Fail;
@@ -174,7 +174,7 @@ public:
     }
 
     // disallow set operation for this state
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext & oic) override {
     	// extract information from the incoming operation
     	DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
     	return InvocationState::Fail;

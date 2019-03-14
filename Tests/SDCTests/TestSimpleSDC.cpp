@@ -353,7 +353,7 @@ private:
 class LocationContextStateHandler : public SDCProviderMDStateHandler<LocationContextState> {
 public:
 	LocationContextStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {}
-	virtual InvocationState onStateChangeRequest(const LocationContextState & state,  const OperationInvocationContext & oic) override {
+	virtual InvocationState onStateChangeRequest(const LocationContextState & state,  const OperationInvocationContext&) override {
 		if (state.getDescriptorHandle() !=  LOCATION_CONTEXT_HANDLE)
 			return InvocationState::Fail;
 
@@ -371,7 +371,7 @@ public:
 class PatientContextStateHandler : public SDCProviderMDStateHandler<PatientContextState> {
 public:
 	PatientContextStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {}
-	virtual InvocationState onStateChangeRequest(const PatientContextState & state,  const OperationInvocationContext & oic) override {
+	virtual InvocationState onStateChangeRequest(const PatientContextState & state,  const OperationInvocationContext&) override {
 		if (state.getDescriptorHandle() !=  PATIENT_CONTEXT_HANDLE)
 			return InvocationState::Fail;
 
@@ -446,7 +446,7 @@ public:
     }
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
-	InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
     // Helper method
@@ -478,7 +478,7 @@ public:
 	EnumStringMetricStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
-    InvocationState onStateChangeRequest(const EnumStringMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const EnumStringMetricState&, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: EnumStringMetricStateHandler received state change request" << std::endl;
     	notifyOperationInvoked(oic, InvocationState::Start);
@@ -512,7 +512,7 @@ public:
     StrValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
-    InvocationState onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const StringMetricState&, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: StrValueStateHandler received state change request" << std::endl;
     	notifyOperationInvoked(oic, InvocationState::Start);
@@ -700,7 +700,7 @@ public:
     }
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
-	InvocationState onStateChangeRequest(const AlertSystemState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
 };
@@ -713,7 +713,7 @@ public:
 	CommandHandler(std::string descriptorHandle) : SDCProviderActivateOperationHandler(descriptorHandle) {
     }
 
-	InvocationState onActivateRequest(const OperationInvocationContext & oic) override {
+	InvocationState onActivateRequest(const OperationInvocationContext&) override {
 		DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: Received command!" << std::endl;
 		return InvocationState::Fin;
 	}

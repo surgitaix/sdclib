@@ -24,7 +24,6 @@
 #include <functional>
 #include <fstream>
 #include <assert.h>
-#include <variant>
 #include <mutex>
 #include <deque>
 #include <atomic>

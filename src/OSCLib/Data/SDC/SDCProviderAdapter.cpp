@@ -197,13 +197,13 @@ struct WaveformReportServiceImpl : public SDC::IEventReport {
 		return _metadata.createStreamServiceMetadata(serverAddress, _streamingPorts);
 	}
 
-	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
+	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request&) override {
 		return nullptr;
 	}
-	virtual std::unique_ptr<DPWS::UnsubscribeTraits::Response> dispatch(const DPWS::UnsubscribeTraits::Request & request, const DPWS::UnsubscribeTraits::RequestIdentifier & identifier) override {
+	virtual std::unique_ptr<DPWS::UnsubscribeTraits::Response> dispatch(const DPWS::UnsubscribeTraits::Request&, const DPWS::UnsubscribeTraits::RequestIdentifier&) override {
 		return nullptr;
 	}
-	virtual std::unique_ptr<DPWS::RenewTraits::Response> dispatch(const DPWS::RenewTraits::Request & request, const DPWS::RenewTraits::RequestIdentifier & identifier) override {
+	virtual std::unique_ptr<DPWS::RenewTraits::Response> dispatch(const DPWS::RenewTraits::Request&, const DPWS::RenewTraits::RequestIdentifier&) override {
 		return nullptr;
 	}
 
