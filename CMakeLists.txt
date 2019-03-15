@@ -295,6 +295,7 @@ set(SDCLibSOURCES
 ./src/OSELib/SOAP/UnsubscribeActionCommand.cpp
 ./src/OSELib/SDC/WaveformReportServiceHandler.cpp
 ./src/OSELib/WSDL/WSDLBuilder.cpp
+./src/OSELib/WSDL/WSDLLoader.cpp
 )
  
 # using POCO 1.4

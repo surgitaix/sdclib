@@ -48,7 +48,7 @@ void WaveformReportServiceHandler::handleRequestImpl(Poco::Net::HTTPServerReques
 		const std::string serverAddress(httpRequest.serverAddress().toString());
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress)));
 	} else {
-		log_error([&] { return "EventReportServiceHandler can't handle action: " + soapAction; });
+		log_error([&] { return "WaveformReportServiceHandler can't handle action: " + soapAction; });
 	}
 
 	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(command->Run());

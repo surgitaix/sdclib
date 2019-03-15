@@ -367,7 +367,6 @@ public:
                 DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 			}
 
-
 			// Update the NumericMetricState's value using the state handler's method
 			numericProviderStateHandlerGet.setNumericValue(index/size);
 			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to " << index/size << std::endl;
@@ -382,7 +381,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
 

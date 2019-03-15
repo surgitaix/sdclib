@@ -46,7 +46,7 @@
 #include "OSELib/SDC/SDCServiceController.h"
 #include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SDC/SetServiceHandler.h"
-#include "OSELib/WSDL/WSDLBuilder.h"
+#include "OSELib/WSDL/WSDLLoader.h"
 
 namespace OSELib {
 
@@ -99,13 +99,8 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_CONTEXTSERVICE_PORTTYPE);
-		WSDL::WSDLBuilderTraitAdapter<SDC::EpisodicContextChangedReportTraits> EpisodicContextChangedReportTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::PeriodicContextChangedReportTraits> PeriodicContextChangedReportTraits(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::GetContextStatesTraits> GetContextStatesTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::SetContextStateTraits> SetContextStateTraits(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::WaveformStreamTraits> WaveformStreamTraits(builder);
-		return builder.serialize();
+		OSELib::WSDL::WSDLLoader wsdlLoader;
+		return wsdlLoader.loadContextServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
@@ -149,13 +144,8 @@ struct EventReportServiceImpl : public SDC::IEventReport {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
-		WSDL::WSDLBuilderTraitAdapter<SDC::EpisodicAlertReportTraits> EpisodicAlertReportTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::EpisodicMetricReportTraits> EpisodicMetricReportTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::OperationInvokedReportTraits> OperationInvokedReportAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::PeriodicAlertReportTraits> PeriodicAlertReportTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::PeriodicMetricReportTraits> PeriodicMetricReportTraitsAdapter(builder);
-		return builder.serialize();
+		OSELib::WSDL::WSDLLoader wsdlLoader;
+		return wsdlLoader.loadStateEventServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
@@ -189,9 +179,8 @@ struct WaveformReportServiceImpl : public SDC::IEventReport {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_WAVEFORMSERVICE_PORTTYPE);
-		builder.addStreamType(SDC::WS_MEX_ORNET_STREAM_IDENTIFIER, SDC::ACTION_ORNET_STREAM, SDC::WS_MEX_ORNET_STREAM_TYPE, "WaveformStream");
-		return builder.serialize();
+		OSELib::WSDL::WSDLLoader wsdlLoader;
+		return wsdlLoader.loadWaveformServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
@@ -226,11 +215,8 @@ struct GetServiceImpl : public SDC::IGetService {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_GETSERVICE_PORTTYPE);
-		WSDL::WSDLBuilderTraitAdapter<SDC::GetMDDescriptionTraits> GetMDDescriptionTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::GetMDIBTraits> GetMDIBTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::GetMdStateTraits> GetMDStateOperationAdapter(builder);
-		return builder.serialize();
+		OSELib::WSDL::WSDLLoader wsdlLoader;
+		return wsdlLoader.loadGetServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
@@ -257,9 +243,10 @@ private:
 
 struct SetServiceImpl : public SDC::ISetService {
 
-	SetServiceImpl(SDCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata) :
+	SetServiceImpl(SDCLib::Data::SDC::SDCProvider & provider, const DPWS::MetadataProvider & metadata,  DPWS::SubscriptionManager & subscriptionManager) :
 		_provider(provider),
-		_metadata(metadata)
+		_metadata(metadata),
+		_subscriptionManager(subscriptionManager)
 	{
 	}
 
@@ -268,13 +255,8 @@ struct SetServiceImpl : public SDC::ISetService {
 	}
 
 	virtual std::string getWSDL() override {
-		WSDL::WSDLBuilder builder(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_SETSERVICE_PORTTYPE);
-		WSDL::WSDLBuilderTraitAdapter<SDC::ActivateTraits> ActivateTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::SetAlertStateTraits> SetAlertStateTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::SetStringTraits> SetStringTraitsAdapter(builder);
-		WSDL::WSDLBuilderTraitAdapter<SDC::SetValueTraits> SetValueTraitsAdapter(builder);
-
-		return builder.serialize();
+		OSELib::WSDL::WSDLLoader wsdlLoader;
+		return wsdlLoader.loadSetServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
@@ -301,9 +283,21 @@ struct SetServiceImpl : public SDC::ISetService {
 		return std::unique_ptr<SDC::SetValueTraits::Response>(new SDC::SetValueTraits::Response(_provider.SetValueAsync(request)));
 	}
 
+	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
+		return _subscriptionManager.dispatch(request);
+	}
+	virtual std::unique_ptr<DPWS::UnsubscribeTraits::Response> dispatch(const DPWS::UnsubscribeTraits::Request & request, const DPWS::UnsubscribeTraits::RequestIdentifier & identifier) override {
+			return _subscriptionManager.dispatch(request, identifier);
+	}
+	virtual std::unique_ptr<DPWS::RenewTraits::Response> dispatch(const DPWS::RenewTraits::Request & request, const DPWS::RenewTraits::RequestIdentifier & identifier) override {
+		return _subscriptionManager.dispatch(request, identifier);
+	}
+
 private:
 	SDCLib::Data::SDC::SDCProvider & _provider;
 	const DPWS::MetadataProvider _metadata;
+	// for managing OperationInvokedReports
+	DPWS::SubscriptionManager & _subscriptionManager;
 };
 
 }
@@ -378,7 +372,7 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 			contextStub(provider, metadata, subscriptionManager),
 			eventReportStub(metadata, subscriptionManager),
 			getServiceStub(provider, metadata),
-			setServiceStub(provider, metadata),
+			setServiceStub(provider, metadata, subscriptionManager),
 			waveformReportStub(metadata, strPorts),
 			_deviceService(_frontController, deviceStub),
 			_contextService(_frontController, contextStub),
