@@ -313,8 +313,6 @@ add_subdirectory(${PATH_DATAMODEL_ROOT})
 add_subdirectory(${PATH_SRC_ROOT})
 
 set(SDCLib_SEARCH_DIRS ".")
-# Out of source build
-#set(SDCLib_ADDITIONAL_LIBRARY_DIRS "../SDCLib_build/bin")
 
 
 # Examples
