@@ -30,7 +30,7 @@ We recommend using CMake GUI to configure and generate the project.
 (*Note: We recommend using out of source build as described below!*)  
 - clone this project:  
     - **git clone** https://github.com/surgitaix/sdclib.git  
-- navigate to the source directory:  
+- navigate to the cloned folder and generate with:  
     - **cmake .**
 
 ### Steps to Generate the Project (out of source) ###
