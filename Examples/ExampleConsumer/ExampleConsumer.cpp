@@ -172,8 +172,9 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
 
 			// set metric
-//			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
-//			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
+			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+
 //			std::unique_ptr<RealTimeSampleArrayMetricState> pMetricState(consumer.requestState<RealTimeSampleArrayMetricState>(HANDLE_STREAM_METRIC));
 //			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pMetricState->getMetricValue().getSamples().at(3);
 

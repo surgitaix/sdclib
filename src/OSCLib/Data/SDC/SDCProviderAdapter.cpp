@@ -41,6 +41,7 @@
 #include "OSELib/SDC/IEventReport.h"
 #include "OSELib/SDC/IGetService.h"
 #include "OSELib/SDC/ISetService.h"
+#include "OSELib/SDC/IWaveformService.h"
 #include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/SDC/SDCServiceController.h"
@@ -54,7 +55,7 @@ using ContextServiceController = SDC::SDCServiceController<SDC::IContextService 
 using EventReportServiceController = SDC::SDCServiceController<SDC::IEventReport, SDC::EventReportServiceHandler>;
 using GetServiceController = SDC::SDCServiceController<SDC::IGetService, SDC::GetServiceHandler>;
 using SetServiceController = SDC::SDCServiceController<SDC::ISetService, SDC::SetServiceHandler>;
-using WaveformEventReportServiceController = SDC::SDCServiceController<SDC::IEventReport, SDC::WaveformReportServiceHandler>;
+using WaveformEventReportServiceController = SDC::SDCServiceController<SDC::IWaveformService, SDC::WaveformReportServiceHandler>;
 
 struct DeviceImpl : public DPWS::IDevice {
 	DeviceImpl(const DPWS::MetadataProvider & metadata, DPWS::MDPWSHostAdapter & host) :
@@ -167,10 +168,10 @@ private:
 	DPWS::SubscriptionManager & _subscriptionManager;
 };
 
-struct WaveformReportServiceImpl : public SDC::IEventReport {
+struct WaveformReportServiceImpl : public SDC::IWaveformService {
 
-	WaveformReportServiceImpl(const DPWS::MetadataProvider & metadata, std::set<int> & streamingPorts) :
-		_metadata(metadata), _streamingPorts(streamingPorts)
+	WaveformReportServiceImpl(const DPWS::MetadataProvider & metadata, DPWS::SubscriptionManager & subscriptionManager, std::set<int> & streamingPorts) :
+		_metadata(metadata), _subscriptionManager(subscriptionManager), _streamingPorts(streamingPorts)
 	{
 	}
 
@@ -188,17 +189,18 @@ struct WaveformReportServiceImpl : public SDC::IEventReport {
 	}
 
 	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
-		return nullptr;
+		return _subscriptionManager.dispatch(request);
 	}
 	virtual std::unique_ptr<DPWS::UnsubscribeTraits::Response> dispatch(const DPWS::UnsubscribeTraits::Request & request, const DPWS::UnsubscribeTraits::RequestIdentifier & identifier) override {
-		return nullptr;
+		return _subscriptionManager.dispatch(request, identifier);
 	}
 	virtual std::unique_ptr<DPWS::RenewTraits::Response> dispatch(const DPWS::RenewTraits::Request & request, const DPWS::RenewTraits::RequestIdentifier & identifier) override {
-		return nullptr;
+		return _subscriptionManager.dispatch(request, identifier);
 	}
 
 private:
 	const DPWS::MetadataProvider _metadata;
+	DPWS::SubscriptionManager & _subscriptionManager;
 	const std::set<int> & _streamingPorts;
 };
 
@@ -357,6 +359,7 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 				OSELib::SDC::OperationInvokedReportTraits::Action(),
 				OSELib::SDC::PeriodicAlertReportTraits::Action(),
 				OSELib::SDC::PeriodicContextChangedReportTraits::Action(),
+				OSELib::SDC::WaveformStreamTraits::Action(),
 				OSELib::SDC::PeriodicMetricReportTraits::Action() };
 	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions));
 
@@ -373,7 +376,7 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 			eventReportStub(metadata, subscriptionManager),
 			getServiceStub(provider, metadata),
 			setServiceStub(provider, metadata, subscriptionManager),
-			waveformReportStub(metadata, strPorts),
+			waveformReportStub(metadata, subscriptionManager, strPorts),
 			_deviceService(_frontController, deviceStub),
 			_contextService(_frontController, contextStub),
 			_getService(_frontController, getServiceStub),

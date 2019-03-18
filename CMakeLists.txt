@@ -294,7 +294,6 @@ set(SDCLibSOURCES
 ./src/OSELib/SOAP/SubscribeActionCommand.cpp
 ./src/OSELib/SOAP/UnsubscribeActionCommand.cpp
 ./src/OSELib/SDC/WaveformReportServiceHandler.cpp
-./src/OSELib/WSDL/WSDLBuilder.cpp
 ./src/OSELib/WSDL/WSDLLoader.cpp
 )
  

@@ -89,6 +89,7 @@ namespace OSELib {
 		class ISetServiceEventSink;
 		class IGetService;
 		class ISetService;
+		class IWaveformService;
 	}
 }
 
