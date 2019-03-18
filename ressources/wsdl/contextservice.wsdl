@@ -16,11 +16,11 @@
     <wsdl:message name="SetContextStateResponse">
         <wsdl:part element="mm:SetContextStateResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="EpisodicContextChangedReport">
-        <wsdl:part element="mm:EpisodicContextChangedReport" name="parameters"/>
+    <wsdl:message name="EpisodicContextReport">
+        <wsdl:part element="mm:EpisodicContextReport" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="PeriodicContextChangedReport">
-        <wsdl:part element="mm:PeriodicContextChangedReport" name="parameters"/>
+    <wsdl:message name="PeriodicContextReport">
+        <wsdl:part element="mm:PeriodicContextReport" name="parameters"/>
     </wsdl:message>
     <wsdl:portType name="ContextService" xmlns:p1="http://schemas.xmlsoap.org/ws/2004/08/eventing" p1:EventSource="true">
         <wsdl:operation name="GetContextStates">
@@ -31,11 +31,11 @@
             <wsdl:input message="tns:SetContextState" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/SetContextState"/>
             <wsdl:output message="tns:SetContextStateResponse" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/SetContextStateResponse"/>
         </wsdl:operation>
-        <wsdl:operation name="EpisodicContextChangedReport">
-            <wsdl:output message="tns:EpisodicContextChangedReport" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/EpisodicContextChangedReport"/>
+        <wsdl:operation name="EpisodicContextReport">
+            <wsdl:output message="tns:EpisodicContextReport" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/EpisodicContextReport"/>
         </wsdl:operation>
-        <wsdl:operation name="PeriodicContextChangedReport">
-            <wsdl:output message="tns:PeriodicContextChangedReport" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/PeriodicContextChangedReport"/>
+        <wsdl:operation name="PeriodicContextReport">
+            <wsdl:output message="tns:PeriodicContextReport" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/PeriodicContextReport"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="ContextServiceBinding" type="tns:ContextService" xmlns:p1="http://schemas.xmlsoap.org/wsdl/soap12/">
@@ -58,14 +58,14 @@
                 <p1:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="EpisodicContextChangedReport">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/EpisodicContextChangedReport" style="document"/>
+        <wsdl:operation name="EpisodicContextReport">
+            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/EpisodicContextReport" style="document"/>
             <wsdl:output>
                 <p1:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="PeriodicContextChangedReport">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/PeriodicContextChangedReport" style="document"/>
+        <wsdl:operation name="PeriodicContextReport">
+            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/PeriodicContextReport" style="document"/>
             <wsdl:output>
                 <p1:body use="literal"/>
             </wsdl:output>

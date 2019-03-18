@@ -124,8 +124,9 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 	SDCLibrary::getInstance().setPortStart(12000);
+
 
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
     public:
@@ -165,8 +166,10 @@ int main() {
 			consumer.registerStateEventHandler(eh_get.get());
 //			consumer.registerStateEventHandler(eh_set.get());
 			consumer.registerStateEventHandler(eh_stream.get());
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
 
+			// wait for the subscriptions to be completed
+			Poco::Thread::sleep(5000);
 
 			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
@@ -175,14 +178,18 @@ int main() {
 			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
 			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
 
+
 //			std::unique_ptr<RealTimeSampleArrayMetricState> pMetricState(consumer.requestState<RealTimeSampleArrayMetricState>(HANDLE_STREAM_METRIC));
 //			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pMetricState->getMetricValue().getSamples().at(3);
 
-//			FutureInvocationState fis;
-//			consumer.commitState(*pMetricState, fis);
-//			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
+			for (int i = 0; i < 10; i++) {
+				FutureInvocationState fis;
+				consumer.commitState(*pMetricState, fis);
+				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
+			}
 
-
+//			std::unique_ptr<RealTimeSampleArrayMetricState> pMetricState(consumer.requestState<RealTimeSampleArrayMetricState>(HANDLE_STREAM_METRIC));
+//			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pMetricState->getMetricValue().getSamples().at(3);
 
 
 			waitForUserInput();
