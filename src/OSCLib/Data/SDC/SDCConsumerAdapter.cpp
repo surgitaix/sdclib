@@ -433,14 +433,13 @@ void SDCConsumerAdapter::subscribeEvents() {
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}
-	// operation invoked report // fixme: läuft mit SDCLib/J nicht mit openSDC
 	{
 		WS::EVENTING::FilterType filter;
 		// fixme: move to SetService
 		filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
 		subscriptions.emplace_back(
 				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
-				_deviceDescription.getEventServiceURI(),
+				_deviceDescription.getSetServiceURI(),
 				filter);
 	}
 
