@@ -146,7 +146,7 @@ bool SDCLibrary2::isInterfaceAvailable() {
 }
 
 
-SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::string interfaceName) {
+SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::string) {
 	/*if (!isInterfaceAvailable()) {
 		return nullptr;
 	}
@@ -173,7 +173,7 @@ SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::string interface
     return nullptr;
 }
 
-SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::list<std::string> interfacesNamesList)
+SDCInstance_shared_ptr SDCLibrary2::createBoundSDCInstance(std::list<std::string>)
 {
 	/*if (!isInterfaceAvailable()) {
 		return nullptr;

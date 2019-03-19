@@ -94,7 +94,7 @@ public:
 		counter(0) {
 	}
 
-	virtual void onStateChanged(const LocationContextState & state) override {
+	virtual void onStateChanged(const LocationContextState&) override {
 		++counter;
 		if (counter < 5) {
 			Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received locationContextDescriptor context values changed! Handle: " << getDescriptorHandle() <<std::endl;
@@ -158,12 +158,12 @@ public:
     }
 
 	// not allowed to change the state
-	InvocationState onStateChangeRequest(const AlertConditionState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const AlertConditionState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
 
 	// ignore
-	void sourceHasChanged(const std::string & sourceHandle) override {
+	void sourceHasChanged(const std::string&) override {
 		return;
 	}
 
@@ -187,7 +187,7 @@ public:
         return result;
     }
 
-	InvocationState onStateChangeRequest(const AlertSystemState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
 
@@ -209,7 +209,7 @@ public:
     }
 
     // not allowed
-    InvocationState onStateChangeRequest(const LocationContextState & state, const OperationInvocationContext & oic) {
+    InvocationState onStateChangeRequest(const LocationContextState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -234,7 +234,7 @@ public:
     }
 
     // not allowed
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };

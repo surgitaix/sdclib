@@ -68,6 +68,9 @@ namespace SDCLib
                 class NumericMetricDescriptor;
                 using NumericMetricDescriptor_shared_ptr = std::shared_ptr<NumericMetricDescriptor>;
 
+                class StringMetricDescriptor;
+                using StringMetricDescriptor_shared_ptr = std::shared_ptr<StringMetricDescriptor>;
+
             }
     }
 }

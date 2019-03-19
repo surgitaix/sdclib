@@ -55,7 +55,7 @@ public:
     }
 
     // called when the consumer is requesting to set the MaxValueStateHandler
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
         DebugOut(DebugOut::Default, "ExampleProject") << "Provider: MaxValueStateHandler received state change request" << std::endl;
 

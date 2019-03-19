@@ -236,7 +236,7 @@ struct EventReportEventSink : public SDC::IEventReportEventSink, public OSELib::
 	}
 
 	// todo: more elegant implementation of streaming possible?
-	virtual void dispatch(const SDC::WaveformStreamTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::WaveformStreamTraits::ReportType&) override {
 		//
 	}
 
