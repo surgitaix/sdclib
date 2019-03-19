@@ -238,7 +238,7 @@ message(STATUS "######## Configuring Poco done!")
 
 
 ################################################################################
-# Some more pathes - cleaned from symlinks
+# Some more paths - cleaned from symlinks
 # Note: Use these in the other CMakeLists for easier handling
 ################################################################################
 get_filename_component(PATH_SRC_ROOT ${CMAKE_CURRENT_LIST_DIR}/src/ REALPATH)
