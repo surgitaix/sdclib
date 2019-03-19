@@ -37,6 +37,7 @@
 #include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
+#include "OSCLib/Data/SDC/MDIB/LocationContextState.h"
 #include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/SDC/FutureInvocationState.h"
 #include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
@@ -52,6 +53,7 @@ using namespace SDCLib::Data::SDC;
 const std::string deviceEPR("UDI-1234567890");
 const std::string HANDLE_GET_METRIC("handle_metric");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
+const std::string LOCATION_CONTEXT_HANDLE("handle_context");
 
 // openSDC
 //const std::string deviceEPR("urn:uuid:4242d68b-40ef-486a-a019-6b00d1424200");
@@ -64,6 +66,25 @@ const std::string HANDLE_STREAM_METRIC("handle_stream");
 //const std::string HANDLE_STREAM_METRIC("handle_stream");
 //const std::string HANDLE_STRING_METRIC("handle_string");
 
+
+class ExampleLocationContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState> {
+public:
+
+	ExampleLocationContextEventHandler(std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle) {
+	}
+
+	virtual void onStateChanged(const LocationContextState & state) override {
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received location context values changed for handle" << state.getHandle() << std::endl;
+  		eventEMR.set();
+	}
+
+	Poco::Event & getEventEMR() {
+		return eventEMR;
+	}
+
+private:
+	Poco::Event eventEMR;
+};
 
 
 class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
@@ -124,7 +145,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
 	SDCLibrary::getInstance().setPortStart(12000);
 
 
@@ -154,6 +175,7 @@ int main() {
 	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
 //	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
 	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
+	std::shared_ptr<ExampleLocationContextEventHandler> locationEventHandler(new ExampleLocationContextEventHandler(LOCATION_CONTEXT_HANDLE));
 
 	try {
 		if (c != nullptr) {
@@ -166,6 +188,7 @@ int main() {
 			consumer.registerStateEventHandler(eh_get.get());
 //			consumer.registerStateEventHandler(eh_set.get());
 			consumer.registerStateEventHandler(eh_stream.get());
+			consumer.registerStateEventHandler(locationEventHandler.get());
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
 
 			// wait for the subscriptions to be completed
@@ -196,6 +219,7 @@ int main() {
 			consumer.unregisterStateEventHandler(eh_get.get());
 			//consumer.unregisterStateEventHandler(eh_set.get());
 			consumer.unregisterStateEventHandler(eh_stream.get());
+			consumer.unregisterStateEventHandler(locationEventHandler.get());
 			consumer.disconnect();
 		} else {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";
