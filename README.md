@@ -69,10 +69,13 @@ set(SDCLib_SEARCH_DIRS "${MY_DEPENDENCIES_FOLDER}/sdclib" CACHE STRING "SDCLib r
 ```
 Note: There may be side effects in using CMAKE_CURRENT_LIST_DIR, so refer to the official cmake documentation [here](https://cmake.org/cmake/help/v3.0/variable/CMAKE_CURRENT_LIST_DIR.html).
   
-You can link to the SDCLib by using:
+Use the set SDCLib_XXX Variables with your target:
 ```cmake
+target_include_directories(MyExecutable PRIVATE ${SDCLib_INCLUDE_DIRS})
 target_link_libraries(MyExecutable PRIVATE ${SDCLib_LIBRARIES})
+
 ```
+**Note: You can find a small CMake Project using the SDCLib under Examples/CMakeExample!**
 ### Further configuration ###
 #### BuildType ####
 The Buildtype is controlled by CMAKE_BUILD_TYPE and defaults to Debug. If you want to change it, you can either do this inside the gui before calling configure/generate or pass it via the command line e.g.:
