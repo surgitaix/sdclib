@@ -71,6 +71,9 @@ namespace SDCLib
                 class StringMetricDescriptor;
                 using StringMetricDescriptor_shared_ptr = std::shared_ptr<StringMetricDescriptor>;
 
+                class ActivateOperationDescriptor;
+                using ActivateOperationDescriptor_shared_ptr = std::shared_ptr<ActivateOperationDescriptor>;
+
             }
     }
 }
