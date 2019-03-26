@@ -143,7 +143,10 @@ endif()
 ################################################################################
 # Not Found
 if (NOT EXISTS ${SDCLib_LIBRARIES})
-    message(WARNING "Could not find: ${SDCLib_LIBRARIES}!\n## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
+    message("Could not find: ${SDCLib_LIBRARIES}!")
+    if(NOT SDCLib_ADDITIONAL_LIBRARY_DIRS)
+        message("## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
+    endif()
 endif()
 # Set flag
 set(SDCLib_FOUND TRUE)
