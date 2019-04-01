@@ -161,7 +161,7 @@ public:
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -193,7 +193,7 @@ public:
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const DistributionSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const DistributionSampleArrayMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -205,8 +205,8 @@ public:
 class OSCPStreamHoldingDeviceProvider : public Util::Task {
 public:
 
-    OSCPStreamHoldingDeviceProvider() :
-    	sdcProvider(),
+    OSCPStreamHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+        sdcProvider(p_SDCInstance),
     	streamEventHandler("handle_plethysmogram_stream"),
     	streamEventHandlerAlt("handle_plethysmogram_stream_alt"),
     	distributionEventHandler("handle_distribution_stream")
@@ -351,13 +351,15 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
+        auto t_SDCInstance = getSDCInstance();
+
         // Provider
-		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider;
+		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider(t_SDCInstance);
 		DebugOut(DebugOut::Default, "StreamSDC") << "Provider init.." << std::endl;
 		provider.startup();
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
         DebugOut(DebugOut::Default, "StreamSDC") << "Consumer discovery..." << std::endl;
         std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
         std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");

@@ -325,7 +325,7 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 		throw std::runtime_error("Service is already running..");
 	}
 
-	OSELib::DPWS::MetadataProvider metadata(_deviceCharacteristics);
+	OSELib::DPWS::MetadataProvider metadata(_provider.getDeviceCharacteristics());
 
 	Poco::Net::ServerSocket ss;
 	const Poco::Net::IPAddress address(config.getBindAddress());
@@ -346,7 +346,7 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "MedicalDevice"));
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
 
-	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(
+	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(_provider.getSDCInstance(),
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),
 			OSELib::DPWS::ScopesType(),
 			types,
@@ -494,10 +494,6 @@ void SDCProviderAdapter::addStreamingPort(const int port) {
 
 void SDCProviderAdapter::removeStreamingPort(const int port) {
 	streamingPorts.erase(port);
-}
-
-void SDCProviderAdapter::setDeviceCharacteristics(const Dev::DeviceCharacteristics deviceCharacteristics) {
-	_deviceCharacteristics = deviceCharacteristics;
 }
 
 } /* namespace SDC */
