@@ -250,7 +250,6 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 
-
 ################################################################################
 # config
 # Note: Make sure all values are set before doing this!

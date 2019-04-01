@@ -14,8 +14,8 @@
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
-#include "OSELib/SDC/EventReportEventSinkHandler.h"
-#include "OSELib/SDC/IGetService.h"
+#include "OSELib/SDC/SetServiceEventSinkHandler.h"
+//#include "OSELib/SDC/IGetService.h"
 #include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SOAP/Command.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
@@ -27,13 +27,13 @@
 namespace OSELib {
 namespace SDC {
 
-EventReportEventSinkHandler::EventReportEventSinkHandler(IEventReportEventSink & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
+SetServiceEventSinkHandler::SetServiceEventSinkHandler(ISetServiceEventSink& service, Helper::XercesGrammarPoolProvider & grammarProvider) :
 	_service(service),
 	_grammarProvider(grammarProvider)
 {
 }
 
-void EventReportEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) {
+void SetServiceEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) {
 
 	SOAP::CommonSoapPreprocessing soapHandling(_grammarProvider);
 	soapHandling.parse(httpRequest.stream());
@@ -42,18 +42,11 @@ void EventReportEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest
 
 	std::unique_ptr<SOAP::Command> command(new SOAP::SoapFaultCommand(httpResponse));
 
-	if (soapAction == EpisodicAlertReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicAlertReportTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == EpisodicMetricReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicMetricReportTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == OperationInvokedReportTraits::Action()) {
+
+	if (soapAction == OperationInvokedReportTraits::Action()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<OperationInvokedReportTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == PeriodicAlertReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicAlertReportTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == PeriodicMetricReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicMetricReportTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else {
-		log_error([&] { return "EventReportEventSinkHandler can't handle action: " + soapAction; });
+		log_error([&] { return "SetServiceEventSinkHandler can't handle action: " + soapAction; });
 	}
 
 	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(command->Run());

@@ -16,12 +16,12 @@ namespace SDC {
 
 class WaveformReportServiceHandler : public SOAP::HTTPRequestHandlerExceptionTrap {
 public:
-	WaveformReportServiceHandler(IEventReport & service, Helper::XercesGrammarPoolProvider & grammarProvider);
+	WaveformReportServiceHandler(IWaveformService & service, Helper::XercesGrammarPoolProvider & grammarProvider);
 
 private:
 	void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) override;
 
-	IEventReport & _service;
+	IWaveformService & _service;
 	Helper::XercesGrammarPoolProvider & _grammarProvider;
 };
 

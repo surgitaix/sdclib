@@ -2,7 +2,7 @@
  * SDCConsumerAdapter.h
  *
  *  Created on: 10.12.2015
- *      Author: matthias
+ *      Author: matthias, buerger
  */
 
 #ifndef DATA_OSCP_SDCCONSUMERADAPTER_H_

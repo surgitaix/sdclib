@@ -24,6 +24,9 @@
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
 #include "OSELib/SOAP/SoapFaultCommand.h"
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
+#include "OSELib/SOAP/SubscribeActionCommand.h"
+#include "OSELib/SOAP/UnsubscribeActionCommand.h"
+#include "OSELib/SOAP/RenewActionCommand.h"
 
 namespace OSELib {
 namespace SDC {
@@ -54,6 +57,14 @@ void SetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpReq
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<SetStringTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else if (soapAction == SetValueTraits::RequestAction()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<SetValueTraits>(std::move(soapHandling.normalizedMessage), _service));
+	} else if (soapAction == DPWS::SubscribeTraits::RequestAction()) {
+		const std::string subscriptionManagerAddress("http://" + httpRequest.serverAddress().toString() + _service.getBaseUri());
+		command = std::unique_ptr<SOAP::Command>(new SOAP::SubscribeActionCommand(std::move(soapHandling.normalizedMessage), _service, subscriptionManagerAddress));
+	} else if (soapAction == DPWS::UnsubscribeTraits::RequestAction()) {
+		command = std::unique_ptr<SOAP::Command>(new SOAP::UnsubscribeActionCommand(std::move(soapHandling.normalizedMessage), _service));
+	} else if (soapAction == DPWS::RenewTraits::RequestAction()) {
+		command = std::unique_ptr<SOAP::Command>(new SOAP::RenewActionCommand(std::move(soapHandling.normalizedMessage), _service));
+
 	} else {
 		log_error([&] { return "SetServiceHandler can't handle action: " + soapAction; });
 	}

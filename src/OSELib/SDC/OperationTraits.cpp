@@ -89,7 +89,7 @@ std::string GetMDIBTraits::OperationName() {
 	return "GetMdib";
 }
 xml_schema::Qname GetMDIBTraits::PortType() {
-	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_GETSERVICE_PORTTYPE);
+		return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_GETSERVICE_PORTTYPE);
 }
 std::string GetMDIBTraits::RequestAction() {
 	return ACTION_CDM_GET_MDIB_REQUEST;

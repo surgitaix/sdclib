@@ -11,11 +11,12 @@
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/IService.h"
 #include "OSELib/SDC/OperationTraits.h"
+#include "OSELib/DPWS/ISubscriptionManager.h"
 
 namespace OSELib {
 namespace SDC {
 
-class ISetService : public DPWS::IService {
+class ISetService : public DPWS::IService, public DPWS::ISubscriptionManager {
 public:
 	virtual ~ISetService() = default;
 

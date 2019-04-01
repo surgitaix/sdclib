@@ -45,6 +45,7 @@
 namespace OSELib {
 	struct ContextServiceEventSink;
 	struct EventReportEventSink;
+	struct SetServiceEventSink;
 	namespace SDC {
 		class ServiceManager;
 	}
@@ -60,6 +61,7 @@ friend class SDCConsumerAdapter;
 // todo remove friend classes and only use oselibconsumer adapter
 friend struct OSELib::ContextServiceEventSink;
 friend struct OSELib::EventReportEventSink;
+friend struct OSELib::SetServiceEventSink;
 friend class OSELib::DPWS::PingManager;
 friend class OSELib::SDC::ServiceManager;
 

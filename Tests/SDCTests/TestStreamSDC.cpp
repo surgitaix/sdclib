@@ -24,7 +24,7 @@
  *  At the current state of the IEEE 11073 SDC BICEPS specification the DSAMS is transported via TCP, maybe this changes soon. Then SDCProvider::updateState has to be adapted accordingly
  *
  */
-#include "OSCLib/SDCInstance.h"
+#include "OSCLib/SDCLibrary.h"
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
 #include "OSCLib/Data/SDC/SDCProvider.h"
@@ -161,7 +161,7 @@ public:
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext&) override {
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
     	return InvocationState::Fail;
     }
 };
@@ -193,7 +193,7 @@ public:
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const DistributionSampleArrayMetricState&, const OperationInvocationContext&) override {
+    InvocationState onStateChangeRequest(const DistributionSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
     	return InvocationState::Fail;
     }
 };
@@ -205,8 +205,8 @@ public:
 class OSCPStreamHoldingDeviceProvider : public Util::Task {
 public:
 
-    OSCPStreamHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
-    	sdcProvider(p_SDCInstance),
+    OSCPStreamHoldingDeviceProvider() :
+    	sdcProvider(),
     	streamEventHandler("handle_plethysmogram_stream"),
     	streamEventHandlerAlt("handle_plethysmogram_stream_alt"),
     	distributionEventHandler("handle_distribution_stream")
@@ -312,16 +312,15 @@ private:
 
 
 public:
-
+    
     // Produce stream values
     // runImpl() gets called when starting the provider thread by the inherited function start()
     virtual void runImpl() override {
     	DebugOut(DebugOut::Default, "StreamSDC") << "\nPoducer thread started." << std::endl;
 		const std::size_t size(1000);
 		std::vector<double> samples;
-        samples.reserve(size);
-		for (std::size_t i = 0; i < samples.size(); i++) {
-			samples[i] = static_cast<double>(i);
+		for (std::size_t i = 0; i < size; i++) {
+			samples.push_back(i);
 		}
 		long index(0);
 		while (!isInterrupted()) {
@@ -343,7 +342,7 @@ public:
 }
 
 struct FixtureStreamSDC : Tests::AbstractOSCLibFixture {
-	FixtureStreamSDC() : AbstractOSCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 120) {}
+	FixtureStreamSDC() : AbstractOSCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice, 10000) {}
 };
 
 SUITE(OSCP) {
@@ -352,15 +351,14 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
-        auto t_SDCInstance = getSDCInstance();
         // Provider
-		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider(t_SDCInstance);
-		DebugOut(DebugOut::Default, m_details.testName) << "Provider init.." << std::endl;
+		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider;
+		DebugOut(DebugOut::Default, "StreamSDC") << "Provider init.." << std::endl;
 		provider.startup();
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
-        DebugOut(DebugOut::Default, m_details.testName) << "Consumer discovery..." << std::endl;
+        OSELib::SDC::ServiceManager oscpsm;
+        DebugOut(DebugOut::Default, "StreamSDC") << "Consumer discovery..." << std::endl;
         std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
         std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
         std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
@@ -369,35 +367,37 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);
 
-        if (c != nullptr) {
-            c->registerStateEventHandler(eventHandler.get());
-            c->registerStateEventHandler(eventHandlerAlt.get());
-            c->registerStateEventHandler(eventHandlerDistribution.get());
-
-            provider.start();// starts provider in a thread and calls the overwritten function runImpl()
-
-			// Metric event reception test
-			DebugOut(DebugOut::Default, m_details.testName) << "Waiting..." << std::endl;
-            Poco::Thread::sleep(4000);
-            CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
-            CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
-            CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
-
-            provider.interrupt();
-            c->unregisterStateEventHandler(eventHandler.get());
-            c->unregisterStateEventHandler(eventHandlerAlt.get());
-            c->unregisterStateEventHandler(eventHandlerDistribution.get());
-            c->disconnect();
-        }
-        provider.shutdown();
+//        if (c != nullptr) {
+//            c->registerStateEventHandler(eventHandler.get());
+//            c->registerStateEventHandler(eventHandlerAlt.get());
+//            c->registerStateEventHandler(eventHandlerDistribution.get());
+//
+//            provider.start();// starts provider in a thread and calls the overwritten function runImpl()
+//
+//			// Metric event reception test
+//            Poco::Thread::sleep(10000);
+//            CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
+//            CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
+//            CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
+//
+//
+//            c->unregisterStateEventHandler(eventHandler.get());
+//            c->unregisterStateEventHandler(eventHandlerAlt.get());
+//            c->unregisterStateEventHandler(eventHandlerDistribution.get());
+//            c->disconnect();
+//            provider.interrupt();
+//        }
+//
+//        Poco::Thread::sleep(2000);
+//        provider.shutdown();
 	}
 	catch (char const* exc)
 	{
-		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
-	}
+		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << exc;
+	}    
 	catch (...)
 	{
-		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
+		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();
 }

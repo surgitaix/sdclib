@@ -204,13 +204,14 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/SDC/ContextEventSinkHandler.cpp
         ${SRC_DIR}/OSELib/SDC/ContextServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/DefaultOSCPSchemaGrammarProvider.cpp
-        ${SRC_DIR}/OSELib/SDC/EventReportEventSinkHandler.cpp
+        ${SRC_DIR}/OSELib/SDC/StateEventServiceEventSinkHandler.cpp
         ${SRC_DIR}/OSELib/SDC/EventReportServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/GetServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/OperationTraits.cpp
         ${SRC_DIR}/OSELib/SDC/ReportTraits.cpp
         ${SRC_DIR}/OSELib/SDC/ServiceManager.cpp
         ${SRC_DIR}/OSELib/SDC/SetServiceHandler.cpp
+        ${SRC_DIR}/OSELib/SDC/SetServiceEventSinkHandler.cpp
         ${SRC_DIR}/OSELib/SOAP/CommonSoapPreprocessing.cpp
         ${SRC_DIR}/OSELib/SOAP/GetActionCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/GetMetadataActionCommand.cpp
@@ -226,7 +227,7 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/SOAP/SubscribeActionCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/UnsubscribeActionCommand.cpp
         ${SRC_DIR}/OSELib/SDC/WaveformReportServiceHandler.cpp
-        ${SRC_DIR}/OSELib/WSDL/WSDLBuilder.cpp
+        ${SRC_DIR}/OSELib/WSDL/WSDLLoader.cpp
         #
         # Add the includes too (for better generation)
         # Public Headers
