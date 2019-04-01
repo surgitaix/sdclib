@@ -85,9 +85,11 @@ namespace OSELib {
 		class IContextService;
 		class IContextServiceEventSink;
 		class IEventReport;
-		class IEventReportEventSink;
+		class IStateEventServiceEventSink;
+		class ISetServiceEventSink;
 		class IGetService;
 		class ISetService;
+		class IWaveformService;
 	}
 }
 

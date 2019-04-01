@@ -1,0 +1,7 @@
+# ignore documentation. Documentation is generated via doxygen
+doc/
+
+# ignore Makefiles
+Dependencies/Poco/Foundation/Makefile
+Dependencies/Poco/Makefile
+Dependencies/Poco/Net/Makefile

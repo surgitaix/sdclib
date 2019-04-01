@@ -17,7 +17,7 @@ struct DescriptionModificationReportTraits {
 
 struct EpisodicAlertReportTraits {
 	typedef MDM::EpisodicAlertReport ReportType;
-	typedef IEventReportEventSink Dispatcher;
+	typedef IStateEventServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
@@ -37,7 +37,7 @@ struct EpisodicContextChangedReportTraits {
 
 struct EpisodicMetricReportTraits {
 	typedef MDM::EpisodicMetricReport ReportType;
-	typedef IEventReportEventSink Dispatcher;
+	typedef IStateEventServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
@@ -47,7 +47,7 @@ struct EpisodicMetricReportTraits {
 
 struct OperationInvokedReportTraits {
 	typedef MDM::OperationInvokedReport ReportType;
-	typedef IEventReportEventSink Dispatcher;
+	typedef ISetServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
@@ -57,7 +57,7 @@ struct OperationInvokedReportTraits {
 
 struct PeriodicAlertReportTraits {
 	typedef MDM::PeriodicAlertReport ReportType;
-	typedef IEventReportEventSink Dispatcher;
+	typedef IStateEventServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
@@ -77,7 +77,7 @@ struct PeriodicContextChangedReportTraits {
 
 struct PeriodicMetricReportTraits {
 	typedef MDM::PeriodicMetricReport ReportType;
-	typedef IEventReportEventSink Dispatcher;
+	typedef IStateEventServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
@@ -87,7 +87,7 @@ struct PeriodicMetricReportTraits {
 
 struct WaveformStreamTraits {
 	typedef MDM::WaveformStream ReportType;
-	typedef IEventReportEventSink Dispatcher;
+	typedef IStateEventServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();

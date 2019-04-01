@@ -18,6 +18,7 @@
 #include "OSCLib/Data/SDC/MDIB/PatientContextDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
+#include "OSCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/WorkflowContextDescriptor.h"
 
@@ -651,6 +652,24 @@ std::vector<StringMetricDescriptor> MdDescription::collectAllStringMetricDescrip
 	collectMetricDescriptorImpl<StringMetricDescriptor, EnumStringMetricDescriptor>(result);
 	return result;
 }
+
+
+std::vector<ActivateOperationDescriptor> MdDescription::collectAllActivateOperationDescriptors() const {
+	std::vector<ActivateOperationDescriptor> result;
+	const CDM::MdDescription & mddescription(*this->data);
+	for (const auto & mds : mddescription.Mds()) {
+		if (mds.Sco().present()) {
+			const CDM::ScoDescriptor & sco(mds.Sco().get());
+			for (const auto & operation : sco.Operation()) {
+				const typename CDM::ActivateOperationDescriptor *desc = dynamic_cast<const typename CDM::ActivateOperationDescriptor*>(&operation);
+				if (desc != nullptr)
+					result.push_back(ConvertFromCDM::convert(*desc));
+			}
+		}
+	}
+	return result;
+}
+
 
 }
 }

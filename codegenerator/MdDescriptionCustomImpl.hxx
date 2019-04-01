@@ -26,6 +26,7 @@
 	std::vector<NumericMetricDescriptor> collectAllNumericMetricDescriptors() const;
 	std::vector<RealTimeSampleArrayMetricDescriptor> collectAllRealTimeSampleArrayMetricDescriptors() const;
 	std::vector<StringMetricDescriptor> collectAllStringMetricDescriptors() const;
+	std::vector<ActivateOperationDescriptor> collectAllActivateOperationDescriptors() const;
 	std::vector<VmdDescriptor> collectAllVmdDescriptors() const;
 
 private:

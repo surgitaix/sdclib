@@ -6,7 +6,8 @@
  */
 
 #include "OSELib/SDC/IContextServiceEventSink.h"
-#include "OSELib/SDC/IEventReportEventSink.h"
+#include "OSELib/SDC/IStateEventServiceEventSink.h"
+#include "OSELib/SDC/ISetServiceEventSink.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/SDC/ReportTraits.h"
 

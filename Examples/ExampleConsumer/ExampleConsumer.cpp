@@ -37,6 +37,9 @@
 #include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
+#include "OSCLib/Data/SDC/MDIB/LocationContextState.h"
+#include "OSCLib/Data/SDC/MDIB/LocationDetail.h"
+#include "OSCLib/Data/SDC/MDIB/AlertSignalState.h"
 #include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/SDC/FutureInvocationState.h"
 #include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
@@ -48,12 +51,12 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
+//SDCLib/C
 const std::string deviceEPR("UDI-1234567890");
-
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
-const std::string HANDLE_STRING_METRIC("handle_string");
+
 
 
 
@@ -72,7 +75,7 @@ public:
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
     }
 
     float getCurrentWeight() {
@@ -104,6 +107,9 @@ public:
 	}
 };
 
+
+
+
 void waitForUserInput() {
 	std::string temp;
 	Util::DebugOut(Util::DebugOut::Default, "") << "Press key to proceed.";
@@ -112,10 +118,12 @@ void waitForUserInput() {
 
 
 
+
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 	SDCLibrary::getInstance().setPortStart(12000);
+
 
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
     public:
@@ -136,10 +144,7 @@ int main() {
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(6465);
 
-	// for explicit discovery
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
-
-	// for implicit discovery
 //	auto c(oscpsm.discoverOSCP());
 
 	// state handler
@@ -149,30 +154,31 @@ int main() {
 
 	try {
 		if (c != nullptr) {
-//		if (c[0] != nullptr) { // implicit
-//			Data::SDC::SDCConsumer & consumer = *c[0]; // implicit
+//		if (c[0] != nullptr) {
+//			Data::SDC::SDCConsumer & consumer = *c[0];
 			Data::SDC::SDCConsumer & consumer = *c;
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
-
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded.";
 
 			consumer.registerStateEventHandler(eh_get.get());
 			consumer.registerStateEventHandler(eh_set.get());
 			consumer.registerStateEventHandler(eh_stream.get());
 
-			// read-only metric (get-service)
-			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested streaming metrics value: " << pGetMetricState->getMetricValue().getValue();
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
 
-			// read-write metric (set-service)
-			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
-			// prepare the metric state (in this example a metric is set)
+			// wait for the subscriptions to be completed
+			Poco::Thread::sleep(5000);
+
+			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
+
+			// set numeric metric
+			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
 			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
-			// commit the metric to the provider
+
 			FutureInvocationState fis;
 			consumer.commitState(*pMetricState, fis);
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result: " << fis.waitReceived(InvocationState::Fin, 10000);
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
 
 			waitForUserInput();
 			consumer.unregisterStateEventHandler(eh_get.get());
