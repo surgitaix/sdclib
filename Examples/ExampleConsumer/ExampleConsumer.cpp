@@ -51,65 +51,12 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-// SDCLib/J
-//const std::string deviceEPR("UDI-1234567890");
-//const std::string HANDLE_GET_METRIC("handle_metric");
-//const std::string HANDLE_STREAM_METRIC("handle_stream");
-//const std::string LOCATION_CONTEXT_HANDLE("handle_context");
-
-// openSDC
-const std::string deviceEPR("urn:uuid:4242d68b-40ef-486a-a019-6b00d1424200");
-const std::string HANDLE_GET_METRIC("handle_pulse");
-
 //SDCLib/C
-//const std::string deviceEPR("UDI-1234567890");
-//const std::string HANDLE_SET_METRIC("handle_set");
-//const std::string HANDLE_GET_METRIC("handle_get");
-//const std::string HANDLE_STREAM_METRIC("handle_stream");
-//const std::string HANDLE_STRING_METRIC("handle_string");
+const std::string deviceEPR("UDI-1234567890");
+const std::string HANDLE_SET_METRIC("handle_set");
+const std::string HANDLE_GET_METRIC("handle_get");
+const std::string HANDLE_STREAM_METRIC("handle_stream");
 
-
-class ExampleLocationContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState> {
-public:
-
-	ExampleLocationContextEventHandler(std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle) {
-	}
-
-	virtual void onStateChanged(const LocationContextState & state) override {
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received location context values changed for handle: " << state.getHandle() << std::endl;
-  		eventEMR.set();
-	}
-
-    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (context) (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
-    }
-
-	Poco::Event & getEventEMR() {
-		return eventEMR;
-	}
-
-private:
-	Poco::Event eventEMR;
-};
-
-class ExampleConsumerAlertSignalHandler : public SDCConsumerMDStateHandler<AlertSignalState> {
-public:
-	ExampleConsumerAlertSignalHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
-	{
-	}
-
-    virtual ~ExampleConsumerAlertSignalHandler() {
-
-    }
-
-    void onStateChanged(const AlertSignalState & state) override {
-    	DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received alert signal changed of " << descriptorHandle << ", presence = " << EnumToString::convert(state.getPresence()) << std::endl;
-    }
-
-    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (alert) (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
-    }
-};
 
 
 
@@ -160,6 +107,9 @@ public:
 	}
 };
 
+
+
+
 void waitForUserInput() {
 	std::string temp;
 	Util::DebugOut(Util::DebugOut::Default, "") << "Press key to proceed.";
@@ -171,7 +121,7 @@ void waitForUserInput() {
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 	SDCLibrary::getInstance().setPortStart(12000);
 
 
@@ -199,10 +149,8 @@ int main() {
 
 	// state handler
 	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
-//	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
-//	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
-//	std::shared_ptr<ExampleLocationContextEventHandler> locationEventHandler(new ExampleLocationContextEventHandler(LOCATION_CONTEXT_HANDLE));
-//	std::shared_ptr<ExampleConsumerAlertSignalHandler> alertSignalHandler(new ExampleConsumerAlertSignalHandler("handle_alert_signal_latching"));
+	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
+	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
 
 	try {
 		if (c != nullptr) {
@@ -213,10 +161,9 @@ int main() {
 			consumer.setConnectionLostHandler(myHandler.get());
 
 			consumer.registerStateEventHandler(eh_get.get());
-//			consumer.registerStateEventHandler(eh_set.get());
-//			consumer.registerStateEventHandler(eh_stream.get());
-//			consumer.registerStateEventHandler(locationEventHandler.get());
-//			consumer.registerStateEventHandler(alertSignalHandler.get());
+			consumer.registerStateEventHandler(eh_set.get());
+			consumer.registerStateEventHandler(eh_stream.get());
+
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
 
 			// wait for the subscriptions to be completed
@@ -233,25 +180,10 @@ int main() {
 			consumer.commitState(*pMetricState, fis);
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
 
-
-			// set context state
-//			std::unique_ptr<LocationContextState> pLocationContextState(consumer.requestState<LocationContextState>(LOCATION_CONTEXT_HANDLE));
-//			pLocationContextState->setLocationDetail(LocationDetail().setBed("Bed 1"));
-//
-//			FutureInvocationState fis_context;
-//			consumer.commitState(*pLocationContextState, fis_context);
-//			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result context state: " << fis_context.waitReceived(InvocationState::Fin, 10000);
-
-			// alerts
-
-			// .. only state handlers
-
 			waitForUserInput();
 			consumer.unregisterStateEventHandler(eh_get.get());
-			//consumer.unregisterStateEventHandler(eh_set.get());
-//			consumer.unregisterStateEventHandler(eh_stream.get());
-//			consumer.unregisterStateEventHandler(locationEventHandler.get());
-//			consumer.unregisterStateEventHandler(alertSignalHandler.get());
+			consumer.unregisterStateEventHandler(eh_set.get());
+			consumer.unregisterStateEventHandler(eh_stream.get());
 			consumer.disconnect();
 		} else {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";

@@ -381,7 +381,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
     SDCLibrary::getInstance().setIP6enabled(false);
     SDCLibrary::getInstance().setIP4enabled(true);
 

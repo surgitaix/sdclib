@@ -45,6 +45,8 @@
 
 #include "OSELib/DPWS/PingManager.h"
 
+using namespace SDCLib::Config;
+
 namespace SDCLib {
 
 const std::string CURRENT_LIB_VERSION("3.0.1");
@@ -132,7 +134,7 @@ SDCInstancePtr SDCLibrary2::createDefaultSDCInstance() {
 	}
 
 	Poco::Mutex::ScopedLock lock(mutex);
-	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_PORT_START, SDCLib::Config::SDC_PORT_RANGE, m_availableNetworkInterfacesList));
+	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDC_ALLOWED_PORT_START, SDC_DEFAULT_PORT_RANGE, m_availableNetworkInterfacesList));
 	// empty list since all network interfaces are assigned to the SDCInstance
 	m_availableNetworkInterfacesList.clear();
 	return move(t_sdcInstance);
@@ -170,7 +172,7 @@ SDCInstancePtr SDCLibrary2::createBoundSDCInstance(string interfaceName) {
 		log_error([&]{return "Interface not found."; });
 		return nullptr;
 	}
-	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_PORT_START, SDCLib::Config::SDC_PORT_RANGE, t_networkInterfacesList));
+	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDC_ALLOWED_PORT_START, SDC_DEFAULT_PORT_RANGE, t_networkInterfacesList));
 	return move(t_sdcInstance);
 }
 
@@ -198,7 +200,7 @@ SDCInstancePtr SDCLibrary2::createBoundSDCInstance(list<string> interfacesNamesL
 		log_error([&]{return "Interface(s) not found."; });
 		return nullptr;
 	}
-	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDCLib::Config::SDC_PORT_START, SDCLib::Config::SDC_PORT_RANGE, t_networkInterfacesList));
+	SDCInstancePtr t_sdcInstance = shared_ptr<SDCInstance>(new SDCInstance(SDC_ALLOWED_PORT_START, SDC_DEFAULT_PORT_RANGE, t_networkInterfacesList));
 	return move(t_sdcInstance);
 }
 
