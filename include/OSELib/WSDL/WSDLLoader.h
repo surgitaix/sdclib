@@ -20,11 +20,11 @@ public:
 	WSDLLoader();
 	virtual ~WSDLLoader();
 
-	std::string loadGetServiceWSDL();
-	std::string loadSetServiceWSDL();
-	std::string loadContextServiceWSDL();
-	std::string loadStateEventServiceWSDL();
-	std::string loadWaveformServiceWSDL();
+	std::string getGetServiceWSDL();
+	std::string getSetServiceWSDL();
+	std::string getContextServiceWSDL();
+	std::string getStateEventServiceWSDL();
+	std::string getWaveformServiceWSDL();
 
 private:
 

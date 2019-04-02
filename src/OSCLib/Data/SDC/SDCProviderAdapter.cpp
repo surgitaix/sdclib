@@ -101,7 +101,7 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 
 	virtual std::string getWSDL() override {
 		OSELib::WSDL::WSDLLoader wsdlLoader;
-		return wsdlLoader.loadContextServiceWSDL();
+		return wsdlLoader.getContextServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
@@ -146,7 +146,7 @@ struct EventReportServiceImpl : public SDC::IEventReport {
 
 	virtual std::string getWSDL() override {
 		OSELib::WSDL::WSDLLoader wsdlLoader;
-		return wsdlLoader.loadStateEventServiceWSDL();
+		return wsdlLoader.getStateEventServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
@@ -181,7 +181,7 @@ struct WaveformReportServiceImpl : public SDC::IWaveformService {
 
 	virtual std::string getWSDL() override {
 		OSELib::WSDL::WSDLLoader wsdlLoader;
-		return wsdlLoader.loadWaveformServiceWSDL();
+		return wsdlLoader.getWaveformServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
@@ -218,7 +218,7 @@ struct GetServiceImpl : public SDC::IGetService {
 
 	virtual std::string getWSDL() override {
 		OSELib::WSDL::WSDLLoader wsdlLoader;
-		return wsdlLoader.loadGetServiceWSDL();
+		return wsdlLoader.getGetServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
@@ -258,7 +258,7 @@ struct SetServiceImpl : public SDC::ISetService {
 
 	virtual std::string getWSDL() override {
 		OSELib::WSDL::WSDLLoader wsdlLoader;
-		return wsdlLoader.loadSetServiceWSDL();
+		return wsdlLoader.getSetServiceWSDL();
 	}
 
 	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
