@@ -8,6 +8,11 @@
  */
 
 #include "OSELib/WSDL/WSDLLoader.h"
+#include "OSCLib/Data/SDC/WSDL/ContextServiceWSDL.h"
+#include "OSCLib/Data/SDC/WSDL/GetServiceWSDL.h"
+#include "OSCLib/Data/SDC/WSDL/SetServiceWSDL.h"
+#include "OSCLib/Data/SDC/WSDL/WaveformServiceWSDL.h"
+#include "OSCLib/Data/SDC/WSDL/StateEventServiceWSDL.h"
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -24,40 +29,25 @@ WSDLLoader::~WSDLLoader() {
 
 }
 
-std::string WSDLLoader::loadGetServiceWSDL() {
-	std::ifstream t("ressources/wsdl/getservice.wsdl");
-	std::stringstream buffer;
-	buffer << t.rdbuf();
-	return buffer.str();
+std::string WSDLLoader::getGetServiceWSDL() {
+	return getServiceWsdl;
 
 };
 
-std::string WSDLLoader::loadSetServiceWSDL() {
-	std::ifstream t("ressources/wsdl/setservice.wsdl");
-	std::stringstream buffer;
-	buffer << t.rdbuf();
-	return buffer.str();
+std::string WSDLLoader::getSetServiceWSDL() {
+	return setServiceWsdl;
 };
 
-std::string WSDLLoader::loadContextServiceWSDL() {
-	std::ifstream t("ressources/wsdl/contextservice.wsdl");
-	std::stringstream buffer;
-	buffer << t.rdbuf();
-	return buffer.str();
+std::string WSDLLoader::getContextServiceWSDL() {
+	return contextServiceWsdl;
 };
 
-std::string WSDLLoader::loadStateEventServiceWSDL() {
-	std::ifstream t("ressources/wsdl/stateeventservice.wsdl");
-	std::stringstream buffer;
-	buffer << t.rdbuf();
-	return buffer.str();
+std::string WSDLLoader::getStateEventServiceWSDL() {
+	return stateEventServiceWsdl;
 };
 
-std::string WSDLLoader::loadWaveformServiceWSDL() {
-	std::ifstream t("ressources/wsdl/waveformservice.wsdl");
-	std::stringstream buffer;
-	buffer << t.rdbuf();
-	return buffer.str();
+std::string WSDLLoader::getWaveformServiceWSDL() {
+	return waveformServiceWsdl;
 };
 
 
