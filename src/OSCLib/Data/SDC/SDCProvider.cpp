@@ -926,7 +926,7 @@ void SDCProvider::setAlertConditionPresence(const std::string & alertConditionHa
 }
 
 void SDCProvider::evaluateAlertConditions(const std::string & source) {
-	Poco::Mutex::ScopedLock lock(m_mutex);
+	Poco::Mutex::ScopedLock lock(getMutex());
 	const MdDescription description(getMdDescription());
 
 	std::vector<std::string> relevantDescriptors;
@@ -962,20 +962,23 @@ void SDCProvider::evaluateAlertConditions(const std::string & source) {
 
 MdibContainer SDCProvider::getMdib() {
     MdibContainer container;
-	Poco::Mutex::ScopedLock lock(m_mutex);
     container.setMdDescription(getMdDescription());
-	container.setMdState(getMdState());
-	container.setMdibVersion(getMdibVersion());
+    container.setMdState(getMdState());
+    container.setMdibVersion(getMdibVersion());
     return container;
 }
 
 MdDescription SDCProvider::getMdDescription() const {
-	return *m_mdDescription;
+
+    assert(m_mdDescription != nullptr);
+
+    Poco::Mutex::ScopedLock lock(m_mutex);
+    return *m_mdDescription;
 }
 
 MdState SDCProvider::getMdState() const {
-	Poco::Mutex::ScopedLock lock(m_mutex);
-	return mdibStates;
+    Poco::Mutex::ScopedLock lock(m_mutex);
+    return mdibStates;
 }
 
 
@@ -1062,6 +1065,7 @@ void SDCProvider::startup() {
 
 void SDCProvider::shutdown()
 {
+    Poco::Mutex::ScopedLock lock(getMutex());
     // FIXME: This really needs to be fixed... Shutdown takes some time, synchro etc...
     if (providerInvoker) {
     	providerInvoker->interrupt();
@@ -1097,9 +1101,11 @@ template<class T> void SDCProvider::replaceState(const T & object) {
 }
 
 
-void SDCProvider::addMdStateHandler(SDCProviderStateHandler * handler) {
-    handler->parentProvider = this;
+void SDCProvider::addMdStateHandler(SDCProviderStateHandler * handler)
+{
+    Poco::Mutex::ScopedLock lock(m_mutex);
 
+    handler->parentProvider = this;
 
     // TODO: Multistates implementation.. regarding to the SDC standard it should be possible to define states with the same descriptor handle!
     // this is only possible for context states. maybe do a type check.
@@ -1107,7 +1113,6 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler * handler) {
     if (stateHandlers.find(handler->getDescriptorHandle()) != stateHandlers.end()) {
     	log_error([&] { return "A SDCProvider handler for handle " + handler->getDescriptorHandle() + " already exists. It will be overridden."; });
     }
-
 
 
     // ToDo: Behold! check with simpleOSCP if this really works°!
@@ -1148,17 +1153,19 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler * handler) {
 
 
 void SDCProvider::removeMDStateHandler(SDCProviderStateHandler * handler) {
+    Poco::Mutex::ScopedLock lock(m_mutex);
     stateHandlers.erase(handler->getDescriptorHandle());
 }
 
 void SDCProvider::setEndpointReference(const std::string & epr) {
+    Poco::Mutex::ScopedLock lock(m_mutex);
 	this->endpointReference = epr;
 }
 
 
 void SDCProvider::setMdDescription(const MdDescription & mdDescription) {
 	Poco::Mutex::ScopedLock lock(getMutex());
-	m_mdDescription = std::make_shared<MdDescription>(mdDescription);
+	m_mdDescription = std::unique_ptr<MdDescription>(new MdDescription(mdDescription));
 }
 
 void SDCProvider::setMdDescription(std::string xml) {
@@ -1228,7 +1235,7 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor
 	scoDescriptor->Operation().push_back(source);
 	ownerMDS.setSco(ConvertFromCDM::convert(*scoDescriptor));
 
-	Poco::Mutex::ScopedLock lock(m_mutex);
+	Poco::Mutex::ScopedLock lock(getMutex());
 
 	// Now add a state object for the sco descriptor to the cached states.
 	std::unique_ptr<CDM::MdState> cachedOperationStates(ConvertToCDM::convert(operationStates));
@@ -1331,6 +1338,7 @@ void SDCProvider::createSetOperationForDescriptor(const StringMetricDescriptor &
 
 template<class T>
 void SDCProvider::createSetOperationForContextDescriptor(const T & descriptor, MdsDescriptor & ownerMDS) {
+    Poco::Mutex::ScopedLock lock(m_mutex);
 	const CDM::SetContextStateOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
@@ -1355,11 +1363,13 @@ void SDCProvider::createSetOperationForDescriptor(const WorkflowContextDescripto
 	createSetOperationForContextDescriptor(descriptor, ownerMDS);
 }
 
-const Dev::DeviceCharacteristics& SDCProvider::getDeviceCharacteristics() const {
+Dev::DeviceCharacteristics SDCProvider::getDeviceCharacteristics() const {
+    Poco::Mutex::ScopedLock lock(m_mutex);
 	return m_devicecharacteristics;
 }
 
 void SDCProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics p_deviceCharacteristics) {
+    Poco::Mutex::ScopedLock lock(getMutex());
 	m_devicecharacteristics = p_deviceCharacteristics;
 }
 
@@ -1403,6 +1413,7 @@ void SDCProvider::removeHandleForPeriodicEvent(const std::string & handle) {
 
 
 void SDCProvider::setConfiguration(MDPWSTransportLayerConfiguration config) {
+    Poco::Mutex::ScopedLock lock(getMutex());
 	configuration = config;
 }
 

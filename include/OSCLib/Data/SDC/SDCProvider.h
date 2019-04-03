@@ -225,7 +225,7 @@ public:
      *
      * @return The DPWS device characteristics
      */
-	const Dev::DeviceCharacteristics& getDeviceCharacteristics() const;
+	Dev::DeviceCharacteristics getDeviceCharacteristics() const;
 	void setDeviceCharacteristics(const Dev::DeviceCharacteristics p_deviceCharacteristics);
 
 
@@ -378,7 +378,7 @@ private:
 
     std::map<std::string, SDCProviderStateHandler *> stateHandlers;
 
-	std::shared_ptr<MdDescription> m_mdDescription;
+	std::unique_ptr<MdDescription> m_mdDescription;
     std::unique_ptr<SDCProviderAdapter> _adapter;
     Dev::DeviceCharacteristics m_devicecharacteristics;
 	mutable Poco::Mutex m_mutex;
