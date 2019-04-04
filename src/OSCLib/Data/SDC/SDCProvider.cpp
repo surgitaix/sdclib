@@ -982,7 +982,10 @@ MdState SDCProvider::getMdState() const {
 }
 
 
-void SDCProvider::startup() {
+void SDCProvider::startup()
+{
+    Poco::Mutex::ScopedLock lock(m_mutex);
+
 	try {
 		_adapter->start(configuration);
 	} catch (const Poco::Net::NetException & e) {
@@ -994,7 +997,6 @@ void SDCProvider::startup() {
 	}
 
     // Grab all states (start with all operation states and add states from user handlers)
-    Poco::Mutex::ScopedLock lock(m_mutex);
     mdibStates = MdState(operationStates);
     for (const auto & handler : stateHandlers) {
 		if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
@@ -1168,7 +1170,9 @@ void SDCProvider::setMdDescription(const MdDescription & mdDescription) {
 	m_mdDescription = std::unique_ptr<MdDescription>(new MdDescription(mdDescription));
 }
 
-void SDCProvider::setMdDescription(std::string xml) {
+void SDCProvider::setMdDescription(std::string xml)
+{
+    Poco::Mutex::ScopedLock lock(getMutex());
 	OSELib::SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
 	auto rawMessage = OSELib::Helper::Message::create(xml);
 	auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
@@ -1176,11 +1180,9 @@ void SDCProvider::setMdDescription(std::string xml) {
 	std::unique_ptr<CDM::Mdib> result(CDM::MdibContainer(xercesDocument->getDocument()));
 
 	if (result != nullptr) {
-		Poco::Mutex::ScopedLock lock(getMutex());
-		if (result->MdDescription().present()) {
-			this->m_mdDescription.reset(new MdDescription(ConvertFromCDM::convert(result->MdDescription().get())));
-		}
-
+        if (result->MdDescription().present()) {
+            this->m_mdDescription.reset(new MdDescription(ConvertFromCDM::convert(result->MdDescription().get())));
+        }
 	} else {
 		log_fatal([&] { return " Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + xml; });
 		//todo: proper exeption handling
