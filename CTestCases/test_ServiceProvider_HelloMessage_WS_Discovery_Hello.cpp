@@ -28,8 +28,6 @@
 #include "Tools/MulticastHandler.h"
 #include "Tools/test_schema.h"
 
-#include "OSELib/WSDL/schema.h"
-
 #include "OSELib/Helper/SchemaGrammarProvider.h"
 #include "OSELib/Helper/WithLogger.h"
 #include "OSELib/Helper/Message.h"
@@ -71,9 +69,9 @@ class helloTestHandler: public TestTools::MulticastHandler{
 				}
 			});
 
-			addSchemaWithErrorHandling(OSELib::SCHEMA::SCHEMA_WSADDRESSING_NAME, OSELib::SCHEMA::SCHEMA_WSADDRESSING_CONTENT);
-			addSchemaWithErrorHandling(OSELib::SCHEMA::SCHEMA_DISCOVERY_NAME, OSELib::SCHEMA::SCHEMA_DISCOVERY_CONTENT);
-			addSchemaWithErrorHandling(OSELib::SCHEMA::SCHEMA_HELLLOMESSAGE_NAME, OSELib::SCHEMA::SCHEMA_HELLLOMESSAGE_CONTENT);
+			addSchemaWithErrorHandling(TestTools::SCHEMA::SCHEMA_WSADDRESSING_NAME, TestTools::SCHEMA::SCHEMA_WSADDRESSING_CONTENT);
+			addSchemaWithErrorHandling(TestTools::SCHEMA::SCHEMA_DISCOVERY_NAME, TestTools::SCHEMA::SCHEMA_DISCOVERY_CONTENT);
+			addSchemaWithErrorHandling(TestTools::SCHEMA::SCHEMA_HELLLOMESSAGE_NAME, TestTools::SCHEMA::SCHEMA_HELLLOMESSAGE_CONTENT);
 			seal();
 		}
 

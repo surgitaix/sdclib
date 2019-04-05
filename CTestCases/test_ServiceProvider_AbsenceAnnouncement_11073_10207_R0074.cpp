@@ -57,9 +57,9 @@ class ByeTestHandler : public TestTools::MulticastHandler{
 				}
 			});
 
-			addSchemaWithErrorHandling(OSELib::SCHEMA::SCHEMA_WSADDRESSING_NAME, OSELib::SCHEMA::SCHEMA_WSADDRESSING_CONTENT);
-			addSchemaWithErrorHandling(OSELib::SCHEMA::SCHEMA_DISCOVERY_NAME, OSELib::SCHEMA::SCHEMA_DISCOVERY_CONTENT);
-			addSchemaWithErrorHandling(OSELib::SCHEMA::SCHEMA_BYEMESSAGE_NAME, OSELib::SCHEMA::SCHEMA_BYEMESSAGE_CONTENT);
+			addSchemaWithErrorHandling(TestTools::SCHEMA::SCHEMA_WSADDRESSING_NAME, TestTools::SCHEMA::SCHEMA_WSADDRESSING_CONTENT);
+			addSchemaWithErrorHandling(TestTools::SCHEMA::SCHEMA_DISCOVERY_NAME, TestTools::SCHEMA::SCHEMA_DISCOVERY_CONTENT);
+			addSchemaWithErrorHandling(TestTools::SCHEMA::SCHEMA_BYEMESSAGE_NAME, TestTools::SCHEMA::SCHEMA_BYEMESSAGE_CONTENT);
 			seal();
 		}
 

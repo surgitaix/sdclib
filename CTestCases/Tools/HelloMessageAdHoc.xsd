@@ -15,13 +15,7 @@
                      <xs:element ref="wsa:ReferenceParameters" minOccurs="0" />
                      <xs:element ref="wsa:RelatesTo" minOccurs="0" />
                      <xs:element ref="wsa:ReplyTo" minOccurs="0" />
-                     <xs:element ref="wsa:To">
-                        <xs:simpleType>
-                           <xs:restriction base="xs:string">
-                              <xs:enumeration value="urn:docs-oasis-open-org:ws-dd:ns:discovery:2009:01" />
-                           </xs:restriction>
-                        </xs:simpleType>
-                     </xs:element>
+                     <xs:element ref="wsa:To" />                     
                   </xs:all>
                </xs:complexType>
             </xs:element>

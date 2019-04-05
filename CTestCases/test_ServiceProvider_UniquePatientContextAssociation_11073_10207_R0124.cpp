@@ -50,7 +50,7 @@ public:
 		updateState(PatientContextState);
 	}
 
-	InvocationState onStateChangeRequest(const PatientContextState &state, const OperationInvocationContext &oic)	{
+	InvocationState onStateChangeRequest(const PatientContextState &, const OperationInvocationContext &)	{
 		return InvocationState::Fail;
 	}
 private:

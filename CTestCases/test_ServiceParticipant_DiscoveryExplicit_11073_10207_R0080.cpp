@@ -34,7 +34,7 @@ int main() {
 			  << "for explicit discovery:"
 			  << std::endl;
 	//Network configuration
-	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
+	SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
 	SDCLibrary::getInstance().setIP6enabled(false);
 	SDCLibrary::getInstance().setIP4enabled(true);
 

@@ -96,7 +96,7 @@ class TestProvider : public Util::Task{
 		}
 
 
-		InvocationState onStateChangeRequest(const AlertConditionState & state, const OperationInvocationContext & oic) override {
+		InvocationState onStateChangeRequest(const AlertConditionState &, const OperationInvocationContext & oic) override {
 			notifyOperationInvoked(oic, InvocationState::Start);
 			// Do something if a state change is requested
 			// return Finished if successful
@@ -120,11 +120,11 @@ class TestProvider : public Util::Task{
 		TechnicalAlertConditionStateHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle) {
 		}
 
-		void sourceHasChanged(const std::string & sourceHandle) override {
+		void sourceHasChanged(const std::string &) override {
 			//This technical alert is independent of any source represented in the MDIB and only gets directly set by the provider.
 		}
 
-		InvocationState onStateChangeRequest(const AlertConditionState & state, const OperationInvocationContext & oic) override {
+		InvocationState onStateChangeRequest(const AlertConditionState &, const OperationInvocationContext & oic) override {
 			notifyOperationInvoked(oic, InvocationState::Start);
 			// Do something if a state change is requested
 			// return Finished if successful
