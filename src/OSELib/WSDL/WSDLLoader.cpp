@@ -4,7 +4,7 @@
  *
  *  Created on: 15.03.2019
  *  @author: buerger
- *  @brief: Class for loading the WSDLs for each service from hard drive
+ *  @brief: Class for loading the WSDLs for each service
  */
 
 #include "OSELib/WSDL/WSDLLoader.h"
@@ -13,43 +13,31 @@
 #include "OSCLib/Data/SDC/WSDL/SetServiceWSDL.h"
 #include "OSCLib/Data/SDC/WSDL/WaveformServiceWSDL.h"
 #include "OSCLib/Data/SDC/WSDL/StateEventServiceWSDL.h"
-#include <sstream>
-#include <fstream>
-#include <iostream>
 
 
-namespace OSELib {
-namespace WSDL {
+using namespace OSELib::WSDL;
 
-WSDLLoader::WSDLLoader()
+std::string WSDLLoader::getGetServiceWSDL() const
 {
-}
-
-WSDLLoader::~WSDLLoader() {
-
-}
-
-std::string WSDLLoader::getGetServiceWSDL() {
-	return getServiceWsdl;
-
+    return getServiceWsdl;
 };
 
-std::string WSDLLoader::getSetServiceWSDL() {
-	return setServiceWsdl;
+std::string WSDLLoader::getSetServiceWSDL() const
+{
+    return setServiceWsdl;
 };
 
-std::string WSDLLoader::getContextServiceWSDL() {
-	return contextServiceWsdl;
+std::string WSDLLoader::getContextServiceWSDL() const
+{
+    return contextServiceWsdl;
 };
 
-std::string WSDLLoader::getStateEventServiceWSDL() {
-	return stateEventServiceWsdl;
+std::string WSDLLoader::getStateEventServiceWSDL() const
+{
+    return stateEventServiceWsdl;
 };
 
-std::string WSDLLoader::getWaveformServiceWSDL() {
-	return waveformServiceWsdl;
+std::string WSDLLoader::getWaveformServiceWSDL() const
+{
+    return waveformServiceWsdl;
 };
-
-
-}
-} /* namespace SDCLib */

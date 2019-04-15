@@ -1,3 +1,6 @@
+#ifndef SDCLIB_WSDL_CONTEXTSERVICEWSDL_H
+#define SDCLIB_WSDL_CONTEXTSERVICEWSDL_H
+
 #include <string.h>
 
 const std::string contextServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message">
@@ -74,3 +77,5 @@ const std::string contextServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://sch
         </wsdl:operation>
     </wsdl:binding>
 </wsdl:definitions>)";
+
+#endif
