@@ -68,6 +68,14 @@ public:
     */
 	std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> discoverOSCP();
 
+	/**
+	* @brief Discover all SDC providers currently available
+	*
+	* @return List of all provider eprs
+	*/
+	std::vector<std::string> discoverEndpointReferences();
+
+
 private:
 	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
 	void resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & metadata,	OSELib::DPWS::DeviceDescription & deviceDescription);
