@@ -13,6 +13,8 @@
 
 #include "wsdd-discovery-1.1-schema-os-fwd.hxx"
 
+#include "Poco/Mutex.h"
+
 namespace OSELib {
 namespace DPWS {
 namespace Impl {
@@ -38,6 +40,7 @@ private:
 	unsigned long long int _messageCounter;
 
 	std::deque<std::string> _knownMessageIds;
+	mutable Poco::FastMutex _knownMessageIdsMutex;
 	typedef std::map<std::string, unsigned long long int> SequenceMapping;
 	std::map<unsigned long long  int, SequenceMapping> _knownAppsequences;
 };

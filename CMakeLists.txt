@@ -12,7 +12,7 @@ if(NOT WIN32)
     # enable debug and profiling informations for sprof
     add_compile_options(-ggdb -g -O0 -Wall -Wextra)
 else()
-    add_compile_options(/W)
+    #add_compile_options(/W)
 endif()
 ################################################################################
 
@@ -265,9 +265,20 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     ADD_DEFINITIONS(-D_WIN32)
 
     # Libraries - WIP... maybe include in Dependencies?
-    SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
+    #SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
     SET(XERCES_LIB_DIR "${PROJECT_SOURCE_DIR}/../xerces/lib/" CACHE PATH "Path to XERCES-C libraries.")
-
+	
+	SET(XERCES_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xsd4/include" CACHE PATH "Path to XERCES-C includes.")
+	if (XERCES_INCLUDE_DIR)
+		include_directories(${XERCES_INCLUDE_DIR})
+	endif (XERCES_INCLUDE_DIR)
+	
+	
+	SET(XSDCXX_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xsd4/include" CACHE PATH "Path to XSDCXX includes.")
+	if (XSDCXX_INCLUDE_DIR)
+		include_directories(${XSDCXX_INCLUDE_DIR})
+	endif (XSDCXX_INCLUDE_DIR)
+	
     # XERCES [needed here? - Test!]
     if (CMAKE_BUILD_TYPE STREQUAL Debug)
         set(XERCES_LIB xerces-c_3D)

@@ -92,6 +92,9 @@ public:
     */
     MdDescription getMdDescription();
 
+	//StF
+	MdDescription getCachedMdDescription();
+
     /**
     * @brief Get all states as part of the MDIB.
     *
@@ -246,7 +249,8 @@ private:
     bool requestMdib();
     std::unique_ptr<MDM::GetMdibResponse> requestCDMMdib();
 
-    MdDescription getCachedMdDescription();
+	//StF made public
+    //MdDescription getCachedMdDescription();
 
     bool unregisterFutureInvocationListener(int transactionId);
 

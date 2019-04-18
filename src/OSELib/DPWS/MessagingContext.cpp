@@ -25,6 +25,8 @@ MessagingContext::~MessagingContext() {
 }
 
 bool MessagingContext::registerMessageId(const std::string & id) {
+	//not thread-safe due to pop_back...
+	Poco::FastMutex::ScopedLock lock(_knownMessageIdsMutex);
 	if (std::find(_knownMessageIds.begin(), _knownMessageIds.end(), id) != _knownMessageIds.end()) {
 		return false;
 	} else {

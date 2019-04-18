@@ -391,13 +391,12 @@ void SDCConsumerAdapter::stop() {
 
 	if (_httpServer) {
 		_httpServer->stopAll(false);
-	}
 
-	while (_httpServer->currentConnections() != 0) {
-		Poco::Thread::sleep(100);
-		_httpServer.reset();
+		while ((_httpServer != nullptr) && (_httpServer->currentConnections() != 0)) {
+			Poco::Thread::sleep(100);
+			_httpServer.reset();
+		}
 	}
-
 
 	if (_pingManager) {
 		_pingManager->disable();
@@ -412,27 +411,42 @@ void SDCConsumerAdapter::subscribeEvents() {
 
 	std::vector<OSELib::DPWS::SubscriptionClient::SubscriptionInformation> subscriptions;
 	// context reports
+	try
 	{
 		WS::EVENTING::FilterType filter;
 		filter.push_back(OSELib::SDC::EpisodicContextChangedReportTraits::Action());
-		filter.push_back(OSELib::SDC::PeriodicContextChangedReportTraits::Action());
+		//filter.push_back(OSELib::SDC::PeriodicContextChangedReportTraits::Action());
 		subscriptions.emplace_back(
 				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
 				_deviceDescription.getContextServiceURI(),
 				filter);
 	}
+	catch (const std::exception& exc)	//getContextServiceURI can throw runtime exceptions
+	{
+		log_error([&] { return "Failed to subscribe to events from ContextService."; });
+	}
+
 	// Event reports
+	try
 	{
 		WS::EVENTING::FilterType filter;
-		filter.push_back(OSELib::SDC::EpisodicAlertReportTraits::Action());
+		//filter.push_back(OSELib::SDC::EpisodicAlertReportTraits::Action());
 		filter.push_back(OSELib::SDC::EpisodicMetricReportTraits::Action());
-		filter.push_back(OSELib::SDC::PeriodicAlertReportTraits::Action());
-		filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
+		//filter.push_back(OSELib::SDC::PeriodicAlertReportTraits::Action());
+		//filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
 		subscriptions.emplace_back(
 				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}
+	catch (const std::exception& exc)	//getEventServiceURI can throw runtime exceptions
+	{
+		log_error([&] { return "Failed to subscribe to episodic and periodic events."; });
+	}
+
+
+	// Set Service (OperationInvokedReports)
+	try
 	{
 		WS::EVENTING::FilterType filter;
 		// fixme: move to SetService
@@ -441,6 +455,10 @@ void SDCConsumerAdapter::subscribeEvents() {
 				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
 				_deviceDescription.getSetServiceURI(),
 				filter);
+	}
+	catch (const std::exception& exc)	//getSetServiceURI can throw runtime exceptions
+	{
+		log_error([&] { return "Failed to subscribe to events from SetServce (OperationInvokedReports)."; });
 	}
 
 	_subscriptionClient = std::unique_ptr<OSELib::DPWS::SubscriptionClient>(new OSELib::DPWS::SubscriptionClient(subscriptions));

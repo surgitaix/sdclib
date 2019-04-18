@@ -238,45 +238,67 @@ MdibContainer SDCConsumer::getMdib() {
 }
 
 MdDescription SDCConsumer::getMdDescription() {
-    const MDM::GetMdDescription request;
-    auto response(_adapter->invoke(request));
+	const MDM::GetMdDescription request;
 
-	if (response == nullptr) {
-        log_error([] { return "GetMdDescription request failed!"; });
+	//try to catch exception thrown by MdDescription and Poco
+	try
+	{
+		auto response(_adapter->invoke(request));
+
+		if (response == nullptr) {
+			log_error([] { return "GetMdDescription request failed!"; });
+			onConnectionLost();
+			return MdDescription();
+		}
+
+		const MdDescription description(ConvertFromCDM::convert(response->MdDescription()));
+
+		// refresh cashed version
+		if (mdib != nullptr) {
+			mdib->setMdDescription(description);
+			if (response->MdibVersion().present()) {
+				mdib->setMdibVersion(response->MdibVersion().get());
+			}
+		}
+
+		return description;
+	}
+	catch (...)
+	{
+		log_error([] { return "GetMdDescription request failed with exception!"; });
 		onConnectionLost();
 		return MdDescription();
 	}
-
-	const MdDescription description(ConvertFromCDM::convert(response->MdDescription()));
-
-	// refresh cashed version
-	mdib->setMdDescription(description);
-	if (response->MdibVersion().present()) {
-		mdib->setMdibVersion(response->MdibVersion().get());
-	}
-
-    return description;
 }
 
 MdDescription SDCConsumer::getCachedMdDescription() {
 	if (mdib) {
 		return mdib->getMdDescription();
-	} else {
-		return MdDescription();
 	}
+
+	return getMdDescription();
 }
 
 MdState SDCConsumer::getMdState() {
-    const MDM::GetMdState request;
-    std::unique_ptr<const MDM::GetMdStateResponse> response(_adapter->invoke(request));
+	try
+	{
+		const MDM::GetMdState request;
+		std::unique_ptr<const MDM::GetMdStateResponse> response(_adapter->invoke(request));
 
-	if (response == nullptr) {
-		log_error([] { return "GetMdState request failed!"; });
+		if (response == nullptr) {
+			log_error([] { return "GetMdState request failed!"; });
+			onConnectionLost();
+			return MdState();
+		}
+
+		return ConvertFromCDM::convert(response->MdState());
+	}
+	catch (...)
+	{
+		log_error([] { return "GetMdState request failed with exception!"; });
 		onConnectionLost();
 		return MdState();
 	}
-
-    return ConvertFromCDM::convert(response->MdState());
 }
 
 bool SDCConsumer::unregisterFutureInvocationListener(int transactionId) {
@@ -305,20 +327,29 @@ bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler
 }
 
 bool SDCConsumer::requestMdib() {
-	std::unique_ptr<const MDM::GetMdibResponse> response(requestCDMMdib());
-	if (response == nullptr) {
+	try
+	{
+		std::unique_ptr<const MDM::GetMdibResponse> response(requestCDMMdib());
+		if (response == nullptr) {
+			log_error([] { return "GetMdib request failed, device not responding."; });
+			return false;
+		}
+
+		Poco::Mutex::ScopedLock lock(requestMutex);
+		mdib.reset(new MdibContainer());
+		mdib->setMdState(ConvertFromCDM::convert(response->Mdib().MdState().get()));
+		if (response->Mdib().MdDescription().present()) {
+			mdib->setMdDescription(ConvertFromCDM::convert(response->Mdib().MdDescription().get()));
+		}
+
+		if (response->MdibVersion().present()) {
+			mdib->setMdibVersion(response->MdibVersion().get());
+		}
+	}
+	catch (...)
+	{
+		log_error([] { return "GetMdib request failed!"; });
 		return false;
-	}
-
-	Poco::Mutex::ScopedLock lock(requestMutex);
-	mdib.reset(new MdibContainer());
-	mdib->setMdState(ConvertFromCDM::convert(response->Mdib().MdState().get()));
-	if (response->Mdib().MdDescription().present()) {
-		mdib->setMdDescription(ConvertFromCDM::convert(response->Mdib().MdDescription().get()));
-	}
-
-	if (response->MdibVersion().present()) {
-		mdib->setMdibVersion(response->MdibVersion().get());
 	}
 
 	return true;

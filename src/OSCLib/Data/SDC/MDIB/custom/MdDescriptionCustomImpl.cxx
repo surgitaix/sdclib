@@ -21,6 +21,8 @@
 #include "OSCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/WorkflowContextDescriptor.h"
+#include "OSCLib/Data/SDC/MDIB/SetStringOperationDescriptor.h"
+#include "OSCLib/Data/SDC/MDIB/SetValueOperationDescriptor.h"
 
 #include "osdm.hxx"
 
@@ -669,6 +671,41 @@ std::vector<ActivateOperationDescriptor> MdDescription::collectAllActivateOperat
 	}
 	return result;
 }
+
+
+std::vector<SetStringOperationDescriptor> MdDescription::collectAllSetStringOperationDescriptors() const {
+	std::vector<SetStringOperationDescriptor> result;
+	const CDM::MdDescription & mddescription(*this->data);
+	for (const auto & mds : mddescription.Mds()) {
+		if (mds.Sco().present()) {
+			const CDM::ScoDescriptor & sco(mds.Sco().get());
+			for (const auto & operation : sco.Operation()) {
+				const typename CDM::SetStringOperationDescriptor *desc = dynamic_cast<const typename CDM::SetStringOperationDescriptor*>(&operation);
+				if (desc != nullptr)
+					result.push_back(ConvertFromCDM::convert(*desc));
+			}
+		}
+	}
+	return result;
+}
+
+
+std::vector<SetValueOperationDescriptor> MdDescription::collectAllSetValueOperationDescriptors() const {
+	std::vector<SetValueOperationDescriptor> result;
+	const CDM::MdDescription & mddescription(*this->data);
+	for (const auto & mds : mddescription.Mds()) {
+		if (mds.Sco().present()) {
+			const CDM::ScoDescriptor & sco(mds.Sco().get());
+			for (const auto & operation : sco.Operation()) {
+				const typename CDM::SetValueOperationDescriptor *desc = dynamic_cast<const typename CDM::SetValueOperationDescriptor*>(&operation);
+				if (desc != nullptr)
+					result.push_back(ConvertFromCDM::convert(*desc));
+			}
+		}
+	}
+	return result;
+}
+
 
 
 }

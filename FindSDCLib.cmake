@@ -123,11 +123,16 @@ endif()
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
     message(s"CMAKE_SYSTEM_NAME WINDOWS: UNTESTED!")
     # Set the library based on build type
+	link_directories("${SDCLib_SEARCH_BIN}")
     if(CMAKE_BUILD_TYPE)
-        if(CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib.dll)
+        if(CMAKE_BUILD_TYPE MATCHES "^Rel.*") #DOES NOT WORK UNDER WINDOWS
+            set(SDCLib_LIBRARIES SDCLibmd.lib)
+			####HACK
+			set( ADDITIONAL_LIBS  PocoFoundationmd.lib PocoNetmd.lib ws2_32 iphlpapi)
         else()
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib_d.dll)
+            set(SDCLib_LIBRARIES SDCLib_d.lib)
+			###HACK
+			set (ADDITIONAL_LIBS  PocoFoundationmdd.lib PocoNetmdd.lib ws2_32 iphlpapi)
         endif()
     else()
         message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
@@ -138,13 +143,16 @@ endif()
 
 
 
+
+
+
 ################################################################################
 # Search for given libary file
 ################################################################################
 # Not Found
-if (NOT EXISTS ${SDCLib_LIBRARIES})
-    message(WARNING "Could not find: ${SDCLib_LIBRARIES}!\n## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
-endif()
+#if (NOT EXISTS ${SDCLib_LIBRARIES})
+#    message(WARNING "Could not find: ${SDCLib_LIBRARIES}!\n## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
+#endif()
 # Set flag
 set(SDCLib_FOUND TRUE)
 ################################################################################
@@ -162,4 +170,5 @@ message(STATUS "-Looking for XercesLibrary...")
 find_library(XercesLibrary NAMES xerces-c REQUIRED)
 # Append Xerces - quick hack - remove this for cleaner resource management later
 list(APPEND SDCLib_LIBRARIES ${XercesLibrary})
+list(APPEND SDCLib_LIBRARIES ${ADDITIONAL_LIBS})
 ################################################################################

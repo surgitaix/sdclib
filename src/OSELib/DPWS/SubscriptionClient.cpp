@@ -106,17 +106,20 @@ void SubscriptionClient::run() {
 			|| !response->SubscriptionManager().ReferenceParameters().present()
 			|| !response->SubscriptionManager().ReferenceParameters().get().Identifier().present()) {
 			log_fatal([&] { return "Subscribing failed."; });
+			_subscriptionIdentifiers.erase(subscription.first);
 		} else {
 			log_information([&] { return "Subscription accomplished"; });
+			_subscriptionIdentifiers.emplace(subscription.first, response->SubscriptionManager().ReferenceParameters().get().Identifier().get());
 		}
-
-		_subscriptionIdentifiers.emplace(subscription.first, response->SubscriptionManager().ReferenceParameters().get().Identifier().get());
 	}
 
 	while (Poco::Thread::trySleep(defaultWaitBeforeRenew)) {
 		log_debug([&] { return "Renewing ..."; });
 
 		for (const auto & subscription : _subscriptions) {
+			if (_subscriptionIdentifiers.find(subscription.first) == _subscriptionIdentifiers.end())
+				continue;
+
 			OSELib::DPWS::RenewTraits::Request request;
 			request.Expires(defaultRenew);
 
@@ -125,11 +128,15 @@ void SubscriptionClient::run() {
 
 			if (!response) {
 				log_fatal([&] { return "Renew failed."; });
+				//ToDo We need to call the subscription lost handler of the corresponding consumer here!
 			}
 		}
 	}
 
 	for (const auto & subscription : _subscriptions) {
+		if (_subscriptionIdentifiers.find(subscription.first) == _subscriptionIdentifiers.end())
+			continue;
+
 		OSELib::DPWS::UnsubscribeTraits::Request request;
 
 		UnsubscribeInvoke unsubscribeInvoke(subscription.second._sourceURI, _subscriptionIdentifiers.at(subscription.first), grammarProvider);

@@ -173,7 +173,7 @@ StringMetricValue & StringMetricValue::setValue(const std::string & value) {
 }
 
 bool StringMetricValue::getValue(std::string & out) const {
-	if (data->Value().present()) {
+	if (!hasValue()) {
 		out = ConvertFromCDM::convert(data->Value().get());
 		return true;
 	}
@@ -181,11 +181,15 @@ bool StringMetricValue::getValue(std::string & out) const {
 }
 
 std::string StringMetricValue::getValue() const {
+	if (!hasValue()) {
+		return std::string();
+	}
+
 	return ConvertFromCDM::convert(data->Value().get());
 }
 
 bool StringMetricValue::hasValue() const {
-	return data->Value().present();
+	return ((data != nullptr) && (data->Value().present()));
 }
 
 

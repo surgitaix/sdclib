@@ -98,6 +98,8 @@ public:
 	std::vector<RealTimeSampleArrayMetricDescriptor> collectAllRealTimeSampleArrayMetricDescriptors() const;
 	std::vector<StringMetricDescriptor> collectAllStringMetricDescriptors() const;
 	std::vector<ActivateOperationDescriptor> collectAllActivateOperationDescriptors() const;
+	std::vector<SetStringOperationDescriptor> collectAllSetStringOperationDescriptors() const;
+	std::vector<SetValueOperationDescriptor> collectAllSetValueOperationDescriptors() const;
 	std::vector<VmdDescriptor> collectAllVmdDescriptors() const;
 
 private:
