@@ -25,9 +25,10 @@ target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${SRC_DIR})
 target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT})
 
 # SDCLib
-target_include_directories(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_INCLUDE_DIRS})
-target_link_libraries(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_LIBRARIES})
-
+target_link_libraries(${CURRENT_TARGET_NAME} PRIVATE SDCLib)
+# Note: If built externally use:
+#target_include_directories(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_INCLUDE_DIRS})
+#target_link_libraries(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_LIBRARIES})
 
 # build
 set_target_properties(  ${CURRENT_TARGET_NAME}
