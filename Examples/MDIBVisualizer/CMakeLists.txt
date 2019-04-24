@@ -25,8 +25,9 @@ target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${SRC_DIR})
 # Additional include directories
 target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT})
 
-# link libraries
-target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC SDCLib)
+# SDCLib
+target_include_directories(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_INCLUDE_DIRS})
+target_link_libraries(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_LIBRARIES})
 
 
 # build
