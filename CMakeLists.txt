@@ -16,6 +16,15 @@ else()
 endif()
 ################################################################################
 
+################################################################################
+# Using own CMake Modules
+# Add this to your cmake modules path to find the SDCLib Finder
+################################################################################
+get_filename_component(PROJECT_CMAKE_MODULES ${CMAKE_CURRENT_LIST_DIR}/cmake/Modules REALPATH)
+message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_CMAKE_MODULES})
+################################################################################
+
 
 ################################################################################
 # RPATH Settings
@@ -280,12 +289,12 @@ set(SDCLib_SEARCH_DIRS ".")
 
 # Examples
 if(SDC_EXAMPLES)
-    include(FindSDCLib.cmake)
+    find_package(SDCLib)
     add_subdirectory(${PATH_EXAMPLES_ROOT})
 endif()
 # Tests
 if(SDC_TESTS)
-    include(FindSDCLib.cmake)
+    find_package(SDCLib)
     add_subdirectory(${PATH_TESTS_ROOT})
 ENDIF()
 #...
