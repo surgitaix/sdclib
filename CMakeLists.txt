@@ -194,7 +194,7 @@ find_package(PythonLibs 2.7 REQUIRED)
 
 # Use it like this in the subprojects:
 # ${PYTHON_LIBRARIES} # Path to the libs
-#target_link_libraries(${CURRENT_MODULE_NAME} ${PYTHON_LIBRARIES})
+#target_link_libraries(${CURRENT_TARGET_NAME} ${PYTHON_LIBRARIES})
 ################################################################################
 
 
@@ -206,7 +206,7 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 
 # Use it like this in the subprojects:
-#target_link_libraries(${CURRENT_MODULE_NAME} ${CMAKE_THREAD_LIBS_INIT})
+#target_link_libraries(${CURRENT_TARGET_NAME} ${CMAKE_THREAD_LIBS_INIT})
 ################################################################################
 
 
@@ -302,7 +302,7 @@ configure_file (${CONFIG_DIR}/config.h.in ${CONFIG_DIR}/config.h)
 # Configuration Done
 # Now add the subdirs
 # Note: Inside the subdirs only work by including. See other files
-message(STATUS "Adding Modules...")
+message(STATUS "Adding Targets...")
 ################################################################################
 
 # datamodel

@@ -67,7 +67,7 @@ endif ()
 
 ################################################################################
 # Includes SDCLib_INCLUDE_DIRS
-message(STATUS "-Searching for SDC Include Files...")
+message(STATUS "-Adding SDC Include Files...")
 ################################################################################
 
 set(SDCLib_INCLUDE_DIRS     ${SDCLib_ROOT_DIR}/include
@@ -142,8 +142,14 @@ endif()
 # Search for given libary file
 ################################################################################
 # Not Found
+message(STATUS "-Searching for SDCLib file (${SDCLib_LIBRARIES}) ...")
 if (NOT EXISTS ${SDCLib_LIBRARIES})
-    message(WARNING "Could not find: ${SDCLib_LIBRARIES}!\n## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
+    message("  Could not find ${SDCLib_LIBRARIES}!")
+    if(NOT SDCLib_ADDITIONAL_LIBRARY_DIRS)
+        message("## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
+    endif()
+else()
+    message(STATUS "FOUND ${SDCLib_LIBRARIES}!")
 endif()
 # Set flag
 set(SDCLib_FOUND TRUE)

@@ -1,9 +1,9 @@
-# Current Module
-set( CURRENT_MODULE_NAME DataModel )
+# Current Target
+set( CURRENT_TARGET_NAME DataModel )
 # Add this for better project structure after cmake generation
-project(${CURRENT_MODULE_NAME})
+project(${CURRENT_TARGET_NAME})
 
-message(STATUS "Adding Module ${CURRENT_MODULE_NAME}...")
+message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")
 
 # Variables for better handling
 set(GEN_DIR_NAME generated)
@@ -15,11 +15,11 @@ set(XSD_DIR ${CMAKE_CURRENT_LIST_DIR}/${XSD_DIR_NAME}/)
 set(SCRIPT_DIR ${CMAKE_CURRENT_LIST_DIR})
 
 # Add Empty Library of type OBJECT
-add_library(${CURRENT_MODULE_NAME} OBJECT "")
+add_library(${CURRENT_TARGET_NAME} OBJECT "")
 
 
 # Better Handling of Public Header Files
-set(MODULE_PUBLIC_HEADERS       ${GEN_DIR}/BICEPS_MessageModel.hxx
+set(TARGET_PUBLIC_HEADERS       ${GEN_DIR}/BICEPS_MessageModel.hxx
                                 ${GEN_DIR}/BICEPS_ParticipantModel.hxx
                                 ${GEN_DIR}/DICOMDeviceDescription.hxx
                                 ${GEN_DIR}/eventing.hxx
@@ -58,7 +58,7 @@ set(MODULE_PUBLIC_HEADERS       ${GEN_DIR}/BICEPS_MessageModel.hxx
 )
 
 # Add the sources to the target
-target_sources(${CURRENT_MODULE_NAME}
+target_sources(${CURRENT_TARGET_NAME}
         PRIVATE
         # Source Files
         ${GEN_DIR}/BICEPS_MessageModel.cxx
@@ -78,15 +78,15 @@ target_sources(${CURRENT_MODULE_NAME}
         ${GEN_DIR}/wsdl-soap-binding.cxx
         # Add the includes too (for better generation)
         # Public Headers
-        ${MODULE_PUBLIC_HEADERS}
+        ${TARGET_PUBLIC_HEADERS}
         # Private Headers
         #
     PUBLIC
-        ${MODULE_PUBLIC_HEADERS}
+        ${TARGET_PUBLIC_HEADERS}
 )
 
 # Some includes
-target_include_directories( ${CURRENT_MODULE_NAME} PUBLIC ${GEN_DIR} )
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${GEN_DIR} )
 
 
 
