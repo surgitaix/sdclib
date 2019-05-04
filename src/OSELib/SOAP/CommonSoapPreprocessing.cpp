@@ -68,7 +68,7 @@ void CommonSoapPreprocessing::commonParsing() {
 	}
 
 	if (!normalizedMessage->Header().Action().present()) {
-		log_error([&] { return "No action."; });
+		log_debug([&] { return "No action."; });
 		throw SoapFaultException();
 	} else {
 		log_debug([&] { return "Message action: " + normalizedMessage->Header().Action().get(); });

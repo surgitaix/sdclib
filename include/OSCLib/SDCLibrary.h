@@ -94,7 +94,7 @@ public:
     /**
     * @brief Set the time the service manager waits for the device discovery
     *
-    * @param discoveryTimeSec The time in milliseconds to wait while discovery
+    * @param discoveryTimeMilSec The time in milliseconds to wait while discovery
     */
 	void setDiscoveryTime(int discoveryTimeMilSec);
 

@@ -4,9 +4,6 @@
 message(STATUS "### Configuring Tests...")
 
 # Add all bins/libs
-add_executable(UnitTests "")
-
-# include
-include(UnitTest++/CMakeLists.txt)
+add_subdirectory(UnitTest++)
 
 

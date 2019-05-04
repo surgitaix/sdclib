@@ -173,7 +173,7 @@ NumericMetricValue & NumericMetricValue::setValue(const double & value) {
 }
 
 bool NumericMetricValue::getValue(double & out) const {
-	if (data->Value().present()) {
+	if (hasValue()) {
 		out = ConvertFromCDM::convert(data->Value().get());
 		return true;
 	}
@@ -181,11 +181,14 @@ bool NumericMetricValue::getValue(double & out) const {
 }
 
 double NumericMetricValue::getValue() const {
+	if (!hasValue())
+		return 0.0;
+
 	return ConvertFromCDM::convert(data->Value().get());
 }
 
 bool NumericMetricValue::hasValue() const {
-	return data->Value().present();
+	return (data != nullptr) && (data->Value().present());
 }
 
 
