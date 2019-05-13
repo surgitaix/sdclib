@@ -227,6 +227,11 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/SOAP/SubscribeActionCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/UnsubscribeActionCommand.cpp
         ${SRC_DIR}/OSELib/SDC/WaveformReportServiceHandler.cpp
+        ${SRC_DIR}/OSELib/TCP/ContextWorker.cpp
+        ${SRC_DIR}/OSELib/TCP/TCPClient.cpp
+        ${SRC_DIR}/OSELib/TCP/TCPConnection.cpp
+        ${SRC_DIR}/OSELib/TCP/TCPServer.cpp
+        ${SRC_DIR}/OSELib/TCP/UUID.cpp
         ${SRC_DIR}/OSELib/WSDL/WSDLLoader.cpp
         #
         # Add the includes too (for better generation)
@@ -262,6 +267,8 @@ target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${XercesLibrary})
 # Poco
 target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${POCO_LIBRARIES})
+# OpenSSL
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${OPENSSL_LIBRARIES})
 
 
 # build

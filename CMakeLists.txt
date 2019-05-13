@@ -235,6 +235,25 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/)
 message(STATUS "######## Configuring Poco done!")
 ################################################################################
 
+################################################################################
+#Asio
+################################################################################
+message(STATUS "###### Configure Asio...")
+get_filename_component(PATH_ASIO_ROOT ${CMAKE_CURRENT_LIST_DIR}/Dependencies/asio/include REALPATH)
+include_directories(${PATH_ASIO_ROOT})
+add_definitions(-DASIO_STANDALONE)
+message(STATUS "######## Configuring Asio done!")
+
+################################################################################
+#OPENSSL
+#Needed for SHA1 
+################################################################################
+message(STATUS "##### Configure Openssl...")
+find_package(OpenSSL REQUIRED)
+include_directories(${OPENSSL_INCLUDE_DIR})
+message(STATUS "######## Configuring Openssl done!")
+
+
 
 
 ################################################################################
@@ -246,6 +265,7 @@ get_filename_component(PATH_INCLUDE_ROOT ${CMAKE_CURRENT_LIST_DIR}/include/ REAL
 get_filename_component(PATH_DATAMODEL_ROOT ${CMAKE_CURRENT_LIST_DIR}/datamodel/ REALPATH)
 get_filename_component(PATH_EXAMPLES_ROOT ${CMAKE_CURRENT_LIST_DIR}/Examples/ REALPATH)
 get_filename_component(PATH_TESTS_ROOT ${CMAKE_CURRENT_LIST_DIR}/Tests/ REALPATH)
+get_filename_component(PATH_ACS_ROOT ${CMAKE_CURRENT_LIST_DIR}/AbstractConsumerSimulator/ REALPATH)
 get_filename_component(PATH_SDCTESTS_ROOT ${PATH_TESTS_ROOT}/SDCTests/ REALPATH)
 
 ################################################################################
