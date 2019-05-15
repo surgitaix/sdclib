@@ -16,6 +16,15 @@ else()
 endif()
 ################################################################################
 
+################################################################################
+# Using own CMake Modules
+# Add this to your cmake modules path to find the SDCLib Finder
+################################################################################
+get_filename_component(PROJECT_CMAKE_MODULES ${CMAKE_CURRENT_LIST_DIR}/cmake/Modules REALPATH)
+message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_CMAKE_MODULES})
+################################################################################
+
 
 ################################################################################
 # RPATH Settings
@@ -112,6 +121,7 @@ set(PATH_INSTALL_LIBRARY ${CMAKE_INSTALL_PREFIX}/bin)
 set(PATH_INSTALL_ARCHIVE ${CMAKE_INSTALL_PREFIX}/lib)
 ################################################################################
 
+
 ################################################################################
 # Targets
 # Overwrite
@@ -123,45 +133,8 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Debug as default" FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Release" "Debug")
 endif()
-
-# Default Arch to x86_64
-if(NOT ARCH)
-    message(STATUS "No architecture specified, setting default.")
-    set(ARCH "x86_64" CACHE STRING "Architecture" FORCE)
-    set_property(CACHE ARCH PROPERTY STRINGS "x86_64" "arm-linux")
-endif()
-
-# Or arm_linux - prev. "crosscompile" <FIXME> untested
-if (ARCH MATCHES "arm-linux")
-    set(CMAKE_C_COMPILER "arm-linux-gnueabihf-gcc")
-    set(CMAKE_CXX_COMPILER "arm-linux-gnueabihf-g++")
-
-    # Configure paths for your environment 
-    # - CAN be omitted in linux, if all dependencies (except pthread) are installed on the system using 'make install'
-    # - MUST be specified for ARM cross-compilation!
-    # Includes
-    SET(XERCES_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xerces/include" CACHE PATH "Path to XERCES-C includes")
-    SET(PTHREAD_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../pthread/include" CACHE PATH "Path to PTHREAD includes")
-    SET(XSDCXX_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../xsd/include" CACHE PATH "Path to XSDCXX includes")
-
-endif()
 ################################################################################
 
-
-################################################################################
-# Copied from old CMakeLists - WIP
-################################################################################
-include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
-if(COMPILER_SUPPORTS_CXX11)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-elseif(COMPILER_SUPPORTS_CXX0X)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-else()
-	message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
-endif()
-################################################################################
 
 ################################################################################
 # Firewall - Allowed Ports
@@ -182,8 +155,8 @@ mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
 set(SDC_DISCOVERY_TIMEOUT_MS 4000 CACHE STRING "Time in milliseconds a Discovery will take.")
 mark_as_advanced(SDC_DISCOVERY_TIMEOUT_MS)
 
-
 ################################################################################
+
 
 ################################################################################
 # Python
@@ -316,12 +289,12 @@ set(SDCLib_SEARCH_DIRS ".")
 
 # Examples
 if(SDC_EXAMPLES)
-    include(FindSDCLib.cmake)
+    find_package(SDCLib)
     add_subdirectory(${PATH_EXAMPLES_ROOT})
 endif()
 # Tests
 if(SDC_TESTS)
-    include(FindSDCLib.cmake)
+    find_package(SDCLib)
     add_subdirectory(${PATH_TESTS_ROOT})
 ENDIF()
 #...

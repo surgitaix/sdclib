@@ -41,7 +41,7 @@ endif()
 ################################################################################
 # Find the root folder inside the dependencies - This script is inside it!
 # Just search for this file in the SDC Root folder
-find_path(SDCLib_ROOT_DIR FindSDCLib.cmake ${SDCLib_SEARCH_DIRS})
+find_path(SDCLib_ROOT_DIR cmake/Modules/FindSDCLib.cmake ${SDCLib_SEARCH_DIRS})
 message(STATUS "-Searching for SDCLib files in ${SDCLib_SEARCH_DIRS}")
 
 # Found?
