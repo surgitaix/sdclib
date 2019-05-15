@@ -12,7 +12,8 @@ if(NOT WIN32)
     # enable debug and profiling informations for sprof
     add_compile_options(-ggdb -g -O0 -Wall -Wextra)
 else()
-    add_compile_options(/W)
+    # Inhibit all warning messages
+    add_compile_options(-w)
 endif()
 ################################################################################
 
