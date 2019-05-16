@@ -232,6 +232,7 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/TCP/TCPConnection.cpp
         ${SRC_DIR}/OSELib/TCP/TCPServer.cpp
         ${SRC_DIR}/OSELib/TCP/UUID.cpp
+        ${SRC_DIR}/OSELib/TCP/TCPClientEventHandler.cpp
         ${SRC_DIR}/OSELib/WSDL/WSDLLoader.cpp
         #
         # Add the includes too (for better generation)

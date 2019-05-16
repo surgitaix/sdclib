@@ -23,7 +23,7 @@ SoapHTTPResponseWrapper::SoapHTTPResponseWrapper(
 }
 
 void SoapHTTPResponseWrapper::send(const std::string & content) {
-	log_trace([&] { return "Delivering http response: " + content; });
+	log_debug([&] { return "Delivering http response: " + content; });
 	_httpResponse.setStatus(_httpStatus);
 	_httpResponse.setContentType("application/soap+xml");
 	_httpResponse.setContentLength(content.size());

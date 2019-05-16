@@ -32,6 +32,7 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/TCPServerEventHandler.cpp
         ${SRC_DIR}/ContextWorker.cpp
         ${SRC_DIR}/UUID.cpp
+        ${SRC_DIR}/TCPClientEventHandler.cpp
 )
 
 

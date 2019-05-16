@@ -49,12 +49,15 @@ namespace Network {
          */
         void send(const void* buffer, size_t size);
 
+        void tryReceive();
+
+
     private:
         void connect(tcp::resolver::results_type endpoints);
 
         void disconnect();
 
-        void tryReceive();
+        //void tryReceive();
 
         void trySend();
 

@@ -34,6 +34,7 @@
 #include "OSCLib/Util/DebugOut.h"
 
 #include "OSELib/SDC/ServiceManager.h"
+#include "OSELib/TCP/TCPClientEventHandler.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;

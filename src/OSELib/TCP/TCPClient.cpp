@@ -122,11 +122,13 @@ namespace Network {
         {
             if(!_connected)
             {
+            	std::cout << "not connected" << std::endl;
                 return;
             }
 
             if(size > 0)
             {
+            	std::cout << "received" << std::endl;
                 onReceived(_receive_buffer.data(), size);
 
                 if(_receive_buffer.size() >= size)

@@ -11,10 +11,14 @@
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
 
+//Network::TCPClientEventHandler* Network::TCPClientEventHandler::instance = NULL;
+
 namespace OSELib {
 namespace SOAP {
 
 std::string NormalizedMessageSerializer::serialize(const MESSAGEMODEL::Envelope & message) {
+
+	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5007)->startup();
 
 	std::ostringstream result;
 	xml_schema::NamespaceInfomap map;
@@ -30,8 +34,14 @@ std::string NormalizedMessageSerializer::serialize(const MESSAGEMODEL::Envelope 
 	 */
 
 	MESSAGEMODEL::Envelope_(result, message, map, "UTF-8");
+	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5007)->send(result.str().c_str(), result.str().size());
+	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5007)->tryReceive();
+	//std::string manipulatedMessage = TCPClient.getResponse();
+	//return manipulatedMessage;
+
 	return result.str();
 }
+
 
 } /* namespace SOAP */
 } /* namespace OSELib */

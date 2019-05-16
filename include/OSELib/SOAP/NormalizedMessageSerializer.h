@@ -9,6 +9,7 @@
 #define SOAP_NORMALIZEDMESSAGESERIALIZER_H_
 
 #include "OSELib/fwd.h"
+#include "OSELib/TCP/TCPClientEventHandler.h"
 
 namespace OSELib {
 namespace SOAP {
@@ -19,6 +20,7 @@ public:
 	};
 
 	static std::string serialize(const MESSAGEMODEL::Envelope & message);
+
 };
 
 } /* namespace SOAP */

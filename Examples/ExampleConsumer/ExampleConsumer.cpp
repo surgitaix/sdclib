@@ -52,7 +52,7 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 //SDCLib/C
-const std::string deviceEPR("UDI-1234567890");
+const std::string deviceEPR("DUTMirrorProvider");
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
@@ -144,7 +144,7 @@ int main() {
 	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
 	config.setPort(6465);
 
-	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR, config));
+	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 //	auto c(oscpsm.discoverOSCP());
 
 	// state handler
