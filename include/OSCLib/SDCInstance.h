@@ -84,13 +84,7 @@ namespace SDCLib
         std::atomic<bool> m_IP4enabled = ATOMIC_VAR_INIT(true);
         std::atomic<bool> m_IP6enabled = ATOMIC_VAR_INIT(true);
 
-        SDCPort m_portStart = Config::SDC_ALLOWED_PORT_START;
-        SDCPort m_portRange = Config::SDC_DEFAULT_PORT_RANGE;
-        bool m_shufflePortList = false;
         std::chrono::milliseconds m_discoveryTime = std::chrono::milliseconds(Config::SDC_DISCOVERY_TIMEOUT_MS);
-
-        std::deque<SDCPort> m_reservedPorts;
-        std::deque<SDCPort> m_availablePorts;
 
         std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
 
@@ -151,14 +145,6 @@ namespace SDCLib
         // Note: Only works with IPv4 IPAddresses!
         bool belongsToSDCInstance(Poco::Net::IPAddress p_IP) const;
 
-        // Port Management
-        // Call before init!
-        // Portrange: [start, start + range)
-        void setPortConfig(SDCPort p_start, SDCPort p_range, bool p_shuffle = false);
-
-        bool extractFreePort(SDCPort& p_port);
-        void returnPortToPool(SDCPort p_port);
-
         // IP4 / IP6
         bool getIP4enabled() const { return m_IP4enabled; }
         bool getIP6enabled() const { return m_IP6enabled; }
@@ -182,8 +168,6 @@ namespace SDCLib
         void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
 
     private:
-
-        void createPortLists(SDCPort p_start, SDCPort p_range = Config::SDC_DEFAULT_PORT_RANGE);
 
         void _cleanup();
 

@@ -34,11 +34,6 @@ void SDCInstance::_cleanup()
 
     // ...Cleanup....
 
-    // Clear the ports
-    m_reservedPorts.clear();
-    m_availablePorts.clear();
-
-
     _latestPingManager.reset();
     // ....
 
@@ -49,9 +44,6 @@ bool SDCInstance::init()
     if (isInit()) {
         return false;
     }
-
-    // Create the Portlist
-    createPortLists(m_portStart, m_portRange);
 
     // Startup if not done yet
     if (!SDCLibrary::getInstance().isInitialized()) {
@@ -276,76 +268,6 @@ bool SDCInstance::belongsToSDCInstance(Poco::Net::IPAddress p_IP) const
     return false;
 }
 
-void SDCInstance::setPortConfig(SDCPort p_start, SDCPort p_range, bool p_shuffle)
-{
-    // No well-known ports allowed!
-    assert(p_start > 1024);
-    assert(p_range != 0);
-
-    m_portStart = p_start;
-    m_portRange = p_range;
-    m_shufflePortList = p_shuffle;
-}
-void SDCInstance::createPortLists(SDCPort p_start, SDCPort p_range)
-{
-    // No well-known ports allowed!
-    assert(p_start > 1024);
-    assert(p_range != 0);
-
-    // Lock
-    std::lock_guard<std::mutex> t_lock(m_mutex);
-
-    m_reservedPorts.clear();
-
-    // Make sure the loop wont run over
-    std::size_t t_start = p_start;
-    std::size_t t_range = p_range;
-
-    auto t_end = t_start + t_range;
-    assert(t_end < std::numeric_limits<unsigned short>::max());
-
-    for (auto i = t_start; i < t_end; ++i) {
-        m_reservedPorts.emplace_back(static_cast<SDCPort>(i));
-    }
-
-    // If specified: shuffle (Mostly used on development time for lingering sockets!)
-    if(m_shufflePortList) {
-        srand(time(nullptr));
-        std::random_shuffle(m_reservedPorts.begin(), m_reservedPorts.end(), [](SDCPort p) { return std::rand()%p;});
-    }
-
-    m_availablePorts = m_reservedPorts;
-}
-bool SDCInstance::extractFreePort(SDCPort& p_port)
-{
-    // Lock
-    std::lock_guard<std::mutex> t_lock(m_mutex);
-
-    // No ports available!
-    if (m_availablePorts.empty()) {
-        return false;
-    }
-
-    // Grab the value
-    p_port = m_availablePorts.front();
-
-    // Remove it from the collection
-    m_availablePorts.pop_front();
-    return true;
-}
-void SDCInstance::returnPortToPool(SDCPort p_port)
-{
-    // Lock
-    std::lock_guard<std::mutex> t_lock(m_mutex);
-    auto t_resultReserved = std::find(m_reservedPorts.begin(), m_reservedPorts.end(), p_port);
-    auto t_resultAvailable = std::find(m_availablePorts.begin(), m_availablePorts.end(), p_port);
-
-    // 2 Requirements: Inside reserved list, but not already returned! - Quick fix
-    // Performance issue, maybe add a "returned" flag to the reservedPorts - list...(use of "using" keyword etc.) -> One lookup only
-    if ((t_resultReserved != m_reservedPorts.end()) && (t_resultAvailable == m_availablePorts.end())) {
-        m_availablePorts.push_back(p_port);
-    }
-}
 // DiscoveryTime
 std::chrono::milliseconds SDCInstance::getDiscoveryTime() const
 {
