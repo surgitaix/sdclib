@@ -9,7 +9,8 @@ using namespace SDCLib;
 
 std::atomic_uint SDCInstance::s_IDcounter = ATOMIC_VAR_INIT(0);
 
-SDCInstance::SDCInstance(bool p_init)
+SDCInstance::SDCInstance(SDCPort p_MDPWSPort, bool p_init)
+ : m_MDPWSPort(p_MDPWSPort)
 {
     if(p_init) {
         init();
@@ -66,7 +67,7 @@ bool SDCInstance::init()
     return true;
 }
 
-bool SDCInstance::bindToDefaultNetworkInterface()
+bool SDCInstance::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
 {
     if (!isInit()) {
         return false;
@@ -84,14 +85,14 @@ bool SDCInstance::bindToDefaultNetworkInterface()
         // Matching the criteria?
         if((m_IP4enabled && t_interface.supportsIPv4()) || (m_IP6enabled && t_interface.supportsIPv6())) {
             // Try to bind (else try the next one)
-            if(bindToInterface(t_interface.adapterName())) {
+            if(bindToInterface(t_interface.adapterName(), p_useAsMDPWS)) {
                 return true;
             }
         }
     }
     return false;
 }
-bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName)
+bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS)
 {
     if (!isInit()) {
         return false;
@@ -150,7 +151,28 @@ bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName)
             // Add
             ml_networkInterfaces.push_back(t_if);
 
-            std::cout << "\nSDCInstance bound to: " << t_if->m_name << " (" << t_if->m_IPv4 << ", " << t_if->m_IPv6 << ").\n";
+            std::cout << "\nSDCInstance bound to: " << t_if->m_name;
+
+            // Print additional information
+            std::cout << " (";
+            auto t_count = 0;
+            if(t_interface.supportsIPv4()) { std::cout << "IPv4: " << t_if->m_IPv4; t_count++; }
+            if(t_interface.supportsIPv6()) { if(t_count > 0) { std::cout <<","; }
+                std::cout << "IPv6: " << t_if->m_IPv6;
+            }
+
+            std::cout << ").\n";
+            // This is the primary MDPWS Interface (only if none has been set yet!)
+            if(p_useAsMDPWS && (m_MDPWSInterface == nullptr)) {
+                m_MDPWSInterface = t_if;
+                std::cout << "MDPWS Interface set: " << t_if->m_name << std::endl;
+            }
+            else {
+                // Not set yet! - Emit a Warning
+                if(m_MDPWSInterface == nullptr) {
+                    std::cout << "Warning: No Primary MDPWS Binding Interface set yet!" << std::endl;
+                }
+            }
             return true;
         }
     }

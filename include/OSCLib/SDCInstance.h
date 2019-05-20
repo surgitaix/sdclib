@@ -78,6 +78,8 @@ namespace SDCLib
 
         std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
         NI_List ml_networkInterfaces;
+        NetInterface_shared_ptr m_MDPWSInterface = nullptr;
+        SDCPort m_MDPWSPort = Config::SDC_ALLOWED_PORT_START;
 
         std::atomic<bool> m_IP4enabled = ATOMIC_VAR_INIT(true);
         std::atomic<bool> m_IP6enabled = ATOMIC_VAR_INIT(true);
@@ -106,7 +108,7 @@ namespace SDCLib
 
     public:
 
-        SDCInstance(bool p_init = true);
+        SDCInstance(SDCPort p_MDPWSPort = Config::SDC_ALLOWED_PORT_START, bool p_init = true);
 
         // Special Member Functions
         SDCInstance(const SDCInstance& p_obj) = delete;
@@ -120,12 +122,17 @@ namespace SDCLib
         bool init();
         bool isInit() const { return m_init; }
 
-        bool bindToDefaultNetworkInterface();
-        bool bindToInterface(const std::string& ps_networkInterfaceName);
+        bool bindToDefaultNetworkInterface(bool p_useAsMDPWS = true);
+        bool bindToInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS = false);
         NI_List getNetworkInterfaces() const { return ml_networkInterfaces; }
         size_t getNumNetworkInterfaces() const { return ml_networkInterfaces.size(); }
         bool _networkInterfaceBoundTo(std::string ps_adapterName) const;
         bool isBound() const;
+
+        // Note: Can be nullptr!
+        NetInterface_shared_ptr getMDPWSInterface() { return m_MDPWSInterface; }
+        // Listening Port of the HTTP Server
+        SDCPort getMDPWSPort() { return m_MDPWSPort; }
 
         // Internal usage
         std::string _getMulticastIPv4() const { return m_MULTICAST_IPv4; }

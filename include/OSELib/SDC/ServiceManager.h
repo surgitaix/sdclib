@@ -15,7 +15,6 @@
 #include "OSELib/DPWS/DeviceDescription.h"
 
 #include "OSCLib/Prerequisites.h"
-#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 namespace OSELib {
 namespace SDC {
@@ -57,15 +56,6 @@ public:
 	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & epr);
 
     /**
-    * @brief Like discoverEndpointReference(const std::string & epr), but with a custom configuration
-    *
-    * @param epr The endpointreference configuration the custom configuration
-    * @return The consumer or null
-    */
-    // FIXME MDPWSTransportLayerConfiguration
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & epr, SDCLib::Data::SDC::MDPWSTransportLayerConfiguration ConsumerConfig);
-
-    /**
     * @brief Discover all SDC providers currently available
     *
     * @return List of all providers
@@ -89,7 +79,6 @@ private:
     // todo: kick this helloCallback. Supposedly it is not needed.
 	std::unique_ptr<DPWS::HelloCallback> _helloCallback;
 	mutable Poco::Mutex _mutex;
-	SDCLib::Data::SDC::MDPWSTransportLayerConfiguration configuration;
 
 
     //  DONT MIX MEMBER FUNCTIONS AND DATA...

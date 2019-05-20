@@ -45,7 +45,6 @@
 #include "OSCLib/Data/SDC/SDCConsumer.h"
 #include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "OSCLib/Data/SDC/SDCConsumerAdapter.h"
-#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include "OSELib/DPWS/PingManager.h"
 #include "OSELib/DPWS/SubscriptionClient.h"
@@ -319,13 +318,12 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-SDCConsumerAdapter::SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription, const MDPWSTransportLayerConfiguration& config) :
+SDCConsumerAdapter::SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription) :
 	WithLogger(OSELib::Log::OSCPCONSUMERADAPTER),
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
 	_deviceDescription(deviceDescription),
-	_streamClientSocketImpl(p_SDCInstance, *this, deviceDescription),
-	configuration(config)
+	_streamClientSocketImpl(p_SDCInstance, *this, deviceDescription)
 {
 
 }
@@ -338,10 +336,18 @@ bool SDCConsumerAdapter::start() {
 		return false;
 	}
 
+    auto t_interface = _consumer.getSDCInstance()->getMDPWSInterface();
+    if(!t_interface) {
+        std::cout << "Failed to start SDCProviderAdapter: Set MDPWSInterface first!" << std::endl;
+        return false;
+    }
+
+    auto t_bindingAddress = t_interface->m_if.address();
+    auto t_port = _consumer.getSDCInstance()->getMDPWSPort();
+
 	Poco::Net::ServerSocket ss;
 	// todo: IPv6 implementation here!
-	const Poco::Net::IPAddress address(configuration.getBindAddress());
-	const Poco::Net::SocketAddress socketAddress(address, configuration.getPort());
+	const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
 	ss.bind(socketAddress);
 	ss.listen();
 
@@ -380,7 +386,7 @@ bool SDCConsumerAdapter::start() {
 	if (_pingManager) {
 		//todo maybe throw because starting twice is clearly an error
         // FIXME FIXME FIXME:
-        // (ERROR != THROWING) DONT USE EXCEPTIONS AS FLOW CONTROL AND DONT JUST THROW JUST BECAUSE YOU CAN... THIS IS NOT JAVA... USE assert, static_assert, logging etc.
+        // (ERROR != THROWING) DONT USE EXCEPTIONS AS FLOW CONTROL AND DONT JUST THROW JUST BECAUSE... THIS IS NOT JAVA... USE assert, static_assert, logging etc.
 		return false;
 	}
 
@@ -404,7 +410,7 @@ void SDCConsumerAdapter::stop() {
 
 	if (_pingManager) {
 		_pingManager->disable();
-		configuration.getSDCInstance()->dumpPingManager(std::move(_pingManager));
+		_consumer.getSDCInstance()->dumpPingManager(std::move(_pingManager));
 	}
 }
 
@@ -413,6 +419,8 @@ void SDCConsumerAdapter::subscribeEvents() {
 		return;
 	}
 
+	auto t_port = _consumer.getSDCInstance()->getMDPWSPort();
+
 	std::vector<OSELib::DPWS::SubscriptionClient::SubscriptionInformation> subscriptions;
 	// context reports
 	{
@@ -420,7 +428,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::EpisodicContextChangedReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicContextChangedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
 				_deviceDescription.getContextServiceURI(),
 				filter);
 	}
@@ -432,7 +440,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::PeriodicAlertReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}
@@ -441,7 +449,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		// fixme: move to SetService
 		filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(configuration.getPort()) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
+				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
 				_deviceDescription.getSetServiceURI(),
 				filter);
 	}

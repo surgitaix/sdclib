@@ -1038,7 +1038,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixtureSimpleSDC : Tests::AbstractOSCLibFixture {
-	FixtureSimpleSDC() : AbstractOSCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error, SDCLib::Config::SDC_ALLOWED_PORT_START + 100) {}
+	FixtureSimpleSDC() : AbstractOSCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error) {}
 };
 
 SUITE(OSCP) {
@@ -1047,7 +1047,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 	DebugOut::openLogFile("Test.log.txt", true);
 	try
 	{
-        auto t_SDCInstance = getSDCInstance();
+        auto t_SDCInstance = createSDCInstance();
 
         // Provider
         Tests::SimpleSDC::OSCPHoldingDeviceProvider provider(t_SDCInstance);

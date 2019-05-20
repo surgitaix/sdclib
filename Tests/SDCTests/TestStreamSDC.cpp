@@ -342,7 +342,7 @@ public:
 }
 
 struct FixtureStreamSDC : Tests::AbstractOSCLibFixture {
-	FixtureStreamSDC() : AbstractOSCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice, 10000) {}
+	FixtureStreamSDC() : AbstractOSCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice) {}
 };
 
 SUITE(OSCP) {
@@ -351,7 +351,7 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
-        auto t_SDCInstance = getSDCInstance();
+        auto t_SDCInstance = createSDCInstance();
 
         // Provider
 		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider(t_SDCInstance);

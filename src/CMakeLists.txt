@@ -154,7 +154,6 @@ target_sources(${CURRENT_TARGET_NAME}
         #${SRC_DIR}/OSCLib/Data/SDC/MDIB/AbstractDescriptor.cpp
         #${SRC_DIR}/OSCLib/Data/SDC/MDIB/AbstractMetricDescriptor.cpp
         ${SRC_DIR}/OSCLib/Data/SDC/FutureInvocationState.cpp
-        ${SRC_DIR}/OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.cpp
         ${SRC_DIR}/OSCLib/Data/SDC/SDCConsumer.cpp
         ${SRC_DIR}/OSCLib/Data/SDC/SDCConsumerOperationInvokedHandler.cpp
         ${SRC_DIR}/OSCLib/Data/SDC/SDCProvider.cpp

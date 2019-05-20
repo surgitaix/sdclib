@@ -30,7 +30,6 @@
 
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSCLib/Data/SDC/SDCConsumerAdapter.h"
-#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include <atomic>
 #include <deque>
@@ -244,10 +243,16 @@ public:
 
 private:
 
-    SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config);
+    SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription);
 
     //SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription, std::shared_ptr<MDPWSTransportLayerConfiguration> config);
 
+    /**
+    * @brief Get the managing SDCInstance
+    *
+    * @return shared_ptr to the SDCInstance
+    */
+    SDCInstance_shared_ptr getSDCInstance() { return m_SDCInstance; }
 
     /**
     * @brief Update the local MDIB using an RPC to the provider.
@@ -283,6 +288,9 @@ private:
     //Variables
     //
 
+    SDCInstance_shared_ptr m_SDCInstance = nullptr;
+    OSELib::DPWS::DeviceDescription _deviceDescription;
+
     std::map<int, FutureInvocationState *> fisMap;
     Poco::Mutex transactionMutex;
 
@@ -299,11 +307,8 @@ private:
 
     unsigned long long int lastKnownMDIBVersion = 0;
     std::atomic<bool> connected = ATOMIC_VAR_INIT(false);
-    OSELib::DPWS::DeviceDescription _deviceDescription;
-    std::unique_ptr<SDCConsumerAdapter> _adapter = nullptr;
 
-    // FIXME
-    MDPWSTransportLayerConfiguration configuration;
+    std::unique_ptr<SDCConsumerAdapter> _adapter = nullptr;
 
 };
 

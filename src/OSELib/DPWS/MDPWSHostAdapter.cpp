@@ -5,7 +5,7 @@
  *      Author: matthias
  */
 
-#include <OSELib/DPWS/DPWSHostSocketImpl.h>
+#include "OSELib/DPWS/DPWSHostSocketImpl.h"
 #include "OSELib/DPWS/MessageAdapter.h"
 
 #include "wsdd-discovery-1.1-schema-os.hxx"

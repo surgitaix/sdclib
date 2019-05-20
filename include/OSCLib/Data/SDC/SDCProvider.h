@@ -29,7 +29,6 @@
 
 #include "OSCLib/Prerequisites.h"
 
-#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include "OSCLib/Dev/DeviceCharacteristics.h"
 #include "OSCLib/Data/SDC/SDC-fwd.h"
@@ -80,11 +79,11 @@ public:
     ~SDCProvider();
 
     /**
-	* @brief Set a customized configuration for the provider
-	*
-	* @param The MDPWS configuration
-	*/
-    void setConfiguration(MDPWSTransportLayerConfiguration config);
+    * @brief Get the managing SDCInstance
+    *
+    * @return shared_ptr to the SDCInstance
+    */
+    SDCInstance_shared_ptr getSDCInstance() { return m_SDCInstance; }
 
     /**
     * @brief Get the complete Medical Device Infomation Base (MDIB, description and states).
@@ -393,8 +392,6 @@ private:
     std::vector<std::string> handlesForPeriodicUpdates;
     Poco::Timestamp lastPeriodicEvent;
     Poco::Timespan periodicEventInterval = Poco::Timespan(10, 0);
-
-    MDPWSTransportLayerConfiguration configuration;
 
 //    std::map<std::string, int> streamingPorts;
 

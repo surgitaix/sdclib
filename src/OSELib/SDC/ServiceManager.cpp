@@ -35,7 +35,6 @@ ServiceManager::ServiceManager(SDCLib::SDCInstance_shared_ptr p_SDCInstance)
  : WithLogger(Log::SERVICEMANAGER)
  , m_SDCInstance(p_SDCInstance)
  , _dpwsClient(new DPWS::MDPWSDiscoveryClientAdapter(m_SDCInstance))
- , configuration(m_SDCInstance)
 {
 
 }
@@ -76,12 +75,6 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const st
 	xAddress_list.push_back(xaddr);
 	return connectXAddress(xAddress_list, "Unknown");
 }
-
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr, SDCLib::Data::SDC::MDPWSTransportLayerConfiguration consumerConfig) {
-	configuration = consumerConfig;
-	return discoverEndpointReference(epr);
-}
-
 
 std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & epr) {
 
@@ -343,8 +336,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
-    SDCLib::Data::SDC::MDPWSTransportLayerConfiguration newConfiguration = SDCLib::Data::SDC::MDPWSTransportLayerConfiguration(m_SDCInstance);
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(m_SDCInstance, deviceDescription, newConfiguration));
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(m_SDCInstance, deviceDescription));
 
 	if (!result->isConnected()) {
 		result->disconnect();

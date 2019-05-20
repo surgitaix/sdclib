@@ -99,7 +99,7 @@ private:
 } /* namespace SDCLib */
 
 struct FixtureMultiOSCP : Tests::AbstractOSCLibFixture {
-	FixtureMultiOSCP() : AbstractOSCLibFixture("FixtureMultiOSCP", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 40) {}
+	FixtureMultiOSCP() : AbstractOSCLibFixture("FixtureMultiOSCP", OSELib::LogLevel::Notice) {}
 };
 
 
@@ -108,17 +108,15 @@ TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
 {
 	try
 	{
-        auto t_SDCInstance = getSDCInstance();
-
-		CONSTEXPR_MACRO std::size_t providerCount(10);
-		CONSTEXPR_MACRO std::size_t metricCount(10);
+		std::size_t providerCount(10);
+		std::size_t metricCount(10);
 
 		std::vector<std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
 		for (std::size_t i = 0; i < providerCount; i++) {
-			std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider> p(new Tests::MultiSDC::OSCPTestDeviceProvider(t_SDCInstance, i, metricCount));
+			std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider> p(new Tests::MultiSDC::OSCPTestDeviceProvider(createSDCInstance(), i, metricCount));
 			providers.push_back(p);
             providerEPRs.push_back(p->getEndpointReference());
 			p->startup();
@@ -129,7 +127,7 @@ TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
-        OSELib::SDC::ServiceManager sm(t_SDCInstance);
+        OSELib::SDC::ServiceManager sm(createSDCInstance());
         auto tl_consumers(sm.discoverOSCP());
 
         bool foundAll = true;

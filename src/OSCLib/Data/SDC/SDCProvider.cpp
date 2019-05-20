@@ -191,7 +191,6 @@ bool SDCProvider::isMetricChangeAllowed(const StateType & state, SDCProvider & p
 SDCProvider::SDCProvider(SDCInstance_shared_ptr p_SDCInstance)
  : WithLogger(OSELib::Log::sdcProvider)
  , m_SDCInstance(p_SDCInstance)
- , configuration(m_SDCInstance)
 {
 	atomicTransactionId.store(0);
 	mdibVersion.store(0);
@@ -987,7 +986,7 @@ void SDCProvider::startup()
     Poco::Mutex::ScopedLock lock(m_mutex);
 
 	try {
-		_adapter->start(configuration);
+		_adapter->start();
 	} catch (const Poco::Net::NetException & e) {
 		log_error([&] { return "Net Exception: " + std::string(e.what()) + " Socket unable to be opened. Provider startup aborted.";});
 		return;
@@ -1340,7 +1339,6 @@ void SDCProvider::createSetOperationForDescriptor(const StringMetricDescriptor &
 
 template<class T>
 void SDCProvider::createSetOperationForContextDescriptor(const T & descriptor, MdsDescriptor & ownerMDS) {
-    Poco::Mutex::ScopedLock lock(m_mutex);
 	const CDM::SetContextStateOperationDescriptor setOperation(descriptor.getHandle() + "_sco", descriptor.getHandle());
 	addSetOperationToSCOObjectImpl(setOperation, ownerMDS);
 }
@@ -1413,11 +1411,6 @@ void SDCProvider::removeHandleForPeriodicEvent(const std::string & handle) {
 	}
 }
 
-
-void SDCProvider::setConfiguration(MDPWSTransportLayerConfiguration config) {
-    Poco::Mutex::ScopedLock lock(getMutex());
-	configuration = config;
-}
 
 } /* namespace SDC */
 } /* namespace Data */

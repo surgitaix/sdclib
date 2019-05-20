@@ -116,7 +116,7 @@ private:
 } /* namespace SDCLib */
 
 struct FixtureConnectionLostSDC : Tests::AbstractOSCLibFixture {
-	FixtureConnectionLostSDC() : AbstractOSCLibFixture("FixtureConnectionLostSDC", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START) {}
+	FixtureConnectionLostSDC() : AbstractOSCLibFixture("FixtureConnectionLostSDC", OSELib::LogLevel::Notice) {}
 };
 
 SUITE(OSCP) {
@@ -144,27 +144,25 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 
 	    DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
 
-		CONSTEXPR_MACRO std::size_t t_providerCount{10};
+		std::size_t t_providerCount{10};
 		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>> providers;
 		std::vector<std::string> t_providerEPRs;
 
-        auto t_SDCInstance = getSDCInstance();
-
 		for (std::size_t i = 0; i < t_providerCount; ++i) {
-			auto p = std::make_shared<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>(t_SDCInstance, i);
+			auto p = std::make_shared<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>(createSDCInstance(), i);
 			providers.push_back(p);
 			t_providerEPRs.push_back(p->getEndpointReference());
             // Startup
             p->startup();
-            Poco::Thread::sleep(1000);
+            Poco::Thread::sleep(100);
 		}
 		// Wait for startup...
-        Poco::Thread::sleep(2000);
+        Poco::Thread::sleep(1000);
 
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
-        OSELib::SDC::ServiceManager sm(t_SDCInstance);
+        OSELib::SDC::ServiceManager sm(createSDCInstance());
         auto tl_consumers{sm.discoverOSCP()};
 
         // Found all the providers?

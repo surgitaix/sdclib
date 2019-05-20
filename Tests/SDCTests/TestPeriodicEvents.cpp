@@ -417,7 +417,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixturePeriodicEvents : Tests::AbstractOSCLibFixture {
-	FixturePeriodicEvents() : AbstractOSCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::Error, SDCLib::Config::SDC_ALLOWED_PORT_START + 80) {}
+	FixturePeriodicEvents() : AbstractOSCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::Error) {}
 };
 
 SUITE(OSCP) {
@@ -425,7 +425,7 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
 {
 	try
 	{
-        auto t_SDCInstance = getSDCInstance();
+        auto t_SDCInstance = createSDCInstance();
 
         // Provider
         Tests::PeriodicEvents::OSCPDeviceProvider provider(t_SDCInstance);

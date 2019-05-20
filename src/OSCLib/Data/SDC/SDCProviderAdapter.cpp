@@ -12,6 +12,7 @@
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/NetworkInterface.h"
 #include "Poco/Net/ServerSocket.h"
+#include "Poco/Net/IPAddress.h"
 
 #include "BICEPS_ParticipantModel.hxx"
 #include "BICEPS_MessageModel.hxx"
@@ -20,7 +21,7 @@
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
-#include "OSCLib/SDCLibrary.h"
+#include "OSCLib/SDCInstance.h"
 
 #include "OSCLib/Data/SDC/SDCProvider.h"
 #include "OSCLib/Data/SDC/SDCProviderAdapter.h"
@@ -314,11 +315,9 @@ SDCProviderAdapter::SDCProviderAdapter(SDCProvider & provider) :
 {
 }
 
-SDCProviderAdapter::~SDCProviderAdapter() {
+SDCProviderAdapter::~SDCProviderAdapter() = default;
 
-}
-
-void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
+bool SDCProviderAdapter::start() {
 
 	Poco::Mutex::ScopedLock lock(mutex);
 	if (_dpwsHost || _subscriptionManager || _httpServer) {
@@ -327,9 +326,21 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 
 	OSELib::DPWS::MetadataProvider metadata(_provider.getDeviceCharacteristics());
 
+    if(!_provider.getSDCInstance()->getMDPWSInterface()) {
+        return false;
+    }
+
+    auto t_interface = _provider.getSDCInstance()->getMDPWSInterface();
+    if(!t_interface) {
+        std::cout << "Failed to start SDCProviderAdapter: Set MDPWSInterface first!" << std::endl;
+        return false;
+    }
+
+    auto t_bindingAddress = t_interface->m_if.address();
+    auto t_port = _provider.getSDCInstance()->getMDPWSPort();
+
 	Poco::Net::ServerSocket ss;
-	const Poco::Net::IPAddress address(config.getBindAddress());
-	const Poco::Net::SocketAddress socketAddress(address, config.getPort());
+	const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
 	ss.bind(socketAddress);
 	ss.listen();
 
@@ -338,7 +349,7 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 		if (nextIf.supportsIPv4()
 			&& nextIf.address().isUnicast()
 			&& !nextIf.address().isLoopback()) {
-			xAddresses.push_back(OSELib::DPWS::AddressType("http://" + nextIf.address().toString() + ":" + std::to_string(config.getPort()) + metadata.getDeviceServicePath()));
+			xAddresses.push_back(OSELib::DPWS::AddressType("http://" + nextIf.address().toString() + ":" + std::to_string(t_port) + metadata.getDeviceServicePath()));
 		}
 	}
 
@@ -410,6 +421,7 @@ void SDCProviderAdapter::start(MDPWSTransportLayerConfiguration config) {
 
 	_httpServer->start();
 	_dpwsHost->start();
+    return true;
 }
 
 void SDCProviderAdapter::stop() {

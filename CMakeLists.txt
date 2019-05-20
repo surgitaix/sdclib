@@ -23,7 +23,7 @@ endif()
 ################################################################################
 get_filename_component(PROJECT_CMAKE_MODULES ${CMAKE_CURRENT_LIST_DIR}/cmake/Modules REALPATH)
 message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_CMAKE_MODULES})
+list(APPEND CMAKE_MODULE_PATH ${PROJECT_CMAKE_MODULES})
 ################################################################################
 
 

@@ -23,7 +23,7 @@ public:
 	SDCProviderAdapter(SDCProvider & provider);
 	virtual ~SDCProviderAdapter();
 
-	void start(const MDPWSTransportLayerConfiguration config);
+	bool start();
 	void stop();
 
 	void notifyEvent(const MDM::EpisodicAlertReport & report);

@@ -73,7 +73,6 @@
 #include "OSCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
 #include "OSCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "OSCLib/Data/SDC/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SDC/OperationTraits.h"
@@ -156,14 +155,14 @@ MDM::SetContextState createRequestMessage(const WorkflowContextState & state, co
 	return result;
 }
 
-SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription, MDPWSTransportLayerConfiguration config) :
+SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription) :
 		WithLogger(OSELib::Log::OSCPCONSUMER),
-		_deviceDescription(deviceDescription),
-		configuration(config)
+		m_SDCInstance(p_SDCInstance),
+		_deviceDescription(deviceDescription)
 {
     // DONT DO THIS INSIDE THE CTOR! FIXME! FIXME
 	try {
-		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(p_SDCInstance, *this, _deviceDescription, configuration));
+		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(p_SDCInstance, *this, _deviceDescription));
 		if(!_adapter->start()) {
             log_error([] { return "Could not start ConsumerAdapter!"; });
             disconnect();

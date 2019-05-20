@@ -15,7 +15,6 @@
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
 #include "OSELib/DPWS/Types.h"
-#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
 
 #include "OSELib/Helper/WithLogger.h"
 
@@ -33,7 +32,7 @@ class SDCConsumerAdapter :
 		public OSELib::WithLogger
 {
 public:
-    SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription, const MDPWSTransportLayerConfiguration& config);
+    SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription);
 	virtual ~SDCConsumerAdapter();
 
 	bool start();
@@ -82,7 +81,7 @@ private:
 	OSELib::DPWS::Impl::MDPWSStreamingAdapter _streamClientSocketImpl;
 	std::unique_ptr<OSELib::DPWS::SubscriptionClient> _subscriptionClient;
 	std::unique_ptr<OSELib::DPWS::PingManager> _pingManager;
-	MDPWSTransportLayerConfiguration configuration;
+
 };
 
 }
