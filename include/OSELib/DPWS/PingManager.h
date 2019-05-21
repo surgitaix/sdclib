@@ -8,10 +8,10 @@
 #ifndef OSELIB_DPWS_PINGMANAGER_H_
 #define OSELIB_DPWS_PINGMANAGER_H_
 
-#include "Poco/Thread.h"
-#include "Poco/RunnableAdapter.h"
+#include <Poco/Thread.h>
+#include <Poco/RunnableAdapter.h>
 
-#include "OSCLib/Data/SDC/SDC-fwd.h"
+#include "SDCLib/Data/SDC/SDC-fwd.h"
 #include "OSELib/fwd.h"
 
 namespace OSELib {

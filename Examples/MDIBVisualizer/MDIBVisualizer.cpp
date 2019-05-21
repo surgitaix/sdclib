@@ -1,9 +1,9 @@
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/MDIB/ConvertFromCDM.h"
+#include "SDCLib/SDCLibrary.h"
+#include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "OSELib/SDC/SDCConstants.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Util/DebugOut.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Util/DebugOut.h"
 #include "OSELib/Helper/WithLogger.h"
 
 #include "OSELib/SDC/ServiceManager.h"

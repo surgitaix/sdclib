@@ -13,9 +13,9 @@
 #include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
-#include "OSCLib/SDCInstance.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Util/DebugOut.h"
+#include "SDCLib/SDCInstance.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Util/DebugOut.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"

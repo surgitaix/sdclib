@@ -6,7 +6,7 @@
  */
 
 #include "OSELib/DPWS/MDPWSStreamingAdapter.h"
-#include "OSCLib/SDCInstance.h"
+#include "SDCLib/SDCInstance.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
 

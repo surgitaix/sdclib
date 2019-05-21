@@ -9,7 +9,7 @@
 #define INCLUDE_OSELIB_DPWS_DPWSSTREAMINGCLIENTSOCKETIMPL_H_
 
 
-#include "OSCLib/Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/Types.h"

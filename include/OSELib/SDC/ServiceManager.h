@@ -14,7 +14,7 @@
 #include "OSELib/Helper/WithLogger.h"
 #include "OSELib/DPWS/DeviceDescription.h"
 
-#include "OSCLib/Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 
 namespace OSELib {
 namespace SDC {

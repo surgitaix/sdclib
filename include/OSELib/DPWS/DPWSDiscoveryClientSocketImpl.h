@@ -8,7 +8,7 @@
 #ifndef OSELIB_DPWS_DPWSDISCOVERYCLIENTSOCKETIMPL_H_
 #define OSELIB_DPWS_DPWSDISCOVERYCLIENTSOCKETIMPL_H_
 
-#include "OSCLib/Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/MessagingContext.h"
 #include "OSELib/DPWS/Types.h"

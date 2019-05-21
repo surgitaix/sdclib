@@ -10,7 +10,7 @@
 
 #include <memory>
 
-#include "OSCLib/Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "OSELib/DPWS/Types.h"
 
 namespace OSELib {

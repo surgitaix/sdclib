@@ -6,7 +6,7 @@
  */
 
 #include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
-#include "OSCLib/SDCInstance.h"
+#include "SDCLib/SDCInstance.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"

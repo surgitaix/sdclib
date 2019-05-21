@@ -11,7 +11,7 @@
 #include <mutex>
 #include <tuple>
 
-#include "OSCLib/Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/Types.h"
 

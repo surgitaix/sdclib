@@ -19,7 +19,7 @@
 #include "OSELib/DPWS/DPWSHostSocketImpl.h"
 #include "OSELib/DPWS/MessageAdapter.h"
 #include "OSELib/Helper/BufferAdapter.h"
-#include "OSCLib/SDCInstance.h"
+#include "SDCLib/SDCInstance.h"
 
 namespace OSELib {
 namespace DPWS {

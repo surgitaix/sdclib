@@ -20,7 +20,7 @@
 
 #include "NormalizedMessageModel-fwd.hxx"
 
-#include "OSCLib/Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "OSELib/DPWS/MessagingContext.h"
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/WithLogger.h"
