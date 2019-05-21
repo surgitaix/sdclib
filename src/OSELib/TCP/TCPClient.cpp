@@ -68,6 +68,8 @@ namespace Network {
                     _endpoint = endpoint;
                     _connected = true;
                     onConnected();
+
+                    _receive_buffer.resize(_defaultBufferSize);
                     tryReceive();
                     trySend();
                 }
@@ -128,7 +130,6 @@ namespace Network {
 
             if(size > 0)
             {
-            	std::cout << "received" << std::endl;
                 onReceived(_receive_buffer.data(), size);
 
                 if(_receive_buffer.size() >= size)
@@ -206,6 +207,11 @@ namespace Network {
             return;
         }
         onError(ec.category().name(), ec.message());
+    }
+
+    bool TCPClient::isConnected()
+    {
+    	return _connected;
     }
 }
 

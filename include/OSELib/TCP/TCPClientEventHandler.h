@@ -39,10 +39,12 @@ private:
 
 private:
 	static std::shared_ptr<TCPClientEventHandler> instance;
-	bool received;
-	std::string response;
-	bool instantiated;
 	bool started;
+	bool instantiated;
+	std::atomic<bool> received;
+	std::string response;
+
+
 };
 
 } /* namespace ACS */

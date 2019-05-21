@@ -51,6 +51,8 @@ namespace Network {
 
         void tryReceive();
 
+        bool isConnected();
+
 
     private:
         void connect(tcp::resolver::results_type endpoints);
@@ -86,7 +88,7 @@ namespace Network {
          * @brief onReceived
          * Use this function to define the processing of the incoming data.
          */
-        virtual void onReceived(void* , size_t ) {}
+        virtual void onReceived(void* , size_t ) { std::cout << "Test " << std::endl;}
 
         /**
          * @brief onError
@@ -99,6 +101,7 @@ namespace Network {
         }
 
     private:
+        size_t _defaultBufferSize = 1024;
         bool _connected;
         std::atomic<bool> _sending;
         std::shared_ptr<ContextWorker> _contextWorker;

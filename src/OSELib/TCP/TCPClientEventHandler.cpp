@@ -80,7 +80,6 @@ void TCPClientEventHandler::onConnected()
 void TCPClientEventHandler::onReceived(void* msg, size_t size)
 {
 	response = std::string(static_cast<const char*>(msg), size);
-	std::cout << "Incoming: " << response << std::endl;
 	received = true;
 }
 
@@ -102,7 +101,9 @@ void TCPClientEventHandler::onError(const std::string & category, const std::str
 std::string TCPClientEventHandler::getResponse()
 {
 	if(instantiated)
+	{
 		return response;
+	}
 	return "";
 }
 

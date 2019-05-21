@@ -18,7 +18,7 @@ namespace SOAP {
 
 std::string NormalizedMessageSerializer::serialize(const MESSAGEMODEL::Envelope & message) {
 
-	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5007)->startup();
+	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5006)->startup();
 
 	std::ostringstream result;
 	xml_schema::NamespaceInfomap map;
@@ -34,10 +34,18 @@ std::string NormalizedMessageSerializer::serialize(const MESSAGEMODEL::Envelope 
 	 */
 
 	MESSAGEMODEL::Envelope_(result, message, map, "UTF-8");
-	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5007)->send(result.str().c_str(), result.str().size());
-	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5007)->tryReceive();
-	//std::string manipulatedMessage = TCPClient.getResponse();
-	//return manipulatedMessage;
+	if(Network::TCPClientEventHandler::getInstance("127.0.0.1", 5006)->isConnected())
+	{
+		Network::TCPClientEventHandler::getInstance("127.0.0.1", 5006)->send(result.str().c_str(), result.str().size());
+		while(!Network::TCPClientEventHandler::getInstance("127.0.0.1", 5006)->responseReceived())
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		}
+		std::string manipulatedMessage = Network::TCPClientEventHandler::getInstance("127.0.0.1", 5006)->getResponse();
+
+		std::cout << manipulatedMessage << std::endl;
+		return manipulatedMessage;
+	}
 
 	return result.str();
 }
