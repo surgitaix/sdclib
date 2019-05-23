@@ -339,21 +339,21 @@ private:
 int main()
 {
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
-	SDCLibrary::getInstance().setPortStart(11000); // FIXME
-	SDCLibrary::getInstance().setDiscoveryTime(4000); // FIXME
+	//SDCLibrary::getInstance().setPortStart(11000); // FIXME
+	//SDCLibrary::getInstance().setDiscoveryTime(4000); // FIXME
 
     // Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    auto t_SDCInstanceConsumer = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_PORT_CONSUMER, true);
     // Some restriction
-    t_SDCInstance->setIP6enabled(false);
-    t_SDCInstance->setIP4enabled(true);
+    t_SDCInstanceConsumer->setIP6enabled(false);
+    t_SDCInstanceConsumer->setIP4enabled(true);
     // Bind it to interface that matches the internal criteria (usually the first enumerated)
-    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+    if(!t_SDCInstanceConsumer->bindToDefaultNetworkInterface()) {
         std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
 
-	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstanceConsumer);
 	class MyHandler : public OSELib::SDC::HelloReceivedHandler {
 	public:
 		MyHandler() {
@@ -364,8 +364,20 @@ int main()
 	};
 	std::unique_ptr<MyHandler> myHandler(new MyHandler());
 	oscpsm.setHelloReceivedHandler(myHandler.get());
-	// Provider
-	OSCPHoldingDeviceProvider provider(t_SDCInstance);
+
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstanceProvider = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_PORT_PROVIDER, true);
+    // Some restriction
+    t_SDCInstanceProvider->setIP6enabled(false);
+    t_SDCInstanceProvider->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstanceProvider->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
+
+    // Provider
+	OSCPHoldingDeviceProvider provider(t_SDCInstanceProvider);
 	provider.startup();
 	DummyValueProducer dummyValueProducer(&provider);
 	dummyValueProducer.start();
