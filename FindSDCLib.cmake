@@ -123,21 +123,14 @@ endif()
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
     message(s"CMAKE_SYSTEM_NAME WINDOWS: UNTESTED!")
     # Set the library based on build type
-	link_directories("${SDCLib_SEARCH_BIN}")
-    if(CMAKE_BUILD_TYPE)
-        if(CMAKE_BUILD_TYPE MATCHES "^Rel.*") #DOES NOT WORK UNDER WINDOWS
-            set(SDCLib_LIBRARIES SDCLibmd.lib)
-			####HACK
-			set( ADDITIONAL_LIBS  PocoFoundationmd.lib PocoNetmd.lib ws2_32 iphlpapi)
-        else()
-            set(SDCLib_LIBRARIES SDCLib_d.lib)
-			###HACK
-			set (ADDITIONAL_LIBS  PocoFoundationmdd.lib PocoNetmdd.lib ws2_32 iphlpapi)
-        endif()
-    else()
-        message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
-        RETURN()
-    endif()
+	##HACK build
+	set(SDCLib_LIBRARY_DIRS ${SDCLib_LIBRARY_DIRS} "${SDCLib_SEARCH_BIN}/build")
+    set(SDCLib_LIBRARIES 
+			ws2_32 iphlpapi
+			debug SDCLib_d		debug PocoFoundationmdd 	debug PocoNetmdd
+			optimized SDCLibmd	optimized PocoFoundationmd 	optimized PocoNetmd)
+			
+	#TODO we need the xsd4 include dir...
 endif()
 ################################################################################
 
@@ -151,13 +144,15 @@ endif()
 ################################################################################
 # Not Found
 message(STATUS "-Searching for SDCLib file (${SDCLib_LIBRARIES}) ...")
-if (NOT EXISTS ${SDCLib_LIBRARIES})
-    message("  Could not find ${SDCLib_LIBRARIES}!")
-    if(NOT SDCLib_ADDITIONAL_LIBRARY_DIRS)
-        message("## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
-    endif()
-else()
-    message(STATUS "FOUND ${SDCLib_LIBRARIES}!")
+if (CMAKE_SYSTEM_NAME MATCHES "Linux")
+	if (NOT EXISTS ${SDCLib_LIBRARIES})
+		message("  Could not find ${SDCLib_LIBRARIES}!")
+		if(NOT SDCLib_ADDITIONAL_LIBRARY_DIRS)
+			message("## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
+		endif()
+	else()
+		message(STATUS "FOUND ${SDCLib_LIBRARIES}!")
+	endif()
 endif()
 # Set flag
 set(SDCLib_FOUND TRUE)
@@ -176,5 +171,5 @@ message(STATUS "-Looking for XercesLibrary...")
 find_library(XercesLibrary NAMES xerces-c REQUIRED)
 # Append Xerces - quick hack - remove this for cleaner resource management later
 list(APPEND SDCLib_LIBRARIES ${XercesLibrary})
-list(APPEND SDCLib_LIBRARIES ${ADDITIONAL_LIBS})
+#list(APPEND SDCLib_LIBRARIES ${ADDITIONAL_LIBS})
 ################################################################################
