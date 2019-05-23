@@ -26,16 +26,16 @@
  *
  */
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/Task.h"
+#include "SDCLib/SDCLibrary.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
+#include "SDCLib/Util/DebugOut.h"
+#include "SDCLib/Util/Task.h"
 
 
 #include "OSELib/SDC/ServiceManager.h"
@@ -110,11 +110,20 @@ private:
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
-    SDCLibrary::getInstance().setIP4enabled(true);
-    SDCLibrary::getInstance().setIP6enabled(false);
+
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
 
     // Consumer is build via discovery
-	OSELib::SDC::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
 	DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Consumer discovery..." << std::endl;
 
 	// testing against SoftICE

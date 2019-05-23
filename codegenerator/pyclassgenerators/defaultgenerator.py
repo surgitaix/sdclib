@@ -34,7 +34,7 @@ class DefaultDefinitionBuilder(object):
         
     def addFunction(self, complexTypeName, abstractBool, requiredProperties_list):
         if not abstractBool:
-            self.__includes = self.__includes + '#include \"OSCLib/Data/SDC/MDIB/'+ complexTypeName + '.h\"\n'
+            self.__includes = self.__includes + '#include \"SDCLib/Data/SDC/MDIB/'+ complexTypeName + '.h\"\n'
             self.__functionDefinition = self.__functionDefinition + 'CDM::' + complexTypeName + '  * Defaults::' + complexTypeName + 'Init('
             if requiredProperties_list:
                 for item in requiredProperties_list:

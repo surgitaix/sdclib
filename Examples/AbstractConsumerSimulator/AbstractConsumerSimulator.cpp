@@ -15,23 +15,25 @@
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
-#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
-#include "OSCLib/Data/SDC/MDIB/MdState.h"
-#include "OSCLib/Data/SDC/MDIB/custom/MdibContainer.h"
-#include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
+#include "SDCLib/SDCLibrary.h"
+#include "SDCLib/SDCInstance.h"
+
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
+#include "SDCLib/Data/SDC/MDIB/MdState.h"
+#include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
+#include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
 #include "SDCParticipantMDStateForwarder.h"
 #include "MirrorProvider.h"
 
-#include "OSCLib/Util/DebugOut.h"
+#include "SDCLib/Util/DebugOut.h"
 
 #include "OSELib/SDC/ServiceManager.h"
 #include "OSELib/TCP/TCPClientEventHandler.h"
@@ -111,8 +113,21 @@ int main() {
     	Data::SDC::SDCConsumer & consumer;
     };
 
+    // Create a new SDCInstance (no flag will auto init) for Consumer
+	auto t_SDCInstance = std::make_shared<SDCInstance>();
+	// Some restriction
+	t_SDCInstance->setIP6enabled(false);
+	t_SDCInstance->setIP4enabled(true);
+	// Bind it to interface that matches the internal criteria (usually the first enumerated)
+	if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+		std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+		return -1;
+	}
+
+
 	//Discovery of Device under Test
-	OSELib::SDC::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 
 
@@ -125,8 +140,19 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
 
 
+		    // Create a new SDCInstance (no flag will auto init) for Consumer
+		    auto t_SDCInstanceProvider = std::make_shared<SDCInstance>();
+		    // Some restriction
+		    t_SDCInstanceProvider->setIP6enabled(false);
+		    t_SDCInstanceProvider->setIP4enabled(true);
+		    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+		    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+		        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+		        return -1;
+		    }
+
 			//initialize Mirror Provider which mirrors the behavior of the DUT
-			MirrorProvider mirrorProvider;
+			MirrorProvider mirrorProvider(t_SDCInstanceProvider);
 			mirrorProvider.setEndpointReference("DUTMirrorProvider");
 			Dev::DeviceCharacteristics devChar;
 			devChar.addFriendlyName("en", "DUTMirrorProvider");

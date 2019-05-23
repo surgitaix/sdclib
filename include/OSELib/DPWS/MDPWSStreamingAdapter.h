@@ -9,19 +9,18 @@
 #define INCLUDE_OSELIB_DPWS_DPWSSTREAMINGCLIENTSOCKETIMPL_H_
 
 
-#include "Poco/NotificationQueue.h"
-#include "Poco/Thread.h"
-//#include "Poco/Net/DatagramSocket.h"
-#include "Poco/Net/MulticastSocket.h"
-#include "Poco/Net/SocketNotification.h"
-#include "Poco/Net/SocketReactor.h"
-
+#include "SDCLib/Prerequisites.h"
+#include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/fwd.h"
-#include "OSELib/DPWS/MessagingContext.h"
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/WithLogger.h"
 
-#include "OSELib/DPWS/DeviceDescription.h"
+#include <Poco/NotificationQueue.h>
+#include <Poco/Thread.h>
+#include <Poco/Net/MulticastSocket.h>
+#include <Poco/Net/SocketNotification.h>
+#include <Poco/Net/SocketReactor.h>
+
 
 namespace OSELib {
 namespace DPWS {
@@ -30,7 +29,7 @@ namespace Impl {
 
 class MDPWSStreamingAdapter : public WithLogger {
 public:
-	MDPWSStreamingAdapter(StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
+    MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
 
 	~MDPWSStreamingAdapter();
 
@@ -40,26 +39,24 @@ private:
 	// todo: implement verify msg
 	//	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
 
-	//  callback function, implemented in SDCConsumerAdapter
+    SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
+    //  callback function, implemented in SDCConsumerAdapter
 	StreamNotificationDispatcher & m_streamNotificationDispatcher;
+
+    const DeviceDescription & m_deviceDescription;
 
 	// todo: make list of socket for compatibility with other frameworks
 
-	Poco::Net::SocketAddress m_ipv4MulticastAddress;
-	Poco::Net::SocketAddress m_ipv6MulticastAddress;
-	const Poco::Net::SocketAddress m_ipv4BindingAddress;
-	const Poco::Net::SocketAddress m_ipv6BindingAddress;
+	const Poco::Net::SocketAddress m_ipv4MulticastAddress;
+	const Poco::Net::SocketAddress m_ipv6MulticastAddress;
 	Poco::Net::MulticastSocket m_ipv4MulticastSocket;
 	Poco::Net::MulticastSocket m_ipv6MulticastSocket;
 
-	const DeviceDescription & m_deviceDescription;
+	Poco::Thread m_reactorThread;
+	Poco::Net::SocketReactor m_reactor;
 
-//	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> _socketSendMessageQueue;
-
-//	MessagingContext context; ?????
-
-	Poco::Thread _reactorThread;
-	Poco::Net::SocketReactor _reactor;
+    bool m_SO_REUSEADDR_FLAG = true; // Default flag when binding to all adapters
+    bool m_SO_REUSEPORT_FLAG = true; // Default flag when binding to all adapters
 };
 
 } /* namespace Impl */

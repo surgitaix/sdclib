@@ -1,3 +1,10 @@
+Update to version 4.0.0
+
+- API changes
+- Implemented SDCInstance: Provider / ServiceManager now need SDCInstance. Allows binding to individual network adapters.
+- Bugfixes
+- incompatible to former versions of SDCLib!
+
 Update to version 3.1.0 final standard: 
 
 - Update to latest standard version

@@ -27,23 +27,22 @@
 
 
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
-#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
-#include "OSCLib/Data/SDC/MDIB/LocationContextState.h"
-#include "OSCLib/Data/SDC/MDIB/LocationDetail.h"
-#include "OSCLib/Data/SDC/MDIB/AlertSignalState.h"
-#include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
-#include "OSCLib/Data/SDC/FutureInvocationState.h"
-#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
-#include "OSCLib/Util/DebugOut.h"
+#include "SDCLib/SDCLibrary.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextState.h"
+#include "SDCLib/Data/SDC/MDIB/LocationDetail.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSignalState.h"
+#include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
+#include "SDCLib/Data/SDC/FutureInvocationState.h"
+#include "SDCLib/Util/DebugOut.h"
 
 #include "OSELib/SDC/ServiceManager.h"
 
@@ -52,7 +51,7 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 //SDCLib/C
-const std::string deviceEPR("DUTMirrorProvider");
+const std::string deviceEPR("UDI-1234567890");
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
@@ -138,19 +137,28 @@ int main() {
     	Data::SDC::SDCConsumer & consumer;
     };
 
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
+
 	// Discovery
-	OSELib::SDC::ServiceManager oscpsm;
-	// binding to a custom port
-	MDPWSTransportLayerConfiguration config = MDPWSTransportLayerConfiguration();
-	config.setPort(6465);
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+
 
 	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
 //	auto c(oscpsm.discoverOSCP());
 
 	// state handler
-	std::shared_ptr<ExampleConsumerEventHandler> eh_get(new ExampleConsumerEventHandler(HANDLE_GET_METRIC));
-	std::shared_ptr<ExampleConsumerEventHandler> eh_set(new ExampleConsumerEventHandler(HANDLE_SET_METRIC));
-	std::shared_ptr<StreamConsumerStateHandler> eh_stream(new StreamConsumerStateHandler(HANDLE_STREAM_METRIC));
+	auto eh_get = std::make_shared<ExampleConsumerEventHandler>(HANDLE_GET_METRIC);
+	auto eh_set = std::make_shared<ExampleConsumerEventHandler>(HANDLE_SET_METRIC);
+	auto eh_stream = std::make_shared<StreamConsumerStateHandler>(HANDLE_STREAM_METRIC);
 
 	try {
 		if (c != nullptr) {

@@ -20,6 +20,7 @@
 
 #include "NormalizedMessageModel-fwd.hxx"
 
+#include "SDCLib/Prerequisites.h"
 #include "OSELib/DPWS/MessagingContext.h"
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -31,8 +32,15 @@ namespace Impl {
 class DPWSHostSocketImpl : public WithLogger {
 public:
 	DPWSHostSocketImpl(
+            SDCLib::SDCInstance_shared_ptr p_SDCInstance,
 			ProbeNotificationDispatcher & probeDispatcher,
 			ResolveNotificationDispatcher & resolveDispatcher);
+
+    DPWSHostSocketImpl(const DPWSHostSocketImpl& p_obj) = delete;
+    DPWSHostSocketImpl(DPWSHostSocketImpl&& p_obj) = delete;
+    DPWSHostSocketImpl& operator=(const DPWSHostSocketImpl& p_obj) = delete;
+    DPWSHostSocketImpl& operator=(DPWSHostSocketImpl&& p_obj) = delete;
+
 	~DPWSHostSocketImpl();
 
 	void sendBye(const ByeType & bye);
@@ -50,17 +58,16 @@ private:
 	struct SendMulticastMessage;
 	struct SendUnicastMessage;
 
+    SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
 	ProbeNotificationDispatcher & probeDispatcher;
 	ResolveNotificationDispatcher & resolveDispatcher;
 
-	const Poco::Net::SocketAddress ipv4StreamMulticastAddress;
-	const Poco::Net::SocketAddress ipv6StreamMulticastAddress;
-	const Poco::Net::SocketAddress ipv4DiscoveryMulticastAddress;
-	const Poco::Net::SocketAddress ipv6DiscoveryMulticastAddress;
-	const Poco::Net::SocketAddress ipv4BindingAddress;
-	const Poco::Net::SocketAddress ipv6BindingAddress;
-	Poco::Net::MulticastSocket ipv4MulticastListeningSocket;
-	Poco::Net::MulticastSocket ipv6MulticastListeningSocket;
+    const Poco::Net::SocketAddress m_ipv4DiscoveryMulticastAddress;
+    const Poco::Net::SocketAddress m_ipv6DiscoveryMulticastAddress;
+    const Poco::Net::SocketAddress m_ipv4StreamMulticastAddress;
+    const Poco::Net::SocketAddress m_ipv6StreamMulticastAddress;
+    Poco::Net::MulticastSocket m_ipv4MulticastListeningSocket;
+    Poco::Net::MulticastSocket m_ipv6MulticastListeningSocket;
 
 	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> socketSendMessageQueue;
 	Poco::TimedNotificationQueue delayedMessages;
@@ -71,6 +78,9 @@ private:
 
 	Poco::Thread reactorThread;
 	Poco::Net::SocketReactor reactor;
+
+    bool m_SO_REUSEADDR_FLAG = true;
+    bool m_SO_REUSEPORT_FLAG = true;
 };
 
 } /* namespace Impl */

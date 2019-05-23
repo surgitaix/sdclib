@@ -20,7 +20,7 @@ public:
 	virtual ~UnsubscribeActionCommand();
 
 protected:
-	virtual std::unique_ptr<MESSAGEMODEL::Envelope> dispatch(const MESSAGEMODEL::Envelope & request) override;
+	std::unique_ptr<MESSAGEMODEL::Envelope> dispatch(const MESSAGEMODEL::Envelope & request) override;
 
 	DPWS::UnsubscribeTraits::Dispatcher & _dispatcher;
 };

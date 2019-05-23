@@ -8,9 +8,9 @@
 #ifndef EXAMPLES_ABSTRACTCONSUMERSIMULATOR_SDCPARTICIPANTMDSTATEFORWARDER_H_
 #define EXAMPLES_ABSTRACTCONSUMERSIMULATOR_SDCPARTICIPANTMDSTATEFORWARDER_H_
 
-#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 
 namespace SDCLib {
 namespace Data {

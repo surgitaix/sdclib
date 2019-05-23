@@ -24,11 +24,10 @@ public:
 	}
 	virtual ~GenericSoapInvoke() = default;
 
-	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
+	std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto header(SoapInvoke::createHeader());
-		using ActionType = MESSAGEMODEL::Envelope::HeaderType::ActionType;
-		header->Action().set(ActionType(TraitsType::RequestAction()));
-		return std::move(header);
+		header->Action().set(MESSAGEMODEL::Envelope::HeaderType::ActionType(TraitsType::RequestAction()));
+		return header;
 	}
 
 	using SoapInvoke::invoke;

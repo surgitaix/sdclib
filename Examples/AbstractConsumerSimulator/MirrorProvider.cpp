@@ -12,7 +12,7 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-MirrorProvider::MirrorProvider() : sdcProvider() {
+MirrorProvider::MirrorProvider(SDCInstance_shared_ptr p_SDCInstance) : sdcProvider(p_SDCInstance) {
 
 }
 

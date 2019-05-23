@@ -21,7 +21,7 @@ public:
 	FrontControllerAdapter(FrontController & controller);
 	virtual ~FrontControllerAdapter();
 
-	virtual Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & request) override;
+	Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & request) override;
 
 private:
 	FrontController & _controller;

@@ -10,7 +10,7 @@
  */
 
 
-#include "OSCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
+#include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "osdm.hxx"
 
 #include <stdexcept>

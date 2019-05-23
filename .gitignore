@@ -1,7 +1,10 @@
-# ignore documentation. Documentation is generated via doxygen
-doc/
-
 # ignore Makefiles
 Dependencies/Poco/Foundation/Makefile
 Dependencies/Poco/Makefile
 Dependencies/Poco/Net/Makefile
+
+# ignore python cache
+*.pyc
+
+# backup folder
+codegenerator/backup

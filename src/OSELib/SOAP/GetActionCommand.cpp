@@ -31,7 +31,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> GetActionCommand::dispatch(const MESSAGE
 	NormalizedMessageAdapter<DPWS::GetTraits::Response> responseAdapter;
 	responseAdapter.set(*response, std::move(_metadata));
 
-	return std::move(response);
+	return response;
 }
 
 } /* namespace SOAP */

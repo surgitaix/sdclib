@@ -24,33 +24,33 @@
  *  At the current state of the IEEE 11073 SDC BICEPS specification the DSAMS is transported via TCP, maybe this changes soon. Then SDCProvider::updateState has to be adapted accordingly
  *
  */
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
-#include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/SDCLibrary.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 
-#include "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 
-#include "OSCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "OSCLib/Data/SDC/MDIB/MdDescription.h"
-#include "OSCLib/Data/SDC/MDIB/Measurement.h"
-#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "OSCLib/Data/SDC/MDIB/Range.h"
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/DistributionSampleArrayMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/DistributionSampleArrayMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
+#include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/Measurement.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/Range.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/DistributionSampleArrayMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/DistributionSampleArrayMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
 
-#include "OSCLib/Data/SDC/MDIB/MetaData.h"
-#include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/Task.h"
-#include "../AbstractOSCLibFixture.h"
+#include "SDCLib/Data/SDC/MDIB/MetaData.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Util/DebugOut.h"
+#include "SDCLib/Util/Task.h"
+#include "../AbstractSDCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include "OSELib/SDC/ServiceManager.h"
@@ -161,7 +161,7 @@ public:
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -193,7 +193,7 @@ public:
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const DistributionSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const DistributionSampleArrayMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -205,8 +205,8 @@ public:
 class OSCPStreamHoldingDeviceProvider : public Util::Task {
 public:
 
-    OSCPStreamHoldingDeviceProvider() :
-    	sdcProvider(),
+    OSCPStreamHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+        sdcProvider(p_SDCInstance),
     	streamEventHandler("handle_plethysmogram_stream"),
     	streamEventHandlerAlt("handle_plethysmogram_stream_alt"),
     	distributionEventHandler("handle_distribution_stream")
@@ -341,8 +341,8 @@ public:
 }
 }
 
-struct FixtureStreamSDC : Tests::AbstractOSCLibFixture {
-	FixtureStreamSDC() : AbstractOSCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice, 10000) {}
+struct FixtureStreamSDC : Tests::AbstractSDCLibFixture {
+	FixtureStreamSDC() : AbstractSDCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice) {}
 };
 
 SUITE(OSCP) {
@@ -351,13 +351,15 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
+        auto t_SDCInstance = createSDCInstance();
+
         // Provider
-		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider;
+		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider(t_SDCInstance);
 		DebugOut(DebugOut::Default, "StreamSDC") << "Provider init.." << std::endl;
 		provider.startup();
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
         DebugOut(DebugOut::Default, "StreamSDC") << "Consumer discovery..." << std::endl;
         std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
         std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");

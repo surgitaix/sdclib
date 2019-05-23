@@ -31,33 +31,33 @@
  *
  *
  */
-#include "OSCLib/SDCLibrary.h"
+#include "SDCLib/SDCInstance.h"
 
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
-#include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 
 // MDS and it's components
-#include "OSCLib/Data/SDC/MDIB/MdDescription.h"
-#include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MetaData.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MetaData.h"
 
 // Mdib data types
-#include "OSCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/LocationContextState.h"
-#include "OSCLib/Data/SDC/MDIB/LocationDetail.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextState.h"
+#include "SDCLib/Data/SDC/MDIB/LocationDetail.h"
 
-#include "OSCLib/Data/SDC/MDIB/CodedValue.h"
-#include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "OSCLib/Data/SDC/MDIB/Measurement.h"
-#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "OSCLib/Data/SDC/MDIB/Range.h"
+#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/Measurement.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/Range.h"
 
-#include "OSCLib/Util/DebugOut.h"
+#include "SDCLib/Util/DebugOut.h"
 
 // Testing framework
 #include "../AbstractOSCLibFixture.h"
@@ -207,13 +207,12 @@ private:
 
 };
 
-
 }
 }
 }
 
 struct FixtureMultiStatesTest: Tests::AbstractOSCLibFixture {
-	FixtureMultiStatesTest() : AbstractOSCLibFixture("FixtureMultiStateTest", OSELib::LogLevel::Notice, 10000) {}
+	FixtureMultiStatesTest() : AbstractOSCLibFixture("FixtureMultiStateTest", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 60) {}
 };
 
 SUITE(OSCP) {
@@ -222,13 +221,15 @@ TEST_FIXTURE(FixtureMultiStatesTest, multistates)
 	DebugOut::openLogFile("TestMultiState.log", true);
 	try
 	{
+        auto t_SDCInstance = getSDCInstance();
+
         // Provider
 		Tests::multiStatesSDC::SDCMultiStateTestProviders provider;
 		DebugOut(DebugOut::Default, "MultiStateSDC") << "Provider init.." << std::endl;
 		provider.startup();
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
         DebugOut(DebugOut::Default, "MultiStateSDC") << "Consumer discovery..." << std::endl;
         std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(SDCLib::Tests::multiStatesSDC::deviceEPR));
 //        std::shared_ptr<Tests::multiStatesSDC::  > eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");

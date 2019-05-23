@@ -19,7 +19,7 @@ public:
 	HTTPRequestHandlerExceptionTrap();
 	virtual ~HTTPRequestHandlerExceptionTrap();
 
-	virtual void handleRequest(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) override;
+	void handleRequest(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) override;
 	virtual void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) = 0;
 };
 

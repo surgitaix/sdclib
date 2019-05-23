@@ -39,7 +39,7 @@ std::unique_ptr<MESSAGEMODEL::Header> SoapInvoke::createHeader() {
 	header->MessageID().set(MessageIDType(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	using ToType = MESSAGEMODEL::Envelope::HeaderType::ToType;
 	header->To().set(ToType(_requestURI.toString()));
-	return std::move(header);
+	return header;
 }
 
 std::unique_ptr<MESSAGEMODEL::Body> SoapInvoke::createBody() {
@@ -67,7 +67,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SoapInvoke::invoke(std::unique_ptr<MESSA
 			soapHandling.parse(responseContent);
 			return std::move(soapHandling.normalizedMessage);
 		}
-	} catch (const std::exception e) {
+	} catch (const std::exception& e) {
 		log_error([&] { return e.what(); });
 	} catch (...) {
 		// fixme add proper exception handling

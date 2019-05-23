@@ -4,4 +4,4 @@
 } /* namespace Data */
 } /* namespace SDCLib */
 
-#endif /* DATA_OSCP_MDIB_DEFAULTS_H_ */
+#endif /* DATA_SDC_MDIB_DEFAULTS_H_ */

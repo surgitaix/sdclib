@@ -10,6 +10,7 @@
 
 #include <memory>
 
+#include "SDCLib/Prerequisites.h"
 #include "OSELib/DPWS/Types.h"
 
 namespace OSELib {
@@ -22,12 +23,14 @@ class MDPWSHostAdapter :
 		public ResolveNotificationDispatcher
 {
 public:
-	MDPWSHostAdapter(const AddressType & epr,
+	MDPWSHostAdapter(
+            SDCLib::SDCInstance_shared_ptr p_SDCInstance,
+            const AddressType & epr,
 			const ScopesType & scopes,
 			const TypesType & types,
 			const XAddressesType & xaddresses,
 			int metadataVersion = 1);
-	virtual ~MDPWSHostAdapter();
+    virtual ~MDPWSHostAdapter();
 
 	void start();
 	void stop();
@@ -37,14 +40,14 @@ public:
 	void setTypes(const TypesType & types);
 	void setXAddresses(const XAddressesType & xaddresses);
 
-	virtual std::vector<ProbeMatchType> dispatch(const ProbeType & filter) override;
+	std::vector<ProbeMatchType> dispatch(const ProbeType & filter) override;
 
 private:
 	void sendHello();
 
-	virtual std::unique_ptr<ResolveMatchType> dispatch(const ResolveType & filter) override;
+	std::unique_ptr<ResolveMatchType> dispatch(const ResolveType & filter) override;
 
-	bool _started;
+	bool _started = false;
 	const AddressType _epr;
 	ScopesType _scopes;
 	TypesType _types;

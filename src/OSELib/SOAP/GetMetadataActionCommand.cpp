@@ -29,7 +29,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> GetMetadataActionCommand::dispatch(const
 	NormalizedMessageAdapter<DPWS::GetTraits::Response> responseAdapter;
 	responseAdapter.set(*response, std::move(_metadata));
 
-	return std::move(response);
+	return response;
 }
 
 std::unique_ptr<MESSAGEMODEL::Envelope> GetMetadataActionCommand::checkDispatchPreconditions(std::unique_ptr<MESSAGEMODEL::Envelope> request) {

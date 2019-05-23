@@ -1,28 +1,28 @@
 
-#include "OSCLib/SDCLibrary.h"
+#include "SDCLib/SDCLibrary.h"
 #include "OSELib/SDC/SDCConstants.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCConsumerOperationInvokedHandler.h"
-#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
-#include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderComponentStateHandler.h"
-#include "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/CodedValue.h"
-#include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MdsState.h"
-#include "OSCLib/Data/SDC/MDIB/MdDescription.h"
-#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
-#include "OSCLib/Data/SDC/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/SystemContextState.h"
-#include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
-#include "OSCLib/Util/DebugOut.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCConsumerOperationInvokedHandler.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MdsState.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
+#include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextState.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Util/DebugOut.h"
 
 #include "OSELib/SDC/ServiceManager.h"
 
@@ -55,7 +55,7 @@ public:
     }
 
     // called when the consumer is requesting to set the MaxValueStateHandler
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
         DebugOut(DebugOut::Default, "ExampleProject") << "Provider: MaxValueStateHandler received state change request" << std::endl;
 
@@ -105,7 +105,7 @@ public:
     }
 
     // state is read-only - MEASUREMENT -> onStateChangeRequest() returns Fail
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) {
     	return InvocationState::Fail;
     }
 
@@ -159,8 +159,8 @@ public:
 class OSCPHoldingDeviceProvider {
 public:
 
-    OSCPHoldingDeviceProvider() :
-    	sdcProvider(),
+    OSCPHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    	sdcProvider(p_SDCInstance),
 		currentWeight(0),
 		maxValueState(HANDLE_MAX_WEIGHT_METRIC),
 		curValueState(HANDLE_CURRENT_WEIGHT_METRIC),
@@ -244,7 +244,7 @@ public:
     }
 
     void setCurrentWeight(float value) {
-    	Poco::Mutex::ScopedLock lock(sdcProvider.getMutex());
+    	Poco::Mutex::ScopedLock lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
     	currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "ExampleProject") << "Changed value: " << currentWeight << std::endl;
@@ -252,6 +252,7 @@ public:
 
 private:
 
+    Poco::Mutex m_mutex;
     // SDCProvider for communication to the network
     SDCProvider sdcProvider;
 
@@ -338,12 +339,21 @@ private:
 int main()
 {
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
-	SDCLibrary::getInstance().setIP6enabled(false);
-	SDCLibrary::getInstance().setPortStart(11000);
-	SDCLibrary::getInstance().setDiscoveryTime(4000);
+	SDCLibrary::getInstance().setPortStart(11000); // FIXME
+	SDCLibrary::getInstance().setDiscoveryTime(4000); // FIXME
 
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
 
-	OSELib::SDC::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
 	class MyHandler : public OSELib::SDC::HelloReceivedHandler {
 	public:
 		MyHandler() {
@@ -355,7 +365,7 @@ int main()
 	std::unique_ptr<MyHandler> myHandler(new MyHandler());
 	oscpsm.setHelloReceivedHandler(myHandler.get());
 	// Provider
-	OSCPHoldingDeviceProvider provider;
+	OSCPHoldingDeviceProvider provider(t_SDCInstance);
 	provider.startup();
 	DummyValueProducer dummyValueProducer(&provider);
 	dummyValueProducer.start();
