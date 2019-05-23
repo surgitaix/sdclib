@@ -9,46 +9,41 @@
  */
 
 
-#include "OSCLib/SDCLibrary2.h"
-#include "OSCLib/SDCInstance.h"
 
+#include "SDCLib/Data/SDC/SDCProvider.h"
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/SDCLibrary.h"
+#include "SDCLib/SDCInstance.h"
 
-#include "OSCLib/Data/SDC/SDCProviderComponentStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "OSCLib/Data/SDC/MDIB/MdsState.h"
-#include "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/CodedValue.h"
-#include "OSCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "OSCLib/Data/SDC/MDIB/MdDescription.h"
-#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "OSCLib/Data/SDC/MDIB/Range.h"
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/StringMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MetaData.h"
-#include "OSCLib/Dev/DeviceCharacteristics.h"
-#include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
-#include "OSCLib/Data/SDC/MDPWSTransportLayerConfiguration.h"
+#include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Data/SDC/MDIB/MdsState.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/Range.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MetaData.h"
+#include "SDCLib/Dev/DeviceCharacteristics.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 
-#include "BICEPS_MessageModel-fwd.hxx"
-
-#include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/Task.h"
-
+#include "SDCLib/Util/DebugOut.h"
+#include "SDCLib/Util/Task.h"
 
 #include "Poco/Runnable.h"
 #include "Poco/Mutex.h"
@@ -90,7 +85,7 @@ public:
 	}
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
-	InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext & oic) override {
 		// extract information from the incoming operation
 		DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
 		return InvocationState::Fail;
@@ -179,7 +174,7 @@ public:
     }
 
     // disallow set operation for this state
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext & oic) override {
     	// extract information from the incoming operation
     	DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
     	return InvocationState::Fail;
@@ -232,8 +227,8 @@ private:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() :
-    	sdcProvider(),
+    OSCPStreamProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    	sdcProvider(p_SDCInstance),
     	streamProviderStateHandler(HANDLE_STREAM_METRIC),
     	stringProviderStateHandler(HANDLE_STRING_METRIC),
     	numericProviderStateHandlerGet(HANDLE_GET_METRIC),
@@ -266,12 +261,6 @@ public:
 		devChar.addFriendlyName("en", "SDCLib ExampleProvider");
 		sdcProvider.setDeviceCharacteristics(devChar);
 
-		// feature: bind provider to a specific interface
-		MDPWSTransportLayerConfiguration providerConfig = MDPWSTransportLayerConfiguration();
-//		providerConfig.setBindAddress(Poco::Net::IPAddress("192.168.178.150"));
-		providerConfig.setPort(6464);
-		sdcProvider.setConfiguration(providerConfig);
-
 
         // Channel
         ChannelDescriptor holdingDeviceParameters(CHANNEL_DESCRIPTOR_HANDLE);
@@ -294,10 +283,10 @@ public:
         	.setType(CodedValue("MDC_DEV_DOCU_POSE_MDS")
         			.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
         	.setMetaData(
-        		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
-        		.setModelNumber("1")
-        		.addModelName(LocalizedText().setRef("EndoTAIX"))
-        		.addSerialNumber("1234"))
+                MetaData().addManufacturer(LocalizedText().setRef(SDCLib::Config::STR_SURGITAIX))
+                .setModelNumber("1")
+                .addModelName(LocalizedText().setRef("EndoTAIX"))
+                .addSerialNumber(SDCLib::Config::CURRENT_C_YEAR))
         	.addVmd(holdingDeviceModule);
 
 
@@ -382,10 +371,19 @@ int main()
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
-    SDCLibrary::getInstance().setIP6enabled(false);
-    SDCLibrary::getInstance().setIP4enabled(true);
 
-	OSCPStreamProvider provider;
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
+
+	OSCPStreamProvider provider(t_SDCInstance);
 	provider.startup();
 	provider.start();
 

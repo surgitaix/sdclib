@@ -4,7 +4,7 @@
  *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: buerger
  *
- *  The ExampleCachedProvider uses an .xml file ('cachedMdib.xml') to build up an OSCP-provider device. It further shows how some of the the providers states ('') can be used to
+ *  The ExampleCachedProvider uses an .xml file ('cachedMdib.xml') to build up an SDCProvider device. It further shows how some of the the providers states ('') can be used to
  *
  */
 
@@ -13,28 +13,28 @@
 #include <fstream>
 #include <streambuf>
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
-#include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/CodedValue.h"
-#include "OSCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "OSCLib/Data/SDC/MDIB/MdDescription.h"
-#include "OSCLib/Data/SDC/MDIB/Range.h"
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/SampleArrayValue.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MetaData.h"
-#include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/Task.h"
+#include "SDCLib/SDCLibrary.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/Range.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MetaData.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Util/DebugOut.h"
+#include "SDCLib/Util/Task.h"
 
 #include "OSELib/SDC/ServiceManager.h"
 
@@ -47,6 +47,7 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
+const std::string ts_file("cachedMdib.xml");
 
 const std::string DEVICE_EPR("UDI-EXAMPLEPROVIDER");
 
@@ -82,7 +83,7 @@ public:
 	}
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -163,7 +164,7 @@ public:
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -171,16 +172,17 @@ public:
 class OSCPStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider() : sdcProvider(), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
+    OSCPStreamProvider(SDCInstance_shared_ptr p_SDCInstance, std::ifstream& p_stream) : sdcProvider(p_SDCInstance), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
+
+        assert(p_stream.is_open());
 
 		sdcProvider.setEndpointReference(DEVICE_EPR);
 
-		// Load cached Mdib from file system
-		// Mdib is specified in xml
-		std::ifstream t("Examples/cachedMdib.xml");
+
 		std::stringstream buffer;
-		buffer << t.rdbuf();
+		buffer << p_stream.rdbuf();
 		std::string mdDesciption_xml = buffer.str();
+        p_stream.close();
 
 		DebugOut(DebugOut::Default, "ExampleCachedProvider") << mdDesciption_xml;
 
@@ -253,14 +255,32 @@ public:
 
 int main()
 {
+    // Load cached Mdib from file system
+    // Mdib is specified in xml
+    std::ifstream t_stream(ts_file);
+    // Found?
+    if(!t_stream.is_open()) {
+        DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Could not open " << ts_file << "\n";
+        return -1;
+    }
+
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
-    SDCLibrary::getInstance().setIP6enabled(false);
-    SDCLibrary::getInstance().setIP4enabled(true);
 
-	OSELib::SDC::ServiceManager oscpsm;
-	OSCPStreamProvider provider;
+	// Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
+
+    OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+	OSCPStreamProvider provider(t_SDCInstance, t_stream);
 	provider.startup();
 	provider.start();
 

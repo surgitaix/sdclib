@@ -36,7 +36,7 @@ public:
 	SoapActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> request);
 	virtual ~SoapActionCommand();
 
-	virtual std::unique_ptr<MESSAGEMODEL::Envelope> Run() override;
+	std::unique_ptr<MESSAGEMODEL::Envelope> Run() override;
 
 protected:
 	virtual std::unique_ptr<MESSAGEMODEL::Envelope> RunWithExceptionTrap();

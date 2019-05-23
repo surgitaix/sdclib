@@ -47,7 +47,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> RenewActionCommand::dispatch(const MESSA
 	NormalizedMessageAdapter<DPWS::RenewTraits::Response> responseAdapter;
 	responseAdapter.set(*responseMessage, std::move(responseBody));
 
-	return std::move(responseMessage);
+	return responseMessage;
 }
 
 } /* namespace SOAP */

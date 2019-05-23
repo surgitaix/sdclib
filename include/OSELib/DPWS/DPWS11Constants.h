@@ -50,8 +50,8 @@ const int UDP_UNICAST_MIN_DELAY(50);
 const int UDP_UNICAST_MAX_DELAY(250);
 const int UDP_UNICAST_UPPER_DELAY(500);
 // maybe make configurable in SDCInstance
-const int UPD_MULTICAST_DISCOVERY_PORT(3702);
-const int UPD_MULTICAST_STREAMING_PORT(5555);
+const unsigned short UPD_MULTICAST_DISCOVERY_PORT(3702);
+const unsigned short UPD_MULTICAST_STREAMING_PORT(5555);
 const int UPD_MULTICAST_TIMETOLIVE(8);
 
 const int UDP_MULTICAST_UDP_REPEAT(2);

@@ -1,20 +1,20 @@
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
-#include "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/CodedValue.h"
-#include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "OSCLib/Data/SDC/MDIB/MdDescription.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MetaData.h"
-#include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "../AbstractOSCLibFixture.h"
+#include "SDCLib/SDCInstance.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MetaData.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Util/DebugOut.h"
+#include "../AbstractSDCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include "OSELib/SDC/ServiceManager.h"
@@ -32,48 +32,61 @@ namespace SDCLib {
 namespace Tests {
 namespace ConnectionLostSDC {
 
+const std::string VMD_DESCRIPTOR_HANDLE("ConnectionLost_vmd");
+const std::string CHANNEL_DESCRIPTOR_HANDLE("ConnectionLost_channel");
+const std::string MDS_DESCRIPTOR_HANDLE("ConnectionLost_mds");
+
+const std::string HANDLE_GET_METRIC("handle_get");
+
+
 class OSCPTestDeviceProvider {
 public:
 
-    OSCPTestDeviceProvider(const std::size_t number, const std::size_t metricCount) : sdcProvider(), epr(number), metrics(metricCount) {
-    	sdcProvider.setEndpointReference(std::string("UDI_") + std::to_string(epr));
+    OSCPTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t number)
+        : sdcProvider(p_SDCInstance)
+        , m_eprID(number)
+        , getMetricDescriptor(HANDLE_GET_METRIC,
+				CodedValue("MDCX_EXAMPLE_GET"),
+				MetricCategory::Set,
+				MetricAvailability::Cont,
+				1)
+        {
 
-        // System context
-        SystemContextDescriptor sc("MDC_SYS_CON");
-        sc.setLocationContext(LocationContextDescriptor("MDC_LOC_CON"));
+        sdcProvider.setEndpointReference(std::string("UDI_") + std::to_string(m_eprID));
+
+		Dev::DeviceCharacteristics devChar;
+		devChar.addFriendlyName("en", "Test ConnectionLost " + std::to_string(m_eprID));
+		sdcProvider.setDeviceCharacteristics(devChar);
 
         // Channel
-        ChannelDescriptor testChannel("MDC_CH");
-        testChannel.setSafetyClassification(SafetyClassification::MedA);
-        for (std::size_t i = 0; i < metrics; i++) {
-        	NumericMetricDescriptor nmd("handle_cur" + std::to_string(i), CodedValue(CodeIdentifier("MDCX_CODE_ID_WEIGHT")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0);
-    		testChannel.addMetric(nmd);
-        }
+        ChannelDescriptor t_channel(CHANNEL_DESCRIPTOR_HANDLE);
+        t_channel
+            .setSafetyClassification(SafetyClassification::MedB)
+            .addMetric(getMetricDescriptor);
+
 
         // VMD
-        VmdDescriptor testVMD("MDC_VMD1");
-        testVMD.addChannel(testChannel);
+        VmdDescriptor t_vmd(VMD_DESCRIPTOR_HANDLE);
+        t_vmd.addChannel(t_channel);
+
 
         // MDS
-        MdsDescriptor mds("MDC_MDS");
-        mds.setMetaData(
-			MetaData()
-				.addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
-        		.setModelNumber("1")
-        		.addModelName(LocalizedText().setRef("EndoTAIX"))
-        		.addSerialNumber("1234"))
-			.setSystemContext(sc)
-			.setType(CodedValue(CodeIdentifier("MDCX_CODE_ID_MDS"))
-					.setCodingSystem(xml_schema::Uri("OR.NET.Codings")));
+        MdsDescriptor t_Mds(MDS_DESCRIPTOR_HANDLE);
+        t_Mds.setType(CodedValue("MDC_DEV_DOCU_POSE_MDS")
+            .addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
+            .setMetaData(
+                MetaData().addManufacturer(LocalizedText().setRef(SDCLib::Config::STR_SURGITAIX))
+                          .setModelNumber("1")
+                          .addModelName(LocalizedText().setRef("EndoTAIX"))
+                          .addSerialNumber(SDCLib::Config::CURRENT_C_YEAR))
+            .addVmd(t_vmd);
 
-        mds.addVmd(testVMD);
 
         // create and add description
-        MdDescription mdDescription;
-        mdDescription.addMdsDescriptor(mds);
+		MdDescription mdDescription;
+		mdDescription.addMdsDescriptor(t_Mds);
 
-        sdcProvider.setMdDescription(mdDescription);
-
+		sdcProvider.setMdDescription(mdDescription);
     }
 
     void startup() {
@@ -92,17 +105,18 @@ public:
 private:
     // Provider object
     SDCProvider sdcProvider;
+    const std::size_t m_eprID;
 
-    const std::size_t epr;
-    const std::size_t metrics;
+    NumericMetricDescriptor getMetricDescriptor;
+
 };
 
 } /* namespace MultiSDC */
 } /* namespace Tests */
 } /* namespace SDCLib */
 
-struct FixtureConnectionLostSDC : Tests::AbstractOSCLibFixture {
-	FixtureConnectionLostSDC() : AbstractOSCLibFixture("FixtureConnectionLostSDC", OSELib::LogLevel::Notice, 8150) {}
+struct FixtureConnectionLostSDC : Tests::AbstractSDCLibFixture {
+	FixtureConnectionLostSDC() : AbstractSDCLibFixture("FixtureConnectionLostSDC", OSELib::LogLevel::Notice) {}
 };
 
 SUITE(OSCP) {
@@ -122,82 +136,88 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 	    		handlerVisited = true;
 	    	}
 
-	    	std::atomic<bool> handlerVisited;
+            std::atomic<bool> handlerVisited = ATOMIC_VAR_INIT(false);
 
 	    private:
 	    	Data::SDC::SDCConsumer & consumer;
 	    };
 
-	    DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Waiting for the Providers to startup...";
+	    DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
 
-		CONSTEXPR_MACRO std::size_t providerCount(10);
-		CONSTEXPR_MACRO std::size_t metricCount(10);
+		std::size_t t_providerCount{10};
 		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>> providers;
-		std::vector<std::string> providerEPRs;
+		std::vector<std::string> t_providerEPRs;
 
-		for (std::size_t i = 0; i < providerCount; i++) {
-			std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider> p(new Tests::ConnectionLostSDC::OSCPTestDeviceProvider(i, metricCount));
+		for (std::size_t i = 0; i < t_providerCount; ++i) {
+			auto p = std::make_shared<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>(createSDCInstance(), i);
 			providers.push_back(p);
-			p->startup();
-			providerEPRs.emplace_back(p->getEndpointReference());
-			Poco::Thread::sleep(1000);
+			t_providerEPRs.push_back(p->getEndpointReference());
+            // Startup
+            p->startup();
+            Poco::Thread::sleep(100);
 		}
+		// Wait for startup...
+        Poco::Thread::sleep(1000);
 
 
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
+        OSELib::SDC::ServiceManager sm(createSDCInstance());
+        auto tl_consumers{sm.discoverOSCP()};
 
-        Poco::Thread::sleep(2000);
-
-        DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Starting discovery test...";
-
-        OSELib::SDC::ServiceManager sm;
-        std::vector<std::unique_ptr<SDCConsumer>> consumers(sm.discoverOSCP());
-
+        // Found all the providers?
         bool foundAll = true;
-        for (const auto & providerEPR : providerEPRs) {
+        for (const auto & providerEPR : t_providerEPRs) {
         	bool foundOne = false;
-			for (const auto & consumer : consumers) {
+			for (const auto & consumer : tl_consumers) {
 				if (consumer->getEndpointReference() == providerEPR) {
 					foundOne = true;
 					break;
 				}
 			}
 			if (!foundOne) {
-				DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Missing epr: " << providerEPR << std::endl;
+				DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Missing epr: " << providerEPR << std::endl;
 			}
 			foundAll &= foundOne;
         }
         CHECK_EQUAL(true, foundAll);
 
         std::vector<std::shared_ptr<MyConnectionLostHandler>> connectionLostHanders;
-        for (auto & nextConsumer : consumers) {
-        	DebugOut(DebugOut::Default, std::cout, "connectionlostoscp") << "Found " << nextConsumer->getEndpointReference();
+        for (auto& nextConsumer : tl_consumers) {
+            DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Found " << nextConsumer->getEndpointReference();
 
-        	if (std::find(providerEPRs.begin(), providerEPRs.end(), nextConsumer->getEndpointReference()) == providerEPRs.end()) {
+            if (std::find(t_providerEPRs.begin(), t_providerEPRs.end(), nextConsumer->getEndpointReference()) == t_providerEPRs.end()) {
         		// not our own provider => skip
         		continue;
         	}
 
-        	std::shared_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(*nextConsumer.get()));
+            auto myHandler = std::make_shared<MyConnectionLostHandler>(*nextConsumer.get());
         	nextConsumer->setConnectionLostHandler(myHandler.get());
         	connectionLostHanders.push_back(myHandler);
         }
 
-        for (auto & next : providers) {
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Shutting down all Providers...\n";
+        for (auto next : providers) {
         	next->shutdown();
         }
 
-        Poco::Thread::sleep(10000);
+        // Wait long enough for all to get a call... FIXME: Sometimes this test fails. Just because the timings arent correct.
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for connectionLostHanders...\n";
 
-        for (const auto handler : connectionLostHanders) {
-        	CHECK_EQUAL(true, handler->handlerVisited);
+        Poco::Thread::sleep(10000); // Long enough to get all, or we get an error...
+
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Checking connectionLostHandlers...\n";
+
+        for (auto & handler : connectionLostHanders) {
+            CHECK_EQUAL(true, handler->handlerVisited);
+            handler.reset();
         }
-
-    } catch (char const* exc) {
-		DebugOut(DebugOut::Default, std::cerr, "connectionlostoscp") << exc;
-	} catch (...) {
-		DebugOut(DebugOut::Default, std::cerr, "connectionlostoscp") << "Unknown exception occurred!";
 	}
+	catch (...) {
+		DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Unknown exception occurred!";
+	}
+	DebugOut(DebugOut::Default, std::cout, m_details.testName) << "CloseLogFile...\n";
 	DebugOut::closeLogFile();
+    DebugOut(DebugOut::Default, std::cout, m_details.testName) << "\nFinished Test!\n";
 }
 }

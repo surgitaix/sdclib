@@ -4,7 +4,7 @@
 # 
 # autor: Sebastian Buerger @ surgiTAIX AG
 # 
-# This file is used to generate SimpleTypesMappings.h / ~.cpp, ConvertFromCDM.h / ~.cpp and ConvertToCDM.h / .cpp for the OSCLibrary
+# This file is used to generate SimpleTypesMappings.h / ~.cpp, ConvertFromCDM.h / ~.cpp and ConvertToCDM.h / .cpp for the SDCLibrary
 #
 # to make changes in the generated files please edit the corresponding *_beginning, *_ending files
 
@@ -25,7 +25,7 @@ from pyclassgenerators.defaultgenerator import DefaultDeclarationBuilder, Defaul
 ##
 ## Setup
 ##
-xsdFiles = {etree.parse('../datamodel/BICEPS_ParticipantModel.xsd'), etree.parse('../datamodel/DICOMDeviceDescription.xsd') };
+xsdFiles = {etree.parse('../datamodel/xsd/BICEPS_ParticipantModel.xsd'), etree.parse('../datamodel/xsd/DICOMDeviceDescription.xsd') };
 
 #xsd:duration' : 'std::string''
 # mapping of basetypes:xsd -> cpp

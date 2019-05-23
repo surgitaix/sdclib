@@ -19,7 +19,7 @@ class StaticContentController : public Service {
 public:
 	StaticContentController(FrontController & controller, const std::string & uri, const std::string & content);
 
-	virtual Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & httpRequest) override;
+	Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & httpRequest) override;
 
 private:
 	const std::string _content;

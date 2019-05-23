@@ -1,43 +1,39 @@
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/SDCInstance.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
 
-#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
 
-#include "OSCLib/Data/SDC/SDCProvider.h"
-#include "OSCLib/Data/SDC/SDCProviderAlertConditionStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderComponentStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "OSCLib/Data/SDC/MDIB/AlertConditionDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/AlertConditionState.h"
-#include "OSCLib/Data/SDC/MDIB/AlertSystemDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/AlertSystemState.h"
-#include "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/ChannelState.h"
-#include "OSCLib/Data/SDC/MDIB/CodedValue.h"
-#include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MdsState.h"
-#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "OSCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/LocationContextState.h"
-#include "OSCLib/Data/SDC/MDIB/MdDescription.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MetaData.h"
-#include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/VmdState.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "../AbstractOSCLibFixture.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Data/SDC/SDCProviderAlertConditionStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Data/SDC/MDIB/AlertConditionDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/AlertConditionState.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSystemDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSystemState.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelState.h"
+#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MdsState.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextState.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MetaData.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/VmdState.h"
+#include "SDCLib/Util/DebugOut.h"
+#include "../AbstractSDCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include "OSELib/SDC/ServiceManager.h"
-
-#include "Poco/Event.h"
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Data::SDC;
@@ -46,7 +42,6 @@ namespace SDCLib {
 namespace Tests {
 namespace PeriodicEvents {
 
-const std::string TESTNAME("PeriodicEvents");
 
 const std::string DEVICE_ENDPOINT_REFERENCE("EPR_PERIODIC_EVENT_TEST");
 const std::string DEVICE_UDI("UDI_PERIODIC_EVENT_TEST");
@@ -99,7 +94,7 @@ public:
 		counter(0) {
 	}
 
-	virtual void onStateChanged(const LocationContextState & state) override {
+	virtual void onStateChanged(const LocationContextState&) override {
 		++counter;
 		if (counter < 5) {
 			Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received locationContextDescriptor context values changed! Handle: " << getDescriptorHandle() <<std::endl;
@@ -163,12 +158,12 @@ public:
     }
 
 	// not allowed to change the state
-	InvocationState onStateChangeRequest(const AlertConditionState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const AlertConditionState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
 
 	// ignore
-	void sourceHasChanged(const std::string & sourceHandle) override {
+	void sourceHasChanged(const std::string&) override {
 		return;
 	}
 
@@ -192,7 +187,7 @@ public:
         return result;
     }
 
-	InvocationState onStateChangeRequest(const AlertSystemState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
 
@@ -214,7 +209,7 @@ public:
     }
 
     // not allowed
-    InvocationState onStateChangeRequest(const LocationContextState & state, const OperationInvocationContext & oic) {
+    InvocationState onStateChangeRequest(const LocationContextState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -239,7 +234,7 @@ public:
     }
 
     // not allowed
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
     	return InvocationState::Fail;
     }
 };
@@ -311,8 +306,8 @@ class OSCPDeviceProvider {
 public:
 	// the mandatory fields of the states and descriptors MUST be initialized in the constructor initializer list,
 	// the state handlers are recommended to be initialized in the constructor initializer list
-	OSCPDeviceProvider() :
-		sdcProvider(),
+	OSCPDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+		sdcProvider(p_SDCInstance),
 
 		alertCondition(ALERT_CONDITION_HANDLE, AlertConditionKind::Tec, AlertConditionPriority::Me),
 		dummyMetricDescriptor(METRIC_DUMMY_HANDLE, CodedValue(CodeIdentifier("codedvalue_dummy_handle")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0),
@@ -421,8 +416,8 @@ private:
 // Test
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-struct FixturePeriodicEvents : Tests::AbstractOSCLibFixture {
-	FixturePeriodicEvents() : AbstractOSCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::Error, 9100) {}
+struct FixturePeriodicEvents : Tests::AbstractSDCLibFixture {
+	FixturePeriodicEvents() : AbstractSDCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::Error) {}
 };
 
 SUITE(OSCP) {
@@ -430,9 +425,11 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
 {
 	try
 	{
+        auto t_SDCInstance = createSDCInstance();
+
         // Provider
-        Tests::PeriodicEvents::OSCPDeviceProvider provider;
-        provider.startup();    
+        Tests::PeriodicEvents::OSCPDeviceProvider provider(t_SDCInstance);
+        provider.startup();
 
         // enable periodic event for metrices
         provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::ALERT_CONDITION_HANDLE);
@@ -442,7 +439,7 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
         provider.setPeriodicEventInterval(0, 500);
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
+        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
         std::shared_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(Tests::PeriodicEvents::DEVICE_ENDPOINT_REFERENCE));
 
         // Make test fail if discovery fails
@@ -479,11 +476,11 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
 
         provider.shutdown();
     } catch (char const* exc) {
-    	Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << exc;
+        Util::DebugOut(Util::DebugOut::Default, std::cerr, m_details.testName) << exc;
     }catch (Poco::SystemException *e){
-    	Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << e->message();
+        Util::DebugOut(Util::DebugOut::Default, std::cerr, m_details.testName) << e->message();
 	} catch (...) {
-		Util::DebugOut(Util::DebugOut::Default, std::cerr, Tests::PeriodicEvents::TESTNAME) << "Unknown exception occurred!";
+        Util::DebugOut(Util::DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
 }
 }

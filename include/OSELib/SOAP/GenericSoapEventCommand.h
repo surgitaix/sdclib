@@ -27,7 +27,7 @@ public:
 	virtual ~GenericSoapEventCommand() = default;
 
 protected:
-	virtual std::unique_ptr<MESSAGEMODEL::Envelope> checkDispatchPreconditions(std::unique_ptr<MESSAGEMODEL::Envelope> request) override {
+	std::unique_ptr<MESSAGEMODEL::Envelope> checkDispatchPreconditions(std::unique_ptr<MESSAGEMODEL::Envelope> request) override {
 		NormalizedMessageAdapter<typename TraitsType::ReportType> requestAdapter;
 		if (!requestAdapter.present(*request)) {
 			throw SoapActionCommand::MissingRequestBody("Request body missing for " + TraitsType::Action());
@@ -35,7 +35,7 @@ protected:
 		return std::move(request);
 	}
 
-	virtual std::unique_ptr<MESSAGEMODEL::Envelope> dispatch(const MESSAGEMODEL::Envelope & request) override {
+	std::unique_ptr<MESSAGEMODEL::Envelope> dispatch(const MESSAGEMODEL::Envelope & request) override {
 
 		NormalizedMessageAdapter<typename TraitsType::ReportType> requestAdapter;
 		const typename TraitsType::ReportType & requestBody(requestAdapter.get(request));

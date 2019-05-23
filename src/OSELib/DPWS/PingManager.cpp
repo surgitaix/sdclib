@@ -5,7 +5,7 @@
  *      Author: matthias
  */
 
-#include "OSCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
 
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/DPWS/PingManager.h"

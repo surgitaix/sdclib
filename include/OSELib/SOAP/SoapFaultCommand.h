@@ -19,7 +19,7 @@ public:
 	SoapFaultCommand(Poco::Net::HTTPServerResponse & httpResponse);
 	virtual ~SoapFaultCommand();
 
-	virtual std::unique_ptr<MESSAGEMODEL::Envelope> Run() override;
+	std::unique_ptr<MESSAGEMODEL::Envelope> Run() override;
 
 private:
 	Poco::Net::HTTPServerResponse & _httpResponse;

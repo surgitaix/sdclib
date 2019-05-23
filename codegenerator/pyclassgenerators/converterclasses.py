@@ -51,7 +51,7 @@ class CppConvertFromCDMClassDefinitionBuilder(object):
     def addComplexType(self, typeName, abstractBool):
         if not abstractBool:
             self.__complex = self.__complex + typeName + ' ConvertFromCDM::convert(const CDM::' + typeName +' & source) {\n\treturn ' + typeName + '(source);\n}\n\n'
-            self.__includes = self.__includes + '#include \"OSCLib/Data/SDC/MDIB/'+ typeName + '.h\"\n'
+            self.__includes = self.__includes + '#include \"SDCLib/Data/SDC/MDIB/'+ typeName + '.h\"\n'
         
     def addEnumConverterFunctionAsString(self,enumConverterFunction_string):
         self.__enums = self.__enums + enumConverterFunction_string;
@@ -115,7 +115,7 @@ class CppConvertToCDMClassDefinitionBuilder(object):
     
     def addComplexType(self, typeName, abstractBool):
         if not abstractBool:
-            self.__includes = self.__includes + '#include \"OSCLib/Data/SDC/MDIB/'+ typeName + '.h\"\n'
+            self.__includes = self.__includes + '#include \"SDCLib/Data/SDC/MDIB/'+ typeName + '.h\"\n'
             self.__complex = self.__complex + 'template\nstd::unique_ptr<typename ' + typeName + '::WrappedType> ConvertToCDM::convert(const '+ typeName + ' & source);\n\n'
         
     def addEnumConverterFunctionAsString(self,enumConverterFunction_string):

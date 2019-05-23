@@ -1,9 +1,11 @@
-Codegenerator GSL:
-https://github.com/imatix/gsl
+# python lxml
+sudo apt-get install python-lxml
 
-Dependency: Ubuntu package libpcre3-dev
+# Codegenerator GSL:
+# https://github.com/imatix/gsl
 
-Download, compile and install:
+# Dependency: Ubuntu package libpcre3-dev
+# Download, compile and install:
 git clone git://github.com/imatix/gsl
 cd gsl/src
 make

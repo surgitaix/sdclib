@@ -1,6 +1,6 @@
 #include "osdm.hxx"
-#include "OSCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
-#include "OSCLib/Data/SDC/MDIB/ConvertToCDM.h"
+#include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
+#include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
 #include <stdexcept>
 
@@ -30,43 +30,43 @@ ConvertToCDM::~ConvertToCDM() {
 }
 
 
-bool ConvertToCDM::convert(const bool & source) {
+bool ConvertToCDM::convert(const bool source) {
 	return source;
 }
 
-double ConvertToCDM::convert(const double & source) {
+double ConvertToCDM::convert(const double source) {
 	return source;
 }
 
-unsigned int ConvertToCDM::convert(const unsigned int & source) {
+unsigned int ConvertToCDM::convert(const unsigned int source) {
 	return source;
 }
 
-int ConvertToCDM::convert(const int & source) {
+int ConvertToCDM::convert(const int source) {
 	return source;
 }
 
-long ConvertToCDM::convert(const long & source) {
+long ConvertToCDM::convert(const long source) {
 	return source;
 }
 
-long long ConvertToCDM::convert(const long long & source) {
+long long ConvertToCDM::convert(const long long source) {
+	return source;
+}
+
+unsigned short int ConvertToCDM::convert(const unsigned short int source) {
+	return source;
+}
+
+unsigned long ConvertToCDM::convert(const unsigned long source){
+	return source;
+}
+
+unsigned long long ConvertToCDM::convert(const unsigned long long source) {
 	return source;
 }
 
 std::string ConvertToCDM::convert(const std::string & source) {
-	return source;
-}
-
-unsigned short int ConvertToCDM::convert(const unsigned short int & source) {
-	return source;
-}
-
-unsigned long ConvertToCDM::convert(const unsigned long & source){
-	return source;
-}
-
-unsigned long long ConvertToCDM::convert(const unsigned long long & source) {
 	return source;
 }
 

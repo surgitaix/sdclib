@@ -12,25 +12,22 @@
 
 #include <string>
 
-namespace OSELib {
-namespace WSDL {
+namespace OSELib
+{
+    namespace WSDL
+    {
+        class WSDLLoader {
+        public:
+            WSDLLoader() = default;
+            ~WSDLLoader() = default;
 
-class WSDLLoader {
-public:
-	WSDLLoader();
-	virtual ~WSDLLoader();
-
-	std::string getGetServiceWSDL();
-	std::string getSetServiceWSDL();
-	std::string getContextServiceWSDL();
-	std::string getStateEventServiceWSDL();
-	std::string getWaveformServiceWSDL();
-
-private:
-
-};
-
+            std::string getGetServiceWSDL() const;
+            std::string getSetServiceWSDL() const;
+            std::string getContextServiceWSDL() const;
+            std::string getStateEventServiceWSDL() const;
+            std::string getWaveformServiceWSDL() const;
+        };
+    }
 }
-} /* namespace SDCLib */
 
 #endif /* INCLUDE_WSDL_H_ */

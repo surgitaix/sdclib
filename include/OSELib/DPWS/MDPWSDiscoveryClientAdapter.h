@@ -11,6 +11,7 @@
 #include <mutex>
 #include <tuple>
 
+#include "SDCLib/Prerequisites.h"
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/Types.h"
 
@@ -44,13 +45,13 @@ class MDPWSDiscoveryClientAdapter :
 		public ResolveMatchNotificationDispatcher
 {
 public:
-	MDPWSDiscoveryClientAdapter();
+    MDPWSDiscoveryClientAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance);
 	virtual ~MDPWSDiscoveryClientAdapter();
 
-	void addProbeMatchEventHandler(const ProbeType & filter, ProbeMatchCallback & callback);
+	void addProbeMatchEventHandler(const ProbeType filter, ProbeMatchCallback & callback);
 	void removeProbeMatchEventHandler(ProbeMatchCallback & callback);
 
-	void addResolveMatchEventHandler(const ResolveType & filter, ResolveMatchCallback & callback);
+	void addResolveMatchEventHandler(const ResolveType filter, ResolveMatchCallback & callback);
 	void removeResolveMatchEventHandler(ResolveMatchCallback & callback);
 
 	void addHelloEventHandler(HelloCallback & callback);
@@ -60,10 +61,12 @@ public:
 	void removeByeEventHandler(ByeCallback & callback);
 
 private:
-	virtual void dispatch(const ProbeMatchType & notification) override;
-	virtual void dispatch(const ResolveMatchType & notification) override;
-	virtual void dispatch(const ByeType & notification) override;
-	virtual void dispatch(const HelloType & notification) override;
+	void dispatch(const ProbeMatchType & notification) override;
+	void dispatch(const ResolveMatchType & notification) override;
+	void dispatch(const ByeType & notification) override;
+	void dispatch(const HelloType & notification) override;
+
+    std::unique_ptr<Impl::DPWSDiscoveryClientSocketImpl> _impl;
 
 	typedef std::tuple<ProbeType, ProbeMatchCallback *> ProbeMatchHandler;
 	typedef std::tuple<ResolveType, ResolveMatchCallback *> ResolveMatchHandler;
@@ -72,9 +75,8 @@ private:
 	std::vector<HelloCallback*> _helloHandlers;
 	std::vector<ByeCallback*> _byeHandlers;
 
-	mutable std::mutex _mutex;
+	std::mutex _mutex;
 
-	std::unique_ptr<Impl::DPWSDiscoveryClientSocketImpl> _impl;
 };
 
 } /* namespace DPWS */

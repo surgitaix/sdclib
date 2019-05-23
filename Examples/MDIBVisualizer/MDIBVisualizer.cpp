@@ -1,9 +1,9 @@
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/MDIB/ConvertFromCDM.h"
+#include "SDCLib/SDCLibrary.h"
+#include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "OSELib/SDC/SDCConstants.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Util/DebugOut.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Util/DebugOut.h"
 #include "OSELib/Helper/WithLogger.h"
 
 #include "OSELib/SDC/ServiceManager.h"
@@ -1422,6 +1422,8 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 		result << "}" << std::endl;
 		return result.str();
 	}
+	//FIXME: Empty string is an error?
+	return std::string();
 }
 
 int main() {
@@ -1431,7 +1433,9 @@ int main() {
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpdf {} -o {}.pdf";
 
-	OSELib::SDC::ServiceManager oscpsm;
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
 
 	//int loopcounter = 0;
 	//while (true) {

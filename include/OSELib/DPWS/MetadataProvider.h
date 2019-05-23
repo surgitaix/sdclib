@@ -9,7 +9,7 @@
 #define DPWS_METADATAPROVIDER_H_
 
 #include "OSELib/fwd.h"
-#include "OSCLib/Dev/DeviceCharacteristics.h"
+#include "SDCLib/Dev/DeviceCharacteristics.h"
 
 namespace OSELib {
 namespace DPWS {

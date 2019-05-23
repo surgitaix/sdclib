@@ -8,4 +8,4 @@
 } /* namespace Data */
 } /* namespace SDCLib */
 
-#endif /* DATA_OSCP_MDIB_CONVERTTOCDM_H_ */
+#endif /* DATA_SDC_MDIB_CONVERTTOCDM_H_ */

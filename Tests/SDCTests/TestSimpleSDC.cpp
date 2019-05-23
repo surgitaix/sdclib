@@ -37,56 +37,56 @@
 
 
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/FutureInvocationState.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
-#include "OSCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderAlertConditionStateHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderActivateOperationHandler.h"
-#include "OSCLib/Data/SDC/SDCProviderComponentStateHandler.h"
-#include "OSCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "OSCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/AllowedValue.h"
-#include "OSCLib/Data/SDC/MDIB/LimitAlertConditionDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/LimitAlertConditionState.h"
-#include "OSCLib/Data/SDC/MDIB/AlertSignalDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/AlertSignalState.h"
-#include "OSCLib/Data/SDC/MDIB/AlertSystemDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/AlertSystemState.h"
-#include "OSCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/ChannelState.h"
-#include "OSCLib/Data/SDC/MDIB/CodedValue.h"
-#include "OSCLib/Data/SDC/MDIB/EnumStringMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/EnumStringMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MdsState.h"
-#include "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "OSCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/LocationContextState.h"
-#include "OSCLib/Data/SDC/MDIB/MdDescription.h"
-#include "OSCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/OperatorContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/PatientContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/PatientContextState.h"
-#include "OSCLib/Data/SDC/MDIB/PatientDemographicsCoreData.h"
-#include "OSCLib/Data/SDC/MDIB/Range.h"
-#include "OSCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/StringMetricState.h"
-#include "OSCLib/Data/SDC/MDIB/StringMetricValue.h"
-#include "OSCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/MetaData.h"
-#include "OSCLib/Data/SDC/MDIB/VmdDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/VmdState.h"
-#include "OSCLib/Data/SDC/MDIB/Udi.h"
-#include "OSCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/Task.h"
-#include "../AbstractOSCLibFixture.h"
+#include "SDCLib/SDCInstance.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/FutureInvocationState.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderAlertConditionStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderActivateOperationHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include "SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/AllowedValue.h"
+#include "SDCLib/Data/SDC/MDIB/LimitAlertConditionDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LimitAlertConditionState.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSignalDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSignalState.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSystemDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSystemState.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelState.h"
+#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/EnumStringMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/EnumStringMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MdsState.h"
+#include "SDCLib/Data/SDC/MDIB/InstanceIdentifier.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextState.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/OperatorContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/PatientContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/PatientContextState.h"
+#include "SDCLib/Data/SDC/MDIB/PatientDemographicsCoreData.h"
+#include "SDCLib/Data/SDC/MDIB/Range.h"
+#include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MetaData.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/VmdState.h"
+#include "SDCLib/Data/SDC/MDIB/Udi.h"
+#include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
+#include "SDCLib/Util/DebugOut.h"
+#include "SDCLib/Util/Task.h"
+#include "../AbstractSDCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include <memory>
@@ -353,7 +353,7 @@ private:
 class LocationContextStateHandler : public SDCProviderMDStateHandler<LocationContextState> {
 public:
 	LocationContextStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {}
-	virtual InvocationState onStateChangeRequest(const LocationContextState & state,  const OperationInvocationContext & oic) override {
+	virtual InvocationState onStateChangeRequest(const LocationContextState & state,  const OperationInvocationContext&) override {
 		if (state.getDescriptorHandle() !=  LOCATION_CONTEXT_HANDLE)
 			return InvocationState::Fail;
 
@@ -371,7 +371,7 @@ public:
 class PatientContextStateHandler : public SDCProviderMDStateHandler<PatientContextState> {
 public:
 	PatientContextStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {}
-	virtual InvocationState onStateChangeRequest(const PatientContextState & state,  const OperationInvocationContext & oic) override {
+	virtual InvocationState onStateChangeRequest(const PatientContextState & state,  const OperationInvocationContext&) override {
 		if (state.getDescriptorHandle() !=  PATIENT_CONTEXT_HANDLE)
 			return InvocationState::Fail;
 
@@ -429,7 +429,7 @@ public:
         	// In real applications, check if state has an observed value and if the observed value has a value!
         	return (float)result->getMetricValue().getValue();
         } else {
-        	DebugOut(DebugOut::Default, "ExampleProvider") << "Maximum weight metric not found." << std::endl;
+            DebugOut(DebugOut::Default, "SimpleSDC") << "Maximum weight metric not found." << std::endl;
         	return 0;
         }
     }
@@ -446,7 +446,7 @@ public:
     }
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
-	InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
     // Helper method
@@ -478,7 +478,7 @@ public:
 	EnumStringMetricStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
-    InvocationState onStateChangeRequest(const EnumStringMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const EnumStringMetricState&, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: EnumStringMetricStateHandler received state change request" << std::endl;
     	notifyOperationInvoked(oic, InvocationState::Start);
@@ -512,7 +512,7 @@ public:
     StrValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
     }
 
-    InvocationState onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const StringMetricState&, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: StrValueStateHandler received state change request" << std::endl;
     	notifyOperationInvoked(oic, InvocationState::Start);
@@ -700,7 +700,7 @@ public:
     }
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
-	InvocationState onStateChangeRequest(const AlertSystemState & state, const OperationInvocationContext & oic) override {
+	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
 };
@@ -713,7 +713,7 @@ public:
 	CommandHandler(std::string descriptorHandle) : SDCProviderActivateOperationHandler(descriptorHandle) {
     }
 
-	InvocationState onActivateRequest(const OperationInvocationContext & oic) override {
+	InvocationState onActivateRequest(const OperationInvocationContext&) override {
 		DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: Received command!" << std::endl;
 		return InvocationState::Fin;
 	}
@@ -787,9 +787,9 @@ public:
 
 class OSCPHoldingDeviceProvider : public Util::Task {
 public:
-    OSCPHoldingDeviceProvider() :
+    OSCPHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
     	currentWeight(0),
-    	sdcProvider(),
+    	sdcProvider(p_SDCInstance),
     	locationContextStateHandler(LOCATION_CONTEXT_HANDLE),
     	patientContextStateHandler(PATIENT_CONTEXT_HANDLE),
     	curValueState(NUMERIC_METRIC_CURRENT_HANDLE),
@@ -996,7 +996,7 @@ public:
     }
 
     void setCurrentWeight(float value) {
-        Poco::Mutex::ScopedLock lock(sdcProvider.getMutex());
+        Poco::Mutex::ScopedLock lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
         currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "SimpleSDC") << "Changed value: " << currentWeight << std::endl;
@@ -1007,6 +1007,7 @@ private:
     float currentWeight;
 
     // Provider object
+    Poco::Mutex m_mutex;
     SDCProvider sdcProvider;
 
     // State (handlers)
@@ -1036,18 +1037,20 @@ private:
 // Test
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-struct FixtureSimpleSDC : Tests::AbstractOSCLibFixture {
-	FixtureSimpleSDC() : AbstractOSCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error, 9000) {}
+struct FixtureSimpleSDC : Tests::AbstractSDCLibFixture {
+	FixtureSimpleSDC() : AbstractSDCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error) {}
 };
 
 SUITE(OSCP) {
-TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
+TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 {
 	DebugOut::openLogFile("Test.log.txt", true);
 	try
 	{
+        auto t_SDCInstance = createSDCInstance();
+
         // Provider
-        Tests::SimpleSDC::OSCPHoldingDeviceProvider provider;
+        Tests::SimpleSDC::OSCPHoldingDeviceProvider provider(t_SDCInstance);
         provider.startup();
         provider.start();
 
@@ -1058,11 +1061,11 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
         mdDescription.addMdsDescriptor(mds_test);
 
         CHECK_EQUAL(true, mdDescription.removeMdsDescriptor(mds_test));
-
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Discover EPR...";
         Poco::Thread::sleep(2000);
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
-        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
+        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+        auto t_consumer(oscpsm.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
 
         // create state handlers
         Tests::SimpleSDC::ExampleConsumerNumericHandler eces1(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE);
@@ -1076,12 +1079,11 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 
 
         // Discovery test
-        CHECK_EQUAL(true, c != nullptr);
+        CHECK_EQUAL(true, t_consumer != nullptr);
 
-		if (c != nullptr) {
-			SDCConsumer & consumer = *c;
+		if (t_consumer != nullptr) {
             // MDIB test
-            MdibContainer mdib(consumer.getMdib());
+            MdibContainer mdib(t_consumer->getMdib());
 
             { // test access to system metadata of mds implemented by provider above
             	std::unique_ptr<MdsDescriptor> pMdsDescriptor(mdib.getMdDescription().findDescriptor<MdsDescriptor>(Tests::SimpleSDC::MDS_HANDLE));
@@ -1117,28 +1119,29 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
             }
 
             // Register for consumer events
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&eces1));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&eces2));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&eces3));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&eces4));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&eces1));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&eces2));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&eces3));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&eces4));
             // Register for alert signal events
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&alertSignalsink));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&latchingAlertSignalsink));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&alertSignalsink));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&latchingAlertSignalsink));
             // Register for context changed events
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&locationEventHandler));
-            CHECK_EQUAL(true, consumer.registerStateEventHandler(&patientEventHandler));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&locationEventHandler));
+            CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&patientEventHandler));
 
+            DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting...";
             Poco::Thread::sleep(2000);
 
             {	// Ensure that requests for wrong handles fail.
-            	DebugOut(DebugOut::Default, "SimpleSDC") << "Numeric test..." << std::endl;
-				DebugOut(DebugOut::Default, "SimpleSDC") << "SHOULD FAIL: " << std::endl;
+                DebugOut(DebugOut::Default, m_details.testName) << "Numeric test..." << std::endl;
+                DebugOut(DebugOut::Default, m_details.testName) << "SHOULD FAIL: " << std::endl;
 				NumericMetricState tempState(" ");
-				std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>("unknown"));
+				std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>("unknown"));
             	CHECK_EQUAL(false, pTempNMS != nullptr);
             }
             {	// Request state of current weight
-				std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
+                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 				CHECK_EQUAL(true, pTempNMS->hasMetricValue());
 				if (pTempNMS->hasMetricValue()) {
@@ -1147,34 +1150,34 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 				}
             }
             {	// Ensure that (read-only) metrics without matching SetOperation cannot be set.
-            	DebugOut(DebugOut::Default, "SimpleSDC") << "SHOULD FAIL: " << std::endl;
-            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
+                DebugOut(DebugOut::Default, m_details.testName) << "SHOULD FAIL: " << std::endl;
+                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
             	CHECK_EQUAL(true, pTempNMS != nullptr);
-            	CHECK_EQUAL(true, InvocationState::Fail == consumer.commitState(*pTempNMS));
+                CHECK_EQUAL(true, InvocationState::Fail == t_consumer->commitState(*pTempNMS));
             }
             {	// Get state of maximum weight
-            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
+                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 				double maxWeight = pTempNMS->getMetricValue().getValue();
 				CHECK_EQUAL(2.0, maxWeight);
             }
             {	// Get state of test enum
-            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
+                std::unique_ptr<EnumStringMetricState> pTempESMS(t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
 				CHECK_EQUAL(true, pTempESMS != nullptr);
 				const std::string enumValue(pTempESMS->getMetricValue().getValue());
 				CHECK_EQUAL("hello", enumValue);
             }
             {	// Set state of test enum with allowed enum value
-            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
+                std::unique_ptr<EnumStringMetricState> pTempESMS(t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
             	CHECK_EQUAL(true, pTempESMS != nullptr);
 
             	pTempESMS->setMetricValue(pTempESMS->getMetricValue().setValue("bon jour"));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempESMS, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(*pTempESMS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
             }
             {	// Set state of test enum with illegal enum value
-            	std::unique_ptr<EnumStringMetricState> pTempESMS(consumer.requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
+                std::unique_ptr<EnumStringMetricState> pTempESMS(t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
             	CHECK_EQUAL(true, pTempESMS != nullptr);
 
 				const std::string enumValue(pTempESMS->getMetricValue().getValue());
@@ -1182,7 +1185,7 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 
 				pTempESMS->setMetricValue(pTempESMS->getMetricValue().setValue("bye"));
 				FutureInvocationState fis;
-				consumer.commitState(*pTempESMS, fis);
+				t_consumer->commitState(*pTempESMS, fis);
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fail, Tests::SimpleSDC::DEFAULT_TIMEOUT));
             }
 
@@ -1191,49 +1194,49 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
             Poco::Thread::sleep(8000);
 
 			{	// Set state test for a numeric metric state (must succeed, use state handle instead of descriptor handle)
-            	std::unique_ptr<NumericMetricState> pTempNMS(consumer.requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
+                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 
 				// Here, we increase max weight to switch condition presence => results in alert signal presence
 				pTempNMS->setMetricValue(pTempNMS->getMetricValue().setValue(10));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempNMS, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(*pTempNMS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
 			}
 
             {	// Set state test for a string metric state (must succeed)
-                DebugOut(DebugOut::Default, "SimpleSDC") << "String test...";
-            	std::unique_ptr<StringMetricState> pTempNMS(consumer.requestState<StringMetricState>(Tests::SimpleSDC::STRING_METRIC_HANDLE));
+                DebugOut(DebugOut::Default, m_details.testName) << "String test...";
+                std::unique_ptr<StringMetricState> pTempNMS(t_consumer->requestState<StringMetricState>(Tests::SimpleSDC::STRING_METRIC_HANDLE));
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 
 				pTempNMS->setMetricValue(pTempNMS->getMetricValue().setValue("Test2"));
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempNMS, fis));
-				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(*pTempNMS, fis));
+                CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
             }
 
             {	// Activate test
-                DebugOut(DebugOut::Default, "SimpleSDC") << "Activate test...";
+                DebugOut(DebugOut::Default, m_details.testName) << "Activate test...";
                 FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == c->activate(Tests::SimpleSDC::CMD_HANDLE, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->activate(Tests::SimpleSDC::CMD_HANDLE, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
             }
 
             {	// Location context test
-                DebugOut(DebugOut::Default, "SimpleSDC") << "Location context test...";
+                DebugOut(DebugOut::Default, m_details.testName) << "Location context test...";
                 // todo: check here if working!
                 LocationContextState lcs(Tests::SimpleSDC::LOCATION_CONTEXT_HANDLE, "location_context_state");
                 lcs.setContextAssociation(ContextAssociation::Assoc);
                 lcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
                 FutureInvocationState fis;
                 locationEventHandler.getEventEMR().reset();
-                CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(lcs, fis));
+                CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(lcs, fis));
 				CHECK_EQUAL(true, locationEventHandler.getEventEMR().tryWait(3000));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
-				DebugOut(DebugOut::Default, "SimpleSDC") << "Location context test done...";
+				DebugOut(DebugOut::Default, m_details.testName) << "Location context test done...";
             }
             {	// Patient context test
-            	DebugOut(DebugOut::Default, "SimpleSDC") << "Patient context test...";
+                DebugOut(DebugOut::Default, m_details.testName) << "Patient context test...";
 				PatientContextState pcs(Tests::SimpleSDC::PATIENT_CONTEXT_HANDLE, "patient_context_state");
 				pcs.setContextAssociation(ContextAssociation::Assoc);
 				pcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
@@ -1245,12 +1248,12 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 						//.setDateOfBirth("08.05.1945"));
 				FutureInvocationState fis;
 				patientEventHandler.getEventEMR().reset();
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(pcs, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(pcs, fis));
 
 				CHECK_EQUAL(true, patientEventHandler.getEventEMR().tryWait(3000));
 
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
-				DebugOut(DebugOut::Default, "SimpleSDC") << "Patient context test done...";
+				DebugOut(DebugOut::Default, m_details.testName) << "Patient context test done...";
 			}
             // Run for some time to receive and display incoming metric events.
 			Poco::Thread::sleep(5000);
@@ -1259,13 +1262,13 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 			provider.interrupt();
 
 			{	// Switch alert signal state off
-            	std::unique_ptr<AlertSignalState> pTempASS(consumer.requestState<AlertSignalState>(Tests::SimpleSDC::ALERT_SIGNAL_HANDLE));
+                std::unique_ptr<AlertSignalState> pTempASS(t_consumer->requestState<AlertSignalState>(Tests::SimpleSDC::ALERT_SIGNAL_HANDLE));
 				CHECK_EQUAL(true, pTempASS != nullptr);
 
 
 				pTempASS->setPresence(AlertSignalPresence::Off);
 				FutureInvocationState fis;
-				CHECK_EQUAL(true, InvocationState::Wait == consumer.commitState(*pTempASS, fis));
+				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(*pTempASS, fis));
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
 			}
 
@@ -1284,26 +1287,26 @@ TEST_FIXTURE(FixtureSimpleSDC, simpleoscp)
 
 
 
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces1));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces2));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces3));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&eces4));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&alertSignalsink));
-            CHECK_EQUAL(true, consumer.unregisterStateEventHandler(&latchingAlertSignalsink));
-            
-            consumer.setContextStateChangedHandler(nullptr);
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&eces1));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&eces2));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&eces3));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&eces4));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&alertSignalsink));
+            CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&latchingAlertSignalsink));
 
-            DebugOut(DebugOut::Default, "SimpleSDC") << "Finished...";
-            
-            consumer.disconnect();
-		}
+            t_consumer->setContextStateChangedHandler(nullptr);
+
+            DebugOut(DebugOut::Default, m_details.testName) << "Finished...";
+
+            t_consumer->disconnect();
+        }
 
         Poco::Thread::sleep(2000);
         provider.shutdown();
     } catch (char const* exc) {
-		DebugOut(DebugOut::Default, std::cerr, "simpleoscp") << exc;
+		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
 	} catch (...) {
-		DebugOut(DebugOut::Default, std::cerr, "simpleoscp") << "Unknown exception occurred!";
+		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();
 }

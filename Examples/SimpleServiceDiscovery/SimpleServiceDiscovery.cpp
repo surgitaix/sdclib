@@ -1,9 +1,9 @@
 
-#include "OSCLib/SDCLibrary.h"
+#include "SDCLib/SDCLibrary.h"
 #include "OSELib/SDC/SDCConstants.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
-#include "OSCLib/Util/DebugOut.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Util/DebugOut.h"
 
 #include "OSELib/SDC/ServiceManager.h"
 

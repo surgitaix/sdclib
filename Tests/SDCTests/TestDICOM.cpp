@@ -1,18 +1,18 @@
 
-#include "OSCLib/SDCLibrary.h"
-#include "OSCLib/Data/SDC/SDCConsumer.h"
-#include "OSCLib/Data/SDC/SDCProvider.h"
-//#include "OSCLib/Data/SDC/MDIB/Base64Binary.h"
-#include "OSCLib/Data/SDC/MDIB/CodedValue.h"
-#include "OSCLib/Data/SDC/MDIB/DicomDeviceDescriptor.h"
-#include "OSCLib/Data/SDC/MDIB/DicomNetworkAe.h"
-#include "OSCLib/Data/SDC/MDIB/DicomNetworkConnection.h"
-#include "OSCLib/Data/SDC/MDIB/DicomTransferCapability.h"
-#include "OSCLib/Data/SDC/MDIB/InstanceIdentifier.h"
-#include "OSCLib/Data/SDC/MDIB/MdDescription.h"
-#include "OSCLib/Data/SDC/MDIB/MetaData.h"
-#include "OSCLib/Util/DebugOut.h"
-#include "OSCLib/Util/Task.h"
+#include "SDCLib/SDCInstance.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
+//#include "SDCLib/Data/SDC/MDIB/Base64Binary.h"
+#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/DicomDeviceDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/DicomNetworkAe.h"
+#include "SDCLib/Data/SDC/MDIB/DicomNetworkConnection.h"
+#include "SDCLib/Data/SDC/MDIB/DicomTransferCapability.h"
+#include "SDCLib/Data/SDC/MDIB/InstanceIdentifier.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/MetaData.h"
+#include "SDCLib/Util/DebugOut.h"
+#include "SDCLib/Util/Task.h"
 #include "../AbstractOSCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
 
@@ -90,7 +90,7 @@ private:
 }
 
 struct FixtureDICOMOSCP : Tests::AbstractOSCLibFixture {
-	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", OSELib::LogLevel::Notice, 9050) {}
+	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 20) {}
 };
 
 SUITE(OSCP) {

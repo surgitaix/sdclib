@@ -32,22 +32,28 @@ namespace SDCLib
     namespace Config
     {
         // Will be replaced by CMake
-        const int SDCLIBRARY_VERSION_FIRST = 3;
-        const int SDCLIBRARY_VERSION_MIDDLE = 1;
+        const int SDCLIBRARY_VERSION_FIRST = 4;
+        const int SDCLIBRARY_VERSION_MIDDLE = 0;
         const int SDCLIBRARY_VERSION_LAST = 0;
-        const std::string CURRENT_LIB_VERSION("3.1.0");
+        const std::string CURRENT_LIB_VERSION("4.0.0");
 
         const std::string CURRENT_C_YEAR("2019"); // Copyright year
 
         const std::string STR_SURGITAIX("SurgiTAIX AG"); // Company name
 
         // Specify these values in your firewall settings to pass the allowed port range (running tests and examples!)
+
+        const unsigned int SDC_DEFAULT_MDPWS_PORT = 0;
+
         const unsigned int SDC_ALLOWED_PORT_START = 14000;
         const unsigned int SDC_ALLOWED_PORT_RANGE = 2000;
         const unsigned int SDC_ALLOWED_PORT_END = SDC_ALLOWED_PORT_START + SDC_ALLOWED_PORT_RANGE;
         const unsigned int SDC_DEFAULT_PORT_RANGE = 1000;
 
-        const unsigned int SDC_DISCOVERY_TIMEOUT_MS = 8000;
+        const unsigned int SDC_DEFAULT_PORT_PROVIDER = 14000;
+        const unsigned int SDC_DEFAULT_PORT_CONSUMER = 14001;
+
+        const unsigned int SDC_DISCOVERY_TIMEOUT_MS = 5000;
     }
 }
 

@@ -23,7 +23,7 @@ public:
 	SchemaGrammarProvider();
 	virtual ~SchemaGrammarProvider();
 
-	virtual xercesc::XMLGrammarPool * getPool() const override;
+	xercesc::XMLGrammarPool * getPool() const override;
 
 	bool addSchema(const std::string & name, const std::string & content);
 

@@ -21,7 +21,7 @@ public:
 	BufferAdapter(const Poco::Buffer<char> & buffer, std::size_t length);
 	virtual ~BufferAdapter();
 
-	virtual int readFromDevice() override;
+	int readFromDevice() override;
 
 private:
 	const Poco::Buffer<char> & _buffer;
