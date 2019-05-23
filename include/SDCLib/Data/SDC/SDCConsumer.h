@@ -245,8 +245,6 @@ private:
 
     SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription);
 
-    //SDCConsumer(const OSELib::DPWS::DeviceDescription & deviceDescription, std::shared_ptr<MDPWSTransportLayerConfiguration> config);
-
     /**
     * @brief Get the managing SDCInstance
     *

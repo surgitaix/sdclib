@@ -1,3 +1,8 @@
+Update to version 4.0.1
+
+- Bugfixes related to Examples and Porthandling
+- SDCInstances now choses a random MDPWS port to listen by default (Parameter = 0)
+
 Update to version 4.0.0
 
 - API changes

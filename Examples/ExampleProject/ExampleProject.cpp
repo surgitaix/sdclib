@@ -387,17 +387,17 @@ int main()
 	std::cin >> temp;
 
 	// Discovery
-	std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(DEVICE_EPR));
+	auto t_consumer(oscpsm.discoverEndpointReference(DEVICE_EPR));
 	// alternatively: search the whole network
 //		std::vector<std::unique_ptr<SDCConsumer>> consumers(oscpsm.discoverOSCP());
 
 
-	if (c != nullptr) {
+	if (t_consumer != nullptr) {
 
 		std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler(HANDLE_CURRENT_WEIGHT_METRIC));
 		std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler(HANDLE_MAX_WEIGHT_METRIC));
 
-		SDCConsumer & consumer = *c;
+		SDCConsumer & consumer = *t_consumer;
 		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
 
 		// MDIB test

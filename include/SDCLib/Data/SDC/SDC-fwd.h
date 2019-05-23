@@ -45,7 +45,6 @@ namespace SDC {
 
 	class SDCProviderStateHandler;
 
-	class MDPWSTransportLayerConfiguration;
 }
 }
 }

@@ -54,7 +54,7 @@ namespace SDCLib
         Poco::Net::NetworkInterface m_if;
 
         bool SO_REUSEADDR_FLAG = true;
-        bool SO_REUSEPORT_FLAG = true;
+        bool SO_REUSEPORT_FLAG = false;
 
 
         NetInterface (const Poco::Net::NetworkInterface& p_if)
@@ -79,7 +79,7 @@ namespace SDCLib
         std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
         NI_List ml_networkInterfaces;
         NetInterface_shared_ptr m_MDPWSInterface = nullptr;
-        SDCPort m_MDPWSPort = Config::SDC_ALLOWED_PORT_START;
+        SDCPort m_MDPWSPort = Config::SDC_DEFAULT_MDPWS_PORT;
 
         std::atomic<bool> m_IP4enabled = ATOMIC_VAR_INIT(true);
         std::atomic<bool> m_IP6enabled = ATOMIC_VAR_INIT(true);
@@ -102,7 +102,7 @@ namespace SDCLib
 
     public:
 
-        SDCInstance(SDCPort p_MDPWSPort = Config::SDC_ALLOWED_PORT_START, bool p_init = true);
+        SDCInstance(SDCPort p_MDPWSPort = Config::SDC_DEFAULT_MDPWS_PORT, bool p_init = true);
 
         // Special Member Functions
         SDCInstance(const SDCInstance& p_obj) = delete;
@@ -168,6 +168,8 @@ namespace SDCLib
         void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
 
     private:
+
+        std::pair<bool, SDCPort> findFreePort() const;
 
         void _cleanup();
 

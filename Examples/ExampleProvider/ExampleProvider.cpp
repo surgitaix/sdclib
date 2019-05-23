@@ -373,7 +373,7 @@ int main()
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 
     // Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_PORT_PROVIDER, true);
+    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);
     // Some restriction
     t_SDCInstance->setIP6enabled(false);
     t_SDCInstance->setIP4enabled(true);

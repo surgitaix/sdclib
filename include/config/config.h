@@ -42,6 +42,9 @@ namespace SDCLib
         const std::string STR_SURGITAIX("SurgiTAIX AG"); // Company name
 
         // Specify these values in your firewall settings to pass the allowed port range (running tests and examples!)
+
+        const unsigned int SDC_DEFAULT_MDPWS_PORT = 0;
+
         const unsigned int SDC_ALLOWED_PORT_START = 14000;
         const unsigned int SDC_ALLOWED_PORT_RANGE = 2000;
         const unsigned int SDC_ALLOWED_PORT_END = SDC_ALLOWED_PORT_START + SDC_ALLOWED_PORT_RANGE;
@@ -50,7 +53,7 @@ namespace SDCLib
         const unsigned int SDC_DEFAULT_PORT_PROVIDER = 14000;
         const unsigned int SDC_DEFAULT_PORT_CONSUMER = 14001;
 
-        const unsigned int SDC_DISCOVERY_TIMEOUT_MS = 4000;
+        const unsigned int SDC_DISCOVERY_TIMEOUT_MS = 5000;
     }
 }
 
