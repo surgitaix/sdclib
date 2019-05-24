@@ -105,12 +105,13 @@ bool SDCInstance::bindToNetworkInterface(const std::string& ps_networkInterfaceN
 
             // Already bound to it?
             if (_networkInterfaceBoundTo(ps_networkInterfaceName)) {
-                return false;
+                continue; //we check the other elements in the list because the interface may occur multiple times 
             }
 
             // Must at least support one of the following
-            if (!t_interface.supportsIPv4() && !t_interface.supportsIPv6()) {
-                return false;
+				//both IPv4 and IPv6 are enabled by default, so disabled means it was configured by the application in that way, so we should respect this here
+            if ((!t_interface.supportsIPv4() && !getIP6enabled()) || (!t_interface.supportsIPv6() && !getIP4enabled())) {
+                continue; //we check the other elements in the list because the interface may occur multiple times 
             }
             // Lock
             std::lock_guard<std::mutex> t_lock(m_mutex);
@@ -121,7 +122,7 @@ bool SDCInstance::bindToNetworkInterface(const std::string& ps_networkInterfaceN
             // Grab the address
 
             // IPv4? Else disable!
-            if (t_interface.supportsIPv4()) {
+            if (t_interface.supportsIPv4() && getIP4enabled()) {
                 IPAddress t_IPv4;
                 try {
                     t_interface.firstAddress(t_IPv4, Poco::Net::IPAddress::IPv4);
@@ -133,7 +134,7 @@ bool SDCInstance::bindToNetworkInterface(const std::string& ps_networkInterfaceN
 
 
             // IPv6? Else disable!
-            if (t_interface.supportsIPv6()) {
+            if (t_interface.supportsIPv6() && getIP6enabled()) {
                 IPAddress t_IPv6;
                 try {
                     t_interface.firstAddress(t_IPv6, Poco::Net::IPAddress::IPv6);

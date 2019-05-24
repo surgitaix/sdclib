@@ -257,14 +257,22 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 	}
 
     // Only read if this belongs to this SDCInstance! - Peek first
-    Poco::Net::SocketAddress t_sender;
-    socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
-    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
-        return;
-    }
+	//This causes socket exceptions on Windows because a size of zero for the buffer is too small to peek and this is not catched in Poco Debug
+	//Poco::Net::SocketAddress t_sender;
+    //socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK); 
+	//if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
+    //    return;
+    //}
 
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;
+
+	// Only read if this belongs to this SDCInstance! - Peek first
+	socket.receiveFrom(buf.begin(), available, remoteAddr, MSG_PEEK);
+	if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(remoteAddr.host())) {
+	    return;
+	}
+
 	const int received(socket.receiveFrom(buf.begin(), available, remoteAddr, 0));
 	Helper::BufferAdapter adapter(buf, received);
 	std::unique_ptr<MESSAGEMODEL::Envelope> message(parseMessage(adapter));
