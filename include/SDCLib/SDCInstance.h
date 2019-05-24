@@ -117,7 +117,7 @@ namespace SDCLib
         bool isInit() const { return m_init; }
 
         bool bindToDefaultNetworkInterface(bool p_useAsMDPWS = true);
-        bool bindToInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS = false);
+        bool bindToNetworkInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS = false);
         NI_List getNetworkInterfaces() const { return ml_networkInterfaces; }
         size_t getNumNetworkInterfaces() const { return ml_networkInterfaces.size(); }
         bool _networkInterfaceBoundTo(std::string ps_adapterName) const;

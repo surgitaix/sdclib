@@ -123,10 +123,10 @@ endif()
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
     message(s"CMAKE_SYSTEM_NAME WINDOWS: UNTESTED!")
     # Set the library based on build type
-	##HACK build
-	set(SDCLib_LIBRARY_DIRS ${SDCLib_LIBRARY_DIRS} "${SDCLib_SEARCH_BIN}/build")
+	##HACK build/lib
+	set(SDCLib_LIBRARY_DIRS ${SDCLib_LIBRARY_DIRS} "${SDCLib_SEARCH_BIN}/build/lib")
     set(SDCLib_LIBRARIES 
-			ws2_32 iphlpapi
+			ws2_32 iphlpapi 
 			debug SDCLib_d		debug PocoFoundationmdd 	debug PocoNetmdd
 			optimized SDCLibmd	optimized PocoFoundationmd 	optimized PocoNetmd)
 			

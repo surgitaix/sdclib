@@ -80,14 +80,14 @@ bool SDCInstance::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
         // Matching the criteria?
         if((m_IP4enabled && t_interface.supportsIPv4()) || (m_IP6enabled && t_interface.supportsIPv6())) {
             // Try to bind (else try the next one)
-            if(bindToInterface(t_interface.adapterName(), p_useAsMDPWS)) {
+            if(bindToNetworkInterface(t_interface.adapterName(), p_useAsMDPWS)) {
                 return true;
             }
         }
     }
     return false;
 }
-bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS)
+bool SDCInstance::bindToNetworkInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS)
 {
     if (!isInit()) {
         return false;
