@@ -430,7 +430,8 @@ void SDCConsumerAdapter::subscribeEvents() {
 		subscriptions.emplace_back(
 				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
 				_deviceDescription.getContextServiceURI(),
-				filter);
+				filter,
+				*this);
 	}
 	catch (const std::exception& exc)	//getContextServiceURI can throw runtime exceptions
 	{
@@ -448,7 +449,8 @@ void SDCConsumerAdapter::subscribeEvents() {
 		subscriptions.emplace_back(
 				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
 				_deviceDescription.getEventServiceURI(),
-				filter);
+				filter,
+				*this);
 	}
 	catch (const std::exception& exc)	//getEventServiceURI can throw runtime exceptions
 	{
@@ -465,7 +467,8 @@ void SDCConsumerAdapter::subscribeEvents() {
 		subscriptions.emplace_back(
 				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
 				_deviceDescription.getSetServiceURI(),
-				filter);
+				filter,
+				*this);
 	}
 	catch (const std::exception& exc)	//getSetServiceURI can throw runtime exceptions
 	{
@@ -479,6 +482,13 @@ void SDCConsumerAdapter::unsubscribeEvents() {
 	if (_subscriptionClient) {
 		_subscriptionClient.reset();
 	}
+}
+
+void SDCConsumerAdapter::onSubscriptionLost() {
+	//clean up
+	unsubscribeEvents();	
+
+	_consumer.onSubscriptionLost();
 }
 
 template<class TraitsType>

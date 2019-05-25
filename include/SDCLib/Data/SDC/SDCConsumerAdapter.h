@@ -52,7 +52,7 @@ public:
 	void subscribeEvents();
 	void unsubscribeEvents();
 
-
+	void onSubscriptionLost();
 
 private:
 

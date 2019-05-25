@@ -128,7 +128,7 @@ void SubscriptionClient::run() {
 
 			if (!response) {
 				log_fatal([&] { return "Renew failed."; });
-				//ToDo We need to call the subscription lost handler of the corresponding consumer here!
+				subscription.second._consumerAdapter.onSubscriptionLost();	//ToDo Do we need some further clean up here?
 			}
 		}
 	}

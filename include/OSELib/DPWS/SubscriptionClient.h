@@ -20,6 +20,8 @@
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
+#include "SDCLib/Data/SDC/SDCConsumerAdapter.h"
+
 namespace OSELib {
 namespace DPWS {
 
@@ -29,23 +31,27 @@ public:
 		SubscriptionInformation(
 				const Poco::URI & sinkURI,
 				const Poco::URI & sourceURI,
-				const WS::EVENTING::FilterType & actions) :
+				const WS::EVENTING::FilterType & actions, 
+				SDCLib::Data::SDC::SDCConsumerAdapter& consumer) :
 					_sinkURI(sinkURI),
 					_sourceURI(sourceURI),
-					_actions(actions)
+					_actions(actions),
+					_consumerAdapter(consumer)
 		{
 		}
 
 		SubscriptionInformation(const SubscriptionInformation & source) :
 			_sinkURI(source._sinkURI),
 			_sourceURI(source._sourceURI),
-			_actions(source._actions)
+			_actions(source._actions),
+			_consumerAdapter(source._consumerAdapter)
 		{
 		}
 
 		const Poco::URI _sinkURI;
 		const Poco::URI _sourceURI;
 		const WS::EVENTING::FilterType _actions;
+		SDCLib::Data::SDC::SDCConsumerAdapter& _consumerAdapter;	//needed for subscription lost handling
 	};
 
 	SubscriptionClient(const std::vector<SubscriptionInformation> & subscriptions);

@@ -105,13 +105,13 @@ bool SDCInstance::bindToNetworkInterface(const std::string& ps_networkInterfaceN
 
             // Already bound to it?
             if (_networkInterfaceBoundTo(ps_networkInterfaceName)) {
-                continue; //we check the other elements in the list because the interface may occur multiple times 
+                return false;
             }
 
             // Must at least support one of the following
 				//both IPv4 and IPv6 are enabled by default, so disabled means it was configured by the application in that way, so we should respect this here
             if ((!t_interface.supportsIPv4() && !getIP6enabled()) || (!t_interface.supportsIPv6() && !getIP4enabled())) {
-                continue; //we check the other elements in the list because the interface may occur multiple times 
+                continue;	//the adapter might be listed multiple times (under Windows) so we need to search on.
             }
             // Lock
             std::lock_guard<std::mutex> t_lock(m_mutex);

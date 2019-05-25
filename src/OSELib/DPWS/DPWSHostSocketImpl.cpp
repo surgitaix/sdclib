@@ -165,7 +165,8 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
         // Add only interfaces bound to the SDCInstance
         if (p_SDCInstance->isBound()) {
             // Bind ListeningSocket
-            auto t_ipv4BindingAddress = m_ipv4DiscoveryMulticastAddress;
+            //auto t_ipv4BindingAddress = m_ipv4DiscoveryMulticastAddress;
+			auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4DiscoveryMulticastAddress.port());
             m_ipv4MulticastListeningSocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
                 try
