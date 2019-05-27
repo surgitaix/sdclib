@@ -275,7 +275,7 @@ int main (int argc, char * argv[])
 	DebugOut(DebugOut::Default, "MDIBDump") << std::endl << "Startup: " << testname;
 	SDCLibrary::getInstance().startup();
 
-	OSELib::SDC::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager t_serviceManager;
 
 	while (true) {
 		DebugOut(DebugOut::Default, "MDIBDump") << "Refreshing ..." << std::flush;
@@ -283,9 +283,9 @@ int main (int argc, char * argv[])
 
 		std::vector<std::unique_ptr<SDCConsumer> > results;
 		if (argc != 2) {
-			results = oscpsm.discoverOSCP();
+			results = t_serviceManager.discover();
 		} else {
-			std::unique_ptr<SDCConsumer> result(oscpsm.discoverEndpointReference(std::string(argv[1])));
+			std::unique_ptr<SDCConsumer> result(t_serviceManager.discoverEndpointReference(std::string(argv[1])));
 			if (result != nullptr) {
 				results.emplace_back(std::move(result));
 			}

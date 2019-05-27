@@ -1,6 +1,6 @@
 
-#ifndef OSCPREPORTRAITS_H_
-#define OSCPREPORTRAITS_H_
+#ifndef OSELIB_SDC_REPORTRAITS_H_
+#define OSELIB_SDC_REPORTRAITS_H_
 
 #include "osdm-fwd.hxx"
 
@@ -96,5 +96,5 @@ struct WaveformStreamTraits {
 };
 
 }
-} /* namespace SDCLib */
-#endif /* OSCPREPORTRAITS_H_ */
+}
+#endif /* OSELIB_SDC_REPORTRAITS_H_ */

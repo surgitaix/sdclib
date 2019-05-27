@@ -13,7 +13,7 @@
 #include "SDCLib/Data/SDC/MDIB/MetaData.h"
 #include "SDCLib/Util/DebugOut.h"
 #include "SDCLib/Util/Task.h"
-#include "../AbstractOSCLibFixture.h"
+#include "../AbstractSDCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include "OSELib/SDC/ServiceManager.h"
@@ -27,15 +27,15 @@ using namespace SDCLib::Data::SDC;
 
 namespace SDCLib {
 namespace Tests {
-namespace DICOMOSCP {
+namespace DICOMSDC {
 
 const std::string DEVICE_ENDPOINT_REFERENCE("EPR_DICOM_GATEWAY");
 const std::string MDS_HANDLE("dicom_mds");
 
-class OSCPHoldingDeviceProvider {
+class SDCHoldingDeviceProvider {
 public:
 
-    OSCPHoldingDeviceProvider() : sdcProvider(), dicomDescriptor(MDS_HANDLE) {
+    SDCHoldingDeviceProvider() : sdcProvider(), dicomDescriptor(MDS_HANDLE) {
     	sdcProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
     	std::vector<char> fakeCert;
@@ -89,22 +89,22 @@ private:
 }
 }
 
-struct FixtureDICOMOSCP : Tests::AbstractOSCLibFixture {
-	FixtureDICOMOSCP() : AbstractOSCLibFixture("FixtureDICOMOSCP", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 20) {}
+struct FixtureDICOMSDC : Tests::AbstractSDCLibFixture {
+	FixtureDICOMSDC() : AbstractSDCLibFixture("FixtureDICOMSDC", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 20) {}
 };
 
-SUITE(OSCP) {
-TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
+SUITE(SDC) {
+TEST_FIXTURE(FixtureDICOMSDC, dicomSDC)
 {
 	try
 	{
         // Provider
-        Tests::DICOMSDC::OSCPHoldingDeviceProvider provider;
+        Tests::DICOMSDC::SDCHoldingDeviceProvider provider;
         provider.startup();    
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm;
-        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(Tests::DICOMSDC::DEVICE_ENDPOINT_REFERENCE));
+        OSELib::SDC::ServiceManager t_serviceManager;
+        std::shared_ptr<SDCConsumer> c(t_serviceManager.discoverEndpointReference(Tests::DICOMSDC::DEVICE_ENDPOINT_REFERENCE));
 
         // Discovery test
         CHECK_EQUAL(true, c != nullptr);
@@ -141,7 +141,7 @@ TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
             // Run for some time
     		Poco::Thread::sleep(10000);
 
-            DebugOut(DebugOut::Default, "dicomoscp") << "Finished...";
+            DebugOut(DebugOut::Default, "dicomSDC") << "Finished...";
             
             consumer.disconnect();
 		}
@@ -149,9 +149,9 @@ TEST_FIXTURE(FixtureDICOMOSCP, dicomoscp)
         Poco::Thread::sleep(2000);
         provider.shutdown();
     } catch (char const* exc) {
-		DebugOut(DebugOut::Default, std::cerr, "dicomoscp") << exc;
+		DebugOut(DebugOut::Default, std::cerr, "dicomSDC") << exc;
 	} catch (...) {
-		DebugOut(DebugOut::Default, std::cerr, "dicomoscp") << "Unknown exception occurred!";
+		DebugOut(DebugOut::Default, std::cerr, "dicomSDC") << "Unknown exception occurred!";
 	}
 }
 }

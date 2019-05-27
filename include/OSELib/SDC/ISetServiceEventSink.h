@@ -9,8 +9,8 @@
  *      Author: buerger
  */
 
-#ifndef DATA_OSCP_ISETSERVICEEVENTSINK_H_
-#define DATA_OSCP_ISETSERVICEEVENTSINK_H_
+#ifndef OSELIB_SDC_ISETSERVICEEVENTSINK_H_
+#define OSELIB_SDC_ISETSERVICEEVENTSINK_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/IEventSink.h"
@@ -29,4 +29,4 @@ public:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* DATA_OSCP_ISETSERVICEEVENTSINK_H_ */
+#endif /* OSELIB_SDC_ISETSERVICEEVENTSINK_H_ */

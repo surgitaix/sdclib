@@ -1,11 +1,11 @@
 /**
-@mainpage %OSCLib documentation
+@mainpage %SDCLib documentation
 
 Welcome to the Open Surgical Communication Library documentation pages. Use the menu on the left to navigate to a section, or select
 one of the page links below.
 
-@li @ref intro <b>OR.NET</b>: A short introduction to the %OSCLib
-@li @ref oscppage <b>OR.NET</b>: API for the Open Surgical Communication Protocol
+@li @ref intro <b>OR.NET</b>: A short introduction to the %SDCLib
+@li @ref sdcpage <b>OR.NET</b>: API for the Open Surgical Communication Protocol
 
 @version 2.0 beta
 @author Besting
@@ -16,23 +16,23 @@ one of the page links below.
 @tableofcontents
 
 @section intro Introduction
-The Open Surgical Communication Library (%OSCLib) is a lightweight, easy-to-use, easy-to-port, resource-friendly and fast
-webservice library for medical devices. It implements the Open Surgical Communication Protocol (OSCP) on top of
-DPWS 1.1. %OSCLib supports the WS-Discovery, WS-Addressing, WS-Transfer, WS-Eventing and WS-MetadataExchange specification and is based on
+The Open Surgical Communication Library (%SDCLib) is a lightweight, easy-to-use, easy-to-port, resource-friendly and fast
+webservice library for medical devices. It implements the Open Surgical Communication Protocol (SDC) on top of
+DPWS 1.1. %SDCLib supports the WS-Discovery, WS-Addressing, WS-Transfer, WS-Eventing and WS-MetadataExchange specification and is based on
 SOAP 1.2 and WSDL 1.1 standards.
 
 @section setup Setting up the development environment
 
-The %OSCLib is mostly platform independent. There are only few parts that are implemented for a specific operating system.
+The %SDCLib is mostly platform independent. There are only few parts that are implemented for a specific operating system.
 These parts rely on preprocessor directives. Additionally different libraries have to be linked for different operating systems.
 The neccessary steps are described below.
 
-The %OSCLib relies on XSD including XERCES (http://www.codesynthesis.com). Also, POCO libs are a major dependency but these have been included as source files.
+The %SDCLib relies on XSD including XERCES (http://www.codesynthesis.com). Also, POCO libs are a major dependency but these have been included as source files.
 
 @subsection linuxspecificcmake CMAKE on linux (examples for Ubuntu or Debian, which are recommended)
 
 We provide a cmake build script, which builds a shared library you can include in your own projects as well as several example
-applications which are ready to run. Follow the steps outlined in this section to build %OSCLib on linux.
+applications which are ready to run. Follow the steps outlined in this section to build %SDCLib on linux.
 
 @subsubsection linuxdependenciesxsd Installing XSD and XERCES
 
@@ -44,7 +44,7 @@ Install XSD and xerces-c binaries and includes, on debian or ubuntu you can use 
   <li>sudo apt-get install libxerces-c-dev</li>
 </ul>
 
-@subsubsection buildcmake Building OSCLib using cmake
+@subsubsection buildcmake Building SDCLib using cmake
 
 <p>Before running cmake, edit the CMakeList.txt file. You might have to edit paths defined the CMakesList.txt, if dependecies are not installed on the system using <i>make install</i> or 
 <i>apt-get install</i>.</p>
@@ -62,17 +62,17 @@ The library should now compile and link. If you'd like to configure a debug buil
 
 @subsection integrating Integrating compiled binaries in your project (eclipse CDT)
 
-Please follow the descriptions provided in OSCLib Eclipse.pdf.
+Please follow the descriptions provided in SDCLib Eclipse.pdf.
 
-@page oscppage Open Surgical Communication Protocol
+@page sdcpage Open Surgical Communication Protocol
 
 @tableofcontents
 
-@section oscpstartup Framework startup and shutdown
+@section sdcstartup Framework startup and shutdown
 On both consumer and provider side, the library needs to be initialized before use:
 @code
 // Include common library headers
-#include "OSCL.h"
+#include "SDCInstance.h"
 // Start framework
 SDCLibrary::getInstance().startup();
 // Optional (override ip autobinding): choose a network adapter by providing an IP address for new socket connections
@@ -99,22 +99,22 @@ int main() {
 }
 @endcode
 
-@section oscpoverview Overview
+@section sdcoverview Overview
 
-The API for the Open Surgical Communication Protocol (OSCP-API) is set on top of DPWS. It was created by the OR.NET data model working group and is based on the DIN EN ISO 11073-10201 information model. The resulting OR.NET data model is called CDM (Communication Data Model).
+The API for the Open Surgical Communication Protocol (SDC-API) is set on top of DPWS. It was created by the OR.NET data model working group and is based on the DIN EN ISO 11073-10201 information model. The resulting OR.NET data model is called CDM (Communication Data Model).
 
 There are two main instances used for communication:
 
 <ul>
-  <li><b>SDCLib::Data::SDC::SDCProvider</b>: describes the device, and converts OSCP-conform requests into (proprietary) device commands</li>
+  <li><b>SDCLib::Data::SDC::SDCProvider</b>: describes the device, and converts SDC-conform requests into (proprietary) device commands</li>
   <li><b>SDCLib::Data::SDC::SDCConsumer</b>: a client tool used to establish communication with an SDCProvider</li>
 </ul>
 
 <p>Both instances implement a base set of methods defined by a common interface. This interface allows transparent access to the medical device information base (MDIB) which can be regarded as the database that contains the values defined by the CDM.</b> 
-<p>In order to integrate a medical device (or a medical information service) into an OSCP Network (i.e. writing an <b>OSCP-Connector</b>), you'll first have to implement an instance of SDCProvider. The following sections describe this process using a simple example of implementing an OSCP-Connector for the EndoTAIX holding device system, a camera holding device for endoscopy.</p>
-Working examples similar to this one can be found in the "Examples" folder, especially in <b>ExampleProject.cpp</b>. The unit tests <b>TestSimpleSDC.cpp</b> and <b>TestStreamSDC.cpp</b> might also help to illustrate the OSCP API.
+<p>In order to integrate a medical device (or a medical information service) into an SDC Network (i.e. writing an <b>SDC-Connector</b>), you'll first have to implement an instance of SDCProvider. The following sections describe this process using a simple example of implementing an SDC-Connector for the EndoTAIX holding device system, a camera holding device for endoscopy.</p>
+Working examples similar to this one can be found in the "Examples" folder, especially in <b>ExampleProject.cpp</b>. The unit tests <b>TestSimpleSDC.cpp</b> and <b>TestStreamSDC.cpp</b> might also help to illustrate the SDC API.
 
-@subsection oscp_mbid The MDIB structure
+@subsection sdc_mbid The MDIB structure
 
 The MDIB structure is used to exchange information between the SDCProvider and SDCConsumer instances. The class structure behind it can be used to describe a medical device or a medical service statically and dynamically. The following (simplified) structure is used for the MDIB:
 
@@ -145,25 +145,25 @@ The MDIB structure is used to exchange information between the SDCProvider and S
 
 Alert systems can be inserted at the level of the hydra MDS, the VMD or channel. They will be described later in detail.
 
-@section oscp_provider The EndoTAIX OSCP Provider example
+@section sdc_provider The EndoTAIX SDC Provider example
 
-This section provides a simplified example for an SDCProvider instance for the EndoTAIX holding device system. The <b>OSCPHoldingDeviceProvider</b> class extends the <b>SDCLib::Data::SDC::SDCProvider</b> class. However, it is not required to subclass SDCProvider. Instead, you can also use an instance as a member variable in another class.
-<p>Using <b>OSCProvider::addMDStateHandler</b> is a comfortable way to provide separate handlers for each state. This has the advantage, that code concerning devices's data will be encapsulated elsewhere. This will keep our class (OSCPHoldingDeviceProvider) short.</p>
+This section provides a simplified example for an SDCProvider instance for the EndoTAIX holding device system. The <b>SDCHoldingDeviceProvider</b> class extends the <b>SDCLib::Data::SDC::SDCProvider</b> class. However, it is not required to subclass SDCProvider. Instead, you can also use an instance as a member variable in another class.
+<p>Using <b>SDCrovider::addMDStateHandler</b> is a comfortable way to provide separate handlers for each state. This has the advantage, that code concerning devices's data will be encapsulated elsewhere. This will keep our class (SDCHoldingDeviceProvider) short.</p>
 
 <P>In this example, the provider contains two metrics, which describe their purpose and properties:
 One for current weight (currentWeightMetric, read-only), which is measured using a force-torque-sensor attached to the arm. The other one defines the maximum weight limit (maxWeightMetric, read-write). Each metric also needs a corresponding <b>metric state</b> which contains the actual value.</p>
 Each metric state will be represented by a separate handler, which subclasses <b>SDCProviderMDStateHandler</b>.
 
-@subsection oscp_provider_basics_descriptive Implementation - The descriptive part
+@subsection sdc_provider_basics_descriptive Implementation - The descriptive part
 
 The implementation of the provider's descriptive part can be structured as followed.
 
 @code
-class OSCPHoldingDeviceProvider : public SDCProvider {
+class SDCHoldingDeviceProvider : public SDCProvider {
 public:
-  OSCPHoldingDeviceProvider() { ... }
+  SDCHoldingDeviceProvider() { ... }
 
-  virtual ~OSCPHoldingDeviceProvider() { }
+  virtual ~SDCHoldingDeviceProvider() { }
 
   ...
 
@@ -178,12 +178,12 @@ private:
 }
 @endcode
 
-First, the descriptors have to be filled with proper definitions for our example device. For convenience, we do this in the constructor of our OSCPHoldingDeviceProvider. However this is not a strict requirement.
+First, the descriptors have to be filled with proper definitions for our example device. For convenience, we do this in the constructor of our SDCHoldingDeviceProvider. However this is not a strict requirement.
 
 The most important thing about initializing the metrics is that each metric needs a unique string identifier called "handle", which we define here. You are totally free to chose the handles, as long as they are unique within your device. It is also valid to generate them randomly.
 
 @code
-OSCPHoldingDeviceProvider() {
+SDCHoldingDeviceProvider() {
   setEndpointReference("EPR_12345");
 
   // Define semantic meaning of weight unit "kg", which will be used for defining the
@@ -228,7 +228,7 @@ Each metric must be added to a channel instance, the channel instance to the vir
 <p><b>Important:</b> To make the maximum value state writeable (<b>onStateChangeRequest</b> implemented), a set operation descriptor must be added using <b>createSetOperationForDescriptor</b>!</p>
 
 @code
-OSCPHoldingDeviceProvider() {
+SDCHoldingDeviceProvider() {
 
   ...
 
@@ -276,7 +276,7 @@ OSCPHoldingDeviceProvider() {
 }
 @endcode
 
-@subsection oscp_provider_basics_dynamic Implementation - The dynamic part
+@subsection sdc_provider_basics_dynamic Implementation - The dynamic part
 
 <p>For the dynamic part, we have to implement handlers of a subtype of <b>SDCProviderMDStateHandler</b> (e.g. <b>SDCProviderNumericMetricStateHandler</b>) where each handler takes care of a single state, as already mentioned before. It defines the initial state at startup.
 The handler may then call the <b>updateState</b> method at any time to tell the framework about a state (value) change (e.g. if the real devices state changes). The internal MDIB will then be updated.</p>
@@ -372,9 +372,9 @@ public:
 We extend the constructor's code to add the handlers, which we define as members of the holding device provider class.
 
 @code
-class OSCPHoldingDeviceProvider : public SDCProvider {
+class SDCHoldingDeviceProvider : public SDCProvider {
 public:
-  OSCPHoldingDeviceProvider() {
+  SDCHoldingDeviceProvider() {
   
     ...
   
@@ -398,7 +398,7 @@ private:
 }
 @endcode
 
-@subsection oscp_provider_start Implementation - Start the provider
+@subsection sdc_provider_start Implementation - Start the provider
 
 Starting the provider can be done by calling the method <b>startup</b>. The periodic update thread can be launched by calling <b>start</b>.
  The provider can be stopped by calling </b>shutdown</b>:
@@ -406,9 +406,9 @@ Starting the provider can be done by calling the method <b>startup</b>. The peri
 // Start framework
 SDCLibrary::getInstance()->startup();
 
-// The OSCP Provider instance
+// The SDC Provider instance
 { 
-  OSCPHoldingDeviceProvider provider;
+  SDCHoldingDeviceProvider provider;
   // Start provider
   provider.startup();  
   ...
@@ -418,19 +418,19 @@ SDCLibrary::getInstance()->startup();
 
 @endcode
 
-@section oscp_consumer The EndoTAIX OSCP Consumer example
+@section sdc_consumer The EndoTAIX SDC Consumer example
 
 <p>An SDCConsumer instance is always connected to exactly one SDCProvider instance. SDCConsumer instances can be retrieved via the ServiceManager by using its connection and discovery methods.</p>
 
-@subsection oscp_consumer_servicemanager Discovery using the ServiceManager
+@subsection sdc_consumer_servicemanager Discovery using the ServiceManager
 
-<p>An SDCConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>SDCLib::Data::SDC::OSCPServiceManager</b>).
+<p>An SDCConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>SDCLib::Data::SDC::SDCServiceManager</b>).
 The ServiceManager is resposibe for the discovery of SDCProvider instances. 
 We will now discover the provider using the ServiceManager:
 
 @code
-OSCPServiceManager oscpsm;
-unique_ptr<SDCConsumer> consumer = oscpsm.discoverEndpointReference("EPR_1234");
+SDCServiceManager sdcsm;
+unique_ptr<SDCConsumer> consumer = sdcsm.discoverEndpointReference("EPR_1234");
 if (consumer != nullptr) {
   ...
 }
@@ -439,11 +439,11 @@ if (consumer != nullptr) {
 It's also possible to directly connect using a known transport address:
 
 @code
-OSCPServiceManager oscpsm;
-unique_ptr<SDCConsumer> consumer = oscpsm.connect("http://192.168.1.32:1234/UDI_1234");
+SDCServiceManager sdcsm;
+unique_ptr<SDCConsumer> consumer = sdcsm.connect("http://192.168.1.32:1234/UDI_1234");
 @endcode
 
-@subsection oscp_consumer_events Using the consumer - reception of events
+@subsection sdc_consumer_events Using the consumer - reception of events
 
 If we like to process events (in this case, the ones containing states for the current weight metric), we'll have to provide an event handler of a subtype of
 <b>SDCConsumerEventHandler</b> (e.g. <b>SDCConsumerNumericMetricStateHandler</b>), implement the <b>onStateChanged</b> (if the metric is writable!) and override the <b>getHandle</b> method. The <b>onStateChanged</b> method will be entered whenever the framework or the user code notify about a metric change (updateState).
@@ -503,7 +503,7 @@ consumer.registerStateEventHandler(handler2);
 
 @endcode
 
-@subsection oscp_consumer_request_commit Using the consumer - Request and commit states
+@subsection sdc_consumer_request_commit Using the consumer - Request and commit states
 
 The currentweight metric state can also be requested directly using <b>requestState</b>:
 
@@ -519,7 +519,7 @@ if (consumer.requestState("handle_cur", currentWeightState)) {
 
 <p><b>Important:</b> The handle provided to the function can either be the descriptor's handle or the state's handle (if there is any). In cases when multiple states refer to the same descriptor, the state's handle must be used! the same thing applies to commiting states (see below).</p> 
 
-@subsubsection oscp_consumer_request_commit_async Handling async commits
+@subsubsection sdc_consumer_request_commit_async Handling async commits
 
 <p>Committing states takes place <b>asynchronously</b>, which means the method always returns at once, independently from how long the actual change process takes to complete on the Provider's side. The default return value for a change process that has preliminary been accepted, is InvocationState::Wait.</p>
 However, in some cases like the currentweight metric, the invocation state will indicate a failure because this metric is read-only:
@@ -559,7 +559,7 @@ if (consumer.commitState(maxWeightState, fis) == InvocationState::Wait) {
 The second case would be more complicated because the chronology of messages sent from the server is not deterministic. Operation invoked reports can be received by the consumer event handler before the commit function actually returns. At this point, the transaction ID (created by the provider) is not yet known on the
 consumer's side. One way to address this problem would be to maintain a history of received events in the consumer event handler.
 
-@subsection oscp_consumer_close Disconnecting the consumer
+@subsection sdc_consumer_close Disconnecting the consumer
 
 If the consumer is not needed any more, it should be disconnected (it MUST be disconnected before deletion). Handlers may be unregistered before that (if not, on the provider side the event subscription will time out):
 
@@ -570,19 +570,19 @@ consumer.disconnect();
 // shared_ptr will delete consumer when leaving scope
 @endcode
 
-@section oscp_alarm_system The alarm system
+@section sdc_alarm_system The alarm system
 
 <p>The structures and methods of the alarm system can be used to implement alarm situations using mostly <b>conditions</b> and <b>signals</b>. Descriptors and states exist for each of the latter. This section describes an extension of the previous example to produce and consume an alarm, if the current weight value exceeds the maximum value. A real implementation of this example can be found in the unit test <b>TestSimpleSDC.cpp</b><p>
 <p>An alert condition holds the information about an actual alarm situation, while an alert signal's purpose is to define, how exactly the condition should be reported. In general, multiple signals can reference the same condition. We start again with the descriptive part.</p>
 
-@subsection oscp_alarm_system_provide The provider
+@subsection sdc_alarm_system_provide The provider
 
 We'd like to create an alert for the <b>limit condition</b> when the current weight value exceeds the maximum value and extend the holding device's provider with the following code.
 
 @code
-class OSCPHoldingDeviceProvider : public SDCProvider {
+class SDCHoldingDeviceProvider : public SDCProvider {
 public:
-  OSCPHoldingDeviceProvider() {
+  SDCHoldingDeviceProvider() {
   
     ...
 
@@ -796,7 +796,7 @@ Calling the method <b>setAlertConditionPresence</b> will handle all alert signal
 
 <p>However, it will never be set OFF or ACK (automatically). The logic behind this will be left to the user code.</p>
 
-@subsection oscp_alarm_system_consumer The consumer
+@subsection sdc_alarm_system_consumer The consumer
 
 The consumer can be extended by a new state handler, to handle alert state events fired by the provider. Like the <b>ExampleConsumerEventHandler</b> described before, a similar subclass of <b>SDCConsumerAlertSignalStateHandler</b> will be used. The new handler will be called <b>ExampleConsumerAlertEventHandler</b>.
 
@@ -844,9 +844,9 @@ if (consumer.requestState("handle_alert_signal", alertSignal)) {
 }
 @endcode
 
-@section oscp_code_snippets Useful code snippets and recipes
+@section sdc_code_snippets Useful code snippets and recipes
 
-@subsection oscp_streaming Streaming
+@subsection sdc_streaming Streaming
 In order to provide streaming, the first thing to do is to define one or more streaming metrics members inside an SDCProvider instance.
 <ul>
   <li>Create a member <b>RealTimeSampleArrayMetricDescriptor</b> and configure it in the constructor similar as shown before (define a unique handle for the descriptor).</li>
@@ -926,7 +926,7 @@ class StreamConsumerEventHandler : public SDCConsumerRealTimeSampleArrayMetricSt
 }
 @endcode
 
-@subsection oscp_activation Custom commands using activations
+@subsection sdc_activation Custom commands using activations
 
 <p>Whenever a (parameterless) function should be called that is not connected directly to a state, a custom activate operation can be defined. For example, this can be used for relative value increases or for simple switches like ON / OFF.</p>
 
@@ -981,7 +981,7 @@ if (fis.waitReceived(InvocationState::FINISHED, 1000)) {
 }
 @endcode
 
-@subsection oscp_contexts Using contexts
+@subsection sdc_contexts Using contexts
 
 To handle incoming commits on the provider's side, there can be only one handler which processes all incoming commits.
 
@@ -1070,7 +1070,7 @@ addMDStateHandler(&contextHandler);  // Use in constructor
 
 On the consumer's side, requesting and committing context states is no more different than handling any other state, the same rules and methods (<b>requestState</b> and <b>commitState</b>) apply. To receive events, subclass <b>SDCConsumerContextStateChangedHandler</b> and override <b>onContextStateChanged</b>.
 
-@subsection oscp_stringenums Using string enums
+@subsection sdc_stringenums Using string enums
 
 On the provider side, please use the following steps (similar to the ones of conventional metrics):
 

@@ -169,10 +169,10 @@ public:
     }
 };
 
-class OSCPStreamProvider : public Util::Task {
+class SDCStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider(SDCInstance_shared_ptr p_SDCInstance, std::ifstream& p_stream) : sdcProvider(p_SDCInstance), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
+    SDCStreamProvider(SDCInstance_shared_ptr p_SDCInstance, std::ifstream& p_stream) : sdcProvider(p_SDCInstance), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
 
         assert(p_stream.is_open());
 
@@ -279,8 +279,8 @@ int main()
         return -1;
     }
 
-    OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
-	OSCPStreamProvider provider(t_SDCInstance, t_stream);
+    OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
+	SDCStreamProvider provider(t_SDCInstance, t_stream);
 	provider.startup();
 	provider.start();
 

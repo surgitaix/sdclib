@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef DATA_OSCP_SDCPROVIDERADAPTER_H_
-#define DATA_OSCP_SDCPROVIDERADAPTER_H_
+#ifndef SDCLIB_DATA_SDC_SDCPROVIDERADAPTER_H_
+#define SDCLIB_DATA_SDC_SDCPROVIDERADAPTER_H_
 
 #include "Poco/Mutex.h"
 
@@ -55,4 +55,4 @@ private:
 } /* namespace Data */
 } /* namespace SDCLib */
 
-#endif /* DATA_OSCP_SDCPROVIDERADAPTER_H_ */
+#endif /* SDCLIB_DATA_SDC_SDCPROVIDERADAPTER_H_ */

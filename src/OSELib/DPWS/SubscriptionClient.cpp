@@ -14,7 +14,7 @@
 
 #include "OSELib/DPWS/SubscriptionClient.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
-#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 
 namespace OSELib {
 namespace DPWS {
@@ -77,7 +77,7 @@ SubscriptionClient::~SubscriptionClient() {
 void SubscriptionClient::run() {
 
 	// todo clean up and split method
-	SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
+	SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 
 	const WS::EVENTING::ExpirationType defaultExpires("PT10S");
 	const WS::EVENTING::ExpirationType defaultRenew(defaultExpires);

@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef OSCP_ISETSERVICE_H_
-#define OSCP_ISETSERVICE_H_
+#ifndef OSELIB_SDC_ISETSERVICE_H_
+#define OSELIB_SDC_ISETSERVICE_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/IService.h"
@@ -29,4 +29,4 @@ public:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* OSCP_ISETSERVICE_H_ */
+#endif /* OSELIB_SDC_ISETSERVICE_H_ */

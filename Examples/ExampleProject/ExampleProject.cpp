@@ -156,10 +156,10 @@ public:
 
 // This example shows one way of implementing the Provider
 // Since the SDCProvider class is final, it is recommended to implement the SDCProvider as a member variable of a container class to expand the SDCProvider in a clear and convinient fashion
-class OSCPHoldingDeviceProvider {
+class SDCHoldingDeviceProvider {
 public:
 
-    OSCPHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    SDCHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
     	sdcProvider(p_SDCInstance),
 		currentWeight(0),
 		maxValueState(HANDLE_MAX_WEIGHT_METRIC),
@@ -268,7 +268,7 @@ private:
 // The DummyValueProducer produces some some increasing values in a separate thread
 class DummyValueProducer : public Poco::Runnable {
 public:
-	DummyValueProducer(OSCPHoldingDeviceProvider * provider) :
+	DummyValueProducer(SDCHoldingDeviceProvider * provider) :
 		isInterrupted(false),
 		provider(provider),
 		currentWeight(0)
@@ -297,7 +297,7 @@ public:
 private:
 	Poco::Thread thread;
 	bool isInterrupted;
-    OSCPHoldingDeviceProvider * provider;
+    SDCHoldingDeviceProvider * provider;
     float currentWeight;
 };
 
@@ -353,7 +353,7 @@ int main()
         return -1;
     }
 
-	OSELib::SDC::ServiceManager oscpsm(t_SDCInstanceConsumer);
+	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstanceConsumer);
 	class MyHandler : public OSELib::SDC::HelloReceivedHandler {
 	public:
 		MyHandler() {
@@ -363,7 +363,7 @@ int main()
 		}
 	};
 	std::unique_ptr<MyHandler> myHandler(new MyHandler());
-	oscpsm.setHelloReceivedHandler(myHandler.get());
+	t_serviceManager.setHelloReceivedHandler(myHandler.get());
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstanceProvider = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_PORT_PROVIDER, true);
@@ -377,7 +377,7 @@ int main()
     }
 
     // Provider
-	OSCPHoldingDeviceProvider provider(t_SDCInstanceProvider);
+	SDCHoldingDeviceProvider provider(t_SDCInstanceProvider);
 	provider.startup();
 	DummyValueProducer dummyValueProducer(&provider);
 	dummyValueProducer.start();
@@ -387,9 +387,9 @@ int main()
 	std::cin >> temp;
 
 	// Discovery
-	auto t_consumer(oscpsm.discoverEndpointReference(DEVICE_EPR));
+	auto t_consumer(t_serviceManager.discoverEndpointReference(DEVICE_EPR));
 	// alternatively: search the whole network
-//		std::vector<std::unique_ptr<SDCConsumer>> consumers(oscpsm.discoverOSCP());
+//		std::vector<std::unique_ptr<SDCConsumer>> consumers(t_serviceManager.discover());
 
 
 	if (t_consumer != nullptr) {
@@ -444,7 +444,7 @@ int main()
 		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery failed.";
 	}
 
-	oscpsm.setHelloReceivedHandler(nullptr);
+	t_serviceManager.setHelloReceivedHandler(nullptr);
 
 	dummyValueProducer.interrupt();
 	provider.shutdown();

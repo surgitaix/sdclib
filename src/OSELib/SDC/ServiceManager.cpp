@@ -132,6 +132,70 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 	return nullptr;
 }
 
+ServiceManager::AsyncDiscoverResults ServiceManager::async_discover()
+{
+    auto t_invoke = [](OSELib::SDC::ServiceManager* p_serviceManager) {
+        return p_serviceManager->discover();
+    };
+    return std::async(std::launch::async, t_invoke, this);
+}
+
+ServiceManager::DiscoverResults ServiceManager::discover()
+{
+
+    // Note: Replaces discoverOSCP
+	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
+		ProbeMatchCallback() {}
+		virtual ~ProbeMatchCallback() = default;
+
+		virtual void probeMatch(const DPWS::ProbeMatchType & n) override {
+			_results.emplace_back(n);
+		}
+
+		std::vector<DPWS::ProbeMatchType> _results;
+	};
+
+	DPWS::TypesType types;
+	types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
+
+	xml_schema::Qname asdf(SDC::NS_MDPWS, "MedicalDevice");
+
+	DPWS::ProbeType probeFilter;
+	probeFilter.Types().set(types);
+
+
+	ProbeMatchCallback probeCb;
+	_dpwsClient->addProbeMatchEventHandler(probeFilter, probeCb);
+	// BLOCKING THE WHOLE THREAD?...
+	Poco::Thread::sleep(m_SDCInstance->getDiscoveryTime().count());
+	_dpwsClient->removeProbeMatchEventHandler(probeCb);
+	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb._results.size()); });
+
+	ServiceManager::DiscoverResults results;
+	std::list<std::string> xAddress_list;
+
+	// probeCb._results contains the exact number of unique EPR in the network
+	for (const auto & probeResult : probeCb._results) {
+		if (!probeResult.XAddrs().present()) {
+			log_debug([&] { return "No xAddresses in response for epr: " + probeResult.EndpointReference().Address(); });
+			continue;
+		}
+
+		// one EPR may be connected via multiple network interfaces
+		for (const auto & xaddr : probeResult.XAddrs().get()) {
+			log_notice([&] { return "Trying xAddress: " + xaddr; });
+			xAddress_list.push_back(xaddr);
+		}
+		auto result(connectXAddress(xAddress_list, probeResult.EndpointReference().Address()));
+		if (result) {
+			results.emplace_back(std::move(result));
+		}
+		xAddress_list.clear();
+	}
+
+
+	return results;
+}
 ServiceManager::AsyncDiscoverResults ServiceManager::async_discoverOSCP()
 {
     auto t_invoke = [](OSELib::SDC::ServiceManager* p_serviceManager) {
@@ -141,6 +205,8 @@ ServiceManager::AsyncDiscoverResults ServiceManager::async_discoverOSCP()
 }
 
 ServiceManager::DiscoverResults ServiceManager::discoverOSCP() {
+
+    std::cout << "DEPRECATED: THIS FUNCTION WILL BE REMOVED IN FUTURE VERSIONS. PLEASE USE discover()." << std::endl;
 
 	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
 		ProbeMatchCallback() {}

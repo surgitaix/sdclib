@@ -5,12 +5,12 @@
  *      Author: matthias
  */
 
-#ifndef OSCP_SDCEVENTSERVICECONTROLLER_H_
-#define OSCP_SDCEVENTSERVICECONTROLLER_H_
+#ifndef OSELIB_SDC_SDCEVENTSERVICECONTROLLER_H_
+#define OSELIB_SDC_SDCEVENTSERVICECONTROLLER_H_
 
 #include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/Service.h"
-#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "OSELib/HTTP/StaticContentController.h"
 #include "OSELib/WSDL/schema.h"
 
@@ -33,10 +33,10 @@ public:
 
 private:
 	IServiceType & _serviceImpl;
-	DefaultOSCPSchemaGrammarProvider _grammarProvider;
+	DefaultSDCSchemaGrammarProvider _grammarProvider;
 };
 
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* OSCP_SDCEVENTSERVICECONTROLLER_H_ */
+#endif /* OSELIB_SDC_SDCEVENTSERVICECONTROLLER_H_ */

@@ -21,8 +21,8 @@
  *  Author: besting, röhser
  */
 
-#ifndef SRC_DATA_OSCP_FUTURETRANSACTIONSTATE_H_
-#define SRC_DATA_OSCP_FUTURETRANSACTIONSTATE_H_
+#ifndef SRC_DATA_SDC_FUTURETRANSACTIONSTATE_H_
+#define SRC_DATA_SDC_FUTURETRANSACTIONSTATE_H_
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "Poco/Event.h"
@@ -61,4 +61,4 @@ private:
 } /* namespace Data */
 } /* namespace SDCLib */
 
-#endif /* SRC_DATA_OSCP_FUTURETRANSACTIONSTATE_H_ */
+#endif /* SRC_DATA_SDC_FUTURETRANSACTIONSTATE_H_ */
