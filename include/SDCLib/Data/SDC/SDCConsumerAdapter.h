@@ -5,15 +5,15 @@
  *      Author: matthias, buerger
  */
 
-#ifndef DATA_OSCP_SDCCONSUMERADAPTER_H_
-#define DATA_OSCP_SDCCONSUMERADAPTER_H_
+#ifndef SDCLIB_DATA_SDC_SDCCONSUMERADAPTER_H_
+#define SDCLIB_DATA_SDC_SDCCONSUMERADAPTER_H_
 
 #include "Poco/Mutex.h"
 
 #include "SDC-fwd.h"
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/DeviceDescription.h"
-#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "OSELib/DPWS/Types.h"
 
 #include "OSELib/Helper/WithLogger.h"
@@ -75,7 +75,7 @@ private:
 	std::unique_ptr<Poco::ThreadPool> _threadPool;
 
 	const OSELib::DPWS::DeviceDescription _deviceDescription;
-	OSELib::SDC::DefaultOSCPSchemaGrammarProvider _grammarProvider;
+	OSELib::SDC::DefaultSDCSchemaGrammarProvider _grammarProvider;
 	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
 //	std::unique_ptr<OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl> _streamClientSocketImpl;
 	OSELib::DPWS::Impl::MDPWSStreamingAdapter _streamClientSocketImpl;
@@ -88,4 +88,4 @@ private:
 }
 } /* namespace OSELib */
 
-#endif /* DATA_OSCP_SDCCONSUMERADAPTER_H_ */
+#endif /* SDCLIB_DATA_SDC_SDCCONSUMERADAPTER_H_ */

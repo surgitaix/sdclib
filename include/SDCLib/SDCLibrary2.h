@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef SDCLIBRARAY_H_
-#define SDCLIBRARAY_H_
+#ifndef SDCLIB_SDCLIBRARAY2_H_
+#define SDCLIB_SDCLIBRARAY2_H_
 
 #include <list>
 #include <memory>
@@ -131,4 +131,4 @@ private:
 };
 
 } /* namespace SDCLib */
-#endif /* OSCLIB_H_ */
+#endif /* SDCLIB_SDCLIBRARAY2_H_ */

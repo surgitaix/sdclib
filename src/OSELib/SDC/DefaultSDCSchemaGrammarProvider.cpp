@@ -1,5 +1,5 @@
 /*
- * DefaultOSCPSchemaGrammarProvider.cpp
+ * DefaultSDCSchemaGrammarProvider.cpp
  *
  *  Created on: 07.12.2015
  *      Author: matthias
@@ -7,12 +7,12 @@
 
 #include <OSELib/SDC/SDCConstants.h>
 #include <OSELib/WSDL/schema.h>
-#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 
 namespace OSELib {
 namespace SDC {
 
-DefaultOSCPSchemaGrammarProvider::DefaultOSCPSchemaGrammarProvider() : WithLogger(Log::SCHEMA) {
+DefaultSDCSchemaGrammarProvider::DefaultSDCSchemaGrammarProvider() : WithLogger(Log::SCHEMA) {
 
 	auto addSchemaWithErrorHandling([this](const std::string & name, const std::string & schema) {
 		if (!addSchema(name, schema)) {
@@ -32,7 +32,7 @@ DefaultOSCPSchemaGrammarProvider::DefaultOSCPSchemaGrammarProvider() : WithLogge
 	seal();
 }
 
-DefaultOSCPSchemaGrammarProvider::~DefaultOSCPSchemaGrammarProvider() = default;
+DefaultSDCSchemaGrammarProvider::~DefaultSDCSchemaGrammarProvider() = default;
 
 } /* namespace Helper */
 } /* namespace OSELib */

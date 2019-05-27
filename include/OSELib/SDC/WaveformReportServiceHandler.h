@@ -5,8 +5,8 @@
  *      Author: besting
  */
 
-#ifndef OSCP_WAVEFORMREPORTSERVICEHANDLER_H_
-#define OSCP_WAVEFORMREPORTSERVICEHANDLER_H_
+#ifndef OSELIB_SDC_WAVEFORMREPORTSERVICEHANDLER_H_
+#define OSELIB_SDC_WAVEFORMREPORTSERVICEHANDLER_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/SOAP/HTTPRequestHandlerExceptionTrap.h"
@@ -28,4 +28,4 @@ private:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* OSCP_WAVEFORMREPORTSERVICEHANDLER_H_ */
+#endif /* OSELIB_SDC_WAVEFORMREPORTSERVICEHANDLER_H_ */

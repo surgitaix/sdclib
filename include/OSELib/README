@@ -1,6 +1,6 @@
 Generelle Konzepte
 - Implementierungen sind möglichst lokal und es gibt möglichst wenige Abhängigkeiten zwischen den Komponenten.
-- Außer der Klasse OSCLibrary und Poco::Logger gibt es keine Singletons. Sowohl Provider als auch Client sind in sich geschlossene Implementierungen, die sich gegenseitig durch Seiteneffekte nicht beeinflussen können.
+- Außer der Klasse SDCLibrary und Poco::Logger gibt es keine Singletons. Sowohl Provider als auch Client sind in sich geschlossene Implementierungen, die sich gegenseitig durch Seiteneffekte nicht beeinflussen können.
 - Implementierungen sind möglichst modular.
 - Lebenszeiten von Objekten sind streng hierarchisch, daher werden in aller Regel Referenzen auf übergeordnete Objekte übergeben, da untergeordnete Systeme stets kürzer leben.
 - Objekte werden, wenn möglich, statisch im Konstruktor konfiguriert, so dass sich Parameter nicht zur Laufzeit ändern können.
@@ -31,7 +31,7 @@ HTTPServer (HTTP)
 -> HTTP RequestHandler (HTTP -> SOAP)
 -> Command (SOAP -> Webservice)
 -> Interface Implementierung (Webservice)
--> Provider/Consumer (OSCP)
+-> Provider/Consumer (SDC)
 
 Metadataprovider
 Hier werden die informationen hart codiert, die in der Get und GetMetadata übertragen werden. Diese sind parametrisiert vom server port, auf dem diese Nachrichten ankommen. Darüber hinaus gibt es keine automatische Konfiguration und kein Zusammenspiel mit anderen Implementierungen. 
@@ -40,5 +40,5 @@ ServiceHandler (z.B. GetServiceHandler)
 Hier werden HTTP Requests ausgepackt, in Soap Nachrichten geparst (CommonSoapProcessing) und deren Body anhand der Action an höhere Schichten weitergeleitet(GenericSoapActionCommand, SoapActionCommand). Umgekehrt wird der response Body in Soap Nachrichten verpackt (GenericSoapActionCommand) und durch den HTTPSoapResponseWrapper zurückgeschickt.
 
 XercesGrammarPoolProvider
-Kapselt eine Sammlung von XML Schema Grammatiken, die vom XercesParserWrapper zum schemavalidierenden parsen verwendet wird. Es werden derzeit zwei Ausprägungen verwendet: XercesGrammarPoolProvider (keine Schemavalidierung, da pool nullptr) und DefaultOSCPSchemaGrammarProvider (für Datenmodell, Eventing, WS Addressing Valdierung).
+Kapselt eine Sammlung von XML Schema Grammatiken, die vom XercesParserWrapper zum schemavalidierenden parsen verwendet wird. Es werden derzeit zwei Ausprägungen verwendet: XercesGrammarPoolProvider (keine Schemavalidierung, da pool nullptr) und DefaultSDCSchemaGrammarProvider (für Datenmodell, Eventing, WS Addressing Valdierung).
 

@@ -156,7 +156,7 @@ MDM::SetContextState createRequestMessage(const WorkflowContextState & state, co
 }
 
 SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription) :
-		WithLogger(OSELib::Log::OSCPCONSUMER),
+		WithLogger(OSELib::Log::SDCCONSUMER),
 		m_SDCInstance(p_SDCInstance),
 		_deviceDescription(deviceDescription)
 {

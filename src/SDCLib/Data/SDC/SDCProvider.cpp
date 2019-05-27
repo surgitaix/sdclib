@@ -92,7 +92,7 @@
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesParserWrapper.h"
-#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "SDCLib/Data/SDC/SDCProviderAdapter.h"
 
 namespace SDCLib {
@@ -1053,7 +1053,7 @@ void SDCProvider::startup()
 		xml_schema::NamespaceInfomap map;
 		CDM::MdibContainer(xml, *ConvertToCDM::convert(getMdib()), map, OSELib::XML_ENCODING, xercesFlags);
 
-		OSELib::SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
+		OSELib::SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 		auto rawMessage = OSELib::Helper::Message::create(xml.str());
 		auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 		std::unique_ptr<CDM::Mdib> result(CDM::MdibContainer(xercesDocument->getDocument()));
@@ -1116,7 +1116,7 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler * handler)
     }
 
 
-    // ToDo: Behold! check with simpleOSCP if this really works°!
+    // ToDo: Behold! check with simpleSDC if this really works°!
     if (auto activate_handler = dynamic_cast<SDCProviderActivateOperationHandler *>(handler)) {
     	const MdDescription mddescription(getMdDescription());
     	for (const auto & mds : mddescription.collectAllMdsDescriptors()) {
@@ -1172,7 +1172,7 @@ void SDCProvider::setMdDescription(const MdDescription & mdDescription) {
 void SDCProvider::setMdDescription(std::string xml)
 {
     Poco::Mutex::ScopedLock lock(getMutex());
-	OSELib::SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
+	OSELib::SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 	auto rawMessage = OSELib::Helper::Message::create(xml);
 	auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 

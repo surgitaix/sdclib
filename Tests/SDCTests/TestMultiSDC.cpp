@@ -28,10 +28,10 @@ namespace SDCLib {
 namespace Tests {
 namespace MultiSDC {
 
-class OSCPTestDeviceProvider {
+class SDCTestDeviceProvider {
 public:
 
-    OSCPTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t number, const std::size_t metricCount)
+    SDCTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t number, const std::size_t metricCount)
     : sdcProvider(p_SDCInstance)
     , m_eprID(number)
     , metrics(metricCount)
@@ -98,25 +98,25 @@ private:
 } /* namespace Tests */
 } /* namespace SDCLib */
 
-struct FixtureMultiOSCP : Tests::AbstractSDCLibFixture {
-	FixtureMultiOSCP() : AbstractSDCLibFixture("FixtureMultiOSCP", OSELib::LogLevel::Notice) {}
+struct FixtureMultiSDC : Tests::AbstractSDCLibFixture {
+	FixtureMultiSDC() : AbstractSDCLibFixture("FixtureMultiSDC", OSELib::LogLevel::Notice) {}
 };
 
 
-SUITE(OSCP) {
-TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
+SUITE(SDC) {
+TEST_FIXTURE(FixtureMultiSDC, MultiSDC)
 {
 	try
 	{
 		std::size_t providerCount(10);
 		std::size_t metricCount(10);
 
-		std::vector<std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider>> providers;
+		std::vector<std::shared_ptr<Tests::MultiSDC::SDCTestDeviceProvider>> providers;
 		std::vector<std::string> providerEPRs;
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
 		for (std::size_t i = 0; i < providerCount; i++) {
-			std::shared_ptr<Tests::MultiSDC::OSCPTestDeviceProvider> p(new Tests::MultiSDC::OSCPTestDeviceProvider(createSDCInstance(), i, metricCount));
+			std::shared_ptr<Tests::MultiSDC::SDCTestDeviceProvider> p(new Tests::MultiSDC::SDCTestDeviceProvider(createSDCInstance(), i, metricCount));
 			providers.push_back(p);
             providerEPRs.push_back(p->getEndpointReference());
 			p->startup();
@@ -128,7 +128,7 @@ TEST_FIXTURE(FixtureMultiOSCP, MultiSDC)
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
         OSELib::SDC::ServiceManager sm(createSDCInstance());
-        auto tl_consumers(sm.discoverOSCP());
+        auto tl_consumers(sm.discover());
 
         bool foundAll = true;
         for (const auto & providerEPR : providerEPRs) {

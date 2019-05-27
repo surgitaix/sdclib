@@ -6,12 +6,12 @@
  */
 
 
-#ifndef OSCP_SDCSERVICECONTROLLER_H_
-#define OSCP_SDCSERVICECONTROLLER_H_
+#ifndef OSELIB_SDC_SDCSERVICECONTROLLER_H_
+#define OSELIB_SDC_SDCSERVICECONTROLLER_H_
 
 #include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/Service.h"
-#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "OSELib/HTTP/StaticContentController.h"
 #include "OSELib/WSDL/schema.h"
 
@@ -38,7 +38,7 @@ public:
 
 private:
 	IServiceType & _serviceImpl;
-	DefaultOSCPSchemaGrammarProvider _grammarProvider;
+	DefaultSDCSchemaGrammarProvider _grammarProvider;
 	HTTP::StaticContentController _wsdlController;
 	HTTP::StaticContentController _schemaDatamodelController;
 	HTTP::StaticContentController _schemaMessagemodelController;
@@ -48,5 +48,5 @@ private:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* OSCP_SDCSERVICECONTROLLER_H_ */
+#endif /* OSELIB_SDC_SDCSERVICECONTROLLER_H_ */
 

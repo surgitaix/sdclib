@@ -184,7 +184,7 @@ int main (int argc, char * argv[])
 
 	try {
 		TCLAP::CmdLine cmd("Generic subscription tool for various value types.", ' ', "0.01");
-		TCLAP::ValueArg<std::string> eprArg("e", "epr", "EndpointReference of target OSCP Device.", true, "UDI_EXAMPLE_1234", "string");
+		TCLAP::ValueArg<std::string> eprArg("e", "epr", "EndpointReference of target SDC Device.", true, "UDI_EXAMPLE_1234", "string");
 		cmd.add(eprArg);
 		TCLAP::UnlabeledMultiArg<std::string> handlesArg("handle", "Handle of metric that should be subscribed to.", true, "string");
 		cmd.add(handlesArg);
@@ -208,8 +208,8 @@ int main (int argc, char * argv[])
 	SDCLibrary::getInstance().startup();
 	SDCLibrary::getInstance().setPortStart(42000);
 
-	OSELib::SDC::ServiceManager oscpsm;
-	std::unique_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(epr));
+	OSELib::SDC::ServiceManager t_serviceManager;
+	std::unique_ptr<SDCConsumer> consumer(t_serviceManager.discoverEndpointReference(epr));
 	if (consumer) {
 		DebugOut(DebugOut::Default, "GenericSubscription") << "Connected to device with epr: " << epr;
 		const MDDescription mdd(consumer->getMdDescription());

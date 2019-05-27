@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef OSCP_IEVENTREPORT_H_
-#define OSCP_IEVENTREPORT_H_
+#ifndef OSELIB_SDC_IEVENTREPORT_H_
+#define OSELIB_SDC_IEVENTREPORT_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/IService.h"
@@ -23,4 +23,4 @@ public:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* OSCP_IEVENTREPORT_H_ */
+#endif /* OSELIB_SDC_IEVENTREPORT_H_ */

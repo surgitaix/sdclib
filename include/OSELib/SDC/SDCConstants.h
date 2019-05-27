@@ -22,8 +22,8 @@
  *  @copyright (c) SurgiTAIX AG
  */
 
-#ifndef OSCP_SDCCONSTANTS_H_
-#define OSCP_SDCCONSTANTS_H_
+#ifndef SDC_SDCCONSTANTS_H_
+#define SDC_SDCCONSTANTS_H_
 
 #include <string>
 
@@ -109,4 +109,4 @@ const std::string EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT(NS_SERVICE_DESCRIPTION
 }
 }
 
-#endif /* OSCP_SDCCONSTANTS_H_ */
+#endif /* SDC_SDCCONSTANTS_H_ */

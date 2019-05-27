@@ -71,13 +71,13 @@ message(STATUS "-Adding SDC Include Files...")
 ################################################################################
 
 set(SDCLib_INCLUDE_DIRS     ${SDCLib_ROOT_DIR}/include
-                            # OSCLib
-                            ${SDCLib_ROOT_DIR}/include/OSCLib
-                            ${SDCLib_ROOT_DIR}/include/OSCLib/Data/SDC
-                            ${SDCLib_ROOT_DIR}/include/OSCLib/Data/SDC/MDIB
-                            ${SDCLib_ROOT_DIR}/include/OSCLib/Data/SDC/MDIB/custom
-                            ${SDCLib_ROOT_DIR}/include/OSCLib/Dev
-                            ${SDCLib_ROOT_DIR}/include/OSCLib/Util
+                            # SDCLib
+                            ${SDCLib_ROOT_DIR}/include/SDCLib
+                            ${SDCLib_ROOT_DIR}/include/SDCLib/Data/SDC
+                            ${SDCLib_ROOT_DIR}/include/SDCLib/Data/SDC/MDIB
+                            ${SDCLib_ROOT_DIR}/include/SDCLib/Data/SDC/MDIB/custom
+                            ${SDCLib_ROOT_DIR}/include/SDCLib/Dev
+                            ${SDCLib_ROOT_DIR}/include/SDCLib/Util
                             # OSELib
                             ${SDCLib_ROOT_DIR}/include/OSELib
                             ${SDCLib_ROOT_DIR}/include/DPWS

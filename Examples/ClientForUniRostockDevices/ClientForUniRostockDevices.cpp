@@ -94,8 +94,8 @@ int main() {
 	SDCLibrary::getInstance().setPortStart(11111);
 
 	// Discovery
-	OSELib::SDC::ServiceManager oscpsm;
-	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	OSELib::SDC::ServiceManager t_serviceManager;
+	std::unique_ptr<Data::SDC::SDCConsumer> c(t_serviceManager.discoverEndpointReference(deviceEPR));
 
 	if (c != nullptr) {
 		Data::SDC::SDCConsumer & consumer = *c;

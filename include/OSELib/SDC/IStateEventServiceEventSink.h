@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef DATA_OSCP_IEVENTREPORTEVENTSINK_H_
-#define DATA_OSCP_IEVENTREPORTEVENTSINK_H_
+#ifndef OSELIB_SDC_IEVENTREPORTEVENTSINK_H_
+#define OSELIB_SDC_IEVENTREPORTEVENTSINK_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/IEventSink.h"
@@ -29,4 +29,4 @@ public:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* DATA_OSCP_IEVENTREPORTEVENTSINK_H_ */
+#endif /* OSELIB_SDC_IEVENTREPORTEVENTSINK_H_ */

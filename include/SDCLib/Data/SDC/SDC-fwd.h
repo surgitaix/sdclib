@@ -5,8 +5,8 @@
  *      Author: roehser
  */
 
-#ifndef OSCLIB_DATA_OSCP_SDCFWD_H_
-#define OSCLIB_DATA_OSCP_SDCFWD_H_
+#ifndef SDCLIB_DATA_SDC_SDCFWD_H_
+#define SDCLIB_DATA_SDC_SDCFWD_H_
 
 #include "MDIB/MDIB-fwd.h"
 
@@ -50,4 +50,4 @@ namespace SDC {
 }
 
 
-#endif /* OSCLIB_DATA_OSCP_SDCFWD_H_ */
+#endif /* SDCLIB_DATA_SDC_SDCFWD_H_ */

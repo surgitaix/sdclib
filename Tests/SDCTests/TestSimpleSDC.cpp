@@ -785,9 +785,9 @@ public:
 // Provider
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class OSCPHoldingDeviceProvider : public Util::Task {
+class SDCHoldingDeviceProvider : public Util::Task {
 public:
-    OSCPHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    SDCHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
     	currentWeight(0),
     	sdcProvider(p_SDCInstance),
     	locationContextStateHandler(LOCATION_CONTEXT_HANDLE),
@@ -1041,7 +1041,7 @@ struct FixtureSimpleSDC : Tests::AbstractSDCLibFixture {
 	FixtureSimpleSDC() : AbstractSDCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error) {}
 };
 
-SUITE(OSCP) {
+SUITE(SDC) {
 TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 {
 	DebugOut::openLogFile("Test.log.txt", true);
@@ -1050,7 +1050,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
         auto t_SDCInstance = createSDCInstance();
 
         // Provider
-        Tests::SimpleSDC::OSCPHoldingDeviceProvider provider(t_SDCInstance);
+        Tests::SimpleSDC::SDCHoldingDeviceProvider provider(t_SDCInstance);
         provider.startup();
         provider.start();
 
@@ -1064,8 +1064,8 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Discover EPR...";
         Poco::Thread::sleep(2000);
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
-        auto t_consumer(oscpsm.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
+        OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
+        auto t_consumer(t_serviceManager.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
 
         // create state handlers
         Tests::SimpleSDC::ExampleConsumerNumericHandler eces1(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE);

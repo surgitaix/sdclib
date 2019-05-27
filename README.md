@@ -86,7 +86,7 @@ Examples and Tests are built by default. If you dont want to built them, you can
 - SDC_TESTS [*ON/OFF*]  
   
 See the 'Examples' and 'Tests' folders for example implementations.  
-To run OSCP related tests run './UnitTests'.
+To run SDC related tests run './UnitTests'.
 
 ### Building the Project ###
 To build the project navigate to the build folder and enter:  

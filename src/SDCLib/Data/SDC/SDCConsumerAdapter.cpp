@@ -319,7 +319,7 @@ namespace Data {
 namespace SDC {
 
 SDCConsumerAdapter::SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription) :
-	WithLogger(OSELib::Log::OSCPCONSUMERADAPTER),
+	WithLogger(OSELib::Log::SDCCONSUMERADAPTER),
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
 	_deviceDescription(deviceDescription),

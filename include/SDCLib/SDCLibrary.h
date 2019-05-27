@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef OSCLIB_H_
-#define OSCLIB_H_
+#ifndef SDCLIB_SDCLIBRARY_H_
+#define SDCLIB_SDCLIBRARY_H_
 
 #include <atomic>
 #include <list>
@@ -126,4 +126,4 @@ private:
 };
 
 } /* namespace SDCLib */
-#endif /* OSCLIB_H_ */
+#endif /* SDCLIB_SDCLIBRARY_H_ */

@@ -24,7 +24,7 @@ set(TARGET_PUBLIC_HEADERS   "")
 target_sources(${CURRENT_TARGET_NAME}
     PRIVATE
         # Source Files
-        # OSCLib
+        # SDCLib
         ${SRC_DIR}/SDCLib/SDCLibrary.cpp
         ${SRC_DIR}/SDCLib/SDCLibrary2.cpp
         ${SRC_DIR}/SDCLib/SDCInstance.cpp
@@ -202,7 +202,7 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/HTTP/StaticContentController.cpp
         ${SRC_DIR}/OSELib/SDC/ContextEventSinkHandler.cpp
         ${SRC_DIR}/OSELib/SDC/ContextServiceHandler.cpp
-        ${SRC_DIR}/OSELib/SDC/DefaultOSCPSchemaGrammarProvider.cpp
+        ${SRC_DIR}/OSELib/SDC/DefaultSDCSchemaGrammarProvider.cpp
         ${SRC_DIR}/OSELib/SDC/StateEventServiceEventSinkHandler.cpp
         ${SRC_DIR}/OSELib/SDC/EventReportServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/GetServiceHandler.cpp

@@ -224,10 +224,10 @@ private:
 };
 
 
-class OSCPStreamProvider : public Util::Task {
+class SDCStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    SDCStreamProvider(SDCInstance_shared_ptr p_SDCInstance) :
     	sdcProvider(p_SDCInstance),
     	streamProviderStateHandler(HANDLE_STREAM_METRIC),
     	stringProviderStateHandler(HANDLE_STRING_METRIC),
@@ -383,7 +383,7 @@ int main()
         return -1;
     }
 
-	OSCPStreamProvider provider(t_SDCInstance);
+	SDCStreamProvider provider(t_SDCInstance);
 	provider.startup();
 	provider.start();
 

@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef OSCP_GETSERVICEHANDLER_H_
-#define OSCP_GETSERVICEHANDLER_H_
+#ifndef OSELIB_SDC_GETSERVICEHANDLER_H_
+#define OSELIB_SDC_GETSERVICEHANDLER_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/SOAP/HTTPRequestHandlerExceptionTrap.h"
@@ -28,4 +28,4 @@ private:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* OSCP_GETSERVICEHANDLER_H_ */
+#endif /* OSELIB_SDC_GETSERVICEHANDLER_H_ */

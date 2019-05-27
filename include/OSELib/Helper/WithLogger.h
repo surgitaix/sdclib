@@ -28,11 +28,11 @@ namespace Log {
 	const std::string SCHEMA(RAWMESSAGES + ".SCHEMA");
 	const std::string SOAP(RAWMESSAGES + ".SOAP");
 	const std::string DISCOVERY(RAWMESSAGES + ".DISCOVERY");
-	const std::string OSCP(BASE + ".SDC");
-	const std::string OSCPCONSUMER(OSCP + ".CONSUMER");
-	const std::string OSCPCONSUMERADAPTER(OSCP + ".CONSUMERADAPTER");
-	const std::string sdcProvider(OSCP + ".PROVIDER");
-	const std::string SERVICEMANAGER(OSCP + ".SERVICEMANAGER");
+	const std::string SDC(BASE + ".SDC");
+	const std::string SDCCONSUMER(SDC + ".CONSUMER");
+	const std::string SDCCONSUMERADAPTER(SDC + ".CONSUMERADAPTER");
+	const std::string sdcProvider(SDC + ".PROVIDER");
+	const std::string SERVICEMANAGER(SDC + ".SERVICEMANAGER");
 	const std::string HTTP(BASE + ".HTTP");
 	const std::string EVENTING(BASE + ".EVENTING");
 	const std::string EVENTSOURCE(EVENTING + ".SOURCE");
