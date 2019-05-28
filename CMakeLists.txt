@@ -197,7 +197,19 @@ find_package(Threads REQUIRED)
 ################################################################################
 # XERCES
 ################################################################################
-find_library(XercesLibrary NAMES xerces-c REQUIRED)
+include(SDC_Xerces) # This adds an imported target WIP
+
+# Found it?
+if(NOT XercesC_FOUND)
+  message(FATAL_ERROR "Failed to find the XercesC!")
+endif()
+
+# Append Xerces
+if (CMAKE_BUILD_TYPE STREQUAL Debug)
+    list(APPEND SDCLib_LIBRARIES ${XercesC_LIBRARY_RELEASE})
+else ()
+    list(APPEND SDCLib_LIBRARIES ${XercesC_LIBRARY_DEBUG})
+endif()
 ################################################################################
 
 ################################################################################
@@ -243,20 +255,11 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 
-# <FIXME> WINDOWS untested!
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
     ADD_DEFINITIONS(-D_WIN32)
 
     # Libraries - WIP... maybe include in Dependencies?
     SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
-    SET(XERCES_LIB_DIR "${PROJECT_SOURCE_DIR}/../xerces/lib/" CACHE PATH "Path to XERCES-C libraries.")
-
-    # XERCES [needed here? - Test!]
-    if (CMAKE_BUILD_TYPE STREQUAL Debug)
-        set(XERCES_LIB xerces-c_3D)
-    else ()
-        set(XERCES_LIB xerces-c_3)
-    endif()
 
     # define preprocessor macros for Visual Studio: no CONSTEXPR_MACRO before VS15
     MESSAGE( STATUS "MSVS compiler version: " ${CMAKE_CXX_COMPILER_VERSION} )

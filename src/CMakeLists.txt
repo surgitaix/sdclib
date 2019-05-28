@@ -257,8 +257,8 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC $<TARGET_PROPERTY:Data
 
 # Threads
 target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
-# Xerces
-target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${XercesLibrary})
+# XercesC - Imported Target
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
 # Poco
 target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${POCO_LIBRARIES})
 

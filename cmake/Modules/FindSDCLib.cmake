@@ -121,7 +121,6 @@ endif()
 
 # FIXME: Check if files are there!
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
-    message(s"CMAKE_SYSTEM_NAME WINDOWS: UNTESTED!")
     # Set the library based on build type
     if(CMAKE_BUILD_TYPE)
         if(CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -159,13 +158,23 @@ set(SDCLib_FOUND TRUE)
 ################################################################################
 ################################################################################
 ################################################################################
-# XERCES - qnd
+# XERCES
 # Note: Dependency - Just for convenience (bad style!)
 #       Adding SDCLib as shared lib, we need xerces too
 #       As quick hack, append it to the SDCLib variable
 ################################################################################
-message(STATUS "-Looking for XercesLibrary...")
-find_library(XercesLibrary NAMES xerces-c REQUIRED)
-# Append Xerces - quick hack - remove this for cleaner resource management later
-list(APPEND SDCLib_LIBRARIES ${XercesLibrary})
+message(STATUS "-Looking for XercesC...")
+include(SDC_Xerces) # This adds an imported target WIP
+
+# Found it?
+if(NOT XercesC_FOUND)
+  message(FATAL_ERROR "Failed to find the XercesC!")
+endif()
+
+# Append Xerces
+if (CMAKE_BUILD_TYPE STREQUAL Debug)
+    list(APPEND SDCLib_LIBRARIES ${XercesC_LIBRARY_RELEASE})
+else ()
+    list(APPEND SDCLib_LIBRARIES ${XercesC_LIBRARY_DEBUG})
+endif()
 ################################################################################
