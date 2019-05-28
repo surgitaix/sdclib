@@ -43,10 +43,10 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 
     # LIB
-    # Check on x64
+    # Check on x64 (or empty -> defaults to x64)
     set(BIN_DIR bin)
     set(LIB_DIR lib)
-    if("${CMAKE_GENERATOR}" MATCHES "(Win64|IA64)")
+    if("${CMAKE_GENERATOR_PLATFORM}" MATCHES "(x64|)")
         set(LIB_DIR lib64)
         set(BIN_DIR bin64)
     endif()
@@ -55,6 +55,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     ################################################################################
     set(DEFAULT_LIB_DIR "vc-12.0")
     ################################################################################
+
     set(XercesC_DEFAULT_LIB_DIR "${XSD_ROOT}\\${LIB_DIR}\\${DEFAULT_LIB_DIR}\\" CACHE PATH "Manual XercesC lib dir. NOTE: Set it manually if autodetection does not work." FORCE)
     if(NOT EXISTS "${XercesC_DEFAULT_LIB_DIR}")
         message(FATAL_ERROR "XercesC_DEFAULT_LIB_DIR DOES NOT EXIST! Please set it manually and reconfigure!")
