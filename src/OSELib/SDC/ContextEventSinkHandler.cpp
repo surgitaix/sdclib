@@ -5,22 +5,18 @@
  *      Author: matthias
  */
 
-#include "Poco/Net/HTTPServerRequest.h"
-#include "Poco/Net/HTTPServerResponse.h"
+#include <Poco/Net/HTTPServerRequest.h>
+#include <Poco/Net/HTTPServerResponse.h>
 
 #include "NormalizedMessageModel.hxx"
 
-#include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/SDC/ContextEventSinkHandler.h"
-#include "OSELib/SDC/IGetService.h"
-#include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SOAP/Command.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/GenericSoapEventCommand.h"
-#include "OSELib/SOAP/NormalizedMessageSerializer.h"
 #include "OSELib/SOAP/SoapFaultCommand.h"
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 

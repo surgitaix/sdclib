@@ -10,20 +10,10 @@
 
 #include "BICEPS_ParticipantModel-fwd.hxx"
 #include "BICEPS_MessageModel-fwd.hxx"
-#include "ExtensionPoint-fwd.hxx"
 #include "eventing-fwd.hxx"
 #include "MetadataExchange-fwd.hxx"
 #include "NormalizedMessageModel-fwd.hxx"
-#include "ws-addressing-fwd.hxx"
-#include "wsdd-discovery-1.1-schema-os-fwd.hxx"
-#include "wsdd-dpws-1.1-schema-os-fwd.hxx"
-#include "wsdl-custom-fwd.hxx"
-#include "wsdl-soap-binding-fwd.hxx"
-#include "MDPWS-fwd.hxx"
 
-namespace SDCLib {
-	class SDCInstance;
-}
 
 namespace Poco {
 	namespace Net {

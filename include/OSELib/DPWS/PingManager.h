@@ -11,7 +11,6 @@
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 
-#include "SDCLib/Data/SDC/SDC-fwd.h"
 #include "OSELib/fwd.h"
 
 namespace OSELib {

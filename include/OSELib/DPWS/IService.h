@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef DPWS_ISERVICE_H_
-#define DPWS_ISERVICE_H_
+#ifndef OSELIB_DPWS_ISERVICE_H_
+#define OSELIB_DPWS_ISERVICE_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/OperationTraits.h"
@@ -26,4 +26,4 @@ public:
 } /* namespace DPWS */
 } /* namespace OSELib */
 
-#endif /* DPWS_ISERVICE_H_ */
+#endif /* OSELIB_DPWS_ISERVICE_H_ */

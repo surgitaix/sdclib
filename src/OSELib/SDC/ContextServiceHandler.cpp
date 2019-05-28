@@ -5,12 +5,11 @@
  *      Author: matthias
  */
 
-#include "Poco/Net/HTTPServerRequest.h"
-#include "Poco/Net/HTTPServerResponse.h"
+#include <Poco/Net/HTTPServerRequest.h>
+#include <Poco/Net/HTTPServerResponse.h>
 
 #include "NormalizedMessageModel.hxx"
 
-#include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"

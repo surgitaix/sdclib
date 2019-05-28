@@ -5,9 +5,9 @@
  *      Author: matthias
  */
 
-#include <OSELib/SDC/SDCConstants.h>
-#include <OSELib/WSDL/schema.h>
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
+#include "OSELib/WSDL/schema.h"
+
 
 namespace OSELib {
 namespace SDC {

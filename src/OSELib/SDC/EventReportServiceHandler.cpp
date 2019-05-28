@@ -10,7 +10,6 @@
 
 #include "NormalizedMessageModel.hxx"
 
-#include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
