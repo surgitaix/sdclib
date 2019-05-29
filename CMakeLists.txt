@@ -5,19 +5,6 @@ cmake_minimum_required(VERSION 3.5.0)
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
 ################################################################################
-# Warnings
-################################################################################
-message(STATUS "Setting Warning-Level...")
-if(NOT WIN32)
-    # enable debug and profiling informations for sprof
-    add_compile_options(-ggdb -g -O0 -Wall -Wextra)
-else()
-    # Inhibit all warning messages
-    add_compile_options(-w)
-endif()
-################################################################################
-
-################################################################################
 # Using own CMake Modules
 # Add this to your cmake modules path to find the SDCLib Finder
 ################################################################################
@@ -136,6 +123,18 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 ################################################################################
 
+################################################################################
+# Warnings
+################################################################################
+message(STATUS "Setting Warning-Level...")
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+    # enable debug and profiling informations for sprof
+    add_compile_options(-ggdb -g -O0 -Wall -Wextra)
+else()
+    # Inhibit all warning messages
+    add_compile_options(-w)
+endif()
+################################################################################
 
 ################################################################################
 # Firewall - Allowed Ports
@@ -219,13 +218,32 @@ endif()
 # Foundation needed
 ################################################################################
 message(STATUS "######## Configuring Poco...")
-set(PATH_POCO_INCLUDE
-                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Net/include/
+#target_include_directories(${CURRENT_TARGET_NAME} ${POCO_INCLUDE_DIRS})
+set(POCO_INCLUDE_DIRS
                         ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Foundation/include/
+                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Net/include/
+                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Crypto/include/
+                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Util/include/
                         )
 
-set(POCO_LIBRARIES Net Foundation)
-#target_link_libraries(${CURRENT_MODULE_NAME} ${POCO_LIBRARIES})
+#target_link_libraries(${CURRENT_TARGET_NAME} ${POCO_LIBRARIES})
+set(POCO_LIBRARIES Foundation Net Crypto Util)
+# target_compile_definitions(${CURRENT_TARGET_NAME} ${POCO_EXPORTS})
+set(POCO_COMPILE_DEFINITIONS POCO_NO_AUTOMATIC_LIBS Foundation_EXPORTS Net_EXPORTS Crypto_EXPORTS)
+
+# System dependend
+if(CMAKE_SYSTEM_NAME MATCHES "Linux")
+    list(APPEND POCO_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/NetSSL_OpenSSL/include/)
+    list(APPEND POCO_LIBRARIES NetSSL)
+    list(APPEND POCO_COMPILE_DEFINITIONS NetSSL_EXPORTS)
+endif()
+
+if(CMAKE_SYSTEM_NAME MATCHES "Windows")
+    list(APPEND POCO_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/NetSSL_Win/include/)
+    list(APPEND POCO_LIBRARIES NetSSL_Win)
+    list(APPEND POCO_COMPILE_DEFINITIONS NetSSL_Win_EXPORTS)
+endif()
+
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/)
 message(STATUS "######## Configuring Poco done!")
 ################################################################################
@@ -246,16 +264,16 @@ get_filename_component(PATH_SDCTESTS_ROOT ${PATH_TESTS_ROOT}/SDCTests/ REALPATH)
 ################################################################################
 
 
-IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux") 
+if(CMAKE_SYSTEM_NAME MATCHES "Linux")
     ADD_DEFINITIONS(-D_LINUX)
     ADD_DEFINITIONS(-Dlinux)
     # constexpr macro / checking for C++11 is done above allready
     # Note: Shouldnt this be fixed inside the code? - only used once as far as I can tell...!
     add_definitions(-DCONSTEXPR_MACRO=constexpr)
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+endif()
 
 
-IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
+if(CMAKE_SYSTEM_NAME MATCHES "Windows")
     ADD_DEFINITIONS(-D_WIN32)
 
     # Libraries - WIP... maybe include in Dependencies?
@@ -269,7 +287,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     else()
         add_definitions(-DCONSTEXPR_MACRO=constexpr)
     endif()
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+endif()
 
 
 ################################################################################

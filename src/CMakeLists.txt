@@ -242,11 +242,9 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_SRC_ROOT} )
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT} )
 
 # Poco
-target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC POCO_NO_AUTOMATIC_LIBS )
-target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC Foundation_EXPORTS )
-target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC Net_EXPORTS )
-target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_POCO_INCLUDE})
-
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${POCO_INCLUDE_DIRS} )
+target_link_libraries( ${CURRENT_TARGET_NAME} PUBLIC ${POCO_LIBRARIES} )
+target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC ${POCO_COMPILE_DEFINITIONS} )
 
 # Packages
 
@@ -260,7 +258,7 @@ target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 # XercesC - Imported Target
 target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
 # Poco
-target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${POCO_LIBRARIES})
+
 
 
 # build

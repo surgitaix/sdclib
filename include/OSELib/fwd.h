@@ -16,8 +16,8 @@
 
 
 namespace Poco {
-	namespace Net {
-		class HTTPClientSession;
+	namespace Net
+	{
 		class HTTPRequestHandler;
 		class HTTPServer;
 		class HTTPServerRequest;

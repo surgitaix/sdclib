@@ -19,7 +19,7 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SD
 	m_SDCInstance(p_SDCInstance),
 	m_streamNotificationDispatcher(streamNotificationDispatcher),
 	m_deviceDescription(deviceDescription),
-	m_ipv4MulticastAddress(Poco::Net::SocketAddress(m_SDCInstance->_getStreamingIPv4(), m_SDCInstance->_getStreamingPortv4())),
+	m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getStreamingIPv4(), p_SDCInstance->_getStreamingPortv4())),
 	m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getStreamingIPv6(), p_SDCInstance->_getStreamingPortv6()))
 {
     if (m_SDCInstance->getIP4enabled())
