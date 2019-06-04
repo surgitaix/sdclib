@@ -14,6 +14,7 @@
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/SDCInstance.h"
+#include "SDCLib/SSLHandler.h"
 
 #include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
@@ -375,8 +376,16 @@ int main()
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);
 
+    // SSL - WIP
     t_SDCInstance->initSSL();
-
+    auto t_SSLHandler = t_SDCInstance->getSSLHandler();
+    
+    t_SSLHandler->addCertificateAuthority("/home/fabian/SurgiTAIX/SDC/devicelib/deps/sdclib_build/bin/ssl/cacert.pem");
+    t_SSLHandler->useCertificate("/home/fabian/SurgiTAIX/SDC/devicelib/deps/sdclib_build/bin/ssl/cacert.pem");
+    t_SSLHandler->useCertificate("/home/fabian/SurgiTAIX/SDC/devicelib/deps/sdclib_build/bin/ssl/sdccert.pem");
+    // Public, Private, Passphrase
+    t_SSLHandler->useKeyFiles("", "/home/fabian/SurgiTAIX/SDC/devicelib/deps/sdclib_build/bin/ssl/userkey.pem", "");
+    
     // Some restriction
     t_SDCInstance->setIP6enabled(false);
     t_SDCInstance->setIP4enabled(true);

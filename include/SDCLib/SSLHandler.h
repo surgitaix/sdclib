@@ -57,6 +57,10 @@ namespace SDCLib
             bool isInit() const { return m_init; }
             
             Poco::Net::Context::Ptr getContext() { return m_context; }
+            
+            bool addCertificateAuthority(const std::string& p_file);
+            bool useCertificate(const std::string& p_file);
+            bool useKeyFiles(const std::string& p_publicKey, const std::string& p_privateKey, const std::string& p_pasphrase);
 
         private:
 

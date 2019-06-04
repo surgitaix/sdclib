@@ -310,6 +310,48 @@ private:
 namespace SDCLib {
 namespace Data {
 namespace SDC {
+    
+class Factory : public OSELib::HTTP::FrontControllerAdapter {
+public:
+    Factory(SDCProvider & provider,
+            const OSELib::DPWS::MetadataProvider & metadata,
+            OSELib::DPWS::MDPWSHostAdapter & dpwsHost,
+            OSELib::DPWS::SubscriptionManager & subscriptionManager,
+            std::set<int> & strPorts) :
+        FrontControllerAdapter(_frontController),
+        deviceStub(metadata, dpwsHost),
+        contextStub(provider, metadata, subscriptionManager),
+        eventReportStub(metadata, subscriptionManager),
+        getServiceStub(provider, metadata),
+        setServiceStub(provider, metadata, subscriptionManager),
+        waveformReportStub(metadata, subscriptionManager, strPorts),
+        _deviceService(_frontController, deviceStub),
+        _contextService(_frontController, contextStub),
+        _getService(_frontController, getServiceStub),
+        _setService(_frontController, setServiceStub),
+        _eventReportService(_frontController, eventReportStub),
+        _waveformReportService(_frontController, waveformReportStub)
+    {
+    }
+
+    virtual ~Factory() = default;
+
+    private:
+        OSELib::DeviceImpl deviceStub;
+        OSELib::ContextReportServiceImpl contextStub;
+        OSELib::EventReportServiceImpl eventReportStub;
+        OSELib::GetServiceImpl getServiceStub;
+        OSELib::SetServiceImpl setServiceStub;
+        OSELib::WaveformReportServiceImpl waveformReportStub;
+
+        OSELib::HTTP::FrontController _frontController;
+        OSELib::DPWS::DeviceServiceController _deviceService;
+        OSELib::ContextServiceController _contextService;
+        OSELib::GetServiceController _getService;
+        OSELib::SetServiceController _setService;
+        OSELib::EventReportServiceController _eventReportService;
+        OSELib::WaveformEventReportServiceController _waveformReportService;
+};
 
 SDCProviderAdapter::SDCProviderAdapter(SDCProvider & provider) :
 	_provider(provider),
@@ -342,14 +384,17 @@ bool SDCProviderAdapter::start() {
     auto t_bindingAddress = t_interface->m_if.address();
     auto t_port = _provider.getSDCInstance()->getMDPWSPort();
     
-	Poco::Net::SecureServerSocket ss(_provider.getSDCInstance()->getSSLHandler()->getContext());
-	const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
-	ss.bind(socketAddress);
-	ss.listen();
-
+    std::string ts_PROTOCOL = "http";
+    const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
+    
+    // Use SSL - HTTP'S'
+    if(_provider.getSDCInstance()->getSSLHandler()->isInit()) {
+        ts_PROTOCOL.append("s");
+    }
+    
 	// add address to to DPWS xAddresses so that searching devices know on which address to connect to device
 	OSELib::DPWS::XAddressesType xAddresses;
-	xAddresses.push_back(OSELib::DPWS::AddressType("http://" + t_bindingAddress.toString() + ":" + std::to_string(t_port) + metadata.getDeviceServicePath()));
+	xAddresses.push_back(OSELib::DPWS::AddressType(ts_PROTOCOL + "://" + t_bindingAddress.toString() + ":" + std::to_string(t_port) + metadata.getDeviceServicePath()));
 
 	OSELib::DPWS::TypesType types;
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "Device"));
@@ -372,50 +417,26 @@ bool SDCProviderAdapter::start() {
 				OSELib::SDC::PeriodicMetricReportTraits::Action() };
 	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions));
 
-	class Factory : public OSELib::HTTP::FrontControllerAdapter {
-	public:
-		Factory(SDCProvider & provider,
-				const OSELib::DPWS::MetadataProvider & metadata,
-				OSELib::DPWS::MDPWSHostAdapter & dpwsHost,
-				OSELib::DPWS::SubscriptionManager & subscriptionManager,
-				std::set<int> & strPorts) :
-			FrontControllerAdapter(_frontController),
-			deviceStub(metadata, dpwsHost),
-			contextStub(provider, metadata, subscriptionManager),
-			eventReportStub(metadata, subscriptionManager),
-			getServiceStub(provider, metadata),
-			setServiceStub(provider, metadata, subscriptionManager),
-			waveformReportStub(metadata, subscriptionManager, strPorts),
-			_deviceService(_frontController, deviceStub),
-			_contextService(_frontController, contextStub),
-			_getService(_frontController, getServiceStub),
-			_setService(_frontController, setServiceStub),
-			_eventReportService(_frontController, eventReportStub),
-			_waveformReportService(_frontController, waveformReportStub)
-		{
-		}
-
-		virtual ~Factory() = default;
-
-		private:
-			OSELib::DeviceImpl deviceStub;
-			OSELib::ContextReportServiceImpl contextStub;
-			OSELib::EventReportServiceImpl eventReportStub;
-			OSELib::GetServiceImpl getServiceStub;
-			OSELib::SetServiceImpl setServiceStub;
-			OSELib::WaveformReportServiceImpl waveformReportStub;
-
-			OSELib::HTTP::FrontController _frontController;
-			OSELib::DPWS::DeviceServiceController _deviceService;
-			OSELib::ContextServiceController _contextService;
-			OSELib::GetServiceController _getService;
-			OSELib::SetServiceController _setService;
-			OSELib::EventReportServiceController _eventReportService;
-			OSELib::WaveformEventReportServiceController _waveformReportService;
-	};
-
-	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts), *_threadPool, ss,  new Poco::Net::HTTPServerParams));
-
+    // Use SSL
+    if(_provider.getSDCInstance()->getSSLHandler()->isInit())
+    {
+        // ServerSocket
+        Poco::Net::SecureServerSocket t_sslSocket(_provider.getSDCInstance()->getSSLHandler()->getContext());
+        t_sslSocket.bind(socketAddress);
+        t_sslSocket.listen();
+        
+        // Create the Server
+        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts), *_threadPool, t_sslSocket,  new Poco::Net::HTTPServerParams));
+    }
+    else {
+        // ServerSocket
+        Poco::Net::ServerSocket t_socket;
+        t_socket.bind(socketAddress);
+        t_socket.listen();
+        
+        // Create the Server
+        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts), *_threadPool, t_socket, new Poco::Net::HTTPServerParams));
+    }
 
 	_httpServer->start();
 	_dpwsHost->start();

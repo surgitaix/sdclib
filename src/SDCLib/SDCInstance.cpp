@@ -11,6 +11,7 @@ std::atomic_uint SDCInstance::s_IDcounter = ATOMIC_VAR_INIT(0);
 
 SDCInstance::SDCInstance(SDCPort p_MDPWSPort, bool p_init)
  : m_MDPWSPort(p_MDPWSPort)
+ , m_SSLHandler([]() { return std::make_shared<SSL::SSLHandler>(); } ())
 {
     if(p_init) {
         init();
@@ -61,10 +62,10 @@ bool SDCInstance::init()
 
 bool SDCInstance::initSSL()
 {
-    if(m_SSLHandler != nullptr) {
+    if(m_SSLHandler->isInit()) {
         return false;
     }
-    m_SSLHandler = std::make_shared<SSL::SSLHandler>();
+    std::cout << "Init SSL..." << std::endl;
     return m_SSLHandler->init();
 }
 
