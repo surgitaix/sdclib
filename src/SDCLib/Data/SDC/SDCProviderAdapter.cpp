@@ -336,6 +336,7 @@ bool SDCProviderAdapter::start() {
         return false;
     }
 
+    // todo: right now only binding to one interface is possible -> implementation for more than one interface is needed!
     auto t_bindingAddress = t_interface->m_if.address();
     auto t_port = _provider.getSDCInstance()->getMDPWSPort();
 
@@ -344,17 +345,12 @@ bool SDCProviderAdapter::start() {
 	ss.bind(socketAddress);
 	ss.listen();
 
+	// add address to to DPWS xAddresses so that searching devices know on which address to connect to device
 	OSELib::DPWS::XAddressesType xAddresses;
-	for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-		if (nextIf.supportsIPv4()
-			&& nextIf.address().isUnicast()
-			&& !nextIf.address().isLoopback()) {
-			xAddresses.push_back(OSELib::DPWS::AddressType("http://" + nextIf.address().toString() + ":" + std::to_string(t_port) + metadata.getDeviceServicePath()));
-		}
-	}
+	xAddresses.push_back(OSELib::DPWS::AddressType("http://" + t_bindingAddress.toString() + ":" + std::to_string(t_port) + metadata.getDeviceServicePath()));
 
 	OSELib::DPWS::TypesType types;
-	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "Device"));
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
 
 	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(_provider.getSDCInstance(),
