@@ -7,17 +7,13 @@
 
 #include <iostream>
 
-#include <Poco/Mutex.h>
-#include <Poco/ThreadPool.h>
-#include <Poco/Net/HTTPServer.h>
-#include <Poco/Net/NetworkInterface.h>
-#include <Poco/Net/ServerSocket.h>
-#include <Poco/Net/IPAddress.h>
+#include "Poco/Mutex.h"
+#include "Poco/ThreadPool.h"
+#include "Poco/Net/HTTPServer.h"
+#include "Poco/Net/NetworkInterface.h"
+#include "Poco/Net/ServerSocket.h"
+#include "Poco/Net/IPAddress.h"
 #include <Poco/Net/SecureServerSocket.h>
-#include <Poco/Net/SSLManager.h>
-#include <Poco/Net/Context.h>
-#include <Poco/Net/KeyConsoleHandler.h>
-#include <Poco/Net/ConsoleCertificateHandler.h>
 
 #include "BICEPS_ParticipantModel.hxx"
 #include "BICEPS_MessageModel.hxx"
@@ -27,6 +23,7 @@
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
 #include "SDCLib/SDCInstance.h"
+#include "SDCLib/SSLHandler.h"
 
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/SDCProviderAdapter.h"
@@ -318,7 +315,6 @@ SDCProviderAdapter::SDCProviderAdapter(SDCProvider & provider) :
 	_provider(provider),
 	_threadPool(new Poco::ThreadPool())
 {
-    //FIXMEPoco::Net::initializeSSL();
 }
 
 SDCProviderAdapter::~SDCProviderAdapter() = default;
@@ -344,17 +340,11 @@ bool SDCProviderAdapter::start() {
 
     auto t_bindingAddress = t_interface->m_if.address();
     auto t_port = _provider.getSDCInstance()->getMDPWSPort();
-
-    /*Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> ptrCert = new Poco::Net::ConsoleCertificateHandler(false);
-    Poco::Net::Context::Ptr ptrContext = new Poco::Net::Context(Context::CLIENT_USE, "", "", "rootcert.pem", Context::VERIFY_STRICT, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
-    Poco::Net::SSLManager::instance().initializeServer(0, ptrCert, ptrContext);
-
-	//Poco::Net::SecureServerSocket ss;*/
-    Poco::Net::ServerSocket ss;
+    
+	Poco::Net::SecureServerSocket ss(_provider.getSDCInstance()->getSSLHandler()->getContext());
 	const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
-	//ss.bind(socketAddress, Poco::Net::SSLManager().instance().defaultServerContext());
 	ss.bind(socketAddress);
-    ss.listen();
+	ss.listen();
 
 	OSELib::DPWS::XAddressesType xAddresses;
 	for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
@@ -366,7 +356,7 @@ bool SDCProviderAdapter::start() {
 	}
 
 	OSELib::DPWS::TypesType types;
-	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "MedicalDevice"));
+	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "Device"));
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
 
 	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(_provider.getSDCInstance(),

@@ -1,6 +1,7 @@
 #include "SDCLib/SDCInstance.h"
 
 #include "SDCLib/SDCLibrary.h"
+#include "SDCLib/SSLHandler.h"
 
 #include <iostream>
 
@@ -56,6 +57,15 @@ bool SDCInstance::init()
 
     m_init = true;
     return true;
+}
+
+bool SDCInstance::initSSL()
+{
+    if(m_SSLHandler != nullptr) {
+        return false;
+    }
+    m_SSLHandler = std::make_shared<SSL::SSLHandler>();
+    return m_SSLHandler->init();
 }
 
 bool SDCInstance::bindToDefaultNetworkInterface(bool p_useAsMDPWS)

@@ -43,7 +43,7 @@ namespace SDCLib
 
         // Specify these values in your firewall settings to pass the allowed port range (running tests and examples!)
 
-        const unsigned int SDC_DEFAULT_MDPWS_PORT = 0;
+        const unsigned int SDC_DEFAULT_MDPWS_PORT = 7000;
 
         const unsigned int SDC_ALLOWED_PORT_START = 14000;
         const unsigned int SDC_ALLOWED_PORT_RANGE = 2000;

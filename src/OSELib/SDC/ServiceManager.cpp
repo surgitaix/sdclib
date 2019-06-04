@@ -158,8 +158,6 @@ ServiceManager::DiscoverResults ServiceManager::discover()
 	DPWS::TypesType types;
 	types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
 
-	xml_schema::Qname asdf(SDC::NS_MDPWS, "MedicalDevice");
-
 	DPWS::ProbeType probeFilter;
 	probeFilter.Types().set(types);
 
@@ -221,8 +219,6 @@ ServiceManager::DiscoverResults ServiceManager::discoverOSCP() {
 
 	DPWS::TypesType types;
 	types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
-
-	xml_schema::Qname asdf(SDC::NS_MDPWS, "MedicalDevice");
 
 	DPWS::ProbeType probeFilter;
 	probeFilter.Types().set(types);

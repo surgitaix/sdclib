@@ -88,6 +88,7 @@ namespace SDCLib
 
         std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
 
+        SSL::SSLHandler_shared_ptr m_SSLHandler = nullptr;
 
         // Network settings
         std::string m_MULTICAST_IPv4 = OSELib::UDP_MULTICAST_DISCOVERY_IP_V4;
@@ -144,6 +145,10 @@ namespace SDCLib
 
         // Note: Only works with IPv4 IPAddresses!
         bool belongsToSDCInstance(Poco::Net::IPAddress p_IP) const;
+        
+        // WIP!
+        bool initSSL();
+        SSL::SSLHandler_shared_ptr getSSLHandler() { return m_SSLHandler; }
 
         // IP4 / IP6
         bool getIP4enabled() const { return m_IP4enabled; }

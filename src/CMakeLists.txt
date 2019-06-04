@@ -28,6 +28,7 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/SDCLib/SDCLibrary.cpp
         ${SRC_DIR}/SDCLib/SDCLibrary2.cpp
         ${SRC_DIR}/SDCLib/SDCInstance.cpp
+        ${SRC_DIR}/SDCLib/SSLHandler.cpp
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.cpp
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationState.cpp
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/AlertConditionDescriptor.cpp

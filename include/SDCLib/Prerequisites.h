@@ -45,6 +45,11 @@ namespace SDCLib
     class SDCInstance;
     using SDCInstance_shared_ptr = std::shared_ptr<SDCInstance>;
 
+    namespace SSL
+    {
+        class SSLHandler;
+        using SSLHandler_shared_ptr = std::shared_ptr<SSLHandler>;
+    }
     // Just a few helpers
     namespace Data {
             namespace SDC {
