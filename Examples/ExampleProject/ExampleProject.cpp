@@ -226,6 +226,14 @@ public:
         // set the providers description
         sdcProvider.setMdDescription(holdingDeviceDescription);
 
+        // set DPWS metadata, e.g. for the displayed friendly name
+		Dev::DeviceCharacteristics devChar;
+		devChar.addFriendlyName("en", "SDCLib C ExampleProvider");
+		devChar.setManufacturer("SurgiTAIX AG");
+		devChar.addModelName("en", "sdcDeviceNo1");
+		sdcProvider.setDeviceCharacteristics(devChar);
+
+
 
 		// State handler
         sdcProvider.addMdStateHandler(&maxValueState);

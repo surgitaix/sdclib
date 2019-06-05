@@ -194,7 +194,7 @@ SDCProvider::SDCProvider(SDCInstance_shared_ptr p_SDCInstance)
 {
 	atomicTransactionId.store(0);
 	mdibVersion.store(0);
-    setEndpointReference(Poco::UUIDGenerator::defaultGenerator().create().toString());
+    setEndpointReference(std::string("urn:uuid:" + Poco::UUIDGenerator::defaultGenerator().create().toString()));
     m_mdDescription = std::unique_ptr<MdDescription>(new MdDescription());
 	_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this));
 }

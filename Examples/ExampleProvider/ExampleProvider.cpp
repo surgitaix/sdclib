@@ -258,10 +258,13 @@ public:
     	{
 
 		sdcProvider.setEndpointReference(DEVICE_EPR);
-		Dev::DeviceCharacteristics devChar;
-		devChar.addFriendlyName("en", "SDCLib ExampleProvider");
-		sdcProvider.setDeviceCharacteristics(devChar);
 
+		// set DPWS metadata, e.g. for the displayed friendly name
+		Dev::DeviceCharacteristics devChar;
+		devChar.addFriendlyName("en", "SDCLib C ExampleProvider");
+		devChar.setManufacturer("SurgiTAIX AG");
+		devChar.addModelName("en", "sdcDeviceNo1");
+		sdcProvider.setDeviceCharacteristics(devChar);
 
         // Channel
         ChannelDescriptor holdingDeviceParameters(CHANNEL_DESCRIPTOR_HANDLE);
