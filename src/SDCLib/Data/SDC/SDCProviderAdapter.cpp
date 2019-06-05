@@ -71,8 +71,8 @@ struct DeviceImpl : public DPWS::IDevice {
 		return _metadata.getDeviceServicePath();
 	}
 
-	virtual DPWS::GetTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createDeviceMetadata(serverAddress);
+	virtual DPWS::GetTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createDeviceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<DPWS::ProbeTraits::Response> dispatch(const DPWS::ProbeTraits::Request & request) override {
@@ -107,8 +107,8 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 		return wsdlLoader.getContextServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createContextServiceMetadata(serverAddress);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createContextServiceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
@@ -152,8 +152,8 @@ struct EventReportServiceImpl : public SDC::IEventReport {
 		return wsdlLoader.getStateEventServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createEventServiceMetadata(serverAddress);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createEventServiceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
@@ -187,8 +187,8 @@ struct WaveformReportServiceImpl : public SDC::IWaveformService {
 		return wsdlLoader.getWaveformServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createStreamServiceMetadata(serverAddress, _streamingPorts);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createStreamServiceMetadata(serverAddress, _streamingPorts, p_SSL);
 	}
 
 	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
@@ -224,8 +224,8 @@ struct GetServiceImpl : public SDC::IGetService {
 		return wsdlLoader.getGetServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createGetServiceMetadata(serverAddress);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createGetServiceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<SDC::GetMDDescriptionTraits::Response> dispatch(const SDC::GetMDDescriptionTraits::Request & request) override {
@@ -264,8 +264,8 @@ struct SetServiceImpl : public SDC::ISetService {
 		return wsdlLoader.getSetServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createSetServiceMetadata(serverAddress);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createSetServiceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<SDC::ActivateTraits::Response> dispatch(const SDC::ActivateTraits::Request & request) override {
@@ -317,7 +317,8 @@ public:
             const OSELib::DPWS::MetadataProvider & metadata,
             OSELib::DPWS::MDPWSHostAdapter & dpwsHost,
             OSELib::DPWS::SubscriptionManager & subscriptionManager,
-            std::set<int> & strPorts) :
+            std::set<int> & strPorts,
+            bool p_SSL) :
         FrontControllerAdapter(_frontController),
         deviceStub(metadata, dpwsHost),
         contextStub(provider, metadata, subscriptionManager),
@@ -332,6 +333,7 @@ public:
         _eventReportService(_frontController, eventReportStub),
         _waveformReportService(_frontController, waveformReportStub)
     {
+        _frontController.setSSL(p_SSL);
     }
 
     virtual ~Factory() = default;
@@ -426,7 +428,7 @@ bool SDCProviderAdapter::start() {
         t_sslSocket.listen();
         
         // Create the Server
-        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts), *_threadPool, t_sslSocket,  new Poco::Net::HTTPServerParams));
+        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts, true), *_threadPool, t_sslSocket,  new Poco::Net::HTTPServerParams));
     }
     else {
         // ServerSocket
@@ -435,7 +437,7 @@ bool SDCProviderAdapter::start() {
         t_socket.listen();
         
         // Create the Server
-        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts), *_threadPool, t_socket, new Poco::Net::HTTPServerParams));
+        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts, false), *_threadPool, t_socket, new Poco::Net::HTTPServerParams));
     }
 
 	_httpServer->start();

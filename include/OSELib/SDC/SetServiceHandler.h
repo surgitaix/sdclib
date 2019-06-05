@@ -16,13 +16,14 @@ namespace SDC {
 
 class SetServiceHandler : public SOAP::HTTPRequestHandlerExceptionTrap {
 public:
-	SetServiceHandler(ISetService & service, Helper::XercesGrammarPoolProvider & grammarProvider);
+	SetServiceHandler(ISetService & service, Helper::XercesGrammarPoolProvider & grammarProvider, bool p_SSL);
 
 private:
 	virtual void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse);
 
 	ISetService & _service;
 	Helper::XercesGrammarPoolProvider & _grammarProvider;
+    const bool m_SSL = true;
 };
 
 } /* namespace SDC */

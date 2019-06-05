@@ -78,7 +78,7 @@ bool SSLHandler::init()
     Poco::SharedPtr<InvalidCertificateHandler> ptrCert = new ConsoleCertificateHandler(true);
     m_context = new Context(Poco::Net::Context::SERVER_USE,
                                           "",
-                                          Context::VERIFY_STRICT,
+                                          Context::VERIFY_NONE,
                                           t_depth,
                                           false
                                           ,"ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
@@ -92,7 +92,7 @@ bool SSLHandler::init()
 bool SSLHandler::addCertificateAuthority(const std::string& p_file)
 {
     assert(!p_file.empty());
-    if(m_context.get() == nullptr) {
+    if(m_context == nullptr) {
         return false;
     }
     
@@ -110,7 +110,7 @@ bool SSLHandler::addCertificateAuthority(const std::string& p_file)
 bool SSLHandler::useCertificate(const std::string& p_file)
 {
     assert(!p_file.empty());
-    if(m_context.get() == nullptr) {
+    if(m_context == nullptr) {
         return false;
     }
     
@@ -126,7 +126,7 @@ bool SSLHandler::useCertificate(const std::string& p_file)
 }
 bool SSLHandler::useKeyFiles(const std::string& p_publicKey, const std::string& p_privateKey, const std::string& p_pasphrase)
 {
-    if(m_context.get() == nullptr) {
+    if(m_context == nullptr) {
         return false;
     }
     

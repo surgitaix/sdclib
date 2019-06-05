@@ -27,7 +27,7 @@ public:
 	}
 	virtual ~SDCEventServiceController() = default;
 
-	Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & ) override {
+	Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & , bool p_SSL) override {
 		return new ServiceHandlerType(_serviceImpl, _grammarProvider);
 	}
 

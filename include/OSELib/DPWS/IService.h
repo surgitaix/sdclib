@@ -20,7 +20,7 @@ public:
 
 	virtual std::string getBaseUri() const = 0;
 	virtual std::string getWSDL() = 0;
-	virtual GetMetadataTraits::Response getMetadata(const std::string & serverAddress) = 0;
+	virtual GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) = 0;
 };
 
 } /* namespace DPWS */

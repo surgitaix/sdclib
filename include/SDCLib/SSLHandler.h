@@ -28,7 +28,12 @@
 #include "Prerequisites.h"
 #include "config/config.h"
 
-#include <Poco/Net/Context.h>
+
+namespace Poco {
+    namespace Net {
+        class Context;
+    }
+}
 
 namespace SDCLib
 {
@@ -40,7 +45,7 @@ namespace SDCLib
 
             std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
         
-            Poco::Net::Context::Ptr m_context = nullptr;
+            Poco::Net::Context* m_context = nullptr;
 
         public:
 
@@ -56,7 +61,7 @@ namespace SDCLib
             bool init();
             bool isInit() const { return m_init; }
             
-            Poco::Net::Context::Ptr getContext() { return m_context; }
+            Poco::Net::Context* getContext() { return m_context; }
             
             bool addCertificateAuthority(const std::string& p_file);
             bool useCertificate(const std::string& p_file);

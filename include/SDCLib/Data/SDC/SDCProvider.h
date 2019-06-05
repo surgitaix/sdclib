@@ -210,14 +210,14 @@ public:
      *
      * @param epr the EPR
      */
-	void setEndpointReference(const std::string & epr);
+	void setEndpointReference(const std::string& p_epr);
 
     /**
      * @brief Set the endpoint reference.
      *
      * @return The EPR
      */
-	const std::string getEndpointReference() const;
+	std::string getEndpointReference() const;
 
     /**
      * @brief Get the low level DPWS device characteristics.

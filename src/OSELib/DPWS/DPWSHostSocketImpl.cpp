@@ -387,10 +387,11 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 		delayedMessages.enqueueNotification(new SendUnicastMessage(responseMessage, remoteAddr), createDelay());
 	} else if (requestMessage->Body().Resolve().present()) {
 		const WS::DISCOVERY::ResolveType & resolve(requestMessage->Body().Resolve().get());
-		std::unique_ptr<ResolveMatchType> result(resolveDispatcher.dispatch(resolve));
+		std::unique_ptr<ResolveMatchType> result(resolveDispatcher.dispatch(resolve)); // SSL BUG
 		if (result == nullptr) {
 			return;
 		}
+		std::cout << "DEBUG: RESOLVE RECEIVED from:" << remoteAddr << "\n" << std::string(buf.begin(), buf.end()) << std::endl;
 		const MESSAGEMODEL::Envelope responseMessage(buildResolveMatchMessage(*result, *requestMessage));
 		delayedMessages.enqueueNotification(new SendUnicastMessage(responseMessage, remoteAddr), createDelay());
 	}

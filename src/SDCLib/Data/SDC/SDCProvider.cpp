@@ -1158,11 +1158,14 @@ void SDCProvider::removeMDStateHandler(SDCProviderStateHandler * handler) {
     stateHandlers.erase(handler->getDescriptorHandle());
 }
 
-void SDCProvider::setEndpointReference(const std::string & epr) {
+void SDCProvider::setEndpointReference(const std::string& p_epr)
+{
+    if(p_epr.empty()) {
+        return;
+    }
     Poco::Mutex::ScopedLock lock(m_mutex);
-	this->endpointReference = epr;
+    this->endpointReference = p_epr;
 }
-
 
 void SDCProvider::setMdDescription(const MdDescription & mdDescription) {
 	Poco::Mutex::ScopedLock lock(getMutex());
@@ -1193,8 +1196,8 @@ void SDCProvider::setMdDescription(std::string xml)
 
 
 
-const std::string SDCProvider::getEndpointReference() const {
-	return endpointReference;
+std::string SDCProvider::getEndpointReference() const {
+	return std::string(endpointReference);
 }
 
 template<typename T> InvocationState SDCProvider::onStateChangeRequest(const T & state, const OperationInvocationContext & oic) {

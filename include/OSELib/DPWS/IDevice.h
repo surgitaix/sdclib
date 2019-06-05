@@ -19,7 +19,7 @@ public:
 	virtual ~IDevice() = default;
 
 	virtual std::string getBaseUri() const = 0;
-	virtual GetTraits::Response getMetadata(const std::string & serverAddress) = 0;
+	virtual GetTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) = 0;
 	virtual std::unique_ptr<ProbeTraits::Response> dispatch(const ProbeTraits::Request & request) = 0;
 };
 

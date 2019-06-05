@@ -22,6 +22,7 @@
 #include "ws-addressing.hxx"
 
 #include "SDCLib/SDCInstance.h"
+#include "SDCLib/SSLHandler.h"
 
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 
@@ -353,7 +354,7 @@ bool SDCConsumerAdapter::start() {
 
 	class Factory : public OSELib::HTTP::FrontControllerAdapter {
 	public:
-		Factory(SDCConsumer & consumer) :
+		Factory(SDCConsumer & consumer, bool p_SSL) :
 			FrontControllerAdapter(_frontController),
 			_contextServiceEventSink(consumer),
 			_eventReportEventSink(consumer),
@@ -362,6 +363,7 @@ bool SDCConsumerAdapter::start() {
 			_eventReportEventSinkServiceController(_frontController, _eventReportEventSink),
 			_setServiceEventSinkController(_frontController, _setServiceEventSink)
 		{
+            _frontController.setSSL(p_SSL);
 		}
 
 		virtual ~Factory() = default;
@@ -379,7 +381,9 @@ bool SDCConsumerAdapter::start() {
 
 	};
 
-	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_consumer), *_threadPool, ss,  new Poco::Net::HTTPServerParams));
+    bool SSL_INIT = false; //FIXME
+
+	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_consumer, SSL_INIT), *_threadPool, ss,  new Poco::Net::HTTPServerParams));
 
 	_httpServer->start();
 
@@ -421,6 +425,11 @@ void SDCConsumerAdapter::subscribeEvents() {
 
 	auto t_port = _consumer.getSDCInstance()->getMDPWSPort();
 
+    std::string ts_PROTOCOL = "http";
+    if(_consumer.getSDCInstance()->getSSLHandler()->isInit()) {
+        ts_PROTOCOL.append("s"); // FIXME
+    }
+
 	std::vector<OSELib::DPWS::SubscriptionClient::SubscriptionInformation> subscriptions;
 	// context reports
 	{
@@ -428,7 +437,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::EpisodicContextChangedReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicContextChangedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
+				Poco::URI(ts_PROTOCOL + "://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
 				_deviceDescription.getContextServiceURI(),
 				filter);
 	}
@@ -440,7 +449,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::PeriodicAlertReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
+				Poco::URI(ts_PROTOCOL + "://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}
@@ -449,7 +458,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		// fixme: move to SetService
 		filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
+				Poco::URI(ts_PROTOCOL + "://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
 				_deviceDescription.getSetServiceURI(),
 				filter);
 	}

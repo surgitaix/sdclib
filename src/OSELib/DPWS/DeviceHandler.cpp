@@ -28,8 +28,9 @@
 namespace OSELib {
 namespace DPWS {
 
-DeviceHandler::DeviceHandler(IDevice & service) :
+DeviceHandler::DeviceHandler(IDevice & service, bool p_SSL) :
 	_service(service)
+    , m_SSL(p_SSL)
 {
 }
 
@@ -45,7 +46,7 @@ void DeviceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest
 
 	if (soapAction == GetTraits::RequestAction()) {
 		const std::string serverAddress(httpRequest.serverAddress().toString());
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GetActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress)));
+		command = std::unique_ptr<SOAP::Command>(new SOAP::GetActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress, m_SSL)));
 	} else if (soapAction == ProbeTraits::RequestAction()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<ProbeTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else {

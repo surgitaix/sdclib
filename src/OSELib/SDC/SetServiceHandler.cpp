@@ -31,9 +31,10 @@
 namespace OSELib {
 namespace SDC {
 
-SetServiceHandler::SetServiceHandler(ISetService & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
+SetServiceHandler::SetServiceHandler(ISetService & service, Helper::XercesGrammarPoolProvider & grammarProvider, bool p_SSL) :
 	_service(service),
-	_grammarProvider(grammarProvider)
+	_grammarProvider(grammarProvider),
+	m_SSL(p_SSL)
 {
 }
 
@@ -48,7 +49,7 @@ void SetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpReq
 
 	if (soapAction == DPWS::GetMetadataTraits::RequestAction()) {
 		const std::string serverAddress(httpRequest.serverAddress().toString());
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress)));
+		command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress, m_SSL)));
 	} else if (soapAction == ActivateTraits::RequestAction()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<ActivateTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else if (soapAction == SetAlertStateTraits::RequestAction()) {
@@ -58,7 +59,9 @@ void SetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpReq
 	} else if (soapAction == SetValueTraits::RequestAction()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<SetValueTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else if (soapAction == DPWS::SubscribeTraits::RequestAction()) {
-		const std::string subscriptionManagerAddress("http://" + httpRequest.serverAddress().toString() + _service.getBaseUri());
+        std::string ts_PROTOCOL = "http";
+        if(m_SSL) { ts_PROTOCOL.append("s"); }
+		const std::string subscriptionManagerAddress(ts_PROTOCOL + "://" + httpRequest.serverAddress().toString() + _service.getBaseUri());
 		command = std::unique_ptr<SOAP::Command>(new SOAP::SubscribeActionCommand(std::move(soapHandling.normalizedMessage), _service, subscriptionManagerAddress));
 	} else if (soapAction == DPWS::UnsubscribeTraits::RequestAction()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::UnsubscribeActionCommand(std::move(soapHandling.normalizedMessage), _service));

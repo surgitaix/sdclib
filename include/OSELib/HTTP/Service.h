@@ -21,7 +21,7 @@ public:
 	Service(FrontController & controller, const std::vector<std::string> & uris);
 	virtual ~Service();
 
-	virtual Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & request) = 0;
+	virtual Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & request, bool p_SSL) = 0;
 
 	const std::vector<std::string> & getUris() const;
 

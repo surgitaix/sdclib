@@ -27,9 +27,10 @@
 namespace OSELib {
 namespace SDC {
 
-GetServiceHandler::GetServiceHandler(IGetService & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
+GetServiceHandler::GetServiceHandler(IGetService & service, Helper::XercesGrammarPoolProvider & grammarProvider, bool p_SSL) :
 	_service(service),
-	_grammarProvider(grammarProvider)
+	_grammarProvider(grammarProvider),
+	m_SSL(p_SSL)
 {
 }
 
@@ -44,7 +45,7 @@ void GetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpReq
 
 	if (soapAction == DPWS::GetMetadataTraits::RequestAction()) {
 		const std::string serverAddress(httpRequest.serverAddress().toString());
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress)));
+		command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress, m_SSL)));
 	} else if (soapAction == GetMDIBTraits::RequestAction()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMDIBTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else if (soapAction == GetMDDescriptionTraits::RequestAction()) {
