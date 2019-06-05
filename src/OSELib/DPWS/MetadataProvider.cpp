@@ -10,6 +10,8 @@
 #include "MDPWS.hxx"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/SDC/SDCConstants.h"
+
 #include "OSELib/DPWS/MetadataProvider.h"
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
@@ -172,11 +174,10 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(
 	{
 		counter++;
 		stt.StreamAddress(SDC::MDPWS_MCAST_ADDR + ":" + std::to_string(it));
-		StreamType st(stt,"WaveformStream" + std::to_string(counter),OSELib::SDC::WS_MEX_ORNET_STREAM_TYPE);
+		StreamType st(stt,OSELib::SDC::MDPWS_STREAM_TYPE + std::to_string(counter),OSELib::SDC::WS_MEX_ORNET_STREAM_TYPE);
 		sd.StreamType().push_back(st);
 	}
 	metadataSectionStream.StreamDescriptions().set(sd);
-//	metadataSectionStream.StreamDescriptions().set(sd);
 	return metadataSectionStream;
 }
 

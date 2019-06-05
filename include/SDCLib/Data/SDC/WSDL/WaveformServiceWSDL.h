@@ -3,7 +3,7 @@
 
 #include <string.h>
 
-const std::string waveformServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsstm="http://standardized.namespace.org/ws-streaming" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01">
+const std::string waveformServiceWsdl=R"(<wsdl:definitions xmlns:mdpws="http://standards.ieee.org/downloads/11073/11073-20702-2016" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01">
     <wsdl:types>
         <xs:schema targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
             <xs:include schemaLocation="BICEPS_MessageModel.xsd"/>
@@ -17,11 +17,11 @@ const std::string waveformServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://sc
             <wsdl:output message="tns:Notification" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/WaveformService/WaveformStream"/>
         </wsdl:operation>
         <wsp:Policy>
-            <wsstm:StreamSource>
-                <wsstm:StreamDescriptions targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018/WaveformService">
-                    <wsstm:streamType actionURI="http://standards.ieee.org/downloads/11073/11073-20701-2018/WaveformService/WaveformStream" element="mm:WaveformStream" id="WaveformStream" streamType="http://docs.oasis-open.org/ws-dd/soapoverudp/1.1/os/wsdd-soapoverudp-1.1-spec-os.html"/>
-                </wsstm:StreamDescriptions>
-            </wsstm:StreamSource>
+            <mdpws:StreamSource>
+                <mdpws:StreamDescriptions targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018/WaveformService">
+                    <mdpws:StreamType actionURI="http://standards.ieee.org/downloads/11073/11073-20701-2018/WaveformService/WaveformStream" element="mm:WaveformStream" id="WaveformStream" streamType="http://docs.oasis-open.org/ws-dd/soapoverudp/1.1/os/wsdd-soapoverudp-1.1-spec-os.html"/>
+                </mdpws:StreamDescriptions>
+            </mdpws:StreamSource>
             <dpws:Profile wsp:Optional="true"/>
         </wsp:Policy>
     </wsdl:portType>
