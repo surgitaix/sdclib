@@ -65,6 +65,7 @@ namespace SDCLib
             
             bool addCertificateAuthority(const std::string& p_file);
             bool useCertificate(const std::string& p_file);
+            bool addChainCertificate(const std::string& p_file);
             bool useKeyFiles(const std::string& p_publicKey, const std::string& p_privateKey, const std::string& p_pasphrase);
 
         private:

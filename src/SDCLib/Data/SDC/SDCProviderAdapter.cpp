@@ -426,6 +426,7 @@ bool SDCProviderAdapter::start() {
         Poco::Net::SecureServerSocket t_sslSocket(_provider.getSDCInstance()->getSSLHandler()->getContext());
         t_sslSocket.bind(socketAddress);
         t_sslSocket.listen();
+        t_sslSocket.setKeepAlive(true);
         
         // Create the Server
         _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts, true), *_threadPool, t_sslSocket,  new Poco::Net::HTTPServerParams));

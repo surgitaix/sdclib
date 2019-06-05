@@ -20,20 +20,6 @@ using namespace SDCLib::SSL;
 
 using namespace Poco::Net;
 
-class PrivateKeyHandler : public PrivateKeyPassphraseHandler
-{
-public:
-    PrivateKeyHandler()
-    : PrivateKeyPassphraseHandler(true)
-    { }
-    
-    void onPrivateKeyRequested(const void*, std::string&) override
-    {
-        // WIP
-        std::cout << "PRIVATE KEY!" << std::endl;
-    }
-    
-};
 
 SSLHandler::SSLHandler()
 {
@@ -69,22 +55,20 @@ bool SSLHandler::init()
         return false;
     }
     
-    Poco::Net::initializeSSL();
+    try {
+        Poco::Net::initializeSSL();
+        Poco::SharedPtr<PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(true);
+        Poco::SharedPtr<InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(true);
+        m_context = new Context(Context::SERVER_USE, "userkey.pem", "sdccert.pem", "cacert.pem", Context::VERIFY_STRICT, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
+        SSLManager::instance().initializeServer(pConsoleHandler, pInvalidCertHandler, m_context);
+    }
+    catch(...)
+    {
+        return false;
+    }
     
-    int t_depth = 9;
-    
-    auto t_privHandler = new PrivateKeyHandler();
-    
-    Poco::SharedPtr<InvalidCertificateHandler> ptrCert = new ConsoleCertificateHandler(true);
-    m_context = new Context(Poco::Net::Context::SERVER_USE,
-                                          "",
-                                          Context::VERIFY_NONE,
-                                          t_depth,
-                                          false
-                                          ,"ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
-                           );
-    
-    SSLManager::instance().initializeServer(t_privHandler, ptrCert, m_context);
+    // Important!
+    m_context->enableExtendedCertificateVerification(false);
 
     m_init = true;
     return true;
@@ -116,6 +100,23 @@ bool SSLHandler::useCertificate(const std::string& p_file)
     
     try {
         m_context->useCertificate(X509Certificate(p_file));
+        return true;
+    }
+    catch(...)
+    {
+        return false;
+    }
+    return false;
+}
+bool SSLHandler::addChainCertificate(const std::string& p_file)
+{
+    assert(!p_file.empty());
+    if(m_context == nullptr) {
+        return false;
+    }
+
+    try {
+        m_context->addChainCertificate(X509Certificate(p_file));
         return true;
     }
     catch(...)
