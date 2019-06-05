@@ -204,7 +204,7 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionRelatio
 }
 
 MetadataProvider::Host MetadataProvider::createHostMetadata(const std::string & serverAddress) const {
-	Host::EndpointReferenceType::AddressType hostEPRAddress(HTTPProtocolPrefix + serverAddress + getDeviceServicePath());
+	Host::EndpointReferenceType::AddressType hostEPRAddress(_deviceCharacteristics.getEndpointReference());
 	Host::EndpointReferenceType hostEPR(hostEPRAddress);
 	Host host(hostEPR);
 	return host;
