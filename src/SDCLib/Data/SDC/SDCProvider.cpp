@@ -1373,7 +1373,10 @@ Dev::DeviceCharacteristics SDCProvider::getDeviceCharacteristics() const {
 
 void SDCProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics p_deviceCharacteristics) {
     Poco::Mutex::ScopedLock lock(getMutex());
+    // add endpointReference to deviceCharacteristics because the host metadata need to provide the enpoint reference
 	m_devicecharacteristics = p_deviceCharacteristics;
+    // add endpointReference to deviceCharacteristics because the host metadata need to provide the enpoint reference
+	m_devicecharacteristics.setEndpointReference(endpointReference);
 }
 
 unsigned long long int SDCProvider::getMdibVersion() const {

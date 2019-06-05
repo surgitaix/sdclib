@@ -55,7 +55,7 @@ WS::MEX::Metadata MetadataProvider::createDeviceMetadata(const std::string & ser
 	result.MetadataSection().push_back(createMetadataSectionThisDevice());
 	result.MetadataSection().push_back(
 		createMetadataSectionRelationship(
-			createHostMetadata(serverAddress, p_SSL),
+			createHostMetadata(serverAddress),
 			{
 					createHostedContextService(serverAddress, p_SSL),
 					createHostedGetService(serverAddress, p_SSL),
@@ -72,7 +72,7 @@ WS::MEX::Metadata MetadataProvider::createContextServiceMetadata(const std::stri
 	WS::MEX::Metadata result;
 	result.MetadataSection().push_back(createMetadataSectionWSDLForContextService(serverAddress, p_SSL));
 	result.MetadataSection().push_back(
-			createMetadataSectionRelationship(createHostMetadata(serverAddress, p_SSL), { createHostedContextService(serverAddress, p_SSL) } ));
+			createMetadataSectionRelationship(createHostMetadata(serverAddress), { createHostedContextService(serverAddress, p_SSL) } ));
 	return result;
 }
 
@@ -80,7 +80,7 @@ WS::MEX::Metadata MetadataProvider::createGetServiceMetadata(const std::string &
 	WS::MEX::Metadata result;
 	result.MetadataSection().push_back(createMetadataSectionWSDLForGetService(serverAddress, p_SSL));
 	result.MetadataSection().push_back(
-			createMetadataSectionRelationship(createHostMetadata(serverAddress, p_SSL), { createHostedGetService(serverAddress, p_SSL) } ));
+			createMetadataSectionRelationship(createHostMetadata(serverAddress), { createHostedGetService(serverAddress, p_SSL) } ));
 	return result;
 }
 
@@ -88,7 +88,7 @@ WS::MEX::Metadata MetadataProvider::createSetServiceMetadata(const std::string &
 	WS::MEX::Metadata result;
 	result.MetadataSection().push_back(createMetadataSectionWSDLForSetService(serverAddress, p_SSL));
 	result.MetadataSection().push_back(
-		createMetadataSectionRelationship(createHostMetadata(serverAddress, p_SSL), { createHostedSetService(serverAddress, p_SSL) } ));
+		createMetadataSectionRelationship(createHostMetadata(serverAddress), { createHostedSetService(serverAddress, p_SSL) } ));
 	return result;
 }
 
@@ -96,7 +96,7 @@ WS::MEX::Metadata MetadataProvider::createEventServiceMetadata(const std::string
 	WS::MEX::Metadata result;
 	result.MetadataSection().push_back(createMetadataSectionWSDLForEventReportService(serverAddress, p_SSL));
 	result.MetadataSection().push_back(
-			createMetadataSectionRelationship(createHostMetadata(serverAddress, p_SSL), { createHostedEventReportService(serverAddress, p_SSL) } ));
+			createMetadataSectionRelationship(createHostMetadata(serverAddress), { createHostedEventReportService(serverAddress, p_SSL) } ));
 	return result;
 }
 
@@ -104,7 +104,7 @@ WS::MEX::Metadata MetadataProvider::createStreamServiceMetadata(const std::strin
 	WS::MEX::Metadata result;
 	result.MetadataSection().push_back(createMetadataSectionWSDLForWaveformReportService(serverAddress, p_SSL));
 	result.MetadataSection().push_back(
-			createMetadataSectionRelationship(createHostMetadata(serverAddress, p_SSL), { createHostedStreamReportService(serverAddress, p_SSL) } ));
+			createMetadataSectionRelationship(createHostMetadata(serverAddress), { createHostedStreamReportService(serverAddress, p_SSL) } ));
 	result.MetadataSection().push_back(createMetadataSectionStream(streamingPorts));
 	return result;
 }
@@ -213,10 +213,9 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionRelatio
 	return metadataSectionRelationship;
 }
 
-MetadataProvider::Host MetadataProvider::createHostMetadata(const std::string & serverAddress, bool p_SSL) const {
-    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
-    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-	Host::EndpointReferenceType::AddressType hostEPRAddress(t_protocol + serverAddress + getDeviceServicePath());
+
+MetadataProvider::Host MetadataProvider::createHostMetadata(const std::string &) const {
+	Host::EndpointReferenceType::AddressType hostEPRAddress(_deviceCharacteristics.getEndpointReference());
 	Host::EndpointReferenceType hostEPR(hostEPRAddress);
 	Host host(hostEPR);
 	return host;

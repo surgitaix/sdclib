@@ -56,7 +56,7 @@ private:
 	MetadataSection createMetadataSectionWSDLForSetService(const std::string & serverAddress, bool p_SSL) const;
 	MetadataSection createMetadataSectionRelationship(const Host & host, const std::vector<Hosted> & hosted) const;
 
-	Host createHostMetadata(const std::string & serverAddress, bool p_SSL) const;
+	Host createHostMetadata(const std::string & serverAddress) const;
 
 	Hosted createHostedContextService(const std::string & serverAddress, bool p_SSL) const;
 	Hosted createHostedEventReportService(const std::string & serverAddress, bool p_SSL) const;

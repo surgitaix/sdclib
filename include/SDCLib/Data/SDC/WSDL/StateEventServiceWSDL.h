@@ -3,7 +3,7 @@
 
 #include <string.h>
 
-const std::string stateEventServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message">
+const std::string stateEventServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01">
     <wsdl:types>
         <xs:schema targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
             <xs:include schemaLocation="BICEPS_MessageModel.xsd"/>
@@ -24,7 +24,7 @@ const std::string stateEventServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://
     <wsdl:message name="PeriodicMetricReport">
         <wsdl:part element="mm:PeriodicMetricReport" name="parameters"/>
     </wsdl:message>
-    <wsdl:portType name="StateEventService" xmlns:p1="http://schemas.xmlsoap.org/ws/2004/08/eventing" p1:EventSource="true">
+    <wsdl:portType name="StateEventService" xmlns:p1="http://schemas.xmlsoap.org/ws/2004/08/eventing" p1:EventSource="true" dpws:DiscoveryType="p1:ServiceProvider">
         <wsdl:operation name="EpisodicAlertReport">
             <wsdl:output message="tns:EpisodicAlertReport" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/StateEventService/EpisodicAlertReport"/>
         </wsdl:operation>
@@ -37,6 +37,9 @@ const std::string stateEventServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://
         <wsdl:operation name="PeriodicMetricReport">
             <wsdl:output message="tns:PeriodicMetricReport" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/StateEventService/PeriodicMetricReport"/>
         </wsdl:operation>
+        <wsp:Policy>
+            <dpws:Profile wsp:Optional="true"/>
+        </wsp:Policy>
     </wsdl:portType>
     <wsdl:binding name="StateEventServiceBinding" type="tns:StateEventService" xmlns:p1="http://schemas.xmlsoap.org/wsdl/soap12/">
         <p1:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
