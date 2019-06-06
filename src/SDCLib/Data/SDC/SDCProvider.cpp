@@ -1289,6 +1289,12 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
 		}
+		else if (dynamic_cast<const CDM::ActivateOperationDescriptor *>(std::addressof(source))) {
+			CDM::ActivateOperationState operationState(
+				source.Handle(),
+				CDM::OperatingMode::En);
+			cachedOperationStates->State().push_back(operationState);
+		}
 		else {
             log_error([] { return "SDCProvider::addSetOperationToSCOObjectImpl: dynamic_cast found no match for source!"; });
         }
