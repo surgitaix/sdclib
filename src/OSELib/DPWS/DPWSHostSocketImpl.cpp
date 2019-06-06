@@ -356,13 +356,6 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 		return;
 	}
 
-    // FIXMEOnly read if this belongs to this SDCInstance! - Peek first
-    /*Poco::Net::SocketAddress t_sender;
-    socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
-    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(socket.address.host())) {
-        return;
-    }*/
-
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;
 	const int received(socket.receiveFrom(buf.begin(), available, remoteAddr, 0));
@@ -387,11 +380,10 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 		delayedMessages.enqueueNotification(new SendUnicastMessage(responseMessage, remoteAddr), createDelay());
 	} else if (requestMessage->Body().Resolve().present()) {
 		const WS::DISCOVERY::ResolveType & resolve(requestMessage->Body().Resolve().get());
-		std::unique_ptr<ResolveMatchType> result(resolveDispatcher.dispatch(resolve)); // SSL BUG
+		std::unique_ptr<ResolveMatchType> result(resolveDispatcher.dispatch(resolve));
 		if (result == nullptr) {
 			return;
 		}
-		std::cout << "DEBUG: RESOLVE RECEIVED from:" << remoteAddr << "\n" << std::string(buf.begin(), buf.end()) << std::endl;
 		const MESSAGEMODEL::Envelope responseMessage(buildResolveMatchMessage(*result, *requestMessage));
 		delayedMessages.enqueueNotification(new SendUnicastMessage(responseMessage, remoteAddr), createDelay());
 	}
