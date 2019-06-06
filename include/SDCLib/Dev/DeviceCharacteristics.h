@@ -67,6 +67,12 @@ public:
     void setFirmwareVersion(const std::string & firmwareVersion);
     void setSerialNumber(const std::string & serialNumber);
 
+    // Host
+
+    // only to be used by SDCProvider
+    void setEndpointReference(const std::string & epr);
+    std::string getEndpointReference() const;
+
 private:
     // ThisModel
     std::string manufacturer;
@@ -80,6 +86,9 @@ private:
 	LocalizedString friendlyName;
 	std::string firmwareVersion;
 	std::string serialNumber;
+
+	// Host
+	std::string endpointReference;
 };
 
 }

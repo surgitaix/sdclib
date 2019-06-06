@@ -11,6 +11,9 @@
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MetadataProvider.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
+
 
 namespace OSELib {
 namespace DPWS {
@@ -112,6 +115,11 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisMod
 	ThisModel thisModel;
 	thisModel.Manufacturer().push_back(manufacturer);
 
+	for(auto &modelName : _deviceCharacteristics.getModelNames()) {
+//		thisModel.ModelName().push_back(std::string(modelName.first + ":" + modelName.second)); // leads to providing two times: en-US
+		thisModel.ModelName().push_back(std::string(modelName.second));
+	}
+
 	MetadataDialect dialectThisModel(OSELib::WS_MEX_DIALECT_MODEL);
 	MetadataSection result(dialectThisModel);
 	result.ThisModel().set(thisModel);
@@ -196,7 +204,7 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionRelatio
 }
 
 MetadataProvider::Host MetadataProvider::createHostMetadata(const std::string & serverAddress) const {
-	Host::EndpointReferenceType::AddressType hostEPRAddress(HTTPProtocolPrefix + serverAddress + getDeviceServicePath());
+	Host::EndpointReferenceType::AddressType hostEPRAddress(_deviceCharacteristics.getEndpointReference());
 	Host::EndpointReferenceType hostEPR(hostEPRAddress);
 	Host host(hostEPR);
 	return host;
