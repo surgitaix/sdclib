@@ -32,7 +32,7 @@ public:
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::RenewTraits>::createHeader());
 		header->Identifier(_identifier);
-		return std::move(header);
+		return header;
 	}
 
 private:
@@ -52,7 +52,7 @@ public:
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::UnsubscribeTraits>::createHeader());
 		header->Identifier(_identifier);
-		return std::move(header);
+		return header;
 	}
 
 private:

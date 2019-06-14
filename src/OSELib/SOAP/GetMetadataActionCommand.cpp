@@ -5,9 +5,6 @@
  *      Author: matthias
  */
 
-#include "ws-addressing.hxx"
-#include "MetadataExchange.hxx"
-
 #include "OSELib/SOAP/GetMetadataActionCommand.h"
 #include "OSELib/SOAP/NormalizedMessageAdapter.h"
 
