@@ -12,7 +12,6 @@
 #include "OSELib/HTTP/Service.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "OSELib/HTTP/StaticContentController.h"
-#include "OSELib/WSDL/schema.h"
 
 namespace OSELib {
 namespace SDC {

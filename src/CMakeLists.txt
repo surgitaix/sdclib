@@ -189,7 +189,6 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/Helper/StreamReader.cpp
         ${SRC_DIR}/OSELib/Helper/WithLogger.cpp
         ${SRC_DIR}/OSELib/Helper/XercesDocumentWrapper.cpp
-        ${SRC_DIR}/OSELib/Helper/XercesGrammarPoolProvider.cpp
         ${SRC_DIR}/OSELib/Helper/XercesParserWrapper.cpp
         ${SRC_DIR}/OSELib/Helper/XercesUniqueElementByTagNameFilter.cpp
         ${SRC_DIR}/OSELib/HTTP/FrontControllerAdapter.cpp
