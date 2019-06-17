@@ -102,7 +102,7 @@ namespace Network {
 
     private:
         size_t _defaultBufferSize = 1024;
-        bool _connected;
+        std::atomic<bool> _connected;
         std::atomic<bool> _sending;
         std::shared_ptr<ContextWorker> _contextWorker;
         std::shared_ptr<asio::io_context> _context;

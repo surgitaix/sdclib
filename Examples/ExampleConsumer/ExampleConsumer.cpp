@@ -181,7 +181,7 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
 
 			// set numeric metric
-			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
+			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
 			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
 
 			FutureInvocationState fis;
