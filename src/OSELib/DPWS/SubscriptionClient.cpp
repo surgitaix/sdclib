@@ -14,7 +14,7 @@
 
 #include "OSELib/DPWS/SubscriptionClient.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
-#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 
 namespace OSELib {
 namespace DPWS {
@@ -32,7 +32,7 @@ public:
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::RenewTraits>::createHeader());
 		header->Identifier(_identifier);
-		return std::move(header);
+		return header;
 	}
 
 private:
@@ -52,7 +52,7 @@ public:
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::UnsubscribeTraits>::createHeader());
 		header->Identifier(_identifier);
-		return std::move(header);
+		return header;
 	}
 
 private:
@@ -77,12 +77,12 @@ SubscriptionClient::~SubscriptionClient() {
 void SubscriptionClient::run() {
 
 	// todo clean up and split method
-	SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
+	SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 
 	const WS::EVENTING::ExpirationType defaultExpires("PT10S");
 	const WS::EVENTING::ExpirationType defaultRenew(defaultExpires);
 
-	CONSTEXPR_MACRO int defaultWaitBeforeRenew (5000);
+	int defaultWaitBeforeRenew (5000);
 
 	for (const auto & subscription : _subscriptions) {
 		// get information

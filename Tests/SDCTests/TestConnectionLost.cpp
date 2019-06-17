@@ -39,10 +39,10 @@ const std::string MDS_DESCRIPTOR_HANDLE("ConnectionLost_mds");
 const std::string HANDLE_GET_METRIC("handle_get");
 
 
-class OSCPTestDeviceProvider {
+class SDCTestDeviceProvider {
 public:
 
-    OSCPTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t number)
+    SDCTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t number)
         : sdcProvider(p_SDCInstance)
         , m_eprID(number)
         , getMetricDescriptor(HANDLE_GET_METRIC,
@@ -119,8 +119,8 @@ struct FixtureConnectionLostSDC : Tests::AbstractSDCLibFixture {
 	FixtureConnectionLostSDC() : AbstractSDCLibFixture("FixtureConnectionLostSDC", OSELib::LogLevel::Notice) {}
 };
 
-SUITE(OSCP) {
-TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
+SUITE(SDC) {
+TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostSDC)
 {
 	try
 	{
@@ -129,7 +129,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 	    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
 	    	}
 	    	void onConnectionLost() override {
-	    		DebugOut logoutput(DebugOut::Default, std::cout, "connectionlostoscp");
+	    		DebugOut logoutput(DebugOut::Default, std::cout, "connectionlostSDC");
 	    		logoutput << "Connection lost, disconnecting... ";
 	    		consumer.disconnect();
 	    		logoutput << "disconnected." << std::endl;
@@ -145,11 +145,11 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
 	    DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
 
 		std::size_t t_providerCount{10};
-		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>> providers;
+		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::SDCTestDeviceProvider>> providers;
 		std::vector<std::string> t_providerEPRs;
 
 		for (std::size_t i = 0; i < t_providerCount; ++i) {
-			auto p = std::make_shared<Tests::ConnectionLostSDC::OSCPTestDeviceProvider>(createSDCInstance(), i);
+			auto p = std::make_shared<Tests::ConnectionLostSDC::SDCTestDeviceProvider>(createSDCInstance(), i);
 			providers.push_back(p);
 			t_providerEPRs.push_back(p->getEndpointReference());
             // Startup
@@ -163,7 +163,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostoscp)
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
         OSELib::SDC::ServiceManager sm(createSDCInstance());
-        auto tl_consumers{sm.discoverOSCP()};
+        auto tl_consumers{sm.discover()};
 
         // Found all the providers?
         bool foundAll = true;

@@ -21,7 +21,7 @@
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesParserWrapper.h"
-#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -1435,15 +1435,15 @@ int main() {
 
     auto t_SDCInstance = std::make_shared<SDCInstance>();
 
-	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
 
 	//int loopcounter = 0;
 	//while (true) {
 
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Refreshing ..." << std::flush;
 		//const std::string deviceEPR("UDI-1234567890");
-		//std::shared_ptr<SDCConsumer> consumer(oscpsm.discoverEndpointReference(deviceEPR));
-		std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> results(oscpsm.discoverOSCP());
+		//std::shared_ptr<SDCConsumer> consumer(t_serviceManager.discoverEndpointReference(deviceEPR));
+		std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> results(t_serviceManager.discover());
 
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found devices with these EPRs: " << std::endl;
 
@@ -1458,7 +1458,7 @@ int main() {
 				outFile.open(filename, std::ios::trunc);
 				Poco::Timestamp now;
 
-				OSELib::SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
+				OSELib::SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 				auto rawMessage = OSELib::Helper::Message::create(consumer->requestRawMdib());
 				auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 

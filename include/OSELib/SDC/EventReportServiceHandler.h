@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef OSCP_EVENTREPORTSERVICEHANDLER_H_
-#define OSCP_EVENTREPORTSERVICEHANDLER_H_
+#ifndef OSELib_SDC_EVENTREPORTSERVICEHANDLER_H_
+#define OSELib_SDC_EVENTREPORTSERVICEHANDLER_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/SOAP/HTTPRequestHandlerExceptionTrap.h"
@@ -28,4 +28,4 @@ private:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* OSCP_EVENTREPORTSERVICEHANDLER_H_ */
+#endif /* OSELib_SDC_EVENTREPORTSERVICEHANDLER_H_ */

@@ -2,7 +2,6 @@
 
 #include "SDCLib/SDCLibrary.h"
 
-
 #include <iostream>
 
 using namespace SDCLib;
@@ -156,8 +155,21 @@ bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName, bo
             std::cout << ").\n";
             // This is the primary MDPWS Interface (only if none has been set yet!)
             if(p_useAsMDPWS && (m_MDPWSInterface == nullptr)) {
+
                 m_MDPWSInterface = t_if;
-                std::cout << "MDPWS Interface set: " << t_if->m_name << std::endl;
+
+                // Check on the port
+                if(m_MDPWSPort == 0) {
+                    std::cout << "WARNING! NO MDPWS PORT SPECIFIED. TAKING RANDOM PORT..." << std::endl;
+                    auto t_result = findFreePort();
+                    if(t_result.first) {
+                        m_MDPWSPort = t_result.second;
+                    }
+                    else {
+                        throw std::runtime_error("NO FREE PORTS FOUND!");
+                    }
+                }
+                std::cout << "MDPWS Interface set: " << t_if->m_name << " on Port " << m_MDPWSPort << std::endl;
             }
             else {
                 // Not set yet! - Emit a Warning
@@ -289,4 +301,13 @@ void SDCInstance::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pin
 {
     std::lock_guard<std::mutex> t_lock(m_mutex);
     _latestPingManager = std::move(pingManager);
+}
+std::pair<bool, SDCPort> SDCInstance::findFreePort() const
+{
+    // TODO: Currently just random...
+    auto t_reserved = 1024;
+    // Seed
+    std::srand(std::chrono::system_clock::now().time_since_epoch().count());
+    auto t_mod = std::numeric_limits<SDCPort>::max() - t_reserved;
+    return {true, std::rand()%t_mod + t_reserved};
 }

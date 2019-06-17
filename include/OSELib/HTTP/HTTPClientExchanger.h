@@ -21,8 +21,8 @@
  *  Author: besting, roehser
  */
 
-#ifndef INCLUDE_OSCLIB_COMM_HTTPCLIENTEXCHANGER_H_
-#define INCLUDE_OSCLIB_COMM_HTTPCLIENTEXCHANGER_H_
+#ifndef OSELIB_HTTP_HTTPCLIENTEXCHANGER_H_
+#define OSELIB_HTTP_HTTPCLIENTEXCHANGER_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -41,4 +41,4 @@ public:
 } /* namespace Comm */
 } /* namespace SDCLib */
 
-#endif /* INCLUDE_OSCLIB_COMM_HTTPCLIENTEXCHANGER_H_ */
+#endif /* OSELIB_HTTP_HTTPCLIENTEXCHANGER_H_ */

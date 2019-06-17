@@ -21,8 +21,8 @@
  *  Author: besting, buerger, roehser
  */
 
-#ifndef SDCPROVIDER_H_
-#define SDCPROVIDER_H_
+#ifndef SDCLIB_DATA_SDC_SDCPROVIDER_H_
+#define SDCLIB_DATA_SDC_SDCPROVIDER_H_
 
 #include <atomic>
 #include <memory>
@@ -259,7 +259,7 @@ public:
 	* @brief Called on incoming consumer request for a state change.
 	*
 	* Notes:
-	* - Can be overridden by a custom OSCP provider as an alternative to the usage of handlers.
+	* - Can be overridden by a custom SDC provider as an alternative to the usage of handlers.
 	* - The consumer will wait for this method to complete.
 	* - Make sure to update the state's invocation state and notify about the change.
 	*
@@ -400,4 +400,4 @@ private:
 } /* namespace SDC */
 } /* namespace Data */
 } /* namespace SDCLib */
-#endif /* SDCROVIDER_H_ */
+#endif /* SDCLIB_DATA_SDC_SDCPROVIDER_H_ */

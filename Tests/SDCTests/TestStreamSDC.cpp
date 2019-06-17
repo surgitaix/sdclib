@@ -202,10 +202,10 @@ public:
 
 
 
-class OSCPStreamHoldingDeviceProvider : public Util::Task {
+class SDCStreamHoldingDeviceProvider : public Util::Task {
 public:
 
-    OSCPStreamHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    SDCStreamHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
         sdcProvider(p_SDCInstance),
     	streamEventHandler("handle_plethysmogram_stream"),
     	streamEventHandlerAlt("handle_plethysmogram_stream_alt"),
@@ -345,7 +345,7 @@ struct FixtureStreamSDC : Tests::AbstractSDCLibFixture {
 	FixtureStreamSDC() : AbstractSDCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice) {}
 };
 
-SUITE(OSCP) {
+SUITE(SDC) {
 TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 {
 	DebugOut::openLogFile("TestStream.log.txt", true);
@@ -354,14 +354,14 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
         auto t_SDCInstance = createSDCInstance();
 
         // Provider
-		Tests::StreamSDC::OSCPStreamHoldingDeviceProvider provider(t_SDCInstance);
+		Tests::StreamSDC::SDCStreamHoldingDeviceProvider provider(t_SDCInstance);
 		DebugOut(DebugOut::Default, "StreamSDC") << "Provider init.." << std::endl;
 		provider.startup();
 
         // Consumer
-        OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+        OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
         DebugOut(DebugOut::Default, "StreamSDC") << "Consumer discovery..." << std::endl;
-        std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
+        std::shared_ptr<SDCConsumer> c(t_serviceManager.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
         std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
         std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
         std::shared_ptr<Tests::StreamSDC::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamSDC::StreamDistributionConsumerEventHandler>("handle_distribution_stream");

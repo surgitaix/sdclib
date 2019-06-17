@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef OSELIB_OSCP_CONTEXTEVENTSINKHANDLER_H_
-#define OSELIB_OSCP_CONTEXTEVENTSINKHANDLER_H_
+#ifndef OSELIB_SDC_CONTEXTEVENTSINKHANDLER_H_
+#define OSELIB_SDC_CONTEXTEVENTSINKHANDLER_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/SOAP/HTTPRequestHandlerExceptionTrap.h"
@@ -28,4 +28,4 @@ private:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* OSELIB_OSCP_CONTEXTEVENTSINKHANDLER_H_ */
+#endif /* OSELIB_SDC_CONTEXTEVENTSINKHANDLER_H_ */

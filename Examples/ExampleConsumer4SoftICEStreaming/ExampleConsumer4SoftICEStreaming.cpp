@@ -123,11 +123,11 @@ int main() {
     }
 
     // Consumer is build via discovery
-	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
 	DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Consumer discovery..." << std::endl;
 
 	// testing against SoftICE
-	std::shared_ptr<SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+	std::shared_ptr<SDCConsumer> c(t_serviceManager.discoverEndpointReference(deviceEPR));
 	std::shared_ptr<StreamConsumerEventHandler> streamEventHandler = std::make_shared<StreamConsumerEventHandler>(streamHandle);
 	std::shared_ptr<NumericConsumerEventHandler> getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_metric");
 	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");

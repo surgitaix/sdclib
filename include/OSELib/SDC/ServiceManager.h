@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef OSELIB_OSCP_SERVICEMANAGER_H_
-#define OSELIB_OSCP_SERVICEMANAGER_H_
+#ifndef OSELIB_SDC_SERVICEMANAGER_H_
+#define OSELIB_SDC_SERVICEMANAGER_H_
 
 #include "Poco/Mutex.h"
 
@@ -61,14 +61,28 @@ public:
     * @return List of all providers
     */
     using DiscoverResults = std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>>;
-	DiscoverResults discoverOSCP();
+	DiscoverResults discover();
 
     /**
-     * @brief Discover all SDC providers currently available in an async manner
+     * @deprecated Discover all SDC providers currently available in an async manner
      * 
      * @return std::future of a list of all providers (DiscoverResults)
      */
     using AsyncDiscoverResults  = std::future<DiscoverResults>;
+    AsyncDiscoverResults async_discover();
+
+    /**
+    * @deprecated USE discover()!
+    *
+    * @return List of all providers
+    */
+	DiscoverResults discoverOSCP();
+
+    /**
+     * @brief [DEPRECATED: USE async_discover()!] Discover all SDC providers currently available in an async manner
+     * 
+     * @return std::future of a list of all providers (DiscoverResults)
+     */
     AsyncDiscoverResults async_discoverOSCP();
 
 private:
@@ -89,4 +103,4 @@ private:
 } /* namespace SDC */
 } /* namespace OSELib */
 
-#endif /* OSELIB_OSCP_SERVICEMANAGER_H_ */
+#endif /* OSELIB_SDC_SERVICEMANAGER_H_ */

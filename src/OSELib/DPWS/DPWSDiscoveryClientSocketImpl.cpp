@@ -257,7 +257,8 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 
     // Only read if this belongs to this SDCInstance! - Peek first
     Poco::Net::SocketAddress t_sender;
-    socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
+    Poco::Buffer<char> t_peekBuf(1);
+    socket.receiveFrom(t_peekBuf.begin(), 1, t_sender, MSG_PEEK);
     if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
         return;
     }

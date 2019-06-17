@@ -48,7 +48,7 @@ SDCLibrary::SDCLibrary() :
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
 	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel);
 	Poco::AutoPtr<Poco::SplitterChannel> splitterChannel(new Poco::SplitterChannel);
-	fileChannel->setProperty("path", "osclib.log");
+	fileChannel->setProperty("path", "sdclib.log");
 	fileChannel->setProperty("rotation", "10 M");
 	splitterChannel->addChannel(consoleChannel);
 	splitterChannel->addChannel(fileChannel);

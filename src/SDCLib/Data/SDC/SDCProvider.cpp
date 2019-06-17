@@ -93,7 +93,7 @@
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesParserWrapper.h"
-#include "OSELib/SDC/DefaultOSCPSchemaGrammarProvider.h"
+#include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "SDCLib/Data/SDC/SDCProviderAdapter.h"
 
 namespace SDCLib {
@@ -195,7 +195,7 @@ SDCProvider::SDCProvider(SDCInstance_shared_ptr p_SDCInstance)
 {
 	atomicTransactionId.store(0);
 	mdibVersion.store(0);
-    setEndpointReference(Poco::UUIDGenerator::defaultGenerator().create().toString());
+    setEndpointReference(std::string("urn:uuid:" + Poco::UUIDGenerator::defaultGenerator().create().toString()));
     m_mdDescription = std::unique_ptr<MdDescription>(new MdDescription());
 	_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this));
 }
@@ -1054,7 +1054,7 @@ void SDCProvider::startup()
 		xml_schema::NamespaceInfomap map;
 		CDM::MdibContainer(xml, *ConvertToCDM::convert(getMdib()), map, OSELib::XML_ENCODING, xercesFlags);
 
-		OSELib::SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
+		OSELib::SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 		auto rawMessage = OSELib::Helper::Message::create(xml.str());
 		auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 		std::unique_ptr<CDM::Mdib> result(CDM::MdibContainer(xercesDocument->getDocument()));
@@ -1117,7 +1117,7 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler * handler)
     }
 
 
-    // ToDo: Behold! check with simpleOSCP if this really works°!
+    // ToDo: Behold! check with simpleSDC if this really works°!
     if (auto activate_handler = dynamic_cast<SDCProviderActivateOperationHandler *>(handler)) {
     	const MdDescription mddescription(getMdDescription());
     	for (const auto & mds : mddescription.collectAllMdsDescriptors()) {
@@ -1173,7 +1173,7 @@ void SDCProvider::setMdDescription(const MdDescription & mdDescription) {
 void SDCProvider::setMdDescription(std::string xml)
 {
     Poco::Mutex::ScopedLock lock(getMutex());
-	OSELib::SDC::DefaultOSCPSchemaGrammarProvider grammarProvider;
+	OSELib::SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 	auto rawMessage = OSELib::Helper::Message::create(xml);
 	auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 
@@ -1371,7 +1371,10 @@ Dev::DeviceCharacteristics SDCProvider::getDeviceCharacteristics() const {
 
 void SDCProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics p_deviceCharacteristics) {
     Poco::Mutex::ScopedLock lock(getMutex());
+    // add endpointReference to deviceCharacteristics because the host metadata need to provide the enpoint reference
 	m_devicecharacteristics = p_deviceCharacteristics;
+    // add endpointReference to deviceCharacteristics because the host metadata need to provide the enpoint reference
+	m_devicecharacteristics.setEndpointReference(endpointReference);
 }
 
 unsigned long long int SDCProvider::getMdibVersion() const {

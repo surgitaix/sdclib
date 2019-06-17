@@ -20,11 +20,11 @@ int main()
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 
 	int loopcounter = 0;
-	OSELib::SDC::ServiceManager oscpsm;
+	OSELib::SDC::ServiceManager t_serviceManager;
 
 	while (loopcounter < 5) {
 		DebugOut(DebugOut::Default, "simpleservicediscovery") << "Refreshing ..." << std::flush;
-		std::vector<std::unique_ptr<SDCConsumer> > results = oscpsm.discoverOSCP();
+		std::vector<std::unique_ptr<SDCConsumer> > results = t_serviceManager.discover();
 
 		DebugOut(DebugOut::Default, "simpleservicediscovery") << "Found devices with these EPRs: ";
 

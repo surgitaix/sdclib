@@ -224,10 +224,10 @@ private:
 };
 
 
-class OSCPStreamProvider : public Util::Task {
+class SDCStreamProvider : public Util::Task {
 public:
 
-    OSCPStreamProvider(SDCInstance_shared_ptr p_SDCInstance) :
+    SDCStreamProvider(SDCInstance_shared_ptr p_SDCInstance) :
     	sdcProvider(p_SDCInstance),
     	streamProviderStateHandler(HANDLE_STREAM_METRIC),
     	stringProviderStateHandler(HANDLE_STRING_METRIC),
@@ -257,10 +257,13 @@ public:
     	{
 
 		sdcProvider.setEndpointReference(DEVICE_EPR);
-		Dev::DeviceCharacteristics devChar;
-		devChar.addFriendlyName("en", "SDCLib ExampleProvider");
-		sdcProvider.setDeviceCharacteristics(devChar);
 
+		// set DPWS metadata, e.g. for the displayed friendly name
+		Dev::DeviceCharacteristics devChar;
+		devChar.addFriendlyName("en", "SDCLib C ExampleProvider");
+		devChar.setManufacturer("SurgiTAIX AG");
+		devChar.addModelName("en", "sdcDeviceNo1");
+		sdcProvider.setDeviceCharacteristics(devChar);
 
         // Channel
         ChannelDescriptor holdingDeviceParameters(CHANNEL_DESCRIPTOR_HANDLE);
@@ -373,7 +376,7 @@ int main()
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 
     // Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_PORT_PROVIDER, true);
+    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);
     // Some restriction
     t_SDCInstance->setIP6enabled(false);
     t_SDCInstance->setIP4enabled(true);
@@ -383,7 +386,7 @@ int main()
         return -1;
     }
 
-	OSCPStreamProvider provider(t_SDCInstance);
+	SDCStreamProvider provider(t_SDCInstance);
 	provider.startup();
 	provider.start();
 

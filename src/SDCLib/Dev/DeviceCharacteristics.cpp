@@ -159,6 +159,14 @@ void DeviceCharacteristics::setSerialNumber(const std::string & serialNumber)
     this->serialNumber = serialNumber;
 }
 
+void DeviceCharacteristics::setEndpointReference(const std::string & epr) {
+	endpointReference = epr;
+}
+std::string DeviceCharacteristics::getEndpointReference() const {
+	return endpointReference;
+}
+
+
 }
 }
 
