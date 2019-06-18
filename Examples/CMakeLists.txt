@@ -10,4 +10,5 @@ add_subdirectory(ExampleProject)
 add_subdirectory(ExampleProvider)
 add_subdirectory(MDIBVisualizer)
 add_subdirectory(AbstractConsumerSimulator)
+add_subdirectory(PulseOximeterProvider)
 

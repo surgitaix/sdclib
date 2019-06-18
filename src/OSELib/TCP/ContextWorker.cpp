@@ -1,4 +1,5 @@
 #include "OSELib/TCP/ContextWorker.h"
+#include <assert.h>
 
 namespace Network {
 
