@@ -52,7 +52,7 @@ project(${PROJECT_NAME})
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
 set (SDCLibrary_VERSION_MIDDLE         0)
-set (SDCLibrary_VERSION_LAST           2)
+set (SDCLibrary_VERSION_LAST           3)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -120,6 +120,7 @@ set(DEBUG_POSTFIX_OUTPUT _d)
 set(PATH_INSTALL_RUNTIME ${CMAKE_INSTALL_PREFIX}/bin)
 set(PATH_INSTALL_LIBRARY ${CMAKE_INSTALL_PREFIX}/bin)
 set(PATH_INSTALL_ARCHIVE ${CMAKE_INSTALL_PREFIX}/lib)
+set(PATH_INSTALL_INCLUDE ${CMAKE_INSTALL_PREFIX}/include)
 ################################################################################
 
 
