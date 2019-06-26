@@ -45,7 +45,6 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/DPWS/DeviceDescription.h
                             ${INCLUDE_DIR}/OSELib/DPWS/ActiveSubscriptions.h
                             ${INCLUDE_DIR}/OSELib/fwd.h
-                            ${INCLUDE_DIR}/OSELib/Constants.h
                             ${INCLUDE_DIR}/OSELib/SDC/ServiceManager.h
                             ${INCLUDE_DIR}/OSELib/SDC/DefaultSDCSchemaGrammarProvider.h
                             ${INCLUDE_DIR}/OSELib/SDC/OperationTraits.h
