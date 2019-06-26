@@ -3,8 +3,12 @@ set( CURRENT_TARGET_NAME SDCLib )
 # Add this for better project structure after cmake generation
 project(${CURRENT_TARGET_NAME})
 
-# Add an empty target first
-add_library(${CURRENT_TARGET_NAME} STATIC "")
+# Add an empty target first - FIXME: Why distinguish here. Does PIC flag solve it?
+if(WIN32)
+	add_library(${CURRENT_TARGET_NAME} STATIC "")
+else()
+	add_library(${CURRENT_TARGET_NAME} SHARED "")
+endif()
 
 message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")
 
