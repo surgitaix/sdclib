@@ -100,7 +100,7 @@ set(SDCLib_INCLUDE_DIRS     ${SDCLib_ROOT_DIR}/include
 
 ################################################################################
 # Clear the given path of all symlinks
-get_filename_component(SDCLib_SEARCH_BIN ${SDCLib_LIBRARY_DIRS} REALPATH)
+get_filename_component(SDCLib_SEARCH_LIB ${SDCLib_LIBRARY_DIRS} REALPATH)
 ################################################################################
 # Platform specific Parameters
 #
@@ -109,9 +109,9 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     # Set the library based on build type
     if (CMAKE_BUILD_TYPE)
         if (CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib.so)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib.so)
         else()
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib_d.so)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib_d.so)
         endif()
     else()
         message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
@@ -125,9 +125,9 @@ if (CMAKE_SYSTEM_NAME MATCHES "Windows")
     # Set the library based on build type
     if(CMAKE_BUILD_TYPE)
         if(CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib.dll)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib.dll)
         else()
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib_d.dll)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib_d.dll)
         endif()
     else()
         message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
