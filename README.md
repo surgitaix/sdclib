@@ -34,14 +34,18 @@ We recommend using CMake GUI to configure and generate the project.
     - **cmake .**
 
 ### Steps to Generate the Project (out of source) ###
+##### Note: A graphical how-to of the following steps to generate the makefiles can also be found under doc/SDCLib_Eclipse.pdf. Just the used generator varies. Choose "Unix Makefiles" and proceed as described.
+#####
 (Steps with cmake-gui!)
 - clone this project:  
     - **git clone** https://github.com/surgitaix/sdclib.git  
 - Open cmake gui.  
 - Browse Source... -> select the cloned folder (default should be this projects name: *sdclib*)  
 - Browse Build... -> select **another** folder (e.g. *sdclib_build*)  
-- Click Configure: You will be asked a few questions, like if you want to generate the folder if it does not exist etc.  
-- You will most likely see a Warning (red text): It tells you that it could not find the sdclib (yet) and that you can add the given variable for out of source builds to specify its location.  
+- Click Configure: If the build folder does not exist, CMake will ask if it should create it for you. Select yes.
+- In the next dialog you have to specify the *generator*. **Unix Makefiles** should be fine but if your preferred IDE has CMake support it will probably be listed in the drop down too. If you have the choice between *<IDE> Ninja* and a *<IDE> Unix Makefiles* variant, choose the Unix Makefile variant.
+- Stay with the option "Use default native compilers" unless you know what you are doing and click *Finish*.
+- During configuration you will most likely see a Warning (red text): It tells you that it could not find the sdclib (yet) and that you can add the given variable for out of source builds to specify its location.  
 To add this variable click the button 'Add Entry', copy the given variable ( *SDCLib_ADDITIONAL_LIBRARY_DIRS* ), select Type PATH. Next a new input will appear, click on the [...] button and navigate to the build folder (e.g.: *sdclib_build*. Search for the bin folder inside and select it. This way you tell the script where it can find the sdclib binaries later.  
 - Configure and Generate again. The new variable will be highlighted by CMake.  
 NOTE: The Warning wont disappear unless you finally built the library.  
