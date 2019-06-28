@@ -8,7 +8,7 @@ add_executable(${CURRENT_TARGET_NAME} "")
 
 # Variables for better handling
 set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
-
+set(CERT_DIR ${CMAKE_CURRENT_LIST_DIR}/certs)
 
 # Add the sources to the target
 target_sources(${CURRENT_TARGET_NAME}
@@ -40,6 +40,11 @@ set_target_properties(  ${CURRENT_TARGET_NAME}
                         )
 # install
 install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE} RUNTIME DESTINATION ${PATH_INSTALL_RUNTIME})
+
+# Copy files to build folder
+configure_file(${CERT_DIR}/rootCA.pem   ${PATH_RUNTIME_OUTPUT}/rootCA.pem COPYONLY)
+configure_file(${CERT_DIR}/leaf.pem     ${PATH_RUNTIME_OUTPUT}/leaf.pem COPYONLY)
+configure_file(${CERT_DIR}/leafkey.pem  ${PATH_RUNTIME_OUTPUT}/leafkey.pem COPYONLY)
 
 # ...
 
