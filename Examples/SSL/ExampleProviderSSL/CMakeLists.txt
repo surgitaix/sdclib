@@ -1,11 +1,10 @@
 # Current Target
-set( CURRENT_TARGET_NAME MDIBVisualizer )
+set( CURRENT_TARGET_NAME ExampleProviderSSL )
 # Add this for better project structure after cmake generation
 project(${CURRENT_TARGET_NAME})
 
 message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")
 add_executable(${CURRENT_TARGET_NAME} "")
-
 
 # Variables for better handling
 set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
@@ -15,7 +14,7 @@ set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
 target_sources(${CURRENT_TARGET_NAME}
     PRIVATE
         # Source Files
-        ${SRC_DIR}/MDIBVisualizer.cpp
+        ${SRC_DIR}/ExampleProviderSSL.cpp
         # Add the includes too (for better generation)
         #...
 )
@@ -26,9 +25,9 @@ target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${SRC_DIR})
 target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT})
 
 # SDCLib
-target_link_libraries(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_LIBRARIES})
-target_include_directories(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_INCLUDE_DIRS})
-target_compile_definitions(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_COMPILE_DEFINITIONS})
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_LIBRARIES})
+target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_INCLUDE_DIRS})
+target_compile_definitions(${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_COMPILE_DEFINITIONS})
 
 
 # build

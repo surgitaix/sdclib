@@ -18,7 +18,7 @@ namespace DPWS {
 
 class SubscriptionManager : public ISubscriptionManager, public WithLogger {
 public:
-	SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions);
+	SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, bool p_SSL);
 
 	template <class TraitsType>
 	void fireEvent(const typename TraitsType::ReportType & report);

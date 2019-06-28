@@ -23,19 +23,21 @@ class SendWorker;
 
 // todo maybe generalize and also use for other client connections in the SDCConsumerAdapter.
 
-class HTTPSessionManager : public WithLogger {
+class HTTPSessionManager : public WithLogger
+{
 public:
-	HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions);
+	HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions, bool p_SSL);
 	~HTTPSessionManager();
 
 	void enqueMessage(const Poco::URI & destinationURI, const std::string & content, const xml_schema::Uri & myID);
 
 private:
-	DPWS::ActiveSubscriptions & _subscriptions;
-	Poco::ThreadPool _threadpool;
-	Poco::Mutex _mutex;
-	std::map<std::string, std::shared_ptr<Poco::NotificationQueue>> _queues;
-	std::map<std::string, std::unique_ptr<Poco::Runnable>> _workers;
+    DPWS::ActiveSubscriptions & _subscriptions;
+    bool m_SSL = false;
+    Poco::ThreadPool _threadpool;
+    Poco::Mutex _mutex;
+    std::map<std::string, std::shared_ptr<Poco::NotificationQueue>> _queues;
+    std::map<std::string, std::unique_ptr<Poco::Runnable>> _workers;
 };
 
 } /* namespace HTTP */

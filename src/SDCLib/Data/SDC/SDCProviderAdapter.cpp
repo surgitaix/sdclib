@@ -19,7 +19,6 @@
 #include "BICEPS_MessageModel.hxx"
 #include "MetadataExchange.hxx"
 #include "NormalizedMessageModel.hxx"
-#include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
 #include "SDCLib/SDCInstance.h"
@@ -121,11 +120,11 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 		return _subscriptionManager.dispatch(request, identifier);
 	}
 	virtual std::unique_ptr<SDC::GetContextStatesTraits::Response> dispatch(const SDC::GetContextStatesTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+        std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::GetContextStatesTraits::Response>(new SDC::GetContextStatesTraits::Response(_provider.GetContextStates(request)));
 	}
 	virtual std::unique_ptr<SDC::SetContextStateTraits::Response> dispatch(const SDC::SetContextStateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::SetContextStateTraits::Response>(new SDC::SetContextStateTraits::Response(_provider.SetContextStateAsync(request)));
 	}
 
@@ -229,15 +228,15 @@ struct GetServiceImpl : public SDC::IGetService {
 	}
 
 	virtual std::unique_ptr<SDC::GetMDDescriptionTraits::Response> dispatch(const SDC::GetMDDescriptionTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::GetMDDescriptionTraits::Response>(new SDC::GetMDDescriptionTraits::Response(_provider.GetMdDescription(request)));
 	}
 	virtual std::unique_ptr<SDC::GetMDIBTraits::Response> dispatch(const SDC::GetMDIBTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::GetMDIBTraits::Response>(new SDC::GetMDIBTraits::Response(_provider.GetMdib(request)));
 	}
 	virtual std::unique_ptr<SDC::GetMdStateTraits::Response> dispatch(const SDC::GetMdStateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::GetMdStateTraits::Response>(new SDC::GetMdStateTraits::Response(_provider.GetMdState(request)));
 	}
 
@@ -269,22 +268,22 @@ struct SetServiceImpl : public SDC::ISetService {
 	}
 
 	virtual std::unique_ptr<SDC::ActivateTraits::Response> dispatch(const SDC::ActivateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::ActivateTraits::Response>(new SDC::ActivateTraits::Response(_provider.OnActivateAsync(request)));
 	}
 
 	virtual std::unique_ptr<SDC::SetAlertStateTraits::Response> dispatch(const SDC::SetAlertStateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::SetAlertStateTraits::Response>(new SDC::SetAlertStateTraits::Response(_provider.SetAlertStateAsync(request)));
 	}
 
 	virtual std::unique_ptr<SDC::SetStringTraits::Response> dispatch(const SDC::SetStringTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::SetStringTraits::Response>(new SDC::SetStringTraits::Response(_provider.SetStringAsync(request)));
 	}
 
 	virtual std::unique_ptr<SDC::SetValueTraits::Response> dispatch(const SDC::SetValueTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::SetValueTraits::Response>(new SDC::SetValueTraits::Response(_provider.SetValueAsync(request)));
 	}
 
@@ -408,6 +407,8 @@ bool SDCProviderAdapter::start() {
 			types,
 			xAddresses));
 
+    bool USE_SSL = _provider.getSDCInstance()->getSSLHandler()->isInit();
+
 	const std::vector<xml_schema::Uri> allowedSubscriptionEventActions {
 				OSELib::SDC::EpisodicAlertReportTraits::Action(),
 				OSELib::SDC::EpisodicContextChangedReportTraits::Action(),
@@ -417,13 +418,13 @@ bool SDCProviderAdapter::start() {
 				OSELib::SDC::PeriodicContextChangedReportTraits::Action(),
 				OSELib::SDC::WaveformStreamTraits::Action(),
 				OSELib::SDC::PeriodicMetricReportTraits::Action() };
-	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions));
+	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions, USE_SSL));
 
     // Use SSL
-    if(_provider.getSDCInstance()->getSSLHandler()->isInit())
+    if(USE_SSL)
     {
         // ServerSocket
-        Poco::Net::SecureServerSocket t_sslSocket(_provider.getSDCInstance()->getSSLHandler()->getContext());
+        Poco::Net::SecureServerSocket t_sslSocket(_provider.getSDCInstance()->getSSLHandler()->getServerContext());
         t_sslSocket.bind(socketAddress);
         t_sslSocket.listen();
         t_sslSocket.setKeepAlive(true);

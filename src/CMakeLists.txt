@@ -515,8 +515,6 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC $<TARGET_PROPERTY:Data
 target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 # XercesC - Imported Target
 target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
-# Poco
-
 
 
 # build

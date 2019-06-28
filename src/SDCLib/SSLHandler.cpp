@@ -23,14 +23,11 @@ using namespace Poco::Net;
 
 SSLHandler::SSLHandler()
 {
-    
+    Poco::Net::initializeSSL();
 }
-
-
 SSLHandler::~SSLHandler()
 {
     _cleanup();
-    
 }
 
 void SSLHandler::_cleanup()
@@ -40,27 +37,23 @@ void SSLHandler::_cleanup()
         return;
     }
     
-    Poco::Net::uninitializeSSL();
-    
     // Lock
     //std::lock_guard<std::mutex> t_lock(m_mutex);
 
     // ...Cleanup....
+    // TODO
 
 }
 
-bool SSLHandler::init()
+bool SSLHandler::init(const Poco::Net::Context::VerificationMode p_modeClient, const Poco::Net::Context::VerificationMode p_modeServer)
 {
     if (isInit()) {
         return false;
     }
     
     try {
-        Poco::Net::initializeSSL();
-        Poco::SharedPtr<PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(true);
-        Poco::SharedPtr<InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(true);
-        m_context = new Context(Context::SERVER_USE, "userkey.pem", "sdccert.pem", "cacert.pem", Context::VERIFY_STRICT, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
-        SSLManager::instance().initializeServer(pConsoleHandler, pInvalidCertHandler, m_context);
+        if(!_initClientSide(p_modeClient)) { return false; }
+        if(!_initServerSide(p_modeServer)) { return false; }
     }
     catch(...)
     {
@@ -68,55 +61,54 @@ bool SSLHandler::init()
     }
     
     // Important!
-    m_context->enableExtendedCertificateVerification(false);
+    m_context_client->enableExtendedCertificateVerification(false);
+    m_context_server->enableExtendedCertificateVerification(false);
 
     m_init = true;
     return true;
 }
-bool SSLHandler::addCertificateAuthority(const std::string& p_file)
+bool SSLHandler::_initClientSide(const Poco::Net::Context::VerificationMode p_mode)
 {
-    assert(!p_file.empty());
-    if(m_context == nullptr) {
-        return false;
-    }
-    
     try {
-        m_context->addCertificateAuthority(X509Certificate(p_file));
-        return true;
-    }
-    catch(...)
-    {
-        return false;
-    }
-    
-    return false;
-}
-bool SSLHandler::useCertificate(const std::string& p_file)
-{
-    assert(!p_file.empty());
-    if(m_context == nullptr) {
-        return false;
-    }
-    
-    try {
-        m_context->useCertificate(X509Certificate(p_file));
-        return true;
-    }
-    catch(...)
-    {
-        return false;
-    }
-    return false;
-}
-bool SSLHandler::addChainCertificate(const std::string& p_file)
-{
-    assert(!p_file.empty());
-    if(m_context == nullptr) {
-        return false;
-    }
+        Poco::SharedPtr<PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(false);
+        Poco::SharedPtr<InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(false);
+        m_context_client = new Context(Context::TLSV1_2_CLIENT_USE, "","","", p_mode, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
 
+        SSLManager::instance().initializeClient(pConsoleHandler, pInvalidCertHandler, m_context_client);
+        return true;
+    }
+    catch(...) {
+        std::cout << "SSLHandler: Failed to init Server Side!" << std::endl;
+    }
+    return false;
+}
+bool SSLHandler::_initServerSide(const Poco::Net::Context::VerificationMode p_mode)
+{
     try {
-        m_context->addChainCertificate(X509Certificate(p_file));
+        Poco::SharedPtr<PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(true);
+        Poco::SharedPtr<InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(true);
+        m_context_server = new Context(Context::TLSV1_2_SERVER_USE, "","","", p_mode, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
+
+        SSLManager::instance().initializeServer(pConsoleHandler, pInvalidCertHandler, m_context_server);
+        return true;
+    }
+    catch(...) {
+        std::cout << "SSLHandler: Failed to init Server Side!" << std::endl;
+    }
+    return true;
+}
+
+bool SSLHandler::addCertificateAuthority(const std::string& p_file, bool p_clientSide, bool p_serverSide)
+{
+    assert(!p_file.empty());
+    if(!isInit()) {
+        return false;
+    }
+    // Lock
+    std::lock_guard<std::mutex> t_lock(m_mutex);
+    try {
+        if(p_clientSide) { m_context_client->addCertificateAuthority(X509Certificate(p_file)); }
+        if(p_serverSide) { m_context_server->addCertificateAuthority(X509Certificate(p_file)); }
         return true;
     }
     catch(...)
@@ -125,14 +117,54 @@ bool SSLHandler::addChainCertificate(const std::string& p_file)
     }
     return false;
 }
-bool SSLHandler::useKeyFiles(const std::string& p_publicKey, const std::string& p_privateKey, const std::string& p_pasphrase)
+bool SSLHandler::useCertificate(const std::string& p_file, bool p_clientSide, bool p_serverSide)
 {
-    if(m_context == nullptr) {
+    assert(!p_file.empty());
+    if(!isInit()) {
         return false;
     }
-    
+    // Lock
+    std::lock_guard<std::mutex> t_lock(m_mutex);
     try {
-        m_context->usePrivateKey(Poco::Crypto::RSAKey(p_publicKey, p_privateKey, p_pasphrase));
+        if(p_clientSide) { m_context_client->useCertificate(X509Certificate(p_file)); }
+        if(p_serverSide) { m_context_server->useCertificate(X509Certificate(p_file)); }
+        return true;
+    }
+    catch(...)
+    {
+        return false;
+    }
+    return false;
+}
+bool SSLHandler::addChainCertificate(const std::string& p_file, bool p_clientSide, bool p_serverSide)
+{
+    assert(!p_file.empty());
+    if(!isInit()) {
+        return false;
+    }
+    // Lock
+    std::lock_guard<std::mutex> t_lock(m_mutex);
+    try {
+        if(p_clientSide) { m_context_client->addChainCertificate(X509Certificate(p_file)); }
+        if(p_serverSide) { m_context_server->addChainCertificate(X509Certificate(p_file)); }
+        return true;
+    }
+    catch(...)
+    {
+        return false;
+    }
+    return false;
+}
+bool SSLHandler::useKeyFiles(const std::string& p_publicKey, const std::string& p_privateKey, const std::string& p_pasphrase, bool p_clientSide, bool p_serverSide)
+{
+    if(!isInit()) {
+        return false;
+    }
+    // Lock
+    std::lock_guard<std::mutex> t_lock(m_mutex);
+    try {
+        if(p_clientSide) { m_context_client->usePrivateKey(Poco::Crypto::RSAKey(p_publicKey, p_privateKey, p_pasphrase)); }
+        if(p_serverSide) { m_context_server->usePrivateKey(Poco::Crypto::RSAKey(p_publicKey, p_privateKey, p_pasphrase)); }
         return true;
     }
     catch(...)

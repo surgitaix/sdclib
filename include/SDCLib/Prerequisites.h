@@ -4,8 +4,8 @@
  *
  *
  */
-#ifndef SDCLIBRARY_SDCLIB_PREREQUISITES_H
-#define SDCLIBRARY_SDCLIB_PREREQUISITES_H
+#ifndef SDCLIB_PREREQUISITES_H
+#define SDCLIB_PREREQUISITES_H
 
 // Config
 #include "config/config.h"
@@ -28,7 +28,6 @@
 #include <deque>
 #include <atomic>
 #include <list>
-
 
 
 // Some using "shortcuts"
@@ -90,7 +89,5 @@ namespace OSELib
         using ServiceManager_shared_ptr = std::shared_ptr<ServiceManager>;
     }
 }
-
-
 
 #endif

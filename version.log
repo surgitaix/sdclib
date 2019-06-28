@@ -1,3 +1,10 @@
+Update to version 4.1.0
+
+- Rudimentary SSL Implementation [experimental]
+- See Examples/SSL: ExampleProviderSSL and ExampleConsumerSSL as well as Examples/SSL/doc/
+- OpenSSL (libssl-dev) needed to build SDCLib now
+- Further work on cmake/Modules
+
 Update to version 4.0.3
 
 - Added CMake install instructions to install SDCLib and Poco header and lib files.

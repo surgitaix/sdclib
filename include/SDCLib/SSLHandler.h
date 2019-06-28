@@ -28,12 +28,7 @@
 #include "Prerequisites.h"
 #include "config/config.h"
 
-
-namespace Poco {
-    namespace Net {
-        class Context;
-    }
-}
+#include <Poco/Net/Context.h>
 
 namespace SDCLib
 {
@@ -44,31 +39,38 @@ namespace SDCLib
         private:
 
             std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
+            std::mutex m_mutex;
         
-            Poco::Net::Context* m_context = nullptr;
+            // Poco does not allow OpenSSL SSLv23_method(). One Context for Client and one for Server Side.
+            Poco::Net::Context::Ptr m_context_client = nullptr;
+            Poco::Net::Context::Ptr m_context_server = nullptr;
 
         public:
 
-            SSLHandler();
-
             // Special Member Functions
+            SSLHandler();
             SSLHandler(const SSLHandler& p_obj) = delete;
             SSLHandler(SSLHandler&& p_obj) = delete;
             SSLHandler& operator=(const SSLHandler& p_obj) = delete;
             SSLHandler& operator=(SSLHandler&& p_obj) = delete;
             ~SSLHandler();
 
-            bool init();
+            bool init(const Poco::Net::Context::VerificationMode p_modeClient = Poco::Net::Context::VERIFY_RELAXED, const Poco::Net::Context::VerificationMode p_modeServer = Poco::Net::Context::VERIFY_RELAXED);
             bool isInit() const { return m_init; }
-            
-            Poco::Net::Context* getContext() { return m_context; }
-            
-            bool addCertificateAuthority(const std::string& p_file);
-            bool useCertificate(const std::string& p_file);
-            bool addChainCertificate(const std::string& p_file);
-            bool useKeyFiles(const std::string& p_publicKey, const std::string& p_privateKey, const std::string& p_pasphrase);
+
+            Poco::Net::Context::Ptr getClientContext() const { return m_context_client; }
+            Poco::Net::Context::Ptr getServerContext() const { return m_context_server; }
+
+            // Applied to both contexts
+            bool addCertificateAuthority(const std::string& p_file, bool p_clientSide = true, bool p_serverSide = true);
+            bool useCertificate(const std::string& p_file, bool p_clientSide = true, bool p_serverSide = true);
+            bool addChainCertificate(const std::string& p_file, bool p_clientSide = true, bool p_serverSide = true);
+            bool useKeyFiles(const std::string& p_publicKey, const std::string& p_privateKey, const std::string& p_pasphrase, bool p_clientSide = true, bool p_serverSide = true);
 
         private:
+
+            bool _initClientSide(const Poco::Net::Context::VerificationMode p_mode);
+            bool _initServerSide(const Poco::Net::Context::VerificationMode p_mode);
 
             void _cleanup();
 

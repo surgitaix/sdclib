@@ -16,6 +16,7 @@
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Util/DebugOut.h"
+#include "SDCLib/SSLHandler.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
@@ -345,7 +346,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		Helper::XercesGrammarPoolProvider grammarPool;
 		std::unique_ptr<Invoker> invoker(new Invoker(deviceDescription.getDeviceURI(), grammarPool));
 
-		auto response(invoker->invoke(request));
+		auto response(invoker->invoke(request, m_SDCInstance->getSSLHandler()->getClientContext()));
 
 		if (response != nullptr) {
 			for (const auto & metadata : response->MetadataSection()) {
@@ -367,7 +368,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		using Invoker_metadata = OSELib::SOAP::GenericSoapInvoke<DPWS::GetMetadataTraits>;
 		std::unique_ptr<Invoker_metadata> invoker_metadata(new Invoker_metadata(deviceDescription.getWaveformEventReportURI(), grammarPool));
 
-		auto response_metadata(invoker_metadata->invoke(request_metadata));
+		auto response_metadata(invoker_metadata->invoke(request_metadata, m_SDCInstance->getSSLHandler()->getClientContext()));
 
 		if (response_metadata != nullptr) {
 
@@ -409,5 +410,5 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		result->disconnect();
 		return nullptr;
 	}
-	return std::move(result);
+	return result;
 }

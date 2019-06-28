@@ -1,5 +1,5 @@
 # Current Target
-set( CURRENT_TARGET_NAME MDIBVisualizer )
+set( CURRENT_TARGET_NAME ExampleConsumerSSL )
 # Add this for better project structure after cmake generation
 project(${CURRENT_TARGET_NAME})
 
@@ -15,7 +15,7 @@ set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
 target_sources(${CURRENT_TARGET_NAME}
     PRIVATE
         # Source Files
-        ${SRC_DIR}/MDIBVisualizer.cpp
+        ${SRC_DIR}/ExampleConsumerSSL.cpp
         # Add the includes too (for better generation)
         #...
 )

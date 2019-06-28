@@ -5,15 +5,17 @@
  *      Author: matthias
  */
 
+#include "OSELib/DPWS/PingManager.h"
+
+#include "SDCLib/SDCInstance.h"
+#include "SDCLib/SSLHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 
 #include "OSELib/DPWS/OperationTraits.h"
-#include "OSELib/DPWS/PingManager.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 
-namespace OSELib {
-namespace DPWS {
+using namespace OSELib::DPWS;
 
 PingManager::PingManager(SDCLib::Data::SDC::SDCConsumer & consumer) :
 	_runnableAdapter(*this, &PingManager::run),
@@ -27,16 +29,16 @@ PingManager::~PingManager() {
 	_thread.join();
 }
 
-void PingManager::run() {
+void PingManager::run()
+{
 	Helper::XercesGrammarPoolProvider grammarProvider;
-
-	while (Poco::Thread::trySleep(5000)) {
+	while (Poco::Thread::trySleep(5000))
+    {
 		OSELib::DPWS::ProbeTraits::Request request;
-
 		using ProbeInvoke = OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::ProbeTraits>;
 		ProbeInvoke probeInvoke(_consumer._deviceDescription.getDeviceURI(), grammarProvider);
 		try {
-			auto response(probeInvoke.invoke(request));
+			auto response(probeInvoke.invoke(request, _consumer.getSDCInstance()->getSSLHandler()->getClientContext()));
 			if (!response) {
 				_consumer.onConnectionLost();
 				return;
@@ -48,9 +50,8 @@ void PingManager::run() {
 	}
 }
 
-void PingManager::disable() {
-	_thread.wakeUp();
+void PingManager::disable()
+{
+    _thread.wakeUp();
 }
 
-} /* namespace DPWS */
-} /* namespace OSELib */

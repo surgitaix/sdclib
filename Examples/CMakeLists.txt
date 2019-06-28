@@ -9,3 +9,6 @@ add_subdirectory(ExampleConsumer4SoftICEStreaming)
 add_subdirectory(ExampleProject)
 add_subdirectory(ExampleProvider)
 add_subdirectory(MDIBVisualizer)
+
+# SSL
+add_subdirectory(SSL)

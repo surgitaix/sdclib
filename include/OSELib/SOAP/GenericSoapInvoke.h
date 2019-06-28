@@ -32,29 +32,37 @@ public:
 
 	using SoapInvoke::invoke;
 
-	virtual std::unique_ptr<typename TraitsType::Response> invoke(const typename TraitsType::Request & request) {
+	virtual std::unique_ptr<typename TraitsType::Response> invoke(const typename TraitsType::Request & request, Poco::Net::Context::Ptr p_context) {
 		std::unique_ptr<MESSAGEMODEL::Envelope> invokeMessage(createMessage());
 
 		OSELib::SOAP::NormalizedMessageAdapter<typename TraitsType::Request> adapter;
 		adapter.set(*invokeMessage, std::unique_ptr<typename TraitsType::Request>(new typename TraitsType::Request(request)));
 
-		auto responseMessage(SoapInvoke::invoke(std::move(invokeMessage)));
+        // QND - Distinguish between SSL and plain SOAP invoke by Poco::Net::Context::Ptr.
+        std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage = nullptr;
+        // SSL
+        if(!p_context.isNull()) {
+            t_responseMessage = SoapInvoke::invoke(std::move(invokeMessage), p_context);
+        }
+        else {
+            t_responseMessage = SoapInvoke::invoke(std::move(invokeMessage));
+        }
 
-		if (!responseMessage) {
+		if (!t_responseMessage) {
 			// todo throw somehting
 			log_error([&] {return "Soap invoke failed: Empty response message.";});
 			return nullptr;
 		}
 
-		const auto soapAction(responseMessage->Header().Action().get());
+		const auto soapAction(t_responseMessage->Header().Action().get());
 		if (soapAction == TraitsType::ResponseAction()) {
 
 			OSELib::SOAP::NormalizedMessageAdapter<typename TraitsType::Response> adapter;
-			if (!adapter.present(*responseMessage)) {
+			if (!adapter.present(*t_responseMessage)) {
 				return nullptr;
 			}
 
-			std::unique_ptr<typename TraitsType::Response> response(new typename TraitsType::Response(adapter.get(*responseMessage)));
+			std::unique_ptr<typename TraitsType::Response> response(new typename TraitsType::Response(adapter.get(*t_responseMessage)));
 			return response;
 		} else {
 			// throw something?

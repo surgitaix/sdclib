@@ -38,8 +38,8 @@ project(${PROJECT_NAME})
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
-set (SDCLibrary_VERSION_MIDDLE         0)
-set (SDCLibrary_VERSION_LAST           3)
+set (SDCLibrary_VERSION_MIDDLE         1)
+set (SDCLibrary_VERSION_LAST           0)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -192,65 +192,6 @@ find_package(Threads REQUIRED)
 #target_link_libraries(${CURRENT_TARGET_NAME} ${CMAKE_THREAD_LIBS_INIT})
 ################################################################################
 
-
-
-################################################################################
-# XERCES
-################################################################################
-include(SDC_Xerces) # This adds an imported target WIP
-
-# Found it?
-if(NOT XercesC_FOUND)
-  message(FATAL_ERROR "Failed to find the XercesC!")
-endif()
-
-# Append Xerces
-if (CMAKE_BUILD_TYPE STREQUAL Debug)
-    list(APPEND SDCLib_LIBRARIES ${XercesC_LIBRARY_RELEASE})
-else ()
-    list(APPEND SDCLib_LIBRARIES ${XercesC_LIBRARY_DEBUG})
-endif()
-################################################################################
-
-################################################################################
-# Poco
-# Custom Version - only a few Components needed
-# Net needed
-# Foundation needed
-################################################################################
-message(STATUS "######## Configuring Poco...")
-#target_include_directories(${CURRENT_TARGET_NAME} ${POCO_INCLUDE_DIRS})
-set(POCO_INCLUDE_DIRS
-                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Foundation/include/
-                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Net/include/
-                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Crypto/include/
-                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Util/include/
-                        )
-
-#target_link_libraries(${CURRENT_TARGET_NAME} ${POCO_LIBRARIES})
-set(POCO_LIBRARIES Foundation Net Crypto Util)
-# target_compile_definitions(${CURRENT_TARGET_NAME} ${POCO_EXPORTS})
-set(POCO_COMPILE_DEFINITIONS POCO_NO_AUTOMATIC_LIBS Foundation_EXPORTS Net_EXPORTS Crypto_EXPORTS)
-
-# System dependend
-if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    list(APPEND POCO_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/NetSSL_OpenSSL/include/)
-    list(APPEND POCO_LIBRARIES NetSSL)
-    list(APPEND POCO_COMPILE_DEFINITIONS NetSSL_EXPORTS)
-endif()
-
-if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-    list(APPEND POCO_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/NetSSL_Win/include/)
-    list(APPEND POCO_LIBRARIES NetSSL_Win)
-    list(APPEND POCO_COMPILE_DEFINITIONS NetSSL_Win_EXPORTS)
-endif()
-
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/)
-message(STATUS "######## Configuring Poco done!")
-################################################################################
-
-
-
 ################################################################################
 # Some more paths - cleaned from symlinks
 # Note: Use these in the other CMakeLists for easier handling
@@ -261,34 +202,7 @@ get_filename_component(PATH_DATAMODEL_ROOT ${CMAKE_CURRENT_LIST_DIR}/datamodel/ 
 get_filename_component(PATH_EXAMPLES_ROOT ${CMAKE_CURRENT_LIST_DIR}/Examples/ REALPATH)
 get_filename_component(PATH_TESTS_ROOT ${CMAKE_CURRENT_LIST_DIR}/Tests/ REALPATH)
 get_filename_component(PATH_SDCTESTS_ROOT ${PATH_TESTS_ROOT}/SDCTests/ REALPATH)
-
 ################################################################################
-
-
-if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    ADD_DEFINITIONS(-D_LINUX)
-    ADD_DEFINITIONS(-Dlinux)
-    # constexpr macro / checking for C++11 is done above allready
-    # Note: Shouldnt this be fixed inside the code? - only used once as far as I can tell...!
-    add_definitions(-DCONSTEXPR_MACRO=constexpr)
-endif()
-
-
-if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-    ADD_DEFINITIONS(-D_WIN32)
-
-    # Libraries - WIP... maybe include in Dependencies?
-    SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
-
-    # define preprocessor macros for Visual Studio: no CONSTEXPR_MACRO before VS15
-    MESSAGE( STATUS "MSVS compiler version: " ${CMAKE_CXX_COMPILER_VERSION} )
-    # Note: Shouldnt this be fixed inside the code? - only used once as far as I can tell...!
-    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.00)
-        add_definitions(-DCONSTEXPR_MACRO= )
-    else()
-        add_definitions(-DCONSTEXPR_MACRO=constexpr)
-    endif()
-endif()
 
 
 ################################################################################
@@ -313,20 +227,18 @@ message(STATUS "Adding Targets...")
 # datamodel
 add_subdirectory(${PATH_DATAMODEL_ROOT})
 
+set(SDCLib_SEARCH_DIRS ".")
+find_package(SDCLib)
+
 # src folder
 add_subdirectory(${PATH_SRC_ROOT})
 
-set(SDCLib_SEARCH_DIRS ".")
-
-
 # Examples
 if(SDC_EXAMPLES)
-    find_package(SDCLib)
     add_subdirectory(${PATH_EXAMPLES_ROOT})
 endif()
 # Tests
 if(SDC_TESTS)
-    find_package(SDCLib)
     add_subdirectory(${PATH_TESTS_ROOT})
 ENDIF()
 #...

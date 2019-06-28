@@ -33,7 +33,7 @@
 
 #include <Poco/Net/NetworkInterface.h>
 #include <Poco/Net/SocketDefs.h>
-
+#include <Poco/Net/Context.h>
 
 namespace SDCLib
 {
@@ -62,7 +62,7 @@ namespace SDCLib
               m_name = m_if.adapterName();
 
         }
-      };
+    };
 
     using NetInterface_shared_ptr = std::shared_ptr<NetInterface>;
     using NI_List = std::vector<NetInterface_shared_ptr>;
@@ -147,7 +147,7 @@ namespace SDCLib
         bool belongsToSDCInstance(Poco::Net::IPAddress p_IP) const;
         
         // WIP!
-        bool initSSL();
+        bool initSSL(Poco::Net::Context::VerificationMode p_modeClient = Poco::Net::Context::VERIFY_RELAXED, Poco::Net::Context::VerificationMode p_modeServer = Poco::Net::Context::VERIFY_RELAXED);
         SSL::SSLHandler_shared_ptr getSSLHandler() { return m_SSLHandler; }
 
         // IP4 / IP6

@@ -60,13 +60,13 @@ bool SDCInstance::init()
     return true;
 }
 
-bool SDCInstance::initSSL()
+bool SDCInstance::initSSL(const Poco::Net::Context::VerificationMode p_modeClient, const Poco::Net::Context::VerificationMode p_modeServer)
 {
     if(m_SSLHandler->isInit()) {
         return false;
     }
     std::cout << "Init SSL..." << std::endl;
-    return m_SSLHandler->init();
+    return m_SSLHandler->init(p_modeClient, p_modeServer);
 }
 
 bool SDCInstance::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
