@@ -97,7 +97,31 @@ namespace Network {
 
     bool ContextWorker::stop()
     {
-        return false;
+    	assert(isStarted() && "Asio service is not started!");
+    	    if (!isStarted())
+    	        return false;
+
+    	    // Post the stop routine
+    	    auto self(this->shared_from_this());
+    	    auto stop_handler = [this, self]()
+    	    {
+    	        if (!isStarted())
+    	            return;
+
+    	        // Stop Asio services
+    	        _context->stop();
+
+    	        // Update the started flag
+    	        _started = false;
+
+    	        // Call the service stopped handler
+    	    };
+    	    _strand->post(stop_handler);
+    	    for (auto& thread : _threads)
+    	    {
+    	    	thread.join();
+    	    }
+    	    return true;
     }
 
     void ContextWorker::sendError(std::error_code ec)

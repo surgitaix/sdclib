@@ -9,7 +9,7 @@ namespace Network {
     TCPClient::TCPClient(const std::string& address, unsigned short port)
         : _connected(false),
           _sending(false),
-          _contextWorker(new ContextWorker()),
+          _contextWorker(std::make_shared<ContextWorker>()),
           _context(_contextWorker->getContext()),
           _query(address, std::to_string(port)),
           _resolver(*_context),

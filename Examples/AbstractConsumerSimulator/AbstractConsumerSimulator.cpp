@@ -25,6 +25,7 @@
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "SDCLib/Data/SDC/MDIB/MdState.h"
 #include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
@@ -43,7 +44,7 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 using namespace SDCLib::Data::SDC::ACS;
 
-const std::string deviceEPR("UDI-1234567890"); //needs to be configured
+const std::string deviceEPR("PulseOximeter"); //needs to be configured
 
 class SDCParticipantStreamStateForwarder : public SDCParticipantMDStateForwarder<RealTimeSampleArrayMetricState> {
 public:
@@ -54,6 +55,7 @@ public:
 		realTimeSampleArrayState.setActivationState(ComponentActivation::On);
 		return realTimeSampleArrayState;
 	}
+
 };
 
 class SDCParticipantNumericStateForwarder : public SDCParticipantMDStateForwarder<NumericMetricState> {
@@ -64,6 +66,11 @@ public:
 		NumericMetricState numericMetricState(SDCProviderMDStateHandler::descriptorHandle);
 		numericMetricState.setActivationState(ComponentActivation::On);
 		return numericMetricState;
+	}
+	void onStateChanged(const NumericMetricState & state)  {
+        double val = state.getMetricValue().getValue();
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << this->SDCProviderStateHandler::getDescriptorHandle() << ": " << val << std::endl;
+		SDCProviderStateHandler::updateState(state);
 	}
 };
 
@@ -96,7 +103,7 @@ static const std::string getStringRepresentationOfMDIB(const MdibContainer MDIB)
 
 int main() {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 	SDCLibrary::getInstance().setPortStart(6000);
 
 	//On connection loss inform Test orchestrator
