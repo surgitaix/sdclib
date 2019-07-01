@@ -92,6 +92,9 @@ set_property(CACHE SDC_TESTS PROPERTY STRINGS "ON" "OFF")
 # Examples - Default to ON
 set (SDC_EXAMPLES   ON CACHE STRING "Enable Building Examples")
 set_property(CACHE SDC_EXAMPLES PROPERTY STRINGS "ON" "OFF")
+
+#MessageManipulation
+add_definitions(-DMESSAGEMANIPULATION=1)
 ################################################################################
 
 

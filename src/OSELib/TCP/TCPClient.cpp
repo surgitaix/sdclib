@@ -70,6 +70,7 @@ namespace Network {
                     onConnected();
 
                     _receive_buffer.resize(_defaultBufferSize);
+                    _send_buffer.resize(_defaultBufferSize);
                     tryReceive();
                     trySend();
                 }
@@ -147,7 +148,7 @@ namespace Network {
                 sendError(ec);
             }
         };
-        _socket.async_read_some(asio::buffer(_receive_buffer.data(), _receive_buffer.size()),
+        _socket.async_receive(asio::buffer(_receive_buffer.data(), _receive_buffer.size()),
                                 asio::bind_executor(_strand, async_receive_handler));
     }
 

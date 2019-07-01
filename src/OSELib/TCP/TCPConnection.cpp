@@ -24,6 +24,10 @@ namespace Network {
         _server->onConnected(connection);
 
         _receive_buffer.resize(_defaultBufferSize);
+//        asio::socket_base::send_buffer_size send_buffer_size_option(_defaultBufferSize);
+//        asio::socket_base::receive_buffer_size receive_buffer_size_option(_defaultBufferSize);
+//        _socket.set_option(send_buffer_size_option);
+//        _socket.set_option(receive_buffer_size_option);
         tryReceive();
         trySend();
     }
@@ -96,7 +100,7 @@ namespace Network {
                 disconnect();
             }
         };
-        _socket.async_read_some(asio::buffer(_receive_buffer.data(), _receive_buffer.size()),
+        _socket.async_receive(asio::buffer(_receive_buffer.data(), _receive_buffer.size()),
                                 asio::bind_executor(_strand, async_receive_handler));
     }
 

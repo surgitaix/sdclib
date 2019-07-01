@@ -21,6 +21,9 @@ public:
 
 	static std::string serialize(const MESSAGEMODEL::Envelope & message);
 
+private:
+	static std::string manipulateMessage(const std::string& originalMessage);
+
 };
 
 } /* namespace SOAP */

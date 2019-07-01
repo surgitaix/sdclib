@@ -41,7 +41,7 @@ private:
 	static std::shared_ptr<TCPClientEventHandler> instance;
 	bool started;
 	bool instantiated;
-	std::atomic<bool> received;
+	bool received;
 	std::string response;
 
 

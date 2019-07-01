@@ -41,6 +41,7 @@ void TCPClientEventHandler::startup()
 	}
 	else
 	{
+		std::cout << "Starting up" << std::endl;
 		instance->start();
 		received = false;
 		response = "";
