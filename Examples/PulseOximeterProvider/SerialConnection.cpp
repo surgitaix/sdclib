@@ -7,6 +7,7 @@
 
 #include "SerialConnection.h"
 #include <bitset>
+#include <fcntl.h>
 #include <assert.h>
 
 namespace Serial {
@@ -17,13 +18,22 @@ SerialConnection::SerialConnection(std::string port, unsigned int baud_rate) :
 	_contextWorker(new Network::ContextWorker()),
 	_context(_contextWorker->getContext()),
     _strand(*_context),
-	_serialPort(*_context, port)
+	_serialPort(*_context, port),
+	_port(port)
 {
-	connect(port, baud_rate);
+	flush(_port);
+	connect(_port, baud_rate);
 }
 
 SerialConnection::~SerialConnection() {
-	stop();
+
+}
+
+void SerialConnection::flush(std::string port)
+{
+	  int fd = open(port.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
+	  tcflush(fd,TCIOFLUSH);
+	  close(fd);
 }
 
 void SerialConnection::connect(const std::string &port, unsigned int baud_rate)
@@ -35,14 +45,28 @@ void SerialConnection::connect(const std::string &port, unsigned int baud_rate)
 
 void SerialConnection::start()
 {
-	_contextWorker->start();
 	trySend();
 	tryReceive();
+	_contextWorker->start();
 }
 
 void SerialConnection::stop()
 {
-	_contextWorker->stop();
+	if(!_connected)
+	{
+		return;
+	}
+    auto self(this->shared_from_this());
+    auto stop_handler = [this, self]()
+    {
+        _connected = false;
+    	_serialPort.cancel();
+    	_serialPort.close();
+    	_send_buffer.clear();
+    	_receive_buffer.clear();
+    	flush(_port);
+    };
+    _strand.post(stop_handler);
 }
 
 void SerialConnection::send(const void *buffer, size_t size)
@@ -142,11 +166,6 @@ void SerialConnection::tryReceive()
         if(size > 0)
         {
             onReceived(_receive_buffer.data(), size);
-
-            if(_receive_buffer.size() >= size)
-            {
-                _receive_buffer.resize(2 * size);
-            }
         }
 
         if(!ec)

@@ -2,7 +2,7 @@
  * SerialConnection.h
  *
  *  Created on: Jun 17, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #ifndef EXAMPLES_PULSEOXIMETERPROVIDER_SERIALCONNECTION_H_
@@ -48,6 +48,8 @@ private:
 
 	void sendError(std::error_code ec);
 
+	void flush(std::string port);
+
 protected:
     /**
      * @brief onConnected
@@ -92,6 +94,7 @@ private:
     asio::serial_port _serialPort;
 	std::vector<uint8_t> _receive_buffer;
 	std::vector<uint8_t> _send_buffer;
+	std::string _port;
 
 };
 

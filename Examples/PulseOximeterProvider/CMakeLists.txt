@@ -15,6 +15,7 @@ target_sources(${CURRENT_TARGET_NAME}
     PRIVATE
         # Source Files
         ${SRC_DIR}/PulseOximeterProvider.cpp
+        ${SRC_DIR}/PulseOximeterProviderMain.cpp
         ${SRC_DIR}/SerialConnection.cpp
         ${SRC_DIR}/SerialConnectionEventHandler.cpp
         # Add the includes too (for better generation)
