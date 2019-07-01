@@ -499,23 +499,25 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${SRC_DIR} )
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_SRC_ROOT} )
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT} )
 
-# Poco
-target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${POCO_INCLUDE_DIRS} )
-target_link_libraries( ${CURRENT_TARGET_NAME} PUBLIC ${POCO_LIBRARIES} )
-target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC ${POCO_COMPILE_DEFINITIONS} )
+# SDCLib: Include and Defs
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_INCLUDE_DIRS} )
+target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEFINITIONS} )
 
-# Packages
 
+# All Dependencies
+target_link_libraries(${CURRENT_TARGET_NAME}        PUBLIC ${SDCLib_DEPS_LIBRARIES})
+target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC ${SDCLib_DEPS_INCLUDE_DIRS})
+target_compile_definitions(${CURRENT_TARGET_NAME}   PUBLIC ${SDCLib_DEPS_DEFINITIONS})
+
+
+# XercesC - Imported Target (Todo: Move this into FindSDCLib)
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
+
+# Additional (TODO: Move into SDCLib!)
 # DataModel
 target_sources(${CURRENT_TARGET_NAME} PUBLIC $<TARGET_OBJECTS:DataModel>)
 # Note: 2nd line for cmake < 3.12
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
-
-# Threads
-target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
-# XercesC - Imported Target
-target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
-
 
 # build
 set_target_properties(  ${CURRENT_TARGET_NAME}

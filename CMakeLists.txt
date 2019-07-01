@@ -180,18 +180,6 @@ find_package(PythonLibs 2.7 REQUIRED)
 #target_link_libraries(${CURRENT_TARGET_NAME} ${PYTHON_LIBRARIES})
 ################################################################################
 
-
-################################################################################
-# Threads - prefer pthreads
-################################################################################
-set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-set(THREADS_PREFER_PTHREAD_FLAG TRUE)
-find_package(Threads REQUIRED)
-
-# Use it like this in the subprojects:
-#target_link_libraries(${CURRENT_TARGET_NAME} ${CMAKE_THREAD_LIBS_INIT})
-################################################################################
-
 ################################################################################
 # Some more paths - cleaned from symlinks
 # Note: Use these in the other CMakeLists for easier handling
