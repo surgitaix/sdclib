@@ -11,37 +11,24 @@
 
 #include <string>
 #include <fstream>
-#include <streambuf>
+#include <thread>
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
-#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "SDCLib/Data/SDC/MDIB/MdDescription.h"
-#include "SDCLib/Data/SDC/MDIB/Range.h"
-#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/MetaData.h"
-#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Util/DebugOut.h"
 #include "SDCLib/Util/Task.h"
 
 #include "OSELib/SDC/ServiceManager.h"
 
-#include "Poco/Runnable.h"
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
-#include "Poco/Thread.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -245,7 +232,7 @@ public:
 			// generate NumericMetricState
 			getNumericHandler.setNumericValue(42.0);
 			DebugOut(DebugOut::Default, "ExampleCachedProvider") << "NumericMetric: value changed to 42.0" << std::endl;
-			Poco::Thread::sleep(1000);
+            std::this_thread::sleep_for(std::chrono::microseconds(1000));
 			index += size;
 		}
     }
@@ -269,7 +256,7 @@ int main()
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 
 	// Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);
+    auto t_SDCInstance = std::make_shared<SDCInstance>(true);
     // Some restriction
     t_SDCInstance->setIP6enabled(false);
     t_SDCInstance->setIP4enabled(true);

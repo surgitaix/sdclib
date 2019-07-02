@@ -40,11 +40,6 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 
-#include "Poco/Runnable.h"
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
-#include "Poco/Thread.h"
-
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
@@ -79,7 +74,7 @@ public:
 	// this abstract method implements the eventing mechanism
 	// called from within the framework if a value is changed by the provider
     void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
-    	Poco::Mutex::ScopedLock lock(mutex);
+    	std::lock_guard<std::mutex> t_lock(m_mutex);
         std::vector<double> values = state.getMetricValue().getSamples();
 
 
@@ -95,12 +90,12 @@ public:
     }
 
     bool getVerifiedChunks() {
-    	Poco::Mutex::ScopedLock lock(mutex);
+    	std::lock_guard<std::mutex> t_lock(m_mutex);
         return verifiedChunks;
     }
 
 private:
-    Poco::Mutex mutex;
+    std::mutex m_mutex;
     bool verifiedChunks;
 };
 
@@ -112,7 +107,7 @@ int main() {
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 
     // Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_PORT_CONSUMER, true);
+    auto t_SDCInstance = std::make_shared<SDCInstance>(true);
     // Some restriction
     t_SDCInstance->setIP6enabled(false);
     t_SDCInstance->setIP4enabled(true);
@@ -141,7 +136,7 @@ int main() {
 //		set the providers value for the NMS: handle_set
 		NumericMetricState nms("handle_set");
 		nms.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(84.0));
-		Poco::Thread::sleep(1000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 		c->commitState(nms);
 
 		std::string temp;

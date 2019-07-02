@@ -139,7 +139,7 @@ int main() {
     };
 
     // Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);
+    auto t_SDCInstance = std::make_shared<SDCInstance>(true);
     // Some restriction
     t_SDCInstance->setIP6enabled(false);
     t_SDCInstance->setIP4enabled(true);
@@ -148,21 +148,20 @@ int main() {
         std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
-    
+
     // SSL Part
     auto t_SSLHandler = t_SDCInstance->getSSLHandler();
-    
+
     // Init SSL (Default Params should be fine)
     if(!t_SSLHandler->init()) {
         std::cout << "Failed to init SSL!" << std::endl;
         return -1;
     }
-    
+
     // Configure SSLHandler
     t_SSLHandler->addCertificateAuthority("rootCA.pem");
     t_SSLHandler->useCertificate("leaf.pem");
     t_SSLHandler->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
-    
 
 	// Discovery
 	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
@@ -191,7 +190,7 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
 
 			// wait for the subscriptions to be completed
-			Poco::Thread::sleep(5000);
+			std::this_thread::sleep_for(std::chrono::microseconds(5000));
 
 			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();

@@ -35,14 +35,12 @@ public:
 
 public:
 
-    SDCLib::SDCPort getNewPort() { return m_port++; }
-
     SDCLib::SDCInstance_shared_ptr createSDCInstance()
     {
         // Init SDCInstance
         // Create a new SDCInstance (dont init yet) - give it a new port (just increment)
         log_notice([]{ return "Creating new SDCInstance..."; });
-        auto t_SDCInstance = std::make_shared<SDCInstance>(getNewPort(), false);
+        auto t_SDCInstance = std::make_shared<SDCInstance>(false);
         // Init
         log_notice([]{ return "Init SDCInstance..."; });
         if(!t_SDCInstance->init()) {
@@ -62,8 +60,6 @@ public:
 
 private:
 	const std::string testname;
-
-    std::atomic<SDCPort> m_port = ATOMIC_VAR_INIT(Config::SDC_ALLOWED_PORT_START);
 };
 
 }

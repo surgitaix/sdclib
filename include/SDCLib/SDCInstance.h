@@ -79,7 +79,7 @@ namespace SDCLib
         std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
         NI_List ml_networkInterfaces;
         NetInterface_shared_ptr m_MDPWSInterface = nullptr;
-        SDCPort m_MDPWSPort = Config::SDC_DEFAULT_MDPWS_PORT;
+        SDCPort m_MDPWSPort = 0;
 
         std::atomic<bool> m_IP4enabled = ATOMIC_VAR_INIT(true);
         std::atomic<bool> m_IP6enabled = ATOMIC_VAR_INIT(true);
@@ -103,7 +103,8 @@ namespace SDCLib
 
     public:
 
-        SDCInstance(SDCPort p_MDPWSPort = Config::SDC_DEFAULT_MDPWS_PORT, bool p_init = true);
+        explicit SDCInstance(bool p_init = true);
+        explicit SDCInstance(SDCPort p_MDPWSPort, bool p_init);
 
         // Special Member Functions
         SDCInstance(const SDCInstance& p_obj) = delete;
@@ -145,7 +146,7 @@ namespace SDCLib
 
         // Note: Only works with IPv4 IPAddresses!
         bool belongsToSDCInstance(Poco::Net::IPAddress p_IP) const;
-        
+
         // WIP!
         bool initSSL(Poco::Net::Context::VerificationMode p_modeClient = Poco::Net::Context::VERIFY_RELAXED, Poco::Net::Context::VerificationMode p_modeServer = Poco::Net::Context::VERIFY_RELAXED);
         SSL::SSLHandler_shared_ptr getSSLHandler() { return m_SSLHandler; }
@@ -174,6 +175,11 @@ namespace SDCLib
 
     private:
 
+        /**
+         * @brief Get a free network port to listen.
+         *
+         * @return First argument true if second argument contains a valid port.
+         */
         std::pair<bool, SDCPort> findFreePort() const;
 
         void _cleanup();

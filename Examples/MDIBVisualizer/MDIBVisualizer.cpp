@@ -1,7 +1,6 @@
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
-#include "OSELib/SDC/SDCConstants.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Util/DebugOut.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -10,10 +9,7 @@
 
 #include "osdm.hxx"
 
-#include "Poco/Thread.h"
-#include "Poco/Timestamp.h"
-#include "Poco/DateTimeFormatter.h"
-#include "Poco/DateTimeFormat.h"
+#include <chrono>
 
 #include <fstream>
 #include <sstream>
@@ -1456,7 +1452,8 @@ int main() {
 			try {
 				std::ofstream outFile;
 				outFile.open(filename, std::ios::trunc);
-				Poco::Timestamp now;
+
+                std::chrono::time_point<std::chrono::system_clock> t_start = std::chrono::system_clock::now();
 
 				OSELib::SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 				auto rawMessage = OSELib::Helper::Message::create(consumer->requestRawMdib());
@@ -1467,8 +1464,9 @@ int main() {
 				if (mdib) {
 					outFile << buildDotGraph(*mdib);
 				}
-
-				DebugOut(DebugOut::Default, "MDIBVisualizer") << "   -> took " << Poco::DateTimeFormatter::format(Poco::Timespan(now.elapsed()), "%s:%i") << " s:ms." << std::endl;
+                std::chrono::time_point<std::chrono::system_clock> t_end = std::chrono::system_clock::now();
+                auto t_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t_end - t_start).count();
+				DebugOut(DebugOut::Default, "MDIBVisualizer") << "   -> took " << t_ms << " ms." << std::endl;
 				outFile.close();
 			} catch (...) {
 				DebugOut(DebugOut::Default, "MDIBVisualizer") << "Error writing file." << std::endl;
@@ -1484,8 +1482,6 @@ int main() {
 
 //		++loopcounter;
 //	}
-
-	//Poco::Thread::sleep(5000);
 
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << "Shutdown: " << testname << std::endl;
 }

@@ -3,16 +3,27 @@
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/SSLHandler.h"
 
+#include <Poco/Net/ServerSocket.h>
+
+
 #include <iostream>
 
 using namespace SDCLib;
 
 std::atomic_uint SDCInstance::s_IDcounter = ATOMIC_VAR_INIT(0);
 
-SDCInstance::SDCInstance(SDCPort p_MDPWSPort, bool p_init)
- : m_MDPWSPort(p_MDPWSPort)
+SDCInstance::SDCInstance(bool p_init)
+ : m_SSLHandler([]() { return std::make_shared<SSL::SSLHandler>(); } ())
+{
+    if(p_init) {
+        init();
+    }
+}
+SDCInstance::SDCInstance(SDCPort, bool p_init)
+ : m_MDPWSPort(0) // Note: Overwrite it to a random port!
  , m_SSLHandler([]() { return std::make_shared<SSL::SSLHandler>(); } ())
 {
+    std::cout << "SDCInstance(SDCPort, bool) Constructor will be removed in future versions. Please use SDCInstance(bool) Constructor." << std::endl;
     if(p_init) {
         init();
     }
@@ -170,15 +181,12 @@ bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName, bo
                 m_MDPWSInterface = t_if;
 
                 // Check on the port
-                if(m_MDPWSPort == 0) {
-                    std::cout << "WARNING! NO MDPWS PORT SPECIFIED. TAKING RANDOM PORT..." << std::endl;
-                    auto t_result = findFreePort();
-                    if(t_result.first) {
-                        m_MDPWSPort = t_result.second;
-                    }
-                    else {
-                        throw std::runtime_error("NO FREE PORTS FOUND!");
-                    }
+                auto t_result = findFreePort();
+                if(t_result.first) {
+                    m_MDPWSPort = t_result.second;
+                }
+                else {
+                    throw std::runtime_error("NO FREE PORTS FOUND!");
                 }
                 std::cout << "MDPWS Interface set: " << t_if->m_name << " on Port " << m_MDPWSPort << std::endl;
             }
@@ -315,10 +323,17 @@ void SDCInstance::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pin
 }
 std::pair<bool, SDCPort> SDCInstance::findFreePort() const
 {
-    // TODO: Currently just random...
+    // TODO: Rework for Portrange
+    Poco::Net::SocketAddress socketAddress(0);
+    Poco::Net::ServerSocket socket(socketAddress);
+    unsigned short portNumber = socket.address().port();
+    socket.close();
+    //std::cout << portNumber << std::endl;
+    return {true, portNumber};
+/*
     auto t_reserved = 1024;
     // Seed
     std::srand(std::chrono::system_clock::now().time_since_epoch().count());
     auto t_mod = std::numeric_limits<SDCPort>::max() - t_reserved;
-    return {true, std::rand()%t_mod + t_reserved};
+    return {true, std::rand()%t_mod + t_reserved};*/
 }
