@@ -12,6 +12,13 @@ endif()
 
 message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")
 
+message(STATUS "PROCESSOR: ${CMAKE_HOST_SYSTEM_PROCESSOR} and ${CMAKE_SYSTEM_PROCESSOR}")
+
+if (${CMAKE_HOST_SYSTEM_PROCESSOR} MATCHES "armhf" OR ${CMAKE_HOST_SYSTEM_PROCESSOR} MATCHES "armv7l")
+	message(STATUS "Adding ATOMIC!")
+    set(CMAKE_CXX_LINK_FLAGS "${CMAKE_CXX_LINK_FLAGS} -latomic")
+endif()
+
 # Variables for better handling
 set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
 
@@ -260,6 +267,8 @@ target_sources(${CURRENT_TARGET_NAME} PUBLIC $<TARGET_OBJECTS:DataModel>)
 # Note: 2nd line for cmake < 3.12
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
 
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC atomic)
+
 # Threads
 target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 # Xerces
@@ -286,3 +295,4 @@ install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE}
 )
 
 # ...
+
