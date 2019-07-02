@@ -454,7 +454,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 	void PulseOximeterProvider::startMedicalDevice() {
 	    try {
 
-	    	serial = std::make_shared<Serial::SerialConnectionEventHandler>("/dev/ttyS0", 115200);
+	    	serial = std::make_shared<Serial::SerialConnectionEventHandler>("/dev/ttyUSB0", 115200);
 
 	    	serial->start();
 
