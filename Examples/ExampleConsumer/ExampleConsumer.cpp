@@ -121,8 +121,6 @@ void waitForUserInput() {
 
 
 int main() {
-	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
-	sleep(5);
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 	SDCLibrary::getInstance().setPortStart(12000);
