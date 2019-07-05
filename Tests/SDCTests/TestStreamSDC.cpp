@@ -24,6 +24,10 @@
  *  At the current state of the IEEE 11073 SDC BICEPS specification the DSAMS is transported via TCP, maybe this changes soon. Then SDCProvider::updateState has to be adapted accordingly
  *
  */
+
+#include <mutex>
+#include <thread>
+
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
@@ -55,10 +59,6 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 
-#include "Poco/Runnable.h"
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
-#include "Poco/Thread.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -80,7 +80,7 @@ public:
     }
 
     void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
-    	Poco::Mutex::ScopedLock lock(mutex);
+    	std::lock_guard<std::mutex> t_lockMdStates{m_mutex};
         DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk! Handle: " << descriptorHandle << std::endl;
         std::vector<double> values = state.getMetricValue().getSamples();
         verifiedChunks = true;
@@ -92,12 +92,12 @@ public:
     }
 
     bool getVerifiedChunks() {
-    	Poco::Mutex::ScopedLock lock(mutex);
+    	std::lock_guard<std::mutex> t_lockMdStates{m_mutex};
         return verifiedChunks;
     }
 
 private:
-    Poco::Mutex mutex;
+    std::mutex m_mutex;
     bool verifiedChunks;
 };
 
@@ -111,7 +111,7 @@ public:
     }
 
     void onStateChanged(const DistributionSampleArrayMetricState & state) override {
-    	Poco::Mutex::ScopedLock lock(mutex);
+    	std::lock_guard<std::mutex> t_lockMdStates{m_mutex};
         DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk of a distribution! Handle: " << descriptorHandle << std::endl;
         std::vector<double> values = state.getMetricValue().getSamples();
         verifiedChunks = true;
@@ -123,12 +123,12 @@ public:
     }
 
     bool getVerifiedChunks() {
-    	Poco::Mutex::ScopedLock lock(mutex);
+    	std::lock_guard<std::mutex> t_lockMdStates{m_mutex};
         return verifiedChunks;
     }
 
 private:
-    Poco::Mutex mutex;
+    std::mutex m_mutex;
     bool verifiedChunks;
 };
 
@@ -331,7 +331,7 @@ public:
 
 			}
 			DebugOut(DebugOut::Default, "StreamSDC") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
-			Poco::Thread::sleep(1000);
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 			index += size;
 		}
     }
@@ -377,7 +377,7 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 //            provider.start();// starts provider in a thread and calls the overwritten function runImpl()
 //
 //			// Metric event reception test
-//            Poco::Thread::sleep(10000);
+//            std::this_thread::sleep_for(std::chrono::milliseconds(10000));
 //            CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
 //            CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
 //            CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
@@ -390,7 +390,7 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
 //            provider.interrupt();
 //        }
 //
-//        Poco::Thread::sleep(2000);
+//        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 //        provider.shutdown();
 	}
 	catch (char const* exc)

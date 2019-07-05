@@ -23,14 +23,14 @@ public:
 		WithLogger(OSELib::Log::BASE),
 		testname(testname)
 	{
-		log_notice([&]{ return testname + ":  Startup."; });
+		log_notice([&]{ return std::string(testname + ":  Startup."); });
 		SDCLibrary::getInstance().startup(debuglevel);
 
 	}
 
 	virtual ~AbstractSDCLibFixture() {
 		SDCLibrary::getInstance().shutdown();
-		log_notice([&]{ return testname + ":  Shutdown."; });
+		log_notice([&]{ return  std::string(testname + ":  Shutdown."); });
 	}
 
 public:

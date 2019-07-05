@@ -992,7 +992,7 @@ public:
     		nextWeight = 0.1;
     	}
 		setCurrentWeight(nextWeight);
-		Poco::Thread::sleep(1000);
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 
     void setCurrentWeight(float value) {
@@ -1052,7 +1052,6 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
         // Provider
         Tests::SimpleSDC::SDCHoldingDeviceProvider provider(t_SDCInstance);
         provider.startup();
-        provider.start();
 
         // MdDescription test
         MdDescription mdDescription =  provider.getMdDescription();
@@ -1062,7 +1061,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 
         CHECK_EQUAL(true, mdDescription.removeMdsDescriptor(mds_test));
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Discover EPR...";
-        Poco::Thread::sleep(2000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
         auto t_consumer(t_serviceManager.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
@@ -1131,7 +1130,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
             CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&patientEventHandler));
 
             DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting...";
-            Poco::Thread::sleep(2000);
+            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
             {	// Ensure that requests for wrong handles fail.
                 DebugOut(DebugOut::Default, m_details.testName) << "Numeric test..." << std::endl;
@@ -1191,7 +1190,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 
             // Wait here and let the current value exceed max value. This will trigger alert condition presence which in turn
             // will trigger an alert signal presence (Off -> On -> Latch)!
-            Poco::Thread::sleep(8000);
+            std::this_thread::sleep_for(std::chrono::milliseconds(8000));
 
 			{	// Set state test for a numeric metric state (must succeed, use state handle instead of descriptor handle)
                 std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
@@ -1256,7 +1255,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				DebugOut(DebugOut::Default, m_details.testName) << "Patient context test done...";
 			}
             // Run for some time to receive and display incoming metric events.
-			Poco::Thread::sleep(5000);
+			std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
 			// Stop dummy events created by provider
 			provider.interrupt();
@@ -1272,7 +1271,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
 			}
 
-            Poco::Thread::sleep(5000);
+            std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
             CHECK_EQUAL(true, eces1.getWeight() > 0);
 
@@ -1301,7 +1300,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
             t_consumer->disconnect();
         }
 
-        Poco::Thread::sleep(2000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         provider.shutdown();
     } catch (char const* exc) {
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;

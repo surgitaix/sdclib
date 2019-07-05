@@ -1,4 +1,6 @@
 
+#include <thread>
+
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
@@ -18,9 +20,6 @@
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include "OSELib/SDC/ServiceManager.h"
-
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
 
 #include <atomic>
 
@@ -69,7 +68,6 @@ public:
         VmdDescriptor t_vmd(VMD_DESCRIPTOR_HANDLE);
         t_vmd.addChannel(t_channel);
 
-
         // MDS
         MdsDescriptor t_Mds(MDS_DESCRIPTOR_HANDLE);
         t_Mds.setType(CodedValue("MDC_DEV_DOCU_POSE_MDS")
@@ -81,11 +79,9 @@ public:
                           .addSerialNumber(SDCLib::Config::CURRENT_C_YEAR))
             .addVmd(t_vmd);
 
-
         // create and add description
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(t_Mds);
-
 		sdcProvider.setMdDescription(mdDescription);
     }
 
@@ -154,10 +150,10 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostSDC)
 			t_providerEPRs.push_back(p->getEndpointReference());
             // Startup
             p->startup();
-            Poco::Thread::sleep(100);
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		}
 		// Wait for startup...
-        Poco::Thread::sleep(1000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
@@ -204,7 +200,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostSDC)
         // Wait long enough for all to get a call... FIXME: Sometimes this test fails. Just because the timings arent correct.
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for connectionLostHanders...\n";
 
-        Poco::Thread::sleep(10000); // Long enough to get all, or we get an error...
+        std::this_thread::sleep_for(std::chrono::milliseconds(10000)); // Long enough to get all, or we get an error...
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Checking connectionLostHandlers...\n";
 

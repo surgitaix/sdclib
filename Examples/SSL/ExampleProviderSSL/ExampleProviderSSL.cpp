@@ -383,17 +383,14 @@ int main()
         return -1;
     }
 
-
-    // SSL Part
-    auto t_SSLHandler = t_SDCInstance->getSSLHandler();
-
     // Init SSL (Default Params should be fine)
-    if(!t_SSLHandler->init()) {
+    if(!t_SDCInstance->initSSL()) {
         std::cout << "Failed to init SSL!" << std::endl;
         return -1;
     }
 
     // Configure SSLHandler
+    auto t_SSLHandler = t_SDCInstance->getSSLHandler();
     t_SSLHandler->addCertificateAuthority("rootCA.pem");
     t_SSLHandler->useCertificate("leaf.pem");
     t_SSLHandler->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);

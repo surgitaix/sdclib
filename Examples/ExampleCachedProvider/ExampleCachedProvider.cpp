@@ -1,10 +1,11 @@
 /*
- * ExampleCachedProvider.cpp
+ *  ExampleCachedProvider.cpp
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
- *  Author: buerger
+ *  Author: buerger, baumeister
  *
- *  The ExampleCachedProvider uses an .xml file ('cachedMdib.xml') to build up an SDCProvider device. It further shows how some of the the providers states ('') can be used to
+ *  The ExampleCachedProvider uses an .xml file ('cachedMdib.xml') to build up an SDCProvider device.
+ *  It further shows how some of the the providers states ('') can be used to
  *
  */
 
@@ -12,23 +13,18 @@
 #include <string>
 #include <fstream>
 #include <thread>
+#include <numeric>
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Util/DebugOut.h"
 #include "SDCLib/Util/Task.h"
-
-#include "OSELib/SDC/ServiceManager.h"
-
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -77,11 +73,13 @@ public:
 
 
 
-class SetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class SetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 	// The state handler take a string named as the descriptor for referencing
-    SetNumericMetricStateHandler(const std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+    SetNumericMetricStateHandler(const std::string descriptorHandle)
+    : SDCProviderMDStateHandler(descriptorHandle)
+    { }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
@@ -95,16 +93,12 @@ public:
     // Helper method
     NumericMetricState createState() {
 		NumericMetricState result(descriptorHandle);
-		result
-			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
-			.setActivationState(ComponentActivation::On);
+		result .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+			   .setActivationState(ComponentActivation::On);
         return result;
     }
 
-    NumericMetricState getInitialState() override {
-        NumericMetricState result = createState();
-        return result;
-    }
+    NumericMetricState getInitialState() override { return createState(); }
 
     // Convenience value getter
     float getMaxWeight() {
@@ -118,7 +112,6 @@ public:
         	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Maximum weight metric not found." << std::endl;
         	return 0;
         }
-
     }
 };
 
@@ -218,9 +211,8 @@ public:
     	// Streaming init
 		const std::size_t size(1000);
 		std::vector<double> samples;
-		for (std::size_t i = 0; i < size; i++) {
-			samples.push_back(i);
-		}
+        std::iota(samples.begin(), samples.end(), 0);
+
 		long index(0);
 
 		while (!isInterrupted()) {
@@ -266,17 +258,17 @@ int main()
         return -1;
     }
 
-    OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
 	SDCStreamProvider provider(t_SDCInstance, t_stream);
 	provider.startup();
 	provider.start();
 
-	std::string temp;
 	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Press key to exit program.";
-	std::cin >> temp;
+	std::cin.get();
 
 	// Shutdown
 	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Shutdown." << std::endl;
 	provider.shutdown();
     SDCLibrary::getInstance().shutdown();
+
+    return 0;
 }
