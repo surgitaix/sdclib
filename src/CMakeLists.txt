@@ -508,7 +508,7 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_POCO_INCLUDE})
 # Some Definitions -Temp solution
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     # enable debug and profiling informations for sprof
-    target_compile_options(${CURRENT_TARGET_NAME} -ggdb -g -O0)
+    target_compile_options(${CURRENT_TARGET_NAME} PRIVATE -ggdb -g -O0)
 endif()
 
 
