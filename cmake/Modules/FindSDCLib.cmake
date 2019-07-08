@@ -29,6 +29,7 @@ set(SDCLib_FOUND FALSE CACHE STRING "SDCLib including its dependencies found or 
 set(SDCLib_LIBRARIES            "" CACHE STRING "Library file of SDCLib.")
 set(SDCLib_INCLUDE_DIRS         "" CACHE STRING "All include directories of the SDCLib.")
 set(SDCLib_DEFINITIONS          "" CACHE STRING "All Compile Definitions of the SDCLib.")
+set(SDCLib_OPTIONS              "" CACHE STRING "All Compile Options of the SDCLib.")
 # Dependencies
 set(SDCLib_DEPS_LIBRARIES       "" CACHE STRING "List of library files to link the SDCLib to.")
 set(SDCLib_DEPS_INCLUDE_DIRS    "" CACHE STRING "List of all include directories SDCLib dependencies.")
@@ -176,6 +177,15 @@ if(CMAKE_SYSTEM_NAME MATCHES "Windows")
 endif()
 
 
+################################################################################
+# Compile Options
+################################################################################
+if(CMAKE_BUILD_TYPE)
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        # enable debug and profiling informations for sprof
+        list(APPEND SDCLib_OPTIONS -ggdb -g -O0)
+    endif()
+endif()
 ################################################################################
 
 
