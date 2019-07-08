@@ -24,6 +24,10 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/SDCLib/Util/DebugOut.h
                             ${INCLUDE_DIR}/SDCLib/Util/Task.h
                             ${INCLUDE_DIR}/SDCLib/SDCLibrary.h
+                            # Config
+                            ${INCLUDE_DIR}/SDCLib/Config/SDCConfig.h
+                            ${INCLUDE_DIR}/SDCLib/Config/NetworkConfig.h
+                            ${INCLUDE_DIR}/SDCLib/Config/SSLConfig.h
                             # OSELib
                             ${INCLUDE_DIR}/OSELib/DPWS/Types.h
                             ${INCLUDE_DIR}/OSELib/DPWS/MDPWSHostAdapter.h
@@ -287,6 +291,11 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/SDCLib/SDCLibrary.cpp
         ${SRC_DIR}/SDCLib/SDCInstance.cpp
         ${SRC_DIR}/SDCLib/SSLHandler.cpp
+        # Config
+        ${SRC_DIR}/SDCLib/Config/SDCConfig.cpp
+        ${SRC_DIR}/SDCLib/Config/NetworkConfig.cpp
+        ${SRC_DIR}/SDCLib/Config/SSLConfig.cpp
+        # MDIB
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.cpp
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationState.cpp
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/AlertConditionDescriptor.cpp
@@ -502,12 +511,12 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT} )
 # SDCLib: Include and Defs
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_INCLUDE_DIRS} )
 target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEFINITIONS} )
-
+target_compile_options(${CURRENT_TARGET_NAME}      PRIVATE ${SDCLib_OPTIONS} )
 
 # All Dependencies
-target_link_libraries(${CURRENT_TARGET_NAME}        PUBLIC ${SDCLib_DEPS_LIBRARIES})
-target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC ${SDCLib_DEPS_INCLUDE_DIRS})
-target_compile_definitions(${CURRENT_TARGET_NAME}   PUBLIC ${SDCLib_DEPS_DEFINITIONS})
+target_link_libraries(${CURRENT_TARGET_NAME}        PUBLIC  ${SDCLib_DEPS_LIBRARIES})
+target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
+target_compile_definitions(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_DEFINITIONS})
 
 
 # XercesC - Imported Target (Todo: Move this into FindSDCLib)

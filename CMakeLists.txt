@@ -128,9 +128,12 @@ endif()
 # Warnings
 ################################################################################
 message(STATUS "Setting Warning-Level...")
-if(CMAKE_BUILD_TYPE MATCHES Debug)
-    # enable debug and profiling informations for sprof
-    add_compile_options(-ggdb -g -O0 -Wall -Wextra)
+if(CMAKE_BUILD_TYPE MATCHES Release)
+    if (MSVC)
+        add_compile_options(/W4)
+    else()
+        add_compile_options(-Wall -Wextra -pedantic)
+    endif()
 else()
     # Inhibit all warning messages
     add_compile_options(-w)
@@ -148,9 +151,9 @@ endif()
 # https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
 # NOTE: CURRENTLY NOT IN USE!
 
-set(SDC_ALLOWED_PORT_START 14000 CACHE STRING "Start Port of allowed port range. [Make sure your firewall settings match these value]")
-set(SDC_ALLOWED_PORT_RANGE  2000 CACHE STRING "Port Range of allowed ports as offset from the Start Port. [Make sure your firewall settings match these value]")
-set(SDC_DEFAULT_PORT_RANGE  1000 CACHE STRING "Passed default Port Range if none is specified in configuration.")
+set(SDC_ALLOWED_PORT_START 14000 CACHE STRING "Start Port of allowed port range. [Make sure your firewall settings match these value]" FORCE)
+set(SDC_ALLOWED_PORT_RANGE  2000 CACHE STRING "Port Range of allowed ports as offset from the Start Port. [Make sure your firewall settings match these value]" FORCE)
+set(SDC_DEFAULT_PORT_RANGE  1000 CACHE STRING "Passed default Port Range if none is specified in configuration." FORCE)
 
 mark_as_advanced(SDC_ALLOWED_PORT_START)
 mark_as_advanced(SDC_ALLOWED_PORT_RANGE)
@@ -159,6 +162,10 @@ mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
 set(SDC_DISCOVERY_TIMEOUT_MS 5000 CACHE STRING "Time in milliseconds a Discovery will take.")
 mark_as_advanced(SDC_DISCOVERY_TIMEOUT_MS)
 
+set(SDC_IP_V4_ENABLED true  CACHE STRING "Enable IPv4 by default or not." FORCE)
+set(SDC_IP_V6_ENABLED false CACHE STRING "Enable IPv6 by default or not." FORCE)
+mark_as_advanced(SDC_IP_V4_ENABLED)
+mark_as_advanced(SDC_IP_V6_ENABLED)
 ################################################################################
 
 

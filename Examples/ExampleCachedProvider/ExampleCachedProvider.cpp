@@ -38,12 +38,14 @@ const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
 
-class GetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class GetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 
 	// The state handler take a string named as the descriptor for referencing
-	GetNumericMetricStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-	}
+	GetNumericMetricStateHandler(std::string descriptorHandle)
+    : SDCProviderMDStateHandler(descriptorHandle)
+    { }
 
 
 	// Helper method
@@ -81,7 +83,8 @@ public:
     : SDCProviderMDStateHandler(descriptorHandle)
     { }
 
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override
+    {
         // Invocation has been fired as WAITING when entering this method
         DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
 
@@ -120,8 +123,9 @@ public:
 class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> {
 public:
 	// The state handler take a string named as the descriptor for referencing
-    StreamProviderStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+    StreamProviderStateHandler(std::string descriptorHandle)
+    : SDCProviderMDStateHandler(descriptorHandle)
+    { }
 
     // Helper method
     RealTimeSampleArrayMetricState createState() {
@@ -149,10 +153,16 @@ public:
     }
 };
 
-class SDCStreamProvider : public Util::Task {
+class SDCStreamProvider : public Util::Task
+{
 public:
 
-    SDCStreamProvider(SDCInstance_shared_ptr p_SDCInstance, std::ifstream& p_stream) : sdcProvider(p_SDCInstance), streamHandler(HANDLE_STREAM_METRIC), getNumericHandler(HANDLE_GET_METRIC), setNumericHandler(HANDLE_SET_METRIC) {
+    SDCStreamProvider(SDCInstance_shared_ptr p_SDCInstance, std::ifstream& p_stream)
+    : sdcProvider(p_SDCInstance)
+    , streamHandler(HANDLE_STREAM_METRIC)
+    , getNumericHandler(HANDLE_GET_METRIC)
+    , setNumericHandler(HANDLE_SET_METRIC)
+    {
 
         assert(p_stream.is_open());
 
