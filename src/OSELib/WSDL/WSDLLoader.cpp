@@ -20,24 +20,24 @@ using namespace OSELib::WSDL;
 std::string WSDLLoader::getGetServiceWSDL() const
 {
     return getServiceWsdl;
-};
+}
 
 std::string WSDLLoader::getSetServiceWSDL() const
 {
     return setServiceWsdl;
-};
+}
 
 std::string WSDLLoader::getContextServiceWSDL() const
 {
     return contextServiceWsdl;
-};
+}
 
 std::string WSDLLoader::getStateEventServiceWSDL() const
 {
     return stateEventServiceWsdl;
-};
+}
 
 std::string WSDLLoader::getWaveformServiceWSDL() const
 {
     return waveformServiceWsdl;
-};
+}
