@@ -234,7 +234,7 @@ public:
 			// generate NumericMetricState
 			getNumericHandler.setNumericValue(42.0);
 			DebugOut(DebugOut::Default, "ExampleCachedProvider") << "NumericMetric: value changed to 42.0" << std::endl;
-            std::this_thread::sleep_for(std::chrono::microseconds(1000));
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 			index += size;
 		}
     }

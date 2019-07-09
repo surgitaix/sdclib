@@ -358,7 +358,7 @@ public:
 			// Update the NumericMetricState's value using the state handler's method
 			numericProviderStateHandlerGet.setNumericValue(index/size);
 			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to " << index/size << std::endl;
-			std::this_thread::sleep_for(std::chrono::microseconds(1000));
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 			index += size;
 		}
     }

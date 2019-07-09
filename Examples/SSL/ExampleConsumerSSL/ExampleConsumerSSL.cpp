@@ -188,7 +188,7 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
 
 			// wait for the subscriptions to be completed
-			std::this_thread::sleep_for(std::chrono::microseconds(5000));
+			std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
 			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
