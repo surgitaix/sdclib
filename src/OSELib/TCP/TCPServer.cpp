@@ -40,6 +40,11 @@ namespace Network {
         _endpoint = tcp::endpoint(asio::ip::make_address(_address), _port);
     }
 
+	TCPServer::~TCPServer()
+	{
+
+	}
+
 
     bool TCPServer::start()
     {
@@ -137,8 +142,7 @@ namespace Network {
 
     void TCPServer::registerConnection()
     {
-        _connections.emplace(_connection->getId(), _connection);
-        onConnected(_connection);
+		_connections.emplace(_connection->getId(), _connection);
     }
 
     std::shared_ptr<ContextWorker>& TCPServer::getContextWorker()
@@ -146,7 +150,7 @@ namespace Network {
         return _contextWorker;
     }
 
-    void TCPServer::unregisterConnectionHandler(UUID id)
+	void TCPServer::unregisterConnectionHandler(UUID id)
     {
         if(_connections[id] != nullptr)
         {

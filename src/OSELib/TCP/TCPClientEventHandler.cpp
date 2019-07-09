@@ -7,9 +7,10 @@
 
 #include "OSELib/TCP/TCPClientEventHandler.h"
 
-std::shared_ptr<Network::TCPClientEventHandler> Network::TCPClientEventHandler::instance = nullptr;
-
 namespace Network {
+
+std::shared_ptr<TCPClientEventHandler> TCPClientEventHandler::instance = nullptr;
+
 
 TCPClientEventHandler::~TCPClientEventHandler() {
 	shutdown();
@@ -25,7 +26,7 @@ std::shared_ptr<TCPClientEventHandler> TCPClientEventHandler::getInstance(const 
 }
 
 TCPClientEventHandler::TCPClientEventHandler(const std::string& address, const unsigned short port) :
-		TCPClient(address, port),
+		Network::TCPClientMessenger(address, port),
 		started(false),
 		instantiated(true),
 		received(false),
@@ -42,7 +43,7 @@ void TCPClientEventHandler::startup()
 	else
 	{
 		std::cout << "Starting up" << std::endl;
-		instance->start();
+		instance->TCPClient::start();
 		received = false;
 		response = "";
 		started = true;
@@ -61,10 +62,10 @@ void TCPClientEventHandler::shutdown()
 
 void TCPClientEventHandler::sendRequest(const std::string& req)
 {
+	received = false;
 	if(instantiated)
 	{
-		received = false;
-		send(req.c_str(), sizeof(req));
+		sendMessage(req);
 	}
 }
 
@@ -78,9 +79,10 @@ void TCPClientEventHandler::onConnected()
 	std::cout << "TCPClientEventHandler connected" << std::endl;
 }
 
-void TCPClientEventHandler::onReceived(void* msg, size_t size)
+void TCPClientEventHandler::onMessageReceived(const std::string& msg)
 {
-	response = std::string(static_cast<const char*>(msg), size);
+	std::cout << "Received:\n" << msg << std::endl;
+	response = msg;
 	received = true;
 }
 
@@ -89,7 +91,7 @@ void TCPClientEventHandler::onDisconnected()
 	std::cout << "TCPClientEventHandler disconnected" << std::endl;
 }
 
-void TCPClientEventHandler::onSent()
+void TCPClientEventHandler::onMessageSent(const std::string &msg)
 {
 	received = false;
 }
@@ -99,7 +101,7 @@ void TCPClientEventHandler::onError(const std::string & category, const std::str
 	std::cout << "Error occurred: " << category << ": " << message << std::endl;
 }
 
-std::string TCPClientEventHandler::getResponse()
+const std::string TCPClientEventHandler::getResponse()
 {
 	if(instantiated)
 	{

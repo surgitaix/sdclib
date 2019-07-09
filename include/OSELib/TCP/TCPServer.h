@@ -17,7 +17,7 @@ namespace Network {
 
 
     static const std::string DEFAULT_ADDRESS = "127.0.0.1";
-    static constexpr unsigned int DEFAULT_PORT = 8080;
+    static constexpr unsigned int DEFAULT_PORT = 5000;
 
     /**
      * @brief The TCPServer class
@@ -36,7 +36,7 @@ namespace Network {
         TCPServer& operator=(const TCPServer&) = delete;
         TCPServer& operator=(TCPServer&&) = delete;
 
-        virtual ~TCPServer() = default;
+	virtual ~TCPServer();
 
         /**
          * @brief start starts acceptor to handle incoming resolve request to establish
@@ -131,7 +131,8 @@ namespace Network {
          */
        virtual std::shared_ptr<TCPConnection> createConnection(std::shared_ptr<TCPServer> server);
 
-
+	std::shared_ptr<TCPConnection> _connection;
+	std::map<UUID, std::shared_ptr<TCPConnection>> _connections;
     private:
         bool _started;
         bool _accepting;
@@ -142,8 +143,7 @@ namespace Network {
         unsigned short _port;
         tcp::acceptor _acceptor;
         asio::ip::tcp::endpoint _endpoint;
-        std::shared_ptr<TCPConnection> _connection;
-        std::map<UUID, std::shared_ptr<TCPConnection>> _connections;
+
     };
 }
 

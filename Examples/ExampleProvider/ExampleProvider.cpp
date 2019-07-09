@@ -51,6 +51,8 @@
 #include "Poco/Thread.h"
 #include "Poco/Net/IPAddress.h"
 
+#include "OSELib/TCP/TCPClientEventHandler.h"
+
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
@@ -346,7 +348,7 @@ public:
     virtual void runImpl() override {
 
     	// RealTimeArray
-		const std::size_t size(10);
+		const std::size_t size(100);
 		RealTimeValueType samples;
 		for (std::size_t i = 0; i < size; i++) {
 			samples.push_back(i);
@@ -371,6 +373,7 @@ public:
 
 int main()
 {
+	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);

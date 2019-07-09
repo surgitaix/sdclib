@@ -4,11 +4,8 @@ set( CURRENT_TARGET_NAME MessageManipulatorLib )
 project(${CURRENT_TARGET_NAME})
 
 # Add an empty target first - FIXME: Why distinguish here. Does PIC flag solve it?
-if(WIN32)
-	add_library(${CURRENT_TARGET_NAME} STATIC "")
-else()
-	add_library(${CURRENT_TARGET_NAME} SHARED "")
-endif()
+add_library(${CURRENT_TARGET_NAME} STATIC "")
+
 
 message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")
 
@@ -17,7 +14,8 @@ set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
 
 
 # Better Handling of Public Header Files
-set(TARGET_PUBLIC_HEADERS   "")
+set(TARGET_PUBLIC_HEADERS 
+		${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPClient.h)
 
 
 
@@ -26,13 +24,16 @@ target_sources(${CURRENT_TARGET_NAME}
     PRIVATE
         # Source Files
         ${SRC_DIR}/TCPClient.cpp
-        ${SRC_DIR}/TCPConnection.cpp
-        ${SRC_DIR}/TCPConnectionEventHandler.cpp
+       	${SRC_DIR}/TCPClientMessenger.cpp
+        ${SRC_DIR}/TCPClientEventHandler.cpp
+       	${SRC_DIR}/TCPConnection.cpp
         ${SRC_DIR}/TCPServer.cpp
-        ${SRC_DIR}/TCPServerEventHandler.cpp
         ${SRC_DIR}/ContextWorker.cpp
         ${SRC_DIR}/UUID.cpp
-        ${SRC_DIR}/TCPClientEventHandler.cpp
+   PUBLIC
+        ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPClient.h
+        ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPClientMessenger.h
+        ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPClientEventHandler.h
 )
 
 
@@ -40,8 +41,6 @@ target_sources(${CURRENT_TARGET_NAME}
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${SRC_DIR} )
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_SRC_ROOT} )
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT} )
-target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${Qt5Core_INCLUDE_DIRS} )
-target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${Qt5Quick_INCLUDE_DIRS} )
 
 
 # build

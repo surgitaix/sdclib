@@ -43,6 +43,14 @@ namespace  Network{
          */
         void disconnect();
 
+        /**
+         * @brief send
+         * Sends the buffer of a given size out over the
+         * @param buffer data to be send
+         * @param size size of the data to be send
+         */
+		void send(const void *buffer, size_t size);
+
         UUID& getId();
         tcp::socket& getSocket();
 
@@ -63,7 +71,7 @@ namespace  Network{
          * @brief onConnected
          * Use this function to define the behavior onConnected.
          */
-        virtual void onConnected() { std::cout << "TCPConnection << connected" << std::endl; }
+        virtual void onConnected() {}
 
         /**
          * @brief onDisconnected
@@ -100,8 +108,8 @@ namespace  Network{
 
 
     private:
-        UUID _id;
-        size_t _defaultBufferSize = 1024;
+	UUID _id;
+	size_t _defaultBufferSize = 1024;
         std::shared_ptr<TCPServer> _server;
         std::shared_ptr<asio::io_service> _context;
         asio::ip::tcp::socket _socket;
@@ -110,6 +118,7 @@ namespace  Network{
         std::atomic<bool> _receiving;
         std::atomic<bool> _sending;
         std::vector<uint8_t> _receive_buffer;
+        std::vector<uint8_t> _send_buffer;
     };
 }
 

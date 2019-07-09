@@ -313,6 +313,8 @@ message(STATUS "Adding Targets...")
 
 # datamodel
 add_subdirectory(${PATH_DATAMODEL_ROOT})
+add_subdirectory(${PATH_SRC_ROOT}/OSELib/TCP)
+
 
 # src folder
 add_subdirectory(${PATH_SRC_ROOT})

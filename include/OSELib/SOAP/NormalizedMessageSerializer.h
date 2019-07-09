@@ -23,6 +23,7 @@ public:
 
 private:
 	static std::string manipulateMessage(const std::string& originalMessage);
+	static std::mutex _mtx;
 
 };
 

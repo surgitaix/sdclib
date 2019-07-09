@@ -1,5 +1,6 @@
 #include "OSELib/TCP/TCPConnection.h"
 #include "OSELib/TCP/TCPServer.h"
+#include <assert.h>
 
 namespace Network {
 
@@ -16,18 +17,19 @@ namespace Network {
 
     void TCPConnection::connect()
     {
+        if(_connected)
+        {
+            return;
+        }
         _connected = true;
 
         onConnected();
 
         auto connection(this->shared_from_this());
         _server->onConnected(connection);
-
+        _send_buffer.resize(_defaultBufferSize);
         _receive_buffer.resize(_defaultBufferSize);
-//        asio::socket_base::send_buffer_size send_buffer_size_option(_defaultBufferSize);
-//        asio::socket_base::receive_buffer_size receive_buffer_size_option(_defaultBufferSize);
-//        _socket.set_option(send_buffer_size_option);
-//        _socket.set_option(receive_buffer_size_option);
+
         tryReceive();
         trySend();
     }
@@ -104,9 +106,49 @@ namespace Network {
                                 asio::bind_executor(_strand, async_receive_handler));
     }
 
+
+    void TCPConnection::send(const void *buffer, size_t size)
+    {
+        assert(buffer!=nullptr && "buffer is empty");
+        if (buffer == nullptr)
+        {
+            return;
+        }
+
+        if(!_connected)
+        {
+            return;
+        }
+
+        if(size == 0)
+        {
+            return;
+        }
+
+
+		//Body
+        const uint8_t* bytes = static_cast<const uint8_t*>(buffer);
+        _send_buffer.insert(_send_buffer.end(), bytes, bytes + size);
+
+		std::cout << _send_buffer.size();
+
+        auto self(this->shared_from_this());
+        auto send_handler = [this, self]()
+        {
+            trySend();
+        };
+        _strand.dispatch(send_handler);
+    }
+
+
     void TCPConnection::trySend()
     {
         if(_sending)
+        {
+            return;
+        }
+
+        if(_send_buffer.empty())
         {
             return;
         }
@@ -128,7 +170,12 @@ namespace Network {
 
             if(size > 0)
             {
+               onSent(_send_buffer.data(), _send_buffer.size());
+            }
 
+            if(size == _send_buffer.size())
+            {
+                _send_buffer.clear();
             }
 
             if(!ec)
@@ -142,6 +189,8 @@ namespace Network {
             }
 
         };
+        _socket.async_send(asio::buffer(_send_buffer.data(), _send_buffer.size()), 0,
+                            asio::bind_executor(_strand, async_write_handler));
 
     }
 

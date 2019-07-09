@@ -9,7 +9,10 @@ namespace Network {
     TCPClient::TCPClient(const std::string& address, unsigned short port)
         : _connected(false),
           _sending(false),
-          _contextWorker(std::make_shared<ContextWorker>()),
+          _receiving(false),
+          _connecting(false),
+          _resolving(false),
+          _contextWorker(new ContextWorker()),
           _context(_contextWorker->getContext()),
           _query(address, std::to_string(port)),
           _resolver(*_context),
@@ -25,8 +28,7 @@ namespace Network {
 
     void TCPClient::start()
     {
-        _endpoints = _resolver.resolve(_query);
-        connect(_endpoints);
+        connectAsync();
         _contextWorker->start();
     }
 
@@ -68,19 +70,92 @@ namespace Network {
                     _endpoint = endpoint;
                     _connected = true;
                     onConnected();
-
-                    _receive_buffer.resize(_defaultBufferSize);
-                    _send_buffer.resize(_defaultBufferSize);
-                    tryReceive();
-                    trySend();
                 }
                 else {
                     sendError(ec);
+                    disconnect();
                 }
             };
             asio::async_connect(_socket, _endpoints, asio::bind_executor(_strand, async_connect_handler));
         };
         _strand.post(connect_handler);
+    }
+
+    bool TCPClient::connectAsync()
+    {
+        if (_connected || _resolving || _connecting)
+            return false;
+
+        // Post the connect handler
+        auto self(this->shared_from_this());
+        auto connect_handler = [this, self]()
+        {
+            if (_connected || _resolving || _connecting)
+                return;
+
+            // Async resolve with the connect handler
+            _resolving = true;
+            auto async_resolve_handler = [this, self](std::error_code ec1, asio::ip::tcp::resolver::results_type endpoints)
+            {
+                _resolving = false;
+
+                if (_connected || _resolving || _connecting)
+                    return;
+
+                if (!ec1)
+                {
+                    // Async connect with the connect handler
+                    _connecting = true;
+                    auto async_connect_handler = [this, self](std::error_code ec2, const asio::ip::tcp::endpoint& endpoint)
+                    {
+                        _connecting = false;
+
+                        if (_connected || _resolving || _connecting)
+                            return;
+
+                        if (!ec2)
+                        {
+
+                            _socket.set_option(asio::ip::tcp::socket::keep_alive(true));
+
+                            _socket.set_option(asio::ip::tcp::no_delay(true));
+
+                            //  Connect to the server
+                            _endpoint = endpoint;
+
+
+                            // Update the connected flag
+                            _connected = true;
+
+                            // Call the client connected handler
+                            onConnected();
+
+                            _receive_buffer.resize(_defaultBufferSize);
+
+                            tryReceive();
+
+
+                            // Try to receive something from the server
+                        }
+                        else
+                        {
+                            sendError(ec2);
+                            onDisconnected();
+                        }
+                    };
+                    asio::async_connect(_socket, endpoints, bind_executor(_strand, async_connect_handler));
+                }
+                else
+                {
+                    sendError(ec1);
+                    onDisconnected();
+                }
+            };
+
+            _resolver.async_resolve(_query, asio::bind_executor(_strand, async_resolve_handler));
+        };
+        _strand.post(connect_handler);
+        return true;
     }
 
     void TCPClient::send(const void *buffer, size_t size)
@@ -115,14 +190,21 @@ namespace Network {
 
     void TCPClient::tryReceive()
     {
+        if(_receiving)
+        {
+            return;
+        }
         if (!_connected)
         {
             return;
         }
+        _receiving = true;
 
         auto self(this->shared_from_this());
         auto async_receive_handler = [this, self](std::error_code ec, size_t size)
         {
+
+            _receiving = false;
             if(!_connected)
             {
             	std::cout << "not connected" << std::endl;
@@ -146,6 +228,7 @@ namespace Network {
             else
             {
                 sendError(ec);
+                disconnect();
             }
         };
         _socket.async_receive(asio::buffer(_receive_buffer.data(), _receive_buffer.size()),
@@ -180,7 +263,7 @@ namespace Network {
 
             if(size > 0)
             {
-                onSent();
+                onSent(_send_buffer.data(), _send_buffer.size());
             }
 
             if(size == _send_buffer.size())
@@ -195,6 +278,7 @@ namespace Network {
             else
             {
                 sendError(ec);
+                disconnect();
             }
         };
         _socket.async_send(asio::buffer(_send_buffer.data(), _send_buffer.size()), 0,

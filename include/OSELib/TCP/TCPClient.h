@@ -27,7 +27,7 @@ namespace Network {
         TCPClient& operator=(const TCPClient&) = delete;
         TCPClient& operator=(TCPClient&&) = delete;
 
-        virtual ~TCPClient();
+        ~TCPClient();
         /**
          * @brief start
          * Tries to resolve for the given endpoint defined by the address and port in the constructor
@@ -49,17 +49,16 @@ namespace Network {
          */
         void send(const void* buffer, size_t size);
 
-        void tryReceive();
-
         bool isConnected();
-
 
     private:
         void connect(tcp::resolver::results_type endpoints);
 
+        bool connectAsync();
+
         void disconnect();
 
-        //void tryReceive();
+        void tryReceive();
 
         void trySend();
 
@@ -82,13 +81,13 @@ namespace Network {
          * @brief onSent
          * Use this function to define the behavior when a data is send.
          */
-        virtual void onSent() {}
+        virtual void onSent(const void* , size_t ) {}
 
         /**
          * @brief onReceived
          * Use this function to define the processing of the incoming data.
          */
-        virtual void onReceived(void* , size_t ) { std::cout << "Test " << std::endl;}
+        virtual void onReceived(const void* , size_t ) {}
 
         /**
          * @brief onError
@@ -96,14 +95,15 @@ namespace Network {
          * @param category error category
          * @param message error message
          */
-        virtual void onError(const std::string& category, const std::string& message) {
-            unused(category, message);
-        }
+        virtual void onError(const std::string& category, const std::string& message) {}
 
     private:
-        size_t _defaultBufferSize = 1024;
+        size_t _defaultBufferSize = 1400;
         std::atomic<bool> _connected;
         std::atomic<bool> _sending;
+        std::atomic<bool> _receiving;
+        std::atomic<bool> _connecting;
+        std::atomic<bool> _resolving;
         std::shared_ptr<ContextWorker> _contextWorker;
         std::shared_ptr<asio::io_context> _context;
         tcp::resolver::query _query;
