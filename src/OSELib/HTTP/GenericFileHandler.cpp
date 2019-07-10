@@ -21,7 +21,7 @@ GenericFileHandler::GenericFileHandler(const std::string & fileName) :
 
 }
 
-void GenericFileHandler::handleRequest(Poco::Net::HTTPServerRequest & req, Poco::Net::HTTPServerResponse & resp) {
+void GenericFileHandler::handleRequest(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse & resp) {
 
 	std::ifstream file;
 

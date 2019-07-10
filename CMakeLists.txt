@@ -101,6 +101,7 @@ endif()
 set(PATH_RUNTIME_OUTPUT ${PROJECT_BINARY_DIR}/bin)
 set(PATH_LIBRARY_OUTPUT ${PROJECT_BINARY_DIR}/bin)
 set(PATH_ARCHIVE_OUTPUT ${PROJECT_BINARY_DIR}/lib)
+set(CMAKE_DEBUG_POSTFIX _d) # Force the Debug Postfix
 
 # by "default" take the install prefix
 set(PATH_INSTALL_RUNTIME bin)

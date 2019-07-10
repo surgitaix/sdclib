@@ -137,7 +137,7 @@ void HTTPSessionManager::enqueMessage(const Poco::URI & destinationURI, const st
 	if (matchQueue == _queues.end()) {
 		auto queue = std::make_shared<Poco::NotificationQueue>();
 		_queues.emplace(mapIndex, queue);
-		if (_threadpool.capacity() < _queues.size()) {
+		if (static_cast<std::size_t>(_threadpool.capacity()) < _queues.size()) {
 			_threadpool.addCapacity(_queues.size() - _threadpool.capacity() + 1);
 		}
 		std::unique_ptr<SendWorker> worker(new SendWorker(destinationURI, queue, _subscriptions));

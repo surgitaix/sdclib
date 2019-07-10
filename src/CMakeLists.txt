@@ -25,9 +25,9 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/SDCLib/Util/Task.h
                             ${INCLUDE_DIR}/SDCLib/SDCLibrary.h
                             # Config
-                            ${INCLUDE_DIR}/SDCLib/Config/SDCConfig.h
-                            ${INCLUDE_DIR}/SDCLib/Config/NetworkConfig.h
-                            ${INCLUDE_DIR}/SDCLib/Config/SSLConfig.h
+                            #${INCLUDE_DIR}/SDCLib/Config/SDCConfig.h
+                            #${INCLUDE_DIR}/SDCLib/Config/NetworkConfig.h
+                            #${INCLUDE_DIR}/SDCLib/Config/SSLConfig.h
                             # OSELib
                             ${INCLUDE_DIR}/OSELib/DPWS/Types.h
                             ${INCLUDE_DIR}/OSELib/DPWS/MDPWSHostAdapter.h
@@ -292,9 +292,9 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/SDCLib/SDCInstance.cpp
         ${SRC_DIR}/SDCLib/SSLHandler.cpp
         # Config
-        ${SRC_DIR}/SDCLib/Config/SDCConfig.cpp
-        ${SRC_DIR}/SDCLib/Config/NetworkConfig.cpp
-        ${SRC_DIR}/SDCLib/Config/SSLConfig.cpp
+        #${SRC_DIR}/SDCLib/Config/SDCConfig.cpp
+        #${SRC_DIR}/SDCLib/Config/NetworkConfig.cpp
+        #${SRC_DIR}/SDCLib/Config/SSLConfig.cpp
         # MDIB
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.cpp
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationState.cpp
