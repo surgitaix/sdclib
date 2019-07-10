@@ -99,8 +99,10 @@ option(ENABLE_NET "Enable Net" ON)
 # NOTE: ENABLE SSL - system dependend
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
     option(ENABLE_NETSSL "Enable NetSSL" ON)
+    option(ENABLE_NETSSL_WIN "Enable NetSSL Windows" OFF)
 endif()
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
+    option(ENABLE_NETSSL "Enable NetSSL" OFF)
     option(ENABLE_NETSSL_WIN "Enable NetSSL Windows" ON)
 endif()
 
@@ -297,7 +299,7 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Poco Libraries")
 set(CPACK_PACKAGE_VENDOR "Applied Informatics Software Engineering GmbH")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "/usr/local")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CMAKE_INSTALL_PREFIX})
 
 include(CPack)
 

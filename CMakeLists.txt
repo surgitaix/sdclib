@@ -101,13 +101,12 @@ endif()
 set(PATH_RUNTIME_OUTPUT ${PROJECT_BINARY_DIR}/bin)
 set(PATH_LIBRARY_OUTPUT ${PROJECT_BINARY_DIR}/bin)
 set(PATH_ARCHIVE_OUTPUT ${PROJECT_BINARY_DIR}/lib)
-set(DEBUG_POSTFIX_OUTPUT _d)
 
 # by "default" take the install prefix
-set(PATH_INSTALL_RUNTIME ${CMAKE_INSTALL_PREFIX}/bin)
-set(PATH_INSTALL_LIBRARY ${CMAKE_INSTALL_PREFIX}/bin)
-set(PATH_INSTALL_ARCHIVE ${CMAKE_INSTALL_PREFIX}/lib)
-set(PATH_INSTALL_INCLUDE ${CMAKE_INSTALL_PREFIX}/include)
+set(PATH_INSTALL_RUNTIME bin)
+set(PATH_INSTALL_LIBRARY bin)
+set(PATH_INSTALL_ARCHIVE lib)
+set(PATH_INSTALL_INCLUDE include)
 ################################################################################
 
 

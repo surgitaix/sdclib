@@ -34,7 +34,7 @@ set_target_properties(  ${CURRENT_TARGET_NAME}
                         RUNTIME_OUTPUT_DIRECTORY ${PATH_RUNTIME_OUTPUT}
                         LIBRARY_OUTPUT_DIRECTORY ${PATH_LIBRARY_OUTPUT}
                         ARCHIVE_OUTPUT_DIRECTORY ${PATH_ARCHIVE_OUTPUT}
-                        DEBUG_POSTFIX _d
+                        DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
                         )
 # install
 install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE} RUNTIME DESTINATION ${PATH_INSTALL_RUNTIME})

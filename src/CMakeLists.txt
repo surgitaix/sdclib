@@ -511,7 +511,7 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT} )
 # SDCLib: Include and Defs
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_INCLUDE_DIRS} )
 target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEFINITIONS} )
-target_compile_options(${CURRENT_TARGET_NAME}      PRIVATE ${SDCLib_OPTIONS} )
+target_compile_options(${CURRENT_TARGET_NAME}      PUBLIC ${SDCLib_OPTIONS} )
 
 # All Dependencies
 target_link_libraries(${CURRENT_TARGET_NAME}        PUBLIC  ${SDCLib_DEPS_LIBRARIES})
@@ -534,7 +534,7 @@ set_target_properties(  ${CURRENT_TARGET_NAME}
                         RUNTIME_OUTPUT_DIRECTORY ${PATH_RUNTIME_OUTPUT}
                         LIBRARY_OUTPUT_DIRECTORY ${PATH_LIBRARY_OUTPUT}
                         ARCHIVE_OUTPUT_DIRECTORY ${PATH_ARCHIVE_OUTPUT}
-                        DEBUG_POSTFIX ${DEBUG_POSTFIX_OUTPUT}
+                        DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
                         )
 # install
 install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE}

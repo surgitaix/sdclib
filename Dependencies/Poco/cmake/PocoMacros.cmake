@@ -11,15 +11,15 @@
 #  CMAKE_MC_COMPILER - where to find mc.exe
 if (WIN32)
   # cmake has CMAKE_RC_COMPILER, but no message compiler
-  if ("${CMAKE_GENERATOR}" MATCHES "Visual Studio" OR "${CMAKE_GENERATOR}" MATCHES "MinGW")
+  if ("${CMAKE_GENERATOR}" MATCHES "Visual Studio")
     # this path is only present for 2008+, but we currently require PATH to
     # be set up anyway
     get_filename_component(sdk_dir "[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows;CurrentInstallFolder]" REALPATH)
     get_filename_component(kit_dir "[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Kits\\Installed Roots;KitsRoot]" REALPATH)
     get_filename_component(kit81_dir "[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Kits\\Installed Roots;KitsRoot81]" REALPATH)
-    # NOTE: Fixed for Win10!
-	get_filename_component(kit10_dir "[HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows Kits\\Installed Roots;KitsRoot10]" REALPATH)
-    file(GLOB kit10_list ${kit10_dir}/bin/10.*)
+    get_filename_component(kit10_dir "[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Kits\\Installed Roots;KitsRoot10]" REALPATH)
+    get_filename_component(kit10wow_dir "[HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows Kits\\Installed Roots;KitsRoot10]" REALPATH)
+    file(GLOB kit10_list ${kit10_dir}/bin/10.* ${kit10wow_dir}/bin/10.*)
     if (X64)
       set(sdk_bindir "${sdk_dir}/bin/x64")
       set(kit_bindir "${kit_dir}/bin/x64")
@@ -40,33 +40,14 @@ if (WIN32)
       endforeach()
     endif (X64)
   endif ()
-  find_program(CMAKE_MC_COMPILER NAMES mc.exe windmc.exe HINTS "${sdk_bindir}" "${kit_bindir}" "${kit81_bindir}" ${kit10_bindir}
+  find_program(CMAKE_MC_COMPILER mc.exe HINTS "${sdk_bindir}" "${kit_bindir}" "${kit81_bindir}" ${kit10_bindir}
     DOC "path to message compiler")
-  if(NOT CMAKE_MC_COMPILER AND MSVC)
+  if (NOT CMAKE_MC_COMPILER)
     message(FATAL_ERROR "message compiler not found: required to build")
-  endif(NOT CMAKE_MC_COMPILER AND MSVC)
-  if(CMAKE_MC_COMPILER)
-    message(STATUS "Found message compiler: ${CMAKE_MC_COMPILER}")
-    mark_as_advanced(CMAKE_MC_COMPILER)
-  endif(CMAKE_MC_COMPILER)
+  endif (NOT CMAKE_MC_COMPILER)
+  message(STATUS "Found message compiler: ${CMAKE_MC_COMPILER}")
+  mark_as_advanced(CMAKE_MC_COMPILER)
 endif(WIN32)
-
-# Accept older ENABLE_<COMPONENT>, ENABLE_TESTS and ENABLE_SAMPLES and
-# automatically set the appropriate POCO_ENABLE_* variable
-#
-get_cmake_property(all_variables VARIABLES)
-foreach(variable_name ${all_variables})
-  string(SUBSTRING ${variable_name} 0 7 variable_prefix)
-  if(${variable_prefix} STREQUAL "ENABLE_")
-    list(FIND all_variables "POCO_${variable_name}" variable_found)
-    if(NOT variable_found EQUAL -1)
-      message(DEPRECATION "${variable_name} is deprecated and will be removed! Use POCO_${variable_name} instead")
-      set(POCO_${variable_name} ${${variable_name}} CACHE BOOL "Old value from ${variable_name}" FORCE)
-      unset(${variable_name} CACHE)
-    endif()
-  endif()
-endforeach()
-unset(all_variables)
 
 #===============================================================================
 # Macros for Source file management
@@ -186,7 +167,7 @@ endmacro()
 
 
 macro(POCO_MESSAGES out name)
-    if (WIN32 AND CMAKE_MC_COMPILER)
+    if (WIN32)
         foreach(msg ${ARGN})
             get_filename_component(msg_name ${msg} NAME)
             get_filename_component(msg_path ${msg} ABSOLUTE)
@@ -215,8 +196,9 @@ macro(POCO_MESSAGES out name)
         source_group("${name}\\Message Files" FILES ${ARGN})
         list(APPEND ${out} ${ARGN})
 
-    endif (WIN32 AND CMAKE_MC_COMPILER)
+    endif (WIN32)
 endmacro()
+
 
 #===============================================================================
 # Macros for Package generation
@@ -233,36 +215,38 @@ write_basic_package_version_file(
   VERSION ${PROJECT_VERSION}
   COMPATIBILITY AnyNewerVersion
 )
-export(EXPORT "${target_name}Targets"
-  FILE "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${PROJECT_NAME}${target_name}Targets.cmake"
-  NAMESPACE "${PROJECT_NAME}::"
-)
+if ("${CMAKE_VERSION}" VERSION_LESS "3.0.0")
+    if (NOT EXISTS "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${PROJECT_NAME}${target_name}Targets.cmake")
+    export(TARGETS "${target_name}" APPEND
+      FILE "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${PROJECT_NAME}${target_name}Targets.cmake"
+      NAMESPACE "${PROJECT_NAME}::"
+    )
+    endif ()
+else ()
+    export(EXPORT "${target_name}Targets"
+      FILE "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${PROJECT_NAME}${target_name}Targets.cmake"
+      NAMESPACE "${PROJECT_NAME}::"
+    )
+endif ()
 configure_file("cmake/Poco${target_name}Config.cmake"
   "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${PROJECT_NAME}${target_name}Config.cmake"
   @ONLY
 )
 
-# Set config script install location in a location that find_package() will
-# look for, which is different on MS Windows than for UNIX
-# Note: also set in root CMakeLists.txt
-if (WIN32)
-  set(PocoConfigPackageLocation "cmake")
-else()
-  set(PocoConfigPackageLocation "lib/cmake/${PROJECT_NAME}")
-endif()
+set(ConfigPackageLocation "lib/cmake/${PROJECT_NAME}")
 
 install(
     EXPORT "${target_name}Targets"
     FILE "${PROJECT_NAME}${target_name}Targets.cmake"
     NAMESPACE "${PROJECT_NAME}::"
-    DESTINATION "${PocoConfigPackageLocation}"
+    DESTINATION "lib${LIB_SUFFIX}/cmake/${PROJECT_NAME}"
     )
 
 install(
     FILES
         "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${PROJECT_NAME}${target_name}Config.cmake"
         "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${PROJECT_NAME}${target_name}ConfigVersion.cmake"
-    DESTINATION "${PocoConfigPackageLocation}"
+    DESTINATION "lib${LIB_SUFFIX}/cmake/${PROJECT_NAME}"
     COMPONENT Devel
     )
 
@@ -279,37 +263,6 @@ endmacro()
 macro(POCO_INSTALL target_name)
 install(
     DIRECTORY include/Poco
-    DESTINATION include
-    COMPONENT Devel
-    PATTERN ".svn" EXCLUDE
-    )
-
-install(
-    TARGETS "${target_name}" EXPORT "${target_name}Targets"
-    LIBRARY DESTINATION lib${LIB_SUFFIX}
-    ARCHIVE DESTINATION lib${LIB_SUFFIX}
-    RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include
-    )
-
-if (MSVC)
-# install the targets pdb
-  POCO_INSTALL_PDB(${target_name})
-endif()
-
-endmacro()
-
-#===============================================================================
-# Macros for simplified installation of package not following the Poco standard as CppUnit
-#
-#  SIMPLE_INSTALL - Install the given target
-#    Usage: SIMPLE_INSTALL(target_name)
-#      INPUT:
-#           target_name             the name of the target. e.g. CppUnit
-#    Example: SIMPLE_INSTALL(Foundation)
-macro(SIMPLE_INSTALL target_name)
-install(
-    DIRECTORY include
     DESTINATION include
     COMPONENT Devel
     PATTERN ".svn" EXCLUDE
