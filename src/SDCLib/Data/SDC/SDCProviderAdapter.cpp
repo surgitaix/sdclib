@@ -7,12 +7,11 @@
 
 #include <iostream>
 
-#include "Poco/Mutex.h"
-#include "Poco/ThreadPool.h"
-#include "Poco/Net/HTTPServer.h"
-#include "Poco/Net/NetworkInterface.h"
-#include "Poco/Net/ServerSocket.h"
-#include "Poco/Net/IPAddress.h"
+#include <Poco/ThreadPool.h>
+#include <Poco/Net/HTTPServer.h>
+#include <Poco/Net/NetworkInterface.h>
+#include <Poco/Net/ServerSocket.h>
+#include <Poco/Net/IPAddress.h>
 #include <Poco/Net/SecureServerSocket.h>
 
 #include "BICEPS_ParticipantModel.hxx"
@@ -364,7 +363,7 @@ SDCProviderAdapter::~SDCProviderAdapter() = default;
 
 bool SDCProviderAdapter::start() {
 
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_dpwsHost || _subscriptionManager || _httpServer) {
 		throw std::runtime_error("Service is already running..");
 	}
@@ -449,7 +448,7 @@ bool SDCProviderAdapter::start() {
 
 void SDCProviderAdapter::stop() {
 
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 
 	if (_dpwsHost) {
 		_dpwsHost->stop();
@@ -459,7 +458,7 @@ void SDCProviderAdapter::stop() {
 	}
 
 	while (_httpServer->currentConnections() != 0) {
-		Poco::Thread::sleep(100);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
 	_dpwsHost.reset();
@@ -468,21 +467,21 @@ void SDCProviderAdapter::stop() {
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicAlertReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicContextReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicContextChangedReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicMetricReportTraits>(report);
 	}
@@ -496,28 +495,28 @@ void SDCProviderAdapter::notifyEvent(const MDM::WaveformStream & stream) {
 
 
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicAlertReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicContextReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicContextChangedReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicMetricReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicMetricReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::OperationInvokedReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::OperationInvokedReportTraits>(report);
 	}

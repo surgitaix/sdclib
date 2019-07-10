@@ -170,7 +170,11 @@ private:
 
 
 template<class StateType>
-bool SDCProvider::isMetricChangeAllowed(const StateType & state, SDCProvider & provider) {
+bool SDCProvider::isMetricChangeAllowed(const StateType & state, SDCProvider & provider)
+{
+    if(!isStarted()) {
+        return false;
+    }
 	typename StateType::DescriptorType descriptor;
 	if (!provider.getMdDescription().findDescriptor(state.getDescriptorHandle(), descriptor)) {
 		return false;
@@ -243,7 +247,8 @@ MDM::SetValueResponse SDCProvider::SetValueAsync(const MDM::SetValue & request) 
 	return genResponse(InvocationState::Wait);
 }
 
-void SDCProvider::SetValue(const MDM::SetValue & request, const OperationInvocationContext & oic) {
+void SDCProvider::SetValue(const MDM::SetValue & request, const OperationInvocationContext & oic)
+{
 	const std::string metricHandle(getMdDescription().getOperationTargetForOperationHandle(oic.operationHandle));
 
 	NumericMetricState nms;
@@ -292,6 +297,7 @@ void SDCProvider::OnActivate(const OperationInvocationContext & oic) {
 
 MDM::SetStringResponse SDCProvider::SetStringAsync(const MDM::SetString & request) {
     const OperationInvocationContext oic(request.OperationHandleRef(), incrementAndGetTransactionId());
+
 	const MdDescription mdd(getMdDescription());
 
 	const std::string metricHandle(mdd.getOperationTargetForOperationHandle(oic.operationHandle));
@@ -345,8 +351,8 @@ MDM::SetStringResponse SDCProvider::SetStringAsync(const MDM::SetString & reques
 }
 
 template<class T>
-void SDCProvider::SetStringImpl(const T & state, const OperationInvocationContext & oic) {
-
+void SDCProvider::SetStringImpl(const T & state, const OperationInvocationContext & oic)
+{
 	const InvocationState outState(onStateChangeRequest(state, oic));
 	notifyOperationInvoked(oic, outState);
 
@@ -354,11 +360,10 @@ void SDCProvider::SetStringImpl(const T & state, const OperationInvocationContex
 		// Success
 		updateState(state);
 	}
-
 }
 
-void SDCProvider::SetString(const MDM::SetString & request, const OperationInvocationContext & oic) {
-
+void SDCProvider::SetString(const MDM::SetString & request, const OperationInvocationContext & oic)
+{
 	const std::string & requestedStringVal(request.RequestedStringValue());
 
 	const MdState mdsc(getMdState());
@@ -625,6 +630,7 @@ MDM::GetMdibResponse SDCProvider::GetMdib(const MDM::GetMdib & ) {
 }
 
 MDM::GetMdDescriptionResponse SDCProvider::GetMdDescription(const MDM::GetMdDescription & request) {
+
     auto cdmMdd(ConvertToCDM::convert(getMdDescription()));
 
 	if (request.HandleRef().empty()) {
@@ -926,7 +932,6 @@ void SDCProvider::setAlertConditionPresence(const std::string & alertConditionHa
 
 void SDCProvider::evaluateAlertConditions(const std::string & source) const
 {
-
     const MdDescription description(getMdDescription());
 
 	std::vector<std::string> relevantDescriptors;
@@ -948,7 +953,7 @@ void SDCProvider::evaluateAlertConditions(const std::string & source) const
 	}
 
 
-    {   // LOCK  
+    {   // LOCK
         std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
         for (const auto & handler : m_stateHandlers) {
             if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
@@ -985,9 +990,8 @@ bool SDCProvider::startup()
         log_error([] { return "Provider already started!";});
         return false;
     }
-    
-    std::lock_guard<std::mutex> t_lock{m_mutex};
 
+    std::lock_guard<std::mutex> t_lock{m_mutex};
     try {
         _adapter->start();
     } catch (const Poco::Net::NetException & e) {
@@ -1050,9 +1054,7 @@ bool SDCProvider::startup()
                 return false;
             }
         }
-        
     } // UNLOCK
-    
     // PROVIDER INVOKER - TODO -> REFACTOR(?)
     providerInvoker.reset(new AsyncProviderInvoker(*this, invokeQueue));
     providerInvoker->start();
@@ -1072,8 +1074,7 @@ bool SDCProvider::startup()
 			return false;
 		}
     }
-    
-    
+
     // Set the flag
     m_started = true;
 
@@ -1105,7 +1106,6 @@ void SDCProvider::shutdown()
 template<class T> void SDCProvider::replaceState(const T & object)
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_MdState};
-    
     // Check for existing state
     std::unique_ptr<CDM::MdState> t_cachedStates(ConvertToCDM::convert(m_MdState));
     CDM::MdState target;
@@ -1125,12 +1125,12 @@ template<class T> void SDCProvider::replaceState(const T & object)
 void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler)
 {
     assert(p_handler != nullptr);
-    
+
     // Safety check
     if(p_handler == nullptr) {
         return;
     }
-    
+
     std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
 
     p_handler->parentProvider = this;
@@ -1195,11 +1195,11 @@ bool SDCProvider::setMdDescription(const MdDescription & p_MdDescription)
 }
 
 bool SDCProvider::setMdDescription(std::string p_xml)
-{   
+{
     if(p_xml.empty()) {
         return false;
     }
-    
+
     std::lock_guard<std::mutex> t_lock{m_mutex_MdDescription};
 	OSELib::SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 	auto rawMessage = OSELib::Helper::Message::create(p_xml);
@@ -1210,7 +1210,6 @@ bool SDCProvider::setMdDescription(std::string p_xml)
 	if ((result != nullptr) && (result->MdDescription().present())) {
         std::unique_ptr<MdDescription> t_MdDescription(new MdDescription(ConvertFromCDM::convert(result->MdDescription().get())));
         if(t_MdDescription == nullptr) {
-            std::cout << "SetMdDescription FAILED! " << std::endl;
             return false;
         }
         m_MdDescription = std::move(t_MdDescription);
@@ -1225,6 +1224,7 @@ MdDescription SDCProvider::getMdDescription() const
     if(!isStarted()) {
         return MdDescription();
     }
+
     std::lock_guard<std::mutex> t_lock{m_mutex_MdDescription};
     return *m_MdDescription;
 }
