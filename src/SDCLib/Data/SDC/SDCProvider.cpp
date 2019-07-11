@@ -1145,6 +1145,7 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler)
     // ToDo: Behold! check with simpleSDC if this really works°!
     if (auto activate_handler = dynamic_cast<SDCProviderActivateOperationHandler *>(p_handler)) {
     	const MdDescription t_mddescription(getMdDescription());
+
         for (const auto & mds : t_mddescription.collectAllMdsDescriptors()) {
     		if (!mds.hasSco()) {
     			continue;
@@ -1220,11 +1221,6 @@ bool SDCProvider::setMdDescription(std::string p_xml)
 }
 MdDescription SDCProvider::getMdDescription() const
 {
-    // Not started -> Empty MdDescription
-    if(!isStarted()) {
-        return MdDescription();
-    }
-
     std::lock_guard<std::mutex> t_lock{m_mutex_MdDescription};
     return *m_MdDescription;
 }
@@ -1270,7 +1266,7 @@ void SDCProvider::notifyOperationInvoked(const OperationInvocationContext & oic,
 }
 
 template<class T>
-void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor & ownerMDS) {
+void SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescriptor & ownerMDS) {
 	// get sco object or create new
 	std::unique_ptr<CDM::ScoDescriptor> scoDescriptor(Defaults::ScoDescriptorInit(xml_schema::Uri("")));
 	if (ownerMDS.hasSco()) {
@@ -1281,15 +1277,15 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor
 	}
 
 	// add operation descriptor to sco and write back to mds
-	scoDescriptor->Operation().push_back(source);
+	scoDescriptor->Operation().push_back(p_source);
 	ownerMDS.setSco(ConvertFromCDM::convert(*scoDescriptor));
 
 	// Now add a state object for the sco descriptor to the cached states.
 	std::unique_ptr<CDM::MdState> cachedOperationStates(ConvertToCDM::convert(m_operationStates));
 	bool existingOperationStateFound{false};
 	for (const auto & state : cachedOperationStates->State()) {
-		if (state.DescriptorHandle() == source.Handle()) {
-			if (dynamic_cast<const CDM::AbstractOperationState *>(&state)) {
+		if (state.DescriptorHandle() == p_source.Handle()) {
+			if (dynamic_cast<const CDM::AbstractOperationState *>(std::addressof(state))) {
 				existingOperationStateFound = true;
 				break;
 			}
@@ -1302,35 +1298,35 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & source, MdsDescriptor
 	} else {
         // FIXME: dynamic_casts are ""SLOW""
 		// add new operation state
-		if (dynamic_cast<const CDM::SetValueOperationDescriptor *>(std::addressof(source))) {
+		if (dynamic_cast<const CDM::SetValueOperationDescriptor *>(std::addressof(p_source))) {
 			CDM::SetValueOperationState operationState(
-					source.Handle(),
+					p_source.Handle(),
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
 		}
-		else if (dynamic_cast<const CDM::SetStringOperationDescriptor *>(std::addressof(source))) {
+		else if (dynamic_cast<const CDM::SetStringOperationDescriptor *>(std::addressof(p_source))) {
 			CDM::SetStringOperationState operationState(
-					source.Handle(),
+					p_source.Handle(),
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
-		} else if (dynamic_cast<const CDM::SetAlertStateOperationDescriptor *>(std::addressof(source))) {
+		} else if (dynamic_cast<const CDM::SetAlertStateOperationDescriptor *>(std::addressof(p_source))) {
 			CDM::SetAlertStateOperationState operationState(
-					source.Handle(),
+					p_source.Handle(),
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
-		} else if (dynamic_cast<const CDM::SetComponentStateOperationDescriptor*>(std::addressof(source))) {
+		} else if (dynamic_cast<const CDM::SetComponentStateOperationDescriptor*>(std::addressof(p_source))) {
 			CDM::SetComponentStateOperationState operationState(
-					source.Handle(),
+					p_source.Handle(),
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
-		} else if (dynamic_cast<const CDM::SetContextStateOperationDescriptor *>(std::addressof(source))) {
+		} else if (dynamic_cast<const CDM::SetContextStateOperationDescriptor *>(std::addressof(p_source))) {
 			CDM::SetContextStateOperationState operationState(
-					source.Handle(),
+					p_source.Handle(),
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
-		} else if (dynamic_cast<const CDM::SetMetricStateOperationDescriptor *>(std::addressof(source))) {
+		} else if (dynamic_cast<const CDM::SetMetricStateOperationDescriptor *>(std::addressof(p_source))) {
 			CDM::SetMetricStateOperationState operationState(
-					source.Handle(),
+					p_source.Handle(),
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
 		}

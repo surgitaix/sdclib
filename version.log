@@ -1,3 +1,8 @@
+Update to version 4.1.1
+
+- Upgrade Poco from 1.9.0 to 1.9.2 to include some bugfixes.
+- Some small tweaks to CMake configuration.
+
 Update to version 4.1.0
 
 - Rudimentary SSL Implementation [experimental]

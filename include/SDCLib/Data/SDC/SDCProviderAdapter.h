@@ -41,7 +41,7 @@ public:
 private:
 	SDCProvider & _provider;
 
-	mutable Poco::Mutex mutex;
+	mutable std::mutex m_mutex;
 	std::unique_ptr<Poco::ThreadPool> _threadPool;
 
 	std::set<int> streamingPorts;
