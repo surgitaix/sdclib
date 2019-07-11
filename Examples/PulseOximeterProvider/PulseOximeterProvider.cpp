@@ -2,7 +2,7 @@
  * PulseOximeterProvider.cpp
  *
  *  Created on: Jun 19, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #define UNUSED(expr) do { (void)(expr); } while (0)
@@ -19,6 +19,7 @@
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/LimitAlertConditionState.h"
+#include "SDCLib/Data/SDC/SDCProviderAlertConditionStateHandler.h""
 
 
 
@@ -108,38 +109,85 @@ using namespace SDCLib::Data::SDC;
 	};
 
 	//MdStateHandler for setting Upper Pulse Rate Alarm Limit
-	class PulseOximeterAlarmLimitPulseRateHandler : public SDCProviderMDStateHandler<LimitAlertConditionState>{
+	class PulseOximeterAlarmLimitPulseRateHandler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState>{
 	public:
-		PulseOximeterAlarmLimitPulseRateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
+		PulseOximeterAlarmLimitPulseRateHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle) {
 		}
 
-		//Changing the value of a get service is prohibit.
+		//Changing the Limits
 		InvocationState onStateChangeRequest(const LimitAlertConditionState &state, const OperationInvocationContext &oic) override {
+			Range maxLimits = getParentProvider().getMdDescription().findDescriptor<LimitAlertConditionDescriptor>(state.getDescriptorHandle())->getMaxLimits();
+			Range incomingLimits;
+			if(incomingLimits.getLower() >= maxLimits.getLower() &&
+			   incomingLimits.getUpper() <= maxLimits.getUpper() &&
+			   incomingLimits.getLower() <= incomingLimits.getUpper())
+			{
+				setLimitRange(incomingLimits);
+				return InvocationState::Fin;
+			}
+			return InvocationState::Fail;
+
+		}
+
+		void sourceHasChanged(const std::string & sourceHandle)
+		{
 
 		}
 
 
 		LimitAlertConditionState getInitialState() override{
-			LimitAlertConditionState nms = createState();
-			return nms;
+			Range limits;
+			limits.setLower(DEFAULT_LOWER_PULSE_RATE_ALARM_LIMIT);
+			limits.setUpper(DEFAULT_UPPER_PULSE_RATE_ALARM_LIMIT);
+			limits.setAbsoluteAccuracy(DEFAULT_PULSE_RATE_ALARM_LIMIT_ABSOLUTE_ACCURACY);
+			LimitAlertConditionState LimitAlertCS = createState(AlertActivation::Off, limits);
+			return LimitAlertCS;
+		}
+
+		void setLimitRange(Range limits)
+		{
+			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
+			currentState.setLimits(limits);
+		}
+
+		void setActivationState(AlertActivation activationState)
+		{
+			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
+			currentState.setActivationState(activationState);
 		}
 
 
 	private:
-		LimitAlertConditionState createState() {
-
+		LimitAlertConditionState createState(AlertActivation activationState, Range limits) {
+			LimitAlertConditionState LimitAlertCS(descriptorHandle, activationState, limits, AlertConditionMonitoredLimits::All);
+			return LimitAlertCS;
 		}
 
 	};
 
 
-	class PulseOximeterAlarmLimitSatO2Handler : public SDCProviderMDStateHandler<LimitAlertConditionState>{
+	class PulseOximeterAlarmLimitSatO2Handler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState>{
 	public:
-		PulseOximeterAlarmLimitSatO2Handler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
+		PulseOximeterAlarmLimitSatO2Handler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle) {
 		}
 
-		//Changing the value of a get service is prohibit.
+		//Changing the Limits
 		InvocationState onStateChangeRequest(const LimitAlertConditionState &state, const OperationInvocationContext &oic) override {
+			Range maxLimits = getParentProvider().getMdDescription().findDescriptor<LimitAlertConditionDescriptor>(state.getDescriptorHandle())->getMaxLimits();
+			Range incomingLimits;
+			if(incomingLimits.getLower() >= maxLimits.getLower() &&
+			   incomingLimits.getUpper() <= maxLimits.getUpper() &&
+			   incomingLimits.getLower() <= incomingLimits.getUpper())
+			{
+				setLimitRange(incomingLimits);
+				return InvocationState::Fin;
+			}
+			return InvocationState::Fail;
+
+		}
+
+		void sourceHasChanged(const std::string & sourceHandle)
+		{
 
 		}
 
@@ -157,14 +205,12 @@ using namespace SDCLib::Data::SDC;
 		{
 			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
 			currentState.setLimits(limits);
-			updateState(currentState);
 		}
 
 		void setActivationState(AlertActivation activationState)
 		{
 			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
 			currentState.setActivationState(activationState);
-			updateState(currentState);
 		}
 
 	private:
