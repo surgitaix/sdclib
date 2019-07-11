@@ -19,8 +19,13 @@
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/LimitAlertConditionState.h"
-#include "SDCLib/Data/SDC/SDCProviderAlertConditionStateHandler.h""
+#include "SDCLib/Data/SDC/SDCProviderAlertConditionStateHandler.h"
+#include "SDCLib/Data/SDC/MDIB/AlertConditionState.h"
+#include "SDCLib/Data/SDC/MDIB/CauseInfo.h"
+#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSignalDescriptor.h"
 
+#include <SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h>
 
 
 #include "SDCLib/Util/DebugOut.h"
@@ -131,7 +136,18 @@ using namespace SDCLib::Data::SDC;
 
 		void sourceHasChanged(const std::string & sourceHandle)
 		{
-
+			std::unique_ptr<NumericMetricState> pSourceState(getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle));
+			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
+			Range currentLimits = currentState.getLimits();
+			double currentValue = pSourceState->getMetricValue().getValue();
+			if(currentValue < currentLimits.getLower())
+			{
+				std::cout << "ALARM! " << sourceHandle << currentValue <<  std::endl;
+			}
+			else if(currentValue > currentLimits.getUpper())
+			{
+				std::cout << "ALARM! " << sourceHandle << currentValue << std::endl;
+			}
 		}
 
 
@@ -188,7 +204,18 @@ using namespace SDCLib::Data::SDC;
 
 		void sourceHasChanged(const std::string & sourceHandle)
 		{
-
+			std::unique_ptr<NumericMetricState> pSourceState(getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle));
+			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
+			Range currentLimits = currentState.getLimits();
+			double currentValue = pSourceState->getMetricValue().getValue();
+			if(currentValue < currentLimits.getLower())
+			{
+				std::cout << "ALARM! " << sourceHandle << currentValue <<  std::endl;
+			}
+			else if(currentValue > currentLimits.getUpper())
+			{
+				std::cout << "ALARM! " << sourceHandle << currentValue << std::endl;
+			}
 		}
 
 
@@ -223,6 +250,44 @@ using namespace SDCLib::Data::SDC;
 	};
 
 
+
+	class PulseOximeterAlarmFingerOutHandler : public SDCProviderAlertConditionStateHandler<AlertConditionState>{
+		public:
+		PulseOximeterAlarmFingerOutHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle) {
+			}
+
+			//Changing the Limits
+			InvocationState onStateChangeRequest(const AlertConditionState &state, const OperationInvocationContext &oic) override {
+				return InvocationState::Fail;
+
+			}
+
+			void sourceHasChanged(const std::string & sourceHandle)
+			{
+
+			}
+
+			AlertConditionState getInitialState() override{
+				AlertConditionState AlertCS = createState(AlertActivation::Off);
+				return AlertCS;
+			}
+
+			void setActivationState(AlertActivation activationState)
+			{
+				AlertConditionState currentState(*getParentProvider().getMdState().findState<AlertConditionState>(descriptorHandle));
+				currentState.setActivationState(activationState);
+			}
+
+		private:
+
+			AlertConditionState createState(AlertActivation activationState) {
+				AlertConditionState AlertCS(descriptorHandle, activationState);
+				return AlertCS;
+			}
+
+		};
+
+
 PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance> p_SDCInstance) :
 	sdcProvider(p_SDCInstance),
 	//Metric state handler initialization
@@ -242,7 +307,8 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 			CodedValue(DIMENSION_BEATS_PER_MIN),
 			MetricCategory::Msrmt,
 			MetricAvailability::Cont,
-			1.0) //Resolution of 1%
+			1.0), //Resolution of 1%
+	pulseOximeterAlertSystemDescriptor(PULSE_OXIMETER_ALERT_SYSTEM_HANDLE)
 	{
 	//Mdib definition (bottom up)
 
@@ -273,6 +339,9 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 	//VMD
 	VmdDescriptor pulseOximeterVmd(PULSE_OXIMETER_VMD_HANDLE);
 	pulseOximeterVmd.addChannel(pulseChannel);
+
+	//AlertSystem
+	addAlertSystem(pulseOximeterVmd);
 
 	//MDS
 	MdsDescriptor pulseOximeterMds(PULSE_OXIMETER_MDS_HANDLE);
@@ -351,10 +420,74 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 		return sdcProvider.getMdState();
 	}
 
+	void PulseOximeterProvider::addSatO2LimitAlertCondition(AlertSystemDescriptor &alertSystemDesc)
+	{
+		Range satO2MaxLimits;
+		satO2MaxLimits.setUpper(100);
+		satO2MaxLimits.setLower(0);
+		satO2MaxLimits.setAbsoluteAccuracy(1);
+
+		LimitAlertConditionDescriptor satO2AlarmLimitDescriptor(PULSE_OXIMETER_SAT_O2_LIMIT_ALERT_HANDLE,
+				AlertConditionKind::Phy,
+				AlertConditionPriority::Me,
+				satO2MaxLimits);
+		satO2AlarmLimitDescriptor.addSource(PULSE_OXIMETER_SAT_O2_GET_HANDLE);
+
+		CauseInfo satO2LimitCauseInfo;
+		LocalizedText satO2InfoDescriptor;
+		satO2InfoDescriptor.setLang("en");
+		satO2InfoDescriptor.setRef("O2 saturation outside of limit");
+		satO2LimitCauseInfo.addDescription(satO2InfoDescriptor);
+		satO2AlarmLimitDescriptor.getCauseInfoList().push_back(satO2LimitCauseInfo);
+		alertSystemDesc.addLimitAlertCondition(satO2AlarmLimitDescriptor);
+
+		AlertSignalDescriptor satO2LimitSignal(PULSE_OXIMETER_SAT_O2_LIMIT_ALERT_SIGNAL_HANDLE,
+				AlertSignalManifestation::Vis,
+				true);
+		satO2LimitSignal.setConditionSignaled(PULSE_OXIMETER_SAT_O2_LIMIT_ALERT_SIGNAL_HANDLE);
+		alertSystemDesc.addAlertSignal(satO2LimitSignal);
+	}
+
+	void PulseOximeterProvider::addPulseRateLimitAlertCondition(AlertSystemDescriptor &alertSystemDesc)
+	{
+		Range pulseRateMaxLimits;
+		pulseRateMaxLimits.setUpper(100);
+		pulseRateMaxLimits.setLower(0);
+		pulseRateMaxLimits.setAbsoluteAccuracy(1);
+
+		LimitAlertConditionDescriptor pulseRateAlarmLimitDescriptor(PULSE_OXIMETER_PULSE_RATE_LIMIT_ALERT_HANDLE,
+				AlertConditionKind::Phy,
+				AlertConditionPriority::Me,
+				pulseRateMaxLimits);
+		pulseRateAlarmLimitDescriptor.addSource(PULSE_OXIMETER_PULSE_RATE_GET_HANDLE);
+
+		CauseInfo pulseRateLimitCauseInfo;
+		LocalizedText pulseRateInfoDescriptor;
+		pulseRateInfoDescriptor.setLang("en");
+		pulseRateInfoDescriptor.setRef("Pulse Rate outside of limit");
+		pulseRateLimitCauseInfo.addDescription(pulseRateInfoDescriptor);
+		pulseRateAlarmLimitDescriptor.getCauseInfoList().push_back(pulseRateLimitCauseInfo);
+		alertSystemDesc.addLimitAlertCondition(pulseRateAlarmLimitDescriptor);
+
+		AlertSignalDescriptor pulseRateLimitSignal(PULSE_OXIMETER_PULSE_RATE_LIMIT_ALERT_SIGNAL_HANDLE,
+				AlertSignalManifestation::Vis,
+				true);
+		pulseRateLimitSignal.setConditionSignaled(PULSE_OXIMETER_SAT_O2_LIMIT_ALERT_SIGNAL_HANDLE);
+		alertSystemDesc.addAlertSignal(pulseRateLimitSignal);
+	}
+
+	void PulseOximeterProvider::addAlertSystem(VmdDescriptor &vmdDesc)
+	{
+		addPulseRateLimitAlertCondition(pulseOximeterAlertSystemDescriptor);
+		addSatO2LimitAlertCondition(pulseOximeterAlertSystemDescriptor);
+		vmdDesc.setAlertSystem(pulseOximeterAlertSystemDescriptor);
+	}
+
+
 	void PulseOximeterProvider::startMedicalDevice() {
 	    try {
 
-	    	serial = std::make_shared<Serial::SerialConnectionEventHandler>("/dev/ttyUSB0", 115200);
+	    	serial = std::make_shared<Serial::SerialConnectionEventHandler>("/dev/ttyS0", 115200);
 
 	    	serial->start();
 

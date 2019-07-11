@@ -2,7 +2,7 @@
  * SerialConnectionEventHandler.h
  *
  *  Created on: Jun 18, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #ifndef EXAMPLES_PULSEOXIMETERPROVIDER_SERIALCONNECTIONEVENTHANDLER_H_
@@ -19,6 +19,7 @@ public:
 
 	int getSpo2();
 	int getPulseRate();
+	bool fingerIsOut();
 
 protected:
     void onConnected() override;
@@ -28,6 +29,7 @@ protected:
     void onError(const std::string& category, const std::string& message) override;
 
 private:
+    bool fingerOut;
     int spo2;
     int pulseRate;
     int dataPackage;

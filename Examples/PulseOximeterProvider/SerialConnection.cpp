@@ -2,7 +2,7 @@
  * SerialConnection.cpp
  *
  *  Created on: Jun 17, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #include "SerialConnection.h"
