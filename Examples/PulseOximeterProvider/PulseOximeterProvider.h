@@ -12,7 +12,9 @@
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/LimitAlertConditionDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdState.h"
+#include <SDCLib/Data/SDC/MDIB/VmdDescriptor.h>
 
 #include "SDCLib/Util/Task.h"
 #include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
@@ -21,10 +23,15 @@
 
 class PulseOximeterSatO2GetHandler;
 class PulseOximeterPulseRateGetHandler;
-class PulseOximeterSetLowerAlarmLimitPulseRateHandler;
-class PulseOximeterSetUpperAlarmLimitPulseRateHandler;
-class PulseOximeterSetLowerAlarmLimitSatO2Handler;
-class PulseOximeterSetUpperAlarmLimitSatO2Handler;
+class PulseOximeterAlertSystemState;
+class SatO2AlertStateHandle;
+class PulseOximeterAlarmLimitPulseRateHandler;
+class PulseOximeterAlarmLimitSatO2Handler;
+
+
+using namespace SDCLib;
+using namespace SDCLib::Util;
+using namespace SDCLib::Data::SDC;
 
 class PulseOximeterProvider : public SDCLib::Util::Task{
 public:
@@ -41,26 +48,25 @@ public:
 	void shutdown();
 	virtual void runImpl() override;
 
-	SDCLib::Data::SDC::MdibContainer getMdib();
-	SDCLib::Data::SDC::MdDescription getMdDescription();
-	SDCLib::Data::SDC::MdState getMdState();
+	MdibContainer getMdib();
+	MdDescription getMdDescription();
+	MdState getMdState();
 
 private:
+
+	void addAlertSystem(const VmdDescriptor &vmdDes);
+	void addPulseRateLimitAlertCondition(AlertSystemDescriptor &alertSystemDesc);
 
 	SDCLib::Data::SDC::SDCProvider sdcProvider;
 
 	std::shared_ptr<PulseOximeterSatO2GetHandler> satO2GetHandler;
 	std::shared_ptr<PulseOximeterPulseRateGetHandler> pulseRateGetHandler;
-	std::shared_ptr<PulseOximeterSetLowerAlarmLimitPulseRateHandler> pulseRateLowerAlarmLimitSetHandler;
-	std::shared_ptr<PulseOximeterSetUpperAlarmLimitPulseRateHandler> pulseRateUpperAlarmLimitSetHandler;
-	std::shared_ptr<PulseOximeterSetUpperAlarmLimitSatO2Handler> satO2UpperAlarmLimitSetHandler;
-	std::shared_ptr<PulseOximeterSetLowerAlarmLimitSatO2Handler> satO2LowerAlarmLimitSetHandler;
-	SDCLib::Data::SDC::NumericMetricDescriptor satO2Descriptor;
-	SDCLib::Data::SDC::NumericMetricDescriptor pulseRateDescriptor;
-	SDCLib::Data::SDC::NumericMetricDescriptor pulseRateUpperAlarmLimitDescriptor;
-	SDCLib::Data::SDC::NumericMetricDescriptor pulseRateLowerAlarmLimitDescriptor;
-	SDCLib::Data::SDC::NumericMetricDescriptor satO2LowerAlarmLimitDescriptor;
-	SDCLib::Data::SDC::NumericMetricDescriptor satO2UpperAlarmLimitDescriptor;
+	std::shared_ptr<PulseOximeterAlarmLimitPulseRateHandler> pulseRateAlarmLimitHandler;
+	std::shared_ptr<PulseOximeterAlarmLimitSatO2Handler> satO2AlarmLimitHandler;
+	NumericMetricDescriptor satO2Descriptor;
+	NumericMetricDescriptor pulseRateDescriptor;
+//	LimitAlertConditionDescriptor pulseRateAlarmLimitDescriptor;
+//	LimitAlertConditionDescriptor satO2AlarmLimitDescriptor;
 
 	std::shared_ptr<Serial::SerialConnectionEventHandler> serial;
 };

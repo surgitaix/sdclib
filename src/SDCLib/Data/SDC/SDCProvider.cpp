@@ -661,6 +661,7 @@ void SDCProvider::updateState(const AlertSignalState & object) {
 
 void SDCProvider::updateState(const AlertConditionState & object) {
 	updateMDIB(object);
+	evaluateAlertConditions(object.getDescriptorHandle())
 	notifyAlertEventImpl(object);
 }
 

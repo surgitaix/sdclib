@@ -103,7 +103,6 @@ static const std::string getStringRepresentationOfMDIB(const MdibContainer MDIB)
 
 int main() {
 	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
-	sleep(2);
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 	SDCLibrary::getInstance().setPortStart(6000);

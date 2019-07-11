@@ -18,6 +18,8 @@
 #include "SDCLib/Data/SDC/MDIB/Range.h"
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LimitAlertConditionState.h"
+
 
 
 #include "SDCLib/Util/DebugOut.h"
@@ -106,190 +108,72 @@ using namespace SDCLib::Data::SDC;
 	};
 
 	//MdStateHandler for setting Upper Pulse Rate Alarm Limit
-	class PulseOximeterSetUpperAlarmLimitPulseRateHandler : public SDCProviderMDStateHandler<NumericMetricState>{
+	class PulseOximeterAlarmLimitPulseRateHandler : public SDCProviderMDStateHandler<LimitAlertConditionState>{
 	public:
-		PulseOximeterSetUpperAlarmLimitPulseRateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
+		PulseOximeterAlarmLimitPulseRateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
 		}
 
 		//Changing the value of a get service is prohibit.
-		InvocationState onStateChangeRequest(const NumericMetricState &state, const OperationInvocationContext &oic) override {
-			double val = state.getMetricValue().getValue();
-			Util::DebugOut(Util::DebugOut::Default, "PulseOximeterProvider") << "Trying to set upper pulse rate alarm limit " << val
-							<< std::endl << "Shutting down Consumer";
-			if(val >= 0 && val < 251)
-			{
-				setCurrentValue(val);
-				return InvocationState::Fin;
-			}
-			else {
-				Util::DebugOut(Util::DebugOut::Error, "PulseOximeterProvider") << "Setting the pulse rate alarm outside the values limit is prohibit" << std::endl;
-				return InvocationState::Fail;
-			}
+		InvocationState onStateChangeRequest(const LimitAlertConditionState &state, const OperationInvocationContext &oic) override {
+
 		}
 
 
-		NumericMetricState getInitialState() override{
-			currentLimit = DEFAULT_UPPER_PULSE_RATE_ALARM_LIMIT;
-			NumericMetricState nms = createState(currentLimit);
+		LimitAlertConditionState getInitialState() override{
+			LimitAlertConditionState nms = createState();
 			return nms;
 		}
 
-		void setCurrentValue(double value) {
-			if(value >= 0 && value < 251)
-			{
-				NumericMetricState nms = createState(value);
-				updateState(nms);
-			}
-		}
 
 	private:
-		NumericMetricState createState(const double value) {
-			NumericMetricState result(descriptorHandle);
-			//Valid metric equaling value. The measurement is performed.
-			result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
-				  .setActivationState(ComponentActivation::On);
-			return result;
+		LimitAlertConditionState createState() {
+
 		}
 
-		double currentLimit;
-	};
-
-	//MdStateHandler for setting lower pulse rate alarm limit
-	class PulseOximeterSetLowerAlarmLimitPulseRateHandler : public SDCProviderMDStateHandler<NumericMetricState>{
-	public:
-		PulseOximeterSetLowerAlarmLimitPulseRateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-		}
-
-		//Changing the value of a get service is prohibit.
-		InvocationState onStateChangeRequest(const NumericMetricState &state, const OperationInvocationContext &oic) override {
-			double val = state.getMetricValue().getValue();
-			Util::DebugOut(Util::DebugOut::Default, "PulseOximeterProvider") << "Trying to set upper pulse rate alarm limit " << val
-							<< std::endl << "Shutting down Consumer";
-			if(val >= 0 && val < 251)
-			{
-				setCurrentValue(val);
-				return InvocationState::Fin;
-			}
-			else {
-				Util::DebugOut(Util::DebugOut::Error, "PulseOximeterProvider") << "Setting the pulse rate alarm outside the values limit is prohibit" << std::endl;
-				return InvocationState::Fail;
-			}
-		}
-
-
-		NumericMetricState getInitialState() override{
-			currentLimit = DEFAULT_LOWER_PULSE_RATE_ALARM_LIMIT;
-			NumericMetricState nms = createState(currentLimit);
-			return nms;
-		}
-
-		void setCurrentValue(double value) {
-			NumericMetricState nms = createState(value);
-			updateState(nms);
-		}
-
-	private:
-		NumericMetricState createState(const double value) {
-			NumericMetricState result(descriptorHandle);
-			//Valid metric equaling value. The measurement is performed.
-			result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
-				  .setActivationState(ComponentActivation::On);
-			return result;
-		}
-
-		double currentLimit;
 	};
 
 
-	class PulseOximeterSetLowerAlarmLimitSatO2Handler : public SDCProviderMDStateHandler<NumericMetricState>{
+	class PulseOximeterAlarmLimitSatO2Handler : public SDCProviderMDStateHandler<LimitAlertConditionState>{
 	public:
-		PulseOximeterSetLowerAlarmLimitSatO2Handler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
+		PulseOximeterAlarmLimitSatO2Handler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
 		}
 
 		//Changing the value of a get service is prohibit.
-		InvocationState onStateChangeRequest(const NumericMetricState &state, const OperationInvocationContext &oic) override {
-			double val = state.getMetricValue().getValue();
-			Util::DebugOut(Util::DebugOut::Default, "PulseOximeterProvider") << "Trying to set upper pulse rate alarm limit " << val
-							<< std::endl << "Shutting down Consumer";
-			if(val >= 0 && val < 100)
-			{
-				setCurrentValue(val);
-				return InvocationState::Fin;
-			}
-			else {
-				Util::DebugOut(Util::DebugOut::Error, "PulseOximeterProvider") << "Setting the pulse rate alarm outside the values limit is prohibit" << std::endl;
-				return InvocationState::Fail;
-			}
+		InvocationState onStateChangeRequest(const LimitAlertConditionState &state, const OperationInvocationContext &oic) override {
+
 		}
 
 
-		NumericMetricState getInitialState() override{
-			currentLimit = DEFAULT_LOWER_SAT_O2_ALARM_LIMIT;
-			NumericMetricState nms = createState(currentLimit);
-			return nms;
+		LimitAlertConditionState getInitialState() override{
+			Range limits;
+			limits.setLower(DEFAULT_LOWER_SAT_O2_ALARM_LIMIT);
+			limits.setUpper(DEFAULT_UPPER_SAT_O2_ALARM_LIMIT);
+			limits.setAbsoluteAccuracy(DEFAULT_SAT_O2_ALARM_LIMIT_ABSOLUTE_ACCURACY);
+			LimitAlertConditionState LimitAlertCS = createState(AlertActivation::Off, limits);
+			return LimitAlertCS;
 		}
 
-		void setCurrentValue(double value) {
-			NumericMetricState nms = createState(value);
-			updateState(nms);
+		void setLimitRange(Range limits)
+		{
+			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
+			currentState.setLimits(limits);
+			updateState(currentState);
 		}
 
-	private:
-		NumericMetricState createState(const double value) {
-			NumericMetricState result(descriptorHandle);
-			//Valid metric equaling value. The measurement is performed.
-			result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
-				  .setActivationState(ComponentActivation::On);
-			return result;
-		}
-
-		double currentLimit;
-	};
-
-
-	class PulseOximeterSetUpperAlarmLimitSatO2Handler : public SDCProviderMDStateHandler<NumericMetricState>{
-	public:
-		PulseOximeterSetUpperAlarmLimitSatO2Handler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-		}
-
-		//Changing the value of a get service is prohibit.
-		InvocationState onStateChangeRequest(const NumericMetricState &state, const OperationInvocationContext &oic) override {
-			double val = state.getMetricValue().getValue();
-			Util::DebugOut(Util::DebugOut::Default, "PulseOximeterProvider") << "Trying to set upper pulse rate alarm limit " << val
-							<< std::endl << "Shutting down Consumer";
-			if(val >= 0 && val < 100)
-			{
-				setCurrentValue(val);
-				return InvocationState::Fin;
-			}
-			else {
-				Util::DebugOut(Util::DebugOut::Error, "PulseOximeterProvider") << "Setting the pulse rate alarm outside the values limit is prohibit" << std::endl;
-				return InvocationState::Fail;
-			}
-		}
-
-
-		NumericMetricState getInitialState() override{
-			currentLimit = DEFAULT_UPPER_SAT_O2_ALARM_LIMIT;
-			NumericMetricState nms = createState(0.00);
-			return nms;
-		}
-
-		void setCurrentValue(double value) {
-			NumericMetricState nms = createState(value);
-			updateState(nms);
+		void setActivationState(AlertActivation activationState)
+		{
+			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
+			currentState.setActivationState(activationState);
+			updateState(currentState);
 		}
 
 	private:
-		NumericMetricState createState(const double value) {
-			NumericMetricState result(descriptorHandle);
-			//Valid metric equaling value. The measurement is performed.
-			result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
-				  .setActivationState(ComponentActivation::On);
-			return result;
+
+		LimitAlertConditionState createState(AlertActivation activationState, Range limits) {
+			LimitAlertConditionState LimitAlertCS(descriptorHandle, activationState, limits, AlertConditionMonitoredLimits::All);
+			return LimitAlertCS;
 		}
 
-		double currentLimit;
 	};
 
 
@@ -298,14 +182,10 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 	//Metric state handler initialization
 	satO2GetHandler(new PulseOximeterSatO2GetHandler(PULSE_OXIMETER_SAT_O2_GET_HANDLE)),
 	pulseRateGetHandler(new PulseOximeterPulseRateGetHandler(PULSE_OXIMETER_PULSE_RATE_GET_HANDLE)),
-	pulseRateLowerAlarmLimitSetHandler(new PulseOximeterSetLowerAlarmLimitPulseRateHandler
-								  (PULSE_OXIMETER_SAT_O2_LOWER_ALARM_LIMIT_SET_HANDLE)),
-	pulseRateUpperAlarmLimitSetHandler(new PulseOximeterSetUpperAlarmLimitPulseRateHandler
-								  (PULSE_OXIMETER_SAT_O2_UPPER_ALARM_LIMIT_SET_HANDLE)),
-	satO2UpperAlarmLimitSetHandler(new PulseOximeterSetUpperAlarmLimitSatO2Handler
-								  (PULSE_OXIMETER_PULSE_RATE_UPPER_ALARM_LIMIT_SET_HANDLE)),
-	satO2LowerAlarmLimitSetHandler(new PulseOximeterSetLowerAlarmLimitSatO2Handler
-								  (PULSE_OXIMETER_PULSE_RATE_LOWER_ALARM_LIMIT_SET_HANDLE)),
+	pulseRateAlarmLimitHandler(new PulseOximeterAlarmLimitPulseRateHandler
+								  (PULSE_OXIMETER_PULSE_RATE_LIMIT_ALERT_HANDLE)),
+	satO2AlarmLimitHandler(new PulseOximeterAlarmLimitSatO2Handler
+								  (PULSE_OXIMETER_SAT_O2_LIMIT_ALERT_HANDLE)),
 	//Metric Descriptor initialization
 	satO2Descriptor(PULSE_OXIMETER_SAT_O2_GET_HANDLE,
 			CodedValue(DIMENSION_PERCENTAGE),
@@ -316,27 +196,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 			CodedValue(DIMENSION_BEATS_PER_MIN),
 			MetricCategory::Msrmt,
 			MetricAvailability::Cont,
-			1.0), //Resolution of 1%
-	satO2LowerAlarmLimitDescriptor(PULSE_OXIMETER_SAT_O2_LOWER_ALARM_LIMIT_SET_HANDLE,
-			CodedValue(DIMENSION_PERCENTAGE),
-			MetricCategory::Set,
-			MetricAvailability::Intr,
-			1.0),
-	satO2UpperAlarmLimitDescriptor(PULSE_OXIMETER_SAT_O2_UPPER_ALARM_LIMIT_SET_HANDLE,
-			CodedValue(DIMENSION_PERCENTAGE),
-			MetricCategory::Set,
-			MetricAvailability::Intr,
-			1.0),
-	pulseRateLowerAlarmLimitDescriptor(PULSE_OXIMETER_PULSE_RATE_LOWER_ALARM_LIMIT_SET_HANDLE,
-			CodedValue(DIMENSION_BEATS_PER_MIN),
-			MetricCategory::Set,
-			MetricAvailability::Intr,
-			1.0),
-	pulseRateUpperAlarmLimitDescriptor(PULSE_OXIMETER_PULSE_RATE_UPPER_ALARM_LIMIT_SET_HANDLE,
-			CodedValue(DIMENSION_BEATS_PER_MIN),
-			MetricCategory::Set,
-			MetricAvailability::Intr,
-			1.0)
+			1.0) //Resolution of 1%
 	{
 	//Mdib definition (bottom up)
 
@@ -361,11 +221,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 	ChannelDescriptor pulseChannel(PULSE_OXIMETER_PULS_CHAN_HANDLE);
 	pulseChannel.setSafetyClassification(SafetyClassification::MedB)
 				.addMetric(pulseRateDescriptor)
-				.addMetric(satO2Descriptor)
-				.addMetric(satO2LowerAlarmLimitDescriptor)
-				.addMetric(satO2UpperAlarmLimitDescriptor)
-				.addMetric(pulseRateLowerAlarmLimitDescriptor)
-				.addMetric(pulseRateUpperAlarmLimitDescriptor);
+				.addMetric(satO2Descriptor);
 
 
 	//VMD
@@ -381,11 +237,9 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 
 	sdcProvider.setMdDescription(pulseOximeterMdDesction);
 	sdcProvider.addMdStateHandler(pulseRateGetHandler.get());
+	sdcProvider.addMdStateHandler(satO2AlarmLimitHandler.get());
 	sdcProvider.addMdStateHandler(satO2GetHandler.get());
-	sdcProvider.addMdStateHandler(satO2LowerAlarmLimitSetHandler.get());
-	sdcProvider.addMdStateHandler(satO2UpperAlarmLimitSetHandler.get());
-	sdcProvider.addMdStateHandler(pulseRateLowerAlarmLimitSetHandler.get());
-	sdcProvider.addMdStateHandler(pulseRateUpperAlarmLimitSetHandler.get());
+	sdcProvider.addMdStateHandler(pulseRateAlarmLimitHandler.get());
 
 
 	//Endpoint reference
