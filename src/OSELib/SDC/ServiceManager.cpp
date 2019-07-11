@@ -26,6 +26,7 @@
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 
 
+using namespace OSELib;
 using namespace OSELib::SDC;
 
 void HelloReceivedHandler::helloReceived(const std::string & ) {
@@ -205,7 +206,7 @@ ServiceManager::AsyncDiscoverResults ServiceManager::async_discoverOSCP()
 
 ServiceManager::DiscoverResults ServiceManager::discoverOSCP() {
 
-    std::cout << "DEPRECATED: THIS FUNCTION WILL BE REMOVED IN FUTURE VERSIONS. PLEASE USE discover()." << std::endl;
+    std::cout << "DEPRECATED: ServiceManager::discoverOSCP WILL BE REMOVED IN FUTURE VERSIONS. PLEASE USE discover()." << std::endl;
 
 	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
 		ProbeMatchCallback() {}
@@ -399,6 +400,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
+    // FIXME: Create new SDCInstance with custom Network Configuration!
 	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(m_SDCInstance, deviceDescription));
 
 	if (!result->isConnected()) {

@@ -12,6 +12,8 @@
 
 #include "NormalizedMessageModel.hxx"
 
+using namespace OSELib;
+using namespace OSELib::DPWS;
 using namespace OSELib::DPWS::Impl;
 
 MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription) :

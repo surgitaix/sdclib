@@ -18,6 +18,8 @@
 #include <Poco/Net/SocketAddress.h>
 
 
+using namespace OSELib;
+using namespace OSELib::DPWS;
 using namespace OSELib::DPWS::Impl;
 
 struct SendMulticastMessage : public Poco::Notification {
