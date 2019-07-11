@@ -1,3 +1,7 @@
+Update to version 4.0.3
+
+- Added CMake install instructions to install SDCLib and Poco header and lib files.
+
 Update to version 4.0.2
 
 - Removed remainings of "OSC"lib

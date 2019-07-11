@@ -376,7 +376,7 @@ int main()
 	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);

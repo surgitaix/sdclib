@@ -5,19 +5,6 @@ cmake_minimum_required(VERSION 3.5.0)
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
 ################################################################################
-# Warnings
-################################################################################
-message(STATUS "Setting Warning-Level...")
-if(NOT WIN32)
-    # enable debug and profiling informations for sprof
-    add_compile_options(-ggdb -g -O0 -Wall -Wextra)
-else()
-    # Inhibit all warning messages
-    add_compile_options(-w)
-endif()
-################################################################################
-
-################################################################################
 # Using own CMake Modules
 # Add this to your cmake modules path to find the SDCLib Finder
 ################################################################################
@@ -52,7 +39,7 @@ project(${PROJECT_NAME})
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
 set (SDCLibrary_VERSION_MIDDLE         0)
-set (SDCLibrary_VERSION_LAST           2)
+set (SDCLibrary_VERSION_LAST           3)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -123,6 +110,7 @@ set(DEBUG_POSTFIX_OUTPUT _d)
 set(PATH_INSTALL_RUNTIME ${CMAKE_INSTALL_PREFIX}/bin)
 set(PATH_INSTALL_LIBRARY ${CMAKE_INSTALL_PREFIX}/bin)
 set(PATH_INSTALL_ARCHIVE ${CMAKE_INSTALL_PREFIX}/lib)
+set(PATH_INSTALL_INCLUDE ${CMAKE_INSTALL_PREFIX}/include)
 ################################################################################
 
 
@@ -301,6 +289,23 @@ set(CONFIG_DIR ${CMAKE_CURRENT_LIST_DIR}/include/config)
 # configure
 message(STATUS "Configuring ${PROJECT_NAME}...")
 configure_file (${CONFIG_DIR}/config.h.in ${CONFIG_DIR}/config.h)
+################################################################################
+
+
+################################################################################
+# Warnings
+################################################################################
+message(STATUS "Setting Warning-Level...")
+if(CMAKE_BUILD_TYPE MATCHES Release)
+    if (MSVC)
+        add_compile_options(/W4)
+    else()
+        add_compile_options(-Wall -Wextra -pedantic)
+    endif()
+else()
+    # Inhibit all warning messages
+    add_compile_options(-w)
+endif()
 ################################################################################
 
 

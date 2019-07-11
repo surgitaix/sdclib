@@ -89,7 +89,9 @@ target_sources(${CURRENT_TARGET_NAME}
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${GEN_DIR} )
 
 
-
+# install
+install(DIRECTORY ${GEN_DIR}/ DESTINATION ${PATH_INSTALL_INCLUDE}/${CURRENT_TARGET_NAME}
+            FILES_MATCHING PATTERN "*.hxx")
 
 
 

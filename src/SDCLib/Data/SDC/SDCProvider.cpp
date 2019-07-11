@@ -661,7 +661,14 @@ void SDCProvider::updateState(const AlertSignalState & object) {
 
 void SDCProvider::updateState(const AlertConditionState & object) {
 	updateMDIB(object);
-	evaluateAlertConditions(object.getDescriptorHandle())
+	//Evaluate Alert Conditions sources, based on changes to the AlertCoditionState
+	std::string handle = object.getDescriptorHandle();
+	MdDescription mdDescription = getMdDescription();
+	std::unique_ptr<AlertConditionDescriptor> alertConditionDescription(std::move(mdDescription.findDescriptor<AlertConditionDescriptor>(handle)));
+	for (auto source : alertConditionDescription->getSourceList())
+	{
+		evaluateAlertConditions(source);
+	}
 	notifyAlertEventImpl(object);
 }
 
@@ -673,6 +680,14 @@ void SDCProvider::updateState(const EnumStringMetricState & object) {
 
 void SDCProvider::updateState(const LimitAlertConditionState & object) {
 	updateMDIB(object);
+	//Evaluate Alert Conditions sources, based on changes to the AlertCoditionState
+	std::string handle = object.getDescriptorHandle();
+	MdDescription mdDescription = getMdDescription();
+	std::unique_ptr<AlertConditionDescriptor> alertConditionDescription(std::move(mdDescription.findDescriptor<AlertConditionDescriptor>(handle)));
+	for (auto source : alertConditionDescription->getSourceList())
+	{
+		evaluateAlertConditions(source);
+	}
 	notifyAlertEventImpl(object);
 }
 
