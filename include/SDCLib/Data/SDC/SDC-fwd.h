@@ -19,29 +19,11 @@ namespace SDC {
 	class FutureInvocationState;
 	class SDCConsumer;
 	class SDCConsumerConnectionLostHandler;
-	class SDCConsumerSystemContextStateChangedHandler;
 	class SDCConsumerOperationInvokedHandler;
-	class SDCConsumerEnumStringMetricStateHandler;
-	class SDCConsumerNumericMetricStateHandler;
-	class SDCConsumerStringMetricStateHandler;
-	class SDCConsumerRealTimeSampleArrayMetricStateHandler;
-	class SDCConsumerAlertSystemStateHandler;
-	class SDCConsumerAlertSignalStateHandler;
-	class SDCConsumerAlertConditionStateHandler;
-	class SDCConsumerLimitAlertConditionStateHandler;
 	class SDCConsumerSubscriptionLostHandler;
+	class SDCConsumerSystemContextStateChangedHandler;
 
 	class SDCProvider;
-	class SDCProviderMdStateHandler;
-	class SDCProviderAlertSignalStateHandler;
-	class SDCProviderAlertSystemStateHandler;
-	class SDCProviderClockStateHandler;
-	class SDCProviderMdsStateHandler;
-	class SDCProviderEnumStringMetricStateHandler;
-	class SDCProviderLimitAlertConditionStateHandler;
-	class SDCProviderNumericMetricStateHandler;
-	class SDCProviderRealTimeSampleArrayMetricStateHandler;
-	class SDCProviderStringMetricStateHandler;
 
 	class SDCProviderStateHandler;
 
