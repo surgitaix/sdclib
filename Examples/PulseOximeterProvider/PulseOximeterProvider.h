@@ -2,7 +2,7 @@
  * PulseOximeterProvider.h
  *
  *  Created on: Jun 19, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #ifndef EXAMPLES_PULSEOXIMETERPROVIDER_PULSEOXIMETERPROVIDER_H_
@@ -22,7 +22,7 @@
 #include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
 #include "SDCLib/SDCInstance.h"
 
-
+class PulseOximeterFingerOutGetHandler;
 class PulseOximeterSatO2GetHandler;
 class PulseOximeterPulseRateGetHandler;
 class PulseOximeterAlertSystemState;
@@ -64,6 +64,7 @@ private:
 
 	SDCLib::Data::SDC::SDCProvider sdcProvider;
 
+	std::shared_ptr<PulseOximeterFingerOutGetHandler> fingerOutStatusHandler;
 	std::shared_ptr<PulseOximeterSatO2GetHandler> satO2GetHandler;
 	std::shared_ptr<PulseOximeterPulseRateGetHandler> pulseRateGetHandler;
 	std::shared_ptr<PulseOximeterAlarmLimitPulseRateHandler> pulseRateAlarmLimitHandler;

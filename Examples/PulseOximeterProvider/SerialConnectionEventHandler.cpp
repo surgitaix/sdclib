@@ -2,7 +2,7 @@
  * SerialConnectionEventHandler.cpp
  *
  *  Created on: Jun 18, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #include "SerialConnectionEventHandler.h"
@@ -49,8 +49,6 @@ void SerialConnectionEventHandler::onReceived(const void* data, size_t size)
 	else if(dataPackage == 1)
 	{
 		fingerOut = binaryData[0] &0X01;
-		if(fingerOut)
-			std::cout << "Finger Out" << std::endl;
 	}
 
 	else if(dataPackage == 5)
