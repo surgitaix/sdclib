@@ -1,5 +1,9 @@
-#include "SDCLib/SSLHandler.h"
+#include "SDCLib/Config/SSLConfig.h"
 
+#include "SDCLib/SDCInstance.h"
+
+#include <Poco/StreamCopier.h>
+#include <Poco/URI.h>
 #include <Poco/Exception.h>
 #include <Poco/SharedPtr.h>
 #include <Poco/Net/SSLManager.h>
@@ -12,21 +16,21 @@
 #include <iostream>
 
 using namespace SDCLib;
-using namespace SDCLib::SSL;
+using namespace SDCLib::Config;
 
 using namespace Poco::Net;
 
 
-SSLHandler::SSLHandler()
+SSLConfig::SSLConfig()
 {
-
+    Poco::Net::initializeSSL();
 }
-SSLHandler::~SSLHandler()
+SSLConfig::~SSLConfig()
 {
     _cleanup();
 }
 
-void SSLHandler::_cleanup()
+void SSLConfig::_cleanup()
 {
     // Nothing to cleanup
     if (!isInit()) {
@@ -41,14 +45,11 @@ void SSLHandler::_cleanup()
 
 }
 
-bool SSLHandler::init(const Poco::Net::Context::VerificationMode p_modeClient, const Poco::Net::Context::VerificationMode p_modeServer)
+bool SSLConfig::init(const Poco::Net::Context::VerificationMode p_modeClient, const Poco::Net::Context::VerificationMode p_modeServer)
 {
     if (isInit()) {
         return false;
     }
-
-    // Init All SSL related Handlers
-    Poco::Net::initializeSSL();
 
     try {
         if(!_initClientSide(p_modeClient)) { return false; }
@@ -66,7 +67,7 @@ bool SSLHandler::init(const Poco::Net::Context::VerificationMode p_modeClient, c
     m_init = true;
     return true;
 }
-bool SSLHandler::_initClientSide(const Poco::Net::Context::VerificationMode p_mode)
+bool SSLConfig::_initClientSide(const Poco::Net::Context::VerificationMode p_mode)
 {
     try {
         Poco::SharedPtr<PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(false);
@@ -81,7 +82,7 @@ bool SSLHandler::_initClientSide(const Poco::Net::Context::VerificationMode p_mo
     }
     return false;
 }
-bool SSLHandler::_initServerSide(const Poco::Net::Context::VerificationMode p_mode)
+bool SSLConfig::_initServerSide(const Poco::Net::Context::VerificationMode p_mode)
 {
     try {
         Poco::SharedPtr<PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(true);
@@ -97,7 +98,7 @@ bool SSLHandler::_initServerSide(const Poco::Net::Context::VerificationMode p_mo
     return false;
 }
 
-bool SSLHandler::addCertificateAuthority(const std::string& p_file, bool p_clientSide, bool p_serverSide)
+bool SSLConfig::addCertificateAuthority(const std::string& p_file, bool p_clientSide, bool p_serverSide)
 {
     assert(!p_file.empty());
     if(!isInit()) {
@@ -116,7 +117,7 @@ bool SSLHandler::addCertificateAuthority(const std::string& p_file, bool p_clien
     }
     return false;
 }
-bool SSLHandler::useCertificate(const std::string& p_file, bool p_clientSide, bool p_serverSide)
+bool SSLConfig::useCertificate(const std::string& p_file, bool p_clientSide, bool p_serverSide)
 {
     assert(!p_file.empty());
     if(!isInit()) {
@@ -135,7 +136,7 @@ bool SSLHandler::useCertificate(const std::string& p_file, bool p_clientSide, bo
     }
     return false;
 }
-bool SSLHandler::addChainCertificate(const std::string& p_file, bool p_clientSide, bool p_serverSide)
+bool SSLConfig::addChainCertificate(const std::string& p_file, bool p_clientSide, bool p_serverSide)
 {
     assert(!p_file.empty());
     if(!isInit()) {
@@ -154,7 +155,7 @@ bool SSLHandler::addChainCertificate(const std::string& p_file, bool p_clientSid
     }
     return false;
 }
-bool SSLHandler::useKeyFiles(const std::string& p_publicKey, const std::string& p_privateKey, const std::string& p_pasphrase, bool p_clientSide, bool p_serverSide)
+bool SSLConfig::useKeyFiles(const std::string& p_publicKey, const std::string& p_privateKey, const std::string& p_pasphrase, bool p_clientSide, bool p_serverSide)
 {
     if(!isInit()) {
         return false;

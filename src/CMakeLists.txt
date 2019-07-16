@@ -25,10 +25,30 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/SDCLib/Util/Task.h
                             ${INCLUDE_DIR}/SDCLib/SDCLibrary.h
                             # Config
-                            #${INCLUDE_DIR}/SDCLib/Config/SDCConfig.h
-                            #${INCLUDE_DIR}/SDCLib/Config/NetworkConfig.h
-                            #${INCLUDE_DIR}/SDCLib/Config/SSLConfig.h
+                            ${INCLUDE_DIR}/SDCLib/Config/SDCConfig.h
+                            ${INCLUDE_DIR}/SDCLib/Config/NetworkConfig.h
+                            ${INCLUDE_DIR}/SDCLib/Config/SSLConfig.h
+
                             # OSELib
+                            # Schema
+                            ${INCLUDE_DIR}/OSELib/Schema/Schema.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaBICEPSMessageModel
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaDICOMDataModel.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaExtensionPoint.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaBICEPSParticipantModel.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaSoapMessage.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaWSAddressing.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaWSEventing.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaWSDiscovery.h
+                            # WSDL
+                            ${INCLUDE_DIR}/OSELib/WSDL/WSDLLoader.h
+                            # Service
+                            ${INCLUDE_DIR}/OSELib/WSDL/ContextServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/GetServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/SetServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/StateEventServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/WaveformServiceWSDL.h
+                            # DPWS
                             ${INCLUDE_DIR}/OSELib/DPWS/Types.h
                             ${INCLUDE_DIR}/OSELib/DPWS/MDPWSHostAdapter.h
                             ${INCLUDE_DIR}/OSELib/DPWS/IService.h
@@ -84,8 +104,6 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/HTTP/GenericContentHandler.h
                             ${INCLUDE_DIR}/OSELib/HTTP/HTTPClientExchanger.h
                             ${INCLUDE_DIR}/OSELib/HTTP/StaticContentController.h
-                            ${INCLUDE_DIR}/OSELib/WSDL/schema.h
-                            ${INCLUDE_DIR}/OSELib/WSDL/WSDLLoader.h
                             ${INCLUDE_DIR}/OSELib/Helper/SchemaGrammarProvider.h
                             ${INCLUDE_DIR}/OSELib/Helper/Message.h
                             ${INCLUDE_DIR}/OSELib/Helper/BufferAdapter.h
@@ -292,9 +310,9 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/SDCLib/SDCInstance.cpp
         ${SRC_DIR}/SDCLib/SSLHandler.cpp
         # Config
-        #${SRC_DIR}/SDCLib/Config/SDCConfig.cpp
-        #${SRC_DIR}/SDCLib/Config/NetworkConfig.cpp
-        #${SRC_DIR}/SDCLib/Config/SSLConfig.cpp
+        ${SRC_DIR}/SDCLib/Config/SDCConfig.cpp
+        ${SRC_DIR}/SDCLib/Config/NetworkConfig.cpp
+        ${SRC_DIR}/SDCLib/Config/SSLConfig.cpp
         # MDIB
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.cpp
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationState.cpp

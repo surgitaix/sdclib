@@ -38,7 +38,7 @@ project(${PROJECT_NAME})
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
-set (SDCLibrary_VERSION_MIDDLE         1)
+set (SDCLibrary_VERSION_MIDDLE         2)
 set (SDCLibrary_VERSION_LAST           0)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
@@ -159,7 +159,7 @@ mark_as_advanced(SDC_ALLOWED_PORT_START)
 mark_as_advanced(SDC_ALLOWED_PORT_RANGE)
 mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
 
-set(SDC_DISCOVERY_TIMEOUT_MS 5000 CACHE STRING "Time in milliseconds a Discovery will take.")
+set(SDC_DISCOVERY_TIMEOUT_MS 5000 CACHE STRING "Time in milliseconds a Discovery until timeout." FORCE)
 mark_as_advanced(SDC_DISCOVERY_TIMEOUT_MS)
 
 set(SDC_IP_V4_ENABLED true  CACHE STRING "Enable IPv4 by default or not." FORCE)

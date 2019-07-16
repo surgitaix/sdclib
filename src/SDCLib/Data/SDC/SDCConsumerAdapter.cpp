@@ -8,7 +8,6 @@
 #include <iostream>
 #include <list>
 
-#include "Poco/Mutex.h"
 #include "Poco/ThreadPool.h"
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/NetworkInterface.h"
@@ -319,32 +318,37 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-SDCConsumerAdapter::SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription) :
+SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription) :
 	WithLogger(OSELib::Log::SDCCONSUMERADAPTER),
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
 	_deviceDescription(deviceDescription),
-	_streamClientSocketImpl(p_SDCInstance, *this, deviceDescription)
+	_streamClientSocketImpl(consumer.getSDCInstance()->getNetworkConfig(), *this, deviceDescription)
 {
 
 }
 
 SDCConsumerAdapter::~SDCConsumerAdapter() = default;
 
-bool SDCConsumerAdapter::start() {
-	Poco::Mutex::ScopedLock lock(mutex);
+bool SDCConsumerAdapter::start()
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 	if (_httpServer) {
 		return false;
 	}
 
-    auto t_interface = _consumer.getSDCInstance()->getMDPWSInterface();
+    auto t_networkConfig = _consumer.getSDCInstance()->getNetworkConfig();
+    assert(t_networkConfig != nullptr);
+
+    auto t_interface = t_networkConfig->getMDPWSInterface();
     if(!t_interface) {
         std::cout << "Failed to start SDCProviderAdapter: Set MDPWSInterface first!" << std::endl;
         return false;
     }
 
+
     auto t_bindingAddress = t_interface->m_if.address();
-    auto t_port = _consumer.getSDCInstance()->getMDPWSPort();
+    auto t_port = t_networkConfig->getMDPWSPort();
 
 	// todo: IPv6 implementation here!
 	const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
@@ -416,7 +420,7 @@ bool SDCConsumerAdapter::start() {
 
 
 void SDCConsumerAdapter::stop() {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 
 	if (_httpServer) {
 		_httpServer->stopAll(false);
@@ -439,7 +443,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		return;
 	}
 
-	auto t_port = _consumer.getSDCInstance()->getMDPWSPort();
+	auto t_port = _consumer.getSDCInstance()->getNetworkConfig()->getMDPWSPort();
 
     std::string ts_PROTOCOL = "http";
     if(_consumer.getSDCInstance()->getSSLHandler()->isInit()) {

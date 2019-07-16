@@ -44,6 +44,18 @@ namespace SDCLib
     class SDCInstance;
     using SDCInstance_shared_ptr = std::shared_ptr<SDCInstance>;
 
+    namespace Config
+    {
+        class SDCConfig;
+        using SDCConfig_shared_ptr = std::shared_ptr<SDCConfig>;
+
+        class NetworkConfig;
+        using NetworkConfig_shared_ptr = std::shared_ptr<NetworkConfig>;
+
+        class SSLConfig;
+        using SSLConfig_shared_ptr = std::shared_ptr<SSLConfig>;
+    }
+
     namespace SSL
     {
         class SSLHandler;
@@ -74,6 +86,9 @@ namespace SDCLib
 
                 class StringMetricDescriptor;
                 using StringMetricDescriptor_shared_ptr = std::shared_ptr<StringMetricDescriptor>;
+
+                class EnumStringMetricDescriptor;
+                using EnumStringMetricDescriptor_shared_ptr = std::shared_ptr<EnumStringMetricDescriptor>;
 
                 class ActivateOperationDescriptor;
                 using ActivateOperationDescriptor_shared_ptr = std::shared_ptr<ActivateOperationDescriptor>;

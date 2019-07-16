@@ -32,7 +32,7 @@ namespace Impl {
 class DPWSHostSocketImpl : public WithLogger {
 public:
 	DPWSHostSocketImpl(
-            SDCLib::SDCInstance_shared_ptr p_SDCInstance,
+            SDCLib::Config::NetworkConfig_shared_ptr p_config,
 			ProbeNotificationDispatcher & probeDispatcher,
 			ResolveNotificationDispatcher & resolveDispatcher);
 
@@ -58,7 +58,7 @@ private:
 	struct SendMulticastMessage;
 	struct SendUnicastMessage;
 
-    SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
+    SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
 	ProbeNotificationDispatcher & probeDispatcher;
 	ResolveNotificationDispatcher & resolveDispatcher;
 

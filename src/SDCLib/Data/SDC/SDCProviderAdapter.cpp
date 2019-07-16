@@ -308,7 +308,7 @@ private:
 namespace SDCLib {
 namespace Data {
 namespace SDC {
-    
+
 class Factory : public OSELib::HTTP::FrontControllerAdapter {
 public:
     Factory(SDCProvider & provider,
@@ -370,11 +370,15 @@ bool SDCProviderAdapter::start() {
 
 	OSELib::DPWS::MetadataProvider metadata(_provider.getDeviceCharacteristics());
 
-    if(!_provider.getSDCInstance()->getMDPWSInterface()) {
+
+    auto t_networkConfig = _provider.getSDCInstance()->getNetworkConfig();
+    assert(t_networkConfig != nullptr);
+
+    if(!t_networkConfig->getMDPWSInterface()) {
         return false;
     }
 
-    auto t_interface = _provider.getSDCInstance()->getMDPWSInterface();
+    auto t_interface = t_networkConfig->getMDPWSInterface();
     if(!t_interface) {
         std::cout << "Failed to start SDCProviderAdapter: Set MDPWSInterface first!" << std::endl;
         return false;
@@ -382,16 +386,16 @@ bool SDCProviderAdapter::start() {
 
     // todo: right now only binding to one interface is possible -> implementation for more than one interface is needed!
     auto t_bindingAddress = t_interface->m_if.address();
-    auto t_port = _provider.getSDCInstance()->getMDPWSPort();
-    
+    auto t_port = t_networkConfig->getMDPWSPort();
+
     std::string ts_PROTOCOL = "http";
     const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
-    
+
     // Use SSL - HTTP'S'
     if(_provider.getSDCInstance()->getSSLHandler()->isInit()) {
         ts_PROTOCOL.append("s");
     }
-    
+
 	// add address to to DPWS xAddresses so that searching devices know on which address to connect to device
 	OSELib::DPWS::XAddressesType xAddresses;
 	xAddresses.push_back(OSELib::DPWS::AddressType(ts_PROTOCOL + "://" + t_bindingAddress.toString() + ":" + std::to_string(t_port) + metadata.getDeviceServicePath()));
@@ -400,7 +404,7 @@ bool SDCProviderAdapter::start() {
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "Device"));
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
 
-	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(_provider.getSDCInstance(),
+	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(_provider.getSDCInstance()->getNetworkConfig(),
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),
 			OSELib::DPWS::ScopesType(),
 			types,
@@ -427,7 +431,7 @@ bool SDCProviderAdapter::start() {
         t_sslSocket.bind(socketAddress);
         t_sslSocket.listen();
         t_sslSocket.setKeepAlive(true);
-        
+
         // Create the Server
         _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts, true), *_threadPool, t_sslSocket,  new Poco::Net::HTTPServerParams));
     }
@@ -436,7 +440,7 @@ bool SDCProviderAdapter::start() {
         Poco::Net::ServerSocket t_socket;
         t_socket.bind(socketAddress);
         t_socket.listen();
-        
+
         // Create the Server
         _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts, false), *_threadPool, t_socket, new Poco::Net::HTTPServerParams));
     }

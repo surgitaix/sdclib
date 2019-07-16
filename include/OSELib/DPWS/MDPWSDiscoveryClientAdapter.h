@@ -45,7 +45,7 @@ class MDPWSDiscoveryClientAdapter :
 		public ResolveMatchNotificationDispatcher
 {
 public:
-    MDPWSDiscoveryClientAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance);
+    MDPWSDiscoveryClientAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config);
 	virtual ~MDPWSDiscoveryClientAdapter();
 
 	void addProbeMatchEventHandler(const ProbeType filter, ProbeMatchCallback & callback);

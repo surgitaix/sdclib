@@ -19,7 +19,7 @@
 #include "OSELib/DPWS/DPWSHostSocketImpl.h"
 #include "OSELib/DPWS/MessageAdapter.h"
 #include "OSELib/Helper/BufferAdapter.h"
-#include "SDCLib/SDCInstance.h"
+#include "SDCLib/Config/NetworkConfig.h"
 
 namespace OSELib {
 namespace DPWS {
@@ -141,33 +141,33 @@ struct DPWSHostSocketImpl::SendUnicastMessage : public Poco::Notification {
 };
 
 DPWSHostSocketImpl::DPWSHostSocketImpl(
-        SDCLib::SDCInstance_shared_ptr p_SDCInstance,
+        SDCLib::Config::NetworkConfig_shared_ptr p_config,
 		ProbeNotificationDispatcher & probeDispatcher,
 		ResolveNotificationDispatcher & resolveDispatcher):
 	WithLogger(Log::DISCOVERY),
-	m_SDCInstance(p_SDCInstance),
+	m_networkConfig(p_config),
 	probeDispatcher(probeDispatcher),
 	resolveDispatcher(resolveDispatcher),
-    m_ipv4DiscoveryMulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getMulticastIPv4(), p_SDCInstance->_getMulticastPortv4())),
-    m_ipv6DiscoveryMulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getMulticastIPv6(), p_SDCInstance->_getMulticastPortv6())),
-    m_ipv4StreamMulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getStreamingIPv4(), p_SDCInstance->_getStreamingPortv4())),
-    m_ipv6StreamMulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getStreamingIPv6(), p_SDCInstance->_getStreamingPortv6())),
+    m_ipv4DiscoveryMulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv4(), p_config->_getMulticastPortv4())),
+    m_ipv6DiscoveryMulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv6(), p_config->_getMulticastPortv6())),
+    m_ipv4StreamMulticastAddress(Poco::Net::SocketAddress(p_config->_getStreamingIPv4(), p_config->_getStreamingPortv4())),
+    m_ipv6StreamMulticastAddress(Poco::Net::SocketAddress(p_config->_getStreamingIPv6(), p_config->_getStreamingPortv6())),
 	generator(std::chrono::system_clock::now().time_since_epoch().count()),
 	distribution(0, OSELib::APP_MAX_DELAY)
 {
 	xercesc::XMLPlatformUtils::Initialize ();
 
-    if (m_SDCInstance->getIP4enabled())
+    if (m_networkConfig->getIP4enabled())
     {
         // Create ListeningSocket
         m_ipv4MulticastListeningSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
 
-        // Add only interfaces bound to the SDCInstance
-        if (p_SDCInstance->isBound()) {
+        // Add only interfaces bound to this Config
+        if (m_networkConfig->isBound()) {
             // Bind ListeningSocket
             auto t_ipv4BindingAddress = m_ipv4DiscoveryMulticastAddress;
             m_ipv4MulticastListeningSocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+            for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try
                 {
                     // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
@@ -216,17 +216,17 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
         reactor.addEventHandler(m_ipv4MulticastListeningSocket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSHostSocketImpl::onMulticastSocketReadable));
         reactor.addEventHandler(m_ipv4MulticastListeningSocket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSHostSocketImpl::onTimeOut));
     }
-    if (m_SDCInstance->getIP6enabled())
+    if (m_networkConfig->getIP6enabled())
     {
         // Create ListeningSocket
         m_ipv6MulticastListeningSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
 
-        // Add only interfaces bound to the SDCInstance
-        if (m_SDCInstance->isBound()) {
+        // Add only interfaces bound to this Config
+        if (m_networkConfig->isBound()) {
             // Bind ListeningSocket
             auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6DiscoveryMulticastAddress.port());
             m_ipv6MulticastListeningSocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+            for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try
                 {
                     // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
@@ -282,11 +282,11 @@ DPWSHostSocketImpl::~DPWSHostSocketImpl() {
     reactor.removeEventHandler(m_ipv4MulticastListeningSocket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSHostSocketImpl::onMulticastSocketReadable));
     reactor.removeEventHandler(m_ipv6MulticastListeningSocket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSHostSocketImpl::onMulticastSocketReadable));
 
-    for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+    for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
         try
         {
-            if (m_SDCInstance->getIP4enabled()) { m_ipv4MulticastListeningSocket.leaveGroup(m_ipv4DiscoveryMulticastAddress.host(), t_interface->m_if); }
-            if (m_SDCInstance->getIP6enabled()) { m_ipv6MulticastListeningSocket.leaveGroup(m_ipv6DiscoveryMulticastAddress.host(), t_interface->m_if); }
+            if (m_networkConfig->getIP4enabled()) { m_ipv4MulticastListeningSocket.leaveGroup(m_ipv4DiscoveryMulticastAddress.host(), t_interface->m_if); }
+            if (m_networkConfig->getIP6enabled()) { m_ipv6MulticastListeningSocket.leaveGroup(m_ipv6DiscoveryMulticastAddress.host(), t_interface->m_if); }
         }
         catch (...) {
             // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
@@ -432,7 +432,7 @@ void DPWSHostSocketImpl::onTimeOut(Poco::Net::TimeoutNotification * notification
 }
 
 Poco::Timestamp DPWSHostSocketImpl::createDelay() {
-	return Poco::Timestamp() + Poco::Timespan(0, 0, 0, 0, distribution(generator));
+	return Poco::Timestamp() + Poco::Timespan(0, 0, 0, 0, distribution(generator)*1000); // Microseconds!
 }
 
 void DPWSHostSocketImpl::processDelayedMessages() {

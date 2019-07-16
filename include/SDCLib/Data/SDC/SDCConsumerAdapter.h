@@ -8,7 +8,6 @@
 #ifndef SDCLIB_DATA_SDC_SDCCONSUMERADAPTER_H_
 #define SDCLIB_DATA_SDC_SDCCONSUMERADAPTER_H_
 
-#include <Poco/Mutex.h>
 #include <Poco/Net/Context.h>
 
 #include "SDC-fwd.h"
@@ -33,7 +32,7 @@ class SDCConsumerAdapter :
 		public OSELib::WithLogger
 {
 public:
-    SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription);
+    SDCConsumerAdapter(SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription);
 	virtual ~SDCConsumerAdapter();
 
 	bool start();
@@ -72,7 +71,7 @@ private:
 
 	SDCConsumer & _consumer;
 
-	mutable Poco::Mutex mutex;
+	mutable std::mutex m_mutex;
 	std::unique_ptr<Poco::ThreadPool> _threadPool;
 
 	const OSELib::DPWS::DeviceDescription _deviceDescription;

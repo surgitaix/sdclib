@@ -1,3 +1,10 @@
+Update to version 4.2.0
+
+- Introduces SDCConfig (NetworkConfig / SSLConfig) to SDCInstance
+- Fixed Discovery
+- Fixed Application Level Transmission Delay (APP_MAX_DELAY) related bug.
+
+
 Update to version 4.1.1
 
 - Upgrade Poco from 1.9.0 to 1.9.2 to include some bugfixes.

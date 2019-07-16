@@ -163,7 +163,7 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSE
 {
     // DONT DO THIS INSIDE THE CTOR! FIXME! FIXME
 	try {
-		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(p_SDCInstance, *this, _deviceDescription));
+		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(*this, _deviceDescription));
 		if(!_adapter->start()) {
             log_error([] { return "Could not start ConsumerAdapter!"; });
             disconnect();
@@ -197,9 +197,6 @@ SDCConsumer::~SDCConsumer() {
         disconnect();
         // FIXME: What does this tell us? The dtor should handle a proper disconnect for us!
     }
-    else {
-        log_error([] { return "SDCConsumerAdapter does not exist / not initialized."; });
-    }
 }
 
 void SDCConsumer::disconnect() {
@@ -213,8 +210,9 @@ void SDCConsumer::setConnectionLostHandler(SDCConsumerConnectionLostHandler * ha
     connectionLostHandler = handler;
 }
 
-void SDCConsumer::setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * handler) {
-    Poco::Mutex::ScopedLock lock(eventMutex);
+void SDCConsumer::setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * handler)
+{
+    std::lock_guard<std::mutex> t_lock(m_eventMutex);
 	contextStateChangedHandler = handler;
 	if (_adapter) {
 		_adapter->subscribeEvents();
@@ -288,12 +286,12 @@ MdState SDCConsumer::getMdState()
 }
 
 bool SDCConsumer::unregisterFutureInvocationListener(int transactionId) {
-	Poco::Mutex::ScopedLock lock(transactionMutex);
+    std::lock_guard<std::mutex> t_lock(m_transactionMutex);
 	return fisMap.erase(transactionId) == 1;
 }
 
 bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
-    Poco::Mutex::ScopedLock lock(eventMutex);
+    std::lock_guard<std::mutex> t_lock(m_eventMutex);
 	eventHandlers[handler->getDescriptorHandle()] = handler;
 	if (_adapter) {
 		_adapter->subscribeEvents();
@@ -301,24 +299,28 @@ bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler *
 	return true;
 }
 
-bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
-	Poco::Mutex::ScopedLock lock(eventMutex);
-	eventHandlers.erase(handler->getDescriptorHandle());
+bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler)
+{
+
+    { //LOCK
+        std::lock_guard<std::mutex> t_lock(m_eventMutex);
+        eventHandlers.erase(handler->getDescriptorHandle());
+    } // UNLOCK
 
 	if (_adapter && eventHandlers.empty() && contextStateChangedHandler == nullptr) {
 		_adapter->unsubscribeEvents();
 	}
-
     return true;
 }
 
-bool SDCConsumer::requestMdib() {
+bool SDCConsumer::requestMdib()
+{
 	std::unique_ptr<const MDM::GetMdibResponse> response(requestCDMMdib());
 	if (response == nullptr) {
 		return false;
 	}
 
-	Poco::Mutex::ScopedLock lock(requestMutex);
+	std::lock_guard<std::mutex> t_lock(m_requestMutex);
 	mdib.reset(new MdibContainer());
 	mdib->setMdState(ConvertFromCDM::convert(response->Mdib().MdState().get()));
 	if (response->Mdib().MdDescription().present()) {
@@ -524,7 +526,7 @@ InvocationState SDCConsumer::commitStateImpl(const StateType & state, FutureInvo
 
 void SDCConsumer::handleInvocationState(int transactionId, FutureInvocationState & fis) {
 	// Put user future state into map
-	Poco::Mutex::ScopedLock lock(transactionMutex);
+	std::lock_guard<std::mutex> t_lock(m_transactionMutex);
 	fis.transactionId = transactionId;
 	fisMap[fis.transactionId] = &fis;
 	fis.consumer = this;
@@ -610,7 +612,7 @@ std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & handle
 }
 
 template<typename T> void SDCConsumer::onStateChanged(const T & state) {
-    Poco::Mutex::ScopedLock lock(eventMutex);
+    std::lock_guard<std::mutex> t_lock(m_eventMutex);
     std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(state.getDescriptorHandle());
     if (it != eventHandlers.end()) {
     	if (SDCConsumerMDStateHandler<T> * handler = dynamic_cast<SDCConsumerMDStateHandler<T> *>(it->second)) {
@@ -620,7 +622,7 @@ template<typename T> void SDCConsumer::onStateChanged(const T & state) {
 }
 
 //template<typename T> void SDCConsumer::onMultiStateChanged(const T & state) {
-//    Poco::Mutex::ScopedLock lock(eventMutex);
+//    std::lock_guard<std::mutex> t_lock(m_eventMutex);
 //	std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(state.getHandle());
 //	if (it != eventHandlers.end()) {
 //		if (SDCConsumerMDStateHandler<T> * handler = dynamic_cast<SDCConsumerMDStateHandler<T> *>(it->second)) {
@@ -655,8 +657,9 @@ template void SDCConsumer::onStateChanged(const OperatorContextState & state);
 template void SDCConsumer::onStateChanged(const MeansContextState & state);
 template void SDCConsumer::onStateChanged(const EnsembleContextState & state);
 
-void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
-    Poco::Mutex::ScopedLock lock(eventMutex);
+void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, InvocationState is)
+{
+    std::lock_guard<std::mutex> t_lockEvent(m_eventMutex);
 
 
     // If operation handle belongs to ActivateOperationDescriptor, use operation handle as target handle in case of operation invoked events!
@@ -687,7 +690,7 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, Inv
     }
 
     // Notify user future invocation state events
-    Poco::Mutex::ScopedLock transactionLock(transactionMutex);
+    std::lock_guard<std::mutex> t_lockTransaction(m_transactionMutex);
     if (fisMap.find(oic.transactionId) != fisMap.end()) {
     	fisMap[oic.transactionId]->setEvent(is);
     }
@@ -700,13 +703,13 @@ std::string SDCConsumer::getEndpointReference() const {
 }
 
 unsigned long long int SDCConsumer::getLastKnownMdibVersion() {
-	Poco::Mutex::ScopedLock lock(mdibVersionMutex);
+	std::lock_guard<std::mutex> t_lock(m_mdibVersionMutex);
 	unsigned long long int result = lastKnownMDIBVersion;
 	return result;
 }
 
 void SDCConsumer::updateLastKnownMdibVersion(unsigned long long int newVersion) {
-	Poco::Mutex::ScopedLock lock(mdibVersionMutex);
+	std::lock_guard<std::mutex> t_lock(m_mdibVersionMutex);
 	if (lastKnownMDIBVersion < newVersion) {
 		lastKnownMDIBVersion = newVersion;
 	}

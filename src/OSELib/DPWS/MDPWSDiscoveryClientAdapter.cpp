@@ -18,8 +18,8 @@
 namespace OSELib {
 namespace DPWS {
 
-MDPWSDiscoveryClientAdapter::MDPWSDiscoveryClientAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance)
-: _impl(new Impl::DPWSDiscoveryClientSocketImpl(p_SDCInstance, *this, *this, *this, *this))
+MDPWSDiscoveryClientAdapter::MDPWSDiscoveryClientAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config)
+: _impl(new Impl::DPWSDiscoveryClientSocketImpl(p_config, *this, *this, *this, *this))
 {
 }
 

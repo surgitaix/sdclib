@@ -53,7 +53,7 @@ int main()
 	runTestSuite("SDC");
 
 	// Only run test with a given name
-	//runSingleTest("MultiSDC");
+	//runSingleTest("connectionlostSDC");
 	return 0;
 }
 

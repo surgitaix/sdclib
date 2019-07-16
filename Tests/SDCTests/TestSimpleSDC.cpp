@@ -171,7 +171,6 @@ public:
     void onStateChanged(const NumericMetricState & state) override {
         double val = state.getMetricValue().getValue();
         DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << descriptorHandle << ": " << val << std::endl;
-    	Poco::Mutex::ScopedLock lock(mutex);
         weight = (float)val;
         eventEMR.set();
     }
@@ -181,7 +180,6 @@ public:
     }
 
     float getWeight() {
-    	Poco::Mutex::ScopedLock lock(mutex);
     	float result(weight);
         return result;
     }
@@ -191,8 +189,7 @@ public:
 	}
 
 private:
-    Poco::Mutex mutex;
-    float weight;
+    std::atomic<float> weight = ATOMIC_VAR_INIT(0.0);
     Poco::Event eventEMR;
 };
 

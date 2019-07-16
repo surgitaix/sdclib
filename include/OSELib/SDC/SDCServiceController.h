@@ -13,7 +13,7 @@
 #include "OSELib/HTTP/Service.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "OSELib/HTTP/StaticContentController.h"
-#include "OSELib/WSDL/schema.h"
+#include "OSELib/Schema/Schema.h"
 
 namespace OSELib {
 namespace SDC {
@@ -25,9 +25,9 @@ public:
 		Service(controller, { serviceImpl.getBaseUri() }),
 		_serviceImpl(serviceImpl),
 		_wsdlController(controller, serviceImpl.getBaseUri() + "/description.wsdl", serviceImpl.getWSDL()),
-		_schemaDatamodelController(controller, serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_DATAMODEL_NAME, SCHEMA::SCHEMA_DATAMODEL_CONTENT),
-		_schemaMessagemodelController(controller, serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_MESSAGEMODEL_NAME, SCHEMA::SCHEMA_MESSAGEMODEL_CONTENT),
-		_schemaExtensionController(controller, serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_EXTENSION_POINT_NAME, SCHEMA::SCHEMA_EXTENSION_POINT_CONTENT)
+		_schemaDatamodelController(controller, serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_BICEPS_PARTICIPANTMODEL_NAME, SCHEMA::SCHEMA_BICEPS_PARTICIPANTMODEL_CONTENT),
+		_schemaMessagemodelController(controller, serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_BICEPS_MESSAGEMODEL_NAME, SCHEMA::SCHEMA_BICEPS_MESSAGEMODEL_CONTENT),
+		_schemaExtensionController(controller, serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_EXTENSIONPOINT_NAME, SCHEMA::SCHEMA_EXTENSIONPOINT_CONTENT)
 	{
 	}
 	virtual ~SDCServiceController() = default;

@@ -36,8 +36,7 @@
 #include <map>
 #include <memory>
 #include <string>
-
-#include "Poco/Mutex.h"
+#include <mutex>
 
 #include "OSELib/Helper/WithLogger.h"
 
@@ -290,13 +289,13 @@ private:
     OSELib::DPWS::DeviceDescription _deviceDescription;
 
     std::map<int, FutureInvocationState *> fisMap;
-    Poco::Mutex transactionMutex;
+    std::mutex m_transactionMutex;
 
     std::shared_ptr<MdibContainer> mdib;
     std::deque<TransactionState> transactionQueue;
-	Poco::Mutex mdibVersionMutex;
-	Poco::Mutex requestMutex;
-    Poco::Mutex eventMutex;
+	std::mutex m_mdibVersionMutex;
+	std::mutex m_requestMutex;
+    std::mutex m_eventMutex;
     std::map<std::string, SDCConsumerOperationInvokedHandler *> eventHandlers;
     SDCConsumerConnectionLostHandler * connectionLostHandler = nullptr;
     // todo: kick

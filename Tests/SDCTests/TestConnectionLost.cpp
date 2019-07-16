@@ -150,11 +150,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostSDC)
 			t_providerEPRs.push_back(p->getEndpointReference());
             // Startup
             p->startup();
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		}
-		// Wait for startup...
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
@@ -200,7 +196,8 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostSDC)
         // Wait long enough for all to get a call... FIXME: Sometimes this test fails. Just because the timings arent correct.
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for connectionLostHanders...\n";
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(10000)); // Long enough to get all, or we get an error...
+        // Long enough to shutdown all...
+        std::this_thread::sleep_for(std::chrono::milliseconds(6000));
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Checking connectionLostHandlers...\n";
 

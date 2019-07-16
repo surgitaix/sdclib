@@ -6,7 +6,7 @@
  */
 
 #include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
-#include "SDCLib/SDCInstance.h"
+#include "SDCLib/Config/NetworkConfig.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
@@ -59,33 +59,33 @@ const MESSAGEMODEL::Envelope buildResolveMessage(const OSELib::DPWS::ResolveType
 }
 
 DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
-        SDCLib::SDCInstance_shared_ptr p_SDCInstance,
+        SDCLib::Config::NetworkConfig_shared_ptr p_config,
 		ByeNotificationDispatcher & byeDispatcher,
 		HelloNotificationDispatcher & helloDispatcher,
 		ProbeMatchNotificationDispatcher & probeMatchDispatcher,
 		ResolveMatchNotificationDispatcher & resolveDispatcher) :
 	WithLogger(Log::DISCOVERY),
-	m_SDCInstance(p_SDCInstance),
+	m_networkConfig(p_config),
 	_byeDispatcher(byeDispatcher),
 	_helloDispatcher(helloDispatcher),
 	_probeMatchDispatcher(probeMatchDispatcher),
 	_resolveDispatcher(resolveDispatcher),
-    m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getMulticastIPv4(), p_SDCInstance->_getMulticastPortv4())),
-    m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getMulticastIPv6(), p_SDCInstance->_getMulticastPortv6()))
+    m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv4(), p_config->_getMulticastPortv4())),
+    m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv6(), p_config->_getMulticastPortv6()))
 {
 
-    if (m_SDCInstance->getIP4enabled())
+    if (m_networkConfig->getIP4enabled())
     {
         // Create DiscoverySocket
         m_ipv4DiscoverySocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
 
         // Add only interfaces bound to the SDCInstance
-        if (m_SDCInstance->isBound()) {
+        if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
             auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
             m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
-            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+            for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try
                 {
                     // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
@@ -136,17 +136,17 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add Ipv4 Socket EventHandler
         m_reactor.addEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 	}
-    if (m_SDCInstance->getIP6enabled())
+    if (m_networkConfig->getIP6enabled())
     {
         // Create DiscoverySocket
         m_ipv6DiscoverySocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
 
         // Add only interfaces bound to the SDCInstance
-        if (m_SDCInstance->isBound()) {
+        if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
             auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
             m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+            for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try {
                     // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                     m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), t_interface->m_if);
@@ -203,11 +203,11 @@ DPWSDiscoveryClientSocketImpl::~DPWSDiscoveryClientSocketImpl() {
 	m_reactor.removeEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 	m_reactor.removeEventHandler(m_ipv6DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 
-    for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+    for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
         try
         {
-            if (m_SDCInstance->getIP4enabled()) { m_ipv4DiscoverySocket.leaveGroup(m_ipv4MulticastAddress.host(), t_interface->m_if); }
-            if (m_SDCInstance->getIP6enabled()) { m_ipv6DiscoverySocket.leaveGroup(m_ipv6MulticastAddress.host(), t_interface->m_if); }
+            if (m_networkConfig->getIP4enabled()) { m_ipv4DiscoverySocket.leaveGroup(m_ipv4MulticastAddress.host(), t_interface->m_if); }
+            if (m_networkConfig->getIP6enabled()) { m_ipv6DiscoverySocket.leaveGroup(m_ipv6MulticastAddress.host(), t_interface->m_if); }
         }
         catch (...) {
             // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
@@ -257,11 +257,11 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 		return;
 	}
 
-    // Only read if this belongs to this SDCInstance! - Peek first
+    // Only read if this belongs to this Config! - Peek first
     Poco::Net::SocketAddress t_sender;
     Poco::Buffer<char> t_peekBuf(1);
     socket.receiveFrom(t_peekBuf.begin(), 1, t_sender, MSG_PEEK);
-    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
+    if (m_networkConfig->isBound() && !m_networkConfig->belongsTo(t_sender.host())) {
         return;
     }
 

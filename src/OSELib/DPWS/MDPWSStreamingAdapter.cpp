@@ -6,7 +6,7 @@
  */
 
 #include "OSELib/DPWS/MDPWSStreamingAdapter.h"
-#include "SDCLib/SDCInstance.h"
+#include "SDCLib/Config/NetworkConfig.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
 
@@ -16,25 +16,25 @@ using namespace OSELib;
 using namespace OSELib::DPWS;
 using namespace OSELib::DPWS::Impl;
 
-MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription) :
+MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription) :
 	WithLogger(Log::DISCOVERY),
-	m_SDCInstance(p_SDCInstance),
+	m_networkConfig(p_config),
 	m_streamNotificationDispatcher(streamNotificationDispatcher),
 	m_deviceDescription(deviceDescription),
-	m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getStreamingIPv4(), p_SDCInstance->_getStreamingPortv4())),
-	m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getStreamingIPv6(), p_SDCInstance->_getStreamingPortv6()))
+	m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_config->_getStreamingIPv4(), p_config->_getStreamingPortv4())),
+	m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_config->_getStreamingIPv6(), p_config->_getStreamingPortv6()))
 {
-    if (m_SDCInstance->getIP4enabled())
+    if (m_networkConfig->getIP4enabled())
     {
         // Create MulticastSocket
         m_ipv4MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
 
-        // Add only interfaces bound to the SDCInstance
-        if (m_SDCInstance->isBound()) {
+        // Add only interfaces bound to this Config
+        if (m_networkConfig->isBound()) {
             // Bind MulticastSocket
             auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
             m_ipv4MulticastSocket.bind(t_bindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+            for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try {
                     // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                     m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), t_interface->m_if);
@@ -69,17 +69,17 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SD
         // Add Ipv4 Socket EventHandler
         m_reactor.addEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
     }
-    if (m_SDCInstance->getIP6enabled())
+    if (m_networkConfig->getIP6enabled())
     {
         // Create MulticastSocket
         m_ipv6MulticastSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
 
-        // Add only interfaces bound to the SDCInstance
-        if (m_SDCInstance->isBound()) {
+        // Add only interfaces bound to this Config
+        if (m_networkConfig->isBound()) {
             // Bind MulticastSocket
             auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
             m_ipv6MulticastSocket.bind(t_bindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+            for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try
                 {
                     // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
@@ -126,11 +126,11 @@ MDPWSStreamingAdapter::~MDPWSStreamingAdapter() {
     m_reactor.removeEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
     m_reactor.removeEventHandler(m_ipv6MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
 
-    for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+    for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
         try
         {
-            if (m_SDCInstance->getIP4enabled()) { m_ipv4MulticastSocket.leaveGroup(m_ipv4MulticastAddress.host(), t_interface->m_if); }
-            if (m_SDCInstance->getIP6enabled()) { m_ipv6MulticastSocket.leaveGroup(m_ipv6MulticastAddress.host(), t_interface->m_if); }
+            if (m_networkConfig->getIP4enabled()) { m_ipv4MulticastSocket.leaveGroup(m_ipv4MulticastAddress.host(), t_interface->m_if); }
+            if (m_networkConfig->getIP6enabled()) { m_ipv6MulticastSocket.leaveGroup(m_ipv6MulticastAddress.host(), t_interface->m_if); }
         }
         catch (...) {
             // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
@@ -154,13 +154,6 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 	if (available == 0) {
 		return;
 	}
-
-    // FIXMEOnly read if this belongs to this SDCInstance! - Peek first
-    /*Poco::Net::SocketAddress t_sender;
-    socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK);
-    if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
-        return;
-    }*/
 
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;

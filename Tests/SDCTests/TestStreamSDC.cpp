@@ -25,10 +25,10 @@
  *
  */
 
-#include <mutex>
+#include <atomic>
 #include <thread>
 
-#include "SDCLib/SDCLibrary.h"
+#include "OSELib/SDC/ServiceManager.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
@@ -37,7 +37,6 @@
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 
-#include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "SDCLib/Data/SDC/MDIB/MdDescription.h"
@@ -54,10 +53,10 @@
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Util/DebugOut.h"
 #include "SDCLib/Util/Task.h"
+
+
 #include "../AbstractSDCLibFixture.h"
 #include "../UnitTest++/src/UnitTest++.h"
-
-#include "OSELib/SDC/ServiceManager.h"
 
 
 using namespace SDCLib;
@@ -71,65 +70,55 @@ namespace StreamSDC {
 const std::string deviceEPR("UDI_STREAMINGTEST");
 
 
-class StreamConsumerEventHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState> {
+class StreamConsumerEventHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState>
+{
 public:
-	StreamConsumerEventHandler(const std::string & handle) :
-		SDCConsumerMDStateHandler(handle),
-    	verifiedChunks(false)
+	StreamConsumerEventHandler(const std::string & handle)
+    : SDCConsumerMDStateHandler(handle)
+    { }
+
+    void onStateChanged(const RealTimeSampleArrayMetricState & state) override
     {
-    }
-
-    void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
-    	std::lock_guard<std::mutex> t_lockMdStates{m_mutex};
         DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk! Handle: " << descriptorHandle << std::endl;
-        std::vector<double> values = state.getMetricValue().getSamples();
-        verifiedChunks = true;
+        auto tl_values = state.getMetricValue().getSamples();
+        m_verifiedChunks = true;
 
-        for (size_t i = 0; i < values.size(); i++) {
-            if (values[i] != double(i))
-                verifiedChunks = false;
+        for (size_t i = 0; i < tl_values.size(); ++i) {
+            if (tl_values[i] != static_cast<double>(i))
+                m_verifiedChunks = false;
         }
     }
 
-    bool getVerifiedChunks() {
-    	std::lock_guard<std::mutex> t_lockMdStates{m_mutex};
-        return verifiedChunks;
-    }
+    bool getVerifiedChunks() const { return m_verifiedChunks; }
 
 private:
-    std::mutex m_mutex;
-    bool verifiedChunks;
+    std::atomic<bool> m_verifiedChunks = ATOMIC_VAR_INIT(false);
 };
 
 
-class StreamDistributionConsumerEventHandler : public SDCConsumerMDStateHandler<DistributionSampleArrayMetricState> {
+class StreamDistributionConsumerEventHandler : public SDCConsumerMDStateHandler<DistributionSampleArrayMetricState>
+{
 public:
-	StreamDistributionConsumerEventHandler(const std::string & handle) :
-		SDCConsumerMDStateHandler(handle),
-    	verifiedChunks(false)
+	StreamDistributionConsumerEventHandler(const std::string & handle)
+    :SDCConsumerMDStateHandler(handle)
+    { }
+
+    void onStateChanged(const DistributionSampleArrayMetricState & state) override
     {
-    }
-
-    void onStateChanged(const DistributionSampleArrayMetricState & state) override {
-    	std::lock_guard<std::mutex> t_lockMdStates{m_mutex};
         DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk of a distribution! Handle: " << descriptorHandle << std::endl;
-        std::vector<double> values = state.getMetricValue().getSamples();
-        verifiedChunks = true;
+        auto tl_values = state.getMetricValue().getSamples();
+        m_verifiedChunks = true;
 
-        for (size_t i = 0; i < values.size(); i++) {
-            if (values[i] != double(i))
-                verifiedChunks = false;
+        for (size_t i = 0; i < tl_values.size(); ++i) {
+            if (tl_values[i] != static_cast<double>(i))
+                m_verifiedChunks = false;
         }
     }
 
-    bool getVerifiedChunks() {
-    	std::lock_guard<std::mutex> t_lockMdStates{m_mutex};
-        return verifiedChunks;
-    }
+    bool getVerifiedChunks() const { return m_verifiedChunks; }
 
 private:
-    std::mutex m_mutex;
-    bool verifiedChunks;
+    std::atomic<bool> m_verifiedChunks = ATOMIC_VAR_INIT(false);
 };
 
 
@@ -197,8 +186,6 @@ public:
     	return InvocationState::Fail;
     }
 };
-
-
 
 
 
@@ -312,7 +299,7 @@ private:
 
 
 public:
-    
+
     // Produce stream values
     // runImpl() gets called when starting the provider thread by the inherited function start()
     virtual void runImpl() override {
@@ -354,49 +341,47 @@ TEST_FIXTURE(FixtureStreamSDC, streamsdc)
         auto t_SDCInstance = createSDCInstance();
 
         // Provider
-		Tests::StreamSDC::SDCStreamHoldingDeviceProvider provider(t_SDCInstance);
+		Tests::StreamSDC::SDCStreamHoldingDeviceProvider t_provider(t_SDCInstance);
 		DebugOut(DebugOut::Default, "StreamSDC") << "Provider init.." << std::endl;
-		provider.startup();
+		t_provider.startup();
 
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
         DebugOut(DebugOut::Default, "StreamSDC") << "Consumer discovery..." << std::endl;
-        std::shared_ptr<SDCConsumer> c(t_serviceManager.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
-        std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
-        std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
-        std::shared_ptr<Tests::StreamSDC::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamSDC::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
+        auto t_consumer(t_serviceManager.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
+        auto eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
+        auto eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
+        auto eventHandlerDistribution = std::make_shared<Tests::StreamSDC::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
 
         // Discovery test
-        CHECK_EQUAL(true, c != nullptr);
+        CHECK_EQUAL(true, t_consumer != nullptr);
 
-//        if (c != nullptr) {
-//            c->registerStateEventHandler(eventHandler.get());
-//            c->registerStateEventHandler(eventHandlerAlt.get());
-//            c->registerStateEventHandler(eventHandlerDistribution.get());
-//
-//            provider.start();// starts provider in a thread and calls the overwritten function runImpl()
-//
-//			// Metric event reception test
-//            std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-//            CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
-//            CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
-//            CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
-//
-//
-//            c->unregisterStateEventHandler(eventHandler.get());
-//            c->unregisterStateEventHandler(eventHandlerAlt.get());
-//            c->unregisterStateEventHandler(eventHandlerDistribution.get());
-//            c->disconnect();
-//            provider.interrupt();
-//        }
-//
-//        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-//        provider.shutdown();
+        if (t_consumer != nullptr) {
+            t_consumer->registerStateEventHandler(eventHandler.get());
+            t_consumer->registerStateEventHandler(eventHandlerAlt.get());
+            t_consumer->registerStateEventHandler(eventHandlerDistribution.get());
+
+            t_provider.start(); // starts provider in a thread and calls the overwritten function runImpl()
+
+			// Metric event reception test
+            std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+            CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
+            CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
+            CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
+
+
+            t_consumer->unregisterStateEventHandler(eventHandler.get());
+            t_consumer->unregisterStateEventHandler(eventHandlerAlt.get());
+            t_consumer->unregisterStateEventHandler(eventHandlerDistribution.get());
+            t_consumer->disconnect();
+            t_provider.interrupt();
+        }
+        t_provider.shutdown();
 	}
 	catch (char const* exc)
 	{
 		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << exc;
-	}    
+	}
 	catch (...)
 	{
 		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << "Unknown exception occurred!";

@@ -30,7 +30,7 @@ namespace Impl {
 class DPWSDiscoveryClientSocketImpl : public WithLogger {
 public:
 	DPWSDiscoveryClientSocketImpl(
-            SDCLib::SDCInstance_shared_ptr p_SDCInstance,
+            SDCLib::Config::NetworkConfig_shared_ptr p_config,
 			ByeNotificationDispatcher & byeDispatcher,
 			HelloNotificationDispatcher & helloDispatcher,
 			ProbeMatchNotificationDispatcher & probeMatchDispatcher,
@@ -51,7 +51,7 @@ private:
 	bool verifyBye(const MESSAGEMODEL::Envelope & message);
 	bool verifyHello(const MESSAGEMODEL::Envelope & message);
 
-	SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
+	SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
 	ByeNotificationDispatcher & _byeDispatcher;
 	HelloNotificationDispatcher & _helloDispatcher;
 	ProbeMatchNotificationDispatcher & _probeMatchDispatcher;
