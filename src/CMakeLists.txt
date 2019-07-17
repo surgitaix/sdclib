@@ -542,7 +542,7 @@ target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
 
 # Additional (TODO: Move into SDCLib!)
 # DataModel
-target_sources(${CURRENT_TARGET_NAME} PUBLIC $<TARGET_OBJECTS:DataModel>)
+target_sources(${CURRENT_TARGET_NAME} PRIVATE $<TARGET_OBJECTS:DataModel>)
 # Note: 2nd line for cmake < 3.12
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
 
