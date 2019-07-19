@@ -93,14 +93,22 @@
 #include <string>
 
 #include "Poco/Event.h"
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
 
 #include "OSELib/SDC/ServiceManager.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
+
+
+// Some values to configure the test
+const int LOOP_SLEEP = 200;
+const int NUM_LOOPS_SLEEP = 2; // The number of loops to wait and let the provider run
+
+const double WEIGHT_LOWER = 0.0;
+const double WEIGHT_UPPER = 2.0;
+const double WEIGHT_MAX = 2.5;
+const double WEIGHT_INCR_PER_LOOP = 0.2;
 
 namespace SDCLib {
 namespace Tests {
@@ -160,19 +168,15 @@ const std::string PATIENT_CONTEXT_HANDLE("patient_context");
 
 class ExampleConsumerNumericHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
 public:
-	ExampleConsumerNumericHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle),
-    	weight(0)
-	{
-	}
-
-    virtual ~ExampleConsumerNumericHandler() {
-
-    }
+	ExampleConsumerNumericHandler(const std::string & descriptorHandle)
+    : SDCConsumerMDStateHandler(descriptorHandle)
+	{ }
+    virtual ~ExampleConsumerNumericHandler() = default;
 
     void onStateChanged(const NumericMetricState & state) override {
-        double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << descriptorHandle << ": " << val << std::endl;
-        weight = (float)val;
+        auto t_val = state.getMetricValue().getValue();
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << descriptorHandle << ": " << t_val << std::endl;
+        m_weight = t_val;
         eventEMR.set();
     }
 
@@ -180,17 +184,14 @@ public:
         DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
-    float getWeight() {
-    	float result(weight);
-        return result;
-    }
+    double getWeight() const { return m_weight; }
 
 	Poco::Event & getEventEMR() {
 		return eventEMR;
 	}
 
 private:
-    std::atomic<float> weight = ATOMIC_VAR_INIT(0.0);
+    std::atomic<double> m_weight = ATOMIC_VAR_INIT(0.0);
     Poco::Event eventEMR;
 };
 
@@ -875,8 +876,8 @@ public:
         		AlertConditionKind::Tec,
         		AlertConditionPriority::Me,
         		Range()
-        			.setLower(0)
-        			.setUpper(2.0)
+        			.setLower(WEIGHT_LOWER)
+        			.setUpper(WEIGHT_UPPER)
         		);
 
         limitAlertCondition.setType(CodedValue("MDCX_CODE_ID_ALERT_WEIGHT_CONDITION").setCodingSystem("OR.NET.Codings")).addSource(NUMERIC_METRIC_CURRENT_HANDLE);
@@ -988,12 +989,12 @@ public:
 
     // Update weight periodically
     virtual void runImpl() override {
-    	auto nextWeight = m_currentWeight + 0.2;
-    	if (nextWeight > 2.5) {
-    		nextWeight = 0.1;
+    	auto nextWeight = m_currentWeight + WEIGHT_INCR_PER_LOOP;
+    	if (nextWeight > WEIGHT_MAX) {
+    		nextWeight = 0.0;
     	}
 		setCurrentWeight(nextWeight);
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		std::this_thread::sleep_for(std::chrono::milliseconds(LOOP_SLEEP));
     }
 
     void setCurrentWeight(double p_value)
@@ -1053,7 +1054,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
         // Provider
         Tests::SimpleSDC::SDCHoldingDeviceProvider provider(t_SDCInstance);
         provider.startup();
-        //provider.start(); // FIXME: Deadlock on evaluateAlertCondition
+        provider.start(); // FIXME: Deadlock on evaluateAlertCondition
 
         // MdDescription test
         MdDescription mdDescription =  provider.getMdDescription();
@@ -1062,8 +1063,6 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
         mdDescription.addMdsDescriptor(mds_test);
         CHECK_EQUAL(true, mdDescription.removeMdsDescriptor(mds_test));
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Discover EPR...";
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
@@ -1133,7 +1132,8 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
             CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&patientEventHandler));
 
             DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting...";
-            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+            // Note: Min 1 Loop sleep
+            std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(LOOP_SLEEP*1.1)));
 
             {	// Ensure that requests for wrong handles fail.
                 DebugOut(DebugOut::Default, m_details.testName) << "Numeric test..." << std::endl;
@@ -1148,7 +1148,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				CHECK_EQUAL(true, pTempNMS->hasMetricValue());
 				if (pTempNMS->hasMetricValue()) {
 					const double curWeight(pTempNMS->getMetricValue().getValue());
-					CHECK_EQUAL(true, curWeight > 0.1);
+					CHECK_EQUAL(true, curWeight > WEIGHT_INCR_PER_LOOP*0.5);
 				}
             }
             {	// Ensure that (read-only) metrics without matching SetOperation cannot be set.
@@ -1193,7 +1193,8 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 
             // Wait here and let the current value exceed max value. This will trigger alert condition presence which in turn
             // will trigger an alert signal presence (Off -> On -> Latch)!
-            std::this_thread::sleep_for(std::chrono::milliseconds(8000));
+            auto t_waitTime0 = LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP;
+			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(t_waitTime0)));
 
 			{	// Set state test for a numeric metric state (must succeed, use state handle instead of descriptor handle)
                 std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
@@ -1258,7 +1259,8 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				DebugOut(DebugOut::Default, m_details.testName) << "Patient context test done...";
 			}
             // Run for some time to receive and display incoming metric events.
-			std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+            auto t_waitTime1 = LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP;
+			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(t_waitTime1)));
 
 			// Stop dummy events created by provider
 			provider.interrupt();
@@ -1274,7 +1276,8 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
 			}
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+            auto t_waitTime2 = LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP;
+			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(t_waitTime2)));
 
             CHECK_EQUAL(true, eces1.getWeight() > 0);
 
@@ -1302,8 +1305,6 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 
             t_consumer->disconnect();
         }
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         provider.shutdown();
     } catch (char const* exc) {
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;

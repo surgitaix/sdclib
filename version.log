@@ -1,3 +1,8 @@
+Update to version 4.2.2
+
+- All unit tests passing.
+- Merged reevaluateAlertCondition Fix from master.
+
 Update to version 4.2.1
 
 - Removed SSLHandler and moved functionality to SDCConfig->SSLConfig

@@ -63,6 +63,11 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
+
+// Some values to configure the test
+const int LOOP_SLEEP = 250;
+const int NUM_LOOPS_SLEEP = 10; // The number of loops to wait and let the provider run
+
 namespace SDCLib {
 namespace Tests {
 namespace StreamSDC {
@@ -318,7 +323,7 @@ public:
 
 			}
 			DebugOut(DebugOut::Default, "StreamSDC") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+			std::this_thread::sleep_for(std::chrono::milliseconds(LOOP_SLEEP));
 			index += size;
 		}
     }
@@ -364,7 +369,7 @@ TEST_FIXTURE(FixtureStreamSDC, StreamSDC)
             t_provider.start(); // starts provider in a thread and calls the overwritten function runImpl()
 
 			// Metric event reception test
-            std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+            std::this_thread::sleep_for(std::chrono::milliseconds(LOOP_SLEEP*NUM_LOOPS_SLEEP));
             CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
             CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
             CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());

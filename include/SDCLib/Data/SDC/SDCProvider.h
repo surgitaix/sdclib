@@ -172,7 +172,10 @@ public:
     * @param oic operation invocation context
     */
     void setAlertConditionPresence(const std::string & alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic);
-    void evaluateAlertConditions(const std::string & source) const;
+
+    void evaluateAlertConditions(const std::string & p_source) const;
+    void reevaluateAlertConditions(const std::string & p_alertConditionDescriptor) const;
+
 
     /**
     * @brief Start the provider.
@@ -195,7 +198,7 @@ public:
     * All needed DPWS devices & services will be stopped and deleted.
     */
     void shutdown();
-    
+
     template<class T>
     void replaceState(const T & state);
 

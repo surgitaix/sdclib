@@ -14,6 +14,7 @@
 #define SDCPROVIDERALERTCONDITIONSTATEHANDLER_H_
 
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Util/DebugOut.h"
 
 namespace SDCLib {
 namespace Data {
@@ -32,6 +33,7 @@ public:
 	virtual ~SDCProviderAlertConditionStateHandler() = default;
 
 	virtual void sourceHasChanged(const std::string & sourceHandle) = 0;
+	virtual void alertConditionHasChanged() { SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Default, "SDCProviderAlertConditionStateHandler") << "Soon to be pure virtual function alertConditionHasChanged called." << std::endl;};
 
 };
 

@@ -51,7 +51,7 @@ int main()
     // SINGLE TESTS (Note: Name is case sensitive!) [ Chose ONE of the following]
     //runSingleTest("ConnectionLost"); // Should work
     //runSingleTest("MultiSDC"); // Should work
-    //runSingleTest("SimpleSDC"); // Currently fail [uncomment//provider.start()] -> deadlock evaluateAlterts
+    //runSingleTest("SimpleSDC"); // Should work
     //runSingleTest("PeriodicEvents"); // Should work
     //runSingleTest("StreamSDC"); // Should work
 	return 0;

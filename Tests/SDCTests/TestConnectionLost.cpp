@@ -200,10 +200,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
         // Long enough that all ConnectionLost Handlers have the time to get triggered...
         auto t_waitTime = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS * 1.2;
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting " << t_waitTime << " ms for connectionLostHanders...\n";
-
         std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<std::size_t>(t_waitTime)));
-
-
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Checking connectionLostHandlers...\n";
 

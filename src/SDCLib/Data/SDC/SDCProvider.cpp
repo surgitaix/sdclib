@@ -664,16 +664,7 @@ void SDCProvider::updateState(const AlertSignalState & object) {
 
 void SDCProvider::updateState(const AlertConditionState & object) {
 	updateMDIB(object);
-	//Evaluate Alert Conditions sources, based on changes to the AlertCoditionState
-	std::string handle = object.getDescriptorHandle();
-	MdDescription mdDescription = getMdDescription();
-	auto t_descriptor(std::move(mdDescription.findDescriptor<AlertConditionDescriptor>(handle)));
-    if(t_descriptor == nullptr) {
-        return;
-    }
-	for (auto source : t_descriptor->getSourceList()) {
-		evaluateAlertConditions(source);
-	}
+	reevaluateAlertConditions(object.getDescriptorHandle());
 	notifyAlertEventImpl(object);
 }
 
@@ -686,15 +677,7 @@ void SDCProvider::updateState(const EnumStringMetricState & object) {
 void SDCProvider::updateState(const LimitAlertConditionState & object) {
 	updateMDIB(object);
 	//Evaluate Alert Conditions sources, based on changes to the AlertCoditionState
-	std::string handle = object.getDescriptorHandle();
-	MdDescription mdDescription = getMdDescription();
-	auto t_descriptor(std::move(mdDescription.findDescriptor<LimitAlertConditionDescriptor>(handle)));
-    if(t_descriptor == nullptr) {
-        return;
-    }
-	for (auto source : t_descriptor->getSourceList()) {
-		evaluateAlertConditions(source);
-	}
+	reevaluateAlertConditions(object.getDescriptorHandle());
 	notifyAlertEventImpl(object);
 }
 
@@ -950,20 +933,20 @@ void SDCProvider::setAlertConditionPresence(const std::string & alertConditionHa
 	}
 }
 
-void SDCProvider::evaluateAlertConditions(const std::string & source) const
+void SDCProvider::evaluateAlertConditions(const std::string & p_source) const
 {
     const MdDescription description(getMdDescription());
 
 	std::vector<std::string> relevantDescriptors;
 	for (const auto & alertCondition : description.collectAllAlertConditionDescriptors()) {
 		const auto sources(alertCondition.getSourceList());
-		if (std::find(sources.begin(), sources.end(), source) != sources.end()) {
+		if (std::find(sources.begin(), sources.end(), p_source) != sources.end()) {
 			relevantDescriptors.push_back(alertCondition.getHandle());
 		}
 	}
 	for (const auto & limitAlertCondition : description.collectAllLimitAlertConditionDescriptors()) {
 		const auto sources(limitAlertCondition.getSourceList());
-		if (std::find(sources.begin(), sources.end(), source) != sources.end()) {
+		if (std::find(sources.begin(), sources.end(), p_source) != sources.end()) {
 			relevantDescriptors.push_back(limitAlertCondition.getHandle());
 		}
 	}
@@ -972,20 +955,53 @@ void SDCProvider::evaluateAlertConditions(const std::string & source) const
         return;
 	}
 
+	using AlertCondition_ptr = SDCProviderAlertConditionStateHandler<AlertConditionState>*;
+    std::vector<AlertCondition_ptr> tl_states;
     {   // LOCK
         std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
         for (const auto & handler : m_stateHandlers) {
             if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
                 if (std::find(relevantDescriptors.begin(), relevantDescriptors.end(), h->getDescriptorHandle()) != relevantDescriptors.end()) {
-                    h->sourceHasChanged(source);
+                    tl_states.push_back(static_cast<AlertCondition_ptr>(handler.second));
                 }
             } else if (SDCProviderAlertConditionStateHandler<LimitAlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<LimitAlertConditionState> *>(handler.second)) {
                 if (std::find(relevantDescriptors.begin(), relevantDescriptors.end(), h->getDescriptorHandle()) != relevantDescriptors.end()) {
-                    h->sourceHasChanged(source);
+                    tl_states.push_back(static_cast<AlertCondition_ptr>(handler.second));
                 }
             }
         }
-        // UNLOCK
+    } // UNLOCK
+
+    // Update
+    for(const auto& t_handler : tl_states) {
+        t_handler->sourceHasChanged(p_source);
+    }
+}
+
+void SDCProvider::reevaluateAlertConditions(const std::string& p_alertConditionDescriptor) const
+{
+    const MdDescription description(getMdDescription());
+
+    using AlertCondition_ptr = SDCProviderAlertConditionStateHandler<AlertConditionState>*;
+    std::vector<AlertCondition_ptr> tl_states;
+    { //LOCK
+        std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
+        for (const auto & handler : m_stateHandlers) {
+            if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
+                if (h->getDescriptorHandle() == p_alertConditionDescriptor) {
+                    tl_states.push_back(static_cast<AlertCondition_ptr>(handler.second));
+                }
+            } else if (SDCProviderAlertConditionStateHandler<LimitAlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<LimitAlertConditionState> *>(handler.second)) {
+                if (h->getDescriptorHandle() == p_alertConditionDescriptor) {
+                    tl_states.push_back(static_cast<AlertCondition_ptr>(handler.second));
+                }
+            }
+        }
+    } // UNLOCK
+
+    // Update
+    for(const auto& t_state : tl_states) {
+        t_state->alertConditionHasChanged();
     }
 }
 
@@ -1096,7 +1112,6 @@ bool SDCProvider::startup()
 
     // Set the flag
     m_started = true;
-
     return true;
 }
 
